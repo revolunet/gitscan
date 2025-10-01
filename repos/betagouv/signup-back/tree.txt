@@ -1,0 +1,491 @@
+.
+├── .env
+├── .github
+│   ├── dependabot.yml
+│   └── workflows
+│       └── ci.yml
+├── .gitignore
+├── .rspec
+├── .ruby-version
+├── .standard.yml
+├── Gemfile
+├── Gemfile.lock
+├── Guardfile
+├── LICENSE
+├── Procfile.dev
+├── README.md
+├── Rakefile
+├── app
+│   ├── bridges
+│   │   ├── abstract_webhook_bridge.rb
+│   │   ├── aidants_connect_bridge.rb
+│   │   ├── api_droits_cnam_bridge.rb
+│   │   ├── api_impot_particulier_fc_sandbox_bridge.rb
+│   │   ├── api_particulier_bridge.rb
+│   │   ├── application_bridge.rb
+│   │   ├── franceconnect_bridge.rb
+│   │   └── hubee_bridge.rb
+│   ├── channels
+│   │   └── application_cable
+│   │       ├── channel.rb
+│   │       └── connection.rb
+│   ├── controllers
+│   │   ├── application_controller.rb
+│   │   ├── concerns
+│   │   │   └── .keep
+│   │   ├── documents_controller.rb
+│   │   ├── enrollments_controller.rb
+│   │   ├── enrollments_email_templates_controller.rb
+│   │   ├── events_controller.rb
+│   │   ├── insee_controller.rb
+│   │   ├── sendinblue_webhooks_controller.rb
+│   │   ├── stats_controller.rb
+│   │   ├── team_members_controller.rb
+│   │   ├── users
+│   │   │   └── sessions_controller.rb
+│   │   └── users_controller.rb
+│   ├── lib
+│   │   ├── failure_app.rb
+│   │   └── http.rb
+│   ├── mailers
+│   │   ├── enrollment_mailer.rb
+│   │   ├── rgpd_mailer.rb
+│   │   └── webhook_mailer.rb
+│   ├── models
+│   │   ├── concerns
+│   │   │   └── .keep
+│   │   ├── document
+│   │   │   ├── attestation_fiscale.rb
+│   │   │   ├── decision_homologation.rb
+│   │   │   ├── delegation_service_public.rb
+│   │   │   ├── expression_besoin_specifique.rb
+│   │   │   ├── geo_shapelegal_basis.rb
+│   │   │   ├── legal_basis.rb
+│   │   │   ├── liste_aidants.rb
+│   │   │   └── maquette_projet.rb
+│   │   ├── document.rb
+│   │   ├── enrollment
+│   │   │   ├── aidants_connect.rb
+│   │   │   ├── api_declaration_auto_entrepreneur.rb
+│   │   │   ├── api_droits_cnam.rb
+│   │   │   ├── api_entreprise.rb
+│   │   │   ├── api_indemnites_journalieres_cnam.rb
+│   │   │   ├── api_particulier.rb
+│   │   │   ├── api_pro_sante_connect.rb
+│   │   │   ├── api_service_national.rb
+│   │   │   ├── api_statut_etudiant.rb
+│   │   │   ├── cartobio.rb
+│   │   │   ├── dgfip
+│   │   │   │   ├── api_cpr_pro_production.rb
+│   │   │   │   ├── api_cpr_pro_sandbox.rb
+│   │   │   │   ├── api_e_contacts_production.rb
+│   │   │   │   ├── api_e_contacts_sandbox.rb
+│   │   │   │   ├── api_e_pro_production.rb
+│   │   │   │   ├── api_e_pro_sandbox.rb
+│   │   │   │   ├── api_ficoba_production.rb
+│   │   │   │   ├── api_ficoba_sandbox.rb
+│   │   │   │   ├── api_hermes_production.rb
+│   │   │   │   ├── api_hermes_sandbox.rb
+│   │   │   │   ├── api_impot_particulier_fc_production.rb
+│   │   │   │   ├── api_impot_particulier_fc_sandbox.rb
+│   │   │   │   ├── api_impot_particulier_production.rb
+│   │   │   │   ├── api_impot_particulier_sandbox.rb
+│   │   │   │   ├── api_infinoe_production.rb
+│   │   │   │   ├── api_infinoe_sandbox.rb
+│   │   │   │   ├── api_mire_production.rb
+│   │   │   │   ├── api_mire_sandbox.rb
+│   │   │   │   ├── api_ocfi_production.rb
+│   │   │   │   ├── api_ocfi_sandbox.rb
+│   │   │   │   ├── api_opale_production.rb
+│   │   │   │   ├── api_opale_sandbox.rb
+│   │   │   │   ├── api_r2p_production.rb
+│   │   │   │   ├── api_r2p_sandbox.rb
+│   │   │   │   ├── api_robf_production.rb
+│   │   │   │   ├── api_robf_sandbox.rb
+│   │   │   │   ├── production_enrollment.rb
+│   │   │   │   └── sandbox_enrollment.rb
+│   │   │   ├── franceconnect.rb
+│   │   │   ├── hubee.rb
+│   │   │   ├── le_taxi_chauffeurs.rb
+│   │   │   ├── le_taxi_clients.rb
+│   │   │   └── preuve_covoiturage.rb
+│   │   ├── enrollment.rb
+│   │   ├── enrollment_email_template.rb
+│   │   ├── event.rb
+│   │   ├── team_member
+│   │   │   ├── contact_metier.rb
+│   │   │   ├── delegue_protection_donnees.rb
+│   │   │   ├── demandeur.rb
+│   │   │   ├── responsable_technique.rb
+│   │   │   └── responsable_traitement.rb
+│   │   ├── team_member.rb
+│   │   └── user.rb
+│   ├── notifiers
+│   │   ├── abstract_notifier.rb
+│   │   ├── api_entreprise_notifier.rb
+│   │   ├── base_notifier.rb
+│   │   └── concerns
+│   │       ├── email_notifier_methods.rb
+│   │       └── webhook_notifier_methods.rb
+│   ├── policies
+│   │   ├── application_policy.rb
+│   │   ├── document_policy.rb
+│   │   ├── enrollment
+│   │   │   ├── aidants_connect_policy.rb
+│   │   │   ├── api_declaration_auto_entrepreneur_policy.rb
+│   │   │   ├── api_droits_cnam_policy.rb
+│   │   │   ├── api_entreprise_policy.rb
+│   │   │   ├── api_indemnites_journalieres_cnam_policy.rb
+│   │   │   ├── api_particulier_policy.rb
+│   │   │   ├── api_pro_sante_connect_policy.rb
+│   │   │   ├── api_service_national_policy.rb
+│   │   │   ├── api_statut_etudiant_policy.rb
+│   │   │   ├── cartobio_policy.rb
+│   │   │   ├── dgfip
+│   │   │   │   ├── api_cpr_pro_production_policy.rb
+│   │   │   │   ├── api_cpr_pro_sandbox_policy.rb
+│   │   │   │   ├── api_e_contacts_production_policy.rb
+│   │   │   │   ├── api_e_contacts_sandbox_policy.rb
+│   │   │   │   ├── api_e_pro_production_policy.rb
+│   │   │   │   ├── api_e_pro_sandbox_policy.rb
+│   │   │   │   ├── api_ficoba_production_policy.rb
+│   │   │   │   ├── api_ficoba_sandbox_policy.rb
+│   │   │   │   ├── api_hermes_production_policy.rb
+│   │   │   │   ├── api_hermes_sandbox_policy.rb
+│   │   │   │   ├── api_impot_particulier_fc_production_policy.rb
+│   │   │   │   ├── api_impot_particulier_fc_sandbox_policy.rb
+│   │   │   │   ├── api_impot_particulier_production_policy.rb
+│   │   │   │   ├── api_impot_particulier_sandbox_policy.rb
+│   │   │   │   ├── api_infinoe_production_policy.rb
+│   │   │   │   ├── api_infinoe_sandbox_policy.rb
+│   │   │   │   ├── api_mire_production_policy.rb
+│   │   │   │   ├── api_mire_sandbox_policy.rb
+│   │   │   │   ├── api_ocfi_production_policy.rb
+│   │   │   │   ├── api_ocfi_sandbox_policy.rb
+│   │   │   │   ├── api_opale_production_policy.rb
+│   │   │   │   ├── api_opale_sandbox_policy.rb
+│   │   │   │   ├── api_r2p_production_policy.rb
+│   │   │   │   ├── api_r2p_sandbox_policy.rb
+│   │   │   │   ├── api_robf_production_policy.rb
+│   │   │   │   ├── api_robf_sandbox_policy.rb
+│   │   │   │   ├── production_policy.rb
+│   │   │   │   └── sandbox_policy.rb
+│   │   │   ├── franceconnect_policy.rb
+│   │   │   ├── hubee_policy.rb
+│   │   │   ├── le_taxi_chauffeurs_policy.rb
+│   │   │   ├── le_taxi_clients_policy.rb
+│   │   │   └── preuve_covoiturage_policy.rb
+│   │   ├── enrollment_policy.rb
+│   │   ├── team_member
+│   │   │   ├── contact_metier_policy.rb
+│   │   │   ├── delegue_protection_donnees_policy.rb
+│   │   │   ├── demandeur_policy.rb
+│   │   │   ├── responsable_technique_policy.rb
+│   │   │   └── responsable_traitement_policy.rb
+│   │   ├── team_member_policy.rb
+│   │   └── user_policy.rb
+│   ├── serializers
+│   │   ├── admin_user_serializer.rb
+│   │   ├── document_serializer.rb
+│   │   ├── enrollment_email_template_serializer.rb
+│   │   ├── enrollment_serializer.rb
+│   │   ├── event_serializer.rb
+│   │   ├── full_user_serializer.rb
+│   │   ├── light_enrollment_serializer.rb
+│   │   ├── public_enrollment_list_serializer.rb
+│   │   ├── team_member_serializer.rb
+│   │   ├── team_member_with_profile_serializer.rb
+│   │   ├── user_enrollment_list_serializer.rb
+│   │   ├── user_serializer.rb
+│   │   ├── webhook_enrollment_serializer.rb
+│   │   ├── webhook_event_serializer.rb
+│   │   ├── webhook_serializer.rb
+│   │   └── webhook_user_with_profile_serializer.rb
+│   ├── services
+│   │   ├── application_service.rb
+│   │   ├── data_providers_configuration.rb
+│   │   ├── enrollment_email_templates_retriever.rb
+│   │   ├── get_average_processing_time_in_days.rb
+│   │   ├── get_majority_percentile_processing_time_in_days.rb
+│   │   ├── magic_pdf_validator.rb
+│   │   └── refresh_user.rb
+│   ├── uploaders
+│   │   ├── document_uploader.rb
+│   │   └── pdf_uploader.rb
+│   ├── views
+│   │   ├── enrollment_mailer
+│   │   │   ├── README.md
+│   │   │   ├── admin
+│   │   │   │   ├── add_scopes_in_franceconnect.text.erb
+│   │   │   │   └── new_franceconnect_plus.text.erb
+│   │   │   ├── aidants_connect
+│   │   │   │   └── validate_application.text.erb
+│   │   │   ├── api_entreprise
+│   │   │   │   ├── create_application.text.erb
+│   │   │   │   ├── refuse_application.text.erb
+│   │   │   │   ├── review_application.text.erb
+│   │   │   │   ├── send_application.text.erb
+│   │   │   │   └── validate_application.text.erb
+│   │   │   ├── api_ficoba_production
+│   │   │   │   └── validate_application.text.erb
+│   │   │   ├── api_ficoba_sandbox
+│   │   │   │   └── validate_application.text.erb
+│   │   │   ├── api_impot_particulier_fc_production
+│   │   │   │   └── validate_application.text.erb
+│   │   │   ├── api_impot_particulier_fc_sandbox
+│   │   │   │   └── validate_application.text.erb
+│   │   │   ├── api_impot_particulier_sandbox
+│   │   │   │   └── validate_application.text.erb
+│   │   │   ├── api_particulier
+│   │   │   │   └── validate_application.text.erb
+│   │   │   ├── api_r2p_production
+│   │   │   │   └── validate_application.text.erb
+│   │   │   ├── api_r2p_sandbox
+│   │   │   │   └── validate_application.text.erb
+│   │   │   ├── cartobio
+│   │   │   │   ├── refuse_application.text.erb
+│   │   │   │   ├── send_application.text.erb
+│   │   │   │   └── validate_application.text.erb
+│   │   │   ├── create_application.text.erb
+│   │   │   ├── hubee
+│   │   │   │   └── validate_application.text.erb
+│   │   │   ├── notify.text.erb
+│   │   │   ├── notify_application_sent.text.erb
+│   │   │   ├── refuse_application.text.erb
+│   │   │   ├── review_application.text.erb
+│   │   │   ├── send_application.text.erb
+│   │   │   └── validate_application.text.erb
+│   │   └── webhook_mailer
+│   │       └── fail.text.erb
+│   └── workers
+│       ├── application_worker.rb
+│       └── deliver_enrollment_webhook_worker.rb
+├── bin
+│   ├── bundle
+│   ├── rails
+│   ├── rake
+│   ├── setup
+│   ├── spring
+│   └── update
+├── config
+│   ├── application.rb
+│   ├── boot.rb
+│   ├── brakeman.ignore
+│   ├── cable.yml
+│   ├── data_providers.yml
+│   ├── database.yml
+│   ├── environment.rb
+│   ├── environments
+│   │   ├── development.rb
+│   │   ├── production.rb
+│   │   └── test.rb
+│   ├── initializers
+│   │   ├── active_model_serializer.rb
+│   │   ├── application_controller_renderer.rb
+│   │   ├── backtrace_silencers.rb
+│   │   ├── carrierwave.rb
+│   │   ├── devise.rb
+│   │   ├── filter_parameter_logging.rb
+│   │   ├── http_mime_types.rb
+│   │   ├── inflections.rb
+│   │   ├── mailjet.rb
+│   │   ├── mime_types.rb
+│   │   ├── redis.rb
+│   │   ├── sendinblue.rb
+│   │   ├── sentry.rb
+│   │   ├── simplecov.rb
+│   │   └── wrap_parameters.rb
+│   ├── locales
+│   │   ├── devise.en.yml
+│   │   ├── devise.fr.yml
+│   │   ├── en.yml
+│   │   └── fr.yml
+│   ├── puma.rb
+│   ├── routes.rb
+│   ├── secrets.yml
+│   ├── sidekiq.yml
+│   └── spring.rb
+├── config.ru
+├── db
+│   ├── migrate
+│   │   ├── 20170911160451_devise_create_users.rb
+│   │   ├── 20170912085440_add_provider_to_users.rb
+│   │   ├── 20170912085457_add_uid_to_users.rb
+│   │   ├── 20170913161952_create_enrollments.rb
+│   │   ├── 20170918083836_rolify_create_roles.rb
+│   │   ├── 20170918152539_create_documents.rb
+│   │   ├── 20170918160126_add_enrollment_id_to_documents.rb
+│   │   ├── 20170919075902_add_type_to_documents.rb
+│   │   ├── 20170922142842_add_applicant_to_enrollments.rb
+│   │   ├── 20170928123019_create_messages.rb
+│   │   ├── 20171122144253_add_archive_to_documents.rb
+│   │   ├── 20171122154228_remove_user_id_from_messages.rb
+│   │   ├── 20180108145449_add_production_certificate_to_enrollments.rb
+│   │   ├── 20180108145535_add_certification_authority_to_enrollments.rb
+│   │   ├── 20180108145615_add_production_ips_to_enrollments.rb
+│   │   ├── 20180111100539_add_oauth_roles_to_users.rb
+│   │   ├── 20180201145757_add_cnil_voucher_detail_to_enrollments.rb
+│   │   ├── 20180201145943_add_certification_results_detail_to_enrollments.rb
+│   │   ├── 20180320125913_change_enrollment_schema.rb
+│   │   ├── 20180321103855_updates_enrollment_schema.rb
+│   │   ├── 20180322152807_create_resource_providers.rb
+│   │   ├── 20180322165139_create_scopes.rb
+│   │   ├── 20180323115633_add_services_to_scopes.rb
+│   │   ├── 20180327155316_add_node_example_to_scopes.rb
+│   │   ├── 20180403084803_add_resource_provider_type_to_resource_providers.rb
+│   │   ├── 20180404075027_add_ips_de_production_to_enrollments.rb
+│   │   ├── 20180405135500_add_recette_fonctionnelle_to_enrollments.rb
+│   │   ├── 20180406113758_add_scope_dgfip_adresse_fiscale_taxation_to_enrollments.rb
+│   │   ├── 20180406113926_add_scope_dgfip_rfr_to_enrollments.rb
+│   │   ├── 20180406114320_add_demarche_cnil_to_enrollments.rb
+│   │   ├── 20180416091916_add_type_fournisseur_donnees_to_enrollments.rb
+│   │   ├── 20180417080126_fix_column_name.rb
+│   │   ├── 20180417091651_fix_fournisseur_donnees_name.rb
+│   │   ├── 20180420135406_new_contractualization_form.rb
+│   │   ├── 20180423100611_rename_delegue_a_la_protection_des_donnees.rb
+│   │   ├── 20180423144929_add_fournisseur_de_donnees_to_enrollments.rb
+│   │   ├── 20180423145051_remove_validation_de_delegue_a_la_protection_des_donnees.rb
+│   │   ├── 20180426091214_create_enrollment_dgfips.rb
+│   │   ├── 20180426101321_add_dgfip_foreign_keys.rb
+│   │   ├── 20180427151321_add_default_to_enrollment_scopes.rb
+│   │   ├── 20180503093322_merge_dgfips_and_enrollments_as_sti.rb
+│   │   ├── 20180509115317_add_demarche_cnil_boolean_to_enrollments.rb
+│   │   ├── 20180509130404_add_administration_to_enrollments.rb
+│   │   ├── 20180509130425_add_france_connect_to_enrollments.rb
+│   │   ├── 20180509130502_add_autorisation_legale_to_enrollments.rb
+│   │   ├── 20180525103419_add_default_to_enrollments_donnees.rb
+│   │   ├── 20180625083636_add_attachable_polymorphic_association_to_documents.rb
+│   │   ├── 20180627123501_change_heures_to_secondes_in_enrollments.rb
+│   │   ├── 20180628152732_add_timestamps_to_enrollment.rb
+│   │   ├── 20180713093636_delete_legacy_models.rb
+│   │   ├── 20180720170026_change_autorite_homologation_to_autorite_certification.rb
+│   │   ├── 20180723124128_add_url_fondement_juridique_to_enrollments.rb
+│   │   ├── 20180816122600_add_category_to_message.rb
+│   │   ├── 20180829133613_change_siren_in_siret.rb
+│   │   ├── 20180904130246_add_authentication_token_to_users.rb
+│   │   ├── 20181126104237_add_token_id_to_enrollment.rb
+│   │   ├── 20181206081635_add_nom_raison_sociale_to_enrollments.rb
+│   │   ├── 20190121165425_remove_fournisseur_de_service_from_enrollments.rb
+│   │   ├── 20190214142724_add_email_verified_to_users.rb
+│   │   ├── 20190225105948_remove_authentication_token_from_users.rb
+│   │   ├── 20190227142543_remove_unused_fields_in_users.rb
+│   │   ├── 20190325110327_add_user_ref_to_enrollments.rb
+│   │   ├── 20190326102912_rename_roles_to_events.rb
+│   │   ├── 20190329164933_clean_enrollment_messages.rb
+│   │   ├── 20190401144527_clean_unused_enrollment_attributes.rb
+│   │   ├── 20190401145612_use_jsonb_in_enrollments.rb
+│   │   ├── 20190402091628_add_additional_content_to_enrollements.rb
+│   │   ├── 20190403122936_flatten_fields_of_enrollments.rb
+│   │   ├── 20190404141310_final_clean_for_enrollments.rb
+│   │   ├── 20190405144539_change_role_to_toles_in_enrollments.rb
+│   │   ├── 20190502125536_add_data_retention_comment_to_enrollments.rb
+│   │   ├── 20190513094242_add_diff_to_events.rb
+│   │   ├── 20190524130229_add_organization_id_to_enrollments.rb
+│   │   ├── 20190729122915_add_unique_constraint_to_users.rb
+│   │   ├── 20190729133302_flatten_contacts_in_enrollments.rb
+│   │   ├── 20191114151401_add_organizations_to_users.rb
+│   │   ├── 20200220155526_add_copied_from_enrollment_ref_to_enrollments.rb
+│   │   ├── 20200220184847_change_linked_franceconnect_enrollment_id_to_previous_enrollment_id_in_enrollments.rb
+│   │   ├── 20201119161708_add_demarche_to_enrollments.rb
+│   │   ├── 20210407155557_add_profile_to_users.rb
+│   │   ├── 20210621125425_split_dgfip_scopes.rb
+│   │   ├── 20210622122624_add_project_details_to_enrollments.rb
+│   │   ├── 20210622150928_add_dpo_is_informed_to_enrollments.rb
+│   │   ├── 20210622162321_add_gdpr_informations_to_enrollments.rb
+│   │   ├── 20210625151759_update_eidas_level_structure_in_enrollments.rb
+│   │   ├── 20210729144851_create_team_members.rb
+│   │   └── 20210903102149_delete_francerelance_fc_form.rb
+│   ├── schema.rb
+│   └── setup.local.sql
+├── docs
+│   └── webhooks.md
+├── lib
+│   ├── export.rb
+│   ├── import.rb
+│   ├── omni_auth
+│   │   └── strategies
+│   │       └── api_gouv.rb
+│   ├── tasks
+│   │   ├── .keep
+│   │   └── restore_file.rake
+│   └── validate_input_file.rb
+├── log
+│   └── .keep
+├── public
+│   ├── categories_juridiques_20200701.json
+│   ├── codes_naf.json
+│   └── robots.txt
+├── spec
+│   ├── acceptances
+│   │   ├── data_providers_config_spec.rb
+│   │   └── enrollment_emails_validation_spec.rb
+│   ├── bridges
+│   │   └── abstract_webhook_bridge_spec.rb
+│   ├── controllers
+│   │   ├── documents_controller_spec.rb
+│   │   ├── enrollments
+│   │   │   ├── copies_spec.rb
+│   │   │   ├── copy_spec.rb
+│   │   │   ├── create_spec.rb
+│   │   │   ├── destroy_spec.rb
+│   │   │   ├── index_spec.rb
+│   │   │   ├── next_enrollments_spec.rb
+│   │   │   ├── public_spec.rb
+│   │   │   ├── show_spec.rb
+│   │   │   ├── trigger_spec.rb
+│   │   │   ├── update_spec.rb
+│   │   │   └── user_enrollments_spec.rb
+│   │   ├── enrollments_email_templates_controller_spec.rb
+│   │   ├── insee_controller_spec.rb
+│   │   ├── review_enrollment_spec.rb
+│   │   ├── stats_controller_spec.rb
+│   │   ├── users
+│   │   │   └── sessions_controller_spec.rb
+│   │   └── users_controller_spec.rb
+│   ├── factories
+│   │   ├── documents.rb
+│   │   ├── enrollment_email_templates.rb
+│   │   ├── enrollments.rb
+│   │   ├── events.rb
+│   │   ├── organizations.rb
+│   │   ├── team_members.rb
+│   │   └── users.rb
+│   ├── fixtures
+│   │   ├── dummy.pdf
+│   │   └── dummy.png
+│   ├── mailers
+│   │   ├── enrollment_mailer_spec.rb
+│   │   └── webhook_mailer_spec.rb
+│   ├── models
+│   │   ├── document_spec.rb
+│   │   ├── enrollment_spec.rb
+│   │   ├── event_spec.rb
+│   │   └── user_spec.rb
+│   ├── notifiers
+│   │   └── api_entreprise_notifier_spec.rb
+│   ├── rails_helper.rb
+│   ├── serializers
+│   │   ├── webhook_enrollment_serializer_spec.rb
+│   │   └── webhook_serializer_spec.rb
+│   ├── services
+│   │   ├── data_providers_configuration_spec.rb
+│   │   ├── enrollment_email_templates_retriever_spec.rb
+│   │   ├── get_majority_percentile_processing_time_in_days_spec.rb
+│   │   └── refresh_user_spec.rb
+│   ├── spec_helper.rb
+│   ├── support
+│   │   ├── devise_controller_login_helpers.rb
+│   │   └── entreprise_data_payload_helpers.rb
+│   └── workers
+│       └── deliver_enrollment_webhook_worker_spec.rb
+├── test
+│   └── fixtures
+│       ├── enrollments.yml
+│       ├── events.yml
+│       └── users.yml
+├── tmp
+│   └── .keep
+└── vendor
+    └── .keep
+
+77 directories, 412 files
