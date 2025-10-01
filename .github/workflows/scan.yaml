@@ -45,12 +45,11 @@ jobs:
                   echo "${{ matrix.sites.url }}"
                   ./fetch-repo.sh "${{ matrix.sites.url }}"
 
-            # - name: "Commit retry 2"
-            #   if: steps.commit2.outcome=='failure'
-            #   run: |
-            #       git config --global user.email 41898282+github-actions[bot]@users.noreply.github.com
-            #       git config --global user.name GitHub
-            #       git add "results"
-            #       git commit -m "update: ${{ matrix.sites.url }}"
-            #       git pull --rebase --no-ff origin ${{ github.ref }}
-            #       git push
+            - name: "Commit"
+              run: |
+                  git config --global user.email 41898282+github-actions[bot]@users.noreply.github.com
+                  git config --global user.name GitHub
+                  git add "results"
+                  git commit -m "update: ${{ matrix.sites.url }}"
+                  git pull --rebase --no-ff origin ${{ github.ref }}
+                  git push
