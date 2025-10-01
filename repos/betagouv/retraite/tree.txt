@@ -1,0 +1,939 @@
+.
+├── .gitignore
+├── README.md
+├── build.sh
+├── client
+│   ├── .bowerrc
+│   ├── .gitignore
+│   ├── Gruntfile.js
+│   ├── app
+│   │   ├── config.html
+│   │   ├── img
+│   │   │   ├── actions.png
+│   │   │   ├── docs.png
+│   │   │   ├── infos.png
+│   │   │   ├── logo-cnav.png
+│   │   │   ├── logo-msa.png
+│   │   │   ├── logo-rsi.gif
+│   │   │   └── logo-sgmap.jpg
+│   │   └── src
+│   │       ├── config
+│   │       │   ├── app-config.js
+│   │       │   ├── app-config.module.config.js
+│   │       │   ├── app-config.module.run.js
+│   │       │   ├── app-id
+│   │       │   │   ├── app-id-controller.js
+│   │       │   │   └── app-id-controller.spec.js
+│   │       │   ├── caisses
+│   │       │   │   ├── caisses-controller.js
+│   │       │   │   ├── caisses-controller.spec.js
+│   │       │   │   ├── caisses.html
+│   │       │   │   └── dialogs
+│   │       │   │       └── add-departement
+│   │       │   │           └── add-departement.html
+│   │       │   ├── config.css
+│   │       │   ├── configlist
+│   │       │   │   ├── configlist-controller.js
+│   │       │   │   ├── configlist-controller.spec.js
+│   │       │   │   └── configlist.html
+│   │       │   ├── data
+│   │       │   │   ├── api
+│   │       │   │   │   ├── api-caisse
+│   │       │   │   │   │   ├── api-caisse.js
+│   │       │   │   │   │   └── api-caisse.spec.js
+│   │       │   │   │   ├── api-caisses-filter
+│   │       │   │   │   │   ├── api-caisses-filter.js
+│   │       │   │   │   │   └── api-caisses-filter.spec.js
+│   │       │   │   │   ├── api-regimes
+│   │       │   │   │   │   ├── api-regimes.js
+│   │       │   │   │   │   └── api-regimes.spec.js
+│   │       │   │   │   ├── api-user-checklist
+│   │       │   │   │   │   ├── api-user-checklist.js
+│   │       │   │   │   │   └── api-user-checklist.spec.js
+│   │       │   │   │   └── checklist
+│   │       │   │   │       ├── checklist.js
+│   │       │   │   │       └── checklist.spec.js
+│   │       │   │   └── ws
+│   │       │   │       └── ws-caisse-departement
+│   │       │   │           ├── ws-caisse-departement.js
+│   │       │   │           └── ws-caisse-departement.spec.js
+│   │       │   ├── directives
+│   │       │   │   └── iframe-auto-size.js
+│   │       │   ├── edit
+│   │       │   │   ├── dialogs
+│   │       │   │   │   ├── dialog-delai
+│   │       │   │   │   │   ├── dialog-delai.html
+│   │       │   │   │   │   ├── dialog-delai.js
+│   │       │   │   │   │   └── dialog-delai.spec.js
+│   │       │   │   │   ├── dialog-link
+│   │       │   │   │   │   ├── dialog-link.html
+│   │       │   │   │   │   ├── dialog-link.js
+│   │       │   │   │   │   └── dialog-link.spec.js
+│   │       │   │   │   ├── dialog-variables
+│   │       │   │   │   │   ├── dialog-variables.html
+│   │       │   │   │   │   ├── dialog-variables.js
+│   │       │   │   │   │   └── dialog-variables.spec.js
+│   │       │   │   │   └── editConditionDelai.html
+│   │       │   │   ├── edit-controller.js
+│   │       │   │   ├── edit-controller.spec.js
+│   │       │   │   └── edit.html
+│   │       │   ├── edit-caisse
+│   │       │   │   ├── edit-caisse.controller.js
+│   │       │   │   ├── edit-caisse.controller.spec.js
+│   │       │   │   └── edit-caisse.html
+│   │       │   ├── http-interceptor
+│   │       │   │   ├── http-interceptor.js
+│   │       │   │   └── http-interceptor.spec.js
+│   │       │   ├── login
+│   │       │   │   ├── login-controller.js
+│   │       │   │   ├── login-controller.spec.js
+│   │       │   │   └── login.html
+│   │       │   ├── logout
+│   │       │   │   ├── logout-controller.js
+│   │       │   │   └── logout-controller.spec.js
+│   │       │   ├── retraite.css
+│   │       │   ├── test
+│   │       │   │   ├── test-controller.js
+│   │       │   │   ├── test-controller.spec.js
+│   │       │   │   ├── test.css
+│   │       │   │   └── test.html
+│   │       │   ├── user-service
+│   │       │   │   ├── user-service.js
+│   │       │   │   └── user-service.spec.js
+│   │       │   └── utils
+│   │       │       ├── array-utils
+│   │       │       │   ├── array-utils.js
+│   │       │       │   └── array-utils.spec.js
+│   │       │       ├── caisses-utils
+│   │       │       │   ├── caisses-utils.js
+│   │       │       │   └── caisses-utils.spec.js
+│   │       │       ├── checklist-publisher
+│   │       │       │   ├── checklist-publisher.js
+│   │       │       │   └── checklist-publisher.spec.js
+│   │       │       ├── departements-utils
+│   │       │       │   ├── departements-utils.js
+│   │       │       │   └── departements-utils.spec.js
+│   │       │       ├── edit-condition-validator
+│   │       │       │   ├── edit-condition-validator.js
+│   │       │       │   └── edit-condition-validator.spec.js
+│   │       │       ├── http-buffer
+│   │       │       │   ├── http-buffer.js
+│   │       │       │   └── http-buffer.spec.js
+│   │       │       ├── http-context-provider
+│   │       │       │   ├── http-context-provider.js
+│   │       │       │   └── http-context-provider.spec.js
+│   │       │       ├── object-utils
+│   │       │       │   ├── object-utils.js
+│   │       │       │   └── object-utils.spec.js
+│   │       │       ├── pasted-text-cleaner
+│   │       │       │   ├── pasted-text-cleaner.js
+│   │       │       │   └── pasted-text-cleaner.spec.js
+│   │       │       ├── prompt-service
+│   │       │       │   ├── prompt-service.js
+│   │       │       │   └── prompt-service.spec.js
+│   │       │       ├── retraite-dialog
+│   │       │       │   ├── retraite-dialog.css
+│   │       │       │   ├── retraite-dialog.html
+│   │       │       │   ├── retraite-dialog.js
+│   │       │       │   └── retraite-dialog.spec.js
+│   │       │       ├── retraite-toaster
+│   │       │       │   ├── retraite-toaster.js
+│   │       │       │   └── retraite-toaster.spec.js
+│   │       │       ├── syntax-analyzer
+│   │       │       │   ├── syntax-analyzer.js
+│   │       │       │   └── syntax-analyzer.spec.js
+│   │       │       ├── template-loader
+│   │       │       │   ├── template-loader.js
+│   │       │       │   └── template-loader.spec.js
+│   │       │       └── wrapper.js
+│   │       ├── constants.js
+│   │       └── tests_fonctionnels
+│   │           ├── config
+│   │           │   └── config.js
+│   │           └── exploit
+│   │               └── exploit.js
+│   ├── bower.json
+│   ├── karma.conf.js
+│   ├── package.json
+│   ├── protractor.conf.js
+│   ├── protractor.sh
+│   └── webdrivermanager.sh
+├── docs
+│   ├── fluentd
+│   │   ├── Readme.md
+│   │   └── td-agent.conf
+│   └── lib
+│       └── font-awesome
+│           └── bower.json
+├── scripts
+│   ├── deploy-prod.sh
+│   ├── deploy-recette.sh
+│   ├── deploy.sh
+│   ├── deploy_jboss.bat
+│   ├── fluentd-start.sh
+│   ├── fluentd-stop.sh
+│   ├── git-log-short.bat
+│   ├── git-log-short.sh
+│   ├── old
+│   │   └── deploy-heroku-recette.sh
+│   ├── open-ssh-mysql-stream.sh
+│   └── open-ssh-postgres-stream.sh
+├── server
+│   ├── .bowerrc
+│   ├── .gitignore
+│   ├── Gruntfile.js
+│   ├── META-INF
+│   │   └── jboss-deployment-structure.xml
+│   ├── RunTests.sh
+│   ├── app
+│   │   ├── controllers
+│   │   │   ├── Administration.java
+│   │   │   ├── ApiChecklistPublish.java
+│   │   │   ├── ApiInfoRetraite.java
+│   │   │   ├── ApiRestCaisse.java
+│   │   │   ├── ApiRestChecklists.java
+│   │   │   ├── ApiRestRegimes.java
+│   │   │   ├── ApiUserChecklist.java
+│   │   │   ├── Application.java
+│   │   │   ├── FakeDatas.java
+│   │   │   ├── RetraiteController.java
+│   │   │   ├── Secure.java
+│   │   │   ├── SecuredRetraiteController.java
+│   │   │   ├── Security.java
+│   │   │   ├── Validations.java
+│   │   │   ├── WsCaisseDepartement.java
+│   │   │   ├── data
+│   │   │   │   ├── ApiUserChecklistParams.java
+│   │   │   │   ├── PostData.java
+│   │   │   │   └── UserData.java
+│   │   │   └── utils
+│   │   │       ├── ApiChecklistGenerator.java
+│   │   │       ├── ChecklistFilter.java
+│   │   │       ├── ChecklistPublisher.java
+│   │   │       ├── ControllersMiscUtils.java
+│   │   │       ├── DataUnbinder.java
+│   │   │       └── Look.java
+│   │   ├── jobs
+│   │   │   ├── ImportSqlScriptsJob.java
+│   │   │   └── JpaSchemaExportJob.java
+│   │   ├── models
+│   │   │   ├── AnneesEtMois.java
+│   │   │   ├── Caisse.java
+│   │   │   ├── CaisseDepartementale.java
+│   │   │   ├── Chapitre.java
+│   │   │   ├── Checklist.java
+│   │   │   ├── Condition.java
+│   │   │   ├── Delai.java
+│   │   │   ├── FakeData.java
+│   │   │   ├── PeriodeDepartLegal.java
+│   │   │   ├── Regime.java
+│   │   │   └── RetraiteUser.java
+│   │   ├── utils
+│   │   │   ├── ChecklistDumper.java
+│   │   │   ├── DateUtils.java
+│   │   │   ├── FileUtils.java
+│   │   │   ├── JpaSchemaExport.java
+│   │   │   ├── JsonExclude.java
+│   │   │   ├── JsonUtils.java
+│   │   │   ├── ObjectsUtils.java
+│   │   │   ├── RetraiteAlreayPublishedChecklistException.java
+│   │   │   ├── RetraiteBadNaissanceFormatException.java
+│   │   │   ├── RetraiteChecklistNotFound.java
+│   │   │   ├── RetraiteException.java
+│   │   │   ├── RetraiteMoreThanOneChecklist.java
+│   │   │   ├── RetraiteStringsUtils.java
+│   │   │   ├── SqlUtils.java
+│   │   │   ├── TextUtils.java
+│   │   │   ├── WsUtils.java
+│   │   │   ├── dao
+│   │   │   │   ├── CaisseDao.java
+│   │   │   │   ├── CaisseDepartementaleDao.java
+│   │   │   │   ├── DaoChecklist.java
+│   │   │   │   ├── DaoChecklistFactory.java
+│   │   │   │   ├── DaoFakeData.java
+│   │   │   │   ├── PeriodeDepartLegalDao.java
+│   │   │   │   ├── RegimeDao.java
+│   │   │   │   └── RetraiteUserDao.java
+│   │   │   ├── data
+│   │   │   │   └── CaisseForEdition.java
+│   │   │   ├── db
+│   │   │   │   ├── HtmlCleaner.java
+│   │   │   │   └── SqlScriptsImporter.java
+│   │   │   ├── doc
+│   │   │   │   ├── ChapitreForDoc.java
+│   │   │   │   ├── ChecklistForDoc.java
+│   │   │   │   ├── ChecklistForDocConverter.java
+│   │   │   │   ├── ConverterCondition.java
+│   │   │   │   └── ConverterDelai.java
+│   │   │   ├── engine
+│   │   │   │   ├── DisplayerAdditionalQuestions.java
+│   │   │   │   ├── DisplayerChecklist.java
+│   │   │   │   ├── DisplayerDepartureDate.java
+│   │   │   │   ├── DisplayerLiquidateurQuestions.java
+│   │   │   │   ├── DisplayerSortieDepartInconnu.java
+│   │   │   │   ├── DisplayerSortiePenibilite.java
+│   │   │   │   ├── DisplayerSortieQuestionCarriereLongue.java
+│   │   │   │   ├── DisplayerSortieTropJeune.java
+│   │   │   │   ├── EngineUtils.java
+│   │   │   │   ├── LiquidateurQuestionDescriptorHelper.java
+│   │   │   │   ├── QuestionSolver.java
+│   │   │   │   ├── QuestionSolverA.java
+│   │   │   │   ├── QuestionSolverB.java
+│   │   │   │   ├── QuestionSolverC.java
+│   │   │   │   ├── QuestionSolverD.java
+│   │   │   │   ├── QuestionSolverE.java
+│   │   │   │   ├── QuestionSolverF.java
+│   │   │   │   ├── RenderDataHelper.java
+│   │   │   │   ├── RetraiteEngine.java
+│   │   │   │   ├── RetraiteEngineFactory.java
+│   │   │   │   ├── data
+│   │   │   │   │   ├── CommonExchangeData.java
+│   │   │   │   │   ├── ConditionDelai.java
+│   │   │   │   │   ├── Departement.java
+│   │   │   │   │   ├── InfoRetraiteResultRegimeList.java
+│   │   │   │   │   ├── MonthAndYear.java
+│   │   │   │   │   ├── QuestionAndResponses.java
+│   │   │   │   │   ├── QuestionAndResponsesList.java
+│   │   │   │   │   ├── QuestionChoice.java
+│   │   │   │   │   ├── QuestionCondition.java
+│   │   │   │   │   ├── QuestionLiquidateur.java
+│   │   │   │   │   ├── RegimeLiquidateurAndUserStatus.java
+│   │   │   │   │   ├── RenderData.java
+│   │   │   │   │   ├── StringPair.java
+│   │   │   │   │   ├── StringPairsList.java
+│   │   │   │   │   ├── UserCaisse.java
+│   │   │   │   │   ├── UserChapitre.java
+│   │   │   │   │   ├── UserChecklist.java
+│   │   │   │   │   ├── UserChecklistGenerationData.java
+│   │   │   │   │   ├── UserChecklistVars.java
+│   │   │   │   │   ├── UserLink.java
+│   │   │   │   │   ├── ValueAndText.java
+│   │   │   │   │   └── enums
+│   │   │   │   │       ├── ChecklistName.java
+│   │   │   │   │       ├── EcranSortie.java
+│   │   │   │   │       ├── LinkType.java
+│   │   │   │   │       ├── LiquidateurQuestionDescriptor.java
+│   │   │   │   │       ├── QuestionChoiceValue.java
+│   │   │   │   │       ├── QuestionDescriptor.java
+│   │   │   │   │       ├── QuestionMandatoryOrOptionnal.java
+│   │   │   │   │       ├── QuestionType.java
+│   │   │   │   │       ├── Regime.java
+│   │   │   │   │       ├── RegimeAligne.java
+│   │   │   │   │       └── UserStatus.java
+│   │   │   │   ├── intern
+│   │   │   │   │   ├── AutreRegimeComputer.java
+│   │   │   │   │   ├── CalculateurRegimeAlignes.java
+│   │   │   │   │   ├── ChecklistNameSelector.java
+│   │   │   │   │   ├── StepFormsDataProvider.java
+│   │   │   │   │   ├── UserCaisseComputer.java
+│   │   │   │   │   ├── UserChecklistChapitreComputer.java
+│   │   │   │   │   ├── UserChecklistChapitreFilter.java
+│   │   │   │   │   ├── UserChecklistComputer.java
+│   │   │   │   │   ├── UserChecklistComputerFactory.java
+│   │   │   │   │   ├── UserChecklistConditionDelaiEvaluator.java
+│   │   │   │   │   ├── UserChecklistConditionEvaluator.java
+│   │   │   │   │   ├── UserChecklistDelaiComputer.java
+│   │   │   │   │   ├── UserChecklistGenerationDataBuilder.java
+│   │   │   │   │   ├── UserChecklistGenerator.java
+│   │   │   │   │   ├── UserChecklistGeneratorFactory.java
+│   │   │   │   │   ├── UserChecklistParcoursComputer.java
+│   │   │   │   │   └── UserChecklistVarsProvider.java
+│   │   │   │   └── utils
+│   │   │   │       ├── AgeCalculator.java
+│   │   │   │       ├── AgeLegalEvaluator.java
+│   │   │   │       ├── DateProvider.java
+│   │   │   │       ├── LinkConverter.java
+│   │   │   │       ├── PeriodeDepartLegalComparator.java
+│   │   │   │       ├── RetraiteConstants.java
+│   │   │   │       ├── RetraitePropertiesLoader.java
+│   │   │   │       ├── VariablesReplacer.java
+│   │   │   │       └── VariablesReplacerMustache.java
+│   │   │   └── wsinforetraite
+│   │   │       ├── FakeRegimeDataProvider.java
+│   │   │       ├── InfoRetraite.java
+│   │   │       ├── InfoRetraiteAnnuaireDai.java
+│   │   │       ├── InfoRetraiteBdd.java
+│   │   │       ├── InfoRetraiteConnector.java
+│   │   │       ├── InfoRetraiteConstants.java
+│   │   │       ├── InfoRetraiteDecoder.java
+│   │   │       ├── InfoRetraiteResult.java
+│   │   │       ├── InfoRetraiteTokenRecuperator.java
+│   │   │       ├── InfoRetraiteTokens.java
+│   │   │       └── InfoRetraiteWsUr.java
+│   │   └── views
+│   │       ├── Administration
+│   │       │   └── registerUsager.html
+│   │       ├── ApiUserChecklist
+│   │       │   └── getUserChecklist.html
+│   │       ├── Application
+│   │       │   ├── displayExpired.html
+│   │       │   ├── generateDoc.html
+│   │       │   ├── generatePdf.html
+│   │       │   ├── index.html
+│   │       │   ├── oupsPleaseComeBack.html
+│   │       │   ├── pdf.html
+│   │       │   └── steps
+│   │       │       ├── displayAdditionalQuestions.html
+│   │       │       ├── displayCheckList.html
+│   │       │       ├── displayDepartureDate.html
+│   │       │       ├── displayLiquidateurQuestions.html
+│   │       │       ├── displaySortieAucunRegimeDeBaseAligne.html
+│   │       │       ├── displaySortieDepartInconnu.html
+│   │       │       ├── displaySortiePenibilite.html
+│   │       │       ├── displaySortieQuestionCarriereLongue.html
+│   │       │       ├── displaySortieTropJeune.html
+│   │       │       ├── getUserData.html
+│   │       │       └── welcome.html
+│   │       ├── FakeDatas
+│   │       │   ├── blank.html
+│   │       │   ├── list.html
+│   │       │   └── show.html
+│   │       ├── Validations
+│   │       │   ├── caisses.html
+│   │       │   ├── sorties.html
+│   │       │   └── testsAgeDepart.html
+│   │       ├── errors
+│   │       │   ├── 401.txt
+│   │       │   ├── 404.html
+│   │       │   └── 500.html
+│   │       ├── main.html
+│   │       ├── sortie.html
+│   │       ├── step.html
+│   │       └── tags
+│   │           ├── buttonsPrevNext.html
+│   │           ├── dateDepart.html
+│   │           ├── displayBlocWithStringPairsList.html
+│   │           ├── displayCaisse.html
+│   │           ├── displayCheckList.html
+│   │           ├── displayInterlocuteurs.html
+│   │           ├── displayLiquidateurQuestionChoices.html
+│   │           ├── displayQuestions.html
+│   │           ├── displayQuestionsAndResponses.html
+│   │           ├── displayRegimeAutre.html
+│   │           ├── displaySelectDepartMoisAnnee.html
+│   │           ├── displayUserInfos.html
+│   │           ├── link.html
+│   │           └── stepsHiddenInputs.html
+│   ├── bower.json
+│   ├── conf
+│   │   ├── annuaire.properties
+│   │   ├── application.conf
+│   │   ├── dependencies.yml
+│   │   ├── messages
+│   │   ├── passretraite.properties
+│   │   ├── routes
+│   │   ├── services.conf
+│   │   └── wsdl
+│   │       └── AWSNANNUR-V1.wsdl
+│   ├── db
+│   │   └── evolutions
+│   │       ├── 1.sql
+│   │       ├── 10.sql
+│   │       ├── 11.sql
+│   │       ├── 12.sql
+│   │       ├── 13.sql
+│   │       ├── 14.sql
+│   │       ├── 16.sql
+│   │       ├── 17.sql
+│   │       ├── 18.sql
+│   │       ├── 19.sql
+│   │       ├── 2.sql
+│   │       ├── 20.sql
+│   │       ├── 21.sql
+│   │       ├── 22.sql
+│   │       ├── 23.sql
+│   │       ├── 24.sql
+│   │       ├── 25.sql
+│   │       ├── 26.sql
+│   │       ├── 27.sql
+│   │       ├── 3.sql
+│   │       ├── 4.sql
+│   │       ├── 5.sql
+│   │       ├── 7.sql
+│   │       ├── 8.sql
+│   │       └── 9.sql
+│   ├── karma.conf.js
+│   ├── package.json
+│   ├── play -> /Applications/play-1.4.2/play
+│   ├── public
+│   │   ├── fonts
+│   │   │   ├── OpenSans
+│   │   │   │   ├── opensans-bold-webfont.eot
+│   │   │   │   ├── opensans-bold-webfont.ttf
+│   │   │   │   ├── opensans-bold-webfont.woff
+│   │   │   │   ├── opensans-bold-webfont.woff2
+│   │   │   │   ├── opensans-light-webfont.eot
+│   │   │   │   ├── opensans-light-webfont.ttf
+│   │   │   │   ├── opensans-light-webfont.woff
+│   │   │   │   ├── opensans-light-webfont.woff2
+│   │   │   │   ├── opensans-regular-webfont.eot
+│   │   │   │   ├── opensans-regular-webfont.ttf
+│   │   │   │   ├── opensans-regular-webfont.woff
+│   │   │   │   ├── opensans-regular-webfont.woff2
+│   │   │   │   ├── opensans-semibold-webfont.eot
+│   │   │   │   ├── opensans-semibold-webfont.ttf
+│   │   │   │   ├── opensans-semibold-webfont.woff
+│   │   │   │   └── opensans-semibold-webfont.woff2
+│   │   │   └── Roboto
+│   │   │       ├── robotocondensed-bold-webfont.eot
+│   │   │       ├── robotocondensed-bold-webfont.ttf
+│   │   │       ├── robotocondensed-bold-webfont.woff
+│   │   │       ├── robotocondensed-bold-webfont.woff2
+│   │   │       ├── robotocondensed-light-webfont.eot
+│   │   │       ├── robotocondensed-light-webfont.ttf
+│   │   │       ├── robotocondensed-light-webfont.woff
+│   │   │       ├── robotocondensed-light-webfont.woff2
+│   │   │       ├── robotocondensed-regular-webfont.eot
+│   │   │       ├── robotocondensed-regular-webfont.ttf
+│   │   │       ├── robotocondensed-regular-webfont.woff
+│   │   │       └── robotocondensed-regular-webfont.woff2
+│   │   ├── img
+│   │   │   ├── actions.png
+│   │   │   ├── agnostique
+│   │   │   │   ├── enveloppe1.png
+│   │   │   │   ├── icon_calendar.png
+│   │   │   │   ├── img_header.png
+│   │   │   │   ├── info.png
+│   │   │   │   ├── lock.png
+│   │   │   │   ├── nuage.png
+│   │   │   │   ├── rond_blc.png
+│   │   │   │   └── telephone1.png
+│   │   │   ├── cnav
+│   │   │   │   ├── enveloppe1.png
+│   │   │   │   ├── icon_calendar.png
+│   │   │   │   ├── img_header.png
+│   │   │   │   ├── info.png
+│   │   │   │   ├── lock.png
+│   │   │   │   ├── nuage.png
+│   │   │   │   └── telephone1.png
+│   │   │   ├── docs.png
+│   │   │   ├── infos.png
+│   │   │   ├── msa
+│   │   │   │   ├── enveloppe1.png
+│   │   │   │   ├── icon_calendar.png
+│   │   │   │   ├── img_header.png
+│   │   │   │   ├── info.png
+│   │   │   │   ├── lock.png
+│   │   │   │   ├── nuage.png
+│   │   │   │   └── telephone1.png
+│   │   │   ├── rsi
+│   │   │   │   ├── arrow-left.png
+│   │   │   │   ├── arrow-n-exergue.png
+│   │   │   │   ├── arrow-right.png
+│   │   │   │   ├── bandeau.png
+│   │   │   │   ├── bg-refuse.png
+│   │   │   │   ├── bg-valide.png
+│   │   │   │   ├── bord-droit.png
+│   │   │   │   ├── bord-gauche.png
+│   │   │   │   ├── btn-valide-active-left.png
+│   │   │   │   ├── btn-valide-active.png
+│   │   │   │   ├── btn-valide.png
+│   │   │   │   ├── btn-valide_left.png
+│   │   │   │   ├── calendar.png
+│   │   │   │   ├── close_modale.png
+│   │   │   │   ├── enveloppe1.png
+│   │   │   │   ├── envoyer.png
+│   │   │   │   ├── etape-active.png
+│   │   │   │   ├── etape-inactive-2.png
+│   │   │   │   ├── etape-inactive.png
+│   │   │   │   ├── etape-precedente.png
+│   │   │   │   ├── etape-suivante.png
+│   │   │   │   ├── filet-bordeau.png
+│   │   │   │   ├── filet-gris-2.png
+│   │   │   │   ├── filet-gris.png
+│   │   │   │   ├── framed-bl.png
+│   │   │   │   ├── framed-br-ie.png
+│   │   │   │   ├── framed-br.png
+│   │   │   │   ├── framed-tl.png
+│   │   │   │   ├── framed-tr-ie.png
+│   │   │   │   ├── framed-tr.png
+│   │   │   │   ├── help-hover.png
+│   │   │   │   ├── help.png
+│   │   │   │   ├── icon_calendar-tel.png
+│   │   │   │   ├── icon_calendar.png
+│   │   │   │   ├── imprimer.png
+│   │   │   │   ├── info.png
+│   │   │   │   ├── lock.png
+│   │   │   │   ├── logo_MSA.png
+│   │   │   │   ├── logo_cnav.png
+│   │   │   │   ├── logo_rsi.png
+│   │   │   │   ├── nuage.png
+│   │   │   │   ├── puce-alt.png
+│   │   │   │   ├── puce-default.gif
+│   │   │   │   ├── sauvegarder.png
+│   │   │   │   ├── select-arrow.png
+│   │   │   │   ├── submit_bas.png
+│   │   │   │   ├── tooltip-close.png
+│   │   │   │   ├── tooltip-pointe.png
+│   │   │   │   ├── violet_bas.png
+│   │   │   │   └── violet_haut.png
+│   │   │   └── sprites
+│   │   │       ├── background.png
+│   │   │       ├── background_fleche.png
+│   │   │       ├── bg_title_information.png
+│   │   │       ├── border_box.png
+│   │   │       ├── calendar.png
+│   │   │       ├── filet_white.png
+│   │   │       ├── img_header.png
+│   │   │       ├── logoMSA_home.png
+│   │   │       ├── logo_MSA.png
+│   │   │       ├── logo_cnav.png
+│   │   │       ├── logo_rsi.png
+│   │   │       ├── mail.png
+│   │   │       ├── mail_black.png
+│   │   │       ├── next_black.png
+│   │   │       ├── next_white.png
+│   │   │       ├── picto-info-white.png
+│   │   │       ├── picto-info.png
+│   │   │       ├── previous_black.png
+│   │   │       ├── previous_white.png
+│   │   │       ├── print.png
+│   │   │       ├── print_black.png
+│   │   │       ├── save.png
+│   │   │       ├── save_black.png
+│   │   │       └── select_suivant.png
+│   │   ├── javascripts
+│   │   │   ├── displayCheckList.js
+│   │   │   ├── displayDepartureDate.js
+│   │   │   ├── displaySortieQuestionCarriereLongue.js
+│   │   │   ├── getUserData.js
+│   │   │   ├── infocookie.js
+│   │   │   ├── printCapture.js
+│   │   │   ├── questions.js
+│   │   │   └── retraite-analytics.js
+│   │   └── stylesheets
+│   │       ├── doc.css
+│   │       ├── oupsError.css
+│   │       ├── pdf.css
+│   │       ├── retraite-overwrite.css
+│   │       ├── validations-caisses.css
+│   │       └── validations-sorties.css
+│   ├── rsync.exclude.txt
+│   ├── scripts
+│   │   └── play2war.bat
+│   ├── sources.scss
+│   │   ├── checklist
+│   │   │   ├── cnav.scss
+│   │   │   ├── components
+│   │   │   │   ├── _article.scss
+│   │   │   │   ├── _block.scss
+│   │   │   │   ├── _breadcrumb.scss
+│   │   │   │   ├── _button-agnostique.scss
+│   │   │   │   ├── _button-rsi.scss
+│   │   │   │   ├── _button.scss
+│   │   │   │   ├── _footer-rsi.scss
+│   │   │   │   ├── _footer.scss
+│   │   │   │   ├── _header.scss
+│   │   │   │   ├── _links.scss
+│   │   │   │   ├── _lists.scss
+│   │   │   │   ├── _media.scss
+│   │   │   │   ├── _nav.scss
+│   │   │   │   ├── _tables.scss
+│   │   │   │   ├── _texts-rsi.scss
+│   │   │   │   ├── _texts.scss
+│   │   │   │   └── form
+│   │   │   │       ├── _form-checkbox-rsi.scss
+│   │   │   │       ├── _form-checkbox.scss
+│   │   │   │       ├── _form-helpers.scss
+│   │   │   │       ├── _form-radio-rsi.scss
+│   │   │   │       ├── _form-radio.scss
+│   │   │   │       ├── _form-reset.scss
+│   │   │   │       ├── _form-rsi.scss
+│   │   │   │       ├── _form-select.scss
+│   │   │   │       ├── _form-text.scss
+│   │   │   │       └── _form.scss
+│   │   │   ├── msa.scss
+│   │   │   ├── pages
+│   │   │   │   ├── _checklist.scss
+│   │   │   │   ├── _home.scss
+│   │   │   │   ├── _information.scss
+│   │   │   │   └── _main.scss
+│   │   │   ├── rsi.scss
+│   │   │   ├── style.scss
+│   │   │   ├── themes
+│   │   │   │   ├── _colors-agnostique.scss
+│   │   │   │   ├── _colors-cnav.scss
+│   │   │   │   ├── _colors-msa.scss
+│   │   │   │   ├── _colors-rsi.scss
+│   │   │   │   ├── _colors.scss
+│   │   │   │   ├── _fonts-rsi.scss
+│   │   │   │   ├── _fonts.scss
+│   │   │   │   ├── _interactions.scss
+│   │   │   │   ├── _layout.scss
+│   │   │   │   └── _theme.scss
+│   │   │   └── utils
+│   │   │       ├── _alignments.scss
+│   │   │       ├── _box-sizing.scss
+│   │   │       ├── _breakpoints.scss
+│   │   │       ├── _clearfix.scss
+│   │   │       ├── _display.scss
+│   │   │       ├── _image.scss
+│   │   │       ├── _normalize.scss
+│   │   │       ├── _print.scss
+│   │   │       ├── _sprites.scss
+│   │   │       └── _utils.scss
+│   │   └── pages
+│   │       ├── cnav.scss
+│   │       ├── components
+│   │       │   ├── _article.scss
+│   │       │   ├── _block.scss
+│   │       │   ├── _breadcrumb.scss
+│   │       │   ├── _button-agnostique.scss
+│   │       │   ├── _button-rsi.scss
+│   │       │   ├── _button.scss
+│   │       │   ├── _footer-rsi.scss
+│   │       │   ├── _footer.scss
+│   │       │   ├── _header.scss
+│   │       │   ├── _links.scss
+│   │       │   ├── _lists.scss
+│   │       │   ├── _media.scss
+│   │       │   ├── _nav.scss
+│   │       │   ├── _tables.scss
+│   │       │   ├── _texts-rsi.scss
+│   │       │   ├── _texts.scss
+│   │       │   └── form
+│   │       │       ├── _form-checkbox-rsi.scss
+│   │       │       ├── _form-checkbox.scss
+│   │       │       ├── _form-helpers.scss
+│   │       │       ├── _form-radio-rsi.scss
+│   │       │       ├── _form-radio.scss
+│   │       │       ├── _form-reset.scss
+│   │       │       ├── _form-rsi.scss
+│   │       │       ├── _form-select.scss
+│   │       │       ├── _form-text.scss
+│   │       │       └── _form.scss
+│   │       ├── msa.scss
+│   │       ├── pages
+│   │       │   ├── _etape_2.scss
+│   │       │   ├── _home.scss
+│   │       │   ├── _information.scss
+│   │       │   ├── _main.scss
+│   │       │   └── _sortie.scss
+│   │       ├── rsi.scss
+│   │       ├── style.scss
+│   │       ├── themes
+│   │       │   ├── _colors-agnostique.scss
+│   │       │   ├── _colors-cnav.scss
+│   │       │   ├── _colors-msa.scss
+│   │       │   ├── _colors-rsi.scss
+│   │       │   ├── _colors.scss
+│   │       │   ├── _fonts-rsi.scss
+│   │       │   ├── _fonts.scss
+│   │       │   ├── _interactions.scss
+│   │       │   ├── _layout.scss
+│   │       │   └── _theme.scss
+│   │       └── utils
+│   │           ├── _alignments.scss
+│   │           ├── _box-sizing.scss
+│   │           ├── _breakpoints.scss
+│   │           ├── _clearfix.scss
+│   │           ├── _display.scss
+│   │           ├── _image.scss
+│   │           ├── _normalize.scss
+│   │           ├── _print.scss
+│   │           ├── _sprites.scss
+│   │           └── _utils.scss
+│   ├── sql-imports
+│   │   └── dump_retraite_prod_20161012.sql.imported
+│   ├── src
+│   │   └── main
+│   │       └── resources
+│   │           └── services.conf
+│   ├── test
+│   │   ├── Application.test.html
+│   │   ├── ApplicationTest.java
+│   │   ├── controllers
+│   │   │   ├── ApplicationTest.java
+│   │   │   ├── data
+│   │   │   │   └── ApiUserChecklistParamsTest.java
+│   │   │   └── utils
+│   │   │       ├── ApiChecklistGeneratorTest.java
+│   │   │       ├── ChecklistFilterTest.java
+│   │   │       ├── ChecklistPublisherTest.java
+│   │   │       ├── ControllersMiscUtilsTest.java
+│   │   │       └── DataUnbinderTest.java
+│   │   ├── data.yml
+│   │   ├── fonctionnals
+│   │   │   ├── RunBDDTest.java
+│   │   │   ├── StepDefinitions.java
+│   │   │   ├── french.feature
+│   │   │   └── french.feature.txt
+│   │   ├── integration
+│   │   │   └── VerificationChecklistNameSelectorTest.java
+│   │   ├── poc
+│   │   │   ├── mail
+│   │   │   │   └── playmail
+│   │   │   │       └── PlayMailTest.java
+│   │   │   └── mustache
+│   │   │       ├── PocHandlebarsTest.java
+│   │   │       └── PocMustacheTest.java
+│   │   └── utils
+│   │       ├── JsonUtilsTest.java
+│   │       ├── ObjectsUtilsTest.java
+│   │       ├── RetraiteStringsUtilsTest.java
+│   │       ├── RetraiteUnitTestBase.java
+│   │       ├── StringsTestsUtils.java
+│   │       ├── TestsUtils.java
+│   │       ├── TestsUtilsCondition.java
+│   │       ├── TestsUtilsDelai.java
+│   │       ├── TextUtilsTest.java
+│   │       ├── dao
+│   │       │   ├── CaisseDaoTest.java
+│   │       │   ├── CaisseDepartementaleDaoTest.java
+│   │       │   ├── Checklists.yml
+│   │       │   ├── DaoChecklistTest.java
+│   │       │   └── res
+│   │       │       ├── CaisseDaoTest.yml
+│   │       │       └── CaisseDepartementaleDaoTest.yml
+│   │       ├── db
+│   │       │   ├── HtmlCleanerTest.java
+│   │       │   ├── SqlScriptsImporterTest.java
+│   │       │   └── res
+│   │       │       ├── SqlImportsSimple.sql
+│   │       │       ├── SqlImportsWithCommandToIgnore.sql
+│   │       │       ├── SqlImportsWithComments.sql
+│   │       │       ├── SqlImportsWithDataToIgnore.sql
+│   │       │       └── SqlImportsWithSpecialChars.sql
+│   │       ├── doc
+│   │       │   ├── ChecklistForDocConverterTest.java
+│   │       │   ├── ConverterConditionTest.java
+│   │       │   └── ConverterDelaiTest.java
+│   │       ├── engine
+│   │       │   ├── DateProviderFake.java
+│   │       │   ├── DisplayerAdditionalQuestionsTest.java
+│   │       │   ├── DisplayerChecklistTest.java
+│   │       │   ├── DisplayerDepartureDateTest.java
+│   │       │   ├── DisplayerLiquidateurQuestionsTest.java
+│   │       │   ├── DisplayerSortieDepartInconnuTest.java
+│   │       │   ├── DisplayerSortiePenibiliteTest.java
+│   │       │   ├── DisplayerSortieQuestionCarriereLongueTest.java
+│   │       │   ├── DisplayerSortieTropJeuneTest.java
+│   │       │   ├── EngineUtilsTest.java
+│   │       │   ├── LiquidateurQuestionDescriptorHelperTest.java
+│   │       │   ├── QuestionSolverATest.java
+│   │       │   ├── QuestionSolverBTest.java
+│   │       │   ├── QuestionSolverCTest.java
+│   │       │   ├── QuestionSolverDTest.java
+│   │       │   ├── QuestionSolverETest.java
+│   │       │   ├── QuestionSolverFTest.java
+│   │       │   ├── RenderDataHelperTest.java
+│   │       │   ├── RetraiteEngineTest.java
+│   │       │   ├── data
+│   │       │   │   └── enums
+│   │       │   │       ├── LiquidateurQuestionDescriptorTest.java
+│   │       │   │       └── RegimeTest.java
+│   │       │   ├── intern
+│   │       │   │   ├── AutreRegimeComputerTest.java
+│   │       │   │   ├── CalculateurRegimeAlignesTest.java
+│   │       │   │   ├── StepFormsDataProviderTest.java
+│   │       │   │   ├── UserCaisseComputerTest.java
+│   │       │   │   ├── UserChecklistChapitreComputerTest.java
+│   │       │   │   ├── UserChecklistChapitreFilterTest.java
+│   │       │   │   ├── UserChecklistComputerTest.java
+│   │       │   │   ├── UserChecklistConditionDelaiEvaluatorTest.java
+│   │       │   │   ├── UserChecklistConditionEvaluatorTest.java
+│   │       │   │   ├── UserChecklistDelaiComputerTest.java
+│   │       │   │   ├── UserChecklistGenerationDataBuilderTest.java
+│   │       │   │   ├── UserChecklistGeneratorTest.java
+│   │       │   │   ├── UserChecklistParcoursComputerTest.java
+│   │       │   │   └── UserChecklistVarsProviderTest.java
+│   │       │   └── utils
+│   │       │       ├── AgeCalculatorTest.java
+│   │       │       ├── AgeLegalEvaluatorTest.java
+│   │       │       ├── DateProviderTest.java
+│   │       │       └── VariablesReplacerMustacheTest.java
+│   │       └── wsinforetraite
+│   │           ├── FakeRegimeDataProviderTest.java
+│   │           ├── InfoRetraiteConnectorTest.java
+│   │           ├── InfoRetraiteConnectorTestReel.java
+│   │           ├── InfoRetraiteDecoderTest.java
+│   │           ├── InfoRetraiteResultTest.java
+│   │           ├── InfoRetraiteTest_RecupCasDeTest.java
+│   │           ├── InfoRetraiteTokenRecuperatorTest.java
+│   │           ├── InfoRetraiteWsUrTest.java
+│   │           └── res
+│   │               ├── ListeNomsEtNirs.txt
+│   │               └── conseiller-info-retraite.html
+│   ├── testjs
+│   │   ├── displaySortieQuestionCarriereLongue.spec.js
+│   │   ├── extra.gobal.variables.for.tests.js
+│   │   ├── getUserData.spec.js.exemple
+│   │   ├── questions.spec.js
+│   │   └── spec
+│   │       └── javascripts
+│   │           └── fixtures
+│   │               ├── displaySortieQuestionCarriereLongue.html
+│   │               ├── getUserData.html
+│   │               ├── questions_mandatory.html
+│   │               └── questions_optionnal.html
+│   └── www
+│       ├── config.html
+│       ├── css
+│       │   ├── custom.css
+│       │   └── vendor.css
+│       ├── fonts
+│       │   ├── FontAwesome.otf
+│       │   ├── fontawesome-webfont.eot
+│       │   ├── fontawesome-webfont.svg
+│       │   ├── fontawesome-webfont.ttf
+│       │   ├── fontawesome-webfont.woff
+│       │   ├── fontawesome-webfont.woff2
+│       │   ├── glyphicons-halflings-regular.eot
+│       │   ├── glyphicons-halflings-regular.svg
+│       │   ├── glyphicons-halflings-regular.ttf
+│       │   ├── glyphicons-halflings-regular.woff
+│       │   └── glyphicons-halflings-regular.woff2
+│       ├── img
+│       │   ├── actions.png
+│       │   ├── docs.png
+│       │   ├── enveloppe1.png
+│       │   ├── infos.png
+│       │   ├── lock.png
+│       │   ├── logo-cnav.png
+│       │   ├── logo-msa.png
+│       │   ├── nuage.png
+│       │   └── telephone1.png
+│       ├── js
+│       │   ├── custom.js
+│       │   └── vendor.js
+│       └── src
+│           └── config
+│               ├── caisses
+│               │   ├── caisses.html
+│               │   └── dialogs
+│               │       └── add-departement
+│               │           └── add-departement.html
+│               ├── configlist
+│               │   └── configlist.html
+│               ├── edit
+│               │   ├── dialogs
+│               │   │   ├── dialog-delai
+│               │   │   │   └── dialog-delai.html
+│               │   │   ├── dialog-link
+│               │   │   │   └── dialog-link.html
+│               │   │   ├── dialog-variables
+│               │   │   │   └── dialog-variables.html
+│               │   │   └── editConditionDelai.html
+│               │   └── edit.html
+│               ├── edit-caisse
+│               │   └── edit-caisse.html
+│               ├── login
+│               │   └── login.html
+│               ├── test
+│               │   └── test.html
+│               └── utils
+│                   └── retraite-dialog
+│                       └── retraite-dialog.html
+└── tests_watai
+    ├── 1 BasicScenario.js
+    ├── 1 TestSimpleProdScenario.js
+    ├── HomePageComponent.js
+    ├── NextStepComponent.js
+    ├── QuestionStepChecklistPageComponent.js
+    ├── QuestionStepDatePageComponent.js
+    ├── QuestionStepDepartementPageComponent.js
+    ├── Readme.md
+    ├── config.js
+    └── run.sh
+
+167 directories, 770 files
