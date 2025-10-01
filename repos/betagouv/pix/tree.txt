@@ -1,0 +1,1340 @@
+.
+├── .circleci
+│   └── config.yml
+├── .codeclimate.yml
+├── .editorconfig
+├── .eslintrc
+├── .gitignore
+├── CHANGELOG.md
+├── LICENSE.AGPL.md
+├── Procfile
+├── README.md
+├── api
+│   ├── .eslintrc
+│   ├── .istanbul.yml
+│   ├── README.md
+│   ├── app.json
+│   ├── bin
+│   │   └── www
+│   ├── db
+│   │   ├── batchTreatment.js
+│   │   ├── knexfile.js
+│   │   ├── migrations
+│   │   │   ├── 20160927153108_create_users.js
+│   │   │   ├── 20160929164549_create_assessments.js
+│   │   │   ├── 20160929172038_create_answers.js
+│   │   │   ├── 20161221143039_create_scenarios.js
+│   │   │   ├── 20170105153948_update_answers_timeout.js
+│   │   │   ├── 20170125155825_followers.js
+│   │   │   ├── 20170207091544_create_feedbacks.js
+│   │   │   ├── 20170306151003_update_answers.js
+│   │   │   ├── 20170329112753_add_elapsedTime_to_answers.js
+│   │   │   ├── 20170329153349_update_answers--add_column_result_details.js
+│   │   │   ├── 20170418114929_remove_login_from_users.js
+│   │   │   ├── 20170703105035_create_link_between_user_and_assessment.js
+│   │   │   ├── 20170703163243_update_assessment_with_level_and_score.js
+│   │   │   ├── 20170724181108_creating_organizations.js
+│   │   │   ├── 20170728141316_add_code_to_organization.js
+│   │   │   ├── 20170818115953_snapshots.js
+│   │   │   ├── 20170829165045_add_completion_percentage_to_snapshot.js
+│   │   │   ├── 20170919181249_reset-password-demands.js
+│   │   │   ├── 20171005222803_update_snapshots_add_student_and_campaign_code.js
+│   │   │   ├── 20171023183134_skills.js
+│   │   │   ├── 20171113101130_certification-courses.js
+│   │   │   ├── 20171113101244_certification-challenges.js
+│   │   │   ├── 20171113103608_add_type_to_assessments.js
+│   │   │   ├── 20171204102525_add_userId_to_certification_course.js
+│   │   │   ├── 20171212144653_add_status_to_certification_course.js
+│   │   │   ├── 20180103152804_add_completed_time_to_certification_course.js
+│   │   │   ├── 20180109174844_create_mark_table.js
+│   │   │   ├── 20180116161332_modify_column_completedPercentage_to_tests_finished_in_snapshots.js
+│   │   │   ├── 20180131153634_create_sessions_table.js
+│   │   │   ├── 20180212111049_delete_scenario_table.js
+│   │   │   ├── 20180216153505_add_user_details_and_rejection_reason_to_certification_courses.js
+│   │   │   ├── 20180219191550_create_pix_roles.js
+│   │   │   ├── 20180306151846_add_type_to_all_assessments.js
+│   │   │   ├── 20180306164441_remove-score-and-level-for-bugged-assessments.js
+│   │   │   ├── 20180315164634_add-column-access-code-on-sessions.js
+│   │   │   ├── 20180315164647_add-column-session-id-on-certifications.js
+│   │   │   ├── 20180329113849_add-indexes-on-many-tables.js
+│   │   │   ├── 20180405100236_move_status_from_certification_to_assessment.js
+│   │   │   ├── 20180405100345_create_assessment_results_table.js
+│   │   │   ├── 20180405100452_migrate_assessments_info_to_assessment_results.js
+│   │   │   ├── 20180405100530_link_marks_to_assessment_results.js
+│   │   │   ├── 20180405100632_create_table_competences-marks.js
+│   │   │   └── 20180405100655_migrate_old_marks_in_competence-marks.js
+│   │   └── seeds
+│   │       ├── data
+│   │       │   ├── answers.js
+│   │       │   ├── assessment-results.js
+│   │       │   ├── assessments.js
+│   │       │   ├── certification-challenges.js
+│   │       │   ├── certification-courses.js
+│   │       │   ├── competence-marks.js
+│   │       │   ├── organizations.js
+│   │       │   ├── pix_roles.js
+│   │       │   ├── sessions.js
+│   │       │   ├── snapshots.js
+│   │       │   ├── users.js
+│   │       │   └── users_pix_roles.js
+│   │       └── seed.js
+│   ├── lib
+│   │   ├── application
+│   │   │   ├── answers
+│   │   │   │   ├── answer-controller.js
+│   │   │   │   └── index.js
+│   │   │   ├── assessment-results
+│   │   │   │   ├── assessment-result-controller.js
+│   │   │   │   └── index.js
+│   │   │   ├── assessments
+│   │   │   │   ├── assessment-controller.js
+│   │   │   │   └── index.js
+│   │   │   ├── authentication
+│   │   │   │   ├── authentication-controller.js
+│   │   │   │   └── index.js
+│   │   │   ├── cache
+│   │   │   │   ├── cache-controller.js
+│   │   │   │   └── index.js
+│   │   │   ├── certificationCourses
+│   │   │   │   ├── certification-course-controller.js
+│   │   │   │   └── index.js
+│   │   │   ├── challenges
+│   │   │   │   ├── challenge-controller.js
+│   │   │   │   └── index.js
+│   │   │   ├── courses
+│   │   │   │   ├── course-controller.js
+│   │   │   │   └── index.js
+│   │   │   ├── feedbacks
+│   │   │   │   ├── feedback-controller.js
+│   │   │   │   └── index.js
+│   │   │   ├── followers
+│   │   │   │   ├── follower-controller.js
+│   │   │   │   └── index.js
+│   │   │   ├── healthcheck
+│   │   │   │   ├── healthcheck-controller.js
+│   │   │   │   └── index.js
+│   │   │   ├── metrics
+│   │   │   │   ├── index.js
+│   │   │   │   └── metric-controller.js
+│   │   │   ├── organizations
+│   │   │   │   ├── index.js
+│   │   │   │   └── organization-controller.js
+│   │   │   ├── passwords
+│   │   │   │   ├── index.js
+│   │   │   │   └── password-controller.js
+│   │   │   ├── preHandlers
+│   │   │   │   ├── access-session.js
+│   │   │   │   ├── assessment-authorization.js
+│   │   │   │   ├── snapshot-authorization.js
+│   │   │   │   └── user-existence-verification.js
+│   │   │   ├── qmail
+│   │   │   │   ├── index.js
+│   │   │   │   └── qmail-controller.js
+│   │   │   ├── sessions
+│   │   │   │   ├── index.js
+│   │   │   │   └── session-controller.js
+│   │   │   ├── simulateErrors
+│   │   │   │   ├── error-controller.js
+│   │   │   │   └── index.js
+│   │   │   ├── snapshots
+│   │   │   │   ├── index.js
+│   │   │   │   └── snapshot-controller.js
+│   │   │   ├── usecases
+│   │   │   │   ├── checkUserHasRolePixMaster.js
+│   │   │   │   └── checkUserIsAuthenticated.js
+│   │   │   └── users
+│   │   │       ├── index.js
+│   │   │       └── user-controller.js
+│   │   ├── cat
+│   │   │   ├── answer.js
+│   │   │   ├── assessment.js
+│   │   │   ├── challenge.js
+│   │   │   ├── course.js
+│   │   │   └── skill.js
+│   │   ├── domain
+│   │   │   ├── errors.js
+│   │   │   ├── models
+│   │   │   │   ├── Answer.js
+│   │   │   │   ├── AnswerStatus.js
+│   │   │   │   ├── Area.js
+│   │   │   │   ├── Assessment.js
+│   │   │   │   ├── AssessmentResult.js
+│   │   │   │   ├── Authentication.js
+│   │   │   │   ├── CertificationChallenge.js
+│   │   │   │   ├── CertificationCourse.js
+│   │   │   │   ├── Challenge.js
+│   │   │   │   ├── Competence.js
+│   │   │   │   ├── CompetenceMark.js
+│   │   │   │   ├── Course.js
+│   │   │   │   ├── Organization.js
+│   │   │   │   ├── PixRole.js
+│   │   │   │   ├── Profile.js
+│   │   │   │   ├── Session.js
+│   │   │   │   ├── Skill.js
+│   │   │   │   ├── User.js
+│   │   │   │   ├── UserCompetence.js
+│   │   │   │   └── referential
+│   │   │   │       ├── competence.js
+│   │   │   │       ├── course.js
+│   │   │   │       └── solution.js
+│   │   │   └── services
+│   │   │       ├── answer-service.js
+│   │   │       ├── assessment-result-service.js
+│   │   │       ├── assessment-service-utils.js
+│   │   │       ├── assessment-service.js
+│   │   │       ├── certification-challenges-service.js
+│   │   │       ├── certification-course-service.js
+│   │   │       ├── certification-service.js
+│   │   │       ├── challenge-service.js
+│   │   │       ├── course-service.js
+│   │   │       ├── deactivations-service.js
+│   │   │       ├── email-validator.js
+│   │   │       ├── encryption-service.js
+│   │   │       ├── mail-service.js
+│   │   │       ├── organization-service.js
+│   │   │       ├── profile-completion-service.js
+│   │   │       ├── profile-service.js
+│   │   │       ├── qmail-service.js
+│   │   │       ├── qmail-validation-service.js
+│   │   │       ├── reset-password-service.js
+│   │   │       ├── session-code-service.js
+│   │   │       ├── session-service.js
+│   │   │       ├── skills-service.js
+│   │   │       ├── snapshot-service.js
+│   │   │       ├── solution-service-qcm.js
+│   │   │       ├── solution-service-qcu.js
+│   │   │       ├── solution-service-qroc.js
+│   │   │       ├── solution-service-qrocm-dep.js
+│   │   │       ├── solution-service-qrocm-ind.js
+│   │   │       ├── solution-service-utils.js
+│   │   │       ├── solution-service.js
+│   │   │       ├── token-service.js
+│   │   │       ├── user-service.js
+│   │   │       ├── validation-comparison.js
+│   │   │       └── validation-treatments.js
+│   │   ├── infrastructure
+│   │   │   ├── adapters
+│   │   │   │   └── assessment-adapter.js
+│   │   │   ├── airtable.js
+│   │   │   ├── bookshelf.js
+│   │   │   ├── cache.js
+│   │   │   ├── converter
+│   │   │   │   └── snapshots-csv-converter.js
+│   │   │   ├── data
+│   │   │   │   ├── BookshelfPixRole.js
+│   │   │   │   ├── BookshelfUserPixRole.js
+│   │   │   │   ├── answer.js
+│   │   │   │   ├── assessment-result.js
+│   │   │   │   ├── assessment.js
+│   │   │   │   ├── certification-challenge.js
+│   │   │   │   ├── certification-course.js
+│   │   │   │   ├── competence-mark.js
+│   │   │   │   ├── feedback.js
+│   │   │   │   ├── follower.js
+│   │   │   │   ├── organization.js
+│   │   │   │   ├── reset-password-demand.js
+│   │   │   │   ├── scenario.js
+│   │   │   │   ├── session.js
+│   │   │   │   ├── skill.js
+│   │   │   │   ├── snapshot.js
+│   │   │   │   └── user.js
+│   │   │   ├── logger.js
+│   │   │   ├── mailjet.js
+│   │   │   ├── plugins
+│   │   │   │   └── metrics.js
+│   │   │   ├── repositories
+│   │   │   │   ├── answer-repository.js
+│   │   │   │   ├── area-repository.js
+│   │   │   │   ├── assessment-repository.js
+│   │   │   │   ├── assessment-result-repository.js
+│   │   │   │   ├── certification-challenge-repository.js
+│   │   │   │   ├── certification-course-repository.js
+│   │   │   │   ├── challenge-repository.js
+│   │   │   │   ├── competence-mark-repository.js
+│   │   │   │   ├── competence-repository.js
+│   │   │   │   ├── course-repository.js
+│   │   │   │   ├── feedback-repository.js
+│   │   │   │   ├── healthcheck-repository.js
+│   │   │   │   ├── organization-repository.js
+│   │   │   │   ├── reset-password-demands-repository.js
+│   │   │   │   ├── session-repository.js
+│   │   │   │   ├── skill-repository.js
+│   │   │   │   ├── snapshot-repository.js
+│   │   │   │   ├── solution-repository.js
+│   │   │   │   └── user-repository.js
+│   │   │   ├── security.js
+│   │   │   ├── serializers
+│   │   │   │   ├── airtable
+│   │   │   │   │   ├── airtable-serializer.js
+│   │   │   │   │   ├── area-serializer.js
+│   │   │   │   │   ├── challenge-serializer.js
+│   │   │   │   │   ├── competence-serializer.js
+│   │   │   │   │   ├── course-serializer.js
+│   │   │   │   │   └── solution-serializer.js
+│   │   │   │   └── jsonapi
+│   │   │   │       ├── answer-serializer.js
+│   │   │   │       ├── assessment-result-serializer.js
+│   │   │   │       ├── assessment-serializer.js
+│   │   │   │       ├── authentication-serializer.js
+│   │   │   │       ├── certification-course-serializer.js
+│   │   │   │       ├── certification-serializer.js
+│   │   │   │       ├── challenge-serializer.js
+│   │   │   │       ├── course-serializer.js
+│   │   │   │       ├── feedback-serializer.js
+│   │   │   │       ├── follower-serializer.js
+│   │   │   │       ├── jsonapi-serializer.js
+│   │   │   │       ├── organization-serializer.js
+│   │   │   │       ├── password-reset-serializer.js
+│   │   │   │       ├── profile-serializer.js
+│   │   │   │       ├── session-serializer.js
+│   │   │   │       ├── snapshot-serializer.js
+│   │   │   │       ├── solution-serializer.js
+│   │   │   │       ├── user-serializer.js
+│   │   │   │       └── validation-error-serializer.js
+│   │   │   ├── utils
+│   │   │   │   ├── bookshelf-utils.js
+│   │   │   │   ├── lodash-utils.js
+│   │   │   │   └── query-params-utils.js
+│   │   │   └── validators
+│   │   │       ├── errors.js
+│   │   │       ├── grecaptcha-validator.js
+│   │   │       ├── jsonwebtoken-verify.js
+│   │   │       └── password-validator.js
+│   │   ├── interfaces
+│   │   │   ├── controllers
+│   │   │   │   └── security-controller.js
+│   │   │   ├── serializer
+│   │   │   │   └── json-api
+│   │   │   │       └── AnswerStatusJsonApiAdapter.js
+│   │   │   └── storage
+│   │   │       └── database
+│   │   │           └── AnswerStatusDatabaseAdapter.js
+│   │   ├── plugins.js
+│   │   ├── routes.js
+│   │   └── settings.js
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── scripts
+│   │   ├── PgClient.js
+│   │   ├── delete-assessment.js
+│   │   ├── delete-user.js
+│   │   ├── deploy.sh
+│   │   ├── fill-score-level.js
+│   │   ├── get-changelog.js
+│   │   ├── get-results-certifications-old.js
+│   │   ├── get-results-certifications.js
+│   │   ├── help.sh
+│   │   ├── import-certifications-from-csv.js
+│   │   └── seed_review_app.sh
+│   ├── server.js
+│   └── tests
+│       ├── .eslintrc
+│       ├── acceptance
+│       │   ├── application
+│       │   │   ├── answer-controller-find_test.js
+│       │   │   ├── answer-controller-get_test.js
+│       │   │   ├── answer-controller-save_test.js
+│       │   │   ├── answer-controller-update_test.js
+│       │   │   ├── assessment-controller-get-adaptive-correct_test.js
+│       │   │   ├── assessment-controller-get-adaptive_test.js
+│       │   │   ├── assessment-controller-get-nonadaptive_test.js
+│       │   │   ├── assessment-controller-get-solutions_test.js
+│       │   │   ├── assessment-controller-get_test.js
+│       │   │   ├── assessment-controller-post_test.js
+│       │   │   ├── assessment-result-admin-controller_test.js
+│       │   │   ├── assessment-result-controller_test.js
+│       │   │   ├── authentication-controller-save_test.js
+│       │   │   ├── cache-controller_test.js
+│       │   │   ├── certification-course-controller_test.js
+│       │   │   ├── challenge-controller_test.js
+│       │   │   ├── course-controller_test.js
+│       │   │   ├── error-controller_test.js
+│       │   │   ├── feedback-controller_test.js
+│       │   │   ├── follower-controller_test.js
+│       │   │   ├── healthcheck-controller_test.js
+│       │   │   ├── organization-controller_test.js
+│       │   │   ├── password-controller_test.js
+│       │   │   ├── security-controller_test.js
+│       │   │   ├── session-controller_test.js
+│       │   │   ├── snapshot-controller_test.js
+│       │   │   ├── users-controller-get-profile_test.js
+│       │   │   ├── users-controller-save_test.js
+│       │   │   └── users-controller-update-password_test.js
+│       │   ├── infrastructure
+│       │   │   └── repositories
+│       │   │       ├── feedback-repository_test.js
+│       │   │       └── skill-repository_test.js
+│       │   └── scripts
+│       │       ├── file_with_bad_extension.html
+│       │       ├── import-certifications-from-csv_test.js
+│       │       └── valid-certifications-test-file.csv
+│       ├── integration
+│       │   ├── application
+│       │   │   └── authentication
+│       │   │       ├── authentication-controller_test.js
+│       │   │       └── index_test.js
+│       │   └── infrastructure
+│       │       ├── airtable_test.js
+│       │       └── repositories
+│       │           ├── answer-repository_test.js
+│       │           ├── assessment-repository_test.js
+│       │           ├── assessment-result-repository_test.js
+│       │           ├── certification-challenge-repository_test.js
+│       │           ├── certification-course-repository_test.js
+│       │           ├── competence-mark-repository_test.js
+│       │           ├── organization-repository_test.js
+│       │           ├── session-repository_test.js
+│       │           └── user-repository_test.js
+│       ├── test-helper.js
+│       └── unit
+│           ├── application
+│           │   ├── answers
+│           │   │   ├── answer-controller_test.js
+│           │   │   └── index_test.js
+│           │   ├── assessment-results
+│           │   │   └── assessment-results-controller_test.js
+│           │   ├── assessments
+│           │   │   ├── assessment-controller-get-next-challenge_test.js
+│           │   │   ├── assessment-controller-get-solution_test.js
+│           │   │   ├── assessment-controller-get_test.js
+│           │   │   ├── assessment-controller-save_test.js
+│           │   │   ├── assessment-controller_test.js
+│           │   │   └── index_test.js
+│           │   ├── cache
+│           │   │   ├── cache-controller_test.js
+│           │   │   └── index_test.js
+│           │   ├── certificationCourses
+│           │   │   ├── certification-course-controller_test.js
+│           │   │   └── index_test.js
+│           │   ├── challenges
+│           │   │   ├── challenge-controller_test.js
+│           │   │   └── index_test.js
+│           │   ├── courses
+│           │   │   ├── course-controller_test.js
+│           │   │   └── index_test.js
+│           │   ├── feedbacks
+│           │   │   ├── feedback-controller_test.js
+│           │   │   └── index_test.js
+│           │   ├── followers
+│           │   │   ├── follower-controller_test.js
+│           │   │   └── index_test.js
+│           │   ├── healthcheck
+│           │   │   ├── healthcheck-controller_test.js
+│           │   │   └── index_test.js
+│           │   ├── metrics
+│           │   │   ├── index_test.js
+│           │   │   └── metric-controller_test.js
+│           │   ├── organizations
+│           │   │   ├── index_test.js
+│           │   │   └── organization-controller_test.js
+│           │   ├── passwords
+│           │   │   ├── index_test.js
+│           │   │   └── password-controller_test.js
+│           │   ├── preHandlers
+│           │   │   ├── access-session_test.js
+│           │   │   ├── assessment-authorization_test.js
+│           │   │   ├── snapshot-authorization_test.js
+│           │   │   └── user-existence-verification_test.js
+│           │   ├── qmail
+│           │   │   └── qmail-controller_test.js
+│           │   ├── session
+│           │   │   ├── index_test.js
+│           │   │   └── session-controller_test.js
+│           │   ├── snapshots
+│           │   │   ├── index_test.js
+│           │   │   └── snapshot-controller_test.js
+│           │   ├── usecases
+│           │   │   ├── checkUserHasRolePixMaster_test.js
+│           │   │   └── checkUserIsAuthenticated_test.js
+│           │   └── users
+│           │       ├── index_test.js
+│           │       └── user-controller_test.js
+│           ├── cat
+│           │   ├── answer_test.js
+│           │   ├── assessment_test.js
+│           │   ├── challenge_test.js
+│           │   ├── course_test.js
+│           │   └── skill_test.js
+│           ├── domain
+│           │   ├── errors_test.js
+│           │   ├── models
+│           │   │   ├── AnswerStatus_test.js
+│           │   │   ├── Assessment_test.js
+│           │   │   ├── CompetenceMark_test.js
+│           │   │   ├── answer_test.js
+│           │   │   ├── bookshelf-user_test.js
+│           │   │   ├── challenge_test.js
+│           │   │   ├── competence_test.js
+│           │   │   ├── course_test.js
+│           │   │   ├── organization_test.js
+│           │   │   ├── profile_test.js
+│           │   │   └── user_test.js
+│           │   └── services
+│           │       ├── answer-service_test.js
+│           │       ├── assessment-result-service_test.js
+│           │       ├── assessment-service_test.js
+│           │       ├── certification-challenges-service_test.js
+│           │       ├── certification-course-service_test.js
+│           │       ├── certification-service_test.js
+│           │       ├── challenge-service_test.js
+│           │       ├── course-service_test.js
+│           │       ├── deactivations-service_test.js
+│           │       ├── email-validator_test.js
+│           │       ├── encryption-service_test.js
+│           │       ├── mail-service_test.js
+│           │       ├── organization-service_test.js
+│           │       ├── profile-completion-service_test.js
+│           │       ├── profile-service_test.js
+│           │       ├── qmail-validation-service_test.js
+│           │       ├── reset-password-service_test.js
+│           │       ├── session-code-service_test.js
+│           │       ├── session-service_test.js
+│           │       ├── skills-service_test.js
+│           │       ├── snapshot-service_test.js
+│           │       ├── solution-service-function-match_test.js
+│           │       ├── solution-service-function-revalidate_test.js
+│           │       ├── solution-service-function-timedOut_test.js
+│           │       ├── solution-service-qcm_test.js
+│           │       ├── solution-service-qcu_test.js
+│           │       ├── solution-service-qroc_test.js
+│           │       ├── solution-service-qrocm-dep_test.js
+│           │       ├── solution-service-qrocm-ind_test.js
+│           │       ├── solutions-service-utils_tests.js
+│           │       ├── token-service_test.js
+│           │       ├── user-service_test.js
+│           │       ├── validation-comparison_test.js
+│           │       └── validation-treatments_test.js
+│           ├── infrastructure
+│           │   ├── adapters
+│           │   │   └── assessment-adapter_test.js
+│           │   ├── converter
+│           │   │   └── snapshots-csv-converter_test.js
+│           │   ├── mailjet_test.js
+│           │   ├── models
+│           │   │   ├── answer_test.js
+│           │   │   ├── assessment_result_test.js
+│           │   │   ├── organization_test.js
+│           │   │   ├── session_test.js
+│           │   │   └── user_test.js
+│           │   ├── plugins
+│           │   │   └── metrics_test.js
+│           │   ├── repositories
+│           │   │   ├── area-repository_test.js
+│           │   │   ├── assessment-repository_test.js
+│           │   │   ├── certification-challenge-repository_test.js
+│           │   │   ├── certification-course-repository_test.js
+│           │   │   ├── challenge-repository_test.js
+│           │   │   ├── competence-repository_test.js
+│           │   │   ├── course-repository_test.js
+│           │   │   ├── reset-password-demands-repository_test.js
+│           │   │   ├── skill-repository_test.js
+│           │   │   ├── snapshot-repository_test.js
+│           │   │   ├── solution-repository_test.js
+│           │   │   └── user-repository_test.js
+│           │   ├── serializers
+│           │   │   ├── airtable
+│           │   │   │   ├── area-serializer_test.js
+│           │   │   │   ├── challenge-serializer_test.js
+│           │   │   │   ├── competence-serializer_test.js
+│           │   │   │   ├── course-serializer_test.js
+│           │   │   │   └── solution-serializer_test.js
+│           │   │   └── jsonapi
+│           │   │       ├── answer-serializer_test.js
+│           │   │       ├── assessment-result-serializer_test.js
+│           │   │       ├── assessment-serializer_test.js
+│           │   │       ├── authentication-serializer_test.js
+│           │   │       ├── certification-course-serializer_test.js
+│           │   │       ├── certification-serializer_test.js
+│           │   │       ├── challenge-serializer_test.js
+│           │   │       ├── course-serializer_test.js
+│           │   │       ├── feedback-serializer_test.js
+│           │   │       ├── follower-serializer_test.js
+│           │   │       ├── organization-serializer_test.js
+│           │   │       ├── password-reset-serializer_test.js
+│           │   │       ├── profile-serializer_test.js
+│           │   │       ├── session-serializer_test.js
+│           │   │       ├── snapshot-serializer_test.js
+│           │   │       ├── solution-serializer_test.js
+│           │   │       ├── user-serializer_test.js
+│           │   │       └── validation-error-serializer_test.js
+│           │   ├── utils
+│           │   │   ├── bookshelf-utils_test.js
+│           │   │   ├── lodash-utils_test.js
+│           │   │   └── query-params-utils_test.js
+│           │   └── validators
+│           │       ├── error_test.js
+│           │       ├── grecaptcha-validator_test.js
+│           │       ├── jsonwebtoken-verify_test.js
+│           │       └── password-validator_test.js
+│           ├── interfaces
+│           │   ├── controllers
+│           │   │   └── security-controller_test.js
+│           │   ├── serializer
+│           │   │   └── json-api
+│           │   │       └── AnswerStatusJsonApiAdapter_test.js
+│           │   └── storage
+│           │       └── database
+│           │           └── AnswerStatusDatabaseAdapter_test.js
+│           ├── script
+│           │   ├── delete-assessment_test.js
+│           │   ├── get-changelog_test.js
+│           │   └── get-results-certifications-old_test.js
+│           └── scripts
+│               ├── delete-user_test.js
+│               └── get-results-certifications_test.js
+├── live
+│   ├── .csslintrc
+│   ├── .editorconfig
+│   ├── .ember-cli
+│   ├── .eslintignore
+│   ├── .eslintrc.js
+│   ├── .watchmanconfig
+│   ├── README.md
+│   ├── app
+│   │   ├── adapters
+│   │   │   ├── application.js
+│   │   │   ├── challenge.js
+│   │   │   ├── solution.js
+│   │   │   └── user.js
+│   │   ├── app.js
+│   │   ├── authenticators
+│   │   │   └── simple.js
+│   │   ├── breakpoints.js
+│   │   ├── components
+│   │   │   ├── app-footer.js
+│   │   │   ├── beta-logo.js
+│   │   │   ├── certification-banner.js
+│   │   │   ├── certification-code-validation.js
+│   │   │   ├── certification-results-page.js
+│   │   │   ├── challenge-actions.js
+│   │   │   ├── challenge-item-generic.js
+│   │   │   ├── challenge-item-qcm.js
+│   │   │   ├── challenge-item-qcu.js
+│   │   │   ├── challenge-item-qmail.js
+│   │   │   ├── challenge-item-qroc.js
+│   │   │   ├── challenge-item-qrocm.js
+│   │   │   ├── challenge-statement.js
+│   │   │   ├── challenge-stay.js
+│   │   │   ├── comparison-window.js
+│   │   │   ├── competence-area-list.js
+│   │   │   ├── competence-by-area-item.js
+│   │   │   ├── competence-level-progress-bar.js
+│   │   │   ├── corner-ribbon.js
+│   │   │   ├── course-banner.js
+│   │   │   ├── course-item.js
+│   │   │   ├── course-list.js
+│   │   │   ├── feature-item.js
+│   │   │   ├── feature-list.js
+│   │   │   ├── feedback-panel.js
+│   │   │   ├── follower-form.js
+│   │   │   ├── form-textfield.js
+│   │   │   ├── g-recaptcha.js
+│   │   │   ├── logged-user-profile-banner.js
+│   │   │   ├── medal-item.js
+│   │   │   ├── modal-mobile.js
+│   │   │   ├── navbar-desktop-menu.js
+│   │   │   ├── navbar-header.js
+│   │   │   ├── navbar-mobile-menu.js
+│   │   │   ├── partners-enrollment-panel.js
+│   │   │   ├── password-reset-form.js
+│   │   │   ├── pix-content-backdrop.js
+│   │   │   ├── pix-logo.js
+│   │   │   ├── pix-modale.js
+│   │   │   ├── profile-panel.js
+│   │   │   ├── progress-bar.js
+│   │   │   ├── qcm-proposals.js
+│   │   │   ├── qcm-solution-panel.js
+│   │   │   ├── qcu-proposals.js
+│   │   │   ├── qcu-solution-panel.js
+│   │   │   ├── qroc-proposal.js
+│   │   │   ├── qroc-solution-panel.js
+│   │   │   ├── qrocm-ind-solution-panel.js
+│   │   │   ├── qrocm-proposal.js
+│   │   │   ├── reset-password-form.js
+│   │   │   ├── result-item.js
+│   │   │   ├── score-pastille.js
+│   │   │   ├── scoring-panel-tantpix.js
+│   │   │   ├── scoring-panel.js
+│   │   │   ├── share-profile.js
+│   │   │   ├── signin-form.js
+│   │   │   ├── signup-form.js
+│   │   │   ├── snapshot-list.js
+│   │   │   ├── timeout-jauge.js
+│   │   │   ├── trophy-item.js
+│   │   │   ├── tutorial-panel.js
+│   │   │   ├── user-logged-menu.js
+│   │   │   └── warning-page.js
+│   │   ├── controllers
+│   │   │   └── certification-course.js
+│   │   ├── helpers
+│   │   │   ├── convert-to-html.js
+│   │   │   ├── eq.js
+│   │   │   ├── extract-extension.js
+│   │   │   ├── get-challenge-component-class.js
+│   │   │   ├── inc.js
+│   │   │   ├── or.js
+│   │   │   ├── property-of.js
+│   │   │   └── strip-instruction.js
+│   │   ├── index.html
+│   │   ├── initializers
+│   │   │   └── responsive.js
+│   │   ├── models
+│   │   │   ├── answer
+│   │   │   │   └── value-as-array-of-string-mixin.js
+│   │   │   ├── answer.js
+│   │   │   ├── area.js
+│   │   │   ├── assessment-result.js
+│   │   │   ├── assessment.js
+│   │   │   ├── challenge.js
+│   │   │   ├── competence.js
+│   │   │   ├── course.js
+│   │   │   ├── feedback.js
+│   │   │   ├── follower.js
+│   │   │   ├── organization.js
+│   │   │   ├── password-reset-demand.js
+│   │   │   ├── snapshot.js
+│   │   │   ├── solution.js
+│   │   │   └── user.js
+│   │   ├── resolver.js
+│   │   ├── router.js
+│   │   ├── routes
+│   │   │   ├── application.js
+│   │   │   ├── assessments
+│   │   │   │   ├── challenge.js
+│   │   │   │   ├── comparison.js
+│   │   │   │   ├── rating.js
+│   │   │   │   ├── results.js
+│   │   │   │   └── resume.js
+│   │   │   ├── base-route.js
+│   │   │   ├── board.js
+│   │   │   ├── certifications
+│   │   │   │   ├── results.js
+│   │   │   │   ├── resume.js
+│   │   │   │   └── start.js
+│   │   │   ├── challenge-preview.js
+│   │   │   ├── competences.js
+│   │   │   ├── compte.js
+│   │   │   ├── courses
+│   │   │   │   └── create-assessment.js
+│   │   │   ├── enrollment.js
+│   │   │   ├── index.js
+│   │   │   ├── inscription.js
+│   │   │   ├── legal-notices.js
+│   │   │   ├── login.js
+│   │   │   ├── logout.js
+│   │   │   ├── not-found.js
+│   │   │   ├── password-reset-demand.js
+│   │   │   ├── placement-tests.js
+│   │   │   ├── project.js
+│   │   │   ├── reset-password.js
+│   │   │   └── terms-of-service.js
+│   │   ├── services
+│   │   │   ├── ajax.js
+│   │   │   ├── delay.js
+│   │   │   ├── google-recaptcha.js
+│   │   │   ├── mail-generator.js
+│   │   │   ├── raven.js
+│   │   │   └── splash.js
+│   │   ├── styles
+│   │   │   ├── app.scss
+│   │   │   ├── components
+│   │   │   │   ├── _app-footer.scss
+│   │   │   │   ├── _blue-ribbon.scss
+│   │   │   │   ├── _certification-banner.scss
+│   │   │   │   ├── _certification-code-validation.scss
+│   │   │   │   ├── _certification-result.scss
+│   │   │   │   ├── _challenge-actions.scss
+│   │   │   │   ├── _challenge-item.scss
+│   │   │   │   ├── _challenge-response.scss
+│   │   │   │   ├── _challenge-statement.scss
+│   │   │   │   ├── _challenge-stay.scss
+│   │   │   │   ├── _comparison-window.scss
+│   │   │   │   ├── _competence-by-area-item.scss
+│   │   │   │   ├── _competence-level-progress-bar.scss
+│   │   │   │   ├── _corner-ribbon.scss
+│   │   │   │   ├── _course-banner.scss
+│   │   │   │   ├── _course-item-placeholder.scss
+│   │   │   │   ├── _course-item.scss
+│   │   │   │   ├── _course-list.scss
+│   │   │   │   ├── _feature-item.scss
+│   │   │   │   ├── _feature-list.scss
+│   │   │   │   ├── _feedback-panel.scss
+│   │   │   │   ├── _follower-form.scss
+│   │   │   │   ├── _form-textfield.scss
+│   │   │   │   ├── _legal-notices.scss
+│   │   │   │   ├── _logged-user-profile-banner.scss
+│   │   │   │   ├── _medal-item.scss
+│   │   │   │   ├── _modal-mobile.scss
+│   │   │   │   ├── _navbar-desktop-menu.scss
+│   │   │   │   ├── _navbar-header.scss
+│   │   │   │   ├── _navbar-mobile-menu.scss
+│   │   │   │   ├── _partners-enrollment-panel.scss
+│   │   │   │   ├── _password-reset-form.scss
+│   │   │   │   ├── _pix-logo.scss
+│   │   │   │   ├── _profile-panel.scss
+│   │   │   │   ├── _qcm-solution-panel.scss
+│   │   │   │   ├── _qcu-solution-panel.scss
+│   │   │   │   ├── _qroc-solution-panel.scss
+│   │   │   │   ├── _qrocm-proposals.scss
+│   │   │   │   ├── _qrocm-solution-panel.scss
+│   │   │   │   ├── _reset-password-form.scss
+│   │   │   │   ├── _result-item.scss
+│   │   │   │   ├── _rounded-panel.scss
+│   │   │   │   ├── _score-pastille.scss
+│   │   │   │   ├── _scoring-panel-tantpix.scss
+│   │   │   │   ├── _scoring-panel.scss
+│   │   │   │   ├── _share-profile.scss
+│   │   │   │   ├── _signin-form.scss
+│   │   │   │   ├── _signup-form.scss
+│   │   │   │   ├── _snapshot-list.scss
+│   │   │   │   ├── _timeout-jauge.scss
+│   │   │   │   ├── _trophy-item.scss
+│   │   │   │   ├── _tutorial-panel.scss
+│   │   │   │   ├── _user-logged-menu.scss
+│   │   │   │   └── _warning-timing-page.scss
+│   │   │   ├── globals
+│   │   │   │   ├── _a11y.scss
+│   │   │   │   ├── _alert.scss
+│   │   │   │   ├── _breakpoints.scss
+│   │   │   │   ├── _buttons.scss
+│   │   │   │   ├── _dimension.scss
+│   │   │   │   ├── _fonts.scss
+│   │   │   │   ├── _loading.scss
+│   │   │   │   ├── _palette.scss
+│   │   │   │   ├── _pix-modale.scss
+│   │   │   │   └── _redesign-inputs.scss
+│   │   │   ├── pages
+│   │   │   │   ├── _assessment-challenge.scss
+│   │   │   │   ├── _assessment-results.scss
+│   │   │   │   ├── _board.scss
+│   │   │   │   ├── _certification-course-error.scss
+│   │   │   │   ├── _certification-start.scss
+│   │   │   │   ├── _competences.scss
+│   │   │   │   ├── _compte.scss
+│   │   │   │   ├── _course-preview.scss
+│   │   │   │   ├── _enrollment.scss
+│   │   │   │   ├── _index.scss
+│   │   │   │   ├── _inscription.scss
+│   │   │   │   ├── _login.scss
+│   │   │   │   ├── _password-reset-demand.scss
+│   │   │   │   ├── _project.scss
+│   │   │   │   ├── _reset-password.scss
+│   │   │   │   └── _terms-of-service.scss
+│   │   │   └── vendor
+│   │   │       └── ember-routable-modal
+│   │   │           ├── core.scss
+│   │   │           └── dialog.scss
+│   │   ├── templates
+│   │   │   ├── application.hbs
+│   │   │   ├── assessments
+│   │   │   │   ├── challenge.hbs
+│   │   │   │   ├── comparison.hbs
+│   │   │   │   ├── rating.hbs
+│   │   │   │   ├── results.hbs
+│   │   │   │   ├── resume-loading.hbs
+│   │   │   │   └── resume.hbs
+│   │   │   ├── board.hbs
+│   │   │   ├── certifications
+│   │   │   │   ├── results.hbs
+│   │   │   │   ├── resume.hbs
+│   │   │   │   ├── start-error.hbs
+│   │   │   │   └── start.hbs
+│   │   │   ├── challenge-preview.hbs
+│   │   │   ├── competences.hbs
+│   │   │   ├── components
+│   │   │   │   ├── app-footer.hbs
+│   │   │   │   ├── beta-logo.hbs
+│   │   │   │   ├── certification-banner.hbs
+│   │   │   │   ├── certification-code-validation.hbs
+│   │   │   │   ├── certification-results-page.hbs
+│   │   │   │   ├── challenge-actions.hbs
+│   │   │   │   ├── challenge-item-generic.hbs
+│   │   │   │   ├── challenge-item-qcm.hbs
+│   │   │   │   ├── challenge-item-qcu.hbs
+│   │   │   │   ├── challenge-item-qmail.hbs
+│   │   │   │   ├── challenge-item-qroc.hbs
+│   │   │   │   ├── challenge-item-qrocm.hbs
+│   │   │   │   ├── challenge-statement.hbs
+│   │   │   │   ├── challenge-stay.hbs
+│   │   │   │   ├── comparison-window.hbs
+│   │   │   │   ├── competence-area-list.hbs
+│   │   │   │   ├── competence-by-area-item.hbs
+│   │   │   │   ├── competence-level-progress-bar.hbs
+│   │   │   │   ├── corner-ribbon.hbs
+│   │   │   │   ├── course-banner.hbs
+│   │   │   │   ├── course-item-placeholder.hbs
+│   │   │   │   ├── course-item.hbs
+│   │   │   │   ├── course-list.hbs
+│   │   │   │   ├── feature-item.hbs
+│   │   │   │   ├── feature-list.hbs
+│   │   │   │   ├── feedback-panel.hbs
+│   │   │   │   ├── follower-form.hbs
+│   │   │   │   ├── form-textfield.hbs
+│   │   │   │   ├── g-recaptcha.hbs
+│   │   │   │   ├── logged-user-profile-banner.hbs
+│   │   │   │   ├── medal-item.hbs
+│   │   │   │   ├── modal-mobile.hbs
+│   │   │   │   ├── navbar-desktop-menu.hbs
+│   │   │   │   ├── navbar-header.hbs
+│   │   │   │   ├── navbar-mobile-menu.hbs
+│   │   │   │   ├── partners-enrollment-panel.hbs
+│   │   │   │   ├── password-reset-form.hbs
+│   │   │   │   ├── pix-logo.hbs
+│   │   │   │   ├── profile-panel.hbs
+│   │   │   │   ├── progress-bar.hbs
+│   │   │   │   ├── qcm-proposals.hbs
+│   │   │   │   ├── qcm-solution-panel.hbs
+│   │   │   │   ├── qcu-proposals.hbs
+│   │   │   │   ├── qcu-solution-panel.hbs
+│   │   │   │   ├── qroc-proposal.hbs
+│   │   │   │   ├── qroc-solution-panel.hbs
+│   │   │   │   ├── qrocm-ind-solution-panel.hbs
+│   │   │   │   ├── qrocm-proposal.hbs
+│   │   │   │   ├── reset-password-form.hbs
+│   │   │   │   ├── result-item.hbs
+│   │   │   │   ├── score-pastille.hbs
+│   │   │   │   ├── scoring-panel-tantpix.hbs
+│   │   │   │   ├── scoring-panel.hbs
+│   │   │   │   ├── share-profile.hbs
+│   │   │   │   ├── signin-form.hbs
+│   │   │   │   ├── signup-form.hbs
+│   │   │   │   ├── snapshot-list.hbs
+│   │   │   │   ├── timeout-jauge.hbs
+│   │   │   │   ├── trophy-item.hbs
+│   │   │   │   ├── tutorial-panel.hbs
+│   │   │   │   ├── user-logged-menu.hbs
+│   │   │   │   └── warning-page.hbs
+│   │   │   ├── compte-loading.hbs
+│   │   │   ├── compte.hbs
+│   │   │   ├── courses
+│   │   │   │   ├── create-assessment-loading.hbs
+│   │   │   │   └── create-assessment.hbs
+│   │   │   ├── courses-loading.hbs
+│   │   │   ├── enrollment.hbs
+│   │   │   ├── index.hbs
+│   │   │   ├── inscription.hbs
+│   │   │   ├── legal-notices.hbs
+│   │   │   ├── login.hbs
+│   │   │   ├── logout.hbs
+│   │   │   ├── password-reset-demand.hbs
+│   │   │   ├── placement-tests.hbs
+│   │   │   ├── project.hbs
+│   │   │   ├── reset-password.hbs
+│   │   │   └── terms-of-service.hbs
+│   │   ├── transforms
+│   │   │   └── array.js
+│   │   └── utils
+│   │       ├── answers-as-object.js
+│   │       ├── call-only-once.js
+│   │       ├── email-validator.js
+│   │       ├── get-challenge-type.js
+│   │       ├── labeled-checkboxes.js
+│   │       ├── labels-as-object.js
+│   │       ├── lodash-custom.js
+│   │       ├── password-validator.js
+│   │       ├── proposals-as-array.js
+│   │       ├── proposals-as-blocks.js
+│   │       ├── result-details-as-object.js
+│   │       ├── result-icon-url.js
+│   │       ├── solution-as-object.js
+│   │       └── value-as-array-of-boolean.js
+│   ├── config
+│   │   ├── environment.js
+│   │   └── targets.js
+│   ├── ember-cli-build.js
+│   ├── mirage
+│   │   ├── README.md
+│   │   ├── config.js
+│   │   ├── data
+│   │   │   ├── answers
+│   │   │   │   ├── ref-qcm-answer.js
+│   │   │   │   ├── ref-qcu-answer.js
+│   │   │   │   ├── ref-qroc-answer.js
+│   │   │   │   ├── ref-qrocm-answer.js
+│   │   │   │   ├── ref-timed-answer-bis.js
+│   │   │   │   └── ref-timed-answer.js
+│   │   │   ├── assessments
+│   │   │   │   ├── ref-assessment-timed-challenges.js
+│   │   │   │   └── ref-assessment.js
+│   │   │   ├── challenges
+│   │   │   │   ├── ref-qcm-challenge.js
+│   │   │   │   ├── ref-qcu-challenge.js
+│   │   │   │   ├── ref-qroc-challenge.js
+│   │   │   │   ├── ref-qrocm-challenge.js
+│   │   │   │   ├── ref-timed-challenge-bis.js
+│   │   │   │   └── ref-timed-challenge.js
+│   │   │   ├── courses
+│   │   │   │   ├── highlighted-course.js
+│   │   │   │   ├── ref-course-timed-challenges.js
+│   │   │   │   └── ref-course.js
+│   │   │   ├── feedbacks
+│   │   │   │   └── ref-feedback.js
+│   │   │   └── solutions
+│   │   │       ├── ref-qcu-solution.js
+│   │   │       └── ref-solution.js
+│   │   ├── factories
+│   │   │   ├── area.js
+│   │   │   ├── challenge.js
+│   │   │   ├── competence.js
+│   │   │   ├── course.js
+│   │   │   ├── organization.js
+│   │   │   ├── snapshot.js
+│   │   │   └── user.js
+│   │   ├── fixtures
+│   │   │   ├── answers.js
+│   │   │   ├── areas.js
+│   │   │   ├── assessments.js
+│   │   │   ├── challenges.js
+│   │   │   ├── competences.js
+│   │   │   ├── courses.js
+│   │   │   ├── feedbacks.js
+│   │   │   └── solutions.js
+│   │   ├── routes
+│   │   │   ├── get-answer-by-challenge-and-assessment.js
+│   │   │   ├── get-answer.js
+│   │   │   ├── get-assessment-solutions.js
+│   │   │   ├── get-assessment.js
+│   │   │   ├── get-challenge.js
+│   │   │   ├── get-challenges.js
+│   │   │   ├── get-course.js
+│   │   │   ├── get-courses-of-the-week.js
+│   │   │   ├── get-courses.js
+│   │   │   ├── get-next-challenge.js
+│   │   │   ├── get-organizations.js
+│   │   │   ├── get-snapshots.js
+│   │   │   ├── get-user-me.js
+│   │   │   ├── patch-answer.js
+│   │   │   ├── post-answers.js
+│   │   │   ├── post-assessments.js
+│   │   │   ├── post-authentications.js
+│   │   │   ├── post-certification-course.js
+│   │   │   ├── post-courses.js
+│   │   │   ├── post-feedbacks.js
+│   │   │   └── post-refresh-solution.js
+│   │   ├── scenarios
+│   │   │   └── default.js
+│   │   └── serializers
+│   │       ├── application.js
+│   │       ├── competence.js
+│   │       └── user.js
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── public
+│   │   ├── android-chrome-192x192.png
+│   │   ├── android-chrome-256x256.png
+│   │   ├── apple-touch-icon.png
+│   │   ├── browserconfig.xml
+│   │   ├── crossdomain.xml
+│   │   ├── favicon-16x16.png
+│   │   ├── favicon-32x32.png
+│   │   ├── favicon.ico
+│   │   ├── images
+│   │   │   ├── answer-validation
+│   │   │   │   ├── icon-aband.svg
+│   │   │   │   ├── icon-default.svg
+│   │   │   │   ├── icon-ko.svg
+│   │   │   │   ├── icon-ok.svg
+│   │   │   │   ├── icon-partially.svg
+│   │   │   │   └── icon-timedout.svg
+│   │   │   ├── banners
+│   │   │   │   └── welcome-profile-banner.png
+│   │   │   ├── comparison-window
+│   │   │   │   ├── icon-arrow-right.svg
+│   │   │   │   ├── icon-close-modal.svg
+│   │   │   │   └── icon-tuto.svg
+│   │   │   ├── coupe.svg
+│   │   │   ├── course-default-image-2.png
+│   │   │   ├── course-default-image.png
+│   │   │   ├── features
+│   │   │   │   ├── icon-cafe.svg
+│   │   │   │   ├── icon-evolutif.svg
+│   │   │   │   ├── icon-gratuit.svg
+│   │   │   │   ├── icon-monde.svg
+│   │   │   │   └── icon-reference.svg
+│   │   │   ├── flag.svg
+│   │   │   ├── hexa-pix.svg
+│   │   │   ├── icon-check.svg
+│   │   │   ├── icon-citoyens.svg
+│   │   │   ├── icon-college.svg
+│   │   │   ├── icon-diplome.svg
+│   │   │   ├── icon-enseignants.svg
+│   │   │   ├── icon-etudiants.svg
+│   │   │   ├── icon-mobile-support-warning.svg
+│   │   │   ├── icon-partager.svg
+│   │   │   ├── icon-sac.svg
+│   │   │   ├── icon-timed-challenge.svg
+│   │   │   ├── icon-timeout-black.svg
+│   │   │   ├── icon-timeout-red.svg
+│   │   │   ├── icon-warning.svg
+│   │   │   ├── icons
+│   │   │   │   ├── icon-black-burger.svg
+│   │   │   │   ├── icon-close.svg
+│   │   │   │   ├── icon-croix.svg
+│   │   │   │   ├── icon-error.svg
+│   │   │   │   ├── icon-export.svg
+│   │   │   │   ├── icon-success.svg
+│   │   │   │   └── icon-white-burger.svg
+│   │   │   ├── index-community-bg-min.jpg
+│   │   │   ├── index-community-bg-original.jpg
+│   │   │   ├── index-hero-bg-min.jpg
+│   │   │   ├── index-hero-bg-original.jpg
+│   │   │   ├── interwind.gif
+│   │   │   ├── legal-notices
+│   │   │   │   ├── logo-CNED.jpg
+│   │   │   │   ├── logo-MEN.jpg
+│   │   │   │   ├── logo-MESRI.jpg
+│   │   │   │   ├── logo-UOH.jpg
+│   │   │   │   └── logo-Univ-strasbourg.jpg
+│   │   │   ├── loader-challenge.gif
+│   │   │   ├── loader-grey.svg
+│   │   │   ├── loader-white.svg
+│   │   │   ├── logo-de-la-republique-francaise.svg
+│   │   │   ├── logo-marianne-footer.jpg
+│   │   │   ├── logo-men.svg
+│   │   │   ├── logo-mesri.svg
+│   │   │   ├── medaille.svg
+│   │   │   ├── mnsr3.svg
+│   │   │   ├── pix-logo.svg
+│   │   │   ├── project
+│   │   │   │   ├── citizens.png
+│   │   │   │   ├── develop.png
+│   │   │   │   ├── measure.png
+│   │   │   │   ├── professionals.png
+│   │   │   │   ├── schoolers.png
+│   │   │   │   ├── students.png
+│   │   │   │   └── valorize.png
+│   │   │   ├── puce-rouge.svg
+│   │   │   ├── puce-verte.svg
+│   │   │   ├── signup-bg.jpg
+│   │   │   ├── smiley.png
+│   │   │   ├── smiley@2x.png
+│   │   │   ├── smiley@3x.png
+│   │   │   └── stock-photo2.jpg
+│   │   ├── manifest.json
+│   │   ├── mstile-150x150.png
+│   │   ├── recrutements
+│   │   │   └── charge-de-projet-e-education.pdf
+│   │   ├── robots.txt
+│   │   └── safari-pinned-tab.svg
+│   ├── scripts
+│   │   ├── ci-test.sh
+│   │   ├── deploy.sh
+│   │   ├── lcov-path-converter.js
+│   │   ├── serve.py
+│   │   └── signal_deploy_to_pr.sh
+│   ├── testem.js
+│   └── tests
+│       ├── acceptance
+│       │   ├── a4-demarrer-un-test-test.js
+│       │   ├── a5-voir-liste-tests-adaptatifs-test.js
+│       │   ├── b1-epreuve-qcu-test.js
+│       │   ├── b2-epreuve-qcm-test.js
+│       │   ├── b3-epreuve-qroc-test.js
+│       │   ├── b4-epreuve-qrocm-test.js
+│       │   ├── b6-epreuve-pj-test.js
+│       │   ├── b7-epreuve-points-communs-test.js
+│       │   ├── c1-recapitulatif-test.js
+│       │   ├── certification-course-test.js
+│       │   ├── compte-authentication-and-profile-test.js
+│       │   ├── compte-display-competence-test.js
+│       │   ├── compte-share-profile-test.js
+│       │   ├── d1-epreuve-validation-test.js
+│       │   ├── g1-bandeau-no-internet-no-outils-test.js
+│       │   ├── h1-timeout-jauge-test.js
+│       │   ├── h2-page-warning-timee-test.js
+│       │   ├── index-test.js
+│       │   ├── inscription-page-test.js
+│       │   ├── j1-compare-answer-solution-test.js
+│       │   ├── j2-compare-answer-solution-qroc-test.js
+│       │   ├── k1-competences-page-test.js
+│       │   ├── l1-signaler-une-epreuve-test.js
+│       │   ├── legal-notices-page-test.js
+│       │   ├── not-found-redirect-to-index-test.js
+│       │   ├── o1-board-organization-test.js
+│       │   ├── page-accueil-test.js
+│       │   ├── password-reset-test.js
+│       │   └── terms-of-service-page-test.js
+│       ├── helpers
+│       │   ├── destroy-app.js
+│       │   ├── resolver.js
+│       │   ├── responsive.js
+│       │   ├── seeds.js
+│       │   ├── start-app.js
+│       │   └── testing.js
+│       ├── index.html
+│       ├── integration
+│       │   └── components
+│       │       ├── certification-banner-test.js
+│       │       ├── certification-results-page-test.js
+│       │       ├── challenge-actions-test.js
+│       │       ├── challenge-item-qmail-test.js
+│       │       ├── challenge-statement-test.js
+│       │       ├── challenge-stay-test.js
+│       │       ├── comparison-window-test.js
+│       │       ├── competence-area-list-test.js
+│       │       ├── competence-by-area-item-test.js
+│       │       ├── competence-level-progress-bar-test.js
+│       │       ├── corner-ribbon-test.js
+│       │       ├── course-item-test.js
+│       │       ├── course-list-test.js
+│       │       ├── feature-item-test.js
+│       │       ├── feature-list-test.js
+│       │       ├── feedback-panel-test.js
+│       │       ├── follower-form-test.js
+│       │       ├── form-textfield-test.js
+│       │       ├── g-recaptcha-test.js
+│       │       ├── logged-user-profile-banner-test.js
+│       │       ├── medal-item-test.js
+│       │       ├── modal-mobile-test.js
+│       │       ├── navbar-desktop-nav-menu-test.js
+│       │       ├── navbar-header-test.js
+│       │       ├── navbar-mobile-menu-test.js
+│       │       ├── navbar-mobile-nav-menu-test.js
+│       │       ├── partners-enrollment-panel-test.js
+│       │       ├── password-reset-form-test.js
+│       │       ├── pix-content-backdrop-test.js
+│       │       ├── pix-logo-test.js
+│       │       ├── profile-panel-test.js
+│       │       ├── qcm-proposals-test.js
+│       │       ├── qcm-solution-panel-test.js
+│       │       ├── qcu-proposals-test.js
+│       │       ├── qcu-solution-panel-test.js
+│       │       ├── qroc-proposal-test.js
+│       │       ├── qroc-solution-panel-test.js
+│       │       ├── qrocm-ind-solution-panel-test.js
+│       │       ├── qrocm-proposal-test.js
+│       │       ├── reset-password-form-test.js
+│       │       ├── result-item-test.js
+│       │       ├── score-pastille-test.js
+│       │       ├── scoring-panel-tantpix-test.js
+│       │       ├── scoring-panel-test.js
+│       │       ├── share-profile-test.js
+│       │       ├── signin-form-test.js
+│       │       ├── signup-form-test.js
+│       │       ├── snapshot-list-test.js
+│       │       ├── timeout-jauge-test.js
+│       │       ├── trophy-item-test.js
+│       │       ├── tutorial-panel-test.js
+│       │       └── user-logged-menu-test.js
+│       ├── test-helper.js
+│       └── unit
+│           ├── adapters
+│           │   ├── application-test.js
+│           │   ├── solution-test.js
+│           │   └── user-test.js
+│           ├── authenticators
+│           │   └── simple-test.js
+│           ├── components
+│           │   ├── certification-banner-test.js
+│           │   ├── certification-code-validation-test.js
+│           │   ├── challenge-item-qmail-test.js
+│           │   ├── comparison-window-test.js
+│           │   ├── competence-area-list-test.js
+│           │   ├── competence-by-area-item-test.js
+│           │   ├── competence-level-progress-bar-test.js
+│           │   ├── course-item-test.js
+│           │   ├── course-list-test.js
+│           │   ├── feedback-panel-test.js
+│           │   ├── follower-form-test.js
+│           │   ├── form-textfield-test.js
+│           │   ├── g-recaptcha-test.js
+│           │   ├── navbar-header-test.js
+│           │   ├── navbar-mobile-menu-test.js
+│           │   ├── password-reset-form-test.js
+│           │   ├── pix-modal-test.js
+│           │   ├── qcu-proposals-test.js
+│           │   ├── qroc-solution-panel-test.js
+│           │   ├── qrocm-ind-solution-panel-test.js
+│           │   ├── reset-password-form-test.js
+│           │   ├── result-item-test.js
+│           │   ├── score-pastille-test.js
+│           │   ├── scoring-panel-test.js
+│           │   ├── share-profile-test.js
+│           │   ├── timeout-jauge-test.js
+│           │   ├── user-logged-menu-test.js
+│           │   └── warning-time-page-test.js
+│           ├── helpers
+│           │   ├── convert-to-html-test.js
+│           │   ├── eq-test.js
+│           │   ├── extract-extension-test.js
+│           │   ├── get-challenge-component-class-test.js
+│           │   ├── or-test.js
+│           │   └── strip-instruction-test.js
+│           ├── models
+│           │   ├── answer-test.js
+│           │   ├── area-test.js
+│           │   ├── challenge-test.js
+│           │   ├── competence-test.js
+│           │   ├── course-test.js
+│           │   ├── feedback-test.js
+│           │   ├── follower-test.js
+│           │   ├── organization-test.js
+│           │   ├── password-reset-demand-test.js
+│           │   ├── snapshot-test.js
+│           │   └── user-test.js
+│           ├── routes
+│           │   ├── application-test.js
+│           │   ├── assessments
+│           │   │   ├── challenge-test.js
+│           │   │   ├── rating-test.js
+│           │   │   ├── results-test.js
+│           │   │   └── resume-test.js
+│           │   ├── board-test.js
+│           │   ├── certifications
+│           │   │   ├── results-test.js
+│           │   │   ├── resume-test.js
+│           │   │   └── start-test.js
+│           │   ├── challenges
+│           │   │   └── preview-test.js
+│           │   ├── competences-test.js
+│           │   ├── compte-test.js
+│           │   ├── enrollment-test.js
+│           │   ├── index-test.js
+│           │   ├── inscription-test.js
+│           │   ├── legal-notices-test.js
+│           │   ├── login-test.js
+│           │   ├── logout-test.js
+│           │   ├── password-reset-test.js
+│           │   ├── placement-tests-test.js
+│           │   ├── project-test.js
+│           │   ├── reset-password-demand-test.js
+│           │   └── terms-of-service-test.js
+│           ├── services
+│           │   ├── delay-test.js
+│           │   ├── mail-generator-test.js
+│           │   └── splash-test.js
+│           ├── transforms
+│           │   └── array-test.js
+│           └── utils
+│               ├── answers-as-object-test.js
+│               ├── email-validator-test.js
+│               ├── labeled-checkboxes-test.js
+│               ├── labels-as-object-test.js
+│               ├── lodash-custom-test.js
+│               ├── password-validator-test.js
+│               ├── proposals-as-array-test.js
+│               ├── proposals-as-blocks-test.js
+│               ├── result-details-as-object-test.js
+│               ├── solution-as-object-test.js
+│               └── value-as-array-of-boolean-test.js
+├── package-lock.json
+├── package.json
+└── scripts
+    ├── backup
+    │   ├── README.md
+    │   ├── index.js
+    │   └── package.json
+    ├── backup-db
+    │   ├── README.md
+    │   ├── download-backup.sh
+    │   ├── open-tunnel.sh
+    │   └── restore-backup.sh
+    ├── release
+    │   ├── deploy-side-apps.sh
+    │   ├── perform.sh
+    │   ├── prepare.sh
+    │   └── publish.sh
+    └── trello
+        └── comment_with_review_app_url.sh
+
+185 directories, 1153 files
