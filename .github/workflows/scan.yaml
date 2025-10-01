@@ -38,61 +38,14 @@ jobs:
                   ref: ${{ github.ref }}
 
             - run: |
-                  mkdir scans
+                  ls
 
-            - name: Screenshot Website
-              uses: swinton/screenshot-website@v1.x
-              timeout-minutes: 5
-              continue-on-error: true
-              with:
-                  source: "${{ matrix.sites.url }}"
-                  type: jpeg
-                  destination: screenshot.jpeg
-                  width: 1280
-                  scaleFactor: 0.5
-
-            - name: Lighthouse scan
-              continue-on-error: true
-              timeout-minutes: 20
-              uses: SocialGouv/dashlord-actions/lhci@v1
-              with:
-                  url: "${{ matrix.sites.url }}"
-
-            - uses: SocialGouv/dashlord-actions/save@v1
-              with:
-                  url: ${{ matrix.sites.url }}
-                  # only clean up previous stats when all tools runned
-                  cleanup: ${{ github.event.inputs.tool == 'all' && true || false }}
-
-            - name: "Commit"
-              id: commit1
-              continue-on-error: true
-              run: |
-                  git config --global user.email 41898282+github-actions[bot]@users.noreply.github.com
-                  git config --global user.name GitHub
-                  git add "results"
-                  git commit -m "update: ${{ matrix.sites.url }}"
-                  git pull --rebase --no-ff origin ${{ github.ref }}
-                  git push
-
-            - name: "Commit retry"
-              if: steps.commit1.outcome=='failure'
-              id: commit2
-              continue-on-error: true
-              run: |
-                  git config --global user.email 41898282+github-actions[bot]@users.noreply.github.com
-                  git config --global user.name GitHub
-                  git add "results"
-                  git commit -m "update: ${{ matrix.sites.url }}"
-                  git pull --rebase --no-ff origin ${{ github.ref }}
-                  git push
-
-            - name: "Commit retry 2"
-              if: steps.commit2.outcome=='failure'
-              run: |
-                  git config --global user.email 41898282+github-actions[bot]@users.noreply.github.com
-                  git config --global user.name GitHub
-                  git add "results"
-                  git commit -m "update: ${{ matrix.sites.url }}"
-                  git pull --rebase --no-ff origin ${{ github.ref }}
-                  git push
+            # - name: "Commit retry 2"
+            #   if: steps.commit2.outcome=='failure'
+            #   run: |
+            #       git config --global user.email 41898282+github-actions[bot]@users.noreply.github.com
+            #       git config --global user.name GitHub
+            #       git add "results"
+            #       git commit -m "update: ${{ matrix.sites.url }}"
+            #       git pull --rebase --no-ff origin ${{ github.ref }}
+            #       git push
