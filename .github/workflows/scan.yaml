@@ -40,7 +40,8 @@ jobs:
               with:
                   ref: ${{ github.ref }}
 
-            - run: |
+            - name: "fetch repo"
+              run: |
                   pwd
                   echo "${{ matrix.sites.url }}"
                   ./fetch-repo.sh "${{ matrix.sites.url }}"
@@ -49,7 +50,7 @@ jobs:
               run: |
                   git config --global user.email 41898282+github-actions[bot]@users.noreply.github.com
                   git config --global user.name GitHub
-                  git add "results"
-                  git commit -m "update: ${{ matrix.sites.url }}"
+                  git add "./repos/${{ matrix.sites.full_name }}"
+                  git commit -m "update: ${{ matrix.sites.full_name }}"
                   git pull --rebase --no-ff origin ${{ github.ref }}
                   git push

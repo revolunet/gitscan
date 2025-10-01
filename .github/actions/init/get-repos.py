@@ -32,12 +32,15 @@ orgas = [
 ]
 
 
-def get_repo_local_path(url):
+def get_repo_path(url):
     parsed = urlparse(url)
     path = parsed.path.strip("/").strip(".git")
     segments = [s for s in path.split("/") if s]  # Enlever les segments vides
-    if len(segments) >= 2:
-        return f"{repos_folder}/{segments[-2]}/{segments[-1]}"
+    return f"{segments[-2]}/{segments[-1]}"
+
+
+def get_repo_local_path(url):
+    return f"{repos_folder}/{get_repo_path(url)}"
 
 
 for orga in orgas:
@@ -65,6 +68,8 @@ matrix_count = int(sys.argv[1])
 matrix_urls = sorted_urls[:matrix_count]
 
 # Output the matrix JSON to GITHUB_OUTPUT
-urls_json = json.dumps([{"url": url} for url in matrix_urls])
+urls_json = json.dumps(
+    [{"url": url, "full_name": get_repo_path(url)} for url in matrix_urls]
+)
 
 print(urls_json)
