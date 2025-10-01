@@ -1,0 +1,62 @@
+# See: https://docs.docker.com/compose/compose-file
+
+version: "3"
+
+services:
+
+  webapp:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.app
+    command: /bin/bash ./docker/start-webapp.sh
+    volumes:
+      - ./:/app
+    ports:
+      - "6543:6543"
+    depends_on:
+      - postgres
+      - postgres-test
+      - redis
+    environment:
+      ZAM_TEST_DB_URL: postgresql://zam-test:zam-test@postgres-test/zam-test
+      ZAM_TEST_TASKS_REDIS_URL: redis://redis:6379/10
+      ZAM_TEST_DATA_REDIS_URL: redis://redis:6379/11
+      ZAM_TEST_USERS_REDIS_URL: redis://redis:6379/12
+      ZAM_TEST_AMENDEMENTS_REDIS_URL: redis://redis:6379/13
+      ZAM_TEST_PROGRESS_REDIS_URL: redis://redis:6379/14
+      ZAM_TEST_PROGRESS_MAX_DURATION: 30
+
+  worker:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.app
+    command: zam_worker development-docker.ini#worker
+    volumes:
+      - ./:/app
+    depends_on:
+      - postgres
+      - redis
+      - webapp
+
+  postgres:
+    image: postgres:10.5
+    expose:
+      - "5432"
+    environment:
+      POSTGRES_DB: zam
+      POSTGRES_USER: zam
+      POSTGRES_PASSWD: zam
+
+  postgres-test:
+    image: postgres:10.5
+    expose:
+      - "5432"
+    environment:
+      POSTGRES_DB: zam-test
+      POSTGRES_USER: zam-test
+      POSTGRES_PASSWD: zam-test
+
+  redis:
+    image: redis:4.0
+    expose:
+      - "6379"

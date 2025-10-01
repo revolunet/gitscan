@@ -1,0 +1,726 @@
+.
+├── .circleci
+│   └── config.yml
+├── .github
+│   └── workflows
+│       └── rebase.yml
+├── .gitignore
+├── .mergify.yml
+├── CHANGELOG.md
+├── CODEOWNERS
+├── LICENSE
+├── LICENSE_FONTS
+├── README.md
+├── admin
+│   ├── README.md
+│   ├── fabfile.py
+│   ├── fabric.yml
+│   ├── files
+│   │   ├── cron-zam-backups.sh.template
+│   │   ├── letsencrypt
+│   │   │   ├── certbot.ini.template
+│   │   │   ├── letsencrypt.conf
+│   │   │   └── ssl-renew
+│   │   ├── munin
+│   │   │   ├── munin-nginx.conf
+│   │   │   ├── munin-node.conf
+│   │   │   ├── munin-redis.sh
+│   │   │   └── munin.conf
+│   │   ├── nginx
+│   │   │   ├── http.conf.template
+│   │   │   ├── https.conf.template
+│   │   │   └── ssl.conf
+│   │   ├── postgres.conf.template
+│   │   ├── redis
+│   │   │   └── sysctl.conf
+│   │   ├── unattended-upgrades.conf.template
+│   │   ├── zam_webapp.service.template
+│   │   └── zam_worker.service
+│   ├── index.html.template
+│   ├── requirements.txt
+│   ├── tasks
+│   │   ├── __init__.py
+│   │   ├── backup.py
+│   │   ├── deploy.py
+│   │   ├── monitoring.py
+│   │   └── system.py
+│   └── tools.py
+├── changelog_images
+│   ├── 2019-01-14-identification.png
+│   ├── 2019-01-25-topbar.png
+│   ├── 2019-02-12-amendement-journal.png
+│   ├── 2019-02-12-index-amendements.png
+│   ├── 2019-02-12-nouveau-design.png
+│   ├── 2019-02-12-table-personnelle.png
+│   ├── 2019-03-19-indicateur-presence.png
+│   ├── 2019-03-19-journal-diff.png
+│   ├── 2019-03-19-notifications-tables.png
+│   ├── 2019-03-19-transfers-explicites.png
+│   ├── 2019-03-19-transferts-explicites.png
+│   ├── 2019-04-09-filtres-ameliores.png
+│   ├── 2019-04-09-table-des-matieres-pdf.png
+│   ├── 2019-04-09-vol-amendement-depuis-multiple.png
+│   ├── 2019-04-09-vol-amendement-depuis-unitaire.png
+│   ├── 2019-05-23-message-edition-en-cours.png
+│   ├── 2019-05-23-message-transferts.png
+│   ├── 2019-06-20-regroupement-lots.png
+│   ├── 2019-08-26-boites.png
+│   ├── 2019-08-26-dossier-legislatif.png
+│   ├── 2019-08-26-identification-courriel.png
+│   ├── 2019-08-26-invitations-dossiers.png
+│   ├── 2019-08-26-menu-contextuel.png
+│   ├── 2019-08-26-transfert-boite.png
+│   ├── 2019-10-04-gestion-admins.png
+│   ├── 2019-10-04-gestion-liste-blanche.png
+│   ├── 2019-10-04-journal-admins.png
+│   ├── 2019-10-04-limite-derouleur.png
+│   ├── 2019-12-18-aide-details.png
+│   ├── 2019-12-18-barre-progression.png
+│   └── 2019-12-18-heures-journal.png
+├── repondeur
+│   ├── .dockerignore
+│   ├── .gitignore
+│   ├── .prettierrc
+│   ├── README.md
+│   ├── db_migrations
+│   │   ├── env.py
+│   │   ├── script.py.mako
+│   │   └── versions
+│   │       ├── 068feac86821_move_observations_to_reponse_for_.py
+│   │       ├── 06e826937905_add_users_and_teams.py
+│   │       ├── 0a44e476eabc_add_teams_back.py
+│   │       ├── 1162a0c4fc23_events_lecture.py
+│   │       ├── 12f50566c917_split_article_model.py
+│   │       ├── 13c75654057a_add_user_spaces.py
+│   │       ├── 15301bb743b1_add_partie_column_to_lectures.py
+│   │       ├── 16b0715d5eee_split_dossier_uid.py
+│   │       ├── 181f05f634f4_split_amendement_model.py
+│   │       ├── 1fdb28a1773a_add_creation_and_modification_dates_to_.py
+│   │       ├── 2a464485a750_make_dossier_uid_unique.py
+│   │       ├── 3801b54623bc_add_events_for_dossiers.py
+│   │       ├── 4455b60c7178_remove_modified_at.py
+│   │       ├── 4a3b250d356d_make_article_columns_non_nullable.py
+│   │       ├── 4bec591c8da6_fix_inconsistent_spelling_of_apres.py
+│   │       ├── 5512bb28668f_add_dossier_slug.py
+│   │       ├── 58a93f6ba5d2_make_user_content_fk_non_nullable.py
+│   │       ├── 5aae20474b04_remove_texte_titre_columns.py
+│   │       ├── 6756d255959a_add_affectation_to_amendements.py
+│   │       ├── 69ed42c1047a_convert_lecture_chambre_to_enum.py
+│   │       ├── 704a53402829_add_indexes.py
+│   │       ├── 72b5668e320f_add_textes_and_dossiers.py
+│   │       ├── 7373c17f2bf1_journal.py
+│   │       ├── 73f6d57098fb_rename_discussion_commune.py
+│   │       ├── 7f4601bc696a_remove_mission.py
+│   │       ├── 851d659d6eef_add_amendement_mission_model.py
+│   │       ├── 9022d8bc8ab9_change_team_dossier_relation.py
+│   │       ├── 9407a50552c9_add_shared_tables.py
+│   │       ├── 9414986ec796_remove_session_column_from_lecture.py
+│   │       ├── 94ee3f82d4b4_remove_texte_uid_column.py
+│   │       ├── 9baaf0db7e30_add_an_sort_key.py
+│   │       ├── a3962c18da56_new_models.py
+│   │       ├── a4315badfc30_move_ownership_to_dossier.py
+│   │       ├── a48b41390c04_add_phase_to_lecture.py
+│   │       ├── a6ddcbf66d93_indexes_on_foreign_keys_to_speed_up_.py
+│   │       ├── a760e877b6ce_remove_teams.py
+│   │       ├── a90e77416ebe_add_article_created_modified_at.py
+│   │       ├── aa4e290e0df2_add_delete_cascades.py
+│   │       ├── b03b7f1042e3_add_owned_by_team_to_lectures.py
+│   │       ├── be53f849a248_user_admins.py
+│   │       ├── bf01601790f4_add_events.py
+│   │       ├── c07109c338b1_split_amendement_locations.py
+│   │       ├── c1b9e0409596_add_activation_for_dossiers.py
+│   │       ├── c2b357257d2c_rename_spaces_to_tables.py
+│   │       ├── c92b4d05aba8_set_unique_email_constraint_for_users.py
+│   │       ├── cbb2e504c783_add_unique_constraint_on_position.py
+│   │       ├── ccc17664477b_rename_amendement_contents_columns.py
+│   │       ├── cfdd95041347_store_amendement_identique_id.py
+│   │       ├── d3b8033f60c4_table_for_given_lecture.py
+│   │       ├── d42c23832d27_add_email_whitelist.py
+│   │       ├── d535af9f8a61_shared_tables_slug_unique_by_lecture.py
+│   │       ├── d80c1fac4582_remove_bookmarked_at_column.py
+│   │       ├── d9f119a18232_remove_affectation_field.py
+│   │       ├── e4d4f35b9df7_make_team_names_unique.py
+│   │       ├── e661a11bf315_remove_intersticial_article_titles_and_.py
+│   │       ├── e749824546cc_rename_article_content_column.py
+│   │       ├── e8813e77a748_add_batches.py
+│   │       ├── e8a500ef478d_add_unique_constraint_on_articles.py
+│   │       └── e95233e5ea3f_update_lecture_unique_index.py
+│   ├── development-docker.ini
+│   ├── development.ini
+│   ├── docker
+│   │   ├── Dockerfile.app
+│   │   ├── Dockerfile.postgres
+│   │   ├── create-multiple-databases.sh
+│   │   └── start-webapp.sh
+│   ├── docker-compose.yml
+│   ├── production.ini.template
+│   ├── pyproject.toml
+│   ├── pytest.ini
+│   ├── requirements-dev.txt
+│   ├── requirements-prod.txt
+│   ├── requirements.txt
+│   ├── setup.cfg
+│   ├── setup.py
+│   ├── stubs
+│   │   ├── pyramid
+│   │   │   ├── __init__.pyi
+│   │   │   └── request.pyi
+│   │   ├── redis
+│   │   │   ├── __init__.pyi
+│   │   │   └── client.pyi
+│   │   └── slugify
+│   │       └── __init__.pyi
+│   ├── tests
+│   │   ├── conftest.py
+│   │   ├── fetch
+│   │   │   ├── __init__.py
+│   │   │   ├── conftest.py
+│   │   │   ├── mock_an.py
+│   │   │   ├── sample_data
+│   │   │   │   ├── AMO30_subset.json.zip
+│   │   │   │   ├── Dossiers_Legislatifs_XV.json.zip
+│   │   │   │   ├── an
+│   │   │   │   │   ├── 1255
+│   │   │   │   │   │   ├── 1463.xml
+│   │   │   │   │   │   ├── 398.xml
+│   │   │   │   │   │   └── 494.xml
+│   │   │   │   │   ├── 1408-CION-SOC
+│   │   │   │   │   │   ├── AS1.xml
+│   │   │   │   │   │   ├── AS2.xml
+│   │   │   │   │   │   └── liste.xml
+│   │   │   │   │   ├── 1490
+│   │   │   │   │   │   └── 193.xml
+│   │   │   │   │   ├── 2024
+│   │   │   │   │   │   └── 319.xml
+│   │   │   │   │   ├── 269
+│   │   │   │   │   │   ├── 135.xml
+│   │   │   │   │   │   ├── 155.xml
+│   │   │   │   │   │   ├── 177.xml
+│   │   │   │   │   │   ├── 192.xml
+│   │   │   │   │   │   ├── 270.xml
+│   │   │   │   │   │   ├── 38.xml
+│   │   │   │   │   │   ├── 723.xml
+│   │   │   │   │   │   ├── 941.xml
+│   │   │   │   │   │   └── liste.xml
+│   │   │   │   │   └── 911
+│   │   │   │   │       ├── 1.xml
+│   │   │   │   │       ├── 2.xml
+│   │   │   │   │       ├── 3.xml
+│   │   │   │   │       └── liste.xml
+│   │   │   │   ├── dossier-DLR5L15N35854.json
+│   │   │   │   ├── dossier-DLR5L15N36030.json
+│   │   │   │   ├── dossier-DLR5L15N36159.json
+│   │   │   │   ├── dossier-DLR5L15N36460.json
+│   │   │   │   ├── dossier-DLR5L15N37055.json
+│   │   │   │   └── senat
+│   │   │   │       ├── ODSEN_GENERAL-short.csv
+│   │   │   │       ├── ODSEN_GENERAL.csv
+│   │   │   │       ├── doslegpjl18-404.xml
+│   │   │   │       ├── doslegpjl18-523.xml
+│   │   │   │       ├── doslegpjl18-526.xml
+│   │   │   │       ├── doslegpjl18-532.xml
+│   │   │   │       ├── doslegpjlf2020.xml
+│   │   │   │       ├── doslegplfss2020.xml
+│   │   │   │       ├── doslegppl17-699.xml
+│   │   │   │       ├── doslegppl18-002.xml
+│   │   │   │       ├── doslegppl18-043.xml
+│   │   │   │       ├── doslegppl18-229.xml
+│   │   │   │       ├── doslegppl18-260.xml
+│   │   │   │       ├── doslegppl18-305.xml
+│   │   │   │       ├── doslegppl18-385.xml
+│   │   │   │       ├── doslegppl18-386.xml
+│   │   │   │       ├── doslegppl18-436.xml
+│   │   │   │       ├── doslegppl18-454.xml
+│   │   │   │       ├── doslegppl18-462.xml
+│   │   │   │       ├── doslegppr18-458.xml
+│   │   │   │       ├── jeu_complet_2017-2018_63-short-article.csv
+│   │   │   │       ├── jeu_complet_2017-2018_63-short.csv
+│   │   │   │       ├── jeu_complet_2017-2018_63.csv
+│   │   │   │       ├── jeu_complet_2018-2019_106.csv
+│   │   │   │       ├── jeu_complet_2018-2019_146.csv
+│   │   │   │       ├── jeu_complet_2019-2020_139.csv
+│   │   │   │       ├── jeu_complet_commission_2013-2014_310.csv
+│   │   │   │       ├── jeu_complet_commission_2017-2018_583.csv
+│   │   │   │       ├── liste_discussion_103393.json
+│   │   │   │       ├── liste_discussion_103394.json
+│   │   │   │       ├── liste_discussion_103395.json
+│   │   │   │       ├── liste_discussion_106.json
+│   │   │   │       ├── liste_discussion_610.json
+│   │   │   │       ├── liste_discussion_63-short-article.json
+│   │   │   │       ├── liste_discussion_63-short-parent-before.json
+│   │   │   │       ├── liste_discussion_63-short-parent-missing.json
+│   │   │   │       ├── liste_discussion_63-short-parent.json
+│   │   │   │       ├── liste_discussion_63-short-position.json
+│   │   │   │       ├── liste_discussion_63-short-retire.json
+│   │   │   │       ├── liste_discussion_63-short.json
+│   │   │   │       ├── liste_discussion_63.json
+│   │   │   │       └── textes-recents.html
+│   │   │   ├── test_dates.py
+│   │   │   ├── test_division.py
+│   │   │   ├── test_dossier_ref.py
+│   │   │   ├── test_fetch_amendements.py
+│   │   │   ├── test_fetch_an.py
+│   │   │   ├── test_fetch_articles.py
+│   │   │   ├── test_fetch_senat.py
+│   │   │   ├── test_get_dossiers_legislatifs.py
+│   │   │   ├── test_organes_acteurs.py
+│   │   │   ├── test_parse.py
+│   │   │   ├── test_parse_texte.py
+│   │   │   ├── test_scraping_senat.py
+│   │   │   ├── test_senateurs.py
+│   │   │   ├── test_update_an.py
+│   │   │   └── test_update_senat.py
+│   │   ├── fixtures
+│   │   │   ├── __init__.py
+│   │   │   ├── dossiers.py
+│   │   │   ├── essoc2018.py
+│   │   │   ├── lectures.py
+│   │   │   ├── organes_acteurs.py
+│   │   │   ├── plf2018.py
+│   │   │   ├── plfss2018.py
+│   │   │   ├── plfss2019.py
+│   │   │   ├── scraping.py
+│   │   │   ├── shared_tables.py
+│   │   │   └── users.py
+│   │   ├── integration
+│   │   │   ├── __init__.py
+│   │   │   ├── conftest.py
+│   │   │   ├── helpers.py
+│   │   │   ├── test_amendement_edit_notifications.py
+│   │   │   ├── test_amendement_edition.py
+│   │   │   ├── test_amendements_filtering.py
+│   │   │   ├── test_amendements_group_actions.py
+│   │   │   ├── test_amendements_links.py
+│   │   │   ├── test_amendements_search.py
+│   │   │   ├── test_amendements_select_all.py
+│   │   │   ├── test_amendements_transfers.py
+│   │   │   ├── test_batches.py
+│   │   │   ├── test_dossiers_clean_emails.py
+│   │   │   ├── test_table_filtering.py
+│   │   │   ├── test_table_group_actions.py
+│   │   │   ├── test_table_notifications.py
+│   │   │   ├── test_table_select_all.py
+│   │   │   ├── test_visionneuse_detail.py
+│   │   │   ├── test_visionneuse_home.py
+│   │   │   └── test_visionneuse_search.py
+│   │   ├── models
+│   │   │   ├── __init__.py
+│   │   │   ├── test_amendement.py
+│   │   │   ├── test_article.py
+│   │   │   ├── test_base.py
+│   │   │   ├── test_batch.py
+│   │   │   ├── test_lecture.py
+│   │   │   └── test_users.py
+│   │   ├── sample_data
+│   │   │   ├── backup.json
+│   │   │   ├── backup_with_affectation_box.json
+│   │   │   ├── backup_with_affectation_existing.json
+│   │   │   ├── backup_with_affectation_new.json
+│   │   │   ├── backup_with_articles.json
+│   │   │   ├── backup_with_comments.json
+│   │   │   ├── backup_wrong_number.json
+│   │   │   ├── doslegplfss2018.xml
+│   │   │   ├── doslegplfss2019.xml
+│   │   │   ├── pjl17-063.html
+│   │   │   ├── pjl17-659.html
+│   │   │   ├── pjl17-701.html
+│   │   │   ├── pjl18-106.html
+│   │   │   ├── pjl18-218.html
+│   │   │   ├── pl0269.html
+│   │   │   ├── pl0387.html
+│   │   │   ├── r0575-a0.html
+│   │   │   ├── r1056-a0.html
+│   │   │   ├── reponses.csv
+│   │   │   ├── reponses_semicolumns.csv
+│   │   │   ├── reponses_with_affectation.csv
+│   │   │   ├── reponses_with_affectation_empty_name.csv
+│   │   │   ├── reponses_with_bom.csv
+│   │   │   ├── reponses_with_comments.csv
+│   │   │   └── reponses_wrong_columns_names.csv
+│   │   ├── services
+│   │   │   ├── import_export
+│   │   │   │   ├── sample_data
+│   │   │   │   │   ├── liasse.xml
+│   │   │   │   │   ├── liasse_apres.xml
+│   │   │   │   │   ├── liasse_avant_un.xml
+│   │   │   │   │   ├── liasse_modified_article.xml
+│   │   │   │   │   ├── liasse_only_child.xml
+│   │   │   │   │   ├── liasse_only_parent.xml
+│   │   │   │   │   ├── liasse_removed_parent.xml
+│   │   │   │   │   ├── liasse_second_part.xml
+│   │   │   │   │   ├── liasse_smaller.xml
+│   │   │   │   │   ├── liasse_with_a_deposer.xml
+│   │   │   │   │   └── liasse_with_table.xml
+│   │   │   │   ├── test_export_json.py
+│   │   │   │   ├── test_export_pdf.py
+│   │   │   │   ├── test_export_spreadsheet.py
+│   │   │   │   ├── test_liasse_xml.py
+│   │   │   │   └── test_update_liasse_xml.py
+│   │   │   ├── test_clean.py
+│   │   │   └── test_data.py
+│   │   ├── tasks
+│   │   │   ├── __init__.py
+│   │   │   ├── test_create_missing_dossiers.py
+│   │   │   ├── test_create_missing_textes.py
+│   │   │   ├── test_managed_task.py
+│   │   │   └── test_transactional_huey.py
+│   │   ├── test_initialize.py
+│   │   ├── test_jinja2_filters.py
+│   │   ├── test_utils.py
+│   │   ├── testapp.py
+│   │   └── views
+│   │       ├── __init__.py
+│   │       ├── test_admins.py
+│   │       ├── test_admins_journal.py
+│   │       ├── test_amendement_edit.py
+│   │       ├── test_amendement_edit_batch.py
+│   │       ├── test_amendement_edition.py
+│   │       ├── test_amendement_edition_batch.py
+│   │       ├── test_amendement_events.py
+│   │       ├── test_amendement_journal.py
+│   │       ├── test_amendement_search.py
+│   │       ├── test_amendements.py
+│   │       ├── test_amendements_identiques.py
+│   │       ├── test_article_edit.py
+│   │       ├── test_article_events.py
+│   │       ├── test_article_journal.py
+│   │       ├── test_articles_list.py
+│   │       ├── test_auth.py
+│   │       ├── test_authorization.py
+│   │       ├── test_dossier_delete.py
+│   │       ├── test_dossier_journal.py
+│   │       ├── test_dossiers_add.py
+│   │       ├── test_dossiers_invite.py
+│   │       ├── test_dossiers_list.py
+│   │       ├── test_dossiers_retrait.py
+│   │       ├── test_download_amendements.py
+│   │       ├── test_global_menu_actions.py
+│   │       ├── test_home.py
+│   │       ├── test_lecture_batch.py
+│   │       ├── test_lecture_menu_actions.py
+│   │       ├── test_lecture_progress_status.py
+│   │       ├── test_lecture_transfer.py
+│   │       ├── test_lectures_list.py
+│   │       ├── test_manual_refresh.py
+│   │       ├── test_shared_tables.py
+│   │       ├── test_tables.py
+│   │       ├── test_upload_csv.py
+│   │       ├── test_upload_json.py
+│   │       ├── test_upload_liasse_xml.py
+│   │       ├── test_visionneuse.py
+│   │       ├── test_whitelist.py
+│   │       └── test_whitelist_journal.py
+│   └── zam_repondeur
+│       ├── __init__.py
+│       ├── assets.py
+│       ├── auth.py
+│       ├── constants.py
+│       ├── decorator.py
+│       ├── errors.py
+│       ├── initialize.py
+│       ├── menu.py
+│       ├── message.py
+│       ├── models
+│       │   ├── __init__.py
+│       │   ├── amendement.py
+│       │   ├── article.py
+│       │   ├── base.py
+│       │   ├── batch.py
+│       │   ├── chambre.py
+│       │   ├── division.py
+│       │   ├── dossier.py
+│       │   ├── events
+│       │   │   ├── __init__.py
+│       │   │   ├── admin.py
+│       │   │   ├── amendement.py
+│       │   │   ├── article.py
+│       │   │   ├── base.py
+│       │   │   ├── dossier.py
+│       │   │   ├── lecture.py
+│       │   │   └── whitelist.py
+│       │   ├── lecture.py
+│       │   ├── organe.py
+│       │   ├── phase.py
+│       │   ├── table.py
+│       │   ├── texte.py
+│       │   └── users.py
+│       ├── resources.py
+│       ├── scripts
+│       │   ├── __init__.py
+│       │   ├── admin.py
+│       │   ├── clear_data.py
+│       │   ├── fake.py
+│       │   ├── fetch_amendements.py
+│       │   ├── load_data.py
+│       │   ├── queue.py
+│       │   ├── reset_data_locks.py
+│       │   ├── update_dossiers.py
+│       │   ├── whitelist.py
+│       │   └── worker.py
+│       ├── services
+│       │   ├── __init__.py
+│       │   ├── amendements.py
+│       │   ├── clean.py
+│       │   ├── data.py
+│       │   ├── dossiers.py
+│       │   ├── fetch
+│       │   │   ├── __init__.py
+│       │   │   ├── amendements.py
+│       │   │   ├── an
+│       │   │   │   ├── __init__.py
+│       │   │   │   ├── amendements.py
+│       │   │   │   ├── common.py
+│       │   │   │   ├── division.py
+│       │   │   │   ├── dossiers
+│       │   │   │   │   ├── __init__.py
+│       │   │   │   │   ├── dossiers_legislatifs.py
+│       │   │   │   │   └── models.py
+│       │   │   │   └── organes_acteurs.py
+│       │   │   ├── articles.py
+│       │   │   ├── dates.py
+│       │   │   ├── division.py
+│       │   │   ├── exceptions.py
+│       │   │   ├── http.py
+│       │   │   ├── missions.py
+│       │   │   └── senat
+│       │   │       ├── __init__.py
+│       │   │       ├── amendements.py
+│       │   │       ├── derouleur.py
+│       │   │       ├── scraping.py
+│       │   │       └── senateurs
+│       │   │           ├── __init__.py
+│       │   │           ├── fetch.py
+│       │   │           ├── models.py
+│       │   │           └── parse.py
+│       │   ├── import_export
+│       │   │   ├── __init__.py
+│       │   │   ├── common.py
+│       │   │   ├── csv.py
+│       │   │   ├── json.py
+│       │   │   ├── liasse_xml.py
+│       │   │   ├── pdf.py
+│       │   │   ├── spreadsheet.py
+│       │   │   └── xlsx.py
+│       │   ├── progress.py
+│       │   └── users.py
+│       ├── slugs.py
+│       ├── static
+│       │   ├── css
+│       │   │   ├── amendements.css
+│       │   │   ├── bootstrap.min.css
+│       │   │   ├── fonts.css
+│       │   │   ├── journal.css
+│       │   │   ├── notifications.css
+│       │   │   ├── print.css
+│       │   │   ├── visionneuse.css
+│       │   │   └── zam.css
+│       │   ├── favicons
+│       │   │   ├── android-chrome-192x192.png
+│       │   │   ├── android-chrome-512x512.png
+│       │   │   ├── apple-touch-icon.png
+│       │   │   ├── browserconfig.xml
+│       │   │   ├── favicon-16x16.png
+│       │   │   ├── favicon-32x32.png
+│       │   │   ├── favicon.ico
+│       │   │   ├── mstile-150x150.png
+│       │   │   ├── safari-pinned-tab.svg
+│       │   │   └── site.webmanifest
+│       │   ├── img
+│       │   │   ├── actualiser.svg
+│       │   │   ├── alerte.svg
+│       │   │   ├── arrow_down.svg
+│       │   │   ├── arrow_up.svg
+│       │   │   ├── big_left.svg
+│       │   │   ├── big_left_white.svg
+│       │   │   ├── big_right.svg
+│       │   │   ├── big_right_gray.svg
+│       │   │   ├── blue_eye.svg
+│       │   │   ├── compte.svg
+│       │   │   ├── exit.svg
+│       │   │   ├── favicon.svg
+│       │   │   ├── hamburger.svg
+│       │   │   ├── home.svg
+│       │   │   ├── identique.svg
+│       │   │   ├── journal
+│       │   │   │   ├── boite.svg
+│       │   │   │   ├── document.svg
+│       │   │   │   └── edit.svg
+│       │   │   ├── logo_1_0_black_full.svg
+│       │   │   ├── logo_1_0_blue_z_only.svg
+│       │   │   ├── logo_1_0_white_full.svg
+│       │   │   ├── logo_1_0_white_z_only.svg
+│       │   │   ├── loupe.svg
+│       │   │   ├── loupe_gray.svg
+│       │   │   ├── menu_icon.svg
+│       │   │   ├── options.svg
+│       │   │   ├── personne.svg
+│       │   │   ├── switch_off.svg
+│       │   │   ├── switch_on.svg
+│       │   │   └── validation.svg
+│       │   ├── jquery
+│       │   │   └── jquery-3.4.1.min.js
+│       │   ├── js
+│       │   │   ├── admins.js
+│       │   │   ├── amendement.js
+│       │   │   ├── amendements.js
+│       │   │   ├── backlinks.js
+│       │   │   ├── dossiers.js
+│       │   │   ├── notifications.js
+│       │   │   ├── progress.js
+│       │   │   ├── stimulus.js
+│       │   │   ├── table.js
+│       │   │   ├── transfers.js
+│       │   │   ├── unsaved.js
+│       │   │   ├── visionneuse.js
+│       │   │   ├── whitelist.js
+│       │   │   └── zam.js
+│       │   ├── selectize
+│       │   │   ├── css
+│       │   │   │   ├── selectize.bootstrap3.css
+│       │   │   │   └── selectize.css
+│       │   │   └── js
+│       │   │       └── standalone
+│       │   │           └── selectize.min.js
+│       │   ├── smoothscroll
+│       │   │   └── smoothscroll.js
+│       │   ├── tinymce-5-1-1
+│       │   │   ├── langs
+│       │   │   │   └── fr_FR.js
+│       │   │   ├── plugins
+│       │   │   │   ├── fullscreen
+│       │   │   │   │   └── plugin.min.js
+│       │   │   │   ├── lists
+│       │   │   │   │   └── plugin.min.js
+│       │   │   │   ├── paste
+│       │   │   │   │   └── plugin.min.js
+│       │   │   │   └── table
+│       │   │   │       └── plugin.min.js
+│       │   │   ├── skins
+│       │   │   │   ├── content
+│       │   │   │   │   ├── dark
+│       │   │   │   │   │   └── content.min.css
+│       │   │   │   │   ├── default
+│       │   │   │   │   │   └── content.min.css
+│       │   │   │   │   ├── document
+│       │   │   │   │   │   └── content.min.css
+│       │   │   │   │   └── writer
+│       │   │   │   │       └── content.min.css
+│       │   │   │   └── ui
+│       │   │   │       ├── oxide
+│       │   │   │       │   ├── content.inline.min.css
+│       │   │   │       │   ├── content.min.css
+│       │   │   │       │   ├── content.mobile.min.css
+│       │   │   │       │   ├── fonts
+│       │   │   │       │   │   └── tinymce-mobile.woff
+│       │   │   │       │   ├── skin.min.css
+│       │   │   │       │   └── skin.mobile.min.css
+│       │   │   │       └── oxide-dark
+│       │   │   │           ├── content.inline.min.css
+│       │   │   │           ├── content.min.css
+│       │   │   │           ├── content.mobile.min.css
+│       │   │   │           ├── fonts
+│       │   │   │           │   └── tinymce-mobile.woff
+│       │   │   │           ├── skin.min.css
+│       │   │   │           └── skin.mobile.min.css
+│       │   │   ├── themes
+│       │   │   │   ├── mobile
+│       │   │   │   │   └── theme.min.js
+│       │   │   │   └── silver
+│       │   │   │       └── theme.min.js
+│       │   │   └── tinymce.min.js
+│       │   └── webfonts
+│       │       ├── sourcesanspro-bold-2020R.woff
+│       │       ├── sourcesanspro-bold-2020R.woff2
+│       │       ├── sourcesanspro-regular-2020R.woff
+│       │       ├── sourcesanspro-regular-2020R.woff2
+│       │       ├── sourcesanspro-semibold-2020R.woff
+│       │       ├── sourcesanspro-semibold-2020R.woff2
+│       │       ├── sourceserifpro-regular-2007R.woff
+│       │       ├── sourceserifpro-regular-2007R.woff2
+│       │       ├── sourceserifpro-semibold-2007R.woff
+│       │       └── sourceserifpro-semibold-2007R.woff2
+│       ├── tasks
+│       │   ├── __init__.py
+│       │   ├── fetch.py
+│       │   ├── huey.py
+│       │   ├── periodic.py
+│       │   └── queue.py
+│       ├── templates
+│       │   ├── _base.html
+│       │   ├── _base_dossier.html
+│       │   ├── _base_edit.html
+│       │   ├── _base_lecture.html
+│       │   ├── admins_add.html
+│       │   ├── admins_journal.html
+│       │   ├── admins_list.html
+│       │   ├── amendement_edit.html
+│       │   ├── amendement_journal.html
+│       │   ├── article_edit.html
+│       │   ├── article_journal.html
+│       │   ├── auth
+│       │   │   ├── _base_auth.html
+│       │   │   ├── email_sent.html
+│       │   │   ├── logout_confirm.html
+│       │   │   ├── user_login.html
+│       │   │   └── welcome.html
+│       │   ├── batch_amendements.html
+│       │   ├── dossier_invite.html
+│       │   ├── dossier_item.html
+│       │   ├── dossier_journal.html
+│       │   ├── dossier_retrait.html
+│       │   ├── dossiers_add.html
+│       │   ├── dossiers_list.html
+│       │   ├── lecture_index.html
+│       │   ├── lecture_journal.html
+│       │   ├── lecture_options.html
+│       │   ├── macros.html
+│       │   ├── mission_table.html
+│       │   ├── print
+│       │   │   ├── all.html
+│       │   │   ├── macros.html
+│       │   │   └── multiple.html
+│       │   ├── shared_table_delete.html
+│       │   ├── shared_table_detail.html
+│       │   ├── svg-file-icons.html
+│       │   ├── table_detail.html
+│       │   ├── transfer_amendements.html
+│       │   ├── visionneuse
+│       │   │   ├── _base.html
+│       │   │   ├── articles.html
+│       │   │   └── reponses.html
+│       │   ├── whitelist_add.html
+│       │   ├── whitelist_journal.html
+│       │   └── whitelist_list.html
+│       ├── templating.py
+│       ├── utils.py
+│       ├── version.py
+│       └── views
+│           ├── __init__.py
+│           ├── amendements.py
+│           ├── articles.py
+│           ├── auth.py
+│           ├── dossier.py
+│           ├── dossier_invite.py
+│           ├── dossiers_list.py
+│           ├── download.py
+│           ├── home.py
+│           ├── import_csv.py
+│           ├── import_json.py
+│           ├── import_liasse.py
+│           ├── jinja2_filters.py
+│           ├── lecture.py
+│           ├── lecture_batch_amendements.py
+│           ├── lecture_index.py
+│           ├── lecture_transfer_amendements.py
+│           ├── manage_admins.py
+│           ├── manage_whitelist.py
+│           ├── shared_tables.py
+│           ├── tables.py
+│           └── visionneuse.py
+└── wiki_images
+    ├── champ-reponses.png
+    ├── choix-export-excel.png
+    ├── enregistrement-bloc-notes.png
+    └── icone-bloc-notes.png
+
+92 directories, 632 files
