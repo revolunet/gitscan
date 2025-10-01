@@ -24,6 +24,7 @@ runs:
 
     - name: Process URL list
       shell: bash
+      id: init
       env:
         MATRIX_MAX_COUNT: ${{ inputs.count || 10 }}
       run: |
@@ -31,4 +32,4 @@ runs:
         ls -la
         JSON=$(python .github/actions/init/get-repos.py ${{ env.MATRIX_MAX_COUNT }})
         echo $JSON
-        echo "sites={$JSON}" >> $GITHUB_OUTPUT
+        echo "sites=$JSON" >> $GITHUB_OUTPUT
