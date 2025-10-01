@@ -1,0 +1,58 @@
+{
+  "name": "verif.site",
+  "version": "0.0.1",
+  "private": true,
+  "engines": {
+    "node": ">=8"
+  },
+  "devDependencies": {
+    "async": "^2.1.2",
+    "babel": "6.5.2",
+    "babel-eslint": "^6.1.2",
+    "babel-preset-airbnb": "2.0.0",
+    "babel-register": "6.11.6",
+    "canvas": "^1.6.9",
+    "chai": "3.5.0",
+    "csv-parser": "^1.11.0",
+    "enzyme": "2.4.1",
+    "eslint": "^3.4.0",
+    "eslint-plugin-flowtype": "^2.11.4",
+    "eslint-plugin-import": "^1.14.0",
+    "eslint-plugin-jsx-a11y": "^2.2.0",
+    "eslint-plugin-react": "^6.2.0",
+    "fetch-mock": "^5.5.0",
+    "gh-pages": "^1.1.0",
+    "istanbul": "1.1.0-alpha.1",
+    "jsdom": "9.4.2",
+    "mocha": "3.0.2",
+    "react-addons-test-utils": "15.3.0",
+    "react-scripts": "0.2.0",
+    "sinon": "^1.17.5",
+    "superagent": "^2.3.0"
+  },
+  "dependencies": {
+    "chart.js": "1.1.1",
+    "coveralls": "2.11.12",
+    "loaders.css": "0.1.2",
+    "react": "15.3.1",
+    "react-chartjs": "0.8.0",
+    "react-dom": "15.3.1",
+    "react-loaders": "2.1.1"
+  },
+  "scripts": {
+    "preinstall": "(which cairo-trace || dpkg --status libcairo2) || (echo 'The canvas library depends on the Cairo binary being installed and in the path. See README for more information.'; exit 1)",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "lint": "eslint ./src/",
+    "test": "istanbul cover node_modules/mocha/bin/_mocha -- --require test/.setup.js --bail --recursive 'src/**/*-test.js'",
+    "dev": "mocha --require test/.setup.js --bail --recursive 'src/**/*-test.js'",
+    "update": "node import/index.js",
+    "deploy": "touch build/.nojekyll && gh-pages -d build -m 'Deploy [skip ci]' --dotfiles=true"
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/react-scripts/config/eslint.js",
+    "env": {
+      "mocha": true
+    }
+  }
+}
