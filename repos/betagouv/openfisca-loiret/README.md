@@ -1,0 +1,1 @@
+# Extension OpenFisca pour les aides sociales du conseil départemental du Loiret
