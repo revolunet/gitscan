@@ -1,0 +1,3949 @@
+.
+├── .circleci
+│   ├── config.yml
+│   ├── has-functional-changes.sh
+│   ├── is-version-number-acceptable.sh
+│   ├── lint-changed-python-files.sh
+│   ├── lint-changed-yaml-tests.sh
+│   └── publish-git-tag.sh
+├── .github
+│   └── PULL_REQUEST_TEMPLATE.md
+├── .gitignore
+├── .mailmap
+├── .yamllint
+├── CHANGELOG.md
+├── CONTRIBUTING.md
+├── LICENSE.AGPL.txt
+├── MANIFEST.in
+├── Makefile
+├── README.md
+├── openfisca_france
+│   ├── __init__.py
+│   ├── assets
+│   │   ├── __init__.py
+│   │   ├── apl
+│   │   │   ├── 20110914_zonage.csv
+│   │   │   ├── README.md
+│   │   │   ├── commune_depcom_by_subcommune_depcom.json
+│   │   │   └── extract_subcommunes.py
+│   │   └── versement_transport
+│   │       └── taux.json
+│   ├── conf
+│   │   ├── __init__.py
+│   │   └── cache_blacklist.py
+│   ├── entities.py
+│   ├── france_taxbenefitsystem.py
+│   ├── model
+│   │   ├── __init__.py
+│   │   ├── base.py
+│   │   ├── caracteristiques_socio_demographiques
+│   │   │   ├── __init__.py
+│   │   │   ├── capacite_travail.py
+│   │   │   ├── demographie.py
+│   │   │   └── logement.py
+│   │   ├── consommation
+│   │   │   └── __init__.py
+│   │   ├── mesures.py
+│   │   ├── patrimoine
+│   │   │   └── __init__.py
+│   │   ├── prelevements_obligatoires
+│   │   │   ├── __init__.py
+│   │   │   ├── impot_revenu
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── charges_deductibles.py
+│   │   │   │   ├── credits_impot.py
+│   │   │   │   ├── ir.py
+│   │   │   │   ├── plus_values_immobilieres.py
+│   │   │   │   ├── prelevements_forfaitaires
+│   │   │   │   │   ├── __init__.py
+│   │   │   │   │   ├── ir_prelevement_forfaitaire_unique.py
+│   │   │   │   │   ├── prelevement_forfaitaire_liberatoire.py
+│   │   │   │   │   └── variables_communes.py
+│   │   │   │   ├── reductions_impot.py
+│   │   │   │   └── variables_reductions_credits.py
+│   │   │   ├── isf.py
+│   │   │   ├── prelevements_sociaux
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── contributions_sociales
+│   │   │   │   │   ├── __init__.py
+│   │   │   │   │   ├── activite.py
+│   │   │   │   │   ├── base.py
+│   │   │   │   │   ├── capital.py
+│   │   │   │   │   ├── csg_crds.py
+│   │   │   │   │   ├── remplacement.py
+│   │   │   │   │   └── versement_transport.py
+│   │   │   │   ├── cotisations_sociales
+│   │   │   │   │   ├── __init__.py
+│   │   │   │   │   ├── allegements.py
+│   │   │   │   │   ├── apprentissage.py
+│   │   │   │   │   ├── base.py
+│   │   │   │   │   ├── contrat_professionnalisation.py
+│   │   │   │   │   ├── exonerations.py
+│   │   │   │   │   ├── preprocessing.py
+│   │   │   │   │   ├── stage.py
+│   │   │   │   │   ├── travail_fonction_publique.py
+│   │   │   │   │   ├── travail_non_salarie.py
+│   │   │   │   │   ├── travail_prive.py
+│   │   │   │   │   └── travail_totaux.py
+│   │   │   │   └── taxes_salaires_main_oeuvre.py
+│   │   │   └── taxe_habitation.py
+│   │   ├── prestations
+│   │   │   ├── __init__.py
+│   │   │   ├── aides_logement.py
+│   │   │   ├── anah
+│   │   │   │   ├── __init__.py
+│   │   │   │   └── eligibilite_anah.py
+│   │   │   ├── autonomie.py
+│   │   │   ├── bourses_superieur.py
+│   │   │   ├── cheque_energie.py
+│   │   │   ├── education.py
+│   │   │   ├── logement_social.py
+│   │   │   ├── minima_sociaux
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── aah.py
+│   │   │   │   ├── ada.py
+│   │   │   │   ├── aefa.py
+│   │   │   │   ├── anciens_ms.py
+│   │   │   │   ├── asi_aspa.py
+│   │   │   │   ├── ass.py
+│   │   │   │   ├── cmu.py
+│   │   │   │   ├── ppa.py
+│   │   │   │   └── rsa.py
+│   │   │   ├── prestations_familiales
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── aeeh.py
+│   │   │   │   ├── af.py
+│   │   │   │   ├── ars.py
+│   │   │   │   ├── asf.py
+│   │   │   │   ├── base_ressource.py
+│   │   │   │   ├── cf.py
+│   │   │   │   └── paje.py
+│   │   │   └── reduction_loyer_solidarite.py
+│   │   └── revenus
+│   │       ├── __init__.py
+│   │       ├── activite
+│   │       │   ├── __init__.py
+│   │       │   ├── non_salarie.py
+│   │       │   └── salarie.py
+│   │       ├── autres.py
+│   │       ├── capital
+│   │       │   ├── __init__.py
+│   │       │   ├── financier.py
+│   │       │   ├── foncier.py
+│   │       │   └── plus_value.py
+│   │       └── remplacement
+│   │           ├── __init__.py
+│   │           ├── chomage.py
+│   │           ├── indemnites_journalieres_securite_sociale.py
+│   │           ├── rente_accident_travail.py
+│   │           └── retraite.py
+│   ├── parameters
+│   │   ├── accident_travail
+│   │   │   └── rente
+│   │   │       ├── salaire_net
+│   │   │       │   ├── bareme.yaml
+│   │   │       │   └── salaire_minimum.yaml
+│   │   │       └── taux
+│   │   │           ├── bareme.yaml
+│   │   │           ├── capital_representatif.yaml
+│   │   │           ├── indemnite_accident_travail.yaml
+│   │   │           ├── pcrtp.yaml
+│   │   │           └── taux_minimum.yaml
+│   │   ├── autonomie
+│   │   │   ├── age_ouverture_des_droits
+│   │   │   │   └── age_d_ouverture_des_droits.yaml
+│   │   │   ├── apa_domicile
+│   │   │   │   ├── apa_d_urgence
+│   │   │   │   │   └── part_du_plafond_de_l_apa_a_domicile.yaml
+│   │   │   │   ├── divison_des_ressources_du_menage_pour_les_couples.yaml
+│   │   │   │   ├── plafond_de_l_apa_a_domicile_en_part_du_mtp
+│   │   │   │   │   ├── gir_1.yaml
+│   │   │   │   │   ├── gir_2.yaml
+│   │   │   │   │   ├── gir_3.yaml
+│   │   │   │   │   └── gir_4.yaml
+│   │   │   │   ├── seuil_de_revenu_en_part_du_mtp
+│   │   │   │   │   ├── seuil_inferieur.yaml
+│   │   │   │   │   └── seuil_superieur.yaml
+│   │   │   │   ├── taux_de_participation_maximum.yaml
+│   │   │   │   └── taux_de_participation_minimum.yaml
+│   │   │   ├── apa_institution
+│   │   │   │   ├── apa_d_urgence
+│   │   │   │   │   └── part_du_tarif_dependance_gir_1_2_de_l_etablissement_d_accueil.yaml
+│   │   │   │   ├── divison_des_ressources_du_menage_pour_les_couples.yaml
+│   │   │   │   ├── seuil_de_revenu_en_part_du_mtp
+│   │   │   │   │   ├── seuil_inferieur.yaml
+│   │   │   │   │   └── seuil_superieur.yaml
+│   │   │   │   └── taux_reste_a_vivre.yaml
+│   │   │   ├── mtp
+│   │   │   │   └── mtp.yaml
+│   │   │   └── seuil_de_versement_de_l_apa
+│   │   │       └── seuil_versement
+│   │   │           └── seuil_de_versement_de_l_apa.yaml
+│   │   ├── bouclier_fiscal
+│   │   │   ├── index.yaml
+│   │   │   └── taux.yaml
+│   │   ├── bourses_education
+│   │   │   ├── bourse_college
+│   │   │   │   ├── apres_2016
+│   │   │   │   │   ├── echelon_1
+│   │   │   │   │   │   ├── plafond_1e.yaml
+│   │   │   │   │   │   ├── plafond_2e.yaml
+│   │   │   │   │   │   ├── plafond_3e.yaml
+│   │   │   │   │   │   ├── plafond_4e.yaml
+│   │   │   │   │   │   ├── plafond_5e.yaml
+│   │   │   │   │   │   ├── plafond_6e.yaml
+│   │   │   │   │   │   ├── plafond_7e.yaml
+│   │   │   │   │   │   └── plafond_8e.yaml
+│   │   │   │   │   ├── echelon_2
+│   │   │   │   │   │   ├── plafond_1e.yaml
+│   │   │   │   │   │   ├── plafond_2e.yaml
+│   │   │   │   │   │   ├── plafond_3e.yaml
+│   │   │   │   │   │   ├── plafond_4e.yaml
+│   │   │   │   │   │   ├── plafond_5e.yaml
+│   │   │   │   │   │   ├── plafond_6e.yaml
+│   │   │   │   │   │   ├── plafond_7e.yaml
+│   │   │   │   │   │   └── plafond_8e.yaml
+│   │   │   │   │   └── echelon_3
+│   │   │   │   │       ├── plafond_1e.yaml
+│   │   │   │   │       ├── plafond_2e.yaml
+│   │   │   │   │       ├── plafond_3e.yaml
+│   │   │   │   │       ├── plafond_4e.yaml
+│   │   │   │   │       ├── plafond_5e.yaml
+│   │   │   │   │       ├── plafond_6e.yaml
+│   │   │   │   │       ├── plafond_7e.yaml
+│   │   │   │   │       └── plafond_8e.yaml
+│   │   │   │   ├── avant_2016
+│   │   │   │   │   ├── coeff_enfant_supplementaire.yaml
+│   │   │   │   │   ├── plafond_taux_1.yaml
+│   │   │   │   │   ├── plafond_taux_2.yaml
+│   │   │   │   │   └── plafond_taux_3.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── montant_taux_1.yaml
+│   │   │   │   ├── montant_taux_2.yaml
+│   │   │   │   └── montant_taux_3.yaml
+│   │   │   ├── bourse_lycee
+│   │   │   │   ├── apres_2016
+│   │   │   │   │   ├── echelon_1
+│   │   │   │   │   │   ├── montant.yaml
+│   │   │   │   │   │   ├── plafond_1e.yaml
+│   │   │   │   │   │   ├── plafond_2e.yaml
+│   │   │   │   │   │   ├── plafond_3e.yaml
+│   │   │   │   │   │   ├── plafond_4e.yaml
+│   │   │   │   │   │   ├── plafond_5e.yaml
+│   │   │   │   │   │   ├── plafond_6e.yaml
+│   │   │   │   │   │   ├── plafond_7e.yaml
+│   │   │   │   │   │   └── plafond_8e.yaml
+│   │   │   │   │   ├── echelon_2
+│   │   │   │   │   │   ├── montant.yaml
+│   │   │   │   │   │   ├── plafond_1e.yaml
+│   │   │   │   │   │   ├── plafond_2e.yaml
+│   │   │   │   │   │   ├── plafond_3e.yaml
+│   │   │   │   │   │   ├── plafond_4e.yaml
+│   │   │   │   │   │   ├── plafond_5e.yaml
+│   │   │   │   │   │   ├── plafond_6e.yaml
+│   │   │   │   │   │   ├── plafond_7e.yaml
+│   │   │   │   │   │   └── plafond_8e.yaml
+│   │   │   │   │   ├── echelon_3
+│   │   │   │   │   │   ├── montant.yaml
+│   │   │   │   │   │   ├── plafond_1e.yaml
+│   │   │   │   │   │   ├── plafond_2e.yaml
+│   │   │   │   │   │   ├── plafond_3e.yaml
+│   │   │   │   │   │   ├── plafond_4e.yaml
+│   │   │   │   │   │   ├── plafond_5e.yaml
+│   │   │   │   │   │   ├── plafond_6e.yaml
+│   │   │   │   │   │   ├── plafond_7e.yaml
+│   │   │   │   │   │   └── plafond_8e.yaml
+│   │   │   │   │   ├── echelon_4
+│   │   │   │   │   │   ├── montant.yaml
+│   │   │   │   │   │   ├── plafond_1e.yaml
+│   │   │   │   │   │   ├── plafond_2e.yaml
+│   │   │   │   │   │   ├── plafond_3e.yaml
+│   │   │   │   │   │   ├── plafond_4e.yaml
+│   │   │   │   │   │   ├── plafond_5e.yaml
+│   │   │   │   │   │   ├── plafond_6e.yaml
+│   │   │   │   │   │   ├── plafond_7e.yaml
+│   │   │   │   │   │   └── plafond_8e.yaml
+│   │   │   │   │   ├── echelon_5
+│   │   │   │   │   │   ├── montant.yaml
+│   │   │   │   │   │   ├── plafond_1e.yaml
+│   │   │   │   │   │   ├── plafond_2e.yaml
+│   │   │   │   │   │   ├── plafond_3e.yaml
+│   │   │   │   │   │   ├── plafond_4e.yaml
+│   │   │   │   │   │   ├── plafond_5e.yaml
+│   │   │   │   │   │   ├── plafond_6e.yaml
+│   │   │   │   │   │   ├── plafond_7e.yaml
+│   │   │   │   │   │   └── plafond_8e.yaml
+│   │   │   │   │   └── echelon_6
+│   │   │   │   │       ├── montant.yaml
+│   │   │   │   │       ├── plafond_1e.yaml
+│   │   │   │   │       ├── plafond_2e.yaml
+│   │   │   │   │       ├── plafond_3e.yaml
+│   │   │   │   │       ├── plafond_4e.yaml
+│   │   │   │   │       ├── plafond_5e.yaml
+│   │   │   │   │       ├── plafond_6e.yaml
+│   │   │   │   │       ├── plafond_7e.yaml
+│   │   │   │   │       └── plafond_8e.yaml
+│   │   │   │   ├── avant_2016
+│   │   │   │   │   ├── increments_par_point_de_charge
+│   │   │   │   │   │   ├── 10_parts.yaml
+│   │   │   │   │   │   ├── 3_parts.yaml
+│   │   │   │   │   │   ├── 4_parts.yaml
+│   │   │   │   │   │   ├── 5_parts.yaml
+│   │   │   │   │   │   ├── 6_parts.yaml
+│   │   │   │   │   │   ├── 7_parts.yaml
+│   │   │   │   │   │   ├── 8_parts.yaml
+│   │   │   │   │   │   ├── 9_parts.yaml
+│   │   │   │   │   │   └── index.yaml
+│   │   │   │   │   ├── plafonds_reference
+│   │   │   │   │   │   ├── 10_parts.yaml
+│   │   │   │   │   │   ├── 3_parts.yaml
+│   │   │   │   │   │   ├── 4_parts.yaml
+│   │   │   │   │   │   ├── 5_parts.yaml
+│   │   │   │   │   │   ├── 6_parts.yaml
+│   │   │   │   │   │   ├── 7_parts.yaml
+│   │   │   │   │   │   ├── 8_parts.yaml
+│   │   │   │   │   │   ├── 9_parts.yaml
+│   │   │   │   │   │   └── index.yaml
+│   │   │   │   │   └── valeur_part.yaml
+│   │   │   │   └── index.yaml
+│   │   │   └── index.yaml
+│   │   ├── cheque_energie.yaml
+│   │   ├── cmu
+│   │   │   ├── abattement_chomage.yaml
+│   │   │   ├── acs_16_49_ans.yaml
+│   │   │   ├── acs_50_59_ans.yaml
+│   │   │   ├── acs_moins_16_ans.yaml
+│   │   │   ├── acs_plus_60_ans.yaml
+│   │   │   ├── age_limite_pac.yaml
+│   │   │   ├── coeff_p2.yaml
+│   │   │   ├── coeff_p3_p4.yaml
+│   │   │   ├── coeff_p5_plus.yaml
+│   │   │   ├── forfait_logement
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── taux_1p.yaml
+│   │   │   │   ├── taux_2p.yaml
+│   │   │   │   └── taux_3p_plus.yaml
+│   │   │   ├── forfait_logement_al
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── taux_1p.yaml
+│   │   │   │   ├── taux_2p.yaml
+│   │   │   │   └── taux_3p_plus.yaml
+│   │   │   ├── index.yaml
+│   │   │   ├── majoration_dom.yaml
+│   │   │   ├── majoration_plafond_acs.yaml
+│   │   │   └── plafond_base.yaml
+│   │   ├── cotsoc
+│   │   │   ├── accident
+│   │   │   │   ├── eleve.yaml
+│   │   │   │   ├── faible.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── moyen.yaml
+│   │   │   │   └── treseleve.yaml
+│   │   │   ├── assiette
+│   │   │   │   ├── cantines_titres_restaurants
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── seuil_prix_titre.yaml
+│   │   │   │   │   ├── taux_maximum_exoneration.yaml
+│   │   │   │   │   └── taux_minimum_exoneration.yaml
+│   │   │   │   └── index.yaml
+│   │   │   ├── conge_individuel_formation
+│   │   │   │   ├── cdd.yaml
+│   │   │   │   └── index.yaml
+│   │   │   ├── contribution_supplementaire_apprentissage
+│   │   │   │   ├── entre_1_2_pc_alternants.yaml
+│   │   │   │   ├── entre_2_3_pc_alternants.yaml
+│   │   │   │   ├── entre_3_4_pc_alternants.yaml
+│   │   │   │   ├── entre_4_5_pc_alternants.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── moins_2000_moins_1pc_alternants.yaml
+│   │   │   │   ├── multiplicateur_alsace_moselle.yaml
+│   │   │   │   ├── plus_2000_moins_1pc_alternants.yaml
+│   │   │   │   └── plus_de_250.yaml
+│   │   │   ├── gen
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── nb_heure_travail_mensuel.yaml
+│   │   │   │   ├── plaf_th_1.yaml
+│   │   │   │   ├── plaf_th_1_dom.yaml
+│   │   │   │   ├── plaf_th_1_guy.yaml
+│   │   │   │   ├── plaf_th_supp.yaml
+│   │   │   │   ├── plaf_th_supp1_dom.yaml
+│   │   │   │   ├── plaf_th_supp1_guy.yaml
+│   │   │   │   ├── plafond_securite_sociale.yaml
+│   │   │   │   ├── plafond_securite_sociale_horaire.yaml
+│   │   │   │   └── smic_h_b.yaml
+│   │   │   ├── hsup_exo.yaml
+│   │   │   ├── indemnite_fin_contrat
+│   │   │   │   ├── index.yaml
+│   │   │   │   └── taux.yaml
+│   │   │   ├── index.yaml
+│   │   │   ├── microsocial
+│   │   │   │   ├── cipav.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── rsi.yaml
+│   │   │   │   ├── servi.yaml
+│   │   │   │   └── vente.yaml
+│   │   │   ├── pat
+│   │   │   │   ├── cadre
+│   │   │   │   │   ├── agffc.yaml
+│   │   │   │   │   ├── agirc.yaml
+│   │   │   │   │   ├── apec.yaml
+│   │   │   │   │   ├── arrco.yaml
+│   │   │   │   │   ├── cet.yaml
+│   │   │   │   │   └── index.yaml
+│   │   │   │   ├── commun
+│   │   │   │   │   ├── apprentissage_node
+│   │   │   │   │   │   ├── apprentissage.yaml
+│   │   │   │   │   │   ├── apprentissage_250.yaml
+│   │   │   │   │   │   ├── apprentissage_add.yaml
+│   │   │   │   │   │   ├── apprentissage_alsace_moselle.yaml
+│   │   │   │   │   │   └── index.yaml
+│   │   │   │   │   ├── assedic.yaml
+│   │   │   │   │   ├── chomfg.yaml
+│   │   │   │   │   ├── construction_node
+│   │   │   │   │   │   ├── construction_20.yaml
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   └── seuil.yaml
+│   │   │   │   │   ├── csa.yaml
+│   │   │   │   │   ├── famille.yaml
+│   │   │   │   │   ├── financement_organisations_syndicales.yaml
+│   │   │   │   │   ├── fnal1.yaml
+│   │   │   │   │   ├── fnal2.yaml
+│   │   │   │   │   ├── formprof_node
+│   │   │   │   │   │   ├── formprof_09.yaml
+│   │   │   │   │   │   ├── formprof_1019.yaml
+│   │   │   │   │   │   ├── formprof_20.yaml
+│   │   │   │   │   │   └── index.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── maladie.yaml
+│   │   │   │   │   ├── penibilite_additionnelle.yaml
+│   │   │   │   │   ├── penibilite_base.yaml
+│   │   │   │   │   ├── penibilite_multiplicateur_exposition_multiple.yaml
+│   │   │   │   │   ├── vieillesse_deplafonnee.yaml
+│   │   │   │   │   └── vieillesse_plafonnee.yaml
+│   │   │   │   ├── fonc
+│   │   │   │   │   ├── colloc
+│   │   │   │   │   │   ├── atiacl.yaml
+│   │   │   │   │   │   ├── cnracl.yaml
+│   │   │   │   │   │   ├── hospitaliere
+│   │   │   │   │   │   │   ├── feh.yaml
+│   │   │   │   │   │   │   └── index.yaml
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   ├── maladie.yaml
+│   │   │   │   │   │   ├── rafp.yaml
+│   │   │   │   │   │   └── territoriale
+│   │   │   │   │   │       ├── fcppa.yaml
+│   │   │   │   │   │       └── index.yaml
+│   │   │   │   │   ├── contract
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   └── ircantec.yaml
+│   │   │   │   │   ├── etat
+│   │   │   │   │   │   ├── ati.yaml
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   ├── maladie.yaml
+│   │   │   │   │   │   ├── pension.yaml
+│   │   │   │   │   │   └── rafp.yaml
+│   │   │   │   │   └── index.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   └── noncadre
+│   │   │   │       ├── agffnc.yaml
+│   │   │   │       ├── arrco.yaml
+│   │   │   │       └── index.yaml
+│   │   │   ├── sal
+│   │   │   │   ├── arti
+│   │   │   │   │   ├── famille.yaml
+│   │   │   │   │   ├── forprof.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── indjour.yaml
+│   │   │   │   │   ├── invdec.yaml
+│   │   │   │   │   ├── maladie.yaml
+│   │   │   │   │   ├── retrbase.yaml
+│   │   │   │   │   └── retrcompl.yaml
+│   │   │   │   ├── cadre
+│   │   │   │   │   ├── agff.yaml
+│   │   │   │   │   ├── agirc.yaml
+│   │   │   │   │   ├── apec.yaml
+│   │   │   │   │   ├── arrco.yaml
+│   │   │   │   │   ├── cet.yaml
+│   │   │   │   │   └── index.yaml
+│   │   │   │   ├── comind
+│   │   │   │   │   ├── famille.yaml
+│   │   │   │   │   ├── forprofcom.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── indjour.yaml
+│   │   │   │   │   ├── invdec.yaml
+│   │   │   │   │   ├── maladie.yaml
+│   │   │   │   │   ├── retrbase.yaml
+│   │   │   │   │   └── retrcompl.yaml
+│   │   │   │   ├── commun
+│   │   │   │   │   ├── assedic.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── maladie.yaml
+│   │   │   │   │   ├── maladie_alsace_moselle.yaml
+│   │   │   │   │   ├── vieillesse.yaml
+│   │   │   │   │   └── vieillesse_deplafonnee.yaml
+│   │   │   │   ├── fonc
+│   │   │   │   │   ├── colloc
+│   │   │   │   │   │   ├── cnracl1.yaml
+│   │   │   │   │   │   ├── cnracl2.yaml
+│   │   │   │   │   │   └── index.yaml
+│   │   │   │   │   ├── commun
+│   │   │   │   │   │   ├── ind_maj_ref.yaml
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   ├── pt_ind.yaml
+│   │   │   │   │   │   └── solidarite.yaml
+│   │   │   │   │   ├── contract
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   └── ircantec.yaml
+│   │   │   │   │   ├── etat
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   ├── pension.yaml
+│   │   │   │   │   │   ├── rafp.yaml
+│   │   │   │   │   │   └── rafp_plaf_assiette.yaml
+│   │   │   │   │   └── index.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── microsocial
+│   │   │   │   │   ├── cipav.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── rsi.yaml
+│   │   │   │   │   ├── servi.yaml
+│   │   │   │   │   └── vente.yaml
+│   │   │   │   └── noncadre
+│   │   │   │       ├── agff.yaml
+│   │   │   │       ├── arrco.yaml
+│   │   │   │       └── index.yaml
+│   │   │   ├── stage
+│   │   │   │   └── taux_gratification_min.yaml
+│   │   │   ├── taxes_sal
+│   │   │   │   ├── abattement_special.yaml
+│   │   │   │   ├── decote_montant.yaml
+│   │   │   │   ├── decote_taux.yaml
+│   │   │   │   ├── franchise.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── taux
+│   │   │   │   │   ├── guy.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── metro.yaml
+│   │   │   │   │   └── mgr.yaml
+│   │   │   │   └── taux_maj.yaml
+│   │   │   ├── tehr.yaml
+│   │   │   └── versement_transport
+│   │   │       ├── index.yaml
+│   │   │       └── seuil_effectif.yaml
+│   │   ├── epargne
+│   │   │   └── livret_a
+│   │   │       └── taux.yaml
+│   │   ├── fonc
+│   │   │   ├── IM_100.yaml
+│   │   │   ├── IM_min.yaml
+│   │   │   ├── indem_resid
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── min.yaml
+│   │   │   │   └── taux
+│   │   │   │       ├── index.yaml
+│   │   │   │       ├── zone1.yaml
+│   │   │   │       ├── zone2.yaml
+│   │   │   │       └── zone3.yaml
+│   │   │   ├── index.yaml
+│   │   │   └── supplement_familial
+│   │   │       ├── IM_max.yaml
+│   │   │       ├── IM_min.yaml
+│   │   │       ├── fixe
+│   │   │       │   ├── enf1.yaml
+│   │   │       │   ├── enf2.yaml
+│   │   │       │   ├── enfsupp.yaml
+│   │   │       │   └── index.yaml
+│   │   │       ├── index.yaml
+│   │   │       └── prop
+│   │   │           ├── enf2.yaml
+│   │   │           ├── enf3.yaml
+│   │   │           ├── enfsupp.yaml
+│   │   │           └── index.yaml
+│   │   ├── impot_revenu
+│   │   │   ├── abattements_rni
+│   │   │   │   ├── enfant_marie
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── montant.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   └── personne_agee_ou_invalide
+│   │   │   │       ├── index.yaml
+│   │   │   │       ├── montant.yaml
+│   │   │   │       ├── plafond_de_ressources_1.yaml
+│   │   │   │       └── plafond_de_ressources_2.yaml
+│   │   │   ├── bareme.yaml
+│   │   │   ├── cehr.yaml
+│   │   │   ├── cehr_ipp.yaml
+│   │   │   ├── charges_deductibles
+│   │   │   │   ├── accueil_personne_agee
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── plafond.yaml
+│   │   │   │   ├── acquisition_de_navire
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── plafond.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   ├── cinema
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── max.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   ├── compte_epargne_codev
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── plafond.yaml
+│   │   │   │   │   └── plafond_pct_rng.yaml
+│   │   │   │   ├── deductions_pour_investissements_en_actions
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── plafond.yaml
+│   │   │   │   │   └── supplement_par_enfant.yaml
+│   │   │   │   ├── deductions_pour_navires_de_commerce
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── plafond.yaml
+│   │   │   │   ├── grosses_reparations
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── plafond.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── pensions_alimentaires
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── plafond.yaml
+│   │   │   │   │   └── taux_jgt_2006.yaml
+│   │   │   │   ├── pertes_en_capital_societes_nouvelles
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── plafond_cb.yaml
+│   │   │   │   │   └── plafond_da.yaml
+│   │   │   │   ├── reduction_pour_souscriptions_de_parts_de_sofica
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── plafond_de_la_reduction.yaml
+│   │   │   │   │   └── plafond_en_du_revenu_net_global.yaml
+│   │   │   │   ├── sofipeche
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── plafond.yaml
+│   │   │   │   │   └── plafond_pct_rng.yaml
+│   │   │   │   └── versements_perp
+│   │   │   │       ├── index.yaml
+│   │   │   │       ├── max.yaml
+│   │   │   │       └── min.yaml
+│   │   │   ├── credits_impot
+│   │   │   │   ├── accult
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   ├── acqgpl
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── mont_up.yaml
+│   │   │   │   │   └── mont_uq.yaml
+│   │   │   │   ├── aidmob
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── montant.yaml
+│   │   │   │   ├── aidper
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── max.yaml
+│   │   │   │   │   ├── max_wl.yaml
+│   │   │   │   │   ├── pac1.yaml
+│   │   │   │   │   ├── pac2.yaml
+│   │   │   │   │   ├── pac3.yaml
+│   │   │   │   │   ├── taux_sf.yaml
+│   │   │   │   │   ├── taux_wi.yaml
+│   │   │   │   │   ├── taux_wj.yaml
+│   │   │   │   │   ├── taux_wl.yaml
+│   │   │   │   │   └── taux_wr.yaml
+│   │   │   │   ├── assloy
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   ├── cotsyn_credit
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── seuil.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   ├── divide
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── max.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   ├── drbail
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   ├── garext
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── plafond.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── inthab
+│   │   │   │   │   ├── add.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── max.yaml
+│   │   │   │   │   ├── taux1.yaml
+│   │   │   │   │   ├── taux2.yaml
+│   │   │   │   │   ├── taux3.yaml
+│   │   │   │   │   ├── taux4.yaml
+│   │   │   │   │   ├── taux5.yaml
+│   │   │   │   │   └── taux6.yaml
+│   │   │   │   ├── jeunes
+│   │   │   │   │   ├── age.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── int.yaml
+│   │   │   │   │   ├── max.yaml
+│   │   │   │   │   ├── min.yaml
+│   │   │   │   │   ├── montant.yaml
+│   │   │   │   │   ├── nonvers.yaml
+│   │   │   │   │   ├── rfr_maj.yaml
+│   │   │   │   │   ├── rfr_mult.yaml
+│   │   │   │   │   ├── rfr_plaf.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   ├── percvm
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   ├── ppe
+│   │   │   │   │   ├── TP_nbh.yaml
+│   │   │   │   │   ├── TP_nbj.yaml
+│   │   │   │   │   ├── abatns.yaml
+│   │   │   │   │   ├── coefficient_de_majoration_ppe_pour_temps_partiel
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   ├── taux_1.yaml
+│   │   │   │   │   │   └── taux_2.yaml
+│   │   │   │   │   ├── eligi1.yaml
+│   │   │   │   │   ├── eligi2.yaml
+│   │   │   │   │   ├── eligi3.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── monact.yaml
+│   │   │   │   │   ├── mono_pac.yaml
+│   │   │   │   │   ├── pac.yaml
+│   │   │   │   │   ├── seuil1.yaml
+│   │   │   │   │   ├── seuil2.yaml
+│   │   │   │   │   ├── seuil3.yaml
+│   │   │   │   │   ├── seuil4.yaml
+│   │   │   │   │   ├── seuil5.yaml
+│   │   │   │   │   ├── taux1.yaml
+│   │   │   │   │   ├── taux2.yaml
+│   │   │   │   │   ├── taux3.yaml
+│   │   │   │   │   └── versmin.yaml
+│   │   │   │   ├── preetu
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── max.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   ├── prlire
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   └── quaenv
+│   │   │   │       ├── index.yaml
+│   │   │   │       ├── max.yaml
+│   │   │   │       ├── max_rfr.yaml
+│   │   │   │       ├── max_rfr2.yaml
+│   │   │   │       ├── pac1.yaml
+│   │   │   │       ├── pac2.yaml
+│   │   │   │       ├── pac3.yaml
+│   │   │   │       ├── taux10.yaml
+│   │   │   │       ├── taux11.yaml
+│   │   │   │       ├── taux15.yaml
+│   │   │   │       ├── taux17.yaml
+│   │   │   │       ├── taux18.yaml
+│   │   │   │       ├── taux23.yaml
+│   │   │   │       ├── taux25.yaml
+│   │   │   │       ├── taux26.yaml
+│   │   │   │       ├── taux30.yaml
+│   │   │   │       ├── taux32.yaml
+│   │   │   │       ├── taux34.yaml
+│   │   │   │       ├── taux40.yaml
+│   │   │   │       ├── taux_sb.yaml
+│   │   │   │       ├── taux_sc.yaml
+│   │   │   │       ├── taux_sd.yaml
+│   │   │   │       ├── taux_se.yaml
+│   │   │   │       ├── taux_sh.yaml
+│   │   │   │       ├── taux_tt.yaml
+│   │   │   │       ├── taux_tu.yaml
+│   │   │   │       ├── taux_tv.yaml
+│   │   │   │       ├── taux_tw.yaml
+│   │   │   │       ├── taux_tx.yaml
+│   │   │   │       ├── taux_ty.yaml
+│   │   │   │       ├── taux_vt.yaml
+│   │   │   │       ├── taux_vu.yaml
+│   │   │   │       ├── taux_vv.yaml
+│   │   │   │       ├── taux_vw.yaml
+│   │   │   │       ├── taux_vy.yaml
+│   │   │   │       ├── taux_vz.yaml
+│   │   │   │       ├── taux_wf.yaml
+│   │   │   │       ├── taux_wg.yaml
+│   │   │   │       ├── taux_wh.yaml
+│   │   │   │       ├── taux_wk.yaml
+│   │   │   │       └── taux_wq.yaml
+│   │   │   ├── crl
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── seuil.yaml
+│   │   │   │   └── taux.yaml
+│   │   │   ├── decote
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── seuil.yaml
+│   │   │   │   ├── seuil_celib.yaml
+│   │   │   │   └── seuil_couple.yaml
+│   │   │   ├── deduc_sal
+│   │   │   │   ├── index.yaml
+│   │   │   │   └── reduction_d_impot_pour_cotisations_syndicales
+│   │   │   │       ├── index.yaml
+│   │   │   │       ├── plafond.yaml
+│   │   │   │       └── taux.yaml
+│   │   │   ├── divers
+│   │   │   │   ├── aide_aux_repreneurs_d_entreprise_cf_10
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── reduction.yaml
+│   │   │   │   │   └── surplus_si_invalide.yaml
+│   │   │   │   ├── assurances_vie
+│   │   │   │   │   ├── increment.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── plafond.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   ├── depenses_de_restauration_des_monuments_historiques_cf_11
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── plafond.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   ├── depenses_pour_la_formation_des_chefs_d_entreprises
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── plafond.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   ├── frais_de_comptabilite_cf_3
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── montant.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── interets_d_emprunt_pour_reprise_de_societe_cf_8
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── plafond.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   ├── interets_paiements_differes_agriculteurs_cf_9
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── plafond.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   ├── prets_a_la_consommation_cf_7
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── plafond.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   ├── protection_du_patrimoine_naturel_cf_13
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── plafond.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   ├── rachat_d_entreprise
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── plafond.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   ├── rente_survie_cf_4
+│   │   │   │   │   ├── increment.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── plafond.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   ├── restauration_du_patrimoine_bati_cf_12
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── plafond.yaml
+│   │   │   │   │   ├── taux_1.yaml
+│   │   │   │   │   └── taux_2.yaml
+│   │   │   │   └── versement_fond_salarial
+│   │   │   │       ├── index.yaml
+│   │   │   │       ├── plafond.yaml
+│   │   │   │       └── taux.yaml
+│   │   │   ├── exo_ir
+│   │   │   │   ├── conditions_de_ressources_pour_exoneration_d_ir
+│   │   │   │   │   ├── apprentis.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── moins_de_65_ans_4.yaml
+│   │   │   │   │   └── plus_de_65_ans_4.yaml
+│   │   │   │   └── index.yaml
+│   │   │   ├── index.yaml
+│   │   │   ├── majo_excep
+│   │   │   │   ├── index.yaml
+│   │   │   │   └── majorations_exceptionnelles_d_impot
+│   │   │   │       ├── index.yaml
+│   │   │   │       ├── seuil_1.yaml
+│   │   │   │       ├── seuil_2.yaml
+│   │   │   │       ├── seuil_3_superieur.yaml
+│   │   │   │       ├── seuil_revenu.yaml
+│   │   │   │       ├── taux_1.yaml
+│   │   │   │       ├── taux_2.yaml
+│   │   │   │       └── taux_3_superieur.yaml
+│   │   │   ├── non_imposable
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── seuil.yaml
+│   │   │   │   └── supp.yaml
+│   │   │   ├── plaf_nich
+│   │   │   │   ├── index.yaml
+│   │   │   │   └── plafonnement_des_niches
+│   │   │   │       ├── index.yaml
+│   │   │   │       ├── majoration.yaml
+│   │   │   │       ├── plafond_1.yaml
+│   │   │   │       └── taux.yaml
+│   │   │   ├── plafond_qf
+│   │   │   │   ├── abat_dom
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── plaf_GuadMarReu.yaml
+│   │   │   │   │   ├── plaf_GuyMay.yaml
+│   │   │   │   │   ├── taux_GuadMarReu.yaml
+│   │   │   │   │   └── taux_GuyMay.yaml
+│   │   │   │   ├── celib.yaml
+│   │   │   │   ├── celib_E_ou_K.yaml
+│   │   │   │   ├── celib_enf.yaml
+│   │   │   │   ├── decote
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── seuil1.yaml
+│   │   │   │   │   └── seuil2.yaml
+│   │   │   │   ├── enfant_majeur_celibataire.yaml
+│   │   │   │   ├── general.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── maries_ou_pacses.yaml
+│   │   │   │   ├── reduc_postplafond.yaml
+│   │   │   │   ├── reduc_postplafond_veuf.yaml
+│   │   │   │   ├── reduction_ss_condition_revenus
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── seuil1.yaml
+│   │   │   │   │   ├── seuil2.yaml
+│   │   │   │   │   ├── seuil_maj_enf.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   └── veuf.yaml
+│   │   │   ├── plus_values.yaml
+│   │   │   ├── pme
+│   │   │   │   ├── emprunts_contractes_pour_la_reprise_d_une_pme
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── plafond_1.yaml
+│   │   │   │   │   ├── plafond_2.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   └── index.yaml
+│   │   │   ├── prelevement_forfaitaire_unique_ir
+│   │   │   │   ├── seuil_taux_reduit_av.yaml
+│   │   │   │   ├── taux.yaml
+│   │   │   │   └── taux_reduit_av.yaml
+│   │   │   ├── pv_immo
+│   │   │   │   ├── ann_det1.yaml
+│   │   │   │   ├── ann_det2.yaml
+│   │   │   │   ├── ann_det3.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── taux.yaml
+│   │   │   │   ├── taux1.yaml
+│   │   │   │   ├── taux2.yaml
+│   │   │   │   └── taux3.yaml
+│   │   │   ├── quotient_familial
+│   │   │   │   ├── cdcd.yaml
+│   │   │   │   ├── conj.yaml
+│   │   │   │   ├── enf1.yaml
+│   │   │   │   ├── enf2.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── inv1.yaml
+│   │   │   │   ├── inv2.yaml
+│   │   │   │   ├── isol.yaml
+│   │   │   │   ├── not31a.yaml
+│   │   │   │   ├── not31b.yaml
+│   │   │   │   ├── not32.yaml
+│   │   │   │   ├── not41.yaml
+│   │   │   │   ├── not42.yaml
+│   │   │   │   ├── not6.yaml
+│   │   │   │   └── veuf.yaml
+│   │   │   ├── recouvrement
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── min.yaml
+│   │   │   │   └── seuil.yaml
+│   │   │   ├── reductions_impots
+│   │   │   │   ├── adhcga
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── max.yaml
+│   │   │   │   ├── assvie
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── max.yaml
+│   │   │   │   │   ├── pac.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   ├── cappme
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── seuil.yaml
+│   │   │   │   │   ├── seuil_tpe.yaml
+│   │   │   │   │   ├── taux.yaml
+│   │   │   │   │   ├── taux18.yaml
+│   │   │   │   │   ├── taux22.yaml
+│   │   │   │   │   └── taux25.yaml
+│   │   │   │   ├── cotsyn
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── seuil.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   ├── creaen
+│   │   │   │   │   ├── base.yaml
+│   │   │   │   │   ├── hand.yaml
+│   │   │   │   │   └── index.yaml
+│   │   │   │   ├── daepad
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── max.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   ├── deffor
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── max.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   ├── doment
+│   │   │   │   │   ├── iDOMe_taux1.yaml
+│   │   │   │   │   ├── iDOMe_taux2.yaml
+│   │   │   │   │   ├── iDOMls_taux.yaml
+│   │   │   │   │   └── index.yaml
+│   │   │   │   ├── domlog
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── taux1.yaml
+│   │   │   │   │   └── taux2.yaml
+│   │   │   │   ├── donapd
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── max.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   ├── dons
+│   │   │   │   │   ├── dons_aux_partis_politiques
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   └── taux.yaml
+│   │   │   │   │   ├── dons_coluche
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   ├── plafond.yaml
+│   │   │   │   │   │   └── taux.yaml
+│   │   │   │   │   ├── dons_d_interet_general
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   └── plafond.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── max_niv.yaml
+│   │   │   │   │   ├── reduction_d_impot_pour_les_dons
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   └── plafond_en_du_revenu_global.yaml
+│   │   │   │   │   ├── taux_dons_oeuvres.yaml
+│   │   │   │   │   └── taux_max_dons_partipo.yaml
+│   │   │   │   ├── duflot
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── plafond.yaml
+│   │   │   │   │   ├── taux_m.yaml
+│   │   │   │   │   └── taux_om.yaml
+│   │   │   │   ├── ecodev
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── plafond_par_personne.yaml
+│   │   │   │   │   ├── taux.yaml
+│   │   │   │   │   └── taux_plafond.yaml
+│   │   │   │   ├── ecpess
+│   │   │   │   │   ├── col.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── lyc.yaml
+│   │   │   │   │   └── sup.yaml
+│   │   │   │   ├── garext
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── plafond.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── intagr
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── max.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   ├── intcon
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── max.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   ├── intemp
+│   │   │   │   │   ├── deduction_des_charges
+│   │   │   │   │   │   ├── increment.yaml
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   └── plafond.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── interets_d_emprunts
+│   │   │   │   │   │   ├── increment.yaml
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   └── plafond.yaml
+│   │   │   │   │   ├── max.yaml
+│   │   │   │   │   ├── pac.yaml
+│   │   │   │   │   ├── plafond_2.yaml
+│   │   │   │   │   ├── plafond_3.yaml
+│   │   │   │   │   ├── reduction_d_impot_pour_gros_travaux
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   ├── plafond.yaml
+│   │   │   │   │   │   └── taux.yaml
+│   │   │   │   │   ├── taux.yaml
+│   │   │   │   │   └── taux1.yaml
+│   │   │   │   ├── invfor
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── plafond.yaml
+│   │   │   │   │   ├── plafond_cga.yaml
+│   │   │   │   │   ├── plafond_travaux.yaml
+│   │   │   │   │   ├── reduction_d_impot_pour_la_defense_des_forets_contre_les_incendies
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   ├── plafond.yaml
+│   │   │   │   │   │   └── taux.yaml
+│   │   │   │   │   ├── report10.yaml
+│   │   │   │   │   ├── report11.yaml
+│   │   │   │   │   ├── report12.yaml
+│   │   │   │   │   ├── taux.yaml
+│   │   │   │   │   └── taux_assurance.yaml
+│   │   │   │   ├── invlst
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── seuil1.yaml
+│   │   │   │   │   ├── seuil2.yaml
+│   │   │   │   │   ├── seuil3.yaml
+│   │   │   │   │   ├── taux_xa.yaml
+│   │   │   │   │   ├── taux_xb.yaml
+│   │   │   │   │   ├── taux_xc.yaml
+│   │   │   │   │   ├── taux_xd.yaml
+│   │   │   │   │   ├── taux_xe.yaml
+│   │   │   │   │   ├── taux_xf.yaml
+│   │   │   │   │   ├── taux_xg.yaml
+│   │   │   │   │   ├── taux_xh.yaml
+│   │   │   │   │   ├── taux_xi.yaml
+│   │   │   │   │   ├── taux_xj.yaml
+│   │   │   │   │   ├── taux_xk.yaml
+│   │   │   │   │   ├── taux_xl.yaml
+│   │   │   │   │   ├── taux_xm.yaml
+│   │   │   │   │   ├── taux_xn.yaml
+│   │   │   │   │   ├── taux_xo.yaml
+│   │   │   │   │   ├── taux_xp.yaml
+│   │   │   │   │   ├── taux_xq.yaml
+│   │   │   │   │   ├── taux_xr.yaml
+│   │   │   │   │   ├── taux_xx.yaml
+│   │   │   │   │   └── taux_xz.yaml
+│   │   │   │   ├── invrev
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── seuil_gs.yaml
+│   │   │   │   │   ├── seuil_gu.yaml
+│   │   │   │   │   ├── seuil_xg.yaml
+│   │   │   │   │   ├── taux_gs.yaml
+│   │   │   │   │   ├── taux_gt.yaml
+│   │   │   │   │   ├── taux_gu.yaml
+│   │   │   │   │   ├── taux_gv.yaml
+│   │   │   │   │   └── taux_xg.yaml
+│   │   │   │   ├── locmeu
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── max.yaml
+│   │   │   │   │   ├── taux.yaml
+│   │   │   │   │   ├── taux11.yaml
+│   │   │   │   │   ├── taux18.yaml
+│   │   │   │   │   └── taux20.yaml
+│   │   │   │   ├── mohist
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── max.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   ├── patnat
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── max.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   ├── prcomp
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── seuil.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   ├── reduction_impot_exceptionnelle
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── majoration_seuil.yaml
+│   │   │   │   │   ├── montant_plafond.yaml
+│   │   │   │   │   └── seuil.yaml
+│   │   │   │   ├── rehab
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── max.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   ├── repsoc
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── seuil.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   ├── resimm
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── max.yaml
+│   │   │   │   │   ├── max2.yaml
+│   │   │   │   │   ├── taux_22.yaml
+│   │   │   │   │   ├── taux_30.yaml
+│   │   │   │   │   ├── taux_ra.yaml
+│   │   │   │   │   ├── taux_rb.yaml
+│   │   │   │   │   ├── taux_rc.yaml
+│   │   │   │   │   ├── taux_rd.yaml
+│   │   │   │   │   ├── taux_re.yaml
+│   │   │   │   │   └── taux_rf.yaml
+│   │   │   │   ├── rpinel
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── seuil.yaml
+│   │   │   │   │   ├── taux12.yaml
+│   │   │   │   │   ├── taux18.yaml
+│   │   │   │   │   ├── taux23.yaml
+│   │   │   │   │   └── taux29.yaml
+│   │   │   │   ├── rsceha
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── seuil1.yaml
+│   │   │   │   │   ├── seuil2.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   ├── salarie_domicile
+│   │   │   │   │   ├── emploi_d_un_salarie_a_domicile
+│   │   │   │   │   │   ├── increment_du_plafond.yaml
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   ├── plafond.yaml
+│   │   │   │   │   │   ├── plafond_maximum.yaml
+│   │   │   │   │   │   ├── plafond_pour_invalides.yaml
+│   │   │   │   │   │   └── taux.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── max1.yaml
+│   │   │   │   │   ├── max1_premiere_annee.yaml
+│   │   │   │   │   ├── max2.yaml
+│   │   │   │   │   ├── max2_premiere_annee.yaml
+│   │   │   │   │   ├── max3.yaml
+│   │   │   │   │   ├── pac.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   ├── scelli
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── max.yaml
+│   │   │   │   │   ├── taux13.yaml
+│   │   │   │   │   ├── taux15.yaml
+│   │   │   │   │   ├── taux22.yaml
+│   │   │   │   │   ├── taux24.yaml
+│   │   │   │   │   ├── taux25.yaml
+│   │   │   │   │   ├── taux36.yaml
+│   │   │   │   │   ├── taux40.yaml
+│   │   │   │   │   └── taux6.yaml
+│   │   │   │   ├── sofica
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── max.yaml
+│   │   │   │   │   ├── taux30.yaml
+│   │   │   │   │   ├── taux36.yaml
+│   │   │   │   │   ├── taux48.yaml
+│   │   │   │   │   └── taux_plafond.yaml
+│   │   │   │   ├── sofipe
+│   │   │   │   │   ├── base.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── max.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   └── spfcpi
+│   │   │   │       ├── index.yaml
+│   │   │   │       ├── plafond_celibataire.yaml
+│   │   │   │       ├── taux1.yaml
+│   │   │   │       ├── taux2.yaml
+│   │   │   │       ├── taux3.yaml
+│   │   │   │       └── taux_corse_fip.yaml
+│   │   │   ├── rpns
+│   │   │   │   ├── cga_max.yaml
+│   │   │   │   ├── cga_taux.yaml
+│   │   │   │   ├── cga_taux2.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── micro
+│   │   │   │   │   ├── imputation_sur_le_revenu_global
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   ├── plafond_deficits_agricoles.yaml
+│   │   │   │   │   │   └── plafond_deficits_fonciers.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── microentreprise
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   ├── montant_minimum.yaml
+│   │   │   │   │   │   ├── taux_prestations_de_services.yaml
+│   │   │   │   │   │   └── taux_ventes_de_marchandises.yaml
+│   │   │   │   │   ├── microfoncier
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   ├── max.yaml
+│   │   │   │   │   │   └── taux.yaml
+│   │   │   │   │   └── specialbnc
+│   │   │   │   │       ├── index.yaml
+│   │   │   │   │       ├── marchandises
+│   │   │   │   │       │   ├── index.yaml
+│   │   │   │   │       │   ├── max.yaml
+│   │   │   │   │       │   ├── min.yaml
+│   │   │   │   │       │   └── taux.yaml
+│   │   │   │   │       ├── max.yaml
+│   │   │   │   │       ├── min.yaml
+│   │   │   │   │       ├── services
+│   │   │   │   │       │   ├── index.yaml
+│   │   │   │   │       │   ├── max.yaml
+│   │   │   │   │       │   ├── min.yaml
+│   │   │   │   │       │   └── taux.yaml
+│   │   │   │   │       └── taux.yaml
+│   │   │   │   ├── microsocial
+│   │   │   │   │   ├── bnc.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── servi.yaml
+│   │   │   │   │   └── vente.yaml
+│   │   │   │   └── taux16.yaml
+│   │   │   ├── rvcm
+│   │   │   │   ├── abat_assvie.yaml
+│   │   │   │   ├── abatmob.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── majoration_revenus_reputes_distribues.yaml
+│   │   │   │   ├── plafond_du_credit_d_impot.yaml
+│   │   │   │   ├── taux_abattement_capitaux_mobiliers.yaml
+│   │   │   │   └── taux_forfaitaire.yaml
+│   │   │   ├── sofica
+│   │   │   │   ├── index.yaml
+│   │   │   │   └── reduction_pour_souscriptions_de_parts_de_sofica
+│   │   │   │       ├── index.yaml
+│   │   │   │       ├── plafond.yaml
+│   │   │   │       ├── plafond_en_du_revenu_net_global.yaml
+│   │   │   │       ├── taux_1.yaml
+│   │   │   │       └── taux_2.yaml
+│   │   │   ├── sofipeche
+│   │   │   │   ├── index.yaml
+│   │   │   │   └── reduction_pour_souscriptions_de_parts_de_sofipeche
+│   │   │   │       ├── index.yaml
+│   │   │   │       ├── plafond.yaml
+│   │   │   │       ├── plafond_en_du_rev_net_global.yaml
+│   │   │   │       └── taux.yaml
+│   │   │   ├── taxe_complementaire_tc.yaml
+│   │   │   ├── taxe_proportionnelle_tp.yaml
+│   │   │   ├── teicaa.yaml
+│   │   │   └── tspr
+│   │   │       ├── abatpen
+│   │   │       │   ├── index.yaml
+│   │   │       │   ├── max.yaml
+│   │   │       │   ├── min.yaml
+│   │   │       │   └── taux.yaml
+│   │   │       ├── abatpro
+│   │   │       │   ├── index.yaml
+│   │   │       │   ├── max.yaml
+│   │   │       │   ├── min.yaml
+│   │   │       │   ├── min2.yaml
+│   │   │       │   └── taux.yaml
+│   │   │       ├── abatsalpen
+│   │   │       │   ├── index.yaml
+│   │   │       │   ├── max.yaml
+│   │   │       │   ├── salaire_plafond.yaml
+│   │   │       │   └── taux.yaml
+│   │   │       ├── abatviag
+│   │   │       │   ├── index.yaml
+│   │   │       │   ├── taux1.yaml
+│   │   │       │   ├── taux2.yaml
+│   │   │       │   ├── taux3.yaml
+│   │   │       │   └── taux4.yaml
+│   │   │       └── index.yaml
+│   │   ├── logement_social
+│   │   │   └── plai
+│   │   │       └── plafond_ressources
+│   │   │           ├── par_categorie_de_menage
+│   │   │           │   ├── categorie_1
+│   │   │           │   │   ├── autres_regions.yaml
+│   │   │           │   │   ├── ile_de_france.yaml
+│   │   │           │   │   └── paris_communes_limitrophes.yaml
+│   │   │           │   ├── categorie_2
+│   │   │           │   │   ├── autres_regions.yaml
+│   │   │           │   │   ├── ile_de_france.yaml
+│   │   │           │   │   └── paris_communes_limitrophes.yaml
+│   │   │           │   ├── categorie_3
+│   │   │           │   │   ├── autres_regions.yaml
+│   │   │           │   │   ├── ile_de_france.yaml
+│   │   │           │   │   └── paris_communes_limitrophes.yaml
+│   │   │           │   ├── categorie_4
+│   │   │           │   │   ├── autres_regions.yaml
+│   │   │           │   │   ├── ile_de_france.yaml
+│   │   │           │   │   └── paris_communes_limitrophes.yaml
+│   │   │           │   ├── categorie_5
+│   │   │           │   │   ├── autres_regions.yaml
+│   │   │           │   │   ├── ile_de_france.yaml
+│   │   │           │   │   └── paris_communes_limitrophes.yaml
+│   │   │           │   └── categorie_6
+│   │   │           │       ├── autres_regions.yaml
+│   │   │           │       ├── ile_de_france.yaml
+│   │   │           │       └── paris_communes_limitrophes.yaml
+│   │   │           └── par_personne_supplementaire
+│   │   │               ├── autres_regions.yaml
+│   │   │               ├── ile_de_france.yaml
+│   │   │               └── paris_communes_limitrophes.yaml
+│   │   ├── prelevements_sociaux
+│   │   │   ├── abat_red
+│   │   │   │   ├── artistes.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── journalistes.yaml
+│   │   │   │   └── medecins.yaml
+│   │   │   ├── accidents
+│   │   │   │   ├── employeur_sous_pss.yaml
+│   │   │   │   ├── employeur_tout_salaire.yaml
+│   │   │   │   └── index.yaml
+│   │   │   ├── alleg_gen
+│   │   │   │   ├── dispositifs_de_reductions_des_cotisations_famille_1993_1996
+│   │   │   │   │   ├── 0_1_1_smic.yaml
+│   │   │   │   │   ├── 1_1_1_2_smic.yaml
+│   │   │   │   │   ├── 1_2_1_3_smic.yaml
+│   │   │   │   │   └── index.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   └── ristournes_juppe_i_ii_et_iii_1995_2003
+│   │   │   │       ├── index.yaml
+│   │   │   │       ├── plafond_en_nombre_de_smic.yaml
+│   │   │   │       ├── taux.yaml
+│   │   │   │       └── taux_max_au_smic.yaml
+│   │   │   ├── allegement_cotisation_allocations_familiales
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── plafond_en_nombre_de_smic.yaml
+│   │   │   │   └── reduction.yaml
+│   │   │   ├── asf
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── tranche_a
+│   │   │   │   │   ├── employeur.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── salarie.yaml
+│   │   │   │   └── tranche_b
+│   │   │   │       ├── employeur.yaml
+│   │   │   │       ├── index.yaml
+│   │   │   │       └── salarie.yaml
+│   │   │   ├── aubryii
+│   │   │   │   ├── exoneration_annuelle_minimale.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── majoration_1.yaml
+│   │   │   │   ├── marjoration_2.yaml
+│   │   │   │   ├── parametre_1.yaml
+│   │   │   │   ├── parametre_2.yaml
+│   │   │   │   └── parametre_3.yaml
+│   │   │   ├── auto_entrepreneur.yaml
+│   │   │   ├── cice
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── plafond_smic.yaml
+│   │   │   │   └── taux.yaml
+│   │   │   ├── cont_sur_options
+│   │   │   │   ├── employeur
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── taux_plein.yaml
+│   │   │   │   │   └── taux_reduit.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   └── salarie
+│   │   │   │       ├── index.yaml
+│   │   │   │       ├── taux_plein.yaml
+│   │   │   │       └── taux_reduit.yaml
+│   │   │   ├── contributions
+│   │   │   │   ├── casa.yaml
+│   │   │   │   ├── crds
+│   │   │   │   │   ├── activite
+│   │   │   │   │   │   ├── abattement.yaml
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   └── taux.yaml
+│   │   │   │   │   ├── capital.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── retraite
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   └── taux.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   ├── csg
+│   │   │   │   │   ├── abattement
+│   │   │   │   │   │   ├── au_dessus_de_4_pss.yaml
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   └── sous_4pss.yaml
+│   │   │   │   │   ├── activite
+│   │   │   │   │   │   ├── deductible
+│   │   │   │   │   │   │   ├── abattement.yaml
+│   │   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   │   └── taux.yaml
+│   │   │   │   │   │   ├── imposable
+│   │   │   │   │   │   │   ├── abattement.yaml
+│   │   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   │   └── taux.yaml
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   └── taux_global.yaml
+│   │   │   │   │   ├── allocations_chomage
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   ├── taux_csg_deductible.yaml
+│   │   │   │   │   │   ├── taux_csg_reduit.yaml
+│   │   │   │   │   │   └── taux_global_csg.yaml
+│   │   │   │   │   ├── capital
+│   │   │   │   │   │   ├── deduc.yaml
+│   │   │   │   │   │   ├── glob.yaml
+│   │   │   │   │   │   └── index.yaml
+│   │   │   │   │   ├── chomage
+│   │   │   │   │   │   ├── deductible
+│   │   │   │   │   │   │   ├── abattement.yaml
+│   │   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   │   ├── taux_plein.yaml
+│   │   │   │   │   │   │   └── taux_reduit.yaml
+│   │   │   │   │   │   ├── imposable
+│   │   │   │   │   │   │   ├── abattement.yaml
+│   │   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   │   └── taux.yaml
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   └── min_exo.yaml
+│   │   │   │   │   ├── indemnites_journalieres
+│   │   │   │   │   │   ├── deductible
+│   │   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   │   └── taux.yaml
+│   │   │   │   │   │   ├── imposable
+│   │   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   │   └── taux.yaml
+│   │   │   │   │   │   └── index.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── preretraite
+│   │   │   │   │   │   ├── deductible
+│   │   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   │   ├── taux_plein.yaml
+│   │   │   │   │   │   │   └── taux_reduit.yaml
+│   │   │   │   │   │   ├── imposable
+│   │   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   │   └── taux.yaml
+│   │   │   │   │   │   └── index.yaml
+│   │   │   │   │   ├── remplacement
+│   │   │   │   │   │   ├── allocations_de_preretraite
+│   │   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   │   ├── taux_csg_deductible.yaml
+│   │   │   │   │   │   │   ├── taux_csg_global.yaml
+│   │   │   │   │   │   │   └── taux_csg_reduit.yaml
+│   │   │   │   │   │   ├── indemnites_journalieres_ij
+│   │   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   │   ├── taux_csg_deductible.yaml
+│   │   │   │   │   │   │   └── taux_csg_global.yaml
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   └── pensions_de_retraite_et_d_invalidite
+│   │   │   │   │   │       ├── demi_part_suppl.yaml
+│   │   │   │   │   │       ├── index.yaml
+│   │   │   │   │   │       ├── seuil_d_ir.yaml
+│   │   │   │   │   │       ├── seuil_de_rfr_1.yaml
+│   │   │   │   │   │       ├── seuil_de_rfr_2.yaml
+│   │   │   │   │   │       ├── taux_csg_deductible.yaml
+│   │   │   │   │   │       ├── taux_csg_global.yaml
+│   │   │   │   │   │       └── taux_csg_reduit.yaml
+│   │   │   │   │   └── retraite
+│   │   │   │   │       ├── deductible
+│   │   │   │   │       │   ├── index.yaml
+│   │   │   │   │       │   ├── taux_plein.yaml
+│   │   │   │   │       │   └── taux_reduit.yaml
+│   │   │   │   │       ├── imposable
+│   │   │   │   │       │   ├── index.yaml
+│   │   │   │   │       │   └── taux.yaml
+│   │   │   │   │       └── index.yaml
+│   │   │   │   └── index.yaml
+│   │   │   ├── cotisations_sociales
+│   │   │   │   ├── agff
+│   │   │   │   │   ├── employeur
+│   │   │   │   │   │   ├── cadre.yaml
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   └── non_cadre.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── salarie
+│   │   │   │   │   │   ├── cadre.yaml
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   └── non_cadre.yaml
+│   │   │   │   │   └── tranche_c
+│   │   │   │   │       ├── employeur.yaml
+│   │   │   │   │       ├── index.yaml
+│   │   │   │   │       └── salarie.yaml
+│   │   │   │   ├── agirc
+│   │   │   │   │   ├── employeur.yaml
+│   │   │   │   │   ├── employeur_depuis_81.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── salarie.yaml
+│   │   │   │   │   └── salarie_depuis_81.yaml
+│   │   │   │   ├── ags
+│   │   │   │   │   ├── employeur.yaml
+│   │   │   │   │   └── index.yaml
+│   │   │   │   ├── apec
+│   │   │   │   │   ├── employeur.yaml
+│   │   │   │   │   ├── employeur_avant_2011.yaml
+│   │   │   │   │   ├── forfait_annuel
+│   │   │   │   │   │   ├── employeur.yaml
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   └── salarie.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── salarie.yaml
+│   │   │   │   │   └── salarie_avant_2011.yaml
+│   │   │   │   ├── apprentissage.yaml
+│   │   │   │   ├── arrco
+│   │   │   │   │   ├── employeur.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── salarie.yaml
+│   │   │   │   │   ├── taux_contractuels
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   ├── tranche_1.yaml
+│   │   │   │   │   │   └── tranche_2
+│   │   │   │   │   │       ├── entreprises_apres_01_01_1997.yaml
+│   │   │   │   │   │       ├── entreprises_avant_01_01_1997.yaml
+│   │   │   │   │   │       └── index.yaml
+│   │   │   │   │   ├── taux_d_appel.yaml
+│   │   │   │   │   └── taux_effectifs
+│   │   │   │   │       ├── index.yaml
+│   │   │   │   │       ├── tranche_1.yaml
+│   │   │   │   │       └── tranche_2
+│   │   │   │   │           ├── entreprises_apres_01_01_1997.yaml
+│   │   │   │   │           ├── entreprises_avant_01_01_1997.yaml
+│   │   │   │   │           └── index.yaml
+│   │   │   │   ├── cet
+│   │   │   │   │   ├── employeur.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── salarie.yaml
+│   │   │   │   ├── chomage
+│   │   │   │   │   ├── employeur.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── salarie.yaml
+│   │   │   │   ├── cnracl
+│   │   │   │   │   ├── atiacl
+│   │   │   │   │   │   ├── employeur.yaml
+│   │   │   │   │   │   └── index.yaml
+│   │   │   │   │   ├── cnracl
+│   │   │   │   │   │   ├── employeur.yaml
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   └── salarie
+│   │   │   │   │   │       ├── hors_nbi.yaml
+│   │   │   │   │   │       ├── index.yaml
+│   │   │   │   │   │       └── nbi.yaml
+│   │   │   │   │   ├── fccpa
+│   │   │   │   │   │   ├── hors_hospi.yaml
+│   │   │   │   │   │   └── index.yaml
+│   │   │   │   │   ├── feh
+│   │   │   │   │   │   ├── employeur.yaml
+│   │   │   │   │   │   └── index.yaml
+│   │   │   │   │   └── index.yaml
+│   │   │   │   ├── construction
+│   │   │   │   │   ├── construction_10_19.yaml
+│   │   │   │   │   ├── construction_20.yaml
+│   │   │   │   │   └── index.yaml
+│   │   │   │   ├── famille.yaml
+│   │   │   │   ├── fds
+│   │   │   │   │   ├── cotisation_exceptionnelle_solidarite.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── indice_majore_de_reference.yaml
+│   │   │   │   │   ├── plafond_base_solidarite.yaml
+│   │   │   │   │   ├── seuil_d_assujettissement.yaml
+│   │   │   │   │   ├── traitement_brut_annuel.yaml
+│   │   │   │   │   └── valeur_annuelle_point_fp.yaml
+│   │   │   │   ├── fnal
+│   │   │   │   │   ├── entreprises_de_plus_de_20_salaries
+│   │   │   │   │   │   ├── au_dessus_du_pss.yaml
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   └── sous_pss.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── tout_employeur.yaml
+│   │   │   │   ├── formation
+│   │   │   │   │   ├── 10_salaries_ou_plus
+│   │   │   │   │   │   ├── conges_de_formation.yaml
+│   │   │   │   │   │   ├── contrats_et_periodes_de_professionnalisation_et_dif.yaml
+│   │   │   │   │   │   ├── cotisation_formation_alternee.yaml
+│   │   │   │   │   │   └── index.yaml
+│   │   │   │   │   ├── 11_salaries_et_plus.yaml
+│   │   │   │   │   ├── decomposition_du_taux_employeur_de_50_a_300_salaries.yaml
+│   │   │   │   │   ├── employeur
+│   │   │   │   │   │   ├── 20_salaries_et_plus.yaml
+│   │   │   │   │   │   ├── de_10_a_19_salaries.yaml
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   ├── moins_de_10_salaries.yaml
+│   │   │   │   │   │   └── moins_de_11_salaries.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── moins_de_10_salaries
+│   │   │   │   │   │   ├── contribution_sur_contrats_d_insertion_en_alternance.yaml
+│   │   │   │   │   │   └── index.yaml
+│   │   │   │   │   └── toute_entreprise
+│   │   │   │   │       ├── index.yaml
+│   │   │   │   │       └── salaires_cdd.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── ircantec
+│   │   │   │   │   ├── employeur.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── salarie.yaml
+│   │   │   │   │   ├── taux_d_appel.yaml
+│   │   │   │   │   └── taux_de_cotisations_contractuels
+│   │   │   │   │       ├── index.yaml
+│   │   │   │   │       ├── tranche_a
+│   │   │   │   │       │   ├── agent.yaml
+│   │   │   │   │       │   ├── employeur.yaml
+│   │   │   │   │       │   └── index.yaml
+│   │   │   │   │       └── tranche_b
+│   │   │   │   │           ├── agent.yaml
+│   │   │   │   │           ├── employeur.yaml
+│   │   │   │   │           └── index.yaml
+│   │   │   │   ├── mmid
+│   │   │   │   │   ├── employeur.yaml
+│   │   │   │   │   ├── employeur2.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── reduction_65_ans.yaml
+│   │   │   │   │   ├── salarie.yaml
+│   │   │   │   │   └── salarie2.yaml
+│   │   │   │   ├── rafp
+│   │   │   │   │   ├── employeur.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── salarie.yaml
+│   │   │   │   ├── vieillesse_deplafonnee
+│   │   │   │   │   ├── employeur.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── salarie.yaml
+│   │   │   │   └── vieillesse_plafonnee
+│   │   │   │       ├── employeur.yaml
+│   │   │   │       ├── index.yaml
+│   │   │   │       └── salarie.yaml
+│   │   │   ├── csa
+│   │   │   │   ├── index.yaml
+│   │   │   │   └── sur_tout_salaire
+│   │   │   │       ├── employeurs.yaml
+│   │   │   │       └── index.yaml
+│   │   │   ├── css_chom
+│   │   │   │   ├── cotisation_speciale_assurance_maladie
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   └── participation_retraite_complementaire
+│   │   │   │       ├── assiette_sjr
+│   │   │   │       │   ├── affiliation_3_6_mois.yaml
+│   │   │   │       │   ├── affiliation_6_mois.yaml
+│   │   │   │       │   └── index.yaml
+│   │   │   │       ├── index.yaml
+│   │   │   │       └── taux
+│   │   │   │           ├── affiliation_3_6_mois.yaml
+│   │   │   │           ├── affiliation_6_mois.yaml
+│   │   │   │           └── index.yaml
+│   │   │   ├── deces_ac
+│   │   │   │   ├── artisans
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── sous_pss.yaml
+│   │   │   │   ├── commercants_industriels
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── montant_forfaitaire_total.yaml
+│   │   │   │   │   └── sous_pss.yaml
+│   │   │   │   └── index.yaml
+│   │   │   ├── famille_ind
+│   │   │   │   ├── entre_10_000_frf_et_1_pss.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── revenu_professionnel_total.yaml
+│   │   │   │   ├── si_revenu_d_activite_110_pss.yaml
+│   │   │   │   ├── si_revenu_d_activite_140_pss.yaml
+│   │   │   │   ├── sous_10_000_frf.yaml
+│   │   │   │   └── sous_pss.yaml
+│   │   │   ├── fillon
+│   │   │   │   ├── ensemble_des_entreprises
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── plafond.yaml
+│   │   │   │   │   └── reduction_maximale
+│   │   │   │   │       ├── entreprises_de_20_salaries_et_plus.yaml
+│   │   │   │   │       ├── entreprises_de_moins_de_20_salaries.yaml
+│   │   │   │   │       └── index.yaml
+│   │   │   │   ├── entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── plafond.yaml
+│   │   │   │   │   └── reduction_maximale.yaml
+│   │   │   │   ├── entreprises_restees_aux_39_heures_hebdomadaires_au_30_06_2003
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── plafond.yaml
+│   │   │   │   │   └── reduction_maximale.yaml
+│   │   │   │   └── index.yaml
+│   │   │   ├── fin_syndic
+│   │   │   │   ├── index.yaml
+│   │   │   │   └── taux.yaml
+│   │   │   ├── forfait_social
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── seuil_effectif_prevoyance_complementaire.yaml
+│   │   │   │   ├── taux_plein.yaml
+│   │   │   │   ├── taux_reduit.yaml
+│   │   │   │   ├── taux_reduit_1.yaml
+│   │   │   │   └── taux_reduit_2.yaml
+│   │   │   ├── formation_ac
+│   │   │   │   ├── artisans_sous_pss.yaml
+│   │   │   │   ├── commercants_industriels
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── sous_pss.yaml
+│   │   │   │   └── index.yaml
+│   │   │   ├── formation_pl
+│   │   │   │   ├── formation_professionnelle
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── sous_pss.yaml
+│   │   │   │   └── index.yaml
+│   │   │   ├── gmp
+│   │   │   │   ├── cotisation_forfaitaire_annuelle_en_euros.yaml
+│   │   │   │   ├── cotisation_forfaitaire_mensuelle_en_euros
+│   │   │   │   │   ├── cotisation_totale.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── part_patronale.yaml
+│   │   │   │   │   └── part_salariale.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   └── salaire_charniere_annuel.yaml
+│   │   │   ├── index.yaml
+│   │   │   ├── mmid_ac
+│   │   │   │   ├── assures_actifs
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── sous_4_pss.yaml
+│   │   │   │   │   ├── sous_5_pss.yaml
+│   │   │   │   │   ├── sous_5_pss_supplement_pour_les_artisans_verse_au_titre_des_indemnites_journalieres_ij.yaml
+│   │   │   │   │   ├── sous_pss.yaml
+│   │   │   │   │   └── toute_remuneration.yaml
+│   │   │   │   ├── assures_retraites
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── pension_totale.yaml
+│   │   │   │   │   ├── pensions_sous_5_pss.yaml
+│   │   │   │   │   ├── sous_4_pss.yaml
+│   │   │   │   │   └── sous_pss.yaml
+│   │   │   │   └── index.yaml
+│   │   │   ├── mmid_am
+│   │   │   │   ├── allocations_chomage_et_preretraite.yaml
+│   │   │   │   ├── avantages_vieillesses.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   └── salaries
+│   │   │   │       ├── index.yaml
+│   │   │   │       ├── sous_plafond.yaml
+│   │   │   │       └── sur_tout_salaire.yaml
+│   │   │   ├── mmid_cl
+│   │   │   │   ├── fp_hospitaliers_collectivites_locales
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── sous_plafond
+│   │   │   │   │   │   ├── agent.yaml
+│   │   │   │   │   │   ├── employeur.yaml
+│   │   │   │   │   │   └── index.yaml
+│   │   │   │   │   └── tout_traitement
+│   │   │   │   │       ├── agent.yaml
+│   │   │   │   │       ├── employeur.yaml
+│   │   │   │   │       └── index.yaml
+│   │   │   │   └── index.yaml
+│   │   │   ├── mmid_etat
+│   │   │   │   ├── fp_etat
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── sous_pss
+│   │   │   │   │   │   ├── agent.yaml
+│   │   │   │   │   │   ├── employeur.yaml
+│   │   │   │   │   │   └── index.yaml
+│   │   │   │   │   └── tout_traitement
+│   │   │   │   │       ├── agent.yaml
+│   │   │   │   │       ├── employeur.yaml
+│   │   │   │   │       └── index.yaml
+│   │   │   │   └── index.yaml
+│   │   │   ├── mmid_pl
+│   │   │   │   ├── assures_actifs
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── sous_4_pss.yaml
+│   │   │   │   │   ├── sous_5_pss.yaml
+│   │   │   │   │   ├── sous_pss.yaml
+│   │   │   │   │   └── toute_remuneration.yaml
+│   │   │   │   ├── assures_retraites
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── pension_totale.yaml
+│   │   │   │   │   ├── pensions_sous_4_pss.yaml
+│   │   │   │   │   ├── pensions_sous_5_pss.yaml
+│   │   │   │   │   └── pensions_sous_pss.yaml
+│   │   │   │   └── index.yaml
+│   │   │   ├── mmid_ret
+│   │   │   │   ├── avantages_de_retraite
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── regime_general.yaml
+│   │   │   │   │   └── regimes_comp.yaml
+│   │   │   │   └── index.yaml
+│   │   │   ├── prevoyance
+│   │   │   │   ├── index.yaml
+│   │   │   │   └── taux.yaml
+│   │   │   ├── prevoyance_deces_cadres
+│   │   │   │   ├── employeur_sous_plafond.yaml
+│   │   │   │   └── index.yaml
+│   │   │   ├── pss
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── plafond_de_la_securite_sociale_annuel.yaml
+│   │   │   │   └── plafond_de_la_securite_sociale_mensuel.yaml
+│   │   │   ├── red_a
+│   │   │   │   ├── accidents_du_travail
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── sous_pss
+│   │   │   │   │       ├── employeurs_france_hors_am.yaml
+│   │   │   │   │       └── index.yaml
+│   │   │   │   ├── allocations_familiales
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── sous_pss
+│   │   │   │   │       ├── employeurs.yaml
+│   │   │   │   │       └── index.yaml
+│   │   │   │   ├── assurance_maladie
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── sous_pss
+│   │   │   │   │   │   ├── employe_am
+│   │   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   │   ├── moins_de_65_ans.yaml
+│   │   │   │   │   │   │   └── plus_de_65_ans.yaml
+│   │   │   │   │   │   ├── employe_hors_am
+│   │   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   │   ├── moins_de_65_ans.yaml
+│   │   │   │   │   │   │   └── plus_de_65_ans.yaml
+│   │   │   │   │   │   ├── employeur.yaml
+│   │   │   │   │   │   └── index.yaml
+│   │   │   │   │   └── sur_tout_salaire
+│   │   │   │   │       ├── employe.yaml
+│   │   │   │   │       ├── employeurs.yaml
+│   │   │   │   │       └── index.yaml
+│   │   │   │   ├── assurance_vieillesse
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── sous_pss
+│   │   │   │   │       ├── employes.yaml
+│   │   │   │   │       ├── employeurs.yaml
+│   │   │   │   │       └── index.yaml
+│   │   │   │   ├── assurances_sociales_avant_1967
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── sous_pss
+│   │   │   │   │       ├── employe_am
+│   │   │   │   │       │   ├── index.yaml
+│   │   │   │   │       │   ├── moins_de_65_ans.yaml
+│   │   │   │   │       │   └── plus_de_65_ans.yaml
+│   │   │   │   │       ├── employe_hors_am
+│   │   │   │   │       │   ├── index.yaml
+│   │   │   │   │       │   ├── moins_de_65_ans.yaml
+│   │   │   │   │       │   └── plus_de_65_ans.yaml
+│   │   │   │   │       ├── employeur.yaml
+│   │   │   │   │       └── index.yaml
+│   │   │   │   └── index.yaml
+│   │   │   ├── red_j
+│   │   │   │   ├── accidents_travail_sous_pss
+│   │   │   │   │   ├── employeurs_am
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   ├── presse_periodique.yaml
+│   │   │   │   │   │   └── presse_quotidienne.yaml
+│   │   │   │   │   ├── employeurs_france_hors_am
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   ├── presse_periodique.yaml
+│   │   │   │   │   │   └── presse_quotidienne.yaml
+│   │   │   │   │   └── index.yaml
+│   │   │   │   ├── allocations_familiales
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── sous_pss
+│   │   │   │   │       ├── employeurs.yaml
+│   │   │   │   │       └── index.yaml
+│   │   │   │   ├── assurance_maladie
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── sous_pss
+│   │   │   │   │   │   ├── employe_am
+│   │   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   │   ├── moins_de_65_ans.yaml
+│   │   │   │   │   │   │   └── plus_de_65_ans.yaml
+│   │   │   │   │   │   ├── employe_hors_am
+│   │   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   │   ├── moins_de_65_ans.yaml
+│   │   │   │   │   │   │   └── plus_de_65_ans.yaml
+│   │   │   │   │   │   ├── employeur.yaml
+│   │   │   │   │   │   └── index.yaml
+│   │   │   │   │   └── totalite_remuneration
+│   │   │   │   │       ├── employe.yaml
+│   │   │   │   │       ├── employeur.yaml
+│   │   │   │   │       └── index.yaml
+│   │   │   │   ├── assurance_vieillesse
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── sous_pss
+│   │   │   │   │       ├── employes.yaml
+│   │   │   │   │       ├── employeurs.yaml
+│   │   │   │   │       └── index.yaml
+│   │   │   │   ├── assurances_sociales_avant_1967
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── sous_pss
+│   │   │   │   │       ├── employe_am
+│   │   │   │   │       │   ├── index.yaml
+│   │   │   │   │       │   ├── moins_de_65_ans.yaml
+│   │   │   │   │       │   └── plus_de_65_ans.yaml
+│   │   │   │   │       ├── employe_hors_am
+│   │   │   │   │       │   ├── index.yaml
+│   │   │   │   │       │   ├── moins_de_65_ans.yaml
+│   │   │   │   │       │   └── plus_de_65_ans.yaml
+│   │   │   │   │       ├── employeur.yaml
+│   │   │   │   │       └── index.yaml
+│   │   │   │   └── index.yaml
+│   │   │   ├── red_m
+│   │   │   │   ├── accidents_travail
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── sous_pss
+│   │   │   │   │       ├── employeur.yaml
+│   │   │   │   │       └── index.yaml
+│   │   │   │   ├── allocations_familiales
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── sous_pss
+│   │   │   │   │       ├── employeurs_sous_pss.yaml
+│   │   │   │   │       └── index.yaml
+│   │   │   │   ├── assurance_maladie
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── sous_pss
+│   │   │   │   │   │   ├── employe_am
+│   │   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   │   ├── moins_de_65_ans.yaml
+│   │   │   │   │   │   │   └── plus_de_65_ans.yaml
+│   │   │   │   │   │   ├── employe_hors_am
+│   │   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   │   ├── moins_de_65_ans.yaml
+│   │   │   │   │   │   │   └── plus_de_65_ans.yaml
+│   │   │   │   │   │   ├── employeur.yaml
+│   │   │   │   │   │   └── index.yaml
+│   │   │   │   │   └── totalite_remuneration
+│   │   │   │   │       ├── employe.yaml
+│   │   │   │   │       ├── employeur.yaml
+│   │   │   │   │       └── index.yaml
+│   │   │   │   ├── assurance_vieillesse
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── sous_pss
+│   │   │   │   │       ├── employe
+│   │   │   │   │       │   ├── index.yaml
+│   │   │   │   │       │   ├── moins_de_65_ans.yaml
+│   │   │   │   │       │   └── plus_de_65_ans.yaml
+│   │   │   │   │       ├── employeur.yaml
+│   │   │   │   │       └── index.yaml
+│   │   │   │   ├── assurances_sociales
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── sous_pss
+│   │   │   │   │       ├── employe_am_sous_pss
+│   │   │   │   │       │   ├── index.yaml
+│   │   │   │   │       │   ├── moins_de_65_ans.yaml
+│   │   │   │   │       │   └── plus_de_65_ans.yaml
+│   │   │   │   │       ├── employe_hors_am
+│   │   │   │   │       │   ├── index.yaml
+│   │   │   │   │       │   ├── moins_de_65_ans.yaml
+│   │   │   │   │       │   └── plus_de_65_ans.yaml
+│   │   │   │   │       ├── employeur_sous_pss.yaml
+│   │   │   │   │       └── index.yaml
+│   │   │   │   └── index.yaml
+│   │   │   ├── ret_ac
+│   │   │   │   ├── artisans
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── sous_pss.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── industriels_et_commercants
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── sous_pss.yaml
+│   │   │   │   └── tous_independants
+│   │   │   │       ├── index.yaml
+│   │   │   │       └── tout_salaire.yaml
+│   │   │   ├── ret_comp_ac
+│   │   │   │   ├── artisans
+│   │   │   │   │   ├── entre_1_et_4_pss.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── sous_1_pss.yaml
+│   │   │   │   │   ├── sous_3_pss.yaml
+│   │   │   │   │   └── sous_4_pss.yaml
+│   │   │   │   ├── artisans_industriels_commercants
+│   │   │   │   │   ├── entre_1_plafond_rci_et_4_plafonds_pss.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── montant_du_plafond_rci.yaml
+│   │   │   │   │   └── sous_plafond_rci.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   └── industriels_commercants
+│   │   │   │       ├── index.yaml
+│   │   │   │       └── sous_3_pss.yaml
+│   │   │   ├── ret_comp_pl
+│   │   │   │   ├── agents_generaux_d_assurance
+│   │   │   │   │   ├── commissions_et_remunerations_brutes_dans_la_limite_d_un_plafond.yaml
+│   │   │   │   │   └── index.yaml
+│   │   │   │   ├── chirurgiens_dentistes_sages_femmes_depuis_janvier_2009
+│   │   │   │   │   ├── entre_0_85_et_5_pss.yaml
+│   │   │   │   │   └── index.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── infirmiers_masseurs_kine_orthophonistes_orthoptistes.yaml
+│   │   │   │   ├── medecins
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── sous_3_5_pss
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   └── retraite_complementaire.yaml
+│   │   │   │   │   └── sous_5_pss
+│   │   │   │   │       ├── index.yaml
+│   │   │   │   │       └── regime_supplementaire_obligatoire_pour_les_medecins_conventionnes_asv.yaml
+│   │   │   │   ├── notaires.yaml
+│   │   │   │   └── pharmaciens
+│   │   │   │       ├── index.yaml
+│   │   │   │       └── sous_5_pss.yaml
+│   │   │   ├── ret_etat
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── taux_employeur_explicite
+│   │   │   │   │   ├── ati.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── pensions_civils.yaml
+│   │   │   │   │   └── pensions_militaires.yaml
+│   │   │   │   └── taux_implicite.yaml
+│   │   │   ├── ret_pl
+│   │   │   │   ├── assurance_vieillesse
+│   │   │   │   │   ├── entre_0_85_et_5_pss.yaml
+│   │   │   │   │   ├── entre_1_et_5_pss.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── sous_0_85_pss.yaml
+│   │   │   │   │   ├── sous_1_pss.yaml
+│   │   │   │   │   └── sous_5_pss.yaml
+│   │   │   │   └── index.yaml
+│   │   │   ├── retraites_chapeau
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── majoration.yaml
+│   │   │   │   ├── taux_1.yaml
+│   │   │   │   ├── taux_2.yaml
+│   │   │   │   └── taux_3.yaml
+│   │   │   ├── rp
+│   │   │   │   ├── index.yaml
+│   │   │   │   └── retenues.yaml
+│   │   │   ├── sncf
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── regime_de_retraite
+│   │   │   │   │   ├── cotisations_employes.yaml
+│   │   │   │   │   ├── cotisations_employeur
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   ├── t1.yaml
+│   │   │   │   │   │   └── t2.yaml
+│   │   │   │   │   └── index.yaml
+│   │   │   │   └── regime_prevoyance
+│   │   │   │       ├── employeurs.yaml
+│   │   │   │       ├── index.yaml
+│   │   │   │       └── salaries.yaml
+│   │   │   ├── ss
+│   │   │   │   ├── index.yaml
+│   │   │   │   └── salaire_sous_pss
+│   │   │   │       ├── cotisation_ouvriere
+│   │   │   │       │   ├── index.yaml
+│   │   │   │       │   ├── moins_de_65_ans.yaml
+│   │   │   │       │   └── plus_de_65_ans.yaml
+│   │   │   │       ├── cotisation_patronale.yaml
+│   │   │   │       └── index.yaml
+│   │   │   ├── taxsal
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── majoration1.yaml
+│   │   │   │   ├── majoration2.yaml
+│   │   │   │   ├── majoration_3.yaml
+│   │   │   │   ├── plafond1.yaml
+│   │   │   │   ├── plafond2.yaml
+│   │   │   │   ├── plafond_3.yaml
+│   │   │   │   ├── taux1.yaml
+│   │   │   │   ├── taux_guadeloupe_martinique_reunion.yaml
+│   │   │   │   └── taux_guyane.yaml
+│   │   │   ├── tehr
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── plafond_en_du_chiffre_d_affaire_de_l_entreprises.yaml
+│   │   │   │   ├── seuil.yaml
+│   │   │   │   └── taux.yaml
+│   │   │   ├── veuvage
+│   │   │   │   ├── index.yaml
+│   │   │   │   └── salaries
+│   │   │   │       ├── index.yaml
+│   │   │   │       ├── sous_plafond.yaml
+│   │   │   │       └── sur_tout_salaire.yaml
+│   │   │   ├── vfs
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── majoration1.yaml
+│   │   │   │   ├── majoration2.yaml
+│   │   │   │   ├── plafond1.yaml
+│   │   │   │   ├── plafond2.yaml
+│   │   │   │   ├── taux1.yaml
+│   │   │   │   └── taux_sur_les_pensions.yaml
+│   │   │   └── vt
+│   │   │       ├── bourg_en_bresse.yaml
+│   │   │       ├── essonne.yaml
+│   │   │       ├── hauts_de_seine.yaml
+│   │   │       ├── index.yaml
+│   │   │       ├── lyon.yaml
+│   │   │       ├── marseille.yaml
+│   │   │       ├── paris.yaml
+│   │   │       ├── seine_saint_denis.yaml
+│   │   │       ├── taux_maximal_hors_ile_de_france
+│   │   │       │   ├── index.yaml
+│   │   │       │   ├── sous_pss.yaml
+│   │   │       │   └── tout_salaire.yaml
+│   │   │       ├── toulouse.yaml
+│   │   │       ├── val_d_oise.yaml
+│   │   │       └── val_de_marne.yaml
+│   │   ├── prestations
+│   │   │   ├── aa_m
+│   │   │   │   ├── index.yaml
+│   │   │   │   └── montant_de_l_allocation_d_adoption_en_de_la_bmaf.yaml
+│   │   │   ├── afg_c
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── montant_mensuel_maximum_1.yaml
+│   │   │   │   └── nombre_minimal_d_enfants_a_charge.yaml
+│   │   │   ├── afg_plaf
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── plafond_de_ressources_pour_2_revenus
+│   │   │   │   │   ├── 1_enfant.yaml
+│   │   │   │   │   ├── 2_enfants.yaml
+│   │   │   │   │   ├── 3_enfants.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── par_enfant_supplementaire.yaml
+│   │   │   │   ├── plafond_de_ressources_pour_un_revenu
+│   │   │   │   │   ├── 1_enfant.yaml
+│   │   │   │   │   ├── 2_enfants.yaml
+│   │   │   │   │   ├── 3_enfants.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── par_enfant_supplementaire.yaml
+│   │   │   │   └── plafond_unique_montant_mensuel_max_majoration_du_s_u.yaml
+│   │   │   ├── aides_logement
+│   │   │   │   ├── R0
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── taux1pac.yaml
+│   │   │   │   │   ├── taux2pac.yaml
+│   │   │   │   │   ├── taux3pac.yaml
+│   │   │   │   │   ├── taux4pac.yaml
+│   │   │   │   │   ├── taux5pac.yaml
+│   │   │   │   │   ├── taux6pac.yaml
+│   │   │   │   │   ├── taux_couple.yaml
+│   │   │   │   │   ├── taux_pac_supp.yaml
+│   │   │   │   │   └── taux_seul.yaml
+│   │   │   │   ├── al_charge
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── personne_isolee_ou_menage_seul
+│   │   │   │   │       ├── cas_des_colocataires_ou_des_proprietaires_1.yaml
+│   │   │   │   │       └── index.yaml
+│   │   │   │   ├── al_min
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── montant_min_mensuel
+│   │   │   │   │       ├── apl1_foyer.yaml
+│   │   │   │   │       ├── apl2_foyer.yaml
+│   │   │   │   │       ├── index.yaml
+│   │   │   │   │       └── montant_min_apl_al.yaml
+│   │   │   │   ├── al_pac.yaml
+│   │   │   │   ├── al_param2
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── plafond_de_r0
+│   │   │   │   │       ├── foyers_avec_1_personne_a_charge_en_du_r0.yaml
+│   │   │   │   │       ├── foyers_avec_2_personnes_a_charge_en_du_r0.yaml
+│   │   │   │   │       ├── foyers_avec_3_personnes_a_charge_en_du_r0.yaml
+│   │   │   │   │       ├── foyers_avec_4_personnes_a_charge_et_plus_en_du_r0.yaml
+│   │   │   │   │       ├── foyers_sans_personne_a_charge_en_du_r0.yaml
+│   │   │   │   │       └── index.yaml
+│   │   │   │   ├── autres
+│   │   │   │   │   ├── abat_sal.yaml
+│   │   │   │   │   ├── abattement_forfaitaire.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── nr_seuil.yaml
+│   │   │   │   ├── forfait_charges
+│   │   │   │   │   ├── cas_general.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── majoration_par_enfant.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── loyers_plafond
+│   │   │   │   │   ├── autre.yaml
+│   │   │   │   │   ├── chambre.yaml
+│   │   │   │   │   ├── colocation.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── par_zone
+│   │   │   │   │       ├── zone_1
+│   │   │   │   │       │   ├── couples.yaml
+│   │   │   │   │       │   ├── degressivite.yaml
+│   │   │   │   │       │   ├── index.yaml
+│   │   │   │   │       │   ├── majoration_par_enf_supp.yaml
+│   │   │   │   │       │   ├── personnes_seules.yaml
+│   │   │   │   │       │   ├── suppression.yaml
+│   │   │   │   │       │   └── un_enfant.yaml
+│   │   │   │   │       ├── zone_2
+│   │   │   │   │       │   ├── couples.yaml
+│   │   │   │   │       │   ├── degressivite.yaml
+│   │   │   │   │       │   ├── index.yaml
+│   │   │   │   │       │   ├── majoration_par_enf_supp.yaml
+│   │   │   │   │       │   ├── personnes_seules.yaml
+│   │   │   │   │       │   ├── suppression.yaml
+│   │   │   │   │       │   └── un_enfant.yaml
+│   │   │   │   │       └── zone_3
+│   │   │   │   │           ├── couples.yaml
+│   │   │   │   │           ├── degressivite.yaml
+│   │   │   │   │           ├── index.yaml
+│   │   │   │   │           ├── majoration_par_enf_supp.yaml
+│   │   │   │   │           ├── personnes_seules.yaml
+│   │   │   │   │           ├── suppression.yaml
+│   │   │   │   │           └── un_enfant.yaml
+│   │   │   │   ├── participation_min
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── montant_forfaitaire.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   ├── patrimoine
+│   │   │   │   │   └── seuil_valorisation.yaml
+│   │   │   │   ├── r1
+│   │   │   │   │   ├── couple_sans_enf.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── majoration_enfant_a_charge_supp.yaml
+│   │   │   │   │   ├── majoration_enfant_supp_a_charge_supp.yaml
+│   │   │   │   │   ├── personne_isolee.yaml
+│   │   │   │   │   ├── personne_isolee_ou_couple_avec_1_enf.yaml
+│   │   │   │   │   └── personne_isolee_ou_couple_avec_2_enf.yaml
+│   │   │   │   ├── r2
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── majoration_par_enf_supp_a_charge.yaml
+│   │   │   │   │   ├── personnes_isolees_ou_couples_avec_2_enf.yaml
+│   │   │   │   │   └── taux3_dom.yaml
+│   │   │   │   ├── ressources
+│   │   │   │   │   ├── abattement_chomage_indemnise.yaml
+│   │   │   │   │   ├── dar_1.yaml
+│   │   │   │   │   ├── dar_10.yaml
+│   │   │   │   │   ├── dar_11.yaml
+│   │   │   │   │   ├── dar_12.yaml
+│   │   │   │   │   ├── dar_2.yaml
+│   │   │   │   │   ├── dar_2_2.yaml
+│   │   │   │   │   ├── dar_3.yaml
+│   │   │   │   │   ├── dar_4.yaml
+│   │   │   │   │   ├── dar_5.yaml
+│   │   │   │   │   ├── dar_6.yaml
+│   │   │   │   │   ├── dar_7.yaml
+│   │   │   │   │   ├── dar_8.yaml
+│   │   │   │   │   ├── dar_9.yaml
+│   │   │   │   │   ├── efress
+│   │   │   │   │   │   ├── dar_2a.yaml
+│   │   │   │   │   │   ├── dar_2b.yaml
+│   │   │   │   │   │   ├── dar_3a.yaml
+│   │   │   │   │   │   ├── dar_3b.yaml
+│   │   │   │   │   │   └── index.yaml
+│   │   │   │   │   └── index.yaml
+│   │   │   │   ├── rmi.yaml
+│   │   │   │   ├── taux_participation_fam
+│   │   │   │   │   ├── dom
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   ├── taux1.yaml
+│   │   │   │   │   │   ├── taux2.yaml
+│   │   │   │   │   │   ├── taux3.yaml
+│   │   │   │   │   │   ├── taux4.yaml
+│   │   │   │   │   │   ├── taux5.yaml
+│   │   │   │   │   │   ├── taux6.yaml
+│   │   │   │   │   │   ├── taux7.yaml
+│   │   │   │   │   │   └── taux8.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── taux_1_adulte.yaml
+│   │   │   │   │   ├── taux_1_enf.yaml
+│   │   │   │   │   ├── taux_2_adulte.yaml
+│   │   │   │   │   ├── taux_2_enf.yaml
+│   │   │   │   │   ├── taux_3_enf.yaml
+│   │   │   │   │   ├── taux_4_enf.yaml
+│   │   │   │   │   └── taux_enf_supp.yaml
+│   │   │   │   └── taux_participation_loyer
+│   │   │   │       ├── debut_de_la_2eme_tranche_pour_le_calcul_de_tl_et_fin_de_la_1ere_tranche.yaml
+│   │   │   │       ├── debut_de_la_3eme_tranche_pour_le_calcul_de_tl.yaml
+│   │   │   │       ├── index.yaml
+│   │   │   │       ├── minorant_pour_la_1e_tranche.yaml
+│   │   │   │       ├── minorant_pour_la_2e_tranche.yaml
+│   │   │   │       ├── minorant_pour_la_3e_tranche.yaml
+│   │   │   │       ├── taux_tranche_1.yaml
+│   │   │   │       ├── taux_tranche_2.yaml
+│   │   │   │       └── taux_tranche_3.yaml
+│   │   │   ├── ajpp
+│   │   │   │   ├── duree_de_l_allocation_annees.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── montant_en_de_la_bmaf
+│   │   │   │   │   ├── couple.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── personne_seule.yaml
+│   │   │   │   └── nombre_max_d_allocations_journalieres_par_mois.yaml
+│   │   │   ├── al_etudiant
+│   │   │   │   ├── autres_dont_les_etudiants_en_chambres_rehabilitees_de_residences_universitaires
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── menages.yaml
+│   │   │   │   │   └── personnes_isolees.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   └── loyer_considere_comme_paye_par_les_etudiants_logeant_en_residence_universitaire
+│   │   │   │       ├── index.yaml
+│   │   │   │       ├── menages.yaml
+│   │   │   │       └── personnes_isolees.yaml
+│   │   │   ├── al_param
+│   │   │   │   ├── constante_du_coefficient_k.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── intervalles_de_ressources_consideres.yaml
+│   │   │   │   ├── majoration_du_loyer_minimum_lo.yaml
+│   │   │   │   ├── multiplicateur_de_n_dans_la_formule_de_k.yaml
+│   │   │   │   ├── parametre_n
+│   │   │   │   │   ├── al
+│   │   │   │   │   │   ├── 1_personne_a_charge.yaml
+│   │   │   │   │   │   ├── 2_personnes_a_charge.yaml
+│   │   │   │   │   │   ├── 3_personnes_a_charge.yaml
+│   │   │   │   │   │   ├── 4_personnes_a_charge.yaml
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   ├── isole_0_personne_a_charge.yaml
+│   │   │   │   │   │   ├── majoration_n_par_personne_a_charge_supplementaire.yaml
+│   │   │   │   │   │   └── menage_0_personnes_a_charge.yaml
+│   │   │   │   │   └── apl
+│   │   │   │   │       ├── 1_personne_a_charge.yaml
+│   │   │   │   │       ├── 2_personnes_a_charge.yaml
+│   │   │   │   │       ├── 3_personnes_a_charge.yaml
+│   │   │   │   │       ├── 4_personnes_a_charge.yaml
+│   │   │   │   │       ├── index.yaml
+│   │   │   │   │       ├── isole_0_personne_a_charge.yaml
+│   │   │   │   │       ├── majoration_n_par_personne_a_charge_supplementaire.yaml
+│   │   │   │   │       └── menage_0_personnes_a_charge.yaml
+│   │   │   │   ├── seuils
+│   │   │   │   │   ├── 1ere_tranche.yaml
+│   │   │   │   │   ├── 2eme_tranche.yaml
+│   │   │   │   │   ├── 3eme_tranche.yaml
+│   │   │   │   │   ├── 4eme_tranche_et_debut_5eme_tranche.yaml
+│   │   │   │   │   └── index.yaml
+│   │   │   │   └── taux_pour_le_loyer_minimum_lo_en_al_accession
+│   │   │   │       ├── 1ere_tranche.yaml
+│   │   │   │       ├── 2eme_tranche.yaml
+│   │   │   │       ├── 3eme_tranche.yaml
+│   │   │   │       ├── 4eme_tranche.yaml
+│   │   │   │       ├── 5eme_tranche.yaml
+│   │   │   │       └── index.yaml
+│   │   │   ├── al_param_accal
+│   │   │   │   ├── bareme_loyer_minimum_lo.yaml
+│   │   │   │   ├── bareme_loyer_minimum_lo_apl1.yaml
+│   │   │   │   ├── constante_du_coefficient_k.yaml
+│   │   │   │   ├── constante_du_coefficient_k_apl1.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── majoration_du_loyer_minimum_lo.yaml
+│   │   │   │   ├── majoration_du_loyer_minimum_lo_apl1.yaml
+│   │   │   │   └── multiplicateur_de_n.yaml
+│   │   │   ├── al_param_accapl
+│   │   │   │   ├── constante_du_coefficient_k.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── majoration_du_loyer_minimum_lo.yaml
+│   │   │   │   ├── multiplicateur_de_n
+│   │   │   │   │   ├── dans_la_formule_de_ka.yaml
+│   │   │   │   │   ├── dans_la_formule_de_kl.yaml
+│   │   │   │   │   ├── dans_la_formule_de_kl_numerateur.yaml
+│   │   │   │   │   └── index.yaml
+│   │   │   │   ├── seuils_de_revenus
+│   │   │   │   │   ├── 1ere_tranche.yaml
+│   │   │   │   │   ├── 2eme_tranche.yaml
+│   │   │   │   │   ├── 3eme_tranche.yaml
+│   │   │   │   │   ├── 4eme_tranche_et_debut_5eme_tranche.yaml
+│   │   │   │   │   ├── 5eme_tranche_et_debut_6eme_tranche.yaml
+│   │   │   │   │   └── index.yaml
+│   │   │   │   └── taux_pour_le_loyer_minimum_lo_pour_l_apl_accession
+│   │   │   │       ├── 1ere_tranche.yaml
+│   │   │   │       ├── 2eme_tranche.yaml
+│   │   │   │       ├── 3eme_tranche.yaml
+│   │   │   │       ├── 4eme_tranche.yaml
+│   │   │   │       ├── 5eme_tranche.yaml
+│   │   │   │       ├── 6eme_tranche.yaml
+│   │   │   │       └── index.yaml
+│   │   │   ├── al_plaf_loc1
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── plafonds_de_loyer_en_zone_1
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── menage_ou_isole
+│   │   │   │   │   │   ├── avec_1_enfant.yaml
+│   │   │   │   │   │   ├── avec_2_enfants.yaml
+│   │   │   │   │   │   ├── avec_3_enfants.yaml
+│   │   │   │   │   │   ├── avec_4_enfants.yaml
+│   │   │   │   │   │   ├── avec_5_enfants.yaml
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   └── par_enfant_en_plus.yaml
+│   │   │   │   │   └── menage_seul.yaml
+│   │   │   │   └── plafonds_de_loyer_en_zone_2
+│   │   │   │       ├── index.yaml
+│   │   │   │       ├── menage_ou_isole
+│   │   │   │       │   ├── avec_1_enfant.yaml
+│   │   │   │       │   ├── avec_2_enfants.yaml
+│   │   │   │       │   ├── avec_3_enfants.yaml
+│   │   │   │       │   ├── avec_4_enfants.yaml
+│   │   │   │       │   ├── avec_5_enfants.yaml
+│   │   │   │       │   ├── index.yaml
+│   │   │   │       │   └── par_enfant_en_plus.yaml
+│   │   │   │       └── menage_seul.yaml
+│   │   │   ├── al_plafonds_accession
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── zone_1
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── menage_ou_isole_avec_1_enfant.yaml
+│   │   │   │   │   ├── menage_ou_isole_avec_2_enfants.yaml
+│   │   │   │   │   ├── menage_ou_isole_avec_3_enfants.yaml
+│   │   │   │   │   ├── menage_ou_isole_avec_4_enfants.yaml
+│   │   │   │   │   ├── menage_ou_isole_avec_5_enfants.yaml
+│   │   │   │   │   ├── menage_ou_isole_par_enfant_en_plus.yaml
+│   │   │   │   │   ├── menage_seul.yaml
+│   │   │   │   │   └── personne_isolee_sans_enfant.yaml
+│   │   │   │   ├── zone_2
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── menage_ou_isole_avec_1_enfant.yaml
+│   │   │   │   │   ├── menage_ou_isole_avec_2_enfants.yaml
+│   │   │   │   │   ├── menage_ou_isole_avec_3_enfants.yaml
+│   │   │   │   │   ├── menage_ou_isole_avec_4_enfants.yaml
+│   │   │   │   │   ├── menage_ou_isole_avec_5_enfants.yaml
+│   │   │   │   │   ├── menage_ou_isole_par_enfant_en_plus.yaml
+│   │   │   │   │   ├── menage_seul.yaml
+│   │   │   │   │   └── personne_isolee_sans_enfant.yaml
+│   │   │   │   └── zone_3
+│   │   │   │       ├── index.yaml
+│   │   │   │       ├── menage_ou_isole_avec_1_enfant.yaml
+│   │   │   │       ├── menage_ou_isole_avec_2_enfants.yaml
+│   │   │   │       ├── menage_ou_isole_avec_3_enfants.yaml
+│   │   │   │       ├── menage_ou_isole_avec_4_enfants.yaml
+│   │   │   │       ├── menage_ou_isole_avec_5_enfants.yaml
+│   │   │   │       ├── menage_ou_isole_par_enfant_en_plus.yaml
+│   │   │   │       ├── menage_seul.yaml
+│   │   │   │       └── personne_isolee_sans_enfant.yaml
+│   │   │   ├── al_plafonds_logement_foyer
+│   │   │   │   ├── conventionne
+│   │   │   │   │   ├── zone_1.yaml
+│   │   │   │   │   ├── zone_2.yaml
+│   │   │   │   │   └── zone_3.yaml
+│   │   │   │   └── personne_agee
+│   │   │   │       ├── couple.yaml
+│   │   │   │       └── personne_isolee.yaml
+│   │   │   ├── al_plafonds_logement_foyer_crous
+│   │   │   │   ├── non_rehabilitee
+│   │   │   │   │   ├── couple.yaml
+│   │   │   │   │   └── personne_isolee.yaml
+│   │   │   │   └── rehabilitee
+│   │   │   │       ├── couple.yaml
+│   │   │   │       └── personne_isolee.yaml
+│   │   │   ├── amf_m
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── regime_agricole_taux_en_de_la_bmaf
+│   │   │   │   │   ├── 3_enfants_et_de_plus_de_2_ans.yaml
+│   │   │   │   │   ├── au_plus_un_enfant_sans_moins_de_2_ans.yaml
+│   │   │   │   │   ├── deux_enfants_de_plus_de_2_ans.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── un_enfant_et_plus_de_moins_de_2_ans.yaml
+│   │   │   │   └── regime_general_taux_en_de_la_bmaf
+│   │   │   │       ├── au_moins_1_enfant_de_moins_de_2_ans.yaml
+│   │   │   │       ├── index.yaml
+│   │   │   │       ├── plus_de_6_enfants_tous_plus_de_2_ans.yaml
+│   │   │   │       └── points_par_enfant_de_plus_de_2_ans_avec_entre_2_et_6_enfants.yaml
+│   │   │   ├── amf_maj
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── regime_agricole_majoration
+│   │   │   │   │   ├── base.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── montant.yaml
+│   │   │   │   └── regime_general_majoration
+│   │   │   │       ├── base.yaml
+│   │   │   │       ├── index.yaml
+│   │   │   │       └── montant.yaml
+│   │   │   ├── amf_plaf
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── majoration_plafond_pour_la_majoration
+│   │   │   │   │   ├── 1_enfant.yaml
+│   │   │   │   │   ├── 2_enfants.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── par_enfant_supplementaire.yaml
+│   │   │   │   ├── majoration_plafond_pour_le_droit_a_l_amf
+│   │   │   │   │   ├── 4_enfants.yaml
+│   │   │   │   │   ├── 5_enfants.yaml
+│   │   │   │   │   ├── 6_enfants.yaml
+│   │   │   │   │   └── index.yaml
+│   │   │   │   ├── plafond_de_ressources_pour_la_majoration_0_enfant.yaml
+│   │   │   │   └── plafond_de_ressources_pour_le_droit_a_l_amf_3_enfants.yaml
+│   │   │   ├── apn_t_maj
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── majoration_naissance_ou_adoption
+│   │   │   │   │   ├── a_partir_du_2e_enfant.yaml
+│   │   │   │   │   ├── a_partir_du_3e_enfant.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── naissances_multiples.yaml
+│   │   │   │   ├── nombre_de_fractions_de_versement.yaml
+│   │   │   │   ├── taux
+│   │   │   │   │   ├── 1er_versement.yaml
+│   │   │   │   │   ├── dernier_versement.yaml
+│   │   │   │   │   └── index.yaml
+│   │   │   │   └── taux_de_la_base_de_calcul_verse.yaml
+│   │   │   ├── app
+│   │   │   │   ├── duree_maximale_de_l_allocation_annee.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── montant_taux_partiel_bmaf
+│   │   │   │   │   ├── 50_duree_legale_couple.yaml
+│   │   │   │   │   ├── 50_duree_legale_seul.yaml
+│   │   │   │   │   ├── 80_duree_legale_couple.yaml
+│   │   │   │   │   ├── 80_duree_legale_seul.yaml
+│   │   │   │   │   └── index.yaml
+│   │   │   │   └── montant_taux_plein_bmaf
+│   │   │   │       ├── couple.yaml
+│   │   │   │       ├── index.yaml
+│   │   │   │       └── seul.yaml
+│   │   │   ├── aprn_t
+│   │   │   │   ├── index.yaml
+│   │   │   │   └── taux_en_de_la_base
+│   │   │   │       ├── 1er_examen.yaml
+│   │   │   │       ├── 2e_examen.yaml
+│   │   │   │       ├── 3e_examen.yaml
+│   │   │   │       └── index.yaml
+│   │   │   ├── as
+│   │   │   │   ├── allocation_supplementaire_menages.yaml
+│   │   │   │   ├── allocation_supplementaire_personnes_isolees.yaml
+│   │   │   │   ├── complement_exceptionnel.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── plafond_de_ressources_menages.yaml
+│   │   │   │   └── plafond_de_ressources_personnes_seules.yaml
+│   │   │   ├── asu_m
+│   │   │   │   ├── base.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── majoration
+│   │   │   │   │   ├── base.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── montant.yaml
+│   │   │   │   ├── montant
+│   │   │   │   │   ├── 1_enfant_plus_de_2_ans.yaml
+│   │   │   │   │   ├── 2_enfants_plus_de_2_ans.yaml
+│   │   │   │   │   ├── 3_ou_enfants_plus_de_2_ans.yaml
+│   │   │   │   │   ├── au_moins_1_enfant_de_moins_de_2_ans.yaml
+│   │   │   │   │   └── index.yaml
+│   │   │   │   └── taux
+│   │   │   │       ├── 1_enfant_plus_de_2_ans.yaml
+│   │   │   │       ├── 2_enfants_plus_de_2_ans.yaml
+│   │   │   │       ├── 3_ou_enfants_plus_de_2_ans.yaml
+│   │   │   │       ├── au_moins_1_enfant_de_moins_de_2_ans.yaml
+│   │   │   │       └── index.yaml
+│   │   │   ├── asu_plaf
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── plafond_de_ressources_pour_la_majoration_du_salaire_unique
+│   │   │   │   │   ├── 1_enfant.yaml
+│   │   │   │   │   ├── 2_enfants.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── par_enfant_supplementaire.yaml
+│   │   │   │   │   └── sans_enfant.yaml
+│   │   │   │   └── plafond_de_ressources_pour_le_droit_au_salaire_unique
+│   │   │   │       ├── 1_enfant.yaml
+│   │   │   │       ├── 2_enfants.yaml
+│   │   │   │       ├── index.yaml
+│   │   │   │       ├── par_enfant_supplementaire.yaml
+│   │   │   │       └── sans_enfant.yaml
+│   │   │   ├── ata
+│   │   │   │   ├── index.yaml
+│   │   │   │   └── montant_journalier.yaml
+│   │   │   ├── avpf
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── salaire_forfaitaire_de_l_assurance_vieillesse_des_parents_au_foyer_avpf
+│   │   │   │   │   ├── guadeloupe_guyane_martinique.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── metropole.yaml
+│   │   │   │   │   └── reunion.yaml
+│   │   │   │   └── taux.yaml
+│   │   │   ├── avts
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── montants_annuels.yaml
+│   │   │   │   ├── plafonds_de_ressources_menages.yaml
+│   │   │   │   └── plafonds_de_ressources_personnes_seules.yaml
+│   │   │   ├── avts_av_1961
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── majoration_pour_conjoint.yaml
+│   │   │   │   ├── region_parisienne.yaml
+│   │   │   │   ├── villes_de_moins_de_5000_ha
+│   │   │   │   │   ├── allocation_de_base.yaml
+│   │   │   │   │   ├── bonification_pour_enfants.yaml
+│   │   │   │   │   └── index.yaml
+│   │   │   │   └── villes_de_plus_de_5000_ha
+│   │   │   │       ├── allocation_de_base.yaml
+│   │   │   │       ├── bonification_pour_enfants.yaml
+│   │   │   │       └── index.yaml
+│   │   │   ├── def_biactif
+│   │   │   │   ├── index.yaml
+│   │   │   │   └── revenu_professionnel_plancher_pour_les_couples_biactifs
+│   │   │   │       ├── en_nombre_de_fois_de_la_bmaf.yaml
+│   │   │   │       ├── en_pourcentage_du_pss.yaml
+│   │   │   │       └── index.yaml
+│   │   │   ├── def_pac
+│   │   │   │   ├── age_maximal_pour_les_personnes_a_charge_1.yaml
+│   │   │   │   ├── age_maximal_pour_les_personnes_a_charge_en_apprentissage_en_stage_de_formation_ou_donnant_droit_a_l_aes_1.yaml
+│   │   │   │   └── index.yaml
+│   │   │   ├── icaf
+│   │   │   │   ├── 2_enfants_a_charge.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   └── par_enfant_supplementaire.yaml
+│   │   │   ├── index.yaml
+│   │   │   ├── majconj
+│   │   │   │   ├── index.yaml
+│   │   │   │   └── montant_de_la_majoration_pour_conjoint_a_charge.yaml
+│   │   │   ├── majconj_plaf
+│   │   │   │   ├── index.yaml
+│   │   │   │   └── plafond_des_ressources_personnelles_du_conjoint_pour_beneficier_de_la_majoration_pour_personne_a_charge.yaml
+│   │   │   ├── minima_sociaux
+│   │   │   │   ├── aah
+│   │   │   │   │   ├── age_legal_retraite.yaml
+│   │   │   │   │   ├── age_minimal.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── majoration_du_plafond_pour_un_couple.yaml
+│   │   │   │   │   ├── montant.yaml
+│   │   │   │   │   ├── mva.yaml
+│   │   │   │   │   ├── plafond_de_ressources_en_multiple_du_montant_de_base.yaml
+│   │   │   │   │   ├── taux_aah_hospitalise_ou_incarcere.yaml
+│   │   │   │   │   ├── taux_capacite_travail.yaml
+│   │   │   │   │   ├── taux_incapacite.yaml
+│   │   │   │   │   └── tx_plaf_supp.yaml
+│   │   │   │   ├── ada
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── majoration_pers_supp.yaml
+│   │   │   │   │   ├── montant_journalier_pour_une_personne.yaml
+│   │   │   │   │   └── supplement_non_hebergement.yaml
+│   │   │   │   ├── aefa
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── mon_maj.yaml
+│   │   │   │   │   ├── mon_seul.yaml
+│   │   │   │   │   ├── prime_exceptionnelle.yaml
+│   │   │   │   │   ├── tx_2p.yaml
+│   │   │   │   │   ├── tx_3pac.yaml
+│   │   │   │   │   └── tx_supp.yaml
+│   │   │   │   ├── api
+│   │   │   │   │   ├── age_limite.yaml
+│   │   │   │   │   ├── age_pac.yaml
+│   │   │   │   │   ├── base.yaml
+│   │   │   │   │   ├── duree_du_droit_en_mois.yaml
+│   │   │   │   │   ├── femmes_enceintes_sans_enfant_a_charge.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── limite_de_duree_en_mois_1.yaml
+│   │   │   │   │   ├── personne_isolee_avec_un_enfant_a_charge.yaml
+│   │   │   │   │   └── supplement_par_enfant.yaml
+│   │   │   │   ├── asi
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── montant_couple.yaml
+│   │   │   │   │   ├── montant_seul.yaml
+│   │   │   │   │   ├── plafond_ressource_couple.yaml
+│   │   │   │   │   ├── plafond_ressource_seul.yaml
+│   │   │   │   │   └── taux_minimum_d_invalidite.yaml
+│   │   │   │   ├── aspa
+│   │   │   │   │   ├── abattement_forfaitaire_tx_couple.yaml
+│   │   │   │   │   ├── abattement_forfaitaire_tx_seul.yaml
+│   │   │   │   │   ├── age_min.yaml
+│   │   │   │   │   ├── duree_min_titre_sejour.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── maj_3enf.yaml
+│   │   │   │   │   ├── montant_annuel_couple.yaml
+│   │   │   │   │   ├── montant_annuel_seul.yaml
+│   │   │   │   │   ├── plafond_ressources_couple.yaml
+│   │   │   │   │   ├── plafond_ressources_seul.yaml
+│   │   │   │   │   └── taux_incapacite_aspa_anticipe.yaml
+│   │   │   │   ├── ass
+│   │   │   │   │   ├── abat_rev_non_subst_conj.yaml
+│   │   │   │   │   ├── abat_rev_subst_conj.yaml
+│   │   │   │   │   ├── age_max.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── montant_maj.yaml
+│   │   │   │   │   ├── montant_plein.yaml
+│   │   │   │   │   ├── montant_plein_mayotte.yaml
+│   │   │   │   │   ├── plaf_coup.yaml
+│   │   │   │   │   └── plaf_seul.yaml
+│   │   │   │   ├── caah
+│   │   │   │   │   ├── cpltx.yaml
+│   │   │   │   │   ├── garantie_ressources.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── majoration_vie_autonome.yaml
+│   │   │   │   │   ├── montant_complement_ressources.yaml
+│   │   │   │   │   └── taux_du_montant_mensuel_du_complement_aux_adultes_handicape_2.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── ppa
+│   │   │   │   │   ├── age_min.yaml
+│   │   │   │   │   ├── bonification
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   ├── seuil_bonification.yaml
+│   │   │   │   │   │   ├── seuil_max_bonification.yaml
+│   │   │   │   │   │   └── taux_bonification_max.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── majoration_isolement_enf_charge.yaml
+│   │   │   │   │   ├── majoration_isolement_femme_enceinte.yaml
+│   │   │   │   │   ├── montant_de_base.yaml
+│   │   │   │   │   ├── pente.yaml
+│   │   │   │   │   ├── seuil_aah_activite.yaml
+│   │   │   │   │   ├── seuil_non_versement.yaml
+│   │   │   │   │   ├── taux_deuxieme_personne.yaml
+│   │   │   │   │   ├── taux_forfait_logement
+│   │   │   │   │   │   ├── foyer_1_personne.yaml
+│   │   │   │   │   │   ├── foyer_2_personnes.yaml
+│   │   │   │   │   │   ├── foyer_3_personnes.yaml
+│   │   │   │   │   │   └── index.yaml
+│   │   │   │   │   ├── taux_personne_supp.yaml
+│   │   │   │   │   └── taux_troisieme_personne.yaml
+│   │   │   │   ├── rmi
+│   │   │   │   │   ├── age_pac.yaml
+│   │   │   │   │   ├── condition_d_age_pour_l_allocataire.yaml
+│   │   │   │   │   ├── duree_min_titre_sejour.yaml
+│   │   │   │   │   ├── forfait_asf
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   ├── taux1.yaml
+│   │   │   │   │   │   └── taux2.yaml
+│   │   │   │   │   ├── forfait_logement
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   ├── taux1.yaml
+│   │   │   │   │   │   ├── taux2.yaml
+│   │   │   │   │   │   └── taux3.yaml
+│   │   │   │   │   ├── forfait_logement_en_du_montant_forfaitaire_du_rmi
+│   │   │   │   │   │   ├── 1_personne_1.yaml
+│   │   │   │   │   │   ├── 2_personnes.yaml
+│   │   │   │   │   │   ├── 3_personnes_ou_plus.yaml
+│   │   │   │   │   │   └── index.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── majo_rsa
+│   │   │   │   │   │   ├── age.yaml
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   ├── pac0.yaml
+│   │   │   │   │   │   └── pac_enf_sup.yaml
+│   │   │   │   │   ├── majoration_du_montant_maximal_en_de_la_base_de_rmi
+│   │   │   │   │   │   ├── celibataire_1_enfant.yaml
+│   │   │   │   │   │   ├── couple_1_enfant_ou_pour_le_deuxieme_enfant_1.yaml
+│   │   │   │   │   │   ├── couples.yaml
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   └── par_enfant_supplementaire.yaml
+│   │   │   │   │   ├── montant_de_base_du_rmi.yaml
+│   │   │   │   │   ├── montant_minimum_verse.yaml
+│   │   │   │   │   ├── nombre_minimal_d_enfant_si_la_condition_d_age_n_est_pas_respectee.yaml
+│   │   │   │   │   ├── patrimoine
+│   │   │   │   │   │   ├── abattement_valeur_locative_immo_non_loue.yaml
+│   │   │   │   │   │   ├── abattement_valeur_locative_terrains_non_loue.yaml
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   └── taux_interet_forfaitaire_epargne_non_imposable.yaml
+│   │   │   │   │   ├── pente.yaml
+│   │   │   │   │   ├── psa.yaml
+│   │   │   │   │   ├── rmi.yaml
+│   │   │   │   │   ├── rsa_nv.yaml
+│   │   │   │   │   ├── txp2.yaml
+│   │   │   │   │   ├── txp3.yaml
+│   │   │   │   │   └── txps.yaml
+│   │   │   │   └── rsa
+│   │   │   │       ├── age_max_rsa_jeune.yaml
+│   │   │   │       ├── age_min_rsa_jeune.yaml
+│   │   │   │       ├── age_minimum_pour_l_allocataire.yaml
+│   │   │   │       ├── age_pac.yaml
+│   │   │   │       ├── duree_min_titre_sejour.yaml
+│   │   │   │       ├── forfait_asf
+│   │   │   │       │   ├── index.yaml
+│   │   │   │       │   ├── taux1.yaml
+│   │   │   │       │   └── taux2.yaml
+│   │   │   │       ├── forfait_logement
+│   │   │   │       │   ├── index.yaml
+│   │   │   │       │   ├── taux1.yaml
+│   │   │   │       │   ├── taux2.yaml
+│   │   │   │       │   ├── taux3.yaml
+│   │   │   │       │   ├── taux_1_personne.yaml
+│   │   │   │       │   ├── taux_2_personnes.yaml
+│   │   │   │       │   └── taux_3_personnes_ou_plus.yaml
+│   │   │   │       ├── index.yaml
+│   │   │   │       ├── majo_rsa
+│   │   │   │       │   ├── age_limite_enfant.yaml
+│   │   │   │       │   ├── index.yaml
+│   │   │   │       │   ├── pac0.yaml
+│   │   │   │       │   └── pac_enf_sup.yaml
+│   │   │   │       ├── majoration_des_ressources_sur_les_revenus_d_activite.yaml
+│   │   │   │       ├── majoration_isolement_en_de_la_base_rsa
+│   │   │   │       │   ├── femmes_enceintes.yaml
+│   │   │   │       │   ├── index.yaml
+│   │   │   │       │   └── par_enfant_a_charge.yaml
+│   │   │   │       ├── majoration_parent_isole
+│   │   │   │       │   ├── age_limite_enfant.yaml
+│   │   │   │       │   ├── duree_du_droit.yaml
+│   │   │   │       │   ├── index.yaml
+│   │   │   │       │   └── limite_de_duree_du_droit_a_la_majoration_pour_isolement_2.yaml
+│   │   │   │       ├── majoration_rsa
+│   │   │   │       │   ├── index.yaml
+│   │   │   │       │   ├── taux_deuxieme_personne.yaml
+│   │   │   │       │   ├── taux_personne_supp.yaml
+│   │   │   │       │   └── taux_troisieme_personne.yaml
+│   │   │   │       ├── montant_de_base_du_rsa.yaml
+│   │   │   │       ├── montant_minimum_verse.yaml
+│   │   │   │       ├── nombre_minimal_d_enfants_1.yaml
+│   │   │   │       ├── patrimoine
+│   │   │   │       │   ├── abattement_valeur_locative_immo_non_loue.yaml
+│   │   │   │       │   ├── abattement_valeur_locative_terrains_non_loues.yaml
+│   │   │   │       │   ├── index.yaml
+│   │   │   │       │   └── taux_interet_forfaitaire_epargne_non_imposable.yaml
+│   │   │   │       ├── pente.yaml
+│   │   │   │       ├── psa.yaml
+│   │   │   │       ├── rsa_jeune.yaml
+│   │   │   │       ├── rsa_jeune_en_heure_4.yaml
+│   │   │   │       └── rsa_nv.yaml
+│   │   │   ├── pd
+│   │   │   │   ├── index.yaml
+│   │   │   │   └── taux_en_de_la_bmaf
+│   │   │   │       ├── 1_enfant.yaml
+│   │   │   │       ├── 2_enfants.yaml
+│   │   │   │       ├── 3_enfants.yaml
+│   │   │   │       ├── 4_enfants.yaml
+│   │   │   │       ├── 5_enfants.yaml
+│   │   │   │       ├── index.yaml
+│   │   │   │       ├── jeune_travailleur_salarie.yaml
+│   │   │   │       ├── par_enfants_en_plus.yaml
+│   │   │   │       └── personne_agee_ou_infirme.yaml
+│   │   │   ├── pjm_c_plaf
+│   │   │   │   ├── age_moyen_maximum_des_conjoints.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── majoration_par_enfant_supplementaire.yaml
+│   │   │   │   ├── plafond_de_ressources_sans_enfant_1.yaml
+│   │   │   │   └── smic_de_l_annee_de_reference_n_2.yaml
+│   │   │   ├── prestations_familiales
+│   │   │   │   ├── aeeh
+│   │   │   │   │   ├── age.yaml
+│   │   │   │   │   ├── age_maximum_de_l_enfant.yaml
+│   │   │   │   │   ├── base.yaml
+│   │   │   │   │   ├── complement_d_allocation
+│   │   │   │   │   │   ├── 1ere_categorie.yaml
+│   │   │   │   │   │   ├── 2e_categorie.yaml
+│   │   │   │   │   │   ├── 3e_categorie.yaml
+│   │   │   │   │   │   ├── 4e_categorie.yaml
+│   │   │   │   │   │   ├── 5e_categorie.yaml
+│   │   │   │   │   │   ├── 6e_categorie_1.yaml
+│   │   │   │   │   │   └── index.yaml
+│   │   │   │   │   ├── cpl3b.yaml
+│   │   │   │   │   ├── cpl3c.yaml
+│   │   │   │   │   ├── cpl4b.yaml
+│   │   │   │   │   ├── cpl4c.yaml
+│   │   │   │   │   ├── cpl4d.yaml
+│   │   │   │   │   ├── cpl5a.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── majoration_pour_parent_isole
+│   │   │   │   │       ├── 2e_categorie.yaml
+│   │   │   │   │       ├── 3e_categorie.yaml
+│   │   │   │   │       ├── 4e_categorie.yaml
+│   │   │   │   │       ├── 5e_categorie.yaml
+│   │   │   │   │       ├── 6e_categorie.yaml
+│   │   │   │   │       └── index.yaml
+│   │   │   │   ├── aes
+│   │   │   │   │   ├── age_maximum_de_l_enfant.yaml
+│   │   │   │   │   ├── base.yaml
+│   │   │   │   │   ├── complement_d_allocation
+│   │   │   │   │   │   ├── 1ere_categorie.yaml
+│   │   │   │   │   │   ├── 2e_categorie.yaml
+│   │   │   │   │   │   ├── 3e_categorie.yaml
+│   │   │   │   │   │   ├── 4e_categorie.yaml
+│   │   │   │   │   │   ├── 5e_categorie.yaml
+│   │   │   │   │   │   ├── 6e_categorie_2.yaml
+│   │   │   │   │   │   └── index.yaml
+│   │   │   │   │   └── index.yaml
+│   │   │   │   ├── af
+│   │   │   │   │   ├── af_dom.yaml
+│   │   │   │   │   ├── age1.yaml
+│   │   │   │   │   ├── age2.yaml
+│   │   │   │   │   ├── age3.yaml
+│   │   │   │   │   ├── bmaf.yaml
+│   │   │   │   │   ├── crds.yaml
+│   │   │   │   │   ├── duree_pendant_laquelle_la_majoration_pour_les_plus_de_20_ans_est_versee_en_annee.yaml
+│   │   │   │   │   ├── facteur_garde_alternee.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── maj_age_deux_enfants
+│   │   │   │   │   │   ├── age1.yaml
+│   │   │   │   │   │   ├── age2.yaml
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   ├── taux1.yaml
+│   │   │   │   │   │   └── taux2.yaml
+│   │   │   │   │   ├── majoration_enfants
+│   │   │   │   │   │   ├── age_minimal_forfait.yaml
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   ├── taux_allocation_forfaitaire.yaml
+│   │   │   │   │   │   ├── taux_appliques_aux_differentes_tranches_d_age
+│   │   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   │   ├── taux_de_la_tranche_1.yaml
+│   │   │   │   │   │   │   └── taux_de_la_tranche_2.yaml
+│   │   │   │   │   │   └── tranches_d_age
+│   │   │   │   │   │       ├── age_debut_de_la_deuxieme_tranche.yaml
+│   │   │   │   │   │       ├── age_debut_de_la_premiere_tranche.yaml
+│   │   │   │   │   │       └── index.yaml
+│   │   │   │   │   ├── modulation
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   ├── majoration_plafond_par_enfant_supplementaire.yaml
+│   │   │   │   │   │   ├── plafond_tranche_1.yaml
+│   │   │   │   │   │   ├── plafond_tranche_1_base.yaml
+│   │   │   │   │   │   ├── plafond_tranche_2.yaml
+│   │   │   │   │   │   ├── plafond_tranche_2_base.yaml
+│   │   │   │   │   │   ├── taux_tranche_1.yaml
+│   │   │   │   │   │   ├── taux_tranche_2.yaml
+│   │   │   │   │   │   └── taux_tranche_3.yaml
+│   │   │   │   │   ├── nombre_d_enfant_a_partir_duquel_l_aine_donne_droit_a_majoration.yaml
+│   │   │   │   │   ├── nombre_minimal_d_enfant_pour_avoir_droit_a_la_majoration_forfaitaire_pour_les_plus_de_20_ans.yaml
+│   │   │   │   │   ├── nombre_minimal_d_enfants_pour_avoir_droit_a_l_allocation.yaml
+│   │   │   │   │   ├── plafond_1998
+│   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   ├── majoration_plafond
+│   │   │   │   │   │   │   ├── couples_biactifs_et_parents_isoles.yaml
+│   │   │   │   │   │   │   ├── index.yaml
+│   │   │   │   │   │   │   └── par_enfant_supplementaire.yaml
+│   │   │   │   │   │   └── plafond_de_ressources
+│   │   │   │   │   │       ├── 0_enfant_couples_monoactifs.yaml
+│   │   │   │   │   │       └── index.yaml
+│   │   │   │   │   ├── seuil_rev_taux.yaml
+│   │   │   │   │   └── taux
+│   │   │   │   │       ├── enf1.yaml
+│   │   │   │   │       ├── enf2.yaml
+│   │   │   │   │       ├── enf3.yaml
+│   │   │   │   │       └── index.yaml
+│   │   │   │   ├── afeama
+│   │   │   │   │   ├── age1.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── mult_seuil1.yaml
+│   │   │   │   │   ├── mult_seuil2.yaml
+│   │   │   │   │   ├── taux_maxi.yaml
+│   │   │   │   │   ├── taux_med.yaml
+│   │   │   │   │   └── taux_mini.yaml
+│   │   │   │   ├── aged
+│   │   │   │   │   ├── age1.yaml
+│   │   │   │   │   ├── age2.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── remb_plaf1.yaml
+│   │   │   │   │   ├── remb_plaf2.yaml
+│   │   │   │   │   ├── remb_plaf3.yaml
+│   │   │   │   │   ├── remb_taux1.yaml
+│   │   │   │   │   ├── remb_taux2.yaml
+│   │   │   │   │   ├── remb_taux3.yaml
+│   │   │   │   │   └── revenus_plaf.yaml
+│   │   │   │   ├── ape.yaml
+│   │   │   │   ├── apje
+│   │   │   │   │   ├── age_max_dernier_enf.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── majoration_en_ou_en_en_du_plafond_de_ressources_avec_0_enfant
+│   │   │   │   │   │   ├── biactifs_et_parents_isoles_1.yaml
+│   │   │   │   │   │   └── index.yaml
+│   │   │   │   │   ├── mois_de_grossesse_ou_ouverture_des_droits_1.yaml
+│   │   │   │   │   ├── plaf.yaml
+│   │   │   │   │   ├── plaf_maj.yaml
+│   │   │   │   │   ├── plafond_de_ressources_0_enfant.yaml
+│   │   │   │   │   ├── taux.yaml
+│   │   │   │   │   ├── taux_enfant_1_et_2.yaml
+│   │   │   │   │   └── taux_enfant_3_et_plus.yaml
+│   │   │   │   ├── ars
+│   │   │   │   │   ├── age_entree_college.yaml
+│   │   │   │   │   ├── age_entree_lycee.yaml
+│   │   │   │   │   ├── age_entree_primaire.yaml
+│   │   │   │   │   ├── age_sortie_lycee.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── majoration_par_enf_supp.yaml
+│   │   │   │   │   ├── montant_seuil_non_versement.yaml
+│   │   │   │   │   ├── plafond_ressources.yaml
+│   │   │   │   │   ├── taux_college.yaml
+│   │   │   │   │   ├── taux_lycee.yaml
+│   │   │   │   │   └── taux_primaire.yaml
+│   │   │   │   ├── asf
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── montant_de_l_asf_dans_le_calcul_du_rsa_et_de_la_ppa_en_de_la_bmaf.yaml
+│   │   │   │   │   ├── taux_1_parent.yaml
+│   │   │   │   │   └── taux_2_parents.yaml
+│   │   │   │   ├── cf
+│   │   │   │   │   ├── age_en_dessous_duquel_l_enfant_prive_la_famille_du_cf_dom.yaml
+│   │   │   │   │   ├── age_max.yaml
+│   │   │   │   │   ├── age_maximal_dom.yaml
+│   │   │   │   │   ├── age_min.yaml
+│   │   │   │   │   ├── age_minimal_dom.yaml
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── majoration_du_plafond_de_ressources_enfant_supplementaire.yaml
+│   │   │   │   │   ├── majoration_plafond_2_premiers_enf.yaml
+│   │   │   │   │   ├── majoration_plafond_3eme_enf_et_plus.yaml
+│   │   │   │   │   ├── majoration_plafond_biact_isole.yaml
+│   │   │   │   │   ├── nombre_d_enfants_minimal.yaml
+│   │   │   │   │   ├── nombre_enfant_minimum_dom.yaml
+│   │   │   │   │   ├── plafond_cf_majore.yaml
+│   │   │   │   │   ├── plafond_de_ressources_0_enfant.yaml
+│   │   │   │   │   ├── plafond_de_ressources_pour_un_revenu_brut_imposable_1
+│   │   │   │   │   │   ├── 1_enfant.yaml
+│   │   │   │   │   │   ├── 1_enfant_biactifs_et_parents_isoles_2.yaml
+│   │   │   │   │   │   ├── enfant_supplementaire.yaml
+│   │   │   │   │   │   └── index.yaml
+│   │   │   │   │   ├── taux_base_dom.yaml
+│   │   │   │   │   ├── taux_cf_base.yaml
+│   │   │   │   │   ├── taux_cf_majore.yaml
+│   │   │   │   │   └── taux_majore_dom.yaml
+│   │   │   │   ├── enfants
+│   │   │   │   │   ├── age_intermediaire.yaml
+│   │   │   │   │   ├── age_limite.yaml
+│   │   │   │   │   ├── age_minimal.yaml
+│   │   │   │   │   └── index.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   └── paje
+│   │   │   │       ├── age_limite
+│   │   │   │       │   ├── etre_ne_ou_adopte_apres.yaml
+│   │   │   │       │   └── index.yaml
+│   │   │   │       ├── age_maximal_du_plus_jeune_enfant_pour_beneficier_de_la_prepare_en_annee_1.yaml
+│   │   │   │       ├── base
+│   │   │   │       │   ├── age_max_enfant.yaml
+│   │   │   │       │   ├── apres_2014
+│   │   │   │       │   │   ├── index.yaml
+│   │   │   │       │   │   ├── plaf_tx_par_enf.yaml
+│   │   │   │       │   │   ├── taux_partiel
+│   │   │   │       │   │   │   ├── index.yaml
+│   │   │   │       │   │   │   ├── plaf.yaml
+│   │   │   │       │   │   │   └── plaf_maj.yaml
+│   │   │   │       │   │   └── taux_plein
+│   │   │   │       │   │       ├── index.yaml
+│   │   │   │       │   │       ├── plaf.yaml
+│   │   │   │       │   │       └── plaf_maj.yaml
+│   │   │   │       │   ├── apres_2018
+│   │   │   │       │   │   ├── index.yaml
+│   │   │   │       │   │   ├── majoration_biact_parent_isoles.yaml
+│   │   │   │       │   │   ├── plaf_tx_par_enf.yaml
+│   │   │   │       │   │   ├── plafond_ressources_0_enf.yaml
+│   │   │   │       │   │   ├── taux_majoration_2_premiers_enf.yaml
+│   │   │   │       │   │   ├── taux_majoration_3eme_enf_et_plus.yaml
+│   │   │   │       │   │   ├── taux_partiel
+│   │   │   │       │   │   │   ├── index.yaml
+│   │   │   │       │   │   │   ├── plaf.yaml
+│   │   │   │       │   │   │   └── plaf_maj.yaml
+│   │   │   │       │   │   └── taux_plein
+│   │   │   │       │   │       ├── index.yaml
+│   │   │   │       │   │       ├── plaf.yaml
+│   │   │   │       │   │       └── plaf_maj.yaml
+│   │   │   │       │   ├── avant_2014
+│   │   │   │       │   │   ├── index.yaml
+│   │   │   │       │   │   ├── majoration_biact_parent_isoles.yaml
+│   │   │   │       │   │   ├── plafond_ressources_0_enf.yaml
+│   │   │   │       │   │   ├── taux_majoration_2_premiers_enf.yaml
+│   │   │   │       │   │   └── taux_majoration_3eme_enf_et_plus.yaml
+│   │   │   │       │   ├── index.yaml
+│   │   │   │       │   └── taux_allocation_base.yaml
+│   │   │   │       ├── clca
+│   │   │   │       │   ├── age_max_enfant.yaml
+│   │   │   │       │   ├── avecab_tx_inactif.yaml
+│   │   │   │       │   ├── avecab_tx_partiel1.yaml
+│   │   │   │       │   ├── avecab_tx_partiel2.yaml
+│   │   │   │       │   ├── duree1.yaml
+│   │   │   │       │   ├── index.yaml
+│   │   │   │       │   ├── sansab_tx_inactif.yaml
+│   │   │   │       │   ├── sansab_tx_partiel1.yaml
+│   │   │   │       │   └── sansab_tx_partiel2.yaml
+│   │   │   │       ├── clmg.yaml
+│   │   │   │       ├── colca
+│   │   │   │       │   ├── age.yaml
+│   │   │   │       │   ├── avecab.yaml
+│   │   │   │       │   ├── index.yaml
+│   │   │   │       │   └── sansab.yaml
+│   │   │   │       ├── condition_prepare_majoree
+│   │   │   │       │   ├── index.yaml
+│   │   │   │       │   └── nombre_d_enfants_a_charge_minimum.yaml
+│   │   │   │       ├── deuxieme_plafond_ne_ou_adopte_apres_le_1er_avril_2014.yaml
+│   │   │   │       ├── duree_de_versement_pour_les_enfants_adoptes_en_annee.yaml
+│   │   │   │       ├── index.yaml
+│   │   │   │       ├── montant_en_de_la_bmaf
+│   │   │   │       │   ├── index.yaml
+│   │   │   │       │   └── prime_a_l_adoption_de_la_paje_2.yaml
+│   │   │   │       ├── montant_maximale_de_la_prise_en_charge
+│   │   │   │       │   ├── enfant_de_3_a_6_ans.yaml
+│   │   │   │       │   ├── enfant_de_moins_de_3_ans.yaml
+│   │   │   │       │   └── index.yaml
+│   │   │   │       ├── periode_de_reference_pour_justifier_les_8_trimestres_de_cotisation_vieillesse_1.yaml
+│   │   │   │       ├── premier_plafond_ne_ou_adopte_apres_le_1er_avril_2014
+│   │   │   │       │   ├── deux_enfants.yaml
+│   │   │   │       │   ├── index.yaml
+│   │   │   │       │   ├── majoration_pour_un_enfant_supplementaire.yaml
+│   │   │   │       │   └── un_enfant.yaml
+│   │   │   │       ├── prepare_majoree_en_de_la_bmaf
+│   │   │   │       │   ├── index.yaml
+│   │   │   │       │   └── taux.yaml
+│   │   │   │       ├── prestation_partagee_d_education_de_l_enfant_prepare_en_de_la_bmaf.yaml
+│   │   │   │       └── prime_naissance
+│   │   │   │           ├── adopt.yaml
+│   │   │   │           ├── index.yaml
+│   │   │   │           └── prime_tx.yaml
+│   │   │   └── reduction_loyer_solidarite
+│   │   │       ├── fraction_baisse_aide_logement.yaml
+│   │   │       ├── montant
+│   │   │       │   └── par_zone
+│   │   │       │       ├── zone_1
+│   │   │       │       │   ├── couples.yaml
+│   │   │       │       │   ├── famille_1pac.yaml
+│   │   │       │       │   ├── majoration_par_pac_supp.yaml
+│   │   │       │       │   └── personnes_seules.yaml
+│   │   │       │       ├── zone_2
+│   │   │       │       │   ├── couples.yaml
+│   │   │       │       │   ├── famille_1pac.yaml
+│   │   │       │       │   ├── majoration_par_pac_supp.yaml
+│   │   │       │       │   └── personnes_seules.yaml
+│   │   │       │       └── zone_3
+│   │   │       │           ├── couples.yaml
+│   │   │       │           ├── famille_1pac.yaml
+│   │   │       │           ├── majoration_par_pac_supp.yaml
+│   │   │       │           └── personnes_seules.yaml
+│   │   │       └── plafond_ressources
+│   │   │           └── par_zone
+│   │   │               ├── zone_1
+│   │   │               │   ├── couples.yaml
+│   │   │               │   ├── famille_1pac.yaml
+│   │   │               │   ├── famille_2pac.yaml
+│   │   │               │   ├── famille_3pac.yaml
+│   │   │               │   ├── famille_4pac.yaml
+│   │   │               │   ├── famille_5pac.yaml
+│   │   │               │   ├── famille_6pac.yaml
+│   │   │               │   ├── majoration_par_pac_supp.yaml
+│   │   │               │   └── personnes_seules.yaml
+│   │   │               ├── zone_2
+│   │   │               │   ├── couples.yaml
+│   │   │               │   ├── famille_1pac.yaml
+│   │   │               │   ├── famille_2pac.yaml
+│   │   │               │   ├── famille_3pac.yaml
+│   │   │               │   ├── famille_4pac.yaml
+│   │   │               │   ├── famille_5pac.yaml
+│   │   │               │   ├── famille_6pac.yaml
+│   │   │               │   ├── majoration_par_pac_supp.yaml
+│   │   │               │   └── personnes_seules.yaml
+│   │   │               └── zone_3
+│   │   │                   ├── couples.yaml
+│   │   │                   ├── famille_1pac.yaml
+│   │   │                   ├── famille_2pac.yaml
+│   │   │                   ├── famille_3pac.yaml
+│   │   │                   ├── famille_4pac.yaml
+│   │   │                   ├── famille_5pac.yaml
+│   │   │                   ├── famille_6pac.yaml
+│   │   │                   ├── majoration_par_pac_supp.yaml
+│   │   │                   └── personnes_seules.yaml
+│   │   ├── taxation_capital
+│   │   │   ├── bouclier
+│   │   │   │   ├── index.yaml
+│   │   │   │   └── taux_bouclier_fiscal.yaml
+│   │   │   ├── forfait_mobilier
+│   │   │   │   ├── index.yaml
+│   │   │   │   └── majoration_forfaitaire.yaml
+│   │   │   ├── index.yaml
+│   │   │   ├── isf_ifi
+│   │   │   │   ├── bareme.yaml
+│   │   │   │   ├── decote
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── isf_base_decote.yaml
+│   │   │   │   │   ├── isf_borne_min_decote.yaml
+│   │   │   │   │   ├── isf_borne_sup_decote.yaml
+│   │   │   │   │   └── isf_taux_decote.yaml
+│   │   │   │   ├── droits_soc
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── taux1.yaml
+│   │   │   │   │   └── taux2.yaml
+│   │   │   │   ├── forf_mob
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   ├── index.yaml
+│   │   │   │   ├── nonbat
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── seuil.yaml
+│   │   │   │   │   ├── taux_f.yaml
+│   │   │   │   │   ├── taux_r1.yaml
+│   │   │   │   │   └── taux_r2.yaml
+│   │   │   │   ├── plaf
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── seuil1.yaml
+│   │   │   │   │   ├── seuil2.yaml
+│   │   │   │   │   └── taux.yaml
+│   │   │   │   ├── plafonnement
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── plafonnement_du_plafonnement.yaml
+│   │   │   │   │   └── plafonnement_taux_d_imposition_isf.yaml
+│   │   │   │   ├── reduc_invest_don
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── limite_reduction_de_l_isf_lie_aux_dons_realises.yaml
+│   │   │   │   │   ├── max.yaml
+│   │   │   │   │   ├── plafond_invest_pme.yaml
+│   │   │   │   │   ├── taux_don_interet_general.yaml
+│   │   │   │   │   └── taux_invest_direct_soc_holding.yaml
+│   │   │   │   ├── reduc_pac
+│   │   │   │   │   ├── index.yaml
+│   │   │   │   │   ├── reduc_2.yaml
+│   │   │   │   │   └── reduc_enf_garde.yaml
+│   │   │   │   └── res_princ
+│   │   │   │       ├── abattement_sur_residence_principale.yaml
+│   │   │   │       └── index.yaml
+│   │   │   ├── pfl.yaml
+│   │   │   ├── pfl_av
+│   │   │   │   ├── bons_ou_contrats_de_capitalisation_et_placements_de_meme_nature_assurance_vie_lors_du_denouement_du_contrat.yaml
+│   │   │   │   └── index.yaml
+│   │   │   └── prelevements_sociaux
+│   │   │       ├── add_ret.yaml
+│   │   │       ├── caps
+│   │   │       │   ├── index.yaml
+│   │   │       │   ├── produits_de_placement.yaml
+│   │   │       │   ├── revenus_du_patrimoine.yaml
+│   │   │       │   └── rsa.yaml
+│   │   │       ├── contribution_sociale_cnav.yaml
+│   │   │       ├── contribution_sociale_permanente_cnaf.yaml
+│   │   │       ├── crds
+│   │   │       │   ├── index.yaml
+│   │   │       │   ├── produits_de_placement.yaml
+│   │   │       │   └── revenus_du_patrimoine.yaml
+│   │   │       ├── index.yaml
+│   │   │       ├── prelevement_social
+│   │   │       │   ├── index.yaml
+│   │   │       │   ├── produits_de_placement.yaml
+│   │   │       │   └── revenus_du_patrimoine.yaml
+│   │   │       ├── prelevement_social_exceptionnel_cnav.yaml
+│   │   │       ├── prelevements_solidarite
+│   │   │       │   ├── index.yaml
+│   │   │       │   ├── produits_de_placement.yaml
+│   │   │       │   └── revenus_du_patrimoine.yaml
+│   │   │       ├── taux_deductible_de_csg
+│   │   │       │   ├── index.yaml
+│   │   │       │   ├── produits_de_placement_2.yaml
+│   │   │       │   └── revenus_du_patrimoine_1.yaml
+│   │   │       └── taux_global_de_csg
+│   │   │           ├── index.yaml
+│   │   │           ├── produits_de_placement.yaml
+│   │   │           └── revenus_du_patrimoine.yaml
+│   │   └── tns
+│   │       ├── auto_entrepreneur
+│   │       │   ├── achat_revente.yaml
+│   │       │   ├── bic.yaml
+│   │       │   ├── bnc.yaml
+│   │       │   └── index.yaml
+│   │       ├── exploitant_agricole
+│   │       │   ├── index.yaml
+│   │       │   ├── maj_1e_2ad.yaml
+│   │       │   ├── maj_2p.yaml
+│   │       │   ├── maj_e_sup.yaml
+│   │       │   └── plafond_rsa.yaml
+│   │       ├── index.yaml
+│   │       └── micro_entreprise
+│   │           ├── abattement_forfaitaire_fp
+│   │           │   ├── achat_revente.yaml
+│   │           │   ├── bic.yaml
+│   │           │   ├── bnc.yaml
+│   │           │   └── index.yaml
+│   │           ├── cotisations_sociales.yaml
+│   │           └── index.yaml
+│   ├── reforms
+│   │   ├── __init__.py
+│   │   ├── allocations_familiales_imposables.py
+│   │   ├── cesthra_invalidee.py
+│   │   ├── de_net_a_brut.py
+│   │   ├── inversion_directe_salaires.py
+│   │   ├── inversion_revenus.py
+│   │   ├── landais_piketty_saez.py
+│   │   ├── parameters
+│   │   │   ├── allocations_familiales_imposables.yaml
+│   │   │   ├── cesthra_invalidite.yaml
+│   │   │   ├── landais_piketty_saez.yaml
+│   │   │   ├── plf2015.yaml
+│   │   │   ├── plf2016.yaml
+│   │   │   ├── plfr2014.yaml
+│   │   │   ├── plfrss2014.yaml
+│   │   │   └── trannoy_wasmer.yaml
+│   │   ├── plf2015.py
+│   │   ├── plf2016.py
+│   │   ├── plf2016_ayrault_muet.py
+│   │   ├── plfr2014.py
+│   │   ├── simulation_reform.py
+│   │   ├── smic_h_b_9_euros.py
+│   │   └── trannoy_wasmer.py
+│   ├── scenarios.py
+│   ├── scripts
+│   │   ├── __init__.py
+│   │   ├── download_mes_aides_tests.py
+│   │   ├── inspect_dgfip_variable.py
+│   │   ├── migrations
+│   │   │   └── xml_to_yaml_france.py
+│   │   ├── parameters
+│   │   │   ├── explore_parameters_unit.py
+│   │   │   └── reduce_parameters_paths.py
+│   │   └── performance
+│   │       ├── __init__.py
+│   │       ├── measure_calculations_performance.py
+│   │       ├── measure_circleci_builds_diff.py
+│   │       ├── measure_spiral_performances.py
+│   │       └── measure_tests_performance.py
+│   └── situation_examples
+│       ├── __init__.py
+│       └── couple.json
+├── setup.cfg
+├── setup.py
+└── tests
+    ├── __init__.py
+    ├── allegement_fillon.yaml
+    ├── cache.py
+    ├── calculateur_impots
+    │   └── yaml
+    │       ├── abat_65_or_invalid.yaml
+    │       ├── caseF.yaml
+    │       ├── caseG.yaml
+    │       ├── caseL.yaml
+    │       ├── caseP.yaml
+    │       ├── caseS.yaml
+    │       ├── caseT.yaml
+    │       ├── caseW.yaml
+    │       ├── charges_deduc_non_plafonnees_acc75a.yaml
+    │       ├── charges_deduc_non_plafonnees_deddiv.yaml
+    │       ├── charges_deduc_non_plafonnees_pens_alim.yaml
+    │       ├── charges_deduc_non_plafonnees_reparations.yaml
+    │       ├── credit_aidper.yaml
+    │       ├── credit_assloy.yaml
+    │       ├── credit_garext.yaml
+    │       ├── credit_inthab.yaml
+    │       ├── credit_preetu.yaml
+    │       ├── credit_saldom.yaml
+    │       ├── credit_saldom2.yaml
+    │       ├── decote.yaml
+    │       ├── maj_nbp.yaml
+    │       ├── nbG.yaml
+    │       ├── nbI.yaml
+    │       ├── nbR.yaml
+    │       ├── plaf_qf_caseL.yaml
+    │       ├── plaf_qf_casePF_nbGI.yaml
+    │       ├── plaf_qf_caseT.yaml
+    │       ├── plaf_qf_caseWG.yaml
+    │       ├── plaf_qf_family.yaml
+    │       ├── ppe.yaml
+    │       ├── reduc_adhcga.yaml
+    │       ├── reduc_autent.yaml
+    │       ├── reduc_cappme.yaml
+    │       ├── reduc_credit_2042pro.yaml
+    │       ├── reduc_dfppce.yaml
+    │       ├── reduc_donapd.yaml
+    │       ├── reduc_duflot.yaml
+    │       ├── reduc_ecpess.yaml
+    │       ├── reduc_intagr.yaml
+    │       ├── reduc_invlst1.yaml
+    │       ├── reduc_invlst2.yaml
+    │       ├── reduc_locmeu.yaml
+    │       ├── reduc_locmeu_avec_reports.yaml
+    │       ├── reduc_locmeu_plafonnee.yaml
+    │       ├── reduc_malraux.yaml
+    │       ├── reduc_patnat.yaml
+    │       ├── reduc_pinel_dom.yaml
+    │       ├── reduc_pinel_metro.yaml
+    │       ├── reduc_saldom.yaml
+    │       ├── reduc_saldom2.yaml
+    │       ├── reduc_scelli_dom_poly.yaml
+    │       ├── reduc_scelli_dom_poly_et_reports.yaml
+    │       ├── reduc_scelli_metro_bbc.yaml
+    │       ├── reduc_scelli_metro_bbc_et_reports1.yaml
+    │       ├── reduc_scelli_metro_bbc_et_reports2.yaml
+    │       ├── reduc_scelli_metro_non_bbc.yaml
+    │       ├── reduc_spfscpi.yaml
+    │       ├── reduc_spfscpi2.yaml
+    │       ├── regime_benef_reel_BIC_location_avec_cga.yaml
+    │       ├── regime_benef_reel_BIC_location_sans_cga.yaml
+    │       ├── regime_benef_reel_BIC_nonpro_avec_cga.yaml
+    │       ├── regime_benef_reel_BIC_nonpro_sans_cga.yaml
+    │       ├── regime_benef_reel_BIC_pro_avec_cga.yaml
+    │       ├── regime_benef_reel_BIC_pro_sans_cga.yaml
+    │       ├── regime_benef_reel_agricole_avec_cga.yaml
+    │       ├── regime_benef_reel_agricole_sans_cga.yaml
+    │       ├── regime_forfait_agricole.yaml
+    │       ├── regime_micro_BIC_location.yaml
+    │       ├── regime_micro_BIC_non_pro.yaml
+    │       └── regime_micro_BIC_pro.yaml
+    ├── capital
+    │   ├── cotisations_sociales_capital.yaml
+    │   ├── prelevement_forfaitaire_liberatoire.yaml
+    │   └── test_modification_rvcm_bases_ressources_suite_a_prelevement_forfaitaire_unique.yaml
+    ├── cotisations_sociales_simulateur_IPP.yaml
+    ├── embauche.sgmap.fr
+    │   ├── allegement_fillon.yaml
+    │   ├── taxe_apprentissage.yaml
+    │   ├── test_embauche_55c1dbb46149d1903b3d1e27.yaml
+    │   └── test_embauche_55c20c8d6149d1903b3d20a4.yaml
+    ├── fiches_de_paie
+    │   ├── TEMPLATE.yaml
+    │   ├── apprenti.yaml
+    │   ├── business_develop_2015-02.yaml
+    │   ├── coordinatrice_2014-03.yaml
+    │   ├── ingenieur_etude_2014-07.yaml
+    │   ├── ingenieur_ssii_2013-08.yaml
+    │   ├── salarie_ipp_2014-11.yaml
+    │   ├── salarie_ipp_2014-11_indemnite_fin_contrat.yaml
+    │   └── thesard_2011-07.yaml
+    ├── formulas
+    │   ├── CSG_CRDS_salaire.yaml
+    │   ├── aah.yaml
+    │   ├── aah_couple.yaml
+    │   ├── aah_eligible.yaml
+    │   ├── aah_famille.yaml
+    │   ├── ada.yaml
+    │   ├── af.yaml
+    │   ├── af_2018_01.yaml
+    │   ├── af_2018_04.yaml
+    │   ├── age.yaml
+    │   ├── ags.yaml
+    │   ├── aide_embauche_pme.yaml
+    │   ├── aide_logement_non_calculable.yaml
+    │   ├── aide_premier_salarie.yaml
+    │   ├── aides_logement.yaml
+    │   ├── aides_logement_2018.yaml
+    │   ├── aides_logement_accedant_eligibilite.yaml
+    │   ├── aides_logement_fiabilisation.yaml
+    │   ├── aides_logement_foyer.yaml
+    │   ├── aides_logement_primo_accedant.yaml
+    │   ├── allegement_cotisation_allocations_familiales.yaml
+    │   ├── anah
+    │   │   └── test_anah.yaml
+    │   ├── arrco.yaml
+    │   ├── arrco_tranche_a_employeur.yaml
+    │   ├── asf_2015_01.yaml
+    │   ├── asf_2018_04.yaml
+    │   ├── asi.yaml
+    │   ├── asi_aspa.yaml
+    │   ├── aspa.yaml
+    │   ├── ass_04_2018.yaml
+    │   ├── ass_abbattement.yaml
+    │   ├── ass_eligibilite.yaml
+    │   ├── ass_interessement.yaml
+    │   ├── ass_mayotte.yaml
+    │   ├── ass_revenus_immo.yaml
+    │   ├── autonomie.yaml
+    │   ├── bourse.yaml
+    │   ├── caah.yaml
+    │   ├── cf.yaml
+    │   ├── cf_2018.yaml
+    │   ├── cf_2018_04.yaml
+    │   ├── cheque_energie
+    │   │   ├── eligibilite_logement.yaml
+    │   │   ├── montant.yaml
+    │   │   └── unites_consommation.yaml
+    │   ├── chomage_salarie.yaml
+    │   ├── cice.yaml
+    │   ├── cif_cdd.yaml
+    │   ├── cmu.yaml
+    │   ├── cmu_rente_at.yaml
+    │   ├── cmuc_fiab.yaml
+    │   ├── complement_aah.yaml
+    │   ├── complementaire_sante.yaml
+    │   ├── cout_du_travail.yaml
+    │   ├── exoneration_cotisations_employeur_apprenti.yaml
+    │   ├── exoneration_cotisations_employeur_zfu.yaml
+    │   ├── exoneration_cotisations_employeur_zrd.yaml
+    │   ├── exoneration_cotisations_employeur_zrr.yaml
+    │   ├── exoneration_is_creation_zrr.yaml
+    │   ├── financement_organisations_syndicales.yaml
+    │   ├── forfait_social.yaml
+    │   ├── formation_professionnelle.yaml
+    │   ├── gratification_stage.yaml
+    │   ├── indemnite_cdd.yaml
+    │   ├── irpp.yaml
+    │   ├── irpp_cehr.yaml
+    │   ├── irpp_deficits_rcm.yaml
+    │   ├── irpp_niches_fiscales.yaml
+    │   ├── irpp_pret_etudiant.yaml
+    │   ├── irpp_prets_participatifs.yaml
+    │   ├── isf_ifi.yaml
+    │   ├── isf_inv_pme.yaml
+    │   ├── jeune_entreprise_innovante.yaml
+    │   ├── logement_social_categorie_menage.yaml
+    │   ├── logement_social_eligible.yaml
+    │   ├── logement_social_plafonds_ressources.yaml
+    │   ├── logement_social_zone.yaml
+    │   ├── maladie_mmid_employeur.yaml
+    │   ├── maladie_mmid_salarie.yaml
+    │   ├── microsocial.yaml
+    │   ├── nombre_jours_calendaires.yaml
+    │   ├── non_salaries.yaml
+    │   ├── paje
+    │   │   ├── paje.yaml
+    │   │   ├── paje_2018.yaml
+    │   │   ├── paje_2018_04.yaml
+    │   │   ├── paje_clca_colca.yaml
+    │   │   ├── paje_cmg.yaml
+    │   │   └── paje_prepare.yaml
+    │   ├── participation_effort_construction.yaml
+    │   ├── patrimoine.yaml
+    │   ├── penibilite.yaml
+    │   ├── personnes_a_charge.yaml
+    │   ├── ppa
+    │   │   └── ppa_ressources_hors_activite_individu.yaml
+    │   ├── ppa.yaml
+    │   ├── ppa_2018.yaml
+    │   ├── ppa_index_mois_trimestre_reference.yaml
+    │   ├── prelevements_sociaux_menage.yaml
+    │   ├── primes_fonction_publique.yaml
+    │   ├── psoc.yaml
+    │   ├── reduction_generale-fillon.yaml
+    │   ├── remuneration_apprenti.yaml
+    │   ├── rente_at.yaml
+    │   ├── revenu_disponible.yaml
+    │   ├── revenus_super_bruts_menage.yaml
+    │   ├── rls.yaml
+    │   ├── rls_apl.yaml
+    │   ├── rsa
+    │   │   ├── rsa_2017.yaml
+    │   │   ├── rsa_base_ressources.yaml
+    │   │   ├── rsa_celibataire.yaml
+    │   │   ├── rsa_couple.yaml
+    │   │   ├── rsa_eligibilite_tns.yaml
+    │   │   ├── rsa_exclusion_foyer.yaml
+    │   │   ├── rsa_jeune.yaml
+    │   │   ├── rsa_majore.yaml
+    │   │   └── rsa_revenus_locatifs.yaml
+    │   ├── rsa.yaml
+    │   ├── salaire_de_base.yaml
+    │   ├── salaire_super_brut.yaml
+    │   ├── taille_entreprise.yaml
+    │   ├── taux_versement_transport.yaml
+    │   ├── taxe_apprentissage.yaml
+    │   ├── taxe_salaires.yaml
+    │   ├── temps_partiel
+    │   │   ├── aide_embauche_pme.yaml
+    │   │   ├── coefficient_proratisation.yaml
+    │   │   ├── fnal.yaml
+    │   │   ├── reduction_generale-fillon.yaml
+    │   │   └── vieillesse.yaml
+    │   ├── traitement_indicaire_brut.yaml
+    │   ├── travail_non_salarie
+    │   │   └── artisan_commercant_profession_liberale.yaml
+    │   ├── type_menage.yaml
+    │   ├── unites_consommation.yaml
+    │   └── zone_apl.yaml
+    ├── impot_revenu
+    │   ├── abattement_dom.yaml
+    │   ├── cotsyn.yaml
+    │   └── revenus_fonciers.yaml
+    ├── ipp
+    │   ├── __init__.py
+    │   ├── base_IPP
+    │   │   ├── base_IPP_input_celib_cadre.dta
+    │   │   ├── base_IPP_input_celib_chomeur.dta
+    │   │   ├── base_IPP_input_celib_non_cadre.dta
+    │   │   ├── base_IPP_input_celib_retraite.dta
+    │   │   ├── base_IPP_input_concubin_actif-chomeur.dta
+    │   │   ├── base_IPP_input_marie_actif-chomeur.dta
+    │   │   ├── base_IPP_output_celib_cadre.dta
+    │   │   ├── base_IPP_output_celib_chomeur.dta
+    │   │   ├── base_IPP_output_celib_non_cadre.dta
+    │   │   ├── base_IPP_output_celib_retraite.dta
+    │   │   ├── base_IPP_output_concubin_actif-chomeur.dta
+    │   │   └── base_IPP_output_marie_actif-chomeur.dta
+    │   └── correspondances_variables.xlsx
+    ├── mes-aides.gouv.fr
+    │   ├── 1000E_mois_APL_Zone_3.yaml
+    │   ├── 500E_mois_APL_Zone_1.yaml
+    │   ├── 500E_mois_APL_Zone_2.yaml
+    │   ├── 500E_mois_APL_Zone_3.yaml
+    │   ├── aides_logement_primo_accedant_dhup.yaml
+    │   ├── ludwig_test_1515420629711.yaml
+    │   ├── ludwig_test_1515420730955.yaml
+    │   ├── ludwig_test_1515421140631.yaml
+    │   ├── ludwig_test_1515421207606.yaml
+    │   ├── ludwig_test_1520950068799.yaml
+    │   ├── ludwig_test_1520961427075.yaml
+    │   ├── testMAcas1_6_couple_accedant_a_la_propriete_AL_1126_E_M_de_salaire_net.yaml
+    │   ├── test_mes_aides_53d21ee5159e330200810b87.yaml
+    │   ├── test_mes_aides_53d220ce159e330200810b8e.yaml
+    │   ├── test_mes_aides_53d24d0ae40a7902009c3377.yaml
+    │   ├── test_mes_aides_53d24d5de40a7902009c337d.yaml
+    │   ├── test_mes_aides_53d25137e40a7902009c3384.yaml
+    │   ├── test_mes_aides_53d251e4e40a7902009c338b.yaml
+    │   ├── test_mes_aides_53d25233e40a7902009c3392.yaml
+    │   ├── test_mes_aides_53d25591e40a7902009c33a3.yaml
+    │   ├── test_mes_aides_53d255efe40a7902009c33aa.yaml
+    │   ├── test_mes_aides_53d78c7bf6aa390200a6ccf8.yaml
+    │   ├── test_mes_aides_53d78d27f6aa390200a6ccfe.yaml
+    │   ├── test_mes_aides_53d79982f6aa390200a6cd08.yaml
+    │   ├── test_mes_aides_53d79a6ef6aa390200a6cd0c.yaml
+    │   ├── test_mes_aides_53d79b4af6aa390200a6cd14.yaml
+    │   ├── test_mes_aides_53d79bd6f6aa390200a6cd1a.yaml
+    │   ├── test_mes_aides_53d79c9df6aa390200a6cd23.yaml
+    │   ├── test_mes_aides_53d79d67f6aa390200a6cd2c.yaml
+    │   ├── test_mes_aides_53d79de9f6aa390200a6cd31.yaml
+    │   ├── test_mes_aides_53d79e98f6aa390200a6cd37.yaml
+    │   ├── test_mes_aides_53d79ee2f6aa390200a6cd3b.yaml
+    │   ├── test_mes_aides_53d7b76df6aa390200a6cd5c.yaml
+    │   ├── test_mes_aides_53d7b7e7f6aa390200a6cd62.yaml
+    │   ├── test_mes_aides_53d7b8c4f6aa390200a6cd68.yaml
+    │   ├── test_mes_aides_53fb5ea24a2eb80200056db3.yaml
+    │   ├── test_mes_aides_53fb5fc02f1265020080b6ad.yaml
+    │   ├── test_mes_aides_53fb60ad2f1265020080b6b8.yaml
+    │   ├── test_mes_aides_53fc4c42b7e0050200ee1b09.yaml
+    │   ├── test_mes_aides_54113d0bdb10e7020066c72a.yaml
+    │   ├── test_mes_aides_54212b32fb35830200b31327.yaml
+    │   ├── test_mes_aides_54212b9dfb35830200b3132e.yaml
+    │   ├── test_mes_aides_5421322ffb35830200b3133b.yaml
+    │   ├── test_mes_aides_542134d3fb35830200b31345.yaml
+    │   ├── test_mes_aides_5421356afb35830200b3134c.yaml
+    │   ├── test_mes_aides_54213659fb35830200b31353.yaml
+    │   ├── test_mes_aides_5422c2d95be58c0200a07585.yaml
+    │   ├── test_mes_aides_54242f9ac6d851020090b6a3.yaml
+    │   ├── test_mes_aides_54291a9f7136750200ab21cd.yaml
+    │   ├── test_mes_aides_542ec2805e3a9c02007e90c4.yaml
+    │   ├── test_mes_aides_542ec2d05e3a9c02007e90c7.yaml
+    │   ├── test_mes_aides_54367da883a4916e4d5a13a3.yaml
+    │   ├── test_mes_aides_5436807f2f6a1b774dad2a71.yaml
+    │   ├── test_mes_aides_543686b46713806c4d57cea4.yaml
+    │   ├── test_mes_aides_5438036f6c1222dc0d3ec937.yaml
+    │   ├── test_mes_aides_543ba6012c8d93fd2db00bd2.yaml
+    │   ├── test_mes_aides_543ba836855844062e40b7da.yaml
+    │   ├── test_mes_aides_544123db288947997ea40dc2.yaml
+    │   ├── test_mes_aides_54412b246132ca977e638de6.yaml
+    │   ├── test_mes_aides_54466887f2ef30d5549354ef.yaml
+    │   ├── test_mes_aides_54466d04ce737fec5fd5fb40.yaml
+    │   ├── test_mes_aides_54479826b4c54cb3267d7807.yaml
+    │   ├── test_mes_aides_544798f7e6e4a2b026903dc3.yaml
+    │   ├── test_mes_aides_544914533f90c89c6c404a52.yaml
+    │   ├── test_mes_aides_544915abad659e956c4ea77a.yaml
+    │   ├── test_mes_aides_544a0c02444b963225484646.yaml
+    │   ├── test_mes_aides_544a0f6314a5d53625b81a0f.yaml
+    │   ├── test_mes_aides_544e16316eb267b21c7de316.yaml
+    │   ├── test_mes_aides_544f7df975fec1b37e6c0288.yaml
+    │   ├── test_mes_aides_544fbd60450fdd94266b9703.yaml
+    │   ├── test_mes_aides_5450cb670172ceaf0a60810f.yaml
+    │   ├── test_mes_aides_5451169b31061e1c4a8da349.yaml
+    │   ├── test_mes_aides_5458da5e4245984c7f7b712f.yaml
+    │   ├── test_mes_aides_5458fc97af63db2c33f15def.yaml
+    │   ├── test_mes_aides_5459359dea20993133fe95ed.yaml
+    │   ├── test_mes_aides_545a3741d550a12d2ae7b68c.yaml
+    │   ├── test_mes_aides_545a3855d550a12d2ae7b69b.yaml
+    │   ├── test_mes_aides_545a3986124c302f2a640d36.yaml
+    │   ├── test_mes_aides_545a3dc91829192b2aa5f114.yaml
+    │   ├── test_mes_aides_545a453f43c4d9262adb2b0e.yaml
+    │   ├── test_mes_aides_545a464c462d93232aac092a.yaml
+    │   ├── test_mes_aides_545a4c7ed7459ce24407af8e.yaml
+    │   ├── test_mes_aides_545a4dc2ffe6a1e044e6c2a2.yaml
+    │   ├── test_mes_aides_545a4ee5ffe6a1e044e6c2a3.yaml
+    │   ├── test_mes_aides_545a4ff9d0485dd744fc56a9.yaml
+    │   ├── test_mes_aides_545a512bd0485dd744fc56aa.yaml
+    │   ├── test_mes_aides_545a53d20e9bb9d9441ed67d.yaml
+    │   ├── test_mes_aides_545bbc4a55a4c10113ad080a.yaml
+    │   ├── test_mes_aides_545bbcd7332947f9128c0497.yaml
+    │   ├── test_mes_aides_546490a716951c7e7065a5a1.yaml
+    │   ├── test_mes_aides_54661ad9f36fa43e77898968.yaml
+    │   ├── test_mes_aides_54661cb4a519b83677cc76ef.yaml
+    │   ├── test_mes_aides_546b0787fc9936ff63f8565c.yaml
+    │   ├── test_mes_aides_546b087df76135f463c9e1da.yaml
+    │   ├── test_mes_aides_546b094fde0b44f86312e846.yaml
+    │   ├── test_mes_aides_546b0e388de28ffd63d63ed1.yaml
+    │   ├── test_mes_aides_546b1b3b5d4a0b016431db4c.yaml
+    │   ├── test_mes_aides_546b1e49492eaff5637e3bd1.yaml
+    │   ├── test_mes_aides_546b1e8ef76135f463c9e24c.yaml
+    │   ├── test_mes_aides_546b24fe492eaff5637e3be7.yaml
+    │   ├── test_mes_aides_546b25c1fc9936ff63f856d7.yaml
+    │   ├── test_mes_aides_546b3190492eaff5637e3be8.yaml
+    │   ├── test_mes_aides_546b3208fb9f05fb6373bce8.yaml
+    │   ├── test_mes_aides_546b389a492eaff5637e3bf9.yaml
+    │   ├── test_mes_aides_546b3babde0b44f86312e8b3.yaml
+    │   ├── test_mes_aides_546b3d34f76135f463c9e266.yaml
+    │   ├── test_mes_aides_546b3d73fc9936ff63f8572e.yaml
+    │   ├── test_mes_aides_546b3e7ffb9f05fb6373bd37.yaml
+    │   ├── test_mes_aides_546b459cf76135f463c9e37d.yaml
+    │   ├── test_mes_aides_546b473c492eaff5637e3c92.yaml
+    │   ├── test_mes_aides_546b4abfde0b44f86312e9e3.yaml
+    │   ├── test_mes_aides_546b4b61ba32fff66335d381.yaml
+    │   ├── test_mes_aides_546b4bbcf76135f463c9e43a.yaml
+    │   ├── test_mes_aides_546b58b75d4a0b016431dd97.yaml
+    │   ├── test_mes_aides_546c9981efc21c287d798168.yaml
+    │   ├── test_mes_aides_546cc5196c5820403d9b9c8d.yaml
+    │   ├── test_mes_aides_546f1e3ce6f62c383d55a0de.yaml
+    │   ├── test_mes_aides_546f4238e6f62c383d55a10d.yaml
+    │   ├── test_mes_aides_546f441448f57f393d6d1e8e.yaml
+    │   ├── test_mes_aides_546f486448f57f393d6d1e9f.yaml
+    │   ├── test_mes_aides_546f517b6c5820403d9ba0a5.yaml
+    │   ├── test_mes_aides_5473414b6f11bb373dcd110a.yaml
+    │   ├── test_mes_aides_547341b51fdfd7423d81fb11.yaml
+    │   ├── test_mes_aides_547343bc1fdfd7423d81fb12.yaml
+    │   ├── test_mes_aides_5473446a1e6217443d918a68.yaml
+    │   ├── test_mes_aides_54734515e1e8823c3da3ee0c.yaml
+    │   ├── test_mes_aides_54734af2e6f62c383d55a5ae.yaml
+    │   ├── test_mes_aides_54734c1dbbaefa3e3dc48f29.yaml
+    │   ├── test_mes_aides_54734ca66c5820403d9ba3df.yaml
+    │   ├── test_mes_aides_54734e8d6c5820403d9ba3e0.yaml
+    │   ├── test_mes_aides_547491ade1e8823c3da3ef4d.yaml
+    │   ├── test_mes_aides_5475abacf6912100729cc791.yaml
+    │   ├── test_mes_aides_5476f6a59f3f9d687ee8b423.yaml
+    │   ├── test_mes_aides_54787e09f54659627efad257.yaml
+    │   ├── test_mes_aides_5478919ccc51d53d260e8683.yaml
+    │   ├── test_mes_aides_54789fdafccedf3f260aeb4c.yaml
+    │   ├── test_mes_aides_5478a0e6129dbf3626e1c113.yaml
+    │   ├── test_mes_aides_547c7f9abd420d34260ba10d.yaml
+    │   ├── test_mes_aides_547d8779d97a8932263c2914.yaml
+    │   ├── test_mes_aides_54817e07ed60b88866befc03.yaml
+    │   ├── test_mes_aides_5481822c76be8a87669fc53b.yaml
+    │   ├── test_mes_aides_54818d18ed60b88866befc61.yaml
+    │   ├── test_mes_aides_54818ddcf2c0258f66c50c84.yaml
+    │   ├── test_mes_aides_54818e47aad65891668c6d8c.yaml
+    │   ├── test_mes_aides_54818eb3ed60b88866befd7a.yaml
+    │   ├── test_mes_aides_54818fdc1c33cd866618760b.yaml
+    │   ├── test_mes_aides_5481dedf9f3789cc06d5111c.yaml
+    │   ├── test_mes_aides_5481e3705f35e8cf064b9bd6.yaml
+    │   ├── test_mes_aides_5481e7335f35e8cf064b9bdc.yaml
+    │   ├── test_mes_aides_54857378bf1777d606ad1bf4.yaml
+    │   ├── test_mes_aides_5485adad62ae92d806fed28e.yaml
+    │   ├── test_mes_aides_5485b12e62ae92d806fed2d5.yaml
+    │   ├── test_mes_aides_5485d3942d85b4e6733b52a7.yaml
+    │   ├── test_mes_aides_5485d3eff8356af173ccbf0a.yaml
+    │   ├── test_mes_aides_5485d43ef8d2cee973b59a78.yaml
+    │   ├── test_mes_aides_5485d55a2d85b4e6733b52b8.yaml
+    │   ├── test_mes_aides_5485d60e712ad8ef7358d2e3.yaml
+    │   ├── test_mes_aides_5485d6e9e33350e573ef8cd3.yaml
+    │   ├── test_mes_aides_548abc3dfc1609f0180de0ec.yaml
+    │   ├── test_mes_aides_548ac00ffc1609f0180de108.yaml
+    │   ├── test_mes_aides_548ac530bf2c83e6182edb2d.yaml
+    │   ├── test_mes_aides_548ac6189abf6bee18978b45.yaml
+    │   ├── test_mes_aides_548eb0181abb1c570220858d.yaml
+    │   ├── test_mes_aides_548ebc636e7c8953021319c5.yaml
+    │   ├── test_mes_aides_548ec8326e7c895302131a1e.yaml
+    │   ├── test_mes_aides_548ed0381abb1c5702208682.yaml
+    │   ├── test_mes_aides_548eda8bdf990f5b0286b9f0.yaml
+    │   ├── test_mes_aides_548efa8e09d6285e02d4e6b0.yaml
+    │   ├── test_mes_aides_548f01937b8500590228332d.yaml
+    │   ├── test_mes_aides_548f06218dac136002468aed.yaml
+    │   ├── test_mes_aides_548fea668dac136002468b9f.yaml
+    │   ├── test_mes_aides_549038ac8dac136002469383.yaml
+    │   ├── test_mes_aides_5490398040562f54026efa7e.yaml
+    │   ├── test_mes_aides_54903df1df990f5b0286c425.yaml
+    │   ├── test_mes_aides_54903ed6df990f5b0286c429.yaml
+    │   ├── test_mes_aides_549041e16e7c895302132b89.yaml
+    │   ├── test_mes_aides_5490524009d6285e02d4f087.yaml
+    │   ├── test_mes_aides_549069be8dac1360024697f6.yaml
+    │   ├── test_mes_aides_54906bdfccf374520212a6ad.yaml
+    │   ├── test_mes_aides_549159d26e7c89530213381a.yaml
+    │   ├── test_mes_aides_54915af640562f54026f069b.yaml
+    │   ├── test_mes_aides_54915ffadf990f5b0286cf20.yaml
+    │   ├── test_mes_aides_549163af6e7c89530213385f.yaml
+    │   ├── test_mes_aides_549164a58dac13600246a0a4.yaml
+    │   ├── test_mes_aides_549184967b85005902284b77.yaml
+    │   ├── test_mes_aides_5491891d8dac13600246a149.yaml
+    │   ├── test_mes_aides_54918a287b85005902284ba4.yaml
+    │   ├── test_mes_aides_54918a9edf990f5b0286d016.yaml
+    │   ├── test_mes_aides_54918b1a7b85005902284ba7.yaml
+    │   ├── test_mes_aides_5491b842cecbbe4a6d53af49.yaml
+    │   ├── test_mes_aides_54931713f6dab3dc7a59442b.yaml
+    │   ├── test_mes_aides_54931dcec85c31d77ab6bd9a.yaml
+    │   ├── test_mes_aides_549320765db991d97a5e9815.yaml
+    │   ├── test_mes_aides_5493deec5db991d97a5e9890.yaml
+    │   ├── test_mes_aides_5493f5730f5aeede7a7a986d.yaml
+    │   ├── test_mes_aides_5493f78ff6dab3dc7a594673.yaml
+    │   ├── test_mes_aides_5493f8dcc85c31d77ab6bfcb.yaml
+    │   ├── test_mes_aides_54abb0b58b7d192c16f00dde.yaml
+    │   ├── test_mes_aides_54ac0ceed20bc238169b4b06.yaml
+    │   ├── test_mes_aides_54ac144061ba79341658e5c5.yaml
+    │   ├── test_mes_aides_54ac15d34939ba3216001203.yaml
+    │   ├── test_mes_aides_54ad0cad8b7d192c16f0187d.yaml
+    │   ├── test_mes_aides_54b54653d5b79b733e797cec.yaml
+    │   ├── test_mes_aides_54b549cc397579703e58d039.yaml
+    │   ├── test_mes_aides_54b54affd5b79b733e797cfe.yaml
+    │   ├── test_mes_aides_54b54c014e77a2773ea5d9b4.yaml
+    │   ├── test_mes_aides_54b54e7544b1ef7a3e841b4a.yaml
+    │   ├── test_mes_aides_54b54f08d5b79b733e797d08.yaml
+    │   ├── test_mes_aides_54b95b643188a50f6c8e5f5b.yaml
+    │   ├── test_mes_aides_54bd2906740a09082374d73f.yaml
+    │   ├── test_mes_aides_54bd29aa740a09082374d742.yaml
+    │   ├── test_mes_aides_54be84abdee70bd172bf3ba3.yaml
+    │   ├── test_mes_aides_54be884cfc1321cd72d0b5ef.yaml
+    │   ├── test_mes_aides_54bfd8046d9c06c9722b3aee.yaml
+    │   ├── test_mes_aides_54bfdaf4d337b5d372377d30.yaml
+    │   ├── test_mes_aides_54bfde53d337b5d372377d32.yaml
+    │   ├── test_mes_aides_54bfde89fc1321cd72d0b6cd.yaml
+    │   ├── test_mes_aides_54bfdf50d337b5d372377d50.yaml
+    │   ├── test_mes_aides_54c13817a488cca035fe15e2.yaml
+    │   ├── test_mes_aides_54c223ba66a4929f35414054.yaml
+    │   ├── test_mes_aides_54c2259755fa25a535d69571.yaml
+    │   ├── test_mes_aides_54c22b6966a4929f35414084.yaml
+    │   ├── test_mes_aides_54c61ccc83c41aa758c290e9.yaml
+    │   ├── test_mes_aides_54c8eefad4e3b0d74454bbbd.yaml
+    │   ├── test_mes_aides_54c8f41de45751d544f05fec.yaml
+    │   ├── test_mes_aides_54cb53bb1fe4e8cf448e21f3.yaml
+    │   ├── test_mes_aides_54cb5815d4e3b0d74454bf8d.yaml
+    │   ├── test_mes_aides_54cb5a68e45751d544f062ea.yaml
+    │   ├── test_mes_aides_54d345a54ec19fce442271d2.yaml
+    │   ├── test_mes_aides_54d34e2d4ec19fce442271e4.yaml
+    │   ├── test_mes_aides_54d396fd4ec19fce4422725e.yaml
+    │   ├── test_mes_aides_54d3a00e4ec19fce44227275.yaml
+    │   ├── test_mes_aides_54d49411af6bfed9447f959d.yaml
+    │   ├── test_mes_aides_54d497ade45751d544f06aa3.yaml
+    │   ├── test_mes_aides_54d4d6934ec19fce4422736b.yaml
+    │   ├── test_mes_aides_54d4e0704ec19fce442273a0.yaml
+    │   ├── test_mes_aides_54d8c3945c1babd0441a12b5.yaml
+    │   ├── test_mes_aides_54d8df76b93972db44593f80.yaml
+    │   ├── test_mes_aides_54d8e0821fe4e8cf448e2bf3.yaml
+    │   ├── test_mes_aides_54d9126baf6bfed9447f995b.yaml
+    │   ├── test_mes_aides_54dc766af675ddd34432f3a4.yaml
+    │   ├── test_mes_aides_54dc7ae5af6bfed9447f9ce7.yaml
+    │   ├── test_mes_aides_54e21c1cfe0c1e672d0d126f.yaml
+    │   ├── test_mes_aides_54e223d04dd883622de4bc72.yaml
+    │   ├── test_mes_aides_54e4c0bffb31b85d4074fe15.yaml
+    │   ├── test_mes_aides_54e4cdb47c92ea5940ba4d94.yaml
+    │   ├── test_mes_aides_54e5b04145988856401409e6.yaml
+    │   ├── test_mes_aides_54e5c1dada3bc55340837b6a.yaml
+    │   ├── test_mes_aides_54e7007eb841f254405d95c6.yaml
+    │   ├── test_mes_aides_54e702e770a3f65f40b60ef3.yaml
+    │   ├── test_mes_aides_54e708c870a3f65f40b60f37.yaml
+    │   ├── test_mes_aides_54e70c881b7dba5b403a0b57.yaml
+    │   ├── test_mes_aides_54ea47550c95680655b92a06.yaml
+    │   ├── test_mes_aides_54ec5809f3d8e31272949124.yaml
+    │   ├── test_mes_aides_54eca3f828793d0972ec4c5b.yaml
+    │   ├── test_mes_aides_54eca6e00d710a0672dcaf50.yaml
+    │   ├── test_mes_aides_54eca865f3d8e31272949204.yaml
+    │   ├── test_mes_aides_54eca9fd0d710a0672dcaf5f.yaml
+    │   ├── test_mes_aides_54ecadcd371b1e0c72cb6af5.yaml
+    │   ├── test_mes_aides_54ecaf01f3d8e3127294922a.yaml
+    │   ├── test_mes_aides_54edcd6828793d0972ec4dc3.yaml
+    │   ├── test_mes_aides_54ef4cdefa384b5575517bc2.yaml
+    │   ├── test_mes_aides_54ef4e8999fc215675536d0f.yaml
+    │   ├── test_mes_aides_54f07c45246e5054751ccfe3.yaml
+    │   ├── test_mes_aides_54f5da11932d38203b892819.yaml
+    │   ├── test_mes_aides_54f7282125be8dd27ba42168.yaml
+    │   ├── test_mes_aides_54f73d1471bd0dd87b7d9a2a.yaml
+    │   ├── test_mes_aides_55006732368369ed3c408ec2.yaml
+    │   ├── test_mes_aides_5500761c66ca2f8a47241270.yaml
+    │   ├── test_mes_aides_550166db50a4762d5ab000a2.yaml
+    │   ├── test_mes_aides_55016793cc1bb4365a5d7256.yaml
+    │   ├── test_mes_aides_550167f2e471d52f5a015621.yaml
+    │   ├── test_mes_aides_5501689950a4762d5ab000be.yaml
+    │   ├── test_mes_aides_550169da50a4762d5ab000d3.yaml
+    │   ├── test_mes_aides_55016b85110d64385a0318ee.yaml
+    │   ├── test_mes_aides_55016c79ffc0602c5a813cc2.yaml
+    │   ├── test_mes_aides_55016d51cc1bb4365a5d727c.yaml
+    │   ├── test_mes_aides_5501c4c5569add1527598636.yaml
+    │   ├── test_mes_aides_5502b3df11f4501f2700e651.yaml
+    │   ├── test_mes_aides_550317e216c0cf1727382af8.yaml
+    │   ├── test_mes_aides_550ef441b6926d8c2fc17b84.yaml
+    │   ├── test_mes_aides_550ef87dba0c71992f3c0768.yaml
+    │   ├── test_mes_aides_551d4495344fe1e52e84de49.yaml
+    │   ├── test_mes_aides_551d4d49d8e0018545eb071b.yaml
+    │   ├── test_mes_aides_551d5fa6d5717876456fda88.yaml
+    │   ├── test_mes_aides_55252a6c86e10bba11f76d3f.yaml
+    │   ├── test_mes_aides_55252c8fa7629db1117ea8c2.yaml
+    │   ├── test_mes_aides_5527eac9538500fb49c87656.yaml
+    │   ├── test_mes_aides_552e71cd7791936d1b68a0ab.yaml
+    │   ├── test_mes_aides_552e73470284589e1bb70c4d.yaml
+    │   ├── test_mes_aides_552e774a2a0a382a1b80bda3.yaml
+    │   ├── test_mes_aides_552e78bc1c6181231b9eb2f9.yaml
+    │   ├── test_mes_aides_552e7a683ae359611bb4b398.yaml
+    │   ├── test_mes_aides_5530fbb7d421717116602458.yaml
+    │   ├── test_mes_aides_5531000aae99f06b16440f0d.yaml
+    │   ├── test_mes_aides_553115f5b928617d166955b6.yaml
+    │   ├── test_mes_aides_55311c5802fb377a16fbd5b5.yaml
+    │   ├── test_mes_aides_553121e336e8fc797b220477.yaml
+    │   ├── test_mes_aides_553122fd7268c7737bd5ccda.yaml
+    │   ├── test_mes_aides_5531247c70da2f6d7b1092f0.yaml
+    │   ├── test_mes_aides_553125ecda3de56a7b3c8ce2.yaml
+    │   ├── test_mes_aides_553126bef19ad7677b5ea4c2.yaml
+    │   ├── test_mes_aides_553643da88bcee752ddf93f6.yaml
+    │   ├── test_mes_aides_55364727b2f8f07f2d4461fe.yaml
+    │   ├── test_mes_aides_55364aa65808ef7e2d50535b.yaml
+    │   ├── test_mes_aides_55364c58b2f8f07f2d44620d.yaml
+    │   ├── test_mes_aides_55364e3c01d81a812d2dfb68.yaml
+    │   ├── test_mes_aides_553a77bab2f8f07f2d44699e.yaml
+    │   ├── test_mes_aides_553fa8b7301cd06239697158.yaml
+    │   ├── test_mes_aides_553fb5cb46bea964393950ff.yaml
+    │   ├── test_mes_aides_553fb691f0058c5b39237060.yaml
+    │   ├── test_mes_aides_553fb81b46bea9643939510f.yaml
+    │   ├── test_mes_aides_553fb8f917d9db60391c3418.yaml
+    │   ├── test_mes_aides_553fbd0e301cd062396971ce.yaml
+    │   ├── test_mes_aides_553fc13246bea9643939512b.yaml
+    │   ├── test_mes_aides_5540d62546bea96439395305.yaml
+    │   ├── test_mes_aides_5540d71646bea9643939530f.yaml
+    │   ├── test_mes_aides_5550bb6d80e2305831984803.yaml
+    │   ├── test_mes_aides_555aff483b9f6b603184d3a8.yaml
+    │   ├── test_mes_aides_555b397095a4fe5b31975c90.yaml
+    │   ├── test_mes_aides_555b3af141148d573133f253.yaml
+    │   ├── test_mes_aides_555db98d95a4fe5b31976053.yaml
+    │   ├── test_mes_aides_555dba495dcb456331928c74.yaml
+    │   ├── test_mes_aides_55643d7ba0084c3b26e9c8c7.yaml
+    │   ├── test_mes_aides_55643f366aca6d3826e553a4.yaml
+    │   ├── test_mes_aides_55688638aef2163226757c77.yaml
+    │   ├── test_mes_aides_556886e1a0084c3b26e9d1d5.yaml
+    │   ├── test_mes_aides_55688ea5a3f5be1046accf60.yaml
+    │   ├── test_mes_aides_55688f456ea9111d461fc01c.yaml
+    │   ├── test_mes_aides_55689215fefdb1174642804f.yaml
+    │   ├── test_mes_aides_556892e773b0dc114668b0ae.yaml
+    │   ├── test_mes_aides_556ece2d1619d23d68b91e46.yaml
+    │   ├── test_mes_aides_5579b00178ebb479142d5c8f.yaml
+    │   ├── test_mes_aides_558178e578ebb479142d6d0b.yaml
+    │   ├── test_mes_aides_558179ec78ebb479142d6d0f.yaml
+    │   ├── test_mes_aides_55817b3e0223128314aee7fc.yaml
+    │   ├── test_mes_aides_55817e4d3b5af67e1402acc1.yaml
+    │   ├── test_mes_aides_5582ce6a3b5af67e1402b18f.yaml
+    │   ├── test_mes_aides_558d1ec048433cfe2f4364de.yaml
+    │   ├── test_mes_aides_558d1fa5131e5b05301eaec2.yaml
+    │   ├── test_mes_aides_558d20469e2a9d0330e79760.yaml
+    │   ├── test_mes_aides_558d20c3a7a520fc2f41d175.yaml
+    │   ├── test_mes_aides_558d21762f56a0fd2f632517.yaml
+    │   ├── test_mes_aides_558d21f98aba0709309a49b2.yaml
+    │   ├── test_mes_aides_558d22a18aba0709309a49cf.yaml
+    │   ├── test_mes_aides_558d232b48433cfe2f436578.yaml
+    │   ├── test_mes_aides_558d2484a7a520fc2f41d1cd.yaml
+    │   ├── test_mes_aides_558d2507131e5b05301eaf3a.yaml
+    │   ├── test_mes_aides_558d265c2f56a0fd2f632556.yaml
+    │   ├── test_mes_aides_558d271ea7a520fc2f41d1e5.yaml
+    │   ├── test_mes_aides_558d2deb7ae4c40130761781.yaml
+    │   ├── test_mes_aides_558d2ead2f56a0fd2f6325fa.yaml
+    │   ├── test_mes_aides_558d2f562f56a0fd2f632623.yaml
+    │   ├── test_mes_aides_558d2ffc2f56a0fd2f63265c.yaml
+    │   ├── test_mes_aides_55913e82131e5b05301eb89c.yaml
+    │   ├── test_mes_aides_5591409ca7a520fc2f41dc86.yaml
+    │   ├── test_mes_aides_559143fffdd7360730df872e.yaml
+    │   ├── test_mes_aides_5591478e131e5b05301eb8fa.yaml
+    │   ├── test_mes_aides_55915b4148433cfe2f4370dd.yaml
+    │   ├── test_mes_aides_55915f4c9e2a9d0330e7a20f.yaml
+    │   ├── test_mes_aides_559161a648433cfe2f4370f0.yaml
+    │   ├── test_mes_aides_5591635b7ae4c40130761eb7.yaml
+    │   ├── test_mes_aides_55929dc82f56a0fd2f63356b.yaml
+    │   ├── test_mes_aides_5592b42d131e5b05301ebc8f.yaml
+    │   ├── test_mes_aides_559563c2a7a520fc2f41e512.yaml
+    │   ├── test_mes_aides_559b96c52f56a0fd2f634210.yaml
+    │   ├── test_mes_aides_559bb0852f56a0fd2f63423d.yaml
+    │   ├── test_mes_aides_559d204131741cd84c323303.yaml
+    │   ├── test_mes_aides_559e4fe4fa617858013d9a39.yaml
+    │   ├── test_mes_aides_559e5352f92fd455017e6a71.yaml
+    │   ├── test_mes_aides_559e5458f394e1a7011b54a7.yaml
+    │   ├── test_mes_aides_559e5ba1d7483c5f013a983c.yaml
+    │   ├── test_mes_aides_559f93cdaf0afd4601df5df1.yaml
+    │   ├── test_mes_aides_559fb03faf0afd4601df5e04.yaml
+    │   ├── test_mes_aides_559fb2edb205974e01346df4.yaml
+    │   ├── test_mes_aides_559fb665f394e1a7011b573a.yaml
+    │   ├── test_mes_aides_559fbdbb186ae5620110e28b.yaml
+    │   ├── test_mes_aides_559fc228d7483c5f013a9c1e.yaml
+    │   ├── test_mes_aides_55b8811af0f7e3ac6b8f4d7a.yaml
+    │   ├── test_mes_aides_55b9b8bdf0f7e3ac6b8f4f52.yaml
+    │   ├── test_mes_aides_55bb70a5f0ac7bb86ba0523d.yaml
+    │   ├── test_mes_aides_55e6c2b70587579f04649960.yaml
+    │   ├── test_mes_aides_55e80ee69b165def5b0b077a.yaml
+    │   ├── test_mes_aides_55eda4be8c9ccb340464e3d0.yaml
+    │   ├── test_mes_aides_55eda5c5dbd69f2b04f562f4.yaml
+    │   ├── test_mes_aides_55eda68d7869142d0487485e.yaml
+    │   ├── test_mes_aides_55eda7a10df1c6360477f25c.yaml
+    │   ├── test_mes_aides_55eda9170df1c6360477f26b.yaml
+    │   ├── test_mes_aides_55eda9a90df1c6360477f276.yaml
+    │   ├── test_mes_aides_55edaa78bb8d0c380477618e.yaml
+    │   ├── test_mes_aides_55edab1ebd7b102a0438a595.yaml
+    │   ├── test_mes_aides_55edab961e52de32043690ba.yaml
+    │   ├── test_mes_aides_55edac080d70943004ddc529.yaml
+    │   ├── test_mes_aides_55edad33bb8d0c380477619f.yaml
+    │   ├── test_mes_aides_55edb36fbd7b102a0438a5b7.yaml
+    │   ├── test_mes_aides_55edb40b1e52de32043690f2.yaml
+    │   ├── test_mes_aides_55eea677bd7b102a0438a75d.yaml
+    │   ├── test_mes_aides_55eea8ce7869142d04874b44.yaml
+    │   ├── test_mes_aides_55eea9917869142d04874b54.yaml
+    │   ├── test_mes_aides_55eeaa37bb8d0c3804776402.yaml
+    │   ├── test_mes_aides_55eeaaea7869142d04874b5d.yaml
+    │   ├── test_mes_aides_55eeab69bb8d0c3804776432.yaml
+    │   ├── test_mes_aides_55eeac521e52de32043692da.yaml
+    │   ├── test_mes_aides_55eeaccf0df1c6360477f4db.yaml
+    │   ├── test_mes_aides_55eed4a97869142d04874c1a.yaml
+    │   ├── test_mes_aides_55eed5a2bb8d0c3804776563.yaml
+    │   ├── test_mes_aides_55eed6250df1c6360477f572.yaml
+    │   ├── test_mes_aides_55eed71a0df1c6360477f581.yaml
+    │   ├── test_mes_aides_55eed8090df1c6360477f58c.yaml
+    │   ├── test_mes_aides_55eef6a30df1c6360477f5f5.yaml
+    │   ├── test_mes_aides_55f01de91e52de32043695bd.yaml
+    │   ├── test_mes_aides_55f0205bbb8d0c380477691f.yaml
+    │   ├── test_mes_aides_55f024a2bb8d0c3804776968.yaml
+    │   ├── test_mes_aides_55f02b141e52de32043695f7.yaml
+    │   ├── test_mes_aides_55f02c2fbd7b102a0438ab5c.yaml
+    │   ├── test_mes_aides_55f02db21e52de3204369600.yaml
+    │   ├── test_mes_aides_55f02ebc0d70943004ddcd72.yaml
+    │   ├── test_mes_aides_5613ea9691ca94f36e1e3895.yaml
+    │   ├── test_mes_aides_56379c176555c55604db1e46.yaml
+    │   ├── test_mes_aides_563b8ecc6555c55604db2d1f.yaml
+    │   ├── test_mes_aides_564f45b4b1fc7b1002c2cfc0.yaml
+    │   └── test_mes_aides_59415de47770d2503676954c.yaml
+    ├── reforms
+    │   ├── __init__.py
+    │   ├── test_allocations_familliales_imposables.py
+    │   ├── test_cesthra.py
+    │   ├── test_landais_piketty_saez.py
+    │   ├── test_parametric_reform.py
+    │   ├── test_plf2015.py
+    │   ├── test_plf2016.py
+    │   ├── test_plf2016_ayrault_muet.py
+    │   ├── test_plfr2014.py
+    │   └── test_trannoy_wasmer.py
+    ├── scipy
+    │   └── de_net_a_brut.yaml
+    ├── test_api.py
+    ├── test_basics.py
+    ├── test_coefficient.py
+    ├── test_entities.py
+    ├── test_metadata.py
+    ├── test_nb_enfants.py
+    ├── test_parameters.py
+    ├── test_tax_rates.py
+    └── ui.openfisca.fr
+        └── cas_types_ui.yaml
+
+705 directories, 3242 files
