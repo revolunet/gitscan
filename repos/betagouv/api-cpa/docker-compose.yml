@@ -1,0 +1,27 @@
+version: '2'
+
+networks:
+  cpa_network:
+    driver: bridge
+
+services:
+  data:
+    build: data
+    container_name: data
+    volumes:
+      - ./data/db.json:/srv/apps/db.json
+    ports:
+      - 3001:3000
+    networks:
+      - cpa_network
+  api:
+    build: api
+    container_name: api
+    ports:
+      - 3005:3004
+    depends_on:
+      - data
+    networks:
+      - cpa_network
+    environment:
+      dataHost: http://data:3000
