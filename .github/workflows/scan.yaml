@@ -46,11 +46,10 @@ jobs:
                   echo "${{ matrix.sites.url }}"
                   ./fetch-repo.sh "${{ matrix.sites.url }}"
 
-            - name: "Commit"
-              run: |
-                  git config --global user.email 41898282+github-actions[bot]@users.noreply.github.com
-                  git config --global user.name GitHub
-                  git add "./repos/${{ matrix.sites.full_name }}"
-                  git commit -m "update: ${{ matrix.sites.full_name }}"
-                  git pull --rebase --no-ff origin ${{ github.ref }}
-                  git push
+            - uses: EndBug/add-and-commit@v9
+              with:
+                  add: "./repos/${{ matrix.sites.full_name }}"
+                  author_name: "BetaBot"
+                  author_email: "infra@incubateur.net"
+                  message: "update: ${{ matrix.sites.full_name }}"
+                  pull: "--rebase --autostash"
