@@ -12,6 +12,8 @@ Extract data from GIT repositories for analysis :
 - `[fetch-repos.sh](./fetch-repos.sh)`: extrait une liste de repos GitHub et les analyse à partir de `[orgas.txt](./orgas.txt)`
 - `[fetch-repo.sh](./fetch-repo.sh)` : extrait les données d'un repo particulier
 
+you need a `GITHUB_TOKEN` for these
+
 # GitHub actions
 
 The GitHub action can maintain the data in GIT autoamtically
