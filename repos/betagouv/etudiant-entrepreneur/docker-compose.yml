@@ -1,0 +1,45 @@
+version: '2'
+
+services:
+  mongo:
+    image: mongo:3.2.10
+    ports:
+      - 27018:27017
+    networks:
+      - back
+  api:
+    build: ./server
+    volumes:
+      - ./server/api:/srv/app/api
+    ports:
+      - 3004:3004
+    networks:
+      - front
+      - back
+    environment:
+      - SENDGRID_API_KEY=${SENDGRID_API_KEY}
+      - CORS_ORIGIN=${CORS_ORIGIN}
+      - SENTRY_DSN=${SENTRY_DSN}
+      - DEV_MAIL_USER=${DEV_MAIL_USER}
+      - DEV_MAIL_PASS=${DEV_MAIL_PASS}
+      - SMTP_HOST=${SMTP_HOST}
+      - SMTP_PORT=${SMTP_PORT}
+      - SMTP_SENDER=${SMTP_SENDER}
+    depends_on:
+      - mongo
+  seed:
+    build:
+      context: ./server
+      dockerfile: Dockerfile-seed
+    volumes:
+      - ./server/api:/srv/app/api
+    networks:
+      - back
+    depends_on:
+      - mongo
+
+networks:
+  front:
+    driver: bridge
+  back:
+    driver: bridge

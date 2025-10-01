@@ -1,0 +1,40 @@
+{
+  "name": "etudiant-entrepreneur",
+  "version": "0.0.1",
+  "engines": {
+    "node": "6.11.1"
+  },
+  "description": "Faciliter l'accès au statut et à ses bénéfices",
+  "scripts": {
+    "postinstall": "npm-run-all --sequential install:back install:front",
+    "install:back": "cd server && npm install",
+    "install:front": "cd client && npm install --no-optional",
+    "start": "npm-run-all --sequential start:back start:front",
+    "start:back": "docker-compose up --build --force-recreate -d api seed",
+    "start:front": "cd client && npm run start",
+    "start:build": "npm run build:front && docker-compose -f docker-compose.yml -f docker-compose.build.yml up -d --build --force-recreate",
+    "test": "npm-run-all --sequential test:back test:front test:docker",
+    "test:ci": "npm-run-all --sequential test:ci:back test:front",
+    "test:docker": "./tools/dockerTest.sh",
+    "test:back": "cd server && npm test",
+    "test:ci:back": "cd server && npm run test:ci",
+    "test:front": "cd client && npm test",
+    "lint": "npm-run-all --sequential lint:back lint:front",
+    "lint:back": "cd server && npm run lint",
+    "lint:front": "cd client && npm run lint",
+    "build:front" : "cd client && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sgmap/etudiant-entrepreneur.git"
+  },
+  "author": "Nicolas Brohée",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/sgmap/etudiant-entrepreneur/issues"
+  },
+  "homepage": "https://github.com/sgmap/etudiant-entrepreneur#readme",
+  "dependencies": {
+    "npm-run-all": "3.1.0"
+  }
+}
