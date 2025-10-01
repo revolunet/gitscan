@@ -3,6 +3,8 @@ import json
 import sys
 import subprocess
 from urllib.parse import urlparse
+import re
+
 
 # get list of repos to analyze based on GIT history based on orgas.txt
 
@@ -34,9 +36,11 @@ orgas = [
 
 def get_repo_path(url):
     parsed = urlparse(url)
-    path = parsed.path.strip("/").strip(".git")
+    path = parsed.path.strip("/")
+    path = re.sub(".git$", "", path)
     segments = [s for s in path.split("/") if s]  # Enlever les segments vides
-    return f"{segments[-2]}/{segments[-1]}"
+    path = f"{segments[-2]}/{segments[-1]}"
+    return path
 
 
 def get_repo_local_path(url):
