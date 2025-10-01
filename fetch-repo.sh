@@ -118,7 +118,7 @@ fi
 
 # Récupération des 300 derniers commits
 echo "Récupération des 300 derniers commits..."
-git log -300 --pretty=format:"%cI - %h - %an : %s" 2>&1 | echo GI"" > "$RESULTS_DIR/commits.txt"
+git log -300 --pretty=format:"%cI - %h - %an : %s" > "$RESULTS_DIR/commits.txt"
 echo "✓ commits.txt généré"
 
 # Récupération des infos GitHub
