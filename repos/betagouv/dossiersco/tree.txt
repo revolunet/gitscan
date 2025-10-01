@@ -1,0 +1,872 @@
+.
+├── .gitignore
+├── .gitmessage
+├── .locales
+├── .rubocop.yml
+├── .ruby-version
+├── CHANGELOG.md
+├── CODE_OF_CONDUCT.md
+├── CONTRIBUTING.md
+├── Dockerfile
+├── Gemfile
+├── Gemfile.lock
+├── LICENSE
+├── Makefile
+├── Procfile
+├── README.md
+├── Rakefile
+├── app
+│   ├── assets
+│   │   ├── config
+│   │   │   └── manifest.js
+│   │   ├── images
+│   │   │   └── .keep
+│   │   ├── javascripts
+│   │   │   ├── agent
+│   │   │   │   ├── dataTables.buttons.min.js
+│   │   │   │   ├── dataTables.select.min.js
+│   │   │   │   ├── jquery.dataTables.min.js
+│   │   │   │   ├── jquery.dataTables.yadcf.min.js
+│   │   │   │   └── select2.min.js
+│   │   │   ├── agent.js
+│   │   │   ├── application.js
+│   │   │   ├── channels
+│   │   │   │   └── .keep
+│   │   │   ├── famille.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── popper.min.js
+│   │   └── stylesheets
+│   │       ├── agent.css
+│   │       ├── all.css
+│   │       ├── application.css
+│   │       ├── components
+│   │       │   ├── boutons.scss
+│   │       │   ├── footer.scss
+│   │       │   ├── formulaires.scss
+│   │       │   ├── modal.scss
+│   │       │   ├── navbar.scss
+│   │       │   └── tableaux.scss
+│   │       ├── datatables
+│   │       │   ├── jquery.dataTables.min.css
+│   │       │   ├── jquery.dataTables.yadcf.min.css
+│   │       │   ├── select.dataTables.min.css
+│   │       │   └── select2.min.css
+│   │       ├── famille.css
+│   │       ├── main.min.css
+│   │       ├── pages
+│   │       │   ├── agent
+│   │       │   │   ├── configuration.scss
+│   │       │   │   ├── eleve.scss
+│   │       │   │   └── retour_base_eleves.scss
+│   │       │   └── famille
+│   │       │       ├── confirmation.scss
+│   │       │       ├── connexion.scss
+│   │       │       ├── famille.scss
+│   │       │       └── pieces_jointes.scss
+│   │       └── utility
+│   │           └── divers.scss
+│   ├── controllers
+│   │   ├── accueil_controller.rb
+│   │   ├── agent_pieces_jointes_controller.rb
+│   │   ├── api
+│   │   │   └── communes_controller.rb
+│   │   ├── application_controller.rb
+│   │   ├── authentification_cas_ent_controller.rb
+│   │   ├── concerns
+│   │   │   └── .keep
+│   │   ├── configuration
+│   │   │   ├── agents_controller.rb
+│   │   │   ├── campagnes_controller.rb
+│   │   │   ├── dossiers_eleve_controller.rb
+│   │   │   ├── etablissements_controller.rb
+│   │   │   ├── exports_controller.rb
+│   │   │   ├── mef_controller.rb
+│   │   │   ├── options_pedagogiques_controller.rb
+│   │   │   ├── pieces_attendues_controller.rb
+│   │   │   └── regimes_sortie_controller.rb
+│   │   ├── configurations_controller.rb
+│   │   ├── contact_par_etats_controller.rb
+│   │   ├── convocations_controller.rb
+│   │   ├── fiches_infirmeries_controller.rb
+│   │   ├── inscriptions_controller.rb
+│   │   ├── mot_de_passe_agent_controller.rb
+│   │   ├── pages_controller.rb
+│   │   ├── pieces_jointes_controller.rb
+│   │   ├── retour_siecles_controller.rb
+│   │   ├── suivi_controller.rb
+│   │   └── tache_imports_controller.rb
+│   ├── exceptions
+│   │   ├── exception_aucun_email_retrouve.rb
+│   │   ├── exception_aucun_responsable_legal_trouve.rb
+│   │   └── exception_plusieurs_responsables_legaux_trouve.rb
+│   ├── helpers
+│   │   └── application_helper.rb
+│   ├── jobs
+│   │   ├── application_job.rb
+│   │   ├── code_nationalite.yml
+│   │   ├── code_pays.yml
+│   │   ├── convocation_job.rb
+│   │   ├── export_eleves_xlsx_job.rb
+│   │   ├── export_liste_changements_xlsx_job.rb
+│   │   ├── export_pieces_jointes_job.rb
+│   │   ├── fiche_infirmerie_job.rb
+│   │   ├── importer_siecle.rb
+│   │   └── prerempli_etablissement.rb
+│   ├── mailers
+│   │   ├── agent_mailer.rb
+│   │   ├── application_mailer.rb
+│   │   └── famille_mailer.rb
+│   ├── models
+│   │   ├── agent.rb
+│   │   ├── application_record.rb
+│   │   ├── concerns
+│   │   │   └── .keep
+│   │   ├── contact_urgence.rb
+│   │   ├── dossier_eleve.rb
+│   │   ├── eleve.rb
+│   │   ├── etablissement.rb
+│   │   ├── fichier_a_telecharger.rb
+│   │   ├── mef.rb
+│   │   ├── mef_option_pedagogique.rb
+│   │   ├── message.rb
+│   │   ├── modele.rb
+│   │   ├── option_pedagogique.rb
+│   │   ├── piece_attendue.rb
+│   │   ├── piece_jointe.rb
+│   │   ├── regime_sortie.rb
+│   │   ├── resp_legal.rb
+│   │   ├── tache_import.rb
+│   │   └── trace.rb
+│   ├── services
+│   │   ├── academies.json
+│   │   ├── analyseur_option.rb
+│   │   ├── analyseur_retour_siecle.rb
+│   │   ├── commune.rb
+│   │   ├── contacter_famille.rb
+│   │   ├── enregistrement_premier_agent_service.rb
+│   │   ├── famille.rb
+│   │   ├── famille_textoer.rb
+│   │   ├── genere_pdf.rb
+│   │   ├── import_eleves.rb
+│   │   ├── import_nomenclature.rb
+│   │   ├── import_responsables.rb
+│   │   ├── laposte_hexasmal.csv
+│   │   ├── mef_destination.rb
+│   │   ├── nationalite.rb
+│   │   ├── pays.rb
+│   │   ├── pdf_convocation.rb
+│   │   ├── pdf_fiche_infirmerie.rb
+│   │   ├── relancer_dossier.rb
+│   │   └── service_agent.rb
+│   ├── uploaders
+│   │   ├── fichier_a_telecharger_uploader.rb
+│   │   ├── fichier_etablissement_uploader.rb
+│   │   ├── fichier_uploader.rb
+│   │   └── import_uploader.rb
+│   └── views
+│       ├── accueil
+│       │   ├── _form_rl.html.erb
+│       │   ├── accueil.erb
+│       │   ├── administration.erb
+│       │   ├── confirmation.erb
+│       │   ├── connexion.html.erb
+│       │   ├── eleve.erb
+│       │   ├── famille.html.erb
+│       │   ├── liste-pays.csv
+│       │   ├── pieces_a_joindre.erb
+│       │   ├── stats.erb
+│       │   └── validation.erb
+│       ├── agent_mailer
+│       │   ├── change_mot_de_passe_agent.html.erb
+│       │   ├── change_mot_de_passe_agent.text.erb
+│       │   ├── erreur_import.text.erb
+│       │   ├── export_eleves_xlsx.html.erb
+│       │   ├── export_eleves_xlsx.text.erb
+│       │   ├── invite_agent.html.erb
+│       │   ├── invite_agent.text.erb
+│       │   ├── invite_premier_agent.html.erb
+│       │   ├── invite_premier_agent.text.erb
+│       │   ├── succes_import.html.erb
+│       │   ├── succes_import.text.erb
+│       │   ├── succes_import_eleves.text.erb
+│       │   ├── succes_import_nomenclature.text.erb
+│       │   └── succes_import_responsables.text.erb
+│       ├── authentification_cas_ent
+│       │   └── choix_dossier_eleve.html.erb
+│       ├── configuration
+│       │   ├── agents
+│       │   │   ├── _form.html.erb
+│       │   │   ├── activation.html.erb
+│       │   │   ├── edit.html.erb
+│       │   │   ├── index.html.erb
+│       │   │   └── new.html.erb
+│       │   ├── campagnes
+│       │   │   ├── edit_accueil.html.erb
+│       │   │   ├── edit_demi_pension.html.erb
+│       │   │   └── index.html.erb
+│       │   ├── etablissements
+│       │   │   ├── edit.html.erb
+│       │   │   ├── index.html.erb
+│       │   │   ├── new.html.erb
+│       │   │   └── show.html.erb
+│       │   ├── exports
+│       │   │   ├── eleves_avec_adresses.xml.erb
+│       │   │   ├── export_options.xlsx.axlsx
+│       │   │   └── export_siecle.xml.erb
+│       │   ├── mef
+│       │   │   ├── _form.html.erb
+│       │   │   ├── edit.html.erb
+│       │   │   ├── index.html.erb
+│       │   │   └── new.html.erb
+│       │   ├── options_pedagogiques
+│       │   │   ├── _form.html.erb
+│       │   │   ├── ajoute_option_au_mef.js.erb
+│       │   │   ├── edit.html.erb
+│       │   │   ├── enleve_option_au_mef.js.erb
+│       │   │   ├── index.html.erb
+│       │   │   ├── liste.html.erb
+│       │   │   └── new.html.erb
+│       │   ├── pieces_attendues
+│       │   │   ├── _form.html.erb
+│       │   │   ├── edit.html.erb
+│       │   │   └── new.html.erb
+│       │   └── regimes_sortie
+│       │       ├── _form.html.erb
+│       │       ├── activation.html.erb
+│       │       ├── edit.html.erb
+│       │       └── new.html.erb
+│       ├── configurations
+│       │   └── show.html.erb
+│       ├── contact_par_etats
+│       │   └── new.erb
+│       ├── convocations
+│       │   └── convocations.erb
+│       ├── famille_mailer
+│       │   ├── contacter_directement_une_famille.text.erb
+│       │   ├── contacter_une_famille.text.erb
+│       │   ├── envoyer_mail_confirmation.text.erb
+│       │   ├── invitations_parents.text.erb
+│       │   └── mail_validation_inscription.text.erb
+│       ├── fiches_infirmeries
+│       │   └── fiches_infirmeries.html.erb
+│       ├── inscriptions
+│       │   ├── _panel_contact.html.erb
+│       │   ├── connexion.html.erb
+│       │   ├── eleve.erb
+│       │   ├── export.erb
+│       │   ├── liste_des_eleves.erb
+│       │   ├── modifier_mef_eleve.js.erb
+│       │   ├── relance.erb
+│       │   └── tableau_de_bord.erb
+│       ├── layouts
+│       │   ├── agent.erb
+│       │   ├── application.html.erb
+│       │   ├── configuration.erb
+│       │   ├── connexion.erb
+│       │   ├── famille.html.erb
+│       │   ├── mailer.html.erb
+│       │   └── mailer.text.erb
+│       ├── mot_de_passe_agent
+│       │   └── new.html.erb
+│       ├── pages
+│       │   ├── a_propos.html.erb
+│       │   └── index.html.erb
+│       ├── partials
+│       │   ├── _champ_check.erb
+│       │   ├── _image_box.erb
+│       │   ├── _nouveau_precedent_suivant.erb
+│       │   ├── _pieces_jointes.erb
+│       │   └── _pieces_jointes_eleve.erb
+│       ├── retour_siecles
+│       │   ├── export_des_dossiers.html.erb
+│       │   ├── manque_code_matiere.html.erb
+│       │   └── manque_division.html.erb
+│       ├── suivi
+│       │   ├── etablissements_experimentateurs.html.erb
+│       │   └── index.html.erb
+│       ├── tache_imports
+│       │   └── new.html.erb
+│       └── test_cas_ent
+│           └── new.html.erb
+├── app.json
+├── bin
+│   ├── bundle
+│   ├── chromedriver-helper
+│   ├── chromedriver-update
+│   ├── deploy
+│   ├── dotenv
+│   ├── launchy
+│   ├── listen
+│   ├── nokogiri
+│   ├── oletool
+│   ├── pre-push.git.hook
+│   ├── puma
+│   ├── pumactl
+│   ├── rackup
+│   ├── rails
+│   ├── rake
+│   ├── raven
+│   ├── restclient
+│   ├── sass
+│   ├── sass-convert
+│   ├── scss
+│   ├── setup
+│   ├── sprockets
+│   ├── thor
+│   ├── tilt
+│   ├── update
+│   ├── xlsopcodes
+│   └── yarn
+├── config
+│   ├── application.rb
+│   ├── boot.rb
+│   ├── cable.yml
+│   ├── credentials.yml.enc
+│   ├── database.yml
+│   ├── environment.rb
+│   ├── environments
+│   │   ├── demo.rb
+│   │   ├── development.rb
+│   │   ├── production.rb
+│   │   └── test.rb
+│   ├── initializers
+│   │   ├── actionmailer.rb
+│   │   ├── application_controller_renderer.rb
+│   │   ├── assets.rb
+│   │   ├── backtrace_silencers.rb
+│   │   ├── carrierwave.rb
+│   │   ├── content_security_policy.rb
+│   │   ├── cookies_serializer.rb
+│   │   ├── filter_parameter_logging.rb
+│   │   ├── inflections.rb
+│   │   ├── mailjet.rb
+│   │   ├── mime_types.rb
+│   │   ├── prawn.rb
+│   │   ├── raven.rb
+│   │   ├── simple_form.rb
+│   │   └── wrap_parameters.rb
+│   ├── locales
+│   │   ├── en.yml
+│   │   ├── faker.yml
+│   │   ├── fr.yml
+│   │   ├── rails.yml
+│   │   ├── simple_form.en.yml
+│   │   └── simple_form.fr.yml
+│   ├── puma.rb
+│   ├── routes.rb
+│   └── spring.rb
+├── config.ru
+├── db
+│   ├── migrate
+│   │   ├── 20180316135539_create_eleves_table.rb
+│   │   ├── 20180319093137_create_dossier_eleves_table.rb
+│   │   ├── 20180319135356_add_pays_naiss_to_eleves.rb
+│   │   ├── 20180322150451_create_resp_legals_table.rb
+│   │   ├── 20180322151607_create_contact_urgences_table.rb
+│   │   ├── 20180323110607_create_etablissements_table.rb
+│   │   ├── 20180326081822_add_priorite_to_resp_legals.rb
+│   │   ├── 20180327135035_add_colonnes_fichiers_to_dossier_eleves.rb
+│   │   ├── 20180330122454_create_agents_table.rb
+│   │   ├── 20180403132403_add_etat_dossier_eleves.rb
+│   │   ├── 20180404135153_add_etat_fichiers_dossier_eleve.rb
+│   │   ├── 20180409113801_change_default_etat_dossier_eleve.rb
+│   │   ├── 20180409145959_add_satisfaction_to_dossier_eleves.rb
+│   │   ├── 20180411121606_add_niveau_class_ant_to_eleves.rb
+│   │   ├── 20180413124418_add_colonnes_administration_to_dossier_eleves.rb
+│   │   ├── 20180416095721_add_check_cantine_to_dossier_eleve.rb
+│   │   ├── 20180417120639_add_prenoms_to_eleves.rb
+│   │   ├── 20180418090149_create_table_options.rb
+│   │   ├── 20180419081557_add_obligatoire_to_options.rb
+│   │   ├── 20180419092203_create_table_eleves_options.rb
+│   │   ├── 20180419135905_add_etape_to_dossier_eleves.rb
+│   │   ├── 20180423150322_add_colonnes_to_etablissements.rb
+│   │   ├── 20180425082732_add_groupe_to_options.rb
+│   │   ├── 20180426155635_add_commentaire_to_dossier_eleves.rb
+│   │   ├── 20180508184425_remove_check_reglement_cantine_from_dossier_eleve.rb
+│   │   ├── 20180509095509_create_table_pieces_jointes.rb
+│   │   ├── 20180511081347_add_etat_to_piece_jointes.rb
+│   │   ├── 20180518124014_rename_column_from_etablissements.rb
+│   │   ├── 20180518152231_add_obligatoire_to_piece_demandees.rb
+│   │   ├── 20180521132737_create_table_tache_imports.rb
+│   │   ├── 20180521150517_add_criteres_tache_import.rb
+│   │   ├── 20180521154108_add_message_tache_import.rb
+│   │   ├── 20180524100144_add_changement_adresse.rb
+│   │   ├── 20180524132427_add_updated_at.rb
+│   │   ├── 20180524145242_add_renseignement_medicauxto_etablissement.rb
+│   │   ├── 20180525092826_remove_colonnes_from_contact_urgences.rb
+│   │   ├── 20180525150318_add_signature_inscription_to_dossier_eleve.rb
+│   │   ├── 20180528213920_create_options_demandees.rb
+│   │   ├── 20180531145310_create_montee.rb
+│   │   ├── 20180605104731_create_table_abandons.rb
+│   │   ├── 20180605113026_add_adresse_ant.rb
+│   │   ├── 20180607133616_add_admin_to_agents.rb
+│   │   ├── 20180611120115_remove_demarche_to_dossier_eleve.rb
+│   │   ├── 20180611130621_add_info_option.rb
+│   │   ├── 20180611150031_add_email_to_etablissements.rb
+│   │   ├── 20180614082013_add_etablissement_cantine.rb
+│   │   ├── 20180618151230_add_traces.rb
+│   │   ├── 20180619100122_add_signataire_etablissement.rb
+│   │   ├── 20180620124821_supprime_resp_legal_2_fantomes.rb
+│   │   ├── 20180620155028_drop_changement_adresse.rb
+│   │   ├── 20180622071915_create_message_emis.rb
+│   │   ├── 20180622120000_create_modeles.rb
+│   │   ├── 20180627080822_add_destinataire_message.rb
+│   │   ├── 20180921125234_add_derniere_etape.rb
+│   │   ├── 20180923163703_remove_situation_emploi_et_enfants_scolarises.rb
+│   │   ├── 20190117095448_supprime_champ_traitement.rb
+│   │   ├── 20190117145615_create_dossiers_affelnet.rb
+│   │   ├── 20190121143230_create_options_pedagogiques.rb
+│   │   ├── 20190121155857_create_mef.rb
+│   │   ├── 20190121160828_create_mef_options_pedagogiques.rb
+│   │   ├── 20190122161801_add_password_digest_to_agents.rb
+│   │   ├── 20190124110949_rename_table_piece_jointes.rb
+│   │   ├── 20190124112554_create_active_storage_tables.active_storage.rb
+│   │   ├── 20190125095106_add_file_fields_to_dossiers_affelnet.rb
+│   │   ├── 20190125144910_supprime_le_champ_fichier_de_la_table_dossiers_affelnet.rb
+│   │   ├── 20190128111339_add_mef_to_dossier_eleves.rb
+│   │   ├── 20190128165248_add_etablissement_to_options_pedagogiques.rb
+│   │   ├── 20190130095530_create_dossier_eleves_options_pedagogiques.rb
+│   │   ├── 20190204104154_add_fichier_to_pieces_jointes.rb
+│   │   ├── 20190204145302_add_fichier_to_tache_imports.rb
+│   │   ├── 20190205150315_remove_clef_to_pieces_jointes.rb
+│   │   ├── 20190206203529_add_uai_to_etablissement.rb
+│   │   ├── 20190207100118_add_email_to_agents.rb
+│   │   ├── 20190213145128_change_tache_import.rb
+│   │   ├── 20190214232304_rename_piece_attendues.rb
+│   │   ├── 20190218145208_add_jeton_to_agents.rb
+│   │   ├── 20190304132553_delete_identifiant_from_agent.rb
+│   │   ├── 20190304224718_add_envoyer_aux_familles_from_etablissement.rb
+│   │   ├── 20190320093832_add_reglement_demi_pension_to_etablissement.rb
+│   │   ├── 20190411085210_drop_unused_tables.rb
+│   │   ├── 20190418090027_add_telephone_to_dossier_eleve.rb
+│   │   ├── 20190423082403_add_abandonnable_to_mef_options_pedagogiques.rb
+│   │   ├── 20190423130204_add_options_origines_to_dossier_eleve.rb
+│   │   ├── 20190429093041_add_code_to_option_pedagogique.rb
+│   │   ├── 20190507144930_create_regimes_sortie.rb
+│   │   ├── 20190507145009_add_regime_sortie_to_dossier_eleves.rb
+│   │   ├── 20190515134734_add_mot_accueil_to_etablissements.rb
+│   │   ├── 20190520131601_add_fichiers_to_pieces_jointes.rb
+│   │   ├── 20190520134320_remove_fichier_to_pieces_jointes.rb
+│   │   ├── 20190522131401_create_fichier_a_telechargers.rb
+│   │   ├── 20190523092704_add_nom_to_fichier_a_telechargers.rb
+│   │   ├── 20190523142754_add_libelle_to_options_pedagogiques.rb
+│   │   ├── 20190527124339_add_identifiant_caf_to_dossier_eleves.rb
+│   │   ├── 20190527124528_add_demande_caf_to_etablissement.rb
+│   │   ├── 20190603124931_add_ouverte_inscription_to_mef_option_pedagogique.rb
+│   │   ├── 20190603132906_add_explication_to_option_pedagogique.rb
+│   │   ├── 20190604121640_add_time_stamps_to_regimes_sortie.rb
+│   │   ├── 20190606130919_add_pays_to_resp_legals.rb
+│   │   ├── 20190610072648_change_job_klass_en_type_fichier.rb
+│   │   ├── 20190610082100_add_email_reponse_to_etablissements.rb
+│   │   ├── 20190610094752_add_date_debut_to_etablissement.rb
+│   │   ├── 20190610140801_add_continuer_dossiersco_to_dossier_eleves.rb
+│   │   ├── 20190610144238_add_id_ent_to_resp_legal.rb
+│   │   ├── 20190618101413_change_valeur_autorise_photo_par_defaut_a_faux_sur_dossier.rb
+│   │   ├── 20190620090311_add_ville_etranger_to_resp_legal.rb
+│   │   ├── 20190626133935_change_date_signature_for_dossier_eleve.rb
+│   │   ├── 20190626134611_add_date_validation_agent_to_dossier_eleves.rb
+│   │   ├── 20190715180742_add_code_matiere6_to_options_pedagogique.rb
+│   │   ├── 20190723124340_add_index_identifiant_to_traces.rb
+│   │   ├── 20190803214452_add_commune_insee_naissance_to_eleve.rb
+│   │   ├── 20190808204611_add_divisions_et_autres_to_dossier_eleves.rb
+│   │   ├── 20190812083821_add_id_prv_ele_to_eleve.rb
+│   │   ├── 20190814075028_add_code_modalite_elect_to_mef_option_pedagogique.rb
+│   │   ├── 20190814131139_set_default_value_for_code_modalite_elect_to_mef_options_pedagogiques.rb
+│   │   ├── 20190816091827_add_rang_option_to_mef_option_pedagogique.rb
+│   │   ├── 20190819080842_add_paie_frais_scolaires_to_resp_legal.rb
+│   │   ├── 20190821142151_drop_dossier_affelnet_table.rb
+│   │   ├── 20190827173712_add_retour_siecle_impossible_to_dossier_eleve.rb
+│   │   ├── 20190912125811_add_civilite_to_resp_legal.rb
+│   │   ├── 20190912141034_rename_lien_avec_eleve_to_lien_de_parente_for_contact_urgence.rb
+│   │   ├── 20190920161912_renomme_code_matiere_en_code_gestion.rb
+│   │   ├── 20190920173624_renomme_code_matiere_6_en_code_matiere.rb
+│   │   ├── 20190925130833_add_eleve_fields_to_dossier_eleve.rb
+│   │   └── 20191004131537_add_civilite_to_contact_urgence.rb
+│   ├── schema.rb
+│   ├── seed_demo.rb
+│   └── seeds.rb
+├── deploy
+├── doc
+│   ├── a-propos.md
+│   ├── apprentissages.md
+│   ├── base_centrale_des_nomenclatures.md
+│   ├── bizdev.md
+│   ├── commandes-utiles
+│   ├── connexion_ent.md
+│   ├── design_agent
+│   │   ├── assets
+│   │   │   ├── Demi-pension - Fiche eleve@2x.png
+│   │   │   ├── Demi-pension - Liste@2x.png
+│   │   │   ├── Home@2x.png
+│   │   │   ├── apps
+│   │   │   │   ├── common
+│   │   │   │   │   └── img
+│   │   │   │   │       ├── base-sprite.png
+│   │   │   │   │       ├── base-sprite@2x.png
+│   │   │   │   │       ├── blank.png
+│   │   │   │   │       ├── boards-sprite.png
+│   │   │   │   │       ├── boards-sprite@2x.png
+│   │   │   │   │       ├── comments-sprite.png
+│   │   │   │   │       ├── comments-sprite@2x.png
+│   │   │   │   │       ├── console-sprite.png
+│   │   │   │   │       ├── console-sprite@2x.png
+│   │   │   │   │       ├── delete.png
+│   │   │   │   │       ├── emojis-sprite.png
+│   │   │   │   │       ├── emojis-sprite@2x.png
+│   │   │   │   │       ├── landing-sprite.png
+│   │   │   │   │       ├── landing-sprite@2x.png
+│   │   │   │   │       ├── logos-sprite.png
+│   │   │   │   │       ├── logos-sprite@2x.png
+│   │   │   │   │       ├── mentions-sprite.png
+│   │   │   │   │       ├── mentions-sprite@2x.png
+│   │   │   │   │       ├── mobile-cursor-hover.png
+│   │   │   │   │       ├── mobile-cursor-hover@2x.png
+│   │   │   │   │       ├── mobile-cursor-tap.png
+│   │   │   │   │       ├── mobile-cursor-tap@2x.png
+│   │   │   │   │       ├── mobile-cursor.png
+│   │   │   │   │       ├── mobile-cursor@2x.png
+│   │   │   │   │       ├── mobile-transition-box-shadow.png
+│   │   │   │   │       ├── mobile-transition-box-shadow@2x.png
+│   │   │   │   │       ├── nav-sprite.png
+│   │   │   │   │       ├── nav-sprite@2x.png
+│   │   │   │   │       ├── no-results-illustration.png
+│   │   │   │   │       ├── preview-arrow-next.png
+│   │   │   │   │       ├── preview-arrow-prev.png
+│   │   │   │   │       ├── project-sprite.png
+│   │   │   │   │       ├── project-sprite@2x.png
+│   │   │   │   │       ├── projects-sprite.png
+│   │   │   │   │       ├── projects-sprite@2x.png
+│   │   │   │   │       ├── screen-viewer-sprite.png
+│   │   │   │   │       ├── screen-viewer-sprite@2x.png
+│   │   │   │   │       ├── share-modal-sprites.png
+│   │   │   │   │       ├── share-modal-sprites@2x.png
+│   │   │   │   │       ├── sketch-viewer-close.png
+│   │   │   │   │       ├── snaps-sprite-x2.png
+│   │   │   │   │       ├── snaps-sprite.png
+│   │   │   │   │       ├── snaps-sprite@2x.png
+│   │   │   │   │       ├── uploader-sprite.png
+│   │   │   │   │       └── uploader-sprite@2x.png
+│   │   │   │   └── share
+│   │   │   │       ├── css
+│   │   │   │       │   ├── bootstrap.css
+│   │   │   │       │   ├── intlTelInput.css
+│   │   │   │       │   ├── share-offline.css
+│   │   │   │       │   └── uniform.default.css
+│   │   │   │       └── img
+│   │   │   │           ├── app-switch.png
+│   │   │   │           ├── archive.png
+│   │   │   │           ├── browse-background.png
+│   │   │   │           ├── browse-pillnav-icons.png
+│   │   │   │           ├── browse-pillnav.png
+│   │   │   │           ├── browser-compatibility-alert.png
+│   │   │   │           ├── browser-compatibility-close.png
+│   │   │   │           ├── btn-green.png
+│   │   │   │           ├── check-sm.png
+│   │   │   │           ├── check.png
+│   │   │   │           ├── close2@2x.png
+│   │   │   │           ├── close3.png
+│   │   │   │           ├── close4.png
+│   │   │   │           ├── close5.png
+│   │   │   │           ├── comments-context-tab.png
+│   │   │   │           ├── comments-vrule.png
+│   │   │   │           ├── cursor-circle.png
+│   │   │   │           ├── cursor-circle@2x.png
+│   │   │   │           ├── cursor-line.png
+│   │   │   │           ├── cursor-line@2x.png
+│   │   │   │           ├── cursor-pen.png
+│   │   │   │           ├── cursor-pen@2x.png
+│   │   │   │           ├── cursor-square.png
+│   │   │   │           ├── cursor-square@2x.png
+│   │   │   │           ├── custom-share-branding-logo@2x.png
+│   │   │   │           ├── draw.png
+│   │   │   │           ├── draw@2x.png
+│   │   │   │           ├── email@2x.png
+│   │   │   │           ├── flags16.png
+│   │   │   │           ├── grey-screen-divider.png
+│   │   │   │           ├── icon.png
+│   │   │   │           ├── in.png
+│   │   │   │           ├── in@2x.png
+│   │   │   │           ├── in_small.png
+│   │   │   │           ├── in_small@2x.png
+│   │   │   │           ├── loader-logo.png
+│   │   │   │           ├── loader-logo@2x.png
+│   │   │   │           ├── loader-sprite.png
+│   │   │   │           ├── login-header-background.png
+│   │   │   │           ├── logo-icon.png
+│   │   │   │           ├── made-with-invision.png
+│   │   │   │           ├── marker.png
+│   │   │   │           ├── mobile-logo-icon.png
+│   │   │   │           ├── mobile-logo-icon@2x.png
+│   │   │   │           ├── mobile.png
+│   │   │   │           ├── modal-sprite.png
+│   │   │   │           ├── modal-sprite@2x.png
+│   │   │   │           ├── preview-arrow-next.png
+│   │   │   │           ├── preview-arrow-prev.png
+│   │   │   │           ├── screens-search.png
+│   │   │   │           ├── scrollbar-mid.png
+│   │   │   │           ├── share-lite-sprites.png
+│   │   │   │           ├── share-lite-sprites@2x.png
+│   │   │   │           ├── share-loading-sprites.png
+│   │   │   │           ├── share-loading-sprites@2x.png
+│   │   │   │           ├── share-toolbar-sprites.png
+│   │   │   │           ├── share-toolbar-sprites@2x.png
+│   │   │   │           ├── sketch-viewer-close.png
+│   │   │   │           ├── sketch_tools.png
+│   │   │   │           ├── slideshow-arrow-left.png
+│   │   │   │           ├── slideshow-arrow-right.png
+│   │   │   │           ├── sprite1.png
+│   │   │   │           ├── sprites
+│   │   │   │           │   ├── modal
+│   │   │   │           │   │   ├── back@2x.png
+│   │   │   │           │   │   ├── full-screen-close-hover@2x.png
+│   │   │   │           │   │   ├── full-screen-close@2x.png
+│   │   │   │           │   │   └── logo-gray-letters@2x.png
+│   │   │   │           │   └── toolbar
+│   │   │   │           │       ├── comment-new@2x.png
+│   │   │   │           │       ├── comment@2x.png
+│   │   │   │           │       ├── comments-button-bubble@2x.png
+│   │   │   │           │       ├── comments-button-close@2x.png
+│   │   │   │           │       ├── comments-default@2x.png
+│   │   │   │           │       ├── comments-new@2x.png
+│   │   │   │           │       ├── comments-old@2x.png
+│   │   │   │           │       ├── comments-tooltip-close@2x.png
+│   │   │   │           │       ├── device-hover@2x.png
+│   │   │   │           │       ├── device@2x.png
+│   │   │   │           │       ├── menu-close@2x.png
+│   │   │   │           │       └── menu@2x.png
+│   │   │   │           ├── toolbar-sprite.png
+│   │   │   │           ├── toolbar-sprite@2x.png
+│   │   │   │           └── transparent.png
+│   │   │   ├── fonts
+│   │   │   │   └── open_sans
+│   │   │   │       ├── OpenSans-bold.woff
+│   │   │   │       ├── OpenSans-light.woff
+│   │   │   │       ├── OpenSans-semibold.woff
+│   │   │   │       └── OpenSans.woff
+│   │   │   ├── html5shim
+│   │   │   │   └── html5.js
+│   │   │   ├── jquery-ui-1.9.2.custom
+│   │   │   │   └── css
+│   │   │   │       └── no-theme
+│   │   │   │           └── jquery-ui-1.9.2.custom.min.css
+│   │   │   ├── json2
+│   │   │   │   └── json2.js
+│   │   │   ├── react
+│   │   │   │   ├── es5-sham.min.js
+│   │   │   │   └── es5-shim.min.js
+│   │   │   ├── scripts.js
+│   │   │   ├── thumb_Demi-pension - Fiche eleve@2x.png
+│   │   │   ├── thumb_Demi-pension - Liste@2x.png
+│   │   │   └── thumb_Home@2x.png
+│   │   ├── images
+│   │   │   ├── export-de-donnees.svg
+│   │   │   ├── intendance.svg
+│   │   │   └── secretariat.svg
+│   │   └── index.html
+│   ├── ent.md
+│   └── import_prive
+│       ├── SIECLE BEE - Protocole de qualification de l'interface avec les éditeurs v1.5.doc
+│       ├── ac-creteil-SIECLE-ELEVES-Prive_2014-3-220814.pdf
+│       ├── ac-lille-SIECLE-ELEVES-Privé - Notice d'utilisation en établissement-version2012-1.pdf
+│       ├── exemple_pour_robot_siecle.xml
+│       ├── regles_gestion_bee.pdf
+│       ├── schema_Import_3.0.xsd
+│       ├── schema_Import_3.1.xsd
+│       ├── schema_Import_3.1_avec_correction.xsd
+│       ├── schema_import.xsd
+│       ├── spec_code_parente.txt
+│       ├── spec_export.pdf
+│       ├── spec_import.pdf
+│       ├── spec_import_liens_eleve_groupes.pdf
+│       ├── tests_de_retour_siecle.md
+│       └── tests_siecle.md
+├── docker-compose.yml
+├── helpers
+│   ├── export_siecle.rb
+│   ├── formulaire.rb
+│   ├── s3.rb
+│   └── singulier_francais.rb
+├── lib
+│   ├── assets
+│   │   └── .keep
+│   ├── eleves_debussy_mef_destination.xml
+│   ├── prenoms.csv
+│   ├── professions.yml
+│   ├── schema_Import_3.1.xsd
+│   ├── schema_Import_3.1_avec_correction.xsd
+│   ├── tasks
+│   │   ├── seed_demo.rake
+│   │   └── truncate.rake
+│   └── templates
+│       └── erb
+│           └── scaffold
+│               └── _form.html.erb
+├── package.json
+├── public
+│   ├── 404.html
+│   ├── 422.html
+│   ├── 500.html
+│   ├── apple-touch-icon-precomposed.png
+│   ├── apple-touch-icon.png
+│   ├── favicon.ico
+│   ├── fonts
+│   │   └── liberation_sans
+│   │       ├── LiberationSans-Bold.ttf
+│   │       ├── LiberationSans-BoldItalic.ttf
+│   │       ├── LiberationSans-Italic.ttf
+│   │       └── LiberationSans-Regular.ttf
+│   ├── images
+│   │   ├── chevron_bas.png
+│   │   ├── chevron_haut.png
+│   │   ├── chevron_haut_big.png
+│   │   ├── document-pdf.png
+│   │   ├── insatisfait.png
+│   │   ├── neutre.png
+│   │   ├── precedent.png
+│   │   ├── precedent_big.png
+│   │   ├── reglement_dp_small.png
+│   │   ├── republique_francaise.svg
+│   │   ├── retour_base_eleve.svg
+│   │   ├── satisfaction.png
+│   │   ├── satisfaction_big.jpg
+│   │   ├── satisfait.png
+│   │   ├── suivant.png
+│   │   ├── suivant_big.png
+│   │   ├── theme_slack.png
+│   │   ├── tres_insatisfait.png
+│   │   └── tres_satisfait.png
+│   ├── js
+│   │   └── bootstrap-filestyle-2.1.0
+│   │       └── src
+│   │           └── bootstrap-filestyle.min.js
+│   └── robots.txt
+├── scripts
+│   ├── affiche_resp_legaux_sans_adresse.rb
+│   ├── ajout_code_gestion_au_options_origines.rb
+│   ├── compare_nomenclature_xml.rb
+│   ├── compte_les_adresses_vides.rb
+│   ├── copie_donnee_eleve_vers_dossier_eleve.rb
+│   ├── corrige_les_resp_legaux.rb
+│   ├── cree_arbo_pj_pour_etablissement.rb
+│   ├── met_a_jour_les_adresses_vides.rb
+│   ├── met_a_jour_les_adresses_vides_rollback.rb
+│   ├── met_a_jour_mef_destination_pour_debussy.rb
+│   ├── nettoyage_civilite_contact_en_cas_urgence.rb
+│   ├── nettoyage_code_profession.rb
+│   ├── nettoyage_contact_en_cas_urgence_vide.rb
+│   ├── nettoyage_lien_de_parent_contact_urgence.rb
+│   ├── nettoyage_resp_legal_en_doublon.rb
+│   ├── nettoyage_resp_legal_sans_nom_ni_prenom.rb
+│   ├── nettoyage_tel.rb
+│   ├── nettoyage_ville_naiss.rb
+│   ├── recupere_pieces_jointes_etablissement.rb
+│   ├── supprimer_option_pedago_inexistante.rb
+│   └── test_siecle.rb
+├── test
+│   ├── application_system_test_case.rb
+│   ├── controllers
+│   │   ├── accueil_controller_test.rb
+│   │   ├── agent_pieces_jointes_controller_test.rb
+│   │   ├── authentification_cas_ent_controller_test.rb
+│   │   ├── configuration
+│   │   │   ├── agents_controller_test.rb
+│   │   │   ├── campagnes_controller_test.rb
+│   │   │   ├── etablissements_controller_test.rb
+│   │   │   ├── exports_controller_test.rb
+│   │   │   ├── options_pedagogiques_controller_test.rb
+│   │   │   └── regimes_sortie_controller_test.rb
+│   │   ├── contact_par_etats_controller_test.rb
+│   │   ├── convocations_controller_test.rb
+│   │   ├── fiches_infirmeries_controller_test.rb
+│   │   ├── inscriptions_controller_test.rb
+│   │   ├── mef_controller_test.rb
+│   │   ├── mot_de_passe_agent_controller_test.rb
+│   │   ├── pages_controller_test.rb
+│   │   ├── pieces_attendues_test.rb
+│   │   ├── retour_siecles_controller_test.rb
+│   │   ├── suivi_controller_test.rb
+│   │   └── tache_imports_controller_test.rb
+│   ├── fabricators
+│   │   ├── agent_fabricator.rb
+│   │   ├── contact_urgence_fabricator.rb
+│   │   ├── dossier_eleve_fabricator.rb
+│   │   ├── eleve_fabricator.rb
+│   │   ├── etablissement_fabricator.rb
+│   │   ├── mef_fabricator.rb
+│   │   ├── mef_option_pedagogique_fabricator.rb
+│   │   ├── message_fabricator.rb
+│   │   ├── option_pedagogique_fabricator.rb
+│   │   ├── piece_attendue_fabricator.rb
+│   │   ├── piece_jointe_fabricator.rb
+│   │   ├── regime_sortie_fabricator.rb
+│   │   ├── resp_legal_fabricator.rb
+│   │   └── tache_import_fabricator.rb
+│   ├── fixtures
+│   │   ├── fichier_a_telechargers.yml
+│   │   └── files
+│   │       ├── eleves_avec_adresse_avec_double_structure.xml
+│   │       ├── eleves_avec_adresse_simple.xml
+│   │       ├── nomenclature_code_modalite_elec_double.xml
+│   │       ├── nomenclature_simple.xml
+│   │       ├── nomenclature_tout_niveau.xml
+│   │       ├── responsables_avec_adresses_simple.xml
+│   │       ├── retour_ent.xml
+│   │       ├── retour_ent_plusieurs_enfants.xml
+│   │       ├── retour_ent_plusieurs_etablissements.xml
+│   │       ├── sample.png
+│   │       ├── test_import_6eme.xls
+│   │       ├── test_import_adresses.xlsx
+│   │       ├── test_import_multi_lignes.xlsx
+│   │       └── test_import_siecle.xls
+│   ├── helpers
+│   │   └── application_helper_test.rb
+│   ├── integration
+│   │   ├── accueil_controller_test.rb
+│   │   ├── configuration_controller_test.rb
+│   │   └── inscriptions_controller_test.rb
+│   ├── jobs
+│   │   ├── export_eleves_xlsx_job_test.rb
+│   │   ├── export_liste_changements_xlsx_job_test.rb
+│   │   ├── importer_siecle_test.rb
+│   │   └── prerempli_etablissement_test.rb
+│   ├── mailers
+│   │   ├── agent_mailer_test.rb
+│   │   └── famille_mailer_test.rb
+│   ├── models
+│   │   ├── agent_test.rb
+│   │   ├── contact_urgence_test.rb
+│   │   ├── dossier_eleve_test.rb
+│   │   ├── eleve_test.rb
+│   │   ├── etablissement_test.rb
+│   │   ├── fichier_a_telecharger_test.rb
+│   │   ├── mef_test.rb
+│   │   ├── message_test.rb
+│   │   ├── option_pedagogique_test.rb
+│   │   ├── piece_jointe_test.rb
+│   │   ├── regime_sortie_test.rb
+│   │   ├── resp_legal_test.rb
+│   │   └── tache_import_test.rb
+│   ├── services
+│   │   ├── analyseur_option_test.rb
+│   │   ├── analyseur_retour_siecle_test.rb
+│   │   ├── commune_test.rb
+│   │   ├── contacter_famille_test.rb
+│   │   ├── enregistrement_premier_agent_service_test.rb
+│   │   ├── famille_test.rb
+│   │   ├── import_eleves_test.rb
+│   │   ├── import_nomenclature_test.rb
+│   │   ├── import_responsables_test.rb
+│   │   ├── mef_destination_test.rb
+│   │   ├── nationalite_test.rb
+│   │   ├── pays_test.rb
+│   │   ├── pdf_fiche_infirmerie_test.rb
+│   │   └── service_agent_test.rb
+│   ├── system
+│   │   ├── configuration_test.rb
+│   │   ├── inscription_etablissement_test.rb
+│   │   └── inscription_test.rb
+│   └── test_helper.rb
+└── vendor
+    └── .keep
+
+112 directories, 758 files
