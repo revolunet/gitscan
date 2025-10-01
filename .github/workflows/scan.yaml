@@ -3,7 +3,7 @@ name: GitScan
 on:
     workflow_dispatch:
     schedule:
-        - cron: "0 0 * * 0" # see https://crontab.guru
+        - cron: "0 0 * * *" # midnight, see https://crontab.guru
 
 # allow only one concurrent scan action
 concurrency:
@@ -21,7 +21,7 @@ jobs:
             - id: init
               uses: "./.github/actions/init"
               with:
-                  count: 10
+                  count: 50
             - run: |
                   pwd
                   ls
