@@ -1,0 +1,19 @@
+app:
+  build: back
+  ports:
+    - 9001:9000
+
+front:
+  build: front
+
+
+nginx:
+  build: nginx
+  volumes_from:
+    - front
+  ports:
+    - 8081:80
+    - 4431:443
+  links:
+    - app:app
+    - front
