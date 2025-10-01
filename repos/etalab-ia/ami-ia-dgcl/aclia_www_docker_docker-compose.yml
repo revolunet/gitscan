@@ -1,0 +1,20 @@
+version: '3.4'
+services:
+    server:
+        container_name: api
+        build: ./server
+        expose:
+            - 3011
+        ports:
+            - 3011:3011
+        network_mode: "host"
+
+    client:
+        container_name: webapp
+        build: ./client
+        expose:
+            - 80
+        ports:
+            - 80:80
+        links:
+            - server
