@@ -1,0 +1,380 @@
+.
+├── .travis.yml
+├── COPYING
+├── LICENSE.md
+├── README.md
+├── REQUIRE
+├── assets
+│   └── apl
+│       ├── 20110914_zonage.csv
+│       └── commune_depcom_by_subcommune_depcom.json
+├── scripts
+│   ├── download_embauche_tests.jl
+│   ├── download_mes_aides_tests.jl
+│   └── measure_performances.jl
+├── src
+│   ├── OpenFiscaFrance.jl
+│   ├── decompositions.jl
+│   ├── formulas
+│   │   ├── caracteristiques_socio_demographiques
+│   │   │   └── demographie.jl
+│   │   ├── mesures.jl
+│   │   ├── pfam.jl
+│   │   ├── prelevements_obligatoires
+│   │   │   ├── impot_revenu
+│   │   │   │   ├── charges_deductibles.jl
+│   │   │   │   ├── credits_impot.jl
+│   │   │   │   ├── ir.jl
+│   │   │   │   ├── plus_values_immobilieres.jl
+│   │   │   │   └── reductions_impot.jl
+│   │   │   ├── isf.jl
+│   │   │   ├── prelevements_sociaux
+│   │   │   │   ├── contributions_sociales
+│   │   │   │   │   ├── activite.jl
+│   │   │   │   │   ├── base.jl
+│   │   │   │   │   ├── capital.jl
+│   │   │   │   │   └── remplacement.jl
+│   │   │   │   ├── cotisations_sociales
+│   │   │   │   │   ├── allegements.jl
+│   │   │   │   │   ├── apprentissage.jl
+│   │   │   │   │   ├── base.jl
+│   │   │   │   │   ├── exonerations.jl
+│   │   │   │   │   ├── remuneration_prive.jl
+│   │   │   │   │   ├── remuneration_public.jl
+│   │   │   │   │   ├── travail_fonction_publique.jl
+│   │   │   │   │   ├── travail_prive.jl
+│   │   │   │   │   └── travail_totaux.jl
+│   │   │   │   └── taxes_salaires_main_oeuvre.jl
+│   │   │   └── taxe_habitation.jl
+│   │   ├── prestations
+│   │   │   ├── aides_logement.jl
+│   │   │   ├── education.jl
+│   │   │   ├── minima_sociaux
+│   │   │   │   ├── asi_aspa.jl
+│   │   │   │   ├── ass.jl
+│   │   │   │   ├── cmu.jl
+│   │   │   │   └── rsa.jl
+│   │   │   └── prestations_familiales
+│   │   │       ├── aeeh.jl
+│   │   │       ├── af.jl
+│   │   │       ├── ars.jl
+│   │   │       ├── asf.jl
+│   │   │       ├── cf.jl
+│   │   │       └── paje.jl
+│   │   └── revenus
+│   │       └── activite
+│   │           └── non_salarie.jl
+│   ├── formulas.jl
+│   ├── input_variables.jl
+│   ├── legislations.jl
+│   ├── parameters.jl
+│   └── scenarios.jl
+└── test
+    ├── REQUIRE
+    ├── embauche.sgmap.fr
+    │   ├── test_embauche_55c1dbb46149d1903b3d1e27.yaml
+    │   ├── test_embauche_55c20c8d6149d1903b3d20a4.yaml
+    │   ├── test_embauche_55c20f536149d1903b3d2129.yaml
+    │   ├── test_embauche_55c224446149d1903b3d21ae.yaml
+    │   ├── test_embauche_55c227796149d1903b3d2233.yaml
+    │   ├── test_embauche_55c36dc66149d1903b3d2bbe.yaml
+    │   ├── test_embauche_55c382a46149d1903b3d2d82.yaml
+    │   ├── test_embauche_55c47e3b6149d1903b3d3c7c.yaml
+    │   ├── test_embauche_55c4838b6149d1903b3d3e5c.yaml
+    │   ├── test_embauche_55c4ac626149d1903b3d420a.yaml
+    │   ├── test_embauche_55c4ba3c6149d1903b3d4512.yaml
+    │   ├── test_embauche_55c4ca586149d1903b3d461e.yaml
+    │   ├── test_embauche_55c8b84a6149d1903b3d4708.yaml
+    │   ├── test_embauche_55c8b90e6149d1903b3d478f.yaml
+    │   ├── test_embauche_55cb569a6149d1903b3d483a.yaml
+    │   ├── test_embauche_55cdee906149d1903b3d4922.yaml
+    │   └── test_embauche_55cdf1956149d1903b3d49a9.yaml
+    ├── fiches_de_paie
+    │   ├── TEMPLATE.yaml
+    │   ├── assistant_emission_2014-01.yaml
+    │   ├── coordinatrice_2014-03.yaml
+    │   ├── ingenieur_etude_2014-07.yaml
+    │   ├── ingenieur_ssii_2013-08.yaml
+    │   ├── salarie_ipp_2014-11.yaml
+    │   ├── salarie_montaigne_2014-01.yaml
+    │   └── thesard_2011-07.yaml
+    ├── formulas
+    │   └── nombre_jours_calendaires.yaml
+    ├── mes-aides.gouv.fr
+    │   ├── test_mes_aides_53d21ee5159e330200810b87.yaml
+    │   ├── test_mes_aides_53d220ce159e330200810b8e.yaml
+    │   ├── test_mes_aides_53d24d0ae40a7902009c3377.yaml
+    │   ├── test_mes_aides_53d24d5de40a7902009c337d.yaml
+    │   ├── test_mes_aides_53d25137e40a7902009c3384.yaml
+    │   ├── test_mes_aides_53d251e4e40a7902009c338b.yaml
+    │   ├── test_mes_aides_53d25233e40a7902009c3392.yaml
+    │   ├── test_mes_aides_53d25591e40a7902009c33a3.yaml
+    │   ├── test_mes_aides_53d255efe40a7902009c33aa.yaml
+    │   ├── test_mes_aides_53d78c7bf6aa390200a6ccf8.yaml
+    │   ├── test_mes_aides_53d78d27f6aa390200a6ccfe.yaml
+    │   ├── test_mes_aides_53d79982f6aa390200a6cd08.yaml
+    │   ├── test_mes_aides_53d79a6ef6aa390200a6cd0c.yaml
+    │   ├── test_mes_aides_53d79b4af6aa390200a6cd14.yaml
+    │   ├── test_mes_aides_53d79bd6f6aa390200a6cd1a.yaml
+    │   ├── test_mes_aides_53d79c9df6aa390200a6cd23.yaml
+    │   ├── test_mes_aides_53d79d67f6aa390200a6cd2c.yaml
+    │   ├── test_mes_aides_53d79de9f6aa390200a6cd31.yaml
+    │   ├── test_mes_aides_53d79e98f6aa390200a6cd37.yaml
+    │   ├── test_mes_aides_53d79ee2f6aa390200a6cd3b.yaml
+    │   ├── test_mes_aides_53d7b76df6aa390200a6cd5c.yaml
+    │   ├── test_mes_aides_53d7b7e7f6aa390200a6cd62.yaml
+    │   ├── test_mes_aides_53d7b8c4f6aa390200a6cd68.yaml
+    │   ├── test_mes_aides_53fb5ea24a2eb80200056db3.yaml
+    │   ├── test_mes_aides_53fb5fc02f1265020080b6ad.yaml
+    │   ├── test_mes_aides_53fb60ad2f1265020080b6b8.yaml
+    │   ├── test_mes_aides_53fc4c42b7e0050200ee1b09.yaml
+    │   ├── test_mes_aides_54113d0bdb10e7020066c72a.yaml
+    │   ├── test_mes_aides_54212b32fb35830200b31327.yaml
+    │   ├── test_mes_aides_54212b9dfb35830200b3132e.yaml
+    │   ├── test_mes_aides_5421322ffb35830200b3133b.yaml
+    │   ├── test_mes_aides_542134d3fb35830200b31345.yaml
+    │   ├── test_mes_aides_5421356afb35830200b3134c.yaml
+    │   ├── test_mes_aides_54213659fb35830200b31353.yaml
+    │   ├── test_mes_aides_5422c2d95be58c0200a07585.yaml
+    │   ├── test_mes_aides_54242f9ac6d851020090b6a3.yaml
+    │   ├── test_mes_aides_54291a9f7136750200ab21cd.yaml
+    │   ├── test_mes_aides_542ec2805e3a9c02007e90c4.yaml
+    │   ├── test_mes_aides_542ec2d05e3a9c02007e90c7.yaml
+    │   ├── test_mes_aides_54367da883a4916e4d5a13a3.yaml
+    │   ├── test_mes_aides_5436807f2f6a1b774dad2a71.yaml
+    │   ├── test_mes_aides_543686b46713806c4d57cea4.yaml
+    │   ├── test_mes_aides_5438036f6c1222dc0d3ec937.yaml
+    │   ├── test_mes_aides_543b9837bbdb39fe2d3e8257.yaml
+    │   ├── test_mes_aides_543b99792c8d93fd2db00bd1.yaml
+    │   ├── test_mes_aides_543ba6012c8d93fd2db00bd2.yaml
+    │   ├── test_mes_aides_543ba836855844062e40b7da.yaml
+    │   ├── test_mes_aides_544123db288947997ea40dc2.yaml
+    │   ├── test_mes_aides_54412b246132ca977e638de6.yaml
+    │   ├── test_mes_aides_54466887f2ef30d5549354ef.yaml
+    │   ├── test_mes_aides_54466d04ce737fec5fd5fb40.yaml
+    │   ├── test_mes_aides_54479826b4c54cb3267d7807.yaml
+    │   ├── test_mes_aides_544798f7e6e4a2b026903dc3.yaml
+    │   ├── test_mes_aides_544914533f90c89c6c404a52.yaml
+    │   ├── test_mes_aides_544915abad659e956c4ea77a.yaml
+    │   ├── test_mes_aides_544a0c02444b963225484646.yaml
+    │   ├── test_mes_aides_544a0f6314a5d53625b81a0f.yaml
+    │   ├── test_mes_aides_544e16316eb267b21c7de316.yaml
+    │   ├── test_mes_aides_544f7df975fec1b37e6c0288.yaml
+    │   ├── test_mes_aides_544fbd60450fdd94266b9703.yaml
+    │   ├── test_mes_aides_5450cb670172ceaf0a60810f.yaml
+    │   ├── test_mes_aides_5451041be22d86913249330e.yaml
+    │   ├── test_mes_aides_545104818381568d3277e0c8.yaml
+    │   ├── test_mes_aides_545104d935b402873216387f.yaml
+    │   ├── test_mes_aides_54510ca2d850d48b32a328b6.yaml
+    │   ├── test_mes_aides_5451169b31061e1c4a8da349.yaml
+    │   ├── test_mes_aides_545118992097601a4e26075e.yaml
+    │   ├── test_mes_aides_5458da5e4245984c7f7b712f.yaml
+    │   ├── test_mes_aides_5458fc97af63db2c33f15def.yaml
+    │   ├── test_mes_aides_5459359dea20993133fe95ed.yaml
+    │   ├── test_mes_aides_545a3741d550a12d2ae7b68c.yaml
+    │   ├── test_mes_aides_545a3855d550a12d2ae7b69b.yaml
+    │   ├── test_mes_aides_545a3986124c302f2a640d36.yaml
+    │   ├── test_mes_aides_545a3dc91829192b2aa5f114.yaml
+    │   ├── test_mes_aides_545a453f43c4d9262adb2b0e.yaml
+    │   ├── test_mes_aides_545a464c462d93232aac092a.yaml
+    │   ├── test_mes_aides_545a4c7ed7459ce24407af8e.yaml
+    │   ├── test_mes_aides_545a4dc2ffe6a1e044e6c2a2.yaml
+    │   ├── test_mes_aides_545a4ee5ffe6a1e044e6c2a3.yaml
+    │   ├── test_mes_aides_545a4ff9d0485dd744fc56a9.yaml
+    │   ├── test_mes_aides_545a512bd0485dd744fc56aa.yaml
+    │   ├── test_mes_aides_545a53d20e9bb9d9441ed67d.yaml
+    │   ├── test_mes_aides_545a56b99cab777b52905663.yaml
+    │   ├── test_mes_aides_545bbc4a55a4c10113ad080a.yaml
+    │   ├── test_mes_aides_545bbcd7332947f9128c0497.yaml
+    │   ├── test_mes_aides_546490a716951c7e7065a5a1.yaml
+    │   ├── test_mes_aides_54661ad9f36fa43e77898968.yaml
+    │   ├── test_mes_aides_54661cb4a519b83677cc76ef.yaml
+    │   ├── test_mes_aides_546b0787fc9936ff63f8565c.yaml
+    │   ├── test_mes_aides_546b087df76135f463c9e1da.yaml
+    │   ├── test_mes_aides_546b094fde0b44f86312e846.yaml
+    │   ├── test_mes_aides_546b0e388de28ffd63d63ed1.yaml
+    │   ├── test_mes_aides_546b0e73ba32fff66335d207.yaml
+    │   ├── test_mes_aides_546b1e49492eaff5637e3bd1.yaml
+    │   ├── test_mes_aides_546b1e8ef76135f463c9e24c.yaml
+    │   ├── test_mes_aides_546b24fe492eaff5637e3be7.yaml
+    │   ├── test_mes_aides_546b25c1fc9936ff63f856d7.yaml
+    │   ├── test_mes_aides_546b3190492eaff5637e3be8.yaml
+    │   ├── test_mes_aides_546b3208fb9f05fb6373bce8.yaml
+    │   ├── test_mes_aides_546b389a492eaff5637e3bf9.yaml
+    │   ├── test_mes_aides_546b3babde0b44f86312e8b3.yaml
+    │   ├── test_mes_aides_546b3d34f76135f463c9e266.yaml
+    │   ├── test_mes_aides_546b3d73fc9936ff63f8572e.yaml
+    │   ├── test_mes_aides_546b3e7ffb9f05fb6373bd37.yaml
+    │   ├── test_mes_aides_546b459cf76135f463c9e37d.yaml
+    │   ├── test_mes_aides_546b473c492eaff5637e3c92.yaml
+    │   ├── test_mes_aides_546b4abfde0b44f86312e9e3.yaml
+    │   ├── test_mes_aides_546b4b61ba32fff66335d381.yaml
+    │   ├── test_mes_aides_546b4bbcf76135f463c9e43a.yaml
+    │   ├── test_mes_aides_546b58b75d4a0b016431dd97.yaml
+    │   ├── test_mes_aides_546c62cf20be78254b02d74b.yaml
+    │   ├── test_mes_aides_546c9981efc21c287d798168.yaml
+    │   ├── test_mes_aides_546cc5196c5820403d9b9c8d.yaml
+    │   ├── test_mes_aides_546f1e3ce6f62c383d55a0de.yaml
+    │   ├── test_mes_aides_546f4238e6f62c383d55a10d.yaml
+    │   ├── test_mes_aides_546f441448f57f393d6d1e8e.yaml
+    │   ├── test_mes_aides_546f486448f57f393d6d1e9f.yaml
+    │   ├── test_mes_aides_546f517b6c5820403d9ba0a5.yaml
+    │   ├── test_mes_aides_5473414b6f11bb373dcd110a.yaml
+    │   ├── test_mes_aides_547341b51fdfd7423d81fb11.yaml
+    │   ├── test_mes_aides_547343bc1fdfd7423d81fb12.yaml
+    │   ├── test_mes_aides_5473446a1e6217443d918a68.yaml
+    │   ├── test_mes_aides_54734515e1e8823c3da3ee0c.yaml
+    │   ├── test_mes_aides_54734e8d6c5820403d9ba3e0.yaml
+    │   ├── test_mes_aides_54748d05e1e8823c3da3ef3d.yaml
+    │   ├── test_mes_aides_54748f171e6217443d918c38.yaml
+    │   ├── test_mes_aides_547491ade1e8823c3da3ef4d.yaml
+    │   ├── test_mes_aides_5475abacf6912100729cc791.yaml
+    │   ├── test_mes_aides_5476f6a59f3f9d687ee8b423.yaml
+    │   ├── test_mes_aides_54787e09f54659627efad257.yaml
+    │   ├── test_mes_aides_5478919ccc51d53d260e8683.yaml
+    │   ├── test_mes_aides_54789fdafccedf3f260aeb4c.yaml
+    │   ├── test_mes_aides_5478a0e6129dbf3626e1c113.yaml
+    │   ├── test_mes_aides_547c7f9abd420d34260ba10d.yaml
+    │   ├── test_mes_aides_547d8779d97a8932263c2914.yaml
+    │   ├── test_mes_aides_54817e07ed60b88866befc03.yaml
+    │   ├── test_mes_aides_5481822c76be8a87669fc53b.yaml
+    │   ├── test_mes_aides_54818d18ed60b88866befc61.yaml
+    │   ├── test_mes_aides_54818ddcf2c0258f66c50c84.yaml
+    │   ├── test_mes_aides_54818e47aad65891668c6d8c.yaml
+    │   ├── test_mes_aides_54818eb3ed60b88866befd7a.yaml
+    │   ├── test_mes_aides_54818fdc1c33cd866618760b.yaml
+    │   ├── test_mes_aides_5481dedf9f3789cc06d5111c.yaml
+    │   ├── test_mes_aides_5481e3705f35e8cf064b9bd6.yaml
+    │   ├── test_mes_aides_5481e7335f35e8cf064b9bdc.yaml
+    │   ├── test_mes_aides_54857378bf1777d606ad1bf4.yaml
+    │   ├── test_mes_aides_5485adad62ae92d806fed28e.yaml
+    │   ├── test_mes_aides_5485b12e62ae92d806fed2d5.yaml
+    │   ├── test_mes_aides_5485d3942d85b4e6733b52a7.yaml
+    │   ├── test_mes_aides_5485d3eff8356af173ccbf0a.yaml
+    │   ├── test_mes_aides_5485d43ef8d2cee973b59a78.yaml
+    │   ├── test_mes_aides_5485d55a2d85b4e6733b52b8.yaml
+    │   ├── test_mes_aides_5485d60e712ad8ef7358d2e3.yaml
+    │   ├── test_mes_aides_5485d6e9e33350e573ef8cd3.yaml
+    │   ├── test_mes_aides_548abc3dfc1609f0180de0ec.yaml
+    │   ├── test_mes_aides_548ac00ffc1609f0180de108.yaml
+    │   ├── test_mes_aides_548ac530bf2c83e6182edb2d.yaml
+    │   ├── test_mes_aides_548ac6189abf6bee18978b45.yaml
+    │   ├── test_mes_aides_548eb0181abb1c570220858d.yaml
+    │   ├── test_mes_aides_548ec8326e7c895302131a1e.yaml
+    │   ├── test_mes_aides_548eda8bdf990f5b0286b9f0.yaml
+    │   ├── test_mes_aides_548efa8e09d6285e02d4e6b0.yaml
+    │   ├── test_mes_aides_549038ac8dac136002469383.yaml
+    │   ├── test_mes_aides_5490398040562f54026efa7e.yaml
+    │   ├── test_mes_aides_54903df1df990f5b0286c425.yaml
+    │   ├── test_mes_aides_54903ed6df990f5b0286c429.yaml
+    │   ├── test_mes_aides_549041e16e7c895302132b89.yaml
+    │   ├── test_mes_aides_5490524009d6285e02d4f087.yaml
+    │   ├── test_mes_aides_549069be8dac1360024697f6.yaml
+    │   ├── test_mes_aides_54906bdfccf374520212a6ad.yaml
+    │   ├── test_mes_aides_549159d26e7c89530213381a.yaml
+    │   ├── test_mes_aides_54915af640562f54026f069b.yaml
+    │   ├── test_mes_aides_54915ffadf990f5b0286cf20.yaml
+    │   ├── test_mes_aides_549163af6e7c89530213385f.yaml
+    │   ├── test_mes_aides_549164a58dac13600246a0a4.yaml
+    │   ├── test_mes_aides_549184967b85005902284b77.yaml
+    │   ├── test_mes_aides_5491891d8dac13600246a149.yaml
+    │   ├── test_mes_aides_54918a287b85005902284ba4.yaml
+    │   ├── test_mes_aides_54918a9edf990f5b0286d016.yaml
+    │   ├── test_mes_aides_54918b1a7b85005902284ba7.yaml
+    │   ├── test_mes_aides_5491b842cecbbe4a6d53af49.yaml
+    │   ├── test_mes_aides_54931713f6dab3dc7a59442b.yaml
+    │   ├── test_mes_aides_54931dcec85c31d77ab6bd9a.yaml
+    │   ├── test_mes_aides_549320765db991d97a5e9815.yaml
+    │   ├── test_mes_aides_5493deec5db991d97a5e9890.yaml
+    │   ├── test_mes_aides_5493f5730f5aeede7a7a986d.yaml
+    │   ├── test_mes_aides_5493f78ff6dab3dc7a594673.yaml
+    │   ├── test_mes_aides_5493f8dcc85c31d77ab6bfcb.yaml
+    │   ├── test_mes_aides_54abb0b58b7d192c16f00dde.yaml
+    │   ├── test_mes_aides_54ac0ceed20bc238169b4b06.yaml
+    │   ├── test_mes_aides_54ac144061ba79341658e5c5.yaml
+    │   ├── test_mes_aides_54ac15d34939ba3216001203.yaml
+    │   ├── test_mes_aides_54ad0cad8b7d192c16f0187d.yaml
+    │   ├── test_mes_aides_54b54653d5b79b733e797cec.yaml
+    │   ├── test_mes_aides_54b549cc397579703e58d039.yaml
+    │   ├── test_mes_aides_54b54affd5b79b733e797cfe.yaml
+    │   ├── test_mes_aides_54b54c014e77a2773ea5d9b4.yaml
+    │   ├── test_mes_aides_54b54e7544b1ef7a3e841b4a.yaml
+    │   ├── test_mes_aides_54b54f08d5b79b733e797d08.yaml
+    │   ├── test_mes_aides_54b95b643188a50f6c8e5f5b.yaml
+    │   ├── test_mes_aides_54bd2906740a09082374d73f.yaml
+    │   ├── test_mes_aides_54bd29aa740a09082374d742.yaml
+    │   ├── test_mes_aides_54be84abdee70bd172bf3ba3.yaml
+    │   ├── test_mes_aides_54be884cfc1321cd72d0b5ef.yaml
+    │   ├── test_mes_aides_54be90c1e22350c872370564.yaml
+    │   ├── test_mes_aides_54bfd8046d9c06c9722b3aee.yaml
+    │   ├── test_mes_aides_54bfdaf4d337b5d372377d30.yaml
+    │   ├── test_mes_aides_54bfde53d337b5d372377d32.yaml
+    │   ├── test_mes_aides_54bfde89fc1321cd72d0b6cd.yaml
+    │   ├── test_mes_aides_54c13817a488cca035fe15e2.yaml
+    │   ├── test_mes_aides_54c223ba66a4929f35414054.yaml
+    │   ├── test_mes_aides_54c2259755fa25a535d69571.yaml
+    │   ├── test_mes_aides_54c22b6966a4929f35414084.yaml
+    │   ├── test_mes_aides_54c61ccc83c41aa758c290e9.yaml
+    │   ├── test_mes_aides_54c8eefad4e3b0d74454bbbd.yaml
+    │   ├── test_mes_aides_54c8f41de45751d544f05fec.yaml
+    │   ├── test_mes_aides_54cb5a68e45751d544f062ea.yaml
+    │   ├── test_mes_aides_54d345a54ec19fce442271d2.yaml
+    │   ├── test_mes_aides_54d34e2d4ec19fce442271e4.yaml
+    │   ├── test_mes_aides_54d396fd4ec19fce4422725e.yaml
+    │   ├── test_mes_aides_54d3a00e4ec19fce44227275.yaml
+    │   ├── test_mes_aides_54d49411af6bfed9447f959d.yaml
+    │   ├── test_mes_aides_54d497ade45751d544f06aa3.yaml
+    │   ├── test_mes_aides_54d4d6934ec19fce4422736b.yaml
+    │   ├── test_mes_aides_54d4e0704ec19fce442273a0.yaml
+    │   ├── test_mes_aides_54d8c3945c1babd0441a12b5.yaml
+    │   ├── test_mes_aides_54d8df76b93972db44593f80.yaml
+    │   ├── test_mes_aides_54d8e0821fe4e8cf448e2bf3.yaml
+    │   ├── test_mes_aides_54d9126baf6bfed9447f995b.yaml
+    │   ├── test_mes_aides_54dc766af675ddd34432f3a4.yaml
+    │   ├── test_mes_aides_54dc7ae5af6bfed9447f9ce7.yaml
+    │   ├── test_mes_aides_54e21c1cfe0c1e672d0d126f.yaml
+    │   ├── test_mes_aides_54e223d04dd883622de4bc72.yaml
+    │   ├── test_mes_aides_54e4c0bffb31b85d4074fe15.yaml
+    │   ├── test_mes_aides_54e4cdb47c92ea5940ba4d94.yaml
+    │   ├── test_mes_aides_54e5b04145988856401409e6.yaml
+    │   ├── test_mes_aides_54e5c1dada3bc55340837b6a.yaml
+    │   ├── test_mes_aides_54e7007eb841f254405d95c6.yaml
+    │   ├── test_mes_aides_54e702e770a3f65f40b60ef3.yaml
+    │   ├── test_mes_aides_54e708c870a3f65f40b60f37.yaml
+    │   ├── test_mes_aides_54e70c881b7dba5b403a0b57.yaml
+    │   ├── test_mes_aides_54ea47550c95680655b92a06.yaml
+    │   ├── test_mes_aides_54edcd6828793d0972ec4dc3.yaml
+    │   ├── test_mes_aides_54ef4cdefa384b5575517bc2.yaml
+    │   ├── test_mes_aides_54ef4e8999fc215675536d0f.yaml
+    │   ├── test_mes_aides_54f07c45246e5054751ccfe3.yaml
+    │   ├── test_mes_aides_54f5da11932d38203b892819.yaml
+    │   ├── test_mes_aides_54f7282125be8dd27ba42168.yaml
+    │   ├── test_mes_aides_54f73d1471bd0dd87b7d9a2a.yaml
+    │   ├── test_mes_aides_55006732368369ed3c408ec2.yaml
+    │   ├── test_mes_aides_5500761c66ca2f8a47241270.yaml
+    │   ├── test_mes_aides_550166db50a4762d5ab000a2.yaml
+    │   ├── test_mes_aides_55016793cc1bb4365a5d7256.yaml
+    │   ├── test_mes_aides_550167f2e471d52f5a015621.yaml
+    │   ├── test_mes_aides_5501689950a4762d5ab000be.yaml
+    │   ├── test_mes_aides_550169da50a4762d5ab000d3.yaml
+    │   ├── test_mes_aides_55016b85110d64385a0318ee.yaml
+    │   ├── test_mes_aides_55016c79ffc0602c5a813cc2.yaml
+    │   ├── test_mes_aides_55016d51cc1bb4365a5d727c.yaml
+    │   ├── test_mes_aides_5501ba9be59bb8695ceb781d.yaml
+    │   ├── test_mes_aides_5501c4c5569add1527598636.yaml
+    │   ├── test_mes_aides_5502b3df11f4501f2700e651.yaml
+    │   ├── test_mes_aides_550317e216c0cf1727382af8.yaml
+    │   ├── test_mes_aides_550ef441b6926d8c2fc17b84.yaml
+    │   └── test_mes_aides_550ef87dba0c71992f3c0768.yaml
+    ├── niches.yaml
+    ├── runtests.jl
+    ├── test_age.jl
+    ├── test_decompositions.jl
+    ├── test_fiches_de_paie.jl
+    ├── test_formulas.jl
+    ├── test_impot_revenu_personnes_physiques.jl
+    ├── test_mes-aides.gouv.fr.jl
+    ├── test_niches.jl
+    └── test_scenarios.jl
+
+22 directories, 356 files
