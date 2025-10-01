@@ -1,0 +1,987 @@
+.
+├── .babelrc
+├── .buildignore
+├── .circleci
+│   ├── Dockerfile
+│   └── config.yml
+├── .editorconfig
+├── .gitattributes
+├── .gitignore
+├── .jscsrc
+├── .jshintrc
+├── .nyc_output
+│   └── .gitkeep
+├── .vscode
+│   └── launch.json
+├── Dockerfile
+├── Gruntfile.js
+├── LICENSE.AGPL.txt
+├── README.md
+├── client
+│   ├── .htaccess
+│   ├── .jshintrc
+│   ├── app
+│   │   ├── account
+│   │   │   ├── account.js
+│   │   │   ├── account.scss
+│   │   │   ├── confirmer_mail
+│   │   │   │   ├── confirmation.html
+│   │   │   │   ├── confirmer_mail.controller.js
+│   │   │   │   └── confirmer_mail.html
+│   │   │   ├── forgotten_password
+│   │   │   │   ├── confirmation.html
+│   │   │   │   ├── forgotten_password.controller.js
+│   │   │   │   └── forgotten_password.html
+│   │   │   ├── login
+│   │   │   │   ├── login.controller.js
+│   │   │   │   ├── login.controller.spec.js
+│   │   │   │   └── login.html
+│   │   │   ├── resend_confirmation
+│   │   │   │   ├── error.html
+│   │   │   │   ├── ok.html
+│   │   │   │   ├── resend_confirmation.controller.js
+│   │   │   │   └── resend_confirmation.html
+│   │   │   ├── reset_password
+│   │   │   │   ├── resest_password.controller.js
+│   │   │   │   └── reset_password.html
+│   │   │   └── signup
+│   │   │       ├── signup.controller.js
+│   │   │       ├── signup.controller.spec.js
+│   │   │       └── signup.html
+│   │   ├── admin
+│   │   │   ├── activation
+│   │   │   │   ├── admin.activation.controller.js
+│   │   │   │   ├── admin.activation.html
+│   │   │   │   └── admin.activation.js
+│   │   │   ├── admin.controller.js
+│   │   │   ├── admin.html
+│   │   │   ├── admin.js
+│   │   │   ├── admin.scss
+│   │   │   ├── agent
+│   │   │   │   ├── admin.agent.controller.js
+│   │   │   │   ├── admin.agent.html
+│   │   │   │   └── admin.agent.js
+│   │   │   ├── login
+│   │   │   │   ├── admin.login.controller.js
+│   │   │   │   ├── admin.login.controller.spec.js
+│   │   │   │   ├── admin.login.html
+│   │   │   │   └── admin.login.js
+│   │   │   └── mdph
+│   │   │       ├── admin.mdph.js
+│   │   │       ├── detail
+│   │   │       │   ├── admin.mdph.detail.controller.js
+│   │   │       │   ├── admin.mdph.detail.html
+│   │   │       │   ├── admin.mdph.detail.js
+│   │   │       │   └── admin.mdph.detail.scss
+│   │   │       └── list
+│   │   │           ├── admin.mdph.list.controller.js
+│   │   │           ├── admin.mdph.list.html
+│   │   │           ├── admin.mdph.list.js
+│   │   │           └── admin.mdph.list.scss
+│   │   ├── app.constants.js
+│   │   ├── app.js
+│   │   ├── app.scss
+│   │   ├── apropos
+│   │   │   ├── apropos.html
+│   │   │   ├── apropos.js
+│   │   │   └── apropos.scss
+│   │   ├── cgu
+│   │   │   ├── cgu.html
+│   │   │   ├── cgu.js
+│   │   │   └── cgu.scss
+│   │   ├── dashboard
+│   │   │   ├── dashboard.js
+│   │   │   ├── dashboard.scss
+│   │   │   ├── dispatch
+│   │   │   │   ├── dispatch.html
+│   │   │   │   ├── dispatch.js
+│   │   │   │   └── secteurs
+│   │   │   │       ├── edit
+│   │   │   │       │   ├── edit.controller.js
+│   │   │   │       │   └── edit.html
+│   │   │   │       └── secteurs.html
+│   │   │   ├── documents
+│   │   │   │   ├── documents.controller.js
+│   │   │   │   ├── documents.html
+│   │   │   │   ├── documents.js
+│   │   │   │   └── documents.scss
+│   │   │   ├── list.scss
+│   │   │   ├── users
+│   │   │   │   ├── agents
+│   │   │   │   │   ├── agents.html
+│   │   │   │   │   ├── edit.controller.js
+│   │   │   │   │   └── edit.html
+│   │   │   │   ├── partenaires
+│   │   │   │   │   ├── edit.controller.js
+│   │   │   │   │   ├── edit.html
+│   │   │   │   │   ├── edit.scss
+│   │   │   │   │   └── partenaires.html
+│   │   │   │   └── users.js
+│   │   │   └── workflow
+│   │   │       ├── detail
+│   │   │       │   ├── comments
+│   │   │       │   │   ├── comments.controller.js
+│   │   │       │   │   └── comments.html
+│   │   │       │   ├── detail.controller.js
+│   │   │       │   ├── detail.html
+│   │   │       │   ├── detail.js
+│   │   │       │   ├── detail.scss
+│   │   │       │   ├── documents
+│   │   │       │   │   ├── documents.controller.js
+│   │   │       │   │   ├── documents.html
+│   │   │       │   │   ├── documents.scss
+│   │   │       │   │   └── modal.html
+│   │   │       │   ├── history
+│   │   │       │   │   └── history.js
+│   │   │       │   ├── modalDelete.html
+│   │   │       │   └── validation_depot
+│   │   │       │       ├── validation_depot.controller.js
+│   │   │       │       ├── validation_depot.html
+│   │   │       │       └── validation_depot.scss
+│   │   │       ├── list
+│   │   │       │   ├── list.controller.js
+│   │   │       │   ├── list.html
+│   │   │       │   ├── list.js
+│   │   │       │   ├── modalAssign.html
+│   │   │       │   └── modalIrrecevable.html
+│   │   │       ├── workflow.controller.js
+│   │   │       └── workflow.js
+│   │   ├── demande
+│   │   │   ├── aidant
+│   │   │   │   ├── aidant.js
+│   │   │   │   ├── situation.js
+│   │   │   │   └── vos_attentes.js
+│   │   │   ├── demande-card.scss
+│   │   │   ├── demande-preview-modal.html
+│   │   │   ├── demande.controller.js
+│   │   │   ├── demande.html
+│   │   │   ├── demande.js
+│   │   │   ├── demande.scss
+│   │   │   ├── demande.section.controller.js
+│   │   │   ├── demande.section.html
+│   │   │   ├── documents
+│   │   │   │   ├── documents.controller.js
+│   │   │   │   ├── documents.html
+│   │   │   │   ├── documents.js
+│   │   │   │   ├── documents.scss
+│   │   │   │   ├── modal_type.html
+│   │   │   │   └── suggestions.html
+│   │   │   ├── identites
+│   │   │   │   ├── autorite.js
+│   │   │   │   ├── autorites.html
+│   │   │   │   ├── autre.html
+│   │   │   │   ├── autre.js
+│   │   │   │   ├── beneficiaire.html
+│   │   │   │   ├── beneficiaire.js
+│   │   │   │   ├── identites.scss
+│   │   │   │   ├── representant.js
+│   │   │   │   └── representants.html
+│   │   │   ├── prestations
+│   │   │   │   ├── prestations.controller.js
+│   │   │   │   ├── prestations.html
+│   │   │   │   ├── prestations.js
+│   │   │   │   └── prestations.scss
+│   │   │   ├── projet_de_vie
+│   │   │   │   ├── vie_au_travail
+│   │   │   │   │   ├── parcours_professionnel.js
+│   │   │   │   │   ├── projet_professionnel.js
+│   │   │   │   │   ├── situation_professionnelle
+│   │   │   │   │   │   ├── emploi.js
+│   │   │   │   │   │   └── sans_emploi.js
+│   │   │   │   │   ├── situation_professionnelle.js
+│   │   │   │   │   └── vie_au_travail.js
+│   │   │   │   ├── vie_quotidienne
+│   │   │   │   │   ├── situation.js
+│   │   │   │   │   ├── vie_quotidienne.js
+│   │   │   │   │   ├── vosattentes.js
+│   │   │   │   │   └── vosbesoins.js
+│   │   │   │   └── vie_scolaire
+│   │   │   │       ├── situation.js
+│   │   │   │       ├── vie_scolaire.js
+│   │   │   │       ├── vosattentes.js
+│   │   │   │       └── vosbesoins.js
+│   │   │   ├── situations_particulieres
+│   │   │   │   └── situations_particulieres.js
+│   │   │   └── unconfirmed
+│   │   │       ├── unconfirmed.html
+│   │   │       └── unconfirmed.js
+│   │   ├── error
+│   │   │   ├── error.html
+│   │   │   └── error.js
+│   │   ├── evaluation
+│   │   │   ├── dashboard
+│   │   │   │   ├── evaluation.dashboard.controller.js
+│   │   │   │   ├── evaluation.dashboard.html
+│   │   │   │   ├── evaluation.dashboard.js
+│   │   │   │   └── evaluation.dashboard.scss
+│   │   │   ├── detail
+│   │   │   │   ├── evaluation.detail.controller.js
+│   │   │   │   ├── evaluation.detail.controller.spec.js
+│   │   │   │   ├── evaluation.detail.html
+│   │   │   │   ├── evaluation.detail.js
+│   │   │   │   └── evaluation.detail.scss
+│   │   │   ├── evaluation.controller.js
+│   │   │   ├── evaluation.html
+│   │   │   ├── evaluation.js
+│   │   │   ├── evaluation.scss
+│   │   │   ├── issues
+│   │   │   │   ├── evaluation.issues.html
+│   │   │   │   ├── evaluation.issues.scss
+│   │   │   │   └── evaluation.new_issue.html
+│   │   │   └── login
+│   │   │       ├── evaluation.login.controller.js
+│   │   │       ├── evaluation.login.controller.spec.js
+│   │   │       ├── evaluation.login.html
+│   │   │       └── evaluation.login.js
+│   │   ├── gestion
+│   │   │   ├── demande
+│   │   │   │   ├── delete_confirmation.html
+│   │   │   │   ├── gestion.demande.controller.js
+│   │   │   │   ├── gestion.demande.html
+│   │   │   │   └── gestion.demande.js
+│   │   │   ├── gestion.scss
+│   │   │   └── profil
+│   │   │       ├── delete_confirmation.html
+│   │   │       ├── gestion.profil.controller.js
+│   │   │       ├── gestion.profil.html
+│   │   │       └── gestion.profil.js
+│   │   ├── layout
+│   │   │   ├── layout.controller.js
+│   │   │   ├── layout.html
+│   │   │   ├── layout.js
+│   │   │   └── layout.scss
+│   │   ├── main
+│   │   │   ├── main.controller.js
+│   │   │   ├── main.html
+│   │   │   ├── main.js
+│   │   │   └── main.scss
+│   │   ├── mdph
+│   │   │   ├── mdph.controller.js
+│   │   │   ├── mdph.html
+│   │   │   ├── mdph.js
+│   │   │   └── mdph.scss
+│   │   ├── medecin
+│   │   │   ├── medecin.html
+│   │   │   ├── medecin.js
+│   │   │   └── medecin.scss
+│   │   ├── mon_compte
+│   │   │   ├── mon_compte.controller.js
+│   │   │   ├── mon_compte.html
+│   │   │   ├── mon_compte.js
+│   │   │   └── mon_compte.scss
+│   │   ├── partenaire
+│   │   │   ├── mail_valide.html
+│   │   │   ├── partenaire.controller.js
+│   │   │   ├── partenaire.controller.spec.js
+│   │   │   ├── partenaire.html
+│   │   │   ├── partenaire.js
+│   │   │   ├── partenaire.scss
+│   │   │   └── pj
+│   │   │       ├── confirmationModal.html
+│   │   │       ├── pj.controller.js
+│   │   │       ├── pj.html
+│   │   │       ├── pj.js
+│   │   │       └── pj.scss
+│   │   ├── profil
+│   │   │   ├── identites
+│   │   │   │   ├── autorite.js
+│   │   │   │   ├── autre.js
+│   │   │   │   ├── beneficiaire.js
+│   │   │   │   ├── representant.js
+│   │   │   │   └── representants.html
+│   │   │   ├── prestations
+│   │   │   │   ├── prestations.controller.js
+│   │   │   │   ├── prestations.html
+│   │   │   │   └── prestations.js
+│   │   │   ├── profil.controller.js
+│   │   │   ├── profil.html
+│   │   │   └── projet_de_vie
+│   │   │       └── vie_quotidienne
+│   │   │           └── vie_quotidienne.js
+│   │   ├── stats
+│   │   │   ├── stats.controller.js
+│   │   │   ├── stats.html
+│   │   │   ├── stats.js
+│   │   │   └── stats.scss
+│   │   └── suivi
+│   │       ├── suivi.html
+│   │       ├── suivi.js
+│   │       └── suivi.scss
+│   ├── assets
+│   │   ├── documents
+│   │   │   ├── 356_joe201502110016-arretegevasco.pdf
+│   │   │   ├── CM.pdf
+│   │   │   ├── gevasco_1redemande.pdf
+│   │   │   ├── gevasco_1redemande_interactif.pdf
+│   │   │   ├── gevasco_reexamen.pdf
+│   │   │   ├── gevasco_reexamen_interactif.pdf
+│   │   │   ├── teleservice_medecin_14.pdf
+│   │   │   └── teleservice_medecin_59.pdf
+│   │   ├── expected-templates
+│   │   │   ├── certificatMedical.expected.html
+│   │   │   └── gevasco.expected.html
+│   │   └── images
+│   │       ├── MDPH_Step1.png
+│   │       ├── MDPH_Step2.png
+│   │       ├── MDPH_Step3.png
+│   │       ├── bg_defaut.jpg
+│   │       ├── cerfa.png
+│   │       ├── france.svg
+│   │       ├── logo_defaut.jpg
+│   │       ├── new_cm.png
+│   │       ├── no.png
+│   │       ├── old_cm.png
+│   │       └── yes.png
+│   ├── components
+│   │   ├── auth
+│   │   │   ├── auth.module.js
+│   │   │   ├── auth.service.js
+│   │   │   ├── interceptor.service.js
+│   │   │   └── router.decorator.js
+│   │   ├── autorite-form
+│   │   │   ├── autorite.component.js
+│   │   │   ├── autorite.controller.js
+│   │   │   └── autorite.html
+│   │   ├── banettes
+│   │   │   └── banettes.constant.js
+│   │   ├── date-filter
+│   │   │   └── date.filter.js
+│   │   ├── date-service
+│   │   │   ├── date.service.js
+│   │   │   └── date.service.spec.js
+│   │   ├── demande-category
+│   │   │   ├── demande-category.component.js
+│   │   │   ├── demande-category.controller.js
+│   │   │   ├── demande-category.html
+│   │   │   └── demande-category.scss
+│   │   ├── detail
+│   │   │   ├── consentement.html
+│   │   │   ├── domicile.html
+│   │   │   ├── independant.html
+│   │   │   ├── pension_invalidite.html
+│   │   │   ├── personne.html
+│   │   │   ├── precisez.html
+│   │   │   ├── precisez_2_details.html
+│   │   │   ├── precisez_date.controller.js
+│   │   │   ├── precisez_date.html
+│   │   │   ├── precisez_date_et_detail.html
+│   │   │   ├── precisez_duree.controller.js
+│   │   │   ├── precisez_duree.html
+│   │   │   ├── precisez_libre.html
+│   │   │   ├── precisez_montant.html
+│   │   │   ├── precisez_pourcent.html
+│   │   │   └── precisez_yes_no.html
+│   │   ├── display-file
+│   │   │   ├── display-file-list.directive.js
+│   │   │   ├── display-file-list.html
+│   │   │   ├── display-file-modal.html
+│   │   │   ├── display-file.directive.js
+│   │   │   ├── display-file.html
+│   │   │   ├── display-file.scss
+│   │   │   └── modal.html
+│   │   ├── document-information
+│   │   │   ├── document-information.component.js
+│   │   │   └── document-information.html
+│   │   ├── evaluation-profile-list
+│   │   │   ├── evaluation-profile-list.component.js
+│   │   │   ├── evaluation-profile-list.controller.js
+│   │   │   └── evaluation-profile-list.html
+│   │   ├── evaluation-synthese-add-empty
+│   │   │   ├── evaluation-synthese-add-empty.component.js
+│   │   │   ├── evaluation-synthese-add-empty.controller.js
+│   │   │   ├── evaluation-synthese-add-empty.html
+│   │   │   └── evaluation-synthese-add-empty.scss
+│   │   ├── evaluation-synthese-add-prefilled
+│   │   │   ├── evaluation-synthese-add-prefilled-modal.html
+│   │   │   ├── evaluation-synthese-add-prefilled.component.js
+│   │   │   ├── evaluation-synthese-add-prefilled.controller.js
+│   │   │   └── evaluation-synthese-add-prefilled.html
+│   │   ├── evaluation-synthese-list
+│   │   │   ├── evaluation-synthese-list.component.js
+│   │   │   ├── evaluation-synthese-list.controller.js
+│   │   │   └── evaluation-synthese-list.html
+│   │   ├── file-signature
+│   │   │   └── file-signature.service.js
+│   │   ├── file-viewer
+│   │   │   ├── file-viewer-modal.html
+│   │   │   ├── file-viewer.component.js
+│   │   │   └── file-viewer.html
+│   │   ├── footer
+│   │   │   ├── footer.component.js
+│   │   │   ├── footer.html
+│   │   │   └── footer.scss
+│   │   ├── generic-modal
+│   │   │   └── generic-modal.html
+│   │   ├── geva
+│   │   │   └── geva.service.js
+│   │   ├── help
+│   │   │   └── besoins.html
+│   │   ├── history
+│   │   │   ├── history.component.js
+│   │   │   ├── history.html
+│   │   │   └── history.scss
+│   │   ├── history-filter
+│   │   │   └── history.filter.js
+│   │   ├── history-synthese
+│   │   │   ├── history-synthese.directive.js
+│   │   │   ├── history-synthese.html
+│   │   │   └── history-synthese.scss
+│   │   ├── input-date
+│   │   │   ├── input-date-autocomplete.directive.js
+│   │   │   └── input-date.directive.js
+│   │   ├── liste-prestations
+│   │   │   ├── liste-prestations.component.js
+│   │   │   └── liste-prestations.html
+│   │   ├── mdph
+│   │   │   ├── mdph.filter.js
+│   │   │   └── mdph.service.js
+│   │   ├── mdph-input
+│   │   │   ├── mdph-input.component.js
+│   │   │   ├── mdph-input.controller.js
+│   │   │   └── mdph-input.html
+│   │   ├── mdph-map
+│   │   │   ├── mdph-map.component.js
+│   │   │   ├── mdph-map.controller.js
+│   │   │   └── mdph-map.scss
+│   │   ├── mdph-photo
+│   │   │   └── mdph-photo.js
+│   │   ├── menu-dashboard
+│   │   │   ├── display-banette-count.html
+│   │   │   ├── display-bannette-count.component.js
+│   │   │   ├── menu-dashboard.component.js
+│   │   │   ├── menu-dashboard.html
+│   │   │   └── menu-dashboard.scss
+│   │   ├── nav-steps
+│   │   │   ├── nav-steps.component.js
+│   │   │   ├── nav-steps.html
+│   │   │   └── nav-steps.scss
+│   │   ├── numero-secu
+│   │   │   └── numero-secu.directive.js
+│   │   ├── password-field
+│   │   │   ├── password-field.component.js
+│   │   │   └── password-field.html
+│   │   ├── password-rules-alert
+│   │   │   ├── password-rules-alert.component.js
+│   │   │   ├── password-rules-alert.html
+│   │   │   └── password-rules-alert.scss
+│   │   ├── password-strength-bar
+│   │   │   ├── password-strength-bar.component.js
+│   │   │   ├── password-strength-bar.html
+│   │   │   └── password-strength-bar.scss
+│   │   ├── preparation_evaluation
+│   │   │   ├── documents_preparation_eval.constant.js
+│   │   │   └── preparation_evaluation.service.js
+│   │   ├── prestations
+│   │   │   ├── prestation.component.js
+│   │   │   ├── prestation.html
+│   │   │   ├── prestation.scss
+│   │   │   └── prestations.filter.js
+│   │   ├── profile
+│   │   │   ├── profile-category.component.js
+│   │   │   └── profile.service.js
+│   │   ├── qtitle
+│   │   │   ├── qtitle.directive.js
+│   │   │   ├── qtitle.html
+│   │   │   └── qtitle.scss
+│   │   ├── question
+│   │   │   ├── adresse.html
+│   │   │   ├── autres_renseignements.html
+│   │   │   ├── checkbox.html
+│   │   │   ├── cv.html
+│   │   │   ├── cv.scss
+│   │   │   ├── date.html
+│   │   │   ├── diplomes.html
+│   │   │   ├── droits.html
+│   │   │   ├── droits.scss
+│   │   │   ├── emploi_du_temps.html
+│   │   │   ├── employeur.html
+│   │   │   ├── etablissement_scolaire.html
+│   │   │   ├── frais_handicap.html
+│   │   │   ├── frais_handicap.scss
+│   │   │   ├── pourcentageinput.html
+│   │   │   ├── question.controller.js
+│   │   │   ├── question.service.js
+│   │   │   ├── questions.scss
+│   │   │   ├── radio.html
+│   │   │   ├── structure.html
+│   │   │   ├── structure.scss
+│   │   │   ├── textarea.html
+│   │   │   └── textinput.html
+│   │   ├── representant-form
+│   │   │   ├── representant.component.js
+│   │   │   ├── representant.controller.js
+│   │   │   └── representant.html
+│   │   ├── request
+│   │   │   ├── request.filter.js
+│   │   │   ├── request.filter.spec.js
+│   │   │   ├── request.progress.component.js
+│   │   │   ├── request.progress.html
+│   │   │   ├── request.progress.scss
+│   │   │   └── request.service.js
+│   │   ├── resources
+│   │   │   ├── document-category.resource.js
+│   │   │   ├── document-type.resource.js
+│   │   │   ├── mdph.resource.js
+│   │   │   ├── partenaire.resource.js
+│   │   │   ├── profile.resource.js
+│   │   │   ├── request.resource.js
+│   │   │   ├── secteur.resource.js
+│   │   │   ├── synthese.resource.js
+│   │   │   └── user.resource.js
+│   │   ├── role
+│   │   │   ├── role.filter.js
+│   │   │   └── role.filter.spec.js
+│   │   ├── section-flow
+│   │   │   ├── section-flow.component.js
+│   │   │   ├── section-flow.html
+│   │   │   └── section-flow.scss
+│   │   ├── section-progress-bar
+│   │   │   ├── section-progress-bar.directive.js
+│   │   │   └── section-progress-bar.html
+│   │   ├── service
+│   │   │   ├── adresse.service.js
+│   │   │   ├── demande.service.js
+│   │   │   ├── question.service.js
+│   │   │   ├── request.service.js
+│   │   │   ├── request.service.spec.js
+│   │   │   └── upload.service.js
+│   │   ├── string
+│   │   │   ├── capitalize.filter.js
+│   │   │   ├── capitalize.filter.spec.js
+│   │   │   └── nl2br.filter.js
+│   │   ├── subsection
+│   │   │   ├── subsection.directive.js
+│   │   │   ├── subsection.html
+│   │   │   └── subsection.scss
+│   │   ├── timeline
+│   │   │   ├── action-type.filter.js
+│   │   │   ├── action-type.filter.spec.js
+│   │   │   └── action-types.constant.js
+│   │   ├── trajectoire
+│   │   │   ├── trajectoire.component.js
+│   │   │   ├── trajectoire.controller.js
+│   │   │   ├── trajectoire.controller.spec.js
+│   │   │   ├── trajectoire.html
+│   │   │   └── trajectoire.scss
+│   │   ├── util
+│   │   │   ├── util.module.js
+│   │   │   └── util.service.js
+│   │   └── well
+│   │       └── well.scss
+│   ├── favicon.ico
+│   ├── index.html
+│   ├── lib
+│   │   ├── angular
+│   │   │   ├── angular-aria.min.js
+│   │   │   ├── angular-aria.min.js.map
+│   │   │   ├── angular-cookies.min.js
+│   │   │   ├── angular-cookies.min.js.map
+│   │   │   ├── angular-locale_fr-fr.js
+│   │   │   ├── angular-messages.min.js
+│   │   │   ├── angular-messages.min.js.map
+│   │   │   ├── angular-mocks.js
+│   │   │   ├── angular-resource.min.js
+│   │   │   ├── angular-resource.min.js.map
+│   │   │   ├── angular-sanitize.min.js
+│   │   │   ├── angular-sanitize.min.js.map
+│   │   │   ├── angular-scenario.js
+│   │   │   ├── angular.min.js
+│   │   │   └── angular.min.js.map
+│   │   ├── angular-chart.js
+│   │   │   ├── Chart.min.js
+│   │   │   ├── angular-chart.min.css
+│   │   │   ├── angular-chart.min.css.map
+│   │   │   ├── angular-chart.min.js
+│   │   │   └── angular-chart.min.js.map
+│   │   ├── angular-toastr
+│   │   │   ├── angular-toastr.min.css
+│   │   │   └── angular-toastr.tpls.min.js
+│   │   ├── angular-ui-mask
+│   │   │   └── mask.min.js
+│   │   ├── angular-ui-router
+│   │   │   └── angular-ui-router.min.js
+│   │   ├── angular-ui-tree
+│   │   │   ├── angular-ui-tree.min.css
+│   │   │   └── angular-ui-tree.min.js
+│   │   ├── bootstrap
+│   │   │   └── bootstrap.min.css
+│   │   ├── bootstrap-sass
+│   │   │   ├── fonts
+│   │   │   │   └── bootstrap
+│   │   │   │       ├── glyphicons-halflings-regular.eot
+│   │   │   │       ├── glyphicons-halflings-regular.svg
+│   │   │   │       ├── glyphicons-halflings-regular.ttf
+│   │   │   │       ├── glyphicons-halflings-regular.woff
+│   │   │   │       └── glyphicons-halflings-regular.woff2
+│   │   │   └── stylesheets
+│   │   │       ├── _bootstrap-compass.scss
+│   │   │       ├── _bootstrap-mincer.scss
+│   │   │       ├── _bootstrap-sprockets.scss
+│   │   │       ├── _bootstrap.scss
+│   │   │       └── bootstrap
+│   │   │           ├── _alerts.scss
+│   │   │           ├── _badges.scss
+│   │   │           ├── _breadcrumbs.scss
+│   │   │           ├── _button-groups.scss
+│   │   │           ├── _buttons.scss
+│   │   │           ├── _carousel.scss
+│   │   │           ├── _close.scss
+│   │   │           ├── _code.scss
+│   │   │           ├── _component-animations.scss
+│   │   │           ├── _dropdowns.scss
+│   │   │           ├── _forms.scss
+│   │   │           ├── _glyphicons.scss
+│   │   │           ├── _grid.scss
+│   │   │           ├── _input-groups.scss
+│   │   │           ├── _jumbotron.scss
+│   │   │           ├── _labels.scss
+│   │   │           ├── _list-group.scss
+│   │   │           ├── _media.scss
+│   │   │           ├── _mixins.scss
+│   │   │           ├── _modals.scss
+│   │   │           ├── _navbar.scss
+│   │   │           ├── _navs.scss
+│   │   │           ├── _normalize.scss
+│   │   │           ├── _pager.scss
+│   │   │           ├── _pagination.scss
+│   │   │           ├── _panels.scss
+│   │   │           ├── _popovers.scss
+│   │   │           ├── _print.scss
+│   │   │           ├── _progress-bars.scss
+│   │   │           ├── _responsive-embed.scss
+│   │   │           ├── _responsive-utilities.scss
+│   │   │           ├── _scaffolding.scss
+│   │   │           ├── _tables.scss
+│   │   │           ├── _theme.scss
+│   │   │           ├── _thumbnails.scss
+│   │   │           ├── _tooltip.scss
+│   │   │           ├── _type.scss
+│   │   │           ├── _utilities.scss
+│   │   │           ├── _variables.scss
+│   │   │           ├── _wells.scss
+│   │   │           └── mixins
+│   │   │               ├── _alerts.scss
+│   │   │               ├── _background-variant.scss
+│   │   │               ├── _border-radius.scss
+│   │   │               ├── _buttons.scss
+│   │   │               ├── _center-block.scss
+│   │   │               ├── _clearfix.scss
+│   │   │               ├── _forms.scss
+│   │   │               ├── _gradients.scss
+│   │   │               ├── _grid-framework.scss
+│   │   │               ├── _grid.scss
+│   │   │               ├── _hide-text.scss
+│   │   │               ├── _image.scss
+│   │   │               ├── _labels.scss
+│   │   │               ├── _list-group.scss
+│   │   │               ├── _nav-divider.scss
+│   │   │               ├── _nav-vertical-align.scss
+│   │   │               ├── _opacity.scss
+│   │   │               ├── _pagination.scss
+│   │   │               ├── _panels.scss
+│   │   │               ├── _progress-bar.scss
+│   │   │               ├── _reset-filter.scss
+│   │   │               ├── _reset-text.scss
+│   │   │               ├── _resize.scss
+│   │   │               ├── _responsive-visibility.scss
+│   │   │               ├── _size.scss
+│   │   │               ├── _tab-focus.scss
+│   │   │               ├── _table-row.scss
+│   │   │               ├── _text-emphasis.scss
+│   │   │               ├── _text-overflow.scss
+│   │   │               └── _vendor-prefixes.scss
+│   │   ├── font-awesome
+│   │   │   ├── fonts
+│   │   │   │   ├── FontAwesome.otf
+│   │   │   │   ├── fontawesome-webfont.eot
+│   │   │   │   ├── fontawesome-webfont.svg
+│   │   │   │   ├── fontawesome-webfont.ttf
+│   │   │   │   ├── fontawesome-webfont.woff
+│   │   │   │   └── fontawesome-webfont.woff2
+│   │   │   └── scss
+│   │   │       ├── _animated.scss
+│   │   │       ├── _bordered-pulled.scss
+│   │   │       ├── _core.scss
+│   │   │       ├── _fixed-width.scss
+│   │   │       ├── _icons.scss
+│   │   │       ├── _larger.scss
+│   │   │       ├── _list.scss
+│   │   │       ├── _mixins.scss
+│   │   │       ├── _path.scss
+│   │   │       ├── _rotated-flipped.scss
+│   │   │       ├── _stacked.scss
+│   │   │       ├── _variables.scss
+│   │   │       └── font-awesome.scss
+│   │   ├── jquery
+│   │   │   └── jquery.min.js
+│   │   ├── lodash
+│   │   │   └── lodash.min.js
+│   │   ├── mapbox.js
+│   │   │   ├── images
+│   │   │   │   ├── icons-000000@2x.png
+│   │   │   │   ├── icons-ffffff@2x.png
+│   │   │   │   ├── icons.svg
+│   │   │   │   ├── layers-2x.png
+│   │   │   │   ├── layers.png
+│   │   │   │   ├── marker-icon-2x.png
+│   │   │   │   ├── marker-icon.png
+│   │   │   │   ├── marker-shadow.png
+│   │   │   │   └── render.sh
+│   │   │   ├── mapbox.css
+│   │   │   ├── mapbox.js
+│   │   │   └── mapbox.js.map
+│   │   ├── moment
+│   │   │   ├── fr.js
+│   │   │   └── moment.min.js
+│   │   ├── ng-file-upload
+│   │   │   └── ng-file-upload-all.min.js
+│   │   ├── ngstorage
+│   │   │   └── ngStorage.min.js
+│   │   ├── ui-bootstrap
+│   │   │   └── ui-bootstrap-tpls-0.13.3.min.js
+│   │   └── zxcvbn
+│   │       ├── angular-zxcvbn.min.js
+│   │       └── zxcvbn.js
+│   └── robots.txt
+├── docker-compose.yml
+├── documentation_fonctionnelle.md
+├── dump
+│   └── impact
+│       ├── mdphs.bson
+│       ├── mdphs.metadata.json
+│       ├── system.indexes.bson
+│       ├── users.bson
+│       └── users.metadata.json
+├── e2e
+│   ├── login
+│   │   ├── login.po.js
+│   │   └── login.spec.js
+│   ├── logout
+│   │   ├── loggedout.po.js
+│   │   └── logout.spec.js
+│   ├── request
+│   │   ├── pages
+│   │   │   ├── beneficiaire.po.js
+│   │   │   ├── documents.po.js
+│   │   │   ├── emptyprofile.po.js
+│   │   │   ├── optional.po.js
+│   │   │   ├── popup.po.js
+│   │   │   ├── profile.po.js
+│   │   │   ├── radio.po.js
+│   │   │   └── subanswer.po.js
+│   │   └── request.spec.js
+│   └── signup
+│       ├── signup.po.js
+│       └── signup.spec.js
+├── grunt-tasks
+│   ├── babel.js
+│   ├── bunyan.js
+│   ├── clean.js
+│   ├── copy.js
+│   ├── env.js
+│   ├── express.js
+│   ├── imagemin.js
+│   ├── injector.js
+│   ├── ngAnnotate.js
+│   ├── ngtemplates.js
+│   ├── open.js
+│   ├── postcss.js
+│   ├── rev.js
+│   ├── sass.js
+│   ├── usemin.js
+│   ├── useminPrepare.js
+│   └── watch.js
+├── karma.conf.js
+├── mocha.conf.js
+├── package.json
+├── pm2.json
+├── protractor.conf.js
+├── scripts
+│   ├── default_profiles.js
+│   ├── find-removed-files.js
+│   ├── load-mdph-list
+│   │   ├── .gitignore
+│   │   ├── README.md
+│   │   ├── all_for_dev_mdphs.json
+│   │   └── index.js
+│   ├── multi-profile.js
+│   └── run.js
+├── server
+│   ├── .jshintrc
+│   ├── api
+│   │   ├── document
+│   │   │   ├── document.controller.js
+│   │   │   ├── document.integration.spec.js
+│   │   │   └── index.js
+│   │   ├── document-category
+│   │   │   ├── document-category.controller.js
+│   │   │   ├── document-category.integration.spec.js
+│   │   │   ├── document-category.model.js
+│   │   │   └── index.js
+│   │   ├── document-type
+│   │   │   ├── document-type.controller.js
+│   │   │   ├── documentTypes.json
+│   │   │   └── index.js
+│   │   ├── geva
+│   │   │   ├── geva.controller.js
+│   │   │   ├── index.js
+│   │   │   └── questions.json
+│   │   ├── issue
+│   │   │   ├── index.js
+│   │   │   ├── issue.controller.js
+│   │   │   ├── issue.controller.spec.js
+│   │   │   └── issue.model.js
+│   │   ├── mdph
+│   │   │   ├── index.js
+│   │   │   ├── mdph.controller.js
+│   │   │   ├── mdph.integration.spec.js
+│   │   │   ├── mdph.json
+│   │   │   ├── mdph.model.js
+│   │   │   └── mdph.spec.js
+│   │   ├── partenaire
+│   │   │   ├── index.js
+│   │   │   ├── partenaire.controller.js
+│   │   │   └── partenaire.model.js
+│   │   ├── prestation
+│   │   │   ├── index.js
+│   │   │   ├── prestation.controller.js
+│   │   │   └── prestations.json
+│   │   ├── profile
+│   │   │   ├── index.js
+│   │   │   ├── profile.controller.js
+│   │   │   ├── profile.integration.spec.js
+│   │   │   └── profile.model.js
+│   │   ├── request
+│   │   │   ├── action.model.js
+│   │   │   ├── actions.js
+│   │   │   ├── index.js
+│   │   │   ├── request.controller.js
+│   │   │   ├── request.integration.spec.js
+│   │   │   ├── request.model.js
+│   │   │   └── request.model.spec.js
+│   │   ├── secteur
+│   │   │   ├── index.js
+│   │   │   ├── secteur.controller.js
+│   │   │   └── secteur.model.js
+│   │   ├── sections
+│   │   │   ├── index.js
+│   │   │   ├── sections.controller.js
+│   │   │   └── sections.json
+│   │   ├── send-mail
+│   │   │   ├── send-mail-actions.js
+│   │   │   ├── send-mail-actions.spec.js
+│   │   │   ├── send-mail.controller.js
+│   │   │   └── templates
+│   │   │       ├── generic-email
+│   │   │       │   ├── html.hbs
+│   │   │       │   └── style.css
+│   │   │       └── specific-content
+│   │   │           ├── confirm-content.html
+│   │   │           ├── expiration-content.html
+│   │   │           ├── firstExpirationNotification-content.html
+│   │   │           ├── lastExpirationNotification-content.html
+│   │   │           ├── reception-request-content.html
+│   │   │           └── url-footer.html
+│   │   ├── stats
+│   │   │   ├── index.js
+│   │   │   ├── stats.controller.js
+│   │   │   ├── stats.integration.spec.js
+│   │   │   └── utils.js
+│   │   ├── synthese
+│   │   │   ├── index.js
+│   │   │   ├── synthese.controller.js
+│   │   │   ├── synthese.integration.spec.js
+│   │   │   └── synthese.model.js
+│   │   └── user
+│   │       ├── action.model.js
+│   │       ├── actions.js
+│   │       ├── index.js
+│   │       ├── user.controller.js
+│   │       ├── user.controller.spec.js
+│   │       ├── user.integration.spec.js
+│   │       ├── user.model.js
+│   │       └── user.model.spec.js
+│   ├── app.js
+│   ├── auth
+│   │   ├── auth.service.js
+│   │   ├── index.js
+│   │   └── local
+│   │       ├── index.js
+│   │       └── passport.js
+│   ├── components
+│   │   ├── DemandeBuilder.js
+│   │   ├── dateUtils.js
+│   │   ├── dispatcher.js
+│   │   ├── dispatcher.spec.js
+│   │   ├── errors
+│   │   │   └── index.js
+│   │   ├── gridfs.js
+│   │   ├── mailsender
+│   │   │   ├── mail-sender.js
+│   │   │   └── mail-sender.spec.js
+│   │   ├── pdf_structure
+│   │   │   ├── build.js
+│   │   │   ├── build.spec.js
+│   │   │   └── writeGridfsToFile.js
+│   │   ├── pdf_utils
+│   │   │   ├── archive.js
+│   │   │   ├── convert.js
+│   │   │   ├── decrypt.js
+│   │   │   ├── error.pdf
+│   │   │   ├── filter-missing.js
+│   │   │   ├── filter-missing.spec.js
+│   │   │   ├── join.js
+│   │   │   └── pdf-sample.pdf
+│   │   ├── recapitulatif.js
+│   │   ├── register-handlebars.js
+│   │   ├── resize-image.js
+│   │   ├── syntheseBuilder
+│   │   │   ├── index.js
+│   │   │   ├── synthese.js
+│   │   │   └── templates
+│   │   │       ├── answers.html
+│   │   │       ├── answers_unexpend.html
+│   │   │       └── pdfSynthese.html
+│   │   └── templates
+│   │       ├── autorite.html
+│   │       ├── detailsCV.html
+│   │       ├── detailsDiplomes.html
+│   │       ├── detailsEDT.html
+│   │       ├── detailsEtablissement.html
+│   │       ├── detailsFrais.html
+│   │       ├── detailsStructures.html
+│   │       ├── head.html
+│   │       ├── identite.html
+│   │       ├── identites.html
+│   │       ├── index.js
+│   │       ├── pdfAnswers.html
+│   │       ├── prestations.html
+│   │       ├── question.html
+│   │       ├── representant.html
+│   │       ├── representants.html
+│   │       └── section.html
+│   ├── config
+│   │   ├── environment
+│   │   │   ├── development.js
+│   │   │   ├── index.js
+│   │   │   ├── production.js
+│   │   │   └── test.js
+│   │   └── express.js
+│   ├── cron
+│   │   └── cron-register.js
+│   ├── index.js
+│   ├── routes.js
+│   ├── uploads
+│   │   └── .gitkeep
+│   └── views
+│       └── 404.html
+├── test
+│   ├── assets
+│   │   └── image_test.jpg
+│   └── utils
+│       ├── pa11y.js
+│       ├── seed.js
+│       └── server.js
+└── yarn.lock
+
+205 directories, 780 files
