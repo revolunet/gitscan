@@ -1,0 +1,185 @@
+.
+├── .cache
+│   └── .gitkeep
+├── .env.template
+├── .github
+│   ├── ISSUE_TEMPLATE
+│   │   └── feature-request---bug-report.md
+│   ├── contributing.md
+│   ├── pull_request_template.md
+│   └── workflows
+│       └── tests.yml
+├── .gitignore
+├── LICENSE
+├── README.md
+├── clients
+│   ├── cnil
+│   │   ├── knowledge_base
+│   │   │   ├── raw_and_preparation
+│   │   │   │   ├── besoindaide_PIAF_V3.json
+│   │   │   │   ├── besoindaide_PIAF_V5-V1.json
+│   │   │   │   ├── besoindaide_PIAF_V5.json
+│   │   │   │   ├── cnil.json
+│   │   │   │   ├── epitca_perf_V1.json
+│   │   │   │   ├── epitca_perf_V2.json
+│   │   │   │   └── guidelines.md
+│   │   │   └── squad.json
+│   │   └── pipelines.yaml
+│   ├── crpa
+│   │   ├── knowledge_base
+│   │   │   ├── raw_and_preparation
+│   │   │   │   ├── CRPA-Chatbot-v0.xlsx
+│   │   │   │   └── guidelines.md
+│   │   │   └── squad.json
+│   │   └── pipelines.yaml
+│   └── dila
+│       ├── knowledge_base
+│       │   ├── best_fiche.json
+│       │   ├── full_spf_squad.json
+│       │   ├── raw_and_preparation
+│       │   │   ├── convert_json_files_to_dicts.py
+│       │   │   ├── convert_json_to_dictsAndEmbeddings.py
+│       │   │   ├── guidelines.md
+│       │   │   ├── manual_dataset_aide.json
+│       │   │   ├── manual_dataset_demarches.json
+│       │   │   ├── manual_question_autocomplete.csv
+│       │   │   ├── squad_only_fiches.json
+│       │   │   └── utils.py
+│       │   └── squad.json
+│       └── pipelines.yaml
+├── deployment
+│   ├── Makefile
+│   ├── README.md
+│   ├── ansible.cfg
+│   ├── hosts.yml
+│   ├── install.yml
+│   ├── reinstall.yml
+│   ├── roles
+│   │   ├── haystack
+│   │   │   ├── files
+│   │   │   │   └── custom_component.py
+│   │   │   ├── tasks
+│   │   │   │   └── main.yml
+│   │   │   └── templates
+│   │   │       └── docker-compose.yml
+│   │   ├── nginx
+│   │   │   ├── tasks
+│   │   │   │   └── main.yml
+│   │   │   └── templates
+│   │   │       └── piaf
+│   │   └── prepare_data
+│   │       ├── tasks
+│   │       │   └── main.yml
+│   │       └── templates
+│   │           └── insert_data.py
+│   └── wipe_and_insert_data.yml
+├── logs
+│   └── .gitkeep
+├── non-regression-tests
+│   ├── .env.template
+│   ├── Dockerfile
+│   ├── README.md
+│   ├── config.py
+│   ├── crontab
+│   ├── docker-compose.yml
+│   ├── non-regression-tests
+│   └── non-regression-tests.py
+├── notebooks
+│   ├── Visualisation csv results.ipynb
+│   ├── Visualisation results Robin.ipynb
+│   ├── complementarity_dense_sparse.ipynb
+│   ├── complementarity_dense_sparse_v2.ipynb
+│   ├── data_set_generation_20200910.ipynb
+│   ├── dense_vs_sparse_qualitative.ipynb
+│   ├── experiments_analysis
+│   │   └── visualizations_january_report.ipynb
+│   ├── number_of_words_fquad.ipynb
+│   └── score_threshold_sparse_retriever.ipynb
+├── output
+│   └── .gitkeep
+├── requirements.txt
+├── src
+│   ├── __init__.py
+│   ├── data
+│   │   ├── __init__.py
+│   │   ├── clean_download_spf.py
+│   │   ├── dpr2squad.py
+│   │   ├── evaluation_datasets
+│   │   │   ├── __init__.py
+│   │   │   ├── annotate_best_fiches_spf.py
+│   │   │   ├── create_questions_dataset.py
+│   │   │   ├── create_spf_squad_dataset.py
+│   │   │   ├── eval_qas_list2squad.py
+│   │   │   ├── prepare_fquad_eval.py
+│   │   │   ├── prepare_qa_annotation.py
+│   │   │   └── treat_questions.py
+│   │   ├── fine-tuning
+│   │   │   ├── __init__.py
+│   │   │   ├── corpus_split.py
+│   │   │   └── mails_csv_txt.py
+│   │   ├── knowledge_base
+│   │   │   ├── __init__.py
+│   │   │   ├── arborescence.py
+│   │   │   └── prepare_spf_kbase.py
+│   │   ├── piaf_dataset
+│   │   │   ├── __init__.py
+│   │   │   └── split_dataset.py
+│   │   └── squad2dpr.py
+│   └── evaluation
+│       ├── __init__.py
+│       ├── config
+│       │   ├── elasticsearch_mappings.py
+│       │   ├── retriever_config.py
+│       │   ├── retriever_eval_squad_config.py
+│       │   ├── retriever_reader_eval_squad_config.py
+│       │   └── title_qa_pipeline_config.py
+│       ├── results_analysis
+│       │   ├── __init__.py
+│       │   ├── analysis_detailled_results.py
+│       │   ├── learning_good_scores.py
+│       │   └── regression_parameters.py
+│       ├── retriever
+│       │   ├── __init__.py
+│       │   ├── retriever_eval.py
+│       │   ├── retriever_eval_squad.py
+│       │   └── title_qa_pipeline_eval.py
+│       ├── retriever_reader
+│       │   ├── __init__.py
+│       │   └── retriever_reader_eval_squad.py
+│       └── utils
+│           ├── TitleEmbeddingRetriever.py
+│           ├── __init__.py
+│           ├── custom_pipelines.py
+│           ├── elasticsearch_management.py
+│           ├── epitca_retriever.py
+│           ├── google_retriever.py
+│           ├── logging_management.py
+│           ├── mlflow_management.py
+│           ├── pipelines
+│           │   ├── __init__.py
+│           │   ├── components
+│           │   │   ├── document_stores.py
+│           │   │   ├── evals.py
+│           │   │   ├── preprocessors.py
+│           │   │   ├── readers.py
+│           │   │   └── retrievers.py
+│           │   └── custom_pipelines.py
+│           ├── preprocess.py
+│           ├── utils_eval.py
+│           └── utils_optimizer.py
+└── test
+    ├── conftest.py
+    ├── pytest.ini
+    ├── samples
+    │   └── squad
+    │       ├── duplicate_answers.json
+    │       ├── faq.json
+    │       ├── small.json
+    │       └── tiny.json
+    ├── test_eval_retriever.py
+    ├── test_eval_retriever_reader.py
+    ├── test_no_duplicate_answers.py
+    ├── test_pipelines_build.py
+    └── test_title_qa_pipeline.py
+
+49 directories, 134 files
