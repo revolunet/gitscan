@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "whisper-openai-api"
+version = "1.0.0"
+description = "Whisper OpenAI API"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+    "transformers==4.46.1",
+    "accelerate==1.0.1",
+    "openai==1.43.0",
+    "uvicorn==0.32.0",
+    "fastapi==0.115.3",
+    "pydantic==2.9.2",
+    "python-multipart==0.0.12",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff==0.6.5",
+    "pre-commit==3.6.2",
+]
+test = [
+    "pytest==8.3.3",
+]
+
+[tool.setuptools]
+py-modules = []
+
+[tool.ruff]
+line-length = 150
+
+[tool.ruff.lint]
+ignore = ["F403", "F841"] # import * and never used variables
+
+[tool.ruff.lint.isort]
+force-sort-within-sections = true
+known-first-party = ["utils", "schemas", "endpoints"]
+forced-separate = ["tests"]
+
+[tool.ruff.lint.isort.sections]
+sections = ["FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
+
+[tool.pytest.ini_options]
+addopts = "--exitfirst --log-cli-level=INFO"
+testpaths = ["app/tests"]
+minversion = "8.2.2"
