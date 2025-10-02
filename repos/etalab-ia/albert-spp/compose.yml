@@ -1,0 +1,34 @@
+version: "3.8"
+
+services:
+  redis:
+    image: redis:7.2.4
+    restart: always
+    healthcheck:
+        test: [ "CMD", "redis-cli", "--raw", "incr", "ping" ]
+        interval: 4s
+        timeout: 10s
+        retries: 5
+    volumes:
+      - redis:/data
+
+  app:
+    image: ghcr.io/etalab-ia/albert-spp/app:latest
+    ports:
+      - 8000:8000
+    restart: always
+    command: uvicorn app.main:app --proxy-headers --forwarded-allow-ips='*' --host 0.0.0.0 --port 8000 --log-level debug
+    environment:
+      - API_KEYS=changeme
+      - ENV=dev
+      - APP_VERSION=1.0.0
+      - ALBERT_BASE_URL=http://localhost:8080/v1
+      - ALBERT_API_KEY=changeme
+      - COLLECTION_ID=1
+      - LANGUAGE_MODEL=AgentPublic/albert-spp-8b
+    depends_on:
+      redis:
+        condition: service_healthy
+
+volumes:
+  redis:
