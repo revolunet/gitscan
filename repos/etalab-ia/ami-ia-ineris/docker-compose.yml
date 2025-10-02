@@ -1,0 +1,113 @@
+version: "3"
+services:
+  launcher:
+    restart: always
+    image: git.sia-partners.com:5656/heka/core/launcher:2
+    entrypoint: bash
+    command:
+      - /heka/conf/bootstrap_launcher.sh
+    volumes:
+      - ./conf:/heka/conf
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      platform_network:
+        aliases:
+          - launcher-svc
+  c13s:
+    restart: always
+    build:
+      context: ./heka/c13s
+      args:
+        CI_REGISTRY: git.sia-partners.com:5656
+    entrypoint: bash
+    command:
+      - /heka/conf/bootstrap_c13s.sh
+    volumes:
+      - ./heka/c13s/src:/heka/c13s/src
+      - ./conf:/heka/conf
+    networks:
+      platform_network:
+        aliases:
+          - c13s-svc
+  a12n:
+    restart: always
+    image: git.sia-partners.com:5656/heka/core/a12n:2
+    entrypoint: bash
+    command:
+      - /heka/conf/bootstrap_a12n.sh
+    volumes:
+      - ./conf:/heka/conf
+    environment:
+      - HEKA_SERVICE_PREFIX=""
+    networks:
+      platform_network:
+        aliases:
+          - a12n-svc
+  scheduler:
+    restart: always
+    image: git.sia-partners.com:5656/heka/core/scheduler:2
+    entrypoint: bash
+    command:
+      - /heka/conf/bootstrap_scheduler.sh
+    volumes:
+      - ./conf:/heka/conf
+    networks:
+      platform_network:
+        aliases:
+          - scheduler-svc
+  admin:
+    restart: always
+    image: git.sia-partners.com:5656/heka/core/admin:1
+    entrypoint: bash
+    command:
+      - /heka/conf/bootstrap_admin.sh
+    volumes:
+      - ./conf:/heka/conf
+    networks:
+      platform_network:
+        aliases:
+          - admin-svc
+  frontend:
+    restart: always
+    build: ./heka/frontend
+    entrypoint: bash
+    command:
+      - /heka/conf/bootstrap_frontend.sh
+    volumes:
+      - ./heka/frontend/src:/heka/frontend
+      - ./conf:/heka/conf
+      - ./volumes/frontend/storage:/heka/storage
+    networks:
+      platform_network:
+        aliases:
+          - frontend-svc
+  tasks:
+    image: git.sia-partners.com:5656/heka/tools/build-tasks:1
+    environment:
+      - CI_REGISTRY=git.sia-partners.com:5656
+      - ENABLED=True
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - .git:/repo/.git
+      - ./heka/tasks:/tasks
+  nginx:
+    image: git.sia-partners.com:5656/heka/tools/nginx-yq:1
+    entrypoint: bash
+    command:
+      - /opt/app/conf/bootstrap_nginx.sh
+    volumes:
+      - ./conf:/opt/app/conf
+    ports:
+      - 80:80
+    networks:
+      platform_network:
+        aliases:
+          - nginx-svc
+          - lab.localhost
+          - heka.localhost
+          - heka-dev.localhost
+    depends_on:
+      - frontend
+networks:
+  platform_network:
+    driver: bridge
