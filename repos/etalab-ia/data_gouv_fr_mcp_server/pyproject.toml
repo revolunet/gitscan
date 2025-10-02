@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "data-gouv-fr-mcp-server"
+version = "0.1.3"
+description = "A simple MCP data gouv fr server"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "Albert-API", email = "albert.api@numerique.gouv.fr"}
+]
+keywords = ["mcp", "data-gouv-fr", "server"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "httpx>=0.28.1",
+    "mcp[cli]>=1.2.0"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/etalab-ia/data_gouv_fr_mcp_server"
+"Bug Reports" = "https://github.com/etalab-ia/data_gouv_fr_mcp_server/issues"
+"Source" = "https://github.com/etalab-ia/data_gouv_fr_mcp_server"
+
+[project.scripts]
+data-gouv-fr-mcp-server = "data_gouv_mcp_server.main:main"
+
+[project.optional-dependencies]
+dev = [
+    "build",
+    "twine",
+    "taskipy"
+]
+test = [
+    "pytest>=8.3.4",
+    "pytest-asyncio>=0.24.0"
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["data_gouv_mcp_server*"]
+
+[tool.taskipy.tasks]
+clean-build = "rm -rf dist/ build/ *.egg-info"
+build = " task clean-build && python -m build"
+upload = "twine upload dist/*"
+test = "pytest data_gouv_mcp_server/test"
