@@ -1,0 +1,94 @@
+[project]
+name = "opengatellm"
+version = "0.2.5"
+description = "OpenGateLLM project"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+dependencies = [
+    "openai==1.63.0",
+    "requests==2.32.4",
+    "pydantic==2.10.6",
+    "pydantic-settings==2.7.1",
+    "alembic==1.15.1",
+    "psycopg2-binary==2.9.10",
+    "asyncpg==0.30.0",
+    "sqlalchemy[asyncio]==2.0.43",
+    "sqlalchemy-utils==0.41.2",
+    "sentry-sdk[fastapi]>=2.28.0",
+    "bcrypt==4.3.0"
+]
+
+[project.optional-dependencies]
+playground = [
+    "streamlit==1.45.1",
+    "streamlit-extras==0.5.0", 
+    "bcrypt==4.3.0",
+    "cryptography>=3.4.8",
+]
+api = [
+    # auth
+    "authlib>=1.6.0",
+    "python-jose==3.4.0",
+    "limits==5.1.0",
+    "coredis==4.20.0",
+    "tiktoken==0.9.0",
+    "ecologits==0.6.2",
+    "pycountry==24.6.1",
+    "itsdangerous>=2.2.0",
+    "cryptography>=3.4.8",
+
+    # data
+    "langchain-text-splitters==0.3.8",
+    "elasticsearch[async]==9.0.1",
+    "qdrant-client==1.10.1",
+    "redis==5.2.1",
+    "beautifulsoup4==4.13.4",
+    "PyMuPDF==1.26.0",
+
+    # app
+    "gunicorn==23.0.0",
+    "fastapi==0.117.1",
+    "prometheus-fastapi-instrumentator==7.0.2",
+    "pyyaml==6.0.2",
+    "uvicorn==0.34.0",
+    "python-multipart==0.0.20",
+    "html-to-markdown==1.4.0"
+
+]
+dev = [
+    "uvicorn==0.34.0",
+    "ruff==0.6.5",
+    "pre-commit==4.1.0",
+    "jupyter==1.1.1",
+]
+test = [
+    "pytest==8.3.4",
+    "pytest-cov==6.0.0",
+    "pytest-snapshot==0.9.0",
+    "vcrpy>=4.2.0",
+    "pytest-xdist==3.6.1",
+    "pytest-asyncio==1.0.0",
+    "pytest-mock==3.14.1",
+    "respx",
+    "responses"
+]
+
+[tool.setuptools]
+py-modules = []
+
+[tool.ruff]
+line-length = 150
+
+[tool.ruff.lint]
+ignore = ["F403", "F841"] # import * and never used variables
+
+[tool.ruff.lint.isort]
+force-sort-within-sections = true
+known-first-party = ["config", "utils", "api"]
+forced-separate = ["tests"]
+
+[tool.ruff.lint.isort.sections]
+sections = ["FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
