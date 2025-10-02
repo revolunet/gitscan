@@ -25,10 +25,10 @@ GITHUB_OWNER=$(basename "$(dirname "$GIT_URL")")
 RESULTS_DIR="$PWD/repos/${GITHUB_OWNER}/${REPO_NAME}"
 TEMP_CLONE_DIR="/tmp/git_clone_${REPO_NAME}_$$"
 
-if [ -d "$RESULTS_DIR" ]; then
-    echo "SKIP $GITHUB_OWNER/$REPO_NAME";
-    exit 0;
-fi
+# if [ -d "$RESULTS_DIR" ]; then
+#     echo "SKIP $GITHUB_OWNER/$REPO_NAME";
+#     exit 0;
+# fi
 
 echo "=== Analyse du dépôt: $REPO_NAME ==="
 echo "Dossier de résultats: $RESULTS_DIR"
