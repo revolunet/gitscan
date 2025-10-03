@@ -23,7 +23,7 @@ def get_git_last_modified(path):
             return float(result.stdout.strip())
         return float("-inf")  # File doesn't exist in git history
     except Exception:
-        print("error")
+        print(f"error running git log for {path}")
         return float("-inf")  # Error running git command
 
 
