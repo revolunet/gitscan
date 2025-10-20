@@ -1,4 +1,5 @@
 .
+├── .dockerignore
 ├── .env.example
 ├── .github
 │   └── workflows
@@ -9,6 +10,7 @@
 ├── CHANGELOG.md
 ├── CONTRIBUTING.md
 ├── Dockerfile
+├── Dockerfile.dev
 ├── LICENSE
 ├── README.md
 ├── compose.dev.yml
@@ -28,7 +30,8 @@
 │   │       ├── add-your-dataset.md
 │   │       ├── create-a-simple-experiment.md
 │   │       ├── create-experiment-set.md
-│   │       └── run-answers-locally.md
+│   │       ├── run-answers-locally.md
+│   │       └── use-custom-llm-judge-prompt.md
 │   ├── docusaurus.config.js
 │   ├── i18n
 │   │   └── fr
@@ -45,7 +48,8 @@
 │   │       │           ├── add-your-dataset.md
 │   │       │           ├── create-a-simple-experiment.md
 │   │       │           ├── create-experiment-set.md
-│   │       │           └── run-answers-locally.md
+│   │       │           ├── run-answers-locally.md
+│   │       │           └── use-custom-llm-judge-prompt.md
 │   │       └── docusaurus-plugin-content-pages
 │   │           └── index.mdx
 │   ├── package-lock.json
@@ -110,6 +114,7 @@
 │   │   │       ├── 7e2ab5bde05b_moderaw_schema_for_users_given_output.py
 │   │   │       ├── a8816ddd6dfd_add_created_at_for_answers.py
 │   │   │       ├── d662c9622be1_add_optinal_context_in_answer.py
+│   │   │       ├── da5b8dc15fcd_add_result_metric_params_field.py
 │   │   │       ├── dcf62c3ab046_rename_prompt_system_to_system_prompt.py
 │   │   │       ├── de6a4f1e935b_add_emission_carbon.py
 │   │   │       ├── e2e82a623408_judge_model_relation.py
@@ -127,6 +132,7 @@
 │   │   ├── main.py
 │   │   ├── metrics
 │   │   │   ├── __init__.py
+│   │   │   ├── adhoc_judge.py
 │   │   │   ├── generation_ops_metric.py
 │   │   │   ├── judge_completude.py
 │   │   │   ├── judge_complexity.py
@@ -154,8 +160,6 @@
 │   │   └── products
 │   │       └── product_config.yml
 │   ├── logger.py
-│   ├── mcp
-│   │   └── __init__.py
 │   ├── runners
 │   │   ├── __init__.py
 │   │   ├── __main__.py
@@ -201,10 +205,11 @@
 ├── justfile
 ├── notebooks
 │   ├── RAG-adhoc.ipynb
-│   ├── RAG-hybrid.ipynb
 │   ├── Readme.md
+│   ├── albert-evals-RAG.ipynb
+│   ├── albert-evals-raw.ipynb
 │   ├── create_marker_dataset.ipynb
-│   ├── run_albert_evals.ipynb
+│   ├── deccp.ipynb
 │   ├── run_dataset_experiences_demo.ipynb
 │   ├── run_experiments_demo.ipynb
 │   ├── run_ocr.ipynb
@@ -213,7 +218,10 @@
 │   ├── run_set_repeat_demo.ipynb
 │   └── run_toolings.ipynb
 ├── pyproject.toml
+├── scripts
+│   └── run_with_reload.py
 ├── supervisord.conf
+├── supervisord.dev.conf
 ├── tests
 │   ├── __init__.py
 │   ├── conftest.py
@@ -234,4 +242,4 @@
     ├── ocr.md
     └── tools.md
 
-53 directories, 182 files
+53 directories, 190 files

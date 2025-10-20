@@ -7,6 +7,7 @@ requires-python = ">=3.12"
 readme = "README.md"
 license = { text = "MIT" }
 keywords = ["IA", "LLM", "evaluation"]
+
 dependencies = [
     # API
     "fastapi~=0.115.2",
@@ -31,11 +32,11 @@ dependencies = [
     "rapidfuzz~=3.13.0",
     "ecologits~=0.6.2",
     "toml~=0.10.2",
+    "supervisor~=4.2.5",
     # Front
     "streamlit~=1.40.1",
     "plotly~=5.22.0",
 ]
-
 
 [project.urls]
 Homepage = "https://evalap.etalab.gouv.fr"
@@ -46,6 +47,22 @@ Documentation = "https://github.com/etalab-ia/evalap"
 [project.scripts]
 evalap_generate_answers = "evalap.scripts.run_answers.run_answers:main"
 evalap_run_expe = "evalap.scripts.run_expe.run_expe:main"
+
+# Tests
+
+[project.optional-dependencies]
+test = [
+    "pytest==8.3.3",
+    "pytest-asyncio==0.24.0",
+]
+
+[tool.pytest.ini_options]
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests/"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+
 
 # Packaging
 
@@ -63,21 +80,6 @@ evalap_config = ["config/*"]
 [tool.pdm]
 distribution = false
 
-# Tests
-
-[project.optional-dependencies]
-test = [
-    "pytest==8.3.3",
-        "pytest-asyncio==0.24.0",
-]
-
-[tool.pytest.ini_options]
-asyncio_default_fixture_loop_scope = "function"
-testpaths = ["tests/"]
-python_files = ["test_*.py"]
-python_classes = ["Test*"]
-python_functions = ["test_*"]
-
 # Linter
 
 [tool.ruff]
@@ -86,12 +88,20 @@ exclude = ["evalap/api/alembic/versions/", "notebooks/"]
 
 [tool.ruff.lint]
 select = [
-    "I",  # isort
+    "F",    # Pyflakes (includes undefined variables)
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "Q",    # flake8-quotes (quote style consistency)
+    "B",    # flake8-bugbear (likely bugs and design problems)
+    "I",    # isort
 ]
 fixable = ["ALL"]
 unfixable = []
-# Disable E711 specifically to prevent issues with SQLAlchemy
-ignore = ["E711"]
+ignore = [
+    "E711", # Disable E711 specifically to prevent issues with SQLAlchemy
+    #"F403", # import *
+    #"F841", # never used variables
+]
 
 [tool.ruff.lint.isort]
 known-third-party = ["alembic"]
@@ -103,4 +113,5 @@ dev = [
     "ruff>=0.13.0",
     "pytest-cov>=7.0.0",
     "ipykernel>=6.30.1",
+    "watchdog>=6.0.0",
 ]
