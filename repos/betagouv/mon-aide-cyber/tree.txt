@@ -1,0 +1,1573 @@
+.
+├── .dockerignore
+├── .github
+│   └── workflows
+│       ├── checkov.yml
+│       ├── codeql.yml
+│       ├── deploiement.yml
+│       ├── nodejs.yml
+│       └── storybook-tests.yml
+├── .gitignore
+├── .nvmrc
+├── .pre-commit-config.yaml
+├── .prettierignore
+├── .prettierrc.json
+├── .slugignore
+├── .stylelintrc.json
+├── Dockerfile-api
+├── Dockerfile-ui
+├── LICENSE
+├── README.md
+├── clevercloud
+│   └── cron.json
+├── docker-compose.yml
+├── docker-entrypoint-initdb.d
+│   └── creer-base-de-donnees-mac.sql
+├── mon-aide-cyber-api
+│   ├── .env.template
+│   ├── eslint.config.mjs
+│   ├── index.ts
+│   ├── package.json
+│   ├── src
+│   │   ├── adaptateurs
+│   │   │   ├── Adaptateur.ts
+│   │   │   ├── AdaptateurAPIMetabase.ts
+│   │   │   ├── AdaptateurAseptisation.ts
+│   │   │   ├── AdaptateurAseptisationMAC.ts
+│   │   │   ├── AdaptateurCmsCrispMAC.ts
+│   │   │   ├── AdaptateurDeGestionDeCookies.ts
+│   │   │   ├── AdaptateurDeGestionDeCookiesMAC.ts
+│   │   │   ├── AdaptateurDeRestitution.ts
+│   │   │   ├── AdaptateurDeVerificationDeCGU.ts
+│   │   │   ├── AdaptateurDeVerificationDeCGUMAC.ts
+│   │   │   ├── AdaptateurDeVerificationDeDemande.ts
+│   │   │   ├── AdaptateurDeVerificationDeDemandeMAC.ts
+│   │   │   ├── AdaptateurDeVerificationDeSession.ts
+│   │   │   ├── AdaptateurDeVerificationDeSessionHttp.ts
+│   │   │   ├── AdaptateurDeVerificationDeTypeDeRelation.ts
+│   │   │   ├── AdaptateurDeVerificationDeTypeDeRelationMAC.ts
+│   │   │   ├── AdaptateurDeVerificationDesAcces.ts
+│   │   │   ├── AdaptateurDeVerificationDesAccesMAC.ts
+│   │   │   ├── AdaptateurEnvoiMail.ts
+│   │   │   ├── AdaptateurGeographie.ts
+│   │   │   ├── AdaptateurGestionnaireErreurs.ts
+│   │   │   ├── AdaptateurMetabase.ts
+│   │   │   ├── AdaptateurSignatureRequete.ts
+│   │   │   ├── AdaptateurSignatureRequeteHTTP.ts
+│   │   │   ├── AdaptateurTranscripteur.ts
+│   │   │   ├── AdaptateursRestitution.ts
+│   │   │   ├── ConsignateurErreurs.ts
+│   │   │   ├── adaptateurEnvironnement.ts
+│   │   │   ├── adaptateurMessagerie.ts
+│   │   │   ├── adaptateurRepertoireDeContacts.ts
+│   │   │   ├── fabriqueConsommateursEvenements.ts
+│   │   │   ├── fabriqueEntrepots.ts
+│   │   │   ├── pro-connect
+│   │   │   │   └── adaptateurProConnect.ts
+│   │   │   └── utilitairesDeCookies.ts
+│   │   ├── administration
+│   │   │   ├── aidants
+│   │   │   │   ├── challenge-mars
+│   │   │   │   │   └── commande.ts
+│   │   │   │   ├── challenge-rentree
+│   │   │   │   │   ├── commande.ts
+│   │   │   │   │   └── executeLaRechercheDesAidants.ts
+│   │   │   │   ├── extraction-aidants
+│   │   │   │   │   ├── Types.ts
+│   │   │   │   │   ├── commande.ts
+│   │   │   │   │   └── extractionAidantSelonParametre.ts
+│   │   │   │   ├── mise-en-relation
+│   │   │   │   │   ├── commande.ts
+│   │   │   │   │   └── executeMiseEnRelation.ts
+│   │   │   │   ├── par-domaine
+│   │   │   │   │   └── commande.ts
+│   │   │   │   ├── recherche
+│   │   │   │   │   └── commande.ts
+│   │   │   │   ├── relance-mise-en-relation
+│   │   │   │   │   ├── commande.ts
+│   │   │   │   │   └── executeRelanceMiseEnRelation.ts
+│   │   │   │   └── suppression-de-comptes
+│   │   │   │       └── commande.ts
+│   │   │   ├── chiffrement
+│   │   │   │   └── commande.ts
+│   │   │   ├── diagnostics
+│   │   │   │   └── rattrapage-entites-diagnostics
+│   │   │   │       ├── EntrepotRelationRattrapagePostgres.ts
+│   │   │   │       ├── commande.ts
+│   │   │   │       └── rattrapage.ts
+│   │   │   ├── gendarmes
+│   │   │   │   └── rattrapage
+│   │   │   │       ├── commande.ts
+│   │   │   │       ├── metAJourLesGendarmesSansEntite.ts
+│   │   │   │       └── trouveLesAidantsGendarmes.ts
+│   │   │   ├── gestion-demandes
+│   │   │   │   ├── activation-compte
+│   │   │   │   │   └── commande.ts
+│   │   │   │   ├── demandes-en-cours
+│   │   │   │   │   └── commande.ts
+│   │   │   │   ├── recherche
+│   │   │   │   │   └── commande.ts
+│   │   │   │   └── suppression-demandes-devenir-aidant
+│   │   │   │       └── commande.ts
+│   │   │   ├── journal
+│   │   │   │   ├── rattrapage
+│   │   │   │   │   └── commande.ts
+│   │   │   │   └── rattrapage-des-fantomes
+│   │   │   │       └── commande.ts
+│   │   │   ├── lie-diagnostic
+│   │   │   │   └── lieDiagnostic.ts
+│   │   │   ├── lie-diagnostics
+│   │   │   │   └── commande.ts
+│   │   │   └── utilisateurs
+│   │   │       ├── modification-emails-de-comptes
+│   │   │       │   └── commande.ts
+│   │   │       ├── recherche
+│   │   │       │   └── commande.ts
+│   │   │       └── recreer-compte-authentification
+│   │   │           └── commande.ts
+│   │   ├── annuaire-aidants
+│   │   │   ├── ServiceAnnuaireAidants.ts
+│   │   │   └── annuaireAidants.ts
+│   │   ├── api
+│   │   │   ├── ValideLaCoherenceDuCorps.ts
+│   │   │   ├── adaptateurLimiteurTraffic.ts
+│   │   │   ├── aidant
+│   │   │   │   ├── miseEnRelation.ts
+│   │   │   │   ├── routesAPIAidant.ts
+│   │   │   │   ├── routesAPIAidantPreferences.ts
+│   │   │   │   ├── routesAPIAidantRepondreAUneDemande.ts
+│   │   │   │   └── routesAPIProfil.ts
+│   │   │   ├── annuaire-aidants
+│   │   │   │   └── routeAPIAnnuaireAidants.ts
+│   │   │   ├── articles
+│   │   │   │   └── routeAPIArticles.ts
+│   │   │   ├── demandes
+│   │   │   │   ├── routeAPIDemandeDevenirAidant.ts
+│   │   │   │   ├── routesAPIDemandeEtreAide.ts
+│   │   │   │   └── routesAPIDemandes.ts
+│   │   │   ├── diagnostic-libre-acces
+│   │   │   │   └── routesAPIDiagnosticLibreAcces.ts
+│   │   │   ├── gestionnaires
+│   │   │   │   └── erreurs.ts
+│   │   │   ├── hateoas
+│   │   │   │   ├── afficherStatistiques.ts
+│   │   │   │   ├── aidant.ts
+│   │   │   │   ├── annuaireAidants.ts
+│   │   │   │   ├── articles.ts
+│   │   │   │   ├── connexion.ts
+│   │   │   │   ├── constructeurHATEOAS.ts
+│   │   │   │   ├── contextesUtilisateur.ts
+│   │   │   │   ├── devenirAidant.ts
+│   │   │   │   ├── diagnostic.ts
+│   │   │   │   ├── diagnosticLibreAcces.ts
+│   │   │   │   ├── etreAide.ts
+│   │   │   │   ├── hateoas.ts
+│   │   │   │   ├── mon-espace.ts
+│   │   │   │   ├── rechercheEntreprise.ts
+│   │   │   │   ├── reinitialisationMotDePasse.ts
+│   │   │   │   └── solliciterAide.ts
+│   │   │   ├── messagerie
+│   │   │   │   └── Messagerie.ts
+│   │   │   ├── pro-connect
+│   │   │   │   └── routeProConnect.ts
+│   │   │   ├── recherche-entreprise
+│   │   │   │   ├── associationsNonReferencees.ts
+│   │   │   │   ├── equivalenceSecteursActivite.ts
+│   │   │   │   └── routesAPIRechercheEntreprise.ts
+│   │   │   ├── representateurs
+│   │   │   │   ├── RepresentationGroupee.ts
+│   │   │   │   ├── profil
+│   │   │   │   │   └── Profil.ts
+│   │   │   │   ├── representateurDiagnostic.ts
+│   │   │   │   └── types.ts
+│   │   │   ├── routeAPIContexte.ts
+│   │   │   ├── routeContact.ts
+│   │   │   ├── routesAPI.ts
+│   │   │   ├── routesAPIAuthentification.ts
+│   │   │   ├── routesAPIDiagnostic.ts
+│   │   │   ├── routesAPIMonEspace.ts
+│   │   │   ├── routesAPIUtilisateur.ts
+│   │   │   ├── statistiques
+│   │   │   │   └── routesAPIStatistiques.ts
+│   │   │   ├── tableau-de-bord
+│   │   │   │   └── routesAPITableauDeBord.ts
+│   │   │   ├── validateurs
+│   │   │   │   ├── departements.ts
+│   │   │   │   └── motDePasse.ts
+│   │   │   └── webhooks
+│   │   │       ├── routesAPIWebhooks.livestorm.ts
+│   │   │       ├── routesAPIWebhooks.tally.ts
+│   │   │       └── routesAPIWebhooks.ts
+│   │   ├── authentification
+│   │   │   ├── CapteurCommandeCreeUtilisateur.ts
+│   │   │   ├── GestionnaireDeJeton.ts
+│   │   │   ├── ServiceUtilisateur.ts
+│   │   │   ├── Utilisateur.ts
+│   │   │   ├── authentification.ts
+│   │   │   ├── reinitialisation-mot-de-passe
+│   │   │   │   └── CapteurCommandeReinitialisationMotDePasse.ts
+│   │   │   └── sommeDeControle.ts
+│   │   ├── contacts
+│   │   │   └── RepertoireDeContacts.ts
+│   │   ├── diagnostic
+│   │   │   ├── CapteurCommandeLanceDiagnostic.ts
+│   │   │   ├── CapteurCommandeLanceRestitution.ts
+│   │   │   ├── CapteurSagaAjoutReponse.ts
+│   │   │   ├── Diagnostic.ts
+│   │   │   ├── Indice.ts
+│   │   │   ├── MoteurDesIndicateurs.ts
+│   │   │   ├── MoteurIndice.ts
+│   │   │   ├── MoteurMesures.ts
+│   │   │   ├── Referentiel.ts
+│   │   │   ├── ReferentielDeMesures.ts
+│   │   │   ├── ServiceDiagnostic.ts
+│   │   │   ├── StrategieDeReponse.ts
+│   │   │   ├── consommateursEvenements.ts
+│   │   │   ├── donneesMesures.ts
+│   │   │   ├── donneesReferentiel.ts
+│   │   │   ├── mesures
+│   │   │   │   ├── mesuresGouvernance.ts
+│   │   │   │   ├── mesuresReaction.ts
+│   │   │   │   ├── mesuresSecuriteAcces.ts
+│   │   │   │   ├── mesuresSecuriteInfrastructure.ts
+│   │   │   │   ├── mesuresSecuritePoste.ts
+│   │   │   │   └── mesuresSensibilisation.ts
+│   │   │   ├── referentiel
+│   │   │   │   ├── donneesContexte.ts
+│   │   │   │   ├── donneesGouvernance.ts
+│   │   │   │   ├── donneesReaction.ts
+│   │   │   │   ├── donneesSecuriteAcces.ts
+│   │   │   │   ├── donneesSecuriteInfrastructure.ts
+│   │   │   │   ├── donneesSecuritePoste.ts
+│   │   │   │   └── donneesSensibilisation.ts
+│   │   │   ├── regleDeGestion.ts
+│   │   │   └── tuples.ts
+│   │   ├── diagnostic-libre-acces
+│   │   │   ├── CapteurSagaLanceDiagnosticLibreAcces.ts
+│   │   │   └── consommateursEvenements.ts
+│   │   ├── domaine
+│   │   │   ├── Aggregat.ts
+│   │   │   ├── BusEvenement.ts
+│   │   │   ├── Entrepot.ts
+│   │   │   ├── Entrepots.ts
+│   │   │   ├── commande.ts
+│   │   │   └── erreurMAC.ts
+│   │   ├── espace-admin
+│   │   │   └── extraction
+│   │   │       └── Extraction.ts
+│   │   ├── espace-aidant
+│   │   │   ├── Aidant.ts
+│   │   │   ├── CapteurCommandeCreeEspaceAidant.ts
+│   │   │   ├── ServiceAidant.ts
+│   │   │   ├── ServiceAidantMAC.ts
+│   │   │   ├── adaptateurCorpsMessage.ts
+│   │   │   ├── preferences
+│   │   │   │   ├── ServicePreferencesAidant.ts
+│   │   │   │   └── secteursActivite.ts
+│   │   │   ├── profil
+│   │   │   │   ├── ServiceProfilAidant.ts
+│   │   │   │   └── profilAidant.ts
+│   │   │   └── tableau-de-bord
+│   │   │       ├── ServiceTableauDeBord.ts
+│   │   │       └── consommateursEvenements.ts
+│   │   ├── espace-utilisateur-inscrit
+│   │   │   ├── CapteurCommandeCreerEspaceUtilisateurInscrit.ts
+│   │   │   ├── ServiceUtilisateurInscritMAC.ts
+│   │   │   ├── UtilisateurInscrit.ts
+│   │   │   └── tableau-de-bord
+│   │   │       └── consommateursEvenements.ts
+│   │   ├── gestion-demandes
+│   │   │   ├── aide
+│   │   │   │   ├── CapteurCommandeAttribueDemandeAide.ts
+│   │   │   │   ├── CapteurCommandeCreerDemandeAide.ts
+│   │   │   │   ├── CapteurCommandeMettreAJourDemandeAide.ts
+│   │   │   │   ├── CapteurCommandeRechercheDemandeAideParEmail.ts
+│   │   │   │   ├── CapteurSagaDemandeAide.ts
+│   │   │   │   ├── DemandeAide.ts
+│   │   │   │   ├── MiseEnRelationDirecteAidant.ts
+│   │   │   │   ├── MiseEnRelationDirecteUtilisateurInscrit.ts
+│   │   │   │   ├── MiseEnRelationParCriteres.ts
+│   │   │   │   ├── adaptateursCorpsMessage.ts
+│   │   │   │   └── miseEnRelation.ts
+│   │   │   ├── departements.ts
+│   │   │   └── devenir-aidant
+│   │   │       ├── CapteurCommandeDevenirAidant.ts
+│   │   │       ├── CapteurSagaActivationCompteAidant.ts
+│   │   │       ├── CapteurSagaDemandeAidantCreeEspaceAidant.ts
+│   │   │       ├── DemandeDevenirAidant.ts
+│   │   │       ├── ServiceDemandeDevenirAidant.ts
+│   │   │       └── nouveauParcours.ts
+│   │   ├── infrastructure
+│   │   │   ├── adaptateurs
+│   │   │   │   ├── AdaptateurDeRestitutionHTML.ts
+│   │   │   │   ├── AdaptateurDeRestitutionPDF.ts
+│   │   │   │   ├── AdaptateurEnvoiMailBrevo.ts
+│   │   │   │   ├── AdaptateurEnvoiMailMemoire.ts
+│   │   │   │   ├── AdaptateurGestionnaireErreursMemoire.ts
+│   │   │   │   ├── AdaptateurGestionnaireErreursSentry.ts
+│   │   │   │   ├── AdaptateurMessagerieMattermost.ts
+│   │   │   │   ├── AdaptateurMessagerieMemoire.ts
+│   │   │   │   ├── AdaptateurMesures.ts
+│   │   │   │   ├── AdaptateurMetabaseMemoire.ts
+│   │   │   │   ├── AdaptateurReferentielMAC.ts
+│   │   │   │   ├── AdaptateurRepertoireDeContactsBrevo.ts
+│   │   │   │   ├── AdaptateurRepertoireDeContactsMemoire.ts
+│   │   │   │   ├── ConsignateurErreursMemoire.ts
+│   │   │   │   ├── ConsignateurErreursSentry.ts
+│   │   │   │   ├── adaptateurDeRequeteHTTP.ts
+│   │   │   │   ├── adaptateurMetabase.ts
+│   │   │   │   ├── adaptateurPThrottle.ts
+│   │   │   │   ├── adaptateurRechercheEntreprise.ts
+│   │   │   │   ├── adaptateurServiceChiffrement.ts
+│   │   │   │   ├── adaptateurUUID.ts
+│   │   │   │   ├── adaptateursRequeteBrevo.ts
+│   │   │   │   ├── enCadence.ts
+│   │   │   │   ├── fabriqueAdaptateurEnvoiMail.ts
+│   │   │   │   ├── fabriqueAnnuaireCOT.ts
+│   │   │   │   ├── fabriqueGestionnaireErreurs.ts
+│   │   │   │   └── transcripteur
+│   │   │   │       ├── adaptateurTranscripteur.ts
+│   │   │   │       ├── info-bulles
+│   │   │   │       │   ├── acces
+│   │   │   │       │   │   ├── acces-utilisateurs-donnees-sensibles.pug
+│   │   │   │       │   │   ├── comptes-administration-limites-administration.pug
+│   │   │   │       │   │   ├── comptes-utilisateurs.pug
+│   │   │   │       │   │   ├── droits-utilisateurs.pug
+│   │   │   │       │   │   ├── gestion-comptes-active-directory.pug
+│   │   │   │       │   │   ├── gestion-comptes-entites-publiques.pug
+│   │   │   │       │   │   ├── liste-comptes-administration.pug
+│   │   │   │       │   │   ├── mesures-specifiques-acces-administrateur.pug
+│   │   │   │       │   │   ├── robustesse-mot-de-passe.pug
+│   │   │   │       │   │   ├── teletravail-acces-distants.pug
+│   │   │   │       │   │   └── utilisateurs-administrateurs.pug
+│   │   │   │       │   ├── contexte
+│   │   │   │       │   │   ├── attaque-ciblee.pug
+│   │   │   │       │   │   ├── cgu-signees.pug
+│   │   │   │       │   │   ├── cyberattaque.pug
+│   │   │   │       │   │   ├── nature-entite.pug
+│   │   │   │       │   │   ├── nombre-de-postes.pug
+│   │   │   │       │   │   ├── secteur-activite.pug
+│   │   │   │       │   │   └── systemes-industriels.pug
+│   │   │   │       │   ├── gouvernance
+│   │   │   │       │   │   ├── cnil.pug
+│   │   │   │       │   │   ├── contrat-prestataires-si-industriels.pug
+│   │   │   │       │   │   ├── contrat-prestataires.pug
+│   │   │   │       │   │   ├── donnees-personnelles.pug
+│   │   │   │       │   │   ├── infos-et-activites-a-proteger.pug
+│   │   │   │       │   │   ├── schema-si-composants-entite-publique.pug
+│   │   │   │       │   │   ├── schema-si-composants.pug
+│   │   │   │       │   │   ├── schema-si-industriels-composants-entite-publique.pug
+│   │   │   │       │   │   ├── schema-si-industriels-interconnexions-exterieur.pug
+│   │   │   │       │   │   ├── schema-si-interconnexions-exterieur.pug
+│   │   │   │       │   │   └── utilisation-donnees-personnelles.pug
+│   │   │   │       │   ├── infrastructures
+│   │   │   │       │   │   ├── acces-serveurs.pug
+│   │   │   │       │   │   ├── cloisonnement-si-industriels.pug
+│   │   │   │       │   │   ├── expert-surete-gendarmerie.pug
+│   │   │   │       │   │   ├── maj-equipements-securite.pug
+│   │   │   │       │   │   ├── maj-mesures-complementaires.pug
+│   │   │   │       │   │   ├── maj-serveurs-services-administration.pug
+│   │   │   │       │   │   ├── pare-feu-deploye.pug
+│   │   │   │       │   │   ├── securiser-messagerie.pug
+│   │   │   │       │   │   └── securiser-wifi.pug
+│   │   │   │       │   ├── postes
+│   │   │   │       │   │   ├── deploiement-et-controles-maj.pug
+│   │   │   │       │   │   ├── edr-installe.pug
+│   │   │   │       │   │   ├── maj-antivirus-installees.pug
+│   │   │   │       │   │   ├── maj-fonctionnelles-installees.pug
+│   │   │   │       │   │   ├── materiels-nomades.pug
+│   │   │   │       │   │   ├── mesures-complementaires.pug
+│   │   │   │       │   │   ├── pare-feu-local.pug
+│   │   │   │       │   │   ├── windows-bitlocker-installe.pug
+│   │   │   │       │   │   └── windows-defender.pug
+│   │   │   │       │   ├── reaction
+│   │   │   │       │   │   ├── jeu-sauvegarde-isole.pug
+│   │   │   │       │   │   ├── organisation-gestion-crise.pug
+│   │   │   │       │   │   ├── sauvegarde-ressources-hebergees-cloud.pug
+│   │   │   │       │   │   ├── suivi-alertes-vulnerabilites.pug
+│   │   │   │       │   │   └── veille-vulnerabilites-entites-publiques.pug
+│   │   │   │       │   └── sensibilisation
+│   │   │   │       │       ├── actions-sensibilisation.pug
+│   │   │   │       │       └── passeport-conseils-cyber-voyageurs.pug
+│   │   │   │       ├── traductionThematiques.ts
+│   │   │   │       ├── transcripteurContexte.ts
+│   │   │   │       ├── transcripteurGouvernance.ts
+│   │   │   │       ├── transcripteurReaction.ts
+│   │   │   │       ├── transcripteurSecuriteAcces.ts
+│   │   │   │       ├── transcripteurSecuriteInfrastructure.ts
+│   │   │   │       ├── transcripteurSecuritePoste.ts
+│   │   │   │       └── transcripteurSensibilisation.ts
+│   │   │   ├── annuaireCOT
+│   │   │   │   └── annuaireCOT.ts
+│   │   │   ├── authentification
+│   │   │   │   └── gestionnaireDeJetonJWT.ts
+│   │   │   ├── brevo
+│   │   │   │   └── ConstructeursBrevo.ts
+│   │   │   ├── bus
+│   │   │   │   ├── BusCommandeMAC.ts
+│   │   │   │   └── BusEvenementMAC.ts
+│   │   │   ├── entrepots
+│   │   │   │   ├── memoire
+│   │   │   │   │   ├── EntrepotMemoire.ts
+│   │   │   │   │   └── EntrepotsMemoire.ts
+│   │   │   │   └── postgres
+│   │   │   │       ├── EntrepotAidantPostgres.ts
+│   │   │   │       ├── EntrepotAideConcret.ts
+│   │   │   │       ├── EntrepotAnnuaireAidantsPostgres.ts
+│   │   │   │       ├── EntrepotDemandeAideLecturePostgres.ts
+│   │   │   │       ├── EntrepotDemandeDevenirAidantPostgres.ts
+│   │   │   │       ├── EntrepotDemandeDiagnosticLibreAccesPostgres.ts
+│   │   │   │       ├── EntrepotDiagnosticPostgres.ts
+│   │   │   │       ├── EntrepotJournalisationPostgres.ts
+│   │   │   │       ├── EntrepotPostgres.ts
+│   │   │   │       ├── EntrepotProfilAidantPostgres.ts
+│   │   │   │       ├── EntrepotRestitutionPostgres.ts
+│   │   │   │       ├── EntrepotStatistiquesAidantPostgres.ts
+│   │   │   │       ├── EntrepotStatistiquesUtilisateursInscritsPostgres.ts
+│   │   │   │       ├── EntrepotUtilisateurInscritPostgres.ts
+│   │   │   │       ├── EntrepotUtilisateurMACPostgres.ts
+│   │   │   │       ├── EntrepotUtilisateurPostgres.ts
+│   │   │   │       ├── EntrepotsMAC.ts
+│   │   │   │       ├── configurationJournalisation.ts
+│   │   │   │       ├── knexfile.ts
+│   │   │   │       └── migrations
+│   │   │   │           ├── 20231002125945_cree_table_diagnostic.ts
+│   │   │   │           ├── 20231123060717_ajoute-table-utilisateurs.ts
+│   │   │   │           ├── 20231130155526_met-a-jour-les-dates-de-diagnostic.ts
+│   │   │   │           ├── 20231201143917_met-a-jour-les-dates-de-signature-des-aidants.ts
+│   │   │   │           ├── 20231205130513_migre-recommandations-dans-restitution.ts
+│   │   │   │           ├── 20231206101030_migre-note-en-valeur.ts
+│   │   │   │           ├── 20231212104406_met-a-jour-indices-reponses.ts
+│   │   │   │           ├── 20231214085940_de-poids-des-reponses-vers-poids-des-questions.ts
+│   │   │   │           ├── 20231214155415_supprime-le-poids-des-reponses.ts
+│   │   │   │           ├── 20240129134755_corrige-mesure-sauvegarde.ts
+│   │   │   │           ├── 20240202094618_met-a-jour-chemins-fichiers-mesure.ts
+│   │   │   │           ├── 20240202105257_met-a-jour-chemins-tableau-des-mesures.ts
+│   │   │   │           ├── 20240205153238_renomme-recommandations-en-mesures.ts
+│   │   │   │           ├── 20240205153319_renomme-recommandations-en-mesures-pug.ts
+│   │   │   │           ├── 20240207101834_renomme-recommandations-en-mesures-referentiel.ts
+│   │   │   │           ├── 20240216155743_vide-date-signature-cgu.ts
+│   │   │   │           ├── 20240321152417_cree-table-aides.ts
+│   │   │   │           ├── 20240415124308_relations.ts
+│   │   │   │           ├── 20240702102331_ajoute-regles-gestion.ts
+│   │   │   │           ├── 20240709130450_correction-ponctuation-diagnostics.ts
+│   │   │   │           ├── 20240718144008_ajoute-regle-de-gestion-moins-9-postes.ts
+│   │   │   │           ├── 20240722135935_ajoute-regle-de-gestion-moins-9-postes-collaborateurs-soumis-obligations-usages-securises.ts
+│   │   │   │           ├── 20240723083606_ajoute-regle-de-gestion-moins-9-postes-ancien-id-collaborateurs-soumis-obligations-usages-securises.ts
+│   │   │   │           ├── 20240808083330_cree-table-demandes-devenir-aidant.ts
+│   │   │   │           ├── 20240912064828_ajoute-statut-demande-devenir-aidant.ts
+│   │   │   │           ├── 20240916193022_mets-a-jour-statut-demandes-devenir-aidant-traitees.ts
+│   │   │   │           ├── 20240927075745_ajoute-preferences-aidant.ts
+│   │   │   │           ├── 20241008064939_ajoute-consentement-annuaire-aidant.ts
+│   │   │   │           ├── 20241105165912_cree-table-aidants.ts
+│   │   │   │           ├── 20241106084748_migration-table-aidants.ts
+│   │   │   │           ├── 20241107130215_met-a-jour-les-donnees-utilisateurs.ts
+│   │   │   │           ├── 20241115112336_cree-table-demande-auto-diagnostic.ts
+│   │   │   │           ├── 20241206102554_renomme-table-aidants-par-utilisateurs_mac.ts
+│   │   │   │           ├── 20241206111425_supprime-colonne-type-table-utilisateurs.ts
+│   │   │   │           ├── 20241206133837_ajoute-type-table-utilisateurs_mac.ts
+│   │   │   │           ├── 20241206135931_migre-date-signature-cgu.ts
+│   │   │   │           ├── 20241224134214_corrige-migration-date-signature-cgu.ts
+│   │   │   │           ├── 20241230155920_ajoute-colonne-type-utilisateur.ts
+│   │   │   │           ├── 20250213135203_ajoute-nom-affichage-annuaire-dans-preferences-aidants.ts
+│   │   │   │           ├── 20250219100020_supprime-preferences-utilisateurs-inscrits.ts
+│   │   │   │           └── 20250221083945_chiffre-entite-demande.ts
+│   │   │   ├── horloge
+│   │   │   │   └── FournisseurHorloge.ts
+│   │   │   ├── middlewares
+│   │   │   │   └── middlewares.ts
+│   │   │   ├── restitution
+│   │   │   │   ├── html
+│   │   │   │   │   └── modeles
+│   │   │   │   │       ├── autres-mesures.pug
+│   │   │   │   │       ├── contacts-liens-utiles.pug
+│   │   │   │   │       ├── graphe-polaire.pug
+│   │   │   │   │       ├── graphique-indicateurs.pug
+│   │   │   │   │       ├── indicateurs.pug
+│   │   │   │   │       ├── informations.pug
+│   │   │   │   │       ├── mesures-detaillees.pug
+│   │   │   │   │       ├── mesures.pug
+│   │   │   │   │       └── ressources.pug
+│   │   │   │   ├── mesures
+│   │   │   │   │   ├── acces
+│   │   │   │   │   │   ├── acces-administrateurs-informatiques-suivie-et-limitee-niveau1-comment.pug
+│   │   │   │   │   │   ├── acces-administrateurs-informatiques-suivie-et-limitee-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── acces-administrateurs-informatiques-suivie-et-limitee-niveau2-comment.pug
+│   │   │   │   │   │   ├── acces-administrateurs-informatiques-suivie-et-limitee-niveau2-pourquoi.pug
+│   │   │   │   │   │   ├── acces-administrateurs-si-mesures-specifiques-niveau1-comment.pug
+│   │   │   │   │   │   ├── acces-administrateurs-si-mesures-specifiques-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── acces-administrateurs-si-mesures-specifiques-niveau2-comment.pug
+│   │   │   │   │   │   ├── acces-administrateurs-si-mesures-specifiques-niveau2-pourquoi.pug
+│   │   │   │   │   │   ├── acces-droits-acces-utilisateurs-limites-niveau1-comment.pug
+│   │   │   │   │   │   ├── acces-droits-acces-utilisateurs-limites-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── acces-droits-acces-utilisateurs-limites-niveau2-comment.pug
+│   │   │   │   │   │   ├── acces-droits-acces-utilisateurs-limites-niveau2-pourquoi.pug
+│   │   │   │   │   │   ├── acces-entite-dispose-plusieurs-sites-geographiques-niveau1-comment.pug
+│   │   │   │   │   │   ├── acces-entite-dispose-plusieurs-sites-geographiques-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── acces-liste-compte-utilisateurs-niveau1-comment.pug
+│   │   │   │   │   │   ├── acces-liste-compte-utilisateurs-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── acces-liste-compte-utilisateurs-niveau2-comment.pug
+│   │   │   │   │   │   ├── acces-liste-compte-utilisateurs-niveau2-pourquoi.pug
+│   │   │   │   │   │   ├── acces-mesures-securite-robustesse-mdp-niveau1-comment.pug
+│   │   │   │   │   │   ├── acces-mesures-securite-robustesse-mdp-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── acces-mesures-securite-robustesse-mdp-niveau2-comment.pug
+│   │   │   │   │   │   ├── acces-mesures-securite-robustesse-mdp-niveau2-pourquoi.pug
+│   │   │   │   │   │   ├── acces-outil-gestion-des-comptes-niveau1-comment.pug
+│   │   │   │   │   │   ├── acces-outil-gestion-des-comptes-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── acces-outil-gestion-des-comptes-niveau2-comment.pug
+│   │   │   │   │   │   ├── acces-outil-gestion-des-comptes-niveau2-pourquoi.pug
+│   │   │   │   │   │   ├── acces-si-industriel-teletravail-acces-distants-mesures-particulieres-niveau1-comment.pug
+│   │   │   │   │   │   ├── acces-si-industriel-teletravail-acces-distants-mesures-particulieres-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── acces-si-industriel-teletravail-acces-distants-mesures-particulieres-niveau2-comment.pug
+│   │   │   │   │   │   ├── acces-si-industriel-teletravail-acces-distants-mesures-particulieres-niveau2-pourquoi.pug
+│   │   │   │   │   │   ├── acces-teletravail-acces-distants-mesures-particulieres-niveau1-comment.pug
+│   │   │   │   │   │   ├── acces-teletravail-acces-distants-mesures-particulieres-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── acces-teletravail-acces-distants-mesures-particulieres-niveau2-comment.pug
+│   │   │   │   │   │   ├── acces-teletravail-acces-distants-mesures-particulieres-niveau2-pourquoi.pug
+│   │   │   │   │   │   ├── acces-utilisateurs-administrateurs-poste-niveau1-comment.pug
+│   │   │   │   │   │   ├── acces-utilisateurs-administrateurs-poste-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── acces-utilisateurs-donnees-sensibles-mesures-securite-additionnelles-niveau1-comment.pug
+│   │   │   │   │   │   ├── acces-utilisateurs-donnees-sensibles-mesures-securite-additionnelles-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── acces-utilisateurs-donnees-sensibles-mesures-securite-additionnelles-niveau2-comment.pug
+│   │   │   │   │   │   ├── acces-utilisateurs-donnees-sensibles-mesures-securite-additionnelles-niveau2-pourquoi.pug
+│   │   │   │   │   │   ├── acces-utilisation-comptes-administrateurs-droits-limitee-niveau1-comment.pug
+│   │   │   │   │   │   ├── acces-utilisation-comptes-administrateurs-droits-limitee-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── acces-utilisation-comptes-administrateurs-droits-limitee-niveau2-comment.pug
+│   │   │   │   │   │   └── acces-utilisation-comptes-administrateurs-droits-limitee-niveau2-pourquoi.pug
+│   │   │   │   │   ├── gouvernance
+│   │   │   │   │   │   ├── gouvernance-connaissance-rgpd-niveau1-comment.pug
+│   │   │   │   │   │   ├── gouvernance-connaissance-rgpd-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── gouvernance-connaissance-rgpd-niveau2-comment.pug
+│   │   │   │   │   │   ├── gouvernance-connaissance-rgpd-niveau2-pourquoi.pug
+│   │   │   │   │   │   ├── gouvernance-exigence-cyber-securite-presta-niveau1-comment.pug
+│   │   │   │   │   │   ├── gouvernance-exigence-cyber-securite-presta-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── gouvernance-exigence-cyber-securite-presta-niveau2-comment.pug
+│   │   │   │   │   │   ├── gouvernance-exigence-cyber-securite-presta-niveau2-pourquoi.pug
+│   │   │   │   │   │   ├── gouvernance-exigence-cyber-securite-presta-si-industriel-niveau1-comment.pug
+│   │   │   │   │   │   ├── gouvernance-exigence-cyber-securite-presta-si-industriel-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── gouvernance-exigence-cyber-securite-presta-si-industriel-niveau2-comment.pug
+│   │   │   │   │   │   ├── gouvernance-exigence-cyber-securite-presta-si-industriel-niveau2-pourquoi.pug
+│   │   │   │   │   │   ├── gouvernance-infos-et-processus-a-proteger-niveau1-comment.pug
+│   │   │   │   │   │   ├── gouvernance-infos-et-processus-a-proteger-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── gouvernance-infos-et-processus-a-proteger-niveau2-comment.pug
+│   │   │   │   │   │   ├── gouvernance-infos-et-processus-a-proteger-niveau2-pourquoi.pug
+│   │   │   │   │   │   ├── gouvernance-schema-si-a-jour-niveau1-comment.pug
+│   │   │   │   │   │   ├── gouvernance-schema-si-a-jour-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── gouvernance-schema-si-a-jour-niveau2-comment.pug
+│   │   │   │   │   │   ├── gouvernance-schema-si-a-jour-niveau2-pourquoi.pug
+│   │   │   │   │   │   ├── gouvernance-schema-si-industriel-a-jour-niveau1-comment.pug
+│   │   │   │   │   │   ├── gouvernance-schema-si-industriel-a-jour-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── gouvernance-schema-si-industriel-a-jour-niveau2-comment.pug
+│   │   │   │   │   │   └── gouvernance-schema-si-industriel-a-jour-niveau2-pourquoi.pug
+│   │   │   │   │   ├── infras
+│   │   │   │   │   │   ├── securite-infrastructure-acces-wifi-securises-niveau1-comment.pug
+│   │   │   │   │   │   ├── securite-infrastructure-acces-wifi-securises-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── securite-infrastructure-acces-wifi-securises-niveau2-comment.pug
+│   │   │   │   │   │   ├── securite-infrastructure-acces-wifi-securises-niveau2-pourquoi.pug
+│   │   │   │   │   │   ├── securite-infrastructure-espace-stockage-serveurs-niveau1-comment.pug
+│   │   │   │   │   │   ├── securite-infrastructure-espace-stockage-serveurs-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── securite-infrastructure-espace-stockage-serveurs-niveau2-comment.pug
+│   │   │   │   │   │   ├── securite-infrastructure-espace-stockage-serveurs-niveau2-pourquoi.pug
+│   │   │   │   │   │   ├── securite-infrastructure-mises-a-jour-fonctionnelles-securite-equipements-securite-deployees-niveau1-comment.pug
+│   │   │   │   │   │   ├── securite-infrastructure-mises-a-jour-fonctionnelles-securite-equipements-securite-deployees-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── securite-infrastructure-mises-a-jour-fonctionnelles-securite-equipements-securite-deployees-niveau2-comment.pug
+│   │   │   │   │   │   ├── securite-infrastructure-mises-a-jour-fonctionnelles-securite-equipements-securite-deployees-niveau2-pourquoi.pug
+│   │   │   │   │   │   ├── securite-infrastructure-mises-a-jour-fonctionnelles-securite-systemes-exploitation-securite-deployees-niveau1-comment.pug
+│   │   │   │   │   │   ├── securite-infrastructure-mises-a-jour-fonctionnelles-securite-systemes-exploitation-securite-deployees-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── securite-infrastructure-mises-a-jour-fonctionnelles-securite-systemes-exploitation-securite-deployees-niveau2-comment.pug
+│   │   │   │   │   │   ├── securite-infrastructure-mises-a-jour-fonctionnelles-securite-systemes-exploitation-securite-deployees-niveau2-pourquoi.pug
+│   │   │   │   │   │   ├── securite-infrastructure-outils-securisation-systeme-messagerie-niveau1-comment.pug
+│   │   │   │   │   │   ├── securite-infrastructure-outils-securisation-systeme-messagerie-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── securite-infrastructure-outils-securisation-systeme-messagerie-niveau2-comment.pug
+│   │   │   │   │   │   ├── securite-infrastructure-outils-securisation-systeme-messagerie-niveau2-pourquoi.pug
+│   │   │   │   │   │   ├── securite-infrastructure-pare-feu-deploye-interconnexions-protegees-niveau1-comment.pug
+│   │   │   │   │   │   ├── securite-infrastructure-pare-feu-deploye-interconnexions-protegees-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── securite-infrastructure-pare-feu-deploye-interconnexions-protegees-niveau2-comment.pug
+│   │   │   │   │   │   ├── securite-infrastructure-pare-feu-deploye-interconnexions-protegees-niveau2-pourquoi.pug
+│   │   │   │   │   │   ├── securite-infrastructure-pare-feu-deploye-logs-stockes-niveau1-comment.pug
+│   │   │   │   │   │   ├── securite-infrastructure-pare-feu-deploye-logs-stockes-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── securite-infrastructure-pare-feu-deploye-niveau1-comment.pug
+│   │   │   │   │   │   ├── securite-infrastructure-pare-feu-deploye-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── securite-infrastructure-pare-feu-deploye-niveau2-comment.pug
+│   │   │   │   │   │   ├── securite-infrastructure-pare-feu-deploye-niveau2-pourquoi.pug
+│   │   │   │   │   │   ├── securite-infrastructure-si-industriel-pare-feu-deploye-niveau1-comment.pug
+│   │   │   │   │   │   ├── securite-infrastructure-si-industriel-pare-feu-deploye-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── securite-infrastructure-si-industriel-pare-feu-deploye-niveau2-comment.pug
+│   │   │   │   │   │   └── securite-infrastructure-si-industriel-pare-feu-deploye-niveau2-pourquoi.pug
+│   │   │   │   │   ├── postes
+│   │   │   │   │   │   ├── securite-poste-antivirus-deploye-niveau1-comment.pug
+│   │   │   │   │   │   ├── securite-poste-antivirus-deploye-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── securite-poste-antivirus-deploye-niveau2-comment.pug
+│   │   │   │   │   │   ├── securite-poste-antivirus-deploye-niveau2-pourquoi.pug
+│   │   │   │   │   │   ├── securite-poste-maj-fonctionnelles-et-securite-deployees-niveau1-comment.pug
+│   │   │   │   │   │   ├── securite-poste-maj-fonctionnelles-et-securite-deployees-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── securite-poste-maj-fonctionnelles-et-securite-deployees-niveau2-comment.pug
+│   │   │   │   │   │   ├── securite-poste-maj-fonctionnelles-et-securite-deployees-niveau2-pourquoi.pug
+│   │   │   │   │   │   ├── securite-poste-outils-complementaires-securisation-niveau1-comment.pug
+│   │   │   │   │   │   ├── securite-poste-outils-complementaires-securisation-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── securite-poste-outils-complementaires-securisation-niveau2-comment.pug
+│   │   │   │   │   │   ├── securite-poste-outils-complementaires-securisation-niveau2-pourquoi.pug
+│   │   │   │   │   │   ├── securite-poste-pare-feu-local-active-niveau1-comment.pug
+│   │   │   │   │   │   ├── securite-poste-pare-feu-local-active-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── securite-poste-r-et-d-disques-chiffres-niveau1-comment.pug
+│   │   │   │   │   │   ├── securite-poste-r-et-d-disques-chiffres-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── securite-poste-si-industriel-antivirus-deploye-niveau1-comment.pug
+│   │   │   │   │   │   ├── securite-poste-si-industriel-antivirus-deploye-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── securite-poste-si-industriel-antivirus-deploye-niveau2-comment.pug
+│   │   │   │   │   │   ├── securite-poste-si-industriel-antivirus-deploye-niveau2-pourquoi.pug
+│   │   │   │   │   │   ├── securite-poste-si-industriel-maj-fonctionnelles-et-securite-deployees-niveau1-comment.pug
+│   │   │   │   │   │   ├── securite-poste-si-industriel-maj-fonctionnelles-et-securite-deployees-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── securite-poste-si-industriel-maj-fonctionnelles-et-securite-deployees-niveau2-comment.pug
+│   │   │   │   │   │   └── securite-poste-si-industriel-maj-fonctionnelles-et-securite-deployees-niveau2-pourquoi.pug
+│   │   │   │   │   ├── reaction
+│   │   │   │   │   │   ├── reaction-assurance-cyber-souscrite-niveau1-comment.pug
+│   │   │   │   │   │   ├── reaction-assurance-cyber-souscrite-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── reaction-dispositif-gestion-crise-adapte-defini-niveau1-comment.pug
+│   │   │   │   │   │   ├── reaction-dispositif-gestion-crise-adapte-defini-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── reaction-dispositif-gestion-crise-adapte-defini-niveau2-comment.pug
+│   │   │   │   │   │   ├── reaction-dispositif-gestion-crise-adapte-defini-niveau2-pourquoi.pug
+│   │   │   │   │   │   ├── reaction-sauvegardes-donnees-realisees-niveau1-comment.pug
+│   │   │   │   │   │   ├── reaction-sauvegardes-donnees-realisees-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── reaction-sauvegardes-donnees-realisees-oui-automatique-et-reguliere-tiroir-environnement-isole-niveau1-comment.pug
+│   │   │   │   │   │   ├── reaction-sauvegardes-donnees-realisees-oui-automatique-et-reguliere-tiroir-environnement-isole-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── reaction-sauvegardes-donnees-realisees-oui-automatique-et-reguliere-tiroir-sauvegarde-testee-regulierement-niveau1-comment.pug
+│   │   │   │   │   │   ├── reaction-sauvegardes-donnees-realisees-oui-automatique-et-reguliere-tiroir-sauvegarde-testee-regulierement-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── reaction-sauvegardes-donnees-realisees-oui-ponctuellement-tiroir-environnement-isole-niveau1-comment.pug
+│   │   │   │   │   │   ├── reaction-sauvegardes-donnees-realisees-oui-ponctuellement-tiroir-environnement-isole-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── reaction-sauvegardes-donnees-realisees-oui-ponctuellement-tiroir-sauvegarde-testee-regulierement-niveau1-comment.pug
+│   │   │   │   │   │   ├── reaction-sauvegardes-donnees-realisees-oui-ponctuellement-tiroir-sauvegarde-testee-regulierement-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── reaction-surveillance-veille-vulnerabilites-potentielles-niveau1-comment.pug
+│   │   │   │   │   │   ├── reaction-surveillance-veille-vulnerabilites-potentielles-niveau1-pourquoi.pug
+│   │   │   │   │   │   ├── reaction-surveillance-veille-vulnerabilites-potentielles-niveau2-comment.pug
+│   │   │   │   │   │   └── reaction-surveillance-veille-vulnerabilites-potentielles-niveau2-pourquoi.pug
+│   │   │   │   │   └── sensibilisation
+│   │   │   │   │       ├── sensibilisation-actions-sensibilisation-menace-et-bonnes-pratiques-niveau1-comment.pug
+│   │   │   │   │       ├── sensibilisation-actions-sensibilisation-menace-et-bonnes-pratiques-niveau1-pourquoi.pug
+│   │   │   │   │       ├── sensibilisation-actions-sensibilisation-menace-et-bonnes-pratiques-niveau2-comment.pug
+│   │   │   │   │       ├── sensibilisation-actions-sensibilisation-menace-et-bonnes-pratiques-niveau2-pourquoi.pug
+│   │   │   │   │       ├── sensibilisation-collaborateurs-soumis-obligations-usages-securises-niveau1-comment.pug
+│   │   │   │   │       ├── sensibilisation-collaborateurs-soumis-obligations-usages-securises-niveau1-pourquoi.pug
+│   │   │   │   │       ├── sensibilisation-collaborateurs-soumis-obligations-usages-securises-niveau2-comment.pug
+│   │   │   │   │       ├── sensibilisation-collaborateurs-soumis-obligations-usages-securises-niveau2-pourquoi.pug
+│   │   │   │   │       ├── sensibilisation-declaration-incidents-encouragee-niveau1-comment.pug
+│   │   │   │   │       ├── sensibilisation-declaration-incidents-encouragee-niveau1-pourquoi.pug
+│   │   │   │   │       ├── sensibilisation-risque-espionnage-industriel-r-et-d-niveau1-comment.pug
+│   │   │   │   │       └── sensibilisation-risque-espionnage-industriel-r-et-d-niveau1-pourquoi.pug
+│   │   │   │   └── pdf
+│   │   │   │       └── modeles
+│   │   │   │           ├── base.entete.pug
+│   │   │   │           ├── base.pug
+│   │   │   │           ├── ressources
+│   │   │   │           │   ├── couleurs.css
+│   │   │   │           │   ├── dsfr.core.min.css
+│   │   │   │           │   ├── fonts.css
+│   │   │   │           │   ├── images.css
+│   │   │   │           │   ├── ouvre-mesures.js
+│   │   │   │           │   ├── restitution.css
+│   │   │   │           │   ├── styles.css
+│   │   │   │           │   └── tourDePage.css
+│   │   │   │           ├── restitution.entete.pug
+│   │   │   │           ├── restitution.mesures-complementaires.pug
+│   │   │   │           ├── restitution.mesures.pug
+│   │   │   │           ├── restitution.page-de-garde.pug
+│   │   │   │           ├── restitution.piedpage.pug
+│   │   │   │           └── restitution.pug
+│   │   │   ├── securite
+│   │   │   │   ├── Http.ts
+│   │   │   │   ├── Reseau.ts
+│   │   │   │   └── ServiceDeChiffrementChacha20.ts
+│   │   │   └── taches
+│   │   │       ├── tacheExtractionCOT.sh
+│   │   │       └── tacheExtractionCOT.ts
+│   │   ├── journalisation
+│   │   │   ├── Publication.ts
+│   │   │   └── evenements.ts
+│   │   ├── maintenance
+│   │   │   └── maintenance.html
+│   │   ├── recherche-utilisateurs-mac
+│   │   │   └── rechercheUtilisateursMAC.ts
+│   │   ├── relation
+│   │   │   ├── AdaptateurRelations.ts
+│   │   │   ├── AdaptateurRelationsMAC.ts
+│   │   │   ├── Aggregat.ts
+│   │   │   ├── EntrepotRelation.ts
+│   │   │   ├── Tuple.ts
+│   │   │   └── infrastructure
+│   │   │       ├── EntrepotRelationMemoire.ts
+│   │   │       ├── EntrepotRelationPostgres.ts
+│   │   │       └── fabriqueEntrepotRelations.ts
+│   │   ├── restitution
+│   │   │   └── Restitution.ts
+│   │   ├── securite
+│   │   │   └── ServiceDeChiffrement.ts
+│   │   ├── serveur.ts
+│   │   └── statistiques
+│   │       ├── aidant
+│   │       │   └── StastistiquesAidant.ts
+│   │       ├── statistiques.ts
+│   │       └── utilisateur-inscrit
+│   │           └── StatistiquesUtilisateurInscrit.ts
+│   ├── test
+│   │   ├── ConsignateurErreurs.spec.ts
+│   │   ├── adaptateurs
+│   │   │   ├── AdaptateurAseptisationDeTest.ts
+│   │   │   ├── AdaptateurAseptisationMAC.spec.ts
+│   │   │   ├── AdaptateurCmsCrispMACMemoire.ts
+│   │   │   ├── AdaptateurDeGestionDeCookiesDeTest.ts
+│   │   │   ├── AdaptateurDeGestionDeCookiesMAC.spec.ts
+│   │   │   ├── AdaptateurDeRequeteHTTPMemoire.ts
+│   │   │   ├── AdaptateurDeRestitutionHTML.spec.ts
+│   │   │   ├── AdaptateurDeVerificationDeCGUDeTest.ts
+│   │   │   ├── AdaptateurDeVerificationDeCGUMAC.spec.ts
+│   │   │   ├── AdaptateurDeVerificationDeDemandeDeTest.ts
+│   │   │   ├── AdaptateurDeVerificationDeDemandeMAC.spec.ts
+│   │   │   ├── AdaptateurDeVerificationDeSessionAvecContexteDeTest.ts
+│   │   │   ├── AdaptateurDeVerificationDeSessionDeTest.ts
+│   │   │   ├── AdaptateurDeVerificationDeSessionHttp.spec.ts
+│   │   │   ├── AdaptateurDeVerificationDeTypeDeRelationMac.spec.ts
+│   │   │   ├── AdaptateurDeVerificationDesAccesDeTest.ts
+│   │   │   ├── AdaptateurDeVerificationDesAccesMAC.spec.ts
+│   │   │   ├── AdaptateurDeVerificationDuTypeDeRelationDeTest.ts
+│   │   │   ├── AdaptateurMesuresTest.ts
+│   │   │   ├── AdaptateurReferentielDeTest.ts
+│   │   │   ├── AdaptateurSignatureRequeteDeTest.ts
+│   │   │   ├── AdaptateurSignatureRequeteHTTP.spec.ts
+│   │   │   ├── ConstructeurAdaptateurRestitutionHTML.ts
+│   │   │   ├── ConstructeurAdaptateurRestitutionPDF.ts
+│   │   │   ├── __snapshots__
+│   │   │   │   └── AdaptateurDeRestitutionHTML.spec.ts.snap
+│   │   │   ├── adaptateurTranscripteur.ts
+│   │   │   ├── adaptateursEnvironnementDeTest.ts
+│   │   │   ├── adaptateursRequeteBrevo.spec.ts
+│   │   │   ├── coherence-transcripteur.json
+│   │   │   ├── coherenceTranscripteur.spec.ts
+│   │   │   ├── fabriqueConsommateursEvenements.spec.ts
+│   │   │   └── pro-connect
+│   │   │       └── AdaptateurProConnectDeTest.ts
+│   │   ├── administration
+│   │   │   ├── aidants
+│   │   │   │   ├── extraction-aidants
+│   │   │   │   │   └── extractionAidantSelonParametre.spec.ts
+│   │   │   │   ├── mise-en-relation
+│   │   │   │   │   └── executeMiseEnRelation.spec.ts
+│   │   │   │   └── relance-mise-en-relation
+│   │   │   │       └── executeRelanceMiseEnRelation.spec.ts
+│   │   │   ├── challenge-rentree
+│   │   │   │   └── executeLaRechercheDesAidants.spec.ts
+│   │   │   ├── gendarmes
+│   │   │   │   └── rattrapage
+│   │   │   │       ├── metAJourLesGendarmesSansEntite.spec.ts
+│   │   │   │       └── trouveLesAidantsGendarmes.spec.ts
+│   │   │   ├── lie-diagnostic
+│   │   │   │   ├── AdaptateurRelationsEnErreur.ts
+│   │   │   │   └── lieDiagnostic.spec.ts
+│   │   │   └── rattrapage
+│   │   │       └── rattrapage-entites-diagnostics
+│   │   │           ├── EntrepotRelationRattrapagePostgres.spec.ts
+│   │   │           └── rattrapage.spec.ts
+│   │   ├── annuaire-aidants
+│   │   │   ├── ServiceAnnuaireAidants.spec.ts
+│   │   │   └── constructeurAidant.ts
+│   │   ├── api
+│   │   │   ├── aidant
+│   │   │   │   ├── routesAPIAidantPreferences.spec.ts
+│   │   │   │   ├── routesAPIAidantRepondreAUneDemande.spec.ts
+│   │   │   │   └── routesAPIProfil.spec.ts
+│   │   │   ├── annuaire-aidants
+│   │   │   │   └── routeAPIAnnuaireAidants.spec.ts
+│   │   │   ├── articles
+│   │   │   │   └── routeAPIArticles.spec.ts
+│   │   │   ├── auto-diagnostic
+│   │   │   │   └── routesAPIDiagnosticLibreAcces.spec.ts
+│   │   │   ├── demandes
+│   │   │   │   ├── constructeurRequeteDemandeDevenirAidant.ts
+│   │   │   │   ├── routeAPIDemandeDevenirAidant.spec.ts
+│   │   │   │   └── routesAPIDemandeEtreAide.spec.ts
+│   │   │   ├── executeurRequete.ts
+│   │   │   ├── gestionnaires
+│   │   │   │   └── erreurs.spec.ts
+│   │   │   ├── hateoas
+│   │   │   │   ├── hateoas.spec.ts
+│   │   │   │   ├── lesContextesUtilisateursExistants.ts
+│   │   │   │   └── liensAttendus.ts
+│   │   │   ├── pro-connect
+│   │   │   │   └── routeProConnect.spec.ts
+│   │   │   ├── recherche-entreprise
+│   │   │   │   ├── associationsNonReferencees.ts
+│   │   │   │   └── routesAPIRechercheEntreprise.spec.ts
+│   │   │   ├── representateurs
+│   │   │   │   ├── RepresentationGroupee.spec.ts
+│   │   │   │   ├── representateurDiagnostic.spec.ts
+│   │   │   │   └── transcripteursDeTest.ts
+│   │   │   ├── routeAPIContexte.spec.ts
+│   │   │   ├── routeContact.spec.ts
+│   │   │   ├── routesAPIAuthentification.spec.ts
+│   │   │   ├── routesAPIDiagnostic.spec.ts
+│   │   │   ├── routesAPIUtilisateur.spec.ts
+│   │   │   ├── statistiques
+│   │   │   │   └── routesStatistiques.spec.ts
+│   │   │   ├── tableau-de-bord
+│   │   │   │   └── routesAPITableauDeBord.spec.ts
+│   │   │   ├── testeurIntegration.ts
+│   │   │   └── webhooks
+│   │   │       ├── constructeursDeWebhooks.ts
+│   │   │       ├── routesAPIWebhooks.livestorm.spec.ts
+│   │   │       └── routesAPIWebhooks.tally.spec.ts
+│   │   ├── authentification
+│   │   │   ├── ServiceUtilisateur.spec.ts
+│   │   │   ├── authentification.spec.ts
+│   │   │   └── reinitialisation-mot-de-passe
+│   │   │       └── CapteurCommandeReinitialisationMotDePasse.spec.ts
+│   │   ├── auto-diagnostic
+│   │   │   ├── CapteurSagaLanceAutoDiagnostic.spec.ts
+│   │   │   └── consommateursEvenements.spec.ts
+│   │   ├── constructeurs
+│   │   │   ├── DictionnaireDeChiffrement.ts
+│   │   │   ├── constructeur.ts
+│   │   │   ├── constructeurAPIEntreprise.ts
+│   │   │   ├── constructeurAdaptateurRechercheEntrepriseEnDur.ts
+│   │   │   ├── constructeurArticle.ts
+│   │   │   ├── constructeurAssociation.ts
+│   │   │   ├── constructeurDemandesDevenirAidant.ts
+│   │   │   ├── constructeurDiagnostic.ts
+│   │   │   ├── constructeurIndice.ts
+│   │   │   ├── constructeurJwtPayload.ts
+│   │   │   ├── constructeurMesure.ts
+│   │   │   ├── constructeurMesures.ts
+│   │   │   ├── constructeurProConnectInformationsUtilisateur.ts
+│   │   │   ├── constructeurReferentiel.ts
+│   │   │   ├── constructeurReponse.ts
+│   │   │   ├── constructeurRestitution.ts
+│   │   │   ├── constructeurServices.ts
+│   │   │   ├── constructeurStatistiqueAidant.ts
+│   │   │   ├── constructeurStatistiquesUtilisateurInscrit.ts
+│   │   │   ├── constructeurUtilisateurMac.ts
+│   │   │   ├── constructeursAidantUtilisateurInscritUtilisateur.ts
+│   │   │   ├── relationsUtilisateursMACDiagnostic.ts
+│   │   │   └── types.ts
+│   │   ├── diagnostic
+│   │   │   ├── CapteurCommandeLanceDiagnostic.spec.ts
+│   │   │   ├── CapteurCommandeLanceRestitution.spec.ts
+│   │   │   ├── CapteurSagaAjoutReponse.spec.ts
+│   │   │   ├── ConstructeurContexte.ts
+│   │   │   ├── Diagnostic.spec.ts
+│   │   │   ├── MoteurDeMesures.spec.ts
+│   │   │   ├── MoteurDesIndicateurs.spec.ts
+│   │   │   ├── MoteurIndice.spec.ts
+│   │   │   ├── ServiceDiagnostic.spec.ts
+│   │   │   ├── ServiceDiagnosticDeTest.ts
+│   │   │   ├── StrategieDeReponse.spec.ts
+│   │   │   ├── coherenceDiagnostic.spec.ts
+│   │   │   ├── consommateursEvenements.spec.ts
+│   │   │   └── constructeurDeDiagnosticsPourTableauDeBord.ts
+│   │   ├── docker-entrypoint-initdb.d
+│   │   │   └── creer-base-de-donnees-journal.sql
+│   │   ├── espace-admin
+│   │   │   └── extraction
+│   │   │       └── Extraction.spec.ts
+│   │   ├── espace-aidant
+│   │   │   ├── CapteurCommandeCreeEspaceAidant.spec.ts
+│   │   │   ├── ServiceAidantMAC.spec.ts
+│   │   │   ├── preferences
+│   │   │   │   └── ServicePreferencesAidant.spec.ts
+│   │   │   ├── profil
+│   │   │   │   └── ServiceProfilAidant.spec.ts
+│   │   │   └── tableau-de-bord
+│   │   │       ├── ServiceTableauDeBord.spec.ts
+│   │   │       ├── consommateursEvenements.spec.ts
+│   │   │       └── constructeurs.ts
+│   │   ├── espace-utilisateur-inscrit
+│   │   │   ├── CapteurCommandeCreerEspaceUtilisateurInscrit.spec.ts
+│   │   │   ├── ServiceUtilisateurInscritMAC.spec.ts
+│   │   │   └── tableau-de-bord
+│   │   │       └── consommateursEvenements.spec.ts
+│   │   ├── gestion-demandes
+│   │   │   ├── aide
+│   │   │   │   ├── CapteurCommandeAttribueDemandeAide.spec.ts
+│   │   │   │   ├── CapteurCommandeCreerDemandeAide.spec.ts
+│   │   │   │   ├── CapteurSagaDemandeAide.spec.ts
+│   │   │   │   ├── ConstructeurAdaptateurDeCorpsDeMessage.ts
+│   │   │   │   ├── ConstructeurDemandeAide.ts
+│   │   │   │   ├── MiseEnRelationDirecteAidant.spec.ts
+│   │   │   │   ├── MiseEnRelationDirecteUtilisateurInscrit.spec.ts
+│   │   │   │   └── MiseEnRelationParCriteres.spec.ts
+│   │   │   └── devenir-aidant
+│   │   │       ├── CapteurCommandeDevenirAidant.spec.ts
+│   │   │       ├── CapteurSagaActivationCompteAidant.spec.ts
+│   │   │       ├── CapteurSagaDemandeAidantCreeEspaceAidant.spec.ts
+│   │   │       ├── ServiceDemandeDevenirAidant.spec.ts
+│   │   │       └── constructeurDeDemandeDevenirAidant.ts
+│   │   ├── infrastructure
+│   │   │   ├── adaptateurs
+│   │   │   │   ├── adaptateurRechercheEntreprise.spec.ts
+│   │   │   │   ├── enCadence.spec.ts
+│   │   │   │   └── transcripteur
+│   │   │   │       └── adaptateurTranscripteur.spec.ts
+│   │   │   ├── authentification
+│   │   │   │   └── FauxGestionnaireDeJeton.ts
+│   │   │   ├── bus
+│   │   │   │   ├── BusCommandeMAC.spec.ts
+│   │   │   │   ├── BusCommandeMACIntercepte.ts
+│   │   │   │   ├── BusCommandeTest.ts
+│   │   │   │   ├── BusEvenementDeTest.ts
+│   │   │   │   └── BusEvenementMAC.spec.ts
+│   │   │   ├── entrepots
+│   │   │   │   ├── EntrepotDemandeAideLecturePostgres.spec.ts
+│   │   │   │   └── postgres
+│   │   │   │       ├── EntrepotAideConcret.spec.ts
+│   │   │   │       ├── EntrepotDemandeDevenirAidantPostgres.spec.ts
+│   │   │   │       ├── EntrepotDemandeDiagnosticLibreAccesPostgres.spec.ts
+│   │   │   │       ├── EntrepotJournalisationPostgres.spec.ts
+│   │   │   │       ├── EntrepotsPostgres.spec.ts
+│   │   │   │       ├── aideAuxTests
+│   │   │   │       │   ├── DictionnaireDeChiffrementAide.ts
+│   │   │   │       │   └── EntrepotAideBrevoMemoire.ts
+│   │   │   │       └── integration_continue.ts
+│   │   │   ├── horloge
+│   │   │   │   └── FournisseurHorlogeDeTest.ts
+│   │   │   ├── middlewares
+│   │   │   │   └── middlewares.spec.ts
+│   │   │   └── securite
+│   │   │       ├── FauxServiceDeChiffrement.ts
+│   │   │       ├── Http.spec.ts
+│   │   │       ├── ServiceDeChiffrementChacha20.spec.ts
+│   │   │       └── ServiceDeChiffrementClair.ts
+│   │   ├── journalisation
+│   │   │   └── evenements.spec.ts
+│   │   ├── recherche-utilisateurs-mac
+│   │   │   └── rechercheUtilisateursMAC.spec.ts
+│   │   ├── relation
+│   │   │   ├── AdaptateurRelationTest.ts
+│   │   │   ├── AdaptateurRelationsMAC.spec.ts
+│   │   │   ├── EntrepotRelationPostgres.spec.ts
+│   │   │   └── Tuple.spec.ts
+│   │   └── utilitaires
+│   │       ├── aseptise.ts
+│   │       └── nettoyeurBDD.ts
+│   ├── tsconfig.json
+│   └── vitest.config.ts
+├── mon-aide-cyber-ui
+│   ├── .env.template
+│   ├── .gitignore
+│   ├── .storybook
+│   │   ├── main.ts
+│   │   └── preview.tsx
+│   ├── eslint.config.cjs
+│   ├── index.html
+│   ├── package.json
+│   ├── public
+│   │   ├── fichiers
+│   │   │   ├── CGU_MonAideCyber.pdf
+│   │   │   └── Charte_MonAideCyber.pdf
+│   │   ├── fontes
+│   │   │   └── Marianne-ExtraBold.woff2
+│   │   ├── images
+│   │   │   ├── Quotes.svg
+│   │   │   ├── chemin-etape.svg
+│   │   │   ├── devenir-aidant.svg
+│   │   │   ├── devise.svg
+│   │   │   ├── diagnostic
+│   │   │   │   ├── contexte
+│   │   │   │   │   ├── icone-navigation.svg
+│   │   │   │   │   └── illustration.svg
+│   │   │   │   ├── gouvernance
+│   │   │   │   │   ├── icone-navigation.svg
+│   │   │   │   │   └── illustration.svg
+│   │   │   │   ├── reaction
+│   │   │   │   │   ├── icone-navigation.svg
+│   │   │   │   │   └── illustration.svg
+│   │   │   │   ├── securite-acces
+│   │   │   │   │   ├── icone-navigation.svg
+│   │   │   │   │   └── illustration.svg
+│   │   │   │   ├── securite-infrastructures
+│   │   │   │   │   ├── icone-navigation.svg
+│   │   │   │   │   └── illustration.svg
+│   │   │   │   ├── securite-postes
+│   │   │   │   │   ├── icone-navigation.svg
+│   │   │   │   │   └── illustration.svg
+│   │   │   │   └── sensibilisation
+│   │   │   │       ├── icone-navigation.svg
+│   │   │   │       └── illustration.svg
+│   │   │   ├── diagnostics-par-departement.png
+│   │   │   ├── favicons
+│   │   │   │   └── favicon.ico
+│   │   │   ├── homologation
+│   │   │   │   ├── encart-homologation.desktop.png
+│   │   │   │   ├── encart-homologation.mobile.png
+│   │   │   │   └── encart-homologation.tablette.png
+│   │   │   ├── icone_sandwich.svg
+│   │   │   ├── icones
+│   │   │   │   ├── accompagnement-personnalise.svg
+│   │   │   │   ├── ampoule.svg
+│   │   │   │   ├── burger.svg
+│   │   │   │   ├── communaute-aidants.svg
+│   │   │   │   ├── communaute.svg
+│   │   │   │   ├── deconnecter.svg
+│   │   │   │   ├── diagnostic-cyber.svg
+│   │   │   │   ├── dispositif-etatique.svg
+│   │   │   │   ├── ellipse.svg
+│   │   │   │   ├── fleche-bas.svg
+│   │   │   │   ├── gauche.svg
+│   │   │   │   ├── guillemets.svg
+│   │   │   │   ├── icone-aide.svg
+│   │   │   │   ├── icone-menu-lateral.svg
+│   │   │   │   ├── icone-statistique-nombre-aidants.svg
+│   │   │   │   ├── icone-statistiques-mesures-appliquees.svg
+│   │   │   │   ├── icone-statistiques-nombre-diagnostics.svg
+│   │   │   │   ├── icone-statistiques-satisfaction-diagnostic.svg
+│   │   │   │   ├── icone-telecharger.svg
+│   │   │   │   ├── interet-general.svg
+│   │   │   │   ├── mail-send-line.svg
+│   │   │   │   ├── moins.svg
+│   │   │   │   └── plus.svg
+│   │   │   ├── illustration-accueil.svg
+│   │   │   ├── illustration-annuaire-aidant.svg
+│   │   │   ├── illustration-autodiag.svg
+│   │   │   ├── illustration-cadre-professionnel-mac.svg
+│   │   │   ├── illustration-cadre-professionnel.svg
+│   │   │   ├── illustration-deux-personnes.svg
+│   │   │   ├── illustration-devenir-aidant.svg
+│   │   │   ├── illustration-dg-anssi.png
+│   │   │   ├── illustration-dialogue-mac.svg
+│   │   │   ├── illustration-dino-cyberdepart.svg
+│   │   │   ├── illustration-echange.svg
+│   │   │   ├── illustration-faq-femme.svg
+│   │   │   ├── illustration-general-gendarmerie.png
+│   │   │   ├── illustration-homepage-aides.svg
+│   │   │   ├── illustration-indicateurs-maturite.svg
+│   │   │   ├── illustration-interet-general-mac.svg
+│   │   │   ├── illustration-interet-general.svg
+│   │   │   ├── illustration-marelle-etape-1.svg
+│   │   │   ├── illustration-marelle-etape-2.svg
+│   │   │   ├── illustration-marelle-etape-3.svg
+│   │   │   ├── illustration-marelle-etape-4.svg
+│   │   │   ├── illustration-marelle.svg
+│   │   │   ├── illustration-mesures.svg
+│   │   │   ├── illustration-qui-est-concerne-etre-aide.svg
+│   │   │   ├── illustration-qui-est-concerne.svg
+│   │   │   ├── illustration-securite-des-acces.svg
+│   │   │   ├── illustration-securite-des-postes.svg
+│   │   │   ├── illustration-statistiques.svg
+│   │   │   ├── illustration-suivi.svg
+│   │   │   ├── illustration-tornade.svg
+│   │   │   ├── logo_acyma.svg
+│   │   │   ├── logo_anssi.svg
+│   │   │   ├── logo_anssi_complet.svg
+│   │   │   ├── logo_cnil.svg
+│   │   │   ├── logo_comcybermi.svg
+│   │   │   ├── logo_gendarmerie_nationale.svg
+│   │   │   ├── logo_mac.svg
+│   │   │   ├── logo_police_nationale.svg
+│   │   │   ├── logo_republique_française.png
+│   │   │   ├── marianne.svg
+│   │   │   ├── top_aidants
+│   │   │   │   ├── benoit_lejeunes.png
+│   │   │   │   ├── kim_guerin.png
+│   │   │   │   ├── laurier_d.svg
+│   │   │   │   ├── laurier_g.svg
+│   │   │   │   ├── pierre_borie.png
+│   │   │   │   └── willy_robert.png
+│   │   │   ├── video-atelier-diag-dating-apercu.png
+│   │   │   ├── video-comment-trouver-des-aides.png
+│   │   │   ├── video-naviguer-sur-mac-apercu.png
+│   │   │   └── video-presentation-mac
+│   │   │       └── apercu-video-mon-aide-cyber.jpg
+│   │   └── lab-anssi-ui-kit
+│   │       └── lab-anssi-ui-kit.iife.v1.1.1.js
+│   ├── src
+│   │   ├── Accueil.tsx
+│   │   ├── RouteurPrive.tsx
+│   │   ├── RouteurPublic.tsx
+│   │   ├── assets
+│   │   │   └── styles
+│   │   │       ├── _accueil.scss
+│   │   │       ├── _bouton.scss
+│   │   │       ├── _carte.scss
+│   │   │       ├── _centre-aide.scss
+│   │   │       ├── _charte.scss
+│   │   │       ├── _commun.scss
+│   │   │       ├── _connectez-vous.scss
+│   │   │       ├── _couleurs.scss
+│   │   │       ├── _demande-aide.scss
+│   │   │       ├── _demande-devenir-aidant.scss
+│   │   │       ├── _diagnostic.scss
+│   │   │       ├── _diagnostics.scss
+│   │   │       ├── _espace-aidant.scss
+│   │   │       ├── _etapes.desktop.scss
+│   │   │       ├── _etapes.mobile.scss
+│   │   │       ├── _footer.desktop.scss
+│   │   │       ├── _footer.mobile.scss
+│   │   │       ├── _footer.scss
+│   │   │       ├── _header.scss
+│   │   │       ├── _icones.scss
+│   │   │       ├── _input.scss
+│   │   │       ├── _maintenance.scss
+│   │   │       ├── _menu-utilisateur.scss
+│   │   │       ├── _mise-en-page.scss
+│   │   │       ├── _modale.scss
+│   │   │       ├── _mode-clair.scss
+│   │   │       ├── _mode-fonce.scss
+│   │   │       ├── _mot-de-passe.scss
+│   │   │       ├── _points-de-rupture.scss
+│   │   │       ├── _profil.scss
+│   │   │       ├── _questionnaire.scss
+│   │   │       ├── _restitution.scss
+│   │   │       ├── _restitution_print.scss
+│   │   │       ├── _spinner.scss
+│   │   │       ├── _tableau-de-bord.scss
+│   │   │       ├── _typographie.scss
+│   │   │       ├── index.desktop.scss
+│   │   │       ├── index.mobile-paysage.scss
+│   │   │       ├── index.mobile.scss
+│   │   │       └── index.scss
+│   │   ├── composants
+│   │   │   ├── ComposantIdentifiantDiagnostic.tsx
+│   │   │   ├── LienMAC.tsx
+│   │   │   ├── alertes
+│   │   │   │   ├── BandeauDePromotionMSC.tsx
+│   │   │   │   ├── BandeauMaintenance.tsx
+│   │   │   │   ├── ComposantAffichageErreur.tsx
+│   │   │   │   ├── Erreurs.tsx
+│   │   │   │   └── Succes.tsx
+│   │   │   ├── atomes
+│   │   │   │   ├── Button
+│   │   │   │   │   └── Button.tsx
+│   │   │   │   ├── Input
+│   │   │   │   │   ├── Input.tsx
+│   │   │   │   │   └── PasswordInput.tsx
+│   │   │   │   ├── Lien
+│   │   │   │   │   ├── BoutonDemandeAide.tsx
+│   │   │   │   │   └── bouton-demande-aide.scss
+│   │   │   │   ├── LienMailtoMAC.tsx
+│   │   │   │   └── Spinner.tsx
+│   │   │   ├── auto-completion
+│   │   │   │   ├── AutoCompletion.tsx
+│   │   │   │   └── reducteurAutoCompletion.ts
+│   │   │   ├── communs
+│   │   │   │   ├── ChampCaseACocher
+│   │   │   │   │   └── ChampCaseACocher.tsx
+│   │   │   │   ├── ContenuAssaini.tsx
+│   │   │   │   ├── HeroBloc.tsx
+│   │   │   │   ├── IconeInformation.tsx
+│   │   │   │   ├── Sidemenu
+│   │   │   │   │   └── Sidemenu.tsx
+│   │   │   │   ├── messages
+│   │   │   │   │   ├── Alerte.tsx
+│   │   │   │   │   ├── Toast.tsx
+│   │   │   │   │   └── toast.scss
+│   │   │   │   ├── tuiles
+│   │   │   │   │   ├── TuileActionDemandeAide.tsx
+│   │   │   │   │   └── TuileActionKitDeCommunication.tsx
+│   │   │   │   └── typographie
+│   │   │   │       ├── ProprieteTypographie.ts
+│   │   │   │       ├── TypographieH1
+│   │   │   │       │   └── TypographieH1.tsx
+│   │   │   │       ├── TypographieH2
+│   │   │   │       │   └── TypographieH2.tsx
+│   │   │   │       ├── TypographieH3
+│   │   │   │       │   └── TypographieH3.tsx
+│   │   │   │       ├── TypographieH4
+│   │   │   │       │   └── TypographieH4.tsx
+│   │   │   │       ├── TypographieH5
+│   │   │   │       │   └── TypographieH5.tsx
+│   │   │   │       └── TypographieH6
+│   │   │   │           └── TypographieH6.tsx
+│   │   │   ├── diagnostic
+│   │   │   │   ├── AccederALaRestitution.tsx
+│   │   │   │   ├── BadgePerimetre.tsx
+│   │   │   │   ├── BoutonDiagnostic.tsx
+│   │   │   │   ├── BoutonThematique.tsx
+│   │   │   │   ├── ComposantLancerDiagnostic.tsx
+│   │   │   │   ├── ComposantReponsePossible.tsx
+│   │   │   │   ├── ComposantRestitution
+│   │   │   │   │   ├── ComposantRestitution.tsx
+│   │   │   │   │   ├── HeaderRestitution.tsx
+│   │   │   │   │   ├── restitution.scss
+│   │   │   │   │   ├── useComposantRestitution.ts
+│   │   │   │   │   ├── useRecupereLaRestitution.ts
+│   │   │   │   │   └── useRestitution.ts
+│   │   │   │   ├── ConteneurReponsePossible.tsx
+│   │   │   │   ├── EcranDiagnosticAidant.tsx
+│   │   │   │   ├── FooterDiagnostic.tsx
+│   │   │   │   ├── HeaderDiagnostic.tsx
+│   │   │   │   ├── TerminerDiagnostic.tsx
+│   │   │   │   ├── lancer-diagnostic.scss
+│   │   │   │   ├── reducteurBoutonTerminerDiagnostic.ts
+│   │   │   │   └── reducteurBoutonThematique.ts
+│   │   │   ├── espace-aidant
+│   │   │   │   ├── FooterEspaceAidant.tsx
+│   │   │   │   ├── HeaderEspaceAidant.tsx
+│   │   │   │   └── tableau-de-bord
+│   │   │   │       ├── ComposantDiagnostics.tsx
+│   │   │   │       └── TableauDeBord.tsx
+│   │   │   ├── formulaires
+│   │   │   │   └── ChampValidationCGUs.tsx
+│   │   │   ├── intercepteurs
+│   │   │   │   └── ComposantIntercepteur.tsx
+│   │   │   ├── landing
+│   │   │   │   ├── EncartDiagnosticCyber.tsx
+│   │   │   │   ├── EncartLogosPartenaires
+│   │   │   │   │   └── EncartLogosPartenaires.tsx
+│   │   │   │   ├── EncartRealiserDesDiagnosticsCyber
+│   │   │   │   │   ├── EncartRealiserDesDiagnosticsCyber.tsx
+│   │   │   │   │   └── encart-realiser-des-diagnostics-cyber.scss
+│   │   │   │   ├── MiseEnAvantTopAidants.tsx
+│   │   │   │   ├── encart-diagnostic-cyber.scss
+│   │   │   │   └── top-aidants.scss
+│   │   │   ├── layout
+│   │   │   │   ├── Footer.tsx
+│   │   │   │   ├── Header.tsx
+│   │   │   │   ├── HeaderAidant.tsx
+│   │   │   │   ├── LayoutCreationEspaceAidant.tsx
+│   │   │   │   ├── LayoutDiagnostic.tsx
+│   │   │   │   ├── LayoutPublic.tsx
+│   │   │   │   ├── LiensFooter.tsx
+│   │   │   │   ├── footer-layout.scss
+│   │   │   │   ├── header
+│   │   │   │   │   ├── NavigationPublique.tsx
+│   │   │   │   │   └── navigation-publique.scss
+│   │   │   │   └── layout-aidant
+│   │   │   │       ├── LayoutAidant.tsx
+│   │   │   │       ├── MenuNavigationElement.ts
+│   │   │   │       └── sidebar
+│   │   │   │           ├── Sidebar.tsx
+│   │   │   │           └── menu-navigation
+│   │   │   │               ├── LienMenuNavigation.tsx
+│   │   │   │               └── MenuNavigation.tsx
+│   │   │   ├── modale
+│   │   │   │   ├── Modale.tsx
+│   │   │   │   └── PortailModale.tsx
+│   │   │   ├── mot-de-passe
+│   │   │   │   ├── ComposantCreationMotDePasse.tsx
+│   │   │   │   ├── ComposantModificationMotDePasse.tsx
+│   │   │   │   ├── reducteurCreationMotDePasse.tsx
+│   │   │   │   └── reducteurModificationMotDePasse.tsx
+│   │   │   ├── promouvoir
+│   │   │   │   └── Cadre.tsx
+│   │   │   └── utilisateur
+│   │   │       └── ComposantMenuUtilisateur.tsx
+│   │   ├── domaine
+│   │   │   ├── Aggregat.ts
+│   │   │   ├── Lien.ts
+│   │   │   ├── MoteurDeLiens.ts
+│   │   │   ├── authentification
+│   │   │   │   ├── Authentification.ts
+│   │   │   │   ├── FormulaireAuthentification.tsx
+│   │   │   │   ├── SeConnecter.tsx
+│   │   │   │   ├── reducteurAuthentification.tsx
+│   │   │   │   └── reducteurUtilisateurAuthentifie.ts
+│   │   │   ├── auto-diagnostic
+│   │   │   │   ├── EcranDemandeAutodiagnostic.tsx
+│   │   │   │   ├── ecran-demande-autodiagnostic.scss
+│   │   │   │   └── formulaire-demande-auto-diagnostic
+│   │   │   │       ├── CapteurFormulaireDemandeAutodiagnostic.tsx
+│   │   │   │       ├── FormulaireDemandeAutodiagnostic.tsx
+│   │   │   │       ├── formulaire-demande-autodiagnostic.scss
+│   │   │   │       └── reducteurFormulaireDemandeAutodiagnostic.ts
+│   │   │   ├── connexion
+│   │   │   │   ├── EcranConnexion.tsx
+│   │   │   │   ├── composants
+│   │   │   │   │   ├── BoutonProConnect.tsx
+│   │   │   │   │   └── FormulaireConnexion.tsx
+│   │   │   │   ├── ecran-connexion.scss
+│   │   │   │   └── ecran-inscription
+│   │   │   │       ├── EcranInscription.tsx
+│   │   │   │       └── ecran-inscription.scss
+│   │   │   ├── contact
+│   │   │   │   └── Message.ts
+│   │   │   ├── crisp
+│   │   │   │   ├── ArticleCrisp.tsx
+│   │   │   │   ├── Crisp.types.ts
+│   │   │   │   ├── MenuCrispDesktop.tsx
+│   │   │   │   ├── MenuCrispMobile.tsx
+│   │   │   │   ├── PageCrisp.tsx
+│   │   │   │   └── article-crisp.scss
+│   │   │   ├── diagnostic
+│   │   │   │   ├── Diagnostic.ts
+│   │   │   │   ├── Referentiel.ts
+│   │   │   │   ├── Restitution.ts
+│   │   │   │   ├── reducteurDiagnostic.ts
+│   │   │   │   └── reducteurRestitution.ts
+│   │   │   ├── espace-aidant
+│   │   │   │   ├── EspaceAidant.ts
+│   │   │   │   ├── demande-aidant-creation-espace-aidant
+│   │   │   │   │   ├── EcranCreationEspaceAidant.tsx
+│   │   │   │   │   ├── FormulaireCreationEspaceAidant.tsx
+│   │   │   │   │   ├── ecran-creation-espace-aidant.scss
+│   │   │   │   │   └── reducteurCreationEspaceAidant.tsx
+│   │   │   │   ├── ecran-devenir-aidant
+│   │   │   │   │   ├── EcranDevenirAidant.tsx
+│   │   │   │   │   └── ecran-devenir-aidant.scss
+│   │   │   │   ├── ecran-diagnostics
+│   │   │   │   │   └── EcranDiagnostics.tsx
+│   │   │   │   ├── ecran-ressources
+│   │   │   │   │   ├── EcranRessources.tsx
+│   │   │   │   │   ├── composants
+│   │   │   │   │   │   └── EncartContenu.tsx
+│   │   │   │   │   └── ecran-ressources.scss
+│   │   │   │   ├── mon-compte
+│   │   │   │   │   ├── ecran-mes-informations
+│   │   │   │   │   │   ├── EcranMesInformations.tsx
+│   │   │   │   │   │   └── composants
+│   │   │   │   │   │       ├── formulaire-informations-aidant
+│   │   │   │   │   │       │   ├── FormatAffichageAnnuaire.tsx
+│   │   │   │   │   │       │   ├── FormulaireInformationsAidant.tsx
+│   │   │   │   │   │       │   ├── format-affichage-annuaire.scss
+│   │   │   │   │   │       │   └── useFormulaireInformationsAidant.ts
+│   │   │   │   │   │       ├── formulaire-modification-mot-de-passe
+│   │   │   │   │   │       │   └── FormulaireModificationMotDePasse.tsx
+│   │   │   │   │   │       └── reducteurProfil.ts
+│   │   │   │   │   └── ecran-mes-preferences
+│   │   │   │   │       ├── EcranMesPreferences.tsx
+│   │   │   │   │       ├── composants
+│   │   │   │   │       │   ├── FormulaireMesPreferences
+│   │   │   │   │       │   │   ├── FormulaireMesPreferences.types.ts
+│   │   │   │   │       │   │   └── useFormulaireMesPreferences.ts
+│   │   │   │   │       │   ├── FormulaireMesPreferences.tsx
+│   │   │   │   │       │   └── reducteurPreferences.ts
+│   │   │   │   │       └── ecran-mes-preferences.scss
+│   │   │   │   └── parcours-inscription
+│   │   │   │       └── ecran-inscription
+│   │   │   │           ├── EcranMonEspaceInscription.tsx
+│   │   │   │           ├── composants
+│   │   │   │           │   └── ChoixUtilisationDuService.tsx
+│   │   │   │           └── utilisation-du-service.scss
+│   │   │   ├── gestion-demandes
+│   │   │   │   ├── departement.ts
+│   │   │   │   ├── devenir-aidant
+│   │   │   │   │   ├── DevenirAidant.ts
+│   │   │   │   │   └── formulaire-devenir-aidant
+│   │   │   │   │       ├── FormulaireDevenirAidant.tsx
+│   │   │   │   │       └── reducteurDevenirAidant.ts
+│   │   │   │   ├── etre-aide
+│   │   │   │   │   └── EtreAide.ts
+│   │   │   │   ├── parcours-aidant
+│   │   │   │   │   ├── EcranValiderMonProfil.tsx
+│   │   │   │   │   ├── Entreprise.d.ts
+│   │   │   │   │   ├── SignatureCGU.tsx
+│   │   │   │   │   ├── SignatureCharteAidant.tsx
+│   │   │   │   │   ├── choix-type-aidant
+│   │   │   │   │   │   ├── ChoixTypeAidant.tsx
+│   │   │   │   │   │   ├── RechercheEntreprise.tsx
+│   │   │   │   │   │   └── SelecteurTypeAidant.tsx
+│   │   │   │   │   ├── choix-utilisation
+│   │   │   │   │   │   ├── ChoixUtilisation.tsx
+│   │   │   │   │   │   └── choix
+│   │   │   │   │   │       ├── Choix.tsx
+│   │   │   │   │   │       ├── ChoixActiviteProfessionnelle.tsx
+│   │   │   │   │   │       └── ChoixInteretGeneral.tsx
+│   │   │   │   │   ├── ecran-demande-devenir-aidant.scss
+│   │   │   │   │   ├── reducteurMonEspaceDemandeDevenirAidant.ts
+│   │   │   │   │   └── validation-charte-et-cgu
+│   │   │   │   │       └── ValidationCharteEtCGU.tsx
+│   │   │   │   └── repondre-a-une-demande
+│   │   │   │       ├── EcranRepondreAUneDemande.tsx
+│   │   │   │       ├── composants
+│   │   │   │       │   ├── ConfirmationReponseALaDemande.tsx
+│   │   │   │       │   ├── DemandeDejaPourvue.tsx
+│   │   │   │       │   ├── RepondreALaDemande.tsx
+│   │   │   │       │   └── confirmation-reponse-a-la-demande.scss
+│   │   │   │       └── ecran-repondre-a-une-demande.scss
+│   │   │   ├── hateoas
+│   │   │   │   ├── VisualiseurDeNavigationHATEOAS.tsx
+│   │   │   │   └── visualiseur-de-navigation-hateoas.scss
+│   │   │   ├── parcours-utilisation-service
+│   │   │   │   ├── parcours-mon-espace-demande-devenir-aidant
+│   │   │   │   │   └── ecran-mon-espace-demande-devenir-aidant
+│   │   │   │   │       ├── EcranMonEspaceDemandeDevenirAidant.tsx
+│   │   │   │   │       ├── reducteurInformationsAidant.ts
+│   │   │   │   │       └── useEcranMonEspaceDemandeDevenirAidant.ts
+│   │   │   │   ├── parcours-utilisateur-inscrit
+│   │   │   │   │   └── ecran-utilisation-du-service
+│   │   │   │   │       ├── EcranValiderProfilUtilisateurInscrit.tsx
+│   │   │   │   │       ├── mon-espace
+│   │   │   │   │       │   ├── EcranMonEspaceUtilisationDuService.tsx
+│   │   │   │   │       │   └── MonEspaceUtilisationDuService.tsx
+│   │   │   │   │       └── valider-profil-utilisateur-inscrit.scss
+│   │   │   │   └── parcours-validation-profil-aidant
+│   │   │   │       └── reducteurEtapesValidationProfilAidant.ts
+│   │   │   ├── preferences
+│   │   │   │   └── ReponsePreferencesAPI.ts
+│   │   │   ├── profil
+│   │   │   │   └── Profil.ts
+│   │   │   ├── validation-cgu
+│   │   │   │   ├── EcranValidationSignatureCGU.tsx
+│   │   │   │   ├── FormulaireValidationSignatureCGU.tsx
+│   │   │   │   ├── ecran-validation-cgu.scss
+│   │   │   │   └── reducteurValidationCGU.tsx
+│   │   │   └── vitrine
+│   │   │       ├── ecran-annuaire
+│   │   │       │   ├── AidantAnnuaire.ts
+│   │   │       │   ├── EcranAnnuaire.tsx
+│   │   │       │   ├── composants
+│   │   │       │   │   ├── CarteAidant.tsx
+│   │   │       │   │   ├── HeroAnnuaire.tsx
+│   │   │       │   │   ├── carte-aidant.scss
+│   │   │       │   │   └── liste-aidants
+│   │   │       │   │       ├── ListeAidants.tsx
+│   │   │       │   │       ├── index.ts
+│   │   │       │   │       ├── pagination
+│   │   │       │   │       │   ├── Pagination.tsx
+│   │   │       │   │       │   ├── boutons.tsx
+│   │   │       │   │       │   ├── pagination.scss
+│   │   │       │   │       │   └── reducteurPagination.ts
+│   │   │       │   │       └── useListeAidants.ts
+│   │   │       │   └── ecran-annuaire.scss
+│   │   │       ├── ecran-securite
+│   │   │       │   ├── EcranSecurite.tsx
+│   │   │       │   └── ecran-securite.scss
+│   │   │       ├── ecran-statistiques
+│   │   │       │   ├── EcranStatistiques.tsx
+│   │   │       │   ├── composants
+│   │   │       │   │   └── HeroStatistiques.tsx
+│   │   │       │   └── ecran-statistiques.scss
+│   │   │       ├── mot-de-passe-oublie
+│   │   │       │   ├── EcranMotDePasseOublie.tsx
+│   │   │       │   ├── ecran-mot-de-passe-oublie.scss
+│   │   │       │   └── formulaire-mot-de-passe-oublie
+│   │   │       │       ├── CapteurFormulaireMotDePasseOublie.tsx
+│   │   │       │       ├── FormulaireMotDePasseOublie.tsx
+│   │   │       │       └── reducteurFormulaireMotDePasseOublie.ts
+│   │   │       └── reinitialiser-mot-de-passe
+│   │   │           ├── EcranReinitialiserMotDePasse.tsx
+│   │   │           ├── ecran-reinitialiser-mot-de-passe.scss
+│   │   │           └── formulaire-reinitialiser-mot-de-passe
+│   │   │               ├── CapteurFormulaireReinitialiserMotDePasse.tsx
+│   │   │               ├── FormulaireReinitialiserMotDePasse.tsx
+│   │   │               └── reducteurFormulaireReinitialiserMotDePasse.ts
+│   │   ├── fournisseurs
+│   │   │   ├── ContexteMatomo.tsx
+│   │   │   ├── ContexteModale.ts
+│   │   │   ├── ContexteNavigationMAC.tsx
+│   │   │   ├── ContexteUtilisateur.tsx
+│   │   │   ├── NecessiteValidationCGU.tsx
+│   │   │   ├── RequiertAuthentification.tsx
+│   │   │   ├── RequiertValidationCGU.tsx
+│   │   │   ├── ToastProvider
+│   │   │   │   ├── FournisseurDeToast.tsx
+│   │   │   │   └── toaster.scss
+│   │   │   ├── api
+│   │   │   │   ├── APIDiagnostic.ts
+│   │   │   │   ├── ConstructeurParametresAPI.ts
+│   │   │   │   └── useMACAPI.ts
+│   │   │   └── hooks.ts
+│   │   ├── hooks
+│   │   │   ├── useContenuAssaini.ts
+│   │   │   ├── useContexteNavigation.ts
+│   │   │   ├── useDefilementFluide.ts
+│   │   │   ├── useDonneesSEO.ts
+│   │   │   ├── useMoteurDeLiens.ts
+│   │   │   ├── useRecupereContexteNavigation.ts
+│   │   │   └── useRecupereLesInformationsLieesALaDemande.ts
+│   │   ├── infrastructure
+│   │   │   ├── donnees
+│   │   │   │   └── LiensExternes.ts
+│   │   │   └── mes-services-cyber
+│   │   │       └── liens.ts
+│   │   ├── lab-anssi-ui-kit.jsx.d.ts
+│   │   ├── main.tsx
+│   │   ├── reducteurs
+│   │   │   ├── reducteurEnvoiMessageContact.tsx
+│   │   │   └── reducteurEnvoieMessage.ts
+│   │   ├── stories
+│   │   │   ├── AfficheDiagnostic.stories.tsx
+│   │   │   ├── AutoCompletion.stories.tsx
+│   │   │   ├── DecorateurComposantDiagnostic.tsx
+│   │   │   ├── PageDeConnexion.stories.tsx
+│   │   │   ├── ReponsesDonneesAuDiagnostic.stories.tsx
+│   │   │   ├── ServeurMACMemoire.ts
+│   │   │   ├── composants
+│   │   │   │   ├── Button.stories.tsx
+│   │   │   │   └── Test.stories.tsx
+│   │   │   ├── demande-devenir-aidant
+│   │   │   │   ├── DemandeDevenirAidant.stories.tsx
+│   │   │   │   └── DemandeDevenirAidant.tsx
+│   │   │   └── ecran-profil-aidant
+│   │   │       ├── FormulaireInformationsAidant.stories.tsx
+│   │   │       └── FormulaireMotDePasse.stories.tsx
+│   │   ├── types
+│   │   │   └── Types.ts
+│   │   ├── validateurs
+│   │   │   └── email.ts
+│   │   ├── vite-env.d.ts
+│   │   └── vues
+│   │       ├── CharteAidant.tsx
+│   │       ├── ComposantCGU.tsx
+│   │       ├── EcranAccessibilite.tsx
+│   │       ├── EcranCharteAidant.tsx
+│   │       └── MentionsLegales.tsx
+│   ├── test
+│   │   ├── composants
+│   │   │   ├── authentification
+│   │   │   │   ├── reducteurAuthentification.spec.tsx
+│   │   │   │   └── reducteurUtilisateurAuthentifie.spec.ts
+│   │   │   ├── auto-completion
+│   │   │   │   └── reducteurAutoCompletion.spec.ts
+│   │   │   ├── mot-de-passe
+│   │   │   │   ├── reducteurCreationMotDePasse.spec.tsx
+│   │   │   │   └── reducteurModificationMotDePasse.spec.tsx
+│   │   │   └── profil
+│   │   │       └── reducteurProfil.spec.ts
+│   │   ├── constructeurs
+│   │   │   ├── Constructeur.ts
+│   │   │   ├── constructeurDiagnostic.ts
+│   │   │   ├── constructeurQuestions.ts
+│   │   │   ├── constructeurReferentiel.ts
+│   │   │   ├── constructeurReponsePossible.ts
+│   │   │   └── constructeurRestitution.ts
+│   │   ├── domaine
+│   │   │   ├── MoteurDeLiens.spec.ts
+│   │   │   ├── auto-diagnostic
+│   │   │   │   └── formulaire-demande-auto-diagnostic
+│   │   │   │       └── reducteurFormulaireDemandeAutodiagnostic.spec.ts
+│   │   │   ├── diagnostic
+│   │   │   │   ├── Diagnostic.spec.ts
+│   │   │   │   ├── reducteurBoutonTerminerDiagnostic.spec.ts
+│   │   │   │   ├── reducteurBoutonThematique.spec.ts
+│   │   │   │   ├── reducteurDiagnostic.spec.ts
+│   │   │   │   └── reducteurRestitution.spec.ts
+│   │   │   ├── espace-aidant
+│   │   │   │   ├── demande-aidant-creation-espace-aidant
+│   │   │   │   │   └── reducteurCreationEspaceAidant.spec.tsx
+│   │   │   │   └── mon-compte
+│   │   │   │       └── ecran-mes-preferences
+│   │   │   │           └── composants
+│   │   │   │               └── reducteurPreferences.spec.ts
+│   │   │   ├── gestion-demandes
+│   │   │   │   ├── devenir-aidant
+│   │   │   │   │   └── reducteurDevenirAidant.spec.ts
+│   │   │   │   ├── etre-aide
+│   │   │   │   │   └── EtreAide.spec.ts
+│   │   │   │   └── parcours-aidant
+│   │   │   │       ├── reducteurInformationsAidant.spec.ts
+│   │   │   │       └── reducteurMonEspaceDemandeDevenirAidant.spec.ts
+│   │   │   ├── validation-cgu
+│   │   │   │   └── reducteurValidationCGU.spec.tsx
+│   │   │   └── vitrine
+│   │   │       ├── ecran-annuaire
+│   │   │       │   └── composants
+│   │   │       │       └── liste-aidants
+│   │   │       │           └── pagination
+│   │   │       │               └── reducteurPagination.spec.ts
+│   │   │       ├── mot-de-passe-oublie
+│   │   │       │   └── formulaire-mot-de-passe-oublie
+│   │   │       │       └── reducteurFormulaireMotDePasseOublie.spec.ts
+│   │   │       └── reinitialiser-mot-de-passe
+│   │   │           └── formulaire-reinitialiser-mot-de-passe
+│   │   │               └── reducteurFormulaireReinitialiserMotDePasse.spec.ts
+│   │   ├── fournisseurs
+│   │   │   └── api
+│   │   │       └── useMACAPI.spec.ts
+│   │   ├── reducteurs
+│   │   │   ├── reducteurEnvoiMessageContact.spec.tsx
+│   │   │   └── reducteurEnvoieMessage.spec.tsx
+│   │   └── utilitaires
+│   │       └── aseptise.ts
+│   ├── tsconfig.json
+│   ├── tsconfig.test.json
+│   ├── vite.config.ts
+│   └── vitest.config.ts
+├── package.json
+├── pnpm-lock.yaml
+└── pnpm-workspace.yaml
+353 directories, 1219 files
