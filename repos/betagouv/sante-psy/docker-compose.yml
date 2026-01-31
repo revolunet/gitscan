@@ -1,0 +1,51 @@
+version: '3'
+services:
+  db:
+    image: postgres:12.5
+    environment:
+      POSTGRES_USER: santepsy
+      POSTGRES_PASSWORD: santepsy
+    ports:
+      - "5432:5432"
+
+  maildev:
+    image: maildev/maildev
+    environment:
+      MAILDEV_INCOMING_USER: mailuser
+      MAILDEV_INCOMING_PASS: mailpassword
+    ports:
+      - "1080:1080"
+      - "1025:1025"
+
+  web:
+    build: .
+    command: sh -c "echo 'starting sante-psy...'; npm run migrate; npm run seed; npm run dev"
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgres://santepsy:santepsy@db:5432/santepsy
+      ANNOUNCEMENT: "(Docker-compose variable) Very important announcement."
+      PUBLIC_ANNOUNCEMENT: "(Docker-compose variable) Very important public announcement."
+      SECRET_LOGS: "production_value_should_be_set_in_.env"
+      SECRET: "production_value_should_be_set_in_.env"
+      HOSTNAME_WITH_PROTOCOL: "http://localhost:3000"
+      USE_CORS: "true"
+      SPEED_LIMITATION: "false"
+      TEST_ENVIRONMENT: "true"
+      # INSTAGRAM_FOLLOWER: "20 000"
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/app
+    depends_on: # https://docs.docker.com/compose/startup-order/
+      - db
+
+  react: 
+    image: node:16
+    build: ./frontend
+    working_dir: /app/frontend
+    command: sh -c "npm run dev"
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app

@@ -1,0 +1,705 @@
+.
+├── .dockerignore
+├── .env.ci
+├── .env.sample
+├── .eslintignore
+├── .eslintrc.yml
+├── .github
+│   ├── images
+│   │   ├── bandeau_lettre_medecin.jpg
+│   │   └── mail-header.png
+│   └── workflows
+│       ├── codeql-analysis.yml
+│       └── nodejs.yml
+├── .gitignore
+├── .slugignore
+├── @types
+│   ├── express
+│   │   └── index.d.ts
+│   └── knex
+│       └── index.d.ts
+├── Dockerfile
+├── LICENSE
+├── Procfile
+├── README.md
+├── README_api_santé.md
+├── controllers
+│   ├── appointmentsController.ts
+│   ├── configController.ts
+│   ├── contactController.ts
+│   ├── conventionController.ts
+│   ├── loginController.ts
+│   ├── patientsController.ts
+│   ├── psyInactiveController.ts
+│   ├── psyListingController.ts
+│   ├── psyProfileController.ts
+│   ├── reactController.ts
+│   ├── statisticsController.ts
+│   ├── studentController.ts
+│   ├── testController.ts
+│   ├── universitiesController.ts
+│   └── validators
+│       └── patientValidators.ts
+├── cron_jobs
+│   ├── cron.ts
+│   ├── cronDemarchesSimplifiees.ts
+│   ├── cronPsychologists.ts
+│   ├── cronStudents.ts
+│   ├── cronUniversityPayments.ts
+│   └── launch.ts
+├── db
+│   ├── appointments.ts
+│   ├── db.ts
+│   ├── dsApiCursor.ts
+│   ├── lastConnections.ts
+│   ├── loginToken.ts
+│   ├── patients.ts
+│   ├── psychologists.ts
+│   ├── statistics.ts
+│   ├── students.ts
+│   ├── suspensionReasons.ts
+│   ├── tables.ts
+│   └── universities.ts
+├── docker-compose-only-db.yml
+├── docker-compose.yml
+├── frontend
+│   ├── .babelrc
+│   ├── .dockerignore
+│   ├── .eslintignore
+│   ├── .eslintrc.js
+│   ├── .gitignore
+│   ├── Dockerfile
+│   ├── assets
+│   │   ├── favicon.ico
+│   │   ├── fonts
+│   │   │   ├── Marianne-Bold.woff
+│   │   │   ├── Marianne-Bold.woff2
+│   │   │   ├── Marianne-Bold_Italic.woff
+│   │   │   ├── Marianne-Bold_Italic.woff2
+│   │   │   ├── Marianne-Light.woff
+│   │   │   ├── Marianne-Light.woff2
+│   │   │   ├── Marianne-Light_Italic.woff
+│   │   │   ├── Marianne-Light_Italic.woff2
+│   │   │   ├── Marianne-Medium.woff
+│   │   │   ├── Marianne-Medium.woff2
+│   │   │   ├── Marianne-Regular.woff
+│   │   │   ├── Marianne-Regular.woff2
+│   │   │   ├── Marianne-Regular_Italic.woff
+│   │   │   ├── Marianne-Regular_Italic.woff2
+│   │   │   ├── Spectral-ExtraBold.woff
+│   │   │   ├── Spectral-ExtraBold.woff2
+│   │   │   ├── Spectral-Regular.woff
+│   │   │   └── Spectral-Regular.woff2
+│   │   ├── images
+│   │   │   ├── contact
+│   │   │   │   ├── psychologist.png
+│   │   │   │   ├── student.png
+│   │   │   │   └── university.png
+│   │   │   ├── demarches-simplifiees.png
+│   │   │   ├── eligibility
+│   │   │   │   ├── doctor.svg
+│   │   │   │   ├── followup.svg
+│   │   │   │   ├── psychologist.svg
+│   │   │   │   └── purple-speech-bubble.svg
+│   │   │   ├── icons
+│   │   │   │   ├── crisp_closed_chat.svg
+│   │   │   │   ├── doctor.png
+│   │   │   │   ├── doctor_dm.png
+│   │   │   │   ├── followup.png
+│   │   │   │   ├── followup_dm.png
+│   │   │   │   ├── human-cooperation.png
+│   │   │   │   ├── icon-available-psy.svg
+│   │   │   │   ├── icon-invisible-psy.svg
+│   │   │   │   ├── icon-unavailable-psy.svg
+│   │   │   │   ├── layers-2x.png
+│   │   │   │   ├── layers.png
+│   │   │   │   ├── newsletter.svg
+│   │   │   │   ├── psychologist-profile.svg
+│   │   │   │   ├── psychologist.png
+│   │   │   │   └── psychologist_dm.png
+│   │   │   ├── instagram
+│   │   │   │   ├── communaute-bl.jpg
+│   │   │   │   ├── communaute-br.jpg
+│   │   │   │   ├── communaute-tl.jpg
+│   │   │   │   ├── communaute-tr.jpg
+│   │   │   │   ├── instaMozaic1.jpg
+│   │   │   │   ├── instaMozaic2.jpg
+│   │   │   │   ├── instaMozaic3.jpg
+│   │   │   │   ├── instaMozaic4.jpg
+│   │   │   │   ├── instaMozaic5.jpg
+│   │   │   │   ├── instaMozaic6.jpg
+│   │   │   │   ├── kaavan-podcast.png
+│   │   │   │   └── kaavan.png
+│   │   │   ├── landing.png
+│   │   │   ├── logos
+│   │   │   │   ├── 3114-logo.png
+│   │   │   │   ├── cnae-logo.png
+│   │   │   │   ├── e_enfance-logo.png
+│   │   │   │   ├── monparcourspsy-logo.png
+│   │   │   │   ├── nightline-logo.png
+│   │   │   │   ├── pass-sport-logo.png
+│   │   │   │   └── psycom-logo.png
+│   │   │   ├── otherServices
+│   │   │   │   ├── 3114-small.jpg
+│   │   │   │   ├── 3114.png
+│   │   │   │   ├── monparcourspsy-small.jpg
+│   │   │   │   ├── monparcourspsy.png
+│   │   │   │   ├── nightline-small.jpg
+│   │   │   │   ├── nightline.png
+│   │   │   │   ├── pass-sport-small.jpg
+│   │   │   │   ├── pass-sport.jpg
+│   │   │   │   ├── psycom-small.jpg
+│   │   │   │   └── psycom.png
+│   │   │   └── teleconsultation.png
+│   │   ├── scripts
+│   │   │   └── leaflet.js
+│   │   └── styles
+│   │       ├── images
+│   │       │   ├── marker-icon-2x.png
+│   │       │   ├── marker-icon.png
+│   │       │   └── marker-shadow.png
+│   │       └── leaflet.css
+│   ├── config
+│   │   ├── webpack.base.js
+│   │   ├── webpack.dev.hot.js
+│   │   ├── webpack.dev.js
+│   │   ├── webpack.production.js
+│   │   └── webpack.production.with.bundle.js
+│   ├── cypress
+│   │   ├── e2e
+│   │   │   ├── appointments.cy.js
+│   │   │   ├── contact.cy.js
+│   │   │   ├── convention.cy.js
+│   │   │   ├── conventionModal.cy.js
+│   │   │   ├── faq.cy.js
+│   │   │   ├── header.cy.js
+│   │   │   ├── landing.cy.js
+│   │   │   ├── login.cy.js
+│   │   │   ├── patients.cy.js
+│   │   │   ├── profile.cy.js
+│   │   │   ├── psyListing.cy.js
+│   │   │   ├── redirection.cy.js
+│   │   │   ├── reimbursement.cy.js
+│   │   │   ├── tutorial.cy.js
+│   │   │   └── utils
+│   │   │       ├── calendar.js
+│   │   │       ├── db.js
+│   │   │       ├── login.js
+│   │   │       └── psychologist.js
+│   │   ├── fixtures
+│   │   │   └── example.json
+│   │   ├── plugins
+│   │   │   └── index.js
+│   │   └── support
+│   │       ├── commands.js
+│   │       └── e2e.js
+│   ├── cypress.config.js
+│   ├── index.html
+│   ├── jsconfig.json
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── scripts
+│   │   └── build.js
+│   ├── src
+│   │   ├── App.css
+│   │   ├── App.jsx
+│   │   ├── PsychologistRouter.jsx
+│   │   ├── colors.css
+│   │   ├── components
+│   │   │   ├── AccessibilityDeclaration
+│   │   │   │   ├── AccessibilityActionPlan.jsx
+│   │   │   │   └── AccessibilityDeclaration.jsx
+│   │   │   ├── Ariane
+│   │   │   │   └── Ariane.jsx
+│   │   │   ├── Badges
+│   │   │   │   ├── Badges.jsx
+│   │   │   │   └── badges.cssmodule.scss
+│   │   │   ├── CGU
+│   │   │   │   └── CGU.jsx
+│   │   │   ├── Card
+│   │   │   │   ├── Card.jsx
+│   │   │   │   └── card.cssmodule.scss
+│   │   │   ├── Contact
+│   │   │   │   ├── Contact.jsx
+│   │   │   │   ├── ContactForm.jsx
+│   │   │   │   ├── contact.cssmodule.scss
+│   │   │   │   └── contactForm.cssmodule.scss
+│   │   │   ├── Date
+│   │   │   │   ├── DateInput.jsx
+│   │   │   │   └── MonthPicker.jsx
+│   │   │   ├── Eligibility
+│   │   │   │   ├── EligibilityFunnel.jsx
+│   │   │   │   ├── components
+│   │   │   │   │   ├── EligibilityMessage.jsx
+│   │   │   │   │   ├── QuestionStep.jsx
+│   │   │   │   │   ├── eligibilityMessage.cssmodule.scss
+│   │   │   │   │   ├── getMessageContents.js
+│   │   │   │   │   └── questionStep.cssmodule.scss
+│   │   │   │   ├── eligibilityStyles.cssmodule.scss
+│   │   │   │   └── utils
+│   │   │   │       ├── eligibilitySteps.js
+│   │   │   │       └── eligibilitySyntax.js
+│   │   │   ├── Faq
+│   │   │   │   ├── Faq.jsx
+│   │   │   │   ├── FaqProcess.jsx
+│   │   │   │   ├── FaqTab.jsx
+│   │   │   │   ├── faq.cssmodule.scss
+│   │   │   │   ├── faqProcess.cssmodule.scss
+│   │   │   │   └── faqTab.cssmodule.scss
+│   │   │   ├── Footer
+│   │   │   │   ├── Footer.jsx
+│   │   │   │   └── Mail.jsx
+│   │   │   ├── Header
+│   │   │   │   ├── Header.jsx
+│   │   │   │   └── Skiplinks.jsx
+│   │   │   ├── InputSelect
+│   │   │   │   ├── InputSelect.jsx
+│   │   │   │   └── inputSelect.cssmodule.scss
+│   │   │   ├── InstagramBanner
+│   │   │   │   ├── InstagramBanner.jsx
+│   │   │   │   ├── MozaicInstagram.jsx
+│   │   │   │   └── styles.cssmodule.scss
+│   │   │   ├── Landing
+│   │   │   │   ├── FollowInstagram.jsx
+│   │   │   │   ├── Landing.jsx
+│   │   │   │   ├── Newsletter.jsx
+│   │   │   │   ├── Section.jsx
+│   │   │   │   ├── Statistic.jsx
+│   │   │   │   ├── Statistics.jsx
+│   │   │   │   ├── StudentCards.jsx
+│   │   │   │   ├── StudentLanding.jsx
+│   │   │   │   ├── StudentProcess.jsx
+│   │   │   │   ├── followInstagram.cssmodule.scss
+│   │   │   │   ├── newsletter.cssmodule.scss
+│   │   │   │   ├── section.cssmodule.scss
+│   │   │   │   ├── statistic.cssmodule.scss
+│   │   │   │   ├── statistics.cssmodule.scss
+│   │   │   │   ├── studentCards.cssmodule.scss
+│   │   │   │   └── studentProcess.cssmodule.scss
+│   │   │   ├── LegalNotice
+│   │   │   │   └── LegalNotice.jsx
+│   │   │   ├── LiveChat
+│   │   │   │   ├── LiveChat.jsx
+│   │   │   │   └── liveChat.cssmodule.scss
+│   │   │   ├── Login
+│   │   │   │   ├── Login.jsx
+│   │   │   │   ├── Logout.jsx
+│   │   │   │   └── login.cssmodule.scss
+│   │   │   ├── Matomo
+│   │   │   │   └── Matomo.jsx
+│   │   │   ├── Notification
+│   │   │   │   ├── Announcement.jsx
+│   │   │   │   ├── GlobalNotification.jsx
+│   │   │   │   ├── Notification.jsx
+│   │   │   │   ├── PublicAnnouncement.jsx
+│   │   │   │   ├── announcement.cssmodule.scss
+│   │   │   │   └── publicAnnouncement.cssmodule.scss
+│   │   │   ├── OtherServices
+│   │   │   │   ├── OtherServicesPage.jsx
+│   │   │   │   ├── Service.jsx
+│   │   │   │   ├── ServicesList.jsx
+│   │   │   │   ├── allServicesData.js
+│   │   │   │   ├── service.cssmodule.scss
+│   │   │   │   └── urgentServicesData.js
+│   │   │   ├── Page
+│   │   │   │   ├── FaqSection.jsx
+│   │   │   │   ├── Page.jsx
+│   │   │   │   ├── Section.jsx
+│   │   │   │   ├── UnderlinedTitle.jsx
+│   │   │   │   ├── faqsection.cssmodule.scss
+│   │   │   │   ├── page.cssmodule.scss
+│   │   │   │   ├── section.cssmodule.scss
+│   │   │   │   └── underlinedTitle.cssmodule.scss
+│   │   │   ├── Podcast
+│   │   │   │   ├── Podcast.jsx
+│   │   │   │   └── podcast.cssmodule.scss
+│   │   │   ├── PrivacyPolicy
+│   │   │   │   └── PrivacyPolicy.jsx
+│   │   │   ├── PsyListing
+│   │   │   │   ├── NoResultPsyTable.jsx
+│   │   │   │   ├── PsyListing.jsx
+│   │   │   │   ├── PsyTable.jsx
+│   │   │   │   ├── PublicPsychologistProfile.jsx
+│   │   │   │   ├── psyListing.cssmodule.scss
+│   │   │   │   ├── psyTable.cssmodule.scss
+│   │   │   │   └── publicPsychologistProfile.cssmodule.scss
+│   │   │   ├── Psychologist
+│   │   │   │   ├── Appointments
+│   │   │   │   │   ├── Appointments.jsx
+│   │   │   │   │   ├── ConventionModal.jsx
+│   │   │   │   │   ├── NewAppointment.jsx
+│   │   │   │   │   ├── appointments.cssmodule.scss
+│   │   │   │   │   └── newAppointment.cssmodule.scss
+│   │   │   │   ├── Patients
+│   │   │   │   │   ├── AddEditPatient.jsx
+│   │   │   │   │   ├── AddEditPatientInfo.jsx
+│   │   │   │   │   ├── PatientAppointments.jsx
+│   │   │   │   │   ├── Patients.jsx
+│   │   │   │   │   ├── SendPatientCertificate.jsx
+│   │   │   │   │   ├── addEditPatient.cssmodule.scss
+│   │   │   │   │   ├── patientAppointments.cssmodule.scss
+│   │   │   │   │   ├── patientactions.cssmodule.scss
+│   │   │   │   │   └── patients.cssmodule.scss
+│   │   │   │   ├── PsyDashboard
+│   │   │   │   │   ├── PsyDashboard.jsx
+│   │   │   │   │   ├── PsySection
+│   │   │   │   │   │   ├── ActiveProfile.jsx
+│   │   │   │   │   │   ├── ConventionAvailabilitySection.jsx
+│   │   │   │   │   │   ├── ConventionForm.jsx
+│   │   │   │   │   │   ├── DescriptionSection.jsx
+│   │   │   │   │   │   ├── EditProfile.jsx
+│   │   │   │   │   │   ├── InactiveProfile.jsx
+│   │   │   │   │   │   ├── PsyCardInfoSection.jsx
+│   │   │   │   │   │   ├── SuspendProfile.jsx
+│   │   │   │   │   │   └── psySection.cssmodule.scss
+│   │   │   │   │   ├── UnivSection
+│   │   │   │   │   │   ├── BillingInfo.jsx
+│   │   │   │   │   │   ├── Contact.jsx
+│   │   │   │   │   │   └── univSection.cssmodule.scss
+│   │   │   │   │   └── psyDashboard.cssmodule.scss
+│   │   │   │   └── Reimbursement
+│   │   │   │       ├── Bill.jsx
+│   │   │   │       ├── Billing.jsx
+│   │   │   │       ├── BillingHelper.jsx
+│   │   │   │       ├── BillingInfo.jsx
+│   │   │   │       ├── BillingInfoPage.jsx
+│   │   │   │       ├── BillingTable.jsx
+│   │   │   │       ├── bill.cssmodule.scss
+│   │   │   │       ├── billing.cssmodule.scss
+│   │   │   │       └── hooks
+│   │   │   │           └── appointmentsByDate.jsx
+│   │   │   ├── ScrollToTop
+│   │   │   │   └── ScrollToTop.jsx
+│   │   │   ├── Slice
+│   │   │   │   ├── Slice.jsx
+│   │   │   │   └── slice.cssmodule.scss
+│   │   │   ├── Statistics
+│   │   │   │   ├── MetabaseAppEmbed.jsx
+│   │   │   │   ├── Statistics.jsx
+│   │   │   │   └── statistics.cssmodule.scss
+│   │   │   ├── StudentAnswer
+│   │   │   │   ├── StudentAnswer.jsx
+│   │   │   │   └── studentAnswer.cssmodule.scss
+│   │   │   ├── StudentUnregister
+│   │   │   │   └── StudentUnregister.jsx
+│   │   │   └── Tutorial
+│   │   │       ├── Modal.jsx
+│   │   │       ├── Steps
+│   │   │       │   ├── appointments.js
+│   │   │       │   ├── billing.js
+│   │   │       │   ├── billingInfo.js
+│   │   │       │   ├── dashboard.js
+│   │   │       │   ├── global.js
+│   │   │       │   ├── index.js
+│   │   │       │   ├── newAppointment.js
+│   │   │       │   ├── newStudent.js
+│   │   │       │   └── students.js
+│   │   │       ├── Tutorial.jsx
+│   │   │       └── modal.cssmodule.scss
+│   │   ├── custom-date-picker.css
+│   │   ├── custom-month-picker.css
+│   │   ├── index.js
+│   │   ├── services
+│   │   │   ├── agent.js
+│   │   │   ├── billingData.js
+│   │   │   ├── billingInfo.js
+│   │   │   ├── conventionVerification.js
+│   │   │   ├── date.js
+│   │   │   ├── distance.js
+│   │   │   ├── faq
+│   │   │   │   ├── faq.js
+│   │   │   │   ├── items.js
+│   │   │   │   ├── psychologue
+│   │   │   │   │   ├── agreement.js
+│   │   │   │   │   ├── billing.js
+│   │   │   │   │   ├── connection.js
+│   │   │   │   │   ├── eligibility.js
+│   │   │   │   │   ├── registration.js
+│   │   │   │   │   ├── reimbursement.js
+│   │   │   │   │   ├── retractation.js
+│   │   │   │   │   └── session.js
+│   │   │   │   ├── school
+│   │   │   │   │   ├── billing.js
+│   │   │   │   │   ├── convention.js
+│   │   │   │   │   ├── eligibility.js
+│   │   │   │   │   ├── join.js
+│   │   │   │   │   └── statistics.js
+│   │   │   │   └── student
+│   │   │   │       ├── eligibility.js
+│   │   │   │       ├── problem.js
+│   │   │   │       ├── process.js
+│   │   │   │       └── session.js
+│   │   │   ├── search.js
+│   │   │   ├── string.js
+│   │   │   ├── trackAds.js
+│   │   │   └── univYears.js
+│   │   ├── stores
+│   │   │   ├── commonStore.js
+│   │   │   ├── index.js
+│   │   │   └── userStore.js
+│   │   ├── tooltip.scss
+│   │   ├── utils
+│   │   │   ├── badges.js
+│   │   │   ├── departments.js
+│   │   │   ├── getPsyProfileIssues.js
+│   │   │   ├── googleAds
+│   │   │   │   └── useConsentAds.js
+│   │   │   ├── inactive.js
+│   │   │   └── useScreenSize.js
+│   │   └── variables.scss
+│   └── test
+│       ├── distance.spec.js
+│       ├── search.spec.js
+│       └── string.spec.js
+├── index.ts
+├── knexfile.ts
+├── middlewares
+│   ├── errorManager.ts
+│   ├── refreshToken.ts
+│   └── xsrfProtection.ts
+├── migrations
+│   ├── 20210216115133_cursor.js
+│   ├── 20210216155935_initial.js
+│   ├── 20210222140133_login_token.js
+│   ├── 20210225141257_psychologist-status.js
+│   ├── 20210225174202_appointment-always-have-a-psychologistId.js
+│   ├── 20210225180410_add-psychologistId-to-patient.js
+│   ├── 20210304095234_psychologist-login-email.js
+│   ├── 20210309093639_information-patient-institution.js
+│   ├── 20210311092126_doctor-patient-info.js
+│   ├── 20210315172126_patient_appointments_deletedstatus.js
+│   ├── 20210324185600_add-isConventionSigned.js
+│   ├── 20210401142652_change-type-psyid-in-appointment.js
+│   ├── 20210408123320_patient-birthday.js
+│   ├── 20210412162202_add-assignedUniversity.js
+│   ├── 20210419152935_student-number-constraint.js
+│   ├── 20210422132727_add_email_to_universities.js
+│   ├── 20210601140301_add_selfmodified_to_psychologists.js
+│   ├── 20210608143130_psychologue-activation.js
+│   ├── 20210610080949_suspension_reasons.js
+│   ├── 20210615151625_fk.js
+│   ├── 20210616085921_indexes.js
+│   ├── 20210618104655_remove-declaredUniversityId.js
+│   ├── 20210630084452_last-connection.ts
+│   ├── 20210708134425_remove-university.ts
+│   ├── 20210730120857_add_address_fields_to_university.ts
+│   ├── 20210806091509_use-date.ts
+│   ├── 20210810114353_add_geopoint_to_psychologists.ts
+│   ├── 20210813124327_patient-clean.ts
+│   ├── 20210913064936_addresses.ts
+│   ├── 20210914131849_inactive-tokens.ts
+│   ├── 20210928081959_tutorial.ts
+│   ├── 20211016181957_add_usename_to_psychologists.ts
+│   ├── 20220221073356_students.ts
+│   ├── 20220225214447_students_answer.ts
+│   ├── 20220323120156_nullable-mail.ts
+│   ├── 20220401135438_students_source.ts
+│   ├── 20221213111306_student-doctor-appointment.ts
+│   ├── 20221229132421_renewal.ts
+│   ├── 20230201133632_add-very-available-to-psychologists.ts
+│   ├── 20230207130047_psychologists-city.ts
+│   ├── 20230503170117_acceptation-date.ts
+│   ├── 20231228152013_add_billing_address_to_university.ts
+│   ├── 20240223130409_add_appointmentLink_to_psychologists.ts
+│   ├── 20240312171039_add_prescription_info_to_patient.ts
+│   ├── 20240424130945_add_gender_and_diplomation_year_to_psychologists.ts
+│   ├── 20250324112727_add_patients_gender.ts
+│   ├── 20250326093350_add_unaccent_extension.ts
+│   ├── 20250420103540_add_universities_billing_mail.ts
+│   ├── 20250630101101_update_description_field_to_text.ts
+│   └── 20250702141522_add_isINESvalid_patients.ts
+├── package-lock.json
+├── package.json
+├── routers
+│   ├── appointments.ts
+│   ├── index.ts
+│   ├── patients.ts
+│   ├── protected.ts
+│   ├── psychologist.ts
+│   ├── test.ts
+│   ├── universities.ts
+│   └── unprotected.ts
+├── scalingo-dev-seed.sh
+├── scalingo.json
+├── scripts
+│   ├── anonymizeDb.ts
+│   ├── cleanPatientsInstitution.ts
+│   ├── completeInstitutions.json
+│   ├── createInstitutionNames.ts
+│   ├── deactivateInactivePsy.ts
+│   ├── generateInactiveTokens.ts
+│   ├── getCleanInstitutionsName.ts
+│   ├── insertAddressToUniversities.ts
+│   ├── insertBillingSSUEmailsToUniversities.ts
+│   ├── insertCitiesToPsychologists.ts
+│   ├── insertCoordinatesToPsychologists.ts
+│   ├── insertDoctolibLinkToPsychologists.ts
+│   ├── insertEmailToUniversities.ts
+│   ├── insertUniversities.ts
+│   ├── institutionsName.json
+│   ├── matchPsyToUniversities.ts
+│   ├── matchSpecialPsyToUniversities.ts
+│   ├── newPatientsInstitution.json
+│   ├── patientsInstitution.json
+│   ├── psyToUni.ts
+│   └── removePsyPersonalData.ts
+├── services
+│   ├── champsAndAnnotations.ts
+│   ├── demarchesSimplifiees
+│   │   ├── autoAccept.ts
+│   │   ├── autoVerify.ts
+│   │   ├── buildRequest.ts
+│   │   ├── importDossier.ts
+│   │   ├── parsePsychologists.ts
+│   │   ├── uploadDocument.ts
+│   │   └── verifyPsychologist.ts
+│   ├── distance.ts
+│   ├── getAddressCoordinates.ts
+│   ├── getAdeliErrors.ts
+│   ├── getAppointmentsCount.ts
+│   ├── getBadges.ts
+│   ├── getDiplomaErrors.ts
+│   ├── inesApi.ts
+│   ├── loginInformations.ts
+│   ├── sanitizer.ts
+│   ├── studentEligibility.ts
+│   ├── studentMails.ts
+│   └── updatePsyFields.ts
+├── static
+│   ├── documents
+│   │   ├── flyer_medecins.pdf
+│   │   ├── flyer_psychologues.pdf
+│   │   ├── flyer_sse.pdf
+│   │   ├── flyer_student_ar.pdf
+│   │   ├── flyer_student_en.pdf
+│   │   ├── flyer_student_fr.pdf
+│   │   ├── flyer_student_sp.pdf
+│   │   ├── flyer_student_zn.pdf
+│   │   ├── modele-facturation-sante-psy-etudiant-50.docx
+│   │   ├── modele-facturation-sante-psy-etudiant-50.odt
+│   │   ├── modele-facturation-sante-psy-etudiant-50.pdf
+│   │   ├── parcours_etudiant_sante_psy_etudiant.pdf
+│   │   ├── parcours_psychologue_sante_psy_etudiant.pdf
+│   │   └── tutoriel_choruspro_sante-psy-etudiant.pdf
+│   └── images
+│       ├── favicon
+│       │   └── favicon-32x32.png
+│       ├── illustration_sante_psy.svg
+│       ├── seance_psy.jpg
+│       └── seance_psy.png
+├── test
+│   ├── controllers
+│   │   ├── appointmentsController.spec.ts
+│   │   ├── configController.spec.ts
+│   │   ├── contactController.spec.ts
+│   │   ├── conventionController.spec.ts
+│   │   ├── loginController.spec.ts
+│   │   ├── patientsController.spec.ts
+│   │   ├── psyListingController.spec.ts
+│   │   ├── psyProfileController.spec.ts
+│   │   ├── reactController.spec.ts
+│   │   ├── studentController.spec.ts
+│   │   └── universityController.spec.ts
+│   ├── cron_jobs
+│   │   └── cronDemarchesSimplifiees.spec.ts
+│   ├── db
+│   │   ├── appointments.spec.ts
+│   │   ├── dsApiCursor.spec.ts
+│   │   ├── loginToken.spec.ts
+│   │   ├── patients.spec.ts
+│   │   ├── psychologists.spec.ts
+│   │   ├── students.spec.ts
+│   │   └── universities.spec.ts
+│   ├── dossier.js
+│   ├── helper
+│   │   ├── clean.ts
+│   │   ├── create.ts
+│   │   └── fake_data.ts
+│   ├── middlewares
+│   │   └── xsrfProtection.spec.ts
+│   ├── seed
+│   │   ├── 00-clean.ts
+│   │   ├── 01-universities.ts
+│   │   ├── 02-psychologists.ts
+│   │   ├── 03-patients.ts
+│   │   ├── 04-appointments.ts
+│   │   └── 05-students.ts
+│   ├── services
+│   │   ├── autoAcceptPsychologist.spec.ts
+│   │   ├── autoVerifyPsychologist.spec.ts
+│   │   ├── buildRequest.spec.ts
+│   │   ├── getAdeliErrors.spec.ts
+│   │   ├── getDiplomaErrors.spec.ts
+│   │   ├── loginInformations.spec.ts
+│   │   ├── parsePsychologists.spec.ts
+│   │   ├── updatePsyFields.spec.ts
+│   │   └── verifyPsychologist.spec.ts
+│   ├── setup.ts
+│   └── utils
+│       ├── adeliAPI.spec.ts
+│       ├── cookie.spec.ts
+│       ├── date.spec.ts
+│       ├── departments.spec.ts
+│       ├── graphql.spec.ts
+│       ├── string.spec.ts
+│       └── uuid.spec.ts
+├── tsconfig.json
+├── types
+│   ├── AdeliInfo.ts
+│   ├── Appointment.ts
+│   ├── Coordinates.ts
+│   ├── DemarcheSimplifiee.ts
+│   ├── DossierState.ts
+│   ├── Eligibility.ts
+│   ├── Genders.ts
+│   ├── INESresponse.ts
+│   ├── LastConnection.ts
+│   ├── LoginToken.ts
+│   ├── Patient.ts
+│   ├── Psychologist.ts
+│   ├── Student.ts
+│   ├── SuspensionReason.ts
+│   └── University.ts
+├── utils
+│   ├── CustomError.ts
+│   ├── access.ts
+│   ├── adeliAPI.ts
+│   ├── announcement.ts
+│   ├── async-helper.ts
+│   ├── badges.ts
+│   ├── config.ts
+│   ├── configDS
+│   │   └── autoAcceptMessage.ts
+│   ├── cookie.ts
+│   ├── csp-config.ts
+│   ├── date.ts
+│   ├── departementToUniversityName.ts
+│   ├── department.ts
+│   ├── email.ts
+│   ├── frEsrUniversities.ts
+│   ├── geo.ts
+│   ├── graphql.ts
+│   ├── logs.ts
+│   ├── sendGraphQLRequest.ts
+│   ├── sentry.ts
+│   ├── string.ts
+│   ├── univYears.ts
+│   ├── universities.ts
+│   ├── uuid.ts
+│   └── validation.ts
+└── views
+    └── emails
+        ├── footer.ejs
+        ├── header.ejs
+        ├── login.ejs
+        ├── loginNotAcceptedYet.ejs
+        ├── multipleAcceptedAlert.ejs
+        ├── sendCertificate.ejs
+        ├── studentMail-1.ejs
+        ├── studentMail-2.ejs
+        ├── studentMail-3.ejs
+        ├── studentMail-4.ejs
+        ├── studentMail-doctorAppointment-2.ejs
+        ├── studentMail-doctorAppointment.ejs
+        └── summaryUniversity.ejs
+108 directories, 596 files
