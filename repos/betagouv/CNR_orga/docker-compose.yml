@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  web:
+    container_name: cnr_orga_web
+    build: .
+    env_file:
+      - .env
+    ports:
+      - "${DJANGO_PORT_ON_DOCKER_HOST:-8000}:8000"
+      - "${DJANGO_DEBUGPY_PORT:-5678}:5678"
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    restart: on-failure
+  db:
+    container_name: cnr_orga_db
+    image: postgres:14
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: chummy
+      POSTGRES_DB: cnr_orga
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: on-failure
+  smtp:
+    container_name: cnr_orga_smtp
+    image: mailhog/mailhog
+    ports:
+      - 1025:1025
+      - 8025:8025
+    restart: on-failure
+volumes:
+  postgres_data:
