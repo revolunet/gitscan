@@ -1,0 +1,1301 @@
+.
+├── .env
+├── .eslintrc
+├── .gitattributes
+├── .github
+│   ├── ISSUE_TEMPLATE
+│   │   ├── demande-d--volution.md
+│   │   └── signalement-de-bug.md
+│   ├── PULL_REQUEST_TEMPLATE
+│   │   └── pull_request_template.md
+│   ├── dependabot.yml
+│   └── workflows
+│       ├── back.yml
+│       ├── end-to-end.yml
+│       ├── frontend-build.yml
+│       ├── frontend-tests.yml
+│       ├── https-deploy-production.yaml
+│       ├── https-deploy-sandbox.yaml
+│       ├── https-deploy-staging.yaml
+│       ├── manual-deployment.yml
+│       └── manual-sandbox-deployment.yml
+├── .gitignore
+├── .prettierrc
+├── .ruby-version
+├── LICENSE
+├── Procfile.dev
+├── README.md
+├── backend
+│   ├── .env.development -> ../.env
+│   ├── .env.test -> .env.development
+│   ├── .gitignore
+│   ├── .rspec
+│   ├── .ruby-version
+│   ├── .standard.yml
+│   ├── Dockerfile
+│   ├── Gemfile
+│   ├── Gemfile.lock
+│   ├── Guardfile
+│   ├── LICENSE
+│   ├── Procfile.dev
+│   ├── README.md
+│   ├── Rakefile
+│   ├── app
+│   │   ├── bridges
+│   │   │   ├── abstract_webhook_bridge.rb
+│   │   │   ├── aidants_connect_bridge.rb
+│   │   │   ├── api_captchetat_bridge.rb
+│   │   │   ├── api_droits_cnam_bridge.rb
+│   │   │   ├── api_impot_particulier_fc_sandbox_bridge.rb
+│   │   │   ├── api_indemnisation_pole_emploi_bridge.rb
+│   │   │   ├── api_indemnites_journalieres_cnam_bridge.rb
+│   │   │   ├── api_prestations_sociales_bridge.rb
+│   │   │   ├── api_statut_demandeur_emploi_bridge.rb
+│   │   │   ├── api_statut_etudiant_boursier_bridge.rb
+│   │   │   ├── api_statut_etudiant_bridge.rb
+│   │   │   ├── api_systeme_immatriculation_vehicules_bridge.rb
+│   │   │   ├── application_bridge.rb
+│   │   │   ├── fc_data_provider_bridge.rb
+│   │   │   ├── hubee_portail_bridge.rb
+│   │   │   └── hubee_portail_dila_bridge.rb
+│   │   ├── channels
+│   │   │   └── application_cable
+│   │   │       ├── channel.rb
+│   │   │       └── connection.rb
+│   │   ├── controllers
+│   │   │   ├── api
+│   │   │   │   └── frontal_controller.rb
+│   │   │   ├── api_controller.rb
+│   │   │   ├── api_gouv_controller.rb
+│   │   │   ├── application_controller.rb
+│   │   │   ├── authenticated_user_controller.rb
+│   │   │   ├── available_reporters_controller.rb
+│   │   │   ├── concerns
+│   │   │   │   └── .keep
+│   │   │   ├── data_provider_configurations_controller.rb
+│   │   │   ├── documents_controller.rb
+│   │   │   ├── enrollments_controller.rb
+│   │   │   ├── enrollments_email_templates_controller.rb
+│   │   │   ├── enrollments_hubee_validated_controller.rb
+│   │   │   ├── enrollments_live_controller.rb
+│   │   │   ├── events_controller.rb
+│   │   │   ├── insee_controller.rb
+│   │   │   ├── opinion_comments_controller.rb
+│   │   │   ├── opinions_controller.rb
+│   │   │   ├── ping_controller.rb
+│   │   │   ├── reopen_enrollments_controller.rb
+│   │   │   ├── stats_controller.rb
+│   │   │   ├── team_members_controller.rb
+│   │   │   ├── users
+│   │   │   │   └── sessions_controller.rb
+│   │   │   ├── users_controller.rb
+│   │   │   └── validated_enrollment_snapshots_controller.rb
+│   │   ├── interactors
+│   │   │   ├── application_interactor.rb
+│   │   │   ├── create_event.rb
+│   │   │   ├── enrollment
+│   │   │   │   └── execute_transition.rb
+│   │   │   ├── find_or_create_organization_with_mon_compte_pro_payload.rb
+│   │   │   ├── notify_event.rb
+│   │   │   ├── opinion
+│   │   │   │   ├── close_active_opinion.rb
+│   │   │   │   ├── create_model.rb
+│   │   │   │   └── notify_reporter.rb
+│   │   │   ├── opinion_comment
+│   │   │   │   ├── create_model.rb
+│   │   │   │   └── notify_instructor.rb
+│   │   │   └── refresh_organization_sirene_attributes.rb
+│   │   ├── lib
+│   │   │   ├── failure_app.rb
+│   │   │   └── http.rb
+│   │   ├── mailers
+│   │   │   ├── enrollment_mailer.rb
+│   │   │   ├── enrollment_reminder_mailer.rb
+│   │   │   ├── opinion_mailer.rb
+│   │   │   ├── rgpd_mailer.rb
+│   │   │   └── webhook_mailer.rb
+│   │   ├── middleware
+│   │   │   └── validate_request_params.rb
+│   │   ├── models
+│   │   │   ├── application_record.rb
+│   │   │   ├── concerns
+│   │   │   │   ├── .keep
+│   │   │   │   ├── dgfip_validation_methods.rb
+│   │   │   │   ├── enrollment_validators
+│   │   │   │   │   └── validate_at_least_one_scope_presence.rb
+│   │   │   │   └── require_rgpd_general_agreement.rb
+│   │   │   ├── document
+│   │   │   │   ├── attestation_fiscale.rb
+│   │   │   │   ├── decision_homologation.rb
+│   │   │   │   ├── delegation_service_public.rb
+│   │   │   │   ├── expression_besoin_specifique.rb
+│   │   │   │   ├── geo_shape.rb
+│   │   │   │   ├── habilitation_service_domicile.rb
+│   │   │   │   ├── legal_basis.rb
+│   │   │   │   ├── liste_aidants.rb
+│   │   │   │   ├── maquette_projet.rb
+│   │   │   │   ├── outdated_document.rb
+│   │   │   │   ├── pdf_document.rb
+│   │   │   │   └── spreadsheet_document.rb
+│   │   │   ├── document.rb
+│   │   │   ├── enrollment
+│   │   │   │   ├── abstract_dgfip_production_enrollment.rb
+│   │   │   │   ├── abstract_dgfip_sandbox_enrollment.rb
+│   │   │   │   ├── abstract_dgfip_unique_enrollment.rb
+│   │   │   │   ├── agent_connect_fi.rb
+│   │   │   │   ├── agent_connect_fs.rb
+│   │   │   │   ├── aidants_connect.rb
+│   │   │   │   ├── api_*.rb  (61 files)
+│   │   │   │   ├── cartobio.rb
+│   │   │   │   ├── franceconnect.rb
+│   │   │   │   ├── hubee_portail.rb
+│   │   │   │   ├── hubee_portail_dila.rb
+│   │   │   │   └── le_taxi.rb
+│   │   │   ├── enrollment.rb
+│   │   │   ├── enrollment_email_template.rb
+│   │   │   ├── event.rb
+│   │   │   ├── opinion.rb
+│   │   │   ├── opinion_comment.rb
+│   │   │   ├── organization.rb
+│   │   │   ├── team_member
+│   │   │   │   ├── aidant.rb
+│   │   │   │   ├── comptable.rb
+│   │   │   │   ├── contact_metier.rb
+│   │   │   │   ├── delegue_protection_donnees.rb
+│   │   │   │   ├── demandeur.rb
+│   │   │   │   ├── responsable_metier.rb
+│   │   │   │   ├── responsable_technique.rb
+│   │   │   │   └── responsable_traitement.rb
+│   │   │   ├── team_member.rb
+│   │   │   └── user.rb
+│   │   ├── notifiers
+│   │   │   ├── abstract_entreculier_notifier.rb
+│   │   │   ├── abstract_notifier.rb
+│   │   │   ├── api_entreprise_notifier.rb
+│   │   │   ├── api_particulier_notifier.rb
+│   │   │   ├── base_notifier.rb
+│   │   │   ├── concerns
+│   │   │   │   ├── email_notifier_methods.rb
+│   │   │   │   └── webhook_notifier_methods.rb
+│   │   │   └── franceconnect_notifier.rb
+│   │   ├── organizers
+│   │   │   ├── application_organizer.rb
+│   │   │   ├── create_opinion.rb
+│   │   │   ├── create_opinion_comment.rb
+│   │   │   ├── reopen_enrollment.rb
+│   │   │   └── retrieve_organization_from_mon_compte_pro_payload.rb
+│   │   ├── policies
+│   │   │   ├── application_policy.rb
+│   │   │   ├── available_reporter_policy.rb
+│   │   │   ├── concerns
+│   │   │   │   └── dgfip_policy_methods.rb
+│   │   │   ├── enrollment
+│   │   │   │   ├── agent_connect_fi_policy.rb
+│   │   │   │   ├── agent_connect_fs_policy.rb
+│   │   │   │   ├── aidants_connect_policy.rb
+│   │   │   │   ├── api_*.rb  (61 files)
+│   │   │   │   ├── cartobio_policy.rb
+│   │   │   │   ├── franceconnect_policy.rb
+│   │   │   │   ├── hubee_portail_dila_policy.rb
+│   │   │   │   ├── hubee_portail_policy.rb
+│   │   │   │   ├── le_taxi_policy.rb
+│   │   │   │   ├── production_policy.rb
+│   │   │   │   ├── sandbox_policy.rb
+│   │   │   │   └── unique_policy.rb
+│   │   │   ├── enrollment_policy.rb
+│   │   │   ├── opinion_policy.rb
+│   │   │   ├── policy_configuration_from_file.rb
+│   │   │   ├── team_member
+│   │   │   │   ├── aidant_policy.rb
+│   │   │   │   ├── comptable_policy.rb
+│   │   │   │   ├── contact_metier_policy.rb
+│   │   │   │   ├── delegue_protection_donnees_policy.rb
+│   │   │   │   ├── demandeur_policy.rb
+│   │   │   │   ├── responsable_metier_policy.rb
+│   │   │   │   ├── responsable_technique_policy.rb
+│   │   │   │   └── responsable_traitement_policy.rb
+│   │   │   ├── team_member_policy.rb
+│   │   │   └── user_policy.rb
+│   │   ├── queries
+│   │   │   └── enrollment_events_for_user_query.rb
+│   │   ├── serializers
+│   │   │   ├── admin_user_serializer.rb
+│   │   │   ├── application_serializer.rb
+│   │   │   ├── document_serializer.rb
+│   │   │   ├── enrollment_email_template_serializer.rb
+│   │   │   ├── enrollment_hubee_validated_serializer.rb
+│   │   │   ├── enrollment_serializer.rb
+│   │   │   ├── event_serializer.rb
+│   │   │   ├── full_user_serializer.rb
+│   │   │   ├── light_enrollment_serializer.rb
+│   │   │   ├── opinion_comment_serializer.rb
+│   │   │   ├── opinion_serializer.rb
+│   │   │   ├── public_enrollment_list_serializer.rb
+│   │   │   ├── team_member_serializer.rb
+│   │   │   ├── team_member_with_profile_serializer.rb
+│   │   │   ├── user_enrollment_list_serializer.rb
+│   │   │   ├── user_serializer.rb
+│   │   │   ├── webhook_enrollment_serializer.rb
+│   │   │   ├── webhook_event_serializer.rb
+│   │   │   ├── webhook_serializer.rb
+│   │   │   └── webhook_user_with_profile_serializer.rb
+│   │   ├── services
+│   │   │   ├── abstract_enrollments_extractor.rb
+│   │   │   ├── api_gouv.rb
+│   │   │   ├── api_sirene.rb
+│   │   │   ├── application_service.rb
+│   │   │   ├── credentials.rb
+│   │   │   ├── data_provider_configurations.rb
+│   │   │   ├── debounce.rb
+│   │   │   ├── email_renderer.rb
+│   │   │   ├── enrollment_email_templates_retriever.rb
+│   │   │   ├── enrollments_extractor
+│   │   │   │   ├── to_archive.rb
+│   │   │   │   ├── to_remind.rb
+│   │   │   │   └── to_remind_before_archive.rb
+│   │   │   ├── filter_service.rb
+│   │   │   ├── get_average_processing_time_in_days.rb
+│   │   │   ├── get_majority_percentile_processing_time_in_days.rb
+│   │   │   ├── hubspot_api.rb
+│   │   │   ├── magic_pdf_validator.rb
+│   │   │   ├── magic_spreadsheet_validator.rb
+│   │   │   ├── magic_validator.rb
+│   │   │   ├── refresh_user.rb
+│   │   │   └── spreadsheet_generator.rb
+│   │   ├── uploaders
+│   │   │   ├── document_uploader.rb
+│   │   │   ├── pdf_uploader.rb
+│   │   │   └── spreadsheet_uploader.rb
+│   │   ├── validators
+│   │   │   └── siret_validator.rb
+│   │   ├── views
+│   │   │   ├── enrollment
+│   │   │   │   └── api_particulier_mailer
+│   │   │   │       └── validate_for_responsable_technique.text.erb
+│   │   │   ├── enrollment_mailer
+│   │   │   │   ├── README.md
+│   │   │   │   ├── admin
+│   │   │   │   │   ├── add_scopes_in_franceconnect.text.erb
+│   │   │   │   │   ├── new_franceconnect_plus.text.erb
+│   │   │   │   │   ├── notification_email_to_instructors.text.erb
+│   │   │   │   │   └── notify_unknown_software.text.erb
+│   │   │   │   ├── agent_connect_fi
+│   │   │   │   │   └── validate.text.erb
+│   │   │   │   ├── agent_connect_fs
+│   │   │   │   │   └── validate.text.erb
+│   │   │   │   ├── aidants_connect
+│   │   │   │   │   └── validate.text.erb
+│   │   │   │   ├── api_cpr_pro_sandbox
+│   │   │   │   │   └── validate.text.erb
+│   │   │   │   ├── api_declaration_cesu
+│   │   │   │   │   ├── create.text.erb
+│   │   │   │   │   └── submit.text.erb
+│   │   │   │   ├── api_droits_cnam
+│   │   │   │   │   └── validate.text.erb
+│   │   │   │   ├── api_e_contacts_sandbox
+│   │   │   │   │   └── validate.text.erb
+│   │   │   │   ├── api_e_pro_sandbox
+│   │   │   │   │   └── validate.text.erb
+│   │   │   │   ├── api_ficoba_production
+│   │   │   │   │   └── validate.text.erb
+│   │   │   │   ├── api_ficoba_sandbox
+│   │   │   │   │   └── validate.text.erb
+│   │   │   │   ├── api_hermes_sandbox
+│   │   │   │   │   └── validate.text.erb
+│   │   │   │   ├── api_impot_particulier_fc_production
+│   │   │   │   │   └── validate.text.erb
+│   │   │   │   ├── api_impot_particulier_fc_sandbox
+│   │   │   │   │   └── validate.text.erb
+│   │   │   │   ├── api_impot_particulier_sandbox
+│   │   │   │   │   └── validate.text.erb
+│   │   │   │   ├── api_indemnisation_pole_emploi
+│   │   │   │   │   └── validate.text.erb
+│   │   │   │   ├── api_indemnites_journalieres_cnam
+│   │   │   │   │   └── validate.text.erb
+│   │   │   │   ├── api_infinoe_sandbox
+│   │   │   │   │   └── validate.text.erb
+│   │   │   │   ├── api_ingres
+│   │   │   │   │   └── validate.text.erb
+│   │   │   │   ├── api_mire_sandbox
+│   │   │   │   │   └── validate.text.erb
+│   │   │   │   ├── api_ocfi_sandbox
+│   │   │   │   │   └── validate.text.erb
+│   │   │   │   ├── api_opale_sandbox
+│   │   │   │   │   └── validate.text.erb
+│   │   │   │   ├── api_particulier
+│   │   │   │   │   └── validate.text.erb
+│   │   │   │   ├── api_prestations_sociales
+│   │   │   │   │   └── validate.text.erb
+│   │   │   │   ├── api_r2p_production
+│   │   │   │   │   └── validate.text.erb
+│   │   │   │   ├── api_r2p_sandbox
+│   │   │   │   │   └── validate.text.erb
+│   │   │   │   ├── api_rial_production
+│   │   │   │   │   └── validate.text.erb
+│   │   │   │   ├── api_rial_sandbox
+│   │   │   │   │   └── validate.text.erb
+│   │   │   │   ├── api_robf_sandbox
+│   │   │   │   │   └── validate.text.erb
+│   │   │   │   ├── api_satelit_production
+│   │   │   │   │   └── validate.text.erb
+│   │   │   │   ├── api_satelit_sandbox
+│   │   │   │   │   └── validate.text.erb
+│   │   │   │   ├── api_sfip_production
+│   │   │   │   │   └── validate.text.erb
+│   │   │   │   ├── api_sfip_sandbox
+│   │   │   │   │   └── validate.text.erb
+│   │   │   │   ├── api_statut_demandeur_emploi
+│   │   │   │   │   └── validate.text.erb
+│   │   │   │   ├── api_statut_etudiant
+│   │   │   │   │   └── validate.text.erb
+│   │   │   │   ├── api_statut_etudiant_boursier
+│   │   │   │   │   └── validate.text.erb
+│   │   │   │   ├── api_systeme_immatriculation_vehicules
+│   │   │   │   │   └── validate.text.erb
+│   │   │   │   ├── api_tiers_de_prestation
+│   │   │   │   │   └── submit.text.erb
+│   │   │   │   ├── create.text.erb
+│   │   │   │   ├── demandeur
+│   │   │   │   │   ├── reminder_changes_requested_enrollment.text.erb
+│   │   │   │   │   └── reminder_draft_enrollment.text.erb
+│   │   │   │   ├── franceconnect
+│   │   │   │   │   └── validate.text.erb
+│   │   │   │   ├── hubee_portail
+│   │   │   │   │   ├── create.text.erb
+│   │   │   │   │   ├── refuse.text.erb
+│   │   │   │   │   ├── request_changes.text.erb
+│   │   │   │   │   ├── submit.text.erb
+│   │   │   │   │   └── validate.text.erb
+│   │   │   │   ├── hubee_portail_dila
+│   │   │   │   │   ├── create.text.erb
+│   │   │   │   │   ├── refuse.text.erb
+│   │   │   │   │   ├── request_changes.text.erb
+│   │   │   │   │   ├── submit.text.erb
+│   │   │   │   │   └── validate.text.erb
+│   │   │   │   ├── instructor
+│   │   │   │   │   └── notify_submitted.text.erb
+│   │   │   │   ├── notify.text.erb
+│   │   │   │   ├── refuse.text.erb
+│   │   │   │   ├── request_changes.text.erb
+│   │   │   │   ├── revoke.text.erb
+│   │   │   │   ├── submit.text.erb
+│   │   │   │   └── validate.text.erb
+│   │   │   ├── opinion_mailer
+│   │   │   │   ├── comment.text.erb
+│   │   │   │   └── create.text.erb
+│   │   │   └── webhook_mailer
+│   │   │       └── fail.text.erb
+│   │   └── workers
+│   │       ├── application_worker.rb
+│   │       ├── deliver_enrollment_webhook_worker.rb
+│   │       ├── refresh_organization_sirene_attributes_worker.rb
+│   │       ├── register_organization_with_contacts_on_crm_worker.rb
+│   │       ├── schedule_enrollments_archiveable_worker.rb
+│   │       ├── schedule_reminder_before_archive_email_worker.rb
+│   │       └── schedule_reminder_email_worker.rb
+│   ├── bin
+│   │   ├── bundle
+│   │   ├── rails
+│   │   ├── rake
+│   │   ├── setup
+│   │   ├── spring
+│   │   └── update
+│   ├── config
+│   │   ├── application.rb
+│   │   ├── boot.rb
+│   │   ├── brakeman.ignore
+│   │   ├── cable.yml
+│   │   ├── credentials
+│   │   │   └── production.yml.enc
+│   │   ├── data_providers
+│   │   │   ├── 00_shared.yml
+│   │   │   ├── 00_template.yml.example
+│   │   │   ├── README.md
+│   │   │   ├── api_entreprise.yml
+│   │   │   ├── api_particulier.yml
+│   │   │   └── others.yml
+│   │   ├── database.yml
+│   │   ├── environment.rb
+│   │   ├── environments
+│   │   │   ├── development.rb
+│   │   │   ├── production.rb
+│   │   │   └── test.rb
+│   │   ├── initializers
+│   │   │   ├── active_model_serializer.rb
+│   │   │   ├── active_snapshot.rb
+│   │   │   ├── application_controller_renderer.rb
+│   │   │   ├── backtrace_silencers.rb
+│   │   │   ├── carrierwave.rb
+│   │   │   ├── cors.rb
+│   │   │   ├── devise.rb
+│   │   │   ├── filter_parameter_logging.rb
+│   │   │   ├── frontal.rb
+│   │   │   ├── frontal_mailer.rb
+│   │   │   ├── http_mime_types.rb
+│   │   │   ├── inflections.rb
+│   │   │   ├── mime_types.rb
+│   │   │   ├── new_framework_defaults_6_1.rb
+│   │   │   ├── omniauth.rb
+│   │   │   ├── paper_trail.rb
+│   │   │   ├── redis.rb
+│   │   │   ├── sendinblue.rb
+│   │   │   ├── sentry.rb
+│   │   │   ├── simplecov.rb
+│   │   │   └── wrap_parameters.rb
+│   │   ├── local.yml
+│   │   ├── locales
+│   │   │   ├── devise.en.yml
+│   │   │   ├── devise.fr.yml
+│   │   │   ├── en.yml
+│   │   │   ├── fr.yml
+│   │   │   └── mailers.fr.yml
+│   │   ├── puma.rb
+│   │   ├── routes.rb
+│   │   ├── secrets.yml
+│   │   ├── sidekiq.yml
+│   │   └── spring.rb
+│   ├── config.ru
+│   ├── db
+│   │   ├── migrate
+│   │   │   ├── 20170911160451_devise_create_users.rb
+│   │   │   ├── 20170912085440_add_provider_to_users.rb
+│   │   │   ├── 20170912085457_add_uid_to_users.rb
+│   │   │   ├── 20170913161952_create_enrollments.rb
+│   │   │   ├── 20170918083836_rolify_create_roles.rb
+│   │   │   ├── 20170918152539_create_documents.rb
+│   │   │   ├── 20170918160126_add_enrollment_id_to_documents.rb
+│   │   │   ├── 20170919075902_add_type_to_documents.rb
+│   │   │   ├── 20170922142842_add_applicant_to_enrollments.rb
+│   │   │   ├── 20170928123019_create_messages.rb
+│   │   │   ├── 20171122144253_add_archive_to_documents.rb
+│   │   │   ├── 20171122154228_remove_user_id_from_messages.rb
+│   │   │   ├── 20180108145449_add_production_certificate_to_enrollments.rb
+│   │   │   ├── 20180108145535_add_certification_authority_to_enrollments.rb
+│   │   │   ├── 20180108145615_add_production_ips_to_enrollments.rb
+│   │   │   ├── 20180111100539_add_oauth_roles_to_users.rb
+│   │   │   ├── 20180201145757_add_cnil_voucher_detail_to_enrollments.rb
+│   │   │   ├── 20180201145943_add_certification_results_detail_to_enrollments.rb
+│   │   │   ├── 20180320125913_change_enrollment_schema.rb
+│   │   │   ├── 20180321103855_updates_enrollment_schema.rb
+│   │   │   ├── 20180322152807_create_resource_providers.rb
+│   │   │   ├── 20180322165139_create_scopes.rb
+│   │   │   ├── 20180323115633_add_services_to_scopes.rb
+│   │   │   ├── 20180327155316_add_node_example_to_scopes.rb
+│   │   │   ├── 20180403084803_add_resource_provider_type_to_resource_providers.rb
+│   │   │   ├── 20180404075027_add_ips_de_production_to_enrollments.rb
+│   │   │   ├── 20180405135500_add_recette_fonctionnelle_to_enrollments.rb
+│   │   │   ├── 20180406113758_add_scope_dgfip_adresse_fiscale_taxation_to_enrollments.rb
+│   │   │   ├── 20180406113926_add_scope_dgfip_rfr_to_enrollments.rb
+│   │   │   ├── 20180406114320_add_demarche_cnil_to_enrollments.rb
+│   │   │   ├── 20180416091916_add_type_fournisseur_donnees_to_enrollments.rb
+│   │   │   ├── 20180417080126_fix_column_name.rb
+│   │   │   ├── 20180417091651_fix_fournisseur_donnees_name.rb
+│   │   │   ├── 20180420135406_new_contractualization_form.rb
+│   │   │   ├── 20180423100611_rename_delegue_a_la_protection_des_donnees.rb
+│   │   │   ├── 20180423144929_add_fournisseur_de_donnees_to_enrollments.rb
+│   │   │   ├── 20180423145051_remove_validation_de_delegue_a_la_protection_des_donnees.rb
+│   │   │   ├── 20180426091214_create_enrollment_dgfips.rb
+│   │   │   ├── 20180426101321_add_dgfip_foreign_keys.rb
+│   │   │   ├── 20180427151321_add_default_to_enrollment_scopes.rb
+│   │   │   ├── 20180503093322_merge_dgfips_and_enrollments_as_sti.rb
+│   │   │   ├── 20180509115317_add_demarche_cnil_boolean_to_enrollments.rb
+│   │   │   ├── 20180509130404_add_administration_to_enrollments.rb
+│   │   │   ├── 20180509130425_add_france_connect_to_enrollments.rb
+│   │   │   ├── 20180509130502_add_autorisation_legale_to_enrollments.rb
+│   │   │   ├── 20180525103419_add_default_to_enrollments_donnees.rb
+│   │   │   ├── 20180625083636_add_attachable_polymorphic_association_to_documents.rb
+│   │   │   ├── 20180627123501_change_heures_to_secondes_in_enrollments.rb
+│   │   │   ├── 20180628152732_add_timestamps_to_enrollment.rb
+│   │   │   ├── 20180713093636_delete_legacy_models.rb
+│   │   │   ├── 20180720170026_change_autorite_homologation_to_autorite_certification.rb
+│   │   │   ├── 20180723124128_add_url_fondement_juridique_to_enrollments.rb
+│   │   │   ├── 20180816122600_add_category_to_message.rb
+│   │   │   ├── 20180829133613_change_siren_in_siret.rb
+│   │   │   ├── 20180904130246_add_authentication_token_to_users.rb
+│   │   │   ├── 20181126104237_add_token_id_to_enrollment.rb
+│   │   │   ├── 20181206081635_add_nom_raison_sociale_to_enrollments.rb
+│   │   │   ├── 20190121165425_remove_fournisseur_de_service_from_enrollments.rb
+│   │   │   ├── 20190214142724_add_email_verified_to_users.rb
+│   │   │   ├── 20190225105948_remove_authentication_token_from_users.rb
+│   │   │   ├── 20190227142543_remove_unused_fields_in_users.rb
+│   │   │   ├── 20190325110327_add_user_ref_to_enrollments.rb
+│   │   │   ├── 20190326102912_rename_roles_to_events.rb
+│   │   │   ├── 20190329164933_clean_enrollment_messages.rb
+│   │   │   ├── 20190401144527_clean_unused_enrollment_attributes.rb
+│   │   │   ├── 20190401145612_use_jsonb_in_enrollments.rb
+│   │   │   ├── 20190402091628_add_additional_content_to_enrollements.rb
+│   │   │   ├── 20190403122936_flatten_fields_of_enrollments.rb
+│   │   │   ├── 20190404141310_final_clean_for_enrollments.rb
+│   │   │   ├── 20190405144539_change_role_to_toles_in_enrollments.rb
+│   │   │   ├── 20190502125536_add_data_retention_comment_to_enrollments.rb
+│   │   │   ├── 20190513094242_add_diff_to_events.rb
+│   │   │   ├── 20190524130229_add_organization_id_to_enrollments.rb
+│   │   │   ├── 20190729122915_add_unique_constraint_to_users.rb
+│   │   │   ├── 20190729133302_flatten_contacts_in_enrollments.rb
+│   │   │   ├── 20191114151401_add_organizations_to_users.rb
+│   │   │   ├── 20200220155526_add_copied_from_enrollment_ref_to_enrollments.rb
+│   │   │   ├── 20200220184847_change_linked_franceconnect_enrollment_id_to_previous_enrollment_id_in_enrollments.rb
+│   │   │   ├── 20201119161708_add_demarche_to_enrollments.rb
+│   │   │   ├── 20210407155557_add_profile_to_users.rb
+│   │   │   ├── 20210621125425_split_dgfip_scopes.rb
+│   │   │   ├── 20210622122624_add_project_details_to_enrollments.rb
+│   │   │   ├── 20210622150928_add_dpo_is_informed_to_enrollments.rb
+│   │   │   ├── 20210622162321_add_gdpr_informations_to_enrollments.rb
+│   │   │   ├── 20210625151759_update_eidas_level_structure_in_enrollments.rb
+│   │   │   ├── 20210729144851_create_team_members.rb
+│   │   │   ├── 20210903102149_delete_francerelance_fc_form.rb
+│   │   │   ├── 20210907124355_upgrade_dgfip_form_first_step.rb
+│   │   │   ├── 20210909122207_upgrade_dgfip_form_second_step.rb
+│   │   │   ├── 20210917130742_upgrade_aidants_connect_form.rb
+│   │   │   ├── 20210924140501_users_email_to_lower_case.rb
+│   │   │   ├── 20211013123626_upgrade_api_declaration_auto_entrepreneur.rb
+│   │   │   ├── 20211021100051_upgrade_api_entreprise.rb
+│   │   │   ├── 20211105153543_upgrade_dgfip_form_third_step.rb
+│   │   │   ├── 20211116131441_upgrade_api_droits_cnam.rb
+│   │   │   ├── 20211116132009_upgrade_api_pro_sante_connect.rb
+│   │   │   ├── 20211116135342_upgrade_api_service_national.rb
+│   │   │   ├── 20211116141059_upgrade_api_indemnites_journalieres_cnam.rb
+│   │   │   ├── 20211130140316_add_technical_team_to_enrollments.rb
+│   │   │   ├── 20211206143623_upgrade_hubee_form.rb
+│   │   │   ├── 20211207175707_update_state_and_event_names.rb
+│   │   │   ├── 20211213092641_upgrade_le_taxi_form.rb
+│   │   │   ├── 20220127105227_migrate_hubee_portail_scopes.rb
+│   │   │   ├── 20220301173145_hubee_scopes_to_boolean.rb
+│   │   │   ├── 20220729100724_migrate_editeurs.rb
+│   │   │   ├── 20220729124846_add_processed_at_to_events.rb
+│   │   │   ├── 20220914100157_remove_demarches.rb
+│   │   │   ├── 20220915141949_link_responsable_technique_to_user.rb
+│   │   │   ├── 20221103094230_create_versions.rb
+│   │   │   ├── 20221103094231_add_object_changes_to_versions.rb
+│   │   │   ├── 20221109155011_add_is_notified_from_demandeur_to_events.rb
+│   │   │   ├── 20221125125653_turn_scopes_into_an_array.rb
+│   │   │   ├── 20230119095535_add_zip_code_to_enrollments.rb
+│   │   │   ├── 20230502130815_remove_validated_enrollments_unprocessed_messages.rb
+│   │   │   ├── 20230510091641_fix_archive_cron_damages.rb
+│   │   │   ├── 20230523081445_clean_phone_numbers_in_team_members.rb
+│   │   │   ├── 20230608080932_rename_api_entreprise_scopes_in_enrollments.rb
+│   │   │   ├── 20230711130455_add_fuzzystrmatch_extension.rb
+│   │   │   ├── 20230913163748_add_roles_to_specific_users.rb
+│   │   │   ├── 20231013154315_create_opinions.rb
+│   │   │   ├── 20231016131627_create_opinion_comments.rb
+│   │   │   ├── 20231018082628_create_organizations.rb
+│   │   │   ├── 20231018082629_clean_up_old_api_tp_draft_enrollments.rb
+│   │   │   ├── 20231023071655_add_polymorphic_entity_to_events.rb
+│   │   │   ├── 20231023122739_add_reporter_to_opinions.rb
+│   │   │   ├── 20231109165754_add_instructor_id_to_opinions.rb
+│   │   │   ├── 20231123150149_create_snapshots_tables.rb
+│   │   │   ├── 20231123150150_add_last_validated_at_and_snapshots_to_enrollments.rb
+│   │   │   ├── 20240409081133_change_responsabe_traitement_for_organization_region_idf.rb
+│   │   │   ├── 20240410092028_add_cnaf_roles_to_sub_instructors_api_particulier.rb
+│   │   │   ├── 20240422141145_fix_migration_responsable_traitement_for_organization_region_idf.rb
+│   │   │   ├── 20240515144839_remove_cnous_roles_to_sub_instructor_api_particulier.rb
+│   │   │   └── concerns
+│   │   │       └── migrate_dgfip_form.rb
+│   │   ├── schema.rb
+│   │   └── setup.local.sql
+│   ├── docs
+│   │   ├── new_enrollment.md
+│   │   └── webhooks.md
+│   ├── entrypoint.sh
+│   ├── lib
+│   │   ├── omni_auth
+│   │   │   └── strategies
+│   │   │       └── api_gouv.rb
+│   │   └── tasks
+│   │       ├── .keep
+│   │       └── restore_file.rake
+│   ├── log
+│   │   └── .keep
+│   ├── public
+│   │   ├── categories_juridiques_20200701.json
+│   │   ├── codes_naf.json
+│   │   └── robots.txt
+│   ├── spec
+│   │   ├── acceptances
+│   │   │   ├── data_providers_config_spec.rb
+│   │   │   └── enrollment_emails_validation_spec.rb
+│   │   ├── bridges
+│   │   │   └── abstract_webhook_bridge_spec.rb
+│   │   ├── controllers
+│   │   │   ├── api
+│   │   │   │   └── frontal_controller_spec.rb
+│   │   │   ├── api_gouv_controller_spec.rb
+│   │   │   ├── available_reporters_controller_spec.rb
+│   │   │   ├── data_provider_configurations_controller_spec.rb
+│   │   │   ├── documents_controller_spec.rb
+│   │   │   ├── enrollments
+│   │   │   │   ├── change_state_spec.rb
+│   │   │   │   ├── copies_spec.rb
+│   │   │   │   ├── copy_spec.rb
+│   │   │   │   ├── create_spec.rb
+│   │   │   │   ├── export_spec.rb
+│   │   │   │   ├── index_spec.rb
+│   │   │   │   ├── mark_event_as_processed_spec.rb
+│   │   │   │   ├── next_enrollments_spec.rb
+│   │   │   │   ├── public_spec.rb
+│   │   │   │   ├── show_spec.rb
+│   │   │   │   ├── update_spec.rb
+│   │   │   │   └── user_enrollments_spec.rb
+│   │   │   ├── enrollments_email_templates_controller_spec.rb
+│   │   │   ├── enrollments_hubee_validated_spec.rb
+│   │   │   ├── events_controller_spec.rb
+│   │   │   ├── insee_controller_spec.rb
+│   │   │   ├── opinion_comments_controller_spec.rb
+│   │   │   ├── opinions_controller_spec.rb
+│   │   │   ├── ping_controller_spec.rb
+│   │   │   ├── reopen_enrollments_controller_spec.rb
+│   │   │   ├── request_changes_enrollment_spec.rb
+│   │   │   ├── stats_controller_spec.rb
+│   │   │   ├── users
+│   │   │   │   └── sessions_controller_spec.rb
+│   │   │   ├── users_controller_spec.rb
+│   │   │   └── validated_enrollment_snapshots_controller_spec.rb
+│   │   ├── factories
+│   │   │   ├── documents.rb
+│   │   │   ├── enrollment_email_templates.rb
+│   │   │   ├── enrollments.rb
+│   │   │   ├── events.rb
+│   │   │   ├── opinion_comments.rb
+│   │   │   ├── opinions.rb
+│   │   │   ├── organizations.rb
+│   │   │   ├── organizations_hash_from_mon_compte_pro.rb
+│   │   │   ├── sirene_service_payload.rb
+│   │   │   ├── team_members.rb
+│   │   │   └── users.rb
+│   │   ├── fixtures
+│   │   │   ├── dummy.ods
+│   │   │   ├── dummy.pdf
+│   │   │   ├── dummy.png
+│   │   │   ├── dummy.sxc
+│   │   │   ├── dummy.xls
+│   │   │   └── dummy.xlsx
+│   │   ├── interactors
+│   │   │   ├── .gitkeep
+│   │   │   ├── create_event_spec.rb
+│   │   │   ├── find_or_create_organization_with_mon_compte_pro_payload_spec.rb
+│   │   │   └── notify_event_spec.rb
+│   │   ├── jobs
+│   │   │   └── sidekiq_scheduler_spec.rb
+│   │   ├── mailers
+│   │   │   ├── enrollment_mailer_spec.rb
+│   │   │   ├── opinion_mailer_spec.rb
+│   │   │   └── webhook_mailer_spec.rb
+│   │   ├── middleware
+│   │   │   └── validate_request_params_spec.rb
+│   │   ├── models
+│   │   │   ├── document_spec.rb
+│   │   │   ├── enrollment
+│   │   │   │   ├── api_e_contacts_sandbox_spec.rb
+│   │   │   │   ├── api_entreprise_spec.rb
+│   │   │   │   ├── api_impot_particulier_sandbox_spec.rb
+│   │   │   │   ├── api_particulier_spec.rb
+│   │   │   │   └── api_sfip_sandbox_spec.rb
+│   │   │   ├── enrollment_spec.rb
+│   │   │   ├── enrollment_versioning_spec.rb
+│   │   │   ├── event_spec.rb
+│   │   │   ├── opinion_comment_spec.rb
+│   │   │   ├── opinion_spec.rb
+│   │   │   ├── organization_spec.rb
+│   │   │   └── user_spec.rb
+│   │   ├── notifiers
+│   │   │   ├── abstract_entreculier_notifier_spec.rb
+│   │   │   └── franceconnect_notifier_spec.rb
+│   │   ├── organizers
+│   │   │   ├── .gitkeep
+│   │   │   ├── create_opinion_comment_spec.rb
+│   │   │   ├── create_opinion_spec.rb
+│   │   │   ├── reopen_enrollment_spec.rb
+│   │   │   └── retrieve_organization_from_mon_compte_pro_payload_spec.rb
+│   │   ├── queries
+│   │   │   └── enrollment_events_for_user_query_spec.rb
+│   │   ├── rails_helper.rb
+│   │   ├── serializers
+│   │   │   ├── webhook_enrollment_serializer_spec.rb
+│   │   │   └── webhook_serializer_spec.rb
+│   │   ├── services
+│   │   │   ├── abstract_enrollments_extractor_spec.rb
+│   │   │   ├── api_gouv_spec.rb
+│   │   │   ├── api_sirene_spec.rb
+│   │   │   ├── credentials_spec.rb
+│   │   │   ├── data_provider_configurations_spec.rb
+│   │   │   ├── data_providers_configuration_spec.rb
+│   │   │   ├── debounce_spec.rb
+│   │   │   ├── enrollment_email_templates_retriever_spec.rb
+│   │   │   ├── enrollments_extractor
+│   │   │   │   ├── to_archive_spec.rb
+│   │   │   │   ├── to_remind_before_archive_spec.rb
+│   │   │   │   └── to_remind_spec.rb
+│   │   │   ├── filter_service_spec.rb
+│   │   │   ├── get_majority_percentile_processing_time_in_days_spec.rb
+│   │   │   ├── refresh_user_spec.rb
+│   │   │   └── spreadsheet_generator_spec.rb
+│   │   ├── spec_helper.rb
+│   │   ├── support
+│   │   │   ├── api_insee_payload_helpers.rb
+│   │   │   ├── debounce_payload_helpers.rb
+│   │   │   ├── devise_controller_login_helpers.rb
+│   │   │   ├── devise_request_login_helpers.rb
+│   │   │   ├── schedule_reminder_email_herlpers.rb
+│   │   │   ├── shared_examples
+│   │   │   │   └── notifier_webhook_delivery.rb
+│   │   │   └── vcr_cassettes
+│   │   │       └── api_gouv_payload.yml
+│   │   ├── validators
+│   │   │   └── siret_validator_spec.rb
+│   │   └── workers
+│   │       ├── deliver_enrollment_webhook_worker_spec.rb
+│   │       ├── refresh_organization_sirene_attributes_worker_spec.rb
+│   │       ├── register_organization_with_contacts_on_crm_worker_spec.rb
+│   │       ├── schedule_enrollments_archiveable_worker_spec.rb
+│   │       ├── schedule_reminder_before_archive_email_worker_spec.rb
+│   │       └── schedule_reminder_email_worker_spec.rb
+│   ├── test
+│   │   └── fixtures
+│   │       ├── enrollments.yml
+│   │       ├── events.yml
+│   │       ├── team_members.yml
+│   │       └── users.yml
+│   └── tmp
+│       └── .keep
+├── bin
+│   ├── deploy-staging.sh
+│   ├── install.sh
+│   └── local_dev.sh
+├── cypress
+│   ├── e2e
+│   │   └── pass-creation.cy.js
+│   ├── fixtures
+│   │   └── example.json
+│   ├── plugins
+│   │   └── index.js
+│   └── support
+│       ├── commands.js
+│       └── e2e.js
+├── cypress.config.js
+├── docker-compose.yml
+├── frontend
+│   ├── .dockerignore
+│   ├── .editorconfig
+│   ├── .env -> ../.env
+│   ├── .eslintrc
+│   ├── .gitignore
+│   ├── .npmrc
+│   ├── .prettierrc
+│   ├── Dockerfile
+│   ├── LICENSE
+│   ├── README.md
+│   ├── craco.config.js
+│   ├── mock
+│   │   ├── api
+│   │   │   ├── get-user-enrollments-1-response.json
+│   │   │   └── get-user-enrollments-response.json
+│   │   ├── api-entreprise
+│   │   │   └── get-scopes-response.json
+│   │   ├── enrollment-form
+│   │   │   ├── api-entreprise-initial-state-enrollment.json
+│   │   │   ├── deployed-enrollment.json
+│   │   │   ├── first-form-enrollment.json
+│   │   │   ├── initial-state-enrollment.json
+│   │   │   ├── refused-enrollment.json
+│   │   │   └── sent-enrollment.json
+│   │   └── group_email_addresses_samples.json
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── public
+│   │   ├── browserconfig.xml
+│   │   ├── docs
+│   │   │   ├── 20210212_dinum_hubee_cgu_v2_1_0_version_site.pdf
+│   │   │   ├── API_Droits_CNAM_CGU_20181210.pdf
+│   │   │   ├── cgu_agentconnect_fi.pdf
+│   │   │   ├── cgu_agentconnect_fs.pdf
+│   │   │   ├── cgu_api_captchetat_v_1_2.pdf
+│   │   │   ├── cgu_api_declaration_cesu_v1.pdf
+│   │   │   ├── cgu_api_etudiant_boursier.pdf
+│   │   │   ├── cgu_api_ficoba_bac_a_sable_decembre2020_v1.1.pdf
+│   │   │   ├── cgu_api_ficoba_production.pdf
+│   │   │   ├── cgu_api_impot_particulier_bac_a_sable_connexion_fc_septembre2020_v2.6.pdf
+│   │   │   ├── cgu_api_impot_particulier_bac_a_sable_connexion_hors_fc_septembre2020_v2.6.pdf
+│   │   │   ├── cgu_api_impot_particulier_production_connexion_fc_septembre2020_v5.5.pdf
+│   │   │   ├── cgu_api_impot_particulier_production_hors_connexion_fc_decembre2022_v4.0.pdf
+│   │   │   ├── cgu_api_indemnisation_pole_emploi.pdf
+│   │   │   ├── cgu_api_ingres.pdf
+│   │   │   ├── cgu_api_r2p_bac_a_sable_septembre2020_v2.6.pdf
+│   │   │   ├── cgu_api_r2p_production_septembre2020_v2.5.pdf
+│   │   │   ├── cgu_api_scolarite.pdf
+│   │   │   ├── cgu_api_statut_etudiant.pdf
+│   │   │   ├── cgu_api_tiers_de_prestation_v1_3.pdf
+│   │   │   ├── cgu_bas_api_rial_v2024-11.pdf
+│   │   │   ├── cgu_bas_hermes_v.2023_11.pdf
+│   │   │   ├── cgu_bas_imprimfip_v.2023_09.pdf
+│   │   │   ├── cgu_datapass.pdf
+│   │   │   ├── cgu_infinoe_bac_a_sable_v_2023_10.pdf
+│   │   │   ├── cgu_infinoe_production_v_2023_10.pdf
+│   │   │   ├── cgu_pcr_v1
+│   │   │   │   ├── cgu_bas_cpr_pro_v.2023_11.pdf
+│   │   │   │   ├── cgu_bas_e_contacts_v.2023_11.pdf
+│   │   │   │   ├── cgu_bas_e_pro_v.2023_11.pdf
+│   │   │   │   ├── cgu_bas_ensu_doc_v.2023_11.pdf
+│   │   │   │   ├── cgu_bas_mire_v.2023_11.pdf
+│   │   │   │   ├── cgu_bas_ocfi_v.2023_11.pdf
+│   │   │   │   ├── cgu_bas_opale_v.2023_11.pdf
+│   │   │   │   ├── cgu_bas_robf_v.2023_11.pdf
+│   │   │   │   ├── cgu_prod_cpr_pro_v.2023_11.pdf
+│   │   │   │   ├── cgu_prod_e_contacts_v.2023_11.pdf
+│   │   │   │   ├── cgu_prod_e_pro_v.2023_11.pdf
+│   │   │   │   ├── cgu_prod_ensu_doc_v.2023_11.pdf
+│   │   │   │   ├── cgu_prod_mire_v.2023_11.pdf
+│   │   │   │   ├── cgu_prod_ocfi_v.2023_11.pdf
+│   │   │   │   ├── cgu_prod_opale_v.2023_11.pdf
+│   │   │   │   └── cgu_prod_robf_v.2023_11.pdf
+│   │   │   ├── cgu_prod_api_rial_v2024-11.pdf
+│   │   │   ├── cgu_prod_hermes_v.2023_11.pdf
+│   │   │   ├── cgu_prod_imprimfip_v.2023_09.pdf
+│   │   │   ├── documentation_api_rial_v2024_11-1.pdf
+│   │   │   └── presentation_de_l_api_impot_particulier_v2.8.pdf
+│   │   ├── favicons
+│   │   │   ├── android-chrome-192x192.png
+│   │   │   ├── android-chrome-512x512.png
+│   │   │   ├── apple-touch-icon.png
+│   │   │   ├── favicon.ico
+│   │   │   └── favicon.svg
+│   │   ├── images
+│   │   │   ├── activity.svg
+│   │   │   ├── aidants-connect_logo.png
+│   │   │   ├── calendar.svg
+│   │   │   ├── change.svg
+│   │   │   ├── changes_requested.svg
+│   │   │   ├── draft.svg
+│   │   │   ├── empty-box.svg
+│   │   │   ├── logo-agentconnect.png
+│   │   │   ├── logo-aife.png
+│   │   │   ├── logo-ans.png
+│   │   │   ├── logo-beta-gouv.svg
+│   │   │   ├── logo-cartobio-text.svg
+│   │   │   ├── logo-cnam.jpg
+│   │   │   ├── logo-cnous.png
+│   │   │   ├── logo-dgfip-with-label.png
+│   │   │   ├── logo-dgfip.jpg
+│   │   │   ├── logo-fc-with-label.png
+│   │   │   ├── logo-fc.png
+│   │   │   ├── logo-hubee-small.png
+│   │   │   ├── logo-hubee.png
+│   │   │   ├── logo-le.taxi.svg
+│   │   │   ├── logo-menj.png
+│   │   │   ├── logo-mesri.png
+│   │   │   ├── logo-minint.png
+│   │   │   ├── logo-pole-emploi.png
+│   │   │   ├── logo-urssaf.png
+│   │   │   ├── logo-welcome-page.svg
+│   │   │   ├── mail.svg
+│   │   │   ├── new-api-pass.png
+│   │   │   ├── ok-emoji.svg
+│   │   │   ├── pending.svg
+│   │   │   ├── sunglasses-emoji.svg
+│   │   │   ├── target.svg
+│   │   │   ├── validated.svg
+│   │   │   └── validation.svg
+│   │   ├── index.html
+│   │   ├── manifest.json
+│   │   └── serve.json
+│   ├── src
+│   │   ├── App.css
+│   │   ├── App.test.tsx
+│   │   ├── App.tsx
+│   │   ├── Routes.tsx
+│   │   ├── components
+│   │   │   ├── atoms
+│   │   │   │   ├── Alert
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── style.css
+│   │   │   │   ├── EventButton.tsx
+│   │   │   │   ├── ExternalRedirect
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── Helper
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── style.css
+│   │   │   │   ├── Highlight
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── Loader
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── style.css
+│   │   │   │   ├── ProConnect
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── style.css
+│   │   │   │   ├── TagContainer
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── style.css
+│   │   │   │   ├── hyperTexts
+│   │   │   │   │   ├── Badge.css
+│   │   │   │   │   ├── Badge.tsx
+│   │   │   │   │   ├── Button.css
+│   │   │   │   │   ├── Button.tsx
+│   │   │   │   │   ├── HyperText.tsx
+│   │   │   │   │   ├── Link.tsx
+│   │   │   │   │   └── Tag.tsx
+│   │   │   │   ├── icons
+│   │   │   │   │   ├── HighVoltageEmoji.tsx
+│   │   │   │   │   ├── IndexPointingRightEmoji.tsx
+│   │   │   │   │   ├── WarningEmoji.tsx
+│   │   │   │   │   ├── auth.tsx
+│   │   │   │   │   ├── contentCopy.tsx
+│   │   │   │   │   ├── demande.tsx
+│   │   │   │   │   ├── fileCopy.tsx
+│   │   │   │   │   ├── fr-fi-icons.tsx
+│   │   │   │   │   ├── habilitation.tsx
+│   │   │   │   │   └── token.tsx
+│   │   │   │   └── inputs
+│   │   │   │       ├── CheckboxInput.tsx
+│   │   │   │       ├── DateInput.tsx
+│   │   │   │       ├── EmailInput.tsx
+│   │   │   │       ├── FieldsetWrapper.css
+│   │   │   │       ├── FieldsetWrapper.tsx
+│   │   │   │       ├── Input.tsx
+│   │   │   │       ├── Label.tsx
+│   │   │   │       ├── NumberInput.tsx
+│   │   │   │       ├── OrWrapper.css
+│   │   │   │       ├── OrWrapper.tsx
+│   │   │   │       ├── PhoneNumberInput.tsx
+│   │   │   │       ├── RadioInput.tsx
+│   │   │   │       ├── SelectInput.tsx
+│   │   │   │       ├── SideBySideWrapper.css
+│   │   │   │       ├── SideBySideWrapper.tsx
+│   │   │   │       ├── TextAreaInput.tsx
+│   │   │   │       └── TextInput.tsx
+│   │   │   ├── molecules
+│   │   │   │   ├── AlertMissingPhoneNumber
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── ApiRialDocumentationAlert
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── style.css
+│   │   │   │   ├── ButtonGroup.tsx
+│   │   │   │   ├── Card
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── style.css
+│   │   │   │   ├── ContactTable.tsx
+│   │   │   │   ├── CopyToClipboardButton.tsx
+│   │   │   │   ├── Dropdown
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── style.css
+│   │   │   │   ├── EnrollmentCard
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── style.css
+│   │   │   │   ├── EventButtonList.test.ts
+│   │   │   │   ├── EventButtonList.tsx
+│   │   │   │   ├── ExpandableQuote
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── style.css
+│   │   │   │   ├── ExpandableSection
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── style.css
+│   │   │   │   ├── FileInput
+│   │   │   │   │   ├── DownloadButton.tsx
+│   │   │   │   │   ├── FileInput.tsx
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── FilterComponent
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── IconTitle
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── style.css
+│   │   │   │   ├── ImpotPartDocumentationAlert
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── style.css
+│   │   │   │   ├── Linkify.tsx
+│   │   │   │   ├── ListHeader
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── style.css
+│   │   │   │   ├── MultiSelect
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── style.css
+│   │   │   │   ├── NewEnrollmentButton
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── style.css
+│   │   │   │   ├── NewHomeDesignModal
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── NextStepButton
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── QuickViewList
+│   │   │   │   │   ├── EnrollmentQuickView.tsx
+│   │   │   │   │   ├── MessageQuickView.tsx
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── styles.css
+│   │   │   │   ├── SoftAlert
+│   │   │   │   │   ├── index.css
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── StatCard
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── styles.css
+│   │   │   │   ├── StateBadge
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── StatusBadge
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── Stepper
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── style.css
+│   │   │   │   ├── StickyActions.css
+│   │   │   │   ├── StickyActions.tsx
+│   │   │   │   ├── TablePagination
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── style.css
+│   │   │   │   ├── TextInputWithSuggestions
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── style.css
+│   │   │   │   ├── __snapshots__
+│   │   │   │   │   └── EventButtonList.test.ts.snap
+│   │   │   │   └── notification-with-buttons
+│   │   │   │       ├── AlertWithTwoButtons.tsx
+│   │   │   │       ├── HighlightWithButton.tsx
+│   │   │   │       └── style.css
+│   │   │   ├── organisms
+│   │   │   │   ├── AuthContext.tsx
+│   │   │   │   ├── ConfirmationModal.css
+│   │   │   │   ├── ConfirmationModal.tsx
+│   │   │   │   ├── EnrollmentSection
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── style.css
+│   │   │   │   ├── ErrorBoundaryFallback.tsx
+│   │   │   │   ├── Footer.tsx
+│   │   │   │   ├── FormRouter.tsx
+│   │   │   │   ├── Header.css
+│   │   │   │   ├── Header.tsx
+│   │   │   │   ├── InstructorEnrollmentListFilters
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── styles.css
+│   │   │   │   ├── Nav.tsx
+│   │   │   │   ├── NotFound.tsx
+│   │   │   │   ├── Scrollable.tsx
+│   │   │   │   ├── Table
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── style.css
+│   │   │   │   └── form-sections
+│   │   │   │       ├── AgentConnectNetworkSection.tsx
+│   │   │   │       ├── ArchivedSection.tsx
+│   │   │   │       ├── CadreJuridiqueSection.tsx
+│   │   │   │       ├── CguSection
+│   │   │   │       │   └── index.tsx
+│   │   │   │       ├── DemarcheSection
+│   │   │   │       │   ├── DemarcheSectionReadOnly.css
+│   │   │   │       │   ├── DemarcheSectionReadOnly.tsx
+│   │   │   │       │   ├── DemarcheSectionSelect.tsx
+│   │   │   │       │   ├── DemarcheSectionSelectNotification.tsx
+│   │   │   │       │   └── index.tsx
+│   │   │   │       ├── DescriptionSection.tsx
+│   │   │   │       ├── DonneesSection
+│   │   │   │       │   ├── Scopes.tsx
+│   │   │   │       │   └── index.tsx
+│   │   │   │       ├── FranceConnectPlusSection.tsx
+│   │   │   │       ├── HeadSection
+│   │   │   │       │   ├── ActivityFeed.css
+│   │   │   │       │   ├── ActivityFeed.tsx
+│   │   │   │       │   ├── EnrollmentHasCopiesNotification.tsx
+│   │   │   │       │   ├── HasNextEnrollmentsNotification.tsx
+│   │   │   │       │   ├── NotificationSubSection.tsx
+│   │   │   │       │   ├── index.css
+│   │   │   │       │   └── index.tsx
+│   │   │   │       ├── OrganisationSection
+│   │   │   │       │   ├── DisconnectionModal.tsx
+│   │   │   │       │   ├── OrganisationCard.tsx
+│   │   │   │       │   ├── OrganizationPrompt.tsx
+│   │   │   │       │   ├── PersonalInformationCard.tsx
+│   │   │   │       │   ├── TechnicalTeamCard.tsx
+│   │   │   │       │   └── index.tsx
+│   │   │   │       ├── PreviousEnrollmentSection
+│   │   │   │       │   ├── index.tsx
+│   │   │   │       │   └── useAccessToEnrollment.ts
+│   │   │   │       ├── StepperSection.tsx
+│   │   │   │       ├── TextSection.tsx
+│   │   │   │       ├── aidants-connect-sections
+│   │   │   │       │   ├── AidantsSection.tsx
+│   │   │   │       │   └── StructureSection.tsx
+│   │   │   │       ├── dgfip-sections
+│   │   │   │       │   ├── HomologationSecuriteSection.tsx
+│   │   │   │       │   ├── RecetteFonctionnelleSection.tsx
+│   │   │   │       │   └── VolumetrieSection.tsx
+│   │   │   │       ├── hubee-sections
+│   │   │   │       │   ├── DemarcheEnLigneSection.tsx
+│   │   │   │       │   ├── IntituleInitializerSection.tsx
+│   │   │   │       │   └── useGetSubscribedDemarcheEnLigne.tsx
+│   │   │   │       ├── urssaf-sections
+│   │   │   │       │   └── PiecesJustificativesSection.tsx
+│   │   │   │       └── ÉquipeSection
+│   │   │   │           ├── Contact.tsx
+│   │   │   │           ├── index.tsx
+│   │   │   │           ├── useNewTeamMembers.ts
+│   │   │   │           └── ÉquipeInitializerSection.tsx
+│   │   │   └── templates
+│   │   │       ├── Accessibilite.tsx
+│   │   │       ├── Admin
+│   │   │       │   ├── AddUser.tsx
+│   │   │       │   ├── UpdateTeamMember.tsx
+│   │   │       │   ├── UserList
+│   │   │       │   │   ├── RoleCheckboxCell.css
+│   │   │       │   │   ├── RoleCheckboxCell.tsx
+│   │   │       │   │   └── index.tsx
+│   │   │       │   └── index.tsx
+│   │   │       ├── CopyEnrollment.tsx
+│   │   │       ├── DataProviderList
+│   │   │       │   ├── ApiDataProviderList.tsx
+│   │   │       │   ├── DataProviderCard.css
+│   │   │       │   ├── DataProviderCard.tsx
+│   │   │       │   └── HubeeDataProviderList.tsx
+│   │   │       ├── Enrollment.tsx
+│   │   │       ├── Faq.tsx
+│   │   │       ├── Form
+│   │   │       │   ├── HideSectionsContainer.tsx
+│   │   │       │   ├── OpenMessagePromptContextProvider.tsx
+│   │   │       │   ├── SubmissionPanel
+│   │   │       │   │   ├── Prompt.tsx
+│   │   │       │   │   ├── hooks
+│   │   │       │   │   │   ├── use-email-template.ts
+│   │   │       │   │   │   ├── use-form-submission.test.tsx
+│   │   │       │   │   │   ├── use-form-submission.ts
+│   │   │       │   │   │   └── use-most-used-comments.ts
+│   │   │       │   │   └── index.tsx
+│   │   │       │   ├── enrollmentReducer.test.ts
+│   │   │       │   ├── enrollmentReducer.ts
+│   │   │       │   ├── index.tsx
+│   │   │       │   └── style.css
+│   │   │       ├── InstructorEnrollmentList.css
+│   │   │       ├── InstructorEnrollmentList.tsx
+│   │   │       ├── InstructorHome.css
+│   │   │       ├── InstructorHome.tsx
+│   │   │       ├── Login
+│   │   │       │   ├── NextSteps.tsx
+│   │   │       │   ├── WelcomeMessage.tsx
+│   │   │       │   ├── index.tsx
+│   │   │       │   └── style.css
+│   │   │       ├── PublicEnrollmentList.tsx
+│   │   │       ├── RedirectToTheRightDataProviderForm.tsx
+│   │   │       ├── ReopenEnrollment.tsx
+│   │   │       ├── Stats.css
+│   │   │       ├── Stats.tsx
+│   │   │       ├── UserEnrollmentList
+│   │   │       │   ├── ActivityFeedWrapper.tsx
+│   │   │       │   ├── Enrollment.css
+│   │   │       │   ├── Enrollment.tsx
+│   │   │       │   ├── NoEnrollments.css
+│   │   │       │   ├── NoEnrollments.tsx
+│   │   │       │   └── index.tsx
+│   │   │       ├── enrollmentListStyle.ts
+│   │   │       └── hooks
+│   │   │           ├── use-data-provider-configurations.ts
+│   │   │           ├── use-data-provider.ts
+│   │   │           ├── use-file-downloader.ts
+│   │   │           ├── use-full-data-provider.ts
+│   │   │           ├── use-list-item-navigation.ts
+│   │   │           ├── use-local-storage.ts
+│   │   │           └── use-query-string.ts
+│   │   ├── config
+│   │   │   ├── data-provider-configurations.tsx
+│   │   │   ├── event-configuration.tsx
+│   │   │   ├── index.tsx
+│   │   │   ├── matomo-configuration.ts
+│   │   │   ├── scope-warning-modal-configuration.tsx
+│   │   │   └── status-parameters.ts
+│   │   ├── index.tsx
+│   │   ├── lib
+│   │   │   ├── __snapshots__
+│   │   │   │   └── process-event.test.ts.snap
+│   │   │   ├── http-client.ts
+│   │   │   ├── index.test.ts
+│   │   │   ├── index.ts
+│   │   │   ├── json-form-data.ts
+│   │   │   ├── process-event.test.ts
+│   │   │   └── process-event.ts
+│   │   ├── pages
+│   │   │   ├── AgentConnectFi.tsx
+│   │   │   ├── AgentConnectFs.tsx
+│   │   │   ├── AidantsConnect.tsx
+│   │   │   ├── ApiCaptchetat.tsx
+│   │   │   ├── ApiDroitsCnam.tsx
+│   │   │   ├── ApiEntreprise
+│   │   │   │   ├── demarches.json
+│   │   │   │   └── index.tsx
+│   │   │   ├── ApiHistovec.tsx
+│   │   │   ├── ApiIndemnisationPoleEmploi.tsx
+│   │   │   ├── ApiIndemnitesJournalieresCnam.tsx
+│   │   │   ├── ApiIngres.tsx
+│   │   │   ├── ApiPrestationsSociales.tsx
+│   │   │   ├── ApiPrestationsSocialesFc.tsx
+│   │   │   ├── ApiProSanteConnect.tsx
+│   │   │   ├── ApiScolarite.tsx
+│   │   │   ├── ApiServiceNational
+│   │   │   │   ├── demarches.json
+│   │   │   │   └── index.tsx
+│   │   │   ├── ApiStatutDemandeurEmploi.tsx
+│   │   │   ├── ApiStatutEtudiant.tsx
+│   │   │   ├── ApiStatutEtudiantBoursier.tsx
+│   │   │   ├── ApiSystemeImmatriculationVehicules.tsx
+│   │   │   ├── CartoBio.tsx
+│   │   │   ├── DgfipPages
+│   │   │   │   ├── ApiCprProProduction.tsx
+│   │   │   │   ├── ApiCprProSandbox.tsx
+│   │   │   │   ├── ApiEContactsProduction.tsx
+│   │   │   │   ├── ApiEContactsSandbox.tsx
+│   │   │   │   ├── ApiEProProduction.tsx
+│   │   │   │   ├── ApiEProSandbox.tsx
+│   │   │   │   ├── ApiEnsuDocumentsProduction.tsx
+│   │   │   │   ├── ApiEnsuDocumentsSandbox.tsx
+│   │   │   │   ├── ApiFicobaProduction.tsx
+│   │   │   │   ├── ApiFicobaSandbox.tsx
+│   │   │   │   ├── ApiFicobaUnique.tsx
+│   │   │   │   ├── ApiHermesProduction.tsx
+│   │   │   │   ├── ApiHermesSandbox.tsx
+│   │   │   │   ├── ApiImpotParticulierFcProduction.tsx
+│   │   │   │   ├── ApiImpotParticulierFcSandbox.tsx
+│   │   │   │   ├── ApiImpotParticulierFcUnique.tsx
+│   │   │   │   ├── ApiImpotParticulierProduction.tsx
+│   │   │   │   ├── ApiImpotParticulierSandbox.tsx
+│   │   │   │   ├── ApiImpotParticulierUnique.tsx
+│   │   │   │   ├── ApiImprimfipProduction.tsx
+│   │   │   │   ├── ApiImprimfipSandbox.tsx
+│   │   │   │   ├── ApiInfinoeProduction.tsx
+│   │   │   │   ├── ApiInfinoeSandbox.tsx
+│   │   │   │   ├── ApiInfinoeUnique.tsx
+│   │   │   │   ├── ApiMireProduction.tsx
+│   │   │   │   ├── ApiMireSandbox.tsx
+│   │   │   │   ├── ApiOcfiProduction.tsx
+│   │   │   │   ├── ApiOcfiSandbox.tsx
+│   │   │   │   ├── ApiOpaleProduction.tsx
+│   │   │   │   ├── ApiOpaleSandbox.tsx
+│   │   │   │   ├── ApiR2PProduction.tsx
+│   │   │   │   ├── ApiR2PSandbox.tsx
+│   │   │   │   ├── ApiR2PUnique.tsx
+│   │   │   │   ├── ApiRobfProduction.tsx
+│   │   │   │   ├── ApiRobfSandbox.tsx
+│   │   │   │   ├── ApiSatelitProduction.tsx
+│   │   │   │   ├── ApiSatelitSandbox.tsx
+│   │   │   │   ├── ApiSfipProduction.tsx
+│   │   │   │   ├── ApiSfipSandbox.tsx
+│   │   │   │   ├── ApiSfipUnique.tsx
+│   │   │   │   ├── api-impot-particulier-common.tsx
+│   │   │   │   ├── api-rial-production.tsx
+│   │   │   │   ├── api-rial-sandbox.tsx
+│   │   │   │   └── common.tsx
+│   │   │   ├── FranceConnect.tsx
+│   │   │   ├── HubeePortail.tsx
+│   │   │   ├── HubeePortailDila.tsx
+│   │   │   ├── LeTaxi.tsx
+│   │   │   ├── UrssafPages
+│   │   │   │   ├── ApiDeclarationAutoEntrepreneur.tsx
+│   │   │   │   ├── ApiDeclarationCesu.tsx
+│   │   │   │   ├── ApiTiersDePrestation.tsx
+│   │   │   │   └── common.tsx
+│   │   │   └── demarches.test.ts
+│   │   ├── react-app-env.d.ts
+│   │   ├── services
+│   │   │   ├── api-gouv.ts
+│   │   │   ├── data-provider-configurations.tsx
+│   │   │   ├── enrollments.test.ts
+│   │   │   ├── enrollments.tsx
+│   │   │   ├── external.tsx
+│   │   │   ├── stats.tsx
+│   │   │   └── users.tsx
+│   │   ├── setupProxy.ts
+│   │   ├── setupTests.ts
+│   │   └── types
+│   │       ├── fonction-section-component.d.ts
+│   │       └── index.d.ts
+│   └── tsconfig.json
+├── scalingo.json
+└── screenshot-datapass.png
+228 directories, 1192 files
