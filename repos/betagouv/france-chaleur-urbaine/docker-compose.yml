@@ -1,0 +1,45 @@
+services:
+  db:
+    image: postgis/postgis:16-3.5-alpine
+    shm_size: 1gb
+    platform: linux/amd64
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres_fcu
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./docker/postgresql.conf:/etc/postgresql/postgresql.conf:ro
+      - db:/var/lib/postgresql/data
+
+  db_test:
+    image: postgis/postgis:16-3.5-alpine
+    shm_size: 256m
+    platform: linux/amd64
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    environment:
+      POSTGRES_USER: fcu_test
+      POSTGRES_PASSWORD: fcu_test_pass
+      POSTGRES_DB: fcu_test
+    ports:
+      - '5433:5432'
+    volumes:
+      - ./docker/postgresql-test.conf:/etc/postgresql/postgresql.conf:ro
+      - db_test:/var/lib/postgresql/data
+
+  mailpit:
+    image: axllent/mailpit:v1.27.10
+    restart: unless-stopped
+    ports:
+      - 1025:1025
+      - 8025:8025
+    environment:
+      - MP_DATA_FILE=/data/mailpit.db
+    volumes:
+      - mailpit:/data
+
+volumes:
+  db:
+  db_test:
+  mailpit:
