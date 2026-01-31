@@ -1,0 +1,34 @@
+version: "3"
+
+services:
+  metabase:
+    image: metabase/metabase
+    environment:
+      - MB_DB_TYPE=postgres
+      - MB_DB_DBNAME=nis2-journal
+      - MB_DB_PORT=5432
+      - MB_DB_USER=postgres
+      - MB_DB_PASS=postgres
+      - MB_DB_HOST=nis2-journal-db
+    ports:
+      - "3000:3000"
+    depends_on:
+      - nis2-journal-db
+  
+  nis2-journal-db:
+    image: postgres
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    ports:
+      - "5434:5432"
+    volumes:
+      - /var/lib/postgresql/data
+
+  node:
+    image: node
+    volumes:
+      - ./:/home/node/app
+    working_dir: /home/node/app
+    command: "./scripts/migrations.sh"
+    depends_on:
+      - nis2-journal-db
