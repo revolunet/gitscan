@@ -1,0 +1,876 @@
+.
+├── .ackrc
+├── .git2gus
+│   └── config.json
+├── .github
+│   ├── CODEOWNERS
+│   └── ISSUE_TEMPLATE
+│       ├── bug_report.md
+│       └── enhancement-request.md
+├── .gitignore
+├── .sclng
+│   └── metadata.toml
+├── CHANGELOG.md
+├── CONTRIBUTING.md
+├── Gemfile
+├── Gemfile.lock
+├── LICENSE
+├── README.md
+├── bin
+│   ├── compile
+│   ├── detect
+│   ├── meteor.sh
+│   ├── release
+│   ├── report
+│   ├── test
+│   └── test-compile
+├── buildpack.toml
+├── ci-profile
+│   └── nodejs.sh
+├── etc
+│   ├── ci-setup.sh
+│   ├── hatchet.sh
+│   └── publish.sh
+├── features
+├── hatchet.json
+├── hatchet.lock
+├── inventory
+│   ├── node.toml
+│   └── yarn.toml
+├── lib
+│   ├── binaries.sh
+│   ├── builddata.sh
+│   ├── cache.sh
+│   ├── dependencies.sh
+│   ├── environment.sh
+│   ├── failure.sh
+│   ├── features.sh
+│   ├── json.sh
+│   ├── kvstore.sh
+│   ├── metadata.sh
+│   ├── monitor.sh
+│   ├── output.sh
+│   ├── uuid.sh
+│   ├── vendor
+│   │   ├── resolve-version-darwin
+│   │   ├── resolve-version-linux
+│   │   ├── stdlib_v7.sh
+│   │   ├── yq-darwin
+│   │   └── yq-linux
+│   └── yarn-2.sh
+├── makefile
+├── profile
+│   ├── WEB_CONCURRENCY.sh
+│   └── nodejs.sh
+├── spec
+│   ├── ci
+│   │   ├── node_10_metrics_spec.rb
+│   │   ├── node_10_spec.rb
+│   │   ├── node_12_metrics_spec.rb
+│   │   ├── node_12_spec.rb
+│   │   ├── node_14_metrics_spec.rb
+│   │   ├── node_14_spec.rb
+│   │   ├── node_15_metrics_spec.rb
+│   │   ├── node_15_spec.rb
+│   │   ├── node_16_metrics_spec.rb
+│   │   ├── node_16_spec.rb
+│   │   ├── node_17_metrics_spec.rb
+│   │   ├── node_17_spec.rb
+│   │   ├── node_18_metrics_spec.rb
+│   │   ├── node_18_spec.rb
+│   │   ├── node_19_metrics_spec.rb
+│   │   ├── node_19_spec.rb
+│   │   ├── node_20_metrics_spec.rb
+│   │   ├── node_20_spec.rb
+│   │   ├── node_metrics_conflict_spec.rb
+│   │   └── yarn2_spec.rb
+│   ├── fixtures
+│   │   └── repos
+│   │       ├── node-10
+│   │       │   ├── Procfile
+│   │       │   ├── app.json
+│   │       │   ├── package.json
+│   │       │   └── src
+│   │       │       └── index.js
+│   │       ├── node-10-metrics
+│   │       │   ├── Procfile
+│   │       │   ├── package.json
+│   │       │   └── src
+│   │       │       └── index.js
+│   │       ├── node-12
+│   │       │   ├── Procfile
+│   │       │   ├── app.json
+│   │       │   ├── package.json
+│   │       │   └── src
+│   │       │       └── index.js
+│   │       ├── node-12-metrics
+│   │       │   ├── Procfile
+│   │       │   ├── package.json
+│   │       │   └── src
+│   │       │       └── index.js
+│   │       ├── node-14
+│   │       │   ├── Procfile
+│   │       │   ├── app.json
+│   │       │   ├── index.js
+│   │       │   └── package.json
+│   │       ├── node-14-metrics
+│   │       │   ├── Procfile
+│   │       │   ├── index.js
+│   │       │   └── package.json
+│   │       ├── node-15
+│   │       │   ├── Procfile
+│   │       │   ├── app.json
+│   │       │   ├── index.js
+│   │       │   └── package.json
+│   │       ├── node-15-metrics
+│   │       │   ├── Procfile
+│   │       │   ├── index.js
+│   │       │   └── package.json
+│   │       ├── node-16
+│   │       │   ├── Procfile
+│   │       │   ├── app.json
+│   │       │   ├── index.js
+│   │       │   └── package.json
+│   │       ├── node-16-metrics
+│   │       │   ├── Procfile
+│   │       │   ├── index.js
+│   │       │   └── package.json
+│   │       ├── node-17
+│   │       │   ├── Procfile
+│   │       │   ├── app.json
+│   │       │   ├── index.js
+│   │       │   └── package.json
+│   │       ├── node-17-metrics
+│   │       │   ├── Procfile
+│   │       │   ├── index.js
+│   │       │   └── package.json
+│   │       ├── node-18
+│   │       │   ├── Procfile
+│   │       │   ├── app.json
+│   │       │   ├── index.js
+│   │       │   └── package.json
+│   │       ├── node-18-metrics
+│   │       │   ├── Procfile
+│   │       │   ├── index.js
+│   │       │   └── package.json
+│   │       ├── node-19
+│   │       │   ├── Procfile
+│   │       │   ├── app.json
+│   │       │   ├── index.js
+│   │       │   └── package.json
+│   │       ├── node-19-metrics
+│   │       │   ├── Procfile
+│   │       │   ├── index.js
+│   │       │   └── package.json
+│   │       ├── node-20
+│   │       │   ├── Procfile
+│   │       │   ├── app.json
+│   │       │   ├── index.js
+│   │       │   └── package.json
+│   │       ├── node-20-metrics
+│   │       │   ├── Procfile
+│   │       │   ├── index.js
+│   │       │   └── package.json
+│   │       ├── node-metrics-conflict
+│   │       │   ├── Procfile
+│   │       │   ├── package.json
+│   │       │   └── src
+│   │       │       └── index.js
+│   │       ├── yarn2-modules-nonzero-install
+│   │       │   ├── .gitignore
+│   │       │   ├── .yarn
+│   │       │   │   └── releases
+│   │       │   │       └── yarn-3.1.1.cjs
+│   │       │   ├── .yarnrc.yml
+│   │       │   ├── index.js
+│   │       │   ├── package.json
+│   │       │   └── yarn.lock
+│   │       ├── yarn2-modules-zero-install
+│   │       │   ├── .gitignore
+│   │       │   ├── .yarn
+│   │       │   │   ├── cache
+│   │       │   │   │   ├── accepts-npm-1.3.8-9a812371c9-50c43d32e7.zip
+│   │       │   │   │   ├── array-flatten-npm-1.1.1-9d94ad5f1d-a9925bf351.zip
+│   │       │   │   │   ├── body-parser-npm-1.19.1-ae102dea05-9197a300a6.zip
+│   │       │   │   │   ├── bytes-npm-3.1.1-f2d0e8c583-949ab99a38.zip
+│   │       │   │   │   ├── content-disposition-npm-0.5.4-2d93678616-afb9d545e2.zip
+│   │       │   │   │   ├── content-type-npm-1.0.4-3b1a5ca16b-3d93585fda.zip
+│   │       │   │   │   ├── cookie-npm-0.4.1-cc5e2ebb42-bd7c47f5d9.zip
+│   │       │   │   │   ├── cookie-signature-npm-1.0.6-93f325f7f0-f4e1b0a98a.zip
+│   │       │   │   │   ├── debug-npm-2.6.9-7d4cb597dc-d2f51589ca.zip
+│   │       │   │   │   ├── depd-npm-1.1.2-b0c8414da7-6b406620d2.zip
+│   │       │   │   │   ├── destroy-npm-1.0.4-a2203e01cb-da9ab4961d.zip
+│   │       │   │   │   ├── ee-first-npm-1.1.1-33f8535b39-1b4cac778d.zip
+│   │       │   │   │   ├── encodeurl-npm-1.0.2-f8c8454c41-e50e3d508c.zip
+│   │       │   │   │   ├── escape-html-npm-1.0.3-376c22ee74-6213ca9ae0.zip
+│   │       │   │   │   ├── etag-npm-1.8.1-54a3b989d9-571aeb3dbe.zip
+│   │       │   │   │   ├── express-npm-4.17.2-fd936fc165-1535d56d20.zip
+│   │       │   │   │   ├── finalhandler-npm-1.1.2-55a75d6b53-617880460c.zip
+│   │       │   │   │   ├── forwarded-npm-0.2.0-6473dabe35-fd27e2394d.zip
+│   │       │   │   │   ├── fresh-npm-0.5.2-ad2bb4c0a2-13ea8b08f9.zip
+│   │       │   │   │   ├── http-errors-npm-1.8.1-fb60d9f6ae-d3c7e7e776.zip
+│   │       │   │   │   ├── iconv-lite-npm-0.4.24-c5c4ac6695-bd9f120f5a.zip
+│   │       │   │   │   ├── inherits-npm-2.0.4-c66b3957a0-4a48a73384.zip
+│   │       │   │   │   ├── ipaddr.js-npm-1.9.1-19ae7878b4-f88d382598.zip
+│   │       │   │   │   ├── media-typer-npm-0.3.0-8674f8f0f5-af1b38516c.zip
+│   │       │   │   │   ├── merge-descriptors-npm-1.0.1-615287aaa8-5abc259d2a.zip
+│   │       │   │   │   ├── methods-npm-1.1.2-92f6fdb39b-0917ff4041.zip
+│   │       │   │   │   ├── mime-db-npm-1.51.0-d5e42b45ad-613b1ac9d6.zip
+│   │       │   │   │   ├── mime-npm-1.6.0-60ae95038a-fef25e3926.zip
+│   │       │   │   │   ├── mime-types-npm-2.1.34-3cd0bb907c-67013de9e9.zip
+│   │       │   │   │   ├── ms-npm-2.0.0-9e1101a471-0e6a22b8b7.zip
+│   │       │   │   │   ├── ms-npm-2.1.3-81ff3cfac1-aa92de6080.zip
+│   │       │   │   │   ├── negotiator-npm-0.6.3-9d50e36171-b8ffeb1e26.zip
+│   │       │   │   │   ├── on-finished-npm-2.3.0-4ce92f72c6-1db595bd96.zip
+│   │       │   │   │   ├── parseurl-npm-1.3.3-1542397e00-407cee8e0a.zip
+│   │       │   │   │   ├── path-to-regexp-npm-0.1.7-2605347373-69a14ea24d.zip
+│   │       │   │   │   ├── proxy-addr-npm-2.0.7-dae6552872-29c6990ce9.zip
+│   │       │   │   │   ├── qs-npm-6.9.6-fee5de1427-cb6df402bb.zip
+│   │       │   │   │   ├── range-parser-npm-1.2.1-1a470fa390-0a268d4fea.zip
+│   │       │   │   │   ├── raw-body-npm-2.4.2-f70aad454d-c6f8d6a75c.zip
+│   │       │   │   │   ├── safe-buffer-npm-5.2.1-3481c8aa9b-b99c4b41fd.zip
+│   │       │   │   │   ├── safer-buffer-npm-2.1.2-8d5c0b705e-cab8f25ae6.zip
+│   │       │   │   │   ├── send-npm-0.17.2-73a3dbeba6-c28f36deb4.zip
+│   │       │   │   │   ├── serve-static-npm-1.14.2-3ce50bb5ff-d97f3183b1.zip
+│   │       │   │   │   ├── setprototypeof-npm-1.2.0-0fedbdcd3a-be18cbbf70.zip
+│   │       │   │   │   ├── statuses-npm-1.5.0-f88f91b2e9-c469b9519d.zip
+│   │       │   │   │   ├── toidentifier-npm-1.0.1-f759712599-952c29e2a8.zip
+│   │       │   │   │   ├── type-is-npm-1.6.18-6dee4d4961-2c8e47675d.zip
+│   │       │   │   │   ├── unpipe-npm-1.0.0-2ed2a3c2bf-4fa18d8d8d.zip
+│   │       │   │   │   ├── utils-merge-npm-1.0.1-363bbdfbca-c810954932.zip
+│   │       │   │   │   └── vary-npm-1.1.2-b49f70ae63-ae0123222c.zip
+│   │       │   │   └── releases
+│   │       │   │       └── yarn-3.1.1.cjs
+│   │       │   ├── .yarnrc.yml
+│   │       │   ├── index.js
+│   │       │   ├── package.json
+│   │       │   └── yarn.lock
+│   │       ├── yarn2-pnp-nonzero-install
+│   │       │   ├── .gitignore
+│   │       │   ├── .yarn
+│   │       │   │   └── releases
+│   │       │   │       └── yarn-3.1.1.cjs
+│   │       │   ├── .yarnrc.yml
+│   │       │   ├── index.js
+│   │       │   ├── package.json
+│   │       │   └── yarn.lock
+│   │       └── yarn2-pnp-zero-install
+│   │           ├── .gitignore
+│   │           ├── .pnp.cjs
+│   │           ├── .yarn
+│   │           │   ├── cache
+│   │           │   │   ├── accepts-npm-1.3.8-9a812371c9-50c43d32e7.zip
+│   │           │   │   ├── array-flatten-npm-1.1.1-9d94ad5f1d-a9925bf351.zip
+│   │           │   │   ├── body-parser-npm-1.19.1-ae102dea05-9197a300a6.zip
+│   │           │   │   ├── bytes-npm-3.1.1-f2d0e8c583-949ab99a38.zip
+│   │           │   │   ├── content-disposition-npm-0.5.4-2d93678616-afb9d545e2.zip
+│   │           │   │   ├── content-type-npm-1.0.4-3b1a5ca16b-3d93585fda.zip
+│   │           │   │   ├── cookie-npm-0.4.1-cc5e2ebb42-bd7c47f5d9.zip
+│   │           │   │   ├── cookie-signature-npm-1.0.6-93f325f7f0-f4e1b0a98a.zip
+│   │           │   │   ├── debug-npm-2.6.9-7d4cb597dc-d2f51589ca.zip
+│   │           │   │   ├── depd-npm-1.1.2-b0c8414da7-6b406620d2.zip
+│   │           │   │   ├── destroy-npm-1.0.4-a2203e01cb-da9ab4961d.zip
+│   │           │   │   ├── ee-first-npm-1.1.1-33f8535b39-1b4cac778d.zip
+│   │           │   │   ├── encodeurl-npm-1.0.2-f8c8454c41-e50e3d508c.zip
+│   │           │   │   ├── escape-html-npm-1.0.3-376c22ee74-6213ca9ae0.zip
+│   │           │   │   ├── etag-npm-1.8.1-54a3b989d9-571aeb3dbe.zip
+│   │           │   │   ├── express-npm-4.17.2-fd936fc165-1535d56d20.zip
+│   │           │   │   ├── finalhandler-npm-1.1.2-55a75d6b53-617880460c.zip
+│   │           │   │   ├── forwarded-npm-0.2.0-6473dabe35-fd27e2394d.zip
+│   │           │   │   ├── fresh-npm-0.5.2-ad2bb4c0a2-13ea8b08f9.zip
+│   │           │   │   ├── http-errors-npm-1.8.1-fb60d9f6ae-d3c7e7e776.zip
+│   │           │   │   ├── iconv-lite-npm-0.4.24-c5c4ac6695-bd9f120f5a.zip
+│   │           │   │   ├── inherits-npm-2.0.4-c66b3957a0-4a48a73384.zip
+│   │           │   │   ├── ipaddr.js-npm-1.9.1-19ae7878b4-f88d382598.zip
+│   │           │   │   ├── media-typer-npm-0.3.0-8674f8f0f5-af1b38516c.zip
+│   │           │   │   ├── merge-descriptors-npm-1.0.1-615287aaa8-5abc259d2a.zip
+│   │           │   │   ├── methods-npm-1.1.2-92f6fdb39b-0917ff4041.zip
+│   │           │   │   ├── mime-db-npm-1.51.0-d5e42b45ad-613b1ac9d6.zip
+│   │           │   │   ├── mime-npm-1.6.0-60ae95038a-fef25e3926.zip
+│   │           │   │   ├── mime-types-npm-2.1.34-3cd0bb907c-67013de9e9.zip
+│   │           │   │   ├── ms-npm-2.0.0-9e1101a471-0e6a22b8b7.zip
+│   │           │   │   ├── ms-npm-2.1.3-81ff3cfac1-aa92de6080.zip
+│   │           │   │   ├── negotiator-npm-0.6.3-9d50e36171-b8ffeb1e26.zip
+│   │           │   │   ├── on-finished-npm-2.3.0-4ce92f72c6-1db595bd96.zip
+│   │           │   │   ├── parseurl-npm-1.3.3-1542397e00-407cee8e0a.zip
+│   │           │   │   ├── path-to-regexp-npm-0.1.7-2605347373-69a14ea24d.zip
+│   │           │   │   ├── proxy-addr-npm-2.0.7-dae6552872-29c6990ce9.zip
+│   │           │   │   ├── qs-npm-6.9.6-fee5de1427-cb6df402bb.zip
+│   │           │   │   ├── range-parser-npm-1.2.1-1a470fa390-0a268d4fea.zip
+│   │           │   │   ├── raw-body-npm-2.4.2-f70aad454d-c6f8d6a75c.zip
+│   │           │   │   ├── safe-buffer-npm-5.2.1-3481c8aa9b-b99c4b41fd.zip
+│   │           │   │   ├── safer-buffer-npm-2.1.2-8d5c0b705e-cab8f25ae6.zip
+│   │           │   │   ├── send-npm-0.17.2-73a3dbeba6-c28f36deb4.zip
+│   │           │   │   ├── serve-static-npm-1.14.2-3ce50bb5ff-d97f3183b1.zip
+│   │           │   │   ├── setprototypeof-npm-1.2.0-0fedbdcd3a-be18cbbf70.zip
+│   │           │   │   ├── statuses-npm-1.5.0-f88f91b2e9-c469b9519d.zip
+│   │           │   │   ├── toidentifier-npm-1.0.1-f759712599-952c29e2a8.zip
+│   │           │   │   ├── type-is-npm-1.6.18-6dee4d4961-2c8e47675d.zip
+│   │           │   │   ├── unpipe-npm-1.0.0-2ed2a3c2bf-4fa18d8d8d.zip
+│   │           │   │   ├── utils-merge-npm-1.0.1-363bbdfbca-c810954932.zip
+│   │           │   │   └── vary-npm-1.1.2-b49f70ae63-ae0123222c.zip
+│   │           │   └── releases
+│   │           │       └── yarn-3.1.1.cjs
+│   │           ├── .yarnrc.yml
+│   │           ├── index.js
+│   │           ├── package.json
+│   │           └── yarn.lock
+│   ├── hatchet
+│   │   ├── absolute_path_spec.rb
+│   │   ├── ci_spec.rb
+│   │   ├── getting_started_spec.rb
+│   │   ├── stack_spec.rb
+│   │   └── version_spec.rb
+│   ├── nodebin
+│   │   ├── node_vX_metrics_spec.rb
+│   │   └── node_vX_spec.rb
+│   └── spec_helper.rb
+├── test
+│   ├── fixtures
+│   │   ├── bad-json
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── build-script
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── build-script-override
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── build-script-yarn
+│   │   │   ├── README.md
+│   │   │   ├── package.json
+│   │   │   └── yarn.lock
+│   │   ├── cache-directories
+│   │   │   ├── README.md
+│   │   │   ├── bower.json
+│   │   │   └── package.json
+│   │   ├── cache-directories-camel
+│   │   │   ├── README.md
+│   │   │   ├── bower.json
+│   │   │   ├── client
+│   │   │   │   └── package.json
+│   │   │   ├── package.json
+│   │   │   └── server
+│   │   │       └── package.json
+│   │   ├── cache-prebuild
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── caching
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── ci-caching
+│   │   │   ├── README.md
+│   │   │   ├── package-lock.json
+│   │   │   └── package.json
+│   │   ├── ci-dependencies
+│   │   │   ├── README.md
+│   │   │   ├── package-lock.json
+│   │   │   └── package.json
+│   │   ├── ci-dependencies-yarn
+│   │   │   ├── README.md
+│   │   │   ├── package.json
+│   │   │   └── yarn.lock
+│   │   ├── ci-env-test
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── cleanup-scripts
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── complex-scripts
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── dangerous-range-greater-than
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── dangerous-range-star
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── dependencies
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── dependencies-modules-checked-in-with-devdependencies
+│   │   │   ├── README.md
+│   │   │   ├── node_modules
+│   │   │   │   ├── @heroku
+│   │   │   │   │   └── linewrap
+│   │   │   │   │       ├── linewrap.js
+│   │   │   │   │       └── package.json
+│   │   │   │   └── lodash
+│   │   │   │       ├── LICENSE.txt
+│   │   │   │       ├── README.md
+│   │   │   │       ├── dist
+│   │   │   │       │   ├── lodash.compat.js
+│   │   │   │       │   ├── lodash.compat.min.js
+│   │   │   │       │   ├── lodash.js
+│   │   │   │       │   ├── lodash.min.js
+│   │   │   │       │   ├── lodash.underscore.js
+│   │   │   │       │   └── lodash.underscore.min.js
+│   │   │   │       ├── lodash.js
+│   │   │   │       └── package.json
+│   │   │   ├── package-lock.json
+│   │   │   └── package.json
+│   │   ├── dependencies-modules-checked-in-without-devdependencies
+│   │   │   ├── README.md
+│   │   │   ├── node_modules
+│   │   │   │   └── @heroku
+│   │   │   │       └── linewrap
+│   │   │   │           ├── linewrap.js
+│   │   │   │           └── package.json
+│   │   │   ├── package-lock.json
+│   │   │   └── package.json
+│   │   ├── dependencies-yarn
+│   │   │   ├── README.md
+│   │   │   ├── package.json
+│   │   │   └── yarn.lock
+│   │   ├── dev-dependencies-npmrc
+│   │   │   ├── .npmrc
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── dot-heroku-collision
+│   │   │   ├── .heroku
+│   │   │   └── package.json
+│   │   ├── dot-heroku-collision-2
+│   │   │   ├── .heroku
+│   │   │   │   └── random-file
+│   │   │   └── package.json
+│   │   ├── dot-heroku-node-collision
+│   │   │   ├── .heroku
+│   │   │   │   └── node
+│   │   │   └── package.json
+│   │   ├── dummy-feature
+│   │   │   ├── heroku-buildpack-features
+│   │   │   └── package.json
+│   │   ├── dynamic-procfile
+│   │   │   └── package.json
+│   │   ├── echo-lang
+│   │   │   └── package.json
+│   │   ├── econnreset-mock
+│   │   │   └── package.json
+│   │   ├── empty-heroku-postbuild
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── empty-heroku-postbuild-yarn
+│   │   │   ├── README.md
+│   │   │   ├── package.json
+│   │   │   └── yarn.lock
+│   │   ├── failing-build
+│   │   │   └── package.json
+│   │   ├── flatmap-stream
+│   │   │   ├── package-lock.json
+│   │   │   └── package.json
+│   │   ├── gitignore-package-json
+│   │   │   └── .gitignore
+│   │   ├── has-script-fixtures
+│   │   │   └── package.json
+│   │   ├── info-empty
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── invalid-dependency
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── invalid-node
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── invalid-node-semver
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── iojs
+│   │   │   └── package.json
+│   │   ├── many-warnings
+│   │   │   └── package.json
+│   │   ├── missing-devdeps-1
+│   │   │   ├── package.json
+│   │   │   └── postinstall.js
+│   │   ├── missing-grunt
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── modules-checked-in
+│   │   │   ├── README.md
+│   │   │   ├── node_modules
+│   │   │   │   └── @heroku
+│   │   │   │       └── linewrap
+│   │   │   │           ├── linewrap.js
+│   │   │   │           └── package.json
+│   │   │   ├── package-lock.json
+│   │   │   └── package.json
+│   │   ├── ng-build-script
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── no-package-json
+│   │   │   └── Gemfile
+│   │   ├── no-start
+│   │   │   └── package.json
+│   │   ├── no-version
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── node-0.12.6
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── node-0.12.7
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── node-10
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── node-10-npm-ci-shrinkwrap
+│   │   │   ├── npm-shrinkwrap.json
+│   │   │   └── package.json
+│   │   ├── node-11
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── node-12
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── node-13
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── node-14
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── node-14-npm-ci
+│   │   │   ├── package-lock.json
+│   │   │   └── package.json
+│   │   ├── node-14-npm-ci-no-lockfile
+│   │   │   └── package.json
+│   │   ├── node-6
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── node-8
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── node-9
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── node-env-consistency
+│   │   │   ├── package-lock.json
+│   │   │   └── package.json
+│   │   ├── node-modules-cache-1
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── node-modules-cache-2
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── node-project-missing-package-json
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── index.js
+│   │   │   └── src
+│   │   │       ├── CHANGELOG.md
+│   │   │       ├── app.js
+│   │   │       └── webpack.config.js
+│   │   ├── nonexistent-npm
+│   │   │   └── package.json
+│   │   ├── npm-lockfile-no-version
+│   │   │   ├── package-lock.json
+│   │   │   └── package.json
+│   │   ├── npm-lockfile-node-6-no-version
+│   │   │   ├── package-lock.json
+│   │   │   └── package.json
+│   │   ├── npm-lockfile-old-version
+│   │   │   ├── package-lock.json
+│   │   │   └── package.json
+│   │   ├── npm-prune-5-3-issue
+│   │   │   ├── package-lock.json
+│   │   │   └── package.json
+│   │   ├── npm-prune-5-6-issue
+│   │   │   ├── package-lock.json
+│   │   │   └── package.json
+│   │   ├── npm-version-range
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── npm-version-specific
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── npm5
+│   │   │   ├── package-lock.json
+│   │   │   └── package.json
+│   │   ├── old-npm
+│   │   │   └── package.json
+│   │   ├── optional-dependencies
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── php-node-composer
+│   │   │   ├── composer.json
+│   │   │   └── package.json
+│   │   ├── php-node-composer-multibuildpacks
+│   │   │   ├── .buildpacks
+│   │   │   ├── composer.json
+│   │   │   └── package.json
+│   │   ├── php-node-index
+│   │   │   ├── index.php
+│   │   │   └── package.json
+│   │   ├── pre-post-build-scripts
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── print-node-options
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── prioritary-dependencies
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── python-node
+│   │   │   ├── package.json
+│   │   │   └── requirements.txt
+│   │   ├── python-node-multibuildpacks
+│   │   │   ├── .buildpacks
+│   │   │   ├── package.json
+│   │   │   └── requirements.txt
+│   │   ├── range-with-space
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── same-npm
+│   │   │   └── package.json
+│   │   ├── shrinkwrap
+│   │   │   ├── README.md
+│   │   │   ├── npm-shrinkwrap.json
+│   │   │   └── package.json
+│   │   ├── skip-modules-checked-in
+│   │   │   ├── README.md
+│   │   │   ├── node_modules
+│   │   │   │   └── .keep
+│   │   │   ├── package.json
+│   │   │   └── yarn.lock
+│   │   ├── slugignore-package-json
+│   │   │   └── .slugignore
+│   │   ├── specific-version
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── stable-node
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── unstable-version
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── userconfig
+│   │   │   ├── .npmrc
+│   │   │   ├── README.md
+│   │   │   └── package.json
+│   │   ├── yarn
+│   │   │   ├── package.json
+│   │   │   └── yarn.lock
+│   │   ├── yarn-2
+│   │   │   ├── .pnp.js
+│   │   │   ├── .yarn
+│   │   │   │   ├── cache
+│   │   │   │   │   ├── @types-node-npm-16.11.26-6163d95b7d-478d5c315f.zip
+│   │   │   │   │   ├── echo-cli-npm-2.0.0-b40e6b6835-4fd169d4d4.zip
+│   │   │   │   │   ├── string.fromcodepoint-npm-0.2.1-84d94c4fb5-715fe85fef.zip
+│   │   │   │   │   ├── unescape-js-npm-1.1.4-f41cc6935a-4891e05c1f.zip
+│   │   │   │   │   └── uuid-npm-9.0.0-46c41e3e43-5a7f936a25.zip
+│   │   │   │   ├── plugins
+│   │   │   │   │   └── @yarnpkg
+│   │   │   │   │       └── plugin-workspace-tools.cjs
+│   │   │   │   └── releases
+│   │   │   │       └── yarn-berry.cjs
+│   │   │   ├── .yarnrc.yml
+│   │   │   ├── package.json
+│   │   │   └── yarn.lock
+│   │   ├── yarn-2-with-engine
+│   │   │   ├── .pnp.js
+│   │   │   ├── .yarn
+│   │   │   │   ├── cache
+│   │   │   │   │   ├── debug-npm-4.1.1-540248b3aa-2.zip
+│   │   │   │   │   ├── lodash-npm-4.17.15-566d9324f7-2.zip
+│   │   │   │   │   └── ms-npm-2.1.2-ec0c1512ff-2.zip
+│   │   │   │   ├── install-state.gz
+│   │   │   │   └── releases
+│   │   │   │       └── yarn-rc.js
+│   │   │   ├── .yarnrc.yml
+│   │   │   ├── package.json
+│   │   │   └── yarn.lock
+│   │   ├── yarn-2-with-invalid-rc-files
+│   │   │   ├── .npmrc
+│   │   │   ├── .pnp.js
+│   │   │   ├── .yarn
+│   │   │   │   ├── cache
+│   │   │   │   │   ├── debug-npm-4.1.1-540248b3aa-2.zip
+│   │   │   │   │   ├── lodash-npm-4.17.15-566d9324f7-2.zip
+│   │   │   │   │   └── ms-npm-2.1.2-ec0c1512ff-2.zip
+│   │   │   │   ├── install-state.gz
+│   │   │   │   └── releases
+│   │   │   │       └── yarn-rc.js
+│   │   │   ├── .yarnrc
+│   │   │   ├── .yarnrc.yml
+│   │   │   ├── package.json
+│   │   │   └── yarn.lock
+│   │   ├── yarn-2-with-node-modules
+│   │   │   ├── .yarn
+│   │   │   │   ├── cache
+│   │   │   │   │   ├── debug-npm-4.2.0-9392baba7e-dcfb8ede26.zip
+│   │   │   │   │   ├── lodash-npm-4.17.19-fa87a8e838-ff2b7a95f0.zip
+│   │   │   │   │   ├── ms-npm-2.1.2-ec0c1512ff-9b65fb709b.zip
+│   │   │   │   │   ├── typescript-npm-3.9.7-47ffbad2e0-10848a9c35.zip
+│   │   │   │   │   └── typescript-patch-ba0dbfd217-f0d3d9c987.zip
+│   │   │   │   ├── install-state.gz
+│   │   │   │   └── releases
+│   │   │   │       └── yarn-berry.js
+│   │   │   ├── .yarnrc.yml
+│   │   │   ├── package.json
+│   │   │   └── yarn.lock
+│   │   ├── yarn-2-without-cache
+│   │   │   ├── .pnp.js
+│   │   │   ├── .yarn
+│   │   │   │   ├── install-state.gz
+│   │   │   │   └── releases
+│   │   │   │       └── yarn-berry.js
+│   │   │   ├── .yarnrc.yml
+│   │   │   ├── package.json
+│   │   │   └── yarn.lock
+│   │   ├── yarn-2-without-workspace-plugin
+│   │   │   ├── .pnp.js
+│   │   │   ├── .yarn
+│   │   │   │   ├── cache
+│   │   │   │   │   ├── @types-node-npm-16.11.26-6163d95b7d-478d5c315f.zip
+│   │   │   │   │   ├── echo-cli-npm-2.0.0-b40e6b6835-4fd169d4d4.zip
+│   │   │   │   │   ├── string.fromcodepoint-npm-0.2.1-84d94c4fb5-715fe85fef.zip
+│   │   │   │   │   ├── unescape-js-npm-1.1.4-f41cc6935a-4891e05c1f.zip
+│   │   │   │   │   └── uuid-npm-9.0.0-46c41e3e43-5a7f936a25.zip
+│   │   │   │   └── releases
+│   │   │   │       └── yarn-berry.cjs
+│   │   │   ├── .yarnrc.yml
+│   │   │   ├── package.json
+│   │   │   └── yarn.lock
+│   │   ├── yarn-2-without-yarn
+│   │   │   ├── .yarnrc.yml
+│   │   │   ├── package.json
+│   │   │   └── yarn.lock
+│   │   ├── yarn-2-without-yarn-path
+│   │   │   ├── .pnp.js
+│   │   │   ├── .yarn
+│   │   │   │   ├── cache
+│   │   │   │   │   ├── debug-npm-4.1.1-540248b3aa-1.zip
+│   │   │   │   │   ├── lodash-npm-4.17.15-566d9324f7-1.zip
+│   │   │   │   │   └── ms-npm-2.1.2-ec0c1512ff-1.zip
+│   │   │   │   └── releases
+│   │   │   │       └── yarn-rc.js
+│   │   │   ├── .yarnrc.yml
+│   │   │   ├── package.json
+│   │   │   └── yarn.lock
+│   │   ├── yarn-2-without-yarnrc-yml
+│   │   │   ├── .pnp.js
+│   │   │   ├── .yarn
+│   │   │   │   └── cache
+│   │   │   │       ├── debug-npm-4.1.1-540248b3aa-1.zip
+│   │   │   │       ├── lodash-npm-4.17.15-566d9324f7-1.zip
+│   │   │   │       └── ms-npm-2.1.2-ec0c1512ff-1.zip
+│   │   │   ├── package.json
+│   │   │   └── yarn.lock
+│   │   ├── yarn-3
+│   │   │   ├── .pnp.cjs
+│   │   │   ├── .yarn
+│   │   │   │   ├── cache
+│   │   │   │   │   ├── @types-node-npm-16.11.26-6163d95b7d-57757caaba.zip
+│   │   │   │   │   ├── echo-cli-npm-2.0.0-b40e6b6835-81a056580e.zip
+│   │   │   │   │   ├── string.fromcodepoint-npm-0.2.1-84d94c4fb5-6ba80f70c3.zip
+│   │   │   │   │   ├── unescape-js-npm-1.1.4-f41cc6935a-97acf60a8f.zip
+│   │   │   │   │   └── uuid-npm-9.0.0-46c41e3e43-8dd2c83c43.zip
+│   │   │   │   ├── install-state.gz
+│   │   │   │   └── releases
+│   │   │   │       └── yarn-3.2.4.cjs
+│   │   │   ├── .yarnrc.yml
+│   │   │   ├── package.json
+│   │   │   └── yarn.lock
+│   │   ├── yarn-4
+│   │   │   ├── .pnp.cjs
+│   │   │   ├── .yarn
+│   │   │   │   ├── cache
+│   │   │   │   │   ├── @types-node-npm-16.11.26-6163d95b7d-8c7a9a6d08.zip
+│   │   │   │   │   ├── echo-cli-npm-2.0.0-b40e6b6835-93a888ffa5.zip
+│   │   │   │   │   ├── string.fromcodepoint-npm-0.2.1-84d94c4fb5-56752f506e.zip
+│   │   │   │   │   ├── unescape-js-npm-1.1.4-f41cc6935a-e4ad524356.zip
+│   │   │   │   │   └── uuid-npm-9.0.0-46c41e3e43-e1f76aff37.zip
+│   │   │   │   ├── install-state.gz
+│   │   │   │   └── releases
+│   │   │   │       └── yarn-4.0.0-rc.22.cjs
+│   │   │   ├── .yarnrc.yml
+│   │   │   ├── package.json
+│   │   │   └── yarn.lock
+│   │   ├── yarn-and-npm-lockfiles
+│   │   │   ├── package-lock.json
+│   │   │   ├── package.json
+│   │   │   └── yarn.lock
+│   │   ├── yarn-and-shrinkwrap-lockfiles
+│   │   │   ├── npm-shrinkwrap.json
+│   │   │   ├── package.json
+│   │   │   └── yarn.lock
+│   │   ├── yarn-engine
+│   │   │   ├── package.json
+│   │   │   └── yarn.lock
+│   │   ├── yarn-engine-with-monorepo
+│   │   │   └── package.json
+│   │   ├── yarn-invalid
+│   │   │   ├── package.json
+│   │   │   └── yarn.lock
+│   │   ├── yarn-invalid-semver
+│   │   │   ├── package.json
+│   │   │   └── yarn.lock
+│   │   ├── yarn-lockfile-out-of-date
+│   │   │   ├── package.json
+│   │   │   └── yarn.lock
+│   │   ├── yarn-native-cache
+│   │   │   ├── package.json
+│   │   │   └── yarn.lock
+│   │   ├── yarn-old-deprecated-version
+│   │   │   ├── package.json
+│   │   │   └── yarn.lock
+│   │   ├── yarn-only-engine
+│   │   │   └── package.json
+│   │   ├── yarn-run
+│   │   │   ├── package.json
+│   │   │   └── yarn.lock
+│   │   ├── yarn-semver
+│   │   │   ├── package.json
+│   │   │   └── yarn.lock
+│   │   ├── yarn-v1-semver
+│   │   │   ├── package.json
+│   │   │   └── yarn.lock
+│   │   └── yarn-workspaces
+│   │       ├── .yarnrc
+│   │       ├── package.json
+│   │       ├── packages
+│   │       │   ├── a
+│   │       │   │   ├── index.js
+│   │       │   │   └── package.json
+│   │       │   └── b
+│   │       │       ├── index.js
+│   │       │       └── package.json
+│   │       └── yarn.lock
+│   ├── quick
+│   ├── run
+│   ├── shunit2
+│   ├── unit
+│   ├── unit-fixtures
+│   │   ├── features
+│   │   │   ├── build-dir-blank
+│   │   │   │   └── heroku-buildpack-features
+│   │   │   ├── build-dir-override
+│   │   │   │   └── heroku-buildpack-features
+│   │   │   ├── features
+│   │   │   └── features-v2
+│   │   └── kvstore
+│   │       ├── empty-line
+│   │       └── no-new-line
+│   └── utils
+└── yarn2-plugins
+    └── prune-dev-dependencies
+        ├── .editorconfig
+        ├── .gitignore
+        ├── README.md
+        ├── bundles
+        │   └── @yarnpkg
+        │       └── plugin-prune-dev-dependencies.js
+        ├── jest.config.js
+        ├── package-lock.json
+        ├── package.json
+        ├── src
+        │   └── index.ts
+        ├── tests
+        │   ├── fixtures
+        │   │   └── basic-yarn-project
+        │   │       ├── .gitignore
+        │   │       ├── .yarnrc.yml
+        │   │       ├── index.js
+        │   │       └── package.json
+        │   └── plugin.spec.ts
+        └── tsconfig.json
+239 directories, 636 files
