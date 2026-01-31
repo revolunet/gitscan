@@ -1,0 +1,4072 @@
+.
+├── .bra.toml
+├── .buildpacks
+├── .circleci
+│   └── config.yml
+├── .dockerignore
+├── .editorconfig
+├── .github
+│   ├── CONTRIBUTING.md
+│   ├── ISSUE_TEMPLATE.md
+│   └── PULL_REQUEST_TEMPLATE.md
+├── .gitignore
+├── .jscs.json
+├── .jshintrc
+├── .slugignore
+├── CHANGELOG.md
+├── CODE_OF_CONDUCT.md
+├── Gopkg.lock
+├── Gopkg.toml
+├── Gruntfile.js
+├── LICENSE.md
+├── Makefile
+├── NOTICE.md
+├── PLUGIN_DEV.md
+├── Procfile
+├── README.md
+├── ROADMAP.md
+├── appveyor.yml
+├── build.go
+├── codecov.yml
+├── conf
+│   ├── defaults.ini
+│   ├── ldap.toml
+│   ├── provisioning
+│   │   ├── dashboards
+│   │   │   └── sample.yaml
+│   │   └── datasources
+│   │       └── sample.yaml
+│   └── sample.ini
+├── devenv
+│   ├── README.md
+│   ├── dashboards
+│   │   └── bulk-testing
+│   │       ├── bulk-dashboards.yaml
+│   │       └── bulkdash.jsonnet
+│   ├── datasources
+│   │   └── default
+│   │       └── default.yaml
+│   └── setup.sh
+├── docker
+│   ├── blocks
+│   │   ├── apache_proxy
+│   │   │   ├── Dockerfile
+│   │   │   ├── docker-compose.yaml
+│   │   │   ├── ports.conf
+│   │   │   └── proxy.conf
+│   │   ├── collectd
+│   │   │   ├── Dockerfile
+│   │   │   ├── README.md
+│   │   │   ├── collectd.conf.tpl
+│   │   │   ├── docker-compose.yaml
+│   │   │   ├── etc_mtab
+│   │   │   └── start_container
+│   │   ├── elastic
+│   │   │   ├── docker-compose.yaml
+│   │   │   └── elasticsearch.yml
+│   │   ├── elastic1
+│   │   │   ├── docker-compose.yaml
+│   │   │   └── elasticsearch.yml
+│   │   ├── elastic5
+│   │   │   ├── docker-compose.yaml
+│   │   │   └── elasticsearch.yml
+│   │   ├── elastic6
+│   │   │   ├── docker-compose.yaml
+│   │   │   └── elasticsearch.yml
+│   │   ├── graphite
+│   │   │   ├── Dockerfile
+│   │   │   ├── docker-compose.yaml
+│   │   │   └── files
+│   │   │       ├── carbon.conf
+│   │   │       ├── events_views.py
+│   │   │       ├── initial_data.json
+│   │   │       ├── local_settings.py
+│   │   │       ├── my_htpasswd
+│   │   │       ├── nginx.conf
+│   │   │       ├── statsd_config.js
+│   │   │       ├── storage-aggregation.conf
+│   │   │       ├── storage-schemas.conf
+│   │   │       └── supervisord.conf
+│   │   ├── graphite1
+│   │   │   ├── Dockerfile
+│   │   │   ├── big-dashboard.json
+│   │   │   ├── conf
+│   │   │   │   ├── etc
+│   │   │   │   │   ├── logrotate.d
+│   │   │   │   │   │   └── graphite-statsd
+│   │   │   │   │   ├── my_init.d
+│   │   │   │   │   │   └── 01_conf_init.sh
+│   │   │   │   │   ├── nginx
+│   │   │   │   │   │   ├── nginx.conf
+│   │   │   │   │   │   └── sites-enabled
+│   │   │   │   │   │       └── graphite-statsd.conf
+│   │   │   │   │   └── service
+│   │   │   │   │       ├── carbon
+│   │   │   │   │       │   └── run
+│   │   │   │   │       ├── carbon-aggregator
+│   │   │   │   │       │   └── run
+│   │   │   │   │       ├── graphite
+│   │   │   │   │       │   └── run
+│   │   │   │   │       ├── nginx
+│   │   │   │   │       │   └── run
+│   │   │   │   │       └── statsd
+│   │   │   │   │           └── run
+│   │   │   │   ├── opt
+│   │   │   │   │   ├── graphite
+│   │   │   │   │   │   ├── conf
+│   │   │   │   │   │   │   ├── aggregation-rules.conf
+│   │   │   │   │   │   │   ├── blacklist.conf
+│   │   │   │   │   │   │   ├── carbon.amqp.conf
+│   │   │   │   │   │   │   ├── carbon.conf
+│   │   │   │   │   │   │   ├── dashboard.conf
+│   │   │   │   │   │   │   ├── graphTemplates.conf
+│   │   │   │   │   │   │   ├── relay-rules.conf
+│   │   │   │   │   │   │   ├── rewrite-rules.conf
+│   │   │   │   │   │   │   ├── storage-aggregation.conf
+│   │   │   │   │   │   │   ├── storage-schemas.conf
+│   │   │   │   │   │   │   └── whitelist.conf
+│   │   │   │   │   │   └── webapp
+│   │   │   │   │   │       └── graphite
+│   │   │   │   │   │           ├── app_settings.py
+│   │   │   │   │   │           └── local_settings.py
+│   │   │   │   │   └── statsd
+│   │   │   │   │       └── config.js
+│   │   │   │   └── usr
+│   │   │   │       └── local
+│   │   │   │           └── bin
+│   │   │   │               ├── django_admin_init.exp
+│   │   │   │               └── manage.sh
+│   │   │   └── docker-compose.yaml
+│   │   ├── graphite11
+│   │   │   ├── big-dashboard.json
+│   │   │   └── docker-compose.yaml
+│   │   ├── influxdb
+│   │   │   ├── docker-compose.yaml
+│   │   │   └── influxdb.conf
+│   │   ├── jaeger
+│   │   │   └── docker-compose.yaml
+│   │   ├── memcached
+│   │   │   └── docker-compose.yaml
+│   │   ├── mssql
+│   │   │   ├── build
+│   │   │   │   ├── Dockerfile
+│   │   │   │   ├── entrypoint.sh
+│   │   │   │   ├── setup.sh
+│   │   │   │   └── setup.sql.template
+│   │   │   ├── dashboard.json
+│   │   │   └── docker-compose.yaml
+│   │   ├── mssql_tests
+│   │   │   ├── dashboard.json
+│   │   │   └── docker-compose.yaml
+│   │   ├── mysql
+│   │   │   ├── config
+│   │   │   ├── dashboard.json
+│   │   │   └── docker-compose.yaml
+│   │   ├── mysql_opendata
+│   │   │   ├── Dockerfile
+│   │   │   ├── docker-compose.yaml
+│   │   │   └── import_csv.sql
+│   │   ├── mysql_tests
+│   │   │   ├── Dockerfile
+│   │   │   ├── dashboard.json
+│   │   │   ├── docker-compose.yaml
+│   │   │   └── setup.sql
+│   │   ├── nginx_proxy
+│   │   │   ├── Dockerfile
+│   │   │   ├── docker-compose.yaml
+│   │   │   └── nginx.conf
+│   │   ├── openldap
+│   │   │   ├── Dockerfile
+│   │   │   ├── docker-compose.yaml
+│   │   │   ├── entrypoint.sh
+│   │   │   ├── modules
+│   │   │   │   └── memberof.ldif
+│   │   │   ├── notes.md
+│   │   │   └── prepopulate
+│   │   │       ├── admin.ldif
+│   │   │       ├── adminsgroup.ldif
+│   │   │       ├── editor.ldif
+│   │   │       ├── usersgroup.ldif
+│   │   │       └── viewer.ldif
+│   │   ├── opentsdb
+│   │   │   └── docker-compose.yaml
+│   │   ├── postgres
+│   │   │   ├── dashboard.json
+│   │   │   └── docker-compose.yaml
+│   │   ├── postgres_tests
+│   │   │   ├── Dockerfile
+│   │   │   ├── dashboard.json
+│   │   │   ├── docker-compose.yaml
+│   │   │   └── setup.sql
+│   │   ├── prometheus
+│   │   │   ├── Dockerfile
+│   │   │   ├── alert.rules
+│   │   │   ├── docker-compose.yaml
+│   │   │   └── prometheus.yml
+│   │   ├── prometheus2
+│   │   │   ├── Dockerfile
+│   │   │   ├── alert.rules
+│   │   │   ├── docker-compose.yaml
+│   │   │   └── prometheus.yml
+│   │   ├── prometheus_mac
+│   │   │   ├── Dockerfile
+│   │   │   ├── alert.rules
+│   │   │   ├── docker-compose.yaml
+│   │   │   └── prometheus.yml
+│   │   ├── prometheus_random_data
+│   │   │   └── Dockerfile
+│   │   └── smtp
+│   │       ├── Dockerfile
+│   │       ├── bootstrap.sh
+│   │       └── docker-compose.yaml
+│   ├── buildcontainer
+│   │   ├── Dockerfile
+│   │   ├── build.sh
+│   │   ├── build_circle.sh
+│   │   └── run_circle.sh
+│   ├── compose_header.yml
+│   ├── create_docker_compose.sh
+│   ├── debtest
+│   │   ├── Dockerfile
+│   │   └── build.sh
+│   └── rpmtest
+│       └── build.sh
+├── docs
+│   ├── Dockerfile
+│   ├── Makefile
+│   ├── README.md
+│   ├── VERSION
+│   ├── config.toml
+│   ├── publish.sh
+│   ├── s3_website.json
+│   ├── sources
+│   │   ├── administration
+│   │   │   ├── cli.md
+│   │   │   ├── index.md
+│   │   │   ├── metrics.md
+│   │   │   ├── permissions.md
+│   │   │   └── provisioning.md
+│   │   ├── alerting
+│   │   │   ├── index.md
+│   │   │   ├── metrics.md
+│   │   │   ├── notifications.md
+│   │   │   └── rules.md
+│   │   ├── archive.md
+│   │   ├── contribute
+│   │   │   ├── cla.md
+│   │   │   └── index.md
+│   │   ├── features
+│   │   │   ├── dashboard
+│   │   │   │   └── index.md
+│   │   │   ├── datasources
+│   │   │   │   ├── cloudwatch.md
+│   │   │   │   ├── elasticsearch.md
+│   │   │   │   ├── graphite.md
+│   │   │   │   ├── index.md
+│   │   │   │   ├── influxdb.md
+│   │   │   │   ├── mssql.md
+│   │   │   │   ├── mysql.md
+│   │   │   │   ├── opentsdb.md
+│   │   │   │   ├── postgres.md
+│   │   │   │   ├── prometheus.md
+│   │   │   │   └── testdata.md
+│   │   │   ├── index.md
+│   │   │   ├── panels
+│   │   │   │   ├── alertlist.md
+│   │   │   │   ├── dashlist.md
+│   │   │   │   ├── graph.md
+│   │   │   │   ├── heatmap.md
+│   │   │   │   ├── index.md
+│   │   │   │   ├── singlestat.md
+│   │   │   │   ├── table_panel.md
+│   │   │   │   └── text.md
+│   │   │   └── shortcuts.md
+│   │   ├── guides
+│   │   │   ├── basic_concepts.md
+│   │   │   ├── getting_started.md
+│   │   │   ├── index.md
+│   │   │   ├── whats-new-in-v2-1.md
+│   │   │   ├── whats-new-in-v2-5.md
+│   │   │   ├── whats-new-in-v2-6.md
+│   │   │   ├── whats-new-in-v2.md
+│   │   │   ├── whats-new-in-v3-1.md
+│   │   │   ├── whats-new-in-v3.md
+│   │   │   ├── whats-new-in-v4-1.md
+│   │   │   ├── whats-new-in-v4-2.md
+│   │   │   ├── whats-new-in-v4-3.md
+│   │   │   ├── whats-new-in-v4-4.md
+│   │   │   ├── whats-new-in-v4-5.md
+│   │   │   ├── whats-new-in-v4-6.md
+│   │   │   ├── whats-new-in-v4.md
+│   │   │   ├── whats-new-in-v5-1.md
+│   │   │   ├── whats-new-in-v5-2.md
+│   │   │   └── whats-new-in-v5.md
+│   │   ├── http_api
+│   │   │   ├── admin.md
+│   │   │   ├── alerting.md
+│   │   │   ├── annotations.md
+│   │   │   ├── auth.md
+│   │   │   ├── dashboard.md
+│   │   │   ├── dashboard_permissions.md
+│   │   │   ├── dashboard_versions.md
+│   │   │   ├── data_source.md
+│   │   │   ├── folder.md
+│   │   │   ├── folder_dashboard_search.md
+│   │   │   ├── folder_permissions.md
+│   │   │   ├── index.md
+│   │   │   ├── org.md
+│   │   │   ├── other.md
+│   │   │   ├── preferences.md
+│   │   │   ├── snapshot.md
+│   │   │   ├── team.md
+│   │   │   └── user.md
+│   │   ├── index.md
+│   │   ├── installation
+│   │   │   ├── behind_proxy.md
+│   │   │   ├── configuration.md
+│   │   │   ├── debian.md
+│   │   │   ├── docker.md
+│   │   │   ├── index.md
+│   │   │   ├── ldap.md
+│   │   │   ├── mac.md
+│   │   │   ├── migrating_to2.md
+│   │   │   ├── rpm.md
+│   │   │   ├── troubleshooting.md
+│   │   │   ├── upgrading.md
+│   │   │   └── windows.md
+│   │   ├── jsearch.md
+│   │   ├── plugins
+│   │   │   ├── developing
+│   │   │   │   ├── apps.md
+│   │   │   │   ├── code-styleguide.md
+│   │   │   │   ├── datasources.md
+│   │   │   │   ├── defaults-and-editor-mode.md
+│   │   │   │   ├── development.md
+│   │   │   │   ├── index.md
+│   │   │   │   ├── panels.md
+│   │   │   │   ├── plugin.json.md
+│   │   │   │   └── snapshot-mode.md
+│   │   │   ├── index.md
+│   │   │   └── installation.md
+│   │   ├── project
+│   │   │   ├── building_from_source.md
+│   │   │   └── index.md
+│   │   ├── reference
+│   │   │   ├── annotations.md
+│   │   │   ├── dashboard.md
+│   │   │   ├── dashboard_folders.md
+│   │   │   ├── dashboard_history.md
+│   │   │   ├── export_import.md
+│   │   │   ├── index.md
+│   │   │   ├── playlist.md
+│   │   │   ├── scripting.md
+│   │   │   ├── search.md
+│   │   │   ├── sharing.md
+│   │   │   ├── templating.md
+│   │   │   └── timerange.md
+│   │   ├── search.md
+│   │   ├── test.md
+│   │   ├── tutorials
+│   │   │   ├── api_org_token_howto.md
+│   │   │   ├── authproxy.md
+│   │   │   ├── ha_setup.md
+│   │   │   ├── hubot_howto.md
+│   │   │   ├── iis.md
+│   │   │   ├── index.md
+│   │   │   ├── screencasts.md
+│   │   │   └── stack_guide_graphite.md
+│   │   ├── versions.html_fragment
+│   │   └── whatsnew
+│   │       └── index.md
+│   ├── versions.json
+│   └── yarn.lock
+├── emails
+│   ├── README.md
+│   ├── assets
+│   │   └── css
+│   │       ├── ink.css
+│   │       └── style.css
+│   ├── grunt
+│   │   ├── aliases.yaml
+│   │   ├── assemble.js
+│   │   ├── clean.js
+│   │   ├── premailer.js
+│   │   ├── processhtml.js
+│   │   ├── replace.js
+│   │   ├── uncss.js
+│   │   └── watch.js
+│   ├── gruntfile.js
+│   ├── package.json
+│   └── templates
+│       ├── alert_notification.html
+│       ├── invited_to_org.html
+│       ├── layouts
+│       │   └── default.html
+│       ├── new_user_invite.html
+│       ├── reset_password.html
+│       ├── signup_started.html
+│       └── welcome_on_signup.html
+├── examples
+│   ├── README.md
+│   ├── alerting-dashboard.json
+│   └── alerting-multiple-alerts.json
+├── grafana.png
+├── jest.config.js
+├── karma.conf.js
+├── latest.json
+├── package.json
+├── packaging
+│   ├── deb
+│   │   ├── control
+│   │   │   └── postinst
+│   │   ├── default
+│   │   │   └── grafana-server
+│   │   ├── init.d
+│   │   │   └── grafana-server
+│   │   └── systemd
+│   │       └── grafana-server.service
+│   ├── mac
+│   │   └── bin
+│   │       └── grafana
+│   ├── publish
+│   │   ├── publish_both.sh
+│   │   └── publish_testing.sh
+│   ├── release_process.md
+│   └── rpm
+│       ├── control
+│       │   ├── postinst
+│       │   └── posttrans
+│       ├── init.d
+│       │   └── grafana-server
+│       ├── sysconfig
+│       │   └── grafana-server
+│       └── systemd
+│           └── grafana-server.service
+├── pkg
+│   ├── api
+│   │   ├── admin.go
+│   │   ├── admin_users.go
+│   │   ├── alerting.go
+│   │   ├── alerting_test.go
+│   │   ├── annotations.go
+│   │   ├── annotations_test.go
+│   │   ├── api.go
+│   │   ├── apikey.go
+│   │   ├── app_routes.go
+│   │   ├── avatar
+│   │   │   └── avatar.go
+│   │   ├── common.go
+│   │   ├── common_test.go
+│   │   ├── dashboard.go
+│   │   ├── dashboard_permission.go
+│   │   ├── dashboard_permission_test.go
+│   │   ├── dashboard_snapshot.go
+│   │   ├── dashboard_snapshot_test.go
+│   │   ├── dashboard_test.go
+│   │   ├── dataproxy.go
+│   │   ├── datasources.go
+│   │   ├── datasources_test.go
+│   │   ├── dtos
+│   │   │   ├── acl.go
+│   │   │   ├── alerting.go
+│   │   │   ├── annotations.go
+│   │   │   ├── apikey.go
+│   │   │   ├── dashboard.go
+│   │   │   ├── datasource.go
+│   │   │   ├── folder.go
+│   │   │   ├── index.go
+│   │   │   ├── invite.go
+│   │   │   ├── models.go
+│   │   │   ├── org.go
+│   │   │   ├── playlist.go
+│   │   │   ├── plugins.go
+│   │   │   ├── prefs.go
+│   │   │   ├── stream.go
+│   │   │   └── user.go
+│   │   ├── folder.go
+│   │   ├── folder_permission.go
+│   │   ├── folder_permission_test.go
+│   │   ├── folder_test.go
+│   │   ├── frontendsettings.go
+│   │   ├── grafana_com_proxy.go
+│   │   ├── http_server.go
+│   │   ├── index.go
+│   │   ├── live
+│   │   │   ├── conn.go
+│   │   │   ├── hub.go
+│   │   │   └── stream_manager.go
+│   │   ├── login.go
+│   │   ├── login_oauth.go
+│   │   ├── metrics.go
+│   │   ├── org.go
+│   │   ├── org_invite.go
+│   │   ├── org_users.go
+│   │   ├── password.go
+│   │   ├── playlist.go
+│   │   ├── playlist_play.go
+│   │   ├── pluginproxy
+│   │   │   ├── ds_proxy.go
+│   │   │   ├── ds_proxy_test.go
+│   │   │   ├── pluginproxy.go
+│   │   │   ├── pluginproxy_test.go
+│   │   │   └── test-data
+│   │   │       ├── access-token-1.json
+│   │   │       └── access-token-2.json
+│   │   ├── plugins.go
+│   │   ├── preferences.go
+│   │   ├── quota.go
+│   │   ├── render.go
+│   │   ├── route_register.go
+│   │   ├── route_register_test.go
+│   │   ├── search.go
+│   │   ├── signup.go
+│   │   ├── stars.go
+│   │   ├── static
+│   │   │   └── static.go
+│   │   ├── team.go
+│   │   ├── team_members.go
+│   │   ├── team_test.go
+│   │   ├── user.go
+│   │   └── user_test.go
+│   ├── bus
+│   │   ├── bus.go
+│   │   └── bus_test.go
+│   ├── cmd
+│   │   ├── grafana-cli
+│   │   │   ├── commands
+│   │   │   │   ├── command_line.go
+│   │   │   │   ├── commands.go
+│   │   │   │   ├── commandstest
+│   │   │   │   │   ├── fake_commandLine.go
+│   │   │   │   │   └── fake_ioutil.go
+│   │   │   │   ├── install_command.go
+│   │   │   │   ├── install_command_test.go
+│   │   │   │   ├── listremote_command.go
+│   │   │   │   ├── listversions_command.go
+│   │   │   │   ├── ls_command.go
+│   │   │   │   ├── ls_command_test.go
+│   │   │   │   ├── remove_command.go
+│   │   │   │   ├── reset_password_command.go
+│   │   │   │   ├── upgrade_all_command.go
+│   │   │   │   ├── upgrade_all_command_test.go
+│   │   │   │   └── upgrade_command.go
+│   │   │   ├── logger
+│   │   │   │   └── logger.go
+│   │   │   ├── main.go
+│   │   │   ├── models
+│   │   │   │   └── model.go
+│   │   │   ├── services
+│   │   │   │   ├── io_util.go
+│   │   │   │   └── services.go
+│   │   │   └── utils
+│   │   │       └── grafana_path.go
+│   │   └── grafana-server
+│   │       ├── main.go
+│   │       └── server.go
+│   ├── components
+│   │   ├── apikeygen
+│   │   │   ├── apikeygen.go
+│   │   │   └── apikeygen_test.go
+│   │   ├── dashdiffs
+│   │   │   ├── compare.go
+│   │   │   ├── formatter_basic.go
+│   │   │   ├── formatter_json.go
+│   │   │   └── formatter_test.go
+│   │   ├── dynmap
+│   │   │   ├── dynmap.go
+│   │   │   └── dynmap_test.go
+│   │   ├── imguploader
+│   │   │   ├── azureblobuploader.go
+│   │   │   ├── azureblobuploader_test.go
+│   │   │   ├── gcsuploader.go
+│   │   │   ├── gcsuploader_test.go
+│   │   │   ├── imguploader.go
+│   │   │   ├── imguploader_test.go
+│   │   │   ├── localuploader.go
+│   │   │   ├── localuploader_test.go
+│   │   │   ├── s3uploader.go
+│   │   │   ├── s3uploader_test.go
+│   │   │   ├── webdavuploader.go
+│   │   │   └── webdavuploader_test.go
+│   │   ├── null
+│   │   │   └── float.go
+│   │   ├── securejsondata
+│   │   │   └── securejsondata.go
+│   │   └── simplejson
+│   │       ├── simplejson.go
+│   │       ├── simplejson_go11.go
+│   │       └── simplejson_test.go
+│   ├── events
+│   │   ├── events.go
+│   │   └── events_test.go
+│   ├── extensions
+│   │   └── main.go
+│   ├── log
+│   │   ├── file.go
+│   │   ├── file_test.go
+│   │   ├── handlers.go
+│   │   ├── interface.go
+│   │   ├── log.go
+│   │   ├── log_writer.go
+│   │   ├── log_writer_test.go
+│   │   ├── syslog.go
+│   │   └── syslog_windows.go
+│   ├── login
+│   │   ├── auth.go
+│   │   ├── auth_test.go
+│   │   ├── brute_force_login_protection.go
+│   │   ├── brute_force_login_protection_test.go
+│   │   ├── ext_user.go
+│   │   ├── grafana_login.go
+│   │   ├── grafana_login_test.go
+│   │   ├── ldap.go
+│   │   ├── ldap_login.go
+│   │   ├── ldap_login_test.go
+│   │   ├── ldap_settings.go
+│   │   ├── ldap_test.go
+│   │   └── ldap_user.go
+│   ├── metrics
+│   │   ├── graphitebridge
+│   │   │   ├── graphite.go
+│   │   │   └── graphite_test.go
+│   │   ├── metrics.go
+│   │   ├── metrics_test.go
+│   │   ├── service.go
+│   │   └── settings.go
+│   ├── middleware
+│   │   ├── auth.go
+│   │   ├── auth_proxy.go
+│   │   ├── auth_proxy_test.go
+│   │   ├── auth_test.go
+│   │   ├── dashboard_redirect.go
+│   │   ├── dashboard_redirect_test.go
+│   │   ├── logger.go
+│   │   ├── middleware.go
+│   │   ├── middleware_test.go
+│   │   ├── org_redirect.go
+│   │   ├── org_redirect_test.go
+│   │   ├── perf.go
+│   │   ├── quota.go
+│   │   ├── quota_test.go
+│   │   ├── recovery.go
+│   │   ├── recovery_test.go
+│   │   ├── render_auth.go
+│   │   ├── request_metrics.go
+│   │   ├── request_tracing.go
+│   │   ├── session.go
+│   │   ├── util.go
+│   │   └── validate_host.go
+│   ├── models
+│   │   ├── address.go
+│   │   ├── alert.go
+│   │   ├── alert_notifications.go
+│   │   ├── alert_test.go
+│   │   ├── apikey.go
+│   │   ├── context.go
+│   │   ├── dashboard_acl.go
+│   │   ├── dashboard_acl_test.go
+│   │   ├── dashboard_snapshot.go
+│   │   ├── dashboard_version.go
+│   │   ├── dashboards.go
+│   │   ├── dashboards_test.go
+│   │   ├── datasource.go
+│   │   ├── datasource_cache.go
+│   │   ├── datasource_cache_test.go
+│   │   ├── folders.go
+│   │   ├── health.go
+│   │   ├── helpflags.go
+│   │   ├── home_dashboard.go
+│   │   ├── login_attempt.go
+│   │   ├── models.go
+│   │   ├── notifications.go
+│   │   ├── org.go
+│   │   ├── org_user.go
+│   │   ├── playlist.go
+│   │   ├── plugin_settings.go
+│   │   ├── preferences.go
+│   │   ├── quotas.go
+│   │   ├── search.go
+│   │   ├── star.go
+│   │   ├── stats.go
+│   │   ├── streams.go
+│   │   ├── tags.go
+│   │   ├── tags_test.go
+│   │   ├── team.go
+│   │   ├── team_member.go
+│   │   ├── temp_user.go
+│   │   ├── test_data.go
+│   │   ├── user.go
+│   │   └── user_auth.go
+│   ├── plugins
+│   │   ├── app_plugin.go
+│   │   ├── backend_utils.go
+│   │   ├── dashboard_importer.go
+│   │   ├── dashboard_importer_test.go
+│   │   ├── dashboards.go
+│   │   ├── dashboards_test.go
+│   │   ├── dashboards_updater.go
+│   │   ├── datasource
+│   │   │   └── wrapper
+│   │   │       ├── datasource_plugin_wrapper.go
+│   │   │       └── datasource_plugin_wrapper_test.go
+│   │   ├── datasource_plugin.go
+│   │   ├── frontend_plugin.go
+│   │   ├── frontend_plugin_test.go
+│   │   ├── hclog-wrapper.go
+│   │   ├── models.go
+│   │   ├── panel_plugin.go
+│   │   ├── plugins.go
+│   │   ├── plugins_test.go
+│   │   ├── queries.go
+│   │   ├── renderer_plugin.go
+│   │   └── update_checker.go
+│   ├── registry
+│   │   └── registry.go
+│   ├── services
+│   │   ├── alerting
+│   │   │   ├── commands.go
+│   │   │   ├── conditions
+│   │   │   │   ├── evaluator.go
+│   │   │   │   ├── evaluator_test.go
+│   │   │   │   ├── query.go
+│   │   │   │   ├── query_test.go
+│   │   │   │   ├── reducer.go
+│   │   │   │   └── reducer_test.go
+│   │   │   ├── engine.go
+│   │   │   ├── engine_test.go
+│   │   │   ├── eval_context.go
+│   │   │   ├── eval_context_test.go
+│   │   │   ├── eval_handler.go
+│   │   │   ├── eval_handler_test.go
+│   │   │   ├── extractor.go
+│   │   │   ├── extractor_test.go
+│   │   │   ├── interfaces.go
+│   │   │   ├── models.go
+│   │   │   ├── notifier.go
+│   │   │   ├── notifiers
+│   │   │   │   ├── alertmanager.go
+│   │   │   │   ├── alertmanager_test.go
+│   │   │   │   ├── base.go
+│   │   │   │   ├── base_test.go
+│   │   │   │   ├── dingding.go
+│   │   │   │   ├── dingding_test.go
+│   │   │   │   ├── discord.go
+│   │   │   │   ├── discord_test.go
+│   │   │   │   ├── email.go
+│   │   │   │   ├── email_test.go
+│   │   │   │   ├── hipchat.go
+│   │   │   │   ├── hipchat_test.go
+│   │   │   │   ├── kafka.go
+│   │   │   │   ├── kafka_test.go
+│   │   │   │   ├── line.go
+│   │   │   │   ├── line_test.go
+│   │   │   │   ├── opsgenie.go
+│   │   │   │   ├── opsgenie_test.go
+│   │   │   │   ├── pagerduty.go
+│   │   │   │   ├── pagerduty_test.go
+│   │   │   │   ├── pushover.go
+│   │   │   │   ├── pushover_test.go
+│   │   │   │   ├── sensu.go
+│   │   │   │   ├── sensu_test.go
+│   │   │   │   ├── slack.go
+│   │   │   │   ├── slack_test.go
+│   │   │   │   ├── teams.go
+│   │   │   │   ├── teams_test.go
+│   │   │   │   ├── telegram.go
+│   │   │   │   ├── telegram_test.go
+│   │   │   │   ├── threema.go
+│   │   │   │   ├── threema_test.go
+│   │   │   │   ├── victorops.go
+│   │   │   │   ├── victorops_test.go
+│   │   │   │   ├── webhook.go
+│   │   │   │   └── webhook_test.go
+│   │   │   ├── reader.go
+│   │   │   ├── result_handler.go
+│   │   │   ├── rule.go
+│   │   │   ├── rule_test.go
+│   │   │   ├── scheduler.go
+│   │   │   ├── test-data
+│   │   │   │   ├── collapsed-panels.json
+│   │   │   │   ├── dash-without-id.json
+│   │   │   │   ├── graphite-alert.json
+│   │   │   │   ├── influxdb-alert.json
+│   │   │   │   ├── panel-with-id-0.json
+│   │   │   │   ├── panels-missing-id.json
+│   │   │   │   └── v5-dashboard.json
+│   │   │   ├── test_notification.go
+│   │   │   ├── test_rule.go
+│   │   │   ├── ticker.go
+│   │   │   └── ticker_test.go
+│   │   ├── annotations
+│   │   │   └── annotations.go
+│   │   ├── cleanup
+│   │   │   └── cleanup.go
+│   │   ├── dashboards
+│   │   │   ├── dashboard_service.go
+│   │   │   ├── dashboard_service_test.go
+│   │   │   ├── folder_service.go
+│   │   │   └── folder_service_test.go
+│   │   ├── guardian
+│   │   │   ├── guardian.go
+│   │   │   ├── guardian_test.go
+│   │   │   └── guardian_util_test.go
+│   │   ├── notifications
+│   │   │   ├── codes.go
+│   │   │   ├── codes_test.go
+│   │   │   ├── email.go
+│   │   │   ├── mailer.go
+│   │   │   ├── notifications.go
+│   │   │   ├── notifications_test.go
+│   │   │   ├── send_email_integration_test.go
+│   │   │   └── webhook.go
+│   │   ├── provisioning
+│   │   │   ├── dashboards
+│   │   │   │   ├── config_reader.go
+│   │   │   │   ├── config_reader_test.go
+│   │   │   │   ├── dashboard.go
+│   │   │   │   ├── file_reader.go
+│   │   │   │   ├── file_reader_linux_test.go
+│   │   │   │   ├── file_reader_test.go
+│   │   │   │   ├── testdata
+│   │   │   │   │   ├── test-configs
+│   │   │   │   │   │   ├── broken-configs
+│   │   │   │   │   │   │   └── commented.yaml
+│   │   │   │   │   │   ├── dashboards-from-disk
+│   │   │   │   │   │   │   ├── dev-dashboards.yaml
+│   │   │   │   │   │   │   └── sample.yaml
+│   │   │   │   │   │   └── version-0
+│   │   │   │   │   │       └── version-0.yaml
+│   │   │   │   │   └── test-dashboards
+│   │   │   │   │       ├── broken-dashboards
+│   │   │   │   │       │   ├── empty-json.json
+│   │   │   │   │       │   └── invalid.json
+│   │   │   │   │       ├── containing-id
+│   │   │   │   │       │   └── dashboard1.json
+│   │   │   │   │       ├── folder-one
+│   │   │   │   │       │   ├── dashboard1.json
+│   │   │   │   │       │   └── dashboard2.json
+│   │   │   │   │       ├── one-dashboard
+│   │   │   │   │       │   └── dashboard1.json
+│   │   │   │   │       └── symlink -> containing-id/
+│   │   │   │   └── types.go
+│   │   │   ├── datasources
+│   │   │   │   ├── config_reader.go
+│   │   │   │   ├── config_reader_test.go
+│   │   │   │   ├── datasources.go
+│   │   │   │   ├── testdata
+│   │   │   │   │   ├── all-properties
+│   │   │   │   │   │   ├── all-properties.yaml
+│   │   │   │   │   │   ├── not.yaml.txt
+│   │   │   │   │   │   ├── sample.yaml
+│   │   │   │   │   │   └── second.yaml
+│   │   │   │   │   ├── broken-yaml
+│   │   │   │   │   │   ├── broken.yaml
+│   │   │   │   │   │   └── commented.yaml
+│   │   │   │   │   ├── double-default
+│   │   │   │   │   │   ├── default-1.yaml
+│   │   │   │   │   │   └── default-2.yaml
+│   │   │   │   │   ├── insert-two-delete-two
+│   │   │   │   │   │   ├── one-datasources.yaml
+│   │   │   │   │   │   └── two-datasources.yml
+│   │   │   │   │   ├── two-datasources
+│   │   │   │   │   │   └── two-datasources.yaml
+│   │   │   │   │   ├── version-0
+│   │   │   │   │   │   └── version-0.yaml
+│   │   │   │   │   └── zero-datasources
+│   │   │   │   │       └── placeholder-for-git
+│   │   │   │   └── types.go
+│   │   │   └── provisioning.go
+│   │   ├── quota
+│   │   │   └── quota.go
+│   │   ├── rendering
+│   │   │   ├── http_mode.go
+│   │   │   ├── interface.go
+│   │   │   ├── phantomjs.go
+│   │   │   ├── plugin_mode.go
+│   │   │   └── rendering.go
+│   │   ├── search
+│   │   │   ├── handlers.go
+│   │   │   ├── handlers_test.go
+│   │   │   └── models.go
+│   │   ├── session
+│   │   │   ├── mysql.go
+│   │   │   └── session.go
+│   │   └── sqlstore
+│   │       ├── alert.go
+│   │       ├── alert_notification.go
+│   │       ├── alert_notification_test.go
+│   │       ├── alert_test.go
+│   │       ├── annotation.go
+│   │       ├── annotation_test.go
+│   │       ├── apikey.go
+│   │       ├── apikey_test.go
+│   │       ├── dashboard.go
+│   │       ├── dashboard_acl.go
+│   │       ├── dashboard_acl_test.go
+│   │       ├── dashboard_folder_test.go
+│   │       ├── dashboard_provisioning.go
+│   │       ├── dashboard_provisioning_test.go
+│   │       ├── dashboard_service_integration_test.go
+│   │       ├── dashboard_snapshot.go
+│   │       ├── dashboard_snapshot_test.go
+│   │       ├── dashboard_test.go
+│   │       ├── dashboard_version.go
+│   │       ├── dashboard_version_test.go
+│   │       ├── datasource.go
+│   │       ├── datasource_test.go
+│   │       ├── health.go
+│   │       ├── logger.go
+│   │       ├── login_attempt.go
+│   │       ├── login_attempt_test.go
+│   │       ├── migrations
+│   │       │   ├── alert_mig.go
+│   │       │   ├── annotation_mig.go
+│   │       │   ├── apikey_mig.go
+│   │       │   ├── common.go
+│   │       │   ├── dashboard_acl.go
+│   │       │   ├── dashboard_mig.go
+│   │       │   ├── dashboard_snapshot_mig.go
+│   │       │   ├── dashboard_version_mig.go
+│   │       │   ├── datasource_mig.go
+│   │       │   ├── heartbeat_mig.go
+│   │       │   ├── login_attempt_mig.go
+│   │       │   ├── migrations.go
+│   │       │   ├── migrations_test.go
+│   │       │   ├── org_mig.go
+│   │       │   ├── playlist_mig.go
+│   │       │   ├── plugin_setting.go
+│   │       │   ├── preferences_mig.go
+│   │       │   ├── quota_mig.go
+│   │       │   ├── session_mig.go
+│   │       │   ├── stats_mig.go
+│   │       │   ├── tag_mig.go
+│   │       │   ├── team_mig.go
+│   │       │   ├── temp_user.go
+│   │       │   ├── user_auth_mig.go
+│   │       │   └── user_mig.go
+│   │       ├── migrator
+│   │       │   ├── column.go
+│   │       │   ├── conditions.go
+│   │       │   ├── dialect.go
+│   │       │   ├── migrations.go
+│   │       │   ├── migrator.go
+│   │       │   ├── mysql_dialect.go
+│   │       │   ├── postgres_dialect.go
+│   │       │   ├── sqlite_dialect.go
+│   │       │   └── types.go
+│   │       ├── org.go
+│   │       ├── org_test.go
+│   │       ├── org_users.go
+│   │       ├── playlist.go
+│   │       ├── playlist_test.go
+│   │       ├── plugin_setting.go
+│   │       ├── preferences.go
+│   │       ├── quota.go
+│   │       ├── quota_test.go
+│   │       ├── search_builder.go
+│   │       ├── search_builder_test.go
+│   │       ├── shared.go
+│   │       ├── sql_test_data.go
+│   │       ├── sqlbuilder.go
+│   │       ├── sqlstore.go
+│   │       ├── sqlstore.goconvey
+│   │       ├── sqlutil
+│   │       │   └── sqlutil.go
+│   │       ├── star.go
+│   │       ├── stars_test.go
+│   │       ├── stats.go
+│   │       ├── stats_test.go
+│   │       ├── tables.go
+│   │       ├── team.go
+│   │       ├── team_test.go
+│   │       ├── temp_user.go
+│   │       ├── temp_user_test.go
+│   │       ├── tls_mysql.go
+│   │       ├── user.go
+│   │       ├── user_auth.go
+│   │       ├── user_auth_test.go
+│   │       └── user_test.go
+│   ├── setting
+│   │   ├── setting.go
+│   │   ├── setting_oauth.go
+│   │   ├── setting_quota.go
+│   │   ├── setting_smtp.go
+│   │   └── setting_test.go
+│   ├── social
+│   │   ├── common.go
+│   │   ├── generic_oauth.go
+│   │   ├── github_oauth.go
+│   │   ├── google_oauth.go
+│   │   ├── grafana_com_oauth.go
+│   │   └── social.go
+│   ├── tracing
+│   │   ├── tracing.go
+│   │   └── tracing_test.go
+│   ├── tsdb
+│   │   ├── cloudwatch
+│   │   │   ├── annotation_query.go
+│   │   │   ├── cloudwatch.go
+│   │   │   ├── cloudwatch_test.go
+│   │   │   ├── credentials.go
+│   │   │   ├── credentials_test.go
+│   │   │   ├── metric_find_query.go
+│   │   │   ├── metric_find_query_test.go
+│   │   │   └── types.go
+│   │   ├── elasticsearch
+│   │   │   ├── client
+│   │   │   │   ├── client.go
+│   │   │   │   ├── client_test.go
+│   │   │   │   ├── index_pattern.go
+│   │   │   │   ├── index_pattern_test.go
+│   │   │   │   ├── models.go
+│   │   │   │   ├── search_request.go
+│   │   │   │   └── search_request_test.go
+│   │   │   ├── elasticsearch.go
+│   │   │   ├── models.go
+│   │   │   ├── response_parser.go
+│   │   │   ├── response_parser_test.go
+│   │   │   ├── time_series_query.go
+│   │   │   └── time_series_query_test.go
+│   │   ├── fake_test.go
+│   │   ├── graphite
+│   │   │   ├── graphite.go
+│   │   │   ├── graphite_test.go
+│   │   │   └── types.go
+│   │   ├── influxdb
+│   │   │   ├── influxdb.go
+│   │   │   ├── model_parser.go
+│   │   │   ├── model_parser_test.go
+│   │   │   ├── models.go
+│   │   │   ├── query.go
+│   │   │   ├── query_part.go
+│   │   │   ├── query_part_test.go
+│   │   │   ├── query_test.go
+│   │   │   ├── response_parser.go
+│   │   │   └── response_parser_test.go
+│   │   ├── interval.go
+│   │   ├── interval_test.go
+│   │   ├── models.go
+│   │   ├── mssql
+│   │   │   ├── macros.go
+│   │   │   ├── macros_test.go
+│   │   │   ├── mssql.go
+│   │   │   └── mssql_test.go
+│   │   ├── mysql
+│   │   │   ├── macros.go
+│   │   │   ├── macros_test.go
+│   │   │   ├── mysql.go
+│   │   │   └── mysql_test.go
+│   │   ├── opentsdb
+│   │   │   ├── opentsdb.go
+│   │   │   ├── opentsdb_test.go
+│   │   │   └── types.go
+│   │   ├── postgres
+│   │   │   ├── macros.go
+│   │   │   ├── macros_test.go
+│   │   │   ├── postgres.go
+│   │   │   └── postgres_test.go
+│   │   ├── prometheus
+│   │   │   ├── prometheus.go
+│   │   │   ├── prometheus_test.go
+│   │   │   └── types.go
+│   │   ├── query_endpoint.go
+│   │   ├── request.go
+│   │   ├── sql_engine.go
+│   │   ├── sql_engine_test.go
+│   │   ├── testdata
+│   │   │   ├── scenarios.go
+│   │   │   └── testdata.go
+│   │   ├── time_range.go
+│   │   ├── time_range_test.go
+│   │   └── tsdb_test.go
+│   └── util
+│       ├── encoding.go
+│       ├── encoding_test.go
+│       ├── encryption.go
+│       ├── encryption_test.go
+│       ├── filepath.go
+│       ├── json.go
+│       ├── md5.go
+│       ├── md5_test.go
+│       ├── shortid_generator.go
+│       ├── shortid_generator_test.go
+│       ├── strings.go
+│       ├── strings_test.go
+│       ├── url.go
+│       ├── url_test.go
+│       └── validation.go
+├── public
+│   ├── app
+│   │   ├── app.ts
+│   │   ├── containers
+│   │   │   ├── AlertRuleList
+│   │   │   │   ├── AlertRuleList.jest.tsx
+│   │   │   │   ├── AlertRuleList.tsx
+│   │   │   │   └── __snapshots__
+│   │   │   │       └── AlertRuleList.jest.tsx.snap
+│   │   │   ├── Explore
+│   │   │   │   ├── ElapsedTime.tsx
+│   │   │   │   ├── Explore.tsx
+│   │   │   │   ├── Graph.tsx
+│   │   │   │   ├── Legend.tsx
+│   │   │   │   ├── QueryField.tsx
+│   │   │   │   ├── QueryRows.tsx
+│   │   │   │   ├── Table.tsx
+│   │   │   │   ├── TimePicker.jest.tsx
+│   │   │   │   ├── TimePicker.tsx
+│   │   │   │   ├── Typeahead.tsx
+│   │   │   │   ├── Wrapper.tsx
+│   │   │   │   ├── slate-plugins
+│   │   │   │   │   ├── braces.test.ts
+│   │   │   │   │   ├── braces.ts
+│   │   │   │   │   ├── clear.test.ts
+│   │   │   │   │   ├── clear.ts
+│   │   │   │   │   ├── newline.ts
+│   │   │   │   │   ├── prism
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   └── promql.ts
+│   │   │   │   │   └── runner.ts
+│   │   │   │   └── utils
+│   │   │   │       ├── debounce.ts
+│   │   │   │       ├── dom.ts
+│   │   │   │       ├── prometheus.ts
+│   │   │   │       └── query.ts
+│   │   │   ├── IContainerProps.ts
+│   │   │   ├── ManageDashboards
+│   │   │   │   ├── FolderPermissions.tsx
+│   │   │   │   ├── FolderSettings.jest.tsx
+│   │   │   │   └── FolderSettings.tsx
+│   │   │   └── ServerStats
+│   │   │       ├── ServerStats.jest.tsx
+│   │   │       ├── ServerStats.tsx
+│   │   │       └── __snapshots__
+│   │   │           └── ServerStats.jest.tsx.snap
+│   │   ├── core
+│   │   │   ├── angular_wrappers.ts
+│   │   │   ├── app_events.ts
+│   │   │   ├── components
+│   │   │   │   ├── Animations
+│   │   │   │   │   └── SlideDown.tsx
+│   │   │   │   ├── EmptyListCTA
+│   │   │   │   │   ├── EmptyListCTA.jest.tsx
+│   │   │   │   │   ├── EmptyListCTA.tsx
+│   │   │   │   │   └── __snapshots__
+│   │   │   │   │       └── EmptyListCTA.jest.tsx.snap
+│   │   │   │   ├── Login
+│   │   │   │   │   └── LoginBackground.tsx
+│   │   │   │   ├── PageHeader
+│   │   │   │   │   ├── PageHeader.jest.tsx
+│   │   │   │   │   └── PageHeader.tsx
+│   │   │   │   ├── PasswordStrength.tsx
+│   │   │   │   ├── Permissions
+│   │   │   │   │   ├── AddPermissions.jest.tsx
+│   │   │   │   │   ├── AddPermissions.tsx
+│   │   │   │   │   ├── DashboardPermissions.tsx
+│   │   │   │   │   ├── DisabledPermissionsListItem.tsx
+│   │   │   │   │   ├── FolderInfo.ts
+│   │   │   │   │   ├── Permissions.tsx
+│   │   │   │   │   ├── PermissionsInfo.tsx
+│   │   │   │   │   ├── PermissionsList.tsx
+│   │   │   │   │   └── PermissionsListItem.tsx
+│   │   │   │   ├── Picker
+│   │   │   │   │   ├── DescriptionOption.tsx
+│   │   │   │   │   ├── DescriptionPicker.tsx
+│   │   │   │   │   ├── PickerOption.jest.tsx
+│   │   │   │   │   ├── PickerOption.tsx
+│   │   │   │   │   ├── TeamPicker.jest.tsx
+│   │   │   │   │   ├── TeamPicker.tsx
+│   │   │   │   │   ├── UserPicker.jest.tsx
+│   │   │   │   │   ├── UserPicker.tsx
+│   │   │   │   │   ├── __snapshots__
+│   │   │   │   │   │   ├── PickerOption.jest.tsx.snap
+│   │   │   │   │   │   ├── TeamPicker.jest.tsx.snap
+│   │   │   │   │   │   └── UserPicker.jest.tsx.snap
+│   │   │   │   │   └── withPicker.tsx
+│   │   │   │   ├── ScrollBar
+│   │   │   │   │   └── ScrollBar.tsx
+│   │   │   │   ├── TagFilter
+│   │   │   │   │   ├── TagBadge.tsx
+│   │   │   │   │   ├── TagFilter.tsx
+│   │   │   │   │   ├── TagOption.tsx
+│   │   │   │   │   └── TagValue.tsx
+│   │   │   │   ├── Tooltip
+│   │   │   │   │   ├── Popover.jest.tsx
+│   │   │   │   │   ├── Popover.tsx
+│   │   │   │   │   ├── Tooltip.jest.tsx
+│   │   │   │   │   ├── Tooltip.tsx
+│   │   │   │   │   ├── __snapshots__
+│   │   │   │   │   │   ├── Popover.jest.tsx.snap
+│   │   │   │   │   │   └── Tooltip.jest.tsx.snap
+│   │   │   │   │   └── withTooltip.tsx
+│   │   │   │   ├── code_editor
+│   │   │   │   │   ├── code_editor.ts
+│   │   │   │   │   └── theme-grafana-dark.js
+│   │   │   │   ├── colorpicker
+│   │   │   │   │   ├── ColorPalette.tsx
+│   │   │   │   │   ├── ColorPicker.tsx
+│   │   │   │   │   ├── ColorPickerPopover.tsx
+│   │   │   │   │   ├── SeriesColorPicker.tsx
+│   │   │   │   │   ├── SpectrumPicker.tsx
+│   │   │   │   │   └── spectrum_picker.ts
+│   │   │   │   ├── dashboard_selector.ts
+│   │   │   │   ├── form_dropdown
+│   │   │   │   │   └── form_dropdown.ts
+│   │   │   │   ├── gf_page.ts
+│   │   │   │   ├── grafana_app.ts
+│   │   │   │   ├── help
+│   │   │   │   │   ├── help.html
+│   │   │   │   │   └── help.ts
+│   │   │   │   ├── info_popover.ts
+│   │   │   │   ├── json_explorer
+│   │   │   │   │   ├── helpers.ts
+│   │   │   │   │   └── json_explorer.ts
+│   │   │   │   ├── jsontree
+│   │   │   │   │   └── jsontree.ts
+│   │   │   │   ├── layout_selector
+│   │   │   │   │   └── layout_selector.ts
+│   │   │   │   ├── manage_dashboards
+│   │   │   │   │   ├── manage_dashboards.html
+│   │   │   │   │   └── manage_dashboards.ts
+│   │   │   │   ├── navbar
+│   │   │   │   │   ├── navbar.html
+│   │   │   │   │   └── navbar.ts
+│   │   │   │   ├── org_switcher.ts
+│   │   │   │   ├── query_part
+│   │   │   │   │   ├── query_part.ts
+│   │   │   │   │   └── query_part_editor.ts
+│   │   │   │   ├── scroll
+│   │   │   │   │   ├── page_scroll.ts
+│   │   │   │   │   └── scroll.ts
+│   │   │   │   ├── search
+│   │   │   │   │   ├── SearchResult.tsx
+│   │   │   │   │   ├── search.html
+│   │   │   │   │   ├── search.ts
+│   │   │   │   │   ├── search_results.html
+│   │   │   │   │   └── search_results.ts
+│   │   │   │   ├── sidemenu
+│   │   │   │   │   ├── sidemenu.html
+│   │   │   │   │   └── sidemenu.ts
+│   │   │   │   ├── switch.ts
+│   │   │   │   ├── team_picker.ts
+│   │   │   │   └── user_picker.ts
+│   │   │   ├── config.ts
+│   │   │   ├── constants.ts
+│   │   │   ├── controllers
+│   │   │   │   ├── all.ts
+│   │   │   │   ├── error_ctrl.ts
+│   │   │   │   ├── inspect_ctrl.ts
+│   │   │   │   ├── invited_ctrl.ts
+│   │   │   │   ├── json_editor_ctrl.ts
+│   │   │   │   ├── login_ctrl.ts
+│   │   │   │   ├── reset_password_ctrl.ts
+│   │   │   │   └── signup_ctrl.ts
+│   │   │   ├── core.ts
+│   │   │   ├── core_module.ts
+│   │   │   ├── directives
+│   │   │   │   ├── array_join.ts
+│   │   │   │   ├── dash_class.ts
+│   │   │   │   ├── diff-view.ts
+│   │   │   │   ├── dropdown_typeahead.ts
+│   │   │   │   ├── give_focus.ts
+│   │   │   │   ├── metric_segment.ts
+│   │   │   │   ├── misc.ts
+│   │   │   │   ├── ng_model_on_blur.ts
+│   │   │   │   ├── rebuild_on_change.ts
+│   │   │   │   ├── tags.ts
+│   │   │   │   └── value_select_dropdown.ts
+│   │   │   ├── filters
+│   │   │   │   └── filters.ts
+│   │   │   ├── jquery_extended.ts
+│   │   │   ├── live
+│   │   │   │   └── live_srv.ts
+│   │   │   ├── lodash_extended.ts
+│   │   │   ├── mod_defs.d.ts
+│   │   │   ├── nav_model_srv.ts
+│   │   │   ├── partials.ts
+│   │   │   ├── profiler.ts
+│   │   │   ├── services
+│   │   │   │   ├── alert_srv.ts
+│   │   │   │   ├── all.ts
+│   │   │   │   ├── analytics.ts
+│   │   │   │   ├── backend_srv.ts
+│   │   │   │   ├── bridge_srv.ts
+│   │   │   │   ├── context_srv.ts
+│   │   │   │   ├── dynamic_directive_srv.ts
+│   │   │   │   ├── impression_srv.ts
+│   │   │   │   ├── keybindingSrv.ts
+│   │   │   │   ├── ng_react.ts
+│   │   │   │   ├── popover_srv.ts
+│   │   │   │   ├── search_srv.ts
+│   │   │   │   ├── segment_srv.ts
+│   │   │   │   ├── timer.ts
+│   │   │   │   └── util_srv.ts
+│   │   │   ├── specs
+│   │   │   │   ├── ColorPalette.jest.tsx
+│   │   │   │   ├── PasswordStrength.jest.tsx
+│   │   │   │   ├── __snapshots__
+│   │   │   │   │   └── ColorPalette.jest.tsx.snap
+│   │   │   │   ├── backend_srv_specs.ts
+│   │   │   │   ├── datemath.jest.ts
+│   │   │   │   ├── emitter.jest.ts
+│   │   │   │   ├── file_export.jest.ts
+│   │   │   │   ├── flatten.jest.ts
+│   │   │   │   ├── kbn.jest.ts
+│   │   │   │   ├── location_util.jest.ts
+│   │   │   │   ├── manage_dashboards.jest.ts
+│   │   │   │   ├── org_switcher.jest.ts
+│   │   │   │   ├── rangeutil.jest.ts
+│   │   │   │   ├── search.jest.ts
+│   │   │   │   ├── search_results.jest.ts
+│   │   │   │   ├── search_srv.jest.ts
+│   │   │   │   ├── store.jest.ts
+│   │   │   │   ├── table_model.jest.ts
+│   │   │   │   ├── ticks.jest.ts
+│   │   │   │   ├── time_series.jest.ts
+│   │   │   │   └── value_select_dropdown_specs.ts
+│   │   │   ├── store.ts
+│   │   │   ├── table_model.ts
+│   │   │   ├── time_series2.ts
+│   │   │   └── utils
+│   │   │       ├── colors.ts
+│   │   │       ├── css_loader.ts
+│   │   │       ├── datemath.ts
+│   │   │       ├── emitter.ts
+│   │   │       ├── file_export.ts
+│   │   │       ├── flatten.ts
+│   │   │       ├── kbn.ts
+│   │   │       ├── location_util.ts
+│   │   │       ├── model_utils.ts
+│   │   │       ├── outline.ts
+│   │   │       ├── rangeutil.ts
+│   │   │       ├── react2angular.ts
+│   │   │       ├── sort_by_keys.ts
+│   │   │       ├── tags.ts
+│   │   │       ├── ticks.ts
+│   │   │       ├── url.ts
+│   │   │       └── version.ts
+│   │   ├── dev.ts
+│   │   ├── features
+│   │   │   ├── admin
+│   │   │   │   ├── admin.ts
+│   │   │   │   ├── admin_edit_org_ctrl.ts
+│   │   │   │   ├── admin_edit_user_ctrl.ts
+│   │   │   │   ├── admin_list_orgs_ctrl.ts
+│   │   │   │   ├── admin_list_users_ctrl.ts
+│   │   │   │   └── partials
+│   │   │   │       ├── admin_home.html
+│   │   │   │       ├── edit_org.html
+│   │   │   │       ├── edit_user.html
+│   │   │   │       ├── new_user.html
+│   │   │   │       ├── orgs.html
+│   │   │   │       ├── settings.html
+│   │   │   │       ├── stats.html
+│   │   │   │       └── users.html
+│   │   │   ├── alerting
+│   │   │   │   ├── alert_def.ts
+│   │   │   │   ├── alert_tab_ctrl.ts
+│   │   │   │   ├── all.ts
+│   │   │   │   ├── notification_edit_ctrl.ts
+│   │   │   │   ├── notifications_list_ctrl.ts
+│   │   │   │   ├── partials
+│   │   │   │   │   ├── alert_howto.html
+│   │   │   │   │   ├── alert_tab.html
+│   │   │   │   │   ├── notification_edit.html
+│   │   │   │   │   └── notifications_list.html
+│   │   │   │   ├── specs
+│   │   │   │   │   ├── alert_tab_specs.ts
+│   │   │   │   │   └── threshold_mapper.jest.ts
+│   │   │   │   └── threshold_mapper.ts
+│   │   │   ├── all.ts
+│   │   │   ├── annotations
+│   │   │   │   ├── all.ts
+│   │   │   │   ├── annotation_tooltip.ts
+│   │   │   │   ├── annotations_srv.ts
+│   │   │   │   ├── editor_ctrl.ts
+│   │   │   │   ├── event.ts
+│   │   │   │   ├── event_editor.ts
+│   │   │   │   ├── event_manager.ts
+│   │   │   │   ├── events_processing.ts
+│   │   │   │   ├── partials
+│   │   │   │   │   ├── editor.html
+│   │   │   │   │   └── event_editor.html
+│   │   │   │   └── specs
+│   │   │   │       ├── annotations_srv_specs.jest.ts
+│   │   │   │       └── annotations_srv_specs.ts
+│   │   │   ├── dashboard
+│   │   │   │   ├── ad_hoc_filters.ts
+│   │   │   │   ├── alerting_srv.ts
+│   │   │   │   ├── all.ts
+│   │   │   │   ├── change_tracker.ts
+│   │   │   │   ├── create_folder_ctrl.ts
+│   │   │   │   ├── dashboard_ctrl.ts
+│   │   │   │   ├── dashboard_import_ctrl.ts
+│   │   │   │   ├── dashboard_list_ctrl.ts
+│   │   │   │   ├── dashboard_loader_srv.ts
+│   │   │   │   ├── dashboard_migration.ts
+│   │   │   │   ├── dashboard_model.ts
+│   │   │   │   ├── dashboard_srv.ts
+│   │   │   │   ├── dashgrid
+│   │   │   │   │   ├── AddPanelPanel.tsx
+│   │   │   │   │   ├── DashboardGrid.tsx
+│   │   │   │   │   ├── DashboardGridDirective.ts
+│   │   │   │   │   ├── DashboardPanel.tsx
+│   │   │   │   │   ├── DashboardRow.tsx
+│   │   │   │   │   ├── PanelContainer.ts
+│   │   │   │   │   ├── PanelLoader.ts
+│   │   │   │   │   └── RowOptions.ts
+│   │   │   │   ├── dashnav
+│   │   │   │   │   ├── dashnav.html
+│   │   │   │   │   └── dashnav.ts
+│   │   │   │   ├── export
+│   │   │   │   │   ├── export_modal.html
+│   │   │   │   │   ├── export_modal.ts
+│   │   │   │   │   └── exporter.ts
+│   │   │   │   ├── export_data
+│   │   │   │   │   ├── export_data_modal.html
+│   │   │   │   │   └── export_data_modal.ts
+│   │   │   │   ├── folder_dashboards_ctrl.ts
+│   │   │   │   ├── folder_page_loader.ts
+│   │   │   │   ├── folder_permissions_ctrl.ts
+│   │   │   │   ├── folder_picker
+│   │   │   │   │   ├── folder_picker.html
+│   │   │   │   │   └── folder_picker.ts
+│   │   │   │   ├── folder_settings_ctrl.ts
+│   │   │   │   ├── history
+│   │   │   │   │   ├── history.html
+│   │   │   │   │   ├── history.ts
+│   │   │   │   │   └── history_srv.ts
+│   │   │   │   ├── move_to_folder_modal
+│   │   │   │   │   ├── move_to_folder.html
+│   │   │   │   │   └── move_to_folder.ts
+│   │   │   │   ├── panel_model.ts
+│   │   │   │   ├── partials
+│   │   │   │   │   ├── create_folder.html
+│   │   │   │   │   ├── dashboard_import.html
+│   │   │   │   │   ├── dashboard_list.html
+│   │   │   │   │   ├── folder_dashboards.html
+│   │   │   │   │   ├── folder_permissions.html
+│   │   │   │   │   ├── folder_settings.html
+│   │   │   │   │   ├── inspector.html
+│   │   │   │   │   ├── row_options.html
+│   │   │   │   │   └── shareModal.html
+│   │   │   │   ├── repeat_option
+│   │   │   │   │   └── repeat_option.ts
+│   │   │   │   ├── save_as_modal.ts
+│   │   │   │   ├── save_modal.ts
+│   │   │   │   ├── save_provisioned_modal.ts
+│   │   │   │   ├── settings
+│   │   │   │   │   ├── settings.html
+│   │   │   │   │   └── settings.ts
+│   │   │   │   ├── shareModalCtrl.ts
+│   │   │   │   ├── share_snapshot_ctrl.ts
+│   │   │   │   ├── specs
+│   │   │   │   │   ├── AddPanelPanel.jest.tsx
+│   │   │   │   │   ├── DashboardRow.jest.tsx
+│   │   │   │   │   ├── change_tracker.jest.ts
+│   │   │   │   │   ├── dashboard_import_ctrl.jest.ts
+│   │   │   │   │   ├── dashboard_migration.jest.ts
+│   │   │   │   │   ├── dashboard_model.jest.ts
+│   │   │   │   │   ├── dashboard_srv_specs.ts
+│   │   │   │   │   ├── exporter.jest.ts
+│   │   │   │   │   ├── history_ctrl_specs.ts
+│   │   │   │   │   ├── history_mocks.ts
+│   │   │   │   │   ├── history_srv_specs.ts
+│   │   │   │   │   ├── repeat.jest.ts
+│   │   │   │   │   ├── save_as_modal.jest.ts
+│   │   │   │   │   ├── save_modal.jest.ts
+│   │   │   │   │   ├── save_provisioned_modal.jest.ts
+│   │   │   │   │   ├── share_modal_ctrl_specs.ts
+│   │   │   │   │   ├── time_srv_specs.ts
+│   │   │   │   │   └── viewstate_srv_specs.ts
+│   │   │   │   ├── submenu
+│   │   │   │   │   ├── submenu.html
+│   │   │   │   │   └── submenu.ts
+│   │   │   │   ├── time_srv.ts
+│   │   │   │   ├── timepicker
+│   │   │   │   │   ├── input_date.ts
+│   │   │   │   │   ├── settings.html
+│   │   │   │   │   ├── timepicker.html
+│   │   │   │   │   └── timepicker.ts
+│   │   │   │   ├── unsaved_changes_modal.ts
+│   │   │   │   ├── unsaved_changes_srv.ts
+│   │   │   │   ├── upload.ts
+│   │   │   │   ├── validation_srv.ts
+│   │   │   │   └── view_state_srv.ts
+│   │   │   ├── dashlinks
+│   │   │   │   ├── editor.html
+│   │   │   │   ├── editor.ts
+│   │   │   │   └── module.ts
+│   │   │   ├── org
+│   │   │   │   ├── all.ts
+│   │   │   │   ├── change_password_ctrl.ts
+│   │   │   │   ├── create_team_ctrl.ts
+│   │   │   │   ├── new_org_ctrl.ts
+│   │   │   │   ├── org_api_keys_ctrl.ts
+│   │   │   │   ├── org_details_ctrl.ts
+│   │   │   │   ├── org_users_ctrl.ts
+│   │   │   │   ├── partials
+│   │   │   │   │   ├── apikeyModal.html
+│   │   │   │   │   ├── change_password.html
+│   │   │   │   │   ├── create_team.html
+│   │   │   │   │   ├── invite.html
+│   │   │   │   │   ├── newOrg.html
+│   │   │   │   │   ├── orgApiKeys.html
+│   │   │   │   │   ├── orgDetails.html
+│   │   │   │   │   ├── orgUsers.html
+│   │   │   │   │   ├── profile.html
+│   │   │   │   │   ├── select_org.html
+│   │   │   │   │   ├── team_details.html
+│   │   │   │   │   └── teams.html
+│   │   │   │   ├── prefs_control.ts
+│   │   │   │   ├── profile_ctrl.ts
+│   │   │   │   ├── select_org_ctrl.ts
+│   │   │   │   ├── specs
+│   │   │   │   │   └── team_details_ctrl_specs.ts
+│   │   │   │   ├── team_details_ctrl.ts
+│   │   │   │   ├── teams_ctrl.ts
+│   │   │   │   └── user_invite_ctrl.ts
+│   │   │   ├── panel
+│   │   │   │   ├── all.ts
+│   │   │   │   ├── metrics_panel_ctrl.ts
+│   │   │   │   ├── metrics_tab.ts
+│   │   │   │   ├── panel_ctrl.ts
+│   │   │   │   ├── panel_directive.ts
+│   │   │   │   ├── panel_editor_tab.ts
+│   │   │   │   ├── panel_header.ts
+│   │   │   │   ├── partials
+│   │   │   │   │   ├── metrics_tab.html
+│   │   │   │   │   ├── panelTime.html
+│   │   │   │   │   ├── query_editor_row.html
+│   │   │   │   │   └── soloPanel.html
+│   │   │   │   ├── query_ctrl.ts
+│   │   │   │   ├── query_editor_row.ts
+│   │   │   │   ├── query_troubleshooter.ts
+│   │   │   │   ├── solo_panel_ctrl.ts
+│   │   │   │   └── specs
+│   │   │   │       └── metrics_panel_ctrl.jest.ts
+│   │   │   ├── panellinks
+│   │   │   │   ├── link_srv.ts
+│   │   │   │   ├── module.html
+│   │   │   │   ├── module.ts
+│   │   │   │   └── specs
+│   │   │   │       └── link_srv.jest.ts
+│   │   │   ├── playlist
+│   │   │   │   ├── all.ts
+│   │   │   │   ├── partials
+│   │   │   │   │   ├── playlist.html
+│   │   │   │   │   ├── playlist_search.html
+│   │   │   │   │   └── playlists.html
+│   │   │   │   ├── playlist_edit_ctrl.ts
+│   │   │   │   ├── playlist_routes.ts
+│   │   │   │   ├── playlist_search.ts
+│   │   │   │   ├── playlist_srv.ts
+│   │   │   │   ├── playlists_ctrl.ts
+│   │   │   │   └── specs
+│   │   │   │       └── playlist_edit_ctrl.jest.ts
+│   │   │   ├── plugins
+│   │   │   │   ├── all.ts
+│   │   │   │   ├── built_in_plugins.ts
+│   │   │   │   ├── datasource_srv.ts
+│   │   │   │   ├── ds_dashboards_ctrl.ts
+│   │   │   │   ├── ds_edit_ctrl.ts
+│   │   │   │   ├── ds_list_ctrl.ts
+│   │   │   │   ├── import_list
+│   │   │   │   │   ├── import_list.html
+│   │   │   │   │   └── import_list.ts
+│   │   │   │   ├── partials
+│   │   │   │   │   ├── ds_dashboards.html
+│   │   │   │   │   ├── ds_edit.html
+│   │   │   │   │   ├── ds_http_settings.html
+│   │   │   │   │   ├── ds_list.html
+│   │   │   │   │   ├── plugin_edit.html
+│   │   │   │   │   ├── plugin_list.html
+│   │   │   │   │   ├── plugin_page.html
+│   │   │   │   │   └── update_instructions.html
+│   │   │   │   ├── plugin_component.ts
+│   │   │   │   ├── plugin_edit_ctrl.ts
+│   │   │   │   ├── plugin_list_ctrl.ts
+│   │   │   │   ├── plugin_loader.ts
+│   │   │   │   ├── plugin_page_ctrl.ts
+│   │   │   │   └── specs
+│   │   │   │       └── datasource_srv_specs.ts
+│   │   │   ├── snapshot
+│   │   │   │   ├── all.ts
+│   │   │   │   ├── partials
+│   │   │   │   │   └── snapshots.html
+│   │   │   │   └── snapshot_ctrl.ts
+│   │   │   ├── styleguide
+│   │   │   │   ├── styleguide.html
+│   │   │   │   └── styleguide.ts
+│   │   │   └── templating
+│   │   │       ├── adhoc_variable.ts
+│   │   │       ├── all.ts
+│   │   │       ├── constant_variable.ts
+│   │   │       ├── custom_variable.ts
+│   │   │       ├── datasource_variable.ts
+│   │   │       ├── editor_ctrl.ts
+│   │   │       ├── interval_variable.ts
+│   │   │       ├── partials
+│   │   │       │   └── editor.html
+│   │   │       ├── query_variable.ts
+│   │   │       ├── specs
+│   │   │       │   ├── adhoc_variable.jest.ts
+│   │   │       │   ├── editor_ctrl.jest.ts
+│   │   │       │   ├── query_variable.jest.ts
+│   │   │       │   ├── template_srv.jest.ts
+│   │   │       │   ├── variable.jest.ts
+│   │   │       │   ├── variable_srv_init_specs.ts
+│   │   │       │   └── variable_srv_specs.ts
+│   │   │       ├── template_srv.ts
+│   │   │       ├── variable.ts
+│   │   │       └── variable_srv.ts
+│   │   ├── index.ts
+│   │   ├── partials
+│   │   │   ├── confirm_modal.html
+│   │   │   ├── dashboard.html
+│   │   │   ├── edit_json.html
+│   │   │   ├── error.html
+│   │   │   ├── login.html
+│   │   │   ├── modal.html
+│   │   │   ├── panelgeneral.html
+│   │   │   ├── reset_password.html
+│   │   │   ├── signup_invited.html
+│   │   │   ├── signup_step2.html
+│   │   │   └── valueSelectDropdown.html
+│   │   ├── plugins
+│   │   │   ├── app
+│   │   │   │   └── testdata
+│   │   │   │       ├── dashboards
+│   │   │   │       │   ├── alerts.json
+│   │   │   │       │   └── graph_last_1h.json
+│   │   │   │       ├── datasource
+│   │   │   │       │   ├── datasource.ts
+│   │   │   │       │   ├── module.ts
+│   │   │   │       │   ├── plugin.json
+│   │   │   │       │   └── query_ctrl.ts
+│   │   │   │       ├── module.ts
+│   │   │   │       ├── partials
+│   │   │   │       │   └── query.editor.html
+│   │   │   │       └── plugin.json
+│   │   │   ├── datasource
+│   │   │   │   ├── cloudwatch
+│   │   │   │   │   ├── README.md
+│   │   │   │   │   ├── config_ctrl.ts
+│   │   │   │   │   ├── datasource.d.ts
+│   │   │   │   │   ├── datasource.ts
+│   │   │   │   │   ├── img
+│   │   │   │   │   │   └── amazon-web-services.png
+│   │   │   │   │   ├── module.ts
+│   │   │   │   │   ├── partials
+│   │   │   │   │   │   ├── annotations.editor.html
+│   │   │   │   │   │   ├── config.html
+│   │   │   │   │   │   ├── query.editor.html
+│   │   │   │   │   │   └── query.parameter.html
+│   │   │   │   │   ├── plugin.json
+│   │   │   │   │   ├── query_ctrl.ts
+│   │   │   │   │   ├── query_parameter_ctrl.ts
+│   │   │   │   │   └── specs
+│   │   │   │   │       └── datasource_specs.ts
+│   │   │   │   ├── elasticsearch
+│   │   │   │   │   ├── README.md
+│   │   │   │   │   ├── bucket_agg.ts
+│   │   │   │   │   ├── config_ctrl.ts
+│   │   │   │   │   ├── datasource.ts
+│   │   │   │   │   ├── elastic_response.ts
+│   │   │   │   │   ├── img
+│   │   │   │   │   │   └── elasticsearch.svg
+│   │   │   │   │   ├── index_pattern.ts
+│   │   │   │   │   ├── metric_agg.ts
+│   │   │   │   │   ├── module.ts
+│   │   │   │   │   ├── partials
+│   │   │   │   │   │   ├── annotations.editor.html
+│   │   │   │   │   │   ├── bucket_agg.html
+│   │   │   │   │   │   ├── config.html
+│   │   │   │   │   │   ├── metric_agg.html
+│   │   │   │   │   │   └── query.editor.html
+│   │   │   │   │   ├── plugin.json
+│   │   │   │   │   ├── query_builder.ts
+│   │   │   │   │   ├── query_ctrl.ts
+│   │   │   │   │   ├── query_def.ts
+│   │   │   │   │   ├── query_help.md
+│   │   │   │   │   └── specs
+│   │   │   │   │       ├── datasource_specs.ts
+│   │   │   │   │       ├── elastic_response.jest.ts
+│   │   │   │   │       ├── index_pattern.jest.ts
+│   │   │   │   │       ├── query_builder.jest.ts
+│   │   │   │   │       └── query_def.jest.ts
+│   │   │   │   ├── grafana
+│   │   │   │   │   ├── README.md
+│   │   │   │   │   ├── datasource.ts
+│   │   │   │   │   ├── module.ts
+│   │   │   │   │   ├── partials
+│   │   │   │   │   │   ├── annotations.editor.html
+│   │   │   │   │   │   └── query.editor.html
+│   │   │   │   │   └── plugin.json
+│   │   │   │   ├── grafana-live
+│   │   │   │   │   ├── _plugin.json
+│   │   │   │   │   ├── datasource.ts
+│   │   │   │   │   ├── module.ts
+│   │   │   │   │   └── partials
+│   │   │   │   │       └── query.editor.html
+│   │   │   │   ├── graphite
+│   │   │   │   │   ├── README.md
+│   │   │   │   │   ├── add_graphite_func.ts
+│   │   │   │   │   ├── config_ctrl.ts
+│   │   │   │   │   ├── dashboards
+│   │   │   │   │   │   └── carbon_metrics.json
+│   │   │   │   │   ├── datasource.ts
+│   │   │   │   │   ├── func_editor.ts
+│   │   │   │   │   ├── gfunc.ts
+│   │   │   │   │   ├── graphite_query.ts
+│   │   │   │   │   ├── img
+│   │   │   │   │   │   └── graphite_logo.png
+│   │   │   │   │   ├── lexer.ts
+│   │   │   │   │   ├── module.ts
+│   │   │   │   │   ├── parser.ts
+│   │   │   │   │   ├── partials
+│   │   │   │   │   │   ├── annotations.editor.html
+│   │   │   │   │   │   ├── config.html
+│   │   │   │   │   │   └── query.editor.html
+│   │   │   │   │   ├── plugin.json
+│   │   │   │   │   ├── query_ctrl.ts
+│   │   │   │   │   ├── query_help.md
+│   │   │   │   │   └── specs
+│   │   │   │   │       ├── datasource.jest.ts
+│   │   │   │   │       ├── gfunc.jest.ts
+│   │   │   │   │       ├── graphite_query.jest.ts
+│   │   │   │   │       ├── lexer.jest.ts
+│   │   │   │   │       ├── parser.jest.ts
+│   │   │   │   │       └── query_ctrl_specs.ts
+│   │   │   │   ├── influxdb
+│   │   │   │   │   ├── README.md
+│   │   │   │   │   ├── datasource.ts
+│   │   │   │   │   ├── img
+│   │   │   │   │   │   └── influxdb_logo.svg
+│   │   │   │   │   ├── influx_query.ts
+│   │   │   │   │   ├── influx_series.ts
+│   │   │   │   │   ├── module.ts
+│   │   │   │   │   ├── partials
+│   │   │   │   │   │   ├── annotations.editor.html
+│   │   │   │   │   │   ├── config.html
+│   │   │   │   │   │   └── query.editor.html
+│   │   │   │   │   ├── plugin.json
+│   │   │   │   │   ├── query_builder.ts
+│   │   │   │   │   ├── query_ctrl.ts
+│   │   │   │   │   ├── query_help.md
+│   │   │   │   │   ├── query_part.ts
+│   │   │   │   │   ├── response_parser.ts
+│   │   │   │   │   └── specs
+│   │   │   │   │       ├── influx_query.jest.ts
+│   │   │   │   │       ├── influx_series.jest.ts
+│   │   │   │   │       ├── query_builder.jest.ts
+│   │   │   │   │       ├── query_ctrl_specs.ts
+│   │   │   │   │       ├── query_part.jest.ts
+│   │   │   │   │       └── response_parser.jest.ts
+│   │   │   │   ├── mixed
+│   │   │   │   │   ├── README.md
+│   │   │   │   │   ├── datasource.ts
+│   │   │   │   │   ├── module.ts
+│   │   │   │   │   └── plugin.json
+│   │   │   │   ├── mssql
+│   │   │   │   │   ├── README.md
+│   │   │   │   │   ├── datasource.ts
+│   │   │   │   │   ├── module.ts
+│   │   │   │   │   ├── partials
+│   │   │   │   │   │   ├── annotations.editor.html
+│   │   │   │   │   │   ├── config.html
+│   │   │   │   │   │   └── query.editor.html
+│   │   │   │   │   ├── plugin.json
+│   │   │   │   │   ├── query_ctrl.ts
+│   │   │   │   │   ├── response_parser.ts
+│   │   │   │   │   └── specs
+│   │   │   │   │       └── datasource.jest.ts
+│   │   │   │   ├── mysql
+│   │   │   │   │   ├── README.md
+│   │   │   │   │   ├── datasource.ts
+│   │   │   │   │   ├── img
+│   │   │   │   │   │   └── mysql_logo.svg
+│   │   │   │   │   ├── module.ts
+│   │   │   │   │   ├── partials
+│   │   │   │   │   │   ├── annotations.editor.html
+│   │   │   │   │   │   ├── config.html
+│   │   │   │   │   │   └── query.editor.html
+│   │   │   │   │   ├── plugin.json
+│   │   │   │   │   ├── query_ctrl.ts
+│   │   │   │   │   ├── response_parser.ts
+│   │   │   │   │   └── specs
+│   │   │   │   │       └── datasource_specs.ts
+│   │   │   │   ├── opentsdb
+│   │   │   │   │   ├── README.md
+│   │   │   │   │   ├── config_ctrl.ts
+│   │   │   │   │   ├── datasource.d.ts
+│   │   │   │   │   ├── datasource.ts
+│   │   │   │   │   ├── img
+│   │   │   │   │   │   └── opentsdb_logo.png
+│   │   │   │   │   ├── module.ts
+│   │   │   │   │   ├── partials
+│   │   │   │   │   │   ├── annotations.editor.html
+│   │   │   │   │   │   ├── config.html
+│   │   │   │   │   │   └── query.editor.html
+│   │   │   │   │   ├── plugin.json
+│   │   │   │   │   ├── query_ctrl.ts
+│   │   │   │   │   └── specs
+│   │   │   │   │       ├── datasource-specs.ts
+│   │   │   │   │       └── query-ctrl-specs.ts
+│   │   │   │   ├── postgres
+│   │   │   │   │   ├── README.md
+│   │   │   │   │   ├── datasource.ts
+│   │   │   │   │   ├── img
+│   │   │   │   │   │   └── postgresql_logo.svg
+│   │   │   │   │   ├── mode-sql.js
+│   │   │   │   │   ├── module.ts
+│   │   │   │   │   ├── partials
+│   │   │   │   │   │   ├── annotations.editor.html
+│   │   │   │   │   │   ├── config.html
+│   │   │   │   │   │   └── query.editor.html
+│   │   │   │   │   ├── plugin.json
+│   │   │   │   │   ├── query_ctrl.ts
+│   │   │   │   │   ├── response_parser.ts
+│   │   │   │   │   └── specs
+│   │   │   │   │       └── datasource_specs.ts
+│   │   │   │   └── prometheus
+│   │   │   │       ├── README.md
+│   │   │   │       ├── completer.ts
+│   │   │   │       ├── config_ctrl.ts
+│   │   │   │       ├── dashboards
+│   │   │   │       │   ├── grafana_stats.json
+│   │   │   │       │   ├── prometheus_2_stats.json
+│   │   │   │       │   └── prometheus_stats.json
+│   │   │   │       ├── datasource.ts
+│   │   │   │       ├── img
+│   │   │   │       │   └── prometheus_logo.svg
+│   │   │   │       ├── metric_find_query.d.ts
+│   │   │   │       ├── metric_find_query.ts
+│   │   │   │       ├── mode-prometheus.js
+│   │   │   │       ├── module.ts
+│   │   │   │       ├── partials
+│   │   │   │       │   ├── annotations.editor.html
+│   │   │   │       │   ├── config.html
+│   │   │   │       │   └── query.editor.html
+│   │   │   │       ├── plugin.json
+│   │   │   │       ├── query_ctrl.ts
+│   │   │   │       ├── result_transformer.ts
+│   │   │   │       ├── snippets
+│   │   │   │       │   └── prometheus.js
+│   │   │   │       └── specs
+│   │   │   │           ├── completer_specs.ts
+│   │   │   │           ├── datasource.jest.ts
+│   │   │   │           ├── datasource_specs.ts
+│   │   │   │           ├── metric_find_query.jest.ts
+│   │   │   │           └── result_transformer.jest.ts
+│   │   │   ├── panel
+│   │   │   │   ├── alertlist
+│   │   │   │   │   ├── README.md
+│   │   │   │   │   ├── editor.html
+│   │   │   │   │   ├── img
+│   │   │   │   │   │   └── icn-singlestat-panel.svg
+│   │   │   │   │   ├── module.html
+│   │   │   │   │   ├── module.ts
+│   │   │   │   │   └── plugin.json
+│   │   │   │   ├── dashlist
+│   │   │   │   │   ├── README.md
+│   │   │   │   │   ├── editor.html
+│   │   │   │   │   ├── img
+│   │   │   │   │   │   └── icn-dashlist-panel.svg
+│   │   │   │   │   ├── module.html
+│   │   │   │   │   ├── module.ts
+│   │   │   │   │   └── plugin.json
+│   │   │   │   ├── gettingstarted
+│   │   │   │   │   ├── README.md
+│   │   │   │   │   ├── editor.html
+│   │   │   │   │   ├── img
+│   │   │   │   │   │   └── icn-dashlist-panel.svg
+│   │   │   │   │   ├── module.html
+│   │   │   │   │   ├── module.ts
+│   │   │   │   │   └── plugin.json
+│   │   │   │   ├── graph
+│   │   │   │   │   ├── README.md
+│   │   │   │   │   ├── align_yaxes.ts
+│   │   │   │   │   ├── axes_editor.html
+│   │   │   │   │   ├── axes_editor.ts
+│   │   │   │   │   ├── data_processor.ts
+│   │   │   │   │   ├── graph.ts
+│   │   │   │   │   ├── graph_tooltip.d.ts
+│   │   │   │   │   ├── graph_tooltip.ts
+│   │   │   │   │   ├── histogram.ts
+│   │   │   │   │   ├── img
+│   │   │   │   │   │   └── icn-graph-panel.svg
+│   │   │   │   │   ├── jquery.flot.events.js
+│   │   │   │   │   ├── legend.ts
+│   │   │   │   │   ├── module.ts
+│   │   │   │   │   ├── plugin.json
+│   │   │   │   │   ├── series_overrides_ctrl.ts
+│   │   │   │   │   ├── specs
+│   │   │   │   │   │   ├── align_yaxes.jest.ts
+│   │   │   │   │   │   ├── data_processor.jest.ts
+│   │   │   │   │   │   ├── graph_ctrl_specs.ts
+│   │   │   │   │   │   ├── graph_specs.ts
+│   │   │   │   │   │   ├── graph_tooltip.jest.ts
+│   │   │   │   │   │   ├── histogram.jest.ts
+│   │   │   │   │   │   ├── series_override_ctrl_specs.ts
+│   │   │   │   │   │   └── threshold_manager.jest.ts
+│   │   │   │   │   ├── tab_display.html
+│   │   │   │   │   ├── tab_legend.html
+│   │   │   │   │   ├── template.ts
+│   │   │   │   │   ├── threshold_manager.ts
+│   │   │   │   │   └── thresholds_form.ts
+│   │   │   │   ├── heatmap
+│   │   │   │   │   ├── README.md
+│   │   │   │   │   ├── axes_editor.ts
+│   │   │   │   │   ├── color_legend.ts
+│   │   │   │   │   ├── color_scale.ts
+│   │   │   │   │   ├── display_editor.ts
+│   │   │   │   │   ├── heatmap_ctrl.ts
+│   │   │   │   │   ├── heatmap_data_converter.ts
+│   │   │   │   │   ├── heatmap_tooltip.ts
+│   │   │   │   │   ├── img
+│   │   │   │   │   │   └── icn-heatmap-panel.svg
+│   │   │   │   │   ├── module.html
+│   │   │   │   │   ├── module.ts
+│   │   │   │   │   ├── partials
+│   │   │   │   │   │   ├── axes_editor.html
+│   │   │   │   │   │   └── display_editor.html
+│   │   │   │   │   ├── plugin.json
+│   │   │   │   │   ├── rendering.ts
+│   │   │   │   │   └── specs
+│   │   │   │   │       ├── heatmap_ctrl_specs.ts
+│   │   │   │   │       ├── heatmap_data_converter.jest.ts
+│   │   │   │   │       └── renderer_specs.ts
+│   │   │   │   ├── pluginlist
+│   │   │   │   │   ├── README.md
+│   │   │   │   │   ├── editor.html
+│   │   │   │   │   ├── img
+│   │   │   │   │   │   └── icn-dashlist-panel.svg
+│   │   │   │   │   ├── module.html
+│   │   │   │   │   ├── module.ts
+│   │   │   │   │   └── plugin.json
+│   │   │   │   ├── singlestat
+│   │   │   │   │   ├── README.md
+│   │   │   │   │   ├── editor.html
+│   │   │   │   │   ├── img
+│   │   │   │   │   │   └── icn-singlestat-panel.svg
+│   │   │   │   │   ├── mappings.html
+│   │   │   │   │   ├── module.html
+│   │   │   │   │   ├── module.ts
+│   │   │   │   │   ├── plugin.json
+│   │   │   │   │   └── specs
+│   │   │   │   │       ├── singlestat_panel.jest.ts
+│   │   │   │   │       └── singlestat_specs.ts
+│   │   │   │   ├── table
+│   │   │   │   │   ├── README.md
+│   │   │   │   │   ├── column_options.html
+│   │   │   │   │   ├── column_options.ts
+│   │   │   │   │   ├── editor.html
+│   │   │   │   │   ├── editor.ts
+│   │   │   │   │   ├── img
+│   │   │   │   │   │   └── icn-table-panel.svg
+│   │   │   │   │   ├── module.html
+│   │   │   │   │   ├── module.ts
+│   │   │   │   │   ├── plugin.json
+│   │   │   │   │   ├── renderer.ts
+│   │   │   │   │   ├── specs
+│   │   │   │   │   │   ├── renderer.jest.ts
+│   │   │   │   │   │   └── transformers.jest.ts
+│   │   │   │   │   └── transformers.ts
+│   │   │   │   ├── text
+│   │   │   │   │   ├── README.md
+│   │   │   │   │   ├── editor.html
+│   │   │   │   │   ├── img
+│   │   │   │   │   │   └── icn-text-panel.svg
+│   │   │   │   │   ├── module.html
+│   │   │   │   │   ├── module.ts
+│   │   │   │   │   └── plugin.json
+│   │   │   │   └── unknown
+│   │   │   │       ├── module.html
+│   │   │   │       └── module.ts
+│   │   │   └── sdk.ts
+│   │   ├── routes
+│   │   │   ├── ReactContainer.tsx
+│   │   │   ├── dashboard_loaders.ts
+│   │   │   └── routes.ts
+│   │   └── stores
+│   │       ├── AlertListStore
+│   │       │   ├── AlertListStore.jest.ts
+│   │       │   ├── AlertListStore.ts
+│   │       │   ├── AlertRule.ts
+│   │       │   └── helpers.ts
+│   │       ├── FolderStore
+│   │       │   └── FolderStore.ts
+│   │       ├── NavStore
+│   │       │   ├── NavItem.ts
+│   │       │   ├── NavStore.jest.ts
+│   │       │   └── NavStore.ts
+│   │       ├── PermissionsStore
+│   │       │   ├── PermissionsStore.jest.ts
+│   │       │   ├── PermissionsStore.ts
+│   │       │   └── PermissionsStoreItem.ts
+│   │       ├── RootStore
+│   │       │   └── RootStore.ts
+│   │       ├── SearchStore
+│   │       │   ├── ResultItem.ts
+│   │       │   ├── SearchResultSection.ts
+│   │       │   └── SearchStore.ts
+│   │       ├── ServerStatsStore
+│   │       │   ├── ServerStat.ts
+│   │       │   └── ServerStatsStore.ts
+│   │       ├── ViewStore
+│   │       │   ├── ViewStore.jest.ts
+│   │       │   └── ViewStore.ts
+│   │       └── store.ts
+│   ├── dashboards
+│   │   ├── default.json
+│   │   ├── home.json
+│   │   ├── scripted.js
+│   │   ├── scripted_async.js
+│   │   ├── scripted_templated.js
+│   │   └── template_vars.json
+│   ├── emails
+│   │   ├── README.md
+│   │   ├── alert_notification.html
+│   │   ├── alert_notification_example.html
+│   │   ├── invited_to_org.html
+│   │   ├── new_user_invite.html
+│   │   ├── reset_password.html
+│   │   ├── signup_started.html
+│   │   └── welcome_on_signup.html
+│   ├── fonts
+│   │   ├── FontAwesome.otf
+│   │   ├── fontawesome-webfont.eot
+│   │   ├── fontawesome-webfont.svg
+│   │   ├── fontawesome-webfont.ttf
+│   │   ├── fontawesome-webfont.woff
+│   │   ├── fontawesome-webfont.woff2
+│   │   ├── grafana-icons.eot
+│   │   ├── grafana-icons.svg
+│   │   ├── grafana-icons.ttf
+│   │   ├── grafana-icons.woff
+│   │   ├── opensans
+│   │   │   ├── 59ZRklaO5bWGqF5A9baEERJtnKITppOI_IvcXXDNrsc.woff2
+│   │   │   ├── DXI1ORHCpsQm3Vp6mXoaTRWV49_lSm1NYrwo-zkhivY.woff2
+│   │   │   ├── DXI1ORHCpsQm3Vp6mXoaTT0LW-43aMEzIO6XUTLjad8.woff2
+│   │   │   ├── DXI1ORHCpsQm3Vp6mXoaTZX5f-9o1vgP2EXwfjgl7AY.woff2
+│   │   │   ├── DXI1ORHCpsQm3Vp6mXoaTa-j2U0lmluP9RWlSytm3ho.woff2
+│   │   │   ├── DXI1ORHCpsQm3Vp6mXoaTaaRobkAwv3vxw3jMhVENGA.woff2
+│   │   │   ├── DXI1ORHCpsQm3Vp6mXoaTegdm0LZdjqr5-oayXSOefg.woff2
+│   │   │   ├── DXI1ORHCpsQm3Vp6mXoaTf8zf_FOSsgRmwsS7Aa9k2w.woff2
+│   │   │   ├── K88pR3goAWT7BTt32Z01mxJtnKITppOI_IvcXXDNrsc.woff2
+│   │   │   ├── LWCjsQkB6EMdfHrEVqA1KRJtnKITppOI_IvcXXDNrsc.woff2
+│   │   │   ├── MTP_ySUJH_bn48VBG8sNShWV49_lSm1NYrwo-zkhivY.woff2
+│   │   │   ├── MTP_ySUJH_bn48VBG8sNSj0LW-43aMEzIO6XUTLjad8.woff2
+│   │   │   ├── MTP_ySUJH_bn48VBG8sNSpX5f-9o1vgP2EXwfjgl7AY.woff2
+│   │   │   ├── MTP_ySUJH_bn48VBG8sNSq-j2U0lmluP9RWlSytm3ho.woff2
+│   │   │   ├── MTP_ySUJH_bn48VBG8sNSqaRobkAwv3vxw3jMhVENGA.woff2
+│   │   │   ├── MTP_ySUJH_bn48VBG8sNSugdm0LZdjqr5-oayXSOefg.woff2
+│   │   │   ├── MTP_ySUJH_bn48VBG8sNSv8zf_FOSsgRmwsS7Aa9k2w.woff2
+│   │   │   ├── RjgO7rYTmqiVp7vzi-Q5URJtnKITppOI_IvcXXDNrsc.woff2
+│   │   │   ├── cJZKeOuBrn4kERxqtaUH3VtXRa8TVwTICgirnJhmVJw.woff2
+│   │   │   ├── k3k702ZOKiLJc3WVjuplzBWV49_lSm1NYrwo-zkhivY.woff2
+│   │   │   ├── k3k702ZOKiLJc3WVjuplzD0LW-43aMEzIO6XUTLjad8.woff2
+│   │   │   ├── k3k702ZOKiLJc3WVjuplzJX5f-9o1vgP2EXwfjgl7AY.woff2
+│   │   │   ├── k3k702ZOKiLJc3WVjuplzK-j2U0lmluP9RWlSytm3ho.woff2
+│   │   │   ├── k3k702ZOKiLJc3WVjuplzKaRobkAwv3vxw3jMhVENGA.woff2
+│   │   │   ├── k3k702ZOKiLJc3WVjuplzOgdm0LZdjqr5-oayXSOefg.woff2
+│   │   │   ├── k3k702ZOKiLJc3WVjuplzP8zf_FOSsgRmwsS7Aa9k2w.woff2
+│   │   │   ├── u-WUoqrET9fUeobQW7jkRRJtnKITppOI_IvcXXDNrsc.woff2
+│   │   │   ├── xjAJXh38I15wypJXxuGMBiYE0-AqJ3nfInTTiDXDjU4.woff2
+│   │   │   ├── xjAJXh38I15wypJXxuGMBjTOQ_MqJVwkKsUn0wKzc2I.woff2
+│   │   │   ├── xjAJXh38I15wypJXxuGMBjUj_cnvWIuuBMVgbX098Mw.woff2
+│   │   │   ├── xjAJXh38I15wypJXxuGMBkbcKLIaa1LC45dFaAfauRA.woff2
+│   │   │   ├── xjAJXh38I15wypJXxuGMBmo_sUJ8uO4YLWRInS22T3Y.woff2
+│   │   │   ├── xjAJXh38I15wypJXxuGMBo4P5ICox8Kq3LLUNMylGO4.woff2
+│   │   │   ├── xjAJXh38I15wypJXxuGMBr6up8jxqWt8HVA3mDhkV_0.woff2
+│   │   │   └── xozscpT2726on7jbcb_pAhJtnKITppOI_IvcXXDNrsc.woff2
+│   │   └── roboto
+│   │       ├── -2n2p-_Y08sg57CNWQfKNvesZW2xOQ-xsNqO47m55DA.woff2
+│   │       ├── 1hZf02POANh32k2VkgEoUBTbgVql8nDJpwnrE27mub0.woff2
+│   │       ├── CWB0XYA8bzo0kSThX0UTuA.woff2
+│   │       ├── Fcx7Wwv8OzT71A3E1XOAjvesZW2xOQ-xsNqO47m55DA.woff2
+│   │       ├── K23cxWVTrIFD6DJsEVi07RTbgVql8nDJpwnrE27mub0.woff2
+│   │       ├── NdF9MtnOpLzo-noMoG0miPesZW2xOQ-xsNqO47m55DA.woff2
+│   │       ├── OLffGBTaF0XFOW1gnuHF0SYE0-AqJ3nfInTTiDXDjU4.woff2
+│   │       ├── OLffGBTaF0XFOW1gnuHF0TTOQ_MqJVwkKsUn0wKzc2I.woff2
+│   │       ├── OLffGBTaF0XFOW1gnuHF0TUj_cnvWIuuBMVgbX098Mw.woff2
+│   │       ├── OLffGBTaF0XFOW1gnuHF0UbcKLIaa1LC45dFaAfauRA.woff2
+│   │       ├── OLffGBTaF0XFOW1gnuHF0Wo_sUJ8uO4YLWRInS22T3Y.woff2
+│   │       ├── OLffGBTaF0XFOW1gnuHF0Y4P5ICox8Kq3LLUNMylGO4.woff2
+│   │       ├── OLffGBTaF0XFOW1gnuHF0b6up8jxqWt8HVA3mDhkV_0.woff2
+│   │       ├── OpXUqTo0UgQQhGj_SFdLWBTbgVql8nDJpwnrE27mub0.woff2
+│   │       ├── RxZJdnzeo3R5zSexge8UUVtXRa8TVwTICgirnJhmVJw.woff2
+│   │       ├── WxrXJa0C3KdtC7lMafG4dRTbgVql8nDJpwnrE27mub0.woff2
+│   │       ├── ZLqKeelYbATG60EpZBSDyxJtnKITppOI_IvcXXDNrsc.woff2
+│   │       ├── cDKhRaXnQTOVbaoxwdOr9xTbgVql8nDJpwnrE27mub0.woff2
+│   │       ├── ek4gzZ-GeXAPcSbHtCeQI_esZW2xOQ-xsNqO47m55DA.woff2
+│   │       ├── mErvLBYg_cXG3rLvUsKT_fesZW2xOQ-xsNqO47m55DA.woff2
+│   │       ├── mbmhprMH69Zi6eEPBYVFhRJtnKITppOI_IvcXXDNrsc.woff2
+│   │       ├── mx9Uck6uB63VIKFYnEMXrRJtnKITppOI_IvcXXDNrsc.woff2
+│   │       ├── oHi30kwQWvpCWqAhzHcCSBJtnKITppOI_IvcXXDNrsc.woff2
+│   │       ├── oOeFwZNlrTefzLYmlVV1UBJtnKITppOI_IvcXXDNrsc.woff2
+│   │       ├── rGvHdJnr2l75qb0YND9NyBJtnKITppOI_IvcXXDNrsc.woff2
+│   │       ├── vPcynSL0qHq_6dX7lKVByfesZW2xOQ-xsNqO47m55DA.woff2
+│   │       └── vSzulfKSK0LLjjfeaxcREhTbgVql8nDJpwnrE27mub0.woff2
+│   ├── img
+│   │   ├── alert_howto_new.png
+│   │   ├── angle_gradient_light_rev.png
+│   │   ├── angle_gradient_rev.png
+│   │   ├── background_tease.jpg
+│   │   ├── check_radio_sheet.png
+│   │   ├── checkbox.png
+│   │   ├── checkbox_white.png
+│   │   ├── critical.svg
+│   │   ├── cubes.png
+│   │   ├── envelope.png
+│   │   ├── fav32.png
+│   │   ├── glyphicons-halflings-white.png
+│   │   ├── glyphicons-halflings.png
+│   │   ├── grab_dark.svg
+│   │   ├── grab_light.svg
+│   │   ├── grafana_com_auth_icon.svg
+│   │   ├── grafana_icon.svg
+│   │   ├── grafana_mask_icon.svg
+│   │   ├── grafana_mask_icon_white.svg
+│   │   ├── grafana_net_logo.svg
+│   │   ├── graph404.svg
+│   │   ├── heatmap_bg_test.svg
+│   │   ├── icn-app.svg
+│   │   ├── icn-dashboard-tiny.svg
+│   │   ├── icn-dashboard.svg
+│   │   ├── icn-datasource.svg
+│   │   ├── icn-panel.svg
+│   │   ├── icn-plugins-tiny.svg
+│   │   ├── icn-row.svg
+│   │   ├── icons_dark_theme
+│   │   │   ├── icon_add_annotation.svg
+│   │   │   ├── icon_add_annotation_alt.svg
+│   │   │   ├── icon_add_data_sources.svg
+│   │   │   ├── icon_add_folder.svg
+│   │   │   ├── icon_add_link.svg
+│   │   │   ├── icon_add_notification_channel.svg
+│   │   │   ├── icon_add_panel.svg
+│   │   │   ├── icon_add_team.svg
+│   │   │   ├── icon_add_user.svg
+│   │   │   ├── icon_add_variable.svg
+│   │   │   ├── icon_alert.svg
+│   │   │   ├── icon_alert_alt.svg
+│   │   │   ├── icon_alert_off.svg
+│   │   │   ├── icon_alert_rules.svg
+│   │   │   ├── icon_annotation.svg
+│   │   │   ├── icon_annotation_alt.svg
+│   │   │   ├── icon_apikeys.svg
+│   │   │   ├── icon_cog.svg
+│   │   │   ├── icon_dashboard.svg
+│   │   │   ├── icon_dashboard_fav.svg
+│   │   │   ├── icon_dashboard_list.svg
+│   │   │   ├── icon_data_sources.svg
+│   │   │   ├── icon_editor.svg
+│   │   │   ├── icon_home.svg
+│   │   │   ├── icon_import_dashboard.svg
+│   │   │   ├── icon_json.svg
+│   │   │   ├── icon_link.svg
+│   │   │   ├── icon_new_dashboard.svg
+│   │   │   ├── icon_notification_channels.svg
+│   │   │   ├── icon_org.svg
+│   │   │   ├── icon_playlist.svg
+│   │   │   ├── icon_plugins.svg
+│   │   │   ├── icon_preferences.svg
+│   │   │   ├── icon_question.svg
+│   │   │   ├── icon_shield.svg
+│   │   │   ├── icon_sitemap.svg
+│   │   │   ├── icon_snapshots.svg
+│   │   │   ├── icon_team.svg
+│   │   │   ├── icon_user.svg
+│   │   │   ├── icon_variable.svg
+│   │   │   ├── icon_viewer.svg
+│   │   │   └── icon_zoom_out.svg
+│   │   ├── icons_light_theme
+│   │   │   ├── icon_add_annotation.svg
+│   │   │   ├── icon_add_annotation_alt.svg
+│   │   │   ├── icon_add_data_sources.svg
+│   │   │   ├── icon_add_folder.svg
+│   │   │   ├── icon_add_link.svg
+│   │   │   ├── icon_add_notification_channel.svg
+│   │   │   ├── icon_add_panel.svg
+│   │   │   ├── icon_add_team.svg
+│   │   │   ├── icon_add_user.svg
+│   │   │   ├── icon_add_variable.svg
+│   │   │   ├── icon_alert.svg
+│   │   │   ├── icon_alert_alt.svg
+│   │   │   ├── icon_alert_off.svg
+│   │   │   ├── icon_alert_rules.svg
+│   │   │   ├── icon_annotation.svg
+│   │   │   ├── icon_annotation_alt.svg
+│   │   │   ├── icon_apikeys.svg
+│   │   │   ├── icon_cog.svg
+│   │   │   ├── icon_dashboard.svg
+│   │   │   ├── icon_dashboard_fav.svg
+│   │   │   ├── icon_dashboard_list.svg
+│   │   │   ├── icon_data_sources.svg
+│   │   │   ├── icon_editor.svg
+│   │   │   ├── icon_home.svg
+│   │   │   ├── icon_import_dashboard.svg
+│   │   │   ├── icon_json.svg
+│   │   │   ├── icon_link.svg
+│   │   │   ├── icon_new_dashboard.svg
+│   │   │   ├── icon_notification_channels.svg
+│   │   │   ├── icon_org.svg
+│   │   │   ├── icon_playlist.svg
+│   │   │   ├── icon_plugins.svg
+│   │   │   ├── icon_preferences.svg
+│   │   │   ├── icon_question.svg
+│   │   │   ├── icon_shield.svg
+│   │   │   ├── icon_sitemap.svg
+│   │   │   ├── icon_snapshots.svg
+│   │   │   ├── icon_team.svg
+│   │   │   ├── icon_user.svg
+│   │   │   ├── icon_variable.svg
+│   │   │   ├── icon_viewer.svg
+│   │   │   └── icon_zoom_out.svg
+│   │   ├── light.png
+│   │   ├── load.gif
+│   │   ├── load_big.gif
+│   │   ├── loading-pulse.svg
+│   │   ├── logo_transparent_200x.png
+│   │   ├── logo_transparent_200x75.png
+│   │   ├── logo_transparent_400x.png
+│   │   ├── mixed_styles.png
+│   │   ├── online.svg
+│   │   ├── page_header_line.png
+│   │   ├── plugin-default-logo_dark.svg
+│   │   ├── plugin-default-logo_light.svg
+│   │   ├── transparent.png
+│   │   ├── user_profile.png
+│   │   ├── warn-tiny.svg
+│   │   └── warn.svg
+│   ├── robots.txt
+│   ├── sass
+│   │   ├── .sass-lint.yml
+│   │   ├── _grafana.scss
+│   │   ├── _old_responsive.scss
+│   │   ├── _variables.dark.scss
+│   │   ├── _variables.light.scss
+│   │   ├── _variables.scss
+│   │   ├── base
+│   │   │   ├── _code.scss
+│   │   │   ├── _font_awesome.scss
+│   │   │   ├── _fonts.scss
+│   │   │   ├── _forms.scss
+│   │   │   ├── _grafana_icons.scss
+│   │   │   ├── _grid.scss
+│   │   │   ├── _icons.scss
+│   │   │   ├── _normalize.scss
+│   │   │   ├── _reboot.scss
+│   │   │   ├── _type.scss
+│   │   │   └── font-awesome
+│   │   │       ├── _animated.scss
+│   │   │       ├── _bordered-pulled.scss
+│   │   │       ├── _core.scss
+│   │   │       ├── _fixed-width.scss
+│   │   │       ├── _icons.scss
+│   │   │       ├── _larger.scss
+│   │   │       ├── _list.scss
+│   │   │       ├── _mixins.scss
+│   │   │       ├── _path.scss
+│   │   │       ├── _rotated-flipped.scss
+│   │   │       ├── _screen-reader.scss
+│   │   │       ├── _stacked.scss
+│   │   │       └── _variables.scss
+│   │   ├── components
+│   │   │   ├── _alerts.scss
+│   │   │   ├── _buttons.scss
+│   │   │   ├── _cards.scss
+│   │   │   ├── _code_editor.scss
+│   │   │   ├── _color_picker.scss
+│   │   │   ├── _dashboard_grid.scss
+│   │   │   ├── _dashboard_list.scss
+│   │   │   ├── _dashboard_settings.scss
+│   │   │   ├── _description-picker.scss
+│   │   │   ├── _drop.scss
+│   │   │   ├── _dropdown.scss
+│   │   │   ├── _empty_list_cta.scss
+│   │   │   ├── _filter-controls.scss
+│   │   │   ├── _filter-list.scss
+│   │   │   ├── _filter-table.scss
+│   │   │   ├── _footer.scss
+│   │   │   ├── _form_select_box.scss
+│   │   │   ├── _gf-form.scss
+│   │   │   ├── _infobox.scss
+│   │   │   ├── _json_explorer.scss
+│   │   │   ├── _jsontree.scss
+│   │   │   ├── _modals.scss
+│   │   │   ├── _navbar.scss
+│   │   │   ├── _navs.scss
+│   │   │   ├── _old_stuff.scss
+│   │   │   ├── _page_header.scss
+│   │   │   ├── _panel_add_panel.scss
+│   │   │   ├── _panel_alertlist.scss
+│   │   │   ├── _panel_dashlist.scss
+│   │   │   ├── _panel_gettingstarted.scss
+│   │   │   ├── _panel_graph.scss
+│   │   │   ├── _panel_heatmap.scss
+│   │   │   ├── _panel_pluginlist.scss
+│   │   │   ├── _panel_singlestat.scss
+│   │   │   ├── _panel_table.scss
+│   │   │   ├── _panel_text.scss
+│   │   │   ├── _popper.scss
+│   │   │   ├── _query_editor.scss
+│   │   │   ├── _query_part.scss
+│   │   │   ├── _row.scss
+│   │   │   ├── _scrollbar.scss
+│   │   │   ├── _search.scss
+│   │   │   ├── _settings_permissions.scss
+│   │   │   ├── _shortcuts.scss
+│   │   │   ├── _sidemenu.scss
+│   │   │   ├── _submenu.scss
+│   │   │   ├── _switch.scss
+│   │   │   ├── _tabbed_view.scss
+│   │   │   ├── _tables_lists.scss
+│   │   │   ├── _tabs.scss
+│   │   │   ├── _tags.scss
+│   │   │   ├── _tagsinput.scss
+│   │   │   ├── _timepicker.scss
+│   │   │   ├── _tooltip.scss
+│   │   │   ├── _typeahead.scss
+│   │   │   ├── _user-picker.scss
+│   │   │   ├── _view_states.scss
+│   │   │   └── edit_sidemenu.scss
+│   │   ├── fonts.scss
+│   │   ├── grafana.dark.scss
+│   │   ├── grafana.light.scss
+│   │   ├── icons.json
+│   │   ├── layout
+│   │   │   ├── _lists.scss
+│   │   │   └── _page.scss
+│   │   ├── mixins
+│   │   │   ├── _animations.scss
+│   │   │   ├── _breakpoints.scss
+│   │   │   ├── _buttons.scss
+│   │   │   ├── _drop_element.scss
+│   │   │   ├── _forms.scss
+│   │   │   ├── _grid-framework.scss
+│   │   │   ├── _grid.scss
+│   │   │   ├── _hover.scss
+│   │   │   └── _mixins.scss
+│   │   ├── pages
+│   │   │   ├── _admin.scss
+│   │   │   ├── _alerting.scss
+│   │   │   ├── _dashboard.scss
+│   │   │   ├── _errorpage.scss
+│   │   │   ├── _explore.scss
+│   │   │   ├── _history.scss
+│   │   │   ├── _login.scss
+│   │   │   ├── _playlist.scss
+│   │   │   ├── _plugins.scss
+│   │   │   ├── _signup.scss
+│   │   │   └── _styleguide.scss
+│   │   └── utils
+│   │       ├── _angular.scss
+│   │       ├── _flex.scss
+│   │       ├── _spacings.scss
+│   │       ├── _utils.scss
+│   │       ├── _validation.scss
+│   │       └── _widths.scss
+│   ├── test
+│   │   ├── .jshintrc
+│   │   ├── core
+│   │   │   └── utils
+│   │   │       └── version_jest.ts
+│   │   ├── index.ts
+│   │   ├── jest-setup.ts
+│   │   ├── jest-shim.ts
+│   │   ├── lib
+│   │   │   └── common.ts
+│   │   ├── mocks
+│   │   │   ├── angular.ts
+│   │   │   ├── backend_srv.ts
+│   │   │   ├── common.ts
+│   │   │   └── dashboard-mock.js
+│   │   └── specs
+│   │       ├── app_specs.ts
+│   │       └── helpers.ts
+│   ├── vendor
+│   │   ├── angular-other
+│   │   │   ├── angular-strap.js
+│   │   │   ├── datepicker.js
+│   │   │   └── timepicker.js
+│   │   ├── angular-ui
+│   │   │   └── ui-bootstrap-tpls.js
+│   │   ├── bootstrap
+│   │   │   └── bootstrap.js
+│   │   ├── css
+│   │   │   ├── spectrum.css
+│   │   │   └── timepicker.css
+│   │   ├── flot
+│   │   │   ├── jquery.flot.crosshair.js
+│   │   │   ├── jquery.flot.dashes.js
+│   │   │   ├── jquery.flot.fillbelow.js
+│   │   │   ├── jquery.flot.fillbetween.js
+│   │   │   ├── jquery.flot.gauge.js
+│   │   │   ├── jquery.flot.js
+│   │   │   ├── jquery.flot.pie.js
+│   │   │   ├── jquery.flot.selection.js
+│   │   │   ├── jquery.flot.stack.js
+│   │   │   ├── jquery.flot.stackpercent.js
+│   │   │   └── jquery.flot.time.js
+│   │   ├── jquery-ui
+│   │   │   └── custom.js
+│   │   ├── plugin-css
+│   │   │   └── css.js
+│   │   ├── plugin-text
+│   │   │   └── text.js
+│   │   ├── spectrum.js
+│   │   └── tagsinput
+│   │       └── bootstrap-tagsinput.js
+│   └── views
+│       ├── error.html
+│       └── index.template.html
+├── scalingo.json
+├── scripts
+│   ├── benchmarks
+│   │   └── ab
+│   │       └── ab_test.sh
+│   ├── build
+│   │   ├── Dockerfile
+│   │   ├── build-all.sh
+│   │   ├── build.sh
+│   │   ├── build_container.sh
+│   │   ├── build_enterprise.sh
+│   │   ├── deploy.sh
+│   │   ├── download-phantomjs.sh
+│   │   ├── publish.go
+│   │   ├── publish_test.go
+│   │   ├── rpmmacros
+│   │   ├── sign_expect
+│   │   └── sign_packages.sh
+│   ├── circle-test-backend.sh
+│   ├── circle-test-frontend.sh
+│   ├── grunt
+│   │   ├── build_task.js
+│   │   ├── default_task.js
+│   │   ├── options
+│   │   │   ├── clean.js
+│   │   │   ├── compress.js
+│   │   │   ├── exec.js
+│   │   │   ├── jscs.js
+│   │   │   ├── jshint.js
+│   │   │   ├── karma.js
+│   │   │   ├── phantomjs.js
+│   │   │   ├── sasslint.js
+│   │   │   ├── tslint.js
+│   │   │   └── webpack.js
+│   │   ├── release_task.js
+│   │   └── style_guide_task.js
+│   ├── import_many_dashboards.sh
+│   ├── tag_release.sh
+│   ├── trigger_docker_build.sh
+│   ├── trigger_grafana_packer.sh
+│   ├── trigger_windows_build.sh
+│   └── webpack
+│       ├── dependencies.js
+│       ├── postcss.config.js
+│       ├── sass.rule.js
+│       ├── webpack.common.js
+│       ├── webpack.dev.js
+│       ├── webpack.hot.js
+│       ├── webpack.prod.js
+│       └── webpack.test.js
+├── tasks
+│   └── options
+│       └── copy.js
+├── tests
+│   ├── api
+│   │   ├── clearState.test.ts
+│   │   ├── client.ts
+│   │   ├── dashboard.test.ts
+│   │   ├── folder.test.ts
+│   │   ├── jest.js
+│   │   ├── search.test.ts
+│   │   ├── setup.ts
+│   │   ├── tsconfig.json
+│   │   └── user.test.ts
+│   ├── config-files
+│   │   ├── override.ini
+│   │   └── override_windows.ini
+│   ├── datasource-test
+│   │   ├── module.js
+│   │   └── plugin.json
+│   └── test-app
+│       ├── dashboards
+│       │   ├── connections.json
+│       │   ├── connections_result.json
+│       │   └── memory.json
+│       └── plugin.json
+├── tools
+│   └── phantomjs
+│       └── render.js
+├── tsconfig.json
+├── tslint.json
+├── vendor
+│   ├── cloud.google.com
+│   │   └── go
+│   │       ├── AUTHORS
+│   │       ├── CONTRIBUTORS
+│   │       ├── LICENSE
+│   │       └── compute
+│   │           └── metadata
+│   │               └── metadata.go
+│   ├── github.com
+│   │   ├── BurntSushi
+│   │   │   └── toml
+│   │   │       ├── COPYING
+│   │   │       ├── cmd
+│   │   │       │   ├── toml-test-decoder
+│   │   │       │   │   └── COPYING
+│   │   │       │   ├── toml-test-encoder
+│   │   │       │   │   └── COPYING
+│   │   │       │   └── tomlv
+│   │   │       │       └── COPYING
+│   │   │       ├── decode.go
+│   │   │       ├── decode_meta.go
+│   │   │       ├── doc.go
+│   │   │       ├── encode.go
+│   │   │       ├── encoding_types.go
+│   │   │       ├── encoding_types_1.1.go
+│   │   │       ├── lex.go
+│   │   │       ├── parse.go
+│   │   │       ├── type_check.go
+│   │   │       └── type_fields.go
+│   │   ├── Unknwon
+│   │   │   └── com
+│   │   │       ├── LICENSE
+│   │   │       ├── cmd.go
+│   │   │       ├── convert.go
+│   │   │       ├── dir.go
+│   │   │       ├── file.go
+│   │   │       ├── html.go
+│   │   │       ├── http.go
+│   │   │       ├── math.go
+│   │   │       ├── path.go
+│   │   │       ├── regex.go
+│   │   │       ├── slice.go
+│   │   │       ├── string.go
+│   │   │       ├── time.go
+│   │   │       └── url.go
+│   │   ├── aws
+│   │   │   └── aws-sdk-go
+│   │   │       ├── LICENSE.txt
+│   │   │       ├── NOTICE.txt
+│   │   │       ├── aws
+│   │   │       │   ├── awserr
+│   │   │       │   │   ├── error.go
+│   │   │       │   │   └── types.go
+│   │   │       │   ├── awsutil
+│   │   │       │   │   ├── copy.go
+│   │   │       │   │   ├── equal.go
+│   │   │       │   │   ├── path_value.go
+│   │   │       │   │   ├── prettify.go
+│   │   │       │   │   └── string_value.go
+│   │   │       │   ├── client
+│   │   │       │   │   ├── client.go
+│   │   │       │   │   ├── default_retryer.go
+│   │   │       │   │   ├── logger.go
+│   │   │       │   │   └── metadata
+│   │   │       │   │       └── client_info.go
+│   │   │       │   ├── config.go
+│   │   │       │   ├── context.go
+│   │   │       │   ├── context_1_6.go
+│   │   │       │   ├── context_1_7.go
+│   │   │       │   ├── convert_types.go
+│   │   │       │   ├── corehandlers
+│   │   │       │   │   ├── handlers.go
+│   │   │       │   │   ├── param_validator.go
+│   │   │       │   │   └── user_agent.go
+│   │   │       │   ├── credentials
+│   │   │       │   │   ├── chain_provider.go
+│   │   │       │   │   ├── credentials.go
+│   │   │       │   │   ├── ec2rolecreds
+│   │   │       │   │   │   └── ec2_role_provider.go
+│   │   │       │   │   ├── endpointcreds
+│   │   │       │   │   │   └── provider.go
+│   │   │       │   │   ├── env_provider.go
+│   │   │       │   │   ├── shared_credentials_provider.go
+│   │   │       │   │   ├── static_provider.go
+│   │   │       │   │   └── stscreds
+│   │   │       │   │       └── assume_role_provider.go
+│   │   │       │   ├── defaults
+│   │   │       │   │   ├── defaults.go
+│   │   │       │   │   └── shared_config.go
+│   │   │       │   ├── doc.go
+│   │   │       │   ├── ec2metadata
+│   │   │       │   │   ├── api.go
+│   │   │       │   │   └── service.go
+│   │   │       │   ├── endpoints
+│   │   │       │   │   ├── decode.go
+│   │   │       │   │   ├── defaults.go
+│   │   │       │   │   ├── doc.go
+│   │   │       │   │   ├── endpoints.go
+│   │   │       │   │   ├── v3model.go
+│   │   │       │   │   └── v3model_codegen.go
+│   │   │       │   ├── errors.go
+│   │   │       │   ├── jsonvalue.go
+│   │   │       │   ├── logger.go
+│   │   │       │   ├── request
+│   │   │       │   │   ├── connection_reset_error.go
+│   │   │       │   │   ├── connection_reset_error_other.go
+│   │   │       │   │   ├── handlers.go
+│   │   │       │   │   ├── http_request.go
+│   │   │       │   │   ├── offset_reader.go
+│   │   │       │   │   ├── request.go
+│   │   │       │   │   ├── request_1_7.go
+│   │   │       │   │   ├── request_1_8.go
+│   │   │       │   │   ├── request_context.go
+│   │   │       │   │   ├── request_context_1_6.go
+│   │   │       │   │   ├── request_pagination.go
+│   │   │       │   │   ├── retryer.go
+│   │   │       │   │   ├── timeout_read_closer.go
+│   │   │       │   │   ├── validation.go
+│   │   │       │   │   └── waiter.go
+│   │   │       │   ├── session
+│   │   │       │   │   ├── doc.go
+│   │   │       │   │   ├── env_config.go
+│   │   │       │   │   ├── session.go
+│   │   │       │   │   └── shared_config.go
+│   │   │       │   ├── signer
+│   │   │       │   │   └── v4
+│   │   │       │   │       ├── header_rules.go
+│   │   │       │   │       ├── options.go
+│   │   │       │   │       ├── uri_path.go
+│   │   │       │   │       └── v4.go
+│   │   │       │   ├── types.go
+│   │   │       │   ├── url.go
+│   │   │       │   ├── url_1_7.go
+│   │   │       │   └── version.go
+│   │   │       ├── internal
+│   │   │       │   ├── sdkio
+│   │   │       │   │   ├── io_go1.6.go
+│   │   │       │   │   └── io_go1.7.go
+│   │   │       │   ├── sdkrand
+│   │   │       │   │   └── locked_source.go
+│   │   │       │   └── shareddefaults
+│   │   │       │       └── shared_config.go
+│   │   │       ├── private
+│   │   │       │   └── protocol
+│   │   │       │       ├── ec2query
+│   │   │       │       │   ├── build.go
+│   │   │       │       │   └── unmarshal.go
+│   │   │       │       ├── idempotency.go
+│   │   │       │       ├── jsonvalue.go
+│   │   │       │       ├── query
+│   │   │       │       │   ├── build.go
+│   │   │       │       │   ├── queryutil
+│   │   │       │       │   │   └── queryutil.go
+│   │   │       │       │   ├── unmarshal.go
+│   │   │       │       │   └── unmarshal_error.go
+│   │   │       │       ├── rest
+│   │   │       │       │   ├── build.go
+│   │   │       │       │   ├── payload.go
+│   │   │       │       │   └── unmarshal.go
+│   │   │       │       ├── restxml
+│   │   │       │       │   └── restxml.go
+│   │   │       │       ├── unmarshal.go
+│   │   │       │       └── xml
+│   │   │       │           └── xmlutil
+│   │   │       │               ├── build.go
+│   │   │       │               ├── unmarshal.go
+│   │   │       │               └── xml_to_struct.go
+│   │   │       └── service
+│   │   │           ├── cloudwatch
+│   │   │           │   ├── api.go
+│   │   │           │   ├── doc.go
+│   │   │           │   ├── errors.go
+│   │   │           │   ├── service.go
+│   │   │           │   └── waiters.go
+│   │   │           ├── ec2
+│   │   │           │   ├── api.go
+│   │   │           │   ├── customizations.go
+│   │   │           │   ├── doc.go
+│   │   │           │   ├── ec2iface
+│   │   │           │   │   └── interface.go
+│   │   │           │   ├── errors.go
+│   │   │           │   ├── service.go
+│   │   │           │   └── waiters.go
+│   │   │           ├── s3
+│   │   │           │   ├── api.go
+│   │   │           │   ├── body_hash.go
+│   │   │           │   ├── bucket_location.go
+│   │   │           │   ├── customizations.go
+│   │   │           │   ├── doc.go
+│   │   │           │   ├── doc_custom.go
+│   │   │           │   ├── errors.go
+│   │   │           │   ├── host_style_bucket.go
+│   │   │           │   ├── platform_handlers.go
+│   │   │           │   ├── platform_handlers_go1.6.go
+│   │   │           │   ├── service.go
+│   │   │           │   ├── sse.go
+│   │   │           │   ├── statusok_error.go
+│   │   │           │   ├── unmarshal_error.go
+│   │   │           │   └── waiters.go
+│   │   │           └── sts
+│   │   │               ├── api.go
+│   │   │               ├── customizations.go
+│   │   │               ├── doc.go
+│   │   │               ├── errors.go
+│   │   │               └── service.go
+│   │   ├── benbjohnson
+│   │   │   └── clock
+│   │   │       ├── LICENSE
+│   │   │       └── clock.go
+│   │   ├── beorn7
+│   │   │   └── perks
+│   │   │       ├── LICENSE
+│   │   │       └── quantile
+│   │   │           └── stream.go
+│   │   ├── bmizerany
+│   │   │   └── assert
+│   │   │       └── assert.go
+│   │   ├── bradfitz
+│   │   │   └── gomemcache
+│   │   │       ├── LICENSE
+│   │   │       └── memcache
+│   │   │           ├── memcache.go
+│   │   │           └── selector.go
+│   │   ├── codahale
+│   │   │   └── hdrhistogram
+│   │   │       ├── LICENSE
+│   │   │       ├── hdr.go
+│   │   │       └── window.go
+│   │   ├── codegangsta
+│   │   │   └── cli
+│   │   │       ├── LICENSE
+│   │   │       ├── app.go
+│   │   │       ├── category.go
+│   │   │       ├── cli.go
+│   │   │       ├── command.go
+│   │   │       ├── context.go
+│   │   │       ├── errors.go
+│   │   │       ├── flag.go
+│   │   │       ├── flag_generated.go
+│   │   │       ├── funcs.go
+│   │   │       └── help.go
+│   │   ├── davecgh
+│   │   │   └── go-spew
+│   │   │       ├── LICENSE
+│   │   │       └── spew
+│   │   │           ├── bypass.go
+│   │   │           ├── bypasssafe.go
+│   │   │           ├── common.go
+│   │   │           ├── config.go
+│   │   │           ├── doc.go
+│   │   │           ├── dump.go
+│   │   │           ├── format.go
+│   │   │           └── spew.go
+│   │   ├── denisenkom
+│   │   │   └── go-mssqldb
+│   │   │       ├── LICENSE.txt
+│   │   │       ├── buf.go
+│   │   │       ├── bulkcopy.go
+│   │   │       ├── bulkcopy_sql.go
+│   │   │       ├── decimal.go
+│   │   │       ├── doc.go
+│   │   │       ├── error.go
+│   │   │       ├── internal
+│   │   │       │   └── cp
+│   │   │       │       ├── charset.go
+│   │   │       │       ├── collation.go
+│   │   │       │       ├── cp1250.go
+│   │   │       │       ├── cp1251.go
+│   │   │       │       ├── cp1252.go
+│   │   │       │       ├── cp1253.go
+│   │   │       │       ├── cp1254.go
+│   │   │       │       ├── cp1255.go
+│   │   │       │       ├── cp1256.go
+│   │   │       │       ├── cp1257.go
+│   │   │       │       ├── cp1258.go
+│   │   │       │       ├── cp437.go
+│   │   │       │       ├── cp850.go
+│   │   │       │       ├── cp874.go
+│   │   │       │       ├── cp932.go
+│   │   │       │       ├── cp936.go
+│   │   │       │       ├── cp949.go
+│   │   │       │       └── cp950.go
+│   │   │       ├── log.go
+│   │   │       ├── mssql.go
+│   │   │       ├── mssql_go110.go
+│   │   │       ├── mssql_go18.go
+│   │   │       ├── mssql_go19.go
+│   │   │       ├── mssql_go19pre.go
+│   │   │       ├── net.go
+│   │   │       ├── ntlm.go
+│   │   │       ├── parser.go
+│   │   │       ├── rpc.go
+│   │   │       ├── sspi_windows.go
+│   │   │       ├── tds.go
+│   │   │       ├── token.go
+│   │   │       ├── token_string.go
+│   │   │       ├── tran.go
+│   │   │       ├── types.go
+│   │   │       └── uniqueidentifier.go
+│   │   ├── facebookgo
+│   │   │   ├── inject
+│   │   │   │   ├── inject.go
+│   │   │   │   ├── license
+│   │   │   │   └── patents
+│   │   │   └── structtag
+│   │   │       ├── license
+│   │   │       └── structtag.go
+│   │   ├── fatih
+│   │   │   └── color
+│   │   │       ├── LICENSE.md
+│   │   │       ├── color.go
+│   │   │       └── doc.go
+│   │   ├── go-ini
+│   │   │   └── ini
+│   │   │       ├── LICENSE
+│   │   │       ├── error.go
+│   │   │       ├── file.go
+│   │   │       ├── ini.go
+│   │   │       ├── key.go
+│   │   │       ├── parser.go
+│   │   │       ├── section.go
+│   │   │       └── struct.go
+│   │   ├── go-ldap
+│   │   │   └── ldap
+│   │   │       ├── LICENSE
+│   │   │       ├── add.go
+│   │   │       ├── atomic_value.go
+│   │   │       ├── atomic_value_go13.go
+│   │   │       ├── bind.go
+│   │   │       ├── client.go
+│   │   │       ├── compare.go
+│   │   │       ├── conn.go
+│   │   │       ├── control.go
+│   │   │       ├── debug.go
+│   │   │       ├── del.go
+│   │   │       ├── dn.go
+│   │   │       ├── doc.go
+│   │   │       ├── error.go
+│   │   │       ├── filter.go
+│   │   │       ├── ldap.go
+│   │   │       ├── modify.go
+│   │   │       ├── passwdmodify.go
+│   │   │       └── search.go
+│   │   ├── go-macaron
+│   │   │   ├── binding
+│   │   │   │   ├── LICENSE
+│   │   │   │   ├── binding.go
+│   │   │   │   └── errors.go
+│   │   │   ├── gzip
+│   │   │   │   ├── LICENSE
+│   │   │   │   └── gzip.go
+│   │   │   ├── inject
+│   │   │   │   ├── LICENSE
+│   │   │   │   └── inject.go
+│   │   │   └── session
+│   │   │       ├── LICENSE
+│   │   │       ├── file.go
+│   │   │       ├── memcache
+│   │   │       │   └── memcache.go
+│   │   │       ├── memory.go
+│   │   │       ├── postgres
+│   │   │       │   └── postgres.go
+│   │   │       ├── redis
+│   │   │       │   └── redis.go
+│   │   │       ├── session.go
+│   │   │       └── utils.go
+│   │   ├── go-sql-driver
+│   │   │   └── mysql
+│   │   │       ├── AUTHORS
+│   │   │       ├── LICENSE
+│   │   │       ├── appengine.go
+│   │   │       ├── buffer.go
+│   │   │       ├── collations.go
+│   │   │       ├── connection.go
+│   │   │       ├── connection_go18.go
+│   │   │       ├── const.go
+│   │   │       ├── driver.go
+│   │   │       ├── dsn.go
+│   │   │       ├── errors.go
+│   │   │       ├── fields.go
+│   │   │       ├── infile.go
+│   │   │       ├── packets.go
+│   │   │       ├── result.go
+│   │   │       ├── rows.go
+│   │   │       ├── statement.go
+│   │   │       ├── transaction.go
+│   │   │       ├── utils.go
+│   │   │       ├── utils_go17.go
+│   │   │       └── utils_go18.go
+│   │   ├── go-stack
+│   │   │   └── stack
+│   │   │       ├── LICENSE.md
+│   │   │       └── stack.go
+│   │   ├── go-xorm
+│   │   │   ├── builder
+│   │   │   │   ├── LICENSE
+│   │   │   │   ├── builder.go
+│   │   │   │   ├── builder_delete.go
+│   │   │   │   ├── builder_insert.go
+│   │   │   │   ├── builder_select.go
+│   │   │   │   ├── builder_update.go
+│   │   │   │   ├── cond.go
+│   │   │   │   ├── cond_and.go
+│   │   │   │   ├── cond_between.go
+│   │   │   │   ├── cond_compare.go
+│   │   │   │   ├── cond_eq.go
+│   │   │   │   ├── cond_expr.go
+│   │   │   │   ├── cond_in.go
+│   │   │   │   ├── cond_like.go
+│   │   │   │   ├── cond_neq.go
+│   │   │   │   ├── cond_not.go
+│   │   │   │   ├── cond_notin.go
+│   │   │   │   ├── cond_null.go
+│   │   │   │   ├── cond_or.go
+│   │   │   │   ├── doc.go
+│   │   │   │   └── error.go
+│   │   │   ├── core
+│   │   │   │   ├── LICENSE
+│   │   │   │   ├── cache.go
+│   │   │   │   ├── column.go
+│   │   │   │   ├── converstion.go
+│   │   │   │   ├── db.go
+│   │   │   │   ├── dialect.go
+│   │   │   │   ├── driver.go
+│   │   │   │   ├── error.go
+│   │   │   │   ├── filter.go
+│   │   │   │   ├── ilogger.go
+│   │   │   │   ├── index.go
+│   │   │   │   ├── mapper.go
+│   │   │   │   ├── pk.go
+│   │   │   │   ├── rows.go
+│   │   │   │   ├── scan.go
+│   │   │   │   ├── table.go
+│   │   │   │   └── type.go
+│   │   │   └── xorm
+│   │   │       ├── LICENSE
+│   │   │       ├── cache_lru.go
+│   │   │       ├── cache_memory_store.go
+│   │   │       ├── context.go
+│   │   │       ├── convert.go
+│   │   │       ├── dialect_mssql.go
+│   │   │       ├── dialect_mysql.go
+│   │   │       ├── dialect_oracle.go
+│   │   │       ├── dialect_postgres.go
+│   │   │       ├── dialect_sqlite3.go
+│   │   │       ├── doc.go
+│   │   │       ├── engine.go
+│   │   │       ├── engine_cond.go
+│   │   │       ├── engine_group.go
+│   │   │       ├── engine_group_policy.go
+│   │   │       ├── engine_maxlife.go
+│   │   │       ├── error.go
+│   │   │       ├── helpers.go
+│   │   │       ├── helpler_time.go
+│   │   │       ├── interface.go
+│   │   │       ├── logger.go
+│   │   │       ├── processors.go
+│   │   │       ├── rows.go
+│   │   │       ├── session.go
+│   │   │       ├── session_cols.go
+│   │   │       ├── session_cond.go
+│   │   │       ├── session_convert.go
+│   │   │       ├── session_delete.go
+│   │   │       ├── session_exist.go
+│   │   │       ├── session_find.go
+│   │   │       ├── session_get.go
+│   │   │       ├── session_insert.go
+│   │   │       ├── session_iterate.go
+│   │   │       ├── session_query.go
+│   │   │       ├── session_raw.go
+│   │   │       ├── session_schema.go
+│   │   │       ├── session_stats.go
+│   │   │       ├── session_tx.go
+│   │   │       ├── session_update.go
+│   │   │       ├── statement.go
+│   │   │       ├── syslogger.go
+│   │   │       ├── tag.go
+│   │   │       ├── types.go
+│   │   │       └── xorm.go
+│   │   ├── golang
+│   │   │   └── protobuf
+│   │   │       ├── AUTHORS
+│   │   │       ├── CONTRIBUTORS
+│   │   │       ├── LICENSE
+│   │   │       ├── proto
+│   │   │       │   ├── clone.go
+│   │   │       │   ├── decode.go
+│   │   │       │   ├── discard.go
+│   │   │       │   ├── encode.go
+│   │   │       │   ├── equal.go
+│   │   │       │   ├── extensions.go
+│   │   │       │   ├── lib.go
+│   │   │       │   ├── message_set.go
+│   │   │       │   ├── pointer_reflect.go
+│   │   │       │   ├── pointer_unsafe.go
+│   │   │       │   ├── properties.go
+│   │   │       │   ├── table_marshal.go
+│   │   │       │   ├── table_merge.go
+│   │   │       │   ├── table_unmarshal.go
+│   │   │       │   ├── text.go
+│   │   │       │   └── text_parser.go
+│   │   │       └── ptypes
+│   │   │           ├── any
+│   │   │           │   └── any.pb.go
+│   │   │           ├── any.go
+│   │   │           ├── doc.go
+│   │   │           ├── duration
+│   │   │           │   └── duration.pb.go
+│   │   │           ├── duration.go
+│   │   │           ├── timestamp
+│   │   │           │   └── timestamp.pb.go
+│   │   │           └── timestamp.go
+│   │   ├── gopherjs
+│   │   │   └── gopherjs
+│   │   │       ├── LICENSE
+│   │   │       └── js
+│   │   │           └── js.go
+│   │   ├── gorilla
+│   │   │   └── websocket
+│   │   │       ├── AUTHORS
+│   │   │       ├── LICENSE
+│   │   │       ├── client.go
+│   │   │       ├── client_clone.go
+│   │   │       ├── client_clone_legacy.go
+│   │   │       ├── compression.go
+│   │   │       ├── conn.go
+│   │   │       ├── conn_read.go
+│   │   │       ├── conn_read_legacy.go
+│   │   │       ├── doc.go
+│   │   │       ├── json.go
+│   │   │       ├── mask.go
+│   │   │       ├── mask_safe.go
+│   │   │       ├── prepared.go
+│   │   │       ├── server.go
+│   │   │       └── util.go
+│   │   ├── gosimple
+│   │   │   └── slug
+│   │   │       ├── LICENSE
+│   │   │       ├── doc.go
+│   │   │       ├── languages_substitution.go
+│   │   │       └── slug.go
+│   │   ├── grafana
+│   │   │   └── grafana-plugin-model
+│   │   │       ├── LICENSE
+│   │   │       └── go
+│   │   │           ├── datasource
+│   │   │           │   ├── datasource.pb.go
+│   │   │           │   └── service.go
+│   │   │           └── renderer
+│   │   │               ├── renderer.pb.go
+│   │   │               └── service.go
+│   │   ├── hashicorp
+│   │   │   ├── go-hclog
+│   │   │   │   ├── LICENSE
+│   │   │   │   ├── global.go
+│   │   │   │   ├── int.go
+│   │   │   │   ├── log.go
+│   │   │   │   ├── nulllogger.go
+│   │   │   │   ├── stacktrace.go
+│   │   │   │   └── stdlog.go
+│   │   │   ├── go-plugin
+│   │   │   │   ├── LICENSE
+│   │   │   │   ├── client.go
+│   │   │   │   ├── discover.go
+│   │   │   │   ├── error.go
+│   │   │   │   ├── grpc_broker.go
+│   │   │   │   ├── grpc_broker.pb.go
+│   │   │   │   ├── grpc_client.go
+│   │   │   │   ├── grpc_server.go
+│   │   │   │   ├── log_entry.go
+│   │   │   │   ├── mux_broker.go
+│   │   │   │   ├── plugin.go
+│   │   │   │   ├── process.go
+│   │   │   │   ├── process_posix.go
+│   │   │   │   ├── process_windows.go
+│   │   │   │   ├── protocol.go
+│   │   │   │   ├── rpc_client.go
+│   │   │   │   ├── rpc_server.go
+│   │   │   │   ├── server.go
+│   │   │   │   ├── server_mux.go
+│   │   │   │   ├── stream.go
+│   │   │   │   └── testing.go
+│   │   │   ├── go-version
+│   │   │   │   ├── LICENSE
+│   │   │   │   ├── constraint.go
+│   │   │   │   ├── version.go
+│   │   │   │   └── version_collection.go
+│   │   │   └── yamux
+│   │   │       ├── LICENSE
+│   │   │       ├── addr.go
+│   │   │       ├── const.go
+│   │   │       ├── mux.go
+│   │   │       ├── session.go
+│   │   │       ├── stream.go
+│   │   │       └── util.go
+│   │   ├── inconshreveable
+│   │   │   └── log15
+│   │   │       ├── CONTRIBUTORS
+│   │   │       ├── LICENSE
+│   │   │       ├── doc.go
+│   │   │       ├── format.go
+│   │   │       ├── handler.go
+│   │   │       ├── handler_go13.go
+│   │   │       ├── handler_go14.go
+│   │   │       ├── logger.go
+│   │   │       ├── root.go
+│   │   │       ├── syslog.go
+│   │   │       └── term
+│   │   │           └── LICENSE
+│   │   ├── jmespath
+│   │   │   └── go-jmespath
+│   │   │       ├── LICENSE
+│   │   │       ├── api.go
+│   │   │       ├── astnodetype_string.go
+│   │   │       ├── functions.go
+│   │   │       ├── interpreter.go
+│   │   │       ├── lexer.go
+│   │   │       ├── parser.go
+│   │   │       ├── toktype_string.go
+│   │   │       └── util.go
+│   │   ├── jtolds
+│   │   │   └── gls
+│   │   │       ├── LICENSE
+│   │   │       ├── context.go
+│   │   │       ├── gen_sym.go
+│   │   │       ├── gid.go
+│   │   │       ├── id_pool.go
+│   │   │       ├── stack_tags.go
+│   │   │       ├── stack_tags_js.go
+│   │   │       └── stack_tags_main.go
+│   │   ├── klauspost
+│   │   │   ├── compress
+│   │   │   │   ├── LICENSE
+│   │   │   │   ├── flate
+│   │   │   │   │   ├── copy.go
+│   │   │   │   │   ├── crc32_amd64.go
+│   │   │   │   │   ├── crc32_amd64.s
+│   │   │   │   │   ├── crc32_noasm.go
+│   │   │   │   │   ├── deflate.go
+│   │   │   │   │   ├── dict_decoder.go
+│   │   │   │   │   ├── gen.go
+│   │   │   │   │   ├── huffman_bit_writer.go
+│   │   │   │   │   ├── huffman_code.go
+│   │   │   │   │   ├── inflate.go
+│   │   │   │   │   ├── reverse_bits.go
+│   │   │   │   │   ├── snappy.go
+│   │   │   │   │   └── token.go
+│   │   │   │   ├── gzip
+│   │   │   │   │   ├── gunzip.go
+│   │   │   │   │   └── gzip.go
+│   │   │   │   └── snappy
+│   │   │   │       ├── AUTHORS
+│   │   │   │       ├── CONTRIBUTORS
+│   │   │   │       └── LICENSE
+│   │   │   ├── cpuid
+│   │   │   │   ├── LICENSE
+│   │   │   │   ├── cpuid.go
+│   │   │   │   ├── cpuid_386.s
+│   │   │   │   ├── cpuid_amd64.s
+│   │   │   │   ├── detect_intel.go
+│   │   │   │   ├── detect_ref.go
+│   │   │   │   ├── generate.go
+│   │   │   │   └── private-gen.go
+│   │   │   └── crc32
+│   │   │       ├── LICENSE
+│   │   │       ├── crc32.go
+│   │   │       ├── crc32_amd64.go
+│   │   │       ├── crc32_amd64.s
+│   │   │       ├── crc32_amd64p32.go
+│   │   │       ├── crc32_amd64p32.s
+│   │   │       ├── crc32_generic.go
+│   │   │       ├── crc32_otherarch.go
+│   │   │       ├── crc32_s390x.go
+│   │   │       └── crc32_s390x.s
+│   │   ├── kr
+│   │   │   ├── pretty
+│   │   │   │   ├── License
+│   │   │   │   ├── diff.go
+│   │   │   │   ├── formatter.go
+│   │   │   │   ├── pretty.go
+│   │   │   │   └── zero.go
+│   │   │   └── text
+│   │   │       ├── License
+│   │   │       ├── doc.go
+│   │   │       ├── indent.go
+│   │   │       └── wrap.go
+│   │   ├── lib
+│   │   │   └── pq
+│   │   │       ├── LICENSE.md
+│   │   │       ├── array.go
+│   │   │       ├── buf.go
+│   │   │       ├── conn.go
+│   │   │       ├── conn_go18.go
+│   │   │       ├── copy.go
+│   │   │       ├── doc.go
+│   │   │       ├── encode.go
+│   │   │       ├── error.go
+│   │   │       ├── notify.go
+│   │   │       ├── oid
+│   │   │       │   ├── doc.go
+│   │   │       │   ├── gen.go
+│   │   │       │   └── types.go
+│   │   │       ├── rows.go
+│   │   │       ├── ssl.go
+│   │   │       ├── ssl_go1.7.go
+│   │   │       ├── ssl_permissions.go
+│   │   │       ├── ssl_renegotiation.go
+│   │   │       ├── ssl_windows.go
+│   │   │       ├── url.go
+│   │   │       ├── user_posix.go
+│   │   │       ├── user_windows.go
+│   │   │       └── uuid.go
+│   │   ├── mattn
+│   │   │   ├── go-colorable
+│   │   │   │   ├── LICENSE
+│   │   │   │   ├── colorable_appengine.go
+│   │   │   │   ├── colorable_others.go
+│   │   │   │   ├── colorable_windows.go
+│   │   │   │   └── noncolorable.go
+│   │   │   ├── go-isatty
+│   │   │   │   ├── LICENSE
+│   │   │   │   ├── doc.go
+│   │   │   │   ├── isatty_appengine.go
+│   │   │   │   ├── isatty_bsd.go
+│   │   │   │   ├── isatty_linux.go
+│   │   │   │   ├── isatty_linux_ppc64x.go
+│   │   │   │   ├── isatty_others.go
+│   │   │   │   ├── isatty_solaris.go
+│   │   │   │   └── isatty_windows.go
+│   │   │   └── go-sqlite3
+│   │   │       ├── LICENSE
+│   │   │       ├── backup.go
+│   │   │       ├── callback.go
+│   │   │       ├── doc.go
+│   │   │       ├── error.go
+│   │   │       ├── sqlite3-binding.c
+│   │   │       ├── sqlite3-binding.h
+│   │   │       ├── sqlite3.go
+│   │   │       ├── sqlite3_context.go
+│   │   │       ├── sqlite3_fts5.go
+│   │   │       ├── sqlite3_go18.go
+│   │   │       ├── sqlite3_icu.go
+│   │   │       ├── sqlite3_json1.go
+│   │   │       ├── sqlite3_libsqlite3.go
+│   │   │       ├── sqlite3_load_extension.go
+│   │   │       ├── sqlite3_omit_load_extension.go
+│   │   │       ├── sqlite3_other.go
+│   │   │       ├── sqlite3_solaris.go
+│   │   │       ├── sqlite3_trace.go
+│   │   │       ├── sqlite3_type.go
+│   │   │       ├── sqlite3_vtable.go
+│   │   │       ├── sqlite3_windows.go
+│   │   │       ├── sqlite3ext.h
+│   │   │       └── static_mock.go
+│   │   ├── matttproud
+│   │   │   └── golang_protobuf_extensions
+│   │   │       ├── LICENSE
+│   │   │       ├── NOTICE
+│   │   │       └── pbutil
+│   │   │           ├── decode.go
+│   │   │           ├── doc.go
+│   │   │           └── encode.go
+│   │   ├── mitchellh
+│   │   │   └── go-testing-interface
+│   │   │       ├── LICENSE
+│   │   │       ├── testing.go
+│   │   │       └── testing_go19.go
+│   │   ├── oklog
+│   │   │   └── run
+│   │   │       ├── LICENSE
+│   │   │       └── group.go
+│   │   ├── opentracing
+│   │   │   └── opentracing-go
+│   │   │       ├── LICENSE
+│   │   │       ├── ext
+│   │   │       │   └── tags.go
+│   │   │       ├── globaltracer.go
+│   │   │       ├── gocontext.go
+│   │   │       ├── log
+│   │   │       │   ├── field.go
+│   │   │       │   └── util.go
+│   │   │       ├── noop.go
+│   │   │       ├── propagation.go
+│   │   │       ├── span.go
+│   │   │       └── tracer.go
+│   │   ├── patrickmn
+│   │   │   └── go-cache
+│   │   │       ├── CONTRIBUTORS
+│   │   │       ├── LICENSE
+│   │   │       ├── cache.go
+│   │   │       └── sharded.go
+│   │   ├── pkg
+│   │   │   └── errors
+│   │   │       ├── LICENSE
+│   │   │       ├── errors.go
+│   │   │       └── stack.go
+│   │   ├── prometheus
+│   │   │   ├── client_golang
+│   │   │   │   ├── LICENSE
+│   │   │   │   ├── NOTICE
+│   │   │   │   ├── api
+│   │   │   │   │   ├── client.go
+│   │   │   │   │   └── prometheus
+│   │   │   │   │       └── v1
+│   │   │   │   │           └── api.go
+│   │   │   │   └── prometheus
+│   │   │   │       ├── collector.go
+│   │   │   │       ├── counter.go
+│   │   │   │       ├── desc.go
+│   │   │   │       ├── doc.go
+│   │   │   │       ├── expvar_collector.go
+│   │   │   │       ├── fnv.go
+│   │   │   │       ├── gauge.go
+│   │   │   │       ├── go_collector.go
+│   │   │   │       ├── histogram.go
+│   │   │   │       ├── http.go
+│   │   │   │       ├── labels.go
+│   │   │   │       ├── metric.go
+│   │   │   │       ├── observer.go
+│   │   │   │       ├── process_collector.go
+│   │   │   │       ├── promhttp
+│   │   │   │       │   ├── delegator.go
+│   │   │   │       │   ├── delegator_1_8.go
+│   │   │   │       │   ├── delegator_pre_1_8.go
+│   │   │   │       │   ├── http.go
+│   │   │   │       │   ├── instrument_client.go
+│   │   │   │       │   ├── instrument_client_1_8.go
+│   │   │   │       │   └── instrument_server.go
+│   │   │   │       ├── registry.go
+│   │   │   │       ├── summary.go
+│   │   │   │       ├── timer.go
+│   │   │   │       ├── untyped.go
+│   │   │   │       ├── value.go
+│   │   │   │       └── vec.go
+│   │   │   ├── client_model
+│   │   │   │   ├── LICENSE
+│   │   │   │   ├── NOTICE
+│   │   │   │   ├── go
+│   │   │   │   │   └── metrics.pb.go
+│   │   │   │   └── ruby
+│   │   │   │       └── LICENSE
+│   │   │   ├── common
+│   │   │   │   ├── LICENSE
+│   │   │   │   ├── NOTICE
+│   │   │   │   ├── expfmt
+│   │   │   │   │   ├── decode.go
+│   │   │   │   │   ├── encode.go
+│   │   │   │   │   ├── expfmt.go
+│   │   │   │   │   ├── fuzz.go
+│   │   │   │   │   ├── text_create.go
+│   │   │   │   │   └── text_parse.go
+│   │   │   │   ├── internal
+│   │   │   │   │   └── bitbucket.org
+│   │   │   │   │       └── ww
+│   │   │   │   │           └── goautoneg
+│   │   │   │   │               └── autoneg.go
+│   │   │   │   └── model
+│   │   │   │       ├── alert.go
+│   │   │   │       ├── fingerprinting.go
+│   │   │   │       ├── fnv.go
+│   │   │   │       ├── labels.go
+│   │   │   │       ├── labelset.go
+│   │   │   │       ├── metric.go
+│   │   │   │       ├── model.go
+│   │   │   │       ├── signature.go
+│   │   │   │       ├── silence.go
+│   │   │   │       ├── time.go
+│   │   │   │       └── value.go
+│   │   │   └── procfs
+│   │   │       ├── LICENSE
+│   │   │       ├── NOTICE
+│   │   │       ├── buddyinfo.go
+│   │   │       ├── doc.go
+│   │   │       ├── fs.go
+│   │   │       ├── internal
+│   │   │       │   └── util
+│   │   │       │       └── parse.go
+│   │   │       ├── ipvs.go
+│   │   │       ├── mdstat.go
+│   │   │       ├── mountstats.go
+│   │   │       ├── net_dev.go
+│   │   │       ├── nfs
+│   │   │       │   ├── nfs.go
+│   │   │       │   ├── parse.go
+│   │   │       │   ├── parse_nfs.go
+│   │   │       │   └── parse_nfsd.go
+│   │   │       ├── proc.go
+│   │   │       ├── proc_io.go
+│   │   │       ├── proc_limits.go
+│   │   │       ├── proc_ns.go
+│   │   │       ├── proc_stat.go
+│   │   │       ├── stat.go
+│   │   │       ├── xfrm.go
+│   │   │       └── xfs
+│   │   │           ├── parse.go
+│   │   │           └── xfs.go
+│   │   ├── rainycape
+│   │   │   └── unidecode
+│   │   │       ├── LICENSE
+│   │   │       ├── decode.go
+│   │   │       ├── make_table.go
+│   │   │       ├── table.go
+│   │   │       └── unidecode.go
+│   │   ├── sergi
+│   │   │   └── go-diff
+│   │   │       ├── AUTHORS
+│   │   │       ├── CONTRIBUTORS
+│   │   │       ├── LICENSE
+│   │   │       └── diffmatchpatch
+│   │   │           ├── diff.go
+│   │   │           ├── diffmatchpatch.go
+│   │   │           ├── match.go
+│   │   │           ├── mathutil.go
+│   │   │           ├── patch.go
+│   │   │           └── stringutil.go
+│   │   ├── smartystreets
+│   │   │   ├── assertions
+│   │   │   │   ├── LICENSE.md
+│   │   │   │   ├── collections.go
+│   │   │   │   ├── doc.go
+│   │   │   │   ├── equal_method.go
+│   │   │   │   ├── equality.go
+│   │   │   │   ├── filter.go
+│   │   │   │   ├── internal
+│   │   │   │   │   ├── go-render
+│   │   │   │   │   │   ├── LICENSE
+│   │   │   │   │   │   └── render
+│   │   │   │   │   │       ├── render.go
+│   │   │   │   │   │       └── render_time.go
+│   │   │   │   │   └── oglematchers
+│   │   │   │   │       ├── LICENSE
+│   │   │   │   │       ├── any_of.go
+│   │   │   │   │       ├── contains.go
+│   │   │   │   │       ├── deep_equals.go
+│   │   │   │   │       ├── equals.go
+│   │   │   │   │       ├── greater_or_equal.go
+│   │   │   │   │       ├── greater_than.go
+│   │   │   │   │       ├── less_or_equal.go
+│   │   │   │   │       ├── less_than.go
+│   │   │   │   │       ├── matcher.go
+│   │   │   │   │       ├── not.go
+│   │   │   │   │       └── transform_description.go
+│   │   │   │   ├── messages.go
+│   │   │   │   ├── panic.go
+│   │   │   │   ├── quantity.go
+│   │   │   │   ├── serializer.go
+│   │   │   │   ├── strings.go
+│   │   │   │   ├── time.go
+│   │   │   │   └── type.go
+│   │   │   └── goconvey
+│   │   │       ├── LICENSE.md
+│   │   │       ├── convey
+│   │   │       │   ├── assertions.go
+│   │   │       │   ├── context.go
+│   │   │       │   ├── discovery.go
+│   │   │       │   ├── doc.go
+│   │   │       │   ├── gotest
+│   │   │       │   │   └── utils.go
+│   │   │       │   ├── init.go
+│   │   │       │   ├── nilReporter.go
+│   │   │       │   └── reporting
+│   │   │       │       ├── console.go
+│   │   │       │       ├── doc.go
+│   │   │       │       ├── dot.go
+│   │   │       │       ├── gotest.go
+│   │   │       │       ├── init.go
+│   │   │       │       ├── json.go
+│   │   │       │       ├── printer.go
+│   │   │       │       ├── problems.go
+│   │   │       │       ├── reporter.go
+│   │   │       │       ├── reports.go
+│   │   │       │       ├── statistics.go
+│   │   │       │       └── story.go
+│   │   │       └── web
+│   │   │           └── client
+│   │   │               └── resources
+│   │   │                   └── fonts
+│   │   │                       └── Open_Sans
+│   │   │                           └── LICENSE.txt
+│   │   ├── teris-io
+│   │   │   └── shortid
+│   │   │       ├── LICENSE
+│   │   │       └── shortid.go
+│   │   ├── uber
+│   │   │   ├── jaeger-client-go
+│   │   │   │   ├── LICENSE
+│   │   │   │   ├── baggage_setter.go
+│   │   │   │   ├── config
+│   │   │   │   │   ├── config.go
+│   │   │   │   │   ├── config_env.go
+│   │   │   │   │   └── options.go
+│   │   │   │   ├── constants.go
+│   │   │   │   ├── context.go
+│   │   │   │   ├── contrib_observer.go
+│   │   │   │   ├── doc.go
+│   │   │   │   ├── header.go
+│   │   │   │   ├── internal
+│   │   │   │   │   ├── baggage
+│   │   │   │   │   │   ├── remote
+│   │   │   │   │   │   │   ├── options.go
+│   │   │   │   │   │   │   └── restriction_manager.go
+│   │   │   │   │   │   └── restriction_manager.go
+│   │   │   │   │   ├── spanlog
+│   │   │   │   │   │   └── json.go
+│   │   │   │   │   └── throttler
+│   │   │   │   │       ├── remote
+│   │   │   │   │       │   ├── options.go
+│   │   │   │   │       │   └── throttler.go
+│   │   │   │   │       └── throttler.go
+│   │   │   │   ├── interop.go
+│   │   │   │   ├── jaeger_tag.go
+│   │   │   │   ├── jaeger_thrift_span.go
+│   │   │   │   ├── log
+│   │   │   │   │   └── logger.go
+│   │   │   │   ├── logger.go
+│   │   │   │   ├── metrics.go
+│   │   │   │   ├── observer.go
+│   │   │   │   ├── process.go
+│   │   │   │   ├── propagation.go
+│   │   │   │   ├── reference.go
+│   │   │   │   ├── reporter.go
+│   │   │   │   ├── reporter_options.go
+│   │   │   │   ├── rpcmetrics
+│   │   │   │   │   ├── doc.go
+│   │   │   │   │   ├── endpoints.go
+│   │   │   │   │   ├── metrics.go
+│   │   │   │   │   ├── normalizer.go
+│   │   │   │   │   └── observer.go
+│   │   │   │   ├── sampler.go
+│   │   │   │   ├── sampler_options.go
+│   │   │   │   ├── span.go
+│   │   │   │   ├── thrift
+│   │   │   │   │   ├── application_exception.go
+│   │   │   │   │   ├── binary_protocol.go
+│   │   │   │   │   ├── compact_protocol.go
+│   │   │   │   │   ├── exception.go
+│   │   │   │   │   ├── memory_buffer.go
+│   │   │   │   │   ├── messagetype.go
+│   │   │   │   │   ├── numeric.go
+│   │   │   │   │   ├── processor.go
+│   │   │   │   │   ├── protocol.go
+│   │   │   │   │   ├── protocol_exception.go
+│   │   │   │   │   ├── protocol_factory.go
+│   │   │   │   │   ├── rich_transport.go
+│   │   │   │   │   ├── serializer.go
+│   │   │   │   │   ├── simple_json_protocol.go
+│   │   │   │   │   ├── transport.go
+│   │   │   │   │   ├── transport_exception.go
+│   │   │   │   │   ├── transport_factory.go
+│   │   │   │   │   └── type.go
+│   │   │   │   ├── thrift-gen
+│   │   │   │   │   ├── agent
+│   │   │   │   │   │   ├── agent.go
+│   │   │   │   │   │   ├── constants.go
+│   │   │   │   │   │   └── ttypes.go
+│   │   │   │   │   ├── baggage
+│   │   │   │   │   │   ├── baggagerestrictionmanager.go
+│   │   │   │   │   │   ├── constants.go
+│   │   │   │   │   │   └── ttypes.go
+│   │   │   │   │   ├── jaeger
+│   │   │   │   │   │   ├── agent.go
+│   │   │   │   │   │   ├── constants.go
+│   │   │   │   │   │   └── ttypes.go
+│   │   │   │   │   ├── sampling
+│   │   │   │   │   │   ├── constants.go
+│   │   │   │   │   │   ├── samplingmanager.go
+│   │   │   │   │   │   └── ttypes.go
+│   │   │   │   │   └── zipkincore
+│   │   │   │   │       ├── constants.go
+│   │   │   │   │       ├── ttypes.go
+│   │   │   │   │       └── zipkincollector.go
+│   │   │   │   ├── tracer.go
+│   │   │   │   ├── tracer_options.go
+│   │   │   │   ├── transport.go
+│   │   │   │   ├── transport_udp.go
+│   │   │   │   ├── utils
+│   │   │   │   │   ├── http_json.go
+│   │   │   │   │   ├── localip.go
+│   │   │   │   │   ├── rand.go
+│   │   │   │   │   ├── rate_limiter.go
+│   │   │   │   │   ├── udp_client.go
+│   │   │   │   │   └── utils.go
+│   │   │   │   ├── zipkin.go
+│   │   │   │   └── zipkin_thrift_span.go
+│   │   │   └── jaeger-lib
+│   │   │       ├── LICENSE
+│   │   │       └── metrics
+│   │   │           ├── counter.go
+│   │   │           ├── factory.go
+│   │   │           ├── gauge.go
+│   │   │           ├── local.go
+│   │   │           ├── metrics.go
+│   │   │           ├── stopwatch.go
+│   │   │           └── timer.go
+│   │   └── yudai
+│   │       ├── gojsondiff
+│   │       │   ├── LICENSE
+│   │       │   ├── deltas.go
+│   │       │   ├── formatter
+│   │       │   │   ├── ascii.go
+│   │       │   │   └── delta.go
+│   │       │   ├── gojsondiff.go
+│   │       │   └── unmarshaler.go
+│   │       └── golcs
+│   │           ├── LICENSE
+│   │           └── golcs.go
+│   ├── golang.org
+│   │   └── x
+│   │       ├── crypto
+│   │       │   ├── AUTHORS
+│   │       │   ├── CONTRIBUTORS
+│   │       │   ├── LICENSE
+│   │       │   ├── PATENTS
+│   │       │   ├── md4
+│   │       │   │   ├── md4.go
+│   │       │   │   └── md4block.go
+│   │       │   └── pbkdf2
+│   │       │       └── pbkdf2.go
+│   │       ├── net
+│   │       │   ├── AUTHORS
+│   │       │   ├── CONTRIBUTORS
+│   │       │   ├── LICENSE
+│   │       │   ├── PATENTS
+│   │       │   ├── context
+│   │       │   │   ├── context.go
+│   │       │   │   ├── ctxhttp
+│   │       │   │   │   ├── ctxhttp.go
+│   │       │   │   │   └── ctxhttp_pre17.go
+│   │       │   │   ├── go17.go
+│   │       │   │   ├── go19.go
+│   │       │   │   ├── pre_go17.go
+│   │       │   │   └── pre_go19.go
+│   │       │   ├── http
+│   │       │   │   └── httpguts
+│   │       │   │       ├── guts.go
+│   │       │   │       └── httplex.go
+│   │       │   ├── http2
+│   │       │   │   ├── ciphers.go
+│   │       │   │   ├── client_conn_pool.go
+│   │       │   │   ├── configure_transport.go
+│   │       │   │   ├── databuffer.go
+│   │       │   │   ├── errors.go
+│   │       │   │   ├── flow.go
+│   │       │   │   ├── frame.go
+│   │       │   │   ├── go16.go
+│   │       │   │   ├── go17.go
+│   │       │   │   ├── go17_not18.go
+│   │       │   │   ├── go18.go
+│   │       │   │   ├── go19.go
+│   │       │   │   ├── gotrack.go
+│   │       │   │   ├── headermap.go
+│   │       │   │   ├── hpack
+│   │       │   │   │   ├── encode.go
+│   │       │   │   │   ├── hpack.go
+│   │       │   │   │   ├── huffman.go
+│   │       │   │   │   └── tables.go
+│   │       │   │   ├── http2.go
+│   │       │   │   ├── not_go16.go
+│   │       │   │   ├── not_go17.go
+│   │       │   │   ├── not_go18.go
+│   │       │   │   ├── not_go19.go
+│   │       │   │   ├── pipe.go
+│   │       │   │   ├── server.go
+│   │       │   │   ├── transport.go
+│   │       │   │   ├── write.go
+│   │       │   │   ├── writesched.go
+│   │       │   │   ├── writesched_priority.go
+│   │       │   │   └── writesched_random.go
+│   │       │   ├── idna
+│   │       │   │   ├── idna.go
+│   │       │   │   ├── punycode.go
+│   │       │   │   ├── tables.go
+│   │       │   │   ├── trie.go
+│   │       │   │   └── trieval.go
+│   │       │   ├── internal
+│   │       │   │   └── timeseries
+│   │       │   │       └── timeseries.go
+│   │       │   └── trace
+│   │       │       ├── events.go
+│   │       │       ├── histogram.go
+│   │       │       ├── trace.go
+│   │       │       ├── trace_go16.go
+│   │       │       └── trace_go17.go
+│   │       ├── oauth2
+│   │       │   ├── AUTHORS
+│   │       │   ├── CONTRIBUTORS
+│   │       │   ├── LICENSE
+│   │       │   ├── google
+│   │       │   │   ├── appengine.go
+│   │       │   │   ├── appengine_hook.go
+│   │       │   │   ├── appengineflex_hook.go
+│   │       │   │   ├── default.go
+│   │       │   │   ├── doc_go19.go
+│   │       │   │   ├── doc_not_go19.go
+│   │       │   │   ├── go19.go
+│   │       │   │   ├── google.go
+│   │       │   │   ├── jwt.go
+│   │       │   │   ├── not_go19.go
+│   │       │   │   └── sdk.go
+│   │       │   ├── internal
+│   │       │   │   ├── client_appengine.go
+│   │       │   │   ├── doc.go
+│   │       │   │   ├── oauth2.go
+│   │       │   │   ├── token.go
+│   │       │   │   └── transport.go
+│   │       │   ├── jws
+│   │       │   │   └── jws.go
+│   │       │   ├── jwt
+│   │       │   │   └── jwt.go
+│   │       │   ├── oauth2.go
+│   │       │   ├── token.go
+│   │       │   └── transport.go
+│   │       ├── sync
+│   │       │   ├── AUTHORS
+│   │       │   ├── CONTRIBUTORS
+│   │       │   ├── LICENSE
+│   │       │   ├── PATENTS
+│   │       │   └── errgroup
+│   │       │       └── errgroup.go
+│   │       ├── sys
+│   │       │   ├── AUTHORS
+│   │       │   ├── CONTRIBUTORS
+│   │       │   ├── LICENSE
+│   │       │   ├── PATENTS
+│   │       │   └── unix
+│   │       │       ├── affinity_linux.go
+│   │       │       ├── asm_*.s  (23 files)
+│   │       │       ├── bluetooth_linux.go
+│   │       │       ├── cap_freebsd.go
+│   │       │       ├── constants.go
+│   │       │       ├── dev_*.go  (6 files)
+│   │       │       ├── dirent.go
+│   │       │       ├── endian_big.go
+│   │       │       ├── endian_little.go
+│   │       │       ├── env_unix.go
+│   │       │       ├── errors_freebsd_386.go
+│   │       │       ├── errors_freebsd_amd64.go
+│   │       │       ├── errors_freebsd_arm.go
+│   │       │       ├── fcntl.go
+│   │       │       ├── fcntl_linux_32bit.go
+│   │       │       ├── gccgo.go
+│   │       │       ├── gccgo_c.c
+│   │       │       ├── gccgo_linux_amd64.go
+│   │       │       ├── mkpost.go
+│   │       │       ├── openbsd_pledge.go
+│   │       │       ├── pagesize_unix.go
+│   │       │       ├── race.go
+│   │       │       ├── race0.go
+│   │       │       ├── sockcmsg_linux.go
+│   │       │       ├── sockcmsg_unix.go
+│   │       │       ├── str.go
+│   │       │       ├── syscall.go
+│   │       │       ├── syscall_*.go  (37 files)
+│   │       │       ├── timestruct.go
+│   │       │       ├── types_*.go  (6 files)
+│   │       │       ├── zerrors_*.go  (27 files)
+│   │       │       ├── zptrace386_linux.go
+│   │       │       ├── zptracearm_linux.go
+│   │       │       ├── zptracemips_linux.go
+│   │       │       ├── zptracemipsle_linux.go
+│   │       │       ├── zsyscall_*.go  (27 files)
+│   │       │       ├── zsysctl_openbsd_386.go
+│   │       │       ├── zsysctl_openbsd_amd64.go
+│   │       │       ├── zsysctl_openbsd_arm.go
+│   │       │       ├── zsysnum_*.go  (26 files)
+│   │       │       └── ztypes_*.go  (27 files)
+│   │       └── text
+│   │           ├── AUTHORS
+│   │           ├── CONTRIBUTORS
+│   │           ├── LICENSE
+│   │           ├── PATENTS
+│   │           ├── collate
+│   │           │   ├── build
+│   │           │   │   ├── builder.go
+│   │           │   │   ├── colelem.go
+│   │           │   │   ├── contract.go
+│   │           │   │   ├── order.go
+│   │           │   │   ├── table.go
+│   │           │   │   └── trie.go
+│   │           │   ├── collate.go
+│   │           │   ├── index.go
+│   │           │   ├── maketables.go
+│   │           │   ├── option.go
+│   │           │   ├── sort.go
+│   │           │   └── tables.go
+│   │           ├── internal
+│   │           │   ├── colltab
+│   │           │   │   ├── collelem.go
+│   │           │   │   ├── colltab.go
+│   │           │   │   ├── contract.go
+│   │           │   │   ├── iter.go
+│   │           │   │   ├── numeric.go
+│   │           │   │   ├── table.go
+│   │           │   │   ├── trie.go
+│   │           │   │   └── weighter.go
+│   │           │   ├── gen
+│   │           │   │   ├── code.go
+│   │           │   │   └── gen.go
+│   │           │   ├── tag
+│   │           │   │   └── tag.go
+│   │           │   ├── triegen
+│   │           │   │   ├── compact.go
+│   │           │   │   ├── print.go
+│   │           │   │   └── triegen.go
+│   │           │   └── ucd
+│   │           │       └── ucd.go
+│   │           ├── language
+│   │           │   ├── common.go
+│   │           │   ├── coverage.go
+│   │           │   ├── doc.go
+│   │           │   ├── gen.go
+│   │           │   ├── gen_common.go
+│   │           │   ├── gen_index.go
+│   │           │   ├── go1_1.go
+│   │           │   ├── go1_2.go
+│   │           │   ├── index.go
+│   │           │   ├── language.go
+│   │           │   ├── lookup.go
+│   │           │   ├── match.go
+│   │           │   ├── parse.go
+│   │           │   ├── tables.go
+│   │           │   └── tags.go
+│   │           ├── secure
+│   │           │   └── bidirule
+│   │           │       ├── bidirule.go
+│   │           │       ├── bidirule10.0.0.go
+│   │           │       └── bidirule9.0.0.go
+│   │           ├── transform
+│   │           │   └── transform.go
+│   │           └── unicode
+│   │               ├── bidi
+│   │               │   ├── bidi.go
+│   │               │   ├── bracket.go
+│   │               │   ├── core.go
+│   │               │   ├── gen.go
+│   │               │   ├── gen_ranges.go
+│   │               │   ├── gen_trieval.go
+│   │               │   ├── prop.go
+│   │               │   ├── tables10.0.0.go
+│   │               │   ├── tables9.0.0.go
+│   │               │   └── trieval.go
+│   │               ├── cldr
+│   │               │   ├── base.go
+│   │               │   ├── cldr.go
+│   │               │   ├── collate.go
+│   │               │   ├── decode.go
+│   │               │   ├── makexml.go
+│   │               │   ├── resolve.go
+│   │               │   ├── slice.go
+│   │               │   └── xml.go
+│   │               ├── norm
+│   │               │   ├── composition.go
+│   │               │   ├── forminfo.go
+│   │               │   ├── input.go
+│   │               │   ├── iter.go
+│   │               │   ├── maketables.go
+│   │               │   ├── normalize.go
+│   │               │   ├── readwriter.go
+│   │               │   ├── tables10.0.0.go
+│   │               │   ├── tables9.0.0.go
+│   │               │   ├── transform.go
+│   │               │   ├── trie.go
+│   │               │   └── triegen.go
+│   │               └── rangetable
+│   │                   ├── gen.go
+│   │                   ├── merge.go
+│   │                   ├── rangetable.go
+│   │                   ├── tables10.0.0.go
+│   │                   └── tables9.0.0.go
+│   ├── google.golang.org
+│   │   ├── genproto
+│   │   │   ├── LICENSE
+│   │   │   └── googleapis
+│   │   │       └── rpc
+│   │   │           └── status
+│   │   │               └── status.pb.go
+│   │   └── grpc
+│   │       ├── AUTHORS
+│   │       ├── LICENSE
+│   │       ├── backoff.go
+│   │       ├── balancer
+│   │       │   ├── balancer.go
+│   │       │   ├── base
+│   │       │   │   ├── balancer.go
+│   │       │   │   └── base.go
+│   │       │   └── roundrobin
+│   │       │       └── roundrobin.go
+│   │       ├── balancer.go
+│   │       ├── balancer_conn_wrappers.go
+│   │       ├── balancer_v1_wrapper.go
+│   │       ├── call.go
+│   │       ├── clientconn.go
+│   │       ├── codec.go
+│   │       ├── codes
+│   │       │   ├── code_string.go
+│   │       │   └── codes.go
+│   │       ├── connectivity
+│   │       │   └── connectivity.go
+│   │       ├── credentials
+│   │       │   ├── credentials.go
+│   │       │   ├── credentials_util_go17.go
+│   │       │   ├── credentials_util_go18.go
+│   │       │   └── credentials_util_pre_go17.go
+│   │       ├── doc.go
+│   │       ├── encoding
+│   │       │   ├── encoding.go
+│   │       │   └── proto
+│   │       │       └── proto.go
+│   │       ├── go16.go
+│   │       ├── go17.go
+│   │       ├── grpclb
+│   │       │   └── grpc_lb_v1
+│   │       │       └── messages
+│   │       │           └── messages.pb.go
+│   │       ├── grpclb.go
+│   │       ├── grpclb_picker.go
+│   │       ├── grpclb_remote_balancer.go
+│   │       ├── grpclb_util.go
+│   │       ├── grpclog
+│   │       │   ├── grpclog.go
+│   │       │   ├── logger.go
+│   │       │   └── loggerv2.go
+│   │       ├── health
+│   │       │   ├── grpc_health_v1
+│   │       │   │   └── health.pb.go
+│   │       │   └── health.go
+│   │       ├── interceptor.go
+│   │       ├── internal
+│   │       │   └── internal.go
+│   │       ├── keepalive
+│   │       │   └── keepalive.go
+│   │       ├── metadata
+│   │       │   └── metadata.go
+│   │       ├── naming
+│   │       │   ├── dns_resolver.go
+│   │       │   ├── go17.go
+│   │       │   ├── go18.go
+│   │       │   └── naming.go
+│   │       ├── peer
+│   │       │   └── peer.go
+│   │       ├── picker_wrapper.go
+│   │       ├── pickfirst.go
+│   │       ├── proxy.go
+│   │       ├── resolver
+│   │       │   ├── dns
+│   │       │   │   ├── dns_resolver.go
+│   │       │   │   ├── go17.go
+│   │       │   │   └── go18.go
+│   │       │   ├── passthrough
+│   │       │   │   └── passthrough.go
+│   │       │   └── resolver.go
+│   │       ├── resolver_conn_wrapper.go
+│   │       ├── rpc_util.go
+│   │       ├── server.go
+│   │       ├── service_config.go
+│   │       ├── stats
+│   │       │   ├── handlers.go
+│   │       │   └── stats.go
+│   │       ├── status
+│   │       │   └── status.go
+│   │       ├── stream.go
+│   │       ├── tap
+│   │       │   └── tap.go
+│   │       ├── trace.go
+│   │       └── transport
+│   │           ├── bdp_estimator.go
+│   │           ├── control.go
+│   │           ├── go16.go
+│   │           ├── go17.go
+│   │           ├── handler_server.go
+│   │           ├── http2_client.go
+│   │           ├── http2_server.go
+│   │           ├── http_util.go
+│   │           ├── log.go
+│   │           └── transport.go
+│   └── gopkg.in
+│       ├── alexcesaro
+│       │   └── quotedprintable.v3
+│       │       ├── LICENSE
+│       │       ├── encodedword.go
+│       │       ├── pool.go
+│       │       ├── pool_go12.go
+│       │       ├── reader.go
+│       │       └── writer.go
+│       ├── asn1-ber.v1
+│       │   ├── LICENSE
+│       │   ├── ber.go
+│       │   ├── content_int.go
+│       │   ├── header.go
+│       │   ├── identifier.go
+│       │   ├── length.go
+│       │   └── util.go
+│       ├── bufio.v1
+│       │   ├── LICENSE
+│       │   ├── buffer.go
+│       │   └── bufio.go
+│       ├── ini.v1
+│       │   ├── LICENSE
+│       │   ├── error.go
+│       │   ├── file.go
+│       │   ├── ini.go
+│       │   ├── key.go
+│       │   ├── parser.go
+│       │   ├── section.go
+│       │   └── struct.go
+│       ├── macaron.v1
+│       │   ├── LICENSE
+│       │   ├── context.go
+│       │   ├── fixtures
+│       │   │   └── symlink -> basic
+│       │   ├── logger.go
+│       │   ├── macaron.go
+│       │   ├── recovery.go
+│       │   ├── render.go
+│       │   ├── response_writer.go
+│       │   ├── return_handler.go
+│       │   ├── router.go
+│       │   ├── static.go
+│       │   ├── tree.go
+│       │   ├── util_go17.go
+│       │   └── util_go18.go
+│       ├── mail.v2
+│       │   ├── LICENSE
+│       │   ├── auth.go
+│       │   ├── doc.go
+│       │   ├── errors.go
+│       │   ├── message.go
+│       │   ├── mime.go
+│       │   ├── mime_go14.go
+│       │   ├── send.go
+│       │   ├── smtp.go
+│       │   └── writeto.go
+│       ├── redis.v2
+│       │   ├── LICENSE
+│       │   ├── command.go
+│       │   ├── commands.go
+│       │   ├── doc.go
+│       │   ├── error.go
+│       │   ├── multi.go
+│       │   ├── parser.go
+│       │   ├── pipeline.go
+│       │   ├── pool.go
+│       │   ├── pubsub.go
+│       │   ├── rate_limit.go
+│       │   ├── redis.go
+│       │   ├── script.go
+│       │   └── sentinel.go
+│       └── yaml.v2
+│           ├── LICENSE
+│           ├── LICENSE.libyaml
+│           ├── NOTICE
+│           ├── apic.go
+│           ├── decode.go
+│           ├── emitterc.go
+│           ├── encode.go
+│           ├── parserc.go
+│           ├── readerc.go
+│           ├── resolve.go
+│           ├── scannerc.go
+│           ├── sorter.go
+│           ├── writerc.go
+│           ├── yaml.go
+│           ├── yamlh.go
+│           └── yamlprivateh.go
+└── yarn.lock
+746 directories, 3496 files
