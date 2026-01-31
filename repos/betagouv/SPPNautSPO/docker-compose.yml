@@ -1,0 +1,38 @@
+version: "3"
+services:
+  postgres:
+    image: postgres:14-alpine
+    environment:
+      - POSTGRES_USER=sppnaut
+      - POSTGRES_PASSWORD=sppnaut
+      - POSTGRES_DB=sppnaut
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data:delegated
+    ports:
+      - 5434:5432
+    healthcheck:
+      # It is not necessary to supply correct user name, password, or database name values to obtain the server status;
+      # however, if incorrect values are provided, the server will log a failed connection attempt.
+      # ref. https://www.postgresql.org/docs/current/app-pg-isready.html
+      test: ["CMD-SHELL", "pg_isready --username sppnaut"]
+      interval: 1s
+      timeout: 1s
+      retries: 50
+
+  sppnaut:
+    build: .
+    image: sppnaut_sppnaut
+    platform: linux/amd64
+    command: ./services.sh --reload
+    volumes:
+      - ./PDFGenerator/http:/PDFGenerator/http
+      - ./PDFGenerator/bin:/PDFGenerator/bin
+      - ./PDFGenerator/inputs:/PDFGenerator/inputs
+      - ./PDFGenerator/generation_home:/tmp/sppnaut
+    ports:
+      - "8080:8080"
+    env_file:
+      - PDFGenerator/http/.env
+    depends_on:
+      postgres:
+        condition: service_healthy
