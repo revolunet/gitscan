@@ -1,0 +1,74 @@
+{
+  "name": "sillon",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "docusaurus": "docusaurus",
+    "dev": "docusaurus start --host 0.0.0.0 --no-open",
+    "build": "docusaurus build --out-dir ./dist",
+    "start": "docusaurus serve --dir ./dist --no-open --host 0.0.0.0  --port \"${PORT:-3000}\"",
+    "pdf:generate-in-ci": "start-server-and-test start http://localhost:3000 pdf:generate",
+    "pdf:generate": "docusaurus-prince-pdf -u http://localhost:3000/docs/ --include-index --dest ./dist-pdf --output ./dist/assets/sillon.pdf --prince-args=\"--pdf-title='Sillon - Propositions pour réaliser un produit numérique'\"",
+    "swizzle": "docusaurus swizzle",
+    "deploy": "docusaurus deploy",
+    "lint": "npm run lint:es && npm run lint:ts",
+    "lint:es": "TIMING=1 eslint --ext .js,.jsx,.ts,.tsx,.mdx .",
+    "lint:ts": "tsc --noEmit --incremental false",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,mdx}\"",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,mdx}\"",
+    "clean": "docusaurus clear && rm -rf ./dist/",
+    "write-translations": "docusaurus write-translations",
+    "write-heading-ids": "docusaurus write-heading-ids"
+  },
+  "dependencies": {
+    "@docusaurus/core": "2.4.3",
+    "@docusaurus/preset-classic": "2.4.3",
+    "@easyops-cn/docusaurus-search-local": "^0.35.0",
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-regular-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@mdx-js/react": "^1.6.22",
+    "clsx": "^1.2.1",
+    "crisp-sdk-web": "^1.0.19",
+    "dsfr-connect": "^1.0.5",
+    "prism-react-renderer": "^1.3.5",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "usehooks-ts": "^2.9.1"
+  },
+  "devDependencies": {
+    "@docusaurus/module-type-aliases": "2.4.3",
+    "@gouvfr/dsfr": "^1.9.3",
+    "@trivago/prettier-plugin-sort-imports": "^4.0.0",
+    "@tsconfig/docusaurus": "^1.0.5",
+    "@typescript-eslint/eslint-plugin": "^5.59.8",
+    "@typescript-eslint/parser": "^5.59.8",
+    "docusaurus-plugin-matomo": "^0.0.6",
+    "docusaurus-plugin-sass": "^0.2.4",
+    "docusaurus-prince-pdf": "^1.2.1",
+    "eslint": "^8.42.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-mdx": "^2.0.5",
+    "eslint-plugin-react": "7.28.0",
+    "prettier": "^2.5.1",
+    "start-server-and-test": "^2.0.0",
+    "typescript": "^4.7.4"
+  },
+  "browserslist": {
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "packageManager": "npm@10.7.0",
+  "engines": {
+    "node": "^24"
+  }
+}
