@@ -1,0 +1,1141 @@
+.
+├── .buildpacks
+├── .dockerignore
+├── .env.local
+├── .gitattributes
+├── .github
+│   └── workflows
+│       ├── test.env
+│       └── test.yaml
+├── .gitignore
+├── .gitmodules
+├── .rspec
+├── .rubocop.yml
+├── .rubocop_todo.yml
+├── .ruby-version
+├── Dockerfile
+├── Gemfile
+├── Gemfile.lock
+├── Guardfile
+├── LICENSE.md
+├── Makefile
+├── Procfile
+├── README.md
+├── Rakefile
+├── app
+│   ├── apis
+│   │   ├── data_education_api
+│   │   │   ├── academic_dates_range_fetcher.rb
+│   │   │   ├── base.rb
+│   │   │   └── establishment_api.rb
+│   │   ├── students_api
+│   │   │   ├── base.rb
+│   │   │   ├── csv
+│   │   │   │   └── mappers
+│   │   │   │       ├── classe_mapper.rb
+│   │   │   │       └── student_mapper.rb
+│   │   │   ├── fregata
+│   │   │   │   ├── api.rb
+│   │   │   │   └── mappers
+│   │   │   │       ├── address_mapper.rb
+│   │   │   │       ├── classe_mapper.rb
+│   │   │   │       ├── schooling_mapper.rb
+│   │   │   │       └── student_mapper.rb
+│   │   │   └── sygne
+│   │   │       ├── api.rb
+│   │   │       └── mappers
+│   │   │           ├── address_mapper.rb
+│   │   │           ├── classe_mapper.rb
+│   │   │           ├── schooling_mapper.rb
+│   │   │           └── student_mapper.rb
+│   │   └── students_api.rb
+│   ├── assets
+│   │   ├── config
+│   │   │   └── manifest.js
+│   │   ├── images
+│   │   │   ├── .keep
+│   │   │   ├── 90px-Bloc_Marianne.png
+│   │   │   └── Republique_Francaise_RVB.png
+│   │   └── stylesheets
+│   │       ├── application.css
+│   │       ├── dsfr-overrides.css
+│   │       └── misc.css
+│   ├── channels
+│   │   └── application_cable
+│   │       ├── channel.rb
+│   │       └── connection.rb
+│   ├── controllers
+│   │   ├── abrogations_controller.rb
+│   │   ├── academic
+│   │   │   ├── academic_invitations_controller.rb
+│   │   │   ├── application_controller.rb
+│   │   │   ├── classes_controller.rb
+│   │   │   ├── establishments_controller.rb
+│   │   │   ├── pfmps_controller.rb
+│   │   │   ├── reports_controller.rb
+│   │   │   ├── school_years_controller.rb
+│   │   │   ├── students_controller.rb
+│   │   │   ├── tools_controller.rb
+│   │   │   └── users_controller.rb
+│   │   ├── application_controller.rb
+│   │   ├── asp
+│   │   │   ├── application_controller.rb
+│   │   │   └── schoolings_controller.rb
+│   │   ├── classes_controller.rb
+│   │   ├── concerns
+│   │   │   ├── .keep
+│   │   │   ├── developer_oidc.rb
+│   │   │   ├── page_title.rb
+│   │   │   ├── pfmp_resource.rb
+│   │   │   ├── rectifiable.rb
+│   │   │   ├── role_check.rb
+│   │   │   ├── selected_school_year.rb
+│   │   │   ├── user_filtering.rb
+│   │   │   └── user_logger.rb
+│   │   ├── establishments_controller.rb
+│   │   ├── home_controller.rb
+│   │   ├── invitations_controller.rb
+│   │   ├── payment_requests_controller.rb
+│   │   ├── pfmps_controller.rb
+│   │   ├── ribs_controller.rb
+│   │   ├── school_years_controller.rb
+│   │   ├── schoolings_controller.rb
+│   │   ├── stats_controller.rb
+│   │   ├── students_controller.rb
+│   │   ├── users
+│   │   │   └── omniauth_callbacks_controller.rb
+│   │   ├── users_controller.rb
+│   │   └── validations_controller.rb
+│   ├── decorators
+│   │   ├── asp
+│   │   │   └── payment_request_decorator.rb
+│   │   ├── mef_decorator.rb
+│   │   └── pfmp_decorator.rb
+│   ├── errors
+│   │   ├── mef_missing_wage_error.rb
+│   │   └── report_not_found_error.rb
+│   ├── facades
+│   │   ├── classe_facade.rb
+│   │   ├── classes_facade.rb
+│   │   ├── establishment_facade.rb
+│   │   └── validations_facade.rb
+│   ├── helpers
+│   │   ├── academic
+│   │   │   ├── application_helper.rb
+│   │   │   ├── stats_helper.rb
+│   │   │   ├── students_helper.rb
+│   │   │   └── users_helper.rb
+│   │   ├── application_helper.rb
+│   │   ├── classes_helper.rb
+│   │   ├── dsfr_form_builder.rb
+│   │   ├── dsfr_helper.rb
+│   │   ├── home_helper.rb
+│   │   ├── insee_code_helper.rb
+│   │   ├── menu_helper.rb
+│   │   ├── payment_requests_helper.rb
+│   │   ├── pfmps_helper.rb
+│   │   ├── ribs_helper.rb
+│   │   ├── schoolings_helper.rb
+│   │   └── translation_helper.rb
+│   ├── javascript
+│   │   ├── application.js
+│   │   ├── controllers
+│   │   │   ├── academic_controller.js
+│   │   │   ├── application.js
+│   │   │   ├── confirm_director_controller.js
+│   │   │   ├── establishments_table_controller.js
+│   │   │   ├── hide_iban_controller.js
+│   │   │   ├── iban_controller.js
+│   │   │   ├── index.js
+│   │   │   ├── liquidation_controller.js
+│   │   │   ├── map_controller.js
+│   │   │   └── owner_type_controller.js
+│   │   └── utils
+│   │       └── map_utils.js
+│   ├── jobs
+│   │   ├── application_job.rb
+│   │   ├── check_user_role_job.rb
+│   │   ├── concerns
+│   │   │   ├── document_generation.rb
+│   │   │   └── fregata_proof.rb
+│   │   ├── consider_payment_requests_job.rb
+│   │   ├── generate
+│   │   │   ├── abrogation_decision_job.rb
+│   │   │   ├── attributive_decision_job.rb
+│   │   │   ├── attributive_decisions_job.rb
+│   │   │   ├── cancellation_decision_job.rb
+│   │   │   └── liquidation_job.rb
+│   │   ├── generate_report_job.rb
+│   │   ├── janitor_job.rb
+│   │   ├── keycloak
+│   │   │   ├── apply_invitation_attributes_job.rb
+│   │   │   ├── invite_academic_user_job.rb
+│   │   │   └── remove_user_job.rb
+│   │   ├── poll_payments_server_job.rb
+│   │   ├── prepare_payment_request_job.rb
+│   │   ├── process_asp_response_file_job.rb
+│   │   ├── send_payment_requests_job.rb
+│   │   ├── sync
+│   │   │   ├── all_classes_job.rb
+│   │   │   ├── classes_job.rb
+│   │   │   ├── establishment_job.rb
+│   │   │   ├── student_job.rb
+│   │   │   └── student_schoolings_job.rb
+│   │   ├── update_confirmed_director_job.rb
+│   │   └── warm_caches_job.rb
+│   ├── mailers
+│   │   └── application_mailer.rb
+│   ├── models
+│   │   ├── academic
+│   │   │   └── user.rb
+│   │   ├── academic_invitation.rb
+│   │   ├── application_record.rb
+│   │   ├── asp
+│   │   │   ├── errors.rb
+│   │   │   ├── payment_request.rb
+│   │   │   ├── payment_request_state_machine.rb
+│   │   │   ├── payment_request_transition.rb
+│   │   │   ├── payment_request_validator.rb
+│   │   │   ├── payment_return.rb
+│   │   │   ├── request.rb
+│   │   │   └── user.rb
+│   │   ├── asp.rb
+│   │   ├── classe.rb
+│   │   ├── concerns
+│   │   │   ├── .keep
+│   │   │   ├── identity_mappers
+│   │   │   │   ├── base.rb
+│   │   │   │   ├── cas.rb
+│   │   │   │   ├── errors.rb
+│   │   │   │   └── fim.rb
+│   │   │   ├── report_validation.rb
+│   │   │   ├── state_machinable.rb
+│   │   │   └── user_authorisation.rb
+│   │   ├── establishment.rb
+│   │   ├── establishment_invitation.rb
+│   │   ├── establishment_user_role.rb
+│   │   ├── exclusion.rb
+│   │   ├── insee_exception_codes.rb
+│   │   ├── invitation.rb
+│   │   ├── mef.rb
+│   │   ├── pfmp.rb
+│   │   ├── pfmp_state_machine.rb
+│   │   ├── pfmp_transition.rb
+│   │   ├── report.rb
+│   │   ├── rib.rb
+│   │   ├── school_year.rb
+│   │   ├── schooling.rb
+│   │   ├── stats
+│   │   │   ├── base.rb
+│   │   │   ├── count.rb
+│   │   │   ├── indicator
+│   │   │   │   ├── count
+│   │   │   │   │   ├── attributive_decisions.rb
+│   │   │   │   │   ├── payment_requests_integrated.rb
+│   │   │   │   │   ├── payment_requests_paid.rb
+│   │   │   │   │   ├── payment_requests_sent.rb
+│   │   │   │   │   ├── pfmps.rb
+│   │   │   │   │   ├── pfmps_completed.rb
+│   │   │   │   │   ├── pfmps_extended.rb
+│   │   │   │   │   ├── pfmps_incompleted.rb
+│   │   │   │   │   ├── pfmps_paid.rb
+│   │   │   │   │   ├── pfmps_payable.rb
+│   │   │   │   │   ├── pfmps_validated.rb
+│   │   │   │   │   ├── ribs.rb
+│   │   │   │   │   ├── schoolings.rb
+│   │   │   │   │   ├── students.rb
+│   │   │   │   │   ├── students_data.rb
+│   │   │   │   │   └── students_paid.rb
+│   │   │   │   ├── ratio
+│   │   │   │   │   ├── attributive_decisions.rb
+│   │   │   │   │   ├── pfmps_paid_payable.rb
+│   │   │   │   │   ├── pfmps_validated.rb
+│   │   │   │   │   ├── ribs.rb
+│   │   │   │   │   ├── students_data.rb
+│   │   │   │   │   └── students_paid.rb
+│   │   │   │   └── sum
+│   │   │   │       ├── payment_requests_paid.rb
+│   │   │   │       ├── payment_requests_recovery.rb
+│   │   │   │       ├── pfmps_completed.rb
+│   │   │   │       ├── pfmps_extended.rb
+│   │   │   │       ├── pfmps_incompleted.rb
+│   │   │   │       ├── pfmps_validated.rb
+│   │   │   │       └── yearly.rb
+│   │   │   ├── main.rb
+│   │   │   ├── ratio.rb
+│   │   │   └── sum.rb
+│   │   ├── student
+│   │   │   └── mappers
+│   │   │       ├── base.rb
+│   │   │       ├── csv.rb
+│   │   │       ├── errors.rb
+│   │   │       ├── fregata.rb
+│   │   │       └── sygne.rb
+│   │   ├── student.rb
+│   │   ├── user.rb
+│   │   └── wage.rb
+│   ├── services
+│   │   ├── academic
+│   │   │   ├── establishments_report_extractor.rb
+│   │   │   ├── reports_progression_comparator.rb
+│   │   │   └── stats_extractor.rb
+│   │   ├── asp
+│   │   │   ├── address_abbreviator.rb
+│   │   │   ├── attach_document.rb
+│   │   │   ├── errors_dictionary.rb
+│   │   │   ├── file_saver.rb
+│   │   │   ├── filename.rb
+│   │   │   ├── mappers
+│   │   │   │   ├── adresse
+│   │   │   │   │   ├── etranger_mapper.rb
+│   │   │   │   │   ├── france_mapper.rb
+│   │   │   │   │   ├── indu_etranger_mapper.rb
+│   │   │   │   │   └── indu_france_mapper.rb
+│   │   │   │   ├── coord_paie_mapper.rb
+│   │   │   │   ├── dossier_mapper.rb
+│   │   │   │   ├── element_paiement_mapper.rb
+│   │   │   │   ├── enregistrement_mapper.rb
+│   │   │   │   ├── pers_physique_mapper.rb
+│   │   │   │   └── prestadoss_mapper.rb
+│   │   │   ├── readers
+│   │   │   │   ├── base.rb
+│   │   │   │   ├── csv_reader.rb
+│   │   │   │   ├── errors.rb
+│   │   │   │   ├── integrations_file_reader.rb
+│   │   │   │   ├── payments_file_reader.rb
+│   │   │   │   ├── rectifications_file_reader.rb
+│   │   │   │   └── rejects_file_reader.rb
+│   │   │   └── rib_name_sanitiser.rb
+│   │   ├── cache_warmer
+│   │   │   └── academic_data_service.rb
+│   │   ├── csv_importer.rb
+│   │   ├── insee_codes.rb
+│   │   ├── insee_country_code_mapper.rb
+│   │   ├── keycloak
+│   │   │   └── client.rb
+│   │   ├── mass_rectificator.rb
+│   │   ├── pearl_pfmps_rectificator.rb
+│   │   ├── pfmp_manager.rb
+│   │   ├── reports
+│   │   │   ├── academy_data_extractor.rb
+│   │   │   ├── base_csv_exporter.rb
+│   │   │   ├── base_extractor.rb
+│   │   │   ├── csv_exporter.rb
+│   │   │   ├── evolution_csv_exporter.rb
+│   │   │   ├── global_progression_comparator.rb
+│   │   │   ├── progression_comparator.rb
+│   │   │   └── stats_extractor.rb
+│   │   ├── reprocessor
+│   │   │   ├── payment_request.rb
+│   │   │   ├── payment_request_incomplete.rb
+│   │   │   └── payment_request_rejected.rb
+│   │   ├── student_merger.rb
+│   │   └── updaters
+│   │       └── student_schoolings_updater.rb
+│   └── views
+│       ├── abrogations
+│       │   └── index.html.haml
+│       ├── academic
+│       │   ├── application
+│       │   │   ├── _academic_map.html.haml
+│       │   │   ├── _academic_map_error.html.haml
+│       │   │   ├── _academic_map_missing_report.html.haml
+│       │   │   ├── academic_map.html.haml
+│       │   │   ├── academic_map_error.html.haml
+│       │   │   ├── academic_map_missing_report.html.haml
+│       │   │   ├── home.html.haml
+│       │   │   └── login.html.haml
+│       │   ├── classes
+│       │   │   ├── index.html.haml
+│       │   │   └── show.html.haml
+│       │   ├── establishments
+│       │   │   ├── _establishment_timeline.html.haml
+│       │   │   ├── show.html.haml
+│       │   │   └── users.html.haml
+│       │   ├── pfmps
+│       │   │   └── show.html.haml
+│       │   ├── reports
+│       │   │   ├── _establishments_table.html.haml
+│       │   │   ├── _report_comparison_form.html.haml
+│       │   │   ├── _stats_cards.html.haml
+│       │   │   ├── establishments_table.html.haml
+│       │   │   ├── global.html.haml
+│       │   │   ├── global_evolution.html.haml
+│       │   │   ├── index.html.haml
+│       │   │   └── show.html.haml
+│       │   ├── school_years
+│       │   │   └── select.html.haml
+│       │   ├── shared
+│       │   │   ├── _academy_banner.html.haml
+│       │   │   ├── _header.html.haml
+│       │   │   ├── _search_student.html.haml
+│       │   │   └── _welcome_banner.html.haml
+│       │   ├── students
+│       │   │   ├── search_results.html.haml
+│       │   │   └── show.html.haml
+│       │   ├── tools
+│       │   │   ├── _keycloak_invitation_error.html.haml
+│       │   │   ├── _keycloak_invitation_error.turbo_stream.haml
+│       │   │   ├── _keycloak_invitation_loading.html.haml
+│       │   │   ├── _keycloak_invitation_result.html.haml
+│       │   │   ├── _keycloak_invitation_result.turbo_stream.haml
+│       │   │   ├── _keycloak_removal_error.html.haml
+│       │   │   ├── _keycloak_removal_error.turbo_stream.haml
+│       │   │   ├── _keycloak_removal_loading.html.haml
+│       │   │   ├── _keycloak_removal_result.html.haml
+│       │   │   ├── _keycloak_removal_result.turbo_stream.haml
+│       │   │   ├── academic_invitations.html.haml
+│       │   │   ├── establishment_invitations.html.haml
+│       │   │   └── index.html.haml
+│       │   └── users
+│       │       ├── index.html.haml
+│       │       └── select_academy.html.haml
+│       ├── asp
+│       │   ├── application
+│       │   │   └── login.html.haml
+│       │   └── schoolings
+│       │       ├── _liquidation_complete.turbo_stream.haml
+│       │       ├── _liquidation_documents.html.haml
+│       │       ├── _liquidation_loading.html.haml
+│       │       ├── _liquidation_status.html.haml
+│       │       ├── _pfmps.html.haml
+│       │       ├── _search-bar.html.haml
+│       │       ├── index.html.haml
+│       │       └── show.html.haml
+│       ├── classes
+│       │   ├── _alert_apprentices.html.haml
+│       │   ├── _attributive_decisions_panel.html.haml
+│       │   ├── _pfmps_payments_table.html.haml
+│       │   ├── _students_removed_table.html.haml
+│       │   ├── _students_table.html.haml
+│       │   ├── bulk_pfmp.html.haml
+│       │   ├── bulk_pfmp_completion.html.haml
+│       │   ├── index.html.haml
+│       │   └── show.html.haml
+│       ├── devise
+│       │   ├── confirmations
+│       │   │   └── new.html.erb
+│       │   ├── mailer
+│       │   │   ├── confirmation_instructions.html.erb
+│       │   │   ├── email_changed.html.erb
+│       │   │   ├── password_change.html.erb
+│       │   │   ├── reset_password_instructions.html.erb
+│       │   │   └── unlock_instructions.html.erb
+│       │   ├── passwords
+│       │   │   ├── edit.html.erb
+│       │   │   └── new.html.erb
+│       │   ├── registrations
+│       │   │   ├── edit.html.erb
+│       │   │   └── new.html.erb
+│       │   ├── sessions
+│       │   │   └── new.html.erb
+│       │   ├── shared
+│       │   │   ├── _error_messages.html.erb
+│       │   │   └── _links.html.erb
+│       │   └── unlocks
+│       │       └── new.html.erb
+│       ├── home
+│       │   ├── _attributive_decision_form.html.haml
+│       │   ├── _attributive_decision_reissue_form.html.haml
+│       │   ├── _home_timeline.html.haml
+│       │   ├── accessibility.html
+│       │   ├── faq.html.haml
+│       │   ├── home.html.haml
+│       │   ├── legal.html.haml
+│       │   ├── login.html.haml
+│       │   ├── maintenance.html.haml
+│       │   └── welcome.html.haml
+│       ├── invitations
+│       │   ├── index.html.haml
+│       │   └── new.html.haml
+│       ├── layouts
+│       │   ├── academic.html.haml
+│       │   ├── application.html.haml
+│       │   ├── mailer.html.erb
+│       │   ├── mailer.text.erb
+│       │   └── maintenance.html.haml
+│       ├── payment_requests
+│       │   └── _badges.html.haml
+│       ├── pfmps
+│       │   ├── _create_payment_request.html.haml
+│       │   ├── _dates_warning.html.haml
+│       │   ├── _failed_pfmps.html.haml
+│       │   ├── _form.html.haml
+│       │   ├── _form_content_payment_request.html.haml
+│       │   ├── _payment_panel.html.haml
+│       │   ├── _payment_requests_history.html.haml
+│       │   ├── _pfmp_badges.html.haml
+│       │   ├── _pfmp_student_table.html.haml
+│       │   ├── _retry_incomplete_payment_request.html.haml
+│       │   ├── _schooling_buttons.html.haml
+│       │   ├── confirm_deletion.html.haml
+│       │   ├── confirm_rectification.html.haml
+│       │   ├── edit.html.haml
+│       │   ├── new.html.haml
+│       │   └── show.html.haml
+│       ├── ribs
+│       │   ├── _form.html.haml
+│       │   ├── _informations.html.haml
+│       │   ├── edit.html.haml
+│       │   ├── index.html.haml
+│       │   ├── missing.html.haml
+│       │   ├── new.html.haml
+│       │   └── owner_type
+│       │       ├── _owner_type_horizontal.html.haml
+│       │       └── _owner_type_vertical.html.haml
+│       ├── school_years
+│       │   ├── _announcement.haml
+│       │   └── select.haml
+│       ├── schoolings
+│       │   ├── _student_informations.html.haml
+│       │   ├── confirm_abrogation.html.haml
+│       │   ├── confirm_cancellation_decision.html.haml
+│       │   ├── confirm_da_extension.haml
+│       │   ├── confirm_removal.html.haml
+│       │   └── confirm_removal_cancellation.html.haml
+│       ├── shared
+│       │   ├── _confirmed_director.html.haml
+│       │   ├── _connection_panel.html.haml
+│       │   ├── _etab_banner.html.haml
+│       │   ├── _faq.html.haml
+│       │   ├── _flash.html.haml
+│       │   ├── _footer.html.erb
+│       │   ├── _header.html.haml
+│       │   ├── _search_student.html.haml
+│       │   ├── _shim.html
+│       │   ├── _skiplinks.html.erb
+│       │   └── _tooltip.html.haml
+│       ├── stats
+│       │   ├── _map.html.haml
+│       │   └── index.html.haml
+│       ├── students
+│       │   ├── search_results.html.haml
+│       │   └── show.html.haml
+│       ├── users
+│       │   ├── _select_establishment_form.html.haml
+│       │   ├── omniauth_callbacks
+│       │   │   └── select_etab.html.haml
+│       │   └── select_establishment.html.haml
+│       └── validations
+│           ├── index.html.haml
+│           └── show.html.haml
+├── bin
+│   ├── brakeman
+│   ├── bundle
+│   ├── cucumber
+│   ├── dev
+│   ├── importmap
+│   ├── rails
+│   ├── rake
+│   ├── rspec
+│   ├── rubocop
+│   ├── setup
+│   └── spring
+├── config
+│   ├── application.rb
+│   ├── boot.rb
+│   ├── cable.yml
+│   ├── cucumber.yml
+│   ├── database.yml
+│   ├── environment.rb
+│   ├── environments
+│   │   ├── development.rb
+│   │   ├── production.rb
+│   │   ├── staging.rb
+│   │   └── test.rb
+│   ├── importmap.rb
+│   ├── initializers
+│   │   ├── action_view.rb
+│   │   ├── active_support.rb
+│   │   ├── assets.rb
+│   │   ├── chartkick.rb
+│   │   ├── content_security_policy.rb
+│   │   ├── devise.rb
+│   │   ├── filter_parameter_logging.rb
+│   │   ├── inflections.rb
+│   │   ├── new_framework_defaults_8_0.rb
+│   │   ├── omniauth.rb
+│   │   ├── omniauth_form.rb
+│   │   ├── openid_connect.rb
+│   │   ├── permissions_policy.rb
+│   │   ├── rack_attack.rb
+│   │   ├── sentry.rb
+│   │   ├── sepa_countries.rb
+│   │   ├── statesman.rb
+│   │   ├── time_formats.rb
+│   │   ├── types.rb
+│   │   └── version.rb
+│   ├── locales
+│   │   ├── da.yml
+│   │   ├── en.yml
+│   │   ├── faq.yml
+│   │   ├── fr-rails.yml
+│   │   ├── fr.yml
+│   │   └── tooltips.yml
+│   ├── puma.rb
+│   ├── routes.rb
+│   ├── schedule.rb
+│   ├── storage
+│   │   ├── development.yml
+│   │   └── test.yml
+│   └── storage.yml
+├── config.ru
+├── cron.json
+├── data
+│   ├── mefs
+│   │   ├── 2023_2024.csv
+│   │   ├── 2024_2025.csv
+│   │   └── 2025_2026.csv
+│   ├── sepa-zone-countries.csv
+│   └── wages
+│       ├── 2023_2024.csv
+│       ├── 2024_2025.csv
+│       └── 2025_2026.csv
+├── db
+│   ├── exclusion_seeder.rb
+│   ├── mef_seeder.rb
+│   ├── migrate
+│   │   ├── 20230509125724_create_principals.rb
+│   │   ├── 20230509214339_add_devise_to_principals.rb
+│   │   ├── 20230512084221_create_establishments.rb
+│   │   ├── 20230516143624_create_mefstats.rb
+│   │   ├── 20230516161726_create_classes.rb
+│   │   ├── 20230517062450_add_establishment_id_to_principals.rb
+│   │   ├── 20230517094718_add_postal_code_and_city_to_establishments.rb
+│   │   ├── 20230522131051_create_students.rb
+│   │   ├── 20230522230816_create_pfmps.rb
+│   │   ├── 20230522231400_create_pfmp_transitions.rb
+│   │   ├── 20230606160103_create_ribs.rb
+│   │   ├── 20230615143143_create_payments.rb
+│   │   ├── 20230615143825_create_payment_transitions.rb
+│   │   ├── 20230713072215_relax_establishments_constraints.rb
+│   │   ├── 20230713131807_rework_mefstat_table.rb
+│   │   ├── 20230718092519_add_ministry_to_mefs.rb
+│   │   ├── 20230807153825_add_birthdate_to_students.rb
+│   │   ├── 20230809121618_add_name_and_personal_to_ribs.rb
+│   │   ├── 20230811154051_add_day_count_to_pfmps.rb
+│   │   ├── 20230814085951_create_wages.rb
+│   │   ├── 20230826134628_create_schoolings.rb
+│   │   ├── 20230905052752_relax_establishment_constraint_on_principals.rb
+│   │   ├── 20230921092816_add_phone_number_and_email_to_establishments.rb
+│   │   ├── 20230924200149_add_year_to_classes.rb
+│   │   ├── 20230926153510_create_active_storage_tables.active_storage.rb
+│   │   ├── 20230930130715_add_progress_indicators_to_establishments.rb
+│   │   ├── 20231005135540_add_welcomed_to_principals.rb
+│   │   ├── 20231009055753_rename_principals_to_users.rb
+│   │   ├── 20231011223534_create_invitations.rb
+│   │   ├── 20231012102522_create_join_table_establishment_users.rb
+│   │   ├── 20231014100213_add_unique_index_on_establishment_users.rb
+│   │   ├── 20231016101548_rename_establishment_users_to_establishment_user_roles.rb
+│   │   ├── 20231023084115_add_adress_lines_to_establishments.rb
+│   │   ├── 20231030135955_add_primary_key_to_establishment_user_roles.rb
+│   │   ├── 20231102104302_add_asp_file_reference_to_students.rb
+│   │   ├── 20231102145756_add_attributive_decision_version_to_schoolings.rb
+│   │   ├── 20231103103938_add_is_public_to_establishment.rb
+│   │   ├── 20231105235428_add_address_to_students.rb
+│   │   ├── 20231108161014_add_oidc_attributes_to_user.rb
+│   │   ├── 20231112172554_remove_current_schooling_id_from_students.rb
+│   │   ├── 20231127123426_add_academy_to_establishments.rb
+│   │   ├── 20231130133309_add_index_on_user_email_and_provider.rb
+│   │   ├── 20231201083922_add_provider_to_establishments.rb
+│   │   ├── 20231201113835_fill_establishments_students_provider.rb
+│   │   ├── 20231205124633_add_generating_attributive_decision_to_schoolings.rb
+│   │   ├── 20231205132300_remove_generating_attributive_decisions_from_establishments.rb
+│   │   ├── 20231208091401_add_mef_code_to_wages.rb
+│   │   ├── 20240104101419_rename_address_fields_for_student.rb
+│   │   ├── 20240104143944_add_confirmed_director_to_establishment.rb
+│   │   ├── 20240108010009_add_birth_attributes_to_students.rb
+│   │   ├── 20240108140328_add_biological_sex_to_students.rb
+│   │   ├── 20240117162049_rename_user_establishment_to_selected_establishment.rb
+│   │   ├── 20240123163436_add_database_constraints_on_ribs.rb
+│   │   ├── 20240206124317_create_asp_requests.rb
+│   │   ├── 20240212162223_create_asp_payment_requests.rb
+│   │   ├── 20240212163053_create_asp_payment_request_transitions.rb
+│   │   ├── 20240213092228_add_asp_attributes_to_models.rb
+│   │   ├── 20240213184952_delete_payment_transitions.rb
+│   │   ├── 20240219100348_add_administrative_number_to_schoolings.rb
+│   │   ├── 20240228153920_remove_payments.rb
+│   │   ├── 20240304081606_add_asp_payment_returns.rb
+│   │   ├── 20240321161647_devise_create_asp_users.rb
+│   │   ├── 20240402090724_add_department_code_to_establishments.rb
+│   │   ├── 20240402160524_add_status_to_schooling.rb
+│   │   ├── 20240403123520_add_lost_attribute_to_students.rb
+│   │   ├── 20240408081358_rename_lost_to_ine_not_found.rb
+│   │   ├── 20240410074833_add_payment_return_reference_to_asp_payment_requests.rb
+│   │   ├── 20240415110650_add_not_null_constraint_for_payment_requests_pfmp.rb
+│   │   ├── 20240424154841_create_exclusions.rb
+│   │   ├── 20240503100542_add_type_on_rib.rb
+│   │   ├── 20240506155825_add_indices_on_asp_attributes.rb
+│   │   ├── 20240523061622_create_paid_pfmps.rb
+│   │   ├── 20240529093337_add_rib_field_to_asp_payment_resquest_table.rb
+│   │   ├── 20240529115713_create_school_year.rb
+│   │   ├── 20240603124726_add_abrogation_decision_version_to_schooling.rb
+│   │   ├── 20240708130832_add_administrative_number_to_pfmps.rb
+│   │   ├── 20240719093120_add_commune_code_to_establishments.rb
+│   │   ├── 20240806074059_add_extended_end_date_to_schoolings.rb
+│   │   ├── 20240814133039_add_school_year_to_mef.rb
+│   │   ├── 20240910072851_add_establishment_to_ribs.rb
+│   │   ├── 20240925092548_update_rib_unique_index.rb
+│   │   ├── 20240925131116_add_removed_at_to_schoolings.rb
+│   │   ├── 20241011120605_change_unique_index_on_mef.rb
+│   │   ├── 20241011131127_add_school_year_id_to_wages.rb
+│   │   ├── 20241014094756_add_not_null_constraint_for_mefs_school_year.rb
+│   │   ├── 20241104214101_add_indexes_for_establishment_facade.rb
+│   │   ├── 20241106195543_add_more_indexes.rb
+│   │   ├── 20241126140427_remove_asp_file_reference_from_students.rb
+│   │   ├── 20250113111229_add_unaccent.rb
+│   │   ├── 20250124_create_reports.rb
+│   │   ├── 20250127092313_add_school_year_to_exclusions.rb
+│   │   ├── 20250212163347_add_unique_constraint_to_wages.rb
+│   │   ├── 20250610130944_update_one_active_schooling_per_student_index.rb
+│   │   ├── 20250626074806_add_first_names_to_students.rb
+│   │   ├── 20250630071856_add_liquidation_version_to_schoolings.rb
+│   │   ├── 20250826142518_create_insee_exception_codes.rb
+│   │   ├── 20250926133757_add_school_year_to_reports.rb
+│   │   ├── 20250926133903_update_existing_reports_with_school_year.rb
+│   │   ├── 20250926133923_make_school_year_required_on_reports.rb
+│   │   ├── 20251003000000_add_type_and_academy_codes_to_invitations.rb
+│   │   ├── 20251003000001_make_establishment_id_nullable_on_invitations.rb
+│   │   ├── 20251003000002_fix_invitations_unique_constraints.rb
+│   │   ├── 20251017154338_add_performance_indexes_to_academic_queries.rb
+│   │   ├── 20251031102026_change_reports_created_at_index_to_composite.rb
+│   │   ├── 20251104150000_migrate_report_data_to_symbol_keys.rb
+│   │   ├── 20251105000000_fix_pfmps_paid_payable_ratio_key.rb
+│   │   ├── 20251114110202_drop_paid_pfmps_view.rb
+│   │   ├── 20251218113051_add_composite_index_to_pfmps.rb
+│   │   └── 20251219113142_remove_invalid_pfmps_composite_index.rb
+│   ├── report_seeder.rb
+│   ├── schema.rb
+│   ├── school_year_seeder.rb
+│   ├── seeds.rb
+│   └── wage_seeder.rb
+├── docker-compose.yml
+├── docs
+│   ├── apis_élèves.md
+│   ├── fusion_élèves.md
+│   ├── nouvelle_année.md
+│   └── tâches_automatisées.md
+├── entrypoint.sh
+├── features
+│   ├── abrogations.feature
+│   ├── accueil.feature
+│   ├── accueil_status_des_paiements.feature
+│   ├── anciens_eleves.feature
+│   ├── asp_consultation_de_dossier.feature
+│   ├── calcul_des_montants.feature
+│   ├── changement_annee.feature
+│   ├── completion_de_pfmps.feature
+│   ├── consultation_des_listes.feature
+│   ├── delegations_menj.feature
+│   ├── décisions_d_attributions.feature
+│   ├── eleves.feature
+│   ├── gestion_de_pfmp.feature
+│   ├── invitations.feature
+│   ├── modification_des_montants.feature
+│   ├── paiements.feature
+│   ├── personnel_academique.feature
+│   ├── personnel_academique_admin.feature
+│   ├── premiere_connexion.feature
+│   ├── profil_autorisé_masa.feature
+│   ├── profil_autorisé_menj.feature
+│   ├── recherche.feature
+│   ├── recuperation_eleves.feature
+│   ├── regénérer_les_décisions_d_attributions.feature
+│   ├── saisie_de_coordonnees_bancaires.feature
+│   ├── saisie_de_coordonnées_bancaires_manquantes_pour_une_classe.feature
+│   ├── step_definitions
+│   │   ├── .gitkeep
+│   │   ├── academic_steps.rb
+│   │   ├── api_steps.rb
+│   │   ├── asp_steps.rb
+│   │   ├── classes_step.rb
+│   │   ├── home_steps.rb
+│   │   ├── job_steps.rb
+│   │   ├── login_steps.rb
+│   │   ├── paiement_steps.rb
+│   │   ├── payment_requests_steps.rb
+│   │   ├── perdir_steps.rb
+│   │   ├── pfmp_steps.rb
+│   │   ├── rib_steps.rb
+│   │   ├── shared_steps.rb
+│   │   ├── student_steps.rb
+│   │   └── web_steps.rb
+│   ├── suivi_des_pfmps_par_le_personnel.feature
+│   ├── suivi_des_pfmps_par_les_directeurs.feature
+│   ├── support
+│   │   ├── active_job.rb
+│   │   ├── api.rb
+│   │   ├── asp.rb
+│   │   ├── env.rb
+│   │   ├── environment.rb
+│   │   ├── helpers.rb
+│   │   ├── omniauth.rb
+│   │   └── webmock.rb
+│   └── validation_en_masse_de_pfmps.feature
+├── lib
+│   ├── asp
+│   │   ├── builder.rb
+│   │   ├── constants.rb
+│   │   ├── entities
+│   │   │   ├── .rubocop.yml
+│   │   │   ├── adresse
+│   │   │   │   ├── etranger.rb
+│   │   │   │   ├── france.rb
+│   │   │   │   ├── indu_etranger.rb
+│   │   │   │   └── indu_france.rb
+│   │   │   ├── coord_paie.rb
+│   │   │   ├── dossier.rb
+│   │   │   ├── element_paiement.rb
+│   │   │   ├── enregistrement.rb
+│   │   │   ├── entity.rb
+│   │   │   ├── fichier.rb
+│   │   │   ├── pers_physique.rb
+│   │   │   └── prestadoss.rb
+│   │   ├── schema.xsd
+│   │   ├── schema_validator.rb
+│   │   └── server.rb
+│   ├── assets
+│   │   └── .keep
+│   ├── generator
+│   │   ├── abrogator.rb
+│   │   ├── attributor.rb
+│   │   ├── cancellation.rb
+│   │   ├── document.rb
+│   │   └── liquidation.rb
+│   ├── keycloak
+│   │   ├── client.rb
+│   │   ├── exporter.rb
+│   │   └── importer.rb
+│   ├── omni_auth
+│   │   └── strategies
+│   │       └── cas.rb
+│   ├── payment_fixer.rb
+│   ├── rua
+│   │   └── client.rb
+│   └── tasks
+│       ├── .keep
+│       ├── console.rake
+│       ├── cucumber.rake
+│       ├── destroy_excluded_etab.rake
+│       ├── keycloak.rake
+│       ├── schedule.rake
+│       └── students.rake
+├── log
+│   └── .keep
+├── mock
+├── package-lock.json
+├── package.json
+├── public
+│   ├── 400.html
+│   ├── 404.html
+│   ├── 406-unsupported-browser.html
+│   ├── 422.html
+│   ├── 500.html
+│   ├── Liste des pays de la zone SEPA.pdf
+│   ├── apple-touch-icon-precomposed.png
+│   ├── apple-touch-icon.png
+│   ├── data
+│   │   ├── academies
+│   │   │   ├── 01.geojson
+│   │   │   ├── 02.geojson
+│   │   │   ├── 03.geojson
+│   │   │   ├── 04.geojson
+│   │   │   ├── 06.geojson
+│   │   │   ├── 07.geojson
+│   │   │   ├── 08.geojson
+│   │   │   ├── 09.geojson
+│   │   │   ├── 10.geojson
+│   │   │   ├── 11.geojson
+│   │   │   ├── 12.geojson
+│   │   │   ├── 13.geojson
+│   │   │   ├── 14.geojson
+│   │   │   ├── 15.geojson
+│   │   │   ├── 16.geojson
+│   │   │   ├── 17.geojson
+│   │   │   ├── 18.geojson
+│   │   │   ├── 19.geojson
+│   │   │   ├── 20.geojson
+│   │   │   ├── 22.geojson
+│   │   │   ├── 23.geojson
+│   │   │   ├── 24.geojson
+│   │   │   ├── 25.geojson
+│   │   │   ├── 27.geojson
+│   │   │   ├── 28.geojson
+│   │   │   ├── 31.geojson
+│   │   │   ├── 32.geojson
+│   │   │   ├── 33.geojson
+│   │   │   ├── 43.geojson
+│   │   │   ├── 44.geojson
+│   │   │   └── 70.geojson
+│   │   ├── etablissements.geojson
+│   │   └── metropole.geojson
+│   ├── favicon.ico
+│   ├── icon.png
+│   ├── icon.svg
+│   └── robots.txt
+├── script
+│   ├── cucumber
+│   └── stats
+│       ├── execute_in_prod.sh
+│       └── get_global_stats_from_prod.sh
+├── spec
+│   ├── apis
+│   │   ├── data_education_api
+│   │   │   ├── academic_dates_range_fetcher_spec.rb
+│   │   │   └── establishment_api_spec.rb
+│   │   ├── students_api
+│   │   │   ├── fregata
+│   │   │   │   ├── api_spec.rb
+│   │   │   │   └── mappers
+│   │   │   │       ├── address_mapper_spec.rb
+│   │   │   │       └── schooling_mapper_spec.rb
+│   │   │   └── sygne
+│   │   │       ├── api_spec.rb
+│   │   │       └── mappers
+│   │   │           ├── address_mapper_spec.rb
+│   │   │           ├── classe_mapper_spec.rb
+│   │   │           ├── schooling_mapper_spec.rb
+│   │   │           └── student_mapper_spec.rb
+│   │   └── students_api_spec.rb
+│   ├── db
+│   │   └── wage_seeder_spec.rb
+│   ├── decorators
+│   │   └── asp
+│   │       └── payment_request_decorator_spec.rb
+│   ├── facades
+│   │   ├── classes_facade_spec.rb
+│   │   ├── establishment_facade_spec.rb
+│   │   └── validations_facade_spec.rb
+│   ├── factories
+│   │   ├── academic_users.rb
+│   │   ├── asp
+│   │   │   ├── payment_requests.rb
+│   │   │   ├── payment_returns.rb
+│   │   │   └── requests.rb
+│   │   ├── auth.rb
+│   │   ├── classes.rb
+│   │   ├── establishment_user_roles.rb
+│   │   ├── establishments.rb
+│   │   ├── exclusions.rb
+│   │   ├── insee_exception_codes.rb
+│   │   ├── invitations.rb
+│   │   ├── mefs.rb
+│   │   ├── pfmps.rb
+│   │   ├── reports.rb
+│   │   ├── ribs.rb
+│   │   ├── school_years.rb
+│   │   ├── schoolings.rb
+│   │   ├── students.rb
+│   │   ├── users.rb
+│   │   └── wages.rb
+│   ├── helpers
+│   │   └── academic
+│   │       └── stats_helper_spec.rb
+│   ├── jobs
+│   │   ├── check_user_role_job_spec.rb
+│   │   ├── consider_payment_requests_job_spec.rb
+│   │   ├── generate
+│   │   │   ├── abrogation_decision_job_spec.rb
+│   │   │   ├── attributive_decision_job_spec.rb
+│   │   │   ├── attributive_decisions_job_spec.rb
+│   │   │   ├── cancellation_decision_job_spec.rb
+│   │   │   └── liquidation_job_spec.rb
+│   │   ├── generate_report_job_spec.rb
+│   │   ├── janitor_job_spec.rb
+│   │   ├── keycloak
+│   │   │   ├── apply_invitation_attributes_job_spec.rb
+│   │   │   ├── invite_academic_user_job_spec.rb
+│   │   │   └── remove_user_job_spec.rb
+│   │   ├── poll_payments_server_job_spec.rb
+│   │   ├── prepare_payment_request_job_spec.rb
+│   │   ├── process_asp_response_file_job_spec.rb
+│   │   ├── send_payment_requests_job_spec.rb
+│   │   ├── sync
+│   │   │   ├── classes_job_spec.rb
+│   │   │   ├── establishment_job_spec.rb
+│   │   │   ├── student_job_spec.rb
+│   │   │   └── student_schoolings_job_spec.rb
+│   │   └── update_confirmed_director_job_spec.rb
+│   ├── lib
+│   │   ├── asp
+│   │   │   ├── builder_spec.rb
+│   │   │   ├── entities
+│   │   │   │   ├── adresse
+│   │   │   │   │   ├── etranger_spec.rb
+│   │   │   │   │   ├── france_spec.rb
+│   │   │   │   │   ├── indu_etranger_spec.rb
+│   │   │   │   │   └── indu_france_spec.rb
+│   │   │   │   ├── coord_paie_spec.rb
+│   │   │   │   ├── dossier_spec.rb
+│   │   │   │   ├── enregistrement_spec.rb
+│   │   │   │   ├── entities_integration_spec.rb
+│   │   │   │   ├── fichier_spec.rb
+│   │   │   │   ├── pers_physique_spec.rb
+│   │   │   │   └── prestadoss_spec.rb
+│   │   │   └── readers
+│   │   │       └── rejets_mock.csv
+│   │   ├── keycloak
+│   │   │   └── client_spec.rb
+│   │   ├── payment_fixer_spec.rb
+│   │   └── rua
+│   │       └── client_spec.rb
+│   ├── models
+│   │   ├── academic
+│   │   │   └── user_spec.rb
+│   │   ├── asp
+│   │   │   ├── payment_request_spec.rb
+│   │   │   ├── payment_request_state_machine_spec.rb
+│   │   │   ├── payment_request_validator_spec.rb
+│   │   │   ├── payment_return_spec.rb
+│   │   │   ├── request_spec.rb
+│   │   │   └── user_spec.rb
+│   │   ├── classe_spec.rb
+│   │   ├── concerns
+│   │   │   └── identity_mappers
+│   │   │       ├── base_spec.rb
+│   │   │       └── fim_spec.rb
+│   │   ├── data
+│   │   │   └── fim.json
+│   │   ├── establishment_spec.rb
+│   │   ├── establishment_user_role_spec.rb
+│   │   ├── exclusion_spec.rb
+│   │   ├── insee_exception_codes_spec.rb
+│   │   ├── invitation_spec.rb
+│   │   ├── mef_spec.rb
+│   │   ├── pfmp_spec.rb
+│   │   ├── pfmp_state_machine_spec.rb
+│   │   ├── report_spec.rb
+│   │   ├── rib_spec.rb
+│   │   ├── school_year_spec.rb
+│   │   ├── schooling_spec.rb
+│   │   ├── stats
+│   │   │   ├── indicator
+│   │   │   │   ├── count
+│   │   │   │   │   ├── attributive_decisions_spec.rb
+│   │   │   │   │   ├── payment_requests_integrated_spec.rb
+│   │   │   │   │   ├── payment_requests_paid_spec.rb
+│   │   │   │   │   ├── payment_requests_sent_spec.rb
+│   │   │   │   │   ├── pfmps_completed_spec.rb
+│   │   │   │   │   ├── pfmps_extended_spec.rb
+│   │   │   │   │   ├── pfmps_incompleted_spec.rb
+│   │   │   │   │   ├── pfmps_paid_spec.rb
+│   │   │   │   │   ├── pfmps_payable_spec.rb
+│   │   │   │   │   ├── pfmps_spec.rb
+│   │   │   │   │   ├── pfmps_validated_spec.rb
+│   │   │   │   │   ├── ribs_spec.rb
+│   │   │   │   │   ├── schoolings_spec.rb
+│   │   │   │   │   ├── students_data_spec.rb
+│   │   │   │   │   ├── students_paid_spec.rb
+│   │   │   │   │   └── students_spec.rb
+│   │   │   │   ├── ratio
+│   │   │   │   │   ├── attributive_decisions_spec.rb
+│   │   │   │   │   ├── pfmps_paid_payable_spec.rb
+│   │   │   │   │   ├── pfmps_validated_spec.rb
+│   │   │   │   │   ├── ribs_spec.rb
+│   │   │   │   │   ├── students_data_spec.rb
+│   │   │   │   │   └── students_paid_spec.rb
+│   │   │   │   └── sum
+│   │   │   │       ├── payment_requests_paid_spec.rb
+│   │   │   │       ├── payment_requests_recovery_spec.rb
+│   │   │   │       ├── pfmps_completed_spec.rb
+│   │   │   │       ├── pfmps_extended_spec.rb
+│   │   │   │       ├── pfmps_incompleted_spec.rb
+│   │   │   │       ├── pfmps_validated_spec.rb
+│   │   │   │       └── yearly_spec.rb
+│   │   │   ├── main_spec.rb
+│   │   │   └── shared_contexts.rb
+│   │   ├── student
+│   │   │   └── mappers
+│   │   │       ├── base_spec.rb
+│   │   │       ├── csv_spec.rb
+│   │   │       ├── fregata_spec.rb
+│   │   │       └── sygne_spec.rb
+│   │   ├── student_spec.rb
+│   │   ├── user_spec.rb
+│   │   └── wage_spec.rb
+│   ├── rails_helper.rb
+│   ├── requests
+│   │   ├── academic
+│   │   │   ├── academic_invitations_controller_spec.rb
+│   │   │   ├── classes_controller_spec.rb
+│   │   │   ├── establishments_controller_spec.rb
+│   │   │   ├── reports_controller_spec.rb
+│   │   │   ├── tools_controller_spec.rb
+│   │   │   └── users_controller_spec.rb
+│   │   ├── application_controller_spec.rb
+│   │   ├── classes_controller_spec.rb
+│   │   ├── establishments_controller_spec.rb
+│   │   ├── payment_requests_controller_spec.rb
+│   │   ├── pfmps_controller_spec.rb
+│   │   ├── rack_attack_spec.rb
+│   │   ├── ribs_controller_spec.rb
+│   │   ├── schoolings_controller_spec.rb
+│   │   ├── students_controller_spec.rb
+│   │   ├── users
+│   │   │   └── omniauth_callbacks_controller_spec.rb
+│   │   ├── users_controller_spec.rb
+│   │   └── validations_controller_spec.rb
+│   ├── services
+│   │   ├── academic
+│   │   │   └── stats_extractor_spec.rb
+│   │   ├── asp
+│   │   │   ├── address_abbreviator_spec.rb
+│   │   │   ├── attach_document_spec.rb
+│   │   │   ├── errors_dictionary_spec.rb
+│   │   │   ├── file_saver_spec.rb
+│   │   │   ├── filename_spec.rb
+│   │   │   ├── mappers
+│   │   │   │   ├── adresse
+│   │   │   │   │   └── france_mapper_spec.rb
+│   │   │   │   ├── coord_paie_mapper_spec.rb
+│   │   │   │   ├── dossier_mapper_spec.rb
+│   │   │   │   ├── element_paiement_mapper_spec.rb
+│   │   │   │   ├── pers_physique_mapper_spec.rb
+│   │   │   │   └── prestadoss_mapper_spec.rb
+│   │   │   ├── readers
+│   │   │   │   ├── integrations_file_reader_spec.rb
+│   │   │   │   ├── payments_file_reader_spec.rb
+│   │   │   │   ├── rectifications_file_reader_spec.rb
+│   │   │   │   └── rejects_file_reader_spec.rb
+│   │   │   └── rib_name_sanitiser_spec.rb
+│   │   ├── csv_importer_fixture.csv
+│   │   ├── csv_importer_spec.rb
+│   │   ├── insee_country_code_mapper_spec.rb
+│   │   ├── mass_rectificator_spec.rb
+│   │   ├── pearl_pfmps_rectificator_spec.rb
+│   │   ├── pfmp_manager_spec.rb
+│   │   ├── reports
+│   │   │   ├── base_extractor_spec.rb
+│   │   │   ├── csv_exporter_spec.rb
+│   │   │   └── stats_extractor_spec.rb
+│   │   ├── reprocessor
+│   │   │   ├── payment_request_incomplete_spec.rb
+│   │   │   └── payment_request_rejected_spec.rb
+│   │   ├── student_merger_spec.rb
+│   │   └── updaters
+│   │       └── student_schoolings_updater_spec.rb
+│   ├── spec_helper.rb
+│   └── support
+│       ├── attributive_decision_helpers.rb
+│       ├── shared
+│       │   ├── asp_student_mapper.rb
+│       │   ├── student_mapper.rb
+│       │   ├── trackable_user.rb
+│       │   ├── types.rb
+│       │   └── xml_fragment.rb
+│       └── webmock_helpers.rb
+├── storage
+│   └── .keep
+├── support
+│   └── overrides.rb
+├── tmp
+│   ├── .keep
+│   ├── pids
+│   │   └── .keep
+│   └── storage
+│       └── .keep
+└── vendor
+    ├── .keep
+    └── javascript
+        └── .keep
+196 directories, 944 files
