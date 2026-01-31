@@ -1,0 +1,388 @@
+.
+├── .buildpacks
+├── .dockerignore
+├── .git-blame-ignore-revs
+├── .github
+│   ├── dependabot.yml
+│   └── workflows
+│       ├── docker.yml
+│       ├── dockerpublish.yml
+│       ├── lint.yml
+│       └── test.yml
+├── .gitignore
+├── .heroku
+│   └── ensure-directory
+├── .scala-steward.conf
+├── .scalafix.conf
+├── .scalafmt.conf
+├── Dockerfile
+├── LICENSE
+├── README.md
+├── app
+│   ├── actions
+│   │   └── LoginAction.scala
+│   ├── constants
+│   │   └── Constants.scala
+│   ├── controllers
+│   │   ├── ApiController.scala
+│   │   ├── ApplicationController.scala
+│   │   ├── AreaController.scala
+│   │   ├── CSVImportController.scala
+│   │   ├── GroupController.scala
+│   │   ├── HomeController.scala
+│   │   ├── JavascriptController.scala
+│   │   ├── LoginController.scala
+│   │   ├── MandatController.scala
+│   │   ├── Operators.scala
+│   │   ├── PathValidator.scala
+│   │   ├── SignupController.scala
+│   │   └── UserController.scala
+│   ├── filters
+│   │   └── SentryFilter.scala
+│   ├── helper
+│   │   ├── BooleanHelper.scala
+│   │   ├── BusinessDaysCalculator.scala
+│   │   ├── CSVUtil.scala
+│   │   ├── Crypto.scala
+│   │   ├── EmailHelper.scala
+│   │   ├── Hash.scala
+│   │   ├── Math.scala
+│   │   ├── MessageBirdApi.scala
+│   │   ├── MiscHelpers.scala
+│   │   ├── OvhApi.scala
+│   │   ├── PasswordHasher.scala
+│   │   ├── PlayFormHelpers.scala
+│   │   ├── Pseudonymizer.scala
+│   │   ├── ScalatagsHelpers.scala
+│   │   ├── StringHelper.scala
+│   │   ├── TasksHelpers.scala
+│   │   ├── Time.scala
+│   │   ├── TwirlImports.scala
+│   │   ├── UUIDHelper.scala
+│   │   └── forms
+│   │       ├── MDLForms.scala
+│   │       └── MapMapping.scala
+│   ├── models
+│   │   ├── AgeModel.scala
+│   │   ├── Answer.scala
+│   │   ├── Application.scala
+│   │   ├── Area.scala
+│   │   ├── Authorization.scala
+│   │   ├── EmailPriority.scala
+│   │   ├── Error.scala
+│   │   ├── Event.scala
+│   │   ├── EventType.scala
+│   │   ├── FileMetadata.scala
+│   │   ├── FranceService.scala
+│   │   ├── LoginToken.scala
+│   │   ├── Mandat.scala
+│   │   ├── Organisation.scala
+│   │   ├── SignupRequest.scala
+│   │   ├── Sms.scala
+│   │   ├── User.scala
+│   │   ├── UserGroup.scala
+│   │   ├── UserInactivityEvent.scala
+│   │   ├── UserSession.scala
+│   │   ├── dataModels.scala
+│   │   ├── forms.scala
+│   │   └── jsonApiModels
+│   │       └── mandat.scala
+│   ├── modules
+│   │   ├── AppConfig.scala
+│   │   └── StartModule.scala
+│   ├── playutils
+│   │   └── ErrorHandler.scala
+│   ├── serializers
+│   │   ├── ApiModel.scala
+│   │   ├── JsonFormats.scala
+│   │   ├── Keys.scala
+│   │   └── UserAndGroupCsvSerializer.scala
+│   ├── services
+│   │   ├── AnonymizedDataService.scala
+│   │   ├── ApplicationService.scala
+│   │   ├── BusinessDaysService.scala
+│   │   ├── DataService.scala
+│   │   ├── DbMaintenanceService.scala
+│   │   ├── EmailsService.scala
+│   │   ├── EventService.scala
+│   │   ├── FileService.scala
+│   │   ├── MandatService.scala
+│   │   ├── NotificationService.scala
+│   │   ├── OrganisationService.scala
+│   │   ├── PasswordService.scala
+│   │   ├── ServicesDependencies.scala
+│   │   ├── SignupService.scala
+│   │   ├── SmsApi.scala
+│   │   ├── SmsService.scala
+│   │   ├── SqlHelpers.scala
+│   │   ├── TokenService.scala
+│   │   ├── UserGroupService.scala
+│   │   └── UserService.scala
+│   ├── tasks
+│   │   ├── AutoAddExpertModule.scala
+│   │   ├── AutoAddExpertTask.scala
+│   │   ├── ExportAnonymizedDataModule.scala
+│   │   ├── ExportAnonymizedDataTask.scala
+│   │   ├── UserInactivityModule.scala
+│   │   ├── UserInactivityTask.scala
+│   │   ├── ViewsRefreshModule.scala
+│   │   ├── ViewsRefreshTask.scala
+│   │   ├── WeeklyEmailsModule.scala
+│   │   ├── WeeklyEmailsTask.scala
+│   │   ├── WipeOldDataModule.scala
+│   │   └── WipeOldDataTask.scala
+│   └── views
+│       ├── CSVExport.scala.html
+│       ├── MainInfos.scala
+│       ├── accessibility.scala
+│       ├── addGroup.scala
+│       ├── addUsers.scala.html
+│       ├── allArea.scala.html
+│       ├── allEvents.scala.html
+│       ├── allUsersByGroup.scala.html
+│       ├── application.scala
+│       ├── applications
+│       │   ├── inviteForm.scala
+│       │   ├── messageThread.scala
+│       │   ├── myApplications.scala
+│       │   └── myApplicationsLegacy.scala
+│       ├── applicationsAdmin.scala
+│       ├── createApplication.scala
+│       ├── createApplication.scala.html
+│       ├── dashboard.scala
+│       ├── deploymentDashboard.scala.html
+│       ├── editGroup.scala.html
+│       ├── editMyGroups.scala
+│       ├── editProfile.scala.html
+│       ├── editUser.scala.html
+│       ├── emails
+│       │   ├── WeeklyEmailInfos.scala
+│       │   ├── common.scala
+│       │   ├── contact.scala
+│       │   ├── notificationBAL.scala.html
+│       │   └── welcome.scala.html
+│       ├── errors.scala
+│       ├── franceServiceDeploymentDashboard.scala.html
+│       ├── franceServices.scala
+│       ├── group.scala
+│       ├── help.scala.html
+│       ├── helpers
+│       │   ├── applications.scala
+│       │   ├── changeAreaSelect.scala
+│       │   ├── common.scala
+│       │   ├── csv.scala
+│       │   ├── displayUsers.scala.html
+│       │   ├── forms.scala
+│       │   ├── head.scala
+│       │   ├── input.scala.html
+│       │   ├── menuNav.scala.html
+│       │   ├── usersInformations.scala.html
+│       │   ├── usersInformationsDynamicForm.scala.html
+│       │   └── usersInformationsInput.scala.html
+│       ├── home
+│       │   ├── LoginPanel.scala
+│       │   ├── connectionFormPanel.scala.html
+│       │   ├── emailSentFeedbackPanel.scala.html
+│       │   ├── page.scala.html
+│       │   └── sendbackEmailForm.scala.html
+│       ├── importUsersCSV.scala.html
+│       ├── internalStats.scala
+│       ├── legal.scala
+│       ├── magicLinkAntiConsumptionPage.scala.html
+│       ├── main.scala
+│       ├── main.scala.html
+│       ├── mandat.scala
+│       ├── password.scala
+│       ├── publicStats.scala
+│       ├── reviewUsersImport.scala.html
+│       ├── showApplication.scala.html
+│       ├── showMandat.scala.html
+│       ├── signup.scala
+│       ├── signupAdmin.scala
+│       ├── stats
+│       │   └── page.scala.html
+│       ├── user.scala
+│       ├── users.scala
+│       ├── validateAccount.scala.html
+│       ├── welcome.scala.html
+│       └── wellKnown.scala
+├── app.json
+├── bin
+│   └── init_database.sh
+├── build.sbt
+├── conf
+│   ├── application.conf
+│   ├── application.test.conf
+│   ├── evolutions
+│   │   ├── anonymized-data -> default
+│   │   └── default
+│   │       ├── 1.sql
+│   │       ├── 1*.sql  (10 files)
+│   │       ├── 2.sql
+│   │       ├── 2*.sql  (10 files)
+│   │       ├── 3.sql
+│   │       ├── 3*.sql  (10 files)
+│   │       ├── 4.sql
+│   │       ├── 4*.sql  (10 files)
+│   │       ├── 5.sql
+│   │       ├── 5*.sql  (10 files)
+│   │       ├── 6.sql
+│   │       ├── 6*.sql  (10 files)
+│   │       ├── 7.sql
+│   │       ├── 7*.sql  (10 files)
+│   │       ├── 8.sql
+│   │       ├── 8*.sql  (5 files)
+│   │       └── 9.sql
+│   ├── logback-test.xml
+│   ├── logback.xml
+│   ├── messages
+│   ├── messages.fr
+│   └── routes
+├── data
+│   ├── France_Services_CDC_Liste_des_France_Services_02032020.csv
+│   ├── France_Services_CDC_Liste_des_France_Services_31012020_V0.csv
+│   ├── french_passwords_top20000.txt
+│   └── pseudonymization
+│       ├── PSEUDO.md
+│       ├── common_adjectives.csv
+│       ├── common_first_names.csv
+│       ├── extract.py
+│       └── nat2021_csv.zip
+├── develop
+│   └── aplus
+│       └── docker-compose.yml
+├── docs
+│   ├── authorization.md
+│   ├── docs.md
+│   ├── guidelines-code.md
+│   └── guidelines-design.md
+├── macros
+│   └── src
+│       └── main
+│           └── scala
+│               └── aplus
+│                   └── macros
+│                       └── Macros.scala
+├── package.json
+├── project
+│   ├── build.properties
+│   └── plugins.sbt
+├── public
+│   ├── images
+│   │   ├── admin
+│   │   │   ├── aplus-icon.png
+│   │   │   ├── caf-icon.png
+│   │   │   ├── cnav-icon.png
+│   │   │   ├── cpam-icon.png
+│   │   │   ├── ddd-icon.png
+│   │   │   ├── dgfip-icon.png
+│   │   │   ├── france_travail-icon.png
+│   │   │   ├── msa-icon.png
+│   │   │   └── pe-icon.png
+│   │   ├── favicon.png
+│   │   ├── home
+│   │   │   ├── Aplus-Success.svg
+│   │   │   ├── Aplus-comment-ca-marche-desktop.svg
+│   │   │   ├── Aplus-comment-ca-marche-mobile.svg
+│   │   │   ├── Aplus-qu-est-ce-que-cest-desktop.svg
+│   │   │   └── Aplus-qu-est-ce-que-cest-mobile.svg
+│   │   ├── logo-marianne.svg
+│   │   ├── logo_dinum.png
+│   │   ├── logo_dinum_150x202.png
+│   │   ├── logo_full_1045x830.png
+│   │   ├── logo_full_500x397.png
+│   │   ├── logo_small_150x160.png
+│   │   ├── pointbetagouvfr.svg
+│   │   ├── spin.gif
+│   │   ├── twemoji
+│   │   │   ├── 1f600.svg
+│   │   │   ├── 1f610.svg
+│   │   │   └── 1f61e.svg
+│   │   ├── zammad-chat.png
+│   │   └── zammad-chat_2x.png
+│   ├── javascripts
+│   │   ├── stats.js
+│   │   └── zammad.js
+│   ├── pdf
+│   │   ├── CGU_13_mai_2019.pdf
+│   │   ├── MFS_Fiche_pratique_agent_France_Service.pdf
+│   │   ├── MFS_Fiche_pratique_referent_operateur.pdf
+│   │   ├── charte_1_decembre_2017.pdf
+│   │   ├── charte_2_septembre_2018.pdf
+│   │   ├── charte_3_octobre_2018.pdf
+│   │   └── mandat_administration_plus_juillet_2019.pdf
+│   ├── sortable
+│   │   ├── sortable.css
+│   │   └── sortable.js
+│   └── stylesheets
+│       ├── aplus-dsfr.css
+│       ├── home.css
+│       ├── login.css
+│       ├── main.css
+│       ├── mdl-extensions.css
+│       └── newForm.css
+├── run.sh.example
+├── scripts
+│   ├── copy-scalingo-review-app-db.sh
+│   └── merge_prod.sh
+├── standalone
+│   ├── error-page-413-content-too-large.html
+│   └── error-page-503-service-unavailable.html
+├── system.properties
+├── test
+│   ├── browser
+│   │   ├── AnswerSpec.scala
+│   │   ├── ApplicationAccessSpec.scala
+│   │   ├── ApplicationSpec.scala
+│   │   ├── BaseSpec.scala
+│   │   ├── HomeSpec.scala
+│   │   └── LoginSpec.scala
+│   ├── csv
+│   │   └── CSVSpec.scala
+│   ├── helper
+│   │   ├── BusinessDaysCalculatorSpec.scala
+│   │   ├── CryptoHelperSpec.scala
+│   │   ├── CryptoStreamSpec.scala.scala
+│   │   ├── MiscHelpersSpec.scala
+│   │   └── StringHelperSpec.scala
+│   └── models
+│       ├── ApplicationSpec.scala
+│       └── AuthorizationSpec.scala
+└── typescript
+    ├── src
+    │   ├── admin.ts
+    │   ├── application.ts
+    │   ├── applicationAttachment.ts
+    │   ├── applicationMandatFields.ts
+    │   ├── applicationsAdmin.ts
+    │   ├── changeArea.ts
+    │   ├── dialog.ts
+    │   ├── domHelpers.ts
+    │   ├── editGroup.ts
+    │   ├── editMyGroups.ts
+    │   ├── editUser.ts
+    │   ├── formExitAlert.ts
+    │   ├── franceServices.ts
+    │   ├── global.d.ts
+    │   ├── helpers.ts
+    │   ├── index.ts
+    │   ├── magicLinkAntiConsumption.ts
+    │   ├── mandat.ts
+    │   ├── mdl-extensions.ts
+    │   ├── myApplications.ts
+    │   ├── notificationBanner.ts
+    │   ├── searchInput.ts
+    │   ├── searchInputLegacy.ts
+    │   ├── showApplication.ts
+    │   ├── signup.ts
+    │   ├── slimselect.ts
+    │   ├── users.ts
+    │   ├── validateAccount.ts
+    │   └── welcome.ts
+    ├── tsconfig.json
+    ├── tsfmt.json
+    └── webpack
+        ├── webpack.common.js
+        ├── webpack.dev.js
+        └── webpack.prod.js
+60 directories, 394 files
