@@ -1,0 +1,35 @@
+name: "GitScan init action"
+description: "Parse dashlord txt config files and return some urls to scan"
+inputs:
+  count:
+    description: "Max number of URLs to return"
+    required: false
+    default: "50"
+outputs:
+  sites:
+    description: List of urls to scan as plain text
+    value: ${{ steps.init.outputs.sites }}
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.x"
+
+    - name: Process URL list
+      shell: bash
+      id: init
+      env:
+        MATRIX_MAX_COUNT: ${{ inputs.count || 10 }}
+      run: |
+        pwd
+        ls -la
+        JSON=$(python .github/actions/init/get-repos.py ${{ env.MATRIX_MAX_COUNT }})
+        echo $JSON
+        echo "sites=$JSON" >> $GITHUB_OUTPUT

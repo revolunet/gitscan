@@ -1,0 +1,78 @@
+name: GitScan
+
+on:
+    workflow_dispatch:
+        inputs:
+            count:
+                description: "Number of sites to scan"
+                required: false
+                default: "50"
+                type: string
+    schedule:
+        - cron: "0 0 * * *" # midnight, see https://crontab.guru
+
+# allow only one concurrent scan action
+concurrency:
+    cancel-in-progress: true
+    group: scans
+
+jobs:
+    init:
+        runs-on: ubuntu-latest
+        name: Prepare
+        outputs:
+            sites: ${{ steps.init.outputs.sites }}
+        steps:
+            - uses: actions/checkout@v4
+            - id: init
+              uses: "./.github/actions/init"
+              with:
+                  count: ${{ inputs.count || '50' }}
+    repos:
+        runs-on: ubuntu-latest
+        name: Repos
+        steps:
+            - uses: actions/checkout@v4
+            - name: "fetch repos"
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: |
+                  ./fetch-repos.sh
+            - uses: EndBug/add-and-commit@v9
+              with:
+                  add: "./repos/*/repos.json"
+                  author_name: "Bot"
+                  author_email: "bot@github.com"
+                  message: "update: repos"
+                  pull: "--rebase --autostash"
+
+    scans:
+        runs-on: ubuntu-latest
+        name: Scan
+        needs: init
+        continue-on-error: true
+        strategy:
+            fail-fast: false
+            max-parallel: 3
+            matrix:
+                sites: ${{ fromJson(needs.init.outputs.sites) }}
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  ref: ${{ github.ref }}
+
+            - name: "fetch repo"
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: |
+                  pwd
+                  echo "${{ matrix.sites.url }}"
+                  ./fetch-repo.sh "${{ matrix.sites.url }}"
+
+            - uses: EndBug/add-and-commit@v9
+              with:
+                  add: "./repos/${{ matrix.sites.full_name }}"
+                  author_name: "BetaBot"
+                  author_email: "infra@incubateur.net"
+                  message: "update: ${{ matrix.sites.full_name }}"
+                  pull: "--rebase --autostash"
