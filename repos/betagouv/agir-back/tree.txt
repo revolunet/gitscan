@@ -1,0 +1,1539 @@
+.
+├── .env.sample
+├── .env.test.sample
+├── .eslintrc.js
+├── .github
+│   ├── dependabot.yml
+│   └── workflows
+│       └── base.yml
+├── .gitignore
+├── .husky
+│   └── pre-commit
+├── .prettierignore
+├── .prettierrc
+├── LICENSE
+├── Procfile
+├── README.md
+├── cron.json
+├── docker-compose.yml
+├── docs
+│   ├── README.md
+│   ├── aides-velo.md
+│   ├── bilan-carbone-ngc.md
+│   ├── filtre-geographique.md
+│   ├── kycs.md
+│   ├── mes-aides-reno.md
+│   └── recettes.md
+├── nest-cli.json
+├── package-lock.json
+├── package.json
+├── scripts
+│   ├── check-questions-ngc.mjs
+│   ├── generate-images.mjs
+│   ├── load
+│   │   └── load_aides.sh
+│   ├── mobile_notifications.sh
+│   ├── nightly_bilan_carbone.sh
+│   ├── nightly_processing.sh
+│   ├── nightly_stats.sh
+│   ├── postdeploy.sh
+│   ├── questions-mes-aides-reno.ts
+│   ├── recipies-to-resized-wepb.mjs
+│   ├── ten_minute_jobs.sh
+│   └── upload-to-cloudinary.mjs
+├── src
+│   ├── app.module.ts
+│   ├── console.ts
+│   ├── domain
+│   │   ├── actions
+│   │   │   ├── action.ts
+│   │   │   ├── actionDefinition.ts
+│   │   │   ├── actionMappingEnchainements.ts
+│   │   │   ├── catalogueAction.ts
+│   │   │   └── typeAction.ts
+│   │   ├── aides
+│   │   │   ├── aide.ts
+│   │   │   ├── aideDefinition.ts
+│   │   │   ├── aideExport.ts
+│   │   │   ├── aideFeedback.ts
+│   │   │   ├── aideFilter.ts
+│   │   │   ├── aideVelo.ts
+│   │   │   ├── aideWarningDefinition.ts
+│   │   │   ├── besoin.ts
+│   │   │   └── echelle.ts
+│   │   ├── app.ts
+│   │   ├── appEvent.ts
+│   │   ├── bibliotheque_services
+│   │   │   ├── bibliothequeServices.ts
+│   │   │   ├── newServiceDefinition.ts
+│   │   │   ├── poissonsDeSaisonUrlsGenerator.ts
+│   │   │   ├── recherche
+│   │   │   │   ├── categorieRecherche.ts
+│   │   │   │   ├── favorisRecherche.ts
+│   │   │   │   ├── filtreRecherche.ts
+│   │   │   │   ├── finderInterface.ts
+│   │   │   │   ├── recherche.ts
+│   │   │   │   ├── rechercheServiceManager.ts
+│   │   │   │   ├── resultatRecherche.ts
+│   │   │   │   ├── serviceRecherche.ts
+│   │   │   │   └── serviceRechercheID.ts
+│   │   │   ├── serviceExterneID.ts
+│   │   │   └── types
+│   │   │       ├── days.ts
+│   │   │       ├── modeDeplacement.ts
+│   │   │       └── openHour.ts
+│   │   ├── bilan
+│   │   │   ├── bilanCarbone.ts
+│   │   │   ├── bilan_old.ts
+│   │   │   └── cacheBilanCarbone.ts
+│   │   ├── commun
+│   │   │   ├── paginated.interface.ts
+│   │   │   └── withCache.interface.ts
+│   │   ├── contenu
+│   │   │   ├── BlockTextDefinition.ts
+│   │   │   ├── SelectionDefinition.ts
+│   │   │   ├── TagDefinition.ts
+│   │   │   ├── article.ts
+│   │   │   ├── articleDefinition.ts
+│   │   │   ├── articleFilter.ts
+│   │   │   ├── bibliotheque.ts
+│   │   │   ├── categorie.ts
+│   │   │   ├── conformiteDefinition.ts
+│   │   │   ├── contentType.ts
+│   │   │   ├── contenuLocal.ts
+│   │   │   ├── difficultyLevel.ts
+│   │   │   ├── includeArticle.ts
+│   │   │   ├── offlineCounterDefinition.ts
+│   │   │   ├── quizz.ts
+│   │   │   ├── quizzDefinition.ts
+│   │   │   ├── recommandation.ts
+│   │   │   ├── selection.ts
+│   │   │   └── source.ts
+│   │   ├── faq
+│   │   │   └── FAQDefinition.ts
+│   │   ├── gamification
+│   │   │   ├── badge.ts
+│   │   │   ├── badgeCatalogue.ts
+│   │   │   ├── board.ts
+│   │   │   ├── classement.ts
+│   │   │   ├── feature.ts
+│   │   │   ├── gamification.ts
+│   │   │   └── typeBadge.ts
+│   │   ├── history
+│   │   │   ├── aideHistory.ts
+│   │   │   ├── articleHistory.ts
+│   │   │   ├── history.ts
+│   │   │   └── quizzHistory.ts
+│   │   ├── kyc
+│   │   │   ├── KYCID.ts
+│   │   │   ├── Progression.ts
+│   │   │   ├── QuestionKYCData.ts
+│   │   │   ├── conditionKYC.ts
+│   │   │   ├── enchainementDefinition.ts
+│   │   │   ├── enchainementKYC.ts
+│   │   │   ├── kycDefinition.ts
+│   │   │   ├── kycHistory.ts
+│   │   │   ├── mosaicDefinition.ts
+│   │   │   ├── mosaicKYC.ts
+│   │   │   ├── new_interfaces
+│   │   │   │   ├── QuestionChoix.ts
+│   │   │   │   ├── QuestionChoixMultiples.ts
+│   │   │   │   ├── QuestionChoixUnique.ts
+│   │   │   │   ├── QuestionNumerique.ts
+│   │   │   │   ├── QuestionSimple.ts
+│   │   │   │   └── QuestionTexteLibre.ts
+│   │   │   ├── publicodesMapping.ts
+│   │   │   ├── questionKYC.ts
+│   │   │   ├── reponseGeneric.ts
+│   │   │   └── synchro
+│   │   │       ├── kycRegimeToKycRepasSynch.ts
+│   │   │       ├── kycToKycSynch.ts
+│   │   │       ├── kycToProfileSync.ts
+│   │   │       ├── logementToKycSync.ts
+│   │   │       └── situationNgcToKycSync.ts
+│   │   ├── linky
+│   │   │   ├── consommationElectrique.ts
+│   │   │   └── linkyConsent.ts
+│   │   ├── logement
+│   │   │   ├── NiveauRisque.ts
+│   │   │   ├── RisquesNaturelsCommuneDefinition.ts
+│   │   │   ├── TypeRisque.ts
+│   │   │   ├── adresse.ts
+│   │   │   ├── classificationCommuneDefinition.ts
+│   │   │   └── logement.ts
+│   │   ├── lvao
+│   │   │   ├── acteur_LVAO.ts
+│   │   │   ├── action_LVAO.ts
+│   │   │   ├── label_LVAO.ts
+│   │   │   ├── objet_LVAO.ts
+│   │   │   ├── public_LVAO.ts
+│   │   │   ├── source_LVAO.ts
+│   │   │   ├── typeActeur_LVAO.ts
+│   │   │   └── typeService_LVAO.ts
+│   │   ├── metadata.json
+│   │   ├── notification
+│   │   │   ├── emailScheduler.ts
+│   │   │   ├── mobileScheduler.ts
+│   │   │   ├── notificationHistory.ts
+│   │   │   ├── notificationScheduler.ts
+│   │   │   └── pushNotificationMessage.ts
+│   │   ├── object_store
+│   │   │   ├── bilan
+│   │   │   │   └── cacheBilanCarbone_v0.ts
+│   │   │   ├── gamification
+│   │   │   │   └── gamification_v0.ts
+│   │   │   ├── history
+│   │   │   │   └── history_v0.ts
+│   │   │   ├── kyc
+│   │   │   │   ├── kycHistory_v0.ts
+│   │   │   │   ├── kycHistory_v1.ts
+│   │   │   │   └── kycHistory_v2.ts
+│   │   │   ├── logement
+│   │   │   │   └── logement_v0.ts
+│   │   │   ├── notification
+│   │   │   │   └── NotificationHistory_v0.ts
+│   │   │   ├── recommandation
+│   │   │   │   └── ProfileRecommandationUtilisateur_v0.ts
+│   │   │   ├── service
+│   │   │   │   └── BibliothequeService_v0.ts
+│   │   │   ├── thematique
+│   │   │   │   └── thematiqueHistory_v0.ts
+│   │   │   ├── upgrader.ts
+│   │   │   └── versioned.ts
+│   │   ├── partenaires
+│   │   │   ├── partenaireDefinition.ts
+│   │   │   └── partenaires.interface.ts
+│   │   ├── scoring
+│   │   │   ├── ponderationApplicative.ts
+│   │   │   ├── ponderation_v2.ts
+│   │   │   ├── priorityContent.ts
+│   │   │   ├── scoredContent.ts
+│   │   │   ├── system_v2
+│   │   │   │   ├── ComputedTagList.ts
+│   │   │   │   ├── EditorialTagList.ts
+│   │   │   │   ├── ExplicationScore.ts
+│   │   │   │   ├── Tag_v2.ts
+│   │   │   │   ├── TaggedKycs.ts
+│   │   │   │   ├── kycToTagsV2.ts
+│   │   │   │   └── profileRecommandationUtilisateur.ts
+│   │   │   ├── tag.ts
+│   │   │   ├── tagApplicatif.ts
+│   │   │   ├── tagPonderationSet.ts
+│   │   │   ├── tagRubrique.ts
+│   │   │   ├── tagUtilisateur.ts
+│   │   │   ├── taggedContent.ts
+│   │   │   └── userTagEvaluator.ts
+│   │   ├── simulateur_voiture
+│   │   │   ├── parametres.ts
+│   │   │   └── resultats.ts
+│   │   ├── thematique
+│   │   │   ├── history
+│   │   │   │   ├── detailThematique.ts
+│   │   │   │   ├── thematiqueHistory.ts
+│   │   │   │   └── thematiqueRecommandation.ts
+│   │   │   ├── homeBoard.ts
+│   │   │   ├── thematique.ts
+│   │   │   ├── thematiqueDefinition.ts
+│   │   │   └── thematiqueSynthese.ts
+│   │   └── utilisateur
+│   │       ├── manager
+│   │       │   ├── codeAwareUtilisateur.ts
+│   │       │   ├── codeManager.ts
+│   │       │   ├── passwordAwareUtilisateur.ts
+│   │       │   ├── passwordManager.ts
+│   │       │   ├── securityEmailAwareUtilisateur.ts
+│   │       │   └── securityEmailManager.ts
+│   │       ├── utilisateur.ts
+│   │       └── utilisateurAttente.ts
+│   ├── infrastructure
+│   │   ├── api
+│   │   │   ├── actions.controller.ts
+│   │   │   ├── admin.controller.ts
+│   │   │   ├── adresses.controller.ts
+│   │   │   ├── aides.controller.ts
+│   │   │   ├── aidesVelo.controller.ts
+│   │   │   ├── ascii.preview.controller.ts
+│   │   │   ├── bibliotheque.controller.ts
+│   │   │   ├── bilanCarbone.controller.ts
+│   │   │   ├── cms.preview.controller.ts
+│   │   │   ├── communes.controller.ts
+│   │   │   ├── conformite.controller.ts
+│   │   │   ├── controllerException.filter.ts
+│   │   │   ├── event.controller.ts
+│   │   │   ├── france_connect.controller.ts
+│   │   │   ├── gamification.controller.ts
+│   │   │   ├── genericControler.ts
+│   │   │   ├── gone.controller.ts
+│   │   │   ├── incoming
+│   │   │   │   └── cms.controller.ts
+│   │   │   ├── loadCMS.controller.ts
+│   │   │   ├── magicLink.controller.ts
+│   │   │   ├── mesAidesReno.controller.ts
+│   │   │   ├── notifications.controller.ts
+│   │   │   ├── profile.controller.ts
+│   │   │   ├── questionKYC.controller.ts
+│   │   │   ├── questionKYCEnchainement.controller.ts
+│   │   │   ├── rechercheServices.controller.ts
+│   │   │   ├── recommandations.controller.ts
+│   │   │   ├── risques.controller.ts
+│   │   │   ├── simulateurVoiture.controller.ts
+│   │   │   ├── synthese_v2.controller.ts
+│   │   │   ├── tag.controller.ts
+│   │   │   ├── testData.controller.ts
+│   │   │   ├── thematique.controller.ts
+│   │   │   ├── types
+│   │   │   │   ├── actions
+│   │   │   │   │   ├── ActionAPI.ts
+│   │   │   │   │   ├── ActionLightAPI.ts
+│   │   │   │   │   ├── CatalogueActionAPI.ts
+│   │   │   │   │   ├── CompteurActionAPI.ts
+│   │   │   │   │   ├── FeedbackActionInputAPI.ts
+│   │   │   │   │   ├── QuestionActionInputAPI.ts
+│   │   │   │   │   └── SelectionAPI.ts
+│   │   │   │   ├── aide
+│   │   │   │   │   ├── AideAPI.ts
+│   │   │   │   │   ├── AideExportAPI.ts
+│   │   │   │   │   ├── AideVeloNonCalculeesAPI.ts
+│   │   │   │   │   ├── AidesVeloParTypeAPI.ts
+│   │   │   │   │   ├── CatalogueAideAPI.ts
+│   │   │   │   │   ├── FeedbackAideInputAPI.ts
+│   │   │   │   │   ├── InputRecupererAideVeloAPI.ts
+│   │   │   │   │   ├── inputAideVeloAPI.ts
+│   │   │   │   │   └── inputAideVeloOpenAPI.ts
+│   │   │   │   ├── cms
+│   │   │   │   │   ├── CMSEvent.ts
+│   │   │   │   │   ├── CMSModels.ts
+│   │   │   │   │   ├── CMSTagAPI.ts
+│   │   │   │   │   ├── CMSThematiqueAPI.ts
+│   │   │   │   │   ├── CMSWebhookAPI.ts
+│   │   │   │   │   ├── CMSWebhookEntryAPI.ts
+│   │   │   │   │   ├── CMSWebhookImageURLAPI.ts
+│   │   │   │   │   └── CMSWebhookPopulateAPI.ts
+│   │   │   │   ├── contenu
+│   │   │   │   │   ├── articleAPI.ts
+│   │   │   │   │   ├── articleLightAPI.ts
+│   │   │   │   │   ├── conformiteAPI.ts
+│   │   │   │   │   ├── contenuBiblioAPI.ts
+│   │   │   │   │   ├── explicationRecoAPI.ts
+│   │   │   │   │   ├── quizzAPI.ts
+│   │   │   │   │   ├── quizzAttemptAPI.ts
+│   │   │   │   │   └── recommandationAPI.ts
+│   │   │   │   ├── email
+│   │   │   │   │   └── tokenEmailAPI.ts
+│   │   │   │   ├── event
+│   │   │   │   │   └── eventAPI.ts
+│   │   │   │   ├── gamification
+│   │   │   │   │   ├── boardAPI.ts
+│   │   │   │   │   └── gamificationAPI.ts
+│   │   │   │   ├── kyc
+│   │   │   │   │   ├── enchainementKYCAPI.ts
+│   │   │   │   │   ├── questionsKYCAPI_v2.ts
+│   │   │   │   │   ├── reponseKYCAPI.ts
+│   │   │   │   │   └── reponseKYCAPI_v2.ts
+│   │   │   │   ├── mes_aides_reno
+│   │   │   │   │   └── MesAidesRenoIframeUrlsAPI.ts
+│   │   │   │   ├── mes_aides_voiture
+│   │   │   │   │   └── situationMesAidesRenoAPI.ts
+│   │   │   │   ├── ngc
+│   │   │   │   │   ├── bilanAPI_v3.ts
+│   │   │   │   │   ├── bilanThematiqueAPI.ts
+│   │   │   │   │   ├── bilanTotalAPI.ts
+│   │   │   │   │   ├── questionNGCAPI.ts
+│   │   │   │   │   ├── reponseImportSituationNGCAPI.ts
+│   │   │   │   │   └── situationNGCAPI.ts
+│   │   │   │   ├── previews
+│   │   │   │   │   ├── PreviewActionAPI.ts
+│   │   │   │   │   ├── PreviewAideAPI.ts
+│   │   │   │   │   └── PreviewArticleAPI.ts
+│   │   │   │   ├── rechercheServices
+│   │   │   │   │   ├── categoriesRechercheAPI.ts
+│   │   │   │   │   ├── rechercheServiceInputAPI.ts
+│   │   │   │   │   ├── resultatRecherchAPI.ts
+│   │   │   │   │   └── serviceRechercheAPI.ts
+│   │   │   │   ├── risques
+│   │   │   │   │   ├── risquesAdresseAPI.ts
+│   │   │   │   │   └── risquesCommuneAPI.ts
+│   │   │   │   ├── simulateur_voiture
+│   │   │   │   │   └── SimulateurVoitureResultatAPI.ts
+│   │   │   │   ├── thematiques
+│   │   │   │   │   ├── HomeBoardAPI.ts
+│   │   │   │   │   ├── TuileThematiqueAPI.ts
+│   │   │   │   │   ├── detailThematiquesAPI.ts
+│   │   │   │   │   └── syntheseThematiquesAPI.ts
+│   │   │   │   ├── userMigrationReportAPI.ts
+│   │   │   │   ├── utilisateur
+│   │   │   │   │   ├── EmailAPI.ts
+│   │   │   │   │   ├── TokenAPI.ts
+│   │   │   │   │   ├── adressesRecentesAPI.ts
+│   │   │   │   │   ├── codeStateInputAPI.ts
+│   │   │   │   │   ├── logementAPI.ts
+│   │   │   │   │   ├── loggedUtilisateurAPI.ts
+│   │   │   │   │   ├── loginUtilisateurAPI.ts
+│   │   │   │   │   ├── logoutAPI.ts
+│   │   │   │   │   ├── modifierMdpAPI.ts
+│   │   │   │   │   ├── onboarding
+│   │   │   │   │   │   ├── createUtilisateurAPI.ts
+│   │   │   │   │   │   ├── createUtilisateurMagicLinkAPI.ts
+│   │   │   │   │   │   └── validateCodeAPI.ts
+│   │   │   │   │   ├── oubliMdpAPI.ts
+│   │   │   │   │   ├── renvoyerCodeAPI.ts
+│   │   │   │   │   ├── utilisateurAPI.ts
+│   │   │   │   │   ├── utilisateurProfileAPI.ts
+│   │   │   │   │   ├── valider2FAAPI.ts
+│   │   │   │   │   └── validerPrenomsAPI.ts
+│   │   │   │   └── winter
+│   │   │   │       ├── ConnectPRMByPRMAPI.ts
+│   │   │   │       ├── connectPRMByAddressAPI.ts
+│   │   │   │       └── winterConsommationAPI.ts
+│   │   │   └── winter.controller.ts
+│   │   ├── applicationError.ts
+│   │   ├── auth
+│   │   │   ├── guard.ts
+│   │   │   ├── oidc.service.ts
+│   │   │   └── oidcState.ts
+│   │   ├── contact
+│   │   │   ├── brevoRepository.ts
+│   │   │   └── contact.ts
+│   │   ├── data
+│   │   │   ├── aidesRetrofit.json
+│   │   │   └── miniatures.json
+│   │   ├── email
+│   │   │   ├── emailSender.ts
+│   │   │   ├── emailTemplate.repository.ts
+│   │   │   └── templates
+│   │   │       ├── email_change_mot_de_passe_code.hbs
+│   │   │       ├── email_connexion_code.hbs
+│   │   │       ├── email_demande_feedback.hbs
+│   │   │       ├── email_existing_account.hbs
+│   │   │       ├── email_inscription_code.hbs
+│   │   │       ├── email_magic_link.hbs
+│   │   │       ├── email_relance_onboarding_j14.hbs
+│   │   │       ├── email_relance_onboarding_j8.hbs
+│   │   │       ├── email_utilisateur_inactif_j30.hbs
+│   │   │       ├── email_utilisateur_inactif_j60.hbs
+│   │   │       ├── email_welcome.hbs
+│   │   │       └── empty.hbs
+│   │   ├── ngc
+│   │   │   └── NGCCalculator.ts
+│   │   ├── personnalisation
+│   │   │   └── personnalisator.ts
+│   │   ├── prisma
+│   │   │   ├── migrations
+│   │   │   │   ├── 20230607194226_test
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230608205045_ajout_conso_citoyen
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230614105255_ajout_utilisateur
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230614153433_ajout_compteur
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230615080410_change_compteur_value_type
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230615082154_suppression_de_la_table_citoyen_qui_n_est_plus_utile
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230615093900_ajout_de_tables_quizz_et_quizzquestion
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230619070357_ajout_table_badges
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230619093623_create_dashboard
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230619113322_liens_dashboard
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230619114051_lien_dashboard_utilisateur
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230619165453_lien_dashboard_quizz
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230620150426_
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230622141856_
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230628135828_ajout_table_interaction
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230628142045_urls_not_mandatory_in_interaction
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230628142641_interaction_optional_values
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230629142715_ajout_table_suivi
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230703121039_utilisateur_created_updated_dates
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230706134410_ajout_content_id_dans_interaction
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230706140500_change_seen_type_vers_nombre
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230707071429_ajout_points_utilisateur
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230707122059_removing_dahsboard
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230707125812_created_at_table_badge
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230707131749_badge_type_column
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230707145315_text_rich_quizzquestion
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230711125120_bilan
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230711154240_ajout_ordre_quizz
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230711155333_ajout_locked_interaction
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230717063302_type_badge_optionnel
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230802121616_suivi_json_data_column
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230802151633_delete_old_suivi_array_attributs
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230803074304_interaction_column_scheduled_reset
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230803140456_interaction_column_day_period
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230804124043_import_ngc
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230808123538_interaction_column_pinned
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230808131719_interacition_column_pinned_rename_pinned_at_position
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230809073627_quizz_column_texteriche_ko_ok
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230810101704_table_oidcstate
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230810102009_oidcstate_column_loginid
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230810121304_utilisateur_column_email_oidcstat_column_utilisateurid
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230811132747_interaction_column_raison_lock
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230816071857_mig_ngc_merge
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230817070623_table_question_ngc
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230817094642_table_interaction_catalog
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230818075244_rename_table_ineraction_catalog_definition
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230821151130_table_utilisateur_column_difficulty
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230821152007_utilisateur_quizz_difficulty
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230823084251_utilisateur_quizzlevels
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230825070012_table_article
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230825141154_interaction_quizz_score
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230825145051_interaction_remove_succeeded
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230825151553_timestamp_with_zone_for_utilisateur
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230825151802_add_timestamp_with_zone_to_all_tables
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230830082525_interaction_score_decimal
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230830083433_interaction_remove_reco_score
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230906091445_utilisateur_code_postal
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230908083624_interaction_code_postaux
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230908150740_badge_unique_constraint_new
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230919124653_unique_content_id
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230920130821_categorie_thematique_gamification
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230920133453_categorie_thematique_gamification_inter
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230922072254_interactions_thematiques
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230922085329_inter_def_unique_type_and_content_id
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230922133951_removing_quizz_data_from_db
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230927083525_thematique_gamification_titre
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230927182501_remove_table_article
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230928074841_onboarding_data
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230928121820_nom_prenom_pass_utilisateur
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20230928122710_pass_salt
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231006084315_utilisateur_onboarding_result
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231009143501_suppression_column_name_utilisateur
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231016121538_login_brute_force_protect
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231017113624_champs_code_utilisateur_et_associes
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231017170350_compteur_envoi_email
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231026091400_
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231026141541_revenu_fiscal
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231027085507_table_service
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231027115303_table_service_definition
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231027123017_service_dfinition_2
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231027131437_service_definition_local
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231027145418_unique_service_per_user
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231027152426_service_url_externe
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231030134216_service_def_thematiques
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231031083743_rename_is_local
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231031142733_utilisateur_todo
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231106143417_utilisateur_commune
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231108143346_images_service_def
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231109113817_table_thematique
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231109114625_cms_id_as_number
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231109115313_unique_cms_id_thematique
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231109135739_add_group
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231110083334_servicedef_period_dyn_data
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231110084410_service_last_refesh
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231110130907_service_dsc_sousdesc
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231124124625_gamification
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231129095557_parts_fiscals
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231129101119_optional_parts
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231129110631_drop_points_utilisateur
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231201140321_abonnement_loire
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231205205150_prm_departement
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231205212028_pk_winter
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231205221639_linky
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231205221829_linky_unique_prm
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231206154123_pk_winter_move
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231211085107_code_gen_time
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231211143708_unlocked_features
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231212150819_service_en_construction
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231216212731_like_level
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231217151527_questions_kyc
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231217152715_unique_questions_per_user
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231217152958_kyc_as_json
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231217153344_single_key_kyc
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20231219222205_points_en_poche
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240104151824_table_article
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240104153015_article_partenaire_as_string
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240104163625_table_quizz
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240108084804_utilisateur_history
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240108100917_utilisateur_version
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240112104118_utilisateur_migration_enabled
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240114133658_table_ponderation
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240115214222_service_configuration
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240118084641_service_parametrage_requis
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240118154308_service_status
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240118173112_linky_refactor
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240124085929_drop_en_construction
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240129092520_drop_interactions
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240201211215_delete_badge
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240201213608_rename_thematique_principale
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240205144216_delete_ngc_table
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240209160832_delete_quizz_levels
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240217174511_move_kyc
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240219110828_equipements
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240221163629_user_id_sur_linky
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240223070703_linky_winter_pk
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240306124350_logement_utilisateur
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240306215549_delete_prm
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240307134209_aides
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240308101953_tags_utilisateur
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240308131848_tags_article
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240308132142_quizz_tags
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240308153454_ponderation_rubriques
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240309092059_ponderation_id
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240311145608_utilisateur_transport
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240313091946_article_tags_utiliateur
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240313142514_quizz_tags_utilisateur
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240313210434_drop_table_ponderation
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240315141823_utilisateur_defis
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240328104232_defis
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240328105715_thematique_defi_unique
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240329133156_delete_codepostal_commune
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240415164047_force_connexion
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240417070401_consentement_linky
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240417072514_consent_date
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240418131758_create_table_statistique
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240418155957_ajout_colonne_nombre_defis_abandonnes_table_statistique
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240419062541_stat_date_derniere_activite
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240419072512_utilisateur_derniere_activite
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240419090148_ajout_colonne_nombre_defis_deja_fait_table_statistique
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240419121242_create_table_article_statistique
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240419160234_ajout_colonne_nombre_de_mise_en_favoris_table_article_statistique
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240419161021_aide_besoins
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240422090718_ajout_colonne_titre_table_article_statistique
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240422120746_update_rating_decimal_table_article_statistique
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240422135312_ajout_colonne_nombre_defis_en_cours_table_statistique
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240422152825_ajout_colonne_nombre_de_rating_table_article_statistique
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240429065959_univers_defi
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240429122957_defi_stats
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240430142020_enrichissement_univers
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240501131056_thematique_univers
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240513143445_lien_thematique_univers
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240516100410_missions_utilisateur
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240516143243_create_table_quiz_statistique
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240517154652_create_table_kyc_statistique
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240522061820_table_mission
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240522113637_drop_titre_mission
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240522134716_remove_univers_mission
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240522140246_update_colonne_nombre_defi_statistique
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240523094835_table_kyc
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240523100309_kyc_colonne_question
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240523114925_unique_code_kyc
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240524151748_unique_thema_per_mission
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240528083827_table_file_attente
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240528120254_filtres_aides
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240528124155_aide_filtres_as_array
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240603085319_article_categorie
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240603093034_quizz_defi_categorie
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240604131333_article_defi_quizz_filtrage_mois
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240605084626_update_filed_nombre_defis_deja_fait_to_pas_envie_table_statistique
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240605125809_add_field_raisons_defi_pas_envie_table_defi_statistique
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240605133946_add_field_raisons_defi_abandonne_table_defi_statistique
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240605202841_defi_conditions
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240606102548_create_table_thematique_statistique
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240607143708_add_fields_thematiques_en_cours_terminees_table_statistique
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240611090457_annee_naissance
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240612153530_db_version
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240612182612_create_univers_statistique_table
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240613111140_thematique_niveau
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240613153014_ajout_colonnes_univers_en_cours_termines_to_table_statistique
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240617140153_univers_is_locked
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240617155708_famille_thematique
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240617214148_univers_mission_optionnel
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240618115200_filtres_local_article
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240628091711_bibliotheque_services
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240701072112_service_favoris_stats
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240701200654_bilan_carbone_stats
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240702080420_ngc_key
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240703152258_tag_article
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240708064629_utilisateur_board
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240708110540_rank_column
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240708130326_rank_commune
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240709121029_magic_link_user_flag
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240712074641_utilisateur_classement_data
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240714193656_delete_board
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240724073921_nom_optionel
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240724085720_astuce_pourquoi_optionnel
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240725070604_utilisateur_status
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240726121444_couverture_aides
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240823061500_utilisateur_source_inscription
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240829115603_utilisateur_notification_history
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240911091420_create_prenom_statistique_view
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240911142533_create_cartographie_view
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240911195942_token_email_unsubscribe
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240911201544_unique_email_token
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240912120857_delete_prenom_statistique_view
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240912121256_create_prenom_statistique_view
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240913090512_delete_cartographie_statistique_view
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240913091750_create_cartographie_statistique_view
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240916125633_kyc_short_quest_et_img_url
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240916140052_create_utilisateur_view
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240923085814_suppression_file_attente
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240923114958_delete_groupes
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240926072239_delete_onboarding_data
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240926091533_delete_suivi_utilisateur
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240926102144_delete_equipement
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20240926135016_delete_prochaines_thematiques
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20241002121405_delete_reason_locked
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20241003074151_delete_utilisateur_transport
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20241003170640_delete_lien_situngc_empreinte
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20241003191355_delete_empreinte
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20241004161859_conditions_kyc
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20241010091411_add_date_de_naissance_table_utilisateur_view
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20241010134102_add_colonne_code_departement_table_cartographie_statistique
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20241013191008_validation_classement
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20241018120650_update_colonne_code_departement_view_carto
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20241019081542_supp_code_departement
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20241021055030_defi_impact_co2
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20241021063417_kyc_unite
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20241021144738_emoji_kyc
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20241022122402_update_champ_points_view_utilisateur
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20241024054843_code_thematique
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20241025064955_user_id_situtation
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20241029154452_migrate_mission_cms
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20241030154037_mission_is_first
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20241030155845_thematique_univers_not_unique
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20241031104056_echelle_url_source_aides
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20241102220125_delete_thematique_univers_mission_def
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20241103174405_a_supprimer_kyc
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20241104141734_thematique_new_attributes
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20241104164132_delete_univers_and_thematiqueunivers
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20241115082019_url_demande_aide
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20241118112259_brevo_sync_flags
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20241120212254_mission_introduction
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20241121202104_suppr_univers_defi
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20241121212248_suppr_kyc_univers
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20241207160558_extension_articles
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20241209103828_table_partenaire
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20241209114302_article_suppr_partenaire
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20241209142925_quizz_partenaire_id
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20241211071038_quizz_questions_and_article
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20241213084953_mission_est_examen
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20241219100609_page_conformite
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20241219101203_conformite_id_string
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20241219102022_conformite_code
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250110145813_token_mobile
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250115102945_aide_date_exp_partenaire
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250115130250_table_expiration_aides
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250115131844_aide_expiration_flags_default_value
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250115144450_aide_expiration_flag_expired
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250122145136_table_commune_epci
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250122145708_code_communes
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250122210435_index_nom_communes
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250122211326_delete_index_commune
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250129123602_code_commune_utilisateur
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250130142411_date_maj_aide_article
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250203150238_table_action
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250203150616_table_action_code
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250203150712_action_optional_cms_id
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250205162131_enrichissement_action
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250212071507_maj_oidc_state
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250212103323_supp_nonce_state
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250213150610_aide_est_gratuit
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250214081925_action_unique_constraints
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250219123950_utilisateur_sub
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250219160356_drop_todo_utilisateur
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250220113538_action_felicitations
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250221073533_utilisateur_thematique_history
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250221074339_utilisateur_thematiques_history_2
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250224092630_article_echelle
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250224101020_table_faq
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250224122454_partenaire_echelle
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250224134136_table_blocktexte
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250224155017_action_code_type_id
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250224155434_table_type_code_id_2
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250224214809_action_code_type_as_id
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250226092605_action_tags_excluants
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250227103502_oidc_nonce
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250227135154_action_faq_ids
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250228171703_table_utilisateur_copy
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250305083622_utilisateur_pseudo
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250305153143_action_kyc_ids_become_kyc_codes
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250306095231_oidcstate_situation_ngc_id
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250306100350_rename_situation_ngc_id
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250306113931_update_question_unite_to_json
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250310203024_action_consigne_compteur
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250310211714_compteur_actions
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250318214714_action_sources
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250319093729_action_categorie_pdcn
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250321113410_utilisateur_date_naissance
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250326101213_cache_bilan_carbone
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250326140705_utilisateur_global_user_version
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250328141356_partenaire_code_epci_multi_part
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250328150912_action_article_ids
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250331124116_action_titre_recherche
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250402152111_suppression_defis_utilisateur
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250402153451_suppression_missions_utilisateur
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250402160209_suppression_utilisateur_unlocked_features
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250403140313_aide_suppr_part_id
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250404090337_partenaire_communes_calculees
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250404145155_aide_codes_commune
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250407084220_aides_depart_region_part
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250407084950_aides_code_commune_rename
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250418142317_utilisateur_brevo_update_disabled
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250419074039_suppression_data_linky
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250429120346_utilisateur_activity_log
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250512122522_utilisateur_recommandation
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250512141441_cache_risque_communes
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250512143305_risque_nom_commune
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250512151220_cache_risque_catnat
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250514140806_action_tags_v2
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250514154904_tags_v2_article
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250515161431_utilisateur_magic_link_counter
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250515200137_suppr_magiklink_column
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250521113902_suppr_tag_excluant
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250522095556_boolean_visible_prod
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250522123152_aide_visible_prod
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250522152035_rename_code_commune_classement
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250522191458_suppr_code_postal_commune_classement
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250526084039_suppression_tag_article_articles
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250526144927_table_ponderation_tags
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250526145020_ponderation_tags_optional_columns
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250526145706_ponderation_tag_typo
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250526202645_rename_table_tag
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250526203215_tag_column_rename
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250527073544_ref_classification_communes
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250603124120_partenaire_depart_regions
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250603165507_source_inscription_fc_state
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250604082922_utilisateur_mode_inscription
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250604144016_tag_label_explication
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250605075529_simplification_risques_commune
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250605151425_codes_from_part_pour_articles
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250618192426_maj_linky_consent
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250625083301_action_sous_thematique
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250703145615_action_emoji
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250707205224_suppr_old_stats
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250709064132_suppr_quizz_stats
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250709072536_supp_kyc_stats
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250709073932_suppr_unvivers_stats
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250709074603_suppr_univers_stats
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250709075723_delete_carto_view
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250709163928_drop_utilisateur_view
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250710082037_suppr_prenomvue
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250710084727_suppr_table_defi
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250710163206_action_recette_sous_cat
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250716075356_action_external_id
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250716082046_action_partenaire
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250716082532_action_partenaire_id
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250717151849_table_selection
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250717162421_actions_selection
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250718090549_suppr_action_sous_thematique
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250722133732_selection_titre_image
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250723151738_utilisateur_origin_keyword
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250723153601_suppr_is_magic_link_user
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250723161649_rename_origin
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250724063619_state_source_keyword
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250724064031_rename_source_referer
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250728112952_acteurs_lvao
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250811101550_fix_compteur_label
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250825063317_suppr_table_lvao
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250901160826_suppr_old_services
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250903081609_linky_consent_unsubscribe_flag
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250903135456_kyc_sous_titre
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250904144344_counter_vues_offline
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250904202039_counter_type_action
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250905072040_counter_composite_id
+│   │   │   │   │   └── migration.sql
+│   │   │   │   └── migration_lock.toml
+│   │   │   ├── prisma.service.ts
+│   │   │   ├── schema.prisma
+│   │   │   └── stats
+│   │   │       ├── migrations
+│   │   │       │   ├── 20240925162246_init
+│   │   │       │   │   └── migration.sql
+│   │   │       │   ├── 20250228171725_table_utilisateur_copy_stats
+│   │   │       │   │   └── migration.sql
+│   │   │       │   ├── 20250228202041_table_stats_kyc_copy
+│   │   │       │   │   └── migration.sql
+│   │   │       │   ├── 20250228205547_kyc_num_value
+│   │   │       │   │   └── migration.sql
+│   │   │       │   ├── 20250228210232_stats_kyc_date_reponse_optionnelle
+│   │   │       │   │   └── migration.sql
+│   │   │       │   ├── 20250312094540_utilisateur_copy_user_id_rename
+│   │   │       │   │   └── migration.sql
+│   │   │       │   ├── 20250319174252_tables_action_article_aide_quizz
+│   │   │       │   │   └── migration.sql
+│   │   │       │   ├── 20250319210846_aide_thematiques
+│   │   │       │   │   └── migration.sql
+│   │   │       │   ├── 20250320210957_delete_test_table
+│   │   │       │   │   └── migration.sql
+│   │   │       │   ├── 20250324162124_utilisateur_date_inscription
+│   │   │       │   │   └── migration.sql
+│   │   │       │   ├── 20250326082326_bilan_carbone
+│   │   │       │   │   └── migration.sql
+│   │   │       │   ├── 20250326082623_bilan_carbone_updated_at
+│   │   │       │   │   └── migration.sql
+│   │   │       │   ├── 20250326111239_stats_personnalisation
+│   │   │       │   │   └── migration.sql
+│   │   │       │   ├── 20250326131023_quizz_nbre_tentatives
+│   │   │       │   │   └── migration.sql
+│   │   │       │   ├── 20250401154940_bilan_carbone_pourcentages
+│   │   │       │   │   └── migration.sql
+│   │   │       │   ├── 20250401155246_bilan_carbone_typo
+│   │   │       │   │   └── migration.sql
+│   │   │       │   ├── 20250409163441_aide_stats_feedback
+│   │   │       │   │   └── migration.sql
+│   │   │       │   ├── 20250409165358_action_feedback
+│   │   │       │   │   └── migration.sql
+│   │   │       │   ├── 20250424092605_version_utilisateur
+│   │   │       │   │   └── migration.sql
+│   │   │       │   ├── 20250424132007_stats_questions_utilisateur
+│   │   │       │   │   └── migration.sql
+│   │   │       │   ├── 20250424132439_typo
+│   │   │       │   │   └── migration.sql
+│   │   │       │   ├── 20250429141654_utilisateur_dates_actif
+│   │   │       │   │   └── migration.sql
+│   │   │       │   ├── 20250506071220_article_dates_partage
+│   │   │       │   │   └── migration.sql
+│   │   │       │   ├── 20250506071704_action_dates_partage
+│   │   │       │   │   └── migration.sql
+│   │   │       │   ├── 20250521074025_tag_exclusion_rename
+│   │   │       │   │   └── migration.sql
+│   │   │       │   ├── 20250521202630_stats_notifications
+│   │   │       │   │   └── migration.sql
+│   │   │       │   ├── 20250521204322_statut_notifications
+│   │   │       │   │   └── migration.sql
+│   │   │       │   ├── 20250522074501_table_visites
+│   │   │       │   │   └── migration.sql
+│   │   │       │   ├── 20250522075947_suppr_activity_log
+│   │   │       │   │   └── migration.sql
+│   │   │       │   ├── 20250611140713_utilisateur_urbain
+│   │   │       │   │   └── migration.sql
+│   │   │       │   ├── 20250613081800_suppr_exclusions_thematiques
+│   │   │       │   │   └── migration.sql
+│   │   │       │   └── migration_lock.toml
+│   │   │       ├── prisma.service.stats.ts
+│   │   │       └── schema.prisma
+│   │   ├── push_notifications
+│   │   │   ├── pushNotificationTemplate.repository.ts
+│   │   │   └── pushNotificator.ts
+│   │   ├── repository
+│   │   │   ├── action.repository.ts
+│   │   │   ├── aide.repository.ts
+│   │   │   ├── aideExpirationWarning.repository.ts
+│   │   │   ├── aides-reno
+│   │   │   │   └── aides-reno.json
+│   │   │   ├── aidesRetrofit.repository.ts
+│   │   │   ├── aidesVelo.repository.ts
+│   │   │   ├── article.repository.ts
+│   │   │   ├── bilanCarboneStatistique.repository.ts
+│   │   │   ├── blockText.repository.ts
+│   │   │   ├── classification.commune.repository.ts
+│   │   │   ├── commune
+│   │   │   │   ├── codes_postaux.json
+│   │   │   │   ├── commune.repository.ts
+│   │   │   │   ├── metropoles2024.json
+│   │   │   │   └── typologie_communes.json
+│   │   │   ├── compteurActions.repository.ts
+│   │   │   ├── conformite.repository.ts
+│   │   │   ├── faq.repository.ts
+│   │   │   ├── geographicFilter.ts
+│   │   │   ├── kyc.repository.ts
+│   │   │   ├── linkyConsent.repository.ts
+│   │   │   ├── offlineCounter.repository.ts
+│   │   │   ├── oidcState.repository.ts
+│   │   │   ├── partenaire.repository.ts
+│   │   │   ├── quizz.repository.ts
+│   │   │   ├── risquesNaturelsCommunes.repository.ts
+│   │   │   ├── selection.repository.ts
+│   │   │   ├── serviceFavorisStatistique.repository.ts
+│   │   │   ├── services_recherche
+│   │   │   │   ├── addresses.repository.ts
+│   │   │   │   ├── distances.repository.ts
+│   │   │   │   ├── fruitsLegumes.repository.ts
+│   │   │   │   ├── fruits_legumes.json
+│   │   │   │   ├── impactTransport.repository.ts
+│   │   │   │   ├── lvo
+│   │   │   │   │   ├── LongueVieObjets.repository.ts
+│   │   │   │   │   ├── LongueVieObjetsCategorieMapping.ts
+│   │   │   │   │   ├── categoriesLongueVieObjets.ts
+│   │   │   │   │   ├── lvaoInternalAPI.ts
+│   │   │   │   │   └── sources.json
+│   │   │   │   ├── maif
+│   │   │   │   │   ├── maif.repository.ts
+│   │   │   │   │   └── maifAPIClient.ts
+│   │   │   │   ├── pres_de_chez_nous
+│   │   │   │   │   ├── categoriesPresDeChezNous.ts
+│   │   │   │   │   ├── presDeChezNous.repository.ts
+│   │   │   │   │   └── presDeChezNousCategorieMapping.ts
+│   │   │   │   └── recettes
+│   │   │   │       ├── data
+│   │   │   │       │   ├── dump-ingredient_families.2024-08-09.17-30-37.json
+│   │   │   │       │   ├── dump-ingredient_recipe.2024-08-09.17-29-40.json
+│   │   │   │       │   ├── dump-ingredients.2024-08-09.17-44-22.json
+│   │   │   │       │   ├── dump-measurement_units.2024-09-06.json
+│   │   │   │       │   ├── dump-recipe_main_ingredients.2024-08-09.17-44-43.json
+│   │   │   │       │   ├── dump-recipe_steps.2024-08-09.17-47-05.json
+│   │   │   │       │   └── dump-recipes.2024-09-06.json
+│   │   │   │       └── recettes.repository.ts
+│   │   │   ├── simulateurVoiture.repository.ts
+│   │   │   ├── situationNGC.repository.ts
+│   │   │   ├── statitstique.external.repository.ts
+│   │   │   ├── tag.repository.ts
+│   │   │   ├── thematique.repository.ts
+│   │   │   ├── token.repository.ts
+│   │   │   ├── utilisateur
+│   │   │   │   ├── utilisateur.repository.ts
+│   │   │   │   └── utilisateurSecurity.repository.ts
+│   │   │   ├── utilisateurBoard.repository.ts
+│   │   │   └── winter
+│   │   │       ├── winter.repository.ts
+│   │   │       ├── winterAPIClient.ts
+│   │   │       └── winterHousingAPI.ts
+│   │   └── sentry.filter.ts
+│   ├── main.ts
+│   └── usecase
+│       ├── CMSDataHelper.usecase.ts
+│       ├── actions.usecase.ts
+│       ├── admin.usecase.ts
+│       ├── adresse.usecase.ts
+│       ├── aides.usecase.ts
+│       ├── aidesVelo.usecase.ts
+│       ├── articles.usecase.ts
+│       ├── bibliotheque.usecase.ts
+│       ├── bilanCarbone.usecase.ts
+│       ├── catalogue_actions.usecase.ts
+│       ├── cms.import.usecase.ts
+│       ├── cms.webhook.usecase.ts
+│       ├── cmsPreview.usecase.ts
+│       ├── communes.usecase.ts
+│       ├── conformite.usecase.ts
+│       ├── connexion.usecase.ts
+│       ├── contact.usecase.ts
+│       ├── event.usecase.ts
+│       ├── franceConnect.usecase.ts
+│       ├── gamification.usecase.ts
+│       ├── importNGC.usecase.ts
+│       ├── inscription.usecase.ts
+│       ├── logement.usecase.ts
+│       ├── magicLink.usecase.ts
+│       ├── mesAidesReno.usecase.ts
+│       ├── migration.usescase.ts
+│       ├── notificationEmail.usecase.ts
+│       ├── notificationMobile.usecase.ts
+│       ├── partenaire.usecase.ts
+│       ├── profile.usecase.ts
+│       ├── questionKYC.usecase.ts
+│       ├── questionKYCEnchainement.usecase.ts
+│       ├── rechercheServices.usecase.ts
+│       ├── recommandation.usecase.ts
+│       ├── referentiels
+│       │   ├── newServiceCatalogue.ts
+│       │   ├── new_service_catalogue_data.ts
+│       │   └── old_service_catalogue.ts
+│       ├── risques.usecase.ts
+│       ├── simulateurVoiture.usecase.ts
+│       ├── stats
+│       │   └── new
+│       │       └── duplicateBDD.usecase.ts
+│       ├── thematique.usecase.ts
+│       ├── thematiqueBoard.usecase.ts
+│       └── winter.usecase.ts
+├── test
+│   ├── TestUtil.ts
+│   ├── integration
+│   │   ├── ALL.int-spec.ts
+│   │   ├── KycToTags_v2.int-spec.ts
+│   │   ├── api
+│   │   │   ├── actions.catalogue.controller.int-spec.ts
+│   │   │   ├── actions.catalogue.offline.controller.int-spec.ts
+│   │   │   ├── actions.controller.int-spec.ts
+│   │   │   ├── actions.offline.controller.int-spec.ts
+│   │   │   ├── admin.controller.int-spec.ts
+│   │   │   ├── adresse.controller.int-spec.ts
+│   │   │   ├── aide.controller.int-spec.ts
+│   │   │   ├── aideVelo.controller.int-spec.ts
+│   │   │   ├── bibliotheque.controller.int-spec.ts
+│   │   │   ├── bilanCarbone.controller.int-spec.ts
+│   │   │   ├── communes.controller.int-spec.ts
+│   │   │   ├── conformite.controller.int-spec.ts
+│   │   │   ├── event.controller.int-spec.ts
+│   │   │   ├── franceConnect.controller.int-spec.ts
+│   │   │   ├── gamification.controller.int-spec.ts
+│   │   │   ├── incoming
+│   │   │   │   └── cms.controller.int-spec.ts
+│   │   │   ├── inscription.controller.ext-spec.ts
+│   │   │   ├── kyc.controller.ext-spec.ts
+│   │   │   ├── magicLink.controller.int-spec.ts
+│   │   │   ├── mesAidesReno.controller.int-spec.ts
+│   │   │   ├── mosaicKYC_v2.controller.int-spec.ts
+│   │   │   ├── notifications.controller.int-spec.ts
+│   │   │   ├── profile.controller.int-spec.ts
+│   │   │   ├── questionKYC_v2.controller.int-spec.ts
+│   │   │   ├── questionKYC_v2Enchainement.controller.int-spec.ts
+│   │   │   ├── recherchServices.controller.ext-spec.ts
+│   │   │   ├── recherchServices.controller.int-spec.ts
+│   │   │   ├── recommandation.controller.int-spec.ts
+│   │   │   ├── risques.controller.int-spec.ts
+│   │   │   ├── simulateurVoiture.controller.int-spec.ts
+│   │   │   ├── situationNGC_3.3.2.json
+│   │   │   ├── situation_NGC_v3.6.3.json
+│   │   │   ├── synthese.controller.int-spec.ts
+│   │   │   ├── thematique.controller.int-spec.ts
+│   │   │   ├── thematiqueBoard.controller.int-spec.ts
+│   │   │   └── winter.controller.int-spec.ts
+│   │   ├── emailSender.ext-spec.ts
+│   │   ├── personnalisation.int-spec.ts
+│   │   ├── repository
+│   │   │   ├── aide.repository.int-spec.ts
+│   │   │   ├── aideVelo.repository.int-spec.ts
+│   │   │   ├── article.repository.int-spec.ts
+│   │   │   ├── brevo.repository.ext-spec.ts
+│   │   │   ├── commune.repository.int-spec.ts
+│   │   │   ├── compteurActions.repository.int-spec.ts
+│   │   │   ├── emailTemplate.repository.int-spec.ts
+│   │   │   ├── quizz.repository.int-spec.ts
+│   │   │   ├── services_recherche
+│   │   │   │   ├── adresse.repository.ext-spec.ts
+│   │   │   │   ├── distances.repository.ext-spec.ts
+│   │   │   │   ├── impactTransports.repository.ext-spec.ts
+│   │   │   │   ├── lvo.repository.ext-spec.ts
+│   │   │   │   └── presdechevous.repository.int-spec.ts
+│   │   │   ├── utilisateur.repository.int-spec.ts
+│   │   │   └── utilisateurBoard.repository.int-spec.ts
+│   │   └── usecase
+│   │       ├── bilanCarbone.usecase.int-spec.ts
+│   │       ├── contact.usecase.int-spec.ts
+│   │       ├── duplicate.usecase.int-spec.ts
+│   │       ├── franceConnect.usecase.int-spec.ts
+│   │       ├── mesAidesReno.usecase.int-spec.ts
+│   │       ├── notificationMobile.usecase.int-spec.ts
+│   │       ├── partenaire.usecase.int-spec.ts
+│   │       ├── risque.usecase.int-spec.ts
+│   │       └── winter.usecase.int-spec.ts
+│   ├── jest-api.json
+│   ├── jest-ext.json
+│   ├── jest-int.json
+│   ├── jest-preload.js
+│   ├── jest-repo.json
+│   └── unit
+│       ├── domain
+│       │   ├── actiondefinition.spec.ts
+│       │   ├── aide.spec.ts
+│       │   ├── bibliotheque_services
+│       │   │   ├── categorieRechercheManager.spec.ts
+│       │   │   ├── filtreRecherche.spec.ts
+│       │   │   └── fruitsEtLegumesDeSaisonUrl.spec.ts
+│       │   ├── gamification
+│       │   │   └── gamification.spec.ts
+│       │   ├── history
+│       │   │   └── history.spec.ts
+│       │   ├── kyc
+│       │   │   └── questionsKYC.spec.ts
+│       │   ├── notifications
+│       │   │   └── notificationHistory.spec.ts
+│       │   ├── object_store
+│       │   │   ├── BibiliothequeServices_vN.spec.ts
+│       │   │   ├── CacheBilanCarbone_vN.spec.ts
+│       │   │   ├── Gamification_vN.spec.ts
+│       │   │   ├── History_vN.spec.ts
+│       │   │   ├── KYC_vN.spec.ts
+│       │   │   ├── Logement_vN.spec.ts
+│       │   │   ├── NotificationHistory_vN.spec.ts
+│       │   │   ├── ProfileRecommandationUtilisateur_vN.spec.ts
+│       │   │   ├── ThematiqueHistory_vN.spec.ts
+│       │   │   └── upgader.spec.ts
+│       │   ├── scoring
+│       │   │   ├── ponderationApplicativeManager.spec.ts
+│       │   │   ├── profileRecommandationUtilisateur.spec.ts
+│       │   │   └── userTagEvaluator.spec.ts
+│       │   ├── thematique
+│       │   │   └── thematiqueHistory.spec.ts
+│       │   └── utilisateur
+│       │       ├── manager
+│       │       │   ├── codeManager.spec.ts
+│       │       │   ├── passwordManager.spec.ts
+│       │       │   └── securityEmailManager.spec.ts
+│       │       └── utilisateur.spec.ts
+│       ├── infrastructure
+│       │   ├── ngc
+│       │   │   ├── NGCCalculator.spec.ts
+│       │   │   ├── NGC_publicode_v3.1.1.json
+│       │   │   ├── NGC_publicode_v3.3.2.json
+│       │   │   └── empreintes.txt
+│       │   └── services_recherche
+│       │       └── pres_de_chez_vous
+│       │           └── metaCategorie.spec.ts
+│       └── logs_analyse.spec.ts
+├── test_data
+│   ├── utilisateurs_content.ts
+│   └── utilisateurs_liste.ts
+├── tsconfig.build.json
+├── tsconfig.json
+└── vscode.test.conf.json
+545 directories, 993 files
