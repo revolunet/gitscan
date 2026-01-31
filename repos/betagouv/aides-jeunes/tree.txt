@@ -1,0 +1,976 @@
+.
+├── .editorconfig
+├── .env.e2e
+├── .env.example
+├── .env.iframe_build_control
+├── .github
+│   ├── auto_assign.yml
+│   ├── dependabot.yml
+│   ├── has-file-changes.sh
+│   └── workflows
+│       ├── associate-actual-milestone.yml
+│       ├── cd.yml
+│       ├── check-experimental-website.yml
+│       ├── check-links-validity.yaml
+│       └── ci.yml
+├── .gitignore
+├── .husky
+│   └── pre-commit
+├── .npmrc
+├── .prettierignore
+├── .talismanrc
+├── CONTRIBUTING.md
+├── LICENSE.md
+├── README.md
+├── backend
+│   ├── .eslintrc.yml
+│   ├── config
+│   │   ├── index.ts
+│   │   └── mongoose.ts
+│   ├── configure.ts
+│   ├── controllers
+│   │   ├── data.ts
+│   │   ├── emails.ts
+│   │   ├── followups.ts
+│   │   ├── france-connect.ts
+│   │   ├── moncomptepro.ts
+│   │   ├── openfisca.ts
+│   │   ├── outils.ts
+│   │   ├── simulation-demo.ts
+│   │   ├── simulation.ts
+│   │   ├── teleservices
+│   │   │   └── index.ts
+│   │   └── webhook.ts
+│   ├── dev.ts
+│   ├── lib
+│   │   ├── definitions.ts
+│   │   ├── followup-factory.ts
+│   │   ├── france-connect-service.ts
+│   │   ├── mattermost-bot
+│   │   │   ├── mattermost.ts
+│   │   │   └── poll-result.ts
+│   │   ├── mes-aides
+│   │   │   ├── distance.ts
+│   │   │   └── emails
+│   │   │       ├── email-render.ts
+│   │   │       ├── index.ts
+│   │   │       ├── simulation-results.ts
+│   │   │       └── templates
+│   │   │           ├── 1jeune1solution
+│   │   │           │   ├── header.mjml
+│   │   │           │   └── style.yaml
+│   │   │           ├── email.mjml
+│   │   │           ├── footer.mjml
+│   │   │           ├── simulation-results.mjml
+│   │   │           ├── simulation-results.txt
+│   │   │           ├── simulation-usefulness.mjml
+│   │   │           └── simulation-usefulness.txt
+│   │   ├── messaging
+│   │   │   ├── email
+│   │   │   │   └── email-service.ts
+│   │   │   ├── sending.ts
+│   │   │   └── sms
+│   │   │       └── sms-service.ts
+│   │   ├── migrations
+│   │   │   ├── apply.ts
+│   │   │   ├── followups
+│   │   │   │   ├── to-v1.ts
+│   │   │   │   ├── to-v2.ts
+│   │   │   │   ├── to-v3.ts
+│   │   │   │   ├── to-v4.ts
+│   │   │   │   ├── to-v5.ts
+│   │   │   │   └── to-v6.ts
+│   │   │   ├── index.ts
+│   │   │   ├── looper.sh
+│   │   │   └── simulations
+│   │   │       ├── to-v1.ts
+│   │   │       ├── to-v10.ts
+│   │   │       ├── to-v11.ts
+│   │   │       ├── to-v12.ts
+│   │   │       ├── to-v13.ts
+│   │   │       ├── to-v14.ts
+│   │   │       ├── to-v15.ts
+│   │   │       ├── to-v16.ts
+│   │   │       ├── to-v17.ts
+│   │   │       ├── to-v2.ts
+│   │   │       ├── to-v3.ts
+│   │   │       ├── to-v4.ts
+│   │   │       ├── to-v5.ts
+│   │   │       ├── to-v6.ts
+│   │   │       ├── to-v7.ts
+│   │   │       ├── to-v8.ts
+│   │   │       └── to-v9.ts
+│   │   ├── mongo-connector.ts
+│   │   ├── openfisca
+│   │   │   ├── bulk
+│   │   │   │   └── index.ts
+│   │   │   ├── getter.ts
+│   │   │   ├── index.ts
+│   │   │   ├── mapping
+│   │   │   │   ├── common.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── individu
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── past-resources-proxy.ts
+│   │   │   │   │   └── ressources.ts
+│   │   │   │   ├── last3-months-duplication.ts
+│   │   │   │   ├── menage
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── property-move.ts
+│   │   │   │   └── utils.ts
+│   │   │   ├── parameters.ts
+│   │   │   └── test.ts
+│   │   ├── simulation.ts
+│   │   ├── smtp.ts
+│   │   ├── stats
+│   │   │   ├── cli.ts
+│   │   │   ├── funnel-service.ts
+│   │   │   ├── index.ts
+│   │   │   ├── institutions.ts
+│   │   │   ├── mongodb.ts
+│   │   │   └── piwik.ts
+│   │   ├── teleservices
+│   │   │   ├── aides-jeunes-preremplissage.ts
+│   │   │   ├── aides-jeunes-service-logement.ts
+│   │   │   ├── demarches-simplifiees.ts
+│   │   │   ├── openfisca-axe.ts
+│   │   │   ├── openfisca-response.ts
+│   │   │   ├── openfisca-tracer.ts
+│   │   │   └── pnds.ts
+│   │   └── utils.ts
+│   ├── mock.ts
+│   ├── models
+│   │   ├── followup-schema.ts
+│   │   ├── followup.ts
+│   │   ├── simulation.ts
+│   │   └── survey-schema.ts
+│   ├── routes
+│   │   ├── data.ts
+│   │   ├── emails.ts
+│   │   ├── followup-redirect.ts
+│   │   ├── followups.ts
+│   │   ├── france-connect.ts
+│   │   ├── legacy-sms.ts
+│   │   ├── lieux.ts
+│   │   ├── moncomptepro.ts
+│   │   ├── openfisca.ts
+│   │   ├── outils.ts
+│   │   ├── proxy.ts
+│   │   ├── short.ts
+│   │   ├── simulation.ts
+│   │   ├── support.ts
+│   │   ├── teleservices.ts
+│   │   └── webhook.ts
+│   ├── routes-loader
+│   │   ├── api.ts
+│   │   └── index.ts
+│   ├── server.ts
+│   └── types
+│       ├── config.d.ts
+│       ├── express.d.ts
+│       ├── models.d.ts
+│       ├── openfisca.d.ts
+│       ├── question.d.ts
+│       ├── rdv-aide-numerique.d.ts
+│       └── stats.d.ts
+├── contribuer
+│   ├── .eslintrc.js
+│   ├── .npmrc
+│   ├── .prettierignore
+│   ├── next.config.js
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── pages
+│   │   ├── _app.js
+│   │   ├── _document.js
+│   │   └── index.js
+│   ├── public
+│   │   ├── admin
+│   │   │   ├── admin.css
+│   │   │   ├── config.yml
+│   │   │   ├── custom-controls.js
+│   │   │   ├── description.js
+│   │   │   ├── index.html
+│   │   │   ├── institution.js
+│   │   │   └── main.js
+│   │   ├── css
+│   │   │   ├── custom-controls.css
+│   │   │   ├── institution.css
+│   │   │   └── style.css
+│   │   └── img
+│   │       ├── connexion-decap.webp
+│   │       ├── detail-aide.webp
+│   │       ├── liste-aide-critere.webp
+│   │       └── signup-connexion.webp
+│   └── styles
+│       └── main.css
+├── cypress
+│   ├── .npmrc
+│   ├── e2e
+│   │   ├── base.cy.js
+│   │   ├── extra
+│   │   │   └── experimentations.cy.js
+│   │   ├── family.cy.js
+│   │   ├── handicap.cy.js
+│   │   ├── patrimoine.cy.js
+│   │   └── student.cy.js
+│   ├── package.json
+│   └── utils
+│       ├── accessibility.js
+│       ├── come-back-later.js
+│       ├── controllers.js
+│       ├── form.js
+│       ├── foyer.js
+│       ├── logement.js
+│       ├── navigate.js
+│       ├── profil.js
+│       ├── projet.js
+│       ├── results.js
+│       ├── revenu.js
+│       └── smtp-proxy.js
+├── cypress.config.ts
+├── data
+│   ├── all.ts
+│   ├── benefits
+│   │   ├── additional-attributes
+│   │   │   ├── index.ts
+│   │   │   └── occitanie-carte-transport-scolaire-lio.ts
+│   │   ├── aides-velo-generator.ts
+│   │   ├── dynamic
+│   │   │   ├── apa.ts
+│   │   │   ├── fsl.ts
+│   │   │   ├── incitations-covoiturage.json
+│   │   │   └── incitations-covoiturage.ts
+│   │   ├── javascript
+│   │   │   ├── aide-*.yml  (5 files)
+│   │   │   ├── artois-mobilite-aide-covoiturage.yml
+│   │   │   ├── atmb-aide-covoiturage.yml
+│   │   │   ├── auvergne-rhone-alpes-bourse-merite.yml
+│   │   │   ├── auvergne-rhone-alpes-pass-region.yml
+│   │   │   ├── avant-pays-savoyard-aide-covoiturage.yml
+│   │   │   ├── benefit_front_test.yml
+│   │   │   ├── bourgogne-franche-comte-dynastage.yml
+│   │   │   ├── brest_metropole-abonnement-transports-pour-les-étudiant·es-boursier·es.yml
+│   │   │   ├── bretagne-aide-code-permis.yml
+│   │   │   ├── bretagne-b-monde-individuel.yml
+│   │   │   ├── bretagne-jeune-international.yml
+│   │   │   ├── ca_grand_verdun_bourse_au_permis_de_conduire.yml
+│   │   │   ├── caf-*.yml  (105 files)
+│   │   │   ├── caf_*.yml  (19 files)
+│   │   │   ├── cc-pays-de-la-chataigneraie-accompagnement.yml
+│   │   │   ├── ccas-de-redon-service-transport-plus-handicap.yml
+│   │   │   ├── centre-*.yml  (5 files)
+│   │   │   ├── chemille-en-anjou-mutuelle-communale.yml
+│   │   │   ├── cohesion-territoires-logement-social.yml
+│   │   │   ├── cohesion_territoires-aide-covoiturage-du-quotidien.yml
+│   │   │   ├── collectivite-europeenne-alsace-fonds-aide-jeunes.yml
+│   │   │   ├── communaute-de-communes-rhone-lez-provence-aide-au-financement-du-permis.yml
+│   │   │   ├── communaute-de-communes-sud-herault-bourse-communale-au-permis-de-conduire.yml
+│   │   │   ├── departement-*.yml  (10 files)
+│   │   │   ├── departement_*.yml  (12 files)
+│   │   │   ├── etat-abonnement-transports-sur-le-reseau-tag.yml
+│   │   │   ├── etat-aide-nationale-service-civique-bafa-bafd.yml
+│   │   │   ├── etat-domiciliation-pour-les-personnes-sans-domicile-stable.yml
+│   │   │   ├── fonds-daction-sociale-du-travail-temporaire-fastt-sos-location-de-cyclomoteur.yml
+│   │   │   ├── fonds-daction-sociale-du-travail-temporaire-fastt-sos-location-de-vehicule.yml
+│   │   │   ├── france-travail-aif.yml
+│   │   │   ├── grand-*.yml  (7 files)
+│   │   │   ├── guadeloupe-*.yml  (7 files)
+│   │   │   ├── guyane-fonds-aide-jeunes.yml
+│   │   │   ├── haut-de-france-aide-transports-salaries.yml
+│   │   │   ├── hauts-*.yml  (16 files)
+│   │   │   ├── ile-de-france-aide-au-merite.yml
+│   │   │   ├── ile-de-france-aide-covoiturage.yml
+│   │   │   ├── intercommunalite_*.yml  (6 files)
+│   │   │   ├── martinique-aide-territoriale-etudiants.yml
+│   │   │   ├── martinique-bourses-sanitaires-et-sociales.yml
+│   │   │   ├── martinique-pret-etudiant-taux-zero.yml
+│   │   │   ├── metropole-chateauroux-bourse-permis-de-conduire.yml
+│   │   │   ├── metropole-lyon-aide-covoiturage.yml
+│   │   │   ├── metropole-savoie-aide-covoiturage.yml
+│   │   │   ├── metropole_toulon_provence_mediterranee_aide_au_permis_de_conduire.yml
+│   │   │   ├── mission-locale-de-lagglomeration-dhenin-carvin-aide-au-financement-du-permis-de-conduire-le-permis-cest-permis.yml
+│   │   │   ├── msa_maine_et_loire_aide_permis.yml
+│   │   │   ├── occitanie-bourse-etudes-sanitaires-et-sociales.yml
+│   │   │   ├── occitanie-premier-equipement-professionnel.yml
+│   │   │   ├── pass-pass-annuel-pour-les-moins-de-26-ans.yml
+│   │   │   ├── pass-pass-mensuel-pour-les-moins-de-26-ans.yml
+│   │   │   ├── pass-pass-pour-les-demandeurs-demploi.yml
+│   │   │   ├── petr_bruche_mossig_aide_covoiturage.yml
+│   │   │   ├── plie-de-lens-lievin-aide-au-financement-du-permis-de-conduire.yml
+│   │   │   ├── pm-mobilites-le-mans-sarthe-aide-covoiturage.yml
+│   │   │   ├── pm_genevois_francais_aide_covoiturage.yml
+│   │   │   ├── provence-alpes-cote-azur-bourse-sanitaire-social.yml
+│   │   │   ├── provence-alpes-cote-azur-e-pass-jeunes.yml
+│   │   │   ├── pyrenees-orientales-financement-permis.yml
+│   │   │   ├── region-*.yml  (108 files)
+│   │   │   ├── region_*.yml  (29 files)
+│   │   │   ├── residences-etudiantes-loyer-modere.yml
+│   │   │   ├── sm_de_touraine_aide_covoiturage.yml
+│   │   │   ├── smbpa-pays-basque-adour-aide-covoiturage.yml
+│   │   │   ├── strasbourg_eurometropole-carte-atout-voir.yml
+│   │   │   ├── strasbourg_eurometropole-fonds-daide-aux-jeunes-faj.yml
+│   │   │   ├── union-europeenne-bourse-erasmus.yml
+│   │   │   ├── ville-*.yml  (15 files)
+│   │   │   └── ville_*.yml  (19 files)
+│   │   └── openfisca
+│   │       ├── aah.yml
+│   │       ├── aeeh.yml
+│   │       ├── af.yml
+│   │       ├── agepi.yml
+│   │       ├── aide_*.yml  (10 files)
+│   │       ├── antony_*.yml  (5 files)
+│   │       ├── ars.yml
+│   │       ├── asf.yml
+│   │       ├── asi.yml
+│   │       ├── aspa.yml
+│   │       ├── ass.yml
+│   │       ├── auvergne_mutuelle_communale.yml
+│   │       ├── auvergne_mutuelle_communale_etudiant.yml
+│   │       ├── bail_reel_solidaire.yml
+│   │       ├── bordeaux_metropole_aide_tarification_solidaire_transport.yml
+│   │       ├── bourse_college.yml
+│   │       ├── bourse_criteres_sociaux.yml
+│   │       ├── bourse_lycee.yml
+│   │       ├── brest_metropole_transport.yml
+│   │       ├── caah.yml
+│   │       ├── cambrai_aide_mobilite_permis_b.yml
+│   │       ├── carcassonne_aide_permis.yml
+│   │       ├── carte_sncf_eleve_apprenti_eligibilite.yml
+│   │       ├── cf.yml
+│   │       ├── cheque_energie.yml
+│   │       ├── contrat_engagement_jeune.yml
+│   │       ├── cotes_d_armor_fonds_solidarite_logement_energie_eligibilite.yml
+│   │       ├── crous_aide_100_repas_gratuits.yml
+│   │       ├── crous_logement_eligibilite.yml
+│   │       ├── crous_repas_montant.yml
+│   │       ├── css_participation_forfaitaire.yml
+│   │       ├── depart1825_montant_maximum.yml
+│   │       ├── eure_*.yml  (17 files)
+│   │       ├── eurometropole_strasbourg_tarification_solidaire_transport_montant.yml
+│   │       ├── garantie_pret_etudiant_eligibilite.yml
+│   │       ├── grand_est_fluo_67_eligible_gratuite.yml
+│   │       ├── grand_est_fluo_67_tarification_solidaire.yml
+│   │       ├── gratuite_musees_monuments.yml
+│   │       ├── haute_saone_aide_permis.yml
+│   │       ├── haute_vienne_aide_permis.yml
+│   │       ├── hauts_de_france_aide_garde_enfant.yml
+│   │       ├── hauts_de_france_aide_permis.yml
+│   │       ├── ile_de_france_aide_achat_voiture_electrique.yml
+│   │       ├── illkirch_graffenstaden_coupon_arts_et_sports.yml
+│   │       ├── iwuy_aide_mobilite_permis.yml
+│   │       ├── le_cateau_aide_mobilite_permis.yml
+│   │       ├── les_rues_des_vignes_aide_mobilite_permis.yml
+│   │       ├── livret_epargne_populaire_taux.yml
+│   │       ├── locapass_eligibilite.yml
+│   │       ├── logement_social_eligible.yml
+│   │       ├── loire_atlantique_aide_mobilite_permis_am.yml
+│   │       ├── loire_atlantique_aide_mobilite_permis_b.yml
+│   │       ├── mobili_jeune.yml
+│   │       ├── montpellier_mutuelle_communale.yml
+│   │       ├── msa_*.yml  (5 files)
+│   │       ├── nantes_metropole_tarification_solidaire_transport.yml
+│   │       ├── nouvelle_aquitaine_aide_permis.yml
+│   │       ├── nouvelle_aquitaine_carte_solidaire.yml
+│   │       ├── occitanie_carte_jeune_region.yml
+│   │       ├── occitanie_carte_transport_scolaire_lio.yml
+│   │       ├── paje_base.yml
+│   │       ├── paris_*.yml  (10 files)
+│   │       ├── pass_colo.yml
+│   │       ├── pass_culture.yml
+│   │       ├── pass_jeune_54.yml
+│   │       ├── pass_sport.yml
+│   │       ├── pays_de_la_loire_epass_jeunes_culture_sport.yml
+│   │       ├── ppa.yml
+│   │       ├── pret_formation_permis_eligibilite.yml
+│   │       ├── rennes_metropole_transport.yml
+│   │       ├── revenu_solidaire_jeune.yml
+│   │       ├── rsa.yml
+│   │       ├── saint_louis_eligibilite_residence.yml
+│   │       ├── seances_sante_psy_etudiant.yml
+│   │       ├── seine_saint_denis_cheque_reussite.yml
+│   │       ├── tisseo_transport_reduction.yml
+│   │       ├── vendee_bourses_jeunes_benevoles_montant_max.yml
+│   │       ├── visale_eligibilite.yml
+│   │       └── yvelines_aide_permis.yml
+│   ├── index.ts
+│   ├── institution_types
+│   │   ├── autre.yml
+│   │   ├── caf.yml
+│   │   ├── commune.yml
+│   │   ├── departement.yml
+│   │   ├── epci.yml
+│   │   ├── europeen.yml
+│   │   ├── msa.yml
+│   │   ├── national.yml
+│   │   └── region.yml
+│   ├── institutions
+│   │   ├── action_logement.yml
+│   │   ├── artois-mobilites.yml
+│   │   ├── assurance_maladie.yml
+│   │   ├── assurance_retraite.yml
+│   │   ├── atmb.yml
+│   │   ├── banque_de_france.yml
+│   │   ├── ca_*.yml  (76 files)
+│   │   ├── caf.yml
+│   │   ├── caf_*.yml  (101 files)
+│   │   ├── cc-rhone-lez-provence.yml
+│   │   ├── cc-sud-herault.yml
+│   │   ├── cc_*.yml  (218 files)
+│   │   ├── ccas-de-redon.yml
+│   │   ├── cohesion_territoires.yml
+│   │   ├── collectivité-européenne-dalsace.yml
+│   │   ├── communaute-agglomerations-henin-carvin.yml
+│   │   ├── communaute-agglomerations-lens-lievin.yml
+│   │   ├── cu_*.yml  (9 files)
+│   │   ├── departement-de-leure.yml
+│   │   ├── departement_*.yml  (78 files)
+│   │   ├── departements.yml
+│   │   ├── departements_et_metropoles.yml
+│   │   ├── education_nationale.yml
+│   │   ├── ehop.yml
+│   │   ├── etat.yml
+│   │   ├── fonds-daction-sociale-du-travail-temporaire-fastt.yml
+│   │   ├── france_travail.yml
+│   │   ├── grand_est.yml
+│   │   ├── grenoble-alpes-metropole.yml
+│   │   ├── guadeloupe.yml
+│   │   ├── guyane.yml
+│   │   ├── hauts_de_france.yml
+│   │   ├── intercommunalite_*.yml  (54 files)
+│   │   ├── le-mans-sarthe-mobilites.yml
+│   │   ├── martinique.yml
+│   │   ├── metropole_daix_marseille_provence.yml
+│   │   ├── metropole_europeenne_de_lille.yml
+│   │   ├── metropole_rouen_normandie.yml
+│   │   ├── metropole_savoie.yml
+│   │   ├── mission-locale-de-lagglomeration-de-lens-lievin.yml
+│   │   ├── mission-locale-de-lagglomeration-dhenin-carvin.yml
+│   │   ├── msa_*.yml  (6 files)
+│   │   ├── nantes_metropole.yml
+│   │   ├── paris.yml
+│   │   ├── petr_bruche_mossig.yml
+│   │   ├── petr_pays_de_brie_et_champagne.yml
+│   │   ├── plie-de-lens-lievin.yml
+│   │   ├── pole_metropolitain_genevois_francais.yml
+│   │   ├── pro_btp.yml
+│   │   ├── region_*.yml  (12 files)
+│   │   ├── rennes_metropole.yml
+│   │   ├── saint_etienne_metropole.yml
+│   │   ├── sm_de_touraine.yml
+│   │   ├── smaps_syndicat_mixte_avant_pays_savoyard.yml
+│   │   ├── smm_aire_grenobloise.yml
+│   │   ├── smt_du_petit_cul_de_sac_marin.yml
+│   │   ├── smtc_agglomeration_clermontoise.yml
+│   │   ├── smtc_du_territoire_de_belfort.yml
+│   │   ├── sncf.yml
+│   │   ├── strasbourg_eurometropole.yml
+│   │   ├── syndicat_mobilites_pays_basque_adour_smbpa.yml
+│   │   ├── syndicat_pays_de_maurienne.yml
+│   │   ├── toulouse_metropole.yml
+│   │   ├── union_europeenne.yml
+│   │   ├── valence_romans_mobilites.yml
+│   │   ├── ville-*.yml  (5 files)
+│   │   └── ville_*.yml  (240 files)
+│   ├── schemas.ts
+│   └── types
+│       ├── benefits.d.ts
+│       ├── generator.d.ts
+│       ├── institutions.d.ts
+│       └── jamstack.d.ts
+├── eslint.config.js
+├── iframes
+│   ├── iframe-integration.ts
+│   └── iframes.config.ts
+├── index.html
+├── lib
+│   ├── activite.ts
+│   ├── answers.ts
+│   ├── benefits
+│   │   ├── compute-aides-velo.ts
+│   │   ├── compute-javascript.ts
+│   │   ├── compute.ts
+│   │   ├── customization.ts
+│   │   ├── details.ts
+│   │   ├── filter-interest-flag.ts
+│   │   ├── geographical-count-utils.ts
+│   │   ├── lieux.ts
+│   │   └── link-validity.ts
+│   ├── chapters.ts
+│   ├── cleaner-functions.ts
+│   ├── dates.ts
+│   ├── enfants.ts
+│   ├── enums
+│   │   ├── activite.ts
+│   │   ├── chapter.ts
+│   │   ├── cta.ts
+│   │   ├── error.ts
+│   │   ├── event.ts
+│   │   ├── logement.ts
+│   │   ├── messaging.ts
+│   │   ├── nationality.ts
+│   │   ├── patrimoine.ts
+│   │   ├── scolarite.ts
+│   │   ├── simulation.ts
+│   │   ├── survey.ts
+│   │   ├── themes.ts
+│   │   └── velo.ts
+│   ├── grist.ts
+│   ├── individu.ts
+│   ├── logement.ts
+│   ├── mutualized-steps.ts
+│   ├── phone-number.ts
+│   ├── properties
+│   │   ├── depcom-properties.ts
+│   │   ├── famille-properties.ts
+│   │   ├── individu-properties.ts
+│   │   ├── menage-properties.ts
+│   │   ├── others
+│   │   │   ├── complexe-properties.ts
+│   │   │   └── simple-properties.ts
+│   │   ├── parents-properties.ts
+│   │   └── property.ts
+│   ├── resources.ts
+│   ├── ressource.ts
+│   ├── scolarite.ts
+│   ├── simulation.ts
+│   ├── situation.ts
+│   ├── situations-familiales.ts
+│   ├── situations.ts
+│   ├── state
+│   │   ├── blocks.ts
+│   │   ├── generator.ts
+│   │   ├── index.ts
+│   │   ├── step-conditions.ts
+│   │   └── steps.ts
+│   ├── types
+│   │   ├── abtesting.d.ts
+│   │   ├── answer.d.ts
+│   │   ├── benefits.d.ts
+│   │   ├── blocks.d.ts
+│   │   ├── chapters.d.ts
+│   │   ├── commune.d.ts
+│   │   ├── dates.d.ts
+│   │   ├── details.d.ts
+│   │   ├── download-incitations-covoiturage.d.ts
+│   │   ├── email.d.ts
+│   │   ├── enfant.d.ts
+│   │   ├── followup.d.ts
+│   │   ├── individu.d.ts
+│   │   ├── lieu.d.ts
+│   │   ├── link-validity.d.ts
+│   │   ├── logement.d.ts
+│   │   ├── parameters.d.ts
+│   │   ├── property.d.ts
+│   │   ├── resources.d.ts
+│   │   ├── route.d.ts
+│   │   ├── simulation.d.ts
+│   │   ├── situations.d.ts
+│   │   ├── steps.d.ts
+│   │   ├── store.d.ts
+│   │   └── survey.d.ts
+│   └── utils.ts
+├── netlify.toml
+├── nodemon.json
+├── openfisca
+│   ├── Dockerfile
+│   ├── api.py
+│   ├── config.py
+│   └── requirements.txt
+├── package-lock.json
+├── package.json
+├── public
+│   ├── favicon.ico
+│   ├── img
+│   │   ├── 1jeune1solution
+│   │   │   ├── Twitter_1024x512.png
+│   │   │   ├── favicon
+│   │   │   │   ├── android-chrome-192x192.png
+│   │   │   │   └── favicon-16x16.png
+│   │   │   ├── logo1j1s-france-relance.png
+│   │   │   └── logo1j1s-france-relance.svg
+│   │   ├── artois-mobilite.png
+│   │   ├── benefits
+│   │   │   ├── ge_quadri_baseline-europe.jpg
+│   │   │   ├── logo-atouts.jpg
+│   │   │   ├── logo-bafa-bafd.png
+│   │   │   ├── logo-pass-monde.jpg
+│   │   │   ├── logo-velo.jpg
+│   │   │   ├── logo_garantie_jeunes.png
+│   │   │   └── logo_ridf_2019_hd.jpg
+│   │   ├── devise.svg
+│   │   ├── france-relance.svg
+│   │   ├── institutions
+│   │   │   ├── epci_aunis.jpg
+│   │   │   ├── epci_coutances.png
+│   │   │   ├── epci_grand_lieu.png
+│   │   │   ├── logo-alsace.png
+│   │   │   ├── logo-ccas-redon.png
+│   │   │   ├── logo-grenoble-alpes-metropole.png
+│   │   │   ├── logo-guyane.jpeg
+│   │   │   ├── logo-louvigny.png
+│   │   │   ├── logo_*.png  (815 files)
+│   │   │   ├── logo_*.jpg  (40 files)
+│   │   │   ├── logo_charente.jpeg
+│   │   │   ├── logo_la_reunion.jpeg
+│   │   │   ├── logo_pyrenees-orientales.jpeg
+│   │   │   └── ville_vaucresson.png
+│   │   ├── logo-proconnect.svg
+│   │   ├── logo_rf.png
+│   │   ├── logo_rf.svg
+│   │   ├── mariane_no_text.svg
+│   │   ├── marianne.png
+│   │   ├── marianne.svg
+│   │   ├── partners
+│   │   │   ├── bordeaux-metropole.jpg
+│   │   │   ├── bordeaux-metropole.webp
+│   │   │   ├── boussoleaidants.png
+│   │   │   ├── boussoleaidants.webp
+│   │   │   ├── cc-pays-chataigneraie.jpg
+│   │   │   ├── cc-pays-chataigneraie.webp
+│   │   │   ├── covoiturage.beta.gouv.fr.jpg
+│   │   │   ├── covoiturage.beta.gouv.fr.webp
+│   │   │   ├── demarches-simplifiees.jpg
+│   │   │   ├── demarches-simplifiees.webp
+│   │   │   ├── domifa.jpg
+│   │   │   ├── domifa.webp
+│   │   │   ├── etudiant.gouv.fr.jpg
+│   │   │   ├── etudiant.gouv.fr.webp
+│   │   │   ├── jeunes.gouv.fr.jpg
+│   │   │   ├── jeunes.gouv.fr.png
+│   │   │   ├── jeunes.gouv.fr.webp
+│   │   │   ├── mesaidesvelo.jpg
+│   │   │   ├── mesaidesvelo.webp
+│   │   │   ├── montpellier-metropole.jpg
+│   │   │   ├── montpellier-metropole.webp
+│   │   │   ├── openfisca.jpg
+│   │   │   ├── openfisca.webp
+│   │   │   ├── rdv-service-public.jpg
+│   │   │   ├── rdv-service-public.webp
+│   │   │   ├── toulon-metropole.jpg
+│   │   │   ├── toulon-metropole.webp
+│   │   │   ├── ville-aubervilliers.jpg
+│   │   │   ├── ville-aubervilliers.webp
+│   │   │   ├── ville-vannes.jpg
+│   │   │   └── ville-vannes.webp
+│   │   └── social
+│   │       ├── picto_facebook.png
+│   │       └── picto_twitter.png
+│   └── robots.txt
+├── rollup
+│   ├── benefits.ts
+│   ├── generator.rollup.ts
+│   ├── institutions.ts
+│   └── sitemap.rollup.ts
+├── src
+│   ├── app.vue
+│   ├── assets
+│   │   └── images
+│   │       ├── arrow-back.png
+│   │       ├── doigt.svg
+│   │       ├── done.svg
+│   │       ├── home_illustration.png
+│   │       └── warning.svg
+│   ├── components
+│   │   ├── 1j1s
+│   │   │   ├── footer-1j1s.vue
+│   │   │   ├── header-1j1s.vue
+│   │   │   └── navigation-1j1s.vue
+│   │   ├── action-buttons.vue
+│   │   ├── alert-revenir-plus-tard.vue
+│   │   ├── bandeau-demo.vue
+│   │   ├── base-layout.vue
+│   │   ├── benefit-cta-link.vue
+│   │   ├── benefit-cta.vue
+│   │   ├── benefit-preview.vue
+│   │   ├── benefits-group-preview.vue
+│   │   ├── benefits-list.vue
+│   │   ├── buttons
+│   │   │   ├── analytic-router-link.vue
+│   │   │   ├── back-button.vue
+│   │   │   ├── home-simulation-group-buttons.vue
+│   │   │   └── send-recap-button.vue
+│   │   ├── commune-benefits.vue
+│   │   ├── droit-estime.vue
+│   │   ├── droit-header.vue
+│   │   ├── droits-contributions.vue
+│   │   ├── droits-details-lieux.vue
+│   │   ├── droits-details.vue
+│   │   ├── en-savoir-plus-content.vue
+│   │   ├── en-savoir-plus.vue
+│   │   ├── error-block.vue
+│   │   ├── error-save-block.vue
+│   │   ├── feedback.vue
+│   │   ├── home
+│   │   │   ├── benefits-showcase-section.vue
+│   │   │   ├── features-section.vue
+│   │   │   ├── hero-section.vue
+│   │   │   ├── how-it-works-section.vue
+│   │   │   └── partners-section.vue
+│   │   ├── iframe-layout.vue
+│   │   ├── input-date.vue
+│   │   ├── input-depcom.vue
+│   │   ├── input-error.vue
+│   │   ├── input-month.vue
+│   │   ├── input-number.vue
+│   │   ├── lieu-informations.vue
+│   │   ├── lieu-light.vue
+│   │   ├── lieu.vue
+│   │   ├── loading-modal.vue
+│   │   ├── matomo-opt-out.vue
+│   │   ├── mes-aides
+│   │   │   ├── header-mes-aides.vue
+│   │   │   └── navigation-mes-aides.vue
+│   │   ├── mes-aides-layout.vue
+│   │   ├── modals
+│   │   │   ├── errors-email-and-sms-modal.vue
+│   │   │   └── recap-email-and-sms-modal.vue
+│   │   ├── month-input.vue
+│   │   ├── month-label.vue
+│   │   ├── multiple-answers.vue
+│   │   ├── mutualized-step-title.vue
+│   │   ├── offline-results.vue
+│   │   ├── progress-bar.vue
+│   │   ├── progress.vue
+│   │   ├── recap-email-and-sms-form.vue
+│   │   ├── ressource
+│   │   │   ├── exploitant-agricole.vue
+│   │   │   ├── micro-entreprise.vue
+│   │   │   ├── montants.vue
+│   │   │   ├── profession-liberale.vue
+│   │   │   └── types.vue
+│   │   ├── resultat-inattendu
+│   │   │   ├── aide-logement.vue
+│   │   │   ├── contrat-engagement-jeune.vue
+│   │   │   ├── ppa.vue
+│   │   │   └── year-minus-two.vue
+│   │   ├── start-simulation-cta.vue
+│   │   ├── step-view.vue
+│   │   ├── summary.vue
+│   │   ├── support
+│   │   │   ├── copy-button.vue
+│   │   │   ├── simulation-search.vue
+│   │   │   └── survey-email-search.vue
+│   │   ├── titre-chapitre.vue
+│   │   ├── trouver-interlocuteur.vue
+│   │   ├── warning-message.vue
+│   │   └── yes-no-question.vue
+│   ├── composables
+│   │   ├── individu.ts
+│   │   ├── progress.ts
+│   │   ├── use-benefits.ts
+│   │   ├── use-followup-survey-data.ts
+│   │   ├── use-lieux.ts
+│   │   └── use-voluntary-organisations.ts
+│   ├── context
+│   │   ├── base.ts
+│   │   ├── index.ts
+│   │   └── mes-aides.ts
+│   ├── directives
+│   │   ├── analytics.ts
+│   │   ├── mail.ts
+│   │   └── select-on-click.ts
+│   ├── fonts
+│   │   ├── Marianne-Bold.woff2
+│   │   ├── Marianne-ExtraBold.woff2
+│   │   ├── Marianne-Regular.woff2
+│   │   ├── WorkSans-VariableFont_wght.ttf
+│   │   └── remixicon.woff2
+│   ├── lib
+│   │   ├── benefits.ts
+│   │   ├── commune.ts
+│   │   ├── hint.ts
+│   │   ├── mock-results.ts
+│   │   ├── nationality.ts
+│   │   ├── simulation.ts
+│   │   ├── statistics-service
+│   │   │   ├── matomo.ts
+│   │   │   ├── recorder.ts
+│   │   │   └── shared.ts
+│   │   ├── storage-service.ts
+│   │   ├── transition.ts
+│   │   └── warnings.ts
+│   ├── main.ts
+│   ├── mixins
+│   │   ├── benefit-image-mixin.ts
+│   │   ├── contact-email.ts
+│   │   ├── layout-route-mixin.ts
+│   │   ├── ressource-processor.ts
+│   │   ├── statistics.ts
+│   │   └── tns-ressource-updator.ts
+│   ├── plugins
+│   │   ├── ab-testing-service.ts
+│   │   ├── mails.ts
+│   │   ├── state-service.ts
+│   │   ├── theme-service.ts
+│   │   └── tracker.ts
+│   ├── router.ts
+│   ├── shims-vue.d.ts
+│   ├── stores
+│   │   ├── iframe.ts
+│   │   ├── index.ts
+│   │   ├── results.ts
+│   │   └── theme.ts
+│   ├── styles
+│   │   ├── aides-jeunes.css
+│   │   ├── partials
+│   │   │   ├── desktop
+│   │   │   │   └── _iframe.scss
+│   │   │   └── mobile
+│   │   │       └── _iframe.scss
+│   │   └── themes
+│   │       ├── bordeaux-metropole.css
+│   │       ├── default-dsfr.css
+│   │       ├── light-blue.css
+│   │       └── soliguide.css
+│   ├── types
+│   │   └── css.d.ts
+│   └── views
+│       ├── accessibilite.vue
+│       ├── accompagnement
+│       │   └── accompagnement.vue
+│       ├── aide.vue
+│       ├── cgu.vue
+│       ├── confidentialite.vue
+│       ├── contact.vue
+│       ├── faq.vue
+│       ├── france-connect-callback.vue
+│       ├── home.vue
+│       ├── iframe.vue
+│       ├── liste-aides.vue
+│       ├── mentions-legales.vue
+│       ├── parcours.vue
+│       ├── preparer-rentree-etudiante-logement-budget-aides.vue
+│       ├── preremplissage.vue
+│       ├── preview.vue
+│       ├── redirection.vue
+│       ├── simulation
+│       │   ├── Menage
+│       │   │   └── loyer.vue
+│       │   ├── Ressources
+│       │   │   ├── enfants.vue
+│       │   │   ├── fiscales.vue
+│       │   │   ├── montants.vue
+│       │   │   ├── patrimoine.vue
+│       │   │   └── types.vue
+│       │   ├── depcom-step.vue
+│       │   ├── enfants.vue
+│       │   ├── famille.vue
+│       │   ├── individu.vue
+│       │   ├── menage.vue
+│       │   ├── mutualized-step.vue
+│       │   ├── recapitulatif.vue
+│       │   ├── resultats
+│       │   │   ├── benefits-list.vue
+│       │   │   ├── lieu-informations.vue
+│       │   │   ├── lieux-generiques.vue
+│       │   │   ├── resultat-inattendu.vue
+│       │   │   ├── resultats-details.vue
+│       │   │   ├── resultats-wrapper.vue
+│       │   │   └── resultats.vue
+│       │   └── revenir-plus-tard.vue
+│       ├── simulation.vue
+│       ├── simulez-aides-mobilite-internationale-preparez-depart-sereinement.vue
+│       ├── stats.vue
+│       ├── suivi.vue
+│       └── villes
+│           ├── bordeaux.vue
+│           ├── lille.vue
+│           ├── lyon.vue
+│           ├── marseille.vue
+│           ├── montpellier.vue
+│           ├── nantes.vue
+│           ├── nice.vue
+│           ├── paris.vue
+│           ├── rouen.vue
+│           ├── strasbourg.vue
+│           └── toulouse.vue
+├── tests
+│   ├── __mocks__
+│   │   └── axios.js
+│   ├── integration
+│   │   ├── benefits-description.spec.ts
+│   │   ├── benefits-geographical-constraint-consistency.spec.ts
+│   │   ├── caf-benefits.spec.ts
+│   │   ├── schema-validation-benefits-javascript.spec.ts
+│   │   ├── schema-validation-benefits-openfisca.spec.ts
+│   │   ├── schema-validation-config.spec.ts
+│   │   ├── schema-validation-institutions.spec.ts
+│   │   ├── test-benefit-generators.spec.ts
+│   │   ├── test-benefit-ids.spec.ts
+│   │   ├── test-filename.spec.ts
+│   │   └── test-institution-ids.spec.ts
+│   └── unit
+│       ├── backend
+│       │   ├── followup-factory.spec.ts
+│       │   ├── migration-to-v15.spec.ts
+│       │   ├── outils.spec.ts
+│       │   ├── survey.spec.ts
+│       │   └── webhook.spec.ts
+│       ├── components
+│       │   ├── input-date.spec.ts
+│       │   ├── input-number.spec.ts
+│       │   └── types.spec.ts
+│       ├── lib
+│       │   ├── index.spec.ts
+│       │   └── messaging-sms.spec.ts
+│       ├── openfisca
+│       │   ├── bulk.spec.ts
+│       │   ├── dispatch-individuals.spec.ts
+│       │   ├── index.spec.ts
+│       │   ├── individu.spec.ts
+│       │   ├── past-resources-proxy.spec.ts
+│       │   ├── property-move.spec.ts
+│       │   └── test.spec.ts
+│       ├── other
+│       │   ├── aides-velo-benefit-generator.spec.ts
+│       │   ├── answer.spec.ts
+│       │   ├── benefits-generate.spec.ts
+│       │   ├── commune.spec.ts
+│       │   ├── compute-aides-velo-benefits.spec.ts
+│       │   ├── compute-aides.spec.ts
+│       │   ├── compute-javascript-benefits.spec.ts
+│       │   ├── definitions.spec.ts
+│       │   ├── etablissements.spec.ts
+│       │   ├── geographical-benefit-count.spec.ts
+│       │   ├── incitations-covoiturage-benefit-generator.spec.ts
+│       │   ├── round.spec.ts
+│       │   ├── situation.spec.ts
+│       │   └── utils.spec.ts
+│       ├── tools
+│       │   ├── cleaner.spec.ts
+│       │   ├── existing.spec.ts
+│       │   ├── new.spec.ts
+│       │   └── utils.ts
+│       └── views
+│           └── fiscales.spec.ts
+├── tools
+│   ├── add-milestone-to-merged-prs.ts
+│   ├── check-links-validity.ts
+│   ├── cleaner.ts
+│   ├── create-temp-smtp-server.ts
+│   ├── distance-communes.js
+│   ├── download-incitations-covoiturage-generate-missing-institutions.ts
+│   ├── email-sending-tool.ts
+│   ├── email-summary-tool.ts
+│   ├── evaluate-benefits.ts
+│   ├── generate-missing-institutions-aides-velo.ts
+│   ├── generate-missing-institutions.ts
+│   ├── geographical-benefits-details.ts
+│   ├── get-all-steps.ts
+│   ├── get-latest-simulation-ids.ts
+│   ├── iframe-build-control.sh
+│   ├── institutions-logo-check.ts
+│   ├── mjml.ts
+│   ├── mongo-query.ts
+│   ├── sms-sending-tool.ts
+│   ├── test-benefits-geographical-constraint-consistency.ts
+│   ├── test-definition-periods.ts
+│   └── views
+│       ├── index.html
+│       └── institutions.html
+├── tsconfig.json
+├── tsconfig.server.json
+├── vite.config.ts
+└── vitest.config.ts
+116 directories, 2892 files
