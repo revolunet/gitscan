@@ -1,0 +1,818 @@
+.
+├── .github
+│   ├── .scala-steward.conf
+│   └── workflows
+│       ├── build.yml
+│       └── scala-steward.yml.old
+├── .gitignore
+├── .scala-steward.conf
+├── .scalafix.conf
+├── .scalafmt.conf
+├── LICENSE
+├── README.md
+├── app
+│   ├── actors
+│   │   ├── AlbertSummaryActor.scala
+│   │   ├── AntivirusScanActor.scala
+│   │   ├── GS1AuthTokenActor.scala
+│   │   ├── HtmlConverterActor.scala
+│   │   ├── ReportedPhonesExtractActor.scala
+│   │   ├── ReportsExtractActor.scala
+│   │   ├── ReportsZipExtractActor.scala
+│   │   ├── WebsiteExtractActor.scala
+│   │   └── antivirus
+│   │       ├── AntivirusScanExecution.scala
+│   │       └── AntivirusScanExitCode.scala
+│   ├── authentication
+│   │   ├── APIKeyAuthenticator.scala
+│   │   ├── Authenticator.scala
+│   │   ├── BCryptPasswordHasher.scala
+│   │   ├── CookieAuthenticator.scala
+│   │   ├── CookieInfos.scala
+│   │   ├── Credentials.scala
+│   │   ├── CredentialsProvider.scala
+│   │   ├── CustomCookieHeaderEncoding.scala
+│   │   ├── JcaCrypter.scala
+│   │   ├── JcaSigner.scala
+│   │   ├── PasswordHasher.scala
+│   │   └── actions
+│   │       ├── ConsumerAction.scala
+│   │       ├── IdentifiedRequest.scala
+│   │       ├── ImpersonationAction.scala
+│   │       ├── MaybeUserAction.scala
+│   │       └── UserAction.scala
+│   ├── config
+│   │   ├── AlbertConfiguration.scala
+│   │   ├── ApplicationConfiguration.scala
+│   │   ├── EmailConfiguration.scala
+│   │   ├── FlywayConfiguration.scala
+│   │   ├── GS1Configuration.scala
+│   │   ├── SignalConsoConfiguration.scala
+│   │   ├── SiretExtractorConfiguration.scala
+│   │   ├── SocialBladeClientConfiguration.scala
+│   │   ├── TaskConfiguration.scala
+│   │   └── WebsiteApiConfiguration.scala
+│   ├── controllers
+│   │   ├── AccessesMassManagementController.scala
+│   │   ├── AccountController.scala
+│   │   ├── AdminController.scala
+│   │   ├── AsyncFileController.scala
+│   │   ├── AuthController.scala
+│   │   ├── BarcodeController.scala
+│   │   ├── BaseController.scala
+│   │   ├── BlacklistedEmailsController.scala
+│   │   ├── BookmarkController.scala
+│   │   ├── CompanyAccessController.scala
+│   │   ├── CompanyController.scala
+│   │   ├── ConstantController.scala
+│   │   ├── DataEconomieController.scala
+│   │   ├── EmailValidationController.scala
+│   │   ├── EngagementController.scala
+│   │   ├── EventsController.scala
+│   │   ├── HealthController.scala
+│   │   ├── HtmlFromTemplateGenerator.scala
+│   │   ├── ImportController.scala
+│   │   ├── MobileAppController.scala
+│   │   ├── RatingController.scala
+│   │   ├── ReportBlockedNotificationController.scala
+│   │   ├── ReportConsumerReviewController.scala
+│   │   ├── ReportController.scala
+│   │   ├── ReportFileController.scala
+│   │   ├── ReportListController.scala
+│   │   ├── ReportToExternalController.scala
+│   │   ├── ReportedPhoneController.scala
+│   │   ├── SiretExtractorController.scala
+│   │   ├── SocialNetworkController.scala
+│   │   ├── StatisticController.scala
+│   │   ├── SubscriptionController.scala
+│   │   ├── WebsiteController.scala
+│   │   ├── error
+│   │   │   ├── AppError.scala
+│   │   │   ├── AppErrorTransformer.scala
+│   │   │   └── ErrorPayload.scala
+│   │   └── package.scala
+│   ├── loader
+│   │   └── SignalConsoApplicationLoader.scala
+│   ├── models
+│   │   ├── AccessToken.scala
+│   │   ├── AsyncFile.scala
+│   │   ├── BlacklistedEmail.scala
+│   │   ├── Consumer.scala
+│   │   ├── CurveTickDuration.scala
+│   │   ├── DGCCRFUser.scala
+│   │   ├── EmailApi.scala
+│   │   ├── EmailValidation.scala
+│   │   ├── EmailValidationApi.scala
+│   │   ├── PaginatedResult.scala
+│   │   ├── PaginatedSearch.scala
+│   │   ├── Rating.scala
+│   │   ├── ReattributeCompany.scala
+│   │   ├── ResendEmailType.scala
+│   │   ├── SortOrder.scala
+│   │   ├── Statistics.scala
+│   │   ├── Subscription.scala
+│   │   ├── User.scala
+│   │   ├── UserRole.scala
+│   │   ├── access
+│   │   │   ├── AccessesMassManagement.scala
+│   │   │   ├── ActivationLinkRequest.scala
+│   │   │   └── UserWithAccessLevel.scala
+│   │   ├── admin
+│   │   │   └── ReportInputList.scala
+│   │   ├── albert
+│   │   │   └── AlbertProblemsResult.scala
+│   │   ├── auth
+│   │   │   ├── AuthAttempt.scala
+│   │   │   ├── AuthAttemptFilter.scala
+│   │   │   ├── AuthToken.scala
+│   │   │   ├── PasswordChange.scala
+│   │   │   ├── UserCredentials.scala
+│   │   │   ├── UserLogin.scala
+│   │   │   ├── UserPassword.scala
+│   │   │   └── UserSession.scala
+│   │   ├── barcode
+│   │   │   ├── BarcodeProduct.scala
+│   │   │   └── gs1
+│   │   │       └── OAuthAccessToken.scala
+│   │   ├── company
+│   │   │   ├── Address.scala
+│   │   │   ├── AddressApi.scala
+│   │   │   ├── Company.scala
+│   │   │   ├── CompanyActivationAttempt.scala
+│   │   │   ├── CompanySort.scala
+│   │   │   ├── CompanySync.scala
+│   │   │   ├── InactiveCompany.scala
+│   │   │   ├── ProCompanies.scala
+│   │   │   └── SearchCompanyIdentity.scala
+│   │   ├── consumerconsent
+│   │   │   ├── ConsumerConsent.scala
+│   │   │   └── ConsumerConsentId.scala
+│   │   ├── dataeconomie
+│   │   │   └── ReportDataEconomie.scala
+│   │   ├── email
+│   │   │   ├── EmailValidationBody.scala
+│   │   │   └── EmailValidationResult.scala
+│   │   ├── engagement
+│   │   │   ├── Engagement.scala
+│   │   │   ├── EngagementApi.scala
+│   │   │   └── EngagementId.scala
+│   │   ├── event
+│   │   │   ├── Event.scala
+│   │   │   ├── EventUser.scala
+│   │   │   └── EventWithUser.scala
+│   │   ├── investigation
+│   │   │   ├── InvestigationStatus.scala
+│   │   │   └── WebsiteInvestigationApi.scala
+│   │   ├── package.scala
+│   │   ├── report
+│   │   │   ├── ArborescenceNode.scala
+│   │   │   ├── ConsumerIp.scala
+│   │   │   ├── Gender.scala
+│   │   │   ├── Influencer.scala
+│   │   │   ├── PreFilter.scala
+│   │   │   ├── Report.scala
+│   │   │   ├── ReportBlockedNotification.scala
+│   │   │   ├── ReportCategory.scala
+│   │   │   ├── ReportCompany.scala
+│   │   │   ├── ReportDraft.scala
+│   │   │   ├── ReportFile.scala
+│   │   │   ├── ReportFileApi.scala
+│   │   │   ├── ReportFilter.scala
+│   │   │   ├── ReportFilterApi.scala
+│   │   │   ├── ReportFilterProApi.scala
+│   │   │   ├── ReportFromSearch.scala
+│   │   │   ├── ReportNode.scala
+│   │   │   ├── ReportResponse.scala
+│   │   │   ├── ReportSort.scala
+│   │   │   ├── ReportStatus.scala
+│   │   │   ├── ReportTag.scala
+│   │   │   ├── ReportToExternal.scala
+│   │   │   ├── ReportWithMetadata.scala
+│   │   │   ├── ReportWordOccurrence.scala
+│   │   │   ├── ReportedPhone.scala
+│   │   │   ├── ReportsCountBySubcategoriesFilter.scala
+│   │   │   ├── SocialNetworkSlug.scala
+│   │   │   ├── Train.scala
+│   │   │   ├── WebsiteURL.scala
+│   │   │   ├── delete
+│   │   │   │   ├── ReportAdminAction.scala
+│   │   │   │   ├── ReportAdminActionType.scala
+│   │   │   │   └── ReportAdminCompletionDetails.scala
+│   │   │   ├── extract
+│   │   │   │   ├── ReportExtractName.scala
+│   │   │   │   └── ZipElement.scala
+│   │   │   ├── reportfile
+│   │   │   │   └── ReportFileId.scala
+│   │   │   ├── reportmetadata
+│   │   │   │   ├── Os.scala
+│   │   │   │   ├── ReportComment.scala
+│   │   │   │   ├── ReportMetadata.scala
+│   │   │   │   └── ReportMetadataDraft.scala
+│   │   │   ├── review
+│   │   │   │   ├── ConsumerReviewApi.scala
+│   │   │   │   ├── ConsumerReviewExistApi.scala
+│   │   │   │   ├── EngagementReview.scala
+│   │   │   │   ├── ResponseConsumerReview.scala
+│   │   │   │   ├── ResponseConsumerReviewId.scala
+│   │   │   │   └── ResponseEvaluation.scala
+│   │   │   ├── sampledata
+│   │   │   │   ├── CompanyGenerator.scala
+│   │   │   │   ├── ConsoUserGenerator.scala
+│   │   │   │   ├── ProUserGenerator.scala
+│   │   │   │   ├── ReportGenerator.scala
+│   │   │   │   ├── ResponseGenerator.scala
+│   │   │   │   ├── ReviewGenerator.scala
+│   │   │   │   └── SampleDataService.scala
+│   │   │   ├── signalconsoreview
+│   │   │   │   ├── SignalConsoEvaluation.scala
+│   │   │   │   ├── SignalConsoReview.scala
+│   │   │   │   └── SignalConsoReviewId.scala
+│   │   │   └── socialnetwork
+│   │   │       └── CertifiedInfluencer.scala
+│   │   ├── socialnetwork
+│   │   │   └── SocialNetwork.scala
+│   │   ├── token
+│   │   │   ├── AgentAccessToken.scala
+│   │   │   ├── ProAccessToken.scala
+│   │   │   ├── TokenInfo.scala
+│   │   │   └── TokenKind.scala
+│   │   └── website
+│   │       ├── IdentificationStatus.scala
+│   │       ├── Website.scala
+│   │       ├── WebsiteAndCompany.scala
+│   │       ├── WebsiteCompanyReportCount.scala
+│   │       ├── WebsiteCompanySearchResult.scala
+│   │       ├── WebsiteCreation.scala
+│   │       ├── WebsiteHost.scala
+│   │       ├── WebsiteHostCount.scala
+│   │       └── WebsiteId.scala
+│   ├── orchestrators
+│   │   ├── AccessesMassManagementOrchestrator.scala
+│   │   ├── AccessesOrchestrator.scala
+│   │   ├── AlbertOrchestrator.scala
+│   │   ├── AuthOrchestrator.scala
+│   │   ├── BarcodeOrchestrator.scala
+│   │   ├── BookmarkOrchestrator.scala
+│   │   ├── CompaniesVisibilityOrchestrator.scala
+│   │   ├── CompanyAccessOrchestrator.scala
+│   │   ├── CompanyOrchestrator.scala
+│   │   ├── DataEconomieOrchestrator.scala
+│   │   ├── EmailNotificationOrchestrator.scala
+│   │   ├── EmailValidationOrchestrator.scala
+│   │   ├── EngagementOrchestrator.scala
+│   │   ├── EventsOrchestrator.scala
+│   │   ├── ImportOrchestrator.scala
+│   │   ├── ProAccessTokenOrchestrator.scala
+│   │   ├── ProbeOrchestrator.scala
+│   │   ├── ReportAdminActionOrchestrator.scala
+│   │   ├── ReportAssignmentOrchestrator.scala
+│   │   ├── ReportBlockedNotificationOrchestrator.scala
+│   │   ├── ReportConsumerReviewOrchestrator.scala
+│   │   ├── ReportFileOrchestrator.scala
+│   │   ├── ReportOrchestrator.scala
+│   │   ├── ReportWithDataOrchestrator.scala
+│   │   ├── RgpdOrchestrator.scala
+│   │   ├── StatsOrchestrator.scala
+│   │   ├── SubscriptionOrchestrator.scala
+│   │   ├── UserOrchestrator.scala
+│   │   ├── VisibleReportOrchestrator.scala
+│   │   ├── WebsitesOrchestrator.scala
+│   │   ├── reportexport
+│   │   │   ├── ReportZipExportService.scala
+│   │   │   └── ZipEntryName.scala
+│   │   └── socialmedia
+│   │       ├── InfluencerOrchestrator.scala
+│   │       ├── SocialBladeClient.scala
+│   │       └── SocialBladeResponse.scala
+│   ├── repositories
+│   │   ├── CRUDRepository.scala
+│   │   ├── DatabaseTable.scala
+│   │   ├── PaginatedQuery.scala
+│   │   ├── PostgresProfile.scala
+│   │   ├── accesstoken
+│   │   │   ├── AccessTokenColumnType.scala
+│   │   │   ├── AccessTokenRepository.scala
+│   │   │   ├── AccessTokenRepositoryInterface.scala
+│   │   │   └── AccessTokenTable.scala
+│   │   ├── albert
+│   │   │   ├── AlbertClassification.scala
+│   │   │   ├── AlbertClassificationRepository.scala
+│   │   │   └── AlbertClassificationTable.scala
+│   │   ├── asyncfiles
+│   │   │   ├── AsyncFileRepository.scala
+│   │   │   ├── AsyncFileRepositoryInterface.scala
+│   │   │   ├── AsyncFilesColumnType.scala
+│   │   │   └── AsyncFilesTable.scala
+│   │   ├── authattempt
+│   │   │   ├── AuthAttemptRepository.scala
+│   │   │   ├── AuthAttemptRepositoryInterface.scala
+│   │   │   └── AuthAttemptTable.scala
+│   │   ├── authtoken
+│   │   │   ├── AuthTokenRepository.scala
+│   │   │   ├── AuthTokenRepositoryInterface.scala
+│   │   │   └── AuthTokenTable.scala
+│   │   ├── barcode
+│   │   │   ├── BarcodeProductRepository.scala
+│   │   │   ├── BarcodeProductRepositoryInterface.scala
+│   │   │   └── BarcodeProductTable.scala
+│   │   ├── blacklistedemails
+│   │   │   ├── BlacklistedEmailsRepository.scala
+│   │   │   ├── BlacklistedEmailsRepositoryInterface.scala
+│   │   │   └── BlacklistedEmailsTable.scala
+│   │   ├── bookmark
+│   │   │   ├── Bookmark.scala
+│   │   │   ├── BookmarkRepository.scala
+│   │   │   ├── BookmarkRepositoryInterface.scala
+│   │   │   └── BookmarkTable.scala
+│   │   ├── company
+│   │   │   ├── CompanyRepository.scala
+│   │   │   ├── CompanyRepositoryInterface.scala
+│   │   │   ├── CompanySyncRepository.scala
+│   │   │   ├── CompanySyncTable.scala
+│   │   │   └── CompanyTable.scala
+│   │   ├── companyaccess
+│   │   │   ├── CompanyAccessColumnType.scala
+│   │   │   ├── CompanyAccessRepository.scala
+│   │   │   ├── CompanyAccessRepositoryInterface.scala
+│   │   │   └── CompanyAccessTable.scala
+│   │   ├── companyactivationattempt
+│   │   │   ├── CompanyActivationAttemptRepository.scala
+│   │   │   ├── CompanyActivationAttemptRepositoryInterface.scala
+│   │   │   └── CompanyActivationAttemptTable.scala
+│   │   ├── companyreportcounts
+│   │   │   ├── CompanyReportCounts.scala
+│   │   │   ├── CompanyReportCountsRepository.scala
+│   │   │   ├── CompanyReportCountsRepositoryInterface.scala
+│   │   │   └── CompanyReportCountsTable.scala
+│   │   ├── consumer
+│   │   │   ├── ConsumerRepository.scala
+│   │   │   ├── ConsumerRepositoryInterface.scala
+│   │   │   └── ConsumerTable.scala
+│   │   ├── consumerconsent
+│   │   │   ├── ConsumerConsentRepository.scala
+│   │   │   ├── ConsumerConsentRepositoryInterface.scala
+│   │   │   ├── ConsumerConsentTable.scala
+│   │   │   └── CustomColumnTypes.scala
+│   │   ├── emailvalidation
+│   │   │   ├── EmailValidationRepository.scala
+│   │   │   ├── EmailValidationRepositoryInterface.scala
+│   │   │   └── EmailValidationTable.scala
+│   │   ├── engagement
+│   │   │   ├── EngagementRepository.scala
+│   │   │   ├── EngagementRepositoryInterface.scala
+│   │   │   └── EngagementTable.scala
+│   │   ├── event
+│   │   │   ├── EventFilter.scala
+│   │   │   ├── EventRepository.scala
+│   │   │   ├── EventRepositoryInterface.scala
+│   │   │   └── EventTable.scala
+│   │   ├── influencer
+│   │   │   ├── InfluencerRepository.scala
+│   │   │   ├── InfluencerRepositoryInterface.scala
+│   │   │   └── InfluencerTable.scala
+│   │   ├── ipblacklist
+│   │   │   ├── BlackListedIp.scala
+│   │   │   ├── IpBlackListRepository.scala
+│   │   │   ├── IpBlackListRepositoryInterface.scala
+│   │   │   └── IpBlackListTable.scala
+│   │   ├── package.scala
+│   │   ├── probe
+│   │   │   └── ProbeRepository.scala
+│   │   ├── rating
+│   │   │   ├── RatingRepository.scala
+│   │   │   ├── RatingRepositoryInterface.scala
+│   │   │   └── RatingTable.scala
+│   │   ├── report
+│   │   │   ├── ReportColumnType.scala
+│   │   │   ├── ReportRepository.scala
+│   │   │   ├── ReportRepositoryInterface.scala
+│   │   │   └── ReportTable.scala
+│   │   ├── reportblockednotification
+│   │   │   ├── ReportBlockedNotificationTable.scala
+│   │   │   ├── ReportNotificationBlockedRepository.scala
+│   │   │   └── ReportNotificationBlockedRepositoryInterface.scala
+│   │   ├── reportconsumerreview
+│   │   │   ├── ResponseConsumerReviewColumnType.scala
+│   │   │   ├── ResponseConsumerReviewRepository.scala
+│   │   │   ├── ResponseConsumerReviewRepositoryInterface.scala
+│   │   │   └── ResponseConsumerReviewTable.scala
+│   │   ├── reportengagementreview
+│   │   │   ├── ReportEngagementReviewRepository.scala
+│   │   │   ├── ReportEngagementReviewRepositoryInterface.scala
+│   │   │   └── ReportEngagementReviewTable.scala
+│   │   ├── reportfile
+│   │   │   ├── ReportFileColumnType.scala
+│   │   │   ├── ReportFileFilter.scala
+│   │   │   ├── ReportFileRepository.scala
+│   │   │   ├── ReportFileRepositoryInterface.scala
+│   │   │   └── ReportFileTable.scala
+│   │   ├── reportmetadata
+│   │   │   ├── ReportMetadataColumnType.scala
+│   │   │   ├── ReportMetadataRepository.scala
+│   │   │   ├── ReportMetadataRepositoryInterface.scala
+│   │   │   └── ReportMetadataTable.scala
+│   │   ├── reportresponse
+│   │   │   ├── ReportResponse.scala
+│   │   │   └── ReportResponseTable.scala
+│   │   ├── siretextraction
+│   │   │   ├── SiretExtractionRepository.scala
+│   │   │   └── SiretExtractionTable.scala
+│   │   ├── socialnetwork
+│   │   │   ├── SocialNetworkRepository.scala
+│   │   │   ├── SocialNetworkRepositoryInterface.scala
+│   │   │   └── SocialNetworkTable.scala
+│   │   ├── subcategorylabel
+│   │   │   ├── SubcategoryLabel.scala
+│   │   │   ├── SubcategoryLabelRepository.scala
+│   │   │   ├── SubcategoryLabelRepositoryInterface.scala
+│   │   │   └── SubcategoryLabelTable.scala
+│   │   ├── subscription
+│   │   │   ├── SubscriptionRepository.scala
+│   │   │   ├── SubscriptionRepositoryInterface.scala
+│   │   │   └── SubscriptionTable.scala
+│   │   ├── tasklock
+│   │   │   ├── TaskDetails.scala
+│   │   │   ├── TaskDetailsTable.scala
+│   │   │   └── TaskRepository.scala
+│   │   ├── user
+│   │   │   ├── UserRepository.scala
+│   │   │   ├── UserRepositoryInterface.scala
+│   │   │   └── UserTable.scala
+│   │   └── website
+│   │       ├── WebsiteColumnType.scala
+│   │       ├── WebsiteRepository.scala
+│   │       ├── WebsiteRepositoryInterface.scala
+│   │       └── WebsiteTable.scala
+│   ├── services
+│   │   ├── AlbertService.scala
+│   │   ├── AttachmentService.scala
+│   │   ├── EmailAddressService.scala
+│   │   ├── EventsBuilder.scala
+│   │   ├── ExcelColumnsService.scala
+│   │   ├── GS1Service.scala
+│   │   ├── OpenBeautyFactsService.scala
+│   │   ├── OpenFoodFactsService.scala
+│   │   ├── PDFService.scala
+│   │   ├── S3Service.scala
+│   │   ├── S3ServiceInterface.scala
+│   │   ├── SiretExtractorService.scala
+│   │   ├── WebsiteApiService.scala
+│   │   ├── ZipBuilder.scala
+│   │   ├── antivirus
+│   │   │   ├── AntivirusService.scala
+│   │   │   ├── FileData.scala
+│   │   │   └── ScanCommand.scala
+│   │   └── emails
+│   │       ├── BaseEmail.scala
+│   │       ├── EmailDefinitions.scala
+│   │       ├── EmailDefinitionsAdmin.scala
+│   │       ├── EmailDefinitionsConsumer.scala
+│   │       ├── EmailDefinitionsDggcrf.scala
+│   │       ├── EmailDefinitionsPro.scala
+│   │       ├── EmailDefinitionsVarious.scala
+│   │       ├── EmailsExamplesUtils.scala
+│   │       ├── MailRetriesService.scala
+│   │       ├── MailService.scala
+│   │       └── MailServiceInterface.scala
+│   ├── tasks
+│   │   ├── EngagementEmailTask.scala
+│   │   ├── ExportReportsToSFTPTask.scala
+│   │   ├── ScheduledTask.scala
+│   │   ├── account
+│   │   │   ├── InactiveAccountTask.scala
+│   │   │   ├── InactiveDgccrfAccountReminderTask.scala
+│   │   │   └── InactiveDgccrfAccountRemoveTask.scala
+│   │   ├── company
+│   │   │   ├── CompanyAlbertLabelTask.scala
+│   │   │   ├── CompanyReportCountViewRefresherTask.scala
+│   │   │   ├── CompanySearchResult.scala
+│   │   │   ├── CompanySearchResultApi.scala
+│   │   │   ├── CompanySyncService.scala
+│   │   │   └── CompanyUpdateTask.scala
+│   │   ├── model
+│   │   │   ├── ReportTaskType.scala
+│   │   │   └── TaskSettings.scala
+│   │   ├── package.scala
+│   │   ├── report
+│   │   │   ├── OldReportExportDeletionTask.scala
+│   │   │   ├── OldReportsRgpdDeletionTask.scala
+│   │   │   ├── OrphanReportFileDeletionTask.scala
+│   │   │   ├── ReportClosureTask.scala
+│   │   │   ├── ReportNotificationTask.scala
+│   │   │   ├── ReportRemindersTask.scala
+│   │   │   └── SampleDataGenerationTask.scala
+│   │   ├── subcategorylabel
+│   │   │   └── SubcategoryLabelTask.scala
+│   │   └── website
+│   │       ├── ExtractionResultApi.scala
+│   │       └── SiretExtractionTask.scala
+│   ├── utils
+│   │   ├── AlbertPrompts.scala
+│   │   ├── Constants.scala
+│   │   ├── Country.scala
+│   │   ├── CountryCode.scala
+│   │   ├── CustomIpFilter.scala
+│   │   ├── DateUtils.scala
+│   │   ├── EmailAddress.scala
+│   │   ├── EmailSubjects.scala
+│   │   ├── ExcelUtils.scala
+│   │   ├── FrontRoute.scala
+│   │   ├── FutureUtils.scala
+│   │   ├── LoggingFilter.scala
+│   │   ├── Logs.scala
+│   │   ├── MapUtils.scala
+│   │   ├── PasswordComplexityHelper.scala
+│   │   ├── PhoneNumberUtils.scala
+│   │   ├── QRCodeGenerator.scala
+│   │   ├── QueryStringMapper.scala
+│   │   ├── SIREN.scala
+│   │   ├── SIRET.scala
+│   │   ├── URL.scala
+│   │   └── letter
+│   │       └── ImprimFipMail.scala
+│   └── views
+│       ├── fragments
+│       │   ├── address.scala.html
+│       │   ├── addressFromReport.scala.html
+│       │   ├── chargeBack.scala.html
+│       │   ├── creationDate.scala.html
+│       │   ├── linkNotificationsManager.scala.html
+│       │   └── proAddressForConsumer.scala.html
+│       ├── mails
+│       │   ├── admin
+│       │   │   ├── accessLink.scala.html
+│       │   │   └── probetriggered.scala.html
+│       │   ├── consumer
+│       │   │   ├── confirmEmail.scala.html
+│       │   │   ├── confirmReportDeletionEmail.scala.html
+│       │   │   ├── reportAcknowledgment.scala.html
+│       │   │   ├── reportClosedByNoAction.scala.html
+│       │   │   ├── reportClosedByNoReading.scala.html
+│       │   │   ├── reportToConsumerAcknowledgmentOnAdminCompletion.scala.html
+│       │   │   ├── reportToConsumerAcknowledgmentPro.scala.html
+│       │   │   ├── reportToConsumerProEngagement.scala.html
+│       │   │   └── reportTransmission.scala.html
+│       │   ├── dgccrf
+│       │   │   ├── accessLink.scala.html
+│       │   │   ├── inactiveAccount.scala.html
+│       │   │   ├── priorityReportNotification.scala.html
+│       │   │   ├── reportDangerousProductNotification.scala.html
+│       │   │   └── reportNotification.scala.html
+│       │   ├── layout.scala.html
+│       │   ├── professional
+│       │   │   ├── companiesAccessesInvitations.scala.html
+│       │   │   ├── companyAccessInvitation.scala.html
+│       │   │   ├── newCompaniesAccessesNotification.scala.html
+│       │   │   ├── newCompanyAccessNotification.scala.html
+│       │   │   ├── reportAcknowledgmentPro.scala.html
+│       │   │   ├── reportAcknowledgmentProOnAdminCompletion.scala.html
+│       │   │   ├── reportAssigned.scala.html
+│       │   │   ├── reportNotification.scala.html
+│       │   │   ├── reportReOpening.scala.html
+│       │   │   ├── reportsLastChanceReminder.scala.html
+│       │   │   ├── reportsTransmittedReminder.scala.html
+│       │   │   └── reportsUnreadReminder.scala.html
+│       │   ├── resetPassword.scala.html
+│       │   ├── updateEmailAddress.scala.html
+│       │   └── validateEmail.scala.html
+│       └── pdfs
+│           ├── accountActivation.scala.html
+│           ├── accountActivationLastReminder.scala.html
+│           ├── accountActivationReminder.scala.html
+│           ├── accountFollowUp.scala.html
+│           ├── emailAsPDFLayout.scala.html
+│           ├── proResponse.scala.html
+│           ├── report.scala.html
+│           └── reportPro.scala.html
+├── appfiles
+│   ├── happy.png
+│   ├── logo-marianne.jpg
+│   ├── logo-marianne.png
+│   ├── logo-signal-conso.png
+│   ├── neutral.png
+│   ├── sad.png
+│   ├── schemaSignalConso-Etape1.png
+│   ├── schemaSignalConso-Etape2.png
+│   ├── schemaSignalConso-Etape3.png
+│   ├── schemaSignalConso-Etape4.png
+│   ├── schemaSignalConso-Step1.png
+│   ├── schemaSignalConso-Step2.png
+│   ├── schemaSignalConso-Step3.png
+│   ├── schemaSignalConso-Step4.png
+│   └── schemaSignalConso.png
+├── build.sbt
+├── conf
+│   ├── application.conf
+│   ├── common
+│   │   ├── albert.conf
+│   │   ├── app.conf
+│   │   ├── auth.conf
+│   │   ├── database.conf
+│   │   ├── gs1.conf
+│   │   ├── mail.conf
+│   │   ├── play.conf
+│   │   ├── s3.conf
+│   │   ├── siret-extractor.conf
+│   │   ├── socialblade.conf
+│   │   ├── task.conf
+│   │   ├── thread-pool.conf
+│   │   └── website-api.conf
+│   ├── db
+│   │   └── migration
+│   │       └── default
+│   │           ├── V10__add_pro_shareable.sql
+│   │           ├── V11__company_activation_attempts.sql
+│   │           ├── V12__add_lang_to_reports.sql
+│   │           ├── V13__add_brand_and_country_to_companies.sql
+│   │           ├── V14__add_reopening_date_to_report.sql
+│   │           ├── V15__update_rgpd_remove_report_event_name.sql
+│   │           ├── V16__barcode_product_table.sql
+│   │           ├── V17__task_details_table.sql
+│   │           ├── V18__add_user_id_to_access_tokens.sql
+│   │           ├── V19__add_other_social_network_to_report.sql
+│   │           ├── V1__init_db.sql
+│   │           ├── V20__influencer_table.sql
+│   │           ├── V21__influencer_creationdate.sql
+│   │           ├── V22__influencer_followers.sql
+│   │           ├── V23__insee_department.sql
+│   │           ├── V24__report_assignement.sql
+│   │           ├── V25__add_station_and_train_to_report.sql
+│   │           ├── V26__add_commercialName.sql
+│   │           ├── V27__add_engagements_table.sql
+│   │           ├── V28__add_indexes_text_search.sql
+│   │           ├── V29__add_ip_black_list_table.sql
+│   │           ├── V2__fix_company_sync_last_update_type.sql
+│   │           ├── V30__rename_lanceur_alerte.sql
+│   │           ├── V31__task_start_time_nullable.sql
+│   │           ├── V32__add_my_date_trunc_function.sql
+│   │           ├── V33__add_rappel_conso_id_to_report.sql
+│   │           ├── V34__add_indexes.sql
+│   │           ├── V35__make_gs1_optional.sql
+│   │           ├── V36__drop_filters.sql
+│   │           ├── V37__add_view_report_responses.sql
+│   │           ├── V38__optimizations.sql
+│   │           ├── V39__bookmarks.sql
+│   │           ├── V3__blacklisted_emails.sql
+│   │           ├── V40__proconnect_session.sql
+│   │           ├── V41__user_auth_provider.sql
+│   │           ├── V42__subcategory_labels.sql
+│   │           ├── V43__albert_classification.sql
+│   │           ├── V44__albert_update.sql
+│   │           ├── V45__albert_companies.sql
+│   │           ├── V46__company_report_view.sql
+│   │           ├── V47__albert_delete_cascade.sql
+│   │           ├── V48__fuzzystrmatch.sql
+│   │           ├── V49__consumerip.sql
+│   │           ├── V4__user_reports_filters.sql
+│   │           ├── V50__add_vendor_fulltextsearch.sql
+│   │           ├── V51__reports_creation_date_index.sql
+│   │           ├── V52__revert_reports_creation_date_index.sql
+│   │           ├── V53__siret_extractions.sql
+│   │           ├── V54__unique_review_constraint.sql
+│   │           ├── V55__unique_engagement_constraint.sql
+│   │           ├── V56__report_creation_date_index.sql
+│   │           ├── V57__add_subscriptions_columns.sql
+│   │           ├── V58__add_accesses_processing_column.sql
+│   │           ├── V59__drop_recreate_accesses_migration_table.sql
+│   │           ├── V5__add_influencers.sql
+│   │           ├── V60__restart_accesses_migration_table.sql
+│   │           ├── V61__remove_accesses_migration_table.sql
+│   │           ├── V62__consumer_consent.sql
+│   │           ├── V63__add_transmitted_reports.sql
+│   │           ├── V64__delete_user_auth_provider.sql
+│   │           ├── V6__uncouple_reports_categories.sql
+│   │           ├── V7__reports_metadata.sql
+│   │           ├── V8__signalconso_review.sql
+│   │           └── V9__report_metadata_delete_cascade.sql
+│   ├── logback-test.xml
+│   ├── logback.xml
+│   ├── messages.en
+│   ├── messages.fr
+│   ├── routes
+│   └── test.application.conf
+├── project
+│   ├── Dependencies.scala
+│   ├── build.properties
+│   └── plugins.sbt
+├── public
+│   ├── css
+│   │   ├── pdf.css
+│   │   └── report.css
+│   ├── fonts
+│   │   ├── OCR-B 10 BT.ttf
+│   │   ├── arial-Bold.ttf
+│   │   └── arial.ttf
+│   └── images
+│       ├── gouv.png
+│       ├── gouv.svg
+│       ├── logo-marianne.jpg
+│       ├── logo-marianne.png
+│       ├── logo-ministere.jpg
+│       ├── logo-ministere.png
+│       ├── logo-signal-conso-fond-blanc.png
+│       ├── logo-signal-conso.png
+│       ├── schemaSignalConso-Etape2.png
+│       └── schemaSignalConso-Step2.png
+├── scripts
+│   └── local
+│       ├── create-multiple-postgresql-database.sh
+│       └── docker-compose.yml
+├── signalconso.md
+├── system.properties
+├── test
+│   ├── ConfigurationSpec.scala
+│   ├── controllers
+│   │   ├── AccountControllerSpec.scala
+│   │   ├── AuthControllerSpec.scala
+│   │   ├── CompanyAccessControllerSpec.scala
+│   │   ├── EmailValidationControllerSpec.scala
+│   │   ├── IpBlackListFilterSpec.scala
+│   │   ├── ReportControllerSpec.scala
+│   │   ├── ReportToExternalControllerSpec.scala
+│   │   ├── ReportedPhoneControllerSpec.scala
+│   │   ├── StatisticControllerSpec.scala
+│   │   ├── WebsiteControllerSpec.scala
+│   │   ├── company
+│   │   │   ├── FetchCompaniesToActivateSpec.scala
+│   │   │   └── VisibleCompaniesSpec.scala
+│   │   └── report
+│   │       ├── CreateUpdateReportSpec.scala
+│   │       ├── GetReportSpec.scala
+│   │       ├── GetReportsSpec.scala
+│   │       ├── ReportRepositoryMock.scala
+│   │       ├── ReportResponseSpec.scala
+│   │       └── ReviewOnReportResponseSpec.scala
+│   ├── models
+│   │   ├── AddressSpec.scala
+│   │   ├── DetailInputValueTest.scala
+│   │   ├── ReportFilterTest.scala
+│   │   ├── ReportResponseTypeTest.scala
+│   │   ├── UserRoleTest.scala
+│   │   ├── report
+│   │   │   ├── ReportCategoryTest.scala
+│   │   │   ├── ReportDraftTest.scala
+│   │   │   └── ReportTagTest.scala
+│   │   └── token
+│   │       ├── TokenInfoTest.scala
+│   │       └── TokenKindTest.scala
+│   ├── orchestrators
+│   │   ├── AccessesOrchestratorTest.scala
+│   │   ├── BarcodeOrchestratorSpec.scala
+│   │   ├── CompaniesVisibilityOrchestratorSpec.scala
+│   │   ├── ImportOrchestratorSpec.scala
+│   │   ├── ReportOrchestratorTest.scala
+│   │   ├── StatsOrchestratorTest.scala
+│   │   ├── UserOrchestratorTest.scala
+│   │   └── reportexport
+│   │       └── ZipEntryNameTest.scala
+│   ├── repositories
+│   │   ├── BarcodeProductRepositorySpec.scala
+│   │   ├── CRUDRepositorySpec.scala
+│   │   ├── CompanyRepositorySpec.scala
+│   │   ├── ConsumerRepositorySpec.scala
+│   │   ├── ReportRepositorySpec.scala
+│   │   ├── SubscriptionRepositorySpec.scala
+│   │   ├── UserRepositorySpec.scala
+│   │   └── WebsiteRepositorySpec.scala
+│   ├── services
+│   │   ├── EmailAddressServiceSpec.scala
+│   │   ├── MailRetriesServiceSpec.scala
+│   │   └── MailServiceSpec.scala
+│   ├── tasks
+│   │   ├── TasksIdsSpec.scala
+│   │   ├── account
+│   │   │   ├── InactiveAccountTaskSpec.scala
+│   │   │   └── InactiveDgccrfAccountReminderTaskSpec.scala
+│   │   ├── company
+│   │   │   └── CompanyUpdateTaskSpec.scala
+│   │   ├── report
+│   │   │   ├── DailyReportNotificationTaskSpec.scala
+│   │   │   ├── NoReportNotificationTaskSpec.scala
+│   │   │   ├── OldReportExportDeletionTaskSpec.scala
+│   │   │   ├── OrphanReportFileDeletionTaskSpec.scala
+│   │   │   ├── ReportClosureTaskSpec.scala
+│   │   │   ├── ReportNotificationTaskTest.scala
+│   │   │   ├── ReportReminderTaskSpec.scala
+│   │   │   ├── ReportRemindersTaskUnitSpec.scala
+│   │   │   ├── ReportTagFilterNotificationTaskSpec.scala
+│   │   │   ├── SampleDataGenerationTaskTest.scala
+│   │   │   └── WeeklyReportNotificationTaskSpec.scala
+│   │   └── website
+│   │       └── SiretExtractionTaskSpec.scala
+│   └── utils
+│       ├── AntivirusServiceMock.scala
+│       ├── AppSpec.scala
+│       ├── AuthHelpers.scala
+│       ├── CRUDRepositoryMock.scala
+│       ├── CompanyRepositoryMock.scala
+│       ├── CompanySyncServiceMock.scala
+│       ├── EmailAddressSpec.scala
+│       ├── Fixtures.scala
+│       ├── PasswordComplexityHelperSpec.scala
+│       ├── PhoneNumberUtilsSpec.scala
+│       ├── S3ServiceMock.scala
+│       ├── TaskRepositoryMock.scala
+│       └── letter
+│           └── ImprimFipMailTest.scala
+└── zip.http
+128 directories, 689 files
