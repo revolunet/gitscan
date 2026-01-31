@@ -1,0 +1,433 @@
+.
+├── .dockerignore
+├── .eslintrc.js
+├── .github
+│   └── workflows
+│       ├── checkov.yml
+│       ├── deploiement.yml
+│       └── node.js.yml
+├── .gitignore
+├── .husky
+│   ├── .gitignore
+│   └── pre-commit
+├── Dockerfile-api
+├── LICENSE
+├── Readme.md
+├── anssi-nis2-api
+│   ├── .env.template
+│   ├── .gitignore
+│   ├── .prettierrc
+│   ├── global.d.ts
+│   ├── jest.config.ts
+│   ├── knexfile.ts
+│   ├── migrations
+│   │   ├── 20240910122540_creationTableSimulateurReponse.ts
+│   │   ├── 20240924135931_creationTableInformationsEmail.ts
+│   │   └── 20241017145009_simulateurReponseEnVraiJson.ts
+│   ├── package.json
+│   ├── src
+│   │   ├── adaptateurs
+│   │   │   ├── adaptateurCrm.brevo.ts
+│   │   │   ├── adaptateurCrm.memoire.ts
+│   │   │   ├── adaptateurCrm.ts
+│   │   │   ├── adaptateurEligibilite.csv.ts
+│   │   │   ├── adaptateurEligibilite.hardCode.ts
+│   │   │   ├── adaptateurEligibilite.ts
+│   │   │   ├── adaptateurGestionErreur.memoire.ts
+│   │   │   ├── adaptateurGestionErreur.sentry.ts
+│   │   │   ├── adaptateurGestionErreur.ts
+│   │   │   ├── adaptateurJournal.memoire.ts
+│   │   │   ├── adaptateurJournal.postgres.ts
+│   │   │   ├── adaptateurJournal.ts
+│   │   │   ├── adaptateurPersistance.memoire.ts
+│   │   │   ├── adaptateurPersistance.postgres.ts
+│   │   │   ├── adaptateurPersistance.ts
+│   │   │   ├── adaptateurProtection.memoire.ts
+│   │   │   ├── adaptateurProtection.rateLimit.ts
+│   │   │   └── adaptateurProtection.ts
+│   │   ├── http
+│   │   │   ├── requeteHttp.spec.ts
+│   │   │   └── requeteHttp.ts
+│   │   ├── informations-emails
+│   │   │   └── dto
+│   │   │       └── cree-informations-email.dto.ts
+│   │   ├── main.ts
+│   │   ├── middleware.ts
+│   │   ├── routes
+│   │   │   └── routesApi.ts
+│   │   ├── serveur.express.ts
+│   │   ├── serveur.ts
+│   │   ├── serveur.types.ts
+│   │   ├── test
+│   │   │   ├── routes
+│   │   │   │   └── routesApi.spec.ts
+│   │   │   └── utilitaires
+│   │   │       ├── http.ts
+│   │   │       └── middlewareFantaisie.ts
+│   │   └── testSetup.ts
+│   ├── statique
+│   │   ├── Plaquette_NIS2_2024.pdf
+│   │   ├── Plaquette_NIS2_2024_English.pdf
+│   │   └── maintenance.html
+│   ├── tsconfig.build.json
+│   └── tsconfig.json
+├── anssi-nis2-ui
+│   ├── .env.template
+│   ├── .gitignore
+│   ├── .prettierignore
+│   ├── .prettierrc.json
+│   ├── .storybook
+│   │   ├── main.ts
+│   │   └── preview.ts
+│   ├── index.html
+│   ├── package.json
+│   ├── public
+│   │   └── directive
+│   │       ├── annexe-1.png
+│   │       └── annexe-2.png
+│   ├── setupTests.ts
+│   ├── src
+│   │   ├── Accueil.tsx
+│   │   ├── App.tsx
+│   │   ├── Components
+│   │   │   ├── Accueil
+│   │   │   │   ├── BandeauAccueil.tsx
+│   │   │   │   ├── BandeauConcerne.tsx
+│   │   │   │   ├── BandeauInformationRS.tsx
+│   │   │   │   ├── BandeauQuiEstANSSI.tsx
+│   │   │   │   ├── BandeauSePreprarer.tsx
+│   │   │   │   ├── CarteSePreparer.tsx
+│   │   │   │   ├── Paragraphe.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── AidezNousAmeliorerService.tsx
+│   │   │   ├── BOM
+│   │   │   │   └── BOM.tsx
+│   │   │   ├── BandeauDePromotionMSC.tsx
+│   │   │   ├── BandeauMaintenance.tsx
+│   │   │   ├── BlocPrincipal.tsx
+│   │   │   ├── Directive
+│   │   │   │   ├── CarteEnSavoirPlus.tsx
+│   │   │   │   ├── CarteEntite.tsx
+│   │   │   │   ├── CarteInformation.tsx
+│   │   │   │   ├── ItemSecteurConcerne.tsx
+│   │   │   │   ├── LienRubrique.tsx
+│   │   │   │   ├── ListeSecteursConcernes.tsx
+│   │   │   │   ├── SecteurActivite.tsx
+│   │   │   │   └── Sommaire.tsx
+│   │   │   ├── EnTete.tsx
+│   │   │   ├── FormRestezInformes.tsx
+│   │   │   ├── General
+│   │   │   │   ├── BandeauBleuMarianne.tsx
+│   │   │   │   ├── CenteredContainer.tsx
+│   │   │   │   ├── PdfCard.tsx
+│   │   │   │   ├── PdfCardContainer.tsx
+│   │   │   │   ├── RowContainer.tsx
+│   │   │   │   ├── SommaireSynchoAvecScroll.tsx
+│   │   │   │   └── TuileLien.tsx
+│   │   │   ├── Icones
+│   │   │   │   └── IconeInfobulle.tsx
+│   │   │   ├── Matomo
+│   │   │   │   ├── Matomo.tsx
+│   │   │   │   ├── MatomoOptOut.tsx
+│   │   │   │   └── useConfigurationMatomo.hook.tsx
+│   │   │   ├── MenuDesktop.tsx
+│   │   │   ├── MenuMobile.tsx
+│   │   │   ├── MiseEnPage.tsx
+│   │   │   ├── PagesEdito
+│   │   │   │   ├── APropos.tsx
+│   │   │   │   ├── DeclarationAccessibilite.tsx
+│   │   │   │   ├── GestionCookies.tsx
+│   │   │   │   ├── MentionsLegales.tsx
+│   │   │   │   ├── PageEdito.tsx
+│   │   │   │   ├── PolitiqueConfidentialite.tsx
+│   │   │   │   └── Securite.tsx
+│   │   │   ├── PiedDePage.tsx
+│   │   │   ├── ReseauxSociaux.tsx
+│   │   │   ├── RestezInformes.tsx
+│   │   │   ├── Simulateur
+│   │   │   │   ├── AiguilleVersEtapeResultat.tsx
+│   │   │   │   ├── BandeauConcerneSimulateur.tsx
+│   │   │   │   ├── ChargeurEtape.tsx
+│   │   │   │   ├── EtapeResultatV2.tsx
+│   │   │   │   ├── Etapes
+│   │   │   │   │   ├── FormSimulateur.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── EtapesRefacto
+│   │   │   │   │   ├── EtapeActivites.tsx
+│   │   │   │   │   ├── EtapeAppartenanceUE.tsx
+│   │   │   │   │   ├── EtapeDesignation.tsx
+│   │   │   │   │   ├── EtapeLocalisationEtablissementPrincipal.tsx
+│   │   │   │   │   ├── EtapeLocalisationServicesNumeriques.tsx
+│   │   │   │   │   ├── EtapePrealable.tsx
+│   │   │   │   │   ├── EtapeSecteursActivite.tsx
+│   │   │   │   │   ├── EtapeSousSecteursActivite.tsx
+│   │   │   │   │   ├── EtapeTailleEntitePrivee.tsx
+│   │   │   │   │   ├── EtapeTypeStructure.tsx
+│   │   │   │   │   └── PersisteReponsesDuQuestionnaire.tsx
+│   │   │   │   ├── Infobulle.tsx
+│   │   │   │   ├── Inputs
+│   │   │   │   │   ├── ActiviteACocher.tsx
+│   │   │   │   │   └── EnsembleChamps.tsx
+│   │   │   │   ├── PrecedentSuivant.tsx
+│   │   │   │   ├── Questionnaire.tsx
+│   │   │   │   ├── Resultats
+│   │   │   │   │   ├── BienDebuterAvecPdf.tsx
+│   │   │   │   │   ├── BienDebuterSansPdf.tsx
+│   │   │   │   │   ├── EnSavoirPlus.tsx
+│   │   │   │   │   ├── IconeResultat.tsx
+│   │   │   │   │   ├── LigneBienDebuter.declarations.ts
+│   │   │   │   │   ├── LigneBienDebuter.tsx
+│   │   │   │   │   ├── LigneEtMaintenant.tsx
+│   │   │   │   │   ├── LigneReseauxSociaux.tsx
+│   │   │   │   │   ├── PointsAttention.contenus.tsx
+│   │   │   │   │   ├── PointsAttention.tsx
+│   │   │   │   │   └── TamponResultat.tsx
+│   │   │   │   ├── SimulateurEtapeResult.aide.ts
+│   │   │   │   ├── TitresEtapes.ts
+│   │   │   │   └── scroll.ts
+│   │   │   └── bandeauMscPasEncoreVisible.tsx
+│   │   ├── Directive.tsx
+│   │   ├── InformationsEmail
+│   │   │   └── InformationsEmail.ts
+│   │   ├── MePreparer.tsx
+│   │   ├── References
+│   │   │   ├── Documents
+│   │   │   │   ├── PrecisionsResultat.IncertainAutrePaysUnionEuropeenne.md
+│   │   │   │   ├── PrecisionsResultat.NonReguleHorsUnionEuropeenne.md
+│   │   │   │   ├── PrecisionsResultat.NonReguleStandard.md
+│   │   │   │   ├── PrecisionsResultat.ReguleDORA.md
+│   │   │   │   ├── PrecisionsResultat.ReguleEnregistrementDeNomsDeDomaine.md
+│   │   │   │   ├── PrecisionsResultat.ReguleStandard.md
+│   │   │   │   ├── PrecisionsResultat.ReguleTelcoAutreEM.md
+│   │   │   │   └── PrecisionsResultat.ReguleTelcoFranceEtAutreEM.md
+│   │   │   ├── LibellesContact.ts
+│   │   │   ├── ListeDescriptionsActivites.ts
+│   │   │   └── liens.tsx
+│   │   ├── Services
+│   │   │   ├── AppContexte
+│   │   │   │   ├── AppContext.constantes.ts
+│   │   │   │   └── AppContext.definition.ts
+│   │   │   ├── Props.d.ts
+│   │   │   ├── Simulateur
+│   │   │   │   ├── Operations
+│   │   │   │   │   └── appelsApi.d.ts
+│   │   │   │   ├── Props
+│   │   │   │   │   └── optionChampSimulateur.d.ts
+│   │   │   │   └── Reducteurs.ts
+│   │   │   ├── constantes.ts
+│   │   │   ├── contexte.d.ts
+│   │   │   ├── prepare.ts
+│   │   │   └── sendFormDataToApi.ts
+│   │   ├── Simulateur.tsx
+│   │   ├── assets
+│   │   │   ├── ANSSI-180.svg
+│   │   │   ├── ANSSI.svg
+│   │   │   ├── Directeur ANSSI.png
+│   │   │   ├── EU-logo.svg
+│   │   │   ├── GuideHygieneCyber.png
+│   │   │   ├── GuideTPE-PME.png
+│   │   │   ├── ImageVide.svg
+│   │   │   ├── PdfBgImg.svg
+│   │   │   ├── administrations-publiques.svg
+│   │   │   ├── calendrier-oct-2024.svg
+│   │   │   ├── chemin-gauche.svg
+│   │   │   ├── collectivites-territoriales.svg
+│   │   │   ├── demarche.svg
+│   │   │   ├── directive
+│   │   │   │   ├── annexe-1.png
+│   │   │   │   └── annexe-2.png
+│   │   │   ├── directive-hero.svg
+│   │   │   ├── en-savoir-plus
+│   │   │   │   ├── directive.svg
+│   │   │   │   ├── faq.svg
+│   │   │   │   └── presentation.svg
+│   │   │   ├── encart-homologation
+│   │   │   │   ├── encartHomologation.desktop.png
+│   │   │   │   ├── encartHomologation.mobile.png
+│   │   │   │   └── encartHomologation.tablette.png
+│   │   │   ├── faq.svg
+│   │   │   ├── forme-chevron-blanc.svg
+│   │   │   ├── grandes-entreprises.svg
+│   │   │   ├── home-assujeti.svg
+│   │   │   ├── home-declarer.svg
+│   │   │   ├── home-directive.svg
+│   │   │   ├── icone-burger.svg
+│   │   │   ├── icone-fermer.svg
+│   │   │   ├── icone-fleche-bas.svg
+│   │   │   ├── icone-fleche-haut.svg
+│   │   │   ├── icone-info.svg
+│   │   │   ├── icone-menu.svg
+│   │   │   ├── icone_aide_point_interrogation.svg
+│   │   │   ├── in-progress.svg
+│   │   │   ├── localisation-france.svg
+│   │   │   ├── logo-nis2.svg
+│   │   │   ├── logo-x.svg
+│   │   │   ├── marches-tablette.svg
+│   │   │   ├── marches.svg
+│   │   │   ├── moyennes-entreprises.svg
+│   │   │   ├── obligation-incidents.svg
+│   │   │   ├── obligation-maj.svg
+│   │   │   ├── obligation-mesures-securite.svg
+│   │   │   ├── obligation-notifier.svg
+│   │   │   ├── secteurs-concernes
+│   │   │   │   ├── administrations-publiques.svg
+│   │   │   │   ├── alimentaires.svg
+│   │   │   │   ├── bancaire.svg
+│   │   │   │   ├── communication.svg
+│   │   │   │   ├── dechets.svg
+│   │   │   │   ├── eaux-potables.svg
+│   │   │   │   ├── eaux-usees.svg
+│   │   │   │   ├── energies.svg
+│   │   │   │   ├── espace.svg
+│   │   │   │   ├── financiers.svg
+│   │   │   │   ├── fournisseur-numerique.svg
+│   │   │   │   ├── infrastructures.svg
+│   │   │   │   ├── manufacture.svg
+│   │   │   │   ├── postaux.svg
+│   │   │   │   ├── produits-chimiques.svg
+│   │   │   │   ├── recherche.svg
+│   │   │   │   ├── sante.svg
+│   │   │   │   └── transport.svg
+│   │   │   ├── source_EU.svg
+│   │   │   └── webinar.svg
+│   │   ├── lab-anssi-ui-kit.jsx.d.ts
+│   │   ├── main.tsx
+│   │   ├── questionnaire
+│   │   │   ├── actions.ts
+│   │   │   ├── quiSupporteUndo.ts
+│   │   │   ├── reducerQuestionnaire.ts
+│   │   │   └── selecteursQuestionnaire.ts
+│   │   ├── router.tsx
+│   │   ├── stories
+│   │   │   └── Components
+│   │   │       ├── Simulateur
+│   │   │       │   ├── EtapesRefacto
+│   │   │       │   │   └── EtapeResultatV2.stories.tsx
+│   │   │       │   └── Resultat
+│   │   │       │       ├── PointsAttention.stories.tsx
+│   │   │       │       └── TamponResultat.stories.tsx
+│   │   │       └── Transverses
+│   │   │           ├── DeclarationAccessibilite.stories.tsx
+│   │   │           ├── GestionCoookies.stories.tsx
+│   │   │           └── RestezInformes.stories.tsx
+│   │   ├── style
+│   │   │   ├── App.scss
+│   │   │   ├── accueil.desktop.scss
+│   │   │   ├── accueil.petit-desktop.scss
+│   │   │   ├── accueil.scss
+│   │   │   ├── accueil.tablette.scss
+│   │   │   ├── directive.desktop.scss
+│   │   │   ├── directive.scss
+│   │   │   ├── directive.tablette.scss
+│   │   │   ├── me-preparer.desktop.scss
+│   │   │   ├── me-preparer.scss
+│   │   │   ├── me-preparer.tablette.scss
+│   │   │   ├── simulateur.petit-desktop.scss
+│   │   │   ├── simulateur.scss
+│   │   │   └── ui-kit-theme.scss
+│   │   └── vite-env.d.ts
+│   ├── test
+│   │   └── questionnaire
+│   │       ├── reducerQuestionnaire.spec.ts
+│   │       ├── reducerUndo.spec.ts
+│   │       └── selecteursQuestionnaire.spec.ts
+│   ├── tsconfig.json
+│   ├── tsconfig.node.json
+│   └── vite.config.ts
+├── commun
+│   ├── .prettierrc
+│   ├── core
+│   │   ├── package.json
+│   │   ├── src
+│   │   │   └── Domain
+│   │   │       ├── Questionnaire
+│   │   │       │   ├── EnsembleDeSpecifications.ts
+│   │   │       │   ├── EtatQuestionnaire.ts
+│   │   │       │   ├── FabriqueDeSpecifications.ts
+│   │   │       │   ├── FormatDesSpecificationsCSV.ts
+│   │   │       │   ├── LecteurDeSpecifications.ts
+│   │   │       │   ├── ResultatAvecAnalyse.ts
+│   │   │       │   ├── Specifications.ts
+│   │   │       │   ├── evalueEligibilite.ts
+│   │   │       │   ├── regles
+│   │   │       │   │   ├── ErreurLectureDeRegle.ts
+│   │   │       │   │   ├── RegleActivites.ts
+│   │   │       │   │   ├── RegleEntiteOSE.ts
+│   │   │       │   │   ├── RegleEtablissementPrincipal.ts
+│   │   │       │   │   ├── RegleFournitureDeServicesNumerique.ts
+│   │   │       │   │   ├── RegleLocalisation.ts
+│   │   │       │   │   ├── RegleSecteurs.ts
+│   │   │       │   │   ├── RegleSousSecteurs.ts
+│   │   │       │   │   ├── RegleTaille.ts
+│   │   │       │   │   └── RegleTypeDeStructure.ts
+│   │   │       │   └── specifications-completes.csv
+│   │   │       └── Simulateur
+│   │   │           ├── Activite.definitions.ts
+│   │   │           ├── Activite.operations.ts
+│   │   │           ├── Activite.valeurs.ts
+│   │   │           ├── ChampsSimulateur.definitions.ts
+│   │   │           ├── ChampsSimulateur.valeurs.ts
+│   │   │           ├── InformationsEtape.ts
+│   │   │           ├── LibellesActivites.ts
+│   │   │           ├── LibellesSecteursActivite.ts
+│   │   │           ├── LibellesSousSecteursActivite.ts
+│   │   │           ├── Regulation.definitions.ts
+│   │   │           ├── Regulation.predicats.ts
+│   │   │           ├── RegulationEntite.valeurs.ts
+│   │   │           ├── SecteurActivite.definitions.ts
+│   │   │           ├── SecteurActivite.valeurs.ts
+│   │   │           ├── SousSecteurActivite.definitions.ts
+│   │   │           ├── SousSecteurActivite.valeurs.ts
+│   │   │           └── services
+│   │   │               ├── DonneesFormulaire
+│   │   │               │   ├── DonneesFormulaire.constantes.ts
+│   │   │               │   ├── DonneesFormulaire.definitions.ts
+│   │   │               │   └── DonneesFormulaire.valeurs.ts
+│   │   │               ├── SecteurActivite
+│   │   │               │   ├── SecteurActivite.operations.ts
+│   │   │               │   └── SecteurActivite.predicats.ts
+│   │   │               ├── SousSecteurActivite
+│   │   │               │   ├── SousSecteurActivite.operations.ts
+│   │   │               │   └── SousSecteurActivite.predicats.ts
+│   │   │               └── TailleEntreprise
+│   │   │                   └── TailleEntite.predicats.ts
+│   │   ├── test
+│   │   │   ├── Domaine
+│   │   │   │   ├── Questionnaire
+│   │   │   │   │   ├── EnsembleDeSpecifications.spec.ts
+│   │   │   │   │   ├── FabriqueDeSpecifications.spec.ts
+│   │   │   │   │   ├── LeTestDeLaSpecificationCompleteEnCsv.spec.ts
+│   │   │   │   │   ├── LecteurDeSpecifications.spec.ts
+│   │   │   │   │   ├── Specifications.spec.ts
+│   │   │   │   │   ├── aidesAuxTests.ts
+│   │   │   │   │   ├── casDeTests.activites.ts
+│   │   │   │   │   ├── csv
+│   │   │   │   │   │   ├── specification-colonne-manquante.csv
+│   │   │   │   │   │   ├── specification-ose-est-regulee-ee.csv
+│   │   │   │   │   │   └── specification-une-ligne.csv
+│   │   │   │   │   ├── evalueEligibilite.spec.ts
+│   │   │   │   │   └── regles
+│   │   │   │   │       └── RegleTaille.spec.ts
+│   │   │   │   ├── Simulateur
+│   │   │   │   │   └── services
+│   │   │   │   │       └── SousSecteurActivite
+│   │   │   │   │           └── SousSecteurActivite.operations.spec.ts
+│   │   │   │   └── tailleEntreprises.spec.ts
+│   │   │   └── utilitaires
+│   │   │       ├── arrays.predicats.spec.ts
+│   │   │       └── predicats.operations.spec.ts
+│   │   └── tsconfig.json
+│   └── utils
+│       ├── services
+│       │   ├── arrays.predicats.ts
+│       │   ├── commun.declarations.ts
+│       │   └── commun.predicats.ts
+│       └── types
+│           ├── Extrait.ts
+│           ├── Tag.ts
+│           └── UnionDe.ts
+├── docker-compose.yml
+├── package-lock.json
+├── package.json
+└── pg_hba.conf
+81 directories, 351 files
