@@ -1,0 +1,1180 @@
+.
+├── .claude
+│   └── skills
+│       ├── README.md
+│       ├── branch
+│       │   └── SKILL.md
+│       ├── changelog
+│       │   └── SKILL.md
+│       ├── commit
+│       │   └── SKILL.md
+│       ├── lint
+│       │   └── SKILL.md
+│       ├── pr
+│       │   └── SKILL.md
+│       └── safety-check
+│           └── SKILL.md
+├── .cz-config.js
+├── .eslintignore
+├── .github
+│   ├── PULL_REQUEST_TEMPLATE.md
+│   ├── dependabot.yml
+│   └── workflows
+│       ├── build-check.yml
+│       ├── changelog.yml
+│       ├── claude.yml
+│       ├── docker-build-push.yml
+│       ├── lint.yml
+│       ├── main-pipeline.yml
+│       ├── pr-title-lint.yml
+│       ├── terraform-deploy.yml
+│       └── tests.yml
+├── .gitignore
+├── .husky
+│   ├── _
+│   │   └── husky.sh
+│   └── commit-msg
+├── .prettierignore
+├── .prettierrc
+├── .vscode
+│   ├── extensions.json
+│   └── settings.json
+├── AGENTS.md
+├── CHANGELOG.md
+├── README.md
+├── analytics
+│   ├── .gitignore
+│   ├── AGENTS.md
+│   ├── Dockerfile.production
+│   ├── README.md
+│   ├── db
+│   │   └── migrations
+│   │       ├── 20251022122259_add_analytics_raw_schema.sql
+│   │       ├── 20251022122846_add_statEvent.sql
+│   │       ├── 20251024131139_add_source_type.sql
+│   │       ├── 20251031134922_add_updated_at_to_stat_event.sql
+│   │       ├── 20251101000000_rename_stat_event_table.sql
+│   │       ├── 20251110130131_add_moderationEvent.sql
+│   │       ├── 20251112153345_add_email.sql
+│   │       ├── 20251120153837_add_mission_event.sql
+│   │       ├── 20251121100956_add_publisher_schema.sql
+│   │       ├── 20251121155804_add_organization_schema.sql
+│   │       ├── 20251125102617_add_import_schema.sql
+│   │       ├── 20251125144825_add_user_schema.sql
+│   │       ├── 20251125150237_add_user_publisher_schema.sql
+│   │       ├── 20251127141243_add_publisher_diffusion_exclusion_schema.sql
+│   │       ├── 20251202134713_add_campaign_schema.sql
+│   │       ├── 20251211141438_add_widget_schema.sql
+│   │       ├── 20260105142041_add_mission_schema.sql
+│   │       ├── 20260115131645_add_mission_moderation_status.sql
+│   │       ├── 20260119132933_add_publisher_organization_schema.sql
+│   │       ├── 20260119142022_add_mission_organization_client_id.sql
+│   │       ├── 20260119150149_add_mission_title_description.sql
+│   │       ├── 20260119153036_add_mission_address_schema.sql
+│   │       └── 20260126100000_add_client_event_id_to_stat_event.sql
+│   ├── dbt
+│   │   └── analytics
+│   │       ├── .sqlfluff
+│   │       ├── README.md
+│   │       ├── analyses
+│   │       │   └── .gitkeep
+│   │       ├── dbt_project.yml
+│   │       ├── macros
+│   │       │   ├── generate_schema_name.sql
+│   │       │   └── slugify.sql
+│   │       ├── models
+│   │       │   ├── intermediate
+│   │       │   │   ├── mission
+│   │       │   │   │   ├── __models.yml
+│   │       │   │   │   ├── int_mission.sql
+│   │       │   │   │   ├── int_mission_active_daily.sql
+│   │       │   │   │   ├── int_mission_address.sql
+│   │       │   │   │   └── int_mission_moderation_status.sql
+│   │       │   │   ├── organization
+│   │       │   │   │   └── int_organization_active_daily.sql
+│   │       │   │   ├── publisher
+│   │       │   │   │   └── int_publisher_organization.sql
+│   │       │   │   ├── stat_event
+│   │       │   │   │   └── int_stat_event_global.sql
+│   │       │   │   └── widget
+│   │       │   │       └── int_widget.sql
+│   │       │   ├── marts
+│   │       │   │   ├── campaign
+│   │       │   │   │   ├── __models.yml
+│   │       │   │   │   ├── campaign.sql
+│   │       │   │   │   └── campaign_tracker.sql
+│   │       │   │   ├── email
+│   │       │   │   │   ├── __models.yml
+│   │       │   │   │   └── email.sql
+│   │       │   │   ├── import
+│   │       │   │   │   ├── __models.yml
+│   │       │   │   │   └── import.sql
+│   │       │   │   ├── kpi
+│   │       │   │   │   ├── __models.yml
+│   │       │   │   │   ├── kpi_daily.sql
+│   │       │   │   │   └── publisher_clicks_daily.sql
+│   │       │   │   ├── mission
+│   │       │   │   │   ├── __models.yml
+│   │       │   │   │   ├── mission.sql
+│   │       │   │   │   ├── mission_active_daily.sql
+│   │       │   │   │   ├── mission_active_monthly.sql
+│   │       │   │   │   ├── mission_address.sql
+│   │       │   │   │   ├── mission_event.sql
+│   │       │   │   │   └── mission_moderation_status.sql
+│   │       │   │   ├── moderation
+│   │       │   │   │   ├── __models.yml
+│   │       │   │   │   └── moderation_event.sql
+│   │       │   │   ├── organization
+│   │       │   │   │   ├── __models.yml
+│   │       │   │   │   ├── organization.sql
+│   │       │   │   │   └── organization_active_monthly.sql
+│   │       │   │   ├── publisher
+│   │       │   │   │   ├── __models.yml
+│   │       │   │   │   ├── annonceur.sql
+│   │       │   │   │   ├── diffuseur.sql
+│   │       │   │   │   ├── publisher.sql
+│   │       │   │   │   ├── publisher_diffusion_exclusion.sql
+│   │       │   │   │   └── publisher_organization.sql
+│   │       │   │   ├── stat_event
+│   │       │   │   │   ├── __models.yml
+│   │       │   │   │   ├── account.sql
+│   │       │   │   │   ├── apply.sql
+│   │       │   │   │   ├── apply_service_civique_attrs.sql
+│   │       │   │   │   ├── click.sql
+│   │       │   │   │   └── impression.sql
+│   │       │   │   ├── stats
+│   │       │   │   │   ├── __models.yml
+│   │       │   │   │   ├── global_events.sql
+│   │       │   │   │   ├── global_events_daily.sql
+│   │       │   │   │   ├── global_mission_activity.sql
+│   │       │   │   │   ├── mean_from_publisher_sources.sql
+│   │       │   │   │   └── mean_from_publisher_sources_enriched.sql
+│   │       │   │   ├── user
+│   │       │   │   │   ├── __models.yml
+│   │       │   │   │   ├── login_history.sql
+│   │       │   │   │   ├── user.sql
+│   │       │   │   │   └── user_publisher.sql
+│   │       │   │   └── widget
+│   │       │   │       ├── __models.yml
+│   │       │   │       └── widget.sql
+│   │       │   ├── raw.yml
+│   │       │   └── staging
+│   │       │       ├── campaign
+│   │       │       │   ├── __models.yml
+│   │       │       │   ├── stg_campaign.sql
+│   │       │       │   └── stg_campaign_tracker.sql
+│   │       │       ├── dim
+│   │       │       │   ├── __models.yml
+│   │       │       │   └── dim_publisher.sql
+│   │       │       ├── email
+│   │       │       │   ├── __models.yml
+│   │       │       │   └── stg_email.sql
+│   │       │       ├── import
+│   │       │       │   ├── __models.yml
+│   │       │       │   └── stg_import.sql
+│   │       │       ├── kpi
+│   │       │       │   ├── __models.yml
+│   │       │       │   ├── stg_kpi__events_daily.sql
+│   │       │       │   └── stg_kpi__mission_daily.sql
+│   │       │       ├── mission
+│   │       │       │   ├── __models.yml
+│   │       │       │   ├── stg_activity.sql
+│   │       │       │   ├── stg_domain.sql
+│   │       │       │   ├── stg_mission.sql
+│   │       │       │   ├── stg_mission_address.sql
+│   │       │       │   └── stg_mission_event.sql
+│   │       │       ├── moderation
+│   │       │       │   ├── __models.yml
+│   │       │       │   ├── stg_mission_moderation_status.sql
+│   │       │       │   └── stg_moderation_event.sql
+│   │       │       ├── organization
+│   │       │       │   ├── __models.yml
+│   │       │       │   └── stg_organization.sql
+│   │       │       ├── publisher
+│   │       │       │   ├── __models.yml
+│   │       │       │   ├── stg_publisher.sql
+│   │       │       │   ├── stg_publisher_diffusion_exclusion.sql
+│   │       │       │   └── stg_publisher_organization.sql
+│   │       │       ├── stat_event
+│   │       │       │   ├── __models.yml
+│   │       │       │   ├── stg_stat_event.sql
+│   │       │       │   ├── stg_stat_event__account.sql
+│   │       │       │   ├── stg_stat_event__apply.sql
+│   │       │       │   ├── stg_stat_event__click.sql
+│   │       │       │   └── stg_stat_event__print.sql
+│   │       │       ├── user
+│   │       │       │   ├── __models.yml
+│   │       │       │   ├── stg_login_history.sql
+│   │       │       │   └── stg_user.sql
+│   │       │       ├── user_publisher
+│   │       │       │   ├── __models.yml
+│   │       │       │   └── stg_user_publisher.sql
+│   │       │       └── widget
+│   │       │           ├── __models.yml
+│   │       │           ├── stg_widget.sql
+│   │       │           ├── stg_widget_publisher.sql
+│   │       │           └── stg_widget_rule.sql
+│   │       ├── profiles.yml
+│   │       ├── requirements.txt
+│   │       ├── seeds
+│   │       │   └── .gitkeep
+│   │       ├── snapshots
+│   │       │   └── .gitkeep
+│   │       └── tests
+│   │           └── .gitkeep
+│   ├── docker-entrypoint.sh
+│   ├── eslint.config.cjs
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── scripts
+│   │   └── dbt-env.sh
+│   ├── src
+│   │   ├── db
+│   │   │   ├── pg-analytics.ts
+│   │   │   ├── pg-core.ts
+│   │   │   └── pg-helper.ts
+│   │   ├── jobs
+│   │   │   ├── base
+│   │   │   │   └── handler.ts
+│   │   │   ├── export-to-analytics-raw
+│   │   │   │   ├── config.ts
+│   │   │   │   └── handler.ts
+│   │   │   ├── run-job.ts
+│   │   │   └── types.ts
+│   │   ├── services
+│   │   │   ├── error.ts
+│   │   │   ├── process-definition.ts
+│   │   │   ├── slack.ts
+│   │   │   ├── sql.ts
+│   │   │   └── state.ts
+│   │   └── utils
+│   │       ├── format-timestamp.ts
+│   │       └── get-job-time.ts
+│   └── tsconfig.json
+├── api
+│   ├── .gitignore
+│   ├── AGENTS.md
+│   ├── Dockerfile
+│   ├── Dockerfile.production
+│   ├── README.md
+│   ├── docker-entrypoint.sh
+│   ├── eslint.config.cjs
+│   ├── nodemon.json
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── prisma
+│   │   ├── analytics
+│   │   │   ├── migrations
+│   │   │   │   ├── 0_init
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250122150802_test
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250123093519_add_partner_to_user_widget
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250129104901_add_botlesskpi
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250129134500_add_organization_verification
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250129134800_add_is_verified_boolean
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250203093125_drop_association_id_rna
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250221104718_add_clicks_tags
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250227114543_add_addresses
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250227135627_add_old_id_index_addresses
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250228092002_remove_required_field_address
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250307092738_update_widget_query
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250314102215_add_unique_constraint_to_address
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250314102916_add_ondelete_casade_address
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250320144458_add_widget_props
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250320144636_add_widget_props_2
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250320145546_add_widget_props_3
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250321120223_add_moderation_event
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250321131441_change_moderation_event
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250326101703_udpate_widget_jva_moderation_default
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250403103924_add_click_bot_and_human_flag
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250417134500_init
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250423124203_add_organisation_exclusion
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250430125735_add_unique_constraint
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250506105833_add_kpi_jva
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250507082943_remove_organization_is_rup
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250513094011_review_user_model
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250513095529_fix_kpi_model
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250514152536_organization_exclusion_change
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250522130200_add_campaign_tracker
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250528084329_remove_constraint_organisation_rna
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250603125456_add_delete_contraint_campaign_tracker
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250626133709_add_mission_fields
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250704085553_orga_excl_add_ondelete_behaviour
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250709091913_add_referrer
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250709121908_udpate_mission_type
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250709124300_change_click_url_origin
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250807132133_update_mission_history_event
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250814101406_mission_event_add_fields
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250828090759_remove_mission_event_fields
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250904114530_update_organisation
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20250926234643_update_click_isbot_ishuman
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20251101001000_add_custom_attributes_to_apply
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20251103170850_add_stat_event_id
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20251118081316_drop_moderation_event
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20251119152047_add_mission_compensation
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20251125104247_add_mission_places_status
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20251125105614_drop_import
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20251125150449_drop_user_to_partner
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20251125172739_drop_login_history
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20251201153115_drop_organization_exclusion
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20251215135039_drop_kpi_kpibotless
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20251218150011_drop_widget
+│   │   │   │   │   └── migration.sql
+│   │   │   │   └── migration_lock.toml
+│   │   │   └── schema.analytics.prisma
+│   │   └── core
+│   │       ├── migrations
+│   │       │   ├── 20250910055352_init
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20250916145431_
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20250918090000_create_stats_global_materialized_views
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20250924101754_add_report_indexes
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20251002135735_add_export_analytics
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20251010120000_create_public_stats_materialized_views
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20251020100000_create_stats_admin_materialized_view
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20251021000000_update_global_stats_view
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20251022090000_add_stat_event_publisher_created_at_idx
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20251022090000_delete_admin_stats_view
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20251028162024_add_email_schema
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20251031130829_add_updated_at_to_stat_event
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20251031160429_add_index_update_at_stat_event
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20251101000000_add_custom_attributes_to_stat_event
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20251103142949_add_publisher_schema
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20251104104357_add_moderation_event_schema
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20251106143330_add_report_schema
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20251110120000_add_organization_schema
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20251112155629_add_import
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20251114120000_add_stat_event_user_idx
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20251114130000_add_stat_event_to_publisher_relationship
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20251118151203_add_warning
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20251118154856_update_organization_trgm_index
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20251119165053_add_publisher_exclusion
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20251120090227_add_mission_event_schema
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20251121091844_add_import_indexes
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20251121111834_add_user_schema
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20251125133433_change_publisher_exclusion_name
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20251125143127_add_campaign
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20251126080725_add_stat_bot
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20251126091830_add_import_rna_schema
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20251127103329_add_login_history_schema
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20251201150726_drop_user_login_at
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20251201184857_add_campaign_url_source
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20251202122656_add_volontariat_sapeur_pompier_mission_type
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20251203145602_add_stat_even_source_idx
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20251208100041_add_widget_schema
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20251216141851_add_mission_schema
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20260108182037_add_mission_organisation_field
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20260109100624_add_geo_indexes
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20260112114656_add_default_moderation_status
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20260112161750_add_warning_bot_schema
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20260115101612_add_jobboard_sync_status
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20260115155001_add_publisher_organization_schema
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20260119151258_move_domain_logo_to_mission
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20260121155507_add_stat_event_index
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20260126133726_delete_jobboard_status
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20260126213509_add_stat_client_event_id
+│   │       │   │   └── migration.sql
+│   │       │   └── migration_lock.toml
+│   │       └── schema.core.prisma
+│   ├── scripts
+│   │   ├── README.md
+│   │   ├── backfill-mission-jobboard-sync-status.ts
+│   │   ├── backfill-publisher-organizations.ts
+│   │   ├── cleanup-duplicate-organizations.ts
+│   │   ├── fill-missions-type.ts
+│   │   ├── fill-stat-event-updated-at.ts
+│   │   ├── fixtures
+│   │   │   ├── README.md
+│   │   │   └── populate-stat-events-from-missions.ts
+│   │   ├── letudiant
+│   │   │   ├── README.md
+│   │   │   └── archive-piloty-jobs.ts
+│   │   ├── mongo-backfill
+│   │   │   ├── README.md
+│   │   │   ├── backfill-campaign.ts
+│   │   │   ├── backfill-email.ts
+│   │   │   ├── backfill-import-rna.ts
+│   │   │   ├── backfill-import.ts
+│   │   │   ├── backfill-login-history.ts
+│   │   │   ├── backfill-mission-domain-logo.ts
+│   │   │   ├── backfill-mission-event.ts
+│   │   │   ├── backfill-mission.ts
+│   │   │   ├── backfill-moderation-event.ts
+│   │   │   ├── backfill-organization.ts
+│   │   │   ├── backfill-publisher-diffusion-exclusion.ts
+│   │   │   ├── backfill-publisher.ts
+│   │   │   ├── backfill-report.ts
+│   │   │   ├── backfill-stat-bot.ts
+│   │   │   ├── backfill-user.ts
+│   │   │   ├── backfill-warning-bot.ts
+│   │   │   ├── backfill-warning.ts
+│   │   │   ├── backfill-widget.ts
+│   │   │   └── utils
+│   │   │       ├── cast.ts
+│   │   │       ├── compare.ts
+│   │   │       ├── normalize.ts
+│   │   │       └── options.ts
+│   │   ├── update-campaigns-trackers.ts
+│   │   ├── update-mission-moderation-status.ts
+│   │   └── update-sdis-publisher.ts
+│   ├── src
+│   │   ├── config.ts
+│   │   ├── constants
+│   │   │   ├── activity.ts
+│   │   │   ├── compensation.ts
+│   │   │   ├── countries.ts
+│   │   │   ├── departments.ts
+│   │   │   ├── domains.ts
+│   │   │   └── moderation.ts
+│   │   ├── controllers
+│   │   │   ├── admin-report.ts
+│   │   │   ├── brevo-webhook
+│   │   │   │   ├── controller.ts
+│   │   │   │   └── helpers
+│   │   │   │       ├── __tests__
+│   │   │   │       │   └── link-extractor.test.ts
+│   │   │   │       ├── download-file.ts
+│   │   │   │       └── link-extractor.ts
+│   │   │   ├── campaign.ts
+│   │   │   ├── iframe.ts
+│   │   │   ├── import.ts
+│   │   │   ├── metabase.ts
+│   │   │   ├── mission.ts
+│   │   │   ├── moderation-event.ts
+│   │   │   ├── moderation.ts
+│   │   │   ├── organization.ts
+│   │   │   ├── publisher.ts
+│   │   │   ├── redirect.ts
+│   │   │   ├── report.ts
+│   │   │   ├── stats-global
+│   │   │   │   ├── controller.ts
+│   │   │   │   └── helper.ts
+│   │   │   ├── stats-mean
+│   │   │   │   ├── controller.ts
+│   │   │   │   └── helper.ts
+│   │   │   ├── stats-public
+│   │   │   │   ├── controller.ts
+│   │   │   │   └── helper.ts
+│   │   │   ├── stats.ts
+│   │   │   ├── user.ts
+│   │   │   ├── warning-bot.ts
+│   │   │   ├── warning.ts
+│   │   │   └── widget.ts
+│   │   ├── db
+│   │   │   ├── mongo.ts
+│   │   │   └── postgres.ts
+│   │   ├── error.ts
+│   │   ├── index.ts
+│   │   ├── jobs
+│   │   │   ├── base
+│   │   │   │   └── handler.ts
+│   │   │   ├── brevo
+│   │   │   │   ├── handler.ts
+│   │   │   │   ├── types.ts
+│   │   │   │   └── utils.ts
+│   │   │   ├── export-missions-to-pg
+│   │   │   │   ├── handler.ts
+│   │   │   │   ├── types.ts
+│   │   │   │   └── utils
+│   │   │   │       ├── helpers.ts
+│   │   │   │       └── transformers.ts
+│   │   │   ├── export-organizations-to-pg
+│   │   │   │   ├── handler.ts
+│   │   │   │   └── utils
+│   │   │   │       └── transformer.ts
+│   │   │   ├── export-stats-to-pg
+│   │   │   │   ├── handler.ts
+│   │   │   │   └── utils
+│   │   │   │       ├── account.ts
+│   │   │   │       ├── apply.ts
+│   │   │   │       ├── bot-human.ts
+│   │   │   │       ├── click.ts
+│   │   │   │       └── print.ts
+│   │   │   ├── grimpio
+│   │   │   │   ├── __tests__
+│   │   │   │   │   ├── transformers.test.ts
+│   │   │   │   │   └── utils.test.ts
+│   │   │   │   ├── config.ts
+│   │   │   │   ├── handler.ts
+│   │   │   │   ├── transformers.ts
+│   │   │   │   ├── types.ts
+│   │   │   │   └── utils.ts
+│   │   │   ├── import-missions
+│   │   │   │   ├── config.ts
+│   │   │   │   ├── handler.ts
+│   │   │   │   ├── types.ts
+│   │   │   │   └── utils
+│   │   │   │       ├── __tests__
+│   │   │   │       │   ├── mission.test.ts
+│   │   │   │       │   ├── moderation.test.ts
+│   │   │   │       │   ├── organization.test.ts
+│   │   │   │       │   └── publisher.test.ts
+│   │   │   │       ├── address.ts
+│   │   │   │       ├── db.ts
+│   │   │   │       ├── geoloc.ts
+│   │   │   │       ├── mission.ts
+│   │   │   │       ├── moderation.ts
+│   │   │   │       ├── organization.ts
+│   │   │   │       ├── publisher.ts
+│   │   │   │       └── xml.ts
+│   │   │   ├── import-organizations
+│   │   │   │   ├── .gitignore
+│   │   │   │   ├── file-parser.ts
+│   │   │   │   ├── handler.ts
+│   │   │   │   └── zip.ts
+│   │   │   ├── leboncoin
+│   │   │   │   └── handler.ts
+│   │   │   ├── letudiant
+│   │   │   │   ├── __tests__
+│   │   │   │   │   ├── handler.test.ts
+│   │   │   │   │   ├── transformers.test.ts
+│   │   │   │   │   └── utils.test.ts
+│   │   │   │   ├── config.ts
+│   │   │   │   ├── handler.ts
+│   │   │   │   ├── transformers.ts
+│   │   │   │   └── utils.ts
+│   │   │   ├── linkedin
+│   │   │   │   ├── __tests__
+│   │   │   │   │   ├── transformers.test.ts
+│   │   │   │   │   └── utils.test.ts
+│   │   │   │   ├── config.ts
+│   │   │   │   ├── handler.ts
+│   │   │   │   ├── transformers.ts
+│   │   │   │   ├── types.ts
+│   │   │   │   └── utils.ts
+│   │   │   ├── linkedin-stats
+│   │   │   │   ├── add-stats.ts
+│   │   │   │   └── handler.ts
+│   │   │   ├── moderation
+│   │   │   │   ├── handler.ts
+│   │   │   │   ├── types.ts
+│   │   │   │   └── utils.ts
+│   │   │   ├── report
+│   │   │   │   ├── fonts
+│   │   │   │   │   ├── Marianne.ts
+│   │   │   │   │   └── MarianneBold.ts
+│   │   │   │   ├── generate
+│   │   │   │   │   ├── announce.ts
+│   │   │   │   │   ├── broadcast.ts
+│   │   │   │   │   ├── data.ts
+│   │   │   │   │   ├── header.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── overview.ts
+│   │   │   │   │   ├── report-stats-source.ts
+│   │   │   │   │   └── utils.ts
+│   │   │   │   ├── handler.ts
+│   │   │   │   └── send.ts
+│   │   │   ├── run-job.ts
+│   │   │   ├── talent
+│   │   │   │   ├── __tests__
+│   │   │   │   │   ├── transformers.test.ts
+│   │   │   │   │   └── utils.test.ts
+│   │   │   │   ├── config.ts
+│   │   │   │   ├── handler.ts
+│   │   │   │   ├── transformers.ts
+│   │   │   │   ├── types.ts
+│   │   │   │   └── utils.ts
+│   │   │   ├── types.ts
+│   │   │   ├── update-stats-views
+│   │   │   │   └── handler.ts
+│   │   │   └── warnings
+│   │   │       ├── bot.ts
+│   │   │       ├── handler.ts
+│   │   │       ├── import.ts
+│   │   │       └── tracking.ts
+│   │   ├── middlewares
+│   │   │   ├── cors.ts
+│   │   │   ├── helmet.ts
+│   │   │   ├── index.ts
+│   │   │   ├── logger.ts
+│   │   │   ├── passport.ts
+│   │   │   └── rate-limite.ts
+│   │   ├── models
+│   │   │   └── mission.ts
+│   │   ├── repositories
+│   │   │   ├── activity.ts
+│   │   │   ├── campaign.ts
+│   │   │   ├── domain.ts
+│   │   │   ├── email.ts
+│   │   │   ├── import-rna.ts
+│   │   │   ├── import.ts
+│   │   │   ├── login-history.ts
+│   │   │   ├── mission-address.ts
+│   │   │   ├── mission-event.ts
+│   │   │   ├── mission-job-board.ts
+│   │   │   ├── mission-moderation-status.ts
+│   │   │   ├── mission.ts
+│   │   │   ├── moderation-event.ts
+│   │   │   ├── organization.ts
+│   │   │   ├── publisher-diffusion-exclusion.ts
+│   │   │   ├── publisher-organization.ts
+│   │   │   ├── publisher.ts
+│   │   │   ├── report.ts
+│   │   │   ├── stat-bot.ts
+│   │   │   ├── stat-event.ts
+│   │   │   ├── user.ts
+│   │   │   ├── warning-bot.ts
+│   │   │   ├── warning.ts
+│   │   │   └── widget.ts
+│   │   ├── services
+│   │   │   ├── __tests__
+│   │   │   │   └── moderation-event.test.ts
+│   │   │   ├── api-datasubvention.ts
+│   │   │   ├── brevo.ts
+│   │   │   ├── campaign.ts
+│   │   │   ├── data-gouv
+│   │   │   │   ├── api.ts
+│   │   │   │   └── types.ts
+│   │   │   ├── email.ts
+│   │   │   ├── import-rna.ts
+│   │   │   ├── import.ts
+│   │   │   ├── login-history.ts
+│   │   │   ├── metabase.ts
+│   │   │   ├── mission-event.ts
+│   │   │   ├── mission-jobboard.ts
+│   │   │   ├── mission-moderation-status.ts
+│   │   │   ├── mission.ts
+│   │   │   ├── moderation-event.ts
+│   │   │   ├── organization.ts
+│   │   │   ├── piloty
+│   │   │   │   ├── client.ts
+│   │   │   │   ├── exceptions.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   └── types.ts
+│   │   │   ├── publisher-diffusion-exclusion.ts
+│   │   │   ├── publisher.ts
+│   │   │   ├── reassign-stats.ts
+│   │   │   ├── report.ts
+│   │   │   ├── s3.ts
+│   │   │   ├── slack.ts
+│   │   │   ├── stat-bot.ts
+│   │   │   ├── stat-event.ts
+│   │   │   ├── user.ts
+│   │   │   ├── warning-bot.ts
+│   │   │   ├── warning.ts
+│   │   │   ├── widget-mission.ts
+│   │   │   └── widget.ts
+│   │   ├── static
+│   │   │   └── impression.js
+│   │   ├── types
+│   │   │   ├── brevo.d.ts
+│   │   │   ├── campaign.ts
+│   │   │   ├── email.ts
+│   │   │   ├── import-rna.ts
+│   │   │   ├── import.ts
+│   │   │   ├── index.ts
+│   │   │   ├── mission-event.ts
+│   │   │   ├── mission-job-board.ts
+│   │   │   ├── mission-moderation-status.ts
+│   │   │   ├── mission.ts
+│   │   │   ├── moderation-event.ts
+│   │   │   ├── organization.ts
+│   │   │   ├── passport.d.ts
+│   │   │   ├── publisher-diffusion-exclusion.ts
+│   │   │   ├── publisher-organization.ts
+│   │   │   ├── publisher.ts
+│   │   │   ├── report.ts
+│   │   │   ├── stat-bot.ts
+│   │   │   ├── stat-event.ts
+│   │   │   ├── user.ts
+│   │   │   ├── warning-bot.ts
+│   │   │   ├── warning.ts
+│   │   │   └── widget.ts
+│   │   ├── utils
+│   │   │   ├── __tests__
+│   │   │   │   ├── geo.test.ts
+│   │   │   │   ├── mission.test.ts
+│   │   │   │   ├── organization.test.ts
+│   │   │   │   └── string.test.ts
+│   │   │   ├── array.ts
+│   │   │   ├── es.ts
+│   │   │   ├── geo.ts
+│   │   │   ├── index.ts
+│   │   │   ├── job.ts
+│   │   │   ├── mission-moderation-status.ts
+│   │   │   ├── mission.ts
+│   │   │   ├── normalize.ts
+│   │   │   ├── organization.ts
+│   │   │   ├── request.ts
+│   │   │   ├── string.ts
+│   │   │   ├── url.ts
+│   │   │   └── widget.ts
+│   │   ├── v0
+│   │   │   ├── mission
+│   │   │   │   ├── constants.ts
+│   │   │   │   ├── controller.ts
+│   │   │   │   ├── transformer.ts
+│   │   │   │   └── utils.ts
+│   │   │   ├── mymission
+│   │   │   │   └── controller.ts
+│   │   │   ├── myorganization
+│   │   │   │   ├── controller.ts
+│   │   │   │   └── transformer.ts
+│   │   │   ├── organization.ts
+│   │   │   ├── publisher.ts
+│   │   │   └── view.ts
+│   │   ├── v1
+│   │   │   └── association.ts
+│   │   └── v2
+│   │       ├── activity.ts
+│   │       ├── jobteaser.ts
+│   │       └── leboncoin.ts
+│   ├── tests
+│   │   ├── fixtures
+│   │   │   ├── index.ts
+│   │   │   ├── mission.ts
+│   │   │   ├── publisher.ts
+│   │   │   └── stat-event.ts
+│   │   ├── integration
+│   │   │   ├── api
+│   │   │   │   ├── redirect
+│   │   │   │   │   ├── account.test.ts
+│   │   │   │   │   ├── apply.test.ts
+│   │   │   │   │   ├── campaign.test.ts
+│   │   │   │   │   ├── mission.test.ts
+│   │   │   │   │   ├── print.test.ts
+│   │   │   │   │   └── widget.test.ts
+│   │   │   │   ├── v0
+│   │   │   │   │   ├── mission.test.ts
+│   │   │   │   │   ├── mymission.test.ts
+│   │   │   │   │   ├── myorganization.test.ts
+│   │   │   │   │   └── view.test.ts
+│   │   │   │   └── v2
+│   │   │   │       └── activity.test.ts
+│   │   │   └── jobs
+│   │   │       └── import-missions
+│   │   │           ├── data
+│   │   │           │   ├── correct-feed.xml
+│   │   │           │   ├── invalid-compensation-feed.xml
+│   │   │           │   └── missing-logo-feed.xml
+│   │   │           └── import-missions.handler.test.ts
+│   │   ├── mocks
+│   │   │   ├── dataSubventionMock.ts
+│   │   │   ├── index.ts
+│   │   │   ├── pgMock.ts
+│   │   │   └── sentryMock.ts
+│   │   ├── testApp.ts
+│   │   └── vitest
+│   │       ├── global.setup.ts
+│   │       ├── integration.setup.ts
+│   │       ├── shared.ts
+│   │       └── unit.setup.ts
+│   ├── tsconfig.build.json
+│   ├── tsconfig.json
+│   ├── vitest.config.ts
+│   ├── vitest.integration.config.ts
+│   └── vitest.unit.config.ts
+├── app
+│   ├── .gitignore
+│   ├── AGENTS.md
+│   ├── Dockerfile
+│   ├── Dockerfile.production
+│   ├── index.html
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── playwright.config.ts
+│   ├── postcss.config.js
+│   ├── prettier.config.js
+│   ├── public
+│   │   ├── favicon.svg
+│   │   ├── jstag.js
+│   │   └── test-jstag.html
+│   ├── server
+│   │   └── index.js
+│   ├── src
+│   │   ├── App.jsx
+│   │   ├── assets
+│   │   │   ├── favicon.svg
+│   │   │   ├── fonts
+│   │   │   │   ├── Marianne-Bold.woff2
+│   │   │   │   ├── Marianne-Bold_Italic.woff2
+│   │   │   │   ├── Marianne-ExtraBold.woff2
+│   │   │   │   ├── Marianne-ExtraBold_Italic.woff2
+│   │   │   │   ├── Marianne-Light.woff2
+│   │   │   │   ├── Marianne-Light_Italic.woff2
+│   │   │   │   ├── Marianne-Medium.woff2
+│   │   │   │   ├── Marianne-Medium_Italic.woff2
+│   │   │   │   ├── Marianne-Regular.woff2
+│   │   │   │   ├── Marianne-Regular_Italic.woff2
+│   │   │   │   ├── Marianne-Thin.woff2
+│   │   │   │   └── Marianne-Thin_Italic.woff2
+│   │   │   ├── img
+│   │   │   │   ├── background-connexion.jpg
+│   │   │   │   └── jva-logo.png
+│   │   │   └── svg
+│   │   │       ├── api-engagement.svg
+│   │   │       ├── data-visualization.svg
+│   │   │       ├── empty-info.svg
+│   │   │       ├── error-icon.svg
+│   │   │       ├── export-icon.svg
+│   │   │       ├── jessica.svg
+│   │   │       ├── jva-logo.svg
+│   │   │       ├── logo.svg
+│   │   │       ├── magnify-icon.svg
+│   │   │       ├── moderation-auto.svg
+│   │   │       ├── moderation-manual.svg
+│   │   │       ├── nassim.svg
+│   │   │       └── trash-icon.svg
+│   │   ├── components
+│   │   │   ├── AnalyticsViz.jsx
+│   │   │   ├── Autocomplete.jsx
+│   │   │   ├── Chart.jsx
+│   │   │   ├── DateRangePicker.jsx
+│   │   │   ├── Dropdown.jsx
+│   │   │   ├── ErrorAlert.jsx
+│   │   │   ├── Footer.jsx
+│   │   │   ├── Header.jsx
+│   │   │   ├── InfoAlert.jsx
+│   │   │   ├── Loader.jsx
+│   │   │   ├── Modal.jsx
+│   │   │   ├── MultiSearchSelect.jsx
+│   │   │   ├── Nav.jsx
+│   │   │   ├── New-Modal.jsx
+│   │   │   ├── NewSelect.jsx
+│   │   │   ├── Pie.jsx
+│   │   │   ├── RadioInput.jsx
+│   │   │   ├── SearchInput.jsx
+│   │   │   ├── SearchSelect.jsx
+│   │   │   ├── Table.jsx
+│   │   │   ├── Tabs.jsx
+│   │   │   ├── Toggle.jsx
+│   │   │   ├── Tooltip.jsx
+│   │   │   └── WarningAlert.jsx
+│   │   ├── constants
+│   │   │   └── index.jsx
+│   │   ├── index.css
+│   │   ├── main.jsx
+│   │   ├── scenes
+│   │   │   ├── account
+│   │   │   │   └── index.jsx
+│   │   │   ├── admin-account
+│   │   │   │   ├── Publishers.jsx
+│   │   │   │   ├── Users.jsx
+│   │   │   │   └── index.jsx
+│   │   │   ├── admin-mission
+│   │   │   │   └── index.jsx
+│   │   │   ├── admin-organization
+│   │   │   │   ├── List.jsx
+│   │   │   │   ├── View.jsx
+│   │   │   │   └── index.jsx
+│   │   │   ├── admin-report
+│   │   │   │   └── index.jsx
+│   │   │   ├── admin-stats
+│   │   │   │   ├── Apercu.jsx
+│   │   │   │   └── index.jsx
+│   │   │   ├── admin-warning
+│   │   │   │   ├── components
+│   │   │   │   │   └── Bots.jsx
+│   │   │   │   └── index.jsx
+│   │   │   ├── auth
+│   │   │   │   ├── ForgotPassword.jsx
+│   │   │   │   ├── Login.jsx
+│   │   │   │   ├── LoginAs.jsx
+│   │   │   │   ├── ResetPassword.jsx
+│   │   │   │   └── Signup.jsx
+│   │   │   ├── broadcast
+│   │   │   │   ├── Api.jsx
+│   │   │   │   ├── Campaigns.jsx
+│   │   │   │   ├── Widgets.jsx
+│   │   │   │   ├── index.jsx
+│   │   │   │   └── moderation
+│   │   │   │       ├── components
+│   │   │   │       │   ├── Constants.jsx
+│   │   │   │       │   ├── Filters.jsx
+│   │   │   │       │   ├── Header.jsx
+│   │   │   │       │   ├── MissionItem.jsx
+│   │   │   │       │   ├── OrganizationRefusedModal.jsx
+│   │   │   │       │   └── SettingsModal.jsx
+│   │   │   │       ├── index.jsx
+│   │   │   │       └── modal
+│   │   │   │           ├── components
+│   │   │   │           │   ├── Header.jsx
+│   │   │   │           │   ├── HistoryTab.jsx
+│   │   │   │           │   ├── MissionTab.jsx
+│   │   │   │           │   ├── Note.jsx
+│   │   │   │           │   ├── Organization.jsx
+│   │   │   │           │   └── OrganizationTab.jsx
+│   │   │   │           └── index.jsx
+│   │   │   ├── campaign
+│   │   │   │   ├── Create.jsx
+│   │   │   │   ├── Edit.jsx
+│   │   │   │   ├── components
+│   │   │   │   │   ├── Information.jsx
+│   │   │   │   │   └── Trackers.jsx
+│   │   │   │   └── index.jsx
+│   │   │   ├── cgu
+│   │   │   │   └── index.jsx
+│   │   │   ├── mission
+│   │   │   │   ├── View.jsx
+│   │   │   │   └── index.jsx
+│   │   │   ├── my-missions
+│   │   │   │   ├── Flux.jsx
+│   │   │   │   ├── Moderation.jsx
+│   │   │   │   ├── components
+│   │   │   │   │   ├── SelectCity.jsx
+│   │   │   │   │   └── SelectOrganization.jsx
+│   │   │   │   └── index.jsx
+│   │   │   ├── performance
+│   │   │   │   ├── AnalyticsCard.jsx
+│   │   │   │   ├── GlobalAnnounce.jsx
+│   │   │   │   ├── GlobalBroadcast.jsx
+│   │   │   │   ├── Mean.jsx
+│   │   │   │   └── index.jsx
+│   │   │   ├── public-stats
+│   │   │   │   ├── components
+│   │   │   │   │   ├── Distribution.jsx
+│   │   │   │   │   └── SomeNumbers.jsx
+│   │   │   │   └── index.jsx
+│   │   │   ├── publisher
+│   │   │   │   ├── Create.jsx
+│   │   │   │   ├── Edit.jsx
+│   │   │   │   ├── components
+│   │   │   │   │   ├── Administration.jsx
+│   │   │   │   │   ├── Annonceur.jsx
+│   │   │   │   │   ├── AnnonceurCreation.jsx
+│   │   │   │   │   ├── Diffuseur.jsx
+│   │   │   │   │   ├── DiffuseurCreation.jsx
+│   │   │   │   │   ├── Informations.jsx
+│   │   │   │   │   └── Members.jsx
+│   │   │   │   └── index.jsx
+│   │   │   ├── settings
+│   │   │   │   ├── Flux.jsx
+│   │   │   │   ├── RealTime.jsx
+│   │   │   │   ├── TrackingAnnounce.jsx
+│   │   │   │   ├── TrackingBroadcast.jsx
+│   │   │   │   └── index.jsx
+│   │   │   ├── user
+│   │   │   │   ├── Create.jsx
+│   │   │   │   ├── Edit.jsx
+│   │   │   │   └── index.jsx
+│   │   │   ├── warnings
+│   │   │   │   └── index.jsx
+│   │   │   └── widget
+│   │   │       ├── Edit.jsx
+│   │   │       ├── New.jsx
+│   │   │       ├── components
+│   │   │       │   ├── QueryBuilder.jsx
+│   │   │       │   └── Settings.jsx
+│   │   │       └── index.jsx
+│   │   ├── services
+│   │   │   ├── analytics
+│   │   │   │   ├── defaultProvider.js
+│   │   │   │   ├── provider.jsx
+│   │   │   │   └── providers
+│   │   │   │       └── metabase
+│   │   │   │           ├── adapters.js
+│   │   │   │           ├── client.js
+│   │   │   │           └── provider.js
+│   │   │   ├── api.js
+│   │   │   ├── config.js
+│   │   │   ├── error.js
+│   │   │   ├── mission.js
+│   │   │   ├── store.js
+│   │   │   ├── toast.jsx
+│   │   │   └── utils.js
+│   │   └── utils
+│   │       ├── publisher.js
+│   │       └── url.js
+│   ├── tests
+│   │   └── e2e
+│   │       ├── fixtures
+│   │       │   └── mockData.ts
+│   │       ├── jstag
+│   │       │   ├── config.spec.ts
+│   │       │   ├── cookies.spec.ts
+│   │       │   ├── humanDetection.spec.ts
+│   │       │   ├── impressions.spec.ts
+│   │       │   ├── syntax.spec.ts
+│   │       │   └── tracking.spec.ts
+│   │       └── setup.ts
+│   └── vite.config.js
+├── cliff.toml
+├── commitlint.config.cjs
+├── docker-compose.yml
+├── package-lock.json
+├── package.json
+├── terraform
+│   ├── containers.tf
+│   ├── data.tf
+│   ├── domains.tf
+│   ├── jobs-analytics.tf
+│   ├── jobs.tf
+│   ├── locals.tf
+│   ├── main.tf
+│   └── variables.tf
+└── widget
+    ├── .gitignore
+    ├── AGENTS.md
+    ├── Dockerfile
+    ├── Dockerfile.production
+    ├── components
+    │   ├── Card.tsx
+    │   ├── CardBenevolat.tsx
+    │   ├── CardVolontariat.tsx
+    │   ├── Carousel.tsx
+    │   ├── ComboxFilter.tsx
+    │   ├── DateFilter.tsx
+    │   ├── Filters.tsx
+    │   ├── FiltersBenevolat.tsx
+    │   ├── FiltersVolontariat.tsx
+    │   ├── Grid.tsx
+    │   ├── LocationFilter.tsx
+    │   └── SelectFilter.tsx
+    ├── config.ts
+    ├── eslint.config.cjs
+    ├── fonts
+    │   ├── Marianne-Bold.woff2
+    │   ├── Marianne-Medium.woff2
+    │   ├── Marianne-Regular.woff2
+    │   ├── icomoon.ttf
+    │   └── icomoon.woff
+    ├── instrumentation-client.js
+    ├── instrumentation.js
+    ├── next-env.d.ts
+    ├── next.config.js
+    ├── package-lock.json
+    ├── package.json
+    ├── pages
+    │   ├── _app.tsx
+    │   ├── _document.tsx
+    │   ├── global.css
+    │   └── index.tsx
+    ├── playwright.config.ts
+    ├── postcss.config.js
+    ├── public
+    │   ├── favicon.ico
+    │   ├── images
+    │   │   ├── generique.jpeg
+    │   │   ├── logo-sc.svg
+    │   │   └── logo-sce.svg
+    │   └── robots.txt
+    ├── sentry.edge.config.js
+    ├── sentry.server.config.js
+    ├── test-results
+    │   ├── .last-run.json
+    │   ├── tests-e2e-visual-Card.comp-18d20---Visual-regression-Desktop
+    │   │   └── error-context.md
+    │   └── tests-e2e-visual-Card.comp-b9a34----Visual-regression-Mobile
+    │       └── error-context.md
+    ├── tests
+    │   └── e2e
+    │       ├── fixtures
+    │       │   └── mockData.ts
+    │       ├── rgaa
+    │       │   └── landmarks.spec.ts
+    │       ├── setup.ts
+    │       └── visual
+    │           ├── Card.component.spec.ts
+    │           └── Card.component.spec.ts-snapshots
+    │               ├── card-benevolat-desktop.png
+    │               ├── card-benevolat-hover-desktop.png
+    │               ├── card-benevolat-mobile.png
+    │               ├── card-volontariat-desktop.png
+    │               ├── card-volontariat-hover-desktop.png
+    │               └── card-volontariat-mobile.png
+    ├── tsconfig.json
+    ├── types
+    │   └── index.ts
+    └── utils
+        ├── fonts.ts
+        ├── resizeHelper.ts
+        ├── store.ts
+        └── utils.ts
+314 directories, 865 files
