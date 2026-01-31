@@ -1,0 +1,22 @@
+{
+  "devDependencies": {
+    "vscode-langservers-extracted": "^4.10.0",
+    "eslint": "^8.8.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.0.0"
+  },
+  "scripts": {
+    "nettoie-dsfr": "rm -rf public/dsfr",
+    "cree-dsfr-dossiers": "mkdir -p public/dsfr/fonts && mkdir -p public/dsfr/icons && mkdir -p public/dsfr/utility",
+    "copie-dsfr-css": "cp node_modules/@gouvfr/dsfr/dist/dsfr.min.css public/dsfr/ && cp node_modules/@gouvfr/dsfr/dist/utility/utility.min.css public/dsfr/utility",
+    "copie-dsfr-polices": "cp -r node_modules/@gouvfr/dsfr/dist/fonts/* public/dsfr/fonts/",
+    "copie-dsfr-icons": "cp -r node_modules/@gouvfr/dsfr/dist/icons/* public/dsfr/icons/",
+    "copie-dsfr-js": "cp -r node_modules/@gouvfr/dsfr/dist/dsfr/dsfr.nomodule.min.js public/dsfr/dsfr.nomodule.min.js",
+    "copie-dsfr": "npm run nettoie-dsfr && npm run cree-dsfr-dossiers && npm run copie-dsfr-css && npm run copie-dsfr-polices && npm run copie-dsfr-icons && npm run copie-dsfr-js",
+    "postinstall": "npm run copie-dsfr"
+  },
+  "dependencies": {
+    "@gouvfr/dsfr": "^1.13.0"
+  }
+}
