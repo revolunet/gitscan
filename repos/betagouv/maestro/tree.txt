@@ -1,0 +1,952 @@
+.
+├── .buildpacks
+├── .env.example
+├── .github
+│   ├── dependabot.yml
+│   └── workflows
+│       ├── codeql-analysis.yml
+│       ├── github-actions.yml
+│       └── release.yml
+├── .gitignore
+├── .lintstagedrc.json
+├── .npmrc
+├── .prettierignore
+├── .prettierrc.json
+├── .slugignore
+├── Aptfile
+├── README.md
+├── cron.json
+├── docker-compose.yml
+├── docs
+│   ├── Makefile
+│   ├── architecture.puml
+│   └── architecture.svg
+├── eslint.config.mjs
+├── frontend
+│   ├── .env.example
+│   ├── .gitignore
+│   ├── .npmrc
+│   ├── .storybook
+│   │   ├── main.ts
+│   │   ├── preview.tsx
+│   │   ├── tsconfig.json
+│   │   └── vitest.setup.ts
+│   ├── eslint.config.mjs
+│   ├── index.html
+│   ├── package.json
+│   ├── public
+│   │   ├── logo192.png
+│   │   ├── logo512.png
+│   │   └── manifest.json
+│   ├── src
+│   │   ├── App.scss
+│   │   ├── App.tsx
+│   │   ├── AppRouteComponents.tsx
+│   │   ├── AppRoutes.tsx
+│   │   ├── assets
+│   │   │   ├── farmland.webp
+│   │   │   ├── illustrations
+│   │   │   │   ├── alert.svg
+│   │   │   │   ├── audit.svg
+│   │   │   │   ├── avatar.svg
+│   │   │   │   ├── balance.svg
+│   │   │   │   ├── check.svg
+│   │   │   │   ├── close.svg
+│   │   │   │   ├── controle.svg
+│   │   │   │   ├── dashboard.svg
+│   │   │   │   ├── dialog.svg
+│   │   │   │   ├── distribution.svg
+│   │   │   │   ├── document.svg
+│   │   │   │   ├── food-green.svg
+│   │   │   │   ├── food.svg
+│   │   │   │   ├── hands.svg
+│   │   │   │   ├── leaf.svg
+│   │   │   │   ├── notifications.svg
+│   │   │   │   ├── programmation-white.svg
+│   │   │   │   ├── programmation.svg
+│   │   │   │   ├── ressources.svg
+│   │   │   │   ├── user-unknown.svg
+│   │   │   │   ├── users.svg
+│   │   │   │   └── warning.svg
+│   │   │   ├── logo.svg
+│   │   │   └── manon.jpg
+│   │   ├── components
+│   │   │   ├── AddressSearch
+│   │   │   │   └── AddressSearch.tsx
+│   │   │   ├── AutoClose
+│   │   │   │   └── AutoClose.tsx
+│   │   │   ├── CircleProgress
+│   │   │   │   ├── CircleProgress.stories.tsx
+│   │   │   │   └── CircleProgress.tsx
+│   │   │   ├── CompanySearch
+│   │   │   │   ├── CompanySearch.scss
+│   │   │   │   ├── CompanySearch.stories.tsx
+│   │   │   │   └── CompanySearch.tsx
+│   │   │   ├── CompletionBadge
+│   │   │   │   └── CompletionBadge.tsx
+│   │   │   ├── ConfirmationModal
+│   │   │   │   └── ConfirmationModal.tsx
+│   │   │   ├── DashboardNotice
+│   │   │   │   ├── DashboardNotice.scss
+│   │   │   │   ├── DashboardNotice.stories.tsx
+│   │   │   │   └── DashboardNotice.tsx
+│   │   │   ├── DepartmentsSelect
+│   │   │   │   ├── DepartmentsSelect.stories.tsx
+│   │   │   │   └── DepartmentsSelect.tsx
+│   │   │   ├── DistributionCountCell
+│   │   │   │   ├── DistributionCountCell.scss
+│   │   │   │   └── DistributionCountCell.tsx
+│   │   │   ├── DocumentLink
+│   │   │   │   └── DocumentLink.tsx
+│   │   │   ├── EditableNumberCell
+│   │   │   │   └── EditableNumberCell.tsx
+│   │   │   ├── FetchInterceptor
+│   │   │   │   └── FetchInterceptor.tsx
+│   │   │   ├── FilterTags
+│   │   │   │   └── FiltersTags.tsx
+│   │   │   ├── Footer
+│   │   │   │   ├── Footer.stories.tsx
+│   │   │   │   └── Footer.tsx
+│   │   │   ├── Header
+│   │   │   │   ├── Header.scss
+│   │   │   │   ├── Header.stories.tsx
+│   │   │   │   ├── Header.tsx
+│   │   │   │   └── HeaderMenu.tsx
+│   │   │   ├── LocalPrescription
+│   │   │   │   ├── LocalPrescriptionButtons
+│   │   │   │   │   ├── LocalPrescriptionButtons.scss
+│   │   │   │   │   └── LocalPrescriptionButtons.tsx
+│   │   │   │   ├── LocalPrescriptionCard
+│   │   │   │   │   └── LocalPrescriptionCard.tsx
+│   │   │   │   ├── LocalPrescriptionDepartmentalDistribution
+│   │   │   │   │   ├── LocalPrescriptionDepartmentalDistribution.tsx
+│   │   │   │   │   └── LocalPrescriptionDepartmentalDistributionTable.tsx
+│   │   │   │   ├── LocalPrescriptionDistributionBadge
+│   │   │   │   │   └── LocalPrescriptionDistributionBadge.tsx
+│   │   │   │   ├── LocalPrescriptionModal
+│   │   │   │   │   └── LocalPrescriptionModal.tsx
+│   │   │   │   ├── LocalPrescriptionSlaughterhouseDistribution
+│   │   │   │   │   └── LocalPrescriptionSlaughterhouseDistribution.tsx
+│   │   │   │   └── LocalPrescriptionSubstanceKindsLaboratories
+│   │   │   │       ├── LocalPrescriptionSubstanceKindsLaboratories.tsx
+│   │   │   │       └── SubstanceKindLaboratorySelect.tsx
+│   │   │   ├── Mascarade
+│   │   │   │   ├── MascaradeButton.tsx
+│   │   │   │   ├── MascaradeModal.tsx
+│   │   │   │   ├── MascaradeNotice.tsx
+│   │   │   │   └── useMascarade.ts
+│   │   │   ├── Prescription
+│   │   │   │   ├── AddPrescriptionModal
+│   │   │   │   │   └── AddPrescriptionModal.tsx
+│   │   │   │   ├── PrescriptionBreadcrumb
+│   │   │   │   │   └── PrescriptionBreadcrumb.tsx
+│   │   │   │   ├── PrescriptionCard
+│   │   │   │   │   ├── PrescriptionCard.scss
+│   │   │   │   │   └── PrescriptionCard.tsx
+│   │   │   │   ├── PrescriptionCommentsModal
+│   │   │   │   │   ├── PrescriptionCommentAuthor.tsx
+│   │   │   │   │   ├── PrescriptionCommentsModal.scss
+│   │   │   │   │   ├── PrescriptionCommentsModal.tsx
+│   │   │   │   │   └── PrescriptionCommentsModalPPV.stories.tsx
+│   │   │   │   ├── PrescriptionDistributionTable
+│   │   │   │   │   └── PrescriptionDistributionTable.tsx
+│   │   │   │   ├── PrescriptionEditSubstances
+│   │   │   │   │   └── PrescriptionEditSubstances.tsx
+│   │   │   │   ├── PrescriptionModal
+│   │   │   │   │   ├── PrescriptionModal.scss
+│   │   │   │   │   └── PrescriptionModal.tsx
+│   │   │   │   ├── PrescriptionNotes
+│   │   │   │   │   └── PrescriptionNotes.tsx
+│   │   │   │   ├── PrescriptionProgrammingInstruction
+│   │   │   │   │   └── PrescriptionProgrammingInstruction.tsx
+│   │   │   │   ├── PrescriptionStages
+│   │   │   │   │   └── PrescriptionStages.tsx
+│   │   │   │   ├── PrescriptionSubstances
+│   │   │   │   │   └── PrescriptionSubstances.tsx
+│   │   │   │   └── RemovePrescriptionModal
+│   │   │   │       └── RemovePrescriptionModal.tsx
+│   │   │   ├── ProgrammingPlanNotification
+│   │   │   │   ├── ProgrammingPlanNotification.scss
+│   │   │   │   ├── ProgrammingPlanNotificationDepartmentalToSampler
+│   │   │   │   │   └── ProgrammingPlanNotificationDepartmentalToSampler.tsx
+│   │   │   │   ├── ProgrammingPlanNotificationNationalToRegional
+│   │   │   │   │   └── ProgrammingPlanNotificationNationalToRegional.tsx
+│   │   │   │   └── ProgrammingPlanNotificationRegionalToDepartmental
+│   │   │   │       └── ProgrammingPlanNotificationRegionalToDepartmental.tsx
+│   │   │   ├── RegionsFilter
+│   │   │   │   └── RegionsFilter.tsx
+│   │   │   ├── ResidueResultAlert
+│   │   │   │   └── ResidueResultAlert.tsx
+│   │   │   ├── RootNotice
+│   │   │   │   └── RootNotice.tsx
+│   │   │   ├── Sample
+│   │   │   │   ├── SampleDocument
+│   │   │   │   │   └── SampleDocument.tsx
+│   │   │   │   ├── SampleItems
+│   │   │   │   │   ├── SampleItemContent.tsx
+│   │   │   │   │   ├── SampleItems.tsx
+│   │   │   │   │   └── SampleItemsContent.tsx
+│   │   │   │   ├── SampleMap
+│   │   │   │   │   └── SampleMap.tsx
+│   │   │   │   └── SampleProcedure
+│   │   │   │       └── SampleProcedure.tsx
+│   │   │   ├── SampleCard
+│   │   │   │   ├── SampleCard.scss
+│   │   │   │   ├── SampleCard.stories.tsx
+│   │   │   │   └── SampleCard.tsx
+│   │   │   ├── SampleStatusBadge
+│   │   │   │   ├── SampleStatusBadge.stories.tsx
+│   │   │   │   └── SampleStatusBadge.tsx
+│   │   │   ├── SampleTable
+│   │   │   │   ├── RemoveSample.tsx
+│   │   │   │   ├── SampleTable.scss
+│   │   │   │   └── SampleTable.tsx
+│   │   │   ├── ScrollToTop
+│   │   │   │   └── ScrollToTop.tsx
+│   │   │   ├── SectionHeader
+│   │   │   │   ├── SectionHeader.scss
+│   │   │   │   └── SectionHeader.tsx
+│   │   │   ├── SubstanceSearch
+│   │   │   │   └── SubstanceSearch.tsx
+│   │   │   ├── SupportDocumentSelect
+│   │   │   │   ├── SupportDocumentSelect.scss
+│   │   │   │   └── SupportDocumentSelect.tsx
+│   │   │   ├── TableHeaderCell
+│   │   │   │   └── TableHeaderCell.tsx
+│   │   │   ├── UserFeedback
+│   │   │   │   ├── UserFeedback.scss
+│   │   │   │   └── UserFeedback.tsx
+│   │   │   ├── YearRoute
+│   │   │   │   └── YearRoute.tsx
+│   │   │   └── _app
+│   │   │       ├── AppErrorAlert
+│   │   │       │   └── AppServiceErrorAlert.tsx
+│   │   │       ├── AppMultiSelect
+│   │   │       │   ├── AppMultiSelect.stories.tsx
+│   │   │       │   └── AppMultiSelect.tsx
+│   │   │       ├── AppRadioButtons
+│   │   │       │   ├── AppRadioButtons.scss
+│   │   │       │   └── AppRadioButtons.tsx
+│   │   │       ├── AppRequired
+│   │   │       │   ├── AppRequiredInput.tsx
+│   │   │       │   └── AppRequiredText.tsx
+│   │   │       ├── AppResponsiveButton
+│   │   │       │   └── AppResponsiveButton.tsx
+│   │   │       ├── AppSearchInput
+│   │   │       │   └── AppSearchInput.tsx
+│   │   │       ├── AppSelect
+│   │   │       │   ├── AppSelect.tsx
+│   │   │       │   └── AppSelectOption.ts
+│   │   │       ├── AppTextAreaInput
+│   │   │       │   └── AppTextAreaInput.tsx
+│   │   │       ├── AppTextInput
+│   │   │       │   └── AppTextInput.tsx
+│   │   │       ├── AppToast
+│   │   │       │   └── AppToast.tsx
+│   │   │       └── AppUpload
+│   │   │           └── AppUpload.tsx
+│   │   ├── constants.scss
+│   │   ├── hooks
+│   │   │   ├── useAnalytics.tsx
+│   │   │   ├── useAuthentication.tsx
+│   │   │   ├── useAutoSave.ts
+│   │   │   ├── useDocument.tsx
+│   │   │   ├── useDocumentTitle.tsx
+│   │   │   ├── useForm.tsx
+│   │   │   ├── useMatomoTagManager.tsx
+│   │   │   ├── useOnLine.tsx
+│   │   │   ├── usePartialSample.tsx
+│   │   │   ├── usePrescriptionFilters.tsx
+│   │   │   ├── useSamplesLink.tsx
+│   │   │   ├── useStore.tsx
+│   │   │   └── useWindowSize.tsx
+│   │   ├── i18n.ts
+│   │   ├── index.tsx
+│   │   ├── react-app-env.d.ts
+│   │   ├── serviceWorker.js
+│   │   ├── services
+│   │   │   ├── address.service.ts
+│   │   │   ├── analysis.service.ts
+│   │   │   ├── api.service.ts
+│   │   │   ├── apiClient.ts
+│   │   │   ├── auth.service.ts
+│   │   │   ├── company.service.ts
+│   │   │   ├── document.service.ts
+│   │   │   ├── laboratory.service.ts
+│   │   │   ├── localPrescription.service.ts
+│   │   │   ├── mascarade.service.ts
+│   │   │   ├── mockApiClient.ts
+│   │   │   ├── notice.service.ts
+│   │   │   ├── notification.service.ts
+│   │   │   ├── prescription.service.ts
+│   │   │   ├── programmingPlan.service.ts
+│   │   │   ├── region.service.ts
+│   │   │   ├── sample.service.ts
+│   │   │   └── user.service.ts
+│   │   ├── store
+│   │   │   ├── reducers
+│   │   │   │   ├── authSlice.tsx
+│   │   │   │   ├── prescriptionsSlice.tsx
+│   │   │   │   ├── programmingPlanSlice.tsx
+│   │   │   │   └── samplesSlice.tsx
+│   │   │   └── store.tsx
+│   │   ├── utils
+│   │   │   ├── config.ts
+│   │   │   ├── fetchUtils.ts
+│   │   │   ├── stringUtils.test.ts
+│   │   │   └── stringUtils.ts
+│   │   └── views
+│   │       ├── AdminView
+│   │       │   ├── AdminView.stories.tsx
+│   │       │   ├── AdminView.tsx
+│   │       │   ├── AdminViewDashboardNotice.tsx
+│   │       │   └── AdminViewRootNotice.tsx
+│   │       ├── DashboardView
+│   │       │   ├── Dashboard.scss
+│   │       │   ├── DashboardNoticeAndActions.tsx
+│   │       │   ├── DashboardPrescriptions.tsx
+│   │       │   ├── DashboardPriorityActions.tsx
+│   │       │   ├── DashboardView.stories.tsx
+│   │       │   ├── DashboardView.tsx
+│   │       │   ├── ProgrammingPlanCard.tsx
+│   │       │   ├── ProgrammingPlanClosing.tsx
+│   │       │   └── ProgrammingPlanMap.tsx
+│   │       ├── DocumentListView
+│   │       │   ├── DocumentCard
+│   │       │   │   ├── DocumentCard.scss
+│   │       │   │   ├── DocumentCard.stories.tsx
+│   │       │   │   └── DocumentCard.tsx
+│   │       │   ├── DocumentListTabContent
+│   │       │   │   └── DocumentListTabContent.tsx
+│   │       │   ├── DocumentListView.stories.tsx
+│   │       │   ├── DocumentListView.tsx
+│   │       │   └── DocumentTable.tsx
+│   │       ├── DocumentView
+│   │       │   ├── DocumentView.stories.tsx
+│   │       │   └── DocumentView.tsx
+│   │       ├── HomeView
+│   │       │   ├── HomeView.scss
+│   │       │   ├── HomeView.tsx
+│   │       │   └── HomeViewContainer.stories.tsx
+│   │       ├── LoginCallbackView
+│   │       │   └── LoginCallbackView.tsx
+│   │       ├── LogoutCallbackView
+│   │       │   └── LogoutCallbackView.tsx
+│   │       ├── NotificationsView
+│   │       │   ├── NotificationsView.scss
+│   │       │   └── NotificationsView.tsx
+│   │       ├── OpenApiExplorer
+│   │       │   └── OpenApiExplorerView.tsx
+│   │       ├── ProgrammingView
+│   │       │   ├── ProgrammingCommentList
+│   │       │   │   └── ProgrammingCommentList.tsx
+│   │       │   ├── ProgrammingInstructions
+│   │       │   │   ├── ProgrammingInstructions.scss
+│   │       │   │   └── ProgrammingInstructions.tsx
+│   │       │   ├── ProgrammingPlanDepartmentalValidationList
+│   │       │   │   └── ProgrammingPlanDepartmentalValidationList.tsx
+│   │       │   ├── ProgrammingPlanRegionalValidationList
+│   │       │   │   └── ProgrammingPlanRegionalValidationList.tsx
+│   │       │   ├── ProgrammingPrescriptionFilters
+│   │       │   │   └── ProgrammingPrescriptionFilters.tsx
+│   │       │   ├── ProgrammingPrescriptionList
+│   │       │   │   ├── ProgrammingPrescriptionList.scss
+│   │       │   │   ├── ProgrammingPrescriptionList.tsx
+│   │       │   │   ├── ProgrammingPrescriptionListGroupedUpdate.tsx
+│   │       │   │   └── ProgrammingPrescriptionListHeader.tsx
+│   │       │   ├── ProgrammingPrescriptionTable
+│   │       │   │   ├── ProgrammingLocalPrescriptionTable.tsx
+│   │       │   │   └── ProgrammingRegionalPrescriptionTable.tsx
+│   │       │   ├── ProgrammingView.tsx
+│   │       │   └── stories
+│   │       │       ├── ProgrammingViewDAOAInProgress.stories.tsx
+│   │       │       ├── ProgrammingViewDAOASubmittedToDepartments.stories.tsx
+│   │       │       ├── ProgrammingViewDAOASubmittedToRegion.stories.tsx
+│   │       │       ├── ProgrammingViewDAOAValidated.stories.tsx
+│   │       │       ├── ProgrammingViewPPVApprovedByRegion.stories.tsx
+│   │       │       ├── ProgrammingViewPPVInProgress.stories.tsx
+│   │       │       ├── ProgrammingViewPPVSubmittedToRegion.stories.tsx
+│   │       │       └── ProgrammingViewPPVValidated.stories.tsx
+│   │       ├── SampleListView
+│   │       │   ├── SampleList.scss
+│   │       │   ├── SampleListHeader.tsx
+│   │       │   ├── SampleListView.tsx
+│   │       │   ├── SamplePrimaryFilters.tsx
+│   │       │   └── SampleSecondaryFilters.tsx
+│   │       ├── SampleView
+│   │       │   ├── DraftSample
+│   │       │   │   ├── ContextStep
+│   │       │   │   │   ├── ContextStep.stories.tsx
+│   │       │   │   │   ├── ContextStep.tsx
+│   │       │   │   │   ├── SampleCompany.tsx
+│   │       │   │   │   └── SampleGeolocation.tsx
+│   │       │   │   ├── DraftSample.tsx
+│   │       │   │   ├── ItemsStep
+│   │       │   │   │   ├── ItemsStep.stories.tsx
+│   │       │   │   │   └── ItemsStep.tsx
+│   │       │   │   ├── MatrixStep
+│   │       │   │   │   ├── MatrixSpecificDataFormInput.tsx
+│   │       │   │   │   ├── MatrixStep.tsx
+│   │       │   │   │   └── stories
+│   │       │   │   │       ├── MatrixStepPPV.stories.tsx
+│   │       │   │   │       └── MatrixStepPPVOusideProgrammingPlan.stories.tsx
+│   │       │   │   ├── NextButton.tsx
+│   │       │   │   ├── PreviousButton.tsx
+│   │       │   │   ├── SendingStep
+│   │       │   │   │   ├── SendingModal.tsx
+│   │       │   │   │   ├── SendingStep.stories.tsx
+│   │       │   │   │   └── SendingStep.tsx
+│   │       │   │   └── SupportDocumentDownload.tsx
+│   │       │   ├── SampleAnalysis
+│   │       │   │   ├── SampleAdmissibility
+│   │       │   │   │   ├── SampleAdmissibility.scss
+│   │       │   │   │   ├── SampleAdmissibility.tsx
+│   │       │   │   │   ├── SampleAdmissibilityEditModal.tsx
+│   │       │   │   │   └── SampleAdmissibilityForm.tsx
+│   │       │   │   ├── SampleAnalysis.scss
+│   │       │   │   ├── SampleAnalysis.stories.tsx
+│   │       │   │   ├── SampleAnalysis.tsx
+│   │       │   │   ├── SampleAnalysisForm
+│   │       │   │   │   ├── AnalysisComplianceForm.tsx
+│   │       │   │   │   ├── AnalysisDocumentModal.tsx
+│   │       │   │   │   ├── AnalysisDocumentPreview.stories.tsx
+│   │       │   │   │   ├── AnalysisDocumentPreview.tsx
+│   │       │   │   │   ├── ResidueComplexForm.tsx
+│   │       │   │   │   ├── ResidueInterpretationForm.tsx
+│   │       │   │   │   ├── ResidueResultForm.tsx
+│   │       │   │   │   ├── ResidueSimpleForm.tsx
+│   │       │   │   │   ├── SampleAnalysisForm.stories.tsx
+│   │       │   │   │   └── SampleAnalysisForm.tsx
+│   │       │   │   └── SampleAnalysisOverview
+│   │       │   │       ├── ResidueComplianceIcon.tsx
+│   │       │   │       ├── ResidueListResult.scss
+│   │       │   │       ├── ResidueListResult.tsx
+│   │       │   │       ├── ResidueResultOverview.scss
+│   │       │   │       ├── ResidueResultOverview.tsx
+│   │       │   │       ├── ResiduesSummary.tsx
+│   │       │   │       ├── SampleAnalysisOverview.stories.tsx
+│   │       │   │       └── SampleAnalysisOverview.tsx
+│   │       │   ├── SampleOverview
+│   │       │   │   ├── SampleOverview.scss
+│   │       │   │   ├── SampleOverview.tsx
+│   │       │   │   └── SampleOverviewContextTab.tsx
+│   │       │   ├── SampleView.scss
+│   │       │   ├── SampleView.tsx
+│   │       │   ├── SavedAlert.tsx
+│   │       │   └── StepSummary
+│   │       │       ├── ContextStepSummary.tsx
+│   │       │       ├── ItemsStepSummary.tsx
+│   │       │       ├── MatrixStepSummary.tsx
+│   │       │       └── StepSummary.tsx
+│   │       └── UserListView
+│   │           ├── UserListView.stories.tsx
+│   │           ├── UserListView.tsx
+│   │           └── components
+│   │               ├── UserCard.scss
+│   │               ├── UserCard.stories.tsx
+│   │               ├── UserCard.tsx
+│   │               ├── UserModal.tsx
+│   │               ├── UsersFilterTags.tsx
+│   │               └── UsersFilters.tsx
+│   ├── tsconfig.json
+│   ├── vite-env.d.ts
+│   └── vite.config.ts
+├── knip.ts
+├── package-lock.json
+├── package.json
+├── scalingo.json
+├── scripts
+│   └── backup_db.sh
+├── server
+│   ├── .npmrc
+│   ├── apidoc
+│   │   └── openapi-schema.ts
+│   ├── controllers
+│   │   ├── analysisController.ts
+│   │   ├── analysisReportDocumentsController.ts
+│   │   ├── authController.ts
+│   │   ├── checkLaboratoryEmailsController.ts
+│   │   ├── companyController.ts
+│   │   ├── documentController.ts
+│   │   ├── laboratoryController.ts
+│   │   ├── localPrescriptionController.ts
+│   │   ├── mascaradeController.ts
+│   │   ├── noticeController.ts
+│   │   ├── notificationController.ts
+│   │   ├── prescriptionController.ts
+│   │   ├── programmingPlanController.ts
+│   │   ├── sampleController.integration.test.ts
+│   │   ├── sampleController.ts
+│   │   └── userController.ts
+│   ├── data
+│   │   └── regions.json
+│   ├── database
+│   │   ├── migrations
+│   │   │   ├── 001-uuid-extension.ts
+│   │   │   ├── 002-users.ts
+│   │   │   ├── 003-laboratories.ts
+│   │   │   ├── 004-programming-plans.ts
+│   │   │   ├── 005-companies.ts
+│   │   │   ├── 006-samples.ts
+│   │   │   ├── 007-sample-sequence-numbers.ts
+│   │   │   ├── 008-prescriptions.ts
+│   │   │   ├── 009-documents.ts
+│   │   │   ├── 010-sample-items.ts
+│   │   │   ├── 011-substances.ts
+│   │   │   ├── 012-substance-analysis.ts
+│   │   │   ├── 013-analysis.ts
+│   │   │   ├── 014-analysis-residues.ts
+│   │   │   ├── 015-residue-analytes.ts
+│   │   │   ├── 016-offline-samples.ts
+│   │   │   ├── 017-programming-plans-grouping.ts
+│   │   │   ├── 018-regional-prescriptions.ts
+│   │   │   ├── 019-regional-prescription-comments.ts
+│   │   │   ├── 020-prescription-substance-analysis.ts
+│   │   │   ├── 021-samples-prescription-id.ts
+│   │   │   ├── 022-programming-plans-status-drom.ts
+│   │   │   ├── 023-prescription-notes.ts
+│   │   │   ├── 024-users-email-unique.ts
+│   │   │   ├── 025-analysis-residues-method.ts
+│   │   │   ├── 026-sample-owner-data.ts
+│   │   │   ├── 027-analysis-residues.ts
+│   │   │   ├── 028-prescription-matrix-kind.ts
+│   │   │   ├── 029-programming-plan-regional-status.ts
+│   │   │   ├── 030-notifications.ts
+│   │   │   ├── 031-analysis-errors.ts
+│   │   │   ├── 031-sample-documents.ts
+│   │   │   ├── 032-analysis-delete-kind.ts
+│   │   │   ├── 032-pfas-updates.ts
+│   │   │   ├── 033-analysis-residues-result-kind-nd.ts
+│   │   │   ├── 033-user-role.ts
+│   │   │   ├── 033-users-logged-secrets.ts
+│   │   │   ├── 034-sample-nullable-cols.ts
+│   │   │   ├── 035-laboratory-email-analysis-result.ts
+│   │   │   ├── 036-laboratorie-emails.ts
+│   │   │   ├── 037-sample-unique-reference.ts
+│   │   │   ├── 038-company-department.ts
+│   │   │   ├── 039-analysis-notes.ts
+│   │   │   ├── 039-programming-plan-regional-status.ts
+│   │   │   ├── 040-residu-phosphonic-acid.ts
+│   │   │   ├── 041-change-notification-links.ts
+│   │   │   ├── 041-departments.ts
+│   │   │   ├── 042-delete-completed-not-conform.ts
+│   │   │   ├── 043-sample-outside-programming-plan.ts
+│   │   │   ├── 043_prescription-substances-drop-index.ts
+│   │   │   ├── 044-residu-ethephon.ts
+│   │   │   ├── 045-residu-date-analysis.ts
+│   │   │   ├── 046-residu-result-kind-non-null.ts
+│   │   │   ├── 047-programming-plan-closed-at.ts
+│   │   │   ├── 048-analysis-report-document-ids.ts
+│   │   │   ├── 049-notices.ts
+│   │   │   ├── 050-sample-cleanup.ts
+│   │   │   ├── 051-sample-fix-culture-kind.ts
+│   │   │   ├── 052-notices-dashboard.ts
+│   │   │   ├── 053-daoa-updates.ts
+│   │   │   ├── 054-regional-prescriptions.ts
+│   │   │   ├── 054-user-name.ts
+│   │   │   ├── 055-analysis-email-date.ts
+│   │   │   ├── 056-laboratory-address.ts
+│   │   │   ├── 056-programming-plan-additional.ts
+│   │   │   ├── 057-prescription-programming-instruction.ts
+│   │   │   ├── 057-user-name-null.ts
+│   │   │   ├── 058-user-department.ts
+│   │   │   ├── 059-local-prescriptions.ts
+│   │   │   ├── 060-company-additional.ts
+│   │   │   ├── 061-local-prescription-substance-kinds-laboratories.ts
+│   │   │   ├── 062-sample-items-laboratory.ts
+│   │   │   ├── 063-user-companies.ts
+│   │   │   ├── 064-local-status.ts
+│   │   │   ├── 065-user-disabled.ts
+│   │   │   ├── 066-user-role-sampler.ts
+│   │   │   ├── 067-user-admin-plan.ts
+│   │   │   ├── 068-company-kinds.ts
+│   │   │   ├── 069-prescription-matrix.ts
+│   │   │   ├── 070-documents.ts
+│   │   │   ├── 070-programming-legal-contexts.ts
+│   │   │   ├── 071-sample-shipping-date.ts
+│   │   │   ├── 072-laboratory-edi-sacha.ts
+│   │   │   ├── 072-user-roles.ts
+│   │   │   ├── 073-laboratory-residue-mappings.ts
+│   │   │   ├── 073-sample-additional-sampler.ts
+│   │   │   ├── 074-efsa-references.ts
+│   │   │   └── 074-laboratory-agreements.ts
+│   │   └── seeds
+│   │       ├── departments
+│   │       │   ├── departmentsSeed.ts
+│   │       │   └── script.ts
+│   │       ├── dummy
+│   │       │   ├── 001-companies.ts
+│   │       │   ├── 002-laboratories.ts
+│   │       │   ├── 003-users.ts
+│   │       │   ├── 004-programming-plans.ts
+│   │       │   ├── 005-prescriptions-daoa.ts
+│   │       │   ├── 005-prescriptions-ppv.ts
+│   │       │   ├── 006-samples.ts
+│   │       │   ├── 007-substance-analysis.ts
+│   │       │   ├── 008-laboratory-agreements.ts
+│   │       │   ├── 009-documents.ts
+│   │       │   └── index.ts
+│   │       └── laboratories
+│   │           ├── laboratoriesSeed.ts
+│   │           └── script.ts
+│   ├── errors
+│   │   └── routeNotFoundError.ts
+│   ├── eslint.config.mjs
+│   ├── index.ts
+│   ├── knexfile.ts
+│   ├── middlewares
+│   │   ├── checks
+│   │   │   ├── authCheck.ts
+│   │   │   ├── localPrescriptionCheck.ts
+│   │   │   ├── prescriptionCheck.ts
+│   │   │   ├── programmingPlanCheck.ts
+│   │   │   └── sampleCheck.ts
+│   │   ├── error-handler.ts
+│   │   ├── test
+│   │   │   ├── authCheck.test.ts
+│   │   │   ├── error-handler.test.ts
+│   │   │   └── validator.test.ts
+│   │   └── validator.ts
+│   ├── package.json
+│   ├── repositories
+│   │   ├── analysisErrorsRepository.test.ts
+│   │   ├── analysisErrorsRepository.ts
+│   │   ├── analysisReportDocumentsRepository.test.ts
+│   │   ├── analysisReportDocumentsRepository.ts
+│   │   ├── analysisRepository.test.ts
+│   │   ├── analysisRepository.ts
+│   │   ├── analysisResidueRepository.ts
+│   │   ├── companyRepository.test.ts
+│   │   ├── companyRepository.ts
+│   │   ├── db.ts
+│   │   ├── departmentRepository.test.ts
+│   │   ├── departmentRepository.ts
+│   │   ├── documentRepository.ts
+│   │   ├── kysely.ts
+│   │   ├── kysely.type.ts
+│   │   ├── laboratoryRepository.test.ts
+│   │   ├── laboratoryRepository.ts
+│   │   ├── laboratoryResidueMappingRepository.ts
+│   │   ├── localPrescriptionCommentRepository.ts
+│   │   ├── localPrescriptionRepository.ts
+│   │   ├── localPrescriptionSubstanceKindLaboratoryRepository.ts
+│   │   ├── noticesRepository.test.ts
+│   │   ├── noticesRepository.ts
+│   │   ├── notificationRepository.ts
+│   │   ├── prescriptionRepository.ts
+│   │   ├── prescriptionSubstanceRepository.ts
+│   │   ├── programmingPlanRepository.ts
+│   │   ├── residueAnalyteRepository.ts
+│   │   ├── sachaResidueMappingRepository.test.ts
+│   │   ├── sachaResidueMappingRepository.ts
+│   │   ├── sampleItemRepository.ts
+│   │   ├── sampleRepository.test.ts
+│   │   ├── sampleRepository.ts
+│   │   ├── userRepository.test.ts
+│   │   └── userRepository.ts
+│   ├── routers
+│   │   ├── address.router.ts
+│   │   ├── company.router.ts
+│   │   ├── m2mProtected.ts
+│   │   ├── protected.ts
+│   │   ├── routes.type.ts
+│   │   ├── test
+│   │   │   ├── analysis.router.test.ts
+│   │   │   ├── analysisReportDocuments.router.test.ts
+│   │   │   ├── auth.router.test.ts
+│   │   │   ├── companies.router.test.ts
+│   │   │   ├── company.router.test.ts
+│   │   │   ├── document.router.test.ts
+│   │   │   ├── laboratory.router.test.ts
+│   │   │   ├── localPrescription.router.test.ts
+│   │   │   ├── notices.router.test.ts
+│   │   │   ├── notification.router.test.ts
+│   │   │   ├── prescription.router.test.ts
+│   │   │   ├── programmingPlan.router.test.ts
+│   │   │   ├── sample.router.test.ts
+│   │   │   └── user.router.test.ts
+│   │   └── unprotected.ts
+│   ├── scripts
+│   │   ├── searchBadLMR.ts
+│   │   ├── searchResidueComplexWithoutAnalyte.ts
+│   │   └── updateSSD2Referential.ts
+│   ├── sentry.mjs
+│   ├── server.test.ts
+│   ├── server.ts
+│   ├── services
+│   │   ├── authService
+│   │   │   ├── authService.ts
+│   │   │   ├── index.ts
+│   │   │   └── openIdClientService.ts
+│   │   ├── csvService
+│   │   │   ├── csvService.test.ts
+│   │   │   └── csvService.ts
+│   │   ├── documentService.ts
+│   │   ├── ediSacha
+│   │   │   ├── __snapshots__
+│   │   │   │   └── sachaValidator.test.ts.snap
+│   │   │   ├── example-an-1.xml
+│   │   │   ├── example-an-2.xml
+│   │   │   ├── example-rai-1.xml
+│   │   │   ├── example-rai-2.xml
+│   │   │   ├── sachaDAI.ts
+│   │   │   ├── sachaReferential.ts
+│   │   │   ├── sachaSender.ts
+│   │   │   ├── sachaToXML.test.ts
+│   │   │   ├── sachaToXML.ts
+│   │   │   ├── sachaValidator.test.ts
+│   │   │   ├── sachaValidator.ts
+│   │   │   ├── schema.xsd
+│   │   │   └── sftpService.ts
+│   │   ├── excelService
+│   │   │   ├── excelService.test.ts
+│   │   │   └── excelService.ts
+│   │   ├── gpgService.ts
+│   │   ├── imapService
+│   │   │   ├── analysis-handler.integration.test.ts
+│   │   │   ├── analysis-handler.ts
+│   │   │   ├── extractError.ts
+│   │   │   ├── index.ts
+│   │   │   ├── laborartories
+│   │   │   │   ├── capinov.test.ts
+│   │   │   │   ├── capinov.ts
+│   │   │   │   ├── cereco
+│   │   │   │   │   ├── cereco.test.ts
+│   │   │   │   │   ├── cereco.ts
+│   │   │   │   │   └── example.xls
+│   │   │   │   ├── girpa.test.ts
+│   │   │   │   ├── girpa.ts
+│   │   │   │   ├── inovalys.test.ts
+│   │   │   │   └── inovalys.ts
+│   │   │   ├── script.ts
+│   │   │   ├── tryToFixUnknownLabels.integration.test.ts
+│   │   │   ├── tryToFixUnknownLabels.ts
+│   │   │   ├── utils.test.ts
+│   │   │   └── utils.ts
+│   │   ├── kafkaService.ts
+│   │   ├── mailService
+│   │   │   ├── brevoService.ts
+│   │   │   ├── fakeService.ts
+│   │   │   ├── index.ts
+│   │   │   ├── mailService.ts
+│   │   │   └── nodemailerService.ts
+│   │   ├── mattermostService.ts
+│   │   ├── notificationService.ts
+│   │   ├── pdfService
+│   │   │   └── pdfService.ts
+│   │   ├── s3Service.ts
+│   │   └── zipService.ts
+│   ├── templates
+│   │   ├── analysisRequest
+│   │   │   └── analysisRequest.xlsx
+│   │   ├── assets
+│   │   │   ├── food.svg
+│   │   │   ├── hands.svg
+│   │   │   ├── logo.svg
+│   │   │   └── programmation.svg
+│   │   ├── prescriptionsExport
+│   │   │   └── prescriptionsExport.xls
+│   │   ├── samplesExport
+│   │   │   └── samplesExport.xls
+│   │   ├── supportDocument
+│   │   │   ├── supportDocument.css
+│   │   │   └── supportDocument.hbs
+│   │   └── templates.ts
+│   ├── test
+│   │   ├── db-manager.ts
+│   │   ├── seed
+│   │   │   ├── 001-companies.ts
+│   │   │   ├── 002-laboratories.ts
+│   │   │   ├── 003-users.ts
+│   │   │   ├── 004-programming-plans.ts
+│   │   │   ├── 005-prescriptions.ts
+│   │   │   ├── 006-samples.ts
+│   │   │   ├── 007-laboratory-agreements.ts
+│   │   │   └── index.ts
+│   │   ├── setupTests.ts
+│   │   └── testUtils.ts
+│   ├── tsconfig.json
+│   ├── utils
+│   │   ├── config.ts
+│   │   └── test
+│   │       └── config.test.ts
+│   └── vitest.config.ts
+├── shared
+│   ├── .npmrc
+│   ├── constants.ts
+│   ├── errors
+│   │   ├── analysisMissingError.ts
+│   │   ├── authenticationFailedError.ts
+│   │   ├── authenticationMissingError.ts
+│   │   ├── badRequestError.ts
+│   │   ├── documentMissingError.ts
+│   │   ├── httpError.ts
+│   │   ├── localPrescriptionPlanMissingError.ts
+│   │   ├── noRegionError.ts
+│   │   ├── pdfGenerationError.ts
+│   │   ├── prescriptionPlanMissingError.ts
+│   │   ├── programmingPlanMissingError.ts
+│   │   ├── sampleMissingError.ts
+│   │   ├── sendEmailError.ts
+│   │   ├── userMissingError.ts
+│   │   ├── userPermissionMissingError.ts
+│   │   └── userRoleMissingError.ts
+│   ├── package.json
+│   ├── referential
+│   │   ├── AnimalKind.ts
+│   │   ├── AnimalSex.ts
+│   │   ├── BreedingMethod.ts
+│   │   ├── CultureKind.ts
+│   │   ├── Department.ts
+│   │   ├── Laboratory.ts
+│   │   ├── LegalContext.ts
+│   │   ├── Matrix
+│   │   │   ├── Matrix.ts
+│   │   │   ├── MatrixKind.ts
+│   │   │   ├── MatrixLabels.ts
+│   │   │   ├── MatrixListByKind.ts
+│   │   │   └── MatrixPart.ts
+│   │   ├── OptionnalBoolean.ts
+│   │   ├── OutdoorAccess.ts
+│   │   ├── ProductionKind.ts
+│   │   ├── QuantityUnit.ts
+│   │   ├── Region.ts
+│   │   ├── Residue
+│   │   │   ├── Analyte.ts
+│   │   │   ├── SSD2Hierarchy.test.ts
+│   │   │   ├── SSD2Hierarchy.ts
+│   │   │   ├── SSD2Id.ts
+│   │   │   ├── SSD2Referential.test.ts
+│   │   │   ├── SSD2Referential.ts
+│   │   │   └── SandreToSSD2.ts
+│   │   ├── Seizure.ts
+│   │   ├── Species.ts
+│   │   └── Stage.ts
+│   ├── routes
+│   │   ├── analysis.routes.ts
+│   │   ├── auth.routes.ts
+│   │   ├── companies.routes.ts
+│   │   ├── documents.routes.ts
+│   │   ├── laboratories.routes.ts
+│   │   ├── mascarade.routes.ts
+│   │   ├── notices.routes.ts
+│   │   ├── notifications.routes.ts
+│   │   ├── prescriptions.routes.ts
+│   │   ├── programmingPlans.routes.ts
+│   │   ├── routes.ts
+│   │   ├── samples.routes.ts
+│   │   └── users.routes.ts
+│   ├── schema
+│   │   ├── Address
+│   │   │   └── AddressSearchResult.ts
+│   │   ├── Analysis
+│   │   │   ├── Analysis.ts
+│   │   │   ├── AnalysisMethod.ts
+│   │   │   ├── AnalysisRequestData.ts
+│   │   │   ├── AnalysisStatus.ts
+│   │   │   ├── Analyte.ts
+│   │   │   └── Residue
+│   │   │       ├── Residue.test.ts
+│   │   │       ├── Residue.ts
+│   │   │       ├── ResidueCompliance.ts
+│   │   │       ├── ResidueKind.ts
+│   │   │       └── ResultKind.ts
+│   │   ├── AppRouteLinks
+│   │   │   └── AppRouteLinks.ts
+│   │   ├── Auth
+│   │   │   └── AuthRedirectUrl.ts
+│   │   ├── Company
+│   │   │   ├── Company.ts
+│   │   │   ├── CompanyKind.ts
+│   │   │   ├── CompanySearchResult.ts
+│   │   │   └── FindCompanyOptions.ts
+│   │   ├── Document
+│   │   │   ├── Document.ts
+│   │   │   ├── DocumentKind.ts
+│   │   │   └── FindDocumentOptions.ts
+│   │   ├── File
+│   │   │   ├── FileInput.test.ts
+│   │   │   ├── FileInput.ts
+│   │   │   └── FileType.ts
+│   │   ├── Geolocation
+│   │   │   └── Geolocation.ts
+│   │   ├── Laboratory
+│   │   │   ├── FindLaboratoryOptions.ts
+│   │   │   └── Laboratory.ts
+│   │   ├── LocalPrescription
+│   │   │   ├── FindLocalPrescriptionOptions.ts
+│   │   │   ├── LocalPrescription.ts
+│   │   │   ├── LocalPrescriptionComment.ts
+│   │   │   ├── LocalPrescriptionKey.ts
+│   │   │   └── LocalPrescriptionSubstanceKindLaboratory.ts
+│   │   ├── MatrixSpecificData
+│   │   │   ├── MatrixSpecificDataForm.ts
+│   │   │   └── MatrixSpecificDataFormInputs.ts
+│   │   ├── Notice
+│   │   │   └── Notice.ts
+│   │   ├── Notification
+│   │   │   ├── FindNotificationOptions.ts
+│   │   │   ├── Notification.ts
+│   │   │   └── NotificationCategory.ts
+│   │   ├── Prescription
+│   │   │   ├── FindPrescriptionOptions.ts
+│   │   │   ├── Prescription.ts
+│   │   │   ├── PrescriptionComments.ts
+│   │   │   └── PrescriptionSubstance.ts
+│   │   ├── ProgrammingPlan
+│   │   │   ├── Context.ts
+│   │   │   ├── DistributionKind.ts
+│   │   │   ├── FindProgrammingPlanOptions.ts
+│   │   │   ├── ProgrammingPlanDomain.ts
+│   │   │   ├── ProgrammingPlanKind.ts
+│   │   │   ├── ProgrammingPlanLocalStatus.ts
+│   │   │   ├── ProgrammingPlanStatus.ts
+│   │   │   └── ProgrammingPlans.ts
+│   │   ├── Sample
+│   │   │   ├── FindSampleOptions.ts
+│   │   │   ├── Sample.ts
+│   │   │   ├── SampleItem.ts
+│   │   │   ├── SampleItemRecipientKind.ts
+│   │   │   ├── SampleMatrixSpecificData.ts
+│   │   │   └── SampleStatus.ts
+│   │   ├── Substance
+│   │   │   └── SubstanceKind.ts
+│   │   ├── User
+│   │   │   ├── AuthUser.ts
+│   │   │   ├── FindUserOptions.ts
+│   │   │   ├── TokenPayload.ts
+│   │   │   ├── User.ts
+│   │   │   ├── UserPermission.ts
+│   │   │   └── UserRole.ts
+│   │   └── commons
+│   │       └── Pagination.ts
+│   ├── test
+│   │   ├── analysisFixtures.ts
+│   │   ├── authFixtures.ts
+│   │   ├── companyFixtures.ts
+│   │   ├── documentFixtures.ts
+│   │   ├── laboratoryFixtures.ts
+│   │   ├── notificationFixtures.ts
+│   │   ├── prescriptionFixtures.ts
+│   │   ├── programmingPlanFixtures.ts
+│   │   ├── regionalPrescriptionCommentFixture.ts
+│   │   ├── sampleFixtures.ts
+│   │   ├── testFixtures.ts
+│   │   ├── userFixtures.ts
+│   │   └── utils.ts
+│   ├── tsconfig.json
+│   ├── utils
+│   │   ├── date.ts
+│   │   ├── typescript.ts
+│   │   ├── utils.test.ts
+│   │   └── utils.ts
+│   └── vitest.config.ts
+├── test
+│   ├── setupFakerJS.ts
+│   └── vitest-random-seed.ts
+├── tsconfig.json
+└── types
+    ├── env.d.ts
+    └── express-jwt
+        └── index.d.ts
+196 directories, 755 files
