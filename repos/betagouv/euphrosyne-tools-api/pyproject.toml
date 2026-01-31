@@ -1,0 +1,45 @@
+[tool.ruff]
+line-length = 88
+exclude = [
+  "venv",
+  ".ruff_cache",
+  ".pytest_cache",
+  ".mypy_cache",
+  "__pycache__"
+]
+
+[tool.ruff.pylint]
+max-args = 6
+
+[tool.black]
+line-length = 88
+exclude = '''
+/(
+    \.git
+  | \.mypy_cache
+  | \.pytest_cache
+  | \.venv
+  | __pycache__
+  | build
+  | dist
+  | venv
+)/
+'''
+
+[tool.mypy]
+mypy_path = "stubs"
+plugins = [
+  "pydantic.mypy"
+]
+
+[[tool.mypy.overrides]]
+module="azure.mgmt.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module="azure.storage.file.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module="h5grove.*"
+ignore_missing_imports = true
