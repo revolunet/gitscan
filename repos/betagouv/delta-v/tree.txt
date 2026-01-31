@@ -1,0 +1,1748 @@
+.
+├── .clever.json
+├── .github
+│   ├── dependabot.yml
+│   └── workflows
+│       ├── back-ci.yml
+│       ├── dependency-review.yml
+│       └── front-ci.yml
+├── .gitignore
+├── .husky
+│   └── pre-push
+├── .vscode
+│   └── settings.json
+├── CONTRIBUTING.md
+├── LICENSE
+├── ONBOARDING.md
+├── README.md
+├── adminerPlugins
+│   └── login-servers.php
+├── back
+│   ├── .eslintrc.js
+│   ├── .prettierrc.js
+│   ├── __mocks__
+│   │   └── axios.ts
+│   ├── build.sh
+│   ├── fixtures
+│   │   ├── actuality.yaml
+│   │   ├── declaration.yaml
+│   │   ├── processor
+│   │   │   ├── actualityProcessor.ts
+│   │   │   ├── declarationProcessor.ts
+│   │   │   ├── productProcessor.ts
+│   │   │   └── userProcessor.ts
+│   │   ├── product.yaml
+│   │   └── user.yaml
+│   ├── jest.config.ts
+│   ├── mjml
+│   │   ├── README.md
+│   │   └── templates
+│   │       └── base.template.mjml
+│   ├── nodemon.json
+│   ├── package.json
+│   ├── src
+│   │   ├── api
+│   │   │   ├── actuality
+│   │   │   │   ├── getActualities
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── route.ts
+│   │   │   │   │   ├── serializer.ts
+│   │   │   │   │   ├── service.ts
+│   │   │   │   │   └── validator.ts
+│   │   │   │   └── index.ts
+│   │   │   ├── authentication
+│   │   │   │   ├── agentConnect
+│   │   │   │   │   ├── authenticate
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   ├── route.ts
+│   │   │   │   │   │   ├── service.ts
+│   │   │   │   │   │   └── validator.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── initiate
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   ├── route.ts
+│   │   │   │   │   │   └── service.ts
+│   │   │   │   │   ├── logout
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   ├── route.ts
+│   │   │   │   │   │   └── service.ts
+│   │   │   │   │   ├── logoutCallback
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   ├── route.ts
+│   │   │   │   │   │   ├── service.ts
+│   │   │   │   │   │   └── validator.ts
+│   │   │   │   │   └── refresh
+│   │   │   │   │       ├── index.ts
+│   │   │   │   │       ├── route.ts
+│   │   │   │   │       ├── service.ts
+│   │   │   │   │       └── validator.ts
+│   │   │   │   ├── common
+│   │   │   │   │   ├── const
+│   │   │   │   │   │   └── regex.ts
+│   │   │   │   │   └── services
+│   │   │   │   │       ├── getAndCheckUser.service.ts
+│   │   │   │   │       ├── password.service.ts
+│   │   │   │   │       └── validationToken.service.ts
+│   │   │   │   └── index.ts
+│   │   │   ├── common
+│   │   │   │   ├── enums
+│   │   │   │   │   ├── author.enum.ts
+│   │   │   │   │   ├── countries.enum.ts
+│   │   │   │   │   ├── errorCodes.enum.ts
+│   │   │   │   │   ├── meansOfTransport.enum.ts
+│   │   │   │   │   ├── mimeTypes.ts
+│   │   │   │   │   └── responseCodes.enum.ts
+│   │   │   │   ├── errors
+│   │   │   │   │   ├── badCredentials.error.ts
+│   │   │   │   │   ├── currencyNotFound.error.ts
+│   │   │   │   │   ├── currencyServerUnavailable.error.ts
+│   │   │   │   │   ├── declarationCreateForbidden.error.ts
+│   │   │   │   │   ├── declarationNotFound.error.ts
+│   │   │   │   │   ├── declarationStatusChangeCustomProductForbidden.error.ts
+│   │   │   │   │   ├── declarationStatusChangeForbidden.error.ts
+│   │   │   │   │   ├── emailNotProvided.error.ts
+│   │   │   │   │   ├── favoriteNotFound.error.ts
+│   │   │   │   │   ├── invalidJwt.error.ts
+│   │   │   │   │   ├── invalidToken.error.ts
+│   │   │   │   │   ├── noProductToSimulate.error.ts
+│   │   │   │   │   ├── productNotFound.error.ts
+│   │   │   │   │   ├── unauthorizedEmail.error.ts
+│   │   │   │   │   ├── userAlreadyEnabled.error.ts
+│   │   │   │   │   ├── userAlreadyExist.error.ts
+│   │   │   │   │   ├── userBlocked.error.ts
+│   │   │   │   │   ├── userNotEnabled.error.ts
+│   │   │   │   │   └── userNotFound.error.ts
+│   │   │   │   └── services
+│   │   │   │       ├── alcohol
+│   │   │   │       │   └── alcoholTaxCalculator.ts
+│   │   │   │       ├── amountProducts
+│   │   │   │       │   ├── alcohol
+│   │   │   │       │   │   ├── alcohol.service.ts
+│   │   │   │       │   │   ├── alcoholExceed.service.ts
+│   │   │   │       │   │   └── maximum.services.ts
+│   │   │   │       │   ├── globalAmount.service.ts
+│   │   │   │       │   └── tobacco
+│   │   │   │       │       ├── maximum.services.ts
+│   │   │   │       │       ├── tobacco.service.ts
+│   │   │   │       │       └── tobaccoExceed.service.ts
+│   │   │   │       ├── currencies
+│   │   │   │       │   ├── getCurrencies.service.ts
+│   │   │   │       │   └── index.ts
+│   │   │   │       ├── declaration
+│   │   │   │       │   ├── getTaxesDataFromDeclaration.service.ts
+│   │   │   │       │   └── index.ts
+│   │   │   │       ├── detailedShoppingProduct
+│   │   │   │       │   ├── detailedShoppingProducts.ts
+│   │   │   │       │   └── index.ts
+│   │   │   │       ├── knapsack.service.ts
+│   │   │   │       ├── product
+│   │   │   │       │   └── getMatchingProducts.service.ts
+│   │   │   │       ├── shoppingProducts
+│   │   │   │       │   └── index.ts
+│   │   │   │       ├── tobacco
+│   │   │   │       │   └── tobaccoTaxCalculator.ts
+│   │   │   │       ├── traveler
+│   │   │   │       │   └── index.ts
+│   │   │   │       └── valueProducts
+│   │   │   │           ├── franchise.service.ts
+│   │   │   │           ├── freeProduct.service.ts
+│   │   │   │           └── index.ts
+│   │   │   ├── currency
+│   │   │   │   ├── common
+│   │   │   │   │   ├── serializer.ts
+│   │   │   │   │   └── services
+│   │   │   │   │       ├── currencySerializer.service.ts
+│   │   │   │   │       └── getRawCurrencies.service.ts
+│   │   │   │   ├── getAll
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── route.ts
+│   │   │   │   │   ├── serializer.ts
+│   │   │   │   │   └── service.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   └── refreshCurrencies
+│   │   │   │       ├── index.ts
+│   │   │   │       ├── route.ts
+│   │   │   │       ├── serializer.ts
+│   │   │   │       └── service.ts
+│   │   │   ├── declaration
+│   │   │   │   ├── common
+│   │   │   │   │   └── serializer
+│   │   │   │   │       ├── declarationSerializer.ts
+│   │   │   │   │       ├── favoriteSerializer.ts
+│   │   │   │   │       └── valueProductSerializer.ts
+│   │   │   │   ├── getDeclaration
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── route.ts
+│   │   │   │   │   ├── serializer.ts
+│   │   │   │   │   ├── service.ts
+│   │   │   │   │   └── validator.ts
+│   │   │   │   ├── getDeclarationWithPublicId
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── route.ts
+│   │   │   │   │   ├── serializer.ts
+│   │   │   │   │   ├── service.ts
+│   │   │   │   │   └── validator.ts
+│   │   │   │   ├── getDeclarations
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── route.ts
+│   │   │   │   │   ├── serializer.ts
+│   │   │   │   │   ├── service.ts
+│   │   │   │   │   └── validator.ts
+│   │   │   │   ├── getSimulation
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── route.ts
+│   │   │   │   │   ├── serializer.ts
+│   │   │   │   │   ├── service.ts
+│   │   │   │   │   └── validator.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── patchStatus
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── route.ts
+│   │   │   │   │   ├── serializer.ts
+│   │   │   │   │   ├── service.ts
+│   │   │   │   │   ├── services
+│   │   │   │   │   │   ├── checkCustomProduct.service.ts
+│   │   │   │   │   │   └── checkStatusChange.service.ts
+│   │   │   │   │   └── validator.ts
+│   │   │   │   └── putDeclaration
+│   │   │   │       ├── emailRenderer.ts
+│   │   │   │       ├── index.ts
+│   │   │   │       ├── route.ts
+│   │   │   │       ├── serializer.ts
+│   │   │   │       ├── service.ts
+│   │   │   │       ├── services
+│   │   │   │       │   ├── products.service.ts
+│   │   │   │       │   └── publicId.service.ts
+│   │   │   │       ├── templates
+│   │   │   │       │   └── checkDeclaration.template.hbs
+│   │   │   │       └── validator.ts
+│   │   │   ├── favorite
+│   │   │   │   ├── deleteFavorite
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── route.ts
+│   │   │   │   │   ├── serializer.ts
+│   │   │   │   │   ├── service.ts
+│   │   │   │   │   └── validator.ts
+│   │   │   │   ├── getFavorites
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── route.ts
+│   │   │   │   │   ├── serializer.ts
+│   │   │   │   │   └── service.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   └── putFavorite
+│   │   │   │       ├── index.ts
+│   │   │   │       ├── route.ts
+│   │   │   │       ├── serializer.ts
+│   │   │   │       ├── service.ts
+│   │   │   │       └── validator.ts
+│   │   │   ├── feedback
+│   │   │   │   ├── index.ts
+│   │   │   │   └── putFeedback
+│   │   │   │       ├── emailRenderer.ts
+│   │   │   │       ├── index.ts
+│   │   │   │       ├── route.ts
+│   │   │   │       ├── serializer.ts
+│   │   │   │       ├── service.ts
+│   │   │   │       ├── services
+│   │   │   │       │   ├── resizePicture.service.ts
+│   │   │   │       │   └── s3.service.ts
+│   │   │   │       ├── templates
+│   │   │   │       │   └── putFeedback.template.hbs
+│   │   │   │       └── validator.ts
+│   │   │   ├── index.ts
+│   │   │   └── product
+│   │   │       ├── getAll
+│   │   │       │   ├── index.ts
+│   │   │       │   ├── route.ts
+│   │   │       │   ├── serializer.ts
+│   │   │       │   └── service.ts
+│   │   │       ├── getSearchHistory
+│   │   │       │   ├── index.ts
+│   │   │       │   ├── route.ts
+│   │   │       │   ├── serializer.ts
+│   │   │       │   └── service.ts
+│   │   │       ├── index.ts
+│   │   │       └── putSearchHistory
+│   │   │           ├── index.ts
+│   │   │           ├── route.ts
+│   │   │           ├── serializer.ts
+│   │   │           ├── service.ts
+│   │   │           └── validator.ts
+│   │   ├── core
+│   │   │   ├── agentConnect
+│   │   │   │   ├── client.ts
+│   │   │   │   ├── config.ts
+│   │   │   │   ├── lib.ts
+│   │   │   │   └── service.ts
+│   │   │   ├── buildError.ts
+│   │   │   ├── eventManager
+│   │   │   │   └── eventManager.ts
+│   │   │   ├── httpStatuses.ts
+│   │   │   ├── jwt
+│   │   │   │   ├── AuthObject.ts
+│   │   │   │   ├── generateToken.ts
+│   │   │   │   └── verifyToken.ts
+│   │   │   ├── logger.ts
+│   │   │   ├── mailer
+│   │   │   │   ├── config.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   └── mailer.ts
+│   │   │   ├── middlewares
+│   │   │   │   ├── appErrorHandler.middleware.ts
+│   │   │   │   ├── attachLogger.middleware.ts
+│   │   │   │   ├── bodyParser.middleware.ts
+│   │   │   │   ├── cacheControl.middleware.ts
+│   │   │   │   ├── cors.middleware.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── jwt.middleware.ts
+│   │   │   │   ├── multer.middleware.ts
+│   │   │   │   ├── rateLimiter
+│   │   │   │   │   ├── defaultLimiter.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   └── resendEmailLimiter.ts
+│   │   │   │   └── validation.middleware.ts
+│   │   │   ├── testHelpers
+│   │   │   │   ├── buildFactory.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── testApp.helper.ts
+│   │   │   │   └── validator.helper.ts
+│   │   │   ├── utils
+│   │   │   │   └── validatedExpressRequest.ts
+│   │   │   └── validator.ts
+│   │   ├── emailRenderer
+│   │   │   └── index.ts
+│   │   ├── entities
+│   │   │   ├── currency.entity.ts
+│   │   │   ├── declaration.entity.ts
+│   │   │   ├── favorite.entity.ts
+│   │   │   ├── feedback.entity.ts
+│   │   │   ├── news.entity.ts
+│   │   │   ├── product.entity.ts
+│   │   │   ├── productTaxes.entity.ts
+│   │   │   ├── searchProductHistory.entity.ts
+│   │   │   ├── tobaccoConfig.entity.ts
+│   │   │   └── user.entity.ts
+│   │   ├── index.ts
+│   │   ├── loader
+│   │   │   ├── app.ts
+│   │   │   ├── config.ts
+│   │   │   ├── database.ts
+│   │   │   ├── databaseConfig.ts
+│   │   │   ├── index.ts
+│   │   │   ├── ormconfig.ts
+│   │   │   └── redis.ts
+│   │   ├── migrations
+│   │   │   ├── 1645615639466-setup-product-entity.ts
+│   │   │   ├── 1646585191650-add-taxes-fields-products.ts
+│   │   │   ├── 1653986588730-add-icon-and-final-product.ts
+│   │   │   ├── 1654536695254-add-product-display-type.ts
+│   │   │   ├── 1655282294153-add-radio-values.ts
+│   │   │   ├── 1656147881081-add-related-words-product.ts
+│   │   │   ├── 1656630497288-add-product-position-rank.ts
+│   │   │   ├── 1657701335974-add-product-amount.ts
+│   │   │   ├── 1667051818123-add-table-currency.ts
+│   │   │   ├── 1675335437088-add-declaration.ts
+│   │   │   ├── 1680701785774-change-status-enum-declaration.ts
+│   │   │   ├── 1680702328856-add-feedback-table.ts
+│   │   │   ├── 1681218352889-add-news-table.ts
+│   │   │   ├── 1682939500441-add-user.ts
+│   │   │   ├── 1685977857638-add-declaration-precision.ts
+│   │   │   ├── 1686734038186-update-status.ts
+│   │   │   ├── 1687438097418-delete-author-full-name.ts
+│   │   │   ├── 1687536079784-default-hitory-to-empty-array.ts
+│   │   │   ├── 1687831008897-import-products.ts
+│   │   │   ├── 1688718659525-change-nano-id-size.ts
+│   │   │   ├── 1689349342733-add-can-calculate-taxes-declaration.ts
+│   │   │   ├── 1689460022745-add-status-switch-paper-declaration.ts
+│   │   │   ├── 1702915140336-add-search-product-history.ts
+│   │   │   ├── 1703070702863-add-favorite-table.ts
+│   │   │   ├── 1704289413340-update-favorite-table.ts
+│   │   │   ├── 1704890274630-update-search-product-history-table.ts
+│   │   │   ├── 1706028299978-alter-favorite-table.ts
+│   │   │   ├── 1706545119763-alter-feedback-table-add-url-picture-field.ts
+│   │   │   ├── 1728920277613-add-tobacco-config-entity.ts
+│   │   │   ├── 1734339736176-add-rouded-and-amount-taxes.ts
+│   │   │   ├── 1736168519879-add-alcohol-degree-to-product-table.ts
+│   │   │   └── queries
+│   │   │       └── addProducts
+│   │   │           └── up.sql
+│   │   ├── repositories
+│   │   │   ├── actuality.repository.ts
+│   │   │   ├── currency.repository.ts
+│   │   │   ├── declaration.repository.ts
+│   │   │   ├── favorite.repository.ts
+│   │   │   ├── feedback.repository.ts
+│   │   │   ├── product.repository.ts
+│   │   │   ├── queryBuilders
+│   │   │   │   ├── actuality.queryBuilder.ts
+│   │   │   │   └── declaration.queryBuilder.ts
+│   │   │   ├── searchProductHistory.repository.ts
+│   │   │   └── user.repository.ts
+│   │   ├── scripts
+│   │   │   └── syncCurrency
+│   │   │       ├── index.ts
+│   │   │       ├── script.ts
+│   │   │       └── service.ts
+│   │   ├── static
+│   │   │   └── templates
+│   │   │       └── base.template.hbs
+│   │   └── utils
+│   │       ├── convertToMilliseconds.util.ts
+│   │       ├── country.util.ts
+│   │       ├── currency.util.ts
+│   │       ├── frontUrls.util.ts
+│   │       ├── generateRandomString.ts
+│   │       ├── joiCustomValidators.ts
+│   │       ├── product.util.ts
+│   │       ├── rank.util.ts
+│   │       ├── refine.util.ts
+│   │       ├── refreshTokenExpiration.ts
+│   │       ├── roundedNumber.ts
+│   │       ├── uuidGenerator.util.ts
+│   │       └── zodParser.ts
+│   ├── tests
+│   │   ├── api
+│   │   │   ├── actualities
+│   │   │   │   └── getActualities
+│   │   │   │       ├── integration.test.ts
+│   │   │   │       ├── service.test.ts
+│   │   │   │       └── validator.test.ts
+│   │   │   ├── authentication
+│   │   │   │   └── agentConnect
+│   │   │   │       ├── authenticate
+│   │   │   │       │   ├── integration.test.ts
+│   │   │   │       │   ├── service.test.ts
+│   │   │   │       │   └── validator.test.ts
+│   │   │   │       ├── initiate
+│   │   │   │       │   ├── integration.test.ts
+│   │   │   │       │   └── service.test.ts
+│   │   │   │       ├── logout
+│   │   │   │       │   ├── integration.test.ts
+│   │   │   │       │   └── service.test.ts
+│   │   │   │       ├── logoutCallback
+│   │   │   │       │   ├── integration.test.ts
+│   │   │   │       │   └── service.test.ts
+│   │   │   │       └── refresh
+│   │   │   │           ├── integration.test.ts
+│   │   │   │           ├── service.test.ts
+│   │   │   │           └── validator.test.ts
+│   │   │   ├── common
+│   │   │   │   ├── amountProducts
+│   │   │   │   │   ├── alcohol.service.test.ts
+│   │   │   │   │   ├── alcoholExceed.service.test.ts
+│   │   │   │   │   ├── globalAmount.service.test.ts
+│   │   │   │   │   ├── helpers
+│   │   │   │   │   │   └── getDetailedShoppingProductFromData.ts
+│   │   │   │   │   ├── tobacco.service.test.ts
+│   │   │   │   │   └── tobaccoExceed.service.test.ts
+│   │   │   │   ├── currencies
+│   │   │   │   │   └── getCurrencies.service.test.ts
+│   │   │   │   ├── declaration
+│   │   │   │   │   ├── declaration.serializer.test.ts
+│   │   │   │   │   └── declaration.service.test.ts
+│   │   │   │   ├── detailedShoppingProduct.service.test.ts
+│   │   │   │   ├── s3Service
+│   │   │   │   │   └── s3.service.test.ts
+│   │   │   │   ├── taxes.service.test.ts
+│   │   │   │   └── valueProducts
+│   │   │   │       ├── franchise.service.test.ts
+│   │   │   │       └── freeProducts.service.test.ts
+│   │   │   ├── currency
+│   │   │   │   ├── common
+│   │   │   │   │   └── services
+│   │   │   │   │       └── currencySerializer.service.test.ts
+│   │   │   │   ├── getAll
+│   │   │   │   │   ├── integration.test.ts
+│   │   │   │   │   └── service.test.ts
+│   │   │   │   └── refreshCurrencies
+│   │   │   │       ├── integration.test.ts
+│   │   │   │       └── service.test.ts
+│   │   │   ├── declaration
+│   │   │   │   ├── getDeclaration
+│   │   │   │   │   ├── integration.test.ts
+│   │   │   │   │   ├── service.test.ts
+│   │   │   │   │   └── validator.test.ts
+│   │   │   │   ├── getDeclarationWithPublicId
+│   │   │   │   │   ├── integration.test.ts
+│   │   │   │   │   ├── service.test.ts
+│   │   │   │   │   └── validator.test.ts
+│   │   │   │   ├── getDeclarations
+│   │   │   │   │   ├── integration.test.ts
+│   │   │   │   │   ├── service.test.ts
+│   │   │   │   │   └── validator.test.ts
+│   │   │   │   ├── getSimulation
+│   │   │   │   │   ├── integration.test.ts
+│   │   │   │   │   ├── serializer.test.ts
+│   │   │   │   │   ├── service.test.ts
+│   │   │   │   │   └── validator.test.ts
+│   │   │   │   ├── patchStatus
+│   │   │   │   │   ├── integration.test.ts
+│   │   │   │   │   ├── prepareContext.ts
+│   │   │   │   │   ├── service.test.ts
+│   │   │   │   │   └── validator.test.ts
+│   │   │   │   └── putDeclaration
+│   │   │   │       ├── integration.test.ts
+│   │   │   │       ├── service.test.ts
+│   │   │   │       └── validator.test.ts
+│   │   │   ├── favorite
+│   │   │   │   ├── deleteFavorite
+│   │   │   │   │   ├── integration.test.ts
+│   │   │   │   │   ├── service.test.ts
+│   │   │   │   │   └── validator.test.ts
+│   │   │   │   ├── getFavorites
+│   │   │   │   │   ├── integration.test.ts
+│   │   │   │   │   └── service.test.ts
+│   │   │   │   └── putFavorite
+│   │   │   │       ├── integration.test.ts
+│   │   │   │       ├── service.test.ts
+│   │   │   │       └── validator.test.ts
+│   │   │   ├── feedback
+│   │   │   │   └── putFeedback
+│   │   │   │       ├── assets
+│   │   │   │       │   └── image.jpg
+│   │   │   │       ├── integration.test.ts
+│   │   │   │       ├── service.test.ts
+│   │   │   │       └── validator.test.ts
+│   │   │   └── product
+│   │   │       ├── common
+│   │   │       │   └── serializer.test.ts
+│   │   │       ├── getAll
+│   │   │       │   ├── integration.test.ts
+│   │   │       │   └── service.test.ts
+│   │   │       ├── getSearchHistory
+│   │   │       │   ├── integration.test.ts
+│   │   │       │   └── service.test.ts
+│   │   │       └── putSearchHistory
+│   │   │           ├── integration.test.ts
+│   │   │           ├── service.test.ts
+│   │   │           └── validator.test.ts
+│   │   ├── entities
+│   │   │   └── productTaxes.entity.test.ts
+│   │   ├── helpers
+│   │   │   ├── checkProductTree.ts
+│   │   │   ├── factories
+│   │   │   │   ├── currency.factory.ts
+│   │   │   │   ├── declaration.factory.ts
+│   │   │   │   ├── detailedShoppingProduct.factory.ts
+│   │   │   │   ├── favorite.factory.ts
+│   │   │   │   ├── feedback.factory.ts
+│   │   │   │   ├── news.factory.ts
+│   │   │   │   ├── product.factory.ts
+│   │   │   │   ├── productDeclaration.factory.ts
+│   │   │   │   ├── productTaxes.factory.ts
+│   │   │   │   ├── searchProductHistory.factory.ts
+│   │   │   │   ├── shoppingProduct.factory.ts
+│   │   │   │   ├── travelerData.factory.ts
+│   │   │   │   └── user.factory.ts
+│   │   │   ├── prepareContext
+│   │   │   │   ├── actuality.ts
+│   │   │   │   ├── declaration.ts
+│   │   │   │   ├── declarationData.ts
+│   │   │   │   ├── favorite.ts
+│   │   │   │   ├── product.ts
+│   │   │   │   └── user.ts
+│   │   │   ├── testApp.helper.ts
+│   │   │   ├── testDb.helper.ts
+│   │   │   ├── testRedis.helper.ts
+│   │   │   └── testSessionMiddleware.ts
+│   │   ├── mocks
+│   │   │   ├── actuality.repository.mock.ts
+│   │   │   ├── agentConnect.service.mock.ts
+│   │   │   ├── currency.repository.mock.ts
+│   │   │   ├── declaration.repository.mock.ts
+│   │   │   ├── eventEmitter.mock.ts
+│   │   │   ├── favorite.repository.mock.ts
+│   │   │   ├── feedback.repository.mock.ts
+│   │   │   ├── logger.mock.ts
+│   │   │   ├── product.repository.mock.ts
+│   │   │   ├── s3.service.mock.ts
+│   │   │   ├── searchProductHistory.repository.mock.ts
+│   │   │   └── user.repository.mock.ts
+│   │   ├── repositories
+│   │   │   ├── currency.repository.test.ts
+│   │   │   └── product.repository.test.ts
+│   │   ├── scripts
+│   │   │   └── syncCurrency
+│   │   │       ├── integration.test.ts
+│   │   │       └── service.test.ts
+│   │   ├── services
+│   │   │   └── agentConnectService.test.ts
+│   │   ├── setupTests.ts
+│   │   └── utils
+│   │       ├── prepareContext
+│   │       │   └── product.ts
+│   │       └── product.util.ts
+│   ├── tsconfig.build.json
+│   ├── tsconfig.json
+│   └── yarn.lock
+├── build-back.sh
+├── build-front.sh
+├── clevercloud
+│   └── cron.json
+├── crons
+│   └── syncCurrencies.sh
+├── docker-compose.yml
+├── front
+│   ├── .eslintignore
+│   ├── .eslintrc
+│   ├── .github
+│   │   └── FUNDING.yml
+│   ├── .gitignore
+│   ├── .nvmrc
+│   ├── .prettierrc.js
+│   ├── .storybook
+│   │   ├── main.js
+│   │   └── preview.js
+│   ├── LICENSE
+│   ├── README.md
+│   ├── build.sh
+│   ├── jest.config.js
+│   ├── lint-staged.config.js
+│   ├── next-env.d.ts
+│   ├── next.config.js
+│   ├── package.json
+│   ├── postcss.config.js
+│   ├── public
+│   │   ├── android-chrome-192x192.png
+│   │   ├── android-chrome-512x512.png
+│   │   ├── apple-touch-icon.png
+│   │   ├── favicon-16x16.png
+│   │   ├── favicon-32x32.png
+│   │   ├── favicon.ico
+│   │   └── fonts
+│   │       └── icomoon.woff
+│   ├── src
+│   │   ├── __mocks__
+│   │   │   └── svg.ts
+│   │   ├── api
+│   │   │   ├── base.ts
+│   │   │   ├── buildError.ts
+│   │   │   ├── hooks
+│   │   │   │   ├── useAPIActualities.ts
+│   │   │   │   ├── useAPIAuth.ts
+│   │   │   │   ├── useAPIDeclaration.ts
+│   │   │   │   ├── useAPIFavorite.ts
+│   │   │   │   ├── useAPIFeedback.ts
+│   │   │   │   └── useAPIProducts.ts
+│   │   │   ├── httpStatuses.ts
+│   │   │   └── lib
+│   │   │       ├── actualities.ts
+│   │   │       ├── auth.ts
+│   │   │       ├── currencies.ts
+│   │   │       ├── declaration.ts
+│   │   │       ├── favorite.ts
+│   │   │       ├── feedback.ts
+│   │   │       ├── products.ts
+│   │   │       └── types.ts
+│   │   ├── assets
+│   │   │   ├── icons
+│   │   │   │   ├── Add-Alt.svg
+│   │   │   │   ├── Add.svg
+│   │   │   │   ├── Arrow-Right.svg
+│   │   │   │   ├── Basket-Color.svg
+│   │   │   │   ├── Basket.svg
+│   │   │   │   ├── Big-Arrow-Right.svg
+│   │   │   │   ├── Boat.svg
+│   │   │   │   ├── Calculator.svg
+│   │   │   │   ├── Car.svg
+│   │   │   │   ├── City-Ain.svg
+│   │   │   │   ├── City-Haute-Savoie.svg
+│   │   │   │   ├── ClearField.svg
+│   │   │   │   ├── Coffee.svg
+│   │   │   │   ├── Complete-Basket.svg
+│   │   │   │   ├── Dairy.svg
+│   │   │   │   ├── Douanier.svg
+│   │   │   │   ├── Download.svg
+│   │   │   │   ├── Filter.svg
+│   │   │   │   ├── Folder.svg
+│   │   │   │   ├── Forbidden.svg
+│   │   │   │   ├── Home.svg
+│   │   │   │   ├── Info-Light.svg
+│   │   │   │   ├── Info.svg
+│   │   │   │   ├── Keyboard.svg
+│   │   │   │   ├── Lite-Search.svg
+│   │   │   │   ├── Lock.svg
+│   │   │   │   ├── Luggages.svg
+│   │   │   │   ├── Mail.svg
+│   │   │   │   ├── Meat.svg
+│   │   │   │   ├── Medication.svg
+│   │   │   │   ├── Milk.svg
+│   │   │   │   ├── Money.svg
+│   │   │   │   ├── Officer-Cap.svg
+│   │   │   │   ├── Other.svg
+│   │   │   │   ├── Pet.svg
+│   │   │   │   ├── Phone.svg
+│   │   │   │   ├── Plane.svg
+│   │   │   │   ├── Plants.svg
+│   │   │   │   ├── QrCode.svg
+│   │   │   │   ├── Question.svg
+│   │   │   │   ├── Search.svg
+│   │   │   │   ├── Star.svg
+│   │   │   │   ├── StarFull.svg
+│   │   │   │   ├── Sweets.svg
+│   │   │   │   ├── Tea.svg
+│   │   │   │   ├── Times.svg
+│   │   │   │   ├── Train.svg
+│   │   │   │   ├── Traveler.svg
+│   │   │   │   ├── Watch.svg
+│   │   │   │   └── categories
+│   │   │   │       ├── Accessory.svg
+│   │   │   │       ├── Accordions.svg
+│   │   │   │       ├── Actualities.svg
+│   │   │   │       ├── Adult-Clothes.svg
+│   │   │   │       ├── Advertising-Catalog.svg
+│   │   │   │       ├── Alcohol.svg
+│   │   │   │       ├── AlcoholIntermediate.svg
+│   │   │   │       ├── Art.svg
+│   │   │   │       ├── Bamboo.svg
+│   │   │   │       ├── Beauty-Mackup.svg
+│   │   │   │       ├── Beauty-Products.svg
+│   │   │   │       ├── Bedding.svg
+│   │   │   │       ├── Beer.svg
+│   │   │   │       ├── Binoculars.svg
+│   │   │   │       ├── Books.svg
+│   │   │   │       ├── CD.svg
+│   │   │   │       ├── Car-Radio.svg
+│   │   │   │       ├── Car.svg
+│   │   │   │       ├── Ceramic.svg
+│   │   │   │       ├── Children-Clothes.svg
+│   │   │   │       ├── Cigar.svg
+│   │   │   │       ├── Cigarette.svg
+│   │   │   │       ├── Cigarillos.svg
+│   │   │   │       ├── Clothes.svg
+│   │   │   │       ├── Cologne.svg
+│   │   │   │       ├── Common-Ground.svg
+│   │   │   │       ├── Contact.svg
+│   │   │   │       ├── Copper.svg
+│   │   │   │       ├── Cotton.svg
+│   │   │   │       ├── Create-Declaration.svg
+│   │   │   │       ├── Crystal.svg
+│   │   │   │       ├── DVD-Player.svg
+│   │   │   │       ├── DVD.svg
+│   │   │   │       ├── Decoration.svg
+│   │   │   │       ├── Dishes.svg
+│   │   │   │       ├── Earthenware.svg
+│   │   │   │       ├── Electric-Guitar.svg
+│   │   │   │       ├── Electronic-Cigarettes.svg
+│   │   │   │       ├── Fabric-Gloves.svg
+│   │   │   │       ├── Fabrics.svg
+│   │   │   │       ├── Fashion.svg
+│   │   │   │       ├── Fishing.svg
+│   │   │   │       ├── Food.svg
+│   │   │   │       ├── Furniture.svg
+│   │   │   │       ├── GPS.svg
+│   │   │   │       ├── GameConsole.svg
+│   │   │   │       ├── Glass.svg
+│   │   │   │       ├── Golf.svg
+│   │   │   │       ├── Guitar.svg
+│   │   │   │       ├── Hightech.svg
+│   │   │   │       ├── Hobbies.svg
+│   │   │   │       ├── House.svg
+│   │   │   │       ├── Jewelry.svg
+│   │   │   │       ├── Lamp.svg
+│   │   │   │       ├── Laptop.svg
+│   │   │   │       ├── Leather-Accessory.svg
+│   │   │   │       ├── Leather-Goods.svg
+│   │   │   │       ├── Leather.svg
+│   │   │   │       ├── MP3.svg
+│   │   │   │       ├── Metal.svg
+│   │   │   │       ├── Mirror.svg
+│   │   │   │       ├── Music-Box.svg
+│   │   │   │       ├── Music.svg
+│   │   │   │       ├── Numeric-Piano.svg
+│   │   │   │       ├── Other.svg
+│   │   │   │       ├── Percussion-Instrument.svg
+│   │   │   │       ├── Perfume.svg
+│   │   │   │       ├── Photo.svg
+│   │   │   │       ├── Piano.svg
+│   │   │   │       ├── Plastic.svg
+│   │   │   │       ├── Porcelain.svg
+│   │   │   │       ├── Rattan.svg
+│   │   │   │       ├── Rims.svg
+│   │   │   │       ├── Sandstone.svg
+│   │   │   │       ├── Scarf.svg
+│   │   │   │       ├── Shoes.svg
+│   │   │   │       ├── Silk.svg
+│   │   │   │       ├── Ski.svg
+│   │   │   │       ├── Smartphone.svg
+│   │   │   │       ├── Smiley.svg
+│   │   │   │       ├── Socks.svg
+│   │   │   │       ├── SoftAlcohol.svg
+│   │   │   │       ├── SpiritDrink.svg
+│   │   │   │       ├── Sports.svg
+│   │   │   │       ├── StrongAlcohol.svg
+│   │   │   │       ├── Sunglasses.svg
+│   │   │   │       ├── Synthesizer.svg
+│   │   │   │       ├── Tablet.svg
+│   │   │   │       ├── Television.svg
+│   │   │   │       ├── Tennis.svg
+│   │   │   │       ├── Textile.svg
+│   │   │   │       ├── Tie.svg
+│   │   │   │       ├── Tire.svg
+│   │   │   │       ├── Tobacco.svg
+│   │   │   │       ├── Various.svg
+│   │   │   │       ├── Vetements.svg
+│   │   │   │       ├── VideoGame.svg
+│   │   │   │       ├── Violins.svg
+│   │   │   │       ├── Watches.svg
+│   │   │   │       ├── Wig.svg
+│   │   │   │       ├── Windsurf.svg
+│   │   │   │       ├── Wine.svg
+│   │   │   │       ├── Wood.svg
+│   │   │   │       └── Wooden-Floor.svg
+│   │   │   └── images
+│   │   │       ├── Auth-Background.webp
+│   │   │       ├── Declaration.jpg
+│   │   │       ├── Identification.jpg
+│   │   │       ├── Kid.jpg
+│   │   │       ├── Logo-Agent.svg
+│   │   │       ├── Logo-Douane.svg
+│   │   │       ├── Logo-French-Douane.svg
+│   │   │       ├── Logo-French-Republic.svg
+│   │   │       ├── Logo.svg
+│   │   │       ├── Money-Food.jpg
+│   │   │       ├── Non-Eu-Amount.jpg
+│   │   │       ├── Non-Eu-Franchise.jpg
+│   │   │       ├── Step-Four-Tuto.jpg
+│   │   │       ├── Step-One-Tuto.png
+│   │   │       ├── Step-Three-Tuto.jpg
+│   │   │       ├── Step-Two-Tuto.png
+│   │   │       ├── Traveler-plane-boat.jpg
+│   │   │       ├── Traveler-train-car.jpg
+│   │   │       ├── Under-Construction.png
+│   │   │       ├── VisibilityOff.svg
+│   │   │       └── VisibilityOn.svg
+│   │   ├── components
+│   │   │   ├── atoms
+│   │   │   │   ├── Accordion
+│   │   │   │   │   ├── Accordion.stories.tsx
+│   │   │   │   │   ├── Accordion.tsx
+│   │   │   │   │   ├── Accordions.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── ApiError
+│   │   │   │   │   ├── ApiError.stories.tsx
+│   │   │   │   │   ├── ApiError.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── ApiSuccess
+│   │   │   │   │   ├── ApiSuccess.stories.tsx
+│   │   │   │   │   ├── ApiSuccess.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── BackButton
+│   │   │   │   │   ├── BackButton.stories.tsx
+│   │   │   │   │   ├── BackButton.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── BackButtonWithTitle
+│   │   │   │   │   ├── BackButtonWithTitle.stories.tsx
+│   │   │   │   │   ├── BackButtonWithTitle.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── Badge
+│   │   │   │   │   ├── Badge.stories.tsx
+│   │   │   │   │   ├── Badge.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── Breadcrumbs
+│   │   │   │   │   ├── Breadcrumbs.stories.tsx
+│   │   │   │   │   ├── Breadcrumbs.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── Button
+│   │   │   │   │   ├── Button.stories.tsx
+│   │   │   │   │   ├── Button.test.tsx
+│   │   │   │   │   ├── Button.tsx
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   └── style
+│   │   │   │   │       ├── button.style.ts
+│   │   │   │   │       └── icon.style.ts
+│   │   │   │   ├── CountdownToast
+│   │   │   │   │   ├── CountdownToast.stories.tsx
+│   │   │   │   │   ├── CountdownToast.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── DataInfoItem
+│   │   │   │   │   ├── DataInfoItem.stories.tsx
+│   │   │   │   │   ├── DataInfoItem.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── ExternalLink
+│   │   │   │   │   ├── ExternalLink.stories.tsx
+│   │   │   │   │   ├── ExternalLink.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── FavoriteBadge
+│   │   │   │   │   ├── FavoriteBadge.stories.tsx
+│   │   │   │   │   ├── FavoriteBadge.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── HomeToggle
+│   │   │   │   │   ├── HomeToggle.stories.tsx
+│   │   │   │   │   ├── HomeToggle.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── Icon
+│   │   │   │   │   ├── Icon.tsx
+│   │   │   │   │   ├── icomoon.d.ts
+│   │   │   │   │   ├── icon.stories.tsx
+│   │   │   │   │   ├── icons.stories.tsx
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── selection.json
+│   │   │   │   │   └── selection.utils.ts
+│   │   │   │   ├── IconButtonWithTitle
+│   │   │   │   │   ├── IconButtonWithTitle.stories.tsx
+│   │   │   │   │   ├── IconButtonWithTitle.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── Info
+│   │   │   │   │   ├── Info.stories.tsx
+│   │   │   │   │   ├── Info.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── Link
+│   │   │   │   │   ├── Link.stories.tsx
+│   │   │   │   │   ├── Link.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── LinkWithIcon
+│   │   │   │   │   ├── LinkWithIcon.stories.tsx
+│   │   │   │   │   ├── LinkWithIcon.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── MenuLink
+│   │   │   │   │   ├── MenuLink.stories.tsx
+│   │   │   │   │   ├── MenuLink.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── ProConnectButtonForm
+│   │   │   │   │   ├── ProConnectButton.stories.tsx
+│   │   │   │   │   ├── ProConnectButtonForm.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── Skeleton
+│   │   │   │   │   ├── Skeleton.stories.tsx
+│   │   │   │   │   ├── Skeleton.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── TextLink
+│   │   │   │   │   ├── TextLink.stories.tsx
+│   │   │   │   │   ├── TextLink.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── Title
+│   │   │   │   │   ├── BackButtonWithTitle.stories.tsx
+│   │   │   │   │   ├── BackButtonWithTitle.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── TitleAgent
+│   │   │   │   │   ├── TitleAgent.stories.tsx
+│   │   │   │   │   ├── TitleAgent.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── TitleHeader
+│   │   │   │   │   ├── TitleHeader.stories.tsx
+│   │   │   │   │   ├── TitleHeader.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── TitleHeaderAgent
+│   │   │   │   │   ├── TitleHeaderAgent.stories.tsx
+│   │   │   │   │   ├── TitleHeaderAgent.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── Tooltip
+│   │   │   │   │   ├── Tooltip.stories.tsx
+│   │   │   │   │   ├── Tooltip.tsx
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── TransportBadge
+│   │   │   │   │   ├── TransportBadge.stories.tsx
+│   │   │   │   │   ├── TransportBadge.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   └── Typography
+│   │   │   │       ├── Typography.test.tsx
+│   │   │   │       ├── Typography.tsx
+│   │   │   │       ├── const.ts
+│   │   │   │       ├── index.ts
+│   │   │   │       └── style
+│   │   │   │           └── typography.style.ts
+│   │   │   ├── forms
+│   │   │   │   ├── Form.stories.tsx
+│   │   │   │   ├── base
+│   │   │   │   │   ├── Checkbox
+│   │   │   │   │   │   ├── Checkbox.stories.tsx
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── DatePicker
+│   │   │   │   │   │   ├── DatePicker.stories.tsx
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── Form.stories.tsx
+│   │   │   │   │   ├── PasswordInput
+│   │   │   │   │   │   ├── PasswordInput.stories.tsx
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── PhoneInput
+│   │   │   │   │   │   ├── PhoneInput.stories.tsx
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   └── utils.ts
+│   │   │   │   │   ├── RadioGroup
+│   │   │   │   │   │   ├── RadioGroup.stories.tsx
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── SelectInput
+│   │   │   │   │   │   ├── SelectInput.stories.tsx
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── SwitchInput
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── TextArea
+│   │   │   │   │   │   ├── TextArea.stories.tsx
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   └── TextInput
+│   │   │   │   │       ├── TextInput.stories.tsx
+│   │   │   │   │       └── index.tsx
+│   │   │   │   ├── core
+│   │   │   │   │   ├── Form
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   └── useFormContextOrFallBack.tsx
+│   │   │   │   │   ├── InputGroup
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── InputGroupHorizontal
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   └── InputGroupLabel
+│   │   │   │   │       └── index.tsx
+│   │   │   │   └── custom
+│   │   │   │       └── AutocompleteInput
+│   │   │   │           ├── SuggestionsContainer.tsx
+│   │   │   │           ├── index.tsx
+│   │   │   │           └── utils.tsx
+│   │   │   ├── input
+│   │   │   │   ├── InputGroup
+│   │   │   │   │   ├── InputGroup.stories.tsx
+│   │   │   │   │   ├── InputGroup.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── StandardInputs
+│   │   │   │   │   ├── Checkbox
+│   │   │   │   │   │   ├── Checkbox.stories.tsx
+│   │   │   │   │   │   ├── Checkbox.test.tsx
+│   │   │   │   │   │   ├── Checkbox.tsx
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── Comboboxes
+│   │   │   │   │   │   ├── Comboboxes.stories.tsx
+│   │   │   │   │   │   ├── Comboboxes.test.tsx
+│   │   │   │   │   │   ├── Comboboxes.tsx
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── File
+│   │   │   │   │   │   ├── File.stories.tsx
+│   │   │   │   │   │   ├── File.test.tsx
+│   │   │   │   │   │   ├── File.tsx
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── Input
+│   │   │   │   │   │   ├── Input.stories.tsx
+│   │   │   │   │   │   ├── Input.test.tsx
+│   │   │   │   │   │   ├── Input.tsx
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── PeriodInput
+│   │   │   │   │   │   ├── PeriodInput.stories.tsx
+│   │   │   │   │   │   ├── PeriodInput.tsx
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── QrCodeScanner
+│   │   │   │   │   │   ├── QrCodeScanner.stories.tsx
+│   │   │   │   │   │   ├── QrCodeScanner.test.tsx
+│   │   │   │   │   │   ├── QrCodeScanner.tsx
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── Radio
+│   │   │   │   │   │   ├── Radio.stories.tsx
+│   │   │   │   │   │   ├── Radio.test.tsx
+│   │   │   │   │   │   ├── Radio.tsx
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── RadioCard
+│   │   │   │   │   │   ├── RadioCard.stories.tsx
+│   │   │   │   │   │   ├── RadioCard.test.tsx
+│   │   │   │   │   │   ├── RadioCard.tsx
+│   │   │   │   │   │   ├── RadioCardElement.tsx
+│   │   │   │   │   │   ├── RadioCardMin.tsx
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── Select
+│   │   │   │   │   │   ├── Select.stories.tsx
+│   │   │   │   │   │   ├── Select.test.tsx
+│   │   │   │   │   │   ├── Select.tsx
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── SimpleSelect
+│   │   │   │   │   │   ├── SimpleSelect.stories.tsx
+│   │   │   │   │   │   ├── SimpleSelect.tsx
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── SortSelect
+│   │   │   │   │   │   ├── SortSelect.stories.tsx
+│   │   │   │   │   │   ├── SortSelect.test.tsx
+│   │   │   │   │   │   ├── SortSelect.tsx
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── TextArea
+│   │   │   │   │   │   ├── TextArea.stories.tsx
+│   │   │   │   │   │   ├── TextArea.tsx
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   └── textArea.test.tsx
+│   │   │   │   │   └── Toggle
+│   │   │   │   │       ├── Toggle.stories.tsx
+│   │   │   │   │       ├── Toggle.tsx
+│   │   │   │   │       └── index.ts
+│   │   │   │   └── custom
+│   │   │   │       ├── ConfirmPasswordInput
+│   │   │   │       │   ├── ConfirmPassword.stories.tsx
+│   │   │   │       │   ├── ConfirmPasswordInput.tsx
+│   │   │   │       │   └── index.ts
+│   │   │   │       └── PasswordInput
+│   │   │   │           ├── PasswordInput.tsx
+│   │   │   │           └── index.ts
+│   │   │   ├── molecules
+│   │   │   │   ├── About
+│   │   │   │   │   ├── About.tsx
+│   │   │   │   │   ├── AboutData
+│   │   │   │   │   │   ├── LegalMentions.tsx
+│   │   │   │   │   │   └── PersonalData.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── ActualityCard
+│   │   │   │   │   ├── ActualityCard.stories.tsx
+│   │   │   │   │   ├── ActualityCard.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── AddNote
+│   │   │   │   │   ├── AddNote.stories.tsx
+│   │   │   │   │   ├── AddNote.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── AddProductCartDeclaration
+│   │   │   │   │   ├── AddProductCartDeclaration.stories.tsx
+│   │   │   │   │   ├── AddProductCartDeclaration.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── AddProductToFavorites
+│   │   │   │   │   ├── AddProductToFavorites.stories.tsx
+│   │   │   │   │   ├── AddProductToFavorites.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── Card
+│   │   │   │   │   ├── Card.stories.tsx
+│   │   │   │   │   ├── Card.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── CategoryList
+│   │   │   │   │   ├── CategoryList.stories.tsx
+│   │   │   │   │   ├── CategoryList.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── CustomHeader
+│   │   │   │   │   ├── CustomHeader.tsx
+│   │   │   │   │   ├── Header.stories.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── DeclarationBadgeStatus
+│   │   │   │   │   ├── DeclarationBadgeStatus.stories.tsx
+│   │   │   │   │   ├── DeclarationBadgeStatus.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── DeclarationCard
+│   │   │   │   │   ├── DeclarationCard.stories.tsx
+│   │   │   │   │   ├── DeclarationCard.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── DeclarationContactDetails
+│   │   │   │   │   ├── DeclarationContactDetails.stories.tsx
+│   │   │   │   │   ├── DeclarationContactDetails.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── DeclarationJourneyDetails
+│   │   │   │   │   ├── DeclarationJourneyDetails.stories.tsx
+│   │   │   │   │   ├── DeclarationJourneyDetails.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── DeclarationStatusDetails
+│   │   │   │   │   ├── DeclarationStatusDetails.stories.tsx
+│   │   │   │   │   ├── DeclarationStatusDetails.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── DeclarationTravelDetails
+│   │   │   │   │   ├── DeclarationTravelDetails.stories.tsx
+│   │   │   │   │   ├── DeclarationTravelDetails.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── DownModal
+│   │   │   │   │   ├── DownModal.stories.tsx
+│   │   │   │   │   ├── DownModal.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── Faq
+│   │   │   │   │   ├── FaqData
+│   │   │   │   │   │   ├── Border.tsx
+│   │   │   │   │   │   ├── Declaration.tsx
+│   │   │   │   │   │   ├── Legal.tsx
+│   │   │   │   │   │   └── Payment.tsx
+│   │   │   │   │   ├── Faqs.stories.tsx
+│   │   │   │   │   ├── Faqs.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── FilterHistory
+│   │   │   │   │   ├── FilterHistory.stories.tsx
+│   │   │   │   │   ├── FilterHistory.tsx
+│   │   │   │   │   ├── FilterHistoryItem.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── FontInitializer
+│   │   │   │   │   ├── FontInitializer.tsx
+│   │   │   │   │   ├── fonts
+│   │   │   │   │   │   ├── Marianne
+│   │   │   │   │   │   │   ├── Marianne-Bold.woff
+│   │   │   │   │   │   │   ├── Marianne-Bold_Italic.woff
+│   │   │   │   │   │   │   ├── Marianne-ExtraBold.woff
+│   │   │   │   │   │   │   ├── Marianne-ExtraBold_Italic.woff
+│   │   │   │   │   │   │   ├── Marianne-Light.woff
+│   │   │   │   │   │   │   ├── Marianne-Light_Italic.woff
+│   │   │   │   │   │   │   ├── Marianne-Medium.woff
+│   │   │   │   │   │   │   ├── Marianne-Medium_Italic.woff
+│   │   │   │   │   │   │   ├── Marianne-Regular.woff
+│   │   │   │   │   │   │   ├── Marianne-Regular_Italic.woff
+│   │   │   │   │   │   │   ├── Marianne-Thin.woff
+│   │   │   │   │   │   │   └── Marianne-Thin_Italic.woff
+│   │   │   │   │   │   └── Roboto
+│   │   │   │   │   │       ├── Roboto-Black.ttf
+│   │   │   │   │   │       ├── Roboto-BlackItalic.ttf
+│   │   │   │   │   │       ├── Roboto-Bold.ttf
+│   │   │   │   │   │       ├── Roboto-BoldItalic.ttf
+│   │   │   │   │   │       ├── Roboto-Italic.ttf
+│   │   │   │   │   │       ├── Roboto-Light.ttf
+│   │   │   │   │   │       ├── Roboto-LightItalic.ttf
+│   │   │   │   │   │       ├── Roboto-Medium.ttf
+│   │   │   │   │   │       ├── Roboto-MediumItalic.ttf
+│   │   │   │   │   │       ├── Roboto-Regular.ttf
+│   │   │   │   │   │       ├── Roboto-Thin.ttf
+│   │   │   │   │   │       └── Roboto-ThinItalic.ttf
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── Header
+│   │   │   │   │   ├── Header.stories.tsx
+│   │   │   │   │   ├── Header.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── Modal
+│   │   │   │   │   ├── Modal.stories.tsx
+│   │   │   │   │   ├── Modal.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── ModalWithTitleButton
+│   │   │   │   │   ├── ModalWithTitleButton.stories.tsx
+│   │   │   │   │   ├── ModalWithTitleButton.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── NavBar
+│   │   │   │   │   ├── NavBar.stories.tsx
+│   │   │   │   │   ├── NavBar.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── NewDataInfoItem
+│   │   │   │   │   ├── NewDataInfoItem.stories.tsx
+│   │   │   │   │   ├── NewDataInfoItem.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── NomenclatureCard
+│   │   │   │   │   ├── NomenclatureCard.stories.tsx
+│   │   │   │   │   ├── NomenclatureCard.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── PasswordHelperText
+│   │   │   │   │   ├── PasswordHelperText.stories.tsx
+│   │   │   │   │   ├── PasswordHelperText.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── PrepareMyTrip
+│   │   │   │   │   ├── PrepareMyTrip.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── ProgressBar
+│   │   │   │   │   ├── ProgressBar.stories.tsx
+│   │   │   │   │   ├── ProgressBar.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── ProgressBarAgent
+│   │   │   │   │   ├── ProgressBarAgent.stories.tsx
+│   │   │   │   │   ├── ProgressBarAgent.tsx
+│   │   │   │   │   ├── ProgressBarAgentItem.tsx
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   └── types.ts
+│   │   │   │   ├── QrcodeBlock
+│   │   │   │   │   ├── QrcodeBlock.stories.tsx
+│   │   │   │   │   ├── QrcodeBlock.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── RouteGuard
+│   │   │   │   │   └── AgentRoute.tsx
+│   │   │   │   ├── SvgIcon
+│   │   │   │   │   ├── SvgIcon.stories.tsx
+│   │   │   │   │   ├── SvgIcon.test.tsx
+│   │   │   │   │   ├── SvgIcon.tsx
+│   │   │   │   │   ├── SvgIcons.stories.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── TabBar
+│   │   │   │   │   ├── TabBar.stories.tsx
+│   │   │   │   │   ├── TabBar.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── Table
+│   │   │   │   │   ├── Table.stories.tsx
+│   │   │   │   │   ├── Table.tsx
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── TaxTable
+│   │   │   │   │   ├── TaxItem.tsx
+│   │   │   │   │   ├── TaxItemCalculation.tsx
+│   │   │   │   │   ├── TaxTable.stories.tsx
+│   │   │   │   │   ├── TaxTable.tsx
+│   │   │   │   │   └── index.tsx
+│   │   │   │   └── Tooltip
+│   │   │   │       ├── Tooltip.tsx
+│   │   │   │       ├── TooltipContainer.tsx
+│   │   │   │       └── index.ts
+│   │   │   └── organisms
+│   │   │       ├── AmountAgentProductBasket
+│   │   │       │   ├── AmountAgentProductBasket.stories.tsx
+│   │   │       │   ├── AmountAgentProductBasket.tsx
+│   │   │       │   ├── AmountAgentProductBasketGroup.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── AmountProductBasket
+│   │   │       │   ├── AmountProductBasket.stories.tsx
+│   │   │       │   ├── AmountProductBasket.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── BlockActualities
+│   │   │       │   ├── BlockActualities.stories.tsx
+│   │   │       │   ├── BlockActualities.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── BlockHeaderAgent
+│   │   │       │   ├── BlockHeaderAgent.stories.tsx
+│   │   │       │   ├── BlockHeaderAgent.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── BlockHistoricDeclarations
+│   │   │       │   ├── BlockHistoricDeclarations.stories.tsx
+│   │   │       │   ├── BlockHistoricDeclarations.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── CategoryProduct
+│   │   │       │   ├── CategoryProductDesktop.tsx
+│   │   │       │   ├── CategoryProductMobile.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── FavoriteProducts
+│   │   │       │   ├── FavoriteProducts.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── FilterGroup
+│   │   │       │   ├── FilterBarDesktop.tsx
+│   │   │       │   ├── FilterBarMobile.tsx
+│   │   │       │   ├── FilterGroup.stories.tsx
+│   │   │       │   ├── FilterGroup.tsx
+│   │   │       │   ├── FilterItem.tsx
+│   │   │       │   ├── ModalFilterBarDesktop.tsx
+│   │   │       │   ├── index.ts
+│   │   │       │   └── types.ts
+│   │   │       ├── FormAddProduct
+│   │   │       │   ├── FormAddProduct.stories.tsx
+│   │   │       │   ├── FormAddProduct.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── FormAddProductToFavorite
+│   │   │       │   ├── FormAddProductToFavorite.stories.tsx
+│   │   │       │   ├── FormAddProductToFavorite.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── FormContactDetails
+│   │   │       │   ├── FormContactDetails.tsx
+│   │   │       │   ├── index.ts
+│   │   │       │   └── schema.ts
+│   │   │       ├── FormNewProduct
+│   │   │       │   ├── FormNewProduct.tsx
+│   │   │       │   ├── index.ts
+│   │   │       │   └── schema.ts
+│   │   │       ├── FormSelectCountry
+│   │   │       │   ├── FormSelectCountry.tsx
+│   │   │       │   ├── index.ts
+│   │   │       │   ├── schema.ts
+│   │   │       │   └── utils.ts
+│   │   │       ├── FormSelectProduct
+│   │   │       │   ├── FormSelectProduct.stories.tsx
+│   │   │       │   ├── FormSelectProduct.tsx
+│   │   │       │   ├── ProductNotManaged.tsx
+│   │   │       │   ├── index.ts
+│   │   │       │   ├── schema.ts
+│   │   │       │   └── utils.tsx
+│   │   │       ├── ModalAddFavoriteProduct
+│   │   │       │   ├── ModalAddFavoriteProduct.stories.tsx
+│   │   │       │   ├── ModalAddFavoriteProduct.tsx
+│   │   │       │   ├── index.ts
+│   │   │       │   └── schema.ts
+│   │   │       ├── ModalAddProduct
+│   │   │       │   ├── ModalAddProduct.stories.tsx
+│   │   │       │   ├── ModalAddProduct.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── ModalAddProductCartDeclaration
+│   │   │       │   ├── ModalAddProductCartDeclaration.stories.tsx
+│   │   │       │   ├── ModalAddProductCartDeclaration.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── ModalBorder
+│   │   │       │   ├── ModalBorder.stories.tsx
+│   │   │       │   ├── ModalBorder.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── ModalCancelDeclaration
+│   │   │       │   ├── ModalCancelDeclaration.stories.tsx
+│   │   │       │   ├── ModalCancelDeclaration.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── ModalCategoryNomenclatureProduct
+│   │   │       │   ├── ModalCategoryNomenclatureProduct.stories.tsx
+│   │   │       │   ├── ModalCategoryNomenclatureProduct.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── ModalDeclareSimulation
+│   │   │       │   ├── ModalDeclareSimulation.stories.tsx
+│   │   │       │   ├── ModalDeclareSimulation.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── ModalDeleteAttachmentDesktop
+│   │   │       │   ├── ModalDeleteAttachmentDesktop.stories.tsx
+│   │   │       │   ├── ModalDeleteAttachmentDesktop.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── ModalDeleteAttachmentMobile
+│   │   │       │   ├── ModalDeleteAttachmentMobile.stories.tsx
+│   │   │       │   ├── ModalDeleteAttachmentMobile.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── ModalDeleteFavoriteProduct
+│   │   │       │   ├── ModalDeleteFavoriteProduct.stories.tsx
+│   │   │       │   ├── ModalDeleteFavoriteProduct.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── ModalDeleteProductCartDeclaration
+│   │   │       │   ├── ModalDeleteProductCartDeclaration.stories.tsx
+│   │   │       │   ├── ModalDeleteProductCartDeclaration.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── ModalEditAttachmentDesktop
+│   │   │       │   ├── ModalEditAttachmentDesktop.stories.tsx
+│   │   │       │   ├── ModalEditAttachmentDesktop.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── ModalEditAttachmentMobile
+│   │   │       │   ├── ModalEditAttachmentMobile.stories.tsx
+│   │   │       │   ├── ModalEditAttachmentMobile.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── ModalFavorites
+│   │   │       │   ├── ModalFavorites.stories.tsx
+│   │   │       │   ├── ModalFavorites.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── ModalMaximumAmount
+│   │   │       │   ├── ModalBorder.stories.tsx
+│   │   │       │   ├── ModalMaximumAmount.tsx
+│   │   │       │   ├── contentModal
+│   │   │       │   │   ├── alcoholAndorra.tsx
+│   │   │       │   │   ├── alcoholBorder.tsx
+│   │   │       │   │   ├── alcoholEu.tsx
+│   │   │       │   │   ├── alcoholNonEu.tsx
+│   │   │       │   │   ├── tobaccoAndorra.tsx
+│   │   │       │   │   ├── tobaccoBorder.tsx
+│   │   │       │   │   ├── tobaccoEu.tsx
+│   │   │       │   │   └── tobaccoNonEu.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── ModalPaidDeclaration
+│   │   │       │   ├── ModalPaidDeclaration.stories.tsx
+│   │   │       │   ├── ModalPaidDeclaration.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── ModalRejectedDeclaration
+│   │   │       │   ├── ModalRejectedDeclaration.stories.tsx
+│   │   │       │   ├── ModalRejectedDeclaration.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── ModalResumeDeclaration
+│   │   │       │   ├── ModalResumeDeclaration.stories.tsx
+│   │   │       │   ├── ModalResumeDeclaration.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── ModalResumeSimulator
+│   │   │       │   ├── ModalResumeSimulator.stories.tsx
+│   │   │       │   ├── ModalResumeSimulator.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── ModalSearchNomenclatureProduct
+│   │   │       │   ├── ModalSearchNomenclatureProduct.stories.tsx
+│   │   │       │   ├── ModalSearchNomenclatureProduct.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── ModalSearchProduct
+│   │   │       │   ├── ModalSearchProduct.stories.tsx
+│   │   │       │   ├── ModalSearchProduct.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── ModalSelectCountry
+│   │   │       │   ├── ModalSelectCountry.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── ModalSwitchPaperDeclaration
+│   │   │       │   ├── ModalSwitchPaperDeclaration.stories.tsx
+│   │   │       │   ├── ModalSwitchPaperDeclaration.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── ModalTokenExpire
+│   │   │       │   ├── ModalTokenExpire.stories.tsx
+│   │   │       │   ├── ModalTokenExpire.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── ModalUnderConstruction
+│   │   │       │   ├── ModalUnderConstruction.stories.tsx
+│   │   │       │   ├── ModalUnderConstruction.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── ModalValidateDeclaration
+│   │   │       │   ├── ModalValidateDeclaration.stories.tsx
+│   │   │       │   ├── ModalValidateDeclaration.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── ModalValidateFeedbackInfo
+│   │   │       │   ├── ModalValidateFeedbackInfo.stories.tsx
+│   │   │       │   ├── ModalValidateFeedbackInfoDesktop.tsx
+│   │   │       │   ├── ModalValidateFeedbackInfoMobile.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── OnActionModal
+│   │   │       │   ├── OnActionModal.stories.tsx
+│   │   │       │   ├── OnActionModal.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── Search
+│   │   │       │   ├── Search.stories.tsx
+│   │   │       │   ├── Search.test.tsx
+│   │   │       │   ├── Search.tsx
+│   │   │       │   ├── global
+│   │   │       │   │   ├── SearchResultGlobal.tsx
+│   │   │       │   │   └── UnknownSearch.tsx
+│   │   │       │   ├── index.ts
+│   │   │       │   └── product
+│   │   │       │       ├── SearchResultProducts.tsx
+│   │   │       │       └── UnknownProduct.tsx
+│   │   │       ├── SearchHistory
+│   │   │       │   ├── SearchHistory.stories.tsx
+│   │   │       │   ├── SearchHistory.tsx
+│   │   │       │   ├── SearchHistoryItem.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── SearchProduct
+│   │   │       │   ├── SearchProductDesktop.tsx
+│   │   │       │   ├── SearchProductMobile.tsx
+│   │   │       │   ├── filters
+│   │   │       │   │   ├── SearchProductCategoryFilter.tsx
+│   │   │       │   │   ├── SearchProductFilters.tsx
+│   │   │       │   │   ├── SearchProductInputField.tsx
+│   │   │       │   │   └── SearchProductSubmitButton.tsx
+│   │   │       │   ├── index.ts
+│   │   │       │   └── product
+│   │   │       │       ├── SearchHistoryProducts.tsx
+│   │   │       │       ├── SearchResultProducts.tsx
+│   │   │       │       └── ShoppingProductsCart.tsx
+│   │   │       ├── SelectCountryPopup
+│   │   │       │   ├── SelectCountry.tsx
+│   │   │       │   ├── SelectCountryPopup.stories.tsx
+│   │   │       │   ├── SelectCountryPopup.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── StepsFormProduct
+│   │   │       │   ├── StepsFormProduct.stories.tsx
+│   │   │       │   └── StepsFormProduct.tsx
+│   │   │       ├── SummaryDeclaration
+│   │   │       │   ├── SummaryDeclaration.tsx
+│   │   │       │   ├── index.ts
+│   │   │       │   └── summaryDeclaration.stories.tsx
+│   │   │       ├── SummaryDeclarationAgent
+│   │   │       │   ├── SummaryDeclarationAgent.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── SummaryDeclarationExport
+│   │   │       │   ├── SummaryDeclaration.tsx
+│   │   │       │   ├── SummaryDeclarationExport.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── SummaryExport
+│   │   │       │   ├── SummaryExport.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── SummarySimulator
+│   │   │       │   ├── SummarySimulator.stories.tsx
+│   │   │       │   ├── SummarySimulator.tsx
+│   │   │       │   ├── index.ts
+│   │   │       │   └── products
+│   │   │       │       ├── SummaryAmountProduct.tsx
+│   │   │       │       ├── SummaryCustomProduct.tsx
+│   │   │       │       ├── SummaryGroupedAmountProduct.tsx
+│   │   │       │       └── SummaryValueProduct.tsx
+│   │   │       ├── Tuto
+│   │   │       │   ├── Steps
+│   │   │       │   │   ├── StepFour.tsx
+│   │   │       │   │   ├── StepOne.tsx
+│   │   │       │   │   ├── StepThree.tsx
+│   │   │       │   │   └── StepTwo.tsx
+│   │   │       │   ├── Tuto.stories.tsx
+│   │   │       │   ├── Tuto.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── UnderConstruction
+│   │   │       │   ├── UnderConstruction.stories.tsx
+│   │   │       │   ├── UnderConstruction.tsx
+│   │   │       │   └── index.ts
+│   │   │       ├── ValueAgentProductBasket
+│   │   │       │   ├── ValueAgentProductBasket.stories.tsx
+│   │   │       │   ├── ValueAgentProductBasket.tsx
+│   │   │       │   └── index.ts
+│   │   │       └── ValueProductBasket
+│   │   │           ├── ContentValueProduct.tsx
+│   │   │           ├── DetailedValueCalculation.tsx
+│   │   │           ├── ProductBasket.stories.tsx
+│   │   │           ├── ValueProductBasket.tsx
+│   │   │           └── index.ts
+│   │   ├── config
+│   │   │   ├── i18n.ts
+│   │   │   ├── index.ts
+│   │   │   ├── productSearch.ts
+│   │   │   └── queryClient.ts
+│   │   ├── core
+│   │   │   ├── ColorModels.ts
+│   │   │   └── hoc
+│   │   │       ├── declaration.hoc.tsx
+│   │   │       ├── declarationAgent.hoc.tsx
+│   │   │       ├── displayInfoSimulator.hoc.tsx
+│   │   │       ├── displayTuto.hoc.tsx
+│   │   │       └── simulator.hoc.tsx
+│   │   ├── hooks
+│   │   │   └── useTokenValidity.ts
+│   │   ├── layout
+│   │   │   └── Meta.tsx
+│   │   ├── model
+│   │   │   ├── amount.ts
+│   │   │   ├── currencies.ts
+│   │   │   └── product.ts
+│   │   ├── pages
+│   │   │   ├── _app.tsx
+│   │   │   ├── _document.tsx
+│   │   │   ├── a-propos
+│   │   │   │   └── index.tsx
+│   │   │   ├── agent
+│   │   │   │   ├── actualites
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── agentConnect
+│   │   │   │   │   ├── connexion.tsx
+│   │   │   │   │   └── deconnexion.tsx
+│   │   │   │   ├── authentification
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── inscription-reussie.tsx
+│   │   │   │   │   ├── inscription.tsx
+│   │   │   │   │   ├── mot-de-passe-oublie
+│   │   │   │   │   │   ├── changer.tsx
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   ├── lien-envoye.tsx
+│   │   │   │   │   │   ├── reinitialiser.tsx
+│   │   │   │   │   │   └── validation.tsx
+│   │   │   │   │   └── validation.tsx
+│   │   │   │   ├── contact
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── declaration
+│   │   │   │   │   ├── [id].tsx
+│   │   │   │   │   ├── ajout
+│   │   │   │   │   │   ├── coordonnees.tsx
+│   │   │   │   │   │   ├── marchandises.tsx
+│   │   │   │   │   │   └── transports.tsx
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── produits
+│   │   │   │   │       ├── ajout
+│   │   │   │   │       │   └── index.tsx
+│   │   │   │   │       └── recherche.tsx
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── mon-compte
+│   │   │   │   │   ├── changer-mot-de-passe
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   └── validation.tsx
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── nomenclature
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── recherche
+│   │   │   │   │       └── index.tsx
+│   │   │   │   └── qr-code-manuel
+│   │   │   │       └── index.tsx
+│   │   │   ├── declaration
+│   │   │   │   ├── [id].tsx
+│   │   │   │   ├── ajout
+│   │   │   │   │   ├── age.tsx
+│   │   │   │   │   ├── coordonnees.tsx
+│   │   │   │   │   └── transports.tsx
+│   │   │   │   ├── panier
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── modifier
+│   │   │   │   │       └── [id].tsx
+│   │   │   │   └── produits
+│   │   │   │       ├── [id].tsx
+│   │   │   │       ├── ajout
+│   │   │   │       │   └── index.tsx
+│   │   │   │       ├── index.tsx
+│   │   │   │       └── recherche.tsx
+│   │   │   ├── declaration-daccessibilite.tsx
+│   │   │   ├── faqs
+│   │   │   │   └── index.tsx
+│   │   │   ├── index.tsx
+│   │   │   ├── preparer-mon-voyage
+│   │   │   │   ├── configuration.tsx
+│   │   │   │   └── index.tsx
+│   │   │   ├── recherche.tsx
+│   │   │   ├── simulateur
+│   │   │   │   ├── configuration
+│   │   │   │   │   ├── etape0.tsx
+│   │   │   │   │   ├── etape1.tsx
+│   │   │   │   │   ├── etape2.tsx
+│   │   │   │   │   ├── etape3.tsx
+│   │   │   │   │   └── etape4.tsx
+│   │   │   │   ├── declaration
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── panier
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── modifier
+│   │   │   │   │       └── [id].tsx
+│   │   │   │   ├── produits
+│   │   │   │   │   ├── [id].tsx
+│   │   │   │   │   ├── ajout
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── recherche.tsx
+│   │   │   │   └── recapitulatif
+│   │   │   │       ├── index.tsx
+│   │   │   │       └── qrcode.tsx
+│   │   │   └── tuto
+│   │   │       └── index.tsx
+│   │   ├── services
+│   │   │   └── search.service.tsx
+│   │   ├── setupTests.ts
+│   │   ├── staticData
+│   │   │   ├── Faq
+│   │   │   │   ├── Border.tsx
+│   │   │   │   ├── Declaration.tsx
+│   │   │   │   ├── Legal.tsx
+│   │   │   │   ├── Payment.tsx
+│   │   │   │   └── index.tsx
+│   │   │   ├── PrepareMyTrip
+│   │   │   │   ├── Buying
+│   │   │   │   │   ├── Andorra.tsx
+│   │   │   │   │   ├── Eu.tsx
+│   │   │   │   │   ├── NonEu.tsx
+│   │   │   │   │   ├── NonEuBorder.tsx
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── ForbiddenGoods.tsx
+│   │   │   │   ├── Money.tsx
+│   │   │   │   ├── ParticularGoods.tsx
+│   │   │   │   ├── PrepareMyDocuments.tsx
+│   │   │   │   ├── WhenDeclare.tsx
+│   │   │   │   └── index.ts
+│   │   │   └── index.ts
+│   │   ├── stores
+│   │   │   ├── countdown
+│   │   │   │   ├── appState.store.ts
+│   │   │   │   └── useCase.store.ts
+│   │   │   ├── currencies
+│   │   │   │   ├── appState.store.ts
+│   │   │   │   └── useCase.store.ts
+│   │   │   ├── declaration
+│   │   │   │   ├── appState.store.ts
+│   │   │   │   └── useCase.store.ts
+│   │   │   ├── faq
+│   │   │   │   ├── appState.store.ts
+│   │   │   │   └── useCase.store.ts
+│   │   │   ├── global
+│   │   │   │   ├── appState.store.ts
+│   │   │   │   └── useCase.store.ts
+│   │   │   ├── prepareMyTrip
+│   │   │   │   ├── appState.store.ts
+│   │   │   │   └── useCase.store.ts
+│   │   │   ├── products
+│   │   │   │   ├── appState.store.ts
+│   │   │   │   └── useCase.store.ts
+│   │   │   ├── simulator
+│   │   │   │   ├── appState.store.ts
+│   │   │   │   └── useCase.store.ts
+│   │   │   ├── store.ts
+│   │   │   └── users
+│   │   │       ├── appState.store.ts
+│   │   │       └── useCase.store.ts
+│   │   ├── styles
+│   │   │   └── global.css
+│   │   ├── templates
+│   │   │   ├── ConfigurationSteps.tsx
+│   │   │   ├── DeclarationAgentStepsDesktop.tsx
+│   │   │   ├── DeclarationAgentStepsMobile.tsx
+│   │   │   ├── DeclarationPageDesktop.tsx
+│   │   │   ├── DeclarationPageMobile.tsx
+│   │   │   ├── DeclarationProductPageDesktop.tsx
+│   │   │   ├── DeclarationProductPageMobile.tsx
+│   │   │   ├── DeclarationSteps.tsx
+│   │   │   ├── Full.tsx
+│   │   │   ├── HomepageAgentDesktop.tsx
+│   │   │   ├── HomepageAgentMobile.tsx
+│   │   │   ├── Main.tsx
+│   │   │   ├── MainAgent.tsx
+│   │   │   ├── MainAgentDesktop.tsx
+│   │   │   ├── MainAgentMobile.tsx
+│   │   │   ├── MainAuth.tsx
+│   │   │   ├── NomenclaturePageDesktop.tsx
+│   │   │   └── NomenclaturePageMobile.tsx
+│   │   ├── tests
+│   │   │   └── factories
+│   │   │       ├── Product.factory.ts
+│   │   │       └── buildFactory.ts
+│   │   └── utils
+│   │       ├── AppConfig.ts
+│   │       ├── NewsTags.util.ts
+│   │       ├── auth.ts
+│   │       ├── clsxm.ts
+│   │       ├── const.tsx
+│   │       ├── cookie.ts
+│   │       ├── country.util.ts
+│   │       ├── declaration.ts
+│   │       ├── declarationAgent.ts
+│   │       ├── declarationStatus.util.ts
+│   │       ├── enums.ts
+│   │       ├── error.ts
+│   │       ├── errorFields.ts
+│   │       ├── fileValidator.ts
+│   │       ├── filters.tsx
+│   │       ├── formatTools.ts
+│   │       ├── meanOfTransports.util.ts
+│   │       ├── meansOfTransport.util.ts
+│   │       ├── modal.ts
+│   │       ├── object.ts
+│   │       ├── product.util.ts
+│   │       ├── regex.ts
+│   │       ├── search.test.ts
+│   │       ├── search.ts
+│   │       ├── simulator.ts
+│   │       ├── stories.ts
+│   │       └── string.ts
+│   ├── tailwind.config.js
+│   ├── tsconfig.json
+│   └── yarn.lock
+├── makefile
+├── package.json
+├── scripts
+│   └── pre-push.sh
+└── yarn.lock
+398 directories, 1349 files
