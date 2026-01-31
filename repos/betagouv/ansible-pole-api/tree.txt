@@ -1,0 +1,92 @@
+.
+├── .gitignore
+├── README.md
+├── galaxy.yml
+├── meta
+│   └── runtime.yml
+└── roles
+    ├── encrypted_volumes
+    │   ├── defaults
+    │   │   └── main.yml
+    │   ├── files
+    │   │   └── unlock-after-ssh.conf
+    │   ├── handlers
+    │   │   └── main.yml
+    │   ├── meta
+    │   │   └── argument_specs.yml
+    │   ├── tasks
+    │   │   ├── 01_prepare_variables.yml
+    │   │   ├── 02_create_and_mount_encrypted_volumes.yml
+    │   │   ├── 03_prepare_bind_mounts.yml
+    │   │   ├── 04_cleanup_fstab.yml
+    │   │   ├── 05_generate_systemd_mount_units.yml
+    │   │   ├── 06_activate_bind_mounts.yml
+    │   │   ├── 07_lock_systemd_units_precedence.yml
+    │   │   └── main.yml
+    │   └── templates
+    │       ├── mount-encrypted-binds.target.j2
+    │       ├── protected-services.target.j2
+    │       └── sd-unit-patch.j2
+    ├── managed_users
+    │   ├── defaults
+    │   │   └── main.yml
+    │   ├── meta
+    │   │   └── argument_specs.yml
+    │   └── tasks
+    │       ├── ansible_login_user_is_deleted.yml
+    │       └── main.yml
+    ├── postfix_simple_sender
+    │   ├── defaults
+    │   │   └── main.yml
+    │   ├── handlers
+    │   │   └── main.yml
+    │   ├── meta
+    │   │   └── argument_specs.yml
+    │   ├── tasks
+    │   │   └── main.yml
+    │   └── templates
+    │       ├── main.cf.j2
+    │       ├── sasl_passwd.j2
+    │       └── sender_dependent_transport.j2
+    ├── sshd_config
+    │   ├── defaults
+    │   │   └── main.yml
+    │   ├── handlers
+    │   │   └── main.yml
+    │   ├── meta
+    │   │   └── argument_specs.yml
+    │   └── tasks
+    │       └── main.yml
+    ├── sysctl
+    │   ├── defaults
+    │   │   └── main.yml
+    │   ├── meta
+    │   │   └── argument_specs.yml
+    │   └── tasks
+    │       └── main.yml
+    ├── unattended_upgrades
+    │   ├── defaults
+    │   │   └── main.yml
+    │   ├── files
+    │   │   └── 20auto-upgrades
+    │   ├── handlers
+    │   │   └── main.yml
+    │   ├── meta
+    │   │   └── argument_specs.yml
+    │   ├── tasks
+    │   │   └── main.yml
+    │   └── templates
+    │       ├── 50unattended-upgrades.j2
+    │       └── task-schedule.conf.j2
+    └── wireguard
+        ├── defaults
+        │   └── main.yml
+        ├── handlers
+        │   └── main.yml
+        ├── meta
+        │   └── argument_specs.yml
+        ├── tasks
+        │   └── main.yml
+        └── templates
+            └── wg-if.conf.j2
+42 directories, 49 files
