@@ -1,0 +1,38 @@
+services:
+  app:
+    image: betagouv-hedgedoc
+    build: .
+    environment:
+      - CMD_DB_URL=postgres://hedgedoc:password@db:5432/hedgedoc
+      - CMD_DOMAIN=localhost
+      - CMD_URL_ADDPORT=true
+      - CMD_AGENT_CONNECT_PROVIDER_NAME=Agent Connect
+      - CMD_AGENT_CONNECT_CLIENTID=clientIdForDevOnly
+      - CMD_AGENT_CONNECT_CLIENTSECRET=clientSecretForDevOnly
+      - CMD_AGENT_CONNECT_BASE_URL=https://fca.integ01.dev-agentconnect.fr/api/v2
+      - CMD_AGENT_CONNECT_USER_INFO_SIGNED_RESPONSE_ALG=RS256
+      - CMD_AGENT_CONNECT_SCOPES=openid given_name usual_name email
+      - CMD_AGENT_CONNECT_ACR_VALUES=eidas1
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+      - /app/node_modules/
+  webpack:
+    image: betagouv-hedgedoc
+    command: 'npm run dev'
+    volumes:
+      - .:/app
+      - /app/node_modules/
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=hedgedoc
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=hedgedoc
+    volumes:
+      - database:/var/lib/postgresql/data
+volumes:
+  database:
