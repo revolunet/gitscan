@@ -1,0 +1,142 @@
+{
+  "name": "eva",
+  "version": "0.0.1",
+  "description": "Évaluer en ligne les compétences transversales à travers des mises en situation professionnelles",
+  "license": "AGPL-3.0-only",
+  "scripts": {
+    "build": "webpack --mode production",
+    "build-dev": "webpack --watch --progress --mode development",
+    "dev": "npm run start & npm run build-dev",
+    "test": "jest",
+    "test:watch": "jest --watch --unhandled-rejections=strict",
+    "lint": "eslint --cache --ext .js,.vue src tests",
+    "lint--fix": "eslint --cache --fix --ext .js,.vue src tests",
+    "start": "node server.js",
+    "optimisation-png": "find src -name '*.png' -exec optipng {} \\;",
+    "prepare": "husky install"
+  },
+  "engines": {
+    "node": "20",
+    "npm": "10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/betagouv/eva.git"
+  },
+  "bugs": {
+    "url": "https://github.com/betagouv/eva/issues"
+  },
+  "homepage": "https://github.com/betagouv/eva#readme",
+  "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.14.7",
+    "@babel/plugin-syntax-dynamic-import": "^7.8",
+    "@babel/preset-env": "^7.16.0",
+    "@vue/compiler-sfc": "^3.1.0",
+    "@vue/test-utils": "^2.0.2",
+    "@vue/vue3-jest": "^27.0.0",
+    "acorn": "^8.6.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-require-context-hook": "^1.0.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "clean-webpack-plugin": "^4.0.0",
+    "core-js": "^3.20.0",
+    "css-loader": "^5.2",
+    "eslint": "^8.8.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-vue": "^8.4.1",
+    "favicons-webpack-plugin": "^6.0.0",
+    "git-revision-webpack-plugin": "^3.0",
+    "html-webpack-plugin": "^5.5",
+    "husky": "^8.0.3",
+    "jest": "^27.4",
+    "jsdom": "^19.0.0",
+    "jsdom-global": "^3.0.2",
+    "lint-staged": "^13.1.0",
+    "mini-css-extract-plugin": "^1.6",
+    "node-forge": ">=1.3.0",
+    "path-browserify": "^1.0.1",
+    "rollbar-sourcemap-webpack-plugin": "^3.3.0",
+    "sass": "^1.45",
+    "sass-loader": "^12.x",
+    "style-loader": "^2.0",
+    "vscode-langservers-extracted": "^4.10.0",
+    "vue-loader": "^16.0.0",
+    "webpack-dev-server": "^4.7",
+    "webpack-node-externals": "^2.5",
+    "workbox-webpack-plugin": "^6.4"
+  },
+  "dependencies": {
+    "@gouvfr/dsfr": "^1.14.2",
+    "express": "^4.17.1",
+    "gsap": "^3.7.1",
+    "i18next": "^21.6",
+    "jquery": "^3.6.0",
+    "js-cookie": "^3.0.1",
+    "kind-of": "^6.0.3",
+    "marked": "^4.0.12",
+    "mobile-device-detect": "^0.4.3",
+    "query-string": "^6.14.1",
+    "rollbar": "^2.26.0",
+    "uuid": "^8.3.2",
+    "vue": "^3.2.38",
+    "vue3-keypress": "^4.0.1",
+    "vuedraggable": "^4.1.0",
+    "vuex": "^4.0.2",
+    "webpack": "^5.x",
+    "webpack-cli": "^4.9"
+  },
+  "lint-staged": {
+    "*.png": "optipng"
+  },
+  "eslintConfig": {
+    "plugins": [
+      "vue"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:vue/essential"
+    ],
+    "env": {
+      "browser": true,
+      "jest": true
+    },
+    "globals": {
+      "expect": "readonly",
+      "process": "readonly"
+    },
+    "rules": {
+      "indent": [
+        "error",
+        2
+      ],
+      "linebreak-style": [
+        "error",
+        "unix"
+      ],
+      "semi": [
+        "error",
+        "always"
+      ],
+      "no-unused-vars": [
+        "error",
+        {
+          "argsIgnorePattern": "^_"
+        }
+      ]
+    },
+    "overrides": [
+      {
+        "files": [
+          "*.vue"
+        ],
+        "rules": {
+          "vue/multi-word-component-names": "off"
+        }
+      }
+    ]
+  }
+}
