@@ -1,0 +1,820 @@
+.
+├── .circleci
+│   └── config.yml
+├── .conf
+│   └── nginx_diffusion.conf
+├── .gitignore
+├── .jenkins
+│   ├── Jenkinsfile
+│   ├── Jenkinsfile-sitemaps
+│   ├── Jenkinsfile-sitemaps-cron
+│   ├── Jenkinsfile-sync
+│   └── Jenkinsfile-sync-cron
+├── LICENSE
+├── README.md
+├── apps
+│   ├── api
+│   │   ├── .ebextensions
+│   │   │   ├── 00_install_certbot.config
+│   │   │   ├── 01_open_https_port.config
+│   │   │   ├── 02_grant_executable_rights.config
+│   │   │   ├── 03_renew_ssl_certificate_cron_job.config
+│   │   │   ├── network.config
+│   │   │   └── npmpermissions.config
+│   │   ├── .ebignore
+│   │   ├── .elasticbeanstalk
+│   │   │   └── config.yml
+│   │   ├── .gitignore
+│   │   ├── .npmrc
+│   │   ├── .nvmrc
+│   │   ├── .platform
+│   │   │   ├── 00_nginx.config
+│   │   │   ├── hooks
+│   │   │   │   └── postdeploy
+│   │   │   │       └── 00_get_certificate.sh
+│   │   │   └── nginx
+│   │   │       └── conf.d
+│   │   │           └── proxy.conf
+│   │   ├── Dockerfile
+│   │   ├── README.md
+│   │   ├── csv
+│   │   │   ├── Gallery.csv
+│   │   │   ├── Import.csv
+│   │   │   ├── User.csv
+│   │   │   ├── autor.csv
+│   │   │   ├── enluminures.csv
+│   │   │   ├── joconde.csv
+│   │   │   ├── memoire.csv
+│   │   │   ├── merimee.csv
+│   │   │   ├── mnr.csv
+│   │   │   ├── museo.csv
+│   │   │   ├── palissy.csv
+│   │   │   └── thesaurus.csv
+│   │   ├── doc
+│   │   │   ├── Gallery.md
+│   │   │   ├── Import.md
+│   │   │   ├── README.md
+│   │   │   ├── User.md
+│   │   │   ├── acl.md
+│   │   │   ├── autor.md
+│   │   │   ├── enluminures.md
+│   │   │   ├── joconde.md
+│   │   │   ├── memoire.md
+│   │   │   ├── merimee.md
+│   │   │   ├── mnr.md
+│   │   │   ├── museo.md
+│   │   │   ├── palissy.md
+│   │   │   └── thesaurus.md
+│   │   ├── jest.config.js
+│   │   ├── package-lock.json
+│   │   ├── package.json
+│   │   ├── sonar-project.properties
+│   │   └── src
+│   │       ├── __tests__
+│   │       │   ├── __notices__
+│   │       │   │   ├── joconde-1.js
+│   │       │   │   ├── memoire-1.js
+│   │       │   │   ├── merimee-1.js
+│   │       │   │   ├── mnr-1.js
+│   │       │   │   └── palissy-1.js
+│   │       │   ├── auth.js
+│   │       │   ├── joconde.js
+│   │       │   ├── memoire.js
+│   │       │   ├── merimee.js
+│   │       │   ├── mnr.js
+│   │       │   ├── palissy.js
+│   │       │   └── setup
+│   │       │       ├── helpers.js
+│   │       │       └── setup.js
+│   │       ├── app.js
+│   │       ├── config.js
+│   │       ├── controllers
+│   │       │   ├── addresses.js
+│   │       │   ├── auth.js
+│   │       │   ├── autor.js
+│   │       │   ├── deleteHistorique.js
+│   │       │   ├── enluminures.js
+│   │       │   ├── gallery.js
+│   │       │   ├── groups.js
+│   │       │   ├── import.js
+│   │       │   ├── joconde.js
+│   │       │   ├── maintenance.js
+│   │       │   ├── memoire.js
+│   │       │   ├── merimee.js
+│   │       │   ├── mnr.js
+│   │       │   ├── museo.js
+│   │       │   ├── notices.js
+│   │       │   ├── oai.js
+│   │       │   ├── palissy.js
+│   │       │   ├── producteurs.js
+│   │       │   ├── reporting.js
+│   │       │   ├── resumptionToken.js
+│   │       │   ├── search.js
+│   │       │   ├── thesaurus.js
+│   │       │   ├── users.js
+│   │       │   └── utils
+│   │       │       ├── OAI
+│   │       │       │   ├── oai_Exceptions.js
+│   │       │       │   ├── oai_records.js
+│   │       │       │   ├── oai_response_Content.js
+│   │       │       │   └── oai_utils.js
+│   │       │       ├── authorization.js
+│   │       │       ├── dataFilter.js
+│   │       │       ├── date.js
+│   │       │       ├── departments.js
+│   │       │       ├── geoloc.js
+│   │       │       ├── index.js
+│   │       │       ├── notice.js
+│   │       │       ├── regions.js
+│   │       │       ├── s3.js
+│   │       │       └── slugify.js
+│   │       ├── elasticsearch
+│   │       │   ├── delete-batch.js
+│   │       │   ├── delete.js
+│   │       │   ├── getDocById.js
+│   │       │   ├── indices
+│   │       │   │   ├── autor.js
+│   │       │   │   ├── enluminures.js
+│   │       │   │   ├── import.js
+│   │       │   │   ├── joconde.js
+│   │       │   │   ├── memoire.js
+│   │       │   │   ├── merimee.js
+│   │       │   │   ├── mnr.js
+│   │       │   │   ├── museo.js
+│   │       │   │   └── palissy.js
+│   │       │   ├── sync.js
+│   │       │   ├── utils.js
+│   │       │   └── workbench.js
+│   │       ├── elasticsearch.js
+│   │       ├── export-db-csv.js
+│   │       ├── export-db-mapping.js
+│   │       ├── export-db-schemas.js
+│   │       ├── index.js
+│   │       ├── logger.js
+│   │       ├── mailer.js
+│   │       ├── mails
+│   │       │   ├── tpl_notice_report.js
+│   │       │   └── tpl_users_notification.js
+│   │       ├── models
+│   │       │   ├── autor.js
+│   │       │   ├── deleteHistorique.js
+│   │       │   ├── enluminures.js
+│   │       │   ├── gallery.js
+│   │       │   ├── group.js
+│   │       │   ├── import.js
+│   │       │   ├── joconde.js
+│   │       │   ├── memoire.js
+│   │       │   ├── merimee.js
+│   │       │   ├── mnr.js
+│   │       │   ├── museo.js
+│   │       │   ├── noticesOAI.js
+│   │       │   ├── palissy.js
+│   │       │   ├── producteur.js
+│   │       │   ├── resumptionToken.js
+│   │       │   ├── thesaurus.js
+│   │       │   └── user.js
+│   │       ├── mongo.js
+│   │       ├── mongoosastic.js
+│   │       ├── passport.js
+│   │       ├── s3.js
+│   │       ├── scripts
+│   │       │   ├── M39220-update-memoire
+│   │       │   │   ├── script_update_memoire_producteurMap_CONTACT.js
+│   │       │   │   ├── script_update_memoire_producteurMap_COPY.js
+│   │       │   │   ├── script_update_merimee_COPY.js
+│   │       │   │   └── script_update_palissy_COPY.js
+│   │       │   ├── M40163-images-enluminures
+│   │       │   │   ├── script_add_producteur.js
+│   │       │   │   ├── script_s3_copie_image_enluminures.js
+│   │       │   │   ├── script_update_notice_enluminures.js
+│   │       │   │   └── utils.js
+│   │       │   ├── M43272-DPT_LETTRE
+│   │       │   │   └── script_M43272_MEMOIRE_DPT-LETTRE.js
+│   │       │   ├── M43612-MARQ
+│   │       │   │   ├── script_update_marq_merimee.js
+│   │       │   │   └── script_update_marq_palissy.js
+│   │       │   ├── M45406-element-memoire-undefined
+│   │       │   │   ├── script_update_memoire_undefined_merimee.js
+│   │       │   │   └── script_update_memoire_undefined_palissy.js
+│   │       │   ├── create_groupe_prod.js
+│   │       │   ├── create_notice_for_oai.js
+│   │       │   ├── generate_sitemaps.js
+│   │       │   ├── reimmatriculation-notices-memoire
+│   │       │   │   ├── script_s3_copie_image_memoire.js
+│   │       │   │   ├── script_s3_suppression_image_memoire.js
+│   │       │   │   ├── script_update_notice_memoire.js
+│   │       │   │   ├── script_verif.js
+│   │       │   │   └── utils.js
+│   │       │   ├── s3_public_read.js
+│   │       │   ├── script_39416_etiquette_memoire.js
+│   │       │   ├── script_39417_mnr.js
+│   │       │   ├── script_39418_string_to_array_memoire.js
+│   │       │   ├── script_543_copy_update.js
+│   │       │   ├── script_M39010_string_to_array_Memoire.js
+│   │       │   ├── script_M39010_string_to_array_Merimee.js
+│   │       │   ├── script_M39010_string_to_array_Palissy.js
+│   │       │   ├── script_M39257_compte_image_absente_Merimee.js
+│   │       │   ├── script_M39257_compte_image_absente_Palissy.js
+│   │       │   ├── script_M39257_maj_url_image_absente_merimee.js
+│   │       │   ├── script_M39257_maj_url_image_absente_palissy.js
+│   │       │   ├── script_M39784_update_museo_NOMANC_TO_ANTNOM.js
+│   │       │   ├── script_M42766_MNR_renommage_base.js
+│   │       │   ├── script_M45481-NUMVERS-MEMOIRE.js
+│   │       │   ├── script_M45498-NUMVERS-COTECTI-MEMOIRE.js
+│   │       │   ├── script_M45555-joconde-update-stat.js
+│   │       │   ├── script_M46225-MEMOIRE-DPT.js
+│   │       │   ├── script_add_indexes_mongodb.js
+│   │       │   ├── script_joconde_contient_image_final.js
+│   │       │   ├── script_museofile_location.js
+│   │       │   ├── script_museofile_location_rename.js
+│   │       │   ├── script_purge_historique_notices_supprimees.js
+│   │       │   ├── script_reprise_AUTP_memoire.js
+│   │       │   ├── script_reprise_array_to_string.js
+│   │       │   ├── script_reprise_autor.js
+│   │       │   ├── script_reprise_merimee_contient_image.js
+│   │       │   ├── script_reprise_merimee_pop_coordonnees.js
+│   │       │   ├── script_reprise_palissy_contient_image.js
+│   │       │   ├── script_reprise_palissy_pop_coordonnees.js
+│   │       │   ├── script_string_to_array_joconde_final.js
+│   │       │   ├── script_supp_autor_final.js
+│   │       │   ├── script_update_44504_coordonnees-joconde.js
+│   │       │   ├── scripts_45623_champ_web_palissy_mh.js
+│   │       │   └── scripts_mnr_permaliens.js
+│   │       ├── sentry.js
+│   │       └── swagger
+│   │           ├── swagger.js
+│   │           └── swagger_ui.json
+│   ├── diffusion
+│   │   ├── .ebextensions
+│   │   │   ├── 00_install_certbot.config
+│   │   │   ├── 01_open_https_port.config
+│   │   │   ├── 02_grant_executable_rights.config
+│   │   │   └── 03_renew_ssl_certificate_cron_job.config
+│   │   ├── .ebignore
+│   │   ├── .elasticbeanstalk
+│   │   │   └── config.yml
+│   │   ├── .env.default
+│   │   ├── .gitignore
+│   │   ├── .nvmrc
+│   │   ├── .platform
+│   │   │   ├── 00_nginx.config
+│   │   │   ├── hooks
+│   │   │   │   └── postdeploy
+│   │   │   │       └── 00_get_certificate.sh
+│   │   │   └── nginx
+│   │   │       └── conf.d
+│   │   │           └── proxy.conf
+│   │   ├── ABOUT_SEARCH.md
+│   │   ├── Dockerfile
+│   │   ├── README.md
+│   │   ├── TOPICS.md
+│   │   ├── __tests__
+│   │   │   ├── __mocks__
+│   │   │   │   ├── fileMock.js
+│   │   │   │   └── text-encoder.mock.js
+│   │   │   ├── __notices__
+│   │   │   │   └── joconde-1.js
+│   │   │   ├── components
+│   │   │   │   └── Loader.js
+│   │   │   ├── notices
+│   │   │   │   └── Field.js
+│   │   │   └── setup
+│   │   │       └── setup.js
+│   │   ├── instrumentation.js
+│   │   ├── jest.config.js
+│   │   ├── next.config.js
+│   │   ├── package-lock.json
+│   │   ├── package.json
+│   │   ├── pages
+│   │   │   ├── 404.jsx
+│   │   │   ├── _app.jsx
+│   │   │   ├── _document.jsx
+│   │   │   ├── _error.jsx
+│   │   │   ├── accessibilite.jsx
+│   │   │   ├── apropos.jsx
+│   │   │   ├── bucket.jsx
+│   │   │   ├── fallback.jsx
+│   │   │   ├── gallery.jsx
+│   │   │   ├── index.jsx
+│   │   │   ├── notice
+│   │   │   │   ├── [default].jsx
+│   │   │   │   ├── autor.jsx
+│   │   │   │   ├── enluminures.jsx
+│   │   │   │   ├── index.jsx
+│   │   │   │   ├── joconde.jsx
+│   │   │   │   ├── memoire.jsx
+│   │   │   │   ├── merimee.jsx
+│   │   │   │   ├── mnr.jsx
+│   │   │   │   ├── museo.jsx
+│   │   │   │   └── palissy.jsx
+│   │   │   ├── opendata.jsx
+│   │   │   ├── search.jsx
+│   │   │   ├── stats.jsx
+│   │   │   └── tracking.jsx
+│   │   ├── public
+│   │   │   ├── favicon.ico
+│   │   │   ├── googleb0e4bedffce14a4a.html
+│   │   │   ├── manifest.json
+│   │   │   └── robots.txt
+│   │   ├── sentry.client.config.js
+│   │   ├── sentry.edge.config.js
+│   │   ├── sentry.server.config.js
+│   │   ├── service-worker.js
+│   │   ├── sonar-project.properties
+│   │   ├── src
+│   │   │   ├── components
+│   │   │   │   ├── BucketButton.jsx
+│   │   │   │   ├── Layout.jsx
+│   │   │   │   ├── Loader.jsx
+│   │   │   │   └── MobileBucketButton.jsx
+│   │   │   ├── config.js
+│   │   │   ├── notices
+│   │   │   │   ├── ContactUs.jsx
+│   │   │   │   ├── CustomField.jsx
+│   │   │   │   ├── Field.jsx
+│   │   │   │   ├── FieldImages.jsx
+│   │   │   │   ├── LinkedNotices.jsx
+│   │   │   │   ├── Map.jsx
+│   │   │   │   ├── NoticeStyle.jsx
+│   │   │   │   ├── Title.jsx
+│   │   │   │   └── utils.js
+│   │   │   ├── pdf
+│   │   │   │   ├── pdfNotice
+│   │   │   │   │   ├── autorPdf.jsx
+│   │   │   │   │   ├── components
+│   │   │   │   │   │   └── LinkedNoticesPdf.jsx
+│   │   │   │   │   ├── enluminuresPdf.jsx
+│   │   │   │   │   ├── jocondePdf.jsx
+│   │   │   │   │   ├── memoirePdf.jsx
+│   │   │   │   │   ├── merimeePdf.jsx
+│   │   │   │   │   ├── mnrPdf.jsx
+│   │   │   │   │   ├── museoPdf.jsx
+│   │   │   │   │   ├── palissyPdf.jsx
+│   │   │   │   │   └── styles.js
+│   │   │   │   └── pdfNoticeAbregees
+│   │   │   │       ├── AutorAbregeePdf.jsx
+│   │   │   │       ├── BucketPdf.jsx
+│   │   │   │       ├── EnluminuresAbregeePdf.jsx
+│   │   │   │       ├── JocondeAbregeePdf.jsx
+│   │   │   │       ├── MemoireAbregeePdf.jsx
+│   │   │   │       ├── MerimeeAbregeePdf.jsx
+│   │   │   │       ├── MnrAbregeePdf.jsx
+│   │   │   │       ├── MuseoAbregeePdf.jsx
+│   │   │   │       └── PalissyAbregeePdf.jsx
+│   │   │   ├── polyfill.js
+│   │   │   ├── search
+│   │   │   │   ├── Header.jsx
+│   │   │   │   ├── Menu.jsx
+│   │   │   │   ├── MobileFilters.jsx
+│   │   │   │   ├── Permalink.jsx
+│   │   │   │   ├── Results
+│   │   │   │   │   ├── CardList.jsx
+│   │   │   │   │   ├── CardMosaic.jsx
+│   │   │   │   │   ├── List.jsx
+│   │   │   │   │   ├── Map
+│   │   │   │   │   │   ├── Drawer.jsx
+│   │   │   │   │   │   ├── Location.jsx
+│   │   │   │   │   │   ├── Map.jsx
+│   │   │   │   │   │   ├── Marker.jsx
+│   │   │   │   │   │   ├── ReactiveMapWrapper.jsx
+│   │   │   │   │   │   ├── clusters.jsx
+│   │   │   │   │   │   ├── index.jsx
+│   │   │   │   │   │   └── utils.jsx
+│   │   │   │   │   ├── Mosaic.jsx
+│   │   │   │   │   ├── Results.jsx
+│   │   │   │   │   └── index.jsx
+│   │   │   │   ├── Search
+│   │   │   │   │   ├── SearchAdvanced.jsx
+│   │   │   │   │   ├── SearchSimple.jsx
+│   │   │   │   │   └── index.jsx
+│   │   │   │   └── utils.jsx
+│   │   │   ├── services
+│   │   │   │   ├── api.js
+│   │   │   │   ├── eurelian.js
+│   │   │   │   ├── image.jsx
+│   │   │   │   ├── mapping.js
+│   │   │   │   ├── sentry.js
+│   │   │   │   ├── server.js
+│   │   │   │   ├── throw404.jsx
+│   │   │   │   └── url.js
+│   │   │   ├── topics
+│   │   │   │   └── TopicCard.jsx
+│   │   │   └── utils.jsx
+│   │   └── static
+│   │       ├── ACR_Logotype_Noir.jpg
+│   │       ├── ACR_Logotype_Noir.png
+│   │       ├── House-128.png
+│   │       ├── JR.S.jpg
+│   │       ├── Search-48.png
+│   │       ├── Target-128.png
+│   │       ├── background.png
+│   │       ├── banner
+│   │       │   ├── 1.jpg
+│   │       │   ├── 2.jpg
+│   │       │   ├── 3.jpg
+│   │       │   ├── 4.jpg
+│   │       │   ├── 5.jpg
+│   │       │   ├── 6.jpg
+│   │       │   ├── 7.jpg
+│   │       │   └── 8.jpg
+│   │       ├── courbet.jpeg
+│   │       ├── favicon.ico
+│   │       ├── filter.png
+│   │       ├── focus.jpg
+│   │       ├── fonts
+│   │       │   ├── nexa.woff
+│   │       │   ├── nexa.woff2
+│   │       │   ├── open-sans-v15-latin-300.woff
+│   │       │   ├── open-sans-v15-latin-300.woff2
+│   │       │   ├── open-sans-v15-latin-600.woff
+│   │       │   ├── open-sans-v15-latin-600.woff2
+│   │       │   ├── open-sans-v15-latin-700.woff
+│   │       │   ├── open-sans-v15-latin-700.woff2
+│   │       │   ├── open-sans-v15-latin-regular.woff
+│   │       │   └── open-sans-v15-latin-regular.woff2
+│   │       ├── googleb0e4bedffce14a4a.html
+│   │       ├── highlight.pack.js
+│   │       ├── hotjar.js
+│   │       ├── inventaire.jpg
+│   │       ├── jdpso.jpg
+│   │       ├── joconde.jpg
+│   │       ├── jquery.highlight-5.js
+│   │       ├── jquery.min.js
+│   │       ├── logo.png
+│   │       ├── logoMDI.png
+│   │       ├── logo_MC.jpg
+│   │       ├── manifest.json
+│   │       ├── map.png
+│   │       ├── maplibre-gl.css
+│   │       ├── materiautheque.png
+│   │       ├── merimee.jpg
+│   │       ├── mh.png
+│   │       ├── mnr.png
+│   │       ├── mpp.png
+│   │       ├── musee-de-france.png
+│   │       ├── noimage.png
+│   │       ├── nprogress.css
+│   │       ├── palissy.jpg
+│   │       ├── piwik.js
+│   │       ├── questionnaire.svg
+│   │       ├── robots.txt
+│   │       ├── roy-lichtenstein.jpg
+│   │       ├── satelite.png
+│   │       ├── search-black.png
+│   │       ├── search.png
+│   │       ├── send.svg
+│   │       ├── share.svg
+│   │       ├── shopping-cart-2.svg
+│   │       ├── smarttag.js
+│   │       ├── street.png
+│   │       └── topics
+│   │           ├── archeo.jpg
+│   │           ├── architecture.jpg
+│   │           ├── asie.jpg
+│   │           ├── australie.jpg
+│   │           ├── autor.jpeg
+│   │           ├── balmain.jpg
+│   │           ├── bonheur.jpg
+│   │           ├── chanel.jpg
+│   │           ├── costumeetaccess.jpg
+│   │           ├── dakar.jpg
+│   │           ├── delacroix.jpg
+│   │           ├── dessins.jpg
+│   │           ├── egypte.jpg
+│   │           ├── enluminures.jpg
+│   │           ├── estampes.jpg
+│   │           ├── gerard.jpg
+│   │           ├── harcourt.jpg
+│   │           ├── huile.jpg
+│   │           ├── japon.jpg
+│   │           ├── kertesz.jpg
+│   │           ├── labelxx.jpg
+│   │           ├── lagerfeld.jpg
+│   │           ├── levin.jpg
+│   │           ├── liban.jpg
+│   │           ├── maar.jpg
+│   │           ├── mdf.jpg
+│   │           ├── memoire.jpg
+│   │           ├── mhr.jpg
+│   │           ├── mnr.jpg
+│   │           ├── mobilier.jpg
+│   │           ├── moreau.jpg
+│   │           ├── morisot.jpg
+│   │           ├── mucha.jpg
+│   │           ├── museo.jpg
+│   │           ├── nadar.jpg
+│   │           ├── nicolas.jpg
+│   │           ├── notredame.jpg
+│   │           ├── ronis.jpg
+│   │           ├── schiaparelli.jpg
+│   │           ├── sculpture.jpg
+│   │           ├── toulouse-lautrec.jpg
+│   │           ├── venise.jpg
+│   │           ├── viedomestique.jpg
+│   │           └── vigee.jpg
+│   ├── production
+│   │   ├── .babelrc
+│   │   ├── .dockerignore
+│   │   ├── .ebextensions
+│   │   │   ├── 00_install_certbot.config
+│   │   │   ├── 01_open_https_port.config
+│   │   │   ├── 02_grant_executable_rights.config
+│   │   │   └── 03_renew_ssl_certificate_cron_job.config
+│   │   ├── .ebignore
+│   │   ├── .elasticbeanstalk
+│   │   │   └── config.yml
+│   │   ├── .env.defaults
+│   │   ├── .gitignore
+│   │   ├── .nvmrc
+│   │   ├── .platform
+│   │   │   ├── 00_nginx.config
+│   │   │   ├── hooks
+│   │   │   │   └── postdeploy
+│   │   │   │       └── 00_get_certificate.sh
+│   │   │   └── nginx
+│   │   │       └── conf.d
+│   │   │           └── proxy.conf
+│   │   ├── Dockerfile
+│   │   ├── README.md
+│   │   ├── jest.config.js
+│   │   ├── package-lock.json
+│   │   ├── package.json
+│   │   ├── public
+│   │   │   ├── favicon.ico
+│   │   │   ├── index.html
+│   │   │   └── manifest.json
+│   │   ├── scripts
+│   │   │   └── replace_process_env.sh
+│   │   ├── sonar-project.properties
+│   │   ├── src
+│   │   │   ├── __tests__
+│   │   │   │   ├── __mocks__
+│   │   │   │   │   └── fileMock.js
+│   │   │   │   ├── __notices__
+│   │   │   │   │   ├── GERTRUDE_xmlToMERIMEE_lexicovide.txt
+│   │   │   │   │   ├── image.jpg
+│   │   │   │   │   ├── joconde-invalid-UTF-8.txt
+│   │   │   │   │   ├── joconde-valid-UTF-8-warnings.txt
+│   │   │   │   │   ├── joconde-valid-UTF-8.txt
+│   │   │   │   │   ├── mnr-valid-UTF-8.csv
+│   │   │   │   │   └── palissy-mh-valid-UTF-8.csv
+│   │   │   │   ├── components
+│   │   │   │   │   ├── __snapshots__
+│   │   │   │   │   │   └── avatar-test.js.snap
+│   │   │   │   │   └── avatar-test.js
+│   │   │   │   ├── entities
+│   │   │   │   │   ├── joconde-test.js
+│   │   │   │   │   ├── mnr-test.js
+│   │   │   │   │   └── palissy-test.js
+│   │   │   │   ├── scenes
+│   │   │   │   │   └── import
+│   │   │   │   │       ├── joconde-test.js
+│   │   │   │   │       ├── mh-test.js
+│   │   │   │   │       └── mnr-test.js
+│   │   │   │   └── setup
+│   │   │   │       ├── ImportTesterTL.js
+│   │   │   │       └── setup.js
+│   │   │   ├── app.jsx
+│   │   │   ├── assets
+│   │   │   │   ├── ACR_Logotype_Noir.jpg
+│   │   │   │   ├── ACR_Logotype_Noir.png
+│   │   │   │   ├── JR.S.jpg
+│   │   │   │   ├── MNR.jpg
+│   │   │   │   ├── View-128.png
+│   │   │   │   ├── autor.jpeg
+│   │   │   │   ├── date.png
+│   │   │   │   ├── edit.png
+│   │   │   │   ├── enluminures.jpg
+│   │   │   │   ├── export.png
+│   │   │   │   ├── fonts
+│   │   │   │   │   ├── nexa.woff
+│   │   │   │   │   ├── nexa.woff2
+│   │   │   │   │   ├── open-sans-v15-latin-300.woff
+│   │   │   │   │   ├── open-sans-v15-latin-300.woff2
+│   │   │   │   │   ├── open-sans-v15-latin-600.woff
+│   │   │   │   │   ├── open-sans-v15-latin-600.woff2
+│   │   │   │   │   ├── open-sans-v15-latin-700.woff
+│   │   │   │   │   ├── open-sans-v15-latin-700.woff2
+│   │   │   │   │   ├── open-sans-v15-latin-regular.woff
+│   │   │   │   │   └── open-sans-v15-latin-regular.woff2
+│   │   │   │   ├── icon-download.png
+│   │   │   │   ├── icon-edit.png
+│   │   │   │   ├── icon-search.png
+│   │   │   │   ├── import.png
+│   │   │   │   ├── info.png
+│   │   │   │   ├── inventaire.jpg
+│   │   │   │   ├── joconde.jpg
+│   │   │   │   ├── law.png
+│   │   │   │   ├── left.png
+│   │   │   │   ├── load.png
+│   │   │   │   ├── logo.png
+│   │   │   │   ├── logoMDI.png
+│   │   │   │   ├── map.jpg
+│   │   │   │   ├── map.png
+│   │   │   │   ├── marker-icon.png
+│   │   │   │   ├── marker-shadow.png
+│   │   │   │   ├── memoire.jpg
+│   │   │   │   ├── merimee.jpg
+│   │   │   │   ├── mh.png
+│   │   │   │   ├── microsoftexcel.svg
+│   │   │   │   ├── mpp.png
+│   │   │   │   ├── musee-de-france.jpg
+│   │   │   │   ├── musee-de-france.png
+│   │   │   │   ├── museo.jpg
+│   │   │   │   ├── noimage.jpg
+│   │   │   │   ├── notice.png
+│   │   │   │   ├── outbox.png
+│   │   │   │   ├── palissy.jpg
+│   │   │   │   ├── people.png
+│   │   │   │   ├── play.png
+│   │   │   │   ├── right.png
+│   │   │   │   ├── search.png
+│   │   │   │   ├── small.jpg
+│   │   │   │   ├── time.png
+│   │   │   │   ├── tool.png
+│   │   │   │   ├── upload.png
+│   │   │   │   └── view.png
+│   │   │   ├── components
+│   │   │   │   ├── Avatar
+│   │   │   │   │   ├── index.css
+│   │   │   │   │   └── index.jsx
+│   │   │   │   ├── Loader
+│   │   │   │   │   ├── index.css
+│   │   │   │   │   └── index.jsx
+│   │   │   │   ├── ScrollTop.jsx
+│   │   │   │   └── Tags
+│   │   │   │       └── index.jsx
+│   │   │   ├── config.js
+│   │   │   ├── entities
+│   │   │   │   ├── Autor.js
+│   │   │   │   ├── Enluminures.js
+│   │   │   │   ├── Joconde.js
+│   │   │   │   ├── Memoire.js
+│   │   │   │   ├── Merimee.js
+│   │   │   │   ├── Mnr.js
+│   │   │   │   ├── Museo.js
+│   │   │   │   ├── Notice.js
+│   │   │   │   └── Palissy.js
+│   │   │   ├── index.css
+│   │   │   ├── index.jsx
+│   │   │   ├── instrumentation.js
+│   │   │   ├── redux
+│   │   │   │   ├── auth
+│   │   │   │   │   ├── actions.js
+│   │   │   │   │   ├── reducer.js
+│   │   │   │   │   └── saga.js
+│   │   │   │   ├── reducers.js
+│   │   │   │   ├── sagas.js
+│   │   │   │   └── store.js
+│   │   │   ├── registerServiceWorker.js
+│   │   │   ├── router.jsx
+│   │   │   ├── scenes
+│   │   │   │   ├── admin
+│   │   │   │   │   ├── UpdateUser.jsx
+│   │   │   │   │   ├── createUser.css
+│   │   │   │   │   ├── createUser.jsx
+│   │   │   │   │   ├── index.css
+│   │   │   │   │   └── index.jsx
+│   │   │   │   ├── auth
+│   │   │   │   │   ├── UpdatePassword.jsx
+│   │   │   │   │   ├── UpdateProfile.jsx
+│   │   │   │   │   ├── forget.jsx
+│   │   │   │   │   ├── index.css
+│   │   │   │   │   ├── index.jsx
+│   │   │   │   │   └── signin.jsx
+│   │   │   │   ├── deletedNotices
+│   │   │   │   │   ├── index.css
+│   │   │   │   │   └── index.jsx
+│   │   │   │   ├── gallery
+│   │   │   │   │   ├── index.css
+│   │   │   │   │   └── index.jsx
+│   │   │   │   ├── groups
+│   │   │   │   │   ├── components
+│   │   │   │   │   │   └── ProducteurLine.jsx
+│   │   │   │   │   ├── createGroup.css
+│   │   │   │   │   ├── createGroup.jsx
+│   │   │   │   │   ├── index.css
+│   │   │   │   │   ├── index.jsx
+│   │   │   │   │   └── updateGroup.jsx
+│   │   │   │   ├── header
+│   │   │   │   │   ├── index.css
+│   │   │   │   │   ├── index.jsx
+│   │   │   │   │   ├── logo.css
+│   │   │   │   │   ├── logo.jsx
+│   │   │   │   │   ├── user.css
+│   │   │   │   │   └── user.jsx
+│   │   │   │   ├── home
+│   │   │   │   │   ├── index.css
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── import
+│   │   │   │   │   ├── MH.jsx
+│   │   │   │   │   ├── common_mh_inv.js
+│   │   │   │   │   ├── enluminures.jsx
+│   │   │   │   │   ├── home.css
+│   │   │   │   │   ├── home.jsx
+│   │   │   │   │   ├── importer
+│   │   │   │   │   │   ├── diff.js
+│   │   │   │   │   │   ├── dropZone.css
+│   │   │   │   │   │   ├── dropZone.jsx
+│   │   │   │   │   │   ├── export.js
+│   │   │   │   │   │   ├── index.css
+│   │   │   │   │   │   ├── index.jsx
+│   │   │   │   │   │   ├── report.js
+│   │   │   │   │   │   └── thesaurus.js
+│   │   │   │   │   ├── index.jsx
+│   │   │   │   │   ├── inv.jsx
+│   │   │   │   │   ├── joconde.jsx
+│   │   │   │   │   ├── list.css
+│   │   │   │   │   ├── list.jsx
+│   │   │   │   │   ├── memoire.jsx
+│   │   │   │   │   ├── mnr.jsx
+│   │   │   │   │   ├── museo.jsx
+│   │   │   │   │   └── utils.js
+│   │   │   │   ├── notice
+│   │   │   │   │   ├── autor.jsx
+│   │   │   │   │   ├── components
+│   │   │   │   │   │   ├── AccordionHistorique.jsx
+│   │   │   │   │   │   ├── BackButton.jsx
+│   │   │   │   │   │   ├── DeleteButton.jsx
+│   │   │   │   │   │   ├── InputFiles.jsx
+│   │   │   │   │   │   ├── accordionHistorique.css
+│   │   │   │   │   │   ├── comments.jsx
+│   │   │   │   │   │   ├── field.css
+│   │   │   │   │   │   ├── field.jsx
+│   │   │   │   │   │   ├── fieldImages.css
+│   │   │   │   │   │   ├── fieldImages.jsx
+│   │   │   │   │   │   ├── map.css
+│   │   │   │   │   │   ├── map.jsx
+│   │   │   │   │   │   ├── section.css
+│   │   │   │   │   │   ├── section.jsx
+│   │   │   │   │   │   └── utils.jsx
+│   │   │   │   │   ├── enluminures.jsx
+│   │   │   │   │   ├── index.css
+│   │   │   │   │   ├── index.jsx
+│   │   │   │   │   ├── joconde.jsx
+│   │   │   │   │   ├── memoire.jsx
+│   │   │   │   │   ├── merimee.jsx
+│   │   │   │   │   ├── mnr.jsx
+│   │   │   │   │   ├── museo.jsx
+│   │   │   │   │   └── palissy.jsx
+│   │   │   │   ├── producteur
+│   │   │   │   │   ├── UpdateProducteur.jsx
+│   │   │   │   │   ├── components
+│   │   │   │   │   │   ├── PrefixInput.jsx
+│   │   │   │   │   │   └── ProducteurBaseLine.jsx
+│   │   │   │   │   ├── createProducteur.css
+│   │   │   │   │   ├── createProducteur.jsx
+│   │   │   │   │   ├── index.css
+│   │   │   │   │   └── index.jsx
+│   │   │   │   ├── search
+│   │   │   │   │   ├── advanced
+│   │   │   │   │   │   ├── AdvancedSearch.jsx
+│   │   │   │   │   │   ├── Gallery.jsx
+│   │   │   │   │   │   ├── Tooltip.jsx
+│   │   │   │   │   │   └── index.jsx
+│   │   │   │   │   ├── components
+│   │   │   │   │   │   ├── AutorCard.jsx
+│   │   │   │   │   │   ├── CollapsableFacet.jsx
+│   │   │   │   │   │   ├── DeleteComponent.jsx
+│   │   │   │   │   │   ├── EnluminuresCard.jsx
+│   │   │   │   │   │   ├── ExportComponent.jsx
+│   │   │   │   │   │   ├── Header.jsx
+│   │   │   │   │   │   ├── JocondeCard.jsx
+│   │   │   │   │   │   ├── MemoireCard.jsx
+│   │   │   │   │   │   ├── MerimeeCard.jsx
+│   │   │   │   │   │   ├── MnrCard.jsx
+│   │   │   │   │   │   ├── MuseoCard.jsx
+│   │   │   │   │   │   ├── PalissyCard.jsx
+│   │   │   │   │   │   ├── SearchButton.jsx
+│   │   │   │   │   │   └── utils.jsx
+│   │   │   │   │   ├── search.css
+│   │   │   │   │   └── simple
+│   │   │   │   │       ├── Autor.jsx
+│   │   │   │   │       ├── Enluminures.jsx
+│   │   │   │   │       ├── Home.css
+│   │   │   │   │       ├── Home.jsx
+│   │   │   │   │       ├── Joconde.jsx
+│   │   │   │   │       ├── Memoire.jsx
+│   │   │   │   │       ├── Merimee.jsx
+│   │   │   │   │       ├── Mnr.jsx
+│   │   │   │   │       ├── Museo.jsx
+│   │   │   │   │       ├── Palissy.jsx
+│   │   │   │   │       ├── index.css
+│   │   │   │   │       └── index.jsx
+│   │   │   │   └── thesaurus
+│   │   │   │       ├── index.css
+│   │   │   │       └── index.js
+│   │   │   ├── server
+│   │   │   │   └── index.js
+│   │   │   └── services
+│   │   │       ├── api.js
+│   │   │       ├── mapping.js
+│   │   │       ├── regions.js
+│   │   │       └── request.js
+│   │   ├── webpack.build.config.js
+│   │   ├── webpack.config.js
+│   │   └── webpack.dev.config.js
+│   └── version.json
+├── biome.jsonc
+└── docker-compose.yml
+119 directories, 700 files
