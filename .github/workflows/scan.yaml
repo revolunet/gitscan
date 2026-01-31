@@ -17,17 +17,6 @@ concurrency:
     group: scans
 
 jobs:
-    init:
-        runs-on: ubuntu-latest
-        name: Prepare
-        outputs:
-            sites: ${{ steps.init.outputs.sites }}
-        steps:
-            - uses: actions/checkout@v4
-            - id: init
-              uses: "./.github/actions/init"
-              with:
-                  count: ${{ inputs.count || '50' }}
     repos:
         runs-on: ubuntu-latest
         name: Repos
@@ -45,6 +34,19 @@ jobs:
                   author_email: "bot@github.com"
                   message: "update: repos"
                   pull: "--rebase --autostash"
+
+    init:
+        runs-on: ubuntu-latest
+        name: Prepare
+        needs: repos
+        outputs:
+            sites: ${{ steps.init.outputs.sites }}
+        steps:
+            - uses: actions/checkout@v4
+            - id: init
+              uses: "./.github/actions/init"
+              with:
+                  count: ${{ inputs.count || '50' }}
 
     scans:
         runs-on: ubuntu-latest
