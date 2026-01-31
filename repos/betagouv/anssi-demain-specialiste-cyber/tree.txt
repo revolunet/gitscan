@@ -1,0 +1,505 @@
+.
+├── .github
+│   └── workflows
+│       ├── deploiement.yml
+│       └── integration-continue.yml
+├── .gitignore
+├── .nvmrc
+├── .pre-commit-config.yaml
+├── .prettierrc.json
+├── LICENSE
+├── README.md
+├── back
+│   ├── .env.template
+│   ├── knexfile.ts
+│   ├── migrations
+│   │   ├── 20250901125832_creerTableUtilisateurs.ts
+│   │   ├── 20250902063842_ajouteColonneDonneesAUtilisateurs.ts
+│   │   ├── 20250902092417_creationTableVersioningSecretHachage.ts
+│   │   ├── 20250911080509_creationTableJeu.ts
+│   │   ├── 20250915125920_ajouteColonneEnseignantAJeu.ts
+│   │   ├── 20250916144306_ajouteColonneSequenceAJeu.ts
+│   │   ├── 20250917151232_ajouteColonnesNomEtablissementClasseDisciplineAJeu.ts
+│   │   ├── 20250919081506_ajouteColonneElevesAJeu.ts
+│   │   ├── 20250922135340_ajouteColonnesCategorieThematiqueDescriptionAJeu.ts
+│   │   ├── 20250923124140_ajouteColonneTemoignagesAJeu.ts
+│   │   ├── 20251003104511_ajouteColonnePhotos.ts
+│   │   ├── 20251003104801_migrationPhotosJeu.ts
+│   │   ├── 20251008123026_ajouteColonneConsentementAJeu.ts
+│   │   ├── 20251009120658_repriseMigrationPhotosJeu.ts
+│   │   ├── 20251023083901_ajouteColonneReactions.ts
+│   │   └── 20251023142645_ajouteColonneEstCacheAJeu.ts
+│   ├── package.json
+│   ├── src
+│   │   ├── admin
+│   │   │   └── consoleAdministration.ts
+│   │   ├── api
+│   │   │   ├── adaptateurJWT.ts
+│   │   │   ├── configurationServeur.ts
+│   │   │   ├── dsc.ts
+│   │   │   ├── middleware.ts
+│   │   │   ├── moteurDeRendu.ts
+│   │   │   ├── oidc
+│   │   │   │   ├── adaptateurOIDC.ts
+│   │   │   │   ├── ressourceApresAuthentificationOIDC.ts
+│   │   │   │   ├── ressourceApresDeconnexionOIDC.ts
+│   │   │   │   ├── ressourceConnexionOIDC.ts
+│   │   │   │   └── ressourceDeconnexionOIDC.ts
+│   │   │   ├── ressourceCreationCompte.ts
+│   │   │   ├── ressourceJeu.ts
+│   │   │   ├── ressourceJeux.ts
+│   │   │   ├── ressourceMesJeux.ts
+│   │   │   ├── ressourceMetier.ts
+│   │   │   ├── ressourceProfil.ts
+│   │   │   ├── ressourceReactionsJeu.ts
+│   │   │   ├── ressourceRessourcesCyber.ts
+│   │   │   ├── ressourceSelections.ts
+│   │   │   ├── ressourceUtilisateurs.ts
+│   │   │   ├── ressourcesApi.ts
+│   │   │   ├── ressourcesOidc.ts
+│   │   │   ├── ressourcesPages.ts
+│   │   │   └── schemasJeu.ts
+│   │   ├── bus
+│   │   │   ├── busEvenements.ts
+│   │   │   ├── cablage.ts
+│   │   │   └── evenements
+│   │   │       ├── compteCree
+│   │   │       │   ├── compteCree.ts
+│   │   │       │   ├── consigneEvenementCompteCreeDansJournal.ts
+│   │   │       │   ├── creeContactDansExpediteurEmail.ts
+│   │   │       │   └── envoieEmailDeBienvenue.ts
+│   │   │       └── jeu
+│   │   │           ├── consigneEvenementJeuCreeDansJournal.ts
+│   │   │           ├── jeuCree.ts
+│   │   │           └── notifieEvenementJeuCreeSurMessagerieInstantanee.ts
+│   │   ├── express.d.ts
+│   │   ├── infra
+│   │   │   ├── FournisseurHorloge.ts
+│   │   │   ├── adaptateurAntivirus.ts
+│   │   │   ├── adaptateurChiffrement.ts
+│   │   │   ├── adaptateurEnvironnement.ts
+│   │   │   ├── adaptateurExpediteurEmail.ts
+│   │   │   ├── adaptateurGestionErreurSentry.ts
+│   │   │   ├── adaptateurHachage.ts
+│   │   │   ├── adaptateurJournal.ts
+│   │   │   ├── adaptateurJournalPostgres.ts
+│   │   │   ├── adaptateurRechercheEntreprise.ts
+│   │   │   ├── adaptateurTeleversement.ts
+│   │   │   ├── cache.ts
+│   │   │   ├── clientHttp.ts
+│   │   │   ├── entrepotGrist.ts
+│   │   │   ├── entrepotJeuxPostgres.ts
+│   │   │   ├── entrepotMetiersGrist.ts
+│   │   │   ├── entrepotRessourcesCyberGrist.ts
+│   │   │   ├── entrepotSecretHachagePostgres.ts
+│   │   │   ├── entrepotSelectionsGrist.ts
+│   │   │   ├── entrepotUtilisateurPostgres.ts
+│   │   │   ├── fauxAdaptateurGestionErreur.ts
+│   │   │   ├── markdown.ts
+│   │   │   ├── messagerieMattermost.ts
+│   │   │   ├── recupereCheminVersFichiersStatiques.ts
+│   │   │   ├── sentry.ts
+│   │   │   └── serviceVerificationCoherenceSecretsHachage.ts
+│   │   ├── metier
+│   │   │   ├── entrepotJeux.ts
+│   │   │   ├── entrepotMetiers.ts
+│   │   │   ├── entrepotRessourcesCyber.ts
+│   │   │   ├── entrepotSelections.ts
+│   │   │   ├── entrepotUtilisateur.ts
+│   │   │   ├── expediteurEmail.ts
+│   │   │   ├── jeu.ts
+│   │   │   ├── messagerieInstantanee.ts
+│   │   │   ├── metier.ts
+│   │   │   ├── referentiels
+│   │   │   │   ├── categorieDeJeux.ts
+│   │   │   │   ├── classes.ts
+│   │   │   │   ├── disciplines.ts
+│   │   │   │   ├── sequence.ts
+│   │   │   │   └── thematiqueDeJeux.ts
+│   │   │   ├── ressourceCyber.ts
+│   │   │   ├── selection.ts
+│   │   │   └── utilisateur.ts
+│   │   └── serveur.ts
+│   ├── tests
+│   │   ├── __snapshots__
+│   │   │   └── pagesStatiques.spec.ts.snap
+│   │   ├── api
+│   │   │   ├── constructeurRequeteDeJeu.ts
+│   │   │   ├── cookie.ts
+│   │   │   ├── dsc.spec.ts
+│   │   │   ├── fauxObjets.ts
+│   │   │   ├── middleware.spec.ts
+│   │   │   ├── moteurDeRenduExpress.spec.ts
+│   │   │   ├── objetsPretsALEmploi.ts
+│   │   │   ├── oidc
+│   │   │   │   ├── __snapshots__
+│   │   │   │   │   └── ressourceApresAuthentificationOIDC.spec.ts.snap
+│   │   │   │   ├── ressourceApresAuthentificationOIDC.spec.ts
+│   │   │   │   ├── ressourceApresDeconnexionOIDC.spec.ts
+│   │   │   │   ├── ressourceConnexionOIDC.spec.ts
+│   │   │   │   └── ressourceDeconnexionOIDC.spec.ts
+│   │   │   ├── ressourceCreationCompte.spec.ts
+│   │   │   ├── ressourceJeu.spec.ts
+│   │   │   ├── ressourceJeux.spec.ts
+│   │   │   ├── ressourceMesJeux.spec.ts
+│   │   │   ├── ressourceMetier.spec.ts
+│   │   │   ├── ressourceProfil.spec.ts
+│   │   │   ├── ressourceReactionsJeu.spec.ts
+│   │   │   ├── ressourceRessourcesCyber.spec.ts
+│   │   │   ├── ressourceSelectionsEleves.spec.ts
+│   │   │   ├── ressourceSelectionsEnseignants.spec.ts
+│   │   │   ├── ressourceUtilisateurs.spec.ts
+│   │   │   └── ressourcesPages.spec.ts
+│   │   ├── bus
+│   │   │   ├── busEvenements.spec.ts
+│   │   │   ├── busPourLesTests.ts
+│   │   │   ├── compteCree
+│   │   │   │   ├── consigneEvenementCompteCreeDansJournal.spec.ts
+│   │   │   │   ├── creeContactDansExpediteurEmail.spec.ts
+│   │   │   │   └── envoieEmailDeBienvenue.spec.ts
+│   │   │   └── jeuCree
+│   │   │       ├── consigneEvenementJeuCreeDansJournal.spec.ts
+│   │   │       └── notifieEvenementJeuCreeSurMessagerieInstantanee.spec.ts
+│   │   ├── constructeur.ts
+│   │   ├── entrepotGrist.spec.ts
+│   │   ├── infra
+│   │   │   ├── adaptateurEmailBrevo.spec.ts
+│   │   │   ├── adaptateurEnvironnement.spec.ts
+│   │   │   ├── adaptateurHachage.spec.ts
+│   │   │   ├── adaptateurJCOP.spec.ts
+│   │   │   ├── adaptateurTeleversement.spec.ts
+│   │   │   ├── cache.spec.ts
+│   │   │   ├── constructeurDeMetiersGrist.ts
+│   │   │   ├── constructeurDeSelectionsGrist.ts
+│   │   │   ├── constructeurDeTest.ts
+│   │   │   ├── entrepotJeuxMemoire.ts
+│   │   │   ├── entrepotMemoire.ts
+│   │   │   ├── entrepotMetiersGrist.spec.ts
+│   │   │   ├── entrepotMetiersMemoire.ts
+│   │   │   ├── entrepotRessourceCyberMemoire.ts
+│   │   │   ├── entrepotRessourcesCyberGrist.spec.ts
+│   │   │   ├── entrepotSelectionsGrist.spec.ts
+│   │   │   ├── entrepotSelectionsMemoire.ts
+│   │   │   ├── entrepotUtilisateurMemoire.ts
+│   │   │   ├── fournisseurHorlogeDeTest.ts
+│   │   │   ├── grist.ts
+│   │   │   ├── markdown.spec.ts
+│   │   │   └── serviceVerificationCoherenceSecretsHachage.spec.ts
+│   │   ├── metier
+│   │   │   ├── constructeurJeu.ts
+│   │   │   ├── constructeurSelection.ts
+│   │   │   └── jeu.spec.ts
+│   │   ├── pagesDeTest
+│   │   │   └── index.html
+│   │   └── pagesStatiques.spec.ts
+│   ├── todo.md
+│   ├── tsconfig.json
+│   ├── tsconfig.typecheck.json
+│   ├── vitest.config.ts
+│   └── vues
+│       ├── 404.pug
+│       ├── annexes
+│       │   ├── a-propos.pug
+│       │   ├── accessibilite.pug
+│       │   ├── cgu.pug
+│       │   ├── confidentialite.pug
+│       │   ├── mentions-legales.pug
+│       │   ├── securite.pug
+│       │   └── statistiques.pug
+│       ├── apres-authentification.pug
+│       ├── catalogue.pug
+│       ├── connexion.pug
+│       ├── creation-compte.pug
+│       ├── cyber-en-jeux.pug
+│       ├── devenir-relai.pug
+│       ├── encarts
+│       │   ├── chiffres-cles.pug
+│       │   ├── encart-cyberenjeux.pug
+│       │   ├── selections.pug
+│       │   └── soutiens.pug
+│       ├── evenements.pug
+│       ├── fragments
+│       │   ├── base.pug
+│       │   ├── entete.pug
+│       │   ├── pied-de-page.pug
+│       │   └── prologue.pug
+│       ├── index.pug
+│       ├── jeux.pug
+│       ├── maintenance.pug
+│       ├── mes-jeux.pug
+│       ├── metiers.pug
+│       ├── modification-jeu.pug
+│       ├── non-autorise.pug
+│       ├── nouveau-jeu.pug
+│       ├── selection-eleves.pug
+│       └── selection-enseignants.pug
+├── docker-compose.yml
+├── docker-entrypoint-initdb.d
+│   └── initialise.sql
+├── eslint.config.mts
+├── front
+│   ├── package.json
+│   ├── src
+│   │   ├── actions.svelte.ts
+│   │   ├── badge.type.ts
+│   │   ├── catalogue
+│   │   │   ├── CarteCatalogue.svelte
+│   │   │   ├── Catalogue.svelte
+│   │   │   ├── CatalogueFiltres.svelte
+│   │   │   ├── FiltreBesoin.svelte
+│   │   │   ├── FiltreNiveau.svelte
+│   │   │   ├── FiltrePublicCible.svelte
+│   │   │   ├── FiltreThematique.svelte
+│   │   │   ├── FiltreType.svelte
+│   │   │   ├── ressourceCyber.ts
+│   │   │   └── stores
+│   │   │       ├── rechercheParBesoin.store.ts
+│   │   │       ├── rechercheParNiveau.store.ts
+│   │   │       ├── rechercheParPublicCible.store.ts
+│   │   │       ├── rechercheParThematique.store.ts
+│   │   │       ├── rechercheParType.store.ts
+│   │   │       ├── rechercheTextuelle.store.ts
+│   │   │       ├── ressourcesCyber.store.ts
+│   │   │       └── ressourcesCyberFiltrees.store.ts
+│   │   ├── composants
+│   │   │   ├── Citation.svelte
+│   │   │   ├── Entete.svelte
+│   │   │   ├── Fiche.svelte
+│   │   │   ├── Heros.svelte
+│   │   │   ├── MiseEnAvant.svelte
+│   │   │   ├── MiseEnAvantKitCommunication.svelte
+│   │   │   └── RechercheTextuelle.svelte
+│   │   ├── constantes.ts
+│   │   ├── cyber-en-jeux
+│   │   │   ├── BadgesThematiques.svelte
+│   │   │   ├── CarteJeu.svelte
+│   │   │   ├── CyberEnjeux.svelte
+│   │   │   ├── EncartDeclarerUneAction.svelte
+│   │   │   ├── FiltreCategorie.svelte
+│   │   │   ├── FiltreNiveau.svelte
+│   │   │   ├── FiltreThematique.svelte
+│   │   │   ├── InvitationARejoindre.svelte
+│   │   │   ├── Onglets.svelte
+│   │   │   ├── PresentationCyberEnjeux.svelte
+│   │   │   ├── Ressources.svelte
+│   │   │   ├── VitrineDesJeux.svelte
+│   │   │   ├── VitrineFiltres.svelte
+│   │   │   └── stores
+│   │   │       ├── jeux.store.ts
+│   │   │       ├── jeuxFiltres.store.ts
+│   │   │       ├── rechercheParCategorie.store.ts
+│   │   │       ├── rechercheParNiveau.store.ts
+│   │   │       ├── rechercheParThematique.store.ts
+│   │   │       └── rechercheTextuelle.store.ts
+│   │   ├── index.scss
+│   │   ├── index.ts
+│   │   ├── jeu.type.ts
+│   │   ├── jeux
+│   │   │   ├── FicheJeu.svelte
+│   │   │   ├── FormulaireJeu
+│   │   │   │   ├── AlerteEnvoi.svelte
+│   │   │   │   ├── EtapeEvaluation.svelte
+│   │   │   │   ├── EtapeInformationsGenerales.svelte
+│   │   │   │   ├── EtapePhotos.svelte
+│   │   │   │   ├── EtapePresentation.svelte
+│   │   │   │   ├── EtapeTemoignages.svelte
+│   │   │   │   ├── EtapierDeposeJeu.svelte
+│   │   │   │   ├── EtapierModifieJeu.svelte
+│   │   │   │   ├── FormulaireDeJeu.type.ts
+│   │   │   │   ├── FormulaireJeu.svelte
+│   │   │   │   ├── NomEtablissementAutoComplete.svelte
+│   │   │   │   ├── NoteAvecSmiley.svelte
+│   │   │   │   └── ReferentielEtablissement.ts
+│   │   │   ├── MesJeux.svelte
+│   │   │   ├── Reactions.svelte
+│   │   │   ├── ValidateurEvaluationDuJeu.ts
+│   │   │   ├── ValidateurInformationsGeneralesDuJeu.ts
+│   │   │   ├── ValidateurPhotosDuJeu.ts
+│   │   │   ├── ValidateurPresentationDuJeu.ts
+│   │   │   ├── classes.ts
+│   │   │   ├── disciplines.ts
+│   │   │   ├── jeuEnEdition.type.ts
+│   │   │   ├── sequences.ts
+│   │   │   ├── stores
+│   │   │   │   ├── jeuEnEdition.store.ts
+│   │   │   │   └── photosJeu.store.ts
+│   │   │   ├── thematiques.ts
+│   │   │   └── validateur.ts
+│   │   ├── metiers
+│   │   │   └── FicheMetier.svelte
+│   │   ├── profil
+│   │   │   ├── CreationCompte.svelte
+│   │   │   └── ZoneIdentification.svelte
+│   │   ├── relai
+│   │   │   └── FicheRelai.svelte
+│   │   ├── selections
+│   │   │   └── Selection.svelte
+│   │   ├── stores
+│   │   │   └── profil.ts
+│   │   └── style
+│   │       ├── _contenu-deux-colonnes.scss
+│   │       ├── _couleurs.scss
+│   │       ├── _encart-chiffres-cles.scss
+│   │       ├── _encart-cyberenjeux.scss
+│   │       ├── _encart-selections.scss
+│   │       ├── _encart-soutiens.scss
+│   │       ├── _entete.scss
+│   │       ├── _fonts.scss
+│   │       ├── _global.scss
+│   │       ├── _grille.scss
+│   │       ├── _page-404.scss
+│   │       ├── _page-accueil.scss
+│   │       ├── _page-connexion.scss
+│   │       ├── _page-cyber-en-jeux.scss
+│   │       ├── _page-evenements.scss
+│   │       ├── _page-non-autorise.scss
+│   │       ├── _page-nouveau-jeu.scss
+│   │       ├── _page-selection-enseignants.scss
+│   │       ├── _page-statistiques.scss
+│   │       ├── _pages-annexes.scss
+│   │       ├── _points-de-rupture.scss
+│   │       └── _standard.scss
+│   ├── statique
+│   │   ├── assets
+│   │   │   ├── fonts
+│   │   │   │   ├── Marianne-Bold.woff
+│   │   │   │   ├── Marianne-Bold.woff2
+│   │   │   │   ├── Marianne-Bold_Italic.woff
+│   │   │   │   ├── Marianne-Bold_Italic.woff2
+│   │   │   │   ├── Marianne-ExtraBold.woff
+│   │   │   │   ├── Marianne-ExtraBold.woff2
+│   │   │   │   ├── Marianne-Light.woff
+│   │   │   │   ├── Marianne-Light.woff2
+│   │   │   │   ├── Marianne-Light_Italic.woff
+│   │   │   │   ├── Marianne-Light_Italic.woff2
+│   │   │   │   ├── Marianne-Medium.woff
+│   │   │   │   ├── Marianne-Medium.woff2
+│   │   │   │   ├── Marianne-Medium_Italic.woff
+│   │   │   │   ├── Marianne-Medium_Italic.woff2
+│   │   │   │   ├── Marianne-Regular.woff
+│   │   │   │   ├── Marianne-Regular.woff2
+│   │   │   │   ├── Marianne-Regular_Italic.woff
+│   │   │   │   └── Marianne-Regular_Italic.woff2
+│   │   │   └── images
+│   │   │       ├── ANSSI.avif
+│   │   │       ├── accompagner_les_eleves.avif
+│   │   │       ├── analyste-cyber.svg
+│   │   │       ├── apercu-pages-kit-communication.avif
+│   │   │       ├── boites-de-jeux-avec-blob.avif
+│   │   │       ├── cej
+│   │   │       │   ├── backpack.svg
+│   │   │       │   ├── city-hall.svg
+│   │   │       │   ├── collaboration.svg
+│   │   │       │   ├── concevoir.svg
+│   │   │       │   ├── former.svg
+│   │   │       │   ├── hacker-ethique.png
+│   │   │       │   ├── livret-accompagner.svg
+│   │   │       │   ├── livret-acculturation.svg
+│   │   │       │   ├── livret-creer.svg
+│   │   │       │   ├── livret-former.svg
+│   │   │       │   ├── livret-utilisation.svg
+│   │   │       │   ├── preparer.svg
+│   │   │       │   ├── ressources.svg
+│   │   │       │   ├── succes.svg
+│   │   │       │   └── valoriser.svg
+│   │   │       ├── cercles-fond-clair.avif
+│   │   │       ├── cercles-fond-sombre.avif
+│   │   │       ├── cercles.avif
+│   │   │       ├── citation.svg
+│   │   │       ├── contributeurs
+│   │   │       │   └── MinistereEducation.avif
+│   │   │       ├── cyberEnjeuxPro.avif
+│   │   │       ├── evenements.avif
+│   │   │       ├── fiches_pedagogiques.avif
+│   │   │       ├── hero-accueil.avif
+│   │   │       ├── heros-fond-clair.svg
+│   │   │       ├── illustration-statistiques.svg
+│   │   │       ├── illustration_connexion.avif
+│   │   │       ├── image-generique.svg
+│   │   │       ├── marianne.svg
+│   │   │       ├── menu-gauffre.svg
+│   │   │       ├── persos-accueil.svg
+│   │   │       ├── retour_experience.avif
+│   │   │       ├── soutiens
+│   │   │       │   ├── CNED.avif
+│   │   │       │   ├── ComCyber.avif
+│   │   │       │   ├── ComCyberGend.avif
+│   │   │       │   ├── CyberMalveillance.avif
+│   │   │       │   ├── DGE.avif
+│   │   │       │   ├── DINUM.avif
+│   │   │       │   ├── DITP.avif
+│   │   │       │   ├── France2030.avif
+│   │   │       │   └── PIX.avif
+│   │   │       └── video-generique.svg
+│   │   ├── favicon.ico
+│   │   ├── icons
+│   │   │   ├── arrows
+│   │   │   │   ├── arrow-down-s-line.svg
+│   │   │   │   ├── arrow-left-s-line.svg
+│   │   │   │   ├── arrow-right-line.svg
+│   │   │   │   ├── arrow-right-s-line.svg
+│   │   │   │   ├── arrow-up-line.svg
+│   │   │   │   ├── fr--arrow-left-s-first-line.svg
+│   │   │   │   └── fr--arrow-right-s-last-line.svg
+│   │   │   ├── editor
+│   │   │   │   └── fr--quote-line.svg
+│   │   │   └── system
+│   │   │       ├── add-line.svg
+│   │   │       ├── close-circle-line.svg
+│   │   │       ├── close-line.svg
+│   │   │       ├── delete-bin-line.svg
+│   │   │       ├── external-link-line.svg
+│   │   │       ├── fr--info-fill.svg
+│   │   │       ├── menu-2-fill.svg
+│   │   │       ├── menu-fill.svg
+│   │   │       ├── question-answer-line.svg
+│   │   │       ├── search-line.svg
+│   │   │       └── user-add-line.svg
+│   │   └── scripts
+│   │       ├── matomo.js
+│   │       ├── matomoTagManager.js
+│   │       └── optOutMatomo.js
+│   ├── svelte.config.js
+│   ├── tests
+│   │   ├── catalogue
+│   │   │   ├── constructeurRessourceCyber.ts
+│   │   │   ├── ressourceCyber.spec.ts
+│   │   │   └── stores
+│   │   │       ├── rechercheParBesoin.store.spec.ts
+│   │   │       ├── rechercheParNiveau.store.spec.ts
+│   │   │       ├── rechercheParPublicCible.store.spec.ts
+│   │   │       ├── rechercheParThematique.store.spec.ts
+│   │   │       ├── rechercheParType.store.spec.ts
+│   │   │       └── ressourcesCyberFiltrees.store.spec.ts
+│   │   ├── jeu.spec.ts
+│   │   ├── jeux
+│   │   │   ├── FormulaireJeu
+│   │   │   │   ├── FormulaireJeu.spec.ts
+│   │   │   │   └── NomEtablissementAutoComplete.spec.ts
+│   │   │   ├── Validateur.spec.ts
+│   │   │   ├── ValidateurEvaluationDuJeu.spec.ts
+│   │   │   ├── ValidateurInformationsGeneralesDuJeu.spec.ts
+│   │   │   ├── ValidateurPhotosDuJeu.spec.ts
+│   │   │   ├── ValidateurPresentationDuJeu.spec.ts
+│   │   │   └── stores
+│   │   │       ├── jeuEnEdition.store.spec.ts
+│   │   │       └── photosJeu.store.spec.ts
+│   │   ├── shadow-dom-utilitaires.ts
+│   │   ├── stores
+│   │   │   └── profil.spec.ts
+│   │   └── vitest-setup.ts
+│   ├── tsconfig.json
+│   ├── tsconfig.node.json
+│   ├── tsconfig.typecheck.json
+│   ├── vite.config.ts
+│   └── vitest.config.ts
+├── package.json
+├── pnpm-lock.yaml
+├── pnpm-workspace.yaml
+├── scripts
+│   ├── clever-cloud
+│   │   ├── post-build-clever.sh
+│   │   └── pre-run-clever.sh
+│   └── get-node-version.sh
+└── tsconfig.base.json
+69 directories, 435 files

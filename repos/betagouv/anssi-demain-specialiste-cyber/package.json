@@ -1,0 +1,46 @@
+{
+  "name": "anssi-demain-specialiste-cyber",
+  "version": "2.0.0",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/betagouv/anssi-demain-specialiste-cyber.git"
+  },
+  "packageManager": "pnpm@10.24.0",
+  "scripts": {
+    "dev": "pnpm -r dev",
+    "dev:front": "pnpm --filter anssi-demain-specialiste-cyber-front dev",
+    "dev:back": "pnpm --filter anssi-demain-specialiste-cyber-back dev",
+    "build": "pnpm -r build",
+    "lint": "pnpm -r lint",
+    "migre-bdd": "pnpm --filter anssi-demain-specialiste-cyber-back migre-bdd",
+    "start": "pnpm --filter anssi-demain-specialiste-cyber-back start ",
+    "test": "pnpm -r test",
+    "test:ci": "pnpm -r test:ci",
+    "typecheck": "pnpm -r typecheck",
+    "admin": "node -e \"const admin = new (require('./back/dist/src/admin/consoleAdministration.js').ConsoleAdministration)()\" -i",
+    "admin:dev": "pnpm build -w back && node --env-file back/.env -e \"const admin = new (require('./back/dist/src/admin/consoleAdministration.js').ConsoleAdministration)()\" -i",
+    "preinstall": "npx only-allow@1.2.2 pnpm"
+  },
+  "devDependencies": {
+    "@eslint/js": "~9.36.0",
+    "@typescript-eslint/eslint-plugin": "~8.44.1",
+    "@typescript-eslint/parser": "~8.44.1",
+    "eslint": "~9.36.0",
+    "npm-run-all2": "~8.0.4",
+    "prettier": "~3.6.2",
+    "typescript": "~5.9.2",
+    "typescript-eslint": "~8.44.1",
+    "vitest": "~3.2.4"
+  },
+  "dependencies": {
+    "axios": "~1.12.0",
+    "zod": "~4.1.5"
+  },
+  "private": true,
+  "pnpm": {
+    "overrides": {
+      "qs": "~6.14.1"
+    }
+  }
+}
