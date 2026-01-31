@@ -1,0 +1,41 @@
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "core.settings"
+env_files = [".env.template"]
+addopts = "--reuse-db"
+filterwarnings = [
+  "error",
+  # nested_admin uses monkeybiz that raises a warning we want to ignore in our tests
+  "ignore:.*pkg_resources is deprecated as an API.*"
+]
+
+[project]
+name = "sppnaut"
+version = "0.1"
+dependencies = [
+    "django-extensions==3.2.1",
+    "django-nested-admin==4.0.2",
+    "django-tree-queries==0.14.0",
+    "django==4.2.2",
+    "lxml==4.9.2",
+    "psycopg2==2.9.6",
+    "python-decouple==3.8",
+    "requests==2.31.0",
+    "sentry-sdk==1.23.1",
+    "whitenoise==6.5.0",
+    "django-admin-interface==0.26.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black==23.3.0",
+    "django-browser-reload==1.8.0",
+    "django-debug-toolbar==4.0.0",
+    "honcho==1.1.0",
+    "pytest-django==4.5.2",
+    "pytest-dotenv==0.5.2",
+    "pytest==7.2.2",
+    "requests-mock==1.10.0",
+]
+
+[tool.setuptools]
+packages = []
