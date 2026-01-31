@@ -1,0 +1,644 @@
+.
+├── .ci
+│   ├── docker-compose.yml
+│   ├── servers.conf.erb -> ../proxy-prod/servers.conf.erb
+│   └── test-erb-nginx-conf.sh
+├── .github
+│   ├── dependabot.yml
+│   └── workflows
+│       ├── assign-author.yml
+│       ├── nginx-test.yml
+│       └── site-test.yml
+├── .gitignore
+├── .npmrc
+├── .vscode
+│   ├── extensions.json
+│   └── launch.json
+├── README.md
+├── data
+│   ├── .env.example
+│   ├── .gitignore
+│   ├── .pre-commit-config.yaml
+│   ├── 2023
+│   │   ├── 1_previous_year_to_cleaned_csv.ipynb
+│   │   ├── 2_update_cleaned_exercice_and_uuid_doc.ipynb
+│   │   └── 3_cleaned_to_email_campaign_csv.ipynb
+│   ├── 2024
+│   │   ├── 0_cnous_dedupe.ipynb
+│   │   ├── 1_CSP_to_cleaned.ipynb
+│   │   ├── 1_organism_to_cleaned_cnous.ipynb
+│   │   ├── 1_organism_to_cleaned_cnous_sanitaires_sociaux_bourgogne_franche_comte.ipynb
+│   │   ├── 1_organisms_to_cleaned.ipynb
+│   │   ├── 2_merge_with_existing.ipynb
+│   │   ├── 2_merge_with_existing_cnous-only.ipynb
+│   │   ├── 3_email_campaign.ipynb
+│   │   ├── experimentation
+│   │   │   ├── experience-1
+│   │   │   │   ├── .gitikeep
+│   │   │   │   └── 1_ditp_extract_columns_from_lm_hard_bounce_campaign.ipynb
+│   │   │   ├── experience-2
+│   │   │   │   ├── .gitikeep
+│   │   │   │   ├── 1_link_mobility_email_campaign.ipynb
+│   │   │   │   ├── 2_ditp_consolidation_and_update.ipynb
+│   │   │   │   ├── 3_ditp-maquettes-analysis.ipynb
+│   │   │   │   └── check_analysis_file.ipynb
+│   │   │   └── experience-3
+│   │   │       ├── .gitikeep
+│   │   │       ├── 1_lm-campaign-get-batches.ipynb
+│   │   │       ├── 2_lm-email-campaign.ipynb
+│   │   │       └── 3_ditp-analysis.ipynb
+│   │   └── hard-bounces
+│   │       └── hard-bounce.ipynb
+│   ├── 2025
+│   │   ├── aeeh
+│   │   │   ├── aeeh-grist-extraction.ipynb
+│   │   │   ├── aeeh-matricule-fixes.ipynb
+│   │   │   ├── clean_aeeh_with_backup.ipynb
+│   │   │   ├── clean_aeeh_without_backup.ipynb
+│   │   │   ├── generate_codes.ipynb
+│   │   │   ├── grist-codes-extraction.ipynb
+│   │   │   ├── lm-reports-output-to-ds.ipynb
+│   │   │   └── previous_waves
+│   │   │       ├── .gitkeep
+│   │   │       └── wave-2
+│   │   │           └── ate
+│   │   │               └── .gitkeep
+│   │   ├── initial_migration_2024_to_2025
+│   │   │   ├── 0_deduplication.ipynb
+│   │   │   ├── 1_exclude_rgpd_and_duplicates.ipynb
+│   │   │   ├── 2_code_generation.ipynb
+│   │   │   ├── README.md
+│   │   │   └── emails_stats_teasing_campaign_and_first_campaign.ipynb
+│   │   ├── injep
+│   │   │   ├── injep-caf.ipynb
+│   │   │   └── merge-injep-with-osiris.ipynb
+│   │   ├── linkmobility
+│   │   │   ├── teasing
+│   │   │   │   ├── 1_email_campaign.ipynb
+│   │   │   │   └── 2_clubs_campaign.ipynb
+│   │   │   ├── wave-1
+│   │   │   │   ├── 1_email_campaign.ipynb
+│   │   │   │   └── 2_sms_campaign.ipynb
+│   │   │   └── wave-2
+│   │   │       └── .gitkeep
+│   │   └── partners_data
+│   │       ├── clean_cnaf.ipynb
+│   │       ├── clean_miquelon.ipynb
+│   │       ├── clean_msa.ipynb
+│   │       ├── cnous
+│   │       │   ├── clean_cnous.ipynb
+│   │       │   ├── deduplication_cnous.ipynb
+│   │       │   ├── deduplication_cnous_for_occitanie.ipynb
+│   │       │   └── fss
+│   │       │       └── clean_fss.ipynb
+│   │       ├── csv_to_parquet.ipynb
+│   │       ├── exclude_rgpd_from_2024_data.ipynb
+│   │       └── merge_cnaf_msa.ipynb
+│   ├── README.md
+│   ├── requirements.txt
+│   ├── sampling
+│   │   └── sampling_extraction.ipynb
+│   ├── statiscs
+│   │   └── stats_by_region_with_goals.ipynb
+│   └── utils
+│       ├── __init__.py
+│       ├── check_qr_recap.py
+│       ├── check_slash_in_csv.ipynb
+│       ├── constants.py
+│       ├── data_utils.py
+│       ├── emailing_utils.py
+│       ├── file_encoding_detector.ipynb
+│       ├── find_duplicate_benef_csv.ipynb
+│       ├── generate_new_code_from_csv.ipynb
+│       ├── generate_random_data.ipynb
+│       └── get_missing_beneficiaries.ipynb
+├── docs
+│   ├── README.md
+│   └── index.html
+├── proxy-prod
+│   └── servers.conf.erb
+└── site
+    ├── .dockerignore
+    ├── .env.test
+    ├── .eslintrc.json
+    ├── .gitignore
+    ├── .nvmrc
+    ├── .prettierrc
+    ├── Dockerfile
+    ├── README.md
+    ├── assets
+    │   ├── bloc-ministere.png
+    │   ├── left-lines.png
+    │   ├── marianne-bold
+    │   ├── marianne-regular
+    │   ├── pass-sport-logo.png
+    │   └── right-lines.png
+    ├── components
+    │   ├── PageTitle
+    │   │   ├── PageTitle.tsx
+    │   │   └── styles.module.scss
+    │   └── eligibility-test-banner
+    │       ├── EligibilityTestBanner.tsx
+    │       └── styles.module.scss
+    ├── compose.yml
+    ├── env.example.local
+    ├── fonts.d.ts
+    ├── global.d.ts
+    ├── instrumentation.ts
+    ├── jest.config.js
+    ├── middleware.ts
+    ├── next.config.mjs
+    ├── package.json
+    ├── pages
+    │   └── api
+    │       ├── code.ts
+    │       └── contact.ts
+    ├── pnpm-lock.yaml
+    ├── public
+    │   ├── assets
+    │   │   └── partenaires
+    │   │       ├── affiches
+    │   │       │   ├── partenaires_affiche_destination_des_jeunes.pdf
+    │   │       │   ├── partenaires_affiche_destination_des_parents.pdf
+    │   │       │   ├── structures_sportives_affiche_destination_des_jeunes.pdf
+    │   │       │   └── structures_sportives_affiche_destination_des_parents.pdf
+    │   │       ├── charte-lsm-2025.pdf
+    │   │       ├── flyers
+    │   │       │   └── flyer_pass_sport_2025.pdf
+    │   │       ├── kakemono
+    │   │       │   └── kakemono_pass_sport_2025.pdf
+    │   │       ├── logos
+    │   │       │   ├── charte_utilisation_des_logos_pass_sport.pdf
+    │   │       │   ├── logo_blanc_secondaire.png
+    │   │       │   └── logo_bleu_principal.png
+    │   │       ├── notice-lsm-2025.pdf
+    │   │       ├── notice-pass-sport-2025.pdf
+    │   │       ├── publications-pretes-a-l-emploi-pour-accompagner-les-visuels-pass-sport.pdf
+    │   │       ├── reseaux-sociaux
+    │   │       │   ├── structures_sportives_visuel_pour_communiquer_aupres_des_jeunes.jpg
+    │   │       │   ├── structures_sportives_visuel_pour_communiquer_aupres_des_parents.jpg
+    │   │       │   ├── visuel_pour_communiquer_aupres_des_etudiants_boursiers.jpg
+    │   │       │   ├── visuel_pour_communiquer_aupres_des_jeunes.jpg
+    │   │       │   ├── visuel_pour_communiquer_aupres_des_parents.jpg
+    │   │       │   ├── visuel_pour_les_beneficiaires_aah.jpg
+    │   │       │   └── visuel_pour_les_parents_de_beneficiaires_aeeh.jpg
+    │   │       └── videos
+    │   │           ├── video-14-17-ans-ars.mp4
+    │   │           ├── video-aah.mp4
+    │   │           ├── video-etudiants-boursiers.mp4
+    │   │           ├── video-presentation-30-secondes.mp4
+    │   │           ├── video-presentation-50-secondes.mp4
+    │   │           ├── video-presentation-standard.mp4
+    │   │           └── video-salles-de-sport.mp4
+    │   ├── default-logo.svg
+    │   ├── google8425ffe110f23ef4.html
+    │   ├── home.svg
+    │   └── images
+    │       ├── code-2x.svg
+    │       ├── code.svg
+    │       ├── eligibility-test
+    │       │   ├── break-dance.webp
+    │       │   ├── je-veux-aider.jpg
+    │       │   ├── service-civique.jpg
+    │       │   ├── snu.jpg
+    │       │   └── spe.png
+    │       ├── footer
+    │       │   ├── cnaf-logo.png
+    │       │   ├── cnaf-logo.webp
+    │       │   ├── cnosf-logo.svg
+    │       │   ├── crous-logo.png
+    │       │   ├── crous-logo.webp
+    │       │   ├── decathlon.svg
+    │       │   ├── dinum-logo.png
+    │       │   ├── dinum-logo.webp
+    │       │   ├── fneapl-logo.png
+    │       │   ├── fneapl-logo.webp
+    │       │   ├── france-paralympique.svg
+    │       │   ├── hello-asso-logo.svg
+    │       │   ├── helloasso.svg
+    │       │   ├── intersport-logo.svg
+    │       │   ├── logo-cosmos.svg
+    │       │   ├── logo-lca.png
+    │       │   ├── logo-lca.webp
+    │       │   ├── logo-reseau-kc-neo.png
+    │       │   ├── logo-reseau-kc-neo.webp
+    │       │   ├── menj-logo.svg
+    │       │   ├── msa-logo.svg
+    │       │   ├── union-sport-cycle-logo.png
+    │       │   └── union-sport-cycle-logo.webp
+    │       ├── homepage
+    │       │   ├── avatar.svg
+    │       │   ├── left-lines.svg
+    │       │   ├── location-overseas-france.svg
+    │       │   ├── lucie.jpg
+    │       │   ├── pass-sport-lines.png
+    │       │   ├── pass-sport-lines.webp
+    │       │   └── right-lines.svg
+    │       ├── jeunes-et-parents
+    │       │   └── basketball.webp
+    │       ├── medical-certificate
+    │       │   └── medical-certificate.jpg
+    │       ├── pass-sport-logo-white.svg
+    │       ├── pass-sport-logo.svg
+    │       └── structures
+    │           ├── athletism.webp
+    │           ├── lca_ajouter_benef.png
+    │           ├── lca_gerer_les_pass_sports.png
+    │           ├── pass_sport_can_only_be_used_once_error_message.png
+    │           ├── pass_sport_not_existing_error.png
+    │           └── simon-running.webp
+    ├── scripts
+    │   ├── send-in-mass-aeeh.mjs
+    │   ├── send-in-mass-code-pas-recu.mjs
+    │   ├── send-in-mass-eligibility-test-fail.mjs
+    │   ├── send-in-mass-march-2025.mjs
+    │   ├── send-in-mass.mjs
+    │   └── unresolve-boursiers.mjs
+    ├── sentry.client.config.ts
+    ├── src
+    │   ├── app
+    │   │   ├── Matomo.tsx
+    │   │   ├── [...404]
+    │   │   │   └── page.tsx
+    │   │   ├── components
+    │   │   │   ├── actions
+    │   │   │   │   ├── Actions.tsx
+    │   │   │   │   └── styles.module.scss
+    │   │   │   ├── custom-highlight
+    │   │   │   │   ├── CustomHighlight.tsx
+    │   │   │   │   └── styles.module.scss
+    │   │   │   ├── download-link
+    │   │   │   │   └── DownloadLink.tsx
+    │   │   │   ├── eligibility-criteria-list
+    │   │   │   │   └── EligibilityCriteriaList.tsx
+    │   │   │   ├── guided-block
+    │   │   │   │   ├── GuidingBlock.tsx
+    │   │   │   │   └── styles.module.scss
+    │   │   │   ├── heading
+    │   │   │   │   └── Heading.tsx
+    │   │   │   ├── highlight
+    │   │   │   │   └── Highlight.tsx
+    │   │   │   ├── je-donne-mon-avis-btn
+    │   │   │   │   └── JeDonneMonAvisBtn.tsx
+    │   │   │   ├── know-more
+    │   │   │   │   ├── KnowMore.tsx
+    │   │   │   │   └── styles.module.scss
+    │   │   │   ├── loading
+    │   │   │   │   ├── Loading.tsx
+    │   │   │   │   └── styles.module.scss
+    │   │   │   ├── mission-cards
+    │   │   │   │   ├── MissionCards.tsx
+    │   │   │   │   └── styles.module.scss
+    │   │   │   ├── pass-sport-breadcrumb
+    │   │   │   │   ├── PassSportBreadcrumbStandard.tsx
+    │   │   │   │   └── styles.module.scss
+    │   │   │   ├── pass-sport-footer
+    │   │   │   │   ├── PassSportFooter.tsx
+    │   │   │   │   └── styles.module.scss
+    │   │   │   ├── pass-sport-navigation
+    │   │   │   │   ├── PassSportNavigationStandard.tsx
+    │   │   │   │   ├── navigation.tsx
+    │   │   │   │   └── styles.module.scss
+    │   │   │   ├── pdf-pass-sport
+    │   │   │   │   ├── PdfPassSport.tsx
+    │   │   │   │   └── fonts
+    │   │   │   │       ├── marianne-bold.woff2
+    │   │   │   │       └── marianne-regular.woff2
+    │   │   │   ├── simplified-eligibility-test
+    │   │   │   │   ├── SimplifiedEligibilityTest.tsx
+    │   │   │   │   └── styles.module.scss
+    │   │   │   ├── skip-links-wrapper
+    │   │   │   │   └── SkipLinksWrapper.tsx
+    │   │   │   ├── social-media-panel
+    │   │   │   │   ├── SocialMediaPanel.tsx
+    │   │   │   │   └── styles.module.scss
+    │   │   │   ├── socialMediaLinks
+    │   │   │   │   ├── SocialMediaLinks.tsx
+    │   │   │   │   └── styles.module.scss
+    │   │   │   └── tarte-au-citron
+    │   │   │       └── tarte-au-citron.tsx
+    │   │   ├── constants
+    │   │   │   ├── cookie-manager.ts
+    │   │   │   ├── display-type.ts
+    │   │   │   ├── dsfr-classes.tsx
+    │   │   │   ├── env.ts
+    │   │   │   ├── footer-brand-top.tsx
+    │   │   │   ├── search-query-params.ts
+    │   │   │   ├── skip-links.tsx
+    │   │   │   ├── social-media.tsx
+    │   │   │   ├── urls.tsx
+    │   │   │   └── wordings.ts
+    │   │   ├── favicon.ico
+    │   │   ├── globals.scss
+    │   │   ├── hooks
+    │   │   │   ├── accessibility
+    │   │   │   │   ├── use-enhance-cookie-manager-accessibility.ts
+    │   │   │   │   ├── use-remove-header-attributes.ts
+    │   │   │   │   ├── use-remove-header-theme-controls.ts
+    │   │   │   │   ├── use-replace-titles-by-aria-labels.tsx
+    │   │   │   │   ├── use-update-headings.tsx
+    │   │   │   │   ├── use-update-list.tsx
+    │   │   │   │   └── use-update-title-iframe.ts
+    │   │   │   ├── use-append-query-string.tsx
+    │   │   │   ├── use-get-clubs.tsx
+    │   │   │   ├── use-is-not-found.tsx
+    │   │   │   ├── use-remove-query-string.tsx
+    │   │   │   ├── useLeafletAccessibility.tsx
+    │   │   │   └── useRemoveAttributeById.tsx
+    │   │   ├── layout.tsx
+    │   │   ├── manifest.ts
+    │   │   ├── page.tsx
+    │   │   ├── robot.ts
+    │   │   ├── sassVariables.module.scss
+    │   │   ├── services
+    │   │   │   ├── __mocks__
+    │   │   │   │   └── fetch-code.ts
+    │   │   │   ├── __snapshots__
+    │   │   │   │   └── eligibility-test.spec.ts.snap
+    │   │   │   ├── eligibility-test.spec.ts
+    │   │   │   └── eligibility-test.ts
+    │   │   ├── sitemap.ts
+    │   │   ├── tac-dsfr.scss
+    │   │   ├── utilities.module.scss
+    │   │   └── v2
+    │   │       ├── [...404]
+    │   │       │   └── page.tsx
+    │   │       ├── accessibilite
+    │   │       │   ├── page.tsx
+    │   │       │   └── style.module.scss
+    │   │       ├── accueil
+    │   │       │   ├── components
+    │   │       │   │   ├── PresentationTile.tsx
+    │   │       │   │   ├── acronymes
+    │   │       │   │   │   └── Acronymes.tsx
+    │   │       │   │   ├── callout
+    │   │       │   │   │   ├── Callout.tsx
+    │   │       │   │   │   ├── callouts.messages.ts
+    │   │       │   │   │   └── styles.module.scss
+    │   │       │   │   ├── email-form
+    │   │       │   │   │   ├── EmailForm.tsx
+    │   │       │   │   │   └── styles.module.scss
+    │   │       │   │   ├── find-club-card
+    │   │       │   │   │   ├── FindClubCard.tsx
+    │   │       │   │   │   └── styles.module.scss
+    │   │       │   │   ├── hero
+    │   │       │   │   │   ├── Hero.tsx
+    │   │       │   │   │   └── styles.module.scss
+    │   │       │   │   ├── hero-panel
+    │   │       │   │   │   ├── HeroPanel.tsx
+    │   │       │   │   │   └── styles.module.scss
+    │   │       │   │   ├── main-tiles
+    │   │       │   │   │   ├── MainTiles.tsx
+    │   │       │   │   │   └── styles.module.scss
+    │   │       │   │   └── video
+    │   │       │   │       ├── Video.tsx
+    │   │       │   │       └── styles.module.scss
+    │   │       │   ├── page.tsx
+    │   │       │   └── styles.module.scss
+    │   │       ├── communication
+    │   │       │   └── page.tsx
+    │   │       ├── jeunes-et-parents
+    │   │       │   ├── components
+    │   │       │   │   ├── AccordionsFaq.tsx
+    │   │       │   │   ├── ContactAeehSection.tsx
+    │   │       │   │   └── ObtainCodeButton.tsx
+    │   │       │   ├── constants
+    │   │       │   │   └── anchors.ts
+    │   │       │   ├── page.tsx
+    │   │       │   └── styles.module.scss
+    │   │       ├── mentions-legales
+    │   │       │   ├── page.tsx
+    │   │       │   └── style.module.scss
+    │   │       ├── partenaires
+    │   │       │   ├── components
+    │   │       │   │   ├── AccordionKakemono.tsx
+    │   │       │   │   ├── AccordionsCommunicationKit.tsx
+    │   │       │   │   ├── AccordionsLogos.tsx
+    │   │       │   │   ├── AccordionsSocialMediasVisuals.tsx
+    │   │       │   │   └── AccordionsWebsites.tsx
+    │   │       │   ├── page.tsx
+    │   │       │   └── styles.module.scss
+    │   │       ├── plan-du-site
+    │   │       │   ├── page.tsx
+    │   │       │   └── style.module.scss
+    │   │       ├── politique-de-confidentialite
+    │   │       │   ├── page.tsx
+    │   │       │   └── style.module.scss
+    │   │       ├── structures
+    │   │       │   ├── components
+    │   │       │   │   ├── AccordionsBecomePartner.tsx
+    │   │       │   │   ├── AccordionsFaq.tsx
+    │   │       │   │   ├── AccordionsKitCommunication.tsx
+    │   │       │   │   ├── AccordionsLogos.tsx
+    │   │       │   │   ├── AccordionsSocialMediasVisuals.tsx
+    │   │       │   │   └── AccordionsTools.tsx
+    │   │       │   ├── constants
+    │   │       │   │   └── anchors.ts
+    │   │       │   ├── page.tsx
+    │   │       │   └── styles.module.scss
+    │   │       ├── test-eligibilite
+    │   │       │   ├── agent.ts
+    │   │       │   ├── components
+    │   │       │   │   ├── allowance-step
+    │   │       │   │   │   ├── AllowanceStep.tsx
+    │   │       │   │   │   └── styles.module.scss
+    │   │       │   │   ├── city-finder
+    │   │       │   │   │   ├── CityFinder.tsx
+    │   │       │   │   │   └── styles.module.scss
+    │   │       │   │   ├── corrective-info
+    │   │       │   │   │   └── CorrectiveInfo.tsx
+    │   │       │   │   ├── crous-eligibility-test-forms
+    │   │       │   │   │   └── CrousEligibilityTestForms.tsx
+    │   │       │   │   ├── custom-input
+    │   │       │   │   │   ├── CustomInput.tsx
+    │   │       │   │   │   └── styles.module.scss
+    │   │       │   │   ├── eligibility-test-forms
+    │   │       │   │   │   └── EligibilityTestForms.tsx
+    │   │       │   │   ├── error-alert
+    │   │       │   │   │   └── ErrorAlert.tsx
+    │   │       │   │   ├── step-checker
+    │   │       │   │   │   ├── StepChecker.tsx
+    │   │       │   │   │   └── styles.module.scss
+    │   │       │   │   ├── step-one-form
+    │   │       │   │   │   ├── StepOneForm.tsx
+    │   │       │   │   │   └── styles.module.scss
+    │   │       │   │   ├── step-two-forms
+    │   │       │   │   │   ├── AahCafForm.tsx
+    │   │       │   │   │   ├── AahMsaForm.tsx
+    │   │       │   │   │   ├── CrousForm.tsx
+    │   │       │   │   │   ├── FormButton.tsx
+    │   │       │   │   │   ├── YoungCafForm.tsx
+    │   │       │   │   │   ├── YoungMsaForm.tsx
+    │   │       │   │   │   └── common-inputs
+    │   │       │   │   │       ├── CommonInputs.tsx
+    │   │       │   │   │       └── styles.module.scss
+    │   │       │   │   ├── types
+    │   │       │   │   │   └── types.ts
+    │   │       │   │   └── verdict-panel
+    │   │       │   │       ├── VerdictPanel.tsx
+    │   │       │   │       └── styles.module.scss
+    │   │       │   ├── helpers
+    │   │       │   │   ├── countries.ts
+    │   │       │   │   ├── helper.spec.ts
+    │   │       │   │   └── helper.tsx
+    │   │       │   ├── hooks
+    │   │       │   │   ├── use-ask-consent-for-support.ts
+    │   │       │   │   └── use-auto-correct-allowance.ts
+    │   │       │   ├── page.tsx
+    │   │       │   └── styles.module.scss
+    │   │       ├── test-eligibilite-base
+    │   │       │   ├── components
+    │   │       │   │   ├── customRadioButtons
+    │   │       │   │   │   ├── CustomRadioButtons.tsx
+    │   │       │   │   │   ├── legend
+    │   │       │   │   │   │   ├── Legend.tsx
+    │   │       │   │   │   │   └── styles.module.scss
+    │   │       │   │   │   └── styles.module.scss
+    │   │       │   │   ├── eligibilityTestWrapper
+    │   │       │   │   │   └── EligibilityTestWrapper.tsx
+    │   │       │   │   ├── radioButtonsGroup
+    │   │       │   │   │   ├── RadioButtonsGroup.tsx
+    │   │       │   │   │   └── styles.module.scss
+    │   │       │   │   └── types
+    │   │       │   │       └── types.ts
+    │   │       │   ├── page.tsx
+    │   │       │   └── styles.module.scss
+    │   │       ├── test-ou-code
+    │   │       │   ├── components
+    │   │       │   │   ├── button-choice-group
+    │   │       │   │   │   └── ButtonChoiceGroup.tsx
+    │   │       │   │   └── get-or-test-step
+    │   │       │   │       └── GetOrTestStep.tsx
+    │   │       │   ├── page.tsx
+    │   │       │   └── styles.module.scss
+    │   │       ├── trouver-un-club
+    │   │       │   ├── [club-name]
+    │   │       │   │   ├── components
+    │   │       │   │   │   ├── clubDetails
+    │   │       │   │   │   │   ├── ClubDetails.tsx
+    │   │       │   │   │   │   └── styles.module.scss
+    │   │       │   │   │   ├── map
+    │   │       │   │   │   │   ├── Map.tsx
+    │   │       │   │   │   │   └── styles.module.scss
+    │   │       │   │   │   └── medicalCertificatPanel
+    │   │       │   │   │       ├── MedicalCertificatePanel.tsx
+    │   │       │   │   │       └── styles.module.scss
+    │   │       │   │   ├── helpers.ts
+    │   │       │   │   ├── hooks
+    │   │       │   │   │   └── use-get-map-url.ts
+    │   │       │   │   └── page.tsx
+    │   │       │   ├── agent.ts
+    │   │       │   ├── components
+    │   │       │   │   ├── club-count
+    │   │       │   │   │   ├── ClubCount.tsx
+    │   │       │   │   │   └── styles.module.scss
+    │   │       │   │   ├── club-filters
+    │   │       │   │   │   ├── ClubFilters.tsx
+    │   │       │   │   │   ├── activity-filter
+    │   │       │   │   │   │   └── ActivityFilter.tsx
+    │   │       │   │   │   ├── around-me-filter
+    │   │       │   │   │   │   └── AroundMeFilter.tsx
+    │   │       │   │   │   ├── city-filter
+    │   │       │   │   │   │   ├── CityFilter.tsx
+    │   │       │   │   │   │   └── styles.module.scss
+    │   │       │   │   │   ├── custom-select
+    │   │       │   │   │   │   ├── CustomSelect.tsx
+    │   │       │   │   │   │   └── styles.module.scss
+    │   │       │   │   │   ├── disability-filter
+    │   │       │   │   │   │   └── DisabilityFilter.tsx
+    │   │       │   │   │   └── styles.module.scss
+    │   │       │   │   ├── club-filters-in-accordion
+    │   │       │   │   │   ├── ClubFiltersInAccordion.tsx
+    │   │       │   │   │   └── styles.module.scss
+    │   │       │   │   ├── club-finder
+    │   │       │   │   │   ├── ClubFinder.tsx
+    │   │       │   │   │   └── style.module.scss
+    │   │       │   │   ├── club-list-view
+    │   │       │   │   │   ├── ClubListView.tsx
+    │   │       │   │   │   ├── more-clubs-button
+    │   │       │   │   │   │   ├── MoreClubsButton.tsx
+    │   │       │   │   │   │   └── styles.module.scss
+    │   │       │   │   │   └── styles.module.scss
+    │   │       │   │   ├── club-map-view
+    │   │       │   │   │   ├── ClubMapView.tsx
+    │   │       │   │   │   └── styles.module.scss
+    │   │       │   │   ├── club-tags
+    │   │       │   │   │   └── ClubTags.tsx
+    │   │       │   │   ├── clubs-map
+    │   │       │   │   │   ├── ClubsMap.tsx
+    │   │       │   │   │   ├── Clusterizer.tsx
+    │   │       │   │   │   ├── MapEventHandler.tsx
+    │   │       │   │   │   ├── MapZoomHandler.tsx
+    │   │       │   │   │   ├── styles-marker-cluster.css
+    │   │       │   │   │   └── styles.module.scss
+    │   │       │   │   ├── disability-tag
+    │   │       │   │   │   ├── DisabilityTag.tsx
+    │   │       │   │   │   └── styles.module.scss
+    │   │       │   │   ├── geolocation
+    │   │       │   │   │   └── Geolocation.tsx
+    │   │       │   │   └── missing-club-information-panel
+    │   │       │   │       ├── MissingClubInformationPanel.tsx
+    │   │       │   │       └── styles.module.scss
+    │   │       │   ├── page.tsx
+    │   │       │   └── styles.module.scss
+    │   │       └── une-question
+    │   │           ├── client-agent.ts
+    │   │           ├── components
+    │   │           │   ├── ContactForm
+    │   │           │   │   ├── ContactForm.tsx
+    │   │           │   │   └── styles.module.scss
+    │   │           │   ├── ContactSection
+    │   │           │   │   └── ContactSection.tsx
+    │   │           │   ├── ContentSection
+    │   │           │   │   ├── ContentSection.tsx
+    │   │           │   │   └── styles.module.scss
+    │   │           │   ├── PopularityLevel
+    │   │           │   │   ├── PopularityLevel.tsx
+    │   │           │   │   └── styles.module.scss
+    │   │           │   ├── QuestionAnswer
+    │   │           │   │   ├── QuestionAnswer.tsx
+    │   │           │   │   └── styles.module.scss
+    │   │           │   └── SegmentedFaq
+    │   │           │       ├── SegmentedFaq.tsx
+    │   │           │       └── styles.module.scss
+    │   │           ├── page.tsx
+    │   │           ├── server-agent.ts
+    │   │           └── styles.module.scss
+    │   ├── dsfr
+    │   │   ├── DsfrHead.tsx
+    │   │   ├── DsfrProvider.tsx
+    │   │   └── defaultColorScheme.ts
+    │   └── store
+    │       ├── eligibilityTestContext.ts
+    │       └── geolocationContext.tsx
+    ├── tests
+    │   └── helpers
+    │       └── builders
+    │           └── confirm-response-body.ts
+    ├── tsconfig.json
+    ├── types
+    │   ├── City.ts
+    │   ├── Club.ts
+    │   ├── Contact.ts
+    │   ├── Crisp.ts
+    │   ├── EligibilityTest.ts
+    │   ├── Faq.ts
+    │   └── form.ts
+    └── utils
+        ├── __snapshots__
+        │   └── city.spec.ts.snap
+        ├── city.spec.ts
+        ├── city.ts
+        ├── club-finder.ts
+        ├── cookie.ts
+        ├── crisp.ts
+        ├── date.ts
+        ├── decryption.ts
+        ├── dom.ts
+        ├── eligibility-test.spec.ts
+        ├── eligibility-test.ts
+        ├── email.ts
+        ├── faq.ts
+        ├── string.spec.ts
+        └── string.ts
+181 directories, 462 files
