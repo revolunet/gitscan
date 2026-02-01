@@ -1,0 +1,633 @@
+.
+├── .circleci
+│   └── config.yml
+├── .env.dist
+├── .gitignore
+├── .vscode
+│   └── settings.json
+├── README.md
+├── biome.json
+├── bun.lockb
+├── next.config.mjs
+├── package.json
+├── pnpm-lock.yaml
+├── public
+│   └── assets
+│       ├── Etude de cas - Arras.pptx
+│       ├── csv
+│       │   └── template_import_a_facon.csv
+│       ├── img
+│       │   ├── acces_collectivite.png
+│       │   ├── acces_ddt.png
+│       │   ├── arras.webp
+│       │   ├── book.svg
+│       │   ├── ecosystem.svg
+│       │   ├── faq-mailles.png
+│       │   ├── home-background.jpg
+│       │   ├── home-background.png
+│       │   ├── logo-cerema.svg
+│       │   ├── logo-ministere.svg
+│       │   └── methodologie.svg
+│       └── pdf
+│           ├── acte_engagement.pdf
+│           └── guide_projection_facon.pdf
+├── src
+│   ├── app
+│   │   ├── (authenticated)
+│   │   │   ├── admin
+│   │   │   │   ├── gestion-des-utilisateurs
+│   │   │   │   │   └── page.tsx
+│   │   │   │   ├── page.tsx
+│   │   │   │   └── statistiques
+│   │   │   │       ├── layout.tsx
+│   │   │   │       └── page.tsx
+│   │   │   ├── infographies
+│   │   │   │   └── page.tsx
+│   │   │   ├── layout-wrapper.tsx
+│   │   │   ├── layout.module.css
+│   │   │   ├── layout.tsx
+│   │   │   ├── signout.tsx
+│   │   │   ├── simulation
+│   │   │   │   ├── (creation)
+│   │   │   │   │   ├── (rates-provider)
+│   │   │   │   │   │   ├── rates-provider.tsx
+│   │   │   │   │   │   ├── taux-cibles-logements-vacants
+│   │   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   │   ├── taux-cibles-residences-secondaires
+│   │   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   │   └── taux-restructuration-disparition
+│   │   │   │   │   │       └── page.tsx
+│   │   │   │   │   ├── cadrage-temporel
+│   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   ├── choix-du-territoire
+│   │   │   │   │   │   ├── bassin-habitat-selection.tsx
+│   │   │   │   │   │   ├── checkbox-epcis.tsx
+│   │   │   │   │   │   ├── choix-du-territoire.module.css
+│   │   │   │   │   │   ├── contiguous-epcis-checkboxes.tsx
+│   │   │   │   │   │   ├── custom-selection.tsx
+│   │   │   │   │   │   ├── epci-group-name-input.tsx
+│   │   │   │   │   │   ├── epci-group-select.tsx
+│   │   │   │   │   │   ├── existing-group-selection.tsx
+│   │   │   │   │   │   ├── method-selection-cards.tsx
+│   │   │   │   │   │   ├── page.tsx
+│   │   │   │   │   │   └── wrapper-simulation-type-page.tsx
+│   │   │   │   │   ├── layout.tsx
+│   │   │   │   │   ├── page.tsx
+│   │   │   │   │   ├── parametrages-demographique
+│   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   └── searchParams.ts
+│   │   │   │   └── [id]
+│   │   │   │       ├── modifier
+│   │   │   │       │   ├── (demographic-modification)
+│   │   │   │       │   │   ├── (rates-provider)
+│   │   │   │       │   │   │   ├── taux-cibles-logements-vacants
+│   │   │   │       │   │   │   │   └── page.tsx
+│   │   │   │       │   │   │   ├── taux-cibles-residences-secondaires
+│   │   │   │       │   │   │   │   └── page.tsx
+│   │   │   │       │   │   │   └── taux-restructuration-disparition
+│   │   │   │       │   │   │       └── page.tsx
+│   │   │   │       │   │   ├── cadrage-temporel
+│   │   │   │       │   │   │   └── page.tsx
+│   │   │   │       │   │   ├── layout.tsx
+│   │   │   │       │   │   ├── parametrages-demographique
+│   │   │   │       │   │   │   ├── demographic-settings-form-wrapper.tsx
+│   │   │   │       │   │   │   └── page.tsx
+│   │   │   │       │   │   ├── simulation-scenario-modification-provider.tsx
+│   │   │   │       │   │   └── validation-parametrage
+│   │   │   │       │   │       ├── page.tsx
+│   │   │   │       │   │       ├── validation-demographic-omphale.tsx
+│   │   │   │       │   │       ├── validation-parametrage.module.css
+│   │   │   │       │   │       └── validation-projection.tsx
+│   │   │   │       │   └── mal-logement
+│   │   │   │       │       ├── heberges
+│   │   │   │       │       │   ├── heberges.module.css
+│   │   │   │       │       │   └── page.tsx
+│   │   │   │       │       ├── horizon-de-resorption
+│   │   │   │       │       │   ├── horizon-de-resorption.module.css
+│   │   │   │       │       │   └── page.tsx
+│   │   │   │       │       ├── hors-logement
+│   │   │   │       │       │   ├── hors-logement.module.css
+│   │   │   │       │       │   └── page.tsx
+│   │   │   │       │       ├── inadequation-financiere
+│   │   │   │       │       │   ├── inadequation-financiere.module.css
+│   │   │   │       │       │   └── page.tsx
+│   │   │   │       │       ├── layout.tsx
+│   │   │   │       │       ├── mauvaise-qualite
+│   │   │   │       │       │   ├── mauvaise-qualite.module.css
+│   │   │   │       │       │   └── page.tsx
+│   │   │   │       │       ├── simulation-scenario-bad-housing-modification-provider.tsx
+│   │   │   │       │       ├── suroccupation
+│   │   │   │       │       │   ├── page.tsx
+│   │   │   │       │       │   └── suroccupation.module.css
+│   │   │   │       │       └── validation-parametrage
+│   │   │   │       │           ├── page.tsx
+│   │   │   │       │           └── validation-parametrage.module.css
+│   │   │   │       └── resultats
+│   │   │   │           ├── layout.tsx
+│   │   │   │           └── page.tsx
+│   │   │   ├── tableau-de-bord
+│   │   │   │   ├── [groupId]
+│   │   │   │   │   └── page.tsx
+│   │   │   │   └── layout.tsx
+│   │   │   └── tableaux-de-bord
+│   │   │       ├── no-results.tsx
+│   │   │       ├── page.tsx
+│   │   │       └── tableaux-de-bord.module.css
+│   │   ├── (unauthenticated)
+│   │   │   ├── (auth)
+│   │   │   │   ├── connexion
+│   │   │   │   │   └── page.tsx
+│   │   │   │   ├── inscription
+│   │   │   │   │   └── page.tsx
+│   │   │   │   ├── layout.tsx
+│   │   │   │   ├── modification-mot-de-passe
+│   │   │   │   │   └── page.tsx
+│   │   │   │   ├── mot-de-passe-oublie
+│   │   │   │   │   └── page.tsx
+│   │   │   │   └── verification
+│   │   │   │       └── page.tsx
+│   │   │   ├── (generic-pages)
+│   │   │   │   ├── @summary
+│   │   │   │   │   ├── [...all]
+│   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   ├── guide
+│   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   ├── methodologie
+│   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   ├── summary.module.css
+│   │   │   │   │   └── summary.tsx
+│   │   │   │   ├── a-propos
+│   │   │   │   │   └── page.tsx
+│   │   │   │   ├── accessibilite
+│   │   │   │   │   └── page.tsx
+│   │   │   │   ├── cgv
+│   │   │   │   │   └── page.tsx
+│   │   │   │   ├── donnees-personnelles
+│   │   │   │   │   └── page.tsx
+│   │   │   │   ├── guide
+│   │   │   │   │   └── page.tsx
+│   │   │   │   ├── layout.module.css
+│   │   │   │   ├── layout.tsx
+│   │   │   │   ├── mentions-legales
+│   │   │   │   │   └── page.tsx
+│   │   │   │   └── ressources
+│   │   │   │       └── page.tsx
+│   │   │   ├── accueil
+│   │   │   │   ├── _components
+│   │   │   │   │   ├── section-acquisition
+│   │   │   │   │   │   ├── section-acquisition.module.css
+│   │   │   │   │   │   └── section-acquisition.tsx
+│   │   │   │   │   ├── section-contact
+│   │   │   │   │   │   ├── section-contact.module.css
+│   │   │   │   │   │   └── section-contact.tsx
+│   │   │   │   │   ├── section-hero
+│   │   │   │   │   │   ├── section-hero.module.css
+│   │   │   │   │   │   └── section-hero.tsx
+│   │   │   │   │   ├── section-services
+│   │   │   │   │   │   ├── section-services.module.css
+│   │   │   │   │   │   └── section-services.tsx
+│   │   │   │   │   └── section-statistics
+│   │   │   │   │       ├── section-statistics.module.css
+│   │   │   │   │       └── section-statistics.tsx
+│   │   │   │   └── page.tsx
+│   │   │   ├── contact
+│   │   │   │   └── page.tsx
+│   │   │   ├── faq
+│   │   │   │   ├── faq.module.css
+│   │   │   │   └── page.tsx
+│   │   │   ├── layout.tsx
+│   │   │   ├── statistiques
+│   │   │   │   ├── page.tsx
+│   │   │   │   └── statistiques.module.css
+│   │   │   └── unauthorized
+│   │   │       └── page.tsx
+│   │   ├── api
+│   │   │   ├── accommodation-rates
+│   │   │   │   └── route.ts
+│   │   │   ├── admin
+│   │   │   │   └── users
+│   │   │   │       └── [id]
+│   │   │   │           └── access
+│   │   │   │               └── route.ts
+│   │   │   ├── auth
+│   │   │   │   ├── [...nextauth]
+│   │   │   │   │   └── route.ts
+│   │   │   │   ├── confirmation-code-mail
+│   │   │   │   │   └── route.ts
+│   │   │   │   ├── confirmation-mail
+│   │   │   │   │   └── route.ts
+│   │   │   │   ├── forgot-password
+│   │   │   │   │   └── route.ts
+│   │   │   │   ├── impersonate
+│   │   │   │   │   └── route.ts
+│   │   │   │   ├── impersonation-status
+│   │   │   │   │   └── route.ts
+│   │   │   │   ├── reset-password
+│   │   │   │   │   └── route.ts
+│   │   │   │   ├── sign-out
+│   │   │   │   │   └── route.ts
+│   │   │   │   ├── validate-reset-token
+│   │   │   │   │   └── route.ts
+│   │   │   │   └── verify-email
+│   │   │   │       └── route.ts
+│   │   │   ├── bassin
+│   │   │   │   └── epcis
+│   │   │   │       └── [epci]
+│   │   │   │           └── route.ts
+│   │   │   ├── contact
+│   │   │   │   └── route.ts
+│   │   │   ├── cron
+│   │   │   │   └── synchro
+│   │   │   │       └── route.ts
+│   │   │   ├── data-visualisation
+│   │   │   │   └── route.ts
+│   │   │   ├── demographic-evolution-custom
+│   │   │   │   ├── [id]
+│   │   │   │   │   └── route.ts
+│   │   │   │   ├── find-many
+│   │   │   │   │   └── route.ts
+│   │   │   │   └── upload
+│   │   │   │       └── route.ts
+│   │   │   ├── epci
+│   │   │   │   ├── [code]
+│   │   │   │   │   ├── contiguous
+│   │   │   │   │   │   └── route.ts
+│   │   │   │   │   └── route.ts
+│   │   │   │   ├── contiguous
+│   │   │   │   │   └── route.ts
+│   │   │   │   └── route.ts
+│   │   │   ├── epci-groups
+│   │   │   │   └── route.ts
+│   │   │   ├── export-excel
+│   │   │   │   └── [id]
+│   │   │   │       └── route.ts
+│   │   │   ├── simulations
+│   │   │   │   ├── [id]
+│   │   │   │   │   ├── clone
+│   │   │   │   │   │   └── route.ts
+│   │   │   │   │   ├── route.ts
+│   │   │   │   │   └── scenario
+│   │   │   │   │       └── route.ts
+│   │   │   │   ├── request-powerpoint
+│   │   │   │   │   └── route.ts
+│   │   │   │   └── route.ts
+│   │   │   ├── statistics
+│   │   │   │   ├── route.ts
+│   │   │   │   ├── simulations
+│   │   │   │   │   └── route.ts
+│   │   │   │   └── users
+│   │   │   │       └── route.ts
+│   │   │   └── users
+│   │   │       ├── [id]
+│   │   │       │   └── route.ts
+│   │   │       ├── delete
+│   │   │       │   └── [id]
+│   │   │       │       └── route.ts
+│   │   │       ├── route.ts
+│   │   │       └── search
+│   │   │           └── route.ts
+│   │   ├── layout.module.css
+│   │   ├── layout.tsx
+│   │   ├── matomo.tsx
+│   │   └── page.tsx
+│   ├── components
+│   │   ├── admin
+│   │   │   ├── admin-breadcrumb.tsx
+│   │   │   ├── statistics-export-buttons.tsx
+│   │   │   └── users
+│   │   │       ├── users-table-header.tsx
+│   │   │       └── users-table.tsx
+│   │   ├── auth
+│   │   │   ├── forgot-password-form.tsx
+│   │   │   ├── login-form.tsx
+│   │   │   ├── reset-password-form.tsx
+│   │   │   ├── sign-up-form.tsx
+│   │   │   ├── user-type-selection-modal.tsx
+│   │   │   └── verification-client.tsx
+│   │   ├── brand-top.tsx
+│   │   ├── breadcrumbs
+│   │   │   ├── authenticated-breadcrumb.tsx
+│   │   │   └── unauthenticated-breadcrumb.tsx
+│   │   ├── charts
+│   │   │   ├── accommodation-construction-evolution-chart.module.css
+│   │   │   ├── accommodation-construction-evolution-chart.tsx
+│   │   │   ├── charts.module.css
+│   │   │   ├── customized-dot.tsx
+│   │   │   ├── data-visualisation
+│   │   │   │   ├── accommodation-evolution-charts.module.css
+│   │   │   │   ├── bad-housing-charts.tsx
+│   │   │   │   ├── colors.ts
+│   │   │   │   ├── household-sizes-chart.tsx
+│   │   │   │   ├── lovac-evolution-charts.module.css
+│   │   │   │   ├── lovac-evolution-charts.tsx
+│   │   │   │   ├── population-evolution-charts.tsx
+│   │   │   │   ├── projection-menages-evolution-charts.module.css
+│   │   │   │   ├── projection-menages-evolution-charts.tsx
+│   │   │   │   ├── projection-population-evolution-charts.tsx
+│   │   │   │   ├── rp-accommodation-evolution-charts.tsx
+│   │   │   │   └── sitadel-chart.tsx
+│   │   │   ├── flow-requirements-char.tsx
+│   │   │   ├── omphale-scenarios-chart.tsx
+│   │   │   ├── omphale-scenarios-selection.tsx
+│   │   │   ├── population-scenarios-chart.tsx
+│   │   │   ├── population-scenarios-custom-tooltip.tsx
+│   │   │   ├── population-scenarios-selection.tsx
+│   │   │   ├── stock-evolution-chart.tsx
+│   │   │   └── upload-demographic-evolution-custom.tsx
+│   │   ├── common
+│   │   │   ├── dropdown.tsx
+│   │   │   ├── generic-card
+│   │   │   │   ├── generic-card.module.css
+│   │   │   │   └── generic-card.tsx
+│   │   │   ├── profile-image.module.css
+│   │   │   └── profile-image.tsx
+│   │   ├── contact
+│   │   │   ├── contact-breadcrumb.tsx
+│   │   │   └── contact-form.tsx
+│   │   ├── data-visualisation
+│   │   │   ├── data-visualisation-autocomplete.tsx
+│   │   │   ├── data-visualisation-chart.tsx
+│   │   │   ├── data-visualisation-filters.tsx
+│   │   │   ├── data-visualisation-page.tsx
+│   │   │   ├── data-visualisation-table.tsx
+│   │   │   └── select-data-type.tsx
+│   │   ├── header.tsx
+│   │   ├── impersonation-banner.tsx
+│   │   ├── navigation
+│   │   │   └── header-navigation.tsx
+│   │   ├── quick-access-items.tsx
+│   │   ├── simulations
+│   │   │   ├── autocomplete
+│   │   │   │   ├── autocomplete-input.tsx
+│   │   │   │   └── autocomplete-results.tsx
+│   │   │   ├── breadcrumbs
+│   │   │   │   ├── create-simulation-breadcrumb.tsx
+│   │   │   │   ├── modify-simulation-breadcrumb.tsx
+│   │   │   │   └── simulations-breadcrumb.tsx
+│   │   │   ├── creation-guide
+│   │   │   │   ├── bad-housing-settings-creation-guide-tag.tsx
+│   │   │   │   └── demographic-settings-creation-guide-tag.tsx
+│   │   │   ├── results
+│   │   │   │   ├── annual-needs
+│   │   │   │   │   ├── simulation-annual-needs-dropdown-summary.tsx
+│   │   │   │   │   └── simulation-annual-needs.tsx
+│   │   │   │   ├── bad-housing
+│   │   │   │   │   ├── simulation-bad-housing-data-wrapper.tsx
+│   │   │   │   │   ├── simulation-bad-housing-header.tsx
+│   │   │   │   │   └── simulation-bad-housing.tsx
+│   │   │   │   ├── demographic-bad-housing
+│   │   │   │   │   ├── simulation-demographic-bad-housing-chart-summary.module.css
+│   │   │   │   │   ├── simulation-demographic-bad-housing-chart-summary.tsx
+│   │   │   │   │   ├── simulation-demographic-bad-housing-summary.module.css
+│   │   │   │   │   └── simulation-demographic-bad-housing-summary.tsx
+│   │   │   │   ├── demographic-evolution-results-table.tsx
+│   │   │   │   ├── demographic-parc-evolution
+│   │   │   │   │   ├── simulation-demographic-parc-evolution-data-wrapper.tsx
+│   │   │   │   │   ├── simulation-demographic-parc-evolution-dropdown.tsx
+│   │   │   │   │   └── simulation-demographic-parc-evolution.tsx
+│   │   │   │   ├── export-simulation-settings-button.tsx
+│   │   │   │   ├── header
+│   │   │   │   │   ├── simulation-header-segmented-controls.tsx
+│   │   │   │   │   ├── simulation-header-title.tsx
+│   │   │   │   │   ├── simulation-settings-dropdown.module.css
+│   │   │   │   │   ├── simulation-settings-dropdown.tsx
+│   │   │   │   │   └── simulation-settings-presentation-mode.tsx
+│   │   │   │   ├── secondary-vacants-accommodation
+│   │   │   │   │   ├── simulation-secondary-vacants-accommodations-summary.tsx
+│   │   │   │   │   └── simulation-vacants-dropdown-summary.tsx
+│   │   │   │   ├── simulation-chart-table-switch.module.css
+│   │   │   │   ├── simulation-chart-table-switch.tsx
+│   │   │   │   ├── simulation-epcis-details.tsx
+│   │   │   │   ├── simulation-result-presentation-highlight.module.css
+│   │   │   │   ├── simulation-result-presentation-highlight.tsx
+│   │   │   │   ├── simulation-results-tabs.module.css
+│   │   │   │   ├── simulation-results-tabs.tsx
+│   │   │   │   └── summary
+│   │   │   │       ├── simulation-needs-summary-map.tsx
+│   │   │   │       ├── simulation-needs-summary.module.css
+│   │   │   │       └── simulation-needs-summary.tsx
+│   │   │   ├── settings
+│   │   │   │   ├── create-all-epcis-accommodation-range.tsx
+│   │   │   │   ├── create-all-secondary-accommodation-rate-input.tsx
+│   │   │   │   ├── create-long-term-accomodation-range.tsx
+│   │   │   │   ├── create-secondary-accommodation-rate-input.tsx
+│   │   │   │   ├── create-simulation-form.tsx
+│   │   │   │   ├── create-vacancy-accommodation-rates-input.tsx
+│   │   │   │   ├── demographic-settings-header.tsx
+│   │   │   │   ├── demographic-settings-simulation-side-menu-step-number.tsx
+│   │   │   │   ├── demographic-settings-simulation-side-menu-title.tsx
+│   │   │   │   ├── demographic-settings-simulation-side-menu.tsx
+│   │   │   │   ├── demographic-settings-simulation-stepper.tsx
+│   │   │   │   ├── epcis-accommodation-rates
+│   │   │   │   │   ├── aggregated-parc-comparison-chart.tsx
+│   │   │   │   │   ├── aggregated-secondary-parc-comparison-chart.tsx
+│   │   │   │   │   ├── all-epcis-rates-view.tsx
+│   │   │   │   │   ├── all-epcis-secondary-rates-view.tsx
+│   │   │   │   │   ├── create-epcis-accomodation-rates.tsx
+│   │   │   │   │   ├── create-epcis-secondary-accommodation-rates.tsx
+│   │   │   │   │   ├── epcis-accommodation-rates.module.css
+│   │   │   │   │   ├── modify-aggregated-parc-comparison-chart.tsx
+│   │   │   │   │   ├── modify-aggregated-secondary-parc-comparison-chart.tsx
+│   │   │   │   │   ├── modify-all-epcis-rates-view.tsx
+│   │   │   │   │   ├── modify-all-epcis-secondary-rates-view.tsx
+│   │   │   │   │   ├── modify-epcis-accomodation-rates.tsx
+│   │   │   │   │   ├── modify-epcis-secondary-accomodation-rates.tsx
+│   │   │   │   │   ├── modify-parc-comparison-charts.tsx
+│   │   │   │   │   ├── parc-comparison-charts.module.css
+│   │   │   │   │   ├── parc-comparison-charts.tsx
+│   │   │   │   │   ├── rates-toggle-switch.tsx
+│   │   │   │   │   └── secondary-rates-toggle-switch.tsx
+│   │   │   │   ├── long-term-vacancy-alert.tsx
+│   │   │   │   ├── modification
+│   │   │   │   │   ├── mal-logement
+│   │   │   │   │   │   ├── bad-housing-settings-form-context-wrapper.tsx
+│   │   │   │   │   │   ├── bad-housing-settings-simulation-side-menu.tsx
+│   │   │   │   │   │   ├── bad-housing-settings-simulation-stepper.tsx
+│   │   │   │   │   │   ├── bad-quality
+│   │   │   │   │   │   │   ├── select-bad-quality-part.tsx
+│   │   │   │   │   │   │   ├── select-bad-quality-source.tsx
+│   │   │   │   │   │   │   ├── select-confort-source.tsx
+│   │   │   │   │   │   │   └── select-occupation-source.tsx
+│   │   │   │   │   │   ├── heberges
+│   │   │   │   │   │   │   ├── select-heberges-accommodation-types.tsx
+│   │   │   │   │   │   │   └── select-heberges-part.tsx
+│   │   │   │   │   │   ├── horizon
+│   │   │   │   │   │   │   └── select-horizon-resorption-period.tsx
+│   │   │   │   │   │   ├── hors-logement
+│   │   │   │   │   │   │   ├── select-accommodation-types.tsx
+│   │   │   │   │   │   │   ├── select-no-accommodation-part.tsx
+│   │   │   │   │   │   │   └── select-no-accommodation-source.tsx
+│   │   │   │   │   │   ├── inadequation-financiere
+│   │   │   │   │   │   │   ├── select-inadequation-financiere-categories.tsx
+│   │   │   │   │   │   │   ├── select-inadequation-financiere-part.tsx
+│   │   │   │   │   │   │   └── select-max-effort-part.tsx
+│   │   │   │   │   │   ├── suroccupation
+│   │   │   │   │   │   │   ├── select-suroccupation-categories.tsx
+│   │   │   │   │   │   │   ├── select-suroccupation-level.tsx
+│   │   │   │   │   │   │   ├── select-suroccupation-part.tsx
+│   │   │   │   │   │   │   └── select-suroccupation-source.tsx
+│   │   │   │   │   │   └── update-bad-housing-simulation-form.tsx
+│   │   │   │   │   ├── simulation-settings-form-context-wrapper.tsx
+│   │   │   │   │   ├── update-demographic-settings-guide-tag.tsx
+│   │   │   │   │   ├── update-demographic-settings-simulation-side-menu.tsx
+│   │   │   │   │   └── update-projection-period.tsx
+│   │   │   │   ├── modify-accommodation-rate-input.tsx
+│   │   │   │   ├── modify-all-epcis-accommodation-range.tsx
+│   │   │   │   ├── modify-all-secondary-accommodation-rate-input.tsx
+│   │   │   │   ├── modify-long-term-accomodation-range.tsx
+│   │   │   │   ├── modify-vacancy-accommodation-rates-input.tsx
+│   │   │   │   ├── next-step-link.tsx
+│   │   │   │   ├── previous-step-link.tsx
+│   │   │   │   ├── restructuration-disparition-rates
+│   │   │   │   │   ├── all-epcis-restructuration-rates-view.tsx
+│   │   │   │   │   ├── create-all-restructuration-disparition-rates-input.tsx
+│   │   │   │   │   ├── create-restructuration-disparition-rates.input.tsx
+│   │   │   │   │   ├── create-restructuration-disparition-rates.tsx
+│   │   │   │   │   ├── modify-all-epcis-restructuration-rates-view.tsx
+│   │   │   │   │   ├── modify-all-restructuration-disparition-rates-input.tsx
+│   │   │   │   │   ├── modify-restructuration-disparition-rates.input.tsx
+│   │   │   │   │   ├── modify-restructuration-disparition-rates.tsx
+│   │   │   │   │   ├── restructuration-disparition-footer.tsx
+│   │   │   │   │   └── restructuration-rates-toggle-switch.tsx
+│   │   │   │   ├── scenario-naming-modal.tsx
+│   │   │   │   ├── select-omphale.tsx
+│   │   │   │   ├── select-projection-period.tsx
+│   │   │   │   ├── select-territorial-issues.tsx
+│   │   │   │   ├── simulation-form-context-wrapper.tsx
+│   │   │   │   ├── simulation-side-menu.module.css
+│   │   │   │   └── update-simulation-form.tsx
+│   │   │   └── validation-settings
+│   │   │       ├── create-validation-accommodation-rates.tsx
+│   │   │       ├── create-validation-restructuration-disparition-rates.tsx
+│   │   │       ├── modify-validation-accommodation-rates.tsx
+│   │   │       ├── modify-validation-restructuration-disparition-rates.tsx
+│   │   │       └── validation-settings-input-epci.tsx
+│   │   ├── skip-links.tsx
+│   │   ├── table
+│   │   │   ├── accommodation-evolution-table.tsx
+│   │   │   ├── epcis-details-table.tsx
+│   │   │   ├── lovac-accommodation-evolution-table.tsx
+│   │   │   ├── population-evolution-table.module.css
+│   │   │   ├── population-evolution-table.tsx
+│   │   │   ├── projection-evolution-table.module.css
+│   │   │   ├── projection-menages-evolution-table.tsx
+│   │   │   └── projection-population-evolution-table.tsx
+│   │   ├── tableau-de-bord
+│   │   │   ├── clone-simulation-button.tsx
+│   │   │   ├── dashboard-simulation-item.module.css
+│   │   │   ├── dashboard-simulation-item.tsx
+│   │   │   ├── delete-simulation-button.tsx
+│   │   │   ├── multiple-epci-select.tsx
+│   │   │   ├── tableau-de-bord.module.css
+│   │   │   └── tableau-de-bord.tsx
+│   │   └── ui
+│   │       ├── RedAsterisk.module.css
+│   │       ├── custom-highlight.module.scss
+│   │       ├── custom-highlight.tsx
+│   │       └── red-asterisk.tsx
+│   ├── dsfr
+│   │   ├── default-color-scheme.ts
+│   │   ├── dsfr-head.tsx
+│   │   └── dsfr-provider.tsx
+│   ├── global.css
+│   ├── helpers
+│   │   ├── background.css
+│   │   ├── border.css
+│   │   ├── color.css
+│   │   ├── display.css
+│   │   ├── dropdown.css
+│   │   ├── flex.css
+│   │   ├── link.css
+│   │   ├── position.css
+│   │   ├── shadow.css
+│   │   ├── size.css
+│   │   └── text.css
+│   ├── hooks
+│   │   ├── use-accommodation-rate-epci.ts
+│   │   ├── use-bassin-epcis.ts
+│   │   ├── use-clone-simulation.ts
+│   │   ├── use-contact-form.ts
+│   │   ├── use-contiguous-epcis.ts
+│   │   ├── use-create-simulation.ts
+│   │   ├── use-create-user.ts
+│   │   ├── use-data-visualisation.ts
+│   │   ├── use-delete-simulation.ts
+│   │   ├── use-delete-user.ts
+│   │   ├── use-demographic-evolution-custom.ts
+│   │   ├── use-epci-groups.ts
+│   │   ├── use-epcis.ts
+│   │   ├── use-export-excel-simulation.ts
+│   │   ├── use-export-simulations-statistics.ts
+│   │   ├── use-export-users-statistics.ts
+│   │   ├── use-forgot-password.ts
+│   │   ├── use-geoapi-search.ts
+│   │   ├── use-impersonation-status.ts
+│   │   ├── use-impersonation.ts
+│   │   ├── use-request-powerpoint.ts
+│   │   ├── use-resend-verification-email.ts
+│   │   ├── use-reset-password.ts
+│   │   ├── use-scenario.ts
+│   │   ├── use-search-users.ts
+│   │   ├── use-simulation.ts
+│   │   ├── use-statistics.ts
+│   │   ├── use-synchro-ds.ts
+│   │   ├── use-update-simulation.ts
+│   │   ├── use-update-user-access.ts
+│   │   ├── use-update-user-type.ts
+│   │   └── use-users.ts
+│   ├── lib
+│   │   └── auth
+│   │       ├── auth.config.ts
+│   │       ├── auth.ts
+│   │       └── providers
+│   │           └── pro-connect.ts
+│   ├── providers
+│   │   ├── next-auth.tsx
+│   │   └── tanstack-client.tsx
+│   ├── schemas
+│   │   ├── accommodation-evolution.ts
+│   │   ├── accommodations-rates.ts
+│   │   ├── bassin.ts
+│   │   ├── common-date-fields.ts
+│   │   ├── contact-form.ts
+│   │   ├── demographic-evolution-custom.ts
+│   │   ├── demographic-evolution.ts
+│   │   ├── epci-group.ts
+│   │   ├── epci.ts
+│   │   ├── export.ts
+│   │   ├── household-sizes.ts
+│   │   ├── password.ts
+│   │   ├── population-evolution.ts
+│   │   ├── results.ts
+│   │   ├── scenario.ts
+│   │   ├── simulation.ts
+│   │   ├── sitadel.ts
+│   │   └── user.ts
+│   ├── server-only
+│   │   ├── auth
+│   │   │   ├── validate-reset-token.ts
+│   │   │   └── verify-email.ts
+│   │   ├── demographic-evolution
+│   │   │   ├── get-omphale-evolution-by-epci.ts
+│   │   │   └── get-population-evolution-by-epci.ts
+│   │   ├── epcis
+│   │   │   ├── get-bassin-epcis.ts
+│   │   │   └── get-epcis.ts
+│   │   ├── geojson
+│   │   │   └── get-departments.ts
+│   │   ├── get-departments-details.ts
+│   │   └── simulation
+│   │       ├── get-dashboard-list.ts
+│   │       └── get-grouped-simulations-with-results.ts
+│   ├── types
+│   │   ├── next-auth.d.ts
+│   │   └── simulation-page-props.ts
+│   └── utils
+│       ├── calculation-helpers.ts
+│       ├── format-numbers.ts
+│       ├── omphale-label.ts
+│       ├── resources.ts
+│       ├── round-chart-axis.ts
+│       └── sPluriel.ts
+└── tsconfig.json
+179 directories, 453 files
