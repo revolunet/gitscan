@@ -1,0 +1,1245 @@
+.
+├── .commitlintrc.json
+├── .dockerignore
+├── .env.sample
+├── .github
+│   └── workflows
+│       ├── ci.yaml
+│       ├── sync-upstream.yaml
+│       └── trigger-deploy.yaml
+├── .gitignore
+├── .npmrc
+├── .nvmrc
+├── .vscode
+│   ├── launch.json
+│   └── settings.json
+├── CONTRIBUTING.md
+├── Dockerfile.api
+├── Dockerfile.web
+├── GOVERNANCE.md
+├── LICENSES
+│   ├── CC-BY-4.0.txt
+│   ├── Etalab-2.0.md
+│   ├── LicenseRef-Excluded.txt
+│   └── MIT.txt
+├── README.md
+├── REUSE.toml
+├── api
+│   ├── .config
+│   │   └── kysely.config.ts
+│   ├── .dockerignore
+│   ├── .gitattributes
+│   ├── .gitignore
+│   ├── .npmrc
+│   ├── .prettierignore
+│   ├── .prettierrc.json
+│   ├── knip.json
+│   ├── package.json
+│   ├── renovate.json
+│   ├── scripts
+│   │   ├── generate-translation-schema.js
+│   │   └── seed.ts
+│   ├── src
+│   │   ├── core
+│   │   │   ├── adapters
+│   │   │   │   ├── CNLL
+│   │   │   │   │   ├── getExternalData.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── GitHub
+│   │   │   │   │   ├── api
+│   │   │   │   │   │   └── repo.ts
+│   │   │   │   │   ├── getExternalData.ts
+│   │   │   │   │   ├── getSofrwareFormData.ts
+│   │   │   │   │   ├── getSoftwareOptions.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── GitLab
+│   │   │   │   │   ├── api
+│   │   │   │   │   │   ├── project.ts
+│   │   │   │   │   │   └── utils.ts
+│   │   │   │   │   ├── getExternalData.ts
+│   │   │   │   │   ├── getSoftwareFormData.ts
+│   │   │   │   │   ├── getSoftwareOptions.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── comptoirDuLibre
+│   │   │   │   │   ├── getCDLExternalData.ts
+│   │   │   │   │   ├── getCDLFormData.ts
+│   │   │   │   │   ├── getCDLSoftwareOptions.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── comptoirDuLibreApi.ts
+│   │   │   │   ├── dbApi
+│   │   │   │   │   ├── in-memory
+│   │   │   │   │   │   └── createInMemoryUserRepository.ts
+│   │   │   │   │   └── kysely
+│   │   │   │   │       ├── createGetCompiledData.ts
+│   │   │   │   │       ├── createPgAttributeDefinitionRepository.ts
+│   │   │   │   │       ├── createPgDbApi.ts
+│   │   │   │   │       ├── createPgInstanceRepository.ts
+│   │   │   │   │       ├── createPgSessionRepository.ts
+│   │   │   │   │       ├── createPgSoftwareExternalDataRepository.ts
+│   │   │   │   │       ├── createPgSoftwareRepository.test.ts
+│   │   │   │   │       ├── createPgSoftwareRepository.ts
+│   │   │   │   │       ├── createPgSourceRepository.ts
+│   │   │   │   │       ├── createPgUserAndReferentRepository.ts
+│   │   │   │   │       ├── createPgUserRepository.ts
+│   │   │   │   │       ├── kysely.database.ts
+│   │   │   │   │       ├── kysely.dialect.ts
+│   │   │   │   │       ├── kysely.utils.ts
+│   │   │   │   │       ├── mergeExternalData.test.ts
+│   │   │   │   │       ├── mergeExternalData.ts
+│   │   │   │   │       ├── migrations
+│   │   │   │   │       │   ├── 1717162141365_create-initial-tables.ts
+│   │   │   │   │       │   ├── 1719576701920_add-compiled-tables.ts
+│   │   │   │   │       │   ├── 1720187269028_add-indexes.ts
+│   │   │   │   │       │   ├── 1731574107668_make_version_min_nullable_in_softwares_and_add_columns_on_software_external_datas.ts
+│   │   │   │   │       │   ├── 1733923587668_make-organization-nullable-for-agent.ts
+│   │   │   │   │       │   ├── 1737023616811_add-referencePublication.ts
+│   │   │   │   │       │   ├── 1738152406578_add-identifiers.ts
+│   │   │   │   │       │   ├── 1740045549729_move-framalibreid.ts
+│   │   │   │   │       │   ├── 1740125749274_remove-depreciated-fields.ts
+│   │   │   │   │       │   ├── 1742990557548_remove-parent-software-related-columns.ts
+│   │   │   │   │       │   ├── 1742990558000_add-source-table.ts
+│   │   │   │   │       │   ├── 1744719952208-update_external_software.ts
+│   │   │   │   │       │   ├── 1745395147722_move-prodivers.ts
+│   │   │   │   │       │   ├── 1745402275178-add_new_source_kind.ts
+│   │   │   │   │       │   ├── 1747296861930-add_source_CNLL.ts
+│   │   │   │   │       │   ├── 1747311447673-add_zenodo_gateway.ts
+│   │   │   │   │       │   ├── 1751033845081_move-comptoire-du-libre-data-to-external-data.ts
+│   │   │   │   │       │   ├── 1751616349981_rename-agents-table-to-users.ts
+│   │   │   │   │       │   ├── 1751616349982_create-sessions-table.ts
+│   │   │   │   │       │   ├── 1752223948181_delete-old-data.ts
+│   │   │   │   │       │   ├── 1759498443784_make-timestamps-columns-human-readable.ts
+│   │   │   │   │       │   ├── 1760101353900_add-custom-attributes.ts
+│   │   │   │   │       │   ├── 1769169466300_migrate-version-min-to-custom-attributes.ts
+│   │   │   │   │       │   └── 1769773451027_add-repo-metadata.ts
+│   │   │   │   │       └── pgDbApi.integration.test.ts
+│   │   │   │   ├── doiResolver.ts
+│   │   │   │   ├── getCnllPrestatairesSill.ts
+│   │   │   │   ├── getServiceProviders.ts
+│   │   │   │   ├── hal
+│   │   │   │   │   ├── CrossRef
+│   │   │   │   │   │   ├── api
+│   │   │   │   │   │   │   ├── getWork.test.ts
+│   │   │   │   │   │   │   ├── getWork.ts
+│   │   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   │   └── type.ts
+│   │   │   │   │   │   ├── getScholarlyArticle.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── HalAPI
+│   │   │   │   │   │   ├── getArticle.ts
+│   │   │   │   │   │   ├── getCodemetaSoftware.ts
+│   │   │   │   │   │   ├── getDomains.ts
+│   │   │   │   │   │   ├── getHalSoftware.ts
+│   │   │   │   │   │   ├── getStructure.ts
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   └── types
+│   │   │   │   │   │       └── HAL.ts
+│   │   │   │   │   ├── getHalSoftware.test.ts
+│   │   │   │   │   ├── getHalSoftwareExternalData.ts
+│   │   │   │   │   ├── getHalSoftwareOptions.ts
+│   │   │   │   │   ├── getScholarlyArticle.ts
+│   │   │   │   │   ├── getSoftwareForm.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── resolveAdapter.ts
+│   │   │   │   ├── wikidata
+│   │   │   │   │   ├── getSoftwareForm.ts
+│   │   │   │   │   ├── getWikidataSoftware.ts
+│   │   │   │   │   ├── getWikidataSoftwareOptions.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   └── zenodo
+│   │   │   │       ├── getZenodoExternalData.ts
+│   │   │   │       ├── getZenodoSoftwareForm.ts
+│   │   │   │       ├── getZenodoSoftwareOptions.ts
+│   │   │   │       ├── index.ts
+│   │   │   │       ├── zenodoAPI
+│   │   │   │       │   ├── index.ts
+│   │   │   │       │   └── type.ts
+│   │   │   │       └── zenodoGateway.test.ts
+│   │   │   ├── bootstrap.ts
+│   │   │   ├── importTool.ts
+│   │   │   ├── index.ts
+│   │   │   ├── ports
+│   │   │   │   ├── CompileData.ts
+│   │   │   │   ├── ComptoirDuLibreApi.ts
+│   │   │   │   ├── DbApi.ts
+│   │   │   │   ├── DbApiV2.ts
+│   │   │   │   ├── GetCnllPrestatairesSill.ts
+│   │   │   │   ├── GetScholarlyArticle.ts
+│   │   │   │   ├── GetServiceProviders.ts
+│   │   │   │   ├── GetSoftwareExternalData.ts
+│   │   │   │   ├── GetSoftwareExternalDataOptions.ts
+│   │   │   │   ├── GetSoftwareFormData.ts
+│   │   │   │   └── SourceGateway.ts
+│   │   │   ├── uiConfigSchema.ts
+│   │   │   ├── usecases
+│   │   │   │   ├── auth
+│   │   │   │   │   ├── auth.test.ts
+│   │   │   │   │   ├── handleAuthCallback.ts
+│   │   │   │   │   ├── initiateAuth.ts
+│   │   │   │   │   ├── logout.ts
+│   │   │   │   │   ├── oidcClient.ts
+│   │   │   │   │   └── refreshSession.ts
+│   │   │   │   ├── createSoftware.test.ts
+│   │   │   │   ├── createSoftware.ts
+│   │   │   │   ├── getAttributeDefinitions.ts
+│   │   │   │   ├── getSoftwareFormAutoFillDataFromExternalAndOtherSources.ts
+│   │   │   │   ├── getUser.ts
+│   │   │   │   ├── getUser.unit.test.ts
+│   │   │   │   ├── importFromInnerIdentifiers.ts
+│   │   │   │   ├── importFromSource.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── readWriteSillData
+│   │   │   │   │   ├── attributeTypes.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   └── types.ts
+│   │   │   │   ├── refreshExternalData.test.ts
+│   │   │   │   ├── refreshExternalData.ts
+│   │   │   │   ├── updateSoftware.test.ts
+│   │   │   │   └── updateSoftware.ts
+│   │   │   └── utils.ts
+│   │   ├── customization
+│   │   │   ├── translations
+│   │   │   │   ├── en.json
+│   │   │   │   └── fr.json
+│   │   │   └── ui-config.json
+│   │   ├── entrypoints
+│   │   │   ├── import-cnll-sill-only-script.ts
+│   │   │   ├── import-from-inner-identifiers.ts
+│   │   │   ├── import.ts
+│   │   │   ├── start-api.ts
+│   │   │   └── update.ts
+│   │   ├── env.ts
+│   │   ├── instrument.ts
+│   │   ├── lib
+│   │   │   ├── ApiTypes.ts
+│   │   │   └── index.ts
+│   │   ├── rpc
+│   │   │   ├── context.ts
+│   │   │   ├── createTestCaller.ts
+│   │   │   ├── import-cnll-sill-only.ts
+│   │   │   ├── import-from-inner-identifiers.ts
+│   │   │   ├── import.ts
+│   │   │   ├── index.ts
+│   │   │   ├── router.ts
+│   │   │   ├── routes.e2e.test.ts
+│   │   │   ├── start.ts
+│   │   │   ├── translations
+│   │   │   │   ├── en_default.json
+│   │   │   │   ├── fr_default.json
+│   │   │   │   ├── getTranslations.ts
+│   │   │   │   └── schema.json
+│   │   │   └── update.ts
+│   │   ├── tools
+│   │   │   ├── OptionalIfCanBeUndefined.ts
+│   │   │   ├── PartialNoOptional.ts
+│   │   │   ├── WikidataEntity.ts
+│   │   │   ├── identifiersTools.ts
+│   │   │   ├── projectVersion.ts
+│   │   │   ├── repoAnalyser.test.ts
+│   │   │   ├── repoAnalyser.ts
+│   │   │   └── test.helpers.ts
+│   │   └── types
+│   │       └── Catalogi.ts
+│   ├── tsconfig.json
+│   └── update-then-wait.sh
+├── backup-db.sh
+├── catalogi-realm.json
+├── catalogi.png
+├── deployment-examples
+│   ├── .gitignore
+│   ├── docker-compose
+│   │   ├── .env.sample
+│   │   ├── README.md
+│   │   ├── customization
+│   │   │   ├── translations
+│   │   │   │   ├── en.json
+│   │   │   │   └── fr.json
+│   │   │   └── ui-config.json
+│   │   ├── docker-compose.yml
+│   │   └── nginx
+│   │       └── default.conf
+│   ├── helm
+│   │   ├── README.md
+│   │   ├── ingress-api.yaml
+│   │   ├── ingress-web.yaml
+│   │   ├── values-basic.yaml
+│   │   ├── values-development.yaml
+│   │   ├── values-local-dev.yaml
+│   │   ├── values-production.yaml
+│   │   └── values-temp.yaml
+│   └── keycloak-docker-compose
+│       ├── .env.sample
+│       ├── README.md
+│       ├── catalogi-realm.json
+│       ├── docker-compose.yml
+│       └── nginx
+│           └── default.conf
+├── docker-compose.preprod.yml
+├── docker-compose.prod.yml
+├── docker-compose.resources.yml
+├── docs
+│   ├── .nojekyll
+│   ├── 2-getting-started.md
+│   ├── 3.1-authentication.md
+│   ├── 3.2-setup-a-keycloak.md
+│   ├── 4-deploying-with-docker-compose.md
+│   ├── 5-deploying-with-kubernetes.md
+│   ├── 6-env-variables-and-customization.md
+│   ├── ARCHITECTURE.md
+│   ├── LICENSES
+│   │   ├── LICENSE.Etalab-2.0.md
+│   │   └── MIT.txt
+│   ├── README.md
+│   ├── _sidebar.md
+│   ├── assets
+│   │   ├── agent_connect-2.png
+│   │   ├── agent_connect.png
+│   │   ├── favicon
+│   │   │   ├── android-chrome-192x192.png
+│   │   │   ├── android-chrome-512x512.png
+│   │   │   ├── apple-touch-icon.png
+│   │   │   ├── favicon.ico
+│   │   │   ├── favicon.svg
+│   │   │   └── manifest.webmanifest
+│   │   ├── fonts
+│   │   │   ├── Marianne-Bold.woff
+│   │   │   ├── Marianne-Bold.woff2
+│   │   │   ├── Marianne-Bold_Italic.woff
+│   │   │   ├── Marianne-Bold_Italic.woff2
+│   │   │   ├── Marianne-Light.woff
+│   │   │   ├── Marianne-Light.woff2
+│   │   │   ├── Marianne-Light_Italic.woff
+│   │   │   ├── Marianne-Light_Italic.woff2
+│   │   │   ├── Marianne-Medium.woff
+│   │   │   ├── Marianne-Medium.woff2
+│   │   │   ├── Marianne-Medium_Italic.woff
+│   │   │   ├── Marianne-Medium_Italic.woff2
+│   │   │   ├── Marianne-Regular.woff
+│   │   │   ├── Marianne-Regular.woff2
+│   │   │   ├── Marianne-Regular_Italic.woff
+│   │   │   ├── Marianne-Regular_Italic.woff2
+│   │   │   ├── Spectral-ExtraBold.woff
+│   │   │   ├── Spectral-ExtraBold.woff2
+│   │   │   ├── Spectral-Regular.woff
+│   │   │   └── Spectral-Regular.woff2
+│   │   ├── icons
+│   │   │   ├── buildings
+│   │   │   │   ├── ancient-gate-fill.svg
+│   │   │   │   ├── ancient-gate-line.svg
+│   │   │   │   ├── ancient-pavilion-fill.svg
+│   │   │   │   ├── ancient-pavilion-line.svg
+│   │   │   │   ├── bank-fill.svg
+│   │   │   │   ├── bank-line.svg
+│   │   │   │   ├── building-fill.svg
+│   │   │   │   ├── building-line.svg
+│   │   │   │   ├── community-fill.svg
+│   │   │   │   ├── community-line.svg
+│   │   │   │   ├── government-fill.svg
+│   │   │   │   ├── government-line.svg
+│   │   │   │   ├── home-4-fill.svg
+│   │   │   │   ├── home-4-line.svg
+│   │   │   │   ├── hospital-fill.svg
+│   │   │   │   ├── hospital-line.svg
+│   │   │   │   ├── hotel-fill.svg
+│   │   │   │   ├── hotel-line.svg
+│   │   │   │   ├── store-fill.svg
+│   │   │   │   └── store-line.svg
+│   │   │   ├── business
+│   │   │   │   ├── archive-fill.svg
+│   │   │   │   ├── archive-line.svg
+│   │   │   │   ├── attachment-fill.svg
+│   │   │   │   ├── attachment-line.svg
+│   │   │   │   ├── award-fill.svg
+│   │   │   │   ├── award-line.svg
+│   │   │   │   ├── bar-chart-box-fill.svg
+│   │   │   │   ├── bar-chart-box-line.svg
+│   │   │   │   ├── bookmark-fill.svg
+│   │   │   │   ├── bookmark-line.svg
+│   │   │   │   ├── briefcase-fill.svg
+│   │   │   │   ├── briefcase-line.svg
+│   │   │   │   ├── calendar-*.svg  (6 files)
+│   │   │   │   ├── cloud-fill.svg
+│   │   │   │   ├── cloud-line.svg
+│   │   │   │   ├── copyright-fill.svg
+│   │   │   │   ├── copyright-line.svg
+│   │   │   │   ├── customer-service-fill.svg
+│   │   │   │   ├── customer-service-line.svg
+│   │   │   │   ├── flag-fill.svg
+│   │   │   │   ├── flag-line.svg
+│   │   │   │   ├── global-fill.svg
+│   │   │   │   ├── global-line.svg
+│   │   │   │   ├── line-chart-fill.svg
+│   │   │   │   ├── line-chart-line.svg
+│   │   │   │   ├── links-fill.svg
+│   │   │   │   ├── links-line.svg
+│   │   │   │   ├── mail-fill.svg
+│   │   │   │   ├── mail-line.svg
+│   │   │   │   ├── mail-open-fill.svg
+│   │   │   │   ├── mail-open-line.svg
+│   │   │   │   ├── medal-fill.svg
+│   │   │   │   ├── medal-line.svg
+│   │   │   │   ├── pie-chart-2-fill.svg
+│   │   │   │   ├── pie-chart-2-line.svg
+│   │   │   │   ├── pie-chart-box-fill.svg
+│   │   │   │   ├── pie-chart-box-line.svg
+│   │   │   │   ├── printer-fill.svg
+│   │   │   │   ├── printer-line.svg
+│   │   │   │   ├── profil-fill.svg
+│   │   │   │   ├── profil-line.svg
+│   │   │   │   ├── projector-2-fill.svg
+│   │   │   │   ├── projector-2-line.svg
+│   │   │   │   ├── send-plane-fill.svg
+│   │   │   │   ├── send-plane-line.svg
+│   │   │   │   ├── slideshow-fill.svg
+│   │   │   │   ├── slideshow-line.svg
+│   │   │   │   ├── window-fill.svg
+│   │   │   │   └── window-line.svg
+│   │   │   ├── communication
+│   │   │   │   ├── chat-2-fill.svg
+│   │   │   │   ├── chat-2-line.svg
+│   │   │   │   ├── chat-3-fill.svg
+│   │   │   │   ├── chat-3-line.svg
+│   │   │   │   ├── chat-check-fill.svg
+│   │   │   │   ├── chat-check-line.svg
+│   │   │   │   ├── chat-delete-fill.svg
+│   │   │   │   ├── chat-delete-line.svg
+│   │   │   │   ├── chat-poll-fill.svg
+│   │   │   │   ├── chat-poll-line.svg
+│   │   │   │   ├── discuss-fill.svg
+│   │   │   │   ├── discuss-line.svg
+│   │   │   │   ├── feedback-fill.svg
+│   │   │   │   ├── feedback-line.svg
+│   │   │   │   ├── message-2-fill.svg
+│   │   │   │   ├── message-2-line.svg
+│   │   │   │   ├── question-answer-fill.svg
+│   │   │   │   ├── question-answer-line.svg
+│   │   │   │   ├── questionnaire-fill.svg
+│   │   │   │   ├── questionnaire-line.svg
+│   │   │   │   ├── video-chat-fill.svg
+│   │   │   │   └── video-chat-line.svg
+│   │   │   ├── design
+│   │   │   │   ├── ball-pen-fill.svg
+│   │   │   │   ├── ball-pen-line.svg
+│   │   │   │   ├── brush-3-fill.svg
+│   │   │   │   ├── brush-3-line.svg
+│   │   │   │   ├── brush-fill.svg
+│   │   │   │   ├── brush-line.svg
+│   │   │   │   ├── contrast-fill.svg
+│   │   │   │   ├── contrast-line.svg
+│   │   │   │   ├── crop-fill.svg
+│   │   │   │   ├── crop-line.svg
+│   │   │   │   ├── drag-move-2-fill.svg
+│   │   │   │   ├── drag-move-2-line.svg
+│   │   │   │   ├── drop-fill.svg
+│   │   │   │   ├── drop-line.svg
+│   │   │   │   ├── edit-box-fill.svg
+│   │   │   │   ├── edit-box-line.svg
+│   │   │   │   ├── edit-fill.svg
+│   │   │   │   ├── edit-line.svg
+│   │   │   │   ├── ink-bottle-fill.svg
+│   │   │   │   ├── ink-bottle-line.svg
+│   │   │   │   ├── layout-grid-fill.svg
+│   │   │   │   ├── layout-grid-line.svg
+│   │   │   │   ├── mark-pen-fill.svg
+│   │   │   │   ├── mark-pen-line.svg
+│   │   │   │   ├── paint-brush-fill.svg
+│   │   │   │   ├── paint-brush-line.svg
+│   │   │   │   ├── paint-fill.svg
+│   │   │   │   ├── paint-line.svg
+│   │   │   │   ├── palette-fill.svg
+│   │   │   │   ├── palette-line.svg
+│   │   │   │   ├── pantone-fill.svg
+│   │   │   │   ├── pantone-line.svg
+│   │   │   │   ├── pen-nib-fill.svg
+│   │   │   │   ├── pen-nib-line.svg
+│   │   │   │   ├── pencil-fill.svg
+│   │   │   │   ├── pencil-line.svg
+│   │   │   │   ├── pencil-ruler-fill.svg
+│   │   │   │   ├── pencil-ruler-line.svg
+│   │   │   │   ├── sip-fill.svg
+│   │   │   │   ├── sip-line.svg
+│   │   │   │   ├── table-fill.svg
+│   │   │   │   └── table-line.svg
+│   │   │   ├── development
+│   │   │   │   ├── bug-fill.svg
+│   │   │   │   ├── bug-line.svg
+│   │   │   │   ├── code-box-fill.svg
+│   │   │   │   ├── code-box-line.svg
+│   │   │   │   ├── code-s-slash-line.svg
+│   │   │   │   ├── cursor-fill.svg
+│   │   │   │   ├── cursor-line.svg
+│   │   │   │   ├── git-branch-fill.svg
+│   │   │   │   ├── git-branch-line.svg
+│   │   │   │   ├── git-commit-fill.svg
+│   │   │   │   ├── git-commit-line.svg
+│   │   │   │   ├── git-merge-fill.svg
+│   │   │   │   ├── git-merge-line.svg
+│   │   │   │   ├── git-pull-request-fill.svg
+│   │   │   │   ├── git-pull-request-line.svg
+│   │   │   │   ├── git-repository-commits-fill.svg
+│   │   │   │   ├── git-repository-commits-line.svg
+│   │   │   │   ├── git-repository-fill.svg
+│   │   │   │   ├── git-repository-line.svg
+│   │   │   │   ├── git-repository-private-fill.svg
+│   │   │   │   ├── git-repository-private-line.svg
+│   │   │   │   ├── terminal-box-fill.svg
+│   │   │   │   ├── terminal-box-line.svg
+│   │   │   │   ├── terminal-line.svg
+│   │   │   │   ├── terminal-window-fill.svg
+│   │   │   │   └── terminal-window-line.svg
+│   │   │   ├── device
+│   │   │   │   ├── bluetooth-fill.svg
+│   │   │   │   ├── bluetooth-line.svg
+│   │   │   │   ├── computer-fill.svg
+│   │   │   │   ├── computer-line.svg
+│   │   │   │   ├── dashboard-3-fill.svg
+│   │   │   │   ├── dashboard-3-line.svg
+│   │   │   │   ├── database-fill.svg
+│   │   │   │   ├── database-line.svg
+│   │   │   │   ├── device-fill.svg
+│   │   │   │   ├── device-line.svg
+│   │   │   │   ├── hard-drive-2-fill.svg
+│   │   │   │   ├── hard-drive-2-line.svg
+│   │   │   │   ├── mac-fill.svg
+│   │   │   │   ├── mac-line.svg
+│   │   │   │   ├── phone-fill.svg
+│   │   │   │   ├── phone-line.svg
+│   │   │   │   ├── qr-code-fill.svg
+│   │   │   │   ├── qr-code-line.svg
+│   │   │   │   ├── rss-fill.svg
+│   │   │   │   ├── rss-line.svg
+│   │   │   │   ├── save-3-fill.svg
+│   │   │   │   ├── save-3-line.svg
+│   │   │   │   ├── save-fill.svg
+│   │   │   │   ├── save-line.svg
+│   │   │   │   ├── server-fill.svg
+│   │   │   │   ├── server-line.svg
+│   │   │   │   ├── smartphone-fill.svg
+│   │   │   │   ├── smartphone-line.svg
+│   │   │   │   ├── tablet-fill.svg
+│   │   │   │   ├── tablet-line.svg
+│   │   │   │   ├── tv-fill.svg
+│   │   │   │   ├── tv-line.svg
+│   │   │   │   ├── wifi-fill.svg
+│   │   │   │   └── wifi-line.svg
+│   │   │   ├── document
+│   │   │   │   ├── article-fill.svg
+│   │   │   │   ├── article-line.svg
+│   │   │   │   ├── book-2-fill.svg
+│   │   │   │   ├── book-2-line.svg
+│   │   │   │   ├── booklet-fill.svg
+│   │   │   │   ├── booklet-line.svg
+│   │   │   │   ├── clipboard-fill.svg
+│   │   │   │   ├── clipboard-line.svg
+│   │   │   │   ├── draft-fill.svg
+│   │   │   │   ├── draft-line.svg
+│   │   │   │   ├── file-add-fill.svg
+│   │   │   │   ├── file-add-line.svg
+│   │   │   │   ├── file-download-fill.svg
+│   │   │   │   ├── file-download-line.svg
+│   │   │   │   ├── file-fill.svg
+│   │   │   │   ├── file-line.svg
+│   │   │   │   ├── file-pdf-fill.svg
+│   │   │   │   ├── file-pdf-line.svg
+│   │   │   │   ├── file-text-fill.svg
+│   │   │   │   ├── file-text-line.svg
+│   │   │   │   ├── folder-2-fill.svg
+│   │   │   │   ├── folder-2-line.svg
+│   │   │   │   ├── newspaper-fill.svg
+│   │   │   │   ├── newspaper-line.svg
+│   │   │   │   ├── survey-fill.svg
+│   │   │   │   ├── survey-line.svg
+│   │   │   │   ├── todo-fill.svg
+│   │   │   │   └── todo-line.svg
+│   │   │   ├── editor
+│   │   │   │   ├── code-view.svg
+│   │   │   │   ├── font-size.svg
+│   │   │   │   ├── fr--bold.svg
+│   │   │   │   ├── fr--highlight.svg
+│   │   │   │   ├── fr--quote-fill.svg
+│   │   │   │   ├── fr--quote-line.svg
+│   │   │   │   ├── h-1.svg
+│   │   │   │   ├── h-2.svg
+│   │   │   │   ├── h-3.svg
+│   │   │   │   ├── h-4.svg
+│   │   │   │   ├── h-5.svg
+│   │   │   │   ├── h-6.svg
+│   │   │   │   ├── hashtag.svg
+│   │   │   │   ├── italic.svg
+│   │   │   │   ├── link-unlink.svg
+│   │   │   │   ├── link.svg
+│   │   │   │   ├── list-ordered.svg
+│   │   │   │   ├── list-unordered.svg
+│   │   │   │   ├── question-mark.svg
+│   │   │   │   ├── separator.svg
+│   │   │   │   ├── space.svg
+│   │   │   │   ├── subscript.svg
+│   │   │   │   ├── superscript.svg
+│   │   │   │   ├── table-2.svg
+│   │   │   │   └── translate-2.svg
+│   │   │   ├── finance
+│   │   │   │   ├── bank-card-fill.svg
+│   │   │   │   ├── bank-card-line.svg
+│   │   │   │   ├── coin-fill.svg
+│   │   │   │   ├── gift-fill.svg
+│   │   │   │   ├── gift-line.svg
+│   │   │   │   ├── money-euro-box-fill.svg
+│   │   │   │   ├── money-euro-box-line.svg
+│   │   │   │   ├── money-euro-circle-fill.svg
+│   │   │   │   ├── money-euro-circle-line.svg
+│   │   │   │   ├── secure-payment-fill.svg
+│   │   │   │   ├── secure-payment-line.svg
+│   │   │   │   ├── shopping-bag-fill.svg
+│   │   │   │   ├── shopping-bag-line.svg
+│   │   │   │   ├── shopping-cart-2-fill.svg
+│   │   │   │   ├── shopping-cart-2-line.svg
+│   │   │   │   ├── trophy-fill.svg
+│   │   │   │   └── trophy-line.svg
+│   │   │   ├── health
+│   │   │   │   ├── capsule-fill.svg
+│   │   │   │   ├── capsule-line.svg
+│   │   │   │   ├── dislike-fill.svg
+│   │   │   │   ├── dislike-line.svg
+│   │   │   │   ├── dossier-fill.svg
+│   │   │   │   ├── dossier-line.svg
+│   │   │   │   ├── first-aid-kit-fill.svg
+│   │   │   │   ├── first-aid-kit-line.svg
+│   │   │   │   ├── hand-sanitizer-fill.svg
+│   │   │   │   ├── hand-sanitizer-line.svg
+│   │   │   │   ├── health-book-fill.svg
+│   │   │   │   ├── health-book-line.svg
+│   │   │   │   ├── heart-fill.svg
+│   │   │   │   ├── heart-line.svg
+│   │   │   │   ├── heart-pulse-fill.svg
+│   │   │   │   ├── heart-pulse-line.svg
+│   │   │   │   ├── lungs-fill.svg
+│   │   │   │   ├── lungs-line.svg
+│   │   │   │   ├── medicine-bottle-fill.svg
+│   │   │   │   ├── medicine-bottle-line.svg
+│   │   │   │   ├── mental-health-fill.svg
+│   │   │   │   ├── mental-health-line.svg
+│   │   │   │   ├── microscope-fill.svg
+│   │   │   │   ├── microscope-line.svg
+│   │   │   │   ├── psychotherapy-fill.svg
+│   │   │   │   ├── psychotherapy-line.svg
+│   │   │   │   ├── pulse-line.svg
+│   │   │   │   ├── stethoscope-fill.svg
+│   │   │   │   ├── stethoscope-line.svg
+│   │   │   │   ├── surgical-mask-fill.svg
+│   │   │   │   ├── surgical-mask-line.svg
+│   │   │   │   ├── syringe-fill.svg
+│   │   │   │   ├── syringe-line.svg
+│   │   │   │   ├── test-tube-fill.svg
+│   │   │   │   ├── test-tube-line.svg
+│   │   │   │   ├── thermometer-fill.svg
+│   │   │   │   ├── thermometer-line.svg
+│   │   │   │   ├── virus-fill.svg
+│   │   │   │   └── virus-line.svg
+│   │   │   ├── logo
+│   │   │   │   ├── chrome-fill.svg
+│   │   │   │   ├── chrome-line.svg
+│   │   │   │   ├── edge-fill.svg
+│   │   │   │   ├── edge-line.svg
+│   │   │   │   ├── facebook-circle-fill.svg
+│   │   │   │   ├── facebook-circle-line.svg
+│   │   │   │   ├── firefox-fill.svg
+│   │   │   │   ├── firefox-line.svg
+│   │   │   │   ├── fr--dailymotion-fill.svg
+│   │   │   │   ├── fr--dailymotion-line.svg
+│   │   │   │   ├── fr--tiktok-fill.svg
+│   │   │   │   ├── fr--tiktok-line.svg
+│   │   │   │   ├── github-fill.svg
+│   │   │   │   ├── github-line.svg
+│   │   │   │   ├── google-fill.svg
+│   │   │   │   ├── google-line.svg
+│   │   │   │   ├── ie-fill.svg
+│   │   │   │   ├── ie-line.svg
+│   │   │   │   ├── instagram-fill.svg
+│   │   │   │   ├── instagram-line.svg
+│   │   │   │   ├── linkedin-box-fill.svg
+│   │   │   │   ├── linkedin-box-line.svg
+│   │   │   │   ├── mastodon-fill.svg
+│   │   │   │   ├── mastodon-line.svg
+│   │   │   │   ├── npmjs-fill.svg
+│   │   │   │   ├── npmjs-line.svg
+│   │   │   │   ├── remixicon-fill.svg
+│   │   │   │   ├── remixicon-line.svg
+│   │   │   │   ├── safari-fill.svg
+│   │   │   │   ├── safari-line.svg
+│   │   │   │   ├── slack-fill.svg
+│   │   │   │   ├── slack-line.svg
+│   │   │   │   ├── snapchat-fill.svg
+│   │   │   │   ├── snapchat-line.svg
+│   │   │   │   ├── telegram-fill.svg
+│   │   │   │   ├── telegram-line.svg
+│   │   │   │   ├── threads-fill.svg
+│   │   │   │   ├── threads-line.svg
+│   │   │   │   ├── twitch-fill.svg
+│   │   │   │   ├── twitch-line.svg
+│   │   │   │   ├── twitter-fill.svg
+│   │   │   │   ├── twitter-line.svg
+│   │   │   │   ├── twitter-x-fill.svg
+│   │   │   │   ├── twitter-x-line.svg
+│   │   │   │   ├── vimeo-fill.svg
+│   │   │   │   ├── vimeo-line.svg
+│   │   │   │   ├── vuejs-fill.svg
+│   │   │   │   ├── vuejs-line.svg
+│   │   │   │   ├── youtube-fill.svg
+│   │   │   │   └── youtube-line.svg
+│   │   │   ├── map
+│   │   │   │   ├── anchor-fill.svg
+│   │   │   │   ├── anchor-line.svg
+│   │   │   │   ├── bike-fill.svg
+│   │   │   │   ├── bike-line.svg
+│   │   │   │   ├── bus-fill.svg
+│   │   │   │   ├── bus-line.svg
+│   │   │   │   ├── car-fill.svg
+│   │   │   │   ├── car-line.svg
+│   │   │   │   ├── caravan-fill.svg
+│   │   │   │   ├── caravan-line.svg
+│   │   │   │   ├── charging-pile-2-fill.svg
+│   │   │   │   ├── charging-pile-2-line.svg
+│   │   │   │   ├── compass-3-fill.svg
+│   │   │   │   ├── compass-3-line.svg
+│   │   │   │   ├── cup-fill.svg
+│   │   │   │   ├── cup-line.svg
+│   │   │   │   ├── earth-fill.svg
+│   │   │   │   ├── earth-line.svg
+│   │   │   │   ├── france-fill.svg
+│   │   │   │   ├── france-line.svg
+│   │   │   │   ├── gas-station-fill.svg
+│   │   │   │   ├── gas-station-line.svg
+│   │   │   │   ├── goblet-fill.svg
+│   │   │   │   ├── goblet-line.svg
+│   │   │   │   ├── map-pin-2-fill.svg
+│   │   │   │   ├── map-pin-2-line.svg
+│   │   │   │   ├── map-pin-user-fill.svg
+│   │   │   │   ├── map-pin-user-line.svg
+│   │   │   │   ├── motorbike-fill.svg
+│   │   │   │   ├── motorbike-line.svg
+│   │   │   │   ├── passport-fill.svg
+│   │   │   │   ├── passport-line.svg
+│   │   │   │   ├── restaurant-fill.svg
+│   │   │   │   ├── restaurant-line.svg
+│   │   │   │   ├── road-map-fill.svg
+│   │   │   │   ├── road-map-line.svg
+│   │   │   │   ├── sailboat-fill.svg
+│   │   │   │   ├── sailboat-line.svg
+│   │   │   │   ├── ship-2-fill.svg
+│   │   │   │   ├── ship-2-line.svg
+│   │   │   │   ├── signal-tower-fill.svg
+│   │   │   │   ├── signal-tower-line.svg
+│   │   │   │   ├── suitcase-2-fill.svg
+│   │   │   │   ├── suitcase-2-line.svg
+│   │   │   │   ├── taxi-fill.svg
+│   │   │   │   ├── taxi-line.svg
+│   │   │   │   ├── train-fill.svg
+│   │   │   │   └── train-line.svg
+│   │   │   ├── media
+│   │   │   │   ├── align-left.svg
+│   │   │   │   ├── camera-fill.svg
+│   │   │   │   ├── camera-line.svg
+│   │   │   │   ├── clapperboard-fill.svg
+│   │   │   │   ├── clapperboard-line.svg
+│   │   │   │   ├── equalizer-fill.svg
+│   │   │   │   ├── equalizer-line.svg
+│   │   │   │   ├── film-fill.svg
+│   │   │   │   ├── film-line.svg
+│   │   │   │   ├── fullscreen-line.svg
+│   │   │   │   ├── gallery-fill.svg
+│   │   │   │   ├── gallery-line.svg
+│   │   │   │   ├── headphone-fill.svg
+│   │   │   │   ├── headphone-line.svg
+│   │   │   │   ├── image-add-fill.svg
+│   │   │   │   ├── image-add-line.svg
+│   │   │   │   ├── image-edit-fill.svg
+│   │   │   │   ├── image-edit-line.svg
+│   │   │   │   ├── image-fill.svg
+│   │   │   │   ├── image-line.svg
+│   │   │   │   ├── live-fill.svg
+│   │   │   │   ├── live-line.svg
+│   │   │   │   ├── mic-fill.svg
+│   │   │   │   ├── mic-line.svg
+│   │   │   │   ├── music-2-fill.svg
+│   │   │   │   ├── music-2-line.svg
+│   │   │   │   ├── notification-3-fill.svg
+│   │   │   │   ├── notification-3-line.svg
+│   │   │   │   ├── pause-circle-fill.svg
+│   │   │   │   ├── pause-circle-line.svg
+│   │   │   │   ├── play-circle-fill.svg
+│   │   │   │   ├── play-circle-line.svg
+│   │   │   │   ├── stop-circle-fill.svg
+│   │   │   │   ├── stop-circle-line.svg
+│   │   │   │   ├── volume-down-fill.svg
+│   │   │   │   ├── volume-down-line.svg
+│   │   │   │   ├── volume-mute-fill.svg
+│   │   │   │   ├── volume-mute-line.svg
+│   │   │   │   ├── volume-up-fill.svg
+│   │   │   │   └── volume-up-line.svg
+│   │   │   ├── others
+│   │   │   │   ├── leaf-fill.svg
+│   │   │   │   ├── leaf-line.svg
+│   │   │   │   ├── lightbulb-fill.svg
+│   │   │   │   ├── lightbulb-line.svg
+│   │   │   │   ├── plant-fill.svg
+│   │   │   │   ├── plant-line.svg
+│   │   │   │   ├── recycle-fill.svg
+│   │   │   │   ├── recycle-line.svg
+│   │   │   │   ├── scales-3-fill.svg
+│   │   │   │   ├── scales-3-line.svg
+│   │   │   │   ├── seedling-fill.svg
+│   │   │   │   ├── seedling-line.svg
+│   │   │   │   ├── umbrella-fill.svg
+│   │   │   │   └── umbrella-line.svg
+│   │   │   ├── system
+│   │   │   │   ├── add-circle-fill.svg
+│   │   │   │   ├── add-circle-line.svg
+│   │   │   │   ├── add-line.svg
+│   │   │   │   ├── alarm-warning-fill.svg
+│   │   │   │   ├── alarm-warning-line.svg
+│   │   │   │   ├── alert-fill.svg
+│   │   │   │   ├── alert-line.svg
+│   │   │   │   ├── arrow-*.svg  (21 files)
+│   │   │   │   ├── check-line.svg
+│   │   │   │   ├── checkbox-circle-fill.svg
+│   │   │   │   ├── checkbox-circle-line.svg
+│   │   │   │   ├── checkbox-fill.svg
+│   │   │   │   ├── checkbox-line.svg
+│   │   │   │   ├── close-circle-fill.svg
+│   │   │   │   ├── close-circle-line.svg
+│   │   │   │   ├── close-line.svg
+│   │   │   │   ├── delete-bin-fill.svg
+│   │   │   │   ├── delete-bin-line.svg
+│   │   │   │   ├── download-fill.svg
+│   │   │   │   ├── download-line.svg
+│   │   │   │   ├── error-warning-fill.svg
+│   │   │   │   ├── error-warning-line.svg
+│   │   │   │   ├── external-link-fill.svg
+│   │   │   │   ├── external-link-line.svg
+│   │   │   │   ├── eye-fill.svg
+│   │   │   │   ├── eye-line.svg
+│   │   │   │   ├── eye-off-fill.svg
+│   │   │   │   ├── eye-off-line.svg
+│   │   │   │   ├── filter-fill.svg
+│   │   │   │   ├── filter-line.svg
+│   │   │   │   ├── fr-*.svg  (17 files)
+│   │   │   │   ├── information-fill.svg
+│   │   │   │   ├── information-line.svg
+│   │   │   │   ├── lock-fill.svg
+│   │   │   │   ├── lock-line.svg
+│   │   │   │   ├── lock-unlock-fill.svg
+│   │   │   │   ├── lock-unlock-line.svg
+│   │   │   │   ├── logout-box-r-fill.svg
+│   │   │   │   ├── logout-box-r-line.svg
+│   │   │   │   ├── menu-2-fill.svg
+│   │   │   │   ├── menu-fill.svg
+│   │   │   │   ├── more-fill.svg
+│   │   │   │   ├── more-line.svg
+│   │   │   │   ├── notification-badge-fill.svg
+│   │   │   │   ├── notification-badge-line.svg
+│   │   │   │   ├── question-fill.svg
+│   │   │   │   ├── question-line.svg
+│   │   │   │   ├── refresh-fill.svg
+│   │   │   │   ├── refresh-line.svg
+│   │   │   │   ├── search-fill.svg
+│   │   │   │   ├── search-line.svg
+│   │   │   │   ├── settings-5-fill.svg
+│   │   │   │   ├── settings-5-line.svg
+│   │   │   │   ├── shield-fill.svg
+│   │   │   │   ├── shield-line.svg
+│   │   │   │   ├── star-fill.svg
+│   │   │   │   ├── star-line.svg
+│   │   │   │   ├── star-s-fill.svg
+│   │   │   │   ├── star-s-line.svg
+│   │   │   │   ├── subtract-line.svg
+│   │   │   │   ├── thumb-down-fill.svg
+│   │   │   │   ├── thumb-down-line.svg
+│   │   │   │   ├── thumb-up-fill.svg
+│   │   │   │   ├── thumb-up-line.svg
+│   │   │   │   ├── time-fill.svg
+│   │   │   │   ├── time-line.svg
+│   │   │   │   ├── timer-fill.svg
+│   │   │   │   ├── timer-line.svg
+│   │   │   │   ├── upload-2-fill.svg
+│   │   │   │   ├── upload-2-line.svg
+│   │   │   │   ├── upload-fill.svg
+│   │   │   │   ├── upload-line.svg
+│   │   │   │   ├── zoom-in-fill.svg
+│   │   │   │   ├── zoom-in-line.svg
+│   │   │   │   ├── zoom-out-fill.svg
+│   │   │   │   └── zoom-out-line.svg
+│   │   │   ├── user
+│   │   │   │   ├── account-circle-fill.svg
+│   │   │   │   ├── account-circle-line.svg
+│   │   │   │   ├── account-pin-circle-fill.svg
+│   │   │   │   ├── account-pin-circle-line.svg
+│   │   │   │   ├── admin-fill.svg
+│   │   │   │   ├── admin-line.svg
+│   │   │   │   ├── group-fill.svg
+│   │   │   │   ├── group-line.svg
+│   │   │   │   ├── parent-fill.svg
+│   │   │   │   ├── parent-line.svg
+│   │   │   │   ├── team-fill.svg
+│   │   │   │   ├── team-line.svg
+│   │   │   │   ├── user-add-fill.svg
+│   │   │   │   ├── user-add-line.svg
+│   │   │   │   ├── user-fill.svg
+│   │   │   │   ├── user-heart-fill.svg
+│   │   │   │   ├── user-heart-line.svg
+│   │   │   │   ├── user-line.svg
+│   │   │   │   ├── user-search-fill.svg
+│   │   │   │   ├── user-search-line.svg
+│   │   │   │   ├── user-setting-fill.svg
+│   │   │   │   ├── user-setting-line.svg
+│   │   │   │   ├── user-star-fill.svg
+│   │   │   │   └── user-star-line.svg
+│   │   │   └── weather
+│   │   │       ├── cloudy-2-fill.svg
+│   │   │       ├── cloudy-2-line.svg
+│   │   │       ├── flashlight-fill.svg
+│   │   │       ├── flashlight-line.svg
+│   │   │       ├── moon-fill.svg
+│   │   │       ├── moon-line.svg
+│   │   │       ├── sun-fill.svg
+│   │   │       └── sun-line.svg
+│   │   ├── style.css
+│   │   ├── webhook-2.png
+│   │   └── webhook.png
+│   ├── charts
+│   │   └── index.yaml
+│   ├── index.html
+│   ├── sill.en.md
+│   └── sill.md
+├── helm-charts
+│   └── catalogi
+│       ├── Chart.yaml
+│       ├── templates
+│       │   ├── _helpers.tpl
+│       │   ├── adminer-deployment.yaml
+│       │   ├── adminer-service.yaml
+│       │   ├── api-deployment.yaml
+│       │   ├── api-service.yaml
+│       │   ├── configmap.yaml
+│       │   ├── ingress.yaml
+│       │   ├── secret.yaml
+│       │   ├── serviceaccount.yaml
+│       │   ├── update-cronjob.yaml
+│       │   ├── web-configmap.yaml
+│       │   ├── web-deployment.yaml
+│       │   └── web-service.yaml
+│       └── values.yaml
+├── lefthook.yml
+├── nginx
+│   └── default.conf
+├── package.json
+├── renovate.json
+├── scripts
+│   ├── bump-helm-chart-version.js
+│   ├── scan-dependencies.js
+│   ├── sync-helm-app-version.js
+│   └── test-helm-charts.sh
+├── turbo.json
+├── web
+│   ├── .env.declaration
+│   ├── .gitignore
+│   ├── .prettierignore
+│   ├── .prettierrc.json
+│   ├── .vscode
+│   │   ├── launch.json
+│   │   └── settings.json
+│   ├── index.html
+│   ├── nginx.conf
+│   ├── package.json
+│   ├── public
+│   │   ├── logo
+│   │   │   ├── ARX-Data-Anonymization-Tool.png
+│   │   │   ├── Acceleo.png
+│   │   │   ├── Agent-OCS.png
+│   │   │   ├── AngularJS.png
+│   │   │   ├── Apache-Atlas.png
+│   │   │   ├── Apache-HTTP-server.png
+│   │   │   ├── Apache-Maven.png
+│   │   │   ├── Asqatasun.png
+│   │   │   ├── Assistant-RGAA.png
+│   │   │   ├── Behaviours.png
+│   │   │   ├── BigBlueButton.png
+│   │   │   ├── Bitwarden.png
+│   │   │   ├── Centreon.png
+│   │   │   ├── DashLord.png
+│   │   │   ├── Duplicati.png
+│   │   │   ├── Git.png
+│   │   │   ├── GitLab-Community-Edition.png
+│   │   │   ├── Grammalecte.png
+│   │   │   ├── Greenshot.png
+│   │   │   ├── Iaparapheur.png
+│   │   │   ├── Joplin.png
+│   │   │   ├── Junit.png
+│   │   │   ├── LemonLDAP-ng.png
+│   │   │   ├── LemonLDAP.png
+│   │   │   ├── Lizmap.png
+│   │   │   ├── Matomo.png
+│   │   │   ├── Mattermost.png
+│   │   │   ├── Nextcloud.png
+│   │   │   ├── OnlyOffice.png
+│   │   │   ├── Peertube.png
+│   │   │   ├── Pentaho Community Edition.png
+│   │   │   ├── Publik.png
+│   │   │   ├── SambaEdu.png
+│   │   │   ├── Symfony.png
+│   │   │   ├── Vault.png
+│   │   │   ├── XWiki.png
+│   │   │   ├── XiVo.png
+│   │   │   ├── Yarn.png
+│   │   │   ├── apache-http.png
+│   │   │   ├── cra.png
+│   │   │   ├── debian.png
+│   │   │   ├── docker.png
+│   │   │   ├── elasticsearch.png
+│   │   │   ├── fog.png
+│   │   │   ├── gitlanding.png
+│   │   │   ├── gravitee-community-edition.png
+│   │   │   ├── haproxy.png
+│   │   │   ├── jupyter.png
+│   │   │   ├── kubernetes.png
+│   │   │   ├── mariadb.png
+│   │   │   ├── moodle.png
+│   │   │   ├── mui.png
+│   │   │   ├── next.png
+│   │   │   ├── nodejs.png
+│   │   │   ├── notepadpp.png
+│   │   │   ├── npm.png
+│   │   │   ├── onyxia.png
+│   │   │   ├── openLDAP.png
+│   │   │   ├── react.png
+│   │   │   ├── spring-boot.png
+│   │   │   ├── tss-react.png
+│   │   │   └── udata.png
+│   │   └── social-preview.png
+│   ├── renovate.json
+│   ├── src
+│   │   ├── core
+│   │   │   ├── adapter
+│   │   │   │   └── sillApi.ts
+│   │   │   ├── bootstrap.ts
+│   │   │   ├── index.ts
+│   │   │   ├── ports
+│   │   │   │   └── SillApi.ts
+│   │   │   ├── tools
+│   │   │   │   └── compareFn.ts
+│   │   │   └── usecases
+│   │   │       ├── declarationForm
+│   │   │       │   ├── evt.ts
+│   │   │       │   ├── index.ts
+│   │   │       │   ├── selectors.ts
+│   │   │       │   ├── state.ts
+│   │   │       │   └── thunks.ts
+│   │   │       ├── declarationRemoval
+│   │   │       │   ├── evt.ts
+│   │   │       │   ├── index.ts
+│   │   │       │   ├── selectors.ts
+│   │   │       │   ├── state.ts
+│   │   │       │   └── thunks.ts
+│   │   │       ├── externalDataOrigin
+│   │   │       │   ├── index.ts
+│   │   │       │   ├── state.ts
+│   │   │       │   └── thunks.ts
+│   │   │       ├── generalStats
+│   │   │       │   ├── index.ts
+│   │   │       │   ├── selectors.ts
+│   │   │       │   ├── state.ts
+│   │   │       │   └── thunks.ts
+│   │   │       ├── index.ts
+│   │   │       ├── instanceForm
+│   │   │       │   ├── evt.ts
+│   │   │       │   ├── index.ts
+│   │   │       │   ├── selectors.ts
+│   │   │       │   ├── state.ts
+│   │   │       │   └── thunks.ts
+│   │   │       ├── redirect
+│   │   │       │   ├── index.ts
+│   │   │       │   ├── selectors.ts
+│   │   │       │   ├── state.ts
+│   │   │       │   └── thunks.ts
+│   │   │       ├── sillApiVersion
+│   │   │       │   ├── index.ts
+│   │   │       │   ├── state.ts
+│   │   │       │   └── thunks.ts
+│   │   │       ├── softwareCatalog
+│   │   │       │   ├── evt.ts
+│   │   │       │   ├── index.ts
+│   │   │       │   ├── selectors.ts
+│   │   │       │   ├── state.ts
+│   │   │       │   └── thunks.ts
+│   │   │       ├── softwareDetails
+│   │   │       │   ├── index.ts
+│   │   │       │   ├── selectors.ts
+│   │   │       │   ├── state.ts
+│   │   │       │   └── thunks.ts
+│   │   │       ├── softwareForm
+│   │   │       │   ├── evt.ts
+│   │   │       │   ├── index.ts
+│   │   │       │   ├── selectors.ts
+│   │   │       │   ├── state.ts
+│   │   │       │   └── thunks.ts
+│   │   │       ├── softwareUserAndReferent
+│   │   │       │   ├── index.ts
+│   │   │       │   ├── selectors.ts
+│   │   │       │   ├── state.ts
+│   │   │       │   └── thunks.ts
+│   │   │       ├── source.slice.ts
+│   │   │       ├── uiConfig.slice.ts
+│   │   │       ├── userAccountManagement
+│   │   │       │   ├── index.ts
+│   │   │       │   ├── selectors.ts
+│   │   │       │   ├── state.ts
+│   │   │       │   └── thunks.ts
+│   │   │       ├── userAuthentication
+│   │   │       │   ├── index.ts
+│   │   │       │   ├── selectors.ts
+│   │   │       │   ├── state.ts
+│   │   │       │   └── thunks.ts
+│   │   │       └── userProfile
+│   │   │           ├── index.ts
+│   │   │           ├── selectors.ts
+│   │   │           ├── state.ts
+│   │   │           └── thunks.ts
+│   │   ├── index.tsx
+│   │   ├── react-app-env.d.ts
+│   │   ├── tools
+│   │   │   └── projectVersion.ts
+│   │   ├── ui
+│   │   │   ├── App.tsx
+│   │   │   ├── assets
+│   │   │   │   ├── about_template_en.md
+│   │   │   │   ├── about_template_fr.md
+│   │   │   │   ├── homepage_wave.svg
+│   │   │   │   ├── illustration_sill.svg
+│   │   │   │   ├── logo_libreoffice.png
+│   │   │   │   ├── logo_neovim.png
+│   │   │   │   ├── logo_nextcloud.png
+│   │   │   │   ├── logo_wordpress.png
+│   │   │   │   └── software_logo_placeholder.png
+│   │   │   ├── datetimeUtils.ts
+│   │   │   ├── i18n
+│   │   │   │   ├── @types
+│   │   │   │   │   └── i18next.d.ts
+│   │   │   │   ├── i18n.tsx
+│   │   │   │   ├── i18next.tsx
+│   │   │   │   ├── index.ts
+│   │   │   │   └── useGetOrganizationFullName.ts
+│   │   │   ├── pages
+│   │   │   │   ├── account
+│   │   │   │   │   ├── Account.tsx
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   └── route.ts
+│   │   │   │   ├── addSoftwareLanding
+│   │   │   │   │   ├── AddSoftwareLanding.tsx
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   └── route.ts
+│   │   │   │   ├── declarationForm
+│   │   │   │   │   ├── DeclarationForm.tsx
+│   │   │   │   │   ├── Step1.tsx
+│   │   │   │   │   ├── Step2Referent.tsx
+│   │   │   │   │   ├── Step2User.tsx
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   └── route.ts
+│   │   │   │   ├── home
+│   │   │   │   │   ├── Home.tsx
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   └── route.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── instanceForm
+│   │   │   │   │   ├── InstanceForm.tsx
+│   │   │   │   │   ├── Step1.tsx
+│   │   │   │   │   ├── Step2.tsx
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   └── route.ts
+│   │   │   │   ├── page404
+│   │   │   │   │   ├── Page404.tsx
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   └── route.ts
+│   │   │   │   ├── readme
+│   │   │   │   │   ├── Readme.tsx
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   └── route.ts
+│   │   │   │   ├── redirect
+│   │   │   │   │   ├── Redirect.tsx
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   └── route.ts
+│   │   │   │   ├── softwareCatalog
+│   │   │   │   │   ├── CustomAttributeInCard.tsx
+│   │   │   │   │   ├── SoftwareCatalog.tsx
+│   │   │   │   │   ├── SoftwareCatalogCard.tsx
+│   │   │   │   │   ├── SoftwareCatalogControlled.tsx
+│   │   │   │   │   ├── SoftwareCatalogSearch.tsx
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   └── route.ts
+│   │   │   │   ├── softwareDetails
+│   │   │   │   │   ├── AlikeSoftwareTab.tsx
+│   │   │   │   │   ├── CnllServiceProviderModal.tsx
+│   │   │   │   │   ├── CustomAttributeDetails.tsx
+│   │   │   │   │   ├── HeaderDetailCard.tsx
+│   │   │   │   │   ├── PreviewTab.tsx
+│   │   │   │   │   ├── PublicationTab.tsx
+│   │   │   │   │   ├── ReferencedInstancesTab.tsx
+│   │   │   │   │   ├── SoftwareDetails.tsx
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   └── route.ts
+│   │   │   │   ├── softwareForm
+│   │   │   │   │   ├── CustomAttributeForm.tsx
+│   │   │   │   │   ├── SoftwareForm.tsx
+│   │   │   │   │   ├── Step1.tsx
+│   │   │   │   │   ├── Step2.tsx
+│   │   │   │   │   ├── Step3.tsx
+│   │   │   │   │   ├── Step4.tsx
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   └── route.ts
+│   │   │   │   ├── softwareUserAndReferent
+│   │   │   │   │   ├── SoftwareUserAndReferent.tsx
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   └── route.ts
+│   │   │   │   ├── terms
+│   │   │   │   │   ├── Terms.tsx
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   └── route.ts
+│   │   │   │   └── userProfile
+│   │   │   │       ├── UserProfile.tsx
+│   │   │   │       ├── index.ts
+│   │   │   │       └── route.ts
+│   │   │   ├── routes.ts
+│   │   │   ├── shared
+│   │   │   │   ├── ActionsFooter.tsx
+│   │   │   │   ├── AuthorCard.tsx
+│   │   │   │   ├── AutocompleteFreeSoloInput.tsx
+│   │   │   │   ├── AutocompleteInput.tsx
+│   │   │   │   ├── CircularProgressWrapper.tsx
+│   │   │   │   ├── DeclarationRemovalModal.tsx
+│   │   │   │   ├── DetailUsersAndReferents.tsx
+│   │   │   │   ├── Footer.tsx
+│   │   │   │   ├── Header
+│   │   │   │   │   ├── AuthButtons.tsx
+│   │   │   │   │   ├── Header.tsx
+│   │   │   │   │   ├── LanguageSelect.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── LoadingFallback.tsx
+│   │   │   │   ├── LogoURLButton.tsx
+│   │   │   │   ├── MarkdownPage.tsx
+│   │   │   │   ├── PromptForOrganization.tsx
+│   │   │   │   ├── SearchInput.tsx
+│   │   │   │   ├── SearchMultiInput.tsx
+│   │   │   │   ├── SelectNext.tsx
+│   │   │   │   ├── SmartLogo.tsx
+│   │   │   │   └── SoftwareTypeTable.tsx
+│   │   │   └── tools
+│   │   │       ├── isStorybook.ts
+│   │   │       ├── typeRouteMock.ts
+│   │   │       ├── useAsync.ts
+│   │   │       ├── useMetricCountUpAnimation.ts
+│   │   │       └── zod
+│   │   │           └── createUnionSchema.ts
+│   │   ├── urls.ts
+│   │   └── vite-env.d.ts
+│   ├── tsconfig.json
+│   └── vite.config.ts
+├── yarn-error.log
+└── yarn.lock
+126 directories, 1159 files
