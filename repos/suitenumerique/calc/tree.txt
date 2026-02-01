@@ -1,0 +1,939 @@
+.
+├── .dockerignore
+├── .github
+│   ├── ISSUE_TEMPLATE
+│   │   ├── Bug_report.md
+│   │   ├── Feature_request.md
+│   │   └── Support_question.md
+│   ├── ISSUE_TEMPLATE.md
+│   ├── PULL_REQUEST_TEMPLATE.md
+│   └── workflows
+│       ├── crowdin_download.yml
+│       ├── crowdin_upload.yml
+│       ├── dependencies.yml
+│       ├── docker-hub.yml
+│       ├── helmfile-linter.yaml
+│       ├── impress-frontend.yml
+│       ├── impress.yml
+│       └── release-helm-chart.yaml
+├── .gitignore
+├── .gitlint
+├── .gitmodules
+├── .sops.yaml
+├── CHANGELOG.md
+├── CODE_OF_CONDUCT.md
+├── CONTRIBUTING.md
+├── Dockerfile
+├── LICENSE
+├── Makefile
+├── Procfile
+├── README.md
+├── SECURITY.md
+├── UPGRADE.md
+├── bin
+│   ├── Tiltfile
+│   ├── _config.sh
+│   ├── buildpack_postcompile.sh
+│   ├── buildpack_postfrontend.sh
+│   ├── buildpack_start.sh
+│   ├── compose
+│   ├── install-hooks.sh
+│   ├── manage
+│   ├── pylint
+│   ├── pytest
+│   ├── start-kind.sh
+│   ├── state
+│   ├── terraform
+│   ├── update-git-submodule.sh
+│   ├── update_openapi_schema
+│   └── updatekeys.sh
+├── crowdin
+│   └── config.yml
+├── docker
+│   ├── auth
+│   │   └── realm.json
+│   └── files
+│       ├── etc
+│       │   └── nginx
+│       │       └── conf.d
+│       │           └── default.conf
+│       └── usr
+│           └── local
+│               ├── bin
+│               │   └── entrypoint
+│               └── etc
+│                   └── gunicorn
+│                       └── impress.py
+├── docker-compose.yml
+├── docs
+│   ├── adr
+│   │   └── ADR-0001-20250106-use-yjs-for-docs-editing.md
+│   ├── architecture.md
+│   ├── assets
+│   │   ├── banner-docs.png
+│   │   ├── docs-logo.png
+│   │   ├── docs_live_collaboration_light.gif
+│   │   ├── europe_opensource.png
+│   │   ├── footer-configurable.png
+│   │   └── logo.png
+│   ├── env.md
+│   ├── examples
+│   │   ├── impress.values.yaml
+│   │   ├── keycloak.values.yaml
+│   │   ├── minio.values.yaml
+│   │   ├── postgresql.values.yaml
+│   │   └── redis.values.yaml
+│   ├── installation.md
+│   ├── release.md
+│   └── theming.md
+├── env.d
+│   └── development
+│       ├── common.dist
+│       ├── common.e2e.dist
+│       ├── crowdin.dist
+│       ├── kc_postgresql.dist
+│       └── postgresql.dist
+├── gitlint
+│   └── gitlint_emoji.py
+├── publiccode.yml
+├── renovate.json
+├── secu-audit.md
+└── src
+    ├── backend
+    │   ├── .pylintrc
+    │   ├── MANIFEST.in
+    │   ├── __init__.py
+    │   ├── core
+    │   │   ├── __init__.py
+    │   │   ├── admin.py
+    │   │   ├── api
+    │   │   │   ├── __init__.py
+    │   │   │   ├── fields.py
+    │   │   │   ├── filters.py
+    │   │   │   ├── permissions.py
+    │   │   │   ├── serializers.py
+    │   │   │   ├── utils.py
+    │   │   │   └── viewsets.py
+    │   │   ├── apps.py
+    │   │   ├── authentication
+    │   │   │   ├── __init__.py
+    │   │   │   └── backends.py
+    │   │   ├── enums.py
+    │   │   ├── factories.py
+    │   │   ├── malware_detection.py
+    │   │   ├── management
+    │   │   │   ├── __init__.py
+    │   │   │   └── commands
+    │   │   │       ├── __init__.py
+    │   │   │       └── update_files_content_type_metadata.py
+    │   │   ├── migrations
+    │   │   │   ├── 0001_initial.py
+    │   │   │   ├── 0002_create_pg_trgm_extension.py
+    │   │   │   ├── 0003_document_link_reach_document_link_role_and_more.py
+    │   │   │   ├── 0004_migrate_is_public_to_link_reach.py
+    │   │   │   ├── 0005_remove_document_is_public_alter_document_link_reach_and_more.py
+    │   │   │   ├── 0006_add_user_full_name_and_short_name.py
+    │   │   │   ├── 0007_fix_users_duplicate.py
+    │   │   │   ├── 0008_alter_document_link_reach.py
+    │   │   │   ├── 0009_add_document_favorite.py
+    │   │   │   ├── 0010_add_field_creator_to_document.py
+    │   │   │   ├── 0011_populate_creator_field_and_make_it_required.py
+    │   │   │   ├── 0012_make_document_creator_and_invitation_issuer_optional.py
+    │   │   │   ├── 0013_activate_fuzzystrmatch_extension.py
+    │   │   │   ├── 0014_add_tree_structure_to_documents.py
+    │   │   │   ├── 0015_set_path_on_existing_documents.py
+    │   │   │   ├── 0016_add_document_excerpt.py
+    │   │   │   ├── 0017_add_fields_for_soft_delete.py
+    │   │   │   ├── 0018_update_blank_title.py
+    │   │   │   ├── 0019_alter_user_language_default_to_null.py
+    │   │   │   ├── 0020_remove_is_public_add_field_attachments_and_duplicated_from.py
+    │   │   │   ├── 0021_activate_unaccent_extension.py
+    │   │   │   ├── 0022_document_revision_alter_user_language.py
+    │   │   │   └── __init__.py
+    │   │   ├── models.py
+    │   │   ├── services
+    │   │   │   ├── __init__.py
+    │   │   │   ├── ai_services.py
+    │   │   │   ├── collaboration_services.py
+    │   │   │   └── converter_services.py
+    │   │   ├── static
+    │   │   │   └── images
+    │   │   │       └── logo.png
+    │   │   ├── templates
+    │   │   │   └── core
+    │   │   │       └── generate_document.html
+    │   │   ├── templatetags
+    │   │   │   ├── __init__.py
+    │   │   │   └── extra_tags.py
+    │   │   ├── tests
+    │   │   │   ├── __init__.py
+    │   │   │   ├── authentication
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   └── test_backends.py
+    │   │   │   ├── commands
+    │   │   │   │   └── test_update_files_content_type_metadata.py
+    │   │   │   ├── conftest.py
+    │   │   │   ├── documents
+    │   │   │   │   ├── test_api_document_accesses.py
+    │   │   │   │   ├── test_api_document_accesses_create.py
+    │   │   │   │   ├── test_api_document_invitations.py
+    │   │   │   │   ├── test_api_document_versions.py
+    │   │   │   │   ├── test_api_documents_ai_transform.py
+    │   │   │   │   ├── test_api_documents_ai_translate.py
+    │   │   │   │   ├── test_api_documents_attachment_upload.py
+    │   │   │   │   ├── test_api_documents_children_create.py
+    │   │   │   │   ├── test_api_documents_children_list.py
+    │   │   │   │   ├── test_api_documents_cors_proxy.py
+    │   │   │   │   ├── test_api_documents_create.py
+    │   │   │   │   ├── test_api_documents_create_for_owner.py
+    │   │   │   │   ├── test_api_documents_delete.py
+    │   │   │   │   ├── test_api_documents_descendants.py
+    │   │   │   │   ├── test_api_documents_descendants_filters.py
+    │   │   │   │   ├── test_api_documents_duplicate.py
+    │   │   │   │   ├── test_api_documents_favorite.py
+    │   │   │   │   ├── test_api_documents_favorite_list.py
+    │   │   │   │   ├── test_api_documents_link_configuration.py
+    │   │   │   │   ├── test_api_documents_list.py
+    │   │   │   │   ├── test_api_documents_list_filters.py
+    │   │   │   │   ├── test_api_documents_media_auth.py
+    │   │   │   │   ├── test_api_documents_media_check.py
+    │   │   │   │   ├── test_api_documents_move.py
+    │   │   │   │   ├── test_api_documents_restore.py
+    │   │   │   │   ├── test_api_documents_retrieve.py
+    │   │   │   │   ├── test_api_documents_trashbin.py
+    │   │   │   │   ├── test_api_documents_tree.py
+    │   │   │   │   ├── test_api_documents_update.py
+    │   │   │   │   └── test_api_documents_update_extract_attachments.py
+    │   │   │   ├── migrations
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   ├── test_migrations_0018_update_blank_title.py
+    │   │   │   │   └── test_migrations_0020_remove_is_public_add_field_attachments_and_duplicated_from.py
+    │   │   │   ├── swagger
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   └── test_openapi_schema.py
+    │   │   │   ├── templates
+    │   │   │   │   ├── test_api_template_accesses.py
+    │   │   │   │   ├── test_api_template_accesses_create.py
+    │   │   │   │   ├── test_api_templates_create.py
+    │   │   │   │   ├── test_api_templates_delete.py
+    │   │   │   │   ├── test_api_templates_list.py
+    │   │   │   │   ├── test_api_templates_retrieve.py
+    │   │   │   │   └── test_api_templates_update.py
+    │   │   │   ├── test_api_config.py
+    │   │   │   ├── test_api_users.py
+    │   │   │   ├── test_api_utils_ai_document_rate_throttles.py
+    │   │   │   ├── test_api_utils_ai_user_rate_throttles.py
+    │   │   │   ├── test_api_utils_filter_root_paths.py
+    │   │   │   ├── test_api_utils_nest_tree.py
+    │   │   │   ├── test_malware_detection.py
+    │   │   │   ├── test_models_document_accesses.py
+    │   │   │   ├── test_models_documents.py
+    │   │   │   ├── test_models_invitations.py
+    │   │   │   ├── test_models_template_accesses.py
+    │   │   │   ├── test_models_templates.py
+    │   │   │   ├── test_models_users.py
+    │   │   │   ├── test_services_ai_services.py
+    │   │   │   ├── test_services_collaboration_services.py
+    │   │   │   ├── test_services_converter_services.py
+    │   │   │   ├── test_settings.py
+    │   │   │   ├── test_utils.py
+    │   │   │   └── test_utils_filter_descendants.py
+    │   │   ├── urls.py
+    │   │   └── utils.py
+    │   ├── demo
+    │   │   ├── __init__.py
+    │   │   ├── data
+    │   │   │   └── template
+    │   │   │       ├── code.txt
+    │   │   │       └── css.txt
+    │   │   ├── defaults.py
+    │   │   ├── management
+    │   │   │   ├── __init__.py
+    │   │   │   └── commands
+    │   │   │       ├── __init__.py
+    │   │   │       ├── create_demo.py
+    │   │   │       └── createsuperuser.py
+    │   │   └── tests
+    │   │       ├── __init__.py
+    │   │       └── test_commands_create_demo.py
+    │   ├── impress
+    │   │   ├── __init__.py
+    │   │   ├── celery_app.py
+    │   │   ├── configuration
+    │   │   │   └── theme
+    │   │   │       └── default.json
+    │   │   ├── settings.py
+    │   │   ├── urls.py
+    │   │   └── wsgi.py
+    │   ├── locale
+    │   │   ├── br_FR
+    │   │   │   └── LC_MESSAGES
+    │   │   │       └── django.po
+    │   │   ├── cn_CN
+    │   │   │   └── LC_MESSAGES
+    │   │   │       └── django.po
+    │   │   ├── de_DE
+    │   │   │   └── LC_MESSAGES
+    │   │   │       └── django.po
+    │   │   ├── en_US
+    │   │   │   └── LC_MESSAGES
+    │   │   │       └── django.po
+    │   │   ├── es_ES
+    │   │   │   └── LC_MESSAGES
+    │   │   │       └── django.po
+    │   │   ├── fr_FR
+    │   │   │   └── LC_MESSAGES
+    │   │   │       └── django.po
+    │   │   ├── it_IT
+    │   │   │   └── LC_MESSAGES
+    │   │   │       └── django.po
+    │   │   ├── nl_NL
+    │   │   │   └── LC_MESSAGES
+    │   │   │       └── django.po
+    │   │   ├── pt_PT
+    │   │   │   └── LC_MESSAGES
+    │   │   │       └── django.po
+    │   │   ├── sl_SI
+    │   │   │   └── LC_MESSAGES
+    │   │   │       └── django.po
+    │   │   ├── sv_SE
+    │   │   │   └── LC_MESSAGES
+    │   │   │       └── django.po
+    │   │   ├── tr_TR
+    │   │   │   └── LC_MESSAGES
+    │   │   │       └── django.po
+    │   │   └── zh_CN
+    │   │       └── LC_MESSAGES
+    │   │           └── django.po
+    │   ├── manage.py
+    │   ├── pyproject.toml
+    │   └── setup.py
+    ├── frontend
+    │   ├── .prettierrc.js
+    │   ├── Dockerfile
+    │   ├── apps
+    │   │   ├── e2e
+    │   │   │   ├── .eslintrc.js
+    │   │   │   ├── .gitignore
+    │   │   │   ├── __tests__
+    │   │   │   │   ├── app-impress
+    │   │   │   │   │   ├── 404.spec.ts
+    │   │   │   │   │   ├── assets
+    │   │   │   │   │   │   ├── logo-suite-numerique.png
+    │   │   │   │   │   │   ├── test.html
+    │   │   │   │   │   │   └── test.svg
+    │   │   │   │   │   ├── auth.setup.ts
+    │   │   │   │   │   ├── common.ts
+    │   │   │   │   │   ├── config.spec.ts
+    │   │   │   │   │   ├── doc-create.spec.ts
+    │   │   │   │   │   ├── doc-editor.spec.ts
+    │   │   │   │   │   ├── doc-export.spec.ts
+    │   │   │   │   │   ├── doc-grid.spec.ts
+    │   │   │   │   │   ├── doc-header.spec.ts
+    │   │   │   │   │   ├── doc-member-create.spec.ts
+    │   │   │   │   │   ├── doc-member-list.spec.ts
+    │   │   │   │   │   ├── doc-routing.spec.ts
+    │   │   │   │   │   ├── doc-search.spec.ts
+    │   │   │   │   │   ├── doc-table-content.spec.ts
+    │   │   │   │   │   ├── doc-version.spec.ts
+    │   │   │   │   │   ├── doc-visibility.spec.ts
+    │   │   │   │   │   ├── footer.spec.ts
+    │   │   │   │   │   ├── header.spec.ts
+    │   │   │   │   │   ├── home.spec.ts
+    │   │   │   │   │   ├── language.spec.ts
+    │   │   │   │   │   └── left-panel.spec.ts
+    │   │   │   │   └── helpers.ts
+    │   │   │   ├── package.json
+    │   │   │   ├── playwright.config.ts
+    │   │   │   ├── tsconfig.json
+    │   │   │   └── type
+    │   │   │       └── convert-stream.d.ts
+    │   │   └── impress
+    │   │       ├── .env
+    │   │       ├── .env.development
+    │   │       ├── .env.test
+    │   │       ├── .eslintrc.js
+    │   │       ├── .gitignore
+    │   │       ├── .prettierignore
+    │   │       ├── README.md
+    │   │       ├── conf
+    │   │       │   └── default.conf
+    │   │       ├── cunningham.ts
+    │   │       ├── jest
+    │   │       │   └── mocks
+    │   │       │       ├── ComponentMock.js
+    │   │       │       ├── fileMock.js
+    │   │       │       └── svg.js
+    │   │       ├── jest.config.ts
+    │   │       ├── jest.setup.ts
+    │   │       ├── next-env.d.ts
+    │   │       ├── next.config.js
+    │   │       ├── package.json
+    │   │       ├── public
+    │   │       │   └── assets
+    │   │       │       ├── SC1-en.webm
+    │   │       │       ├── SC1-fr.webm
+    │   │       │       ├── favicon-dark-dsfr.png
+    │   │       │       ├── favicon-dark.png
+    │   │       │       ├── favicon-dsfr.ico
+    │   │       │       ├── favicon-dsfr.png
+    │   │       │       ├── favicon-light.ico
+    │   │       │       ├── favicon-light.png
+    │   │       │       ├── icon-calc.svg
+    │   │       │       ├── img-not-found.svg
+    │   │       │       ├── logo-gouv.png
+    │   │       │       ├── logo-gouv.svg
+    │   │       │       ├── logo-pdf.svg
+    │   │       │       ├── logo-suite-numerique.png
+    │   │       │       └── mail-header-background.png
+    │   │       ├── src
+    │   │       │   ├── api
+    │   │       │   │   ├── APIError.ts
+    │   │       │   │   ├── __tests__
+    │   │       │   │   │   ├── APIError.test.ts
+    │   │       │   │   │   ├── config.test.ts
+    │   │       │   │   │   ├── fetchApi.test.tsx
+    │   │       │   │   │   ├── helpers.test.tsx
+    │   │       │   │   │   └── utils.test.ts
+    │   │       │   │   ├── config.ts
+    │   │       │   │   ├── fetchApi.ts
+    │   │       │   │   ├── helpers.tsx
+    │   │       │   │   ├── index.ts
+    │   │       │   │   ├── types.ts
+    │   │       │   │   └── utils.ts
+    │   │       │   ├── assets
+    │   │       │   │   └── icons
+    │   │       │   │       ├── icon-401.png
+    │   │       │   │       ├── icon-403.png
+    │   │       │   │       ├── icon-404.svg
+    │   │       │   │       ├── icon-calc.svg
+    │   │       │   │       ├── icon-docs.svg
+    │   │       │   │       ├── icon-group.svg
+    │   │       │   │       ├── icon-group2.svg
+    │   │       │   │       └── icon-user.svg
+    │   │       │   ├── components
+    │   │       │   │   ├── Box.tsx
+    │   │       │   │   ├── BoxButton.tsx
+    │   │       │   │   ├── Card.tsx
+    │   │       │   │   ├── DropButton.tsx
+    │   │       │   │   ├── DropdownMenu.tsx
+    │   │       │   │   ├── Effect.tsx
+    │   │       │   │   ├── Icon.tsx
+    │   │       │   │   ├── InfiniteScroll.tsx
+    │   │       │   │   ├── Link.tsx
+    │   │       │   │   ├── LoadMoreText.tsx
+    │   │       │   │   ├── SideModal.tsx
+    │   │       │   │   ├── Text.tsx
+    │   │       │   │   ├── TextErrors.tsx
+    │   │       │   │   ├── __tests__
+    │   │       │   │   │   └── Box.spec.tsx
+    │   │       │   │   ├── index.ts
+    │   │       │   │   ├── quick-search
+    │   │       │   │   │   ├── QuickSearch.tsx
+    │   │       │   │   │   ├── QuickSearchGroup.tsx
+    │   │       │   │   │   ├── QuickSearchInput.tsx
+    │   │       │   │   │   ├── QuickSearchItem.tsx
+    │   │       │   │   │   ├── QuickSearchItemContent.tsx
+    │   │       │   │   │   ├── QuickSearchStyle.tsx
+    │   │       │   │   │   └── index.ts
+    │   │       │   │   └── separators
+    │   │       │   │       ├── HorizontalSeparator.tsx
+    │   │       │   │       ├── SeparatedSection.tsx
+    │   │       │   │       └── index.ts
+    │   │       │   ├── core
+    │   │       │   │   ├── AppProvider.tsx
+    │   │       │   │   ├── config
+    │   │       │   │   │   ├── ConfigProvider.tsx
+    │   │       │   │   │   ├── api
+    │   │       │   │   │   │   ├── index.ts
+    │   │       │   │   │   │   └── useConfig.tsx
+    │   │       │   │   │   ├── hooks
+    │   │       │   │   │   │   ├── index.ts
+    │   │       │   │   │   │   ├── useCollaborationUrl.tsx
+    │   │       │   │   │   │   └── useMediaUrl.tsx
+    │   │       │   │   │   └── index.ts
+    │   │       │   │   └── index.ts
+    │   │       │   ├── cunningham
+    │   │       │   │   ├── __tests__
+    │   │       │   │   │   └── useCunninghamTheme.spec.tsx
+    │   │       │   │   ├── cunningham-style.css
+    │   │       │   │   ├── cunningham-tokens.css
+    │   │       │   │   ├── cunningham-tokens.ts
+    │   │       │   │   ├── index.ts
+    │   │       │   │   └── useCunninghamTheme.tsx
+    │   │       │   ├── custom-next.d.ts
+    │   │       │   ├── features
+    │   │       │   │   ├── auth
+    │   │       │   │   │   ├── __tests__
+    │   │       │   │   │   │   └── utils.test.tsx
+    │   │       │   │   │   ├── api
+    │   │       │   │   │   │   ├── index.ts
+    │   │       │   │   │   │   ├── types.ts
+    │   │       │   │   │   │   └── useAuthQuery.tsx
+    │   │       │   │   │   ├── assets
+    │   │       │   │   │   │   └── button-proconnect.svg
+    │   │       │   │   │   ├── components
+    │   │       │   │   │   │   ├── Auth.tsx
+    │   │       │   │   │   │   ├── ButtonLogin.tsx
+    │   │       │   │   │   │   └── index.ts
+    │   │       │   │   │   ├── conf.ts
+    │   │       │   │   │   ├── hooks
+    │   │       │   │   │   │   ├── __tests__
+    │   │       │   │   │   │   │   └── useAuth.test.tsx
+    │   │       │   │   │   │   ├── index.ts
+    │   │       │   │   │   │   └── useAuth.tsx
+    │   │       │   │   │   ├── index.ts
+    │   │       │   │   │   └── utils.ts
+    │   │       │   │   ├── docs
+    │   │       │   │   │   ├── doc-editor
+    │   │       │   │   │   │   ├── api
+    │   │       │   │   │   │   │   ├── checkDocMediaStatus.tsx
+    │   │       │   │   │   │   │   ├── index.ts
+    │   │       │   │   │   │   │   ├── useCreateDocUpload.tsx
+    │   │       │   │   │   │   │   ├── useDocAITransform.tsx
+    │   │       │   │   │   │   │   └── useDocAITranslate.tsx
+    │   │       │   │   │   │   ├── assets
+    │   │       │   │   │   │   │   ├── loader.svg
+    │   │       │   │   │   │   │   └── warning.svg
+    │   │       │   │   │   │   ├── components
+    │   │       │   │   │   │   │   ├── BlockNoteEditor.tsx
+    │   │       │   │   │   │   │   ├── BlockNoteSuggestionMenu.tsx
+    │   │       │   │   │   │   │   ├── BlockNoteToolBar
+    │   │       │   │   │   │   │   │   ├── AIButton.tsx
+    │   │       │   │   │   │   │   │   ├── BlockNoteToolbar.tsx
+    │   │       │   │   │   │   │   │   ├── FileDownloadButton.tsx
+    │   │       │   │   │   │   │   │   ├── MarkdownButton.tsx
+    │   │       │   │   │   │   │   │   └── ModalConfirmDownloadUnsafe.tsx
+    │   │       │   │   │   │   │   ├── DocEditor.tsx
+    │   │       │   │   │   │   │   ├── EmojiPicker.tsx
+    │   │       │   │   │   │   │   ├── IronCalcEditor.tsx
+    │   │       │   │   │   │   │   ├── custom-blocks
+    │   │       │   │   │   │   │   │   ├── CalloutBlock.tsx
+    │   │       │   │   │   │   │   │   ├── DividerBlock.tsx
+    │   │       │   │   │   │   │   │   └── index.ts
+    │   │       │   │   │   │   │   └── index.ts
+    │   │       │   │   │   │   ├── hook
+    │   │       │   │   │   │   │   ├── __tests__
+    │   │       │   │   │   │   │   │   └── useSaveDoc.test.tsx
+    │   │       │   │   │   │   │   ├── index.ts
+    │   │       │   │   │   │   │   ├── useHeadings.tsx
+    │   │       │   │   │   │   │   ├── useSaveDoc.tsx
+    │   │       │   │   │   │   │   └── useUploadFile.tsx
+    │   │       │   │   │   │   ├── index.tsx
+    │   │       │   │   │   │   ├── stores
+    │   │       │   │   │   │   │   ├── index.ts
+    │   │       │   │   │   │   │   ├── useEditorStore.tsx
+    │   │       │   │   │   │   │   ├── useHeadingStore.tsx
+    │   │       │   │   │   │   │   └── usePanelEditorStore.tsx
+    │   │       │   │   │   │   ├── styles.tsx
+    │   │       │   │   │   │   ├── types.tsx
+    │   │       │   │   │   │   └── utils.ts
+    │   │       │   │   │   ├── doc-export
+    │   │       │   │   │   │   ├── api
+    │   │       │   │   │   │   │   ├── exportResolveFileUrl.tsx
+    │   │       │   │   │   │   │   ├── index.ts
+    │   │       │   │   │   │   │   ├── useExport.tsx
+    │   │       │   │   │   │   │   └── useTemplates.tsx
+    │   │       │   │   │   │   ├── blocks-mapping
+    │   │       │   │   │   │   │   ├── calloutDocx.tsx
+    │   │       │   │   │   │   │   ├── calloutPDF.tsx
+    │   │       │   │   │   │   │   ├── dividerDocx.tsx
+    │   │       │   │   │   │   │   ├── dividerPDF.tsx
+    │   │       │   │   │   │   │   ├── headingPDF.tsx
+    │   │       │   │   │   │   │   ├── imageDocx.tsx
+    │   │       │   │   │   │   │   ├── imagePDF.tsx
+    │   │       │   │   │   │   │   ├── index.ts
+    │   │       │   │   │   │   │   ├── paragraphPDF.tsx
+    │   │       │   │   │   │   │   ├── quoteDocx.tsx
+    │   │       │   │   │   │   │   ├── quotePDF.tsx
+    │   │       │   │   │   │   │   └── tablePDF.tsx
+    │   │       │   │   │   │   ├── components
+    │   │       │   │   │   │   │   ├── ModalExport.tsx
+    │   │       │   │   │   │   │   └── index.ts
+    │   │       │   │   │   │   ├── index.ts
+    │   │       │   │   │   │   ├── mappingDocx.tsx
+    │   │       │   │   │   │   ├── mappingPDF.tsx
+    │   │       │   │   │   │   ├── types.ts
+    │   │       │   │   │   │   └── utils.ts
+    │   │       │   │   │   ├── doc-header
+    │   │       │   │   │   │   ├── __tests__
+    │   │       │   │   │   │   │   ├── DocToolBox.spec.tsx
+    │   │       │   │   │   │   │   ├── DocToolBoxAGPL.spec.tsx
+    │   │       │   │   │   │   │   └── DocToolBoxMIT.spec.tsx
+    │   │       │   │   │   │   ├── components
+    │   │       │   │   │   │   │   ├── AlertNetwork.tsx
+    │   │       │   │   │   │   │   ├── AlertPublic.tsx
+    │   │       │   │   │   │   │   ├── DocHeader.tsx
+    │   │       │   │   │   │   │   ├── DocTitle.tsx
+    │   │       │   │   │   │   │   ├── DocToolBox.tsx
+    │   │       │   │   │   │   │   ├── DocToolBoxLicenceAGPL.tsx
+    │   │       │   │   │   │   │   ├── DocToolBoxLicenceMIT.tsx
+    │   │       │   │   │   │   │   ├── DocVersionHeader.tsx
+    │   │       │   │   │   │   │   └── index.ts
+    │   │       │   │   │   │   ├── hooks
+    │   │       │   │   │   │   │   └── useCopyCurrentEditorToClipboard.tsx
+    │   │       │   │   │   │   └── index.tsx
+    │   │       │   │   │   ├── doc-management
+    │   │       │   │   │   │   ├── api
+    │   │       │   │   │   │   │   ├── index.ts
+    │   │       │   │   │   │   │   ├── useCreateDoc.tsx
+    │   │       │   │   │   │   │   ├── useCreateFavoriteDoc.tsx
+    │   │       │   │   │   │   │   ├── useDeleteFavoriteDoc.tsx
+    │   │       │   │   │   │   │   ├── useDoc.tsx
+    │   │       │   │   │   │   │   ├── useDocOptions.tsx
+    │   │       │   │   │   │   │   ├── useDocs.tsx
+    │   │       │   │   │   │   │   ├── useDownloadDoc.tsx
+    │   │       │   │   │   │   │   ├── useRemoveDoc.tsx
+    │   │       │   │   │   │   │   ├── useUpdateDoc.tsx
+    │   │       │   │   │   │   │   ├── useUpdateDocLink.tsx
+    │   │       │   │   │   │   │   └── useUploadDoc.tsx
+    │   │       │   │   │   │   ├── assets
+    │   │       │   │   │   │   │   ├── icon-doc.svg
+    │   │       │   │   │   │   │   └── icon-edit.svg
+    │   │       │   │   │   │   ├── components
+    │   │       │   │   │   │   │   ├── ModalRemoveDoc.tsx
+    │   │       │   │   │   │   │   └── index.ts
+    │   │       │   │   │   │   ├── hooks
+    │   │       │   │   │   │   │   ├── index.ts
+    │   │       │   │   │   │   │   ├── useCollaboration.tsx
+    │   │       │   │   │   │   │   ├── useCopyDocLink.tsx
+    │   │       │   │   │   │   │   ├── useIsCollaborativeEditable.tsx
+    │   │       │   │   │   │   │   └── useTrans.tsx
+    │   │       │   │   │   │   ├── index.ts
+    │   │       │   │   │   │   ├── stores
+    │   │       │   │   │   │   │   ├── index.tsx
+    │   │       │   │   │   │   │   ├── useDocStore.tsx
+    │   │       │   │   │   │   │   └── useProviderStore.tsx
+    │   │       │   │   │   │   ├── types.tsx
+    │   │       │   │   │   │   └── utils.ts
+    │   │       │   │   │   ├── doc-search
+    │   │       │   │   │   │   ├── assets
+    │   │       │   │   │   │   │   └── illustration-docs-empty.png
+    │   │       │   │   │   │   ├── components
+    │   │       │   │   │   │   │   ├── DocSearchItem.tsx
+    │   │       │   │   │   │   │   ├── DocSearchModal.tsx
+    │   │       │   │   │   │   │   └── index.ts
+    │   │       │   │   │   │   └── index.ts
+    │   │       │   │   │   ├── doc-share
+    │   │       │   │   │   │   ├── api
+    │   │       │   │   │   │   │   ├── index.ts
+    │   │       │   │   │   │   │   ├── useCreateDocAccess.tsx
+    │   │       │   │   │   │   │   ├── useCreateDocInvitation.tsx
+    │   │       │   │   │   │   │   ├── useDeleteDocAccess.ts
+    │   │       │   │   │   │   │   ├── useDeleteDocInvitation.ts
+    │   │       │   │   │   │   │   ├── useDocAccesses.tsx
+    │   │       │   │   │   │   │   ├── useDocInvitations.tsx
+    │   │       │   │   │   │   │   ├── useUpdateDocAccess.ts
+    │   │       │   │   │   │   │   ├── useUpdateDocInvitation.ts
+    │   │       │   │   │   │   │   └── useUsers.tsx
+    │   │       │   │   │   │   ├── components
+    │   │       │   │   │   │   │   ├── DocRoleDropdown.tsx
+    │   │       │   │   │   │   │   ├── DocShareAddMemberList.tsx
+    │   │       │   │   │   │   │   ├── DocShareAddMemberListItem.tsx
+    │   │       │   │   │   │   │   ├── DocShareInvitationItem.tsx
+    │   │       │   │   │   │   │   ├── DocShareMemberItem.tsx
+    │   │       │   │   │   │   │   ├── DocShareModal.tsx
+    │   │       │   │   │   │   │   ├── DocShareModalFooter.tsx
+    │   │       │   │   │   │   │   ├── DocShareModalInviteUserByEmail.tsx
+    │   │       │   │   │   │   │   ├── DocVisibility.tsx
+    │   │       │   │   │   │   │   ├── SearchUserRow.tsx
+    │   │       │   │   │   │   │   ├── UserAvatar.tsx
+    │   │       │   │   │   │   │   └── index.ts
+    │   │       │   │   │   │   ├── hooks
+    │   │       │   │   │   │   │   ├── index.ts
+    │   │       │   │   │   │   │   ├── useTranslatedShareSettings.tsx
+    │   │       │   │   │   │   │   └── useWhoAmI.tsx
+    │   │       │   │   │   │   ├── index.ts
+    │   │       │   │   │   │   └── types.tsx
+    │   │       │   │   │   ├── doc-table-content
+    │   │       │   │   │   │   ├── components
+    │   │       │   │   │   │   │   ├── Heading.tsx
+    │   │       │   │   │   │   │   ├── TableContent.tsx
+    │   │       │   │   │   │   │   └── index.ts
+    │   │       │   │   │   │   └── index.ts
+    │   │       │   │   │   ├── doc-versioning
+    │   │       │   │   │   │   ├── api
+    │   │       │   │   │   │   │   ├── index.ts
+    │   │       │   │   │   │   │   ├── useDocVersion.tsx
+    │   │       │   │   │   │   │   └── useDocVersions.tsx
+    │   │       │   │   │   │   ├── components
+    │   │       │   │   │   │   │   ├── ModalConfirmationVersion.tsx
+    │   │       │   │   │   │   │   ├── ModalSelectVersion.tsx
+    │   │       │   │   │   │   │   ├── VersionItem.tsx
+    │   │       │   │   │   │   │   ├── VersionList.tsx
+    │   │       │   │   │   │   │   └── index.ts
+    │   │       │   │   │   │   ├── index.ts
+    │   │       │   │   │   │   ├── types.ts
+    │   │       │   │   │   │   └── utils.ts
+    │   │       │   │   │   ├── docs-grid
+    │   │       │   │   │   │   ├── assets
+    │   │       │   │   │   │   │   ├── pinned-document.svg
+    │   │       │   │   │   │   │   └── simple-document.svg
+    │   │       │   │   │   │   ├── components
+    │   │       │   │   │   │   │   ├── DocsGrid.tsx
+    │   │       │   │   │   │   │   ├── DocsGridActions.tsx
+    │   │       │   │   │   │   │   ├── DocsGridItem.tsx
+    │   │       │   │   │   │   │   ├── DocsGridItemSharedButton.tsx
+    │   │       │   │   │   │   │   ├── DocsGridLoader.tsx
+    │   │       │   │   │   │   │   ├── SimpleDocItem.tsx
+    │   │       │   │   │   │   │   └── index.ts
+    │   │       │   │   │   │   ├── conf.ts
+    │   │       │   │   │   │   ├── hooks
+    │   │       │   │   │   │   │   └── useResponsiveDocGrid.tsx
+    │   │       │   │   │   │   └── index.ts
+    │   │       │   │   │   └── index.ts
+    │   │       │   │   ├── footer
+    │   │       │   │   │   ├── Footer.tsx
+    │   │       │   │   │   ├── assets
+    │   │       │   │   │   │   └── external-link.svg
+    │   │       │   │   │   ├── index.tsx
+    │   │       │   │   │   └── types.ts
+    │   │       │   │   ├── header
+    │   │       │   │   │   ├── components
+    │   │       │   │   │   │   ├── ButtonTogglePanel.tsx
+    │   │       │   │   │   │   ├── Header.tsx
+    │   │       │   │   │   │   ├── LaGaufre.tsx
+    │   │       │   │   │   │   ├── Title.tsx
+    │   │       │   │   │   │   └── index.ts
+    │   │       │   │   │   ├── conf.ts
+    │   │       │   │   │   └── index.ts
+    │   │       │   │   ├── home
+    │   │       │   │   │   ├── assets
+    │   │       │   │   │   │   ├── SC1-responsive-en.png
+    │   │       │   │   │   │   ├── SC1-responsive-fr.png
+    │   │       │   │   │   │   ├── SC2-en.png
+    │   │       │   │   │   │   ├── SC2-fr.png
+    │   │       │   │   │   │   ├── SC3-en.png
+    │   │       │   │   │   │   ├── SC3-fr.png
+    │   │       │   │   │   │   ├── SC4-en.png
+    │   │       │   │   │   │   ├── SC4-fr.png
+    │   │       │   │   │   │   ├── SC4-responsive-en.png
+    │   │       │   │   │   │   ├── SC4-responsive-fr.png
+    │   │       │   │   │   │   ├── SC5.png
+    │   │       │   │   │   │   ├── banner.jpg
+    │   │       │   │   │   │   └── github.svg
+    │   │       │   │   │   ├── components
+    │   │       │   │   │   │   ├── HomeBanner.tsx
+    │   │       │   │   │   │   ├── HomeBottom.tsx
+    │   │       │   │   │   │   ├── HomeContent.tsx
+    │   │       │   │   │   │   ├── HomeHeader.tsx
+    │   │       │   │   │   │   ├── HomeSection.tsx
+    │   │       │   │   │   │   └── index.ts
+    │   │       │   │   │   └── index.ts
+    │   │       │   │   ├── language
+    │   │       │   │   │   ├── LanguagePicker.tsx
+    │   │       │   │   │   ├── api
+    │   │       │   │   │   │   └── useChangeUserLanguage.tsx
+    │   │       │   │   │   ├── hooks
+    │   │       │   │   │   │   └── useLanguageSynchronizer.ts
+    │   │       │   │   │   ├── index.ts
+    │   │       │   │   │   └── utils
+    │   │       │   │   │       └── locale.ts
+    │   │       │   │   ├── left-panel
+    │   │       │   │   │   ├── components
+    │   │       │   │   │   │   ├── LefPanelTargetFilters.tsx
+    │   │       │   │   │   │   ├── LeftPanel.tsx
+    │   │       │   │   │   │   ├── LeftPanelContent.tsx
+    │   │       │   │   │   │   ├── LeftPanelDocContent.tsx
+    │   │       │   │   │   │   ├── LeftPanelFavoriteItem.tsx
+    │   │       │   │   │   │   ├── LeftPanelFavorites.tsx
+    │   │       │   │   │   │   ├── LeftPanelHeader.tsx
+    │   │       │   │   │   │   └── index.tsx
+    │   │       │   │   │   ├── index.ts
+    │   │       │   │   │   └── stores
+    │   │       │   │   │       ├── index.ts
+    │   │       │   │   │       └── useLeftPanelStore.tsx
+    │   │       │   │   └── service-worker
+    │   │       │   │       ├── DocsDB.ts
+    │   │       │   │       ├── RequestSerializer.ts
+    │   │       │   │       ├── SyncManager.ts
+    │   │       │   │       ├── __tests__
+    │   │       │   │       │   ├── ApiPlugin.test.tsx
+    │   │       │   │       │   ├── OfflinePlugin.test.tsx
+    │   │       │   │       │   ├── RequestSerializer.test.tsx
+    │   │       │   │       │   ├── SyncManager.test.tsx
+    │   │       │   │       │   ├── useOffline.test.tsx
+    │   │       │   │       │   └── useSWRegister.test.tsx
+    │   │       │   │       ├── conf.ts
+    │   │       │   │       ├── hooks
+    │   │       │   │       │   ├── useOffline.tsx
+    │   │       │   │       │   └── useSWRegister.tsx
+    │   │       │   │       ├── index.ts
+    │   │       │   │       ├── plugins
+    │   │       │   │       │   ├── ApiPlugin.ts
+    │   │       │   │       │   └── OfflinePlugin.ts
+    │   │       │   │       ├── service-worker-api.ts
+    │   │       │   │       └── service-worker.ts
+    │   │       │   ├── hook
+    │   │       │   │   ├── index.ts
+    │   │       │   │   ├── useClipboard.tsx
+    │   │       │   │   ├── useCmdK.tsx
+    │   │       │   │   └── useDate.tsx
+    │   │       │   ├── i18n
+    │   │       │   │   ├── initI18n.ts
+    │   │       │   │   └── translations.json
+    │   │       │   ├── layouts
+    │   │       │   │   ├── MainLayout.tsx
+    │   │       │   │   ├── PageLayout.tsx
+    │   │       │   │   ├── conf.ts
+    │   │       │   │   └── index.ts
+    │   │       │   ├── libs
+    │   │       │   │   ├── Analytics.tsx
+    │   │       │   │   └── index.ts
+    │   │       │   ├── pages
+    │   │       │   │   ├── 401.tsx
+    │   │       │   │   ├── 403.tsx
+    │   │       │   │   ├── 404.tsx
+    │   │       │   │   ├── _app.tsx
+    │   │       │   │   ├── _document.tsx
+    │   │       │   │   ├── docs
+    │   │       │   │   │   ├── [id]
+    │   │       │   │   │   │   └── index.tsx
+    │   │       │   │   │   └── index.tsx
+    │   │       │   │   ├── globals.css
+    │   │       │   │   ├── home
+    │   │       │   │   │   └── index.tsx
+    │   │       │   │   ├── index.tsx
+    │   │       │   │   ├── login
+    │   │       │   │   │   └── index.tsx
+    │   │       │   │   └── offline
+    │   │       │   │       └── index.tsx
+    │   │       │   ├── services
+    │   │       │   │   ├── Crisp.tsx
+    │   │       │   │   ├── PosthogAnalytic.tsx
+    │   │       │   │   └── index.ts
+    │   │       │   ├── stores
+    │   │       │   │   ├── index.ts
+    │   │       │   │   ├── useBroadcastStore.tsx
+    │   │       │   │   ├── useResponsiveStore.tsx
+    │   │       │   │   └── useSentryStore.tsx
+    │   │       │   ├── tests
+    │   │       │   │   └── utils.tsx
+    │   │       │   ├── types
+    │   │       │   │   ├── @ag-media
+    │   │       │   │   │   └── react-pdf-table.d.ts
+    │   │       │   │   ├── components.ts
+    │   │       │   │   └── next.ts
+    │   │       │   └── utils
+    │   │       │       ├── __tests__
+    │   │       │       │   ├── string.test.ts
+    │   │       │       │   └── url.test.tsx
+    │   │       │       ├── children.ts
+    │   │       │       ├── index.ts
+    │   │       │       ├── string.ts
+    │   │       │       ├── styleBuilder.ts
+    │   │       │       ├── system.ts
+    │   │       │       ├── url.ts
+    │   │       │       └── userAgent.ts
+    │   │       ├── stylelint.config.js
+    │   │       └── tsconfig.json
+    │   ├── package.json
+    │   ├── packages
+    │   │   ├── eslint-config-impress
+    │   │   │   ├── .eslintrc.js
+    │   │   │   ├── common.js
+    │   │   │   ├── jest.js
+    │   │   │   ├── next.js
+    │   │   │   ├── package.json
+    │   │   │   └── playwright.js
+    │   │   └── i18n
+    │   │       ├── .eslintrc.js
+    │   │       ├── .gitignore
+    │   │       ├── __tests__
+    │   │       │   ├── i18n.test.ts
+    │   │       │   └── translations.test.ts
+    │   │       ├── format-deploy.mjs
+    │   │       ├── i18next-parser.config.jest.mjs
+    │   │       ├── i18next-parser.config.mjs
+    │   │       ├── jest.config.ts
+    │   │       ├── package.json
+    │   │       ├── rebuild-translations.mjs
+    │   │       └── tsconfig.json
+    │   ├── servers
+    │   │   └── y-provider
+    │   │       ├── .eslintrc.cjs
+    │   │       ├── Dockerfile
+    │   │       ├── __mocks__
+    │   │       │   └── mock.js
+    │   │       ├── __tests__
+    │   │       │   ├── collaborationResetConnections.test.ts
+    │   │       │   ├── convertMarkdown.test.ts
+    │   │       │   ├── hocusPocusWS.test.ts
+    │   │       │   └── server.test.ts
+    │   │       ├── jest.config.js
+    │   │       ├── nodemon.json
+    │   │       ├── package.json
+    │   │       ├── src
+    │   │       │   ├── api
+    │   │       │   │   ├── getDoc.ts
+    │   │       │   │   └── getMe.ts
+    │   │       │   ├── env.ts
+    │   │       │   ├── handlers
+    │   │       │   │   ├── collaborationResetConnectionsHandler.ts
+    │   │       │   │   ├── collaborationWSHandler.ts
+    │   │       │   │   ├── convertMarkdownHandler.ts
+    │   │       │   │   └── index.ts
+    │   │       │   ├── helpers.ts
+    │   │       │   ├── middlewares.ts
+    │   │       │   ├── routes.ts
+    │   │       │   ├── servers
+    │   │       │   │   ├── appServer.ts
+    │   │       │   │   ├── hocusPocusServer.ts
+    │   │       │   │   └── index.ts
+    │   │       │   ├── services
+    │   │       │   │   └── sentry.ts
+    │   │       │   ├── start-server.ts
+    │   │       │   └── utils.ts
+    │   │       ├── tsconfig.build.json
+    │   │       └── tsconfig.json
+    │   └── yarn.lock
+    ├── helm
+    │   ├── env.d
+    │   │   └── dev
+    │   │       ├── configuration
+    │   │       │   └── theme
+    │   │       │       └── demo.json
+    │   │       └── values.impress.yaml.gotmpl
+    │   ├── helmfile.yaml
+    │   └── impress
+    │       ├── Chart.yaml
+    │       ├── README.md
+    │       ├── generate-readme.sh
+    │       ├── templates
+    │       │   ├── _helpers.tpl
+    │       │   ├── backend_deployment.yaml
+    │       │   ├── backend_job.yml
+    │       │   ├── backend_job_createsuperuser.yaml
+    │       │   ├── backend_job_migrate.yaml
+    │       │   ├── backend_svc.yaml
+    │       │   ├── celery_worker_deployment.yaml
+    │       │   ├── frontend_deployment.yaml
+    │       │   ├── frontend_svc.yaml
+    │       │   ├── ingress.yaml
+    │       │   ├── ingress_admin.yaml
+    │       │   ├── ingress_collaboration_api.yaml
+    │       │   ├── ingress_collaboration_ws.yaml
+    │       │   ├── ingress_media.yaml
+    │       │   ├── ingress_posthog.yaml
+    │       │   ├── ingress_posthog_assets.yaml
+    │       │   ├── media_svc.yaml
+    │       │   ├── posthog_assets_svc.yaml
+    │       │   ├── posthog_svc.yaml
+    │       │   ├── theme_customization_file_cm.yaml
+    │       │   ├── yprovider_deployment.yaml
+    │       │   └── yprovider_svc.yaml
+    │       └── values.yaml
+    ├── mail
+    │   ├── bin
+    │   │   ├── html-to-plain-text
+    │   │   └── mjml-to-html
+    │   ├── html-to-text.config.json
+    │   ├── mjml
+    │   │   ├── invitation.mjml
+    │   │   └── partial
+    │   │       └── header.mjml
+    │   ├── package.json
+    │   └── yarn.lock
+    └── nginx
+        └── servers.conf.erb
+217 directories, 721 files
