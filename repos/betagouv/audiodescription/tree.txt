@@ -1,0 +1,1458 @@
+.
+├── .dockerignore
+├── .env.dist
+├── .gitignore
+├── .lighthouserc.json
+├── LICENSE.txt
+├── Makefile
+├── README.md
+├── compose.prod.yml
+├── compose.staging.yml
+├── compose.yml
+├── cypress
+│   ├── downloads
+│   │   └── downloads.html
+│   ├── e2e
+│   │   └── home.cy.js
+│   ├── fixtures
+│   │   └── example.json
+│   └── support
+│       ├── commands.js
+│       └── e2e.js
+├── cypress.config.js
+├── docker
+│   ├── drupal
+│   │   ├── dev
+│   │   │   ├── caddy
+│   │   │   │   └── Caddyfile
+│   │   │   └── php
+│   │   │       ├── Dockerfile
+│   │   │       └── php.ini
+│   │   └── prod
+│   │       ├── caddy
+│   │       │   └── Caddyfile
+│   │       └── php
+│   │           ├── Dockerfile
+│   │           └── php.ini
+│   ├── patrimony
+│   │   ├── dev
+│   │   │   ├── caddy
+│   │   │   │   └── Caddyfile
+│   │   │   └── php
+│   │   │       ├── Dockerfile
+│   │   │       └── php.ini
+│   │   └── prod
+│   │       ├── caddy
+│   │       │   └── Caddyfile
+│   │       └── php
+│   │           ├── Dockerfile
+│   │           └── php.ini
+│   └── postgres
+│       └── init-patrimony-db.sh
+├── docs
+│   ├── 01_installation
+│   │   ├── 01_dev.md
+│   │   └── 02_prod.md
+│   ├── 02_technique
+│   │   ├── 01_matrice-partenaires.md
+│   │   └── 01_partenaires
+│   │       ├── 01_france-tv.md
+│   │       ├── 02_arte-tv.md
+│   │       ├── 03_tf1.md
+│   │       ├── 04_lacinetek.md
+│   │       ├── 05_mycanal.md
+│   │       ├── 06_canalvod.md
+│   │       └── 07_vodorange.md
+│   └── index.md
+├── drupal
+│   ├── .editorconfig
+│   ├── .gitattributes
+│   ├── .gitignore
+│   ├── composer.json
+│   ├── composer.lock
+│   ├── config
+│   │   ├── local
+│   │   │   ├── .htaccess
+│   │   │   ├── config_split.patch.user.role.dev.yml
+│   │   │   ├── devel.settings.yml
+│   │   │   ├── devel.toolbar.settings.yml
+│   │   │   ├── language
+│   │   │   │   └── fr
+│   │   │   │       └── system.menu.devel.yml
+│   │   │   ├── metatag.metatag_defaults.403.yml
+│   │   │   ├── metatag.metatag_defaults.404.yml
+│   │   │   ├── metatag.metatag_defaults.front.yml
+│   │   │   ├── metatag.metatag_defaults.global.yml
+│   │   │   ├── metatag.metatag_defaults.node.yml
+│   │   │   ├── metatag.metatag_defaults.taxonomy_term.yml
+│   │   │   ├── metatag.metatag_defaults.user.yml
+│   │   │   ├── metatag.settings.yml
+│   │   │   ├── system.logging.yml
+│   │   │   └── system.menu.devel.yml
+│   │   ├── prod
+│   │   │   ├── .htaccess
+│   │   │   ├── metatag.metatag_defaults.403.yml
+│   │   │   ├── metatag.metatag_defaults.404.yml
+│   │   │   ├── metatag.metatag_defaults.front.yml
+│   │   │   ├── metatag.metatag_defaults.global.yml
+│   │   │   ├── metatag.metatag_defaults.node.yml
+│   │   │   ├── metatag.metatag_defaults.taxonomy_term.yml
+│   │   │   ├── metatag.metatag_defaults.user.yml
+│   │   │   ├── metatag.settings.yml
+│   │   │   └── system.logging.yml
+│   │   └── sync
+│   │       ├── .htaccess
+│   │       ├── ad_theme.settings.yml
+│   │       ├── announcements_feed.settings.yml
+│   │       ├── automated_cron.settings.yml
+│   │       ├── block.block.ad_back_to_top_block.yml
+│   │       ├── block.block.ad_header_search_form_block.yml
+│   │       ├── block.block.ad_hp_last_movies_block.yml
+│   │       ├── block.block.ad_hp_near_end_free_movies_block.yml
+│   │       ├── block.block.ad_hp_new_free_movies_block.yml
+│   │       ├── block.block.ad_info_banner_block.yml
+│   │       ├── block.block.ad_search_block.yml
+│   │       ├── block.block.ad_search_contact_block.yml
+│   │       ├── block.block.ad_theme_back_button_block.yml
+│   │       ├── block.block.ad_theme_breadcrumbs.yml
+│   │       ├── block.block.ad_theme_content.yml
+│   │       ├── block.block.ad_theme_footer_menu.yml
+│   │       ├── block.block.ad_theme_help.yml
+│   │       ├── block.block.ad_theme_main_menu.yml
+│   │       ├── block.block.ad_theme_messages.yml
+│   │       ├── block.block.ad_theme_page_title.yml
+│   │       ├── block.block.ad_theme_primary_admin_actions.yml
+│   │       ├── block.block.ad_theme_primary_local_tasks.yml
+│   │       ├── block.block.ad_theme_secondary_local_tasks.yml
+│   │       ├── block.block.ad_theme_site_branding.yml
+│   │       ├── block.block.ad_theme_sitebranding.yml
+│   │       ├── block.block.claro_breadcrumbs.yml
+│   │       ├── block.block.claro_content.yml
+│   │       ├── block.block.claro_help.yml
+│   │       ├── block.block.claro_local_actions.yml
+│   │       ├── block.block.claro_messages.yml
+│   │       ├── block.block.claro_page_title.yml
+│   │       ├── block.block.claro_primary_local_tasks.yml
+│   │       ├── block.block.claro_secondary_local_tasks.yml
+│   │       ├── block.block.olivero_account_menu.yml
+│   │       ├── block.block.olivero_breadcrumbs.yml
+│   │       ├── block.block.olivero_content.yml
+│   │       ├── block.block.olivero_help.yml
+│   │       ├── block.block.olivero_main_menu.yml
+│   │       ├── block.block.olivero_messages.yml
+│   │       ├── block.block.olivero_page_title.yml
+│   │       ├── block.block.olivero_powered.yml
+│   │       ├── block.block.olivero_primary_admin_actions.yml
+│   │       ├── block.block.olivero_primary_local_tasks.yml
+│   │       ├── block.block.olivero_secondary_local_tasks.yml
+│   │       ├── block.block.olivero_site_branding.yml
+│   │       ├── block.block.olivero_syndicate.yml
+│   │       ├── block.block.ui_suite_dsfr_breadcrumbs.yml
+│   │       ├── block.block.ui_suite_dsfr_content.yml
+│   │       ├── block.block.ui_suite_dsfr_help.yml
+│   │       ├── block.block.ui_suite_dsfr_main_menu.yml
+│   │       ├── block.block.ui_suite_dsfr_messages.yml
+│   │       ├── block.block.ui_suite_dsfr_page_title.yml
+│   │       ├── block.block.ui_suite_dsfr_primary_admin_actions.yml
+│   │       ├── block.block.ui_suite_dsfr_primary_local_tasks.yml
+│   │       ├── block.block.ui_suite_dsfr_secondary_local_tasks.yml
+│   │       ├── block.block.ui_suite_dsfr_site_branding.yml
+│   │       ├── block.block.ui_suite_dsfr_sitebranding.yml
+│   │       ├── block_content.type.basic.yml
+│   │       ├── claro.settings.yml
+│   │       ├── config_*.yml  (8 files)
+│   │       ├── core.base_field_override.node.movie.promote.yml
+│   │       ├── core.base_field_override.node.page.promote.yml
+│   │       ├── core.date_format.fallback.yml
+│   │       ├── core.date_format.html_date.yml
+│   │       ├── core.date_format.html_datetime.yml
+│   │       ├── core.date_format.html_month.yml
+│   │       ├── core.date_format.html_time.yml
+│   │       ├── core.date_format.html_week.yml
+│   │       ├── core.date_format.html_year.yml
+│   │       ├── core.date_format.html_yearless_date.yml
+│   │       ├── core.date_format.long.yml
+│   │       ├── core.date_format.medium.yml
+│   │       ├── core.date_format.olivero_medium.yml
+│   │       ├── core.date_format.short.yml
+│   │       ├── core.entity_form_display.block_content.basic.default.yml
+│   │       ├── core.entity_form_display.config_pages.homepage.default.yml
+│   │       ├── core.entity_form_display.config_pages.movies.default.yml
+│   │       ├── core.entity_form_display.config_pages.newsletter.default.yml
+│   │       ├── core.entity_form_display.config_pages.patrimony.default.yml
+│   │       ├── core.entity_form_display.config_pages.search.default.yml
+│   │       ├── core.entity_form_display.config_pages.wordings.default.yml
+│   │       ├── core.entity_form_display.media.document.default.yml
+│   │       ├── core.entity_form_display.media.document.media_library.yml
+│   │       ├── core.entity_form_display.media.image.default.yml
+│   │       ├── core.entity_form_display.media.image.media_library.yml
+│   │       ├── core.entity_form_display.node.article.default.yml
+│   │       ├── core.entity_form_display.node.movie.default.yml
+│   │       ├── core.entity_form_display.node.page.default.yml
+│   │       ├── core.entity_form_display.paragraph.pg_card.default.yml
+│   │       ├── core.entity_form_display.paragraph.pg_cards.default.yml
+│   │       ├── core.entity_form_display.paragraph.pg_cta.default.yml
+│   │       ├── core.entity_form_display.paragraph.pg_documents.default.yml
+│   │       ├── core.entity_form_display.paragraph.pg_horizontal_card.default.yml
+│   │       ├── core.entity_form_display.paragraph.pg_iframe.default.yml
+│   │       ├── core.entity_form_display.paragraph.pg_movies.default.yml
+│   │       ├── core.entity_form_display.paragraph.pg_offer.default.yml
+│   │       ├── core.entity_form_display.paragraph.pg_paragraph.default.yml
+│   │       ├── core.entity_form_display.paragraph.pg_partner.default.yml
+│   │       ├── core.entity_form_display.paragraph.pg_quote.default.yml
+│   │       ├── core.entity_form_display.paragraph.pg_quotes.default.yml
+│   │       ├── core.entity_form_display.paragraph.pg_video_iframe.default.yml
+│   │       ├── core.entity_form_display.taxonomy_term.actor.default.yml
+│   │       ├── core.entity_form_display.taxonomy_term.collection.default.yml
+│   │       ├── core.entity_form_display.taxonomy_term.content_type.default.yml
+│   │       ├── core.entity_form_display.taxonomy_term.director.default.yml
+│   │       ├── core.entity_form_display.taxonomy_term.genre.default.yml
+│   │       ├── core.entity_form_display.taxonomy_term.nationality.default.yml
+│   │       ├── core.entity_form_display.taxonomy_term.offer.default.yml
+│   │       ├── core.entity_form_display.taxonomy_term.partner.default.yml
+│   │       ├── core.entity_form_display.taxonomy_term.public.default.yml
+│   │       ├── core.entity_form_display.user.user.default.yml
+│   │       ├── core.entity_form_mode.media.media_library.yml
+│   │       ├── core.entity_form_mode.user.register.yml
+│   │       ├── core.entity_view_display.block_content.basic.default.yml
+│   │       ├── core.entity_view_display.config_pages.homepage.default.yml
+│   │       ├── core.entity_view_display.config_pages.movies.default.yml
+│   │       ├── core.entity_view_display.config_pages.newsletter.default.yml
+│   │       ├── core.entity_view_display.config_pages.patrimony.default.yml
+│   │       ├── core.entity_view_display.config_pages.search.default.yml
+│   │       ├── core.entity_view_display.config_pages.wordings.default.yml
+│   │       ├── core.entity_view_display.media.document.default.yml
+│   │       ├── core.entity_view_display.media.document.media_library.yml
+│   │       ├── core.entity_view_display.media.image.default.yml
+│   │       ├── core.entity_view_display.media.image.media_library.yml
+│   │       ├── core.entity_view_display.node.article.default.yml
+│   │       ├── core.entity_view_display.node.article.rss.yml
+│   │       ├── core.entity_view_display.node.article.teaser.yml
+│   │       ├── core.entity_view_display.node.movie.card.yml
+│   │       ├── core.entity_view_display.node.movie.card_result.yml
+│   │       ├── core.entity_view_display.node.movie.card_result_h4.yml
+│   │       ├── core.entity_view_display.node.movie.default.yml
+│   │       ├── core.entity_view_display.node.movie.teaser.yml
+│   │       ├── core.entity_view_display.node.page.default.yml
+│   │       ├── core.entity_view_display.node.page.teaser.yml
+│   │       ├── core.entity_view_display.paragraph.pg_card.default.yml
+│   │       ├── core.entity_view_display.paragraph.pg_card.full.yml
+│   │       ├── core.entity_view_display.paragraph.pg_cards.default.yml
+│   │       ├── core.entity_view_display.paragraph.pg_cards.full.yml
+│   │       ├── core.entity_view_display.paragraph.pg_cta.default.yml
+│   │       ├── core.entity_view_display.paragraph.pg_documents.default.yml
+│   │       ├── core.entity_view_display.paragraph.pg_horizontal_card.default.yml
+│   │       ├── core.entity_view_display.paragraph.pg_iframe.default.yml
+│   │       ├── core.entity_view_display.paragraph.pg_iframe.full.yml
+│   │       ├── core.entity_view_display.paragraph.pg_movies.default.yml
+│   │       ├── core.entity_view_display.paragraph.pg_movies.full.yml
+│   │       ├── core.entity_view_display.paragraph.pg_offer.default.yml
+│   │       ├── core.entity_view_display.paragraph.pg_paragraph.default.yml
+│   │       ├── core.entity_view_display.paragraph.pg_paragraph.full.yml
+│   │       ├── core.entity_view_display.paragraph.pg_partner.default.yml
+│   │       ├── core.entity_view_display.paragraph.pg_quote.default.yml
+│   │       ├── core.entity_view_display.paragraph.pg_quotes.default.yml
+│   │       ├── core.entity_view_display.paragraph.pg_quotes.full.yml
+│   │       ├── core.entity_view_display.paragraph.pg_video_iframe.default.yml
+│   │       ├── core.entity_view_display.paragraph.pg_video_iframe.full.yml
+│   │       ├── core.entity_view_display.taxonomy_term.actor.default.yml
+│   │       ├── core.entity_view_display.taxonomy_term.collection.default.yml
+│   │       ├── core.entity_view_display.taxonomy_term.collection.highlighted.yml
+│   │       ├── core.entity_view_display.taxonomy_term.collection.tile.yml
+│   │       ├── core.entity_view_display.taxonomy_term.director.default.yml
+│   │       ├── core.entity_view_display.taxonomy_term.genre.default.yml
+│   │       ├── core.entity_view_display.taxonomy_term.genre.list.yml
+│   │       ├── core.entity_view_display.taxonomy_term.genre.tile.yml
+│   │       ├── core.entity_view_display.taxonomy_term.nationality.default.yml
+│   │       ├── core.entity_view_display.taxonomy_term.offer.default.yml
+│   │       ├── core.entity_view_display.taxonomy_term.partner.default.yml
+│   │       ├── core.entity_view_display.taxonomy_term.public.default.yml
+│   │       ├── core.entity_view_display.user.user.compact.yml
+│   │       ├── core.entity_view_display.user.user.default.yml
+│   │       ├── core.entity_view_mode.block.token.yml
+│   │       ├── core.entity_view_mode.block_content.full.yml
+│   │       ├── core.entity_view_mode.block_content.token.yml
+│   │       ├── core.entity_view_mode.config_pages.full.yml
+│   │       ├── core.entity_view_mode.config_pages.token.yml
+│   │       ├── core.entity_view_mode.file.token.yml
+│   │       ├── core.entity_view_mode.media.full.yml
+│   │       ├── core.entity_view_mode.media.media_library.yml
+│   │       ├── core.entity_view_mode.media.token.yml
+│   │       ├── core.entity_view_mode.menu_link_content.token.yml
+│   │       ├── core.entity_view_mode.node.card.yml
+│   │       ├── core.entity_view_mode.node.card_result.yml
+│   │       ├── core.entity_view_mode.node.card_result_h4.yml
+│   │       ├── core.entity_view_mode.node.full.yml
+│   │       ├── core.entity_view_mode.node.rss.yml
+│   │       ├── core.entity_view_mode.node.search_index.yml
+│   │       ├── core.entity_view_mode.node.search_result.yml
+│   │       ├── core.entity_view_mode.node.teaser.yml
+│   │       ├── core.entity_view_mode.node.token.yml
+│   │       ├── core.entity_view_mode.paragraph.full.yml
+│   │       ├── core.entity_view_mode.paragraph.preview.yml
+│   │       ├── core.entity_view_mode.paragraph.token.yml
+│   │       ├── core.entity_view_mode.path_alias.token.yml
+│   │       ├── core.entity_view_mode.shortcut.token.yml
+│   │       ├── core.entity_view_mode.taxonomy_term.full.yml
+│   │       ├── core.entity_view_mode.taxonomy_term.highlighted.yml
+│   │       ├── core.entity_view_mode.taxonomy_term.list.yml
+│   │       ├── core.entity_view_mode.taxonomy_term.tile.yml
+│   │       ├── core.entity_view_mode.taxonomy_term.token.yml
+│   │       ├── core.entity_view_mode.user.compact.yml
+│   │       ├── core.entity_view_mode.user.full.yml
+│   │       ├── core.entity_view_mode.user.token.yml
+│   │       ├── core.extension.yml
+│   │       ├── core.menu.static_menu_link_overrides.yml
+│   │       ├── dblog.settings.yml
+│   │       ├── editor.editor.basic_html.yml
+│   │       ├── editor.editor.full_html.yml
+│   │       ├── field.field.block_content.basic.body.yml
+│   │       ├── field.field.config_pages.homepage.field_about_button_text.yml
+│   │       ├── field.field.config_pages.homepage.field_about_description.yml
+│   │       ├── field.field.config_pages.homepage.field_about_email.yml
+│   │       ├── field.field.config_pages.homepage.field_about_icon.yml
+│   │       ├── field.field.config_pages.homepage.field_about_pre_contact.yml
+│   │       ├── field.field.config_pages.homepage.field_about_subbutton_text.yml
+│   │       ├── field.field.config_pages.homepage.field_about_title.yml
+│   │       ├── field.field.config_pages.homepage.field_header_chapo.yml
+│   │       ├── field.field.config_pages.homepage.field_header_cta.yml
+│   │       ├── field.field.config_pages.homepage.field_header_image.yml
+│   │       ├── field.field.config_pages.homepage.field_header_title.yml
+│   │       ├── field.field.config_pages.homepage.field_header_with_search_bar.yml
+│   │       ├── field.field.config_pages.homepage.field_infos_ctas.yml
+│   │       ├── field.field.config_pages.homepage.field_infos_description.yml
+│   │       ├── field.field.config_pages.homepage.field_infos_image.yml
+│   │       ├── field.field.config_pages.homepage.field_infos_title.yml
+│   │       ├── field.field.config_pages.homepage.field_near_end_movies_title.yml
+│   │       ├── field.field.config_pages.homepage.field_new_movies_title.yml
+│   │       ├── field.field.config_pages.homepage.field_newsletter_cta.yml
+│   │       ├── field.field.config_pages.homepage.field_newsletter_description.yml
+│   │       ├── field.field.config_pages.homepage.field_newsletter_icon.yml
+│   │       ├── field.field.config_pages.homepage.field_newsletter_title.yml
+│   │       ├── field.field.config_pages.movies.field_block_ad_title.yml
+│   │       ├── field.field.config_pages.movies.field_block_contact_description.yml
+│   │       ├── field.field.config_pages.movies.field_block_contact_email.yml
+│   │       ├── field.field.config_pages.movies.field_block_contact_image.yml
+│   │       ├── field.field.config_pages.movies.field_block_contact_pre_contact.yml
+│   │       ├── field.field.config_pages.movies.field_block_contact_title.yml
+│   │       ├── field.field.config_pages.movies.field_block_platforms_no_result.yml
+│   │       ├── field.field.config_pages.movies.field_block_platforms_title.yml
+│   │       ├── field.field.config_pages.newsletter.field_news_api_key.yml
+│   │       ├── field.field.config_pages.newsletter.field_news_confirm_cta.yml
+│   │       ├── field.field.config_pages.newsletter.field_news_confirm_text.yml
+│   │       ├── field.field.config_pages.newsletter.field_news_confirm_under_cta.yml
+│   │       ├── field.field.config_pages.newsletter.field_news_list.yml
+│   │       ├── field.field.config_pages.newsletter.field_news_unsub_confirm_cta.yml
+│   │       ├── field.field.config_pages.newsletter.field_news_unsub_confirm_text.yml
+│   │       ├── field.field.config_pages.newsletter.field_news_unsub_text.yml
+│   │       ├── field.field.config_pages.newsletter.field_newsletter_infos_rgpd.yml
+│   │       ├── field.field.config_pages.newsletter.field_newsletter_infos_unsub.yml
+│   │       ├── field.field.config_pages.newsletter.field_newsletter_introduction.yml
+│   │       ├── field.field.config_pages.patrimony.field_enable_matomo.yml
+│   │       ├── field.field.config_pages.patrimony.field_patrimony_token.yml
+│   │       ├── field.field.config_pages.patrimony.field_patrimony_url.yml
+│   │       ├── field.field.config_pages.search.field_contact_button_text.yml
+│   │       ├── field.field.config_pages.search.field_contact_description.yml
+│   │       ├── field.field.config_pages.search.field_contact_email.yml
+│   │       ├── field.field.config_pages.search.field_contact_subbutton_text.yml
+│   │       ├── field.field.config_pages.search.field_contact_title.yml
+│   │       ├── field.field.config_pages.search.field_search_title.yml
+│   │       ├── field.field.config_pages.wordings.field_info_banner_description.yml
+│   │       ├── field.field.config_pages.wordings.field_info_banner_title.yml
+│   │       ├── field.field.config_pages.wordings.field_taxo_genres_description.yml
+│   │       ├── field.field.config_pages.wordings.field_taxo_genres_icon.yml
+│   │       ├── field.field.media.document.field_media_document.yml
+│   │       ├── field.field.media.document.field_media_language.yml
+│   │       ├── field.field.media.image.field_media_image.yml
+│   │       ├── field.field.node.article.field_content.yml
+│   │       ├── field.field.node.article.field_text.yml
+│   │       ├── field.field.node.movie.field_actors.yml
+│   │       ├── field.field.node.movie.field_allocine_id.yml
+│   │       ├── field.field.node.movie.field_arte_id.yml
+│   │       ├── field.field.node.movie.field_canal_vod_id.yml
+│   │       ├── field.field.node.movie.field_code.yml
+│   │       ├── field.field.node.movie.field_directors.yml
+│   │       ├── field.field.node.movie.field_duration.yml
+│   │       ├── field.field.node.movie.field_france_tv_id.yml
+│   │       ├── field.field.node.movie.field_genres.yml
+│   │       ├── field.field.node.movie.field_has_ad.yml
+│   │       ├── field.field.node.movie.field_lacinetek_id.yml
+│   │       ├── field.field.node.movie.field_nationalities.yml
+│   │       ├── field.field.node.movie.field_offers.yml
+│   │       ├── field.field.node.movie.field_orange_vod_id.yml
+│   │       ├── field.field.node.movie.field_poster.yml
+│   │       ├── field.field.node.movie.field_poster_external.yml
+│   │       ├── field.field.node.movie.field_production_year.yml
+│   │       ├── field.field.node.movie.field_public.yml
+│   │       ├── field.field.node.movie.field_synopsis.yml
+│   │       ├── field.field.node.page.field_content.yml
+│   │       ├── field.field.paragraph.pg_card.field_pg_click_area.yml
+│   │       ├── field.field.paragraph.pg_card.field_pg_content_types.yml
+│   │       ├── field.field.paragraph.pg_card.field_pg_detail_area.yml
+│   │       ├── field.field.paragraph.pg_card.field_pg_image.yml
+│   │       ├── field.field.paragraph.pg_card.field_pg_image_is_decorative.yml
+│   │       ├── field.field.paragraph.pg_card.field_pg_is_external.yml
+│   │       ├── field.field.paragraph.pg_card.field_pg_link.yml
+│   │       ├── field.field.paragraph.pg_card.field_pg_text_area.yml
+│   │       ├── field.field.paragraph.pg_card.field_pg_title.yml
+│   │       ├── field.field.paragraph.pg_card.field_pg_title_level.yml
+│   │       ├── field.field.paragraph.pg_cards.field_pg_anchor.yml
+│   │       ├── field.field.paragraph.pg_cards.field_pg_background.yml
+│   │       ├── field.field.paragraph.pg_cards.field_pg_cards.yml
+│   │       ├── field.field.paragraph.pg_cards.field_pg_text.yml
+│   │       ├── field.field.paragraph.pg_cards.field_pg_text_position.yml
+│   │       ├── field.field.paragraph.pg_cards.field_pg_title.yml
+│   │       ├── field.field.paragraph.pg_cta.field_pg_is_external.yml
+│   │       ├── field.field.paragraph.pg_cta.field_pg_link.yml
+│   │       ├── field.field.paragraph.pg_cta.field_pg_style.yml
+│   │       ├── field.field.paragraph.pg_documents.field_pg_documents.yml
+│   │       ├── field.field.paragraph.pg_documents.field_pg_title.yml
+│   │       ├── field.field.paragraph.pg_horizontal_card.field_pg_background.yml
+│   │       ├── field.field.paragraph.pg_horizontal_card.field_pg_click_area.yml
+│   │       ├── field.field.paragraph.pg_horizontal_card.field_pg_content_types.yml
+│   │       ├── field.field.paragraph.pg_horizontal_card.field_pg_image.yml
+│   │       ├── field.field.paragraph.pg_horizontal_card.field_pg_image_is_decorative.yml
+│   │       ├── field.field.paragraph.pg_horizontal_card.field_pg_is_external.yml
+│   │       ├── field.field.paragraph.pg_horizontal_card.field_pg_link.yml
+│   │       ├── field.field.paragraph.pg_horizontal_card.field_pg_text.yml
+│   │       ├── field.field.paragraph.pg_horizontal_card.field_pg_title.yml
+│   │       ├── field.field.paragraph.pg_horizontal_card.field_pg_title_card.yml
+│   │       ├── field.field.paragraph.pg_iframe.field_pg_background.yml
+│   │       ├── field.field.paragraph.pg_iframe.field_pg_iframe_height.yml
+│   │       ├── field.field.paragraph.pg_iframe.field_pg_iframe_id.yml
+│   │       ├── field.field.paragraph.pg_iframe.field_pg_iframe_title.yml
+│   │       ├── field.field.paragraph.pg_iframe.field_pg_iframe_url.yml
+│   │       ├── field.field.paragraph.pg_iframe.field_pg_iframe_width.yml
+│   │       ├── field.field.paragraph.pg_iframe.field_pg_text.yml
+│   │       ├── field.field.paragraph.pg_iframe.field_pg_title.yml
+│   │       ├── field.field.paragraph.pg_movies.field_pg_anchor.yml
+│   │       ├── field.field.paragraph.pg_movies.field_pg_background.yml
+│   │       ├── field.field.paragraph.pg_movies.field_pg_cta.yml
+│   │       ├── field.field.paragraph.pg_movies.field_pg_movies.yml
+│   │       ├── field.field.paragraph.pg_movies.field_pg_subtitle.yml
+│   │       ├── field.field.paragraph.pg_movies.field_pg_text.yml
+│   │       ├── field.field.paragraph.pg_movies.field_pg_title.yml
+│   │       ├── field.field.paragraph.pg_offer.field_pg_offer.yml
+│   │       ├── field.field.paragraph.pg_offer.field_pg_partners.yml
+│   │       ├── field.field.paragraph.pg_paragraph.field_pg_anchor.yml
+│   │       ├── field.field.paragraph.pg_paragraph.field_pg_background.yml
+│   │       ├── field.field.paragraph.pg_paragraph.field_pg_cta.yml
+│   │       ├── field.field.paragraph.pg_paragraph.field_pg_image.yml
+│   │       ├── field.field.paragraph.pg_paragraph.field_pg_image_is_decorative.yml
+│   │       ├── field.field.paragraph.pg_paragraph.field_pg_text.yml
+│   │       ├── field.field.paragraph.pg_paragraph.field_pg_title.yml
+│   │       ├── field.field.paragraph.pg_partner.field_pg_end_rights.yml
+│   │       ├── field.field.paragraph.pg_partner.field_pg_link.yml
+│   │       ├── field.field.paragraph.pg_partner.field_pg_override_condition.yml
+│   │       ├── field.field.paragraph.pg_partner.field_pg_partner.yml
+│   │       ├── field.field.paragraph.pg_partner.field_pg_start_rights.yml
+│   │       ├── field.field.paragraph.pg_quote.field_pg_author.yml
+│   │       ├── field.field.paragraph.pg_quote.field_pg_quote.yml
+│   │       ├── field.field.paragraph.pg_quote.field_pg_text.yml
+│   │       ├── field.field.paragraph.pg_quotes.field_pg_anchor.yml
+│   │       ├── field.field.paragraph.pg_quotes.field_pg_background.yml
+│   │       ├── field.field.paragraph.pg_quotes.field_pg_quotes.yml
+│   │       ├── field.field.paragraph.pg_quotes.field_pg_text.yml
+│   │       ├── field.field.paragraph.pg_quotes.field_pg_title.yml
+│   │       ├── field.field.paragraph.pg_video_iframe.field_pg_background.yml
+│   │       ├── field.field.paragraph.pg_video_iframe.field_pg_cta.yml
+│   │       ├── field.field.paragraph.pg_video_iframe.field_pg_iframe_title.yml
+│   │       ├── field.field.paragraph.pg_video_iframe.field_pg_iframe_url.yml
+│   │       ├── field.field.paragraph.pg_video_iframe.field_pg_source.yml
+│   │       ├── field.field.paragraph.pg_video_iframe.field_pg_text.yml
+│   │       ├── field.field.paragraph.pg_video_iframe.field_pg_title.yml
+│   │       ├── field.field.paragraph.pg_video_iframe.field_pg_transcription.yml
+│   │       ├── field.field.taxonomy_term.actor.field_taxo_code.yml
+│   │       ├── field.field.taxonomy_term.actor.field_taxo_firstname.yml
+│   │       ├── field.field.taxonomy_term.actor.field_taxo_lastname.yml
+│   │       ├── field.field.taxonomy_term.actor.field_taxo_role.yml
+│   │       ├── field.field.taxonomy_term.collection.field_display_on_movie_page.yml
+│   │       ├── field.field.taxonomy_term.collection.field_icon_on_movie_page.yml
+│   │       ├── field.field.taxonomy_term.collection.field_taxo_icon.yml
+│   │       ├── field.field.taxonomy_term.collection.field_taxo_is_highlighted.yml
+│   │       ├── field.field.taxonomy_term.collection.field_taxo_label_button_see_all.yml
+│   │       ├── field.field.taxonomy_term.collection.field_taxo_long_desc.yml
+│   │       ├── field.field.taxonomy_term.collection.field_taxo_movies.yml
+│   │       ├── field.field.taxonomy_term.collection.field_taxo_short_desc.yml
+│   │       ├── field.field.taxonomy_term.director.field_taxo_biography.yml
+│   │       ├── field.field.taxonomy_term.director.field_taxo_code.yml
+│   │       ├── field.field.taxonomy_term.director.field_taxo_firstname.yml
+│   │       ├── field.field.taxonomy_term.director.field_taxo_lastname.yml
+│   │       ├── field.field.taxonomy_term.director.field_taxo_picture.yml
+│   │       ├── field.field.taxonomy_term.genre.field_taxo_code.yml
+│   │       ├── field.field.taxonomy_term.genre.field_taxo_icon.yml
+│   │       ├── field.field.taxonomy_term.nationality.field_taxo_code.yml
+│   │       ├── field.field.taxonomy_term.offer.field_taxo_code.yml
+│   │       ├── field.field.taxonomy_term.offer.field_taxo_order.yml
+│   │       ├── field.field.taxonomy_term.partner.field_taxo_code.yml
+│   │       ├── field.field.taxonomy_term.partner.field_taxo_condition.yml
+│   │       ├── field.field.taxonomy_term.partner.field_taxo_label_button.yml
+│   │       ├── field.field.taxonomy_term.partner.field_taxo_logo.yml
+│   │       ├── field.field.taxonomy_term.partner.field_taxo_logo_black_square.yml
+│   │       ├── field.field.taxonomy_term.partner.field_taxo_order.yml
+│   │       ├── field.field.taxonomy_term.partner.field_taxo_pronunciation.yml
+│   │       ├── field.field.taxonomy_term.public.field_taxo_code.yml
+│   │       ├── field.field.user.user.user_picture.yml
+│   │       ├── field.settings.yml
+│   │       ├── field.storage.block_content.body.yml
+│   │       ├── field.storage.config_pages.field_about_button_text.yml
+│   │       ├── field.storage.config_pages.field_about_description.yml
+│   │       ├── field.storage.config_pages.field_about_email.yml
+│   │       ├── field.storage.config_pages.field_about_icon.yml
+│   │       ├── field.storage.config_pages.field_about_pre_contact.yml
+│   │       ├── field.storage.config_pages.field_about_subbutton_text.yml
+│   │       ├── field.storage.config_pages.field_about_title.yml
+│   │       ├── field.storage.config_pages.field_block_ad_title.yml
+│   │       ├── field.storage.config_pages.field_block_contact_description.yml
+│   │       ├── field.storage.config_pages.field_block_contact_email.yml
+│   │       ├── field.storage.config_pages.field_block_contact_image.yml
+│   │       ├── field.storage.config_pages.field_block_contact_pre_contact.yml
+│   │       ├── field.storage.config_pages.field_block_contact_title.yml
+│   │       ├── field.storage.config_pages.field_block_platforms_no_result.yml
+│   │       ├── field.storage.config_pages.field_block_platforms_title.yml
+│   │       ├── field.storage.config_pages.field_contact_button_text.yml
+│   │       ├── field.storage.config_pages.field_contact_description.yml
+│   │       ├── field.storage.config_pages.field_contact_email.yml
+│   │       ├── field.storage.config_pages.field_contact_subbutton_text.yml
+│   │       ├── field.storage.config_pages.field_contact_title.yml
+│   │       ├── field.storage.config_pages.field_enable_matomo.yml
+│   │       ├── field.storage.config_pages.field_header_chapo.yml
+│   │       ├── field.storage.config_pages.field_header_cta.yml
+│   │       ├── field.storage.config_pages.field_header_image.yml
+│   │       ├── field.storage.config_pages.field_header_title.yml
+│   │       ├── field.storage.config_pages.field_header_with_search_bar.yml
+│   │       ├── field.storage.config_pages.field_info_banner_description.yml
+│   │       ├── field.storage.config_pages.field_info_banner_title.yml
+│   │       ├── field.storage.config_pages.field_infos_ctas.yml
+│   │       ├── field.storage.config_pages.field_infos_description.yml
+│   │       ├── field.storage.config_pages.field_infos_image.yml
+│   │       ├── field.storage.config_pages.field_infos_title.yml
+│   │       ├── field.storage.config_pages.field_near_end_movies_title.yml
+│   │       ├── field.storage.config_pages.field_new_movies_title.yml
+│   │       ├── field.storage.config_pages.field_news_api_key.yml
+│   │       ├── field.storage.config_pages.field_news_confirm_cta.yml
+│   │       ├── field.storage.config_pages.field_news_confirm_text.yml
+│   │       ├── field.storage.config_pages.field_news_confirm_under_cta.yml
+│   │       ├── field.storage.config_pages.field_news_list.yml
+│   │       ├── field.storage.config_pages.field_news_unsub_confirm_cta.yml
+│   │       ├── field.storage.config_pages.field_news_unsub_confirm_text.yml
+│   │       ├── field.storage.config_pages.field_news_unsub_text.yml
+│   │       ├── field.storage.config_pages.field_newsletter_cta.yml
+│   │       ├── field.storage.config_pages.field_newsletter_description.yml
+│   │       ├── field.storage.config_pages.field_newsletter_icon.yml
+│   │       ├── field.storage.config_pages.field_newsletter_infos_rgpd.yml
+│   │       ├── field.storage.config_pages.field_newsletter_infos_unsub.yml
+│   │       ├── field.storage.config_pages.field_newsletter_introduction.yml
+│   │       ├── field.storage.config_pages.field_newsletter_title.yml
+│   │       ├── field.storage.config_pages.field_patrimony_token.yml
+│   │       ├── field.storage.config_pages.field_patrimony_url.yml
+│   │       ├── field.storage.config_pages.field_search_title.yml
+│   │       ├── field.storage.config_pages.field_taxo_genres_description.yml
+│   │       ├── field.storage.config_pages.field_taxo_genres_icon.yml
+│   │       ├── field.storage.media.field_media_document.yml
+│   │       ├── field.storage.media.field_media_image.yml
+│   │       ├── field.storage.media.field_media_language.yml
+│   │       ├── field.storage.node.body.yml
+│   │       ├── field.storage.node.field_actors.yml
+│   │       ├── field.storage.node.field_allocine_id.yml
+│   │       ├── field.storage.node.field_arte_id.yml
+│   │       ├── field.storage.node.field_canal_vod_id.yml
+│   │       ├── field.storage.node.field_code.yml
+│   │       ├── field.storage.node.field_content.yml
+│   │       ├── field.storage.node.field_directors.yml
+│   │       ├── field.storage.node.field_duration.yml
+│   │       ├── field.storage.node.field_france_tv_id.yml
+│   │       ├── field.storage.node.field_genres.yml
+│   │       ├── field.storage.node.field_has_ad.yml
+│   │       ├── field.storage.node.field_lacinetek_id.yml
+│   │       ├── field.storage.node.field_nationalities.yml
+│   │       ├── field.storage.node.field_offers.yml
+│   │       ├── field.storage.node.field_orange_vod_id.yml
+│   │       ├── field.storage.node.field_poster.yml
+│   │       ├── field.storage.node.field_poster_external.yml
+│   │       ├── field.storage.node.field_production_year.yml
+│   │       ├── field.storage.node.field_public.yml
+│   │       ├── field.storage.node.field_synopsis.yml
+│   │       ├── field.storage.node.field_text.yml
+│   │       ├── field.storage.paragraph.field_pg_anchor.yml
+│   │       ├── field.storage.paragraph.field_pg_author.yml
+│   │       ├── field.storage.paragraph.field_pg_background.yml
+│   │       ├── field.storage.paragraph.field_pg_cards.yml
+│   │       ├── field.storage.paragraph.field_pg_click_area.yml
+│   │       ├── field.storage.paragraph.field_pg_content_types.yml
+│   │       ├── field.storage.paragraph.field_pg_cta.yml
+│   │       ├── field.storage.paragraph.field_pg_detail_area.yml
+│   │       ├── field.storage.paragraph.field_pg_documents.yml
+│   │       ├── field.storage.paragraph.field_pg_end_rights.yml
+│   │       ├── field.storage.paragraph.field_pg_iframe_height.yml
+│   │       ├── field.storage.paragraph.field_pg_iframe_id.yml
+│   │       ├── field.storage.paragraph.field_pg_iframe_title.yml
+│   │       ├── field.storage.paragraph.field_pg_iframe_url.yml
+│   │       ├── field.storage.paragraph.field_pg_iframe_width.yml
+│   │       ├── field.storage.paragraph.field_pg_image.yml
+│   │       ├── field.storage.paragraph.field_pg_image_is_decorative.yml
+│   │       ├── field.storage.paragraph.field_pg_is_external.yml
+│   │       ├── field.storage.paragraph.field_pg_link.yml
+│   │       ├── field.storage.paragraph.field_pg_movies.yml
+│   │       ├── field.storage.paragraph.field_pg_offer.yml
+│   │       ├── field.storage.paragraph.field_pg_override_condition.yml
+│   │       ├── field.storage.paragraph.field_pg_partner.yml
+│   │       ├── field.storage.paragraph.field_pg_partners.yml
+│   │       ├── field.storage.paragraph.field_pg_quote.yml
+│   │       ├── field.storage.paragraph.field_pg_quotes.yml
+│   │       ├── field.storage.paragraph.field_pg_source.yml
+│   │       ├── field.storage.paragraph.field_pg_start_rights.yml
+│   │       ├── field.storage.paragraph.field_pg_style.yml
+│   │       ├── field.storage.paragraph.field_pg_subtitle.yml
+│   │       ├── field.storage.paragraph.field_pg_text.yml
+│   │       ├── field.storage.paragraph.field_pg_text_area.yml
+│   │       ├── field.storage.paragraph.field_pg_text_position.yml
+│   │       ├── field.storage.paragraph.field_pg_title.yml
+│   │       ├── field.storage.paragraph.field_pg_title_card.yml
+│   │       ├── field.storage.paragraph.field_pg_title_level.yml
+│   │       ├── field.storage.paragraph.field_pg_transcription.yml
+│   │       ├── field.storage.taxonomy_term.field_display_on_movie_page.yml
+│   │       ├── field.storage.taxonomy_term.field_icon_on_movie_page.yml
+│   │       ├── field.storage.taxonomy_term.field_taxo_biography.yml
+│   │       ├── field.storage.taxonomy_term.field_taxo_code.yml
+│   │       ├── field.storage.taxonomy_term.field_taxo_condition.yml
+│   │       ├── field.storage.taxonomy_term.field_taxo_firstname.yml
+│   │       ├── field.storage.taxonomy_term.field_taxo_icon.yml
+│   │       ├── field.storage.taxonomy_term.field_taxo_is_highlighted.yml
+│   │       ├── field.storage.taxonomy_term.field_taxo_label_button.yml
+│   │       ├── field.storage.taxonomy_term.field_taxo_label_button_see_all.yml
+│   │       ├── field.storage.taxonomy_term.field_taxo_lastname.yml
+│   │       ├── field.storage.taxonomy_term.field_taxo_logo.yml
+│   │       ├── field.storage.taxonomy_term.field_taxo_logo_black_square.yml
+│   │       ├── field.storage.taxonomy_term.field_taxo_long_desc.yml
+│   │       ├── field.storage.taxonomy_term.field_taxo_movies.yml
+│   │       ├── field.storage.taxonomy_term.field_taxo_order.yml
+│   │       ├── field.storage.taxonomy_term.field_taxo_picture.yml
+│   │       ├── field.storage.taxonomy_term.field_taxo_pronunciation.yml
+│   │       ├── field.storage.taxonomy_term.field_taxo_role.yml
+│   │       ├── field.storage.taxonomy_term.field_taxo_short_desc.yml
+│   │       ├── field.storage.user.user_picture.yml
+│   │       ├── field_ui.settings.yml
+│   │       ├── file.settings.yml
+│   │       ├── filter.format.basic_html.yml
+│   │       ├── filter.format.full_html.yml
+│   │       ├── filter.format.plain_text.yml
+│   │       ├── filter.format.restricted_html.yml
+│   │       ├── filter.settings.yml
+│   │       ├── image.settings.yml
+│   │       ├── image.style.large.yml
+│   │       ├── image.style.media_library.yml
+│   │       ├── image.style.medium.yml
+│   │       ├── image.style.poster.yml
+│   │       ├── image.style.thumbnail.yml
+│   │       ├── image.style.wide.yml
+│   │       ├── language
+│   │       │   └── fr
+│   │       │       ├── block.block.claro_breadcrumbs.yml
+│   │       │       ├── block.block.claro_content.yml
+│   │       │       ├── block.block.claro_help.yml
+│   │       │       ├── block.block.claro_local_actions.yml
+│   │       │       ├── block.block.claro_messages.yml
+│   │       │       ├── block.block.claro_page_title.yml
+│   │       │       ├── block.block.claro_primary_local_tasks.yml
+│   │       │       ├── block.block.claro_secondary_local_tasks.yml
+│   │       │       ├── block.block.olivero_account_menu.yml
+│   │       │       ├── block.block.olivero_breadcrumbs.yml
+│   │       │       ├── block.block.olivero_content.yml
+│   │       │       ├── block.block.olivero_help.yml
+│   │       │       ├── block.block.olivero_main_menu.yml
+│   │       │       ├── block.block.olivero_messages.yml
+│   │       │       ├── block.block.olivero_page_title.yml
+│   │       │       ├── block.block.olivero_powered.yml
+│   │       │       ├── block.block.olivero_primary_admin_actions.yml
+│   │       │       ├── block.block.olivero_primary_local_tasks.yml
+│   │       │       ├── block.block.olivero_secondary_local_tasks.yml
+│   │       │       ├── block.block.olivero_site_branding.yml
+│   │       │       ├── block.block.olivero_syndicate.yml
+│   │       │       ├── block_content.type.basic.yml
+│   │       │       ├── core.date_format.fallback.yml
+│   │       │       ├── core.date_format.html_date.yml
+│   │       │       ├── core.date_format.html_datetime.yml
+│   │       │       ├── core.date_format.html_month.yml
+│   │       │       ├── core.date_format.html_time.yml
+│   │       │       ├── core.date_format.html_week.yml
+│   │       │       ├── core.date_format.html_year.yml
+│   │       │       ├── core.date_format.html_yearless_date.yml
+│   │       │       ├── core.date_format.long.yml
+│   │       │       ├── core.date_format.medium.yml
+│   │       │       ├── core.date_format.olivero_medium.yml
+│   │       │       ├── core.date_format.short.yml
+│   │       │       ├── core.entity_form_mode.media.media_library.yml
+│   │       │       ├── core.entity_form_mode.user.register.yml
+│   │       │       ├── core.entity_view_mode.block_content.full.yml
+│   │       │       ├── core.entity_view_mode.config_pages.full.yml
+│   │       │       ├── core.entity_view_mode.media.full.yml
+│   │       │       ├── core.entity_view_mode.media.media_library.yml
+│   │       │       ├── core.entity_view_mode.node.full.yml
+│   │       │       ├── core.entity_view_mode.node.rss.yml
+│   │       │       ├── core.entity_view_mode.node.search_index.yml
+│   │       │       ├── core.entity_view_mode.node.search_result.yml
+│   │       │       ├── core.entity_view_mode.node.teaser.yml
+│   │       │       ├── core.entity_view_mode.paragraph.preview.yml
+│   │       │       ├── core.entity_view_mode.taxonomy_term.full.yml
+│   │       │       ├── core.entity_view_mode.user.compact.yml
+│   │       │       ├── core.entity_view_mode.user.full.yml
+│   │       │       ├── editor.editor.full_html.yml
+│   │       │       ├── field.field.block_content.basic.body.yml
+│   │       │       ├── field.field.media.document.field_media_document.yml
+│   │       │       ├── field.field.media.image.field_media_image.yml
+│   │       │       ├── field.field.user.user.user_picture.yml
+│   │       │       ├── filter.format.basic_html.yml
+│   │       │       ├── filter.format.full_html.yml
+│   │       │       ├── filter.format.plain_text.yml
+│   │       │       ├── filter.format.restricted_html.yml
+│   │       │       ├── image.style.large.yml
+│   │       │       ├── image.style.media_library.yml
+│   │       │       ├── image.style.medium.yml
+│   │       │       ├── image.style.thumbnail.yml
+│   │       │       ├── image.style.wide.yml
+│   │       │       ├── language.entity.fr.yml
+│   │       │       ├── language.entity.und.yml
+│   │       │       ├── language.entity.zxx.yml
+│   │       │       ├── media.type.document.yml
+│   │       │       ├── media.type.image.yml
+│   │       │       ├── navigation.block_layout.yml
+│   │       │       ├── node.type.article.yml
+│   │       │       ├── shortcut.set.default.yml
+│   │       │       ├── system.action.media_delete_action.yml
+│   │       │       ├── system.action.media_publish_action.yml
+│   │       │       ├── system.action.media_save_action.yml
+│   │       │       ├── system.action.media_unpublish_action.yml
+│   │       │       ├── system.action.node_delete_action.yml
+│   │       │       ├── system.action.node_make_sticky_action.yml
+│   │       │       ├── system.action.node_make_unsticky_action.yml
+│   │       │       ├── system.action.node_promote_action.yml
+│   │       │       ├── system.action.node_publish_action.yml
+│   │       │       ├── system.action.node_save_action.yml
+│   │       │       ├── system.action.node_unpromote_action.yml
+│   │       │       ├── system.action.node_unpublish_action.yml
+│   │       │       ├── system.action.taxonomy_term_publish_action.yml
+│   │       │       ├── system.action.taxonomy_term_unpublish_action.yml
+│   │       │       ├── system.action.user_block_user_action.yml
+│   │       │       ├── system.action.user_cancel_user_action.yml
+│   │       │       ├── system.action.user_unblock_user_action.yml
+│   │       │       ├── system.maintenance.yml
+│   │       │       ├── system.menu.account.yml
+│   │       │       ├── system.menu.admin.yml
+│   │       │       ├── system.menu.content.yml
+│   │       │       ├── system.menu.footer.yml
+│   │       │       ├── system.menu.main.yml
+│   │       │       ├── system.menu.tools.yml
+│   │       │       ├── user.mail.yml
+│   │       │       ├── user.role.administrator.yml
+│   │       │       ├── user.role.anonymous.yml
+│   │       │       ├── user.role.authenticated.yml
+│   │       │       ├── user.role.content_editor.yml
+│   │       │       ├── user.settings.yml
+│   │       │       ├── views.view.archive.yml
+│   │       │       ├── views.view.block_content.yml
+│   │       │       ├── views.view.content.yml
+│   │       │       ├── views.view.content_recent.yml
+│   │       │       ├── views.view.files.yml
+│   │       │       ├── views.view.frontpage.yml
+│   │       │       ├── views.view.glossary.yml
+│   │       │       ├── views.view.media.yml
+│   │       │       ├── views.view.media_library.yml
+│   │       │       ├── views.view.taxonomy_term.yml
+│   │       │       ├── views.view.user_admin_people.yml
+│   │       │       ├── views.view.watchdog.yml
+│   │       │       ├── views.view.who_s_new.yml
+│   │       │       └── views.view.who_s_online.yml
+│   │       ├── language.content_settings.media.document.yml
+│   │       ├── language.content_settings.node.movie.yml
+│   │       ├── language.content_settings.node.page.yml
+│   │       ├── language.content_settings.path_alias.path_alias.yml
+│   │       ├── language.content_settings.taxonomy_term.actor.yml
+│   │       ├── language.content_settings.taxonomy_term.collection.yml
+│   │       ├── language.content_settings.taxonomy_term.content_type.yml
+│   │       ├── language.content_settings.taxonomy_term.director.yml
+│   │       ├── language.content_settings.taxonomy_term.genre.yml
+│   │       ├── language.content_settings.taxonomy_term.nationality.yml
+│   │       ├── language.content_settings.taxonomy_term.offer.yml
+│   │       ├── language.content_settings.taxonomy_term.partner.yml
+│   │       ├── language.content_settings.taxonomy_term.public.yml
+│   │       ├── language.entity.fr.yml
+│   │       ├── language.entity.und.yml
+│   │       ├── language.entity.zxx.yml
+│   │       ├── language.mappings.yml
+│   │       ├── language.negotiation.yml
+│   │       ├── language.types.yml
+│   │       ├── locale.settings.yml
+│   │       ├── media.settings.yml
+│   │       ├── media.type.document.yml
+│   │       ├── media.type.image.yml
+│   │       ├── media_library.settings.yml
+│   │       ├── menu_ui.settings.yml
+│   │       ├── navigation.block_layout.yml
+│   │       ├── navigation.settings.yml
+│   │       ├── node.settings.yml
+│   │       ├── node.type.article.yml
+│   │       ├── node.type.movie.yml
+│   │       ├── node.type.page.yml
+│   │       ├── olivero.settings.yml
+│   │       ├── paragraphs.paragraphs_type.pg_card.yml
+│   │       ├── paragraphs.paragraphs_type.pg_cards.yml
+│   │       ├── paragraphs.paragraphs_type.pg_cta.yml
+│   │       ├── paragraphs.paragraphs_type.pg_documents.yml
+│   │       ├── paragraphs.paragraphs_type.pg_horizontal_card.yml
+│   │       ├── paragraphs.paragraphs_type.pg_iframe.yml
+│   │       ├── paragraphs.paragraphs_type.pg_movies.yml
+│   │       ├── paragraphs.paragraphs_type.pg_offer.yml
+│   │       ├── paragraphs.paragraphs_type.pg_paragraph.yml
+│   │       ├── paragraphs.paragraphs_type.pg_partner.yml
+│   │       ├── paragraphs.paragraphs_type.pg_quote.yml
+│   │       ├── paragraphs.paragraphs_type.pg_quotes.yml
+│   │       ├── paragraphs.paragraphs_type.pg_video_iframe.yml
+│   │       ├── paragraphs.settings.yml
+│   │       ├── pathauto.pattern.article.yml
+│   │       ├── pathauto.pattern.collection.yml
+│   │       ├── pathauto.pattern.genre.yml
+│   │       ├── pathauto.pattern.movie.yml
+│   │       ├── pathauto.pattern.page.yml
+│   │       ├── pathauto.settings.yml
+│   │       ├── search_api.index.movies.yml
+│   │       ├── search_api.server.elasticsearch.yml
+│   │       ├── search_api.settings.yml
+│   │       ├── shortcut.set.default.yml
+│   │       ├── simple_*.yml  (16 files)
+│   │       ├── syslog.settings.yml
+│   │       ├── system.action.media_delete_action.yml
+│   │       ├── system.action.media_publish_action.yml
+│   │       ├── system.action.media_save_action.yml
+│   │       ├── system.action.media_unpublish_action.yml
+│   │       ├── system.action.node_delete_action.yml
+│   │       ├── system.action.node_make_sticky_action.yml
+│   │       ├── system.action.node_make_unsticky_action.yml
+│   │       ├── system.action.node_promote_action.yml
+│   │       ├── system.action.node_publish_action.yml
+│   │       ├── system.action.node_save_action.yml
+│   │       ├── system.action.node_unpromote_action.yml
+│   │       ├── system.action.node_unpublish_action.yml
+│   │       ├── system.action.pathauto_update_alias_node.yml
+│   │       ├── system.action.pathauto_update_alias_user.yml
+│   │       ├── system.action.taxonomy_term_publish_action.yml
+│   │       ├── system.action.taxonomy_term_unpublish_action.yml
+│   │       ├── system.action.user_add_role_action.administrator.yml
+│   │       ├── system.action.user_add_role_action.content_editor.yml
+│   │       ├── system.action.user_add_role_action.contrib.yml
+│   │       ├── system.action.user_add_role_action.dev.yml
+│   │       ├── system.action.user_add_role_action.super_contrib.yml
+│   │       ├── system.action.user_block_user_action.yml
+│   │       ├── system.action.user_cancel_user_action.yml
+│   │       ├── system.action.user_remove_role_action.administrator.yml
+│   │       ├── system.action.user_remove_role_action.content_editor.yml
+│   │       ├── system.action.user_remove_role_action.contrib.yml
+│   │       ├── system.action.user_remove_role_action.dev.yml
+│   │       ├── system.action.user_remove_role_action.super_contrib.yml
+│   │       ├── system.action.user_unblock_user_action.yml
+│   │       ├── system.advisories.yml
+│   │       ├── system.cron.yml
+│   │       ├── system.date.yml
+│   │       ├── system.diff.yml
+│   │       ├── system.feature_flags.yml
+│   │       ├── system.file.yml
+│   │       ├── system.image.gd.yml
+│   │       ├── system.image.yml
+│   │       ├── system.mail.yml
+│   │       ├── system.maintenance.yml
+│   │       ├── system.menu.account.yml
+│   │       ├── system.menu.admin.yml
+│   │       ├── system.menu.content.yml
+│   │       ├── system.menu.footer.yml
+│   │       ├── system.menu.main.yml
+│   │       ├── system.menu.tools.yml
+│   │       ├── system.menu.top-footer.yml
+│   │       ├── system.performance.yml
+│   │       ├── system.rss.yml
+│   │       ├── system.site.yml
+│   │       ├── system.theme.global.yml
+│   │       ├── system.theme.yml
+│   │       ├── taxonomy.settings.yml
+│   │       ├── taxonomy.vocabulary.actor.yml
+│   │       ├── taxonomy.vocabulary.collection.yml
+│   │       ├── taxonomy.vocabulary.content_type.yml
+│   │       ├── taxonomy.vocabulary.director.yml
+│   │       ├── taxonomy.vocabulary.genre.yml
+│   │       ├── taxonomy.vocabulary.nationality.yml
+│   │       ├── taxonomy.vocabulary.offer.yml
+│   │       ├── taxonomy.vocabulary.partner.yml
+│   │       ├── taxonomy.vocabulary.public.yml
+│   │       ├── text.settings.yml
+│   │       ├── ui_patterns_settings.settings.yml
+│   │       ├── ui_suite_dsfr.settings.yml
+│   │       ├── update.settings.yml
+│   │       ├── user.flood.yml
+│   │       ├── user.mail.yml
+│   │       ├── user.role.administrator.yml
+│   │       ├── user.role.anonymous.yml
+│   │       ├── user.role.authenticated.yml
+│   │       ├── user.role.content_editor.yml
+│   │       ├── user.role.contrib.yml
+│   │       ├── user.role.dev.yml
+│   │       ├── user.role.super_contrib.yml
+│   │       ├── user.settings.yml
+│   │       ├── views.settings.yml
+│   │       ├── views.view.archive.yml
+│   │       ├── views.view.authmap.yml
+│   │       ├── views.view.block_content.yml
+│   │       ├── views.view.content.yml
+│   │       ├── views.view.content_recent.yml
+│   │       ├── views.view.files.yml
+│   │       ├── views.view.frontpage.yml
+│   │       ├── views.view.glossary.yml
+│   │       ├── views.view.media.yml
+│   │       ├── views.view.media_library.yml
+│   │       ├── views.view.movies.yml
+│   │       ├── views.view.taxonomy_term.yml
+│   │       ├── views.view.user_admin_people.yml
+│   │       ├── views.view.watchdog.yml
+│   │       ├── views.view.who_s_new.yml
+│   │       └── views.view.who_s_online.yml
+│   ├── keys
+│   │   └── .htaccess
+│   ├── phpmd.xml
+│   ├── phpstan.neon
+│   ├── recipes
+│   │   └── README.txt
+│   ├── scripts
+│   │   └── reset-scrapper-movie.php
+│   └── web
+│       ├── README.md
+│       ├── libraries
+│       │   └── lit
+│       │       └── lit-all.min.js
+│       ├── modules
+│       │   └── custom
+│       │       └── audiodescription
+│       │           ├── audiodescription.info.yml
+│       │           ├── audiodescription.install
+│       │           ├── audiodescription.libraries.yml
+│       │           ├── audiodescription.module
+│       │           ├── audiodescription.routing.yml
+│       │           ├── audiodescription.services.yml
+│       │           ├── files
+│       │           │   ├── full-movies-bck.csv
+│       │           │   ├── full-movies.csv
+│       │           │   └── publics.csv
+│       │           ├── images
+│       │           │   ├── AD.png
+│       │           │   ├── hero.png
+│       │           │   └── information.svg
+│       │           ├── js
+│       │           │   ├── back-button.js
+│       │           │   ├── iframe-responsive.js
+│       │           │   ├── search-ajax-live-update.js
+│       │           │   └── search-ajax-url-update.js
+│       │           ├── src
+│       │           │   ├── Breadcrumb
+│       │           │   │   ├── CollectionBreadcrumbBuilder.php
+│       │           │   │   ├── DirectorBreadcrumbBuilder.php
+│       │           │   │   ├── GenreBreadcrumbBuilder.php
+│       │           │   │   ├── MovieBreadcrumbBuilder.php
+│       │           │   │   ├── NodeBreadcrumbBuilder.php
+│       │           │   │   ├── SearchBreadcrumbBuilder.php
+│       │           │   │   └── ViewBreadcrumbBuilder.php
+│       │           │   ├── Command
+│       │           │   │   └── SearchAjaxUrlUpdateCommand.php
+│       │           │   ├── Controller
+│       │           │   │   ├── Error410Controller.php
+│       │           │   │   ├── ErrorController.php
+│       │           │   │   ├── GenresController.php
+│       │           │   │   ├── HomepageController.php
+│       │           │   │   ├── MovieSearchController.php
+│       │           │   │   └── NewsletterController.php
+│       │           │   ├── Drush
+│       │           │   │   └── Commands
+│       │           │   │       ├── ImportAllPatrimonyCommand.php
+│       │           │   │       ├── ImportGenresPatrimonyCommand.php
+│       │           │   │       ├── ImportMoviesCommand.php
+│       │           │   │       ├── ImportPublicsCommand.php
+│       │           │   │       ├── ImportUnpublishMoviesCommand.php
+│       │           │   │       └── SynchronizeScratCommand.php
+│       │           │   ├── EntityManager
+│       │           │   │   ├── ActorManager.php
+│       │           │   │   ├── DirectorManager.php
+│       │           │   │   ├── GenreManager.php
+│       │           │   │   ├── MovieManager.php
+│       │           │   │   ├── NationalityManager.php
+│       │           │   │   ├── OfferManager.php
+│       │           │   │   ├── PartnerManager.php
+│       │           │   │   └── PublicManager.php
+│       │           │   ├── Enum
+│       │           │   │   ├── ImportSourceType.php
+│       │           │   │   └── Taxonomy.php
+│       │           │   ├── EventSubscriber
+│       │           │   │   ├── Error410ResponseSubscriber.php
+│       │           │   │   └── MovieExceptionSubscriber.php
+│       │           │   ├── Form
+│       │           │   │   ├── AbstractMovieSearchForm.php
+│       │           │   │   ├── FiltersMovieSearchForm.php
+│       │           │   │   ├── NewsletterSubscriptionForm.php
+│       │           │   │   ├── NewsletterUnsubscriptionForm.php
+│       │           │   │   └── SimpleMovieSearchForm.php
+│       │           │   ├── Importer
+│       │           │   │   ├── Director
+│       │           │   │   │   └── DirectorPatrimonyImporter.php
+│       │           │   │   ├── Genre
+│       │           │   │   │   └── GenrePatrimonyImporter.php
+│       │           │   │   ├── ImportException.php
+│       │           │   │   ├── Movie
+│       │           │   │   │   ├── CncCsvImporter.php
+│       │           │   │   │   ├── ImporterFactory.php
+│       │           │   │   │   ├── MovieImporterInterface.php
+│       │           │   │   │   └── MoviePatrimonyImporter.php
+│       │           │   │   ├── Nationality
+│       │           │   │   │   └── NationalityPatrimonyImporter.php
+│       │           │   │   ├── Offer
+│       │           │   │   │   └── OfferPatrimonyImporter.php
+│       │           │   │   ├── Partner
+│       │           │   │   │   └── PartnerPatrimonyImporter.php
+│       │           │   │   └── Public
+│       │           │   │       ├── PublicCsvImporter.php
+│       │           │   │       └── PublicPatrimonyImporter.php
+│       │           │   ├── Manager
+│       │           │   │   └── MovieSearchManager.php
+│       │           │   ├── Parser
+│       │           │   │   └── CsvParser.php
+│       │           │   ├── Plugin
+│       │           │   │   └── Block
+│       │           │   │       ├── BackButtonBlock.php
+│       │           │   │       ├── BackToTopBlock.php
+│       │           │   │       ├── HeaderSearchFormBlock.php
+│       │           │   │       ├── HpCollectionsBlock.php
+│       │           │   │       ├── HpFreeMoviesBlock.php
+│       │           │   │       ├── HpHighlightedCollectionsBlock.php
+│       │           │   │       ├── HpLastMoviesBlock.php
+│       │           │   │       ├── HpNearEndFreeMoviesBlock.php
+│       │           │   │       ├── HpNewFreeMoviesBlock.php
+│       │           │   │       ├── InfoBannerBlock.php
+│       │           │   │       ├── SearchBlock.php
+│       │           │   │       └── SearchContactBlock.php
+│       │           │   ├── Popo
+│       │           │   │   └── MovieSearchParametersBag.php
+│       │           │   └── TwigExtension
+│       │           │       ├── RemovePrefixNumberTwigFilter.php
+│       │           │       └── WysiwygChapoTwigFilter.php
+│       │           └── templates
+│       │               ├── back-button-block.html.twig
+│       │               ├── back-to-top-block.html.twig
+│       │               ├── error-403.html.twig
+│       │               ├── error-404.html.twig
+│       │               ├── error-410.html.twig
+│       │               ├── genres-list.html.twig
+│       │               ├── header-search-form-block.html.twig
+│       │               ├── homepage.html.twig
+│       │               ├── hp-collections-block.html.twig
+│       │               ├── hp-free-movies-block.twig
+│       │               ├── hp-highlighted-collections-block.html.twig
+│       │               ├── hp-near-end-free-movies-block.twig
+│       │               ├── hp-new-free-movies-block.twig
+│       │               ├── info-banner-block.html.twig
+│       │               ├── movie-search-ajax.html.twig
+│       │               ├── movie-search.html.twig
+│       │               ├── movies-contact-block.html.twig
+│       │               ├── newsletter-confirmation.html.twig
+│       │               ├── newsletter-subscription.html.twig
+│       │               ├── newsletter-unsubscription-confirmation.html.twig
+│       │               ├── newsletter-unsubscription.html.twig
+│       │               ├── search-block.html.twig
+│       │               └── search-contact-block.html.twig
+│       ├── sites
+│       │   └── default
+│       │       └── settings.bkp
+│       └── themes
+│           └── ad_theme
+│               ├── ad_theme.info.yml
+│               ├── ad_theme.libraries.yml
+│               ├── ad_theme.theme
+│               ├── css
+│               │   ├── styles.css
+│               │   └── styles.css.map
+│               ├── dist
+│               │   ├── scripts.js
+│               │   └── styles.css
+│               ├── images
+│               │   ├── ad_icon.png
+│               │   ├── logo-betagouvfr.svg
+│               │   ├── moon.svg
+│               │   ├── placeholder.16x9.png
+│               │   ├── star_icon.png
+│               │   ├── sun.svg
+│               │   └── system.svg
+│               ├── logo.svg
+│               ├── package-lock.json
+│               ├── package.json
+│               ├── src
+│               │   ├── components
+│               │   │   ├── partners-select.js
+│               │   │   ├── rich-select.js
+│               │   │   └── utilities
+│               │   │       └── global-styles.js
+│               │   ├── main.js
+│               │   ├── main.scss
+│               │   └── scss
+│               │       ├── base
+│               │       │   └── _base.scss
+│               │       ├── layout
+│               │       │   └── _layout.scss
+│               │       ├── libs
+│               │       │   └── _libs.scss
+│               │       ├── modules
+│               │       │   ├── _back-to-top.scss
+│               │       │   ├── _block.scss
+│               │       │   ├── _header.scss
+│               │       │   ├── _homepage.scss
+│               │       │   ├── _modules.scss
+│               │       │   ├── _movies.scss
+│               │       │   ├── _newsletter.scss
+│               │       │   ├── _rich-select.scss
+│               │       │   ├── _search-block.scss
+│               │       │   ├── _search.scss
+│               │       │   ├── _summary.scss
+│               │       │   ├── _wysiwyg.scss
+│               │       │   ├── movie
+│               │       │   │   ├── _card.scss
+│               │       │   │   └── _teaser.scss
+│               │       │   ├── paragraph
+│               │       │   │   ├── _pg-card.scss
+│               │       │   │   ├── _pg-cards.scss
+│               │       │   │   ├── _pg-horizontal-card.scss
+│               │       │   │   ├── _pg-movies.scss
+│               │       │   │   ├── _pg-paragraph.scss
+│               │       │   │   ├── _pg-quote.scss
+│               │       │   │   └── _pg-video-iframe.scss
+│               │       │   └── partner
+│               │       │       └── _partner-card.scss
+│               │       ├── states
+│               │       │   └── _states.scss
+│               │       ├── themes
+│               │       │   ├── _dark.scss
+│               │       │   ├── _dsfr.scss
+│               │       │   ├── _light.scss
+│               │       │   └── _themes.scss
+│               │       └── tools
+│               │           ├── _fix.scss
+│               │           └── _tools.scss
+│               ├── templates
+│               │   ├── block
+│               │   │   ├── back-to-top-block.html.twig
+│               │   │   ├── block--ad-hp-collections-block.html.twig
+│               │   │   ├── block--ad-hp-free-movies-block.html.twig
+│               │   │   ├── block--ad-hp-highlighted-collections-block.html.twig
+│               │   │   ├── block--ad-hp-near-end-free-movies-block.html.twig
+│               │   │   ├── block--ad-hp-new-free-movies-block.html.twig
+│               │   │   ├── block--ad-movies-contact-block.html.twig
+│               │   │   ├── block--back-to-top.html.twig
+│               │   │   ├── block--system-menu-block.html.twig
+│               │   │   ├── block--views-exposed-filter-block--search-search-page.html.twig
+│               │   │   ├── hp-collections-block.html.twig
+│               │   │   ├── hp-free-movies-block.html.twig
+│               │   │   ├── hp-highlighted-collections-block.html.twig
+│               │   │   ├── hp-near-end-free-movies-block.html.twig
+│               │   │   ├── hp-new-free-movies-block.html.twig
+│               │   │   ├── info-banner-block.html.twig
+│               │   │   ├── search-block.html.twig
+│               │   │   └── search-contact-block.html.twig
+│               │   ├── error
+│               │   │   ├── error-403.html.twig
+│               │   │   ├── error-404.html.twig
+│               │   │   └── error-410.html.twig
+│               │   ├── field
+│               │   │   └── field--paragraph--pg-cards.html.twig
+│               │   ├── form
+│               │   │   ├── checkboxes.html.twig
+│               │   │   ├── fieldset--rich-select.html.twig
+│               │   │   ├── fieldset.html.twig
+│               │   │   ├── form-element--select.html.twig
+│               │   │   └── select.html.twig
+│               │   ├── menu
+│               │   │   ├── pattern-footer.html.twig
+│               │   │   └── pattern-footer_menu.html.twig
+│               │   ├── newsletter
+│               │   │   ├── newsletter-confirmation.html.twig
+│               │   │   ├── newsletter-subscription.html.twig
+│               │   │   ├── newsletter-unsubscription-confirmation.html.twig
+│               │   │   └── newsletter-unsubscription.html.twig
+│               │   ├── node
+│               │   │   ├── node--article--full.html.twig
+│               │   │   ├── node--movie--card-result-h4.html.twig
+│               │   │   ├── node--movie--card-result.html.twig
+│               │   │   ├── node--movie--card.html.twig
+│               │   │   ├── node--movie--full.html.twig
+│               │   │   ├── node--movie--teaser.html.twig
+│               │   │   └── node--page--full.html.twig
+│               │   ├── page
+│               │   │   ├── genres-list.html.twig
+│               │   │   └── homepage.html.twig
+│               │   ├── paragraph
+│               │   │   ├── paragraph--pg-card--full.html.twig
+│               │   │   ├── paragraph--pg-cards--full.html.twig
+│               │   │   ├── paragraph--pg-horizontal-card--full.html.twig
+│               │   │   ├── paragraph--pg-iframe--full.html.twig
+│               │   │   ├── paragraph--pg-movies--full.html.twig
+│               │   │   ├── paragraph--pg-paragraph--full.html.twig
+│               │   │   ├── paragraph--pg-quote--full.html.twig
+│               │   │   ├── paragraph--pg-quotes--full.html.twig
+│               │   │   └── paragraph--pg-video-iframe--full.html.twig
+│               │   ├── pattern
+│               │   │   ├── pattern-breadcrumb.html.twig
+│               │   │   ├── pattern-button.html.twig
+│               │   │   ├── pattern-header.html.twig
+│               │   │   └── pattern-nav-menu.html.twig
+│               │   ├── region
+│               │   │   └── region--footer-bottom.html.twig
+│               │   ├── search
+│               │   │   ├── form-element--search.html.twig
+│               │   │   ├── input--search.html.twig
+│               │   │   ├── input--submit--search-submit.html.twig
+│               │   │   ├── movie-search-ajax.html.twig
+│               │   │   └── movie-search.html.twig
+│               │   ├── system
+│               │   │   ├── html.html.twig
+│               │   │   ├── menu--main.html.twig
+│               │   │   ├── page-title--article--full.html.twig
+│               │   │   ├── page-title--director--full.html.twig
+│               │   │   ├── page-title--movie--full.html.twig
+│               │   │   ├── page-title--movie-search.html.twig
+│               │   │   ├── page-title--newsletter-confirmation.html.twig
+│               │   │   ├── page-title--newsletter-subscription.html.twig
+│               │   │   ├── page-title--newsletter-unsubscription-confirmation.html.twig
+│               │   │   ├── page-title--newsletter-unsubscription.html.twig
+│               │   │   ├── page-title--page--full.html.twig
+│               │   │   ├── page-title.html.twig
+│               │   │   └── page.html.twig
+│               │   ├── taxonomy_term
+│               │   │   ├── taxonomy-term--collection--full.html.twig
+│               │   │   ├── taxonomy-term--collection--highlighted.html.twig
+│               │   │   ├── taxonomy-term--collection--tile.html.twig
+│               │   │   ├── taxonomy-term--director--full.html.twig
+│               │   │   ├── taxonomy-term--genre--full.html.twig
+│               │   │   ├── taxonomy-term--genre--list.html.twig
+│               │   │   └── taxonomy-term--genre--tile.html.twig
+│               │   └── view
+│               │       ├── views-view--genres--page.html.twig
+│               │       ├── views-view--search--search-page.html.twig
+│               │       ├── views-view--taxonomy-term.html.twig
+│               │       └── views-view-unformatted--genres--page.html.twig
+│               └── vite.config.mjs
+├── infra
+│   ├── compose.yml
+│   └── traefik.yml
+├── package-lock.json
+├── package.json
+├── patrimony
+│   ├── .env.dev
+│   ├── .env.local.dist
+│   ├── .env.test
+│   ├── .gitignore
+│   ├── bin
+│   │   └── console
+│   ├── codeception.yml
+│   ├── compose.override.yaml
+│   ├── compose.yaml
+│   ├── composer.json
+│   ├── composer.lock
+│   ├── config
+│   │   ├── bundles.php
+│   │   ├── packages
+│   │   │   ├── api_platform.yaml
+│   │   │   ├── cache.yaml
+│   │   │   ├── debug.yaml
+│   │   │   ├── doctrine.yaml
+│   │   │   ├── doctrine_migrations.yaml
+│   │   │   ├── framework.yaml
+│   │   │   ├── monolog.yaml
+│   │   │   ├── nelmio_cors.yaml
+│   │   │   ├── patrimony.yaml
+│   │   │   ├── routing.yaml
+│   │   │   ├── security.yaml
+│   │   │   ├── translation.yaml
+│   │   │   ├── twig.yaml
+│   │   │   ├── twig_component.yaml
+│   │   │   ├── validator.yaml
+│   │   │   └── web_profiler.yaml
+│   │   ├── preload.php
+│   │   ├── routes
+│   │   │   ├── api_platform.yaml
+│   │   │   ├── easyadmin.yaml
+│   │   │   ├── framework.yaml
+│   │   │   ├── security.yaml
+│   │   │   └── web_profiler.yaml
+│   │   ├── routes.yaml
+│   │   └── services.yaml
+│   ├── data
+│   │   ├── 2025_02_orange_vod.csv
+│   │   ├── france_tv.csv
+│   │   ├── publics.csv
+│   │   └── publics_bkp.csv
+│   ├── grumphp.yml
+│   ├── migrations
+│   │   ├── .gitignore
+│   │   ├── Version20250217224758.php
+│   │   ├── Version20250218201041.php
+│   │   ├── Version20250715152541.php
+│   │   └── Version20250813134241.php
+│   ├── phpcs.xml
+│   ├── phpcs.xml.dist
+│   ├── phpmd.xml
+│   ├── phpstan.dist.neon
+│   ├── phpunit.xml.dist
+│   ├── public
+│   │   └── index.php
+│   ├── src
+│   │   ├── ApiResource
+│   │   │   └── .gitignore
+│   │   ├── Command
+│   │   │   ├── ImportArteTvApiCommand.php
+│   │   │   ├── ImportCanalReplayApiCommand.php
+│   │   │   ├── ImportCanalVodApiCommand.php
+│   │   │   ├── ImportCncPublicCommand.php
+│   │   │   ├── ImportFranceTvApiCommand.php
+│   │   │   ├── ImportFranceTvCsvCommand.php
+│   │   │   ├── ImportLaCinetekApiCommand.php
+│   │   │   ├── ImportOrangeVodCsvCommand.php
+│   │   │   ├── ImportTf1ApiCommand.php
+│   │   │   └── ImportWebediaPlatformApiCommand.php
+│   │   ├── Controller
+│   │   │   ├── .gitignore
+│   │   │   ├── Admin
+│   │   │   │   ├── DashboardController.php
+│   │   │   │   ├── GenreCrudController.php
+│   │   │   │   ├── MovieCrudController.php
+│   │   │   │   ├── NewsletterController.php
+│   │   │   │   ├── OfferCrudController.php
+│   │   │   │   ├── PartnerCrudController.php
+│   │   │   │   ├── PublicRestrictionCrudController.php
+│   │   │   │   ├── SolutionCrudController.php
+│   │   │   │   └── SourceMovieCrudController.php
+│   │   │   └── SecurityController.php
+│   │   ├── DataFixtures
+│   │   │   └── AppFixtures.php
+│   │   ├── Doctrine
+│   │   │   └── EventListener
+│   │   │       └── FixPostgreSQLDefaultSchemaListener.php
+│   │   ├── Entity
+│   │   │   ├── .gitignore
+│   │   │   ├── Patrimony
+│   │   │   │   ├── Actor.php
+│   │   │   │   ├── ActorMovie.php
+│   │   │   │   ├── Director.php
+│   │   │   │   ├── Genre.php
+│   │   │   │   ├── Language.php
+│   │   │   │   ├── Movie.php
+│   │   │   │   ├── Nationality.php
+│   │   │   │   ├── Offer.php
+│   │   │   │   ├── Partner.php
+│   │   │   │   ├── PublicRestriction.php
+│   │   │   │   └── Solution.php
+│   │   │   ├── Source
+│   │   │   │   └── SourceMovie.php
+│   │   │   ├── Trait
+│   │   │   │   └── Timestampable.php
+│   │   │   └── User.php
+│   │   ├── EntityManager
+│   │   │   ├── ActorManager.php
+│   │   │   ├── DirectorManager.php
+│   │   │   ├── GenreManager.php
+│   │   │   ├── LanguageManager.php
+│   │   │   ├── MovieManager.php
+│   │   │   ├── NationalityManager.php
+│   │   │   ├── PublicManager.php
+│   │   │   ├── SolutionManager.php
+│   │   │   └── SourceMovieManager.php
+│   │   ├── Enum
+│   │   │   ├── ApiResponseCode.php
+│   │   │   ├── ApiVersionPrefix.php
+│   │   │   ├── ImportSourceType.php
+│   │   │   ├── OfferCode.php
+│   │   │   ├── PartnerCode.php
+│   │   │   └── ValidationErrorCode.php
+│   │   ├── Importer
+│   │   │   ├── ImportException.php
+│   │   │   ├── Movie
+│   │   │   │   ├── ArteTvApiImporter.php
+│   │   │   │   ├── CanalReplayApiImporter.php
+│   │   │   │   ├── CanalVodApiImporter.php
+│   │   │   │   ├── FranceTvApiImporter.php
+│   │   │   │   ├── FranceTvCsvImporter.php
+│   │   │   │   ├── ImporterFactory.php
+│   │   │   │   ├── LaCinetekApiImporter.php
+│   │   │   │   ├── MovieImporterInterface.php
+│   │   │   │   ├── OrangeVodCsvImporter.php
+│   │   │   │   └── Tf1ApiImporter.php
+│   │   │   └── Public
+│   │   │       └── PublicCsvImporter.php
+│   │   ├── Kernel.php
+│   │   ├── Parser
+│   │   │   └── CsvParser.php
+│   │   ├── Provider
+│   │   │   └── MainGenresProvider.php
+│   │   ├── Repository
+│   │   │   ├── .gitignore
+│   │   │   ├── GenreRepository.php
+│   │   │   ├── MovieRepository.php
+│   │   │   ├── SolutionRepository.php
+│   │   │   ├── SourceMovieRepository.php
+│   │   │   └── UserRepository.php
+│   │   ├── Security
+│   │   │   ├── ApiTokenHandler.php
+│   │   │   ├── ApiUser.php
+│   │   │   ├── ApiUserProvider.php
+│   │   │   ├── OidcAuthenticator.php
+│   │   │   └── OidcService.php
+│   │   ├── Service
+│   │   │   ├── MovieAutoMerger.php
+│   │   │   └── MovieFetcher.php
+│   │   └── Util
+│   │       └── EntityCodeService.php
+│   ├── startup.sh
+│   ├── symfony.lock
+│   ├── templates
+│   │   ├── base.html.twig
+│   │   ├── dashboard
+│   │   │   └── index.html.twig
+│   │   ├── newsletter
+│   │   │   ├── generator.html.twig
+│   │   │   └── newsletter.html.twig
+│   │   └── security
+│   │       └── login.html.twig
+│   ├── tests
+│   │   ├── Acceptance
+│   │   │   └── .gitignore
+│   │   ├── Acceptance.suite.yml
+│   │   ├── Api.suite.yml
+│   │   ├── Functional
+│   │   │   └── .gitignore
+│   │   ├── Functional.suite.yml
+│   │   ├── Support
+│   │   │   ├── AcceptanceTester.php
+│   │   │   ├── ApiTester.php
+│   │   │   ├── Data
+│   │   │   │   └── .gitignore
+│   │   │   ├── FunctionalTester.php
+│   │   │   ├── Helper
+│   │   │   │   ├── .gitignore
+│   │   │   │   └── ApiResponseHelper.php
+│   │   │   ├── UnitTester.php
+│   │   │   └── _generated
+│   │   │       └── .gitignore
+│   │   ├── Unit
+│   │   │   ├── .gitignore
+│   │   │   └── Enum
+│   │   │       └── ApiResponseCodeTest.php
+│   │   ├── Unit.suite.yml
+│   │   ├── bootstrap.php
+│   │   └── object-manager.php
+│   └── translations
+│       └── .gitignore
+└── scripts
+    ├── crontab
+    ├── logrotate
+    ├── restore_drupal.sh
+    └── restore_patrimony.sh
+156 directories, 1323 files
