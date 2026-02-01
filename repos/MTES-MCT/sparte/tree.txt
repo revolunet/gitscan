@@ -1,0 +1,2882 @@
+.
+├── .bandit
+├── .buildpacks
+├── .dockerignore
+├── .env.example
+├── .github
+│   ├── release.yml
+│   └── workflows
+│       ├── airflow_test.yml
+│       ├── deploy_airflow.yml
+│       └── pr.yml
+├── .gitignore
+├── .pre-commit-config.yaml
+├── .python-version
+├── .slugignore
+├── .vscode
+│   ├── launch.json
+│   ├── settings.json
+│   └── tasks.json
+├── Aptfile
+├── Dockerfile
+├── Dockerfile.frontend
+├── LICENSE
+├── Pipfile
+├── Pipfile.lock
+├── Procfile
+├── README.md
+├── airflow
+│   ├── .astro
+│   │   ├── config.yaml
+│   │   ├── dag_integrity_exceptions.txt
+│   │   └── test_dag_integrity_default.py
+│   ├── .dockerignore
+│   ├── .env.example
+│   ├── .gitignore
+│   ├── Dockerfile
+│   ├── README.md
+│   ├── dags
+│   │   ├── __init__.py
+│   │   ├── backup_dbt_db.py
+│   │   ├── data_gouv
+│   │   │   ├── Config.py
+│   │   │   ├── __init__.py
+│   │   │   ├── configs.py
+│   │   │   ├── csv_exports.py
+│   │   │   ├── geopackage_exports.py
+│   │   │   └── utils.py
+│   │   ├── dbt_cmd.py
+│   │   ├── deploy_static_files.py
+│   │   ├── diff_ocsge_download_page_to_mattermost.py
+│   │   ├── download_all_ocsge.py
+│   │   ├── identify_changed_ocsge_data.py
+│   │   ├── ingest_admin_express.py
+│   │   ├── ingest_app_tables.py
+│   │   ├── ingest_brevo_user_organism.py
+│   │   ├── ingest_cartofriches.py
+│   │   ├── ingest_cog_changes.py
+│   │   ├── ingest_gpu.py
+│   │   ├── ingest_majic.py
+│   │   ├── ingest_matomo_tables.py
+│   │   ├── ingest_pene.py
+│   │   ├── ingest_plan_communal.py
+│   │   ├── ingest_population.py
+│   │   ├── ingest_rpls.py
+│   │   ├── ingest_scots.py
+│   │   ├── ingest_sitadel.py
+│   │   ├── ingest_zlv.py
+│   │   ├── ocsge.py
+│   │   ├── update_app.py
+│   │   ├── update_brevo.py
+│   │   └── vector_tiles
+│   │       ├── __init__.py
+│   │       ├── create_all_vector_tiles_france.py
+│   │       ├── create_ocsge_artif_diff_centroid_vector_tiles.py
+│   │       ├── create_ocsge_artif_diff_vector_tiles.py
+│   │       ├── create_ocsge_diff_centroid_vector_tiles.py
+│   │       ├── create_ocsge_diff_vector_tiles.py
+│   │       ├── create_ocsge_friche_vector_tiles.py
+│   │       └── create_ocsge_vector_tiles.py
+│   ├── dbt_profile.yml
+│   ├── include
+│   │   ├── connectors
+│   │   │   ├── Brevo.py
+│   │   │   └── __init__.py
+│   │   ├── container.py
+│   │   ├── data
+│   │   │   ├── admin_express
+│   │   │   │   └── sources.json
+│   │   │   ├── majic
+│   │   │   │   └── sources.py
+│   │   │   └── ocsge
+│   │   │       ├── BaseOcsgeSourceService.py
+│   │   │       ├── dag_configs.py
+│   │   │       ├── delete_in_dw.py
+│   │   │       ├── entities
+│   │   │       │   ├── OcsgeSource.py
+│   │   │       │   └── __init__.py
+│   │   │       ├── enums.py
+│   │   │       ├── normalization
+│   │   │       │   ├── __init__.py
+│   │   │       │   ├── get_normalized_fields.py
+│   │   │       │   ├── ocsge_artif_diff_normalization_sql.py
+│   │   │       │   ├── ocsge_artif_normalization_sql.py
+│   │   │       │   ├── ocsge_diff_normalization_sql.py
+│   │   │       │   ├── ocsge_occupation_du_sol_normalization_sql.py
+│   │   │       │   └── ocsge_zone_construite_normalization_sql.py
+│   │   │       └── sources.json
+│   │   ├── file_handling
+│   │   │   ├── BaseCSVFileIngestor.py
+│   │   │   ├── BaseHTTPFileHandler.py
+│   │   │   ├── BaseS3Handler.py
+│   │   │   ├── BaseTmpPathGenerator.py
+│   │   │   ├── CSVFileIngestor.py
+│   │   │   ├── DataGouvHandler.py
+│   │   │   ├── GeoJsonToGzippedGeoJsonOnS3Handler.py
+│   │   │   ├── HTTPFileHandler.py
+│   │   │   ├── PaginatedJsonToS3Handler.py
+│   │   │   ├── RemoteToS3FileHandler.py
+│   │   │   ├── S3CSVFileToDBTableHandler.py
+│   │   │   ├── S3GeoJsonFileToDBTableHandler.py
+│   │   │   ├── S3Handler.py
+│   │   │   ├── S3ToDataGouvHandler.py
+│   │   │   ├── SQLToCSVOnS3Handler.py
+│   │   │   ├── SQLToGeoJsonOnS3Handler.py
+│   │   │   ├── SQLToGeojsonSeqOnS3Handler.py
+│   │   │   ├── SQLToGeopackageOnS3Handler.py
+│   │   │   ├── TmpPathGenerator.py
+│   │   │   └── __init__.py
+│   │   ├── notification
+│   │   │   ├── BaseNotificationService.py
+│   │   │   ├── MattermostNotificationService.py
+│   │   │   └── __init__.py
+│   │   ├── pools.py
+│   │   ├── sql
+│   │   │   └── sparte
+│   │   │       ├── .gitignore
+│   │   │       ├── analyses
+│   │   │       │   └── .gitkeep
+│   │   │       ├── dbt_project.yml
+│   │   │       ├── macros
+│   │   │       │   ├── .gitkeep
+│   │   │       │   ├── admin_express
+│   │   │       │   │   ├── commune.sql
+│   │   │       │   │   ├── departement.sql
+│   │   │       │   │   ├── epci.sql
+│   │   │       │   │   ├── get_ept_from_epci_array.sql
+│   │   │       │   │   ├── get_non_ept_from_epci_array.sql
+│   │   │       │   │   ├── is_ept.sql
+│   │   │       │   │   └── region.sql
+│   │   │       │   ├── app
+│   │   │       │   │   ├── user_function_display.sql
+│   │   │       │   │   ├── user_organism_display.sql
+│   │   │       │   │   └── user_service_display.sql
+│   │   │       │   ├── brevo
+│   │   │       │   │   └── format_date_brevo.sql
+│   │   │       │   ├── cartofriches
+│   │   │       │   │   ├── common_friche_for_app_fields.sql
+│   │   │       │   │   ├── count_friche_by_value.sql
+│   │   │       │   │   ├── standardize_friche_nature.sql
+│   │   │       │   │   ├── standardize_friche_type.sql
+│   │   │       │   │   └── standardize_friche_zonage_environnemental.sql
+│   │   │       │   ├── cumulative_flux.sql
+│   │   │       │   ├── delete_from_this_where_field_not_in.sql
+│   │   │       │   ├── gpu
+│   │   │       │   │   ├── standardize_zonage_type.sql
+│   │   │       │   │   └── standardize_zonage_type.yml
+│   │   │       │   ├── insee
+│   │   │       │   │   ├── commune_changed_since.sql
+│   │   │       │   │   ├── divide_population.sql
+│   │   │       │   │   ├── merge_flux_population_by_admin_level.sql
+│   │   │       │   │   ├── merge_population.sql
+│   │   │       │   │   └── merge_stock_population_by_admin_level.sql
+│   │   │       │   ├── is_artificial.sql
+│   │   │       │   ├── is_impermeable.sql
+│   │   │       │   ├── land
+│   │   │       │   │   ├── nearest_territories.sql
+│   │   │       │   │   └── similar_territories.sql
+│   │   │       │   ├── majic
+│   │   │       │   │   ├── divide_majic.sql
+│   │   │       │   │   ├── majic.sql
+│   │   │       │   │   ├── merge_majic.sql
+│   │   │       │   │   └── merge_majic_by_admin_level.sql
+│   │   │       │   ├── matomo
+│   │   │       │   │   ├── extract_project_id_from_url.sql
+│   │   │       │   │   └── extract_visited_page_from_url.sql
+│   │   │       │   ├── ocsge
+│   │   │       │   │   ├── artif
+│   │   │       │   │   │   ├── merge_artif_commune_flux_by_admin_level.sql
+│   │   │       │   │   │   ├── merge_artif_commune_flux_by_sol.sql
+│   │   │       │   │   │   ├── merge_artif_commune_flux_by_sol_and_admin_level.sql
+│   │   │       │   │   │   └── merge_artif_net_flux_by_admin_level.sql
+│   │   │       │   │   ├── imper
+│   │   │       │   │   │   ├── merge_imper_commune_flux_by_admin_level.sql
+│   │   │       │   │   │   ├── merge_imper_commune_flux_by_sol.sql
+│   │   │       │   │   │   ├── merge_imper_commune_flux_by_sol_and_admin_level.sql
+│   │   │       │   │   │   └── merge_imper_net_flux_by_admin_level.sql
+│   │   │       │   │   ├── merge_ocsge_commune.sql
+│   │   │       │   │   ├── merge_ocsge_friche.sql
+│   │   │       │   │   ├── merge_ocsge_indicateur_commune_by_admin_level.sql
+│   │   │       │   │   ├── merge_ocsge_indicateur_commune_by_sol.sql
+│   │   │       │   │   ├── merge_ocsge_indicateur_commune_by_sol_and_admin_level.sql
+│   │   │       │   │   ├── merge_ocsge_indicateur_zonage_by_sol.sql
+│   │   │       │   │   ├── merge_ocsge_indicateur_zonage_commune_by_admin_level.sql
+│   │   │       │   │   ├── merge_ocsge_zonage.sql
+│   │   │       │   │   └── merge_ocsge_zonage_commune.sql
+│   │   │       │   ├── rpls
+│   │   │       │   │   ├── coalesce_rpls.sql
+│   │   │       │   │   └── sum_rpls.sql
+│   │   │       │   ├── simplify.sql
+│   │   │       │   ├── utils
+│   │   │       │   │   ├── boolean_as_oui_non.sql
+│   │   │       │   │   ├── create_idx_if_not_exists.sql
+│   │   │       │   │   ├── m2_to_ha.sql
+│   │   │       │   │   ├── make_valid_multipolygon.sql
+│   │   │       │   │   ├── raw_date_starts_with_yyyy.sql
+│   │   │       │   │   ├── sum_percent.sql
+│   │   │       │   │   └── sum_percent_median_avg.sql
+│   │   │       │   └── zlv
+│   │   │       │       └── secretisation_zlv.sql
+│   │   │       ├── models
+│   │   │       │   ├── admin_express
+│   │   │       │   │   ├── commune.sql
+│   │   │       │   │   ├── commune_guadeloupe.sql
+│   │   │       │   │   ├── commune_guyane.sql
+│   │   │       │   │   ├── commune_martinique.sql
+│   │   │       │   │   ├── commune_mayotte.sql
+│   │   │       │   │   ├── commune_metropole.sql
+│   │   │       │   │   ├── commune_reunion.sql
+│   │   │       │   │   ├── departement.sql
+│   │   │       │   │   ├── departement_guadeloupe.sql
+│   │   │       │   │   ├── departement_guyane.sql
+│   │   │       │   │   ├── departement_martinique.sql
+│   │   │       │   │   ├── departement_mayotte.sql
+│   │   │       │   │   ├── departement_metropole.sql
+│   │   │       │   │   ├── departement_reunion.sql
+│   │   │       │   │   ├── epci.sql
+│   │   │       │   │   ├── epci_guadeloupe.sql
+│   │   │       │   │   ├── epci_guyane.sql
+│   │   │       │   │   ├── epci_martinique.sql
+│   │   │       │   │   ├── epci_mayotte.sql
+│   │   │       │   │   ├── epci_metropole.sql
+│   │   │       │   │   ├── epci_reunion.sql
+│   │   │       │   │   ├── epci_tout_type.sql
+│   │   │       │   │   ├── ept.sql
+│   │   │       │   │   ├── region.sql
+│   │   │       │   │   ├── region_guadeloupe.sql
+│   │   │       │   │   ├── region_guyane.sql
+│   │   │       │   │   ├── region_martinique.sql
+│   │   │       │   │   ├── region_mayotte.sql
+│   │   │       │   │   ├── region_metropole.sql
+│   │   │       │   │   ├── region_reunion.sql
+│   │   │       │   │   └── schema.yml
+│   │   │       │   ├── analytics
+│   │   │       │   │   ├── tech_stats.sql
+│   │   │       │   │   ├── trajectoire_nation.sql
+│   │   │       │   │   ├── trajectoires_stats.sql
+│   │   │       │   │   └── user_single_view.sql
+│   │   │       │   ├── app
+│   │   │       │   │   ├── newsletter.sql
+│   │   │       │   │   ├── newsletter.yml
+│   │   │       │   │   ├── project.sql
+│   │   │       │   │   ├── project.yml
+│   │   │       │   │   ├── request.sql
+│   │   │       │   │   ├── request.yml
+│   │   │       │   │   ├── satisfaction_form_entry.sql
+│   │   │       │   │   ├── satisfaction_form_entry.yml
+│   │   │       │   │   ├── sources.yml
+│   │   │       │   │   ├── user.sql
+│   │   │       │   │   └── user.yml
+│   │   │       │   ├── cartofriches
+│   │   │       │   │   ├── aggragated
+│   │   │       │   │   │   ├── friche_land_by_pollution.sql
+│   │   │       │   │   │   ├── friche_land_by_statut.sql
+│   │   │       │   │   │   ├── friche_land_by_surface.sql
+│   │   │       │   │   │   ├── friche_land_by_type.sql
+│   │   │       │   │   │   ├── friche_land_by_zonage_environnemental.sql
+│   │   │       │   │   │   ├── friche_land_by_zonage_type.sql
+│   │   │       │   │   │   └── friche_land_by_zone_activite.sql
+│   │   │       │   │   ├── friche.sql
+│   │   │       │   │   ├── friche.yml
+│   │   │       │   │   ├── friche_details.sql
+│   │   │       │   │   ├── friche_details.yml
+│   │   │       │   │   ├── friche_land.sql
+│   │   │       │   │   ├── friche_surface_ranks.sql
+│   │   │       │   │   ├── land_friche_status.sql
+│   │   │       │   │   ├── land_friche_status.yml
+│   │   │       │   │   └── sources.yml
+│   │   │       │   ├── docurba
+│   │   │       │   │   ├── docurba_scots.sql
+│   │   │       │   │   ├── docurba_scots_perimetre.sql
+│   │   │       │   │   ├── docurba_scots_with_geom.sql
+│   │   │       │   │   └── sources.yml
+│   │   │       │   ├── for_app
+│   │   │       │   │   ├── administration
+│   │   │       │   │   │   ├── for_app_commune.sql
+│   │   │       │   │   │   ├── for_app_departement.sql
+│   │   │       │   │   │   ├── for_app_epci.sql
+│   │   │       │   │   │   ├── for_app_epci_departements.sql
+│   │   │       │   │   │   ├── for_app_epci_departements.yml
+│   │   │       │   │   │   ├── for_app_land.sql
+│   │   │       │   │   │   ├── for_app_land.yml
+│   │   │       │   │   │   ├── for_app_region.sql
+│   │   │       │   │   │   ├── for_app_scot.sql
+│   │   │       │   │   │   ├── for_app_scot_departements.sql
+│   │   │       │   │   │   ├── for_app_scot_departements.yml
+│   │   │       │   │   │   ├── for_app_scot_regions.sql
+│   │   │       │   │   │   └── for_app_scot_regions.yml
+│   │   │       │   │   ├── artificialisation
+│   │   │       │   │   │   ├── flux
+│   │   │       │   │   │   │   ├── for_app_landartifflux.sql
+│   │   │       │   │   │   │   ├── for_app_landartifflux.yml
+│   │   │       │   │   │   │   ├── for_app_landartiffluxcouverturecomposition.sql
+│   │   │       │   │   │   │   ├── for_app_landartiffluxcouverturecomposition.yml
+│   │   │       │   │   │   │   ├── for_app_landartiffluxcouverturecompositionindex.sql
+│   │   │       │   │   │   │   ├── for_app_landartiffluxcouverturecompositionindex.yml
+│   │   │       │   │   │   │   ├── for_app_landartiffluxindex.sql
+│   │   │       │   │   │   │   ├── for_app_landartiffluxindex.yml
+│   │   │       │   │   │   │   ├── for_app_landartiffluxusagecomposition.sql
+│   │   │       │   │   │   │   ├── for_app_landartiffluxusagecomposition.yml
+│   │   │       │   │   │   │   ├── for_app_landartiffluxusagecompositionindex.sql
+│   │   │       │   │   │   │   └── for_app_landartiffluxusagecompositionindex.yml
+│   │   │       │   │   │   ├── for_app_artifzonage.sql
+│   │   │       │   │   │   ├── for_app_artifzonage.yml
+│   │   │       │   │   │   ├── for_app_artifzonageindex.sql
+│   │   │       │   │   │   ├── for_app_artifzonageindex.yml
+│   │   │       │   │   │   ├── for_app_landartifstock.sql
+│   │   │       │   │   │   ├── for_app_landartifstock.yml
+│   │   │       │   │   │   ├── for_app_landartifstockcouverturecomposition.sql
+│   │   │       │   │   │   ├── for_app_landartifstockcouverturecomposition.yml
+│   │   │       │   │   │   ├── for_app_landartifstockcouverturecompositionindex.sql
+│   │   │       │   │   │   ├── for_app_landartifstockcouverturecompositionindex.yml
+│   │   │       │   │   │   ├── for_app_landartifstockindex.sql
+│   │   │       │   │   │   ├── for_app_landartifstockindex.yml
+│   │   │       │   │   │   ├── for_app_landartifstockusagecomposition.sql
+│   │   │       │   │   │   ├── for_app_landartifstockusagecomposition.yml
+│   │   │       │   │   │   ├── for_app_landartifstockusagecompositionindex.sql
+│   │   │       │   │   │   └── for_app_landartifstockusagecompositionindex.yml
+│   │   │       │   │   ├── consommation
+│   │   │       │   │   │   ├── for_app_landconso.sql
+│   │   │       │   │   │   ├── for_app_landconso.yml
+│   │   │       │   │   │   ├── for_app_landconsocomparison.sql
+│   │   │       │   │   │   ├── for_app_landconsocomparison.yml
+│   │   │       │   │   │   ├── for_app_landconsostats.sql
+│   │   │       │   │   │   └── for_app_landconsostats.yml
+│   │   │       │   │   ├── demography
+│   │   │       │   │   │   ├── for_app_landpop.sql
+│   │   │       │   │   │   ├── for_app_landpop.yml
+│   │   │       │   │   │   ├── for_app_landpopstats.sql
+│   │   │       │   │   │   ├── for_app_landpopstats.yml
+│   │   │       │   │   │   ├── for_app_landpopulationdensity.sql
+│   │   │       │   │   │   ├── for_app_landpopulationdensity.yml
+│   │   │       │   │   │   ├── for_app_nearest_territories.sql
+│   │   │       │   │   │   └── for_app_nearest_territories.yml
+│   │   │       │   │   ├── friche
+│   │   │       │   │   │   ├── for_app_landfriche.sql
+│   │   │       │   │   │   ├── for_app_landfriche.yml
+│   │   │       │   │   │   ├── for_app_landfrichegeojson.sql
+│   │   │       │   │   │   ├── for_app_landfrichegeojson.yml
+│   │   │       │   │   │   ├── for_app_landfrichepollution.sql
+│   │   │       │   │   │   ├── for_app_landfrichepollution.yml
+│   │   │       │   │   │   ├── for_app_landfrichestatut.sql
+│   │   │       │   │   │   ├── for_app_landfrichestatut.yml
+│   │   │       │   │   │   ├── for_app_landfrichesurfacerank.sql
+│   │   │       │   │   │   ├── for_app_landfrichesurfacerank.yml
+│   │   │       │   │   │   ├── for_app_landfrichetype.sql
+│   │   │       │   │   │   ├── for_app_landfrichetype.yml
+│   │   │       │   │   │   ├── for_app_landfrichezonageenvironnementale.sql
+│   │   │       │   │   │   ├── for_app_landfrichezonageenvironnementale.yml
+│   │   │       │   │   │   ├── for_app_landfrichezonagetype.sql
+│   │   │       │   │   │   ├── for_app_landfrichezonagetype.yml
+│   │   │       │   │   │   ├── for_app_landfrichezoneactivite.sql
+│   │   │       │   │   │   └── for_app_landfrichezoneactivite.yml
+│   │   │       │   │   ├── impermeabilisation
+│   │   │       │   │   │   ├── flux
+│   │   │       │   │   │   │   ├── for_app_landimperflux.sql
+│   │   │       │   │   │   │   ├── for_app_landimperflux.yml
+│   │   │       │   │   │   │   ├── for_app_landimperfluxcouverturecomposition.sql
+│   │   │       │   │   │   │   ├── for_app_landimperfluxcouverturecomposition.yml
+│   │   │       │   │   │   │   ├── for_app_landimperfluxcouverturecompositionindex.sql
+│   │   │       │   │   │   │   ├── for_app_landimperfluxcouverturecompositionindex.yml
+│   │   │       │   │   │   │   ├── for_app_landimperfluxindex.sql
+│   │   │       │   │   │   │   ├── for_app_landimperfluxindex.yml
+│   │   │       │   │   │   │   ├── for_app_landimperfluxusagecomposition.sql
+│   │   │       │   │   │   │   ├── for_app_landimperfluxusagecomposition.yml
+│   │   │       │   │   │   │   ├── for_app_landimperfluxusagecompositionindex.sql
+│   │   │       │   │   │   │   └── for_app_landimperfluxusagecompositionindex.yml
+│   │   │       │   │   │   └── stock
+│   │   │       │   │   │       ├── for_app_imperzonage.sql
+│   │   │       │   │   │       ├── for_app_imperzonage.yml
+│   │   │       │   │   │       ├── for_app_imperzonageindex.sql
+│   │   │       │   │   │       ├── for_app_imperzonageindex.yml
+│   │   │       │   │   │       ├── for_app_landimperstock.sql
+│   │   │       │   │   │       ├── for_app_landimperstock.yml
+│   │   │       │   │   │       ├── for_app_landimperstockcouverturecomposition.sql
+│   │   │       │   │   │       ├── for_app_landimperstockcouverturecomposition.yml
+│   │   │       │   │   │       ├── for_app_landimperstockcouverturecompositionindex.sql
+│   │   │       │   │   │       ├── for_app_landimperstockcouverturecompositionindex.yml
+│   │   │       │   │   │       ├── for_app_landimperstockindex.sql
+│   │   │       │   │   │       ├── for_app_landimperstockindex.yml
+│   │   │       │   │   │       ├── for_app_landimperstockusagecomposition.sql
+│   │   │       │   │   │       ├── for_app_landimperstockusagecomposition.yml
+│   │   │       │   │   │       ├── for_app_landimperstockusagecompositionindex.sql
+│   │   │       │   │   │       └── for_app_landimperstockusagecompositionindex.yml
+│   │   │       │   │   ├── logements
+│   │   │       │   │   │   ├── for_app_autorisationlogement.sql
+│   │   │       │   │   │   ├── for_app_autorisationlogement.yml
+│   │   │       │   │   │   ├── for_app_logementvacant.sql
+│   │   │       │   │   │   └── for_app_logementvacant.yml
+│   │   │       │   │   └── schema.yml
+│   │   │       │   ├── for_brevo
+│   │   │       │   │   ├── for_brevo_user_info.sql
+│   │   │       │   │   └── for_brevo_user_info.yml
+│   │   │       │   ├── for_export
+│   │   │       │   │   ├── commune_artif_by_year.sql
+│   │   │       │   │   ├── commune_artif_by_year.yml
+│   │   │       │   │   ├── commune_imper_by_year.sql
+│   │   │       │   │   ├── commune_imper_by_year.yml
+│   │   │       │   │   ├── ocsge_surface_cover_percent.sql
+│   │   │       │   │   ├── ocsge_surface_cover_percent.yml
+│   │   │       │   │   ├── trajectoires_communes.sql
+│   │   │       │   │   └── trajectoires_communes.yml
+│   │   │       │   ├── for_vector_tiles
+│   │   │       │   │   ├── for_vector_tiles_artif_difference_ocsge.sql
+│   │   │       │   │   ├── for_vector_tiles_artif_difference_ocsge.yml
+│   │   │       │   │   ├── for_vector_tiles_artif_difference_ocsge_centroid.sql
+│   │   │       │   │   ├── for_vector_tiles_artif_difference_ocsge_centroid.yml
+│   │   │       │   │   ├── for_vector_tiles_difference_ocsge.sql
+│   │   │       │   │   ├── for_vector_tiles_difference_ocsge.yml
+│   │   │       │   │   ├── for_vector_tiles_difference_ocsge_centroid.sql
+│   │   │       │   │   ├── for_vector_tiles_difference_ocsge_centroid.yml
+│   │   │       │   │   ├── for_vector_tiles_occupation_du_sol.sql
+│   │   │       │   │   ├── for_vector_tiles_occupation_du_sol.yml
+│   │   │       │   │   ├── for_vector_tiles_occupation_du_sol_friche.sql
+│   │   │       │   │   └── for_vector_tiles_occupation_du_sol_friche.yml
+│   │   │       │   ├── gpu
+│   │   │       │   │   ├── commune_zonage.sql
+│   │   │       │   │   ├── commune_zonage.yml
+│   │   │       │   │   ├── sources.yml
+│   │   │       │   │   └── zonage_urbanisme
+│   │   │       │   │       ├── 1_zonage_urbanisme_raw.sql
+│   │   │       │   │       ├── 2_zonage_urbanisme_normalized.sql
+│   │   │       │   │       ├── 3_zonage_urbanisme_projected.sql
+│   │   │       │   │       ├── 4_zonage_urbanisme_deduplicated.sql
+│   │   │       │   │       ├── 5_zonage_urbanisme_with_surface.sql
+│   │   │       │   │       ├── zonage_urbanisme.sql
+│   │   │       │   │       └── zonage_urbanisme.yml
+│   │   │       │   ├── insee
+│   │   │       │   │   ├── aggregated
+│   │   │       │   │   │   ├── flux
+│   │   │       │   │   │   │   ├── flux_population_commune.sql
+│   │   │       │   │   │   │   ├── flux_population_commune.yml
+│   │   │       │   │   │   │   ├── flux_population_custom_land.sql
+│   │   │       │   │   │   │   ├── flux_population_departement.sql
+│   │   │       │   │   │   │   ├── flux_population_epci.sql
+│   │   │       │   │   │   │   ├── flux_population_region.sql
+│   │   │       │   │   │   │   ├── flux_population_scot.sql
+│   │   │       │   │   │   │   └── period
+│   │   │       │   │   │   │       ├── period_flux_population_commune.sql
+│   │   │       │   │   │   │       ├── period_flux_population_commune.yml
+│   │   │       │   │   │   │       ├── period_flux_population_custom_land.sql
+│   │   │       │   │   │   │       ├── period_flux_population_departement.sql
+│   │   │       │   │   │   │       ├── period_flux_population_departement.yml
+│   │   │       │   │   │   │       ├── period_flux_population_epci.sql
+│   │   │       │   │   │   │       ├── period_flux_population_epci.yml
+│   │   │       │   │   │   │       ├── period_flux_population_region.sql
+│   │   │       │   │   │   │       ├── period_flux_population_region.yml
+│   │   │       │   │   │   │       ├── period_flux_population_scot.sql
+│   │   │       │   │   │   │       └── period_flux_population_scot.yml
+│   │   │       │   │   │   └── stock
+│   │   │       │   │   │       └── period
+│   │   │       │   │   │           ├── period_stock_population_custom_land.sql
+│   │   │       │   │   │           ├── period_stock_population_departement.sql
+│   │   │       │   │   │           ├── period_stock_population_departement.yml
+│   │   │       │   │   │           ├── period_stock_population_epci.sql
+│   │   │       │   │   │           ├── period_stock_population_epci.yml
+│   │   │       │   │   │           ├── period_stock_population_region.sql
+│   │   │       │   │   │           ├── period_stock_population_region.yml
+│   │   │       │   │   │           ├── period_stock_population_scot.sql
+│   │   │       │   │   │           └── period_stock_population_scot.yml
+│   │   │       │   │   ├── calculated
+│   │   │       │   │   │   ├── pop_epci_stats_commune.sql
+│   │   │       │   │   │   ├── pop_epci_stats_commune.yml
+│   │   │       │   │   │   ├── pop_national_stats_commune.sql
+│   │   │       │   │   │   ├── pop_national_stats_epci.sql
+│   │   │       │   │   │   ├── pop_national_stats_region.sql
+│   │   │       │   │   │   ├── pop_national_stats_scot.sql
+│   │   │       │   │   │   └── pop_regional_stats_departement.sql
+│   │   │       │   │   ├── cog_changes_2024.sql
+│   │   │       │   │   ├── cog_changes_2024.yml
+│   │   │       │   │   ├── population.sql
+│   │   │       │   │   ├── population.yml
+│   │   │       │   │   ├── population_cog_2024.sql
+│   │   │       │   │   ├── population_cog_2024.yml
+│   │   │       │   │   └── sources.yml
+│   │   │       │   ├── land
+│   │   │       │   │   ├── commune_custom_land.sql
+│   │   │       │   │   ├── commune_custom_land.yml
+│   │   │       │   │   ├── custom_land.sql
+│   │   │       │   │   ├── custom_land.yml
+│   │   │       │   │   ├── land.sql
+│   │   │       │   │   ├── land_departement.sql
+│   │   │       │   │   ├── land_details.sql
+│   │   │       │   │   ├── land_details.yml
+│   │   │       │   │   ├── nearest_territories_commune.sql
+│   │   │       │   │   ├── nearest_territories_departement.sql
+│   │   │       │   │   ├── nearest_territories_epci.sql
+│   │   │       │   │   ├── nearest_territories_region.sql
+│   │   │       │   │   └── nearest_territories_scot.sql
+│   │   │       │   ├── majic
+│   │   │       │   │   ├── 2024
+│   │   │       │   │   │   ├── consommation_guadeloupe_2024.sql
+│   │   │       │   │   │   ├── consommation_guyane_2024.sql
+│   │   │       │   │   │   ├── consommation_martinique_2024.sql
+│   │   │       │   │   │   ├── consommation_metropole_2024.sql
+│   │   │       │   │   │   └── consommation_reunion_2024.sql
+│   │   │       │   │   ├── aggregated
+│   │   │       │   │   │   └── flux
+│   │   │       │   │   │       ├── flux_consommation_commune.sql
+│   │   │       │   │   │       ├── flux_consommation_custom_land.sql
+│   │   │       │   │   │       ├── flux_consommation_departement.sql
+│   │   │       │   │   │       ├── flux_consommation_epci.sql
+│   │   │       │   │   │       ├── flux_consommation_region.sql
+│   │   │       │   │   │       ├── flux_consommation_scot.sql
+│   │   │       │   │   │       └── period
+│   │   │       │   │   │           ├── period_consommation_commune.sql
+│   │   │       │   │   │           ├── period_consommation_custom_land.sql
+│   │   │       │   │   │           ├── period_consommation_departement.sql
+│   │   │       │   │   │           ├── period_consommation_epci.sql
+│   │   │       │   │   │           ├── period_consommation_land.sql
+│   │   │       │   │   │           ├── period_consommation_region.sql
+│   │   │       │   │   │           └── period_consommation_scot.sql
+│   │   │       │   │   ├── calculated
+│   │   │       │   │   │   ├── conso_epci_stats_commune.sql
+│   │   │       │   │   │   ├── conso_national_stats_commune.sql
+│   │   │       │   │   │   ├── conso_national_stats_epci.sql
+│   │   │       │   │   │   ├── conso_national_stats_region.sql
+│   │   │       │   │   │   ├── conso_national_stats_scot.sql
+│   │   │       │   │   │   └── conso_regional_stats_departement.sql
+│   │   │       │   │   ├── consommation.sql
+│   │   │       │   │   ├── consommation_cog_2024.sql
+│   │   │       │   │   ├── land_conso_correction_status.sql
+│   │   │       │   │   ├── land_conso_correction_status.yml
+│   │   │       │   │   ├── schema.yml
+│   │   │       │   │   └── trajectoires
+│   │   │       │   │       └── land_trajectoires.sql
+│   │   │       │   ├── matomo
+│   │   │       │   │   ├── action_types.sql
+│   │   │       │   │   ├── idvisitor_user_id.sql
+│   │   │       │   │   ├── idvisitor_user_id.yml
+│   │   │       │   │   ├── matomo_log_action.sql
+│   │   │       │   │   ├── matomo_log_action.yml
+│   │   │       │   │   ├── matomo_log_conversion.sql
+│   │   │       │   │   ├── matomo_log_conversion.yml
+│   │   │       │   │   ├── matomo_log_link_visit_action.sql
+│   │   │       │   │   ├── matomo_log_link_visit_action.yml
+│   │   │       │   │   ├── matomo_log_visit.sql
+│   │   │       │   │   ├── sources.yml
+│   │   │       │   │   ├── user_outlinks.sql
+│   │   │       │   │   └── user_visited_pages.sql
+│   │   │       │   ├── misc
+│   │   │       │   │   ├── brevo_user_organism.sql
+│   │   │       │   │   └── sources.yml
+│   │   │       │   ├── ocsge
+│   │   │       │   │   ├── artif.sql
+│   │   │       │   │   ├── artif.yml
+│   │   │       │   │   ├── artif_difference.sql
+│   │   │       │   │   ├── artif_difference.yml
+│   │   │       │   │   ├── calculated
+│   │   │       │   │   │   ├── flux
+│   │   │       │   │   │   │   ├── commune
+│   │   │       │   │   │   │   │   ├── artif_flux_commune.sql
+│   │   │       │   │   │   │   │   ├── artif_flux_commune.yml
+│   │   │       │   │   │   │   │   ├── artif_flux_commune_by_couverture.sql
+│   │   │       │   │   │   │   │   ├── artif_flux_commune_by_couverture.yml
+│   │   │       │   │   │   │   │   ├── artif_flux_commune_by_usage.sql
+│   │   │       │   │   │   │   │   ├── artif_flux_commune_by_usage.yml
+│   │   │       │   │   │   │   │   ├── artif_net_flux_commune.sql
+│   │   │       │   │   │   │   │   ├── artif_net_flux_commune.yml
+│   │   │       │   │   │   │   │   ├── desartif_flux_commune.sql
+│   │   │       │   │   │   │   │   ├── desartif_flux_commune.yml
+│   │   │       │   │   │   │   │   ├── desimper_flux_commune.sql
+│   │   │       │   │   │   │   │   ├── imper_flux_commune.sql
+│   │   │       │   │   │   │   │   ├── imper_flux_commune_by_couverture.sql
+│   │   │       │   │   │   │   │   ├── imper_flux_commune_by_usage.sql
+│   │   │       │   │   │   │   │   └── imper_net_flux_commune.sql
+│   │   │       │   │   │   │   ├── commune_flux_couverture_et_usage.sql
+│   │   │       │   │   │   │   ├── commune_flux_couverture_et_usage_artif.sql
+│   │   │       │   │   │   │   ├── commune_flux_couverture_et_usage_artif.yml
+│   │   │       │   │   │   │   ├── custom_land
+│   │   │       │   │   │   │   │   ├── artif_flux_custom_land.sql
+│   │   │       │   │   │   │   │   ├── artif_flux_custom_land_by_couverture.sql
+│   │   │       │   │   │   │   │   ├── artif_flux_custom_land_by_usage.sql
+│   │   │       │   │   │   │   │   ├── artif_net_flux_custom_land.sql
+│   │   │       │   │   │   │   │   ├── imper_flux_custom_land_by_couverture.sql
+│   │   │       │   │   │   │   │   ├── imper_flux_custom_land_by_usage.sql
+│   │   │       │   │   │   │   │   └── imper_net_flux_custom_land.sql
+│   │   │       │   │   │   │   ├── departement
+│   │   │       │   │   │   │   │   ├── artif_flux_departement.sql
+│   │   │       │   │   │   │   │   ├── artif_flux_departement.yml
+│   │   │       │   │   │   │   │   ├── artif_flux_departement_by_couverture.sql
+│   │   │       │   │   │   │   │   ├── artif_flux_departement_by_couverture.yml
+│   │   │       │   │   │   │   │   ├── artif_flux_departement_by_usage.sql
+│   │   │       │   │   │   │   │   ├── artif_flux_departement_by_usage.yml
+│   │   │       │   │   │   │   │   ├── artif_net_flux_departement.sql
+│   │   │       │   │   │   │   │   ├── artif_net_flux_departement.yml
+│   │   │       │   │   │   │   │   ├── imper_flux_departement_by_couverture.sql
+│   │   │       │   │   │   │   │   ├── imper_flux_departement_by_usage.sql
+│   │   │       │   │   │   │   │   └── imper_net_flux_departement.sql
+│   │   │       │   │   │   │   ├── epci
+│   │   │       │   │   │   │   │   ├── artif_flux_epci.sql
+│   │   │       │   │   │   │   │   ├── artif_flux_epci.yml
+│   │   │       │   │   │   │   │   ├── artif_flux_epci_by_couverture.sql
+│   │   │       │   │   │   │   │   ├── artif_flux_epci_by_couverture.yml
+│   │   │       │   │   │   │   │   ├── artif_flux_epci_by_usage.sql
+│   │   │       │   │   │   │   │   ├── artif_flux_epci_by_usage.yml
+│   │   │       │   │   │   │   │   ├── artif_net_flux_epci.sql
+│   │   │       │   │   │   │   │   ├── artif_net_flux_epci.yml
+│   │   │       │   │   │   │   │   ├── imper_flux_epci_by_couverture.sql
+│   │   │       │   │   │   │   │   ├── imper_flux_epci_by_usage.sql
+│   │   │       │   │   │   │   │   └── imper_net_flux_epci.sql
+│   │   │       │   │   │   │   ├── land
+│   │   │       │   │   │   │   │   ├── artif_flux_land_by_couverture.sql
+│   │   │       │   │   │   │   │   ├── artif_flux_land_by_couverture.yml
+│   │   │       │   │   │   │   │   ├── artif_flux_land_by_couverture_by_index.sql
+│   │   │       │   │   │   │   │   ├── artif_flux_land_by_couverture_by_index.yml
+│   │   │       │   │   │   │   │   ├── artif_flux_land_by_usage.sql
+│   │   │       │   │   │   │   │   ├── artif_flux_land_by_usage.yml
+│   │   │       │   │   │   │   │   ├── artif_flux_land_by_usage_by_index.sql
+│   │   │       │   │   │   │   │   ├── artif_flux_land_by_usage_by_index.yml
+│   │   │       │   │   │   │   │   ├── artif_net_flux_land.sql
+│   │   │       │   │   │   │   │   ├── artif_net_flux_land.yml
+│   │   │       │   │   │   │   │   ├── artif_net_flux_land_by_index.sql
+│   │   │       │   │   │   │   │   ├── artif_net_flux_land_by_index.yml
+│   │   │       │   │   │   │   │   ├── imper_flux_land_by_couverture.sql
+│   │   │       │   │   │   │   │   ├── imper_flux_land_by_couverture_by_index.sql
+│   │   │       │   │   │   │   │   ├── imper_flux_land_by_usage.sql
+│   │   │       │   │   │   │   │   ├── imper_flux_land_by_usage_by_index.sql
+│   │   │       │   │   │   │   │   ├── imper_net_flux_land.sql
+│   │   │       │   │   │   │   │   └── imper_net_flux_land_by_index.sql
+│   │   │       │   │   │   │   ├── region
+│   │   │       │   │   │   │   │   ├── artif_flux_region.sql
+│   │   │       │   │   │   │   │   ├── artif_flux_region.yml
+│   │   │       │   │   │   │   │   ├── artif_flux_region_by_couverture.sql
+│   │   │       │   │   │   │   │   ├── artif_flux_region_by_couverture.yml
+│   │   │       │   │   │   │   │   ├── artif_flux_region_by_usage.sql
+│   │   │       │   │   │   │   │   ├── artif_flux_region_by_usage.yml
+│   │   │       │   │   │   │   │   ├── artif_net_flux_region.sql
+│   │   │       │   │   │   │   │   ├── artif_net_flux_region.yml
+│   │   │       │   │   │   │   │   ├── imper_flux_region_by_couverture.sql
+│   │   │       │   │   │   │   │   ├── imper_flux_region_by_usage.sql
+│   │   │       │   │   │   │   │   └── imper_net_flux_region.sql
+│   │   │       │   │   │   │   └── scot
+│   │   │       │   │   │   │       ├── artif_flux_scot.sql
+│   │   │       │   │   │   │       ├── artif_flux_scot.yml
+│   │   │       │   │   │   │       ├── artif_flux_scot_by_couverture.sql
+│   │   │       │   │   │   │       ├── artif_flux_scot_by_couverture.yml
+│   │   │       │   │   │   │       ├── artif_flux_scot_by_usage.sql
+│   │   │       │   │   │   │       ├── artif_flux_scot_by_usage.yml
+│   │   │       │   │   │   │       ├── artif_net_flux_scot.sql
+│   │   │       │   │   │   │       ├── artif_net_flux_scot.yml
+│   │   │       │   │   │   │       ├── imper_flux_scot_by_couverture.sql
+│   │   │       │   │   │   │       ├── imper_flux_scot_by_usage.sql
+│   │   │       │   │   │   │       └── imper_net_flux_scot.sql
+│   │   │       │   │   │   └── stock
+│   │   │       │   │   │       ├── commune
+│   │   │       │   │   │       │   ├── artif
+│   │   │       │   │   │       │   │   ├── artif_commune.sql
+│   │   │       │   │   │       │   │   ├── artif_commune_by_couverture.sql
+│   │   │       │   │   │       │   │   ├── artif_commune_by_usage.sql
+│   │   │       │   │   │       │   │   └── artif_zonage_commune.sql
+│   │   │       │   │   │       │   └── imper
+│   │   │       │   │   │       │       ├── imper_commune.sql
+│   │   │       │   │   │       │       ├── imper_commune_by_couverture.sql
+│   │   │       │   │   │       │       ├── imper_commune_by_usage.sql
+│   │   │       │   │   │       │       └── imper_zonage_commune.sql
+│   │   │       │   │   │       ├── commune_couverture.sql
+│   │   │       │   │   │       ├── commune_couverture_et_usage.sql
+│   │   │       │   │   │       ├── commune_usage.sql
+│   │   │       │   │   │       ├── custom_land
+│   │   │       │   │   │       │   ├── artif
+│   │   │       │   │   │       │   │   ├── artif_custom_land.sql
+│   │   │       │   │   │       │   │   ├── artif_custom_land_by_couverture.sql
+│   │   │       │   │   │       │   │   ├── artif_custom_land_by_usage.sql
+│   │   │       │   │   │       │   │   └── artif_zonage_custom_land.sql
+│   │   │       │   │   │       │   └── imper
+│   │   │       │   │   │       │       ├── imper_custom_land.sql
+│   │   │       │   │   │       │       ├── imper_custom_land_by_couverture.sql
+│   │   │       │   │   │       │       ├── imper_custom_land_by_usage.sql
+│   │   │       │   │   │       │       └── imper_zonage_custom_land.sql
+│   │   │       │   │   │       ├── departement
+│   │   │       │   │   │       │   ├── artif
+│   │   │       │   │   │       │   │   ├── artif_departement.sql
+│   │   │       │   │   │       │   │   ├── artif_departement_by_couverture.sql
+│   │   │       │   │   │       │   │   ├── artif_departement_by_usage.sql
+│   │   │       │   │   │       │   │   └── artif_zonage_departement.sql
+│   │   │       │   │   │       │   └── imper
+│   │   │       │   │   │       │       ├── imper_departement.sql
+│   │   │       │   │   │       │       ├── imper_departement_by_couverture.sql
+│   │   │       │   │   │       │       ├── imper_departement_by_usage.sql
+│   │   │       │   │   │       │       └── imper_zonage_departement.sql
+│   │   │       │   │   │       ├── epci
+│   │   │       │   │   │       │   ├── artif
+│   │   │       │   │   │       │   │   ├── artif_epci.sql
+│   │   │       │   │   │       │   │   ├── artif_epci_by_couverture.sql
+│   │   │       │   │   │       │   │   ├── artif_epci_by_usage.sql
+│   │   │       │   │   │       │   │   └── artif_zonage_epci.sql
+│   │   │       │   │   │       │   └── imper
+│   │   │       │   │   │       │       ├── imper_epci.sql
+│   │   │       │   │   │       │       ├── imper_epci_by_couverture.sql
+│   │   │       │   │   │       │       ├── imper_epci_by_usage.sql
+│   │   │       │   │   │       │       └── imper_zonage_epci.sql
+│   │   │       │   │   │       ├── friche
+│   │   │       │   │   │       │   ├── artif_friche.sql
+│   │   │       │   │   │       │   └── imper_friche.sql
+│   │   │       │   │   │       ├── friche_couverture_et_usage.sql
+│   │   │       │   │   │       ├── land
+│   │   │       │   │   │       │   ├── artif
+│   │   │       │   │   │       │   │   ├── artif_land.sql
+│   │   │       │   │   │       │   │   ├── artif_land_by_couverture.sql
+│   │   │       │   │   │       │   │   ├── artif_land_by_couverture_by_index.sql
+│   │   │       │   │   │       │   │   ├── artif_land_by_index.sql
+│   │   │       │   │   │       │   │   ├── artif_land_by_usage.sql
+│   │   │       │   │   │       │   │   ├── artif_land_by_usage_by_index.sql
+│   │   │       │   │   │       │   │   ├── artif_zonage_land.sql
+│   │   │       │   │   │       │   │   └── artif_zonage_land_by_index.sql
+│   │   │       │   │   │       │   └── imper
+│   │   │       │   │   │       │       ├── imper_land.sql
+│   │   │       │   │   │       │       ├── imper_land_by_couverture.sql
+│   │   │       │   │   │       │       ├── imper_land_by_couverture_by_index.sql
+│   │   │       │   │   │       │       ├── imper_land_by_index.sql
+│   │   │       │   │   │       │       ├── imper_land_by_usage.sql
+│   │   │       │   │   │       │       ├── imper_land_by_usage_by_index.sql
+│   │   │       │   │   │       │       ├── imper_zonage_land.sql
+│   │   │       │   │   │       │       └── imper_zonage_land_by_index.sql
+│   │   │       │   │   │       ├── region
+│   │   │       │   │   │       │   ├── artif
+│   │   │       │   │   │       │   │   ├── artif_region.sql
+│   │   │       │   │   │       │   │   ├── artif_region_by_couverture.sql
+│   │   │       │   │   │       │   │   ├── artif_region_by_usage.sql
+│   │   │       │   │   │       │   │   └── artif_zonage_region.sql
+│   │   │       │   │   │       │   └── imper
+│   │   │       │   │   │       │       ├── imper_region.sql
+│   │   │       │   │   │       │       ├── imper_region_by_couverture.sql
+│   │   │       │   │   │       │       ├── imper_region_by_usage.sql
+│   │   │       │   │   │       │       └── imper_zonage_region.sql
+│   │   │       │   │   │       ├── scot
+│   │   │       │   │   │       │   ├── artif
+│   │   │       │   │   │       │   │   ├── artif_scot.sql
+│   │   │       │   │   │       │   │   ├── artif_scot_by_couverture.sql
+│   │   │       │   │   │       │   │   ├── artif_scot_by_usage.sql
+│   │   │       │   │   │       │   │   └── artif_zonage_scot.sql
+│   │   │       │   │   │       │   └── imper
+│   │   │       │   │   │       │       ├── imper_scot.sql
+│   │   │       │   │   │       │       ├── imper_scot_by_couverture.sql
+│   │   │       │   │   │       │       ├── imper_scot_by_usage.sql
+│   │   │       │   │   │       │       └── imper_zonage_scot.sql
+│   │   │       │   │   │       ├── zonage
+│   │   │       │   │   │       │   ├── artif_zonage.sql
+│   │   │       │   │   │       │   ├── artif_zonage_by_couverture.sql
+│   │   │       │   │   │       │   └── artif_zonage_by_usage.sql
+│   │   │       │   │   │       ├── zonage_couverture.sql
+│   │   │       │   │   │       ├── zonage_couverture_et_usage.sql
+│   │   │       │   │   │       └── zonage_usage.sql
+│   │   │       │   │   ├── diff_millesimes.sql
+│   │   │       │   │   ├── difference.sql
+│   │   │       │   │   ├── guyane_incomplete_lands.sql
+│   │   │       │   │   ├── intersected
+│   │   │       │   │   │   ├── artif_difference_commune.sql
+│   │   │       │   │   │   ├── artif_difference_commune.yml
+│   │   │       │   │   │   ├── difference_commune.sql
+│   │   │       │   │   │   ├── difference_commune_artif.sql
+│   │   │       │   │   │   ├── difference_commune_artif.yml
+│   │   │       │   │   │   ├── occupation_du_sol_commune.sql
+│   │   │       │   │   │   ├── occupation_du_sol_friche.sql
+│   │   │       │   │   │   └── occupation_du_sol_zonage_urbanisme.sql
+│   │   │       │   │   ├── land_millesimes.sql
+│   │   │       │   │   ├── land_ocsge_status.sql
+│   │   │       │   │   ├── millesimes.sql
+│   │   │       │   │   ├── occupation_du_sol.sql
+│   │   │       │   │   ├── occupation_du_sol_with_artif.sql
+│   │   │       │   │   ├── schema.yml
+│   │   │       │   │   └── zone_construite.sql
+│   │   │       │   ├── rpls
+│   │   │       │   │   ├── commune
+│   │   │       │   │   │   ├── raw_rpls_commune.sql
+│   │   │       │   │   │   ├── raw_rpls_commune.yml
+│   │   │       │   │   │   ├── rpls_commune.sql
+│   │   │       │   │   │   ├── rpls_commune.yml
+│   │   │       │   │   │   ├── rpls_commune_cog_safe.sql
+│   │   │       │   │   │   └── rpls_commune_cog_safe.yml
+│   │   │       │   │   ├── custom_land
+│   │   │       │   │   │   └── rpls_custom_land.sql
+│   │   │       │   │   ├── departement
+│   │   │       │   │   │   ├── raw_rpls_departement.sql
+│   │   │       │   │   │   ├── raw_rpls_departement.yml
+│   │   │       │   │   │   ├── rpls_departement.sql
+│   │   │       │   │   │   └── rpls_departement.yml
+│   │   │       │   │   ├── epci
+│   │   │       │   │   │   ├── rpls_epci.sql
+│   │   │       │   │   │   └── rpls_epci.yml
+│   │   │       │   │   ├── region
+│   │   │       │   │   │   ├── raw_rpls_region.sql
+│   │   │       │   │   │   ├── raw_rpls_region.yml
+│   │   │       │   │   │   ├── rpls_region.sql
+│   │   │       │   │   │   └── rpls_region.yml
+│   │   │       │   │   ├── scot
+│   │   │       │   │   │   ├── rpls_scot.sql
+│   │   │       │   │   │   └── rpls_scot.yml
+│   │   │       │   │   └── sources.yml
+│   │   │       │   ├── sitadel
+│   │   │       │   │   ├── logement_commune.sql
+│   │   │       │   │   ├── logement_commune.yml
+│   │   │       │   │   ├── logement_custom_land.sql
+│   │   │       │   │   ├── logement_departement.sql
+│   │   │       │   │   ├── logement_departement.yml
+│   │   │       │   │   ├── logement_epci.sql
+│   │   │       │   │   ├── logement_epci.yml
+│   │   │       │   │   ├── logement_region.sql
+│   │   │       │   │   ├── logement_region.yml
+│   │   │       │   │   ├── logement_scot.sql
+│   │   │       │   │   ├── logement_scot.yml
+│   │   │       │   │   ├── raw_logement_commune.sql
+│   │   │       │   │   ├── raw_logement_commune.yml
+│   │   │       │   │   ├── raw_logement_departement.sql
+│   │   │       │   │   ├── raw_logement_epci.sql
+│   │   │       │   │   └── sources.yml
+│   │   │       │   ├── sudocuh
+│   │   │       │   │   ├── competence_plan_commune.sql
+│   │   │       │   │   ├── competence_plan_epci.sql
+│   │   │       │   │   ├── competence_plan_land.sql
+│   │   │       │   │   ├── models.yml
+│   │   │       │   │   ├── scot.sql
+│   │   │       │   │   ├── scot_communes.sql
+│   │   │       │   │   └── scot_geom.sql
+│   │   │       │   └── zlv
+│   │   │       │       ├── land_logements_vacants_status.sql
+│   │   │       │       ├── land_logements_vacants_status.yml
+│   │   │       │       ├── logement_vacants_land.sql
+│   │   │       │       ├── logement_vacants_land.yml
+│   │   │       │       ├── logements_vacants.sql
+│   │   │       │       ├── logements_vacants.yml
+│   │   │       │       ├── logements_vacants_commune.sql
+│   │   │       │       ├── logements_vacants_commune.yml
+│   │   │       │       ├── logements_vacants_custom_land.sql
+│   │   │       │       ├── logements_vacants_departement.sql
+│   │   │       │       ├── logements_vacants_departement.yml
+│   │   │       │       ├── logements_vacants_epci.sql
+│   │   │       │       ├── logements_vacants_epci.yml
+│   │   │       │       ├── logements_vacants_region.sql
+│   │   │       │       ├── logements_vacants_region.yml
+│   │   │       │       ├── logements_vacants_scot.sql
+│   │   │       │       ├── logements_vacants_scot.yml
+│   │   │       │       └── sources.yml
+│   │   │       ├── package-lock.yml
+│   │   │       ├── packages.yml
+│   │   │       ├── seeds
+│   │   │       │   ├── .gitkeep
+│   │   │       │   ├── couverture.csv
+│   │   │       │   ├── seed_custom_land.csv
+│   │   │       │   ├── seed_custom_land_commune.csv
+│   │   │       │   └── usage.csv
+│   │   │       ├── snapshots
+│   │   │       │   └── .gitkeep
+│   │   │       └── tests
+│   │   │           ├── artif_flux_matches_artif_difference.sql
+│   │   │           ├── autorisation_logement_no_missing_year.sql
+│   │   │           ├── for_app_land_has_unique_land_id_land_type.sql
+│   │   │           ├── for_vector_tiles_artif_diff_centroid_same_count.sql
+│   │   │           ├── for_vector_tiles_diff_centroid_same_count.sql
+│   │   │           ├── generic
+│   │   │           │   ├── has_all_communes.sql
+│   │   │           │   ├── has_all_departements.sql
+│   │   │           │   ├── has_all_epcis.sql
+│   │   │           │   ├── has_all_regions.sql
+│   │   │           │   ├── has_all_scots.sql
+│   │   │           │   ├── has_years_from_to.sql
+│   │   │           │   ├── is_not_empty_geom.sql
+│   │   │           │   ├── is_percent_between_0_and_100.sql
+│   │   │           │   ├── is_positive_number.sql
+│   │   │           │   ├── is_srid_4326.sql
+│   │   │           │   ├── is_valid_geom.sql
+│   │   │           │   └── is_valid_geom_warning.sql
+│   │   │           ├── logement_vacant_no_missing_year.sql
+│   │   │           ├── nearest_territories_max_8_per_land.sql
+│   │   │           ├── nearest_territories_no_self_reference.sql
+│   │   │           ├── nearest_territories_positive_distance.sql
+│   │   │           ├── nearest_territories_same_land_type.sql
+│   │   │           ├── no_duplicate_ingest_in_artif.sql
+│   │   │           ├── no_duplicate_ingest_in_occupation_du_sol.sql
+│   │   │           ├── similar_territories_max_8_per_land.sql
+│   │   │           ├── similar_territories_no_self_reference.sql
+│   │   │           ├── similar_territories_same_land_type.sql
+│   │   │           └── zone_construite_unique_by_dpt_and_year.sql
+│   │   └── utils.py
+│   ├── packages.txt
+│   ├── requirements.txt
+│   ├── tests
+│   │   ├── test_airflow_cli.py
+│   │   ├── test_data_gouv_config.py
+│   │   ├── test_dbt_cli.py
+│   │   ├── test_ocsge_source_json.py
+│   │   ├── test_ogr2ogr_cli.py
+│   │   ├── test_paginated_json_to_s3_handler.py
+│   │   ├── test_tippecanoe_cli.py
+│   │   └── test_tmp_path_generator.py
+│   └── webserver_config.py
+├── babel.config.js
+├── bin
+│   ├── init_review_database.sh
+│   ├── post_compile
+│   ├── post_deploy_hook.sh
+│   ├── pre_compile
+│   └── start.sh
+├── carto
+│   ├── README.md
+│   ├── __init__.py
+│   ├── apps.py
+│   ├── migrations
+│   │   ├── 0001_initial.py
+│   │   ├── 0002_delete_worldborder.py
+│   │   └── __init__.py
+│   ├── static
+│   │   └── carto
+│   │       └── fonts
+│   │           └── Marianne Regular
+│   │               ├── 0-255.pbf
+│   │               ├── 1024-1279.pbf
+│   │               ├── 10240-10495.pbf
+│   │               ├── 10496-10751.pbf
+│   │               ├── 10752-11007.pbf
+│   │               ├── 11008-11263.pbf
+│   │               ├── 11264-11519.pbf
+│   │               ├── 11520-11775.pbf
+│   │               ├── 11776-12031.pbf
+│   │               ├── 12032-12287.pbf
+│   │               ├── 12288-12543.pbf
+│   │               ├── 12544-12799.pbf
+│   │               ├── 1280-1535.pbf
+│   │               ├── 12800-13055.pbf
+│   │               ├── 13056-13311.pbf
+│   │               ├── 13312-13567.pbf
+│   │               ├── 13568-13823.pbf
+│   │               ├── 13824-14079.pbf
+│   │               ├── 14080-14335.pbf
+│   │               ├── 14336-14591.pbf
+│   │               ├── 14592-14847.pbf
+│   │               ├── 14848-15103.pbf
+│   │               ├── 15104-15359.pbf
+│   │               ├── 1536-1791.pbf
+│   │               ├── 15360-15615.pbf
+│   │               ├── 15616-15871.pbf
+│   │               ├── 15872-16127.pbf
+│   │               ├── 16128-16383.pbf
+│   │               ├── 16384-16639.pbf
+│   │               ├── 16640-16895.pbf
+│   │               ├── 16896-17151.pbf
+│   │               ├── 17152-17407.pbf
+│   │               ├── 17408-17663.pbf
+│   │               ├── 17664-17919.pbf
+│   │               ├── 1792-2047.pbf
+│   │               ├── 17920-18175.pbf
+│   │               ├── 18176-18431.pbf
+│   │               ├── 18432-18687.pbf
+│   │               ├── 18688-18943.pbf
+│   │               ├── 18944-19199.pbf
+│   │               ├── 19200-19455.pbf
+│   │               ├── 19456-19711.pbf
+│   │               ├── 19712-19967.pbf
+│   │               ├── 19968-20223.pbf
+│   │               ├── 20224-20479.pbf
+│   │               ├── 2048-2303.pbf
+│   │               ├── 20480-20735.pbf
+│   │               ├── 20736-20991.pbf
+│   │               ├── 20992-21247.pbf
+│   │               ├── 21248-21503.pbf
+│   │               ├── 21504-21759.pbf
+│   │               ├── 21760-22015.pbf
+│   │               ├── 22016-22271.pbf
+│   │               ├── 22272-22527.pbf
+│   │               ├── 22528-22783.pbf
+│   │               ├── 22784-23039.pbf
+│   │               ├── 2304-2559.pbf
+│   │               ├── 23040-23295.pbf
+│   │               ├── 23296-23551.pbf
+│   │               ├── 23552-23807.pbf
+│   │               ├── 23808-24063.pbf
+│   │               ├── 24064-24319.pbf
+│   │               ├── 24320-24575.pbf
+│   │               ├── 24576-24831.pbf
+│   │               ├── 24832-25087.pbf
+│   │               ├── 25088-25343.pbf
+│   │               ├── 25344-25599.pbf
+│   │               ├── 256-511.pbf
+│   │               ├── 2560-2815.pbf
+│   │               ├── 25600-25855.pbf
+│   │               ├── 25856-26111.pbf
+│   │               ├── 26112-26367.pbf
+│   │               ├── 26368-26623.pbf
+│   │               ├── 26624-26879.pbf
+│   │               ├── 26880-27135.pbf
+│   │               ├── 27136-27391.pbf
+│   │               ├── 27392-27647.pbf
+│   │               ├── 27648-27903.pbf
+│   │               ├── 27904-28159.pbf
+│   │               ├── 2816-3071.pbf
+│   │               ├── 28160-28415.pbf
+│   │               ├── 28416-28671.pbf
+│   │               ├── 28672-28927.pbf
+│   │               ├── 28928-29183.pbf
+│   │               ├── 29184-29439.pbf
+│   │               ├── 29440-29695.pbf
+│   │               ├── 29696-29951.pbf
+│   │               ├── 29952-30207.pbf
+│   │               ├── 30208-30463.pbf
+│   │               ├── 30464-30719.pbf
+│   │               ├── 3072-3327.pbf
+│   │               ├── 30720-30975.pbf
+│   │               ├── 30976-31231.pbf
+│   │               ├── 31232-31487.pbf
+│   │               ├── 31488-31743.pbf
+│   │               ├── 31744-31999.pbf
+│   │               ├── 32000-32255.pbf
+│   │               ├── 32256-32511.pbf
+│   │               ├── 32512-32767.pbf
+│   │               ├── 32768-33023.pbf
+│   │               ├── 33024-33279.pbf
+│   │               ├── 3328-3583.pbf
+│   │               ├── 33280-33535.pbf
+│   │               ├── 33536-33791.pbf
+│   │               ├── 33792-34047.pbf
+│   │               ├── 34048-34303.pbf
+│   │               ├── 34304-34559.pbf
+│   │               ├── 34560-34815.pbf
+│   │               ├── 34816-35071.pbf
+│   │               ├── 35072-35327.pbf
+│   │               ├── 35328-35583.pbf
+│   │               ├── 35584-35839.pbf
+│   │               ├── 3584-3839.pbf
+│   │               ├── 35840-36095.pbf
+│   │               ├── 36096-36351.pbf
+│   │               ├── 36352-36607.pbf
+│   │               ├── 36608-36863.pbf
+│   │               ├── 36864-37119.pbf
+│   │               ├── 37120-37375.pbf
+│   │               ├── 37376-37631.pbf
+│   │               ├── 37632-37887.pbf
+│   │               ├── 37888-38143.pbf
+│   │               ├── 38144-38399.pbf
+│   │               ├── 3840-4095.pbf
+│   │               ├── 38400-38655.pbf
+│   │               ├── 38656-38911.pbf
+│   │               ├── 38912-39167.pbf
+│   │               ├── 39168-39423.pbf
+│   │               ├── 39424-39679.pbf
+│   │               ├── 39680-39935.pbf
+│   │               ├── 39936-40191.pbf
+│   │               ├── 40192-40447.pbf
+│   │               ├── 40448-40703.pbf
+│   │               ├── 40704-40959.pbf
+│   │               ├── 4096-4351.pbf
+│   │               ├── 40960-41215.pbf
+│   │               ├── 41216-41471.pbf
+│   │               ├── 41472-41727.pbf
+│   │               ├── 41728-41983.pbf
+│   │               ├── 41984-42239.pbf
+│   │               ├── 42240-42495.pbf
+│   │               ├── 42496-42751.pbf
+│   │               ├── 42752-43007.pbf
+│   │               ├── 43008-43263.pbf
+│   │               ├── 43264-43519.pbf
+│   │               ├── 4352-4607.pbf
+│   │               ├── 43520-43775.pbf
+│   │               ├── 43776-44031.pbf
+│   │               ├── 44032-44287.pbf
+│   │               ├── 44288-44543.pbf
+│   │               ├── 44544-44799.pbf
+│   │               ├── 44800-45055.pbf
+│   │               ├── 45056-45311.pbf
+│   │               ├── 45312-45567.pbf
+│   │               ├── 45568-45823.pbf
+│   │               ├── 45824-46079.pbf
+│   │               ├── 4608-4863.pbf
+│   │               ├── 46080-46335.pbf
+│   │               ├── 46336-46591.pbf
+│   │               ├── 46592-46847.pbf
+│   │               ├── 46848-47103.pbf
+│   │               ├── 47104-47359.pbf
+│   │               ├── 47360-47615.pbf
+│   │               ├── 47616-47871.pbf
+│   │               ├── 47872-48127.pbf
+│   │               ├── 48128-48383.pbf
+│   │               ├── 48384-48639.pbf
+│   │               ├── 4864-5119.pbf
+│   │               ├── 48640-48895.pbf
+│   │               ├── 48896-49151.pbf
+│   │               ├── 49152-49407.pbf
+│   │               ├── 49408-49663.pbf
+│   │               ├── 49664-49919.pbf
+│   │               ├── 49920-50175.pbf
+│   │               ├── 50176-50431.pbf
+│   │               ├── 50432-50687.pbf
+│   │               ├── 50688-50943.pbf
+│   │               ├── 50944-51199.pbf
+│   │               ├── 512-767.pbf
+│   │               ├── 5120-5375.pbf
+│   │               ├── 51200-51455.pbf
+│   │               ├── 51456-51711.pbf
+│   │               ├── 51712-51967.pbf
+│   │               ├── 51968-52223.pbf
+│   │               ├── 52224-52479.pbf
+│   │               ├── 52480-52735.pbf
+│   │               ├── 52736-52991.pbf
+│   │               ├── 52992-53247.pbf
+│   │               ├── 53248-53503.pbf
+│   │               ├── 53504-53759.pbf
+│   │               ├── 5376-5631.pbf
+│   │               ├── 53760-54015.pbf
+│   │               ├── 54016-54271.pbf
+│   │               ├── 54272-54527.pbf
+│   │               ├── 54528-54783.pbf
+│   │               ├── 54784-55039.pbf
+│   │               ├── 55040-55295.pbf
+│   │               ├── 55296-55551.pbf
+│   │               ├── 55552-55807.pbf
+│   │               ├── 55808-56063.pbf
+│   │               ├── 56064-56319.pbf
+│   │               ├── 5632-5887.pbf
+│   │               ├── 56320-56575.pbf
+│   │               ├── 56576-56831.pbf
+│   │               ├── 56832-57087.pbf
+│   │               ├── 57088-57343.pbf
+│   │               ├── 57344-57599.pbf
+│   │               ├── 57600-57855.pbf
+│   │               ├── 57856-58111.pbf
+│   │               ├── 58112-58367.pbf
+│   │               ├── 58368-58623.pbf
+│   │               ├── 58624-58879.pbf
+│   │               ├── 5888-6143.pbf
+│   │               ├── 58880-59135.pbf
+│   │               ├── 59136-59391.pbf
+│   │               ├── 59392-59647.pbf
+│   │               ├── 59648-59903.pbf
+│   │               ├── 59904-60159.pbf
+│   │               ├── 60160-60415.pbf
+│   │               ├── 60416-60671.pbf
+│   │               ├── 60672-60927.pbf
+│   │               ├── 60928-61183.pbf
+│   │               ├── 61184-61439.pbf
+│   │               ├── 6144-6399.pbf
+│   │               ├── 61440-61695.pbf
+│   │               ├── 61696-61951.pbf
+│   │               ├── 61952-62207.pbf
+│   │               ├── 62208-62463.pbf
+│   │               ├── 62464-62719.pbf
+│   │               ├── 62720-62975.pbf
+│   │               ├── 62976-63231.pbf
+│   │               ├── 63232-63487.pbf
+│   │               ├── 63488-63743.pbf
+│   │               ├── 63744-63999.pbf
+│   │               ├── 6400-6655.pbf
+│   │               ├── 64000-64255.pbf
+│   │               ├── 64256-64511.pbf
+│   │               ├── 64512-64767.pbf
+│   │               ├── 64768-65023.pbf
+│   │               ├── 65024-65279.pbf
+│   │               ├── 65280-65535.pbf
+│   │               ├── 6656-6911.pbf
+│   │               ├── 6912-7167.pbf
+│   │               ├── 7168-7423.pbf
+│   │               ├── 7424-7679.pbf
+│   │               ├── 768-1023.pbf
+│   │               ├── 7680-7935.pbf
+│   │               ├── 7936-8191.pbf
+│   │               ├── 8192-8447.pbf
+│   │               ├── 8448-8703.pbf
+│   │               ├── 8704-8959.pbf
+│   │               ├── 8960-9215.pbf
+│   │               ├── 9216-9471.pbf
+│   │               ├── 9472-9727.pbf
+│   │               ├── 9728-9983.pbf
+│   │               └── 9984-10239.pbf
+│   └── urls.py
+├── config
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── cache_backends.py
+│   ├── context_processors.py
+│   ├── middlewares.py
+│   ├── nbconfig
+│   │   └── notebook.json
+│   ├── settings.py
+│   ├── storages.py
+│   ├── urls.py
+│   ├── views
+│   │   ├── EnvironmentView.py
+│   │   ├── WebpackProxyView.py
+│   │   └── __init__.py
+│   └── wsgi.py
+├── crisp
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── migrations
+│   │   ├── 0001_initial.py
+│   │   ├── 0002_update_faq_url.py
+│   │   └── __init__.py
+│   ├── models.py
+│   ├── permissions.py
+│   ├── serializers.py
+│   ├── signals.py
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+├── docker-compose.yml
+├── docs
+│   └── dat.md
+├── export
+│   ├── .buildpacks
+│   ├── Aptfile
+│   ├── Dockerfile
+│   ├── Procfile
+│   ├── README.md
+│   ├── package.json
+│   ├── src
+│   │   ├── api.ts
+│   │   ├── cli.ts
+│   │   ├── pdf-generator.ts
+│   │   ├── url-validation.test.ts
+│   │   └── url-validation.ts
+│   └── tsconfig.json
+├── flake8
+├── frontend
+│   ├── images
+│   │   ├── annexe-article-r-101-1-code-urbanisme.png
+│   │   ├── appartement_icon.png
+│   │   ├── ecole_icon.png
+│   │   ├── icon-house.svg
+│   │   ├── icon-tree.png
+│   │   ├── information.svg
+│   │   ├── logo-benefriches.png
+│   │   ├── logo-mon-diagnostic-artificialisation.svg
+│   │   ├── logo-urbanvitaliz.png
+│   │   ├── logo_ZLV.png
+│   │   ├── loi-climat-et-resilience.svg
+│   │   ├── mairie_icon.png
+│   │   ├── ocsge-nomenclature-cs.png
+│   │   ├── ocsge-nomenclature-us.png
+│   │   ├── ocsge_matrice_passage.png
+│   │   ├── success_icon.png
+│   │   ├── success_icon_disabled.png
+│   │   └── timeline-trajectoire-zan.png
+│   ├── scripts
+│   │   ├── .eslintrc
+│   │   ├── components
+│   │   │   ├── charts
+│   │   │   │   ├── ChartDataSource.tsx
+│   │   │   │   ├── ChartDataTable.test.tsx
+│   │   │   │   ├── ChartDataTable.tsx
+│   │   │   │   ├── ChartDetails.tsx
+│   │   │   │   ├── ChartWithTable.tsx
+│   │   │   │   ├── GenericChart.tsx
+│   │   │   │   ├── ObjectiveChart.tsx
+│   │   │   │   ├── artificialisation
+│   │   │   │   │   ├── ArtifPercentRate.tsx
+│   │   │   │   │   └── ArtifSyntheseChart.tsx
+│   │   │   │   ├── consommation
+│   │   │   │   │   └── ConsommationChart.tsx
+│   │   │   │   ├── friches
+│   │   │   │   │   └── FrichesChart.tsx
+│   │   │   │   └── ocsge
+│   │   │   │       ├── OcsgeGraph.tsx
+│   │   │   │       └── OcsgeImplementationMap.tsx
+│   │   │   ├── features
+│   │   │   │   ├── MainTerritorySearchBar.tsx
+│   │   │   │   ├── TerritorySelector.tsx
+│   │   │   │   ├── friches
+│   │   │   │   │   ├── FricheAbstract.tsx
+│   │   │   │   │   ├── FricheOverview.tsx
+│   │   │   │   │   ├── constants.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── logementVacant
+│   │   │   │   │   ├── constant.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── logementVacantAbstract.tsx
+│   │   │   │   │   └── logementVacantOverview.tsx
+│   │   │   │   ├── ocsge
+│   │   │   │   │   ├── ArtificialisationZonage.tsx
+│   │   │   │   │   ├── DepartmentSelector.tsx
+│   │   │   │   │   ├── DetailsCalculationOcsge.tsx
+│   │   │   │   │   ├── FluxBadge.tsx
+│   │   │   │   │   ├── ImpermeabilisationZonage.tsx
+│   │   │   │   │   ├── LandMillesimeTable.tsx
+│   │   │   │   │   ├── MillesimeDisplay.tsx
+│   │   │   │   │   ├── OcsgeMillesimeSelector.tsx
+│   │   │   │   │   └── SeuilsSchemas.tsx
+│   │   │   │   ├── report
+│   │   │   │   │   ├── components
+│   │   │   │   │   │   ├── ComparisonTerritoriesCallout.tsx
+│   │   │   │   │   │   ├── ComparisonTerritoriesSettings.tsx
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── editor
+│   │   │   │   │   │   ├── ContentZone.tsx
+│   │   │   │   │   │   ├── EditorTopBar.tsx
+│   │   │   │   │   │   ├── ReportEditor.tsx
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── hooks
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   └── useReportComparisonTerritories.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── list
+│   │   │   │   │   │   ├── EmptyState.tsx
+│   │   │   │   │   │   ├── LoginPrompt.tsx
+│   │   │   │   │   │   ├── ReportCard.tsx
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── modals
+│   │   │   │   │   │   ├── CreateReportForm.tsx
+│   │   │   │   │   │   ├── CreateReportModal.tsx
+│   │   │   │   │   │   ├── DeleteReportModal.tsx
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── styles
+│   │   │   │   │   │   ├── ReportStyles.tsx
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   └── templates
+│   │   │   │   │       ├── AvailableDataPage.tsx
+│   │   │   │   │       ├── CoverPage.tsx
+│   │   │   │   │       ├── RapportComplet.tsx
+│   │   │   │   │       ├── RapportLocal.tsx
+│   │   │   │   │       ├── ReportPrintPage.tsx
+│   │   │   │   │       └── index.ts
+│   │   │   │   ├── status
+│   │   │   │   │   ├── ConsoCorrectionStatus.tsx
+│   │   │   │   │   ├── FricheStatus.tsx
+│   │   │   │   │   ├── GpuStatus.tsx
+│   │   │   │   │   ├── LogementVacantStatus.tsx
+│   │   │   │   │   └── OcsgeStatus.tsx
+│   │   │   │   └── trajectoires
+│   │   │   │       ├── TargetModal.tsx
+│   │   │   │       ├── TerritorialisationHierarchy.tsx
+│   │   │   │       └── TerritorialisationWarning.tsx
+│   │   │   ├── layout
+│   │   │   │   ├── Dashboard.tsx
+│   │   │   │   ├── Footer.tsx
+│   │   │   │   ├── Header.tsx
+│   │   │   │   ├── Navbar.tsx
+│   │   │   │   ├── TopBar.tsx
+│   │   │   │   └── TopBarContent.tsx
+│   │   │   ├── map
+│   │   │   │   ├── constants
+│   │   │   │   │   ├── config.ts
+│   │   │   │   │   ├── ocsge_nomenclatures.ts
+│   │   │   │   │   └── presets.ts
+│   │   │   │   ├── controls
+│   │   │   │   │   ├── BaseControl.ts
+│   │   │   │   │   ├── ControlStateManager.ts
+│   │   │   │   │   ├── ControlsManager.ts
+│   │   │   │   │   ├── OcsgeDiffMillesimeControl.ts
+│   │   │   │   │   ├── OcsgeMillesimeControl.ts
+│   │   │   │   │   ├── OcsgeNomenclatureControl.ts
+│   │   │   │   │   ├── OcsgeNomenclatureFilterControl.ts
+│   │   │   │   │   ├── OpacityControl.ts
+│   │   │   │   │   ├── VisibilityControl.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── factory
+│   │   │   │   │   ├── controlRegistry.ts
+│   │   │   │   │   ├── initMapFromConfig.ts
+│   │   │   │   │   ├── layerRegistry.ts
+│   │   │   │   │   └── sourceRegistry.ts
+│   │   │   │   ├── hooks
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── useMap.ts
+│   │   │   │   │   └── useMapSync.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── infoPanel
+│   │   │   │   │   ├── InfoPanelManager.ts
+│   │   │   │   │   ├── InfoPanelStateManager.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── layers
+│   │   │   │   │   ├── artificialisationDiffCentroidClusterLayer.ts
+│   │   │   │   │   ├── artificialisationDiffLayer.ts
+│   │   │   │   │   ├── artificialisationLayer.ts
+│   │   │   │   │   ├── baseDiffCentroidClusterLayer.ts
+│   │   │   │   │   ├── baseLayer.ts
+│   │   │   │   │   ├── baseOcsgeDiffLayer.ts
+│   │   │   │   │   ├── baseOcsgeLayer.ts
+│   │   │   │   │   ├── empriseLayer.ts
+│   │   │   │   │   ├── frichesCentroidClusterLayer.ts
+│   │   │   │   │   ├── frichesLayer.ts
+│   │   │   │   │   ├── frichesOutlineLayer.ts
+│   │   │   │   │   ├── impermeabilisationDiffCentroidClusterLayer.ts
+│   │   │   │   │   ├── impermeabilisationDiffLayer.ts
+│   │   │   │   │   ├── impermeabilisationLayer.ts
+│   │   │   │   │   ├── ocsgeFrichesArtificialLayer.ts
+│   │   │   │   │   ├── ocsgeFrichesImpermeableLayer.ts
+│   │   │   │   │   ├── ocsgeFrichesLayer.ts
+│   │   │   │   │   └── orthophotoLayer.ts
+│   │   │   │   ├── sources
+│   │   │   │   │   ├── baseOcsgeDiffSource.ts
+│   │   │   │   │   ├── baseOcsgeSource.ts
+│   │   │   │   │   ├── baseSource.ts
+│   │   │   │   │   ├── empriseSource.ts
+│   │   │   │   │   ├── frichesCentroidSource.ts
+│   │   │   │   │   ├── frichesSource.ts
+│   │   │   │   │   ├── ocsgeArtifDiffCentroidSource.ts
+│   │   │   │   │   ├── ocsgeArtifDiffSource.ts
+│   │   │   │   │   ├── ocsgeDiffCentroidSource.ts
+│   │   │   │   │   ├── ocsgeDiffSource.ts
+│   │   │   │   │   ├── ocsgeFrichesSource.ts
+│   │   │   │   │   ├── ocsgeSource.ts
+│   │   │   │   │   └── orthophotoSource.ts
+│   │   │   │   ├── stats
+│   │   │   │   │   ├── StatsManager.ts
+│   │   │   │   │   ├── StatsStateManager.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── types
+│   │   │   │   │   ├── builder.ts
+│   │   │   │   │   ├── controls.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── infoPanel.ts
+│   │   │   │   │   ├── layer.ts
+│   │   │   │   │   ├── layerInterface.ts
+│   │   │   │   │   ├── layerTypeGuards.ts
+│   │   │   │   │   ├── ocsge.ts
+│   │   │   │   │   ├── registry.ts
+│   │   │   │   │   ├── source.ts
+│   │   │   │   │   ├── sourceInterface.ts
+│   │   │   │   │   └── style.ts
+│   │   │   │   ├── ui
+│   │   │   │   │   ├── ArtificialisationDiffMap.tsx
+│   │   │   │   │   ├── ArtificialisationMap.tsx
+│   │   │   │   │   ├── BaseMap.tsx
+│   │   │   │   │   ├── FrichesArtificialMap.tsx
+│   │   │   │   │   ├── FrichesImpermeableMap.tsx
+│   │   │   │   │   ├── FrichesMap.tsx
+│   │   │   │   │   ├── FrichesOcsgeCouvertureMap.tsx
+│   │   │   │   │   ├── ImpermeabilisationDiffMap.tsx
+│   │   │   │   │   ├── ImpermeabilisationMap.tsx
+│   │   │   │   │   ├── controls
+│   │   │   │   │   │   ├── ControlsGroup.tsx
+│   │   │   │   │   │   ├── ControlsPanel.tsx
+│   │   │   │   │   │   ├── OcsgeDiffMillesimeControl.tsx
+│   │   │   │   │   │   ├── OcsgeMillesimeControl.tsx
+│   │   │   │   │   │   ├── OcsgeNomenclatureControl.tsx
+│   │   │   │   │   │   ├── OcsgeNomenclatureFilterControl.tsx
+│   │   │   │   │   │   ├── OpacityControl.tsx
+│   │   │   │   │   │   ├── VisibilityControl.tsx
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── infoPanel
+│   │   │   │   │   │   ├── ArtificialisationDiffInfo.tsx
+│   │   │   │   │   │   ├── ArtificialisationInfo.tsx
+│   │   │   │   │   │   ├── FrichesInfo.tsx
+│   │   │   │   │   │   ├── ImpermeabilisationDiffInfo.tsx
+│   │   │   │   │   │   ├── ImpermeabilisationInfo.tsx
+│   │   │   │   │   │   ├── InfoContent.tsx
+│   │   │   │   │   │   ├── InfoLabel.tsx
+│   │   │   │   │   │   ├── InfoPanel.tsx
+│   │   │   │   │   │   ├── InfoRow.tsx
+│   │   │   │   │   │   ├── InfoValue.tsx
+│   │   │   │   │   │   ├── OcsgeFrichesInfo.tsx
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   └── stats
+│   │   │   │   │       ├── StatsBar.tsx
+│   │   │   │   │       └── index.ts
+│   │   │   │   └── utils
+│   │   │   │       ├── bounds.ts
+│   │   │   │       ├── donutChart.ts
+│   │   │   │       └── ocsge.ts
+│   │   │   ├── pages
+│   │   │   │   ├── Artificialisation.tsx
+│   │   │   │   ├── Consommation
+│   │   │   │   │   ├── components
+│   │   │   │   │   │   ├── ConsoComparison
+│   │   │   │   │   │   │   ├── ChartSection.tsx
+│   │   │   │   │   │   │   ├── SuggestedTerritories.tsx
+│   │   │   │   │   │   │   ├── TerritoryBadge.tsx
+│   │   │   │   │   │   │   ├── TerritorySelector.tsx
+│   │   │   │   │   │   │   ├── constants.tsx
+│   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   ├── ConsoDemography.tsx
+│   │   │   │   │   │   ├── ConsoStats.tsx
+│   │   │   │   │   │   ├── ConsommationControls.tsx
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── context
+│   │   │   │   │   │   └── ConsommationControlsContext.tsx
+│   │   │   │   │   ├── hooks
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   ├── useComparisonTerritories.ts
+│   │   │   │   │   │   ├── useConsoData.ts
+│   │   │   │   │   │   └── useNearestTerritories.ts
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── types
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   └── utils
+│   │   │   │   │       └── territoryTransform.ts
+│   │   │   │   ├── Downloads.tsx
+│   │   │   │   ├── Friches.tsx
+│   │   │   │   ├── Impermeabilisation.tsx
+│   │   │   │   ├── LogementVacant
+│   │   │   │   │   ├── components
+│   │   │   │   │   │   ├── LogementVacantAutorisation.tsx
+│   │   │   │   │   │   ├── LogementVacantConso.tsx
+│   │   │   │   │   │   ├── LogementVacantProgression.tsx
+│   │   │   │   │   │   └── LogementVacantRatio.tsx
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── types
+│   │   │   │   │       └── index.ts
+│   │   │   │   ├── RapportLocal.tsx
+│   │   │   │   ├── Synthese.tsx
+│   │   │   │   └── Trajectoires.tsx
+│   │   │   └── ui
+│   │   │       ├── ActionCard.tsx
+│   │   │       ├── Button.tsx
+│   │   │       ├── ButtonToggleNavbar.tsx
+│   │   │       ├── CallToAction.tsx
+│   │   │       ├── Card.tsx
+│   │   │       ├── CookieConsent.tsx
+│   │   │       ├── DataTable.tsx
+│   │   │       ├── Divider.tsx
+│   │   │       ├── Drawer.tsx
+│   │   │       ├── ErrorBoundary.tsx
+│   │   │       ├── ExternalServiceTile.tsx
+│   │   │       ├── Guide.tsx
+│   │   │       ├── GuideContent.tsx
+│   │   │       ├── Loader.tsx
+│   │   │       ├── Notice.tsx
+│   │   │       ├── Pagination.tsx
+│   │   │       ├── RouteWrapper.tsx
+│   │   │       ├── SearchBar.tsx
+│   │   │       └── SearchInput.tsx
+│   │   ├── hooks
+│   │   │   ├── useArtificialisation.ts
+│   │   │   ├── useArtificialisationZonage.ts
+│   │   │   ├── useConsentManagement.tsx
+│   │   │   ├── useDataTable.ts
+│   │   │   ├── useDebounce.ts
+│   │   │   ├── useFriches.ts
+│   │   │   ├── useImpermeabilisation.ts
+│   │   │   ├── useImpermeabilisationZonage.ts
+│   │   │   ├── useMatomoTracking.ts
+│   │   │   ├── useMillesime.ts
+│   │   │   ├── usePageTitle.ts
+│   │   │   ├── useReportDrafts.ts
+│   │   │   └── useWindowSize.ts
+│   │   ├── index.js
+│   │   ├── react-roots.tsx
+│   │   ├── services
+│   │   │   ├── api.ts
+│   │   │   ├── fetchers.ts
+│   │   │   └── types
+│   │   │       ├── artif_zonage.ts
+│   │   │       ├── env.ts
+│   │   │       ├── land.ts
+│   │   │       ├── land_friches.ts
+│   │   │       ├── land_friches_statut.ts
+│   │   │       ├── landartifstockindex.ts
+│   │   │       ├── landimperstockindex.ts
+│   │   │       ├── project.ts
+│   │   │       ├── project_download_links.ts
+│   │   │       └── reportDraft.ts
+│   │   ├── store
+│   │   │   ├── navbarSlice.ts
+│   │   │   ├── pdfExportSlice.ts
+│   │   │   ├── projectSlice.ts
+│   │   │   └── store.ts
+│   │   ├── types
+│   │   │   ├── LandType.ts
+│   │   │   └── ZonageType.ts
+│   │   └── utils
+│   │       ├── csrf.ts
+│   │       ├── formatUtils.test.ts
+│   │       ├── formatUtils.ts
+│   │       └── landUtils.ts
+│   ├── styles
+│   │   ├── index.css
+│   │   └── map.css
+│   └── types
+│       ├── globals.d.ts
+│       ├── index.d.ts
+│       └── modules.d.ts
+├── highcharts
+│   ├── __init__.py
+│   ├── apps.py
+│   ├── charts.py
+│   ├── export-server
+│   │   ├── .buildpacks
+│   │   ├── .gitignore
+│   │   ├── Aptfile
+│   │   ├── Dockerfile
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── config.json
+│   │   ├── fonts
+│   │   │   ├── LICENSE.txt
+│   │   │   ├── METADATA.pb
+│   │   │   ├── OpenSans-Bold.ttf
+│   │   │   ├── OpenSans-BoldItalic.ttf
+│   │   │   ├── OpenSans-ExtraBold.ttf
+│   │   │   ├── OpenSans-ExtraBoldItalic.ttf
+│   │   │   ├── OpenSans-Italic.ttf
+│   │   │   ├── OpenSans-Light.ttf
+│   │   │   ├── OpenSans-LightItalic.ttf
+│   │   │   ├── OpenSans-Regular.ttf
+│   │   │   ├── OpenSans-Semibold.ttf
+│   │   │   └── OpenSans-SemiboldItalic.ttf
+│   │   ├── index.js
+│   │   ├── package.json
+│   │   ├── start.sh
+│   │   └── tests
+│   │       └── test.sh
+│   ├── migrations
+│   │   └── __init__.py
+│   ├── static
+│   │   └── highcharts
+│   │       └── js
+│   │           ├── dependency-wheel.js
+│   │           ├── exporting.js
+│   │           ├── highcharts-more.js
+│   │           ├── highcharts.js
+│   │           ├── no-data.js
+│   │           └── sankey.js
+│   ├── templates
+│   │   └── highcharts
+│   │       └── french_translation.html
+│   └── templatetags
+│       ├── __init__.py
+│       └── highcharts_tags.py
+├── home
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── forms.py
+│   ├── management
+│   │   ├── __init__.py
+│   │   └── commands
+│   │       ├── __init__.py
+│   │       └── maintenance.py
+│   ├── migrations
+│   │   ├── 0001_initial.py
+│   │   ├── 0002_frequentlyaskedquestion_is_published.py
+│   │   ├── 0003_auto_20220105_2014.py
+│   │   ├── 0004_auto_20220119_1412.py
+│   │   ├── 0005_delete_frequentlyaskedquestion.py
+│   │   ├── 0006_contactform.py
+│   │   ├── 0007_newsletter.py
+│   │   ├── 0008_alter_newsletter_confirm_token.py
+│   │   ├── 0009_alter_contactform_options.py
+│   │   ├── 0010_alter_newsletter_email.py
+│   │   ├── 0011_alivetimestamp.py
+│   │   ├── 0012_alter_alivetimestamp_options.py
+│   │   ├── 0013_auto_20241105_1333.py
+│   │   ├── 0014_satisfactionformentry.py
+│   │   ├── 0015_remove_satisfactionformentry_test_and_more.py
+│   │   ├── 0016_satisfactionformentry_user.py
+│   │   ├── 0017_satisfactionformentry_recorded_date_and_more.py
+│   │   ├── 0018_alter_satisfactionformentry_nps_and_more.py
+│   │   ├── 0019_remove_alivetimestamp.py
+│   │   ├── 0020_alter_contactform_status.py
+│   │   └── __init__.py
+│   ├── models.py
+│   ├── services.py
+│   ├── static
+│   │   └── home
+│   │       ├── css
+│   │       │   └── home.css
+│   │       └── img
+│   │           ├── OCSGE.png
+│   │           ├── cerema-logo.png
+│   │           ├── ign-logo.png
+│   │           ├── insee-geo-portail-urbanisme-logo.png
+│   │           ├── logo-cerema.svg
+│   │           ├── logo-gpu.png
+│   │           ├── logo-ign.svg
+│   │           ├── loi_climat_logo.png
+│   │           ├── maintenance.svg
+│   │           ├── nps.svg
+│   │           ├── sparte-diagnostic.png
+│   │           ├── sparte-pilotage.png
+│   │           ├── sparte-territoire.png
+│   │           └── suggested_change.svg
+│   ├── templates
+│   │   └── home
+│   │       ├── accessibilite.html
+│   │       ├── all_emails.html
+│   │       ├── contact.html
+│   │       ├── download.html
+│   │       ├── home.html
+│   │       ├── home_rapport_local.html
+│   │       ├── legal_notices.html
+│   │       ├── newsletter.html
+│   │       ├── partials
+│   │       │   ├── maintenance.html
+│   │       │   ├── newsletter_confirm_subscription.html
+│   │       │   └── newsletter_form.html
+│   │       ├── privacy.html
+│   │       ├── robots.txt
+│   │       ├── satisfaction.html
+│   │       ├── stats.html
+│   │       └── test.html
+│   ├── tests.py
+│   ├── urls.py
+│   └── views
+│       ├── AccessView.py
+│       ├── AliveView.py
+│       ├── ContactView.py
+│       ├── DownloadView.py
+│       ├── HomeRapportLocalView.py
+│       ├── HomeView.py
+│       ├── LegalNoticeView.py
+│       ├── MaintenanceView.py
+│       ├── NewsletterConfirmationSubscriptionView.py
+│       ├── NewsletterEmailValidationView.py
+│       ├── NewsletterSubscriptionView.py
+│       ├── PrivacyView.py
+│       ├── RobotView.py
+│       ├── SatisfactionView.py
+│       ├── StatsView.py
+│       ├── __init__.py
+│       └── download_package_request.py
+├── jest.config.js
+├── jest.setup.js
+├── manage.py
+├── oidc
+│   ├── __init__.py
+│   ├── apps.py
+│   ├── backends.py
+│   ├── migrations
+│   │   └── __init__.py
+│   ├── urls.py
+│   └── views.py
+├── package-lock.json
+├── package.json
+├── project
+│   ├── README.md
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── api_urls.py
+│   ├── api_views
+│   │   ├── EmpriseViewSet.py
+│   │   ├── ExportStartView.py
+│   │   ├── ExportStatusView.py
+│   │   ├── ProjectDetailView.py
+│   │   ├── ProjectDownloadLinkView.py
+│   │   ├── RecordDownloadRequestAPIView.py
+│   │   ├── ReportDraftViewSet.py
+│   │   ├── UpdateProjectComparisonLandsAPIView.py
+│   │   ├── UpdateProjectTarget2031APIView.py
+│   │   └── __init__.py
+│   ├── apps.py
+│   ├── charts
+│   │   ├── AnnualConsoByDeterminantChart.py
+│   │   ├── AnnualTotalConsoChart.py
+│   │   ├── ConsoByDeterminantPieChart.py
+│   │   ├── ObjectiveChart.py
+│   │   ├── TerritorialisationMap.py
+│   │   ├── TerritorialisationProgressMap.py
+│   │   ├── __init__.py
+│   │   ├── artificialisation
+│   │   │   ├── ArtifByCouverturePieChart.py
+│   │   │   ├── ArtifByUsagePieChart.py
+│   │   │   ├── ArtifFluxByCouverture.py
+│   │   │   ├── ArtifFluxByUsage.py
+│   │   │   ├── ArtifMap.py
+│   │   │   ├── ArtifNetFluxChart.py
+│   │   │   ├── ArtifSyntheseChart.py
+│   │   │   └── __init__.py
+│   │   ├── base_project_chart.py
+│   │   ├── consommation
+│   │   │   ├── AnnualConsoComparisonChart.py
+│   │   │   ├── AnnualConsoProportionalComparisonChart.py
+│   │   │   ├── ComparisonMap.py
+│   │   │   ├── ConsoAnnualChart.py
+│   │   │   ├── ConsoMap.py
+│   │   │   └── __init__.py
+│   │   ├── constants.py
+│   │   ├── demography
+│   │   │   ├── PopulationConsoComparisonChart.py
+│   │   │   ├── PopulationConsoProgressionChart.py
+│   │   │   └── __init__.py
+│   │   ├── impermeabilisation
+│   │   │   ├── ImperByCouverturePieChart.py
+│   │   │   ├── ImperByUsagePieChart.py
+│   │   │   ├── ImperFluxByCouverture.py
+│   │   │   ├── ImperFluxByUsage.py
+│   │   │   ├── ImperMap.py
+│   │   │   ├── ImperNetFluxChart.py
+│   │   │   ├── ImperSyntheseChart.py
+│   │   │   └── __init__.py
+│   │   ├── mixins
+│   │   │   ├── ComparisonChartMixin.py
+│   │   │   └── __init__.py
+│   │   └── urbanisme
+│   │       ├── BaseFricheChart.py
+│   │       ├── FricheArtifCompositionChart.py
+│   │       ├── FricheImperCompositionChart.py
+│   │       ├── FrichePollutionChart.py
+│   │       ├── FricheSurfaceChart.py
+│   │       ├── FricheTypeChart.py
+│   │       ├── FricheZonageEnvironnementalChart.py
+│   │       ├── FricheZonageTypeChart.py
+│   │       ├── FricheZoneActiviteChart.py
+│   │       ├── LogementVacantAutorisationLogementComparisonChart.py
+│   │       ├── LogementVacantAutorisationLogementRatioGaugeChart.py
+│   │       ├── LogementVacantAutorisationLogementRatioProgressionChart.py
+│   │       ├── LogementVacantConsoProgressionChart.py
+│   │       ├── LogementVacantProgressionChart.py
+│   │       ├── LogementVacantRatioProgressionChart.py
+│   │       └── __init__.py
+│   ├── forms.py
+│   ├── formulas.py
+│   ├── migrations
+│   │   ├── 0001_initial.py
+│   │   ├── 0002_project_user.py
+│   │   ├── 0003_rename_shape_files_project_shape_file.py
+│   │   ├── 0004_auto_20210824_0125.py
+│   │   ├── 0005_auto_20210825_1559.py
+│   │   ├── 0006_alter_project_cities.py
+│   │   ├── 0007_alter_project_cities.py
+│   │   ├── 0008_alter_project_import_status.py
+│   │   ├── 0009_auto_20210913_1732.py
+│   │   ├── 0010_auto_20210913_1734.py
+│   │   ├── 0011_alter_emprise_project.py
+│   │   ├── 0012_auto_20210920_2015.py
+│   │   ├── 0013_alter_planemprise_plan.py
+│   │   ├── 0014_project_couverture_usage.py
+│   │   ├── 0015_auto_20211025_2134.py
+│   │   ├── 0016_auto_20211102_1103.py
+│   │   ├── 0017_auto_20211216_2053.py
+│   │   ├── 0018_auto_20211231_0446.py
+│   │   ├── 0019_remove_project_cities.py
+│   │   ├── 0020_project_cities.py
+│   │   ├── 0021_auto_20220111_1953.py
+│   │   ├── 0022_auto_20220111_2211.py
+│   │   ├── 0023_auto_20220114_1613.py
+│   │   ├── 0024_alter_project_look_a_like.py
+│   │   ├── 0025_auto_20220120_1235.py
+│   │   ├── 0026_request.py
+│   │   ├── 0027_auto_20220216_1340.py
+│   │   ├── 0028_auto_20220216_2144.py
+│   │   ├── 0029_auto_20220308_0838.py
+│   │   ├── 0030_projectcommune_group_name.py
+│   │   ├── 0031_auto_20220512_1816.py
+│   │   ├── 0032_project_level.py
+│   │   ├── 0033_alter_project_level.py
+│   │   ├── 0034_auto_20220623_1344.py
+│   │   ├── 0035_auto_20220718_1443.py
+│   │   ├── 0036_auto_20220728_1543.py
+│   │   ├── 0037_auto_20220729_1046.py
+│   │   ├── 0038_project_territory_name.py
+│   │   ├── 0039_alter_project_territory_name.py
+│   │   ├── 0040_request_sent_file.py
+│   │   ├── 0041_auto_20220801_1445.py
+│   │   ├── 0042_auto_20220825_1012.py
+│   │   ├── 0043_auto_20220829_1616.py
+│   │   ├── 0044_auto_20220922_1536.py
+│   │   ├── 0045_project_target_2031.py
+│   │   ├── 0046_auto_20221024_1048.py
+│   │   ├── 0047_auto_20221128_1429.py
+│   │   ├── 0048_auto_20221201_1149.py
+│   │   ├── 0049_auto_20221215_1048.py
+│   │   ├── 0050_auto_20230224_1306.py
+│   │   ├── 0051_historicalrequest_historicalproject.py
+│   │   ├── 0052_alter_historicalproject_target_2031_and_more.py
+│   │   ├── 0053_rename_async_city_and_combined_emprise_done_historicalproject_async_add_city_done_and_more.py
+│   │   ├── 0054_historicalproject_available_millesimes_and_more.py
+│   │   ├── 0055_alter_historicalproject_target_2031_and_more.py
+│   │   ├── 0056_historicalproject_async_theme_map_gpu_done_and_more.py
+│   │   ├── 0057_historicalproject_public_keys_project_public_keys.py
+│   │   ├── 0058_historicalproject_async_theme_map_fill_gpu_done_and_more.py
+│   │   ├── 0059_alter_historicalproject_analyse_end_date_and_more.py
+│   │   ├── 0060_alter_errortracking_options.py
+│   │   ├── 0061_emprise_srid_source.py
+│   │   ├── 0061_historicalproject_async_ocsge_status_done_and_more.py
+│   │   ├── 0062_historicalproject_ocsge_coverage_status_and_more.py
+│   │   ├── 0063_rename_async_ocsge_status_done_historicalproject_async_ocsge_coverage_status_done_and_more.py
+│   │   ├── 0064_alter_historicalproject_ocsge_coverage_status_and_more.py
+│   │   ├── 0065_merge_20240109_0833.py
+│   │   ├── 0065_rename_async_add_neighboors_done_historicalproject_async_add_similar_lands_done_and_more.py
+│   │   ├── 0066_alter_emprise_srid_source_and_more.py
+│   │   ├── 0067_alter_historicalproject_history_user.py
+│   │   ├── 0067_alter_historicalproject_target_2031_and_more.py
+│   │   ├── 0068_merge_20240214_1612.py
+│   │   ├── 0069_remove_historicalproject_land_ids_and_more.py
+│   │   ├── 0070_alter_historicalproject_land_id_and_more.py
+│   │   ├── 0071_rename_async_add_similar_lands_done_historicalproject_async_add_comparison_lands_done_and_more.py
+│   │   ├── 0072_merge_20240318_1326.py
+│   │   ├── 0073_auto_20240417_1049.py
+│   │   ├── 0073_auto_20240418_1144.py
+│   │   ├── 0074_merge_0073_auto_20240417_1049_0073_auto_20240418_1144.py
+│   │   ├── 0075_alter_historicalproject_analyse_end_date_and_more.py
+│   │   ├── 0075_historicalrequest_requested_document_and_more.py
+│   │   ├── 0076_alter_historicalrequest_requested_document_and_more.py
+│   │   ├── 0077_alter_historicalrequest_requested_document_and_more.py
+│   │   ├── 0078_merge_20240508_1022.py
+│   │   ├── 0079_alter_historicalrequest_requested_document_and_more.py
+│   │   ├── 0079_historicalrequest_competence_urba_and_more.py
+│   │   ├── 0079_remove_historicalproject_description_and_more.py
+│   │   ├── 0080_merge_20240607_1001.py
+│   │   ├── 0080_merge_20240607_1045.py
+│   │   ├── 0081_merge_20240607_1127.py
+│   │   ├── 0082_alter_historicalrequest_competence_urba_and_more.py
+│   │   ├── 0083_alter_historicalrequest_organism_and_more.py
+│   │   ├── 0084_rnupackage.py
+│   │   ├── 0085_alter_rnupackage_departement_official_id.py
+│   │   ├── 0086_rnupackage_app_version.py
+│   │   ├── 0087_alter_rnupackage_file.py
+│   │   ├── 0088_alter_rnupackage_file.py
+│   │   ├── 0089_rnupackagerequest.py
+│   │   ├── 0090_alter_historicalrequest_first_name_and_more.py
+│   │   ├── 0091_auto_20240930_1152.py
+│   │   ├── 0092_remove_historicalproject_couverture_usage_and_more.py
+│   │   ├── 0093_auto_20241016_2205.py
+│   │   ├── 0094_auto_20241016_2217.py
+│   │   ├── 0095_auto_20241016_2221.py
+│   │   ├── 0096_alter_historicalproject_land_id_and_more.py
+│   │   ├── 0097_projectcommune_commune_insee.py
+│   │   ├── 0098_auto_20241022_1051.py
+│   │   ├── 0099_auto_20241022_1057.py
+│   │   ├── 0100_auto_20241022_1100.py
+│   │   ├── 0101_remove_projectcommune_commune_insee.py
+│   │   ├── 0102_alter_projectcommune_commune.py
+│   │   ├── 0102_remove_historicalproject_async_theme_map_gpu_done_and_more.py
+│   │   ├── 0103_alter_historicalproject_land_type_and_more.py
+│   │   ├── 0103_merge_20241128_1446.py
+│   │   ├── 0104_merge_20241202_1049.py
+│   │   ├── 0105_alter_historicalproject_land_type_and_more.py
+│   │   ├── 0106_alter_projectcommune_commune.py
+│   │   ├── 0107_remove_historicalproject_async_theme_map_fill_gpu_done_and_more.py
+│   │   ├── 0108_remove_historicalproject_async_find_first_and_last_ocsge_done_and_more.py
+│   │   ├── 0109_remove_historicalproject_async_add_city_done_and_more.py
+│   │   ├── 0110_remove_project_cities_and_more.py
+│   │   ├── 0111_delete_projectcommune.py
+│   │   ├── 0112_historicalrequest_service_request_service_and_more.py
+│   │   ├── 0113_alter_historicalrequest_function_and_more.py
+│   │   ├── 0114_remove_historicalrequest_function_and_more.py
+│   │   ├── 0115_alter_emprise_srid_source.py
+│   │   ├── 0116_remove_historicalproject_async_add_comparison_lands_done_and_more.py
+│   │   ├── 0117_add_export_job.py
+│   │   ├── 0117_remove_historicalproject_look_a_like_and_more.py
+│   │   ├── 0118_alter_exportjob_pdf_file.py
+│   │   ├── 0119_add_land_and_report_type_to_exportjob.py
+│   │   ├── 0120_merge_20251216_1455.py
+│   │   ├── 0121_target_2031_nullable.py
+│   │   ├── 0122_alter_historicalproject_land_type_and_more.py
+│   │   └── __init__.py
+│   ├── models
+│   │   ├── RNUPackage.py
+│   │   ├── RNUPackageRequest.py
+│   │   ├── __init__.py
+│   │   ├── create.py
+│   │   ├── enums.py
+│   │   ├── exceptions.py
+│   │   ├── export_job.py
+│   │   ├── project_base.py
+│   │   ├── report_draft.py
+│   │   ├── request.py
+│   │   └── utils.py
+│   ├── permissions.py
+│   ├── serializers.py
+│   ├── static
+│   │   └── project
+│   │       ├── img
+│   │       │   ├── appartement_icon.png
+│   │       │   ├── ecole_icon.png
+│   │       │   ├── mairie_icon.png
+│   │       │   ├── success_icon.png
+│   │       │   ├── success_icon_disabled.png
+│   │       │   └── trajectory_schema.png
+│   │       └── styles
+│   │           └── dashboard.css
+│   ├── storages.py
+│   ├── templates
+│   │   └── project
+│   │       ├── dev
+│   │       │   └── rnu_package_notice.html
+│   │       ├── layout
+│   │       │   └── base.html
+│   │       └── pages
+│   │           ├── artificialisation.html
+│   │           ├── consommation.html
+│   │           ├── downloads.html
+│   │           ├── friches.html
+│   │           ├── impermeabilisation.html
+│   │           ├── list.html
+│   │           ├── logement_vacant.html
+│   │           ├── rapport_local.html
+│   │           ├── synthese.html
+│   │           └── trajectoires.html
+│   ├── templatetags
+│   │   ├── __init__.py
+│   │   └── project_tags.py
+│   ├── test.py
+│   ├── tests
+│   │   ├── __init__.py
+│   │   ├── test_annual_total_conso_chart.py
+│   │   ├── test_artif_flux_by_couverture.py
+│   │   ├── test_artif_flux_by_usage.py
+│   │   ├── test_artif_net_flux_chart.py
+│   │   ├── test_consommation_charts.py
+│   │   ├── test_flux_charts.py
+│   │   ├── test_imper_flux_by_couverture.py
+│   │   ├── test_imper_flux_by_usage.py
+│   │   ├── test_imper_net_flux_chart.py
+│   │   └── test_logement_vacant_charts.py
+│   ├── urls.py
+│   ├── utils.py
+│   └── views
+│       ├── __init__.py
+│       ├── crud.py
+│       ├── diagnostic
+│       │   ├── DiagnosticArtificialisationView.py
+│       │   ├── DiagnosticBaseView.py
+│       │   ├── DiagnosticConsoView.py
+│       │   ├── DiagnosticDownloadsView.py
+│       │   ├── DiagnosticFrichesView.py
+│       │   ├── DiagnosticImpermeabilisationView.py
+│       │   ├── DiagnosticLogementVacantView.py
+│       │   ├── DiagnosticSynthesisView.py
+│       │   ├── DiagnosticTrajectoiresView.py
+│       │   ├── DiagnostictRapportLocalView.py
+│       │   └── __init__.py
+│       └── mixins.py
+├── public_data
+│   ├── __init__.py
+│   ├── admin
+│   │   ├── CommuneAdmin.py
+│   │   ├── DepartementAdmin.py
+│   │   ├── EpciAdmin.py
+│   │   ├── LandModelAdmin.py
+│   │   ├── RegionAdmin.py
+│   │   ├── ScotAdmin.py
+│   │   ├── SudocuhAdmin.py
+│   │   ├── SudocuhEpciAdmin.py
+│   │   ├── TerritorialisationObjectifAdmin.py
+│   │   └── __init__.py
+│   ├── apps.py
+│   ├── domain
+│   │   ├── ClassCacher.py
+│   │   ├── __init__.py
+│   │   ├── consommation
+│   │   │   ├── __init__.py
+│   │   │   ├── entity
+│   │   │   │   ├── AnnualConsommation.py
+│   │   │   │   ├── ConsommationCollection.py
+│   │   │   │   ├── ConsommationStatistics.py
+│   │   │   │   ├── ConsommationStatisticsComparison.py
+│   │   │   │   └── __init__.py
+│   │   │   ├── progression
+│   │   │   │   ├── BaseConsommationProgressionService.py
+│   │   │   │   └── __init__.py
+│   │   │   └── stats
+│   │   │       ├── BaseConsommationStatsComparisonService.py
+│   │   │       ├── BaseConsommationStatsService.py
+│   │   │       └── __init__.py
+│   │   ├── containers.py
+│   │   ├── demography
+│   │   │   ├── __init__.py
+│   │   │   └── population
+│   │   │       ├── entity
+│   │   │       │   ├── AnnualPopulation.py
+│   │   │       │   ├── AnnualPopulationCollection.py
+│   │   │       │   ├── PopulationStatistics.py
+│   │   │       │   ├── PopulationStatisticsComparison.py
+│   │   │       │   └── __init__.py
+│   │   │       ├── progression
+│   │   │       │   ├── BasePopulationProgressionService.py
+│   │   │       │   └── __init__.py
+│   │   │       └── stats
+│   │   │           ├── BasePopulationStatsService.py
+│   │   │           └── __init__.py
+│   │   ├── planning_competency
+│   │   │   ├── PlanningCompetencyService.py
+│   │   │   └── __init__.py
+│   │   └── urbanisme
+│   │       ├── autorisation_logement
+│   │       │   ├── entity
+│   │       │   │   ├── AnnualAutorisationLogement.py
+│   │       │   │   ├── AutorisationLogementCollection.py
+│   │       │   │   └── __init__.py
+│   │       │   └── progression
+│   │       │       ├── BaseAutorisationLogementProgressionService.py
+│   │       │       └── __init__.py
+│   │       └── logement_vacant
+│   │           ├── entity
+│   │           │   ├── AnnualLogementVacant.py
+│   │           │   ├── LogementVacantCollection.py
+│   │           │   └── __init__.py
+│   │           └── progression
+│   │               ├── BaseLogementVacantProgressionService.py
+│   │               └── __init__.py
+│   ├── exceptions.py
+│   ├── fixtures
+│   │   └── territorialisation_objectif.json
+│   ├── infra
+│   │   ├── PickleClassCacher.py
+│   │   ├── consommation
+│   │   │   ├── __init__.py
+│   │   │   ├── progression
+│   │   │   │   ├── ConsommationProgressionService.py
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── export
+│   │   │   │   │   ├── ConsoByDeterminantExportTableMapper.py
+│   │   │   │   │   ├── ConsoComparisonExportTableMapper.py
+│   │   │   │   │   ├── ConsoProportionalComparisonExportTableMapper.py
+│   │   │   │   │   └── __init__.py
+│   │   │   │   ├── highchart
+│   │   │   │   │   ├── ConsoComparisonMapper.py
+│   │   │   │   │   ├── ConsoProportionalComparisonMapper.py
+│   │   │   │   │   └── __init__.py
+│   │   │   │   └── table
+│   │   │   │       ├── ConsoByDeterminantTableMapper.py
+│   │   │   │       ├── ConsoComparisonTableMapper.py
+│   │   │   │       └── ConsoProportionalComparisonTableMapper.py
+│   │   │   └── stats
+│   │   │       ├── ConsommationStatsComparisonService.py
+│   │   │       ├── ConsommationStatsService.py
+│   │   │       └── __init__.py
+│   │   ├── demography
+│   │   │   └── population
+│   │   │       ├── __init__.py
+│   │   │       ├── progression
+│   │   │       │   ├── PopulationProgressionService.py
+│   │   │       │   ├── __init__.py
+│   │   │       │   └── table
+│   │   │       │       ├── PopulationConsoComparisonTableMapper.py
+│   │   │       │       └── PopulationConsoProgressionTableMapper.py
+│   │   │       └── stats
+│   │   │           ├── PopulationStatsService.py
+│   │   │           └── __init__.py
+│   │   ├── planning_competency
+│   │   │   ├── PlanningCompetencyServiceSudocuh.py
+│   │   │   ├── __init__.py
+│   │   │   └── tests.py
+│   │   └── urbanisme
+│   │       ├── autorisation_logement
+│   │       │   └── progression
+│   │       │       ├── AutorisationLogementProgressionService.py
+│   │       │       └── table
+│   │       │           └── LogementVacantAutorisationConstructionRatioProgressionTableMapper.py
+│   │       └── logement_vacant
+│   │           └── progression
+│   │               ├── LogementVacantProgressionService.py
+│   │               └── table
+│   │                   ├── LogementVacantAutorisationConstructionComparisonTableMapper.py
+│   │                   ├── LogementVacantConsoProgressionTableMapper.py
+│   │                   ├── LogementVacantProgressionTableMapper.py
+│   │                   └── LogementVacantRatioProgressionTableMapper.py
+│   ├── management
+│   │   ├── __init__.py
+│   │   └── commands
+│   │       ├── __init__.py
+│   │       └── import_sudocuh.py
+│   ├── migrations
+│   │   ├── 0001_initial.py
+│   │   ├── 0002_alter_communessybarval_mpoly.py
+│   │   ├── 0003_auto_20210816_1716.py
+│   │   ├── 0004_alter_artificialisee2015to2018_cs_2015.py
+│   │   ├── 0005_auto_20210816_1721.py
+│   │   ├── 0006_auto_20210816_1723.py
+│   │   ├── 0007_auto_20210816_1724.py
+│   │   ├── 0008_artifcommune.py
+│   │   ├── 0009_couverturesol_usagesol.py
+│   │   ├── 0010_alter_usagesol_parent.py
+│   │   ├── 0011_auto_20210920_1954.py
+│   │   ├── 0012_ocsge2015.py
+│   │   ├── 0013_auto_20210923_2344.py
+│   │   ├── 0014_auto_20210924_0019.py
+│   │   ├── 0015_ocsge2015_map_color.py
+│   │   ├── 0016_auto_20210924_2137.py
+│   │   ├── 0017_auto_20210924_2219.py
+│   │   ├── 0018_auto_20210926_2332.py
+│   │   ├── 0019_ocsge2018.py
+│   │   ├── 0020_auto_20210928_1210.py
+│   │   ├── 0021_voirie2018_usage_label.py
+│   │   ├── 0022_auto_20211025_2135.py
+│   │   ├── 0023_auto_20211027_1241.py
+│   │   ├── 0024_auto_20211027_1514.py
+│   │   ├── 0025_couvertureusagematrix_is_natural.py
+│   │   ├── 0026_auto_20211029_0913.py
+│   │   ├── 0027_alter_couvertureusagematrix_label.py
+│   │   ├── 0028_consocerema.py
+│   │   ├── 0029_auto_20211216_2114.py
+│   │   ├── 0030_alter_consocerema_mpoly.py
+│   │   ├── 0031_auto_20211217_2220.py
+│   │   ├── 0032_auto_20211217_2226.py
+│   │   ├── 0033_departement_epci_region.py
+│   │   ├── 0034_auto_20211224_1615.py
+│   │   ├── 0035_rename_departement_epci_departements.py
+│   │   ├── 0036_alter_departement_region.py
+│   │   ├── 0037_refplan_naf11art20.py
+│   │   ├── 0038_commune.py
+│   │   ├── 0039_departement_ocsge_millesimes.py
+│   │   ├── 0040_rename_naf11art20_refplan_naf11art21.py
+│   │   ├── 0041_auto_20220114_1613.py
+│   │   ├── 0042_alter_cerema_table.py
+│   │   ├── 0043_alter_cerema_city_insee.py
+│   │   ├── 0044_commune_colour.py
+│   │   ├── 0045_rename_colour_commune_map_color.py
+│   │   ├── 0046_auto_20220425_1607.py
+│   │   ├── 0047_ocsgediff.py
+│   │   ├── 0048_auto_20220504_1041.py
+│   │   ├── 0049_zoneconstruite_surface.py
+│   │   ├── 0050_auto_20220509_0838.py
+│   │   ├── 0051_auto_20220509_1054.py
+│   │   ├── 0052_auto_20220509_1245.py
+│   │   ├── 0053_rename_is_new_naf_ocsgediff_is_new_natural.py
+│   │   ├── 0054_auto_20220510_1217.py
+│   │   ├── 0055_communediff.py
+│   │   ├── 0056_auto_20220511_0718.py
+│   │   ├── 0057_auto_20220512_0947.py
+│   │   ├── 0058_communesol.py
+│   │   ├── 0059_rename_surface_artif_communesol_surface.py
+│   │   ├── 0060_auto_20220512_1303.py
+│   │   ├── 0061_auto_20220512_1325.py
+│   │   ├── 0062_auto_20220512_1816.py
+│   │   ├── 0063_auto_20220513_0833.py
+│   │   ├── 0064_artificialarea.py
+│   │   ├── 0065_alter_artificialarea_city.py
+│   │   ├── 0066_auto_20220516_0720.py
+│   │   ├── 0067_zoneconstruite_builded_density.py
+│   │   ├── 0068_rename_builded_density_zoneconstruite_built_density.py
+│   │   ├── 0069_ocsge_public_data_year_3fae3a_idx.py
+│   │   ├── 0070_auto_20220628_0949.py
+│   │   ├── 0071_auto_20220628_0950.py
+│   │   ├── 0072_auto_20220726_1621.py
+│   │   ├── 0073_auto_20220726_1625.py
+│   │   ├── 0074_auto_20220726_1940.py
+│   │   ├── 0075_auto_20220728_1543.py
+│   │   ├── 0076_auto_20220825_1423.py
+│   │   ├── 0077_communepop.py
+│   │   ├── 0078_auto_20220826_1010.py
+│   │   ├── 0079_rename_menage_communepop_household.py
+│   │   ├── 0080_auto_20220826_1635.py
+│   │   ├── 0081_auto_20221215_1048.py
+│   │   ├── 0082_auto_20221216_1746.py
+│   │   ├── 0083_auto_20230113_1752.py
+│   │   ├── 0084_auto_20230120_0955.py
+│   │   ├── 0085_alter_cerema_city_name_alter_cerema_dept_id_and_more.py
+│   │   ├── 0086_zoneurba.py
+│   │   ├── 0087_alter_zoneurba_datappro_alter_zoneurba_datvalid_and_more.py
+│   │   ├── 0088_ocsge_public_data_is_arti_05643d_idx.py
+│   │   ├── 0089_zoneurba_area_zoneurba_artificial_area_and_more.py
+│   │   ├── 0090_rename_typezone_zoneurba_origin_typezone.py
+│   │   ├── 0091_zoneurba_typezone.py
+│   │   ├── 0092_artifareazoneurba_remove_zoneurba_artificial_area_and_more.py
+│   │   ├── 0093_commune_area.py
+│   │   ├── 0094_cerema_art09fer10_cerema_art09rou10_and_more.py
+│   │   ├── 0095_rename_art09act21_cerema_art09act22_and_more.py
+│   │   ├── 0096_cerema_aav2020txt_cerema_art09fer22_and_more.py
+│   │   ├── 0097_remove_scot_date_acting_remove_scot_date_end_and_more.py
+│   │   ├── 0098_alter_scot_siren.py
+│   │   ├── 0099_cerema_public_data_scot_3f2e32_idx_and_more.py
+│   │   ├── 0100_alter_commune_epci.py
+│   │   ├── 0101_auto_20231023_1423.py
+│   │   ├── 0102_artificialarea_srid_source_cerema_srid_source_and_more.py
+│   │   ├── 0102_ocsge_departement.py
+│   │   ├── 0102_remove_zoneconstruite_built_density.py
+│   │   ├── 0104_ocsgediff_departement_zoneconstruite_departement.py
+│   │   ├── 0105_auto_20231122_0843.py
+│   │   ├── 0106_artificialarea_departement.py
+│   │   ├── 0107_merge_20231130_1322.py
+│   │   ├── 0108_commune_ocsge_coverage_status.py
+│   │   ├── 0109_alter_commune_ocsge_coverage_status.py
+│   │   ├── 0110_commune_first_millesime.py
+│   │   ├── 0111_remove_commune_ocsge_coverage_status_and_more.py
+│   │   ├── 0112_rename_ocsge_millesimes_departement_ocsge_millesimes_old.py
+│   │   ├── 0113_datasource.py
+│   │   ├── 0113_merge_20240109_0833.py
+│   │   ├── 0114_merge_0113_datasource_0113_merge_20240109_0833.py
+│   │   ├── 0115_alter_datasource_options_datasource_srid_and_more.py
+│   │   ├── 0116_alter_datasource_millesimes.py
+│   │   ├── 0117_alter_datasource_official_land_id.py
+│   │   ├── 0118_alter_artifareazoneurba_area.py
+│   │   ├── 0119_remove_ocsge_couverture_label_and_more.py
+│   │   ├── 0119_sudocuh.py
+│   │   ├── 0120_alter_sudocuh_du_en_cours_alter_sudocuh_du_opposable.py
+│   │   ├── 0120_ocsge_temp_departement.py
+│   │   ├── 0121_alter_sudocuh_code_etat_alter_sudocuh_du_en_cours.py
+│   │   ├── 0121_auto_20240327_1105.py
+│   │   ├── 0122_remove_ocsge_temp_departement_and_more.py
+│   │   ├── 0123_remove_ocsge_temp_departement_ocsge_departement.py
+│   │   ├── 0124_remove_ocsge_matrix_alter_ocsge_departement.py
+│   │   ├── 0125_alter_ocsge_couverture_alter_ocsge_id_source_and_more.py
+│   │   ├── 0126_zoneconstruite_temp_departement_and_more.py
+│   │   ├── 0127_auto_20240327_1548.py
+│   │   ├── 0128_remove_zoneconstruite_departement.py
+│   │   ├── 0129_rename_temp_departement_zoneconstruite_departement.py
+│   │   ├── 0130_alter_zoneconstruite_departement.py
+│   │   ├── 0131_artificialarea_temp_departement.py
+│   │   ├── 0132_auto_20240327_1604.py
+│   │   ├── 0133_remove_artificialarea_departement.py
+│   │   ├── 0134_alter_artificialarea_temp_departement.py
+│   │   ├── 0135_rename_temp_departement_artificialarea_departement.py
+│   │   ├── 0136_ocsgediff_temp_departement.py
+│   │   ├── 0137_auto_20240327_1651.py
+│   │   ├── 0138_remove_ocsgediff_departement.py
+│   │   ├── 0139_rename_temp_departement_ocsgediff_departement.py
+│   │   ├── 0140_remove_ocsgediff_new_matrix_and_more.py
+│   │   ├── 0141_auto_20240327_1737.py
+│   │   ├── 0142_remove_ocsgediff_cs_new_label_and_more.py
+│   │   ├── 0143_alter_ocsgediff_cs_new_alter_ocsgediff_cs_old_and_more.py
+│   │   ├── 0144_alter_ocsgediff_departement_and_more.py
+│   │   ├── 0145_remove_ocsgediff_new_is_artif_and_more.py
+│   │   ├── 0146_alter_ocsge_unique_together.py
+│   │   ├── 0147_datasource_shapefile_name_alter_datasource_productor.py
+│   │   ├── 0148_artificialarea_city_temp.py
+│   │   ├── 0149_auto_20240404_1635.py
+│   │   ├── 0150_alter_artificialarea_city.py
+│   │   ├── 0151_remove_artificialarea_artificialarea_city_year_unique_and_more.py
+│   │   ├── 0152_rename_city_temp_artificialarea_city.py
+│   │   ├── 0153_artificialarea_public_data_city_201666_idx.py
+│   │   ├── 0154_alter_datasource_name.py
+│   │   ├── 0155_ocsge_public_data_departe_688545_idx.py
+│   │   ├── 0156_artificialarea_public_data_departe_f0a42d_idx_and_more.py
+│   │   ├── 0157_alter_datasource_dataset_alter_datasource_name.py
+│   │   ├── 0158_merge_20240417_1100.py
+│   │   ├── 0159_merge_20240418_1326.py
+│   │   ├── 0160_alter_sudocuh_du_en_cours.py
+│   │   ├── 0161_cerema_art22act23_cerema_art22fer23_and_more.py
+│   │   ├── 0162_rename_art09act22_cerema_art09act23_and_more.py
+│   │   ├── 0163_rename_artcom0922_cerema_artcom0923.py
+│   │   ├── 0164_remove_cerema_libaav2020.py
+│   │   ├── 0165_rename_emp13_cerema_emp14_and_more.py
+│   │   ├── 0166_rename_artpop1319_cerema_artpop1420_and_more.py
+│   │   ├── 0167_rename_surfcom2022_cerema_surfcom23.py
+│   │   ├── 0168_sudocuhepci.py
+│   │   ├── 0169_alter_sudocuhepci_date_creation_epci.py
+│   │   ├── 0170_auto_20240607_1350.py
+│   │   ├── 0171_zoneartificielle.py
+│   │   ├── 0172_auto_20240621_0655.py
+│   │   ├── 0172_remove_zoneartificielle_public_data_millesi_5fb7c5_idx_and_more.py
+│   │   ├── 0173_alter_zoneartificielle_departement.py
+│   │   ├── 0174_auto_20240615_1835.py
+│   │   ├── 0175_alter_artificialarea_unique_together.py
+│   │   ├── 0176_artificialarea_new_method.py
+│   │   ├── 0177_alter_artificialarea_new_method.py
+│   │   ├── 0178_remove_artificialarea_new_method.py
+│   │   ├── 0179_merge_20240624_0952.py
+│   │   ├── 0180_delete_zoneartificielle_alter_artificialarea_options_and_more.py
+│   │   ├── 0181_alter_epci_options_remove_artificialarea_new_method.py
+│   │   ├── 0182_ocsge_is_impermeable_ocsgediff_is_new_impermeable_and_more.py
+│   │   ├── 0183_auto_20240625_0020.py
+│   │   ├── 0184_alter_ocsge_is_impermeable_and_more.py
+│   │   ├── 0185_remove_couvertureusagematrix_is_consumed_and_more.py
+│   │   ├── 0186_auto_20240625_0906.py
+│   │   ├── 0187_auto_20240703_1704.py
+│   │   ├── 0188_alter_artifareazoneurba_options_and_more.py
+│   │   ├── 0189_alter_commune_options_alter_departement_options_and_more.py
+│   │   ├── 0190_delete_datasource_delete_refplan.py
+│   │   ├── 0191_landconso_landconsocomparison_landconsostats_landpop_and_more.py
+│   │   ├── 0192_landconso_landconsocomparison_landconsostats_landpop_and_more.py
+│   │   ├── 0193_landconso_landconsocomparison_landconsostats_landpop_and_more.py
+│   │   ├── 0194_autorisationlogement_logementvacant.py
+│   │   ├── 0195_artifzonage_delete_artifareazoneurba.py
+│   │   ├── 0196_delete_zoneconstruite_and_more.py
+│   │   ├── 0197_delete_artificialarea_delete_landpopcomparison_and_more.py
+│   │   ├── 0198_artifzonageindex_landartifstock_and_more.py
+│   │   ├── 0199_landfriche_landfrichegeojson_landfrichepollution_and_more.py
+│   │   ├── 0200_imperzonage_imperzonageindex_landimperflux_and_more.py
+│   │   ├── 0201_landartifflux_landartiffluxcouverturecomposition_and_more.py
+│   │   ├── 0202_delete_similarterritories.py
+│   │   ├── 0203_territorialisationobjectif.py
+│   │   └── __init__.py
+│   ├── models
+│   │   ├── __init__.py
+│   │   ├── administration
+│   │   │   ├── AdminRef.py
+│   │   │   ├── Commune.py
+│   │   │   ├── Departement.py
+│   │   │   ├── Epci.py
+│   │   │   ├── Land.py
+│   │   │   ├── LandMixin.py
+│   │   │   ├── LandModel.py
+│   │   │   ├── Nation.py
+│   │   │   ├── Region.py
+│   │   │   ├── Scot.py
+│   │   │   ├── __init__.py
+│   │   │   ├── enums
+│   │   │   │   ├── ConsommationCorrectionStatus.py
+│   │   │   │   └── __init__.py
+│   │   │   └── tests.py
+│   │   ├── artificialisation
+│   │   │   ├── ArtifZonage.py
+│   │   │   ├── ArtifZonageIndex.py
+│   │   │   ├── BaseLandArtifStockComposition.py
+│   │   │   ├── BaseLandArtifStockCompositionIndex.py
+│   │   │   ├── LandArtifStock.py
+│   │   │   ├── LandArtifStockCouvertureComposition.py
+│   │   │   ├── LandArtifStockCouvertureCompositionIndex.py
+│   │   │   ├── LandArtifStockIndex.py
+│   │   │   ├── LandArtifStockUsageComposition.py
+│   │   │   ├── LandArtifStockUsageCompositionIndex.py
+│   │   │   ├── __init__.py
+│   │   │   └── flux
+│   │   │       ├── LandArtifFlux.py
+│   │   │       ├── LandArtifFluxCouvertureComposition.py
+│   │   │       ├── LandArtifFluxCouvertureCompositionIndex.py
+│   │   │       ├── LandArtifFluxIndex.py
+│   │   │       ├── LandArtifFluxUsageComposition.py
+│   │   │       ├── LandArtifFluxUsageCompositionIndex.py
+│   │   │       └── __init__.py
+│   │   ├── consommation
+│   │   │   ├── LandConso.py
+│   │   │   ├── LandConsoComparison.py
+│   │   │   ├── LandConsoStats.py
+│   │   │   └── __init__.py
+│   │   ├── demography
+│   │   │   ├── LandPop.py
+│   │   │   ├── LandPopStats.py
+│   │   │   ├── LandPopulationDensity.py
+│   │   │   ├── NearestTerritories.py
+│   │   │   └── __init__.py
+│   │   ├── enums.py
+│   │   ├── impermeabilisation
+│   │   │   ├── __init__.py
+│   │   │   ├── flux
+│   │   │   │   ├── LandImperFlux.py
+│   │   │   │   ├── LandImperFluxCouvertureComposition.py
+│   │   │   │   ├── LandImperFluxCouvertureCompositionIndex.py
+│   │   │   │   ├── LandImperFluxIndex.py
+│   │   │   │   ├── LandImperFluxUsageComposition.py
+│   │   │   │   ├── LandImperFluxUsageCompositionIndex.py
+│   │   │   │   └── __init__.py
+│   │   │   └── stock
+│   │   │       ├── BaseLandImperStockComposition.py
+│   │   │       ├── BaseLandImperStockCompositionIndex.py
+│   │   │       ├── ImperZonage.py
+│   │   │       ├── ImperZonageIndex.py
+│   │   │       ├── LandImperStock.py
+│   │   │       ├── LandImperStockCouvertureComposition.py
+│   │   │       ├── LandImperStockCouvertureCompositionIndex.py
+│   │   │       ├── LandImperStockIndex.py
+│   │   │       ├── LandImperStockUsageComposition.py
+│   │   │       ├── LandImperStockUsageCompositionIndex.py
+│   │   │       └── __init__.py
+│   │   ├── mixins.py
+│   │   ├── sudocuh.py
+│   │   ├── territorialisation
+│   │   │   ├── TerritorialisationObjectif.py
+│   │   │   └── __init__.py
+│   │   └── urbanisme
+│   │       ├── AutorisationLogement.py
+│   │       ├── BaseLandFriche.py
+│   │       ├── LandFriche.py
+│   │       ├── LandFricheGeojson.py
+│   │       ├── LandFrichePollution.py
+│   │       ├── LandFricheStatut.py
+│   │       ├── LandFricheSurfaceRank.py
+│   │       ├── LandFricheType.py
+│   │       ├── LandFricheZonageEnvironnementale.py
+│   │       ├── LandFricheZonageType.py
+│   │       ├── LandFricheZoneActivite.py
+│   │       ├── LogementVacant.py
+│   │       ├── LogementVacantAutorisationStats.py
+│   │       └── __init__.py
+│   ├── serializers.py
+│   ├── storages.py
+│   ├── templates
+│   │   └── public_data
+│   │       ├── partials
+│   │       │   ├── conso_by_determinant_table.html
+│   │       │   ├── conso_comparison_table.html
+│   │       │   ├── conso_proportional_comparison_table.html
+│   │       │   ├── imper_nette_table.html
+│   │       │   ├── imper_sol_table.html
+│   │       │   ├── logement_vacant_autorisation_construction_comparison_table.html
+│   │       │   ├── logement_vacant_autorisation_construction_ratio_progression_table.html
+│   │       │   ├── logement_vacant_conso_progression_table.html
+│   │       │   ├── logement_vacant_progression_table.html
+│   │       │   ├── logement_vacant_ratio_progression_table.html
+│   │       │   ├── population_conso_comparison_table.html
+│   │       │   └── population_conso_progression_table.html
+│   │       ├── pdf_footer.html
+│   │       ├── pdf_header.html
+│   │       ├── rapport_complet.html
+│   │       ├── rapport_draft.html
+│   │       └── us_cs_matrix.html
+│   ├── throttles.py
+│   ├── urls.py
+│   └── views.py
+├── pyproject.toml
+├── pytest.ini
+├── required_parameters.json
+├── scalingo.json
+├── sonar-project.properties
+├── static
+│   ├── assets
+│   │   ├── fonts
+│   │   │   ├── 0c3211fd56badc1b88df.woff2
+│   │   │   ├── 348b5a5635fa60342239.woff
+│   │   │   ├── 3d17f2f950cb7ae6ce05.woff2
+│   │   │   ├── 4349f045b7b055e738bb.woff2
+│   │   │   ├── 43572203c564b9a08555.woff2
+│   │   │   ├── 64833265eb26185237fb.woff2
+│   │   │   ├── 702e12a689d3a016b117.woff2
+│   │   │   ├── 705c5430a3bf5ca547df.woff2
+│   │   │   ├── 79ec1218a3200724489b.woff
+│   │   │   ├── 7d0f535c39ec221cd7f1.woff
+│   │   │   ├── 8095b76e62d3d7e79385.woff
+│   │   │   ├── 81a643ce9c2f56f86158.woff
+│   │   │   ├── a0d9b746fd06d4bbbc3d.woff
+│   │   │   ├── a79009c7fdfa42a4a101.woff
+│   │   │   ├── c7c1712e3560a146a3f8.woff2
+│   │   │   ├── d83692d4bbb3b40525d0.woff2
+│   │   │   ├── e31b8af20e0f52510574.woff2
+│   │   │   ├── e86f00bbeed0226e834d.woff
+│   │   │   ├── ec31b001f9c1ed9de17a.woff
+│   │   │   └── edc38ef1d4c863c275bc.woff
+│   │   └── images
+│   │       ├── 01f6009448da4309842d.svg
+│   │       ├── 03c3fa2a2a36b53d913b.svg
+│   │       ├── 0438c061cf3f09aeee60.svg
+│   │       ├── 04fc434400ccc52e3ffb.svg
+│   │       ├── 057e6f882da74bd7c565.svg
+│   │       ├── 0650f76e30cd51eb7234.svg
+│   │       ├── 06c14305639de6969e6c.svg
+│   │       ├── 0808e25f31743f7ae617.svg
+│   │       ├── 0920b574bfb48420ce30.svg
+│   │       ├── 0a11327d88b0550f1dbb.svg
+│   │       ├── 0cdcecad9ad8958941f1.svg
+│   │       ├── 0e119699356f690bd361.svg
+│   │       ├── 0e6487e12b42ea53ab30.svg
+│   │       ├── 0ef5119ffdc80907129e.svg
+│   │       ├── 0fb16b395738a79ccdfd.svg
+│   │       ├── 0fd0df898cb08b32aacc.svg
+│   │       ├── 11c809fc8894c3952778.svg
+│   │       ├── 126c4c0b9158560d0567.svg
+│   │       ├── 1367dd20d027c63962d5.svg
+│   │       ├── 1377647f601a195e0fa1.svg
+│   │       ├── 138e2a3cece1a3cd8b5b.svg
+│   │       ├── 14df53eadfa149231599.svg
+│   │       ├── 1806c5ffa104f5abae39.svg
+│   │       ├── 1a0b01d4d112d0913523.svg
+│   │       ├── 1cff4fe3ebe1bbc8c2c8.svg
+│   │       ├── 1d7277c437ac00bdec04.svg
+│   │       ├── 1dc0ca2e512259718062.svg
+│   │       ├── 1e85ae5fb44e3f9d18a1.svg
+│   │       ├── 21f69e91424c407eb09a.svg
+│   │       ├── 22d9c6a4b29a1a830405.svg
+│   │       ├── 230758cd18def1c1264e.svg
+│   │       ├── 238629f7adb27fa15b15.svg
+│   │       ├── 27151eec88c94b3f90fe.svg
+│   │       ├── 284e8ad7601c2a8c992a.svg
+│   │       ├── 2883097d2b883a8dbc4f.svg
+│   │       ├── 28f5ce47f021995d6827.svg
+│   │       ├── 2b3e1faf89f94a483539.png
+│   │       ├── 300e8462a649d7858330.svg
+│   │       ├── 30c6165f3249b1178834.svg
+│   │       ├── 30e44db5d06f613b58b6.svg
+│   │       ├── 322a97b5212c9556158a.svg
+│   │       ├── 32f0d56f909a1f80cb2d.svg
+│   │       ├── 33808b0b7a66a48293de.svg
+│   │       ├── 3387116e31581cade23e.svg
+│   │       ├── 34b1323ccecacf31feaf.svg
+│   │       ├── 3643cce4434173e02b64.svg
+│   │       ├── 3885959274babae97f82.svg
+│   │       ├── 38ace00c5be4ab09e2a9.svg
+│   │       ├── 3945c1fcb905717711da.svg
+│   │       ├── 39bc9680e929a549776a.svg
+│   │       ├── 3a04e361ddef98a22234.svg
+│   │       ├── 3eb28dfe4648b9dd77af.svg
+│   │       ├── 3f4617d23baf291fb591.svg
+│   │       ├── 3f7a7b1c35f605f6d256.svg
+│   │       ├── 3ff9e088d67455a0ce76.svg
+│   │       ├── 40da8b2fcb2f6cd5bf93.svg
+│   │       ├── 4149439215b868fd359f.svg
+│   │       ├── 416d91365b44e4b4f477.png
+│   │       ├── 41f5dffd441fc8ce479f.svg
+│   │       ├── 42474a6fceb470415b22.svg
+│   │       ├── 439700dbbb8e1d30a7fc.svg
+│   │       ├── 451cd6c027fe3b56f588.svg
+│   │       ├── 45ba8620869a8d1de2d4.svg
+│   │       ├── 4648a2eb31198cc757a8.svg
+│   │       ├── 469dc8a59a64f71ab6d7.svg
+│   │       ├── 47a9453d201303ba421d.svg
+│   │       ├── 48b06e3ab6048a2775df.svg
+│   │       ├── 499529d67dd85a0ced77.svg
+│   │       ├── 4a86895e5ee6121af909.svg
+│   │       ├── 4bd179a31bc71a78aab3.svg
+│   │       ├── 4cc7b952227d89154a3c.svg
+│   │       ├── 4d43b9070f3d9153a7c8.svg
+│   │       ├── 4d44315a04596f6e55af.svg
+│   │       ├── 4eeef519520b4becb095.svg
+│   │       ├── 4f2ce7bdddb2fc202d53.svg
+│   │       ├── 4f5389d93ee50a10e4f3.svg
+│   │       ├── 519e78e64ab37692184c.svg
+│   │       ├── 5541949c1e3941134c1d.svg
+│   │       ├── 56246d86f5b0cb71bdfb.svg
+│   │       ├── 56d28ecba2661011c333.svg
+│   │       ├── 5793591419c3a3fc1ec0.svg
+│   │       ├── 5824340d8a88f42dde97.svg
+│   │       ├── 589289a74a378a0bbdab.svg
+│   │       ├── 5e383fbc3b01bfba6644.svg
+│   │       ├── 5f9f4f2124ec78f93652.svg
+│   │       ├── 5fac7fc1e919c8785620.svg
+│   │       ├── 605318391beedf4e17c2.svg
+│   │       ├── 612a73b3b57ae5174141.svg
+│   │       ├── 6207d2ad7f7b23c6cbd5.svg
+│   │       ├── 62f8c1d81e9ebea2e4dd.svg
+│   │       ├── 63877971464a91a39805.svg
+│   │       ├── 681db73b54946da4dc16.svg
+│   │       ├── 6833270903716b30531e.svg
+│   │       ├── 69dfb9f70fe1180898d7.svg
+│   │       ├── 6a8c4f5be92a6a9b36a8.svg
+│   │       ├── 6c004ad59b6c9394b899.svg
+│   │       ├── 6c666d2484786507012f.svg
+│   │       ├── 6c8b4ba4adbad6aee232.svg
+│   │       ├── 6deab5b0ad93325eff2d.svg
+│   │       ├── 6e23bbdce8eb37b36aa3.svg
+│   │       ├── 6e610ede431f1b33fbff.svg
+│   │       ├── 6e7be583efc2a771ae3b.svg
+│   │       ├── 6efe4dc889dde83cf07d.svg
+│   │       ├── 70827b33771f97f3f233.svg
+│   │       ├── 719d870fd2ef14580ede.svg
+│   │       ├── 71b4c61225222e7e32aa.svg
+│   │       ├── 72bc942addee3a75ab4a.svg
+│   │       ├── 75a27318532944dc5ea3.svg
+│   │       ├── 76ca9b9754640ad96f1f.svg
+│   │       ├── 77c6641c99536c8ce7b5.svg
+│   │       ├── 78026453ed9720bc3f24.svg
+│   │       ├── 7a1aa091feef6bd4f4ad.svg
+│   │       ├── 7a79f2234361008ebe6c.svg
+│   │       ├── 7cbf8c4e5a800d86da97.svg
+│   │       ├── 7d8cb7c3c96865dbc4e7.svg
+│   │       ├── 7f5ffed6966a38942d89.svg
+│   │       ├── 7ffecc0d96f7711cfcef.svg
+│   │       ├── 80e36090bde842590400.svg
+│   │       ├── 8177350ca2baf9d0988a.svg
+│   │       ├── 81d3e93b0d1679970bb5.svg
+│   │       ├── 8207524b80b222cc639a.svg
+│   │       ├── 82be8ff1e8d1fe0a0f6d.svg
+│   │       ├── 84e100c87fe2e8458eda.svg
+│   │       ├── 85e5514df938792c3cf5.svg
+│   │       ├── 866ff0ecb70bcf7e2dba.svg
+│   │       ├── 8758a7f23f4d3bfc9f23.svg
+│   │       ├── 8867e73b30a386373114.svg
+│   │       ├── 88764910ebfbb7ad54d1.svg
+│   │       ├── 894a7247d08f4daf0c3b.svg
+│   │       ├── 89c99a868904af09c777.svg
+│   │       ├── 8bf93d267e43b42b9361.svg
+│   │       ├── 8e9105d84150f3fd24f9.svg
+│   │       ├── 8e9570c01f2c2585a71a.svg
+│   │       ├── 8f2c4d11474275fbc161.png
+│   │       ├── 8f72ea91958b52fe5a1e.svg
+│   │       ├── 9036a385fcba08ca3e51.png
+│   │       ├── 90adf7ab45a8f0b94c4c.svg
+│   │       ├── 90b486f546096b40e852.svg
+│   │       ├── 92471c9e86589b355a95.svg
+│   │       ├── 931866409d1cdad9b511.svg
+│   │       ├── 96edc078a03d0be58738.svg
+│   │       ├── 98ac12501cdf8a7453c0.svg
+│   │       ├── 9afe858e0f49c163cd00.svg
+│   │       ├── 9c2ef82426e5ff8f4d3a.svg
+│   │       ├── 9c55e93651755dee2516.svg
+│   │       ├── 9c8888660ac2f115845e.svg
+│   │       ├── 9d5b0517f7b8847067e7.svg
+│   │       ├── 9e33ec01f6d0a9071b3e.svg
+│   │       ├── 9e556f5e93cc9b435fff.svg
+│   │       ├── a15c917199ba3a748016.svg
+│   │       ├── a51a93eb3fe93a5d4df6.svg
+│   │       ├── a5404c8e58bce14de6a0.svg
+│   │       ├── a6bb78c593f87b9ba3e4.svg
+│   │       ├── a89c9e5160e232adce94.svg
+│   │       ├── a8e5b45feea1289eb9d4.svg
+│   │       ├── aa1b814e5a60300830f1.svg
+│   │       ├── accdc547cfa7b034b04d.svg
+│   │       ├── afa9c83f00c108c1761d.svg
+│   │       ├── b026a140e2cb4353a57d.svg
+│   │       ├── b19470eec5c167d28b9c.svg
+│   │       ├── b20bf23e5cf4eca5dbb6.svg
+│   │       ├── b3edfd4eaf5c560adc97.svg
+│   │       ├── b45a007d5340e85bc67c.svg
+│   │       ├── b4b09f1027dfaaee51f6.svg
+│   │       ├── b4f9e1f2751073e99c20.svg
+│   │       ├── b4fb8b6118eab9766c39.svg
+│   │       ├── b5abbb460152c56b95a7.svg
+│   │       ├── b6ed50e0d2143245664d.svg
+│   │       ├── b7e5c81d618739869908.svg
+│   │       ├── b8787666077919614439.svg
+│   │       ├── b94527160745f1f21bc6.svg
+│   │       ├── b989bf139f7180391099.svg
+│   │       ├── bb706a4ee8750dd1fd08.svg
+│   │       ├── bbbb356df779b55cc0e0.svg
+│   │       ├── bdd20aff546fe342b364.svg
+│   │       ├── be3a1ed8fd6c6a480611.svg
+│   │       ├── c02a5320fa1103dff6c8.svg
+│   │       ├── c0905af49e071b3bb51c.svg
+│   │       ├── c168f040029901794b81.svg
+│   │       ├── c17f733daeb44d77ce3f.svg
+│   │       ├── c18eec115bf8edb1cfd8.svg
+│   │       ├── c4415062cb807d7fc432.svg
+│   │       ├── c5c3ab65418580eae125.svg
+│   │       ├── c5eee5f8166ffe1979c0.svg
+│   │       ├── c73c350b12153869c8b1.svg
+│   │       ├── c7e409a631c94231dfeb.svg
+│   │       ├── c8f3c642b457955586dc.svg
+│   │       ├── c8fca71e653fb7e25f96.svg
+│   │       ├── c9c6ef45884e31cf71cb.svg
+│   │       ├── ca29c8856e4d207fa5e9.svg
+│   │       ├── ca6da8beaaddc8e5b228.svg
+│   │       ├── caa6a8c5c8c33f9b494b.svg
+│   │       ├── cbcd275e58cc0064074d.svg
+│   │       ├── cc1fbccc3b617a58b26f.svg
+│   │       ├── cc241525b35d3abfb912.svg
+│   │       ├── cc88b59dee64ff1f3d21.svg
+│   │       ├── ce9b5099170a6177dff4.svg
+│   │       ├── cea920419b89c9f7a098.svg
+│   │       ├── cf0a6742f768bffdc5fc.svg
+│   │       ├── cf190b7a5eebc54e3c69.svg
+│   │       ├── cf1c261c76c67048ed18.svg
+│   │       ├── cffbf1bb24695d6c6eb4.svg
+│   │       ├── d023c7067888333d0cc6.svg
+│   │       ├── d2ee906545c132a6ec5c.svg
+│   │       ├── d327db52e9d7634343c6.svg
+│   │       ├── d34f14d06022f9f1427b.svg
+│   │       ├── d506b9d691335ad9bb34.svg
+│   │       ├── d5d609277ecae21fd532.svg
+│   │       ├── d65ab4b95a6162aa9693.svg
+│   │       ├── d757fc82e2362f02b987.svg
+│   │       ├── dad78caeb7e4997451a3.svg
+│   │       ├── dbb56e50b667ae162595.svg
+│   │       ├── dc90304880e7ffcbdb77.svg
+│   │       ├── dd6f55cf15bed3c3f4f8.svg
+│   │       ├── de8a811c2a3e7b36a36c.svg
+│   │       ├── df0f09b2515169592b13.svg
+│   │       ├── df903ddb6727f1ba9730.svg
+│   │       ├── dfa01accd81eae769e7a.svg
+│   │       ├── dfb5c16c78387b75af51.svg
+│   │       ├── dfc431c99a853d95e0bd.svg
+│   │       ├── dfed36ac96b00a86b243.svg
+│   │       ├── e18f164d7ec671be7dc0.svg
+│   │       ├── e4064b3b7d67395d8307.svg
+│   │       ├── e4a87ef49cb9cb2ff1de.svg
+│   │       ├── e585c9a7f5b5fcae6e85.svg
+│   │       ├── e6f19d12d70eedfc9dc5.svg
+│   │       ├── e7bac55db823e2fff520.svg
+│   │       ├── e839a61cafeaa865799b.svg
+│   │       ├── e88887ec9ce5fcacafd6.svg
+│   │       ├── e8ba3e7fbe53fa5bb1ae.svg
+│   │       ├── ea273050d938525cf347.svg
+│   │       ├── ea925157f68495a3302c.svg
+│   │       ├── ee6e9800972adbc0a2a6.svg
+│   │       ├── efe98820cd74adb214a4.svg
+│   │       ├── f02e2116540448520acd.svg
+│   │       ├── f0988f904b456de54307.svg
+│   │       ├── f29cde50167b3c4ed763.svg
+│   │       ├── f41ee8bf39e4ca562b44.svg
+│   │       ├── f4daf316e4582c2bb91d.svg
+│   │       ├── f5a4195c3286c2fbdfb8.svg
+│   │       ├── f62b100adae167358976.svg
+│   │       ├── f6aba782df5e024ccbbc.svg
+│   │       ├── f6e7658074f30aea13c9.svg
+│   │       ├── f7b861a2538acd1e79ef.svg
+│   │       ├── f8256cb516d75186b8e6.svg
+│   │       ├── f9d25a79774639cf3a1c.svg
+│   │       ├── fa3183a875b9ceb99dfd.svg
+│   │       ├── fc7240f86c249734ae0d.svg
+│   │       ├── fce579e921b1760c1c1f.svg
+│   │       └── fd6fdc8a44828e0f467e.svg
+│   ├── favicon
+│   │   ├── android-chrome-192x192.png
+│   │   ├── android-chrome-512x512.png
+│   │   ├── apple-touch-icon.png
+│   │   ├── favicon.svg
+│   │   ├── mstile-150x150.png
+│   │   ├── safari-pinned-tab.svg
+│   │   └── site.webmanifest
+│   ├── favicon.ico
+│   └── img
+│       ├── logo-mon-diagnostic-artificialisation.svg
+│       └── republique-francaise-logo.svg
+├── templates
+│   ├── footer.html
+│   ├── header.html
+│   ├── index.html
+│   └── two_factor
+│       └── _base.html
+├── tsconfig.json
+├── users
+│   ├── README.md
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── context_processors.py
+│   ├── forms.py
+│   ├── managers.py
+│   ├── middleware.py
+│   ├── migrations
+│   │   ├── 0001_initial.py
+│   │   ├── 0002_auto_20210706_2214.py
+│   │   ├── 0003_auto_20210710_2236.py
+│   │   ├── 0004_auto_20210910_2023.py
+│   │   ├── 0005_remove_user_creation_date.py
+│   │   ├── 0006_auto_20210914_1311.py
+│   │   ├── 0007_alter_user_organism.py
+│   │   ├── 0008_auto_20210929_2029.py
+│   │   ├── 0009_alter_user_options.py
+│   │   ├── 0010_auto_20230302_1508.py
+│   │   ├── 0011_alter_user_organism.py
+│   │   ├── 0012_user_created_at_user_updated_at.py
+│   │   ├── 0012_user_user_email_ci_uniqueness.py
+│   │   ├── 0013_auto_20240718_1408.py
+│   │   ├── 0014_alter_user_first_name_alter_user_function_and_more.py
+│   │   ├── 0015_auto_20240930_1148.py
+│   │   ├── 0016_merge_20241126_1219.py
+│   │   ├── 0017_alter_user_groups.py
+│   │   ├── 0018_remove_user_organism_group_user_main_land_id_and_more.py
+│   │   ├── 0019_reset_organism_and_function.py
+│   │   ├── 0020_user_proconnect.py
+│   │   ├── 0021_alter_user_main_land_type.py
+│   │   └── __init__.py
+│   ├── models.py
+│   ├── signals.py
+│   ├── templates
+│   │   └── users
+│   │       ├── form.html
+│   │       ├── partials
+│   │       │   └── profile_form.html
+│   │       ├── password_reset.html
+│   │       ├── password_reset_complete.html
+│   │       ├── password_reset_confirm.html
+│   │       ├── password_reset_done.html
+│   │       ├── password_reset_email.html
+│   │       ├── password_reset_email.txt
+│   │       ├── profile.html
+│   │       ├── profile_completion.html
+│   │       ├── signin.html
+│   │       └── signup.html
+│   ├── tests
+│   │   ├── __init__.py
+│   │   ├── parameters.json
+│   │   ├── test_completion_form.py
+│   │   ├── test_signin.py
+│   │   ├── test_signup.py
+│   │   └── tests.py
+│   ├── urls.py
+│   └── views
+│       ├── ProfilFormView.py
+│       ├── ProfileCompletionView.py
+│       ├── SigninView.py
+│       ├── SignoutView.py
+│       ├── UpdatePwFormView.py
+│       ├── UserCreateView.py
+│       ├── UserDeleteView.py
+│       └── __init__.py
+├── utils
+│   ├── __init__.py
+│   ├── apps.py
+│   ├── colors.py
+│   ├── commands.py
+│   ├── db.py
+│   ├── decorators.py
+│   ├── emails.py
+│   ├── excel.py
+│   ├── functions.py
+│   ├── htmx.py
+│   ├── management
+│   │   ├── __init__.py
+│   │   └── commands
+│   │       ├── __init__.py
+│   │       ├── clear_cache.py
+│   │       └── mattermost.py
+│   ├── mattermost.py
+│   ├── migrations
+│   │   └── __init__.py
+│   ├── schema.py
+│   ├── templates
+│   │   └── utils
+│   │       ├── base_htmx.html
+│   │       ├── crisp_tag.html
+│   │       └── matomo_code.html
+│   ├── templatetags
+│   │   ├── __init__.py
+│   │   └── utils_tags.py
+│   ├── tests_validators.py
+│   ├── validators.py
+│   └── views
+│       ├── __init__.py
+│       └── mixins
+│           ├── BreadCrumbMixin.py
+│           ├── RedirectURLMixin.py
+│           └── __init__.py
+└── webpack.config.js
+334 directories, 2547 files
