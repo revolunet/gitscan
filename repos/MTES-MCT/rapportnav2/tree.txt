@@ -1,0 +1,2281 @@
+.
+├── .editorconfig
+├── .github
+│   ├── actions
+│   │   ├── install-and-build-backend
+│   │   │   └── action.yml
+│   │   ├── install-and-build-frontend
+│   │   │   └── action.yml
+│   │   └── upload-sourcemaps
+│   │       └── action.yml
+│   └── workflows
+│       ├── build-and-test-backend.yml
+│       ├── build-and-test-frontend.yml
+│       ├── codeql.yml
+│       ├── dependency-review.yml
+│       ├── release-please-main.yml
+│       ├── release.yml
+│       ├── sonarcloud.yml
+│       ├── trivy-db.yml
+│       └── trivy.yml
+├── .gitignore
+├── .gitlab-ci
+│   ├── ansible
+│   │   └── playbook.yml
+│   ├── jobs
+│   │   ├── analyse_dependency-check.yml
+│   │   ├── build_projet_gradle.yml
+│   │   ├── build_projet_npm.yml
+│   │   ├── construction_image.yml
+│   │   └── flyway_repair.yml
+│   └── templates
+│       ├── .env.j2
+│       └── docker-compose.yml.j2
+├── .gitlab-ci.yml
+├── .release-please-manifest.json
+├── .sentryclirc
+├── .sonarcloud.properties
+├── CHANGELOG.md
+├── Makefile
+├── README.md
+├── backend
+│   ├── .gitignore
+│   ├── CHANGELOG.md
+│   ├── build.gradle.kts
+│   ├── gradle
+│   │   └── wrapper
+│   │       ├── gradle-wrapper.jar
+│   │       └── gradle-wrapper.properties
+│   ├── gradlew
+│   ├── gradlew.bat
+│   ├── settings.gradle.kts
+│   ├── src
+│   │   ├── main
+│   │   │   ├── kotlin
+│   │   │   │   └── fr
+│   │   │   │       └── gouv
+│   │   │   │           └── dgampa
+│   │   │   │               └── rapportnav
+│   │   │   │                   ├── RapportNavApplication.kt
+│   │   │   │                   ├── config
+│   │   │   │                   │   ├── ApiKeyAuthenticationFilter.kt
+│   │   │   │                   │   ├── AuditorAwareImpl.kt
+│   │   │   │                   │   ├── AuthExt.kt
+│   │   │   │                   │   ├── CorsConfig.kt
+│   │   │   │                   │   ├── CustomAuthenticationFilter.kt
+│   │   │   │                   │   ├── HostProperties.kt
+│   │   │   │                   │   ├── HttpClientFactory.kt
+│   │   │   │                   │   ├── JacksonConfig.kt
+│   │   │   │                   │   ├── JacksonGeoConfig.kt
+│   │   │   │                   │   ├── JpaConfig.kt
+│   │   │   │                   │   ├── JwtEncodingConfig.kt
+│   │   │   │                   │   ├── MandatoryForStats.kt
+│   │   │   │                   │   ├── PasswordValidator.kt
+│   │   │   │                   │   ├── RequestLoggingConfig.kt
+│   │   │   │                   │   ├── SecurityConfig.kt
+│   │   │   │                   │   ├── SpaCrsfTokenRequestHandler.kt
+│   │   │   │                   │   ├── UseCase.kt
+│   │   │   │                   │   └── WireMockConfig.kt
+│   │   │   │                   ├── domain
+│   │   │   │                   │   ├── entities
+│   │   │   │                   │   │   ├── Patchable.kt
+│   │   │   │                   │   │   ├── aem
+│   │   │   │                   │   │   │   └── v2
+│   │   │   │                   │   │   │       ├── AEMCulturalMaritime2.kt
+│   │   │   │                   │   │   │       ├── AEMEnvTraffic2.kt
+│   │   │   │                   │   │   │       ├── AEMIllegalFish2.kt
+│   │   │   │                   │   │   │       ├── AEMIllegalImmigration2.kt
+│   │   │   │                   │   │   │       ├── AEMMigrationRescue2.kt
+│   │   │   │                   │   │   │       ├── AEMNotPollutionControlSurveillance2.kt
+│   │   │   │                   │   │   │       ├── AEMOutOfMigrationRescue2.kt
+│   │   │   │                   │   │   │       ├── AEMPollutionControlSurveillance2.kt
+│   │   │   │                   │   │   │       ├── AEMSeaSafety2.kt
+│   │   │   │                   │   │   │       ├── AEMSovereignProtect2.kt
+│   │   │   │                   │   │   │       ├── AEMTableExport2.kt
+│   │   │   │                   │   │   │       └── AEMVesselRescue2.kt
+│   │   │   │                   │   │   ├── analytics
+│   │   │   │                   │   │   │   └── PatrolDataEntity.kt
+│   │   │   │                   │   │   ├── apikey
+│   │   │   │                   │   │   │   └── ApiKeyEntity.kt
+│   │   │   │                   │   │   ├── mission
+│   │   │   │                   │   │   │   ├── CompletenessForStatsEntity.kt
+│   │   │   │                   │   │   │   ├── CompletenessForStatsStatusEnum.kt
+│   │   │   │                   │   │   │   ├── ExtendedEnvMissionEntity.kt
+│   │   │   │                   │   │   │   ├── MissionStatusEnum.kt
+│   │   │   │                   │   │   │   ├── env
+│   │   │   │                   │   │   │   │   ├── ActionCompletionEnum.kt
+│   │   │   │                   │   │   │   │   ├── MissionEntity.kt
+│   │   │   │                   │   │   │   │   ├── MissionSourceEnum.kt
+│   │   │   │                   │   │   │   │   ├── MissionTypeEnum.kt
+│   │   │   │                   │   │   │   │   ├── controlPlan
+│   │   │   │                   │   │   │   │   │   ├── ControlPlanSubthemeEntity.kt
+│   │   │   │                   │   │   │   │   │   ├── ControlPlanTagEntity.kt
+│   │   │   │                   │   │   │   │   │   └── ControlPlanThemeEntity.kt
+│   │   │   │                   │   │   │   │   ├── controlResources
+│   │   │   │                   │   │   │   │   │   ├── ControlResourceEntity.kt
+│   │   │   │                   │   │   │   │   │   ├── ControlUnitEntity.kt
+│   │   │   │                   │   │   │   │   │   ├── ControlUnitResourceEntity.kt
+│   │   │   │                   │   │   │   │   │   ├── ControlUnitResourceType.kt
+│   │   │   │                   │   │   │   │   │   ├── LegacyControlUnitEntity.kt
+│   │   │   │                   │   │   │   │   │   └── LegacyControlUnitResourceEntity.kt
+│   │   │   │                   │   │   │   │   ├── envActions
+│   │   │   │                   │   │   │   │   │   ├── ActionTargetTypeEnum.kt
+│   │   │   │                   │   │   │   │   │   ├── ActionTypeEnum.kt
+│   │   │   │                   │   │   │   │   │   ├── AdministrativeResponseEnum.kt
+│   │   │   │                   │   │   │   │   │   ├── ControlPlansEntity.kt
+│   │   │   │                   │   │   │   │   │   ├── EnvActionControlEntity.kt
+│   │   │   │                   │   │   │   │   │   ├── EnvActionControlPlanEntity.kt
+│   │   │   │                   │   │   │   │   │   ├── EnvActionEntity.kt
+│   │   │   │                   │   │   │   │   │   ├── EnvActionNoteEntity.kt
+│   │   │   │                   │   │   │   │   │   ├── EnvActionSurveillanceEntity.kt
+│   │   │   │                   │   │   │   │   │   ├── FormalNoticeEnum.kt
+│   │   │   │                   │   │   │   │   │   ├── InfractionEntity.kt
+│   │   │   │                   │   │   │   │   │   ├── InfractionTypeEnum.kt
+│   │   │   │                   │   │   │   │   │   ├── PatchableEnvActionEntity.kt
+│   │   │   │                   │   │   │   │   │   ├── SeizureTypeEnum.kt
+│   │   │   │                   │   │   │   │   │   ├── VehicleTypeEnum.kt
+│   │   │   │                   │   │   │   │   │   ├── VesselSizeEnum.kt
+│   │   │   │                   │   │   │   │   │   └── VesselTypeEnum.kt
+│   │   │   │                   │   │   │   │   ├── tags
+│   │   │   │                   │   │   │   │   │   └── TagEntity.kt
+│   │   │   │                   │   │   │   │   └── themes
+│   │   │   │                   │   │   │   │       └── ThemeEntity.kt
+│   │   │   │                   │   │   │   ├── fish
+│   │   │   │                   │   │   │   │   ├── ControlResource.kt
+│   │   │   │                   │   │   │   │   ├── ControlUnit.kt
+│   │   │   │                   │   │   │   │   ├── Mission.kt
+│   │   │   │                   │   │   │   │   ├── MissionAndActions.kt
+│   │   │   │                   │   │   │   │   ├── MissionSource.kt
+│   │   │   │                   │   │   │   │   ├── MissionType.kt
+│   │   │   │                   │   │   │   │   ├── MultiPolygon.kt
+│   │   │   │                   │   │   │   │   └── fishActions
+│   │   │   │                   │   │   │   │       ├── Completion.kt
+│   │   │   │                   │   │   │   │       ├── ControlCheck.kt
+│   │   │   │                   │   │   │   │       ├── ControlOrigin.kt
+│   │   │   │                   │   │   │   │       ├── Controller.kt
+│   │   │   │                   │   │   │   │       ├── ControlsSummary.kt
+│   │   │   │                   │   │   │   │       ├── FleetSegment.kt
+│   │   │   │                   │   │   │   │       ├── FlightGoal.kt
+│   │   │   │                   │   │   │   │       ├── GearControl.kt
+│   │   │   │                   │   │   │   │       ├── Infraction.kt
+│   │   │   │                   │   │   │   │       ├── InfractionCategory.kt
+│   │   │   │                   │   │   │   │       ├── InfractionThreatCharacterization.kt
+│   │   │   │                   │   │   │   │       ├── InfractionType.kt
+│   │   │   │                   │   │   │   │       ├── MissionAction.kt
+│   │   │   │                   │   │   │   │       ├── MissionActionType.kt
+│   │   │   │                   │   │   │   │       └── SpeciesControl.kt
+│   │   │   │                   │   │   │   ├── nav
+│   │   │   │                   │   │   │   │   ├── action
+│   │   │   │                   │   │   │   │   │   ├── ActionType.kt
+│   │   │   │                   │   │   │   │   │   ├── BaseAction.kt
+│   │   │   │                   │   │   │   │   │   ├── ExtendedEnvActionControlEntity.kt
+│   │   │   │                   │   │   │   │   │   ├── ExtendedEnvActionEntity.kt
+│   │   │   │                   │   │   │   │   │   ├── ExtendedEnvActionSurveillanceEntity.kt
+│   │   │   │                   │   │   │   │   │   ├── ExtendedFishActionControlEntity.kt
+│   │   │   │                   │   │   │   │   │   ├── ExtendedFishActionEntity.kt
+│   │   │   │                   │   │   │   │   │   ├── FishingGearType.kt
+│   │   │   │                   │   │   │   │   │   ├── LeisureType.kt
+│   │   │   │                   │   │   │   │   │   ├── SectorEstablishmentType.kt
+│   │   │   │                   │   │   │   │   │   ├── SectorType.kt
+│   │   │   │                   │   │   │   │   │   └── SecurityVisitType.kt
+│   │   │   │                   │   │   │   │   ├── control
+│   │   │   │                   │   │   │   │   │   ├── BaseControlEntity.kt
+│   │   │   │                   │   │   │   │   │   ├── ControlAdministrativeEntity.kt
+│   │   │   │                   │   │   │   │   │   ├── ControlGensDeMerEntity.kt
+│   │   │   │                   │   │   │   │   │   ├── ControlMethod.kt
+│   │   │   │                   │   │   │   │   │   ├── ControlNavigationEntity.kt
+│   │   │   │                   │   │   │   │   │   ├── ControlResult.kt
+│   │   │   │                   │   │   │   │   │   ├── ControlSecurityEntity.kt
+│   │   │   │                   │   │   │   │   │   └── ControlType.kt
+│   │   │   │                   │   │   │   │   ├── crew
+│   │   │   │                   │   │   │   │   │   ├── AgentEntity.kt
+│   │   │   │                   │   │   │   │   │   ├── AgentEntity2.kt
+│   │   │   │                   │   │   │   │   │   ├── AgentRoleEntity.kt
+│   │   │   │                   │   │   │   │   │   ├── AgentServiceEntity.kt
+│   │   │   │                   │   │   │   │   │   ├── MissionCrewEntity.kt
+│   │   │   │                   │   │   │   │   │   ├── MissionPassengerEntity.kt
+│   │   │   │                   │   │   │   │   │   └── MissionPassengerOrganization.kt
+│   │   │   │                   │   │   │   │   ├── export
+│   │   │   │                   │   │   │   │   │   ├── ExportModeEnum.kt
+│   │   │   │                   │   │   │   │   │   ├── ExportReportTypeEnum.kt
+│   │   │   │                   │   │   │   │   │   ├── MissionExportEntity.kt
+│   │   │   │                   │   │   │   │   │   └── NavActionInfoEntity.kt
+│   │   │   │                   │   │   │   │   ├── generalInfo
+│   │   │   │                   │   │   │   │   │   ├── InterMinisterialServiceEntity.kt
+│   │   │   │                   │   │   │   │   │   └── MissionGeneralInfoEntity.kt
+│   │   │   │                   │   │   │   │   ├── infraction
+│   │   │   │                   │   │   │   │   │   ├── InfractionEntity.kt
+│   │   │   │                   │   │   │   │   │   ├── InfractionEnvTargetEntity.kt
+│   │   │   │                   │   │   │   │   │   └── NatinfEntity.kt
+│   │   │   │                   │   │   │   │   ├── service
+│   │   │   │                   │   │   │   │   │   ├── ServiceEntity.kt
+│   │   │   │                   │   │   │   │   │   └── ServiceTypeEnum.kt
+│   │   │   │                   │   │   │   │   ├── status
+│   │   │   │                   │   │   │   │   │   ├── ActionStatusReason.kt
+│   │   │   │                   │   │   │   │   │   └── ActionStatusType.kt
+│   │   │   │                   │   │   │   │   └── target2
+│   │   │   │                   │   │   │   │       └── v2
+│   │   │   │                   │   │   │   │           ├── TargetStatusType.kt
+│   │   │   │                   │   │   │   │           └── TargetType.kt
+│   │   │   │                   │   │   │   └── v2
+│   │   │   │                   │   │   │       ├── BaseMissionActionEntity.kt
+│   │   │   │                   │   │   │       ├── BaseMissionEnvAction.kt
+│   │   │   │                   │   │   │       ├── BaseMissionFishAction.kt
+│   │   │   │                   │   │   │       ├── BaseMissionNavAction.kt
+│   │   │   │                   │   │   │       ├── ControlEntity2.kt
+│   │   │   │                   │   │   │       ├── CrossControlDataEntity.kt
+│   │   │   │                   │   │   │       ├── EstablishmentEntity.kt
+│   │   │   │                   │   │   │       ├── InfractionEntity2.kt
+│   │   │   │                   │   │   │       ├── InquiryConclusionType.kt
+│   │   │   │                   │   │   │       ├── InquiryEntity.kt
+│   │   │   │                   │   │   │       ├── InquiryOriginType.kt
+│   │   │   │                   │   │   │       ├── InquiryStatusType.kt
+│   │   │   │                   │   │   │       ├── JdpTypeEnum.kt
+│   │   │   │                   │   │   │       ├── MissionActionEntity.kt
+│   │   │   │                   │   │   │       ├── MissionEntity2.kt
+│   │   │   │                   │   │   │       ├── MissionEnvActionEntity.kt
+│   │   │   │                   │   │   │       ├── MissionFishActionEntity.kt
+│   │   │   │                   │   │   │       ├── MissionGeneralInfoEntity2.kt
+│   │   │   │                   │   │   │       ├── MissionNavActionEntity.kt
+│   │   │   │                   │   │   │       ├── MissionNavEntity.kt
+│   │   │   │                   │   │   │       ├── MissionNavInputEntity.kt
+│   │   │   │                   │   │   │       ├── MissionReinforcementTypeEnum.kt
+│   │   │   │                   │   │   │       ├── MissionReportTypeEnum.kt
+│   │   │   │                   │   │   │       ├── TargetEntity2.kt
+│   │   │   │                   │   │   │       ├── TargetExternalDataEntity.kt
+│   │   │   │                   │   │   │       ├── VesselEntity.kt
+│   │   │   │                   │   │   │       └── env
+│   │   │   │                   │   │   │           ├── AdministrationEntity.kt
+│   │   │   │                   │   │   │           └── MissionEnvEntity.kt
+│   │   │   │                   │   │   └── user
+│   │   │   │                   │   │       ├── RoleTypeEnum.kt
+│   │   │   │                   │   │       └── UserEntity.kt
+│   │   │   │                   │   ├── exceptions
+│   │   │   │                   │   │   ├── BackendInternalException.kt
+│   │   │   │                   │   │   ├── BackendUsageErrorCode.kt
+│   │   │   │                   │   │   └── BackendUsageException.kt
+│   │   │   │                   │   ├── repositories
+│   │   │   │                   │   │   ├── apikey
+│   │   │   │                   │   │   │   ├── IApiKeyAuditRepository.kt
+│   │   │   │                   │   │   │   └── IApiKeyRepository.kt
+│   │   │   │                   │   │   ├── mission
+│   │   │   │                   │   │   │   ├── IEnvMissionRepository.kt
+│   │   │   │                   │   │   │   ├── IFishActionRepository.kt
+│   │   │   │                   │   │   │   ├── IMissionNavRepository.kt
+│   │   │   │                   │   │   │   ├── action
+│   │   │   │                   │   │   │   │   └── INavMissionActionRepository.kt
+│   │   │   │                   │   │   │   ├── crew
+│   │   │   │                   │   │   │   │   ├── IAgent2Repository.kt
+│   │   │   │                   │   │   │   │   ├── IAgentRepository.kt
+│   │   │   │                   │   │   │   │   ├── IAgentRoleRepository.kt
+│   │   │   │                   │   │   │   │   ├── IAgentServiceRepository.kt
+│   │   │   │                   │   │   │   │   ├── IMissionCrewRepository.kt
+│   │   │   │                   │   │   │   │   ├── IMissionPassengerRepository.kt
+│   │   │   │                   │   │   │   │   └── IServiceRepository.kt
+│   │   │   │                   │   │   │   ├── generalInfo
+│   │   │   │                   │   │   │   │   └── IMissionGeneralInfoRepository.kt
+│   │   │   │                   │   │   │   └── target2
+│   │   │   │                   │   │   │       └── v2
+│   │   │   │                   │   │   │           ├── IInquiryRepository.kt
+│   │   │   │                   │   │   │           └── ITargetRepository.kt
+│   │   │   │                   │   │   ├── user
+│   │   │   │                   │   │   │   └── IUserRepository.kt
+│   │   │   │                   │   │   └── v2
+│   │   │   │                   │   │       ├── IEnvAdministrationRepository.kt
+│   │   │   │                   │   │       ├── controlUnit
+│   │   │   │                   │   │       │   └── IEnvControlUnitRepository.kt
+│   │   │   │                   │   │       ├── controlUnitResource
+│   │   │   │                   │   │       │   └── IEnvControlUnitResourceRepository.kt
+│   │   │   │                   │   │       └── mission
+│   │   │   │                   │   │           └── IEnvMissionRepository.kt
+│   │   │   │                   │   ├── use_cases
+│   │   │   │                   │   │   ├── analytics
+│   │   │   │                   │   │   │   ├── ComputeAEMData.kt
+│   │   │   │                   │   │   │   ├── ComputePatrolData.kt
+│   │   │   │                   │   │   │   ├── helpers
+│   │   │   │                   │   │   │   │   └── CountInfractions.kt
+│   │   │   │                   │   │   │   └── patrol
+│   │   │   │                   │   │   │       ├── ComputeInternTrainingSummary.kt
+│   │   │   │                   │   │   │       ├── controlPolicies
+│   │   │   │                   │   │   │       │   ├── ComputeControlPolicies.kt
+│   │   │   │                   │   │   │       │   ├── ComputeEnvControlPolicy.kt
+│   │   │   │                   │   │   │       │   ├── ComputeNavControlPolicy.kt
+│   │   │   │                   │   │   │       │   └── ComputeProFishingControlPolicy.kt
+│   │   │   │                   │   │   │       └── operationalSummary
+│   │   │   │                   │   │   │           ├── ComputeAllOperationalSummary.kt
+│   │   │   │                   │   │   │           ├── ComputeEnvOperationalSummary.kt
+│   │   │   │                   │   │   │           ├── ComputeFishingOperationalSummary.kt
+│   │   │   │                   │   │   │           └── ComputeSailingOperationalSummary.kt
+│   │   │   │                   │   │   ├── apikey
+│   │   │   │                   │   │   │   ├── CreateApiKey.kt
+│   │   │   │                   │   │   │   ├── DisableApiKey.kt
+│   │   │   │                   │   │   │   ├── GetAllApiKeys.kt
+│   │   │   │                   │   │   │   ├── GetApiKeyAuditLogsForPublicId.kt
+│   │   │   │                   │   │   │   ├── LogApiKeyAudit.kt
+│   │   │   │                   │   │   │   ├── RotateApiKey.kt
+│   │   │   │                   │   │   │   ├── UpdateApiKeyLastUsedAt.kt
+│   │   │   │                   │   │   │   └── ValidateApiKey.kt
+│   │   │   │                   │   │   ├── auth
+│   │   │   │                   │   │   │   ├── HashService.kt
+│   │   │   │                   │   │   │   └── TokenService.kt
+│   │   │   │                   │   │   ├── inquiry
+│   │   │   │                   │   │   │   ├── CreateInquiry.kt
+│   │   │   │                   │   │   │   ├── DeleteInquiry.kt
+│   │   │   │                   │   │   │   ├── GetInquiryById.kt
+│   │   │   │                   │   │   │   ├── GetInquiryByServiceIdBetweenDates.kt
+│   │   │   │                   │   │   │   ├── ProcessInquiry.kt
+│   │   │   │                   │   │   │   └── UpdateInquiry.kt
+│   │   │   │                   │   │   ├── mission
+│   │   │   │                   │   │   │   ├── CreateEnvMission.kt
+│   │   │   │                   │   │   │   ├── GetEnvMissions.kt
+│   │   │   │                   │   │   │   ├── PatchEnvMission.kt
+│   │   │   │                   │   │   │   ├── action
+│   │   │   │                   │   │   │   │   ├── GetAllControlPlans.kt
+│   │   │   │                   │   │   │   │   ├── GetStatusForAction.kt
+│   │   │   │                   │   │   │   │   ├── GroupActionByDate.kt
+│   │   │   │                   │   │   │   │   ├── MapEnvActionControlPlans.kt
+│   │   │   │                   │   │   │   │   ├── PatchEnvAction.kt
+│   │   │   │                   │   │   │   │   ├── PatchFishAction.kt
+│   │   │   │                   │   │   │   │   └── v2
+│   │   │   │                   │   │   │   │       ├── AbstractGetMissionAction.kt
+│   │   │   │                   │   │   │   │       ├── CreateNavAction.kt
+│   │   │   │                   │   │   │   │       ├── DeleteNavAction.kt
+│   │   │   │                   │   │   │   │       ├── DeleteTarget.kt
+│   │   │   │                   │   │   │   │       ├── GetComputeEnvActionListByMissionId.kt
+│   │   │   │                   │   │   │   │       ├── GetComputeEnvTarget.kt
+│   │   │   │                   │   │   │   │       ├── GetComputeFishActionListByMissionId.kt
+│   │   │   │                   │   │   │   │       ├── GetComputeNavActionListByMissionId.kt
+│   │   │   │                   │   │   │   │       ├── GetComputeTarget.kt
+│   │   │   │                   │   │   │   │       ├── GetEnvActionById.kt
+│   │   │   │                   │   │   │   │       ├── GetEnvMissionById2.kt
+│   │   │   │                   │   │   │   │       ├── GetFishActionById.kt
+│   │   │   │                   │   │   │   │       ├── GetFishActionListByMissionId.kt
+│   │   │   │                   │   │   │   │       ├── GetMissionAction.kt
+│   │   │   │                   │   │   │   │       ├── GetNavActionById.kt
+│   │   │   │                   │   │   │   │       ├── GetNavActionListByOwnerId.kt
+│   │   │   │                   │   │   │   │       ├── ProcessEnvAction.kt
+│   │   │   │                   │   │   │   │       ├── ProcessFishAction.kt
+│   │   │   │                   │   │   │   │       ├── ProcessNavAction.kt
+│   │   │   │                   │   │   │   │       ├── UpdateEnvAction.kt
+│   │   │   │                   │   │   │   │       ├── UpdateFishAction.kt
+│   │   │   │                   │   │   │   │       └── UpdateNavAction.kt
+│   │   │   │                   │   │   │   ├── crew
+│   │   │   │                   │   │   │   │   ├── AddOrUpdateMissionCrew.kt
+│   │   │   │                   │   │   │   │   ├── DeleteMissionCrew.kt
+│   │   │   │                   │   │   │   │   ├── GetAgentRoles.kt
+│   │   │   │                   │   │   │   │   ├── GetAgents.kt
+│   │   │   │                   │   │   │   │   ├── GetAgentsByServiceId.kt
+│   │   │   │                   │   │   │   │   ├── GetAgentsCrewByMissionId.kt
+│   │   │   │                   │   │   │   │   └── GetServiceByControlUnit.kt
+│   │   │   │                   │   │   │   ├── export
+│   │   │   │                   │   │   │   │   ├── ExportMissionAEMCombined.kt
+│   │   │   │                   │   │   │   │   ├── ExportMissionAEMMultipleZipped.kt
+│   │   │   │                   │   │   │   │   ├── ExportMissionAEMSingle.kt
+│   │   │   │                   │   │   │   │   ├── ExportMissionPatrolCombined.kt
+│   │   │   │                   │   │   │   │   ├── ExportMissionPatrolMultipleZipped.kt
+│   │   │   │                   │   │   │   │   ├── ExportMissionPatrolSingle.kt
+│   │   │   │                   │   │   │   │   ├── ExportMissionReports.kt
+│   │   │   │                   │   │   │   │   ├── FormatActionsForTimeline.kt
+│   │   │   │                   │   │   │   │   ├── GetInfoAboutAction.kt
+│   │   │   │                   │   │   │   │   ├── MapStatusDurations.kt
+│   │   │   │                   │   │   │   │   └── ZipFiles.kt
+│   │   │   │                   │   │   │   ├── generalInfo
+│   │   │   │                   │   │   │   │   ├── AddOrUpdateMissionGeneralInfo.kt
+│   │   │   │                   │   │   │   │   └── GetMissionGeneralInfoByMissionId.kt
+│   │   │   │                   │   │   │   ├── infraction
+│   │   │   │                   │   │   │   │   ├── GetNatinfs.kt
+│   │   │   │                   │   │   │   │   └── IsInfractionInvalidForVehicleType.kt
+│   │   │   │                   │   │   │   ├── status
+│   │   │   │                   │   │   │   │   ├── GetNbOfDaysAtSeaFromNavigationStatus.kt
+│   │   │   │                   │   │   │   │   └── GetStatusDurations.kt
+│   │   │   │                   │   │   │   └── v2
+│   │   │   │                   │   │   │       ├── BaseMissionListProcessor.kt
+│   │   │   │                   │   │   │       ├── CreateGeneralInfos.kt
+│   │   │   │                   │   │   │       ├── CreateMission.kt
+│   │   │   │                   │   │   │       ├── CreateMissionNav.kt
+│   │   │   │                   │   │   │       ├── DeleteEnvMission.kt
+│   │   │   │                   │   │   │       ├── DeleteMissionCrew2.kt
+│   │   │   │                   │   │   │       ├── DeleteNavMission.kt
+│   │   │   │                   │   │   │       ├── GetAllGeneralInfos.kt
+│   │   │   │                   │   │   │       ├── GetComputeEnvMission.kt
+│   │   │   │                   │   │   │       ├── GetComputeNavMission.kt
+│   │   │   │                   │   │   │       ├── GetGeneralInfo2.kt
+│   │   │   │                   │   │   │       ├── GetMissionActionControls.kt
+│   │   │   │                   │   │   │       ├── GetMissionCrew.kt
+│   │   │   │                   │   │   │       ├── GetMissions.kt
+│   │   │   │                   │   │   │       ├── GetNavMissionById2.kt
+│   │   │   │                   │   │   │       ├── GetNavMissions.kt
+│   │   │   │                   │   │   │       ├── GetVessels.kt
+│   │   │   │                   │   │   │       ├── PatchMissionEnv.kt
+│   │   │   │                   │   │   │       ├── PatchNavMission.kt
+│   │   │   │                   │   │   │       ├── ProcessMissionActionTarget.kt
+│   │   │   │                   │   │   │       ├── ProcessMissionCrew.kt
+│   │   │   │                   │   │   │       ├── UpdateGeneralInfo.kt
+│   │   │   │                   │   │   │       ├── UpdateGeneralInfoAdmin.kt
+│   │   │   │                   │   │   │       ├── administrations
+│   │   │   │                   │   │   │       │   ├── GetAdministrationById.kt
+│   │   │   │                   │   │   │       │   └── GetAdministrations.kt
+│   │   │   │                   │   │   │       ├── controlUnitResource
+│   │   │   │                   │   │   │       │   └── GetControlUnitResources.kt
+│   │   │   │                   │   │   │       └── passenger
+│   │   │   │                   │   │   │           ├── DeleteMissionPassenger.kt
+│   │   │   │                   │   │   │           ├── GetMissionPassengers.kt
+│   │   │   │                   │   │   │           ├── ProcessMissionPassengers.kt
+│   │   │   │                   │   │   │           └── UpdateMissionPassenger.kt
+│   │   │   │                   │   │   ├── service
+│   │   │   │                   │   │   │   ├── CreateOrUpdateAgent.kt
+│   │   │   │                   │   │   │   ├── CreateOrUpdateAgent2.kt
+│   │   │   │                   │   │   │   ├── CreateOrUpdateAgentRole.kt
+│   │   │   │                   │   │   │   ├── CreateOrUpdateService.kt
+│   │   │   │                   │   │   │   ├── DeleteAgent.kt
+│   │   │   │                   │   │   │   ├── DeleteAgentRole.kt
+│   │   │   │                   │   │   │   ├── DeleteService.kt
+│   │   │   │                   │   │   │   ├── DisableAgent.kt
+│   │   │   │                   │   │   │   ├── GetActiveAgent.kt
+│   │   │   │                   │   │   │   ├── GetAllAgent.kt
+│   │   │   │                   │   │   │   ├── GetCrewByServiceId.kt
+│   │   │   │                   │   │   │   ├── GetCrewByServiceId2.kt
+│   │   │   │                   │   │   │   ├── GetServiceById.kt
+│   │   │   │                   │   │   │   ├── GetServices.kt
+│   │   │   │                   │   │   │   └── MigrateAgent.kt
+│   │   │   │                   │   │   ├── user
+│   │   │   │                   │   │   │   ├── CreateUser.kt
+│   │   │   │                   │   │   │   ├── DeleteUser.kt
+│   │   │   │                   │   │   │   ├── FindByEmail.kt
+│   │   │   │                   │   │   │   ├── FindById.kt
+│   │   │   │                   │   │   │   ├── GetControlUnitsForUser.kt
+│   │   │   │                   │   │   │   ├── GetServiceForUser.kt
+│   │   │   │                   │   │   │   ├── GetUserFromToken.kt
+│   │   │   │                   │   │   │   ├── GetUserList.kt
+│   │   │   │                   │   │   │   ├── Save.kt
+│   │   │   │                   │   │   │   ├── UpdateUser.kt
+│   │   │   │                   │   │   │   └── UpdateUserPassword.kt
+│   │   │   │                   │   │   └── utils
+│   │   │   │                   │   │       ├── ComputeDurations.kt
+│   │   │   │                   │   │       ├── FillAEMExcelRow.kt
+│   │   │   │                   │   │       ├── FormatDateTime.kt
+│   │   │   │                   │   │       └── FormatGeoCoords.kt
+│   │   │   │                   │   └── utils
+│   │   │   │                   │       ├── AEMUtils.kt
+│   │   │   │                   │       ├── ComputeDurationUtils.kt
+│   │   │   │                   │       ├── EntityCompletenessValidator.kt
+│   │   │   │                   │       ├── FlagsUtils.kt
+│   │   │   │                   │       └── UUIDUtils.kt
+│   │   │   │                   └── infrastructure
+│   │   │   │                       ├── api
+│   │   │   │                       │   ├── ControllersExceptionHandler.kt
+│   │   │   │                       │   ├── FrontendRoutesController.kt
+│   │   │   │                       │   ├── admin
+│   │   │   │                       │   │   ├── AgentAdminController.kt
+│   │   │   │                       │   │   ├── AgentRoleAdminController.kt
+│   │   │   │                       │   │   ├── ApiAdminController.kt
+│   │   │   │                       │   │   ├── ApiKey.kt
+│   │   │   │                       │   │   ├── ApiKeysAdminController.kt
+│   │   │   │                       │   │   ├── GeneralInfosAdminController.kt
+│   │   │   │                       │   │   ├── ServiceAdminController.kt
+│   │   │   │                       │   │   ├── UserAdminController.kt
+│   │   │   │                       │   │   └── input
+│   │   │   │                       │   │       └── AdminGeneralInfosUpdateInput.kt
+│   │   │   │                       │   ├── auth
+│   │   │   │                       │   │   ├── ApiAuthController.kt
+│   │   │   │                       │   │   └── adapters
+│   │   │   │                       │   │       ├── inputs
+│   │   │   │                       │   │       │   ├── AuthLoginDataInput.kt
+│   │   │   │                       │   │       │   ├── AuthRegisterDataInput.kt
+│   │   │   │                       │   │       │   ├── UpdateUserInput.kt
+│   │   │   │                       │   │       │   └── UpdateUserPasswordInput.kt
+│   │   │   │                       │   │       └── outputs
+│   │   │   │                       │   │           ├── AdminUser.kt
+│   │   │   │                       │   │           └── AuthLoginDataOutput.kt
+│   │   │   │                       │   ├── bff
+│   │   │   │                       │   │   ├── adapters
+│   │   │   │                       │   │   │   ├── MissionEnvInput.kt
+│   │   │   │                       │   │   │   ├── action
+│   │   │   │                       │   │   │   │   ├── ActionEnvInput.kt
+│   │   │   │                       │   │   │   │   └── ActionFishInput.kt
+│   │   │   │                       │   │   │   ├── control
+│   │   │   │                       │   │   │   │   ├── ControlAdministrativeInput.kt
+│   │   │   │                       │   │   │   │   ├── ControlGensDeMerInput.kt
+│   │   │   │                       │   │   │   │   ├── ControlNavigationInput.kt
+│   │   │   │                       │   │   │   │   └── ControlSecurityInput.kt
+│   │   │   │                       │   │   │   ├── crew
+│   │   │   │                       │   │   │   │   ├── AgentInput.kt
+│   │   │   │                       │   │   │   │   └── AgentRoleInput.kt
+│   │   │   │                       │   │   │   ├── generalInfo
+│   │   │   │                       │   │   │   │   ├── MissionGeneralInfoInput.kt
+│   │   │   │                       │   │   │   │   └── MissionServiceInput.kt
+│   │   │   │                       │   │   │   └── infraction
+│   │   │   │                       │   │   │       ├── InfractionInput.kt
+│   │   │   │                       │   │   │       └── InfractionWithNewTargetInput.kt
+│   │   │   │                       │   │   ├── model
+│   │   │   │                       │   │   │   ├── action
+│   │   │   │                       │   │   │   │   ├── FormattedEnvActionControlPlan.kt
+│   │   │   │                       │   │   │   │   ├── PatchedEnvAction.kt
+│   │   │   │                       │   │   │   │   └── PatchedFishAction.kt
+│   │   │   │                       │   │   │   ├── control
+│   │   │   │                       │   │   │   │   ├── ControlAdministrative.kt
+│   │   │   │                       │   │   │   │   ├── ControlGensDeMer.kt
+│   │   │   │                       │   │   │   │   ├── ControlNavigation.kt
+│   │   │   │                       │   │   │   │   └── ControlSecurity.kt
+│   │   │   │                       │   │   │   ├── crew
+│   │   │   │                       │   │   │   │   ├── Agent.kt
+│   │   │   │                       │   │   │   │   ├── Agent2.kt
+│   │   │   │                       │   │   │   │   ├── AgentInput2.kt
+│   │   │   │                       │   │   │   │   ├── AgentRole.kt
+│   │   │   │                       │   │   │   │   ├── AgentService.kt
+│   │   │   │                       │   │   │   │   ├── MissionCrew.kt
+│   │   │   │                       │   │   │   │   ├── MissionPassenger.kt
+│   │   │   │                       │   │   │   │   ├── Service.kt
+│   │   │   │                       │   │   │   │   └── ServiceWithAgent.kt
+│   │   │   │                       │   │   │   ├── generalInfo
+│   │   │   │                       │   │   │   │   ├── InterMinisterialService.kt
+│   │   │   │                       │   │   │   │   └── MissionGeneralInfo.kt
+│   │   │   │                       │   │   │   ├── infraction
+│   │   │   │                       │   │   │   │   ├── Infraction.kt
+│   │   │   │                       │   │   │   │   ├── InfractionEnvData.kt
+│   │   │   │                       │   │   │   │   ├── InfractionEnvTarget.kt
+│   │   │   │                       │   │   │   │   ├── InfractionTarget.kt
+│   │   │   │                       │   │   │   │   ├── InfractionsByVessel.kt
+│   │   │   │                       │   │   │   │   └── Natinf.kt
+│   │   │   │                       │   │   │   └── v2
+│   │   │   │                       │   │   │       ├── BaseMissionEnvActionData.kt
+│   │   │   │                       │   │   │       ├── BaseMissionFishActionData.kt
+│   │   │   │                       │   │   │       ├── BaseMissionNavActionData.kt
+│   │   │   │                       │   │   │       ├── Control2.kt
+│   │   │   │                       │   │   │       ├── Establishment.kt
+│   │   │   │                       │   │   │       ├── Infraction.kt
+│   │   │   │                       │   │   │       ├── Infraction2.kt
+│   │   │   │                       │   │   │       ├── InfractionByTarget.kt
+│   │   │   │                       │   │   │       ├── InfractionTarget.kt
+│   │   │   │                       │   │   │       ├── Inquiry.kt
+│   │   │   │                       │   │   │       ├── Mission2.kt
+│   │   │   │                       │   │   │       ├── MissionAction.kt
+│   │   │   │                       │   │   │       ├── MissionActionData.kt
+│   │   │   │                       │   │   │       ├── MissionData.kt
+│   │   │   │                       │   │   │       ├── MissionEnv.kt
+│   │   │   │                       │   │   │       ├── MissionEnvAction.kt
+│   │   │   │                       │   │   │       ├── MissionEnvActionData.kt
+│   │   │   │                       │   │   │       ├── MissionFishAction.kt
+│   │   │   │                       │   │   │       ├── MissionFishActionData.kt
+│   │   │   │                       │   │   │       ├── MissionNavAction.kt
+│   │   │   │                       │   │   │       ├── MissionNavActionData.kt
+│   │   │   │                       │   │   │       ├── Target2.kt
+│   │   │   │                       │   │   │       ├── TargetExternalData.kt
+│   │   │   │                       │   │   │       ├── UserInfos.kt
+│   │   │   │                       │   │   │       ├── Vessel.kt
+│   │   │   │                       │   │   │       ├── crew
+│   │   │   │                       │   │   │       │   └── ServiceWithAgents.kt
+│   │   │   │                       │   │   │       ├── env
+│   │   │   │                       │   │   │       │   ├── ControlUnit.kt
+│   │   │   │                       │   │   │       │   ├── ControlUnitResourceEnv.kt
+│   │   │   │                       │   │   │       │   ├── FullAdministration.kt
+│   │   │   │                       │   │   │       │   └── StationData.kt
+│   │   │   │                       │   │   │       └── generalInfo
+│   │   │   │                       │   │   │           ├── LegacyControlUnitResource.kt
+│   │   │   │                       │   │   │           └── MissionGeneralInfo2.kt
+│   │   │   │                       │   │   ├── v2
+│   │   │   │                       │   │   │   ├── ActionRestController.kt
+│   │   │   │                       │   │   │   ├── AdministrationController.kt
+│   │   │   │                       │   │   │   ├── AgentRestController.kt
+│   │   │   │                       │   │   │   ├── AgentRoleController.kt
+│   │   │   │                       │   │   │   ├── ControlUnitResourceRestController.kt
+│   │   │   │                       │   │   │   ├── CrewRestController.kt
+│   │   │   │                       │   │   │   ├── InquiryRestController.kt
+│   │   │   │                       │   │   │   ├── MissionExportController.kt
+│   │   │   │                       │   │   │   ├── MissionGeneralInfoRestController.kt
+│   │   │   │                       │   │   │   ├── MissionRestController.kt
+│   │   │   │                       │   │   │   ├── NatInfRestController.kt
+│   │   │   │                       │   │   │   ├── UserRestController.kt
+│   │   │   │                       │   │   │   └── VesselRestController.kt
+│   │   │   │                       │   │   └── wiremock
+│   │   │   │                       │   │       ├── AdministrationStubs.kt
+│   │   │   │                       │   │       ├── ControlPlansStubs.kt
+│   │   │   │                       │   │       ├── ControlUnitResourcesStubs.kt
+│   │   │   │                       │   │       ├── FishActionsStubs.kt
+│   │   │   │                       │   │       ├── FishVesselsStubs.kt
+│   │   │   │                       │   │       ├── MissionByIdStubs.kt
+│   │   │   │                       │   │       ├── MissionsStubs.kt
+│   │   │   │                       │   │       ├── NatinfStubs.kt
+│   │   │   │                       │   │       └── utils
+│   │   │   │                       │   │           └── LoadJsonData.kt
+│   │   │   │                       │   └── public_api
+│   │   │   │                       │       ├── VersionController.kt
+│   │   │   │                       │       ├── analytics
+│   │   │   │                       │       │   └── v1
+│   │   │   │                       │       │       ├── ApiAnalyticsController.kt
+│   │   │   │                       │       │       └── adapters
+│   │   │   │                       │       │           └── output
+│   │   │   │                       │       │               ├── ApiAnalyticsAEMDataOutput.kt
+│   │   │   │                       │       │               └── ApiAnalyticsPatrolDataOutput.kt
+│   │   │   │                       │       └── v1
+│   │   │   │                       │           ├── ApiMissionController.kt
+│   │   │   │                       │           └── adapters
+│   │   │   │                       │               └── outputs
+│   │   │   │                       │                   ├── ApiMissionDataOutput.kt
+│   │   │   │                       │                   ├── AuthLoginDataOutput.kt
+│   │   │   │                       │                   ├── BackendInternalErrorDataOutput.kt
+│   │   │   │                       │                   ├── BackendRequestErrorDataOutput.kt
+│   │   │   │                       │                   └── BackendUsageErrorDataOutput.kt
+│   │   │   │                       ├── cache
+│   │   │   │                       │   └── CaffeineConfiguration.kt
+│   │   │   │                       ├── database
+│   │   │   │                       │   ├── model
+│   │   │   │                       │   │   ├── apikey
+│   │   │   │                       │   │   │   ├── ApiKeyAuditModel.kt
+│   │   │   │                       │   │   │   └── ApiKeyModel.kt
+│   │   │   │                       │   │   ├── mission
+│   │   │   │                       │   │   │   ├── MissionModel.kt
+│   │   │   │                       │   │   │   ├── ServiceModel.kt
+│   │   │   │                       │   │   │   ├── action
+│   │   │   │                       │   │   │   │   └── v2
+│   │   │   │                       │   │   │   │       ├── EstablishmentModel.kt
+│   │   │   │                       │   │   │   │       ├── InquiryModel.kt
+│   │   │   │                       │   │   │   │       └── MissionActionModel.kt
+│   │   │   │                       │   │   │   ├── control
+│   │   │   │                       │   │   │   │   └── v2
+│   │   │   │                       │   │   │   │       └── ControlModel2.kt
+│   │   │   │                       │   │   │   ├── crew
+│   │   │   │                       │   │   │   │   ├── AgentModel.kt
+│   │   │   │                       │   │   │   │   ├── AgentModel2.kt
+│   │   │   │                       │   │   │   │   ├── AgentRoleModel.kt
+│   │   │   │                       │   │   │   │   ├── AgentServiceModel.kt
+│   │   │   │                       │   │   │   │   └── MissionCrewModel.kt
+│   │   │   │                       │   │   │   ├── generalInfo
+│   │   │   │                       │   │   │   │   ├── InterMinisterialServiceModel.kt
+│   │   │   │                       │   │   │   │   └── MissionGeneralInfoModel.kt
+│   │   │   │                       │   │   │   ├── infraction
+│   │   │   │                       │   │   │   │   └── v2
+│   │   │   │                       │   │   │   │       └── InfractionModel2.kt
+│   │   │   │                       │   │   │   ├── passenger
+│   │   │   │                       │   │   │   │   └── MissionPassengerModel.kt
+│   │   │   │                       │   │   │   └── target2
+│   │   │   │                       │   │   │       └── v2
+│   │   │   │                       │   │   │           └── TargetModel2.kt
+│   │   │   │                       │   │   └── user
+│   │   │   │                       │   │       └── UserModel.kt
+│   │   │   │                       │   └── repositories
+│   │   │   │                       │       ├── apikey
+│   │   │   │                       │       │   ├── JPAApiKeyAuditRepository.kt
+│   │   │   │                       │       │   └── JPAApiKeyRepository.kt
+│   │   │   │                       │       ├── interfaces
+│   │   │   │                       │       │   ├── apikey
+│   │   │   │                       │       │   │   ├── IDBApiKeyAuditRepository.kt
+│   │   │   │                       │       │   │   └── IDBApiKeyRepository.kt
+│   │   │   │                       │       │   ├── mission
+│   │   │   │                       │       │   │   ├── IDBMissionRepository.kt
+│   │   │   │                       │       │   │   ├── action
+│   │   │   │                       │       │   │   │   └── IDBMissionActionRepository.kt
+│   │   │   │                       │       │   │   ├── crew
+│   │   │   │                       │       │   │   │   ├── IDBAgent2Repository.kt
+│   │   │   │                       │       │   │   │   ├── IDBAgentRepository.kt
+│   │   │   │                       │       │   │   │   ├── IDBAgentRoleRepository.kt
+│   │   │   │                       │       │   │   │   ├── IDBAgentServiceRepository.kt
+│   │   │   │                       │       │   │   │   ├── IDBMissionCrewRepository.kt
+│   │   │   │                       │       │   │   │   ├── IDBMissionPassengerRepository.kt
+│   │   │   │                       │       │   │   │   └── IDBServiceRepository.kt
+│   │   │   │                       │       │   │   ├── generalInfo
+│   │   │   │                       │       │   │   │   ├── IDBInterMinisterialServiceRepository.kt
+│   │   │   │                       │       │   │   │   └── IDBMissionGeneralInfoRepository.kt
+│   │   │   │                       │       │   │   └── target2
+│   │   │   │                       │       │   │       └── v2
+│   │   │   │                       │       │   │           ├── IDBInquiryRepository.kt
+│   │   │   │                       │       │   │           └── IDBTargetRepository.kt
+│   │   │   │                       │       │   └── user
+│   │   │   │                       │       │       └── IDBUserRepository.kt
+│   │   │   │                       │       ├── mission
+│   │   │   │                       │       │   ├── JPAMissionNavRepository.kt
+│   │   │   │                       │       │   ├── action
+│   │   │   │                       │       │   │   └── JPAMissionActionRepository.kt
+│   │   │   │                       │       │   ├── crew
+│   │   │   │                       │       │   │   ├── JPAAgent2Repository.kt
+│   │   │   │                       │       │   │   ├── JPAAgentRepository.kt
+│   │   │   │                       │       │   │   ├── JPAAgentRoleRepository.kt
+│   │   │   │                       │       │   │   ├── JPAAgentServiceRepository.kt
+│   │   │   │                       │       │   │   ├── JPAMissionCrewRepository.kt
+│   │   │   │                       │       │   │   ├── JPAMissionPassengerRepository.kt
+│   │   │   │                       │       │   │   └── JPAServiceRepository.kt
+│   │   │   │                       │       │   ├── generalInfo
+│   │   │   │                       │       │   │   └── JPAMissionGeneralInfoRepository.kt
+│   │   │   │                       │       │   └── target2
+│   │   │   │                       │       │       └── v2
+│   │   │   │                       │       │           ├── JPAInquiryRepository.kt
+│   │   │   │                       │       │           └── JPATargetRepository.kt
+│   │   │   │                       │       └── user
+│   │   │   │                       │           └── JPAUserRepository.kt
+│   │   │   │                       ├── exceptions
+│   │   │   │                       │   ├── BackendRequestErrorCode.kt
+│   │   │   │                       │   └── BackendRequestException.kt
+│   │   │   │                       ├── monitorenv
+│   │   │   │                       │   ├── APIEnvMissionRepository.kt
+│   │   │   │                       │   ├── input
+│   │   │   │                       │   │   ├── PatchActionInput.kt
+│   │   │   │                       │   │   └── PatchMissionInput.kt
+│   │   │   │                       │   ├── output
+│   │   │   │                       │   │   ├── MissionDataOutput.kt
+│   │   │   │                       │   │   ├── action
+│   │   │   │                       │   │   │   └── MissionEnvActionDataOutput.kt
+│   │   │   │                       │   │   └── controlPlans
+│   │   │   │                       │   │       ├── ControlPlanDataOutput.kt
+│   │   │   │                       │   │       ├── ControlPlanSubThemeDataOutput.kt
+│   │   │   │                       │   │       ├── ControlPlanTagDataOutput.kt
+│   │   │   │                       │   │       └── ControlPlanThemeDataOutput.kt
+│   │   │   │                       │   └── v2
+│   │   │   │                       │       ├── APIEnvAdministrationRepository.kt
+│   │   │   │                       │       ├── APIEnvControlUnitRepository.kt
+│   │   │   │                       │       ├── APIEnvControlUnitResourceRepository.kt
+│   │   │   │                       │       ├── APIEnvMissionRepositoryV2.kt
+│   │   │   │                       │       └── outputs
+│   │   │   │                       │           ├── ControlUnitDataOutput.kt
+│   │   │   │                       │           ├── FullAdministrationDataOutput.kt
+│   │   │   │                       │           ├── LegacyControlUnitDataOutput.kt
+│   │   │   │                       │           └── LegacyControlUnitResourceDataOutput.kt
+│   │   │   │                       ├── monitorfish
+│   │   │   │                       │   ├── APIFishActionRepository.kt
+│   │   │   │                       │   ├── input
+│   │   │   │                       │   │   └── PatchActionInput.kt
+│   │   │   │                       │   └── output
+│   │   │   │                       │       ├── InfractionHierarchyBuilder.kt
+│   │   │   │                       │       ├── InfractionThreatCharacterizationDataOutput.kt
+│   │   │   │                       │       ├── MissionActionDataOutput.kt
+│   │   │   │                       │       ├── ThreatHierarchyDataOutput.kt
+│   │   │   │                       │       └── VesselIdentityDataOutput.kt
+│   │   │   │                       └── utils
+│   │   │   │                           ├── Base64Converter.kt
+│   │   │   │                           ├── FileUtils.kt
+│   │   │   │                           └── office
+│   │   │   │                               ├── ExportExcelFile.kt
+│   │   │   │                               └── OfficeConverter.kt
+│   │   │   └── resources
+│   │   │       ├── application.properties
+│   │   │       ├── db
+│   │   │       │   └── migration
+│   │   │       │       ├── V0.10__alter_mission_action_control_lat_lon.sql
+│   │   │       │       ├── V0.11__alter_controls_add_delete_at.sql
+│   │   │       │       ├── V0.12__alter_status_add_delete_at.sql
+│   │   │       │       ├── V0.13__delete_crew_and_crew_role.sql
+│   │   │       │       ├── V0.14__alter_controls_change_format.sql
+│   │   │       │       ├── V0.15__alter_action_controls_remove_not_null.sql
+│   │   │       │       ├── V0.16__drop_fk_on_controls_to_action_control.sql
+│   │   │       │       ├── V0.17__alter_controls.sql
+│   │   │       │       ├── V0.1__create_crew_role_table.sql
+│   │   │       │       ├── V0.2__insert_crew_role.sql
+│   │   │       │       ├── V0.3__create_crew_table.sql
+│   │   │       │       ├── V0.4__insert_crew.sql
+│   │   │       │       ├── V0.5__create_user_table.sql
+│   │   │       │       ├── V0.6__add_metabase_schema.sql
+│   │   │       │       ├── V0.7__add_mission_action_control_schema.sql
+│   │   │       │       ├── V0.8__add_control_schemas.sql
+│   │   │       │       ├── V0.9__add_action_status_schema.sql
+│   │   │       │       ├── V1.2023.10.30.15.30__test_dummy.sql
+│   │   │       │       ├── V1.2023.10.30.16.30__remove_dummy.sql
+│   │   │       │       ├── V1.2023.10.30.18.30__alter_controls_ref_key_format.sql
+│   │   │       │       ├── V1.2023.11.01.18.30__create_infraction_tables.sql
+│   │   │       │       ├── V1.2023.11.06.18.30__alter_infraction_add_deletedat.sql
+│   │   │       │       ├── V1.2023.11.06.20.30__alter_remove_all_deletedat.sql
+│   │   │       │       ├── V1.2023.11.07.19.30__alter_infractions_add_actionid.sql
+│   │   │       │       ├── V1.2023.11.07.20.30__create_env_infractions.sql
+│   │   │       │       ├── V1.2023.11.08.17.30__alter_infraction_field_formalnotice.sql
+│   │   │       │       ├── V1.2023.11.08.20.54__create_crew_tables.sql
+│   │   │       │       ├── V1.2023.11.15.11.09.40__alter_table_service_add_service_linked.sql
+│   │   │       │       ├── V1.2023.11.15.19.30__create_mission_general_info_table.sql
+│   │   │       │       ├── V1.2023.11.27__drop_agent_crew_constraint.sql
+│   │   │       │       ├── V1.2023.11.28.14.30__update_user_link_to_agent.sql
+│   │   │       │       ├── V1.2023.11.28.20.54__alter_crew_tables.sql
+│   │   │       │       ├── V1.2023.11.29.10.54__alter_user_tables.sql
+│   │   │       │       ├── V1.2023.12.04.10.54__add_agent_roles.sql
+│   │   │       │       ├── V1.2023.12.04.11.34__add_services.sql
+│   │   │       │       ├── V1.2023.12.04.11.44__add_agents.sql
+│   │   │       │       ├── V1.2023.12.04.11.55__add_agent_service_link.sql
+│   │   │       │       ├── V1.2023.12.05.11.55__alter_user_remove_agent_add_service.sql
+│   │   │       │       ├── V1.2023.12.06.10.54__rework_agent_roles.sql
+│   │   │       │       ├── V1.2023.12.06.11.44__add_agents.sql
+│   │   │       │       ├── V1.2023.12.06.11.55__add_agent_service_link.sql
+│   │   │       │       ├── V1.2023.12.07.10.54__delete_users.sql
+│   │   │       │       ├── V1.2023.12.07.14.54__service_control_units.sql
+│   │   │       │       ├── V1.2023.12.07.17.55__add_service_control_unit_link.sql
+│   │   │       │       ├── V1.2023.12.11.18.55__alter_infraction_replace_formalnotice_by_infractiontype.sql
+│   │   │       │       ├── V1.2023.12.14.18.55__alter_infraction_natinf_code_type.sql
+│   │   │       │       ├── V1.2024.01.02.20.54__delete_users.sql
+│   │   │       │       ├── V1.2024.01.05.11.54__delete_data-fictive.sql
+│   │   │       │       ├── V1.2024.01.30.11.54__status_drop_isstart.sql
+│   │   │       │       ├── V1.2024.02.20.15.54__create_table_mission_action_free_note.sql
+│   │   │       │       ├── V1.2024.02.21.15.54__alter_action_free_note.sql
+│   │   │       │       ├── V1.2024.04.15.11.42__create_action_rescue_table.sql
+│   │   │       │       ├── V1.2024.04.21.09.50__create_nautical_event_table.sql
+│   │   │       │       ├── V1.2024.04.23.10.28__create_anti_pollution_table.sql
+│   │   │       │       ├── V1.2024.04.23.10.29__create_vigimer_table.sql
+│   │   │       │       ├── V1.2024.04.23.10.36__create_baaem_permanence_table.sql
+│   │   │       │       ├── V1.2024.04.25.10.00__create_public_order_table.sql
+│   │   │       │       ├── V1.2024.04.25.10.01__create_representation_table.sql
+│   │   │       │       ├── V1.2024.04.25.11.37__create_illegal_immigration_table.sql
+│   │   │       │       ├── V1.2024.05.15.15.54__alter_actions_add_complete_for_data.sql
+│   │   │       │       ├── V1.2024.05.15.16.54__alter_actions_add_complete_for_data.sql
+│   │   │       │       ├── V1.2024.05.17.16.54__alter_actions_pollution.sql
+│   │   │       │       ├── V1.2024.05.17.17.54__insert_crew.sql
+│   │   │       │       ├── V1.2024.05.17.17.55__add_agent_service_link.sql
+│   │   │       │       ├── V1.2024.05.28.10.40__alter_user_add_roles.sql
+│   │   │       │       ├── V1.2024.06.05.16.05__add_general_infos_service_Id_column.sql
+│   │   │       │       ├── V1.2024.06.06.14.02__add_role_id_column_agent_service_table.sql
+│   │   │       │       ├── V1.2024.06.10.16.16__update_agent_service_role.sql
+│   │   │       │       ├── V1.2024.07.08.15.15__delete_duplicate_agents.sql
+│   │   │       │       ├── V1.2024.07.08.16.16__update_agent_service_role.sql
+│   │   │       │       ├── V1.2024.07.24.10.10__add_general_infos_nbr_of_recognized_vessel_column.sql
+│   │   │       │       ├── V1.2024.07.24.15.40__add_anti_pollution_action_simple_brewing_column_and_anti_pol_device_column.sql
+│   │   │       │       ├── V1.2024.08.29.16.15__update_agent_service_themis.sql
+│   │   │       │       ├── V1.2024.09.24.16.15__user_role.sql
+│   │   │       │       ├── V1.2024.09.24.17.54__insert_crew_gyptis_b.sql
+│   │   │       │       ├── V1.2024.09.24.18.54__insert_crew_gyptis_a.sql
+│   │   │       │       ├── V1.2024.09.24.19.54__update_crew_iris.sql
+│   │   │       │       ├── V1.2024.09.25.10.54__update_crew_themis_b.sql
+│   │   │       │       ├── V1.2024.09.25.10.55__insert_crew_jeanne_barret_a.sql
+│   │   │       │       ├── V1.2024.09.25.11.26__infraction_env_target_drop_null_constraint.sql
+│   │   │       │       ├── V1.2024.09.27.10.54__update_crew_themis_a.sql
+│   │   │       │       ├── V1.2024.10.02.10.54__rename_services.sql
+│   │   │       │       ├── V1.2024.10.02.15.54__update_crew_themis_a.sql
+│   │   │       │       ├── V1.2024.10.16.15.54__update_action_enddate_set_nullable.sql
+│   │   │       │       ├── V1.2024.10.22.11.25__fix_crew_themis_b.sql
+│   │   │       │       ├── V1.2024.10.30.17.20__mission_action_table_union_action_type.sql
+│   │   │       │       ├── V1.2024.11.26.11.25__fix_crew_jb_a.sql
+│   │   │       │       ├── V1.2024.11.28.15.20__control_table_has_been_done_column.sql
+│   │   │       │       ├── V1.2025.01.06.15.20__ulam-service.sql
+│   │   │       │       ├── V1.2025.01.22.10.54__update_crew_jb_a.sql
+│   │   │       │       ├── V1.2025.01.23.10.54__add_role_admin_to_team.sql
+│   │   │       │       ├── V1.2025.01.30.10.54__update_crew_gyptis_a.sql
+│   │   │       │       ├── V1.2025.02.03.10.29__alter_missioncrew_role_not_null.sql
+│   │   │       │       ├── V1.2025.02.06.08.57__alter_mission_general_info_ulam_properties.sql
+│   │   │       │       ├── V1.2025.02.11.14.52__create_table_interministerial.sql
+│   │   │       │       ├── V1.2025.03.04.14.52__update_agent_service.sql
+│   │   │       │       ├── V1.2025.03.05.15.20__ulam-service_971.sql
+│   │   │       │       ├── V1.2025.03.06.08.00__ulam-971_agents_MVP.sql
+│   │   │       │       ├── V1.2025.03.10.15.09__ulam-service_35.sql
+│   │   │       │       ├── V1.2025.03.10.15.10__add_agents_ulam_35.sql
+│   │   │       │       ├── V1.2025.03.18.15.09__ulam-service_974.sql
+│   │   │       │       ├── V1.2025.03.18.15.10__add_agents_ulam_35.sql
+│   │   │       │       ├── V1.2025.03.18.16.14__target_2_control_2_infraction_2_table.sql
+│   │   │       │       ├── V1.2025.03.31.12.17__alter_target_2_not_null_control_2__not_null_infraction_2_not_null_table.sql
+│   │   │       │       ├── V1.2025.04.07__alter_table_mission_generalinfo_add_jdptype.sql
+│   │   │       │       ├── V1.2025.04.14.14.03__create_table_mission.sql
+│   │   │       │       ├── V1.2025.04.16.13.01__create_table_infraction_natinf_2.sql
+│   │   │       │       ├── V1.2025.04.28.11.38__alter_mission_action_alert_action_type.sql
+│   │   │       │       ├── V1.2025.04.30.09.39__alter_table_generalinfo_mission_id_uuid.sql
+│   │   │       │       ├── V1.2025.04.30.09.41__alter_generalinfo_add_sequence.sql
+│   │   │       │       ├── V1.2025.04.30.10.42__alter_mission_action_add_mission_id_uuid.sql
+│   │   │       │       ├── V1.2025.04.30.14.19__alter_crew_mission_id_uuid.sql
+│   │   │       │       ├── V1.2025.05.05.14.52__update_gyptis_a.sql
+│   │   │       │       ├── V1.2025.05.19.14.52__update_gyptis_a.sql
+│   │   │       │       ├── V1.2025.05.21.14.52__update_jb.sql
+│   │   │       │       ├── V1.2025.05.24.16.14__create_cross_control_table.sql
+│   │   │       │       ├── V1.2025.05.28.14.52__update_iris_a.sql
+│   │   │       │       ├── V1.2025.06.30.14.00__update_mission_table.sql
+│   │   │       │       ├── V1.2025.07.01.16.03__update_mission_action_table.sql
+│   │   │       │       ├── V1.2025.07.02.08.56__update_cross_control_table_to_inquiry_table.sql
+│   │   │       │       ├── V1.2025.07.26.16.22__update_inquiry_table_mission_action_table.sql
+│   │   │       │       ├── V1.2025.07.29.08.56__delete_dupes_general_info.sql
+│   │   │       │       ├── V1.2025.07.29.18.56__delete_dupes_general_info_2.sql
+│   │   │       │       ├── V1.2025.07.30.14.56__delete_dupes_general_info_3.sql
+│   │   │       │       ├── V1.2025.07.31.11.13__clean_inquiry_table.sql
+│   │   │       │       ├── V1.2025.08.05.11.13__updated_created_at.sql
+│   │   │       │       ├── V1.2025.08.06.11.13__updated_created_by.sql
+│   │   │       │       ├── V1.2025.08.11.11.13__updated_created_v1.sql
+│   │   │       │       ├── V1.2025.08.13.15.05__infraction_2_remove_null_constraint.sql
+│   │   │       │       ├── V1.2025.08.21.15.42__alter_mission_action_alert_action_type.sql
+│   │   │       │       ├── V1.2025.08.26.17.30__alter_mission_action_action_type_and_attribute.sql
+│   │   │       │       ├── V1.2025.09.22.17.30__delete-duplicate.sql
+│   │   │       │       ├── V1.2025.09.23.17.30__alter_mission_action_action_new_column.sql
+│   │   │       │       ├── V1.2025.10.02.10.30__alter_inquiry_table_add_new_column.sql
+│   │   │       │       ├── V1.2025.10.09.11.30__alter_mission_action_add_new_column.sql
+│   │   │       │       ├── V1.2025.10.14.14.52__update_gyptis_b.sql
+│   │   │       │       ├── V1.2025.10.15.09.52__migration_mission_action.sql
+│   │   │       │       ├── V1.2025.10.15.19.52__migration_target_control_infractions.sql
+│   │   │       │       ├── V1.2025.10.20.17.30__delete-duplicate.sql
+│   │   │       │       ├── V1.2025.10.22.17.30__delete-duplicate_target2_fish.sql
+│   │   │       │       ├── V1.2025.10.23.17.30__fix_amount_of_controls.sql
+│   │   │       │       ├── V1.2025.10.23.17.52__update_iris_b.sql
+│   │   │       │       ├── V1.2025.10.28.19.42__alter_agent_role_add_new_column.sql
+│   │   │       │       ├── V1.2025.10.29.17.52__create_api_keys_table.sql
+│   │   │       │       ├── V1.2025.11.03.14.41__service_set_val_seq.sql
+│   │   │       │       ├── V1.2025.11.12.14.14__create_agent_2_table.sql
+│   │   │       │       ├── V1.2025.11.20.15.07__migrate_agent_service_to_agent_2_table.sql
+│   │   │       │       ├── V1.2025.11.25.14.14__add_costs_general_infos.sql
+│   │   │       │       ├── V1.2025.11.25.17.17__default_value_for_is_within_department.sql
+│   │   │       │       ├── V1.2025.11.26.17.17__create_mission_passenger.sql
+│   │   │       │       ├── V1.2025.12.01.10.57__alter_inquiry_table_add_column.sql
+│   │   │       │       ├── V1.2025.12.03.10.12__create_table_establishment.sql
+│   │   │       │       ├── V1.2025.12.08.18.12__update_service_add_type.sql
+│   │   │       │       ├── V1.2025.12.16.16.14__alterr_control_type_add_new_value.sql
+│   │   │       │       ├── V1.2026.01.03.10.50__alter_missioncrew_drop_foreign_key_agent.sql
+│   │   │       │       ├── V1.2026.01.05.10.50__backfil_general_info_service_from_nav_mission.sql
+│   │   │       │       ├── V1.2026.01.20.09.47__alter_table_establishment_more_space_column.sql
+│   │   │       │       └── V1.2026.01.26.14.16__alter_table_general_info_to_add_no_resources.sql
+│   │   │       ├── global
+│   │   │       │   └── migration
+│   │   │       │       ├── migration_mission_action.sql
+│   │   │       │       └── migration_target_control_infraction.sql
+│   │   │       ├── log4j2.xml
+│   │   │       ├── template_export_aem_PAM.xlsx
+│   │   │       ├── template_export_rapport_patrouille_PAM.docx
+│   │   │       └── wiremock
+│   │   │           ├── env
+│   │   │           │   ├── administrations.json
+│   │   │           │   ├── control_plans.json
+│   │   │           │   ├── control_unit_resources.json
+│   │   │           │   ├── mission.json
+│   │   │           │   ├── missions.json
+│   │   │           │   └── natinfs.json
+│   │   │           └── fish
+│   │   │               ├── actions.json
+│   │   │               └── vessels.json
+│   │   └── test
+│   │       ├── kotlin
+│   │       │   └── fr
+│   │       │       └── gouv
+│   │       │           └── gmampa
+│   │       │               └── rapportnav
+│   │       │                   ├── RapportNavApplicationTests.kt
+│   │       │                   ├── config
+│   │       │                   │   ├── ApiKeyAuthenticationFilterTest.kt
+│   │       │                   │   └── PasswordValidatorTest.kt
+│   │       │                   ├── domain
+│   │       │                   │   ├── entities
+│   │       │                   │   │   ├── PatchMissionInputTest.kt
+│   │       │                   │   │   ├── aem
+│   │       │                   │   │   │   └── v2
+│   │       │                   │   │   │       ├── AEMCulturalMaritimeTest2.kt
+│   │       │                   │   │   │       ├── AEMEnvTrafficTest2.kt
+│   │       │                   │   │   │       ├── AEMIllegalFishTest2.kt
+│   │       │                   │   │   │       ├── AEMIllegalImmigrationTest2.kt
+│   │       │                   │   │   │       ├── AEMMigrationRescueTest2.kt
+│   │       │                   │   │   │       ├── AEMNotPollutionControlSurveillanceTest2.kt
+│   │       │                   │   │   │       ├── AEMOutOfMigrationRescue2Test.kt
+│   │       │                   │   │   │       ├── AEMPolllutionControlSurveillanceTest2.kt
+│   │       │                   │   │   │       ├── AEMSeaSafetyTest2.kt
+│   │       │                   │   │   │       ├── AEMSovereignProtectTest2.kt
+│   │       │                   │   │   │       ├── AEMTableExportTest2.kt
+│   │       │                   │   │   │       └── AEMVesselRescueTest2.kt
+│   │       │                   │   │   ├── mission
+│   │       │                   │   │   │   ├── MissionEnvActionEntityTest.kt
+│   │       │                   │   │   │   ├── MissionFishActionEntityTest.kt
+│   │       │                   │   │   │   ├── MissionNavActionEntityTest.kt
+│   │       │                   │   │   │   └── nav
+│   │       │                   │   │   │       ├── control
+│   │       │                   │   │   │       │   ├── ControlAdministrativeEntityTest.kt
+│   │       │                   │   │   │       │   ├── ControlGensDeMerEntityTest.kt
+│   │       │                   │   │   │       │   ├── ControlNavigationEntityTest.kt
+│   │       │                   │   │   │       │   └── ControlSecurityEntityTest.kt
+│   │       │                   │   │   │       ├── generalinfo
+│   │       │                   │   │   │       │   └── MissionGeneralInfoEntityTest.kt
+│   │       │                   │   │   │       └── v2
+│   │       │                   │   │   │           ├── ControlEntity2Test.kt
+│   │       │                   │   │   │           ├── InfractionEntity2Test.kt
+│   │       │                   │   │   │           └── TargetEntity2Test.kt
+│   │       │                   │   │   └── v2
+│   │       │                   │   │       ├── EstablishmentEntityTest.kt
+│   │       │                   │   │       ├── InquiryEntityTest.kt
+│   │       │                   │   │       ├── MissionEntity2Tests.kt
+│   │       │                   │   │       ├── MissionEnvEntityTest.kt
+│   │       │                   │   │       ├── MissionGeneralInfoEntity2Tests.kt
+│   │       │                   │   │       ├── MissionNavActionEntityTest.kt
+│   │       │                   │   │       ├── MissionNavEntityTest.kt
+│   │       │                   │   │       └── VesselEntityTest.kt
+│   │       │                   │   ├── use_cases
+│   │       │                   │   │   ├── analytics
+│   │       │                   │   │   │   ├── ComputeAEMDataTest.kt
+│   │       │                   │   │   │   ├── ComputePatrolDataTest.kt
+│   │       │                   │   │   │   ├── helpers
+│   │       │                   │   │   │   │   └── CountInfractionsTest.kt
+│   │       │                   │   │   │   └── patrol
+│   │       │                   │   │   │       ├── ComputeInternTrainingSummaryTest.kt
+│   │       │                   │   │   │       ├── controlPolicies
+│   │       │                   │   │   │       │   ├── ComputeControlPoliciesTest.kt
+│   │       │                   │   │   │       │   ├── ComputeEnvControlPolicyTest.kt
+│   │       │                   │   │   │       │   ├── ComputeNavControlPolicyTest.kt
+│   │       │                   │   │   │       │   └── ComputeProFishingControlPolicyTest.kt
+│   │       │                   │   │   │       └── operationalSummary
+│   │       │                   │   │   │           ├── ComputeAllOperationalSummaryTests.kt
+│   │       │                   │   │   │           ├── ComputeEnvOperationalSummaryTest.kt
+│   │       │                   │   │   │           ├── ComputeFishOperationalSummaryTests.kt
+│   │       │                   │   │   │           └── ComputeSailingOperationalSummaryTest.kt
+│   │       │                   │   │   ├── apikey
+│   │       │                   │   │   │   ├── CreateApiKeyTest.kt
+│   │       │                   │   │   │   ├── DisableApiKeyTest.kt
+│   │       │                   │   │   │   ├── GetAllApiKeysTest.kt
+│   │       │                   │   │   │   ├── GetApiKeyAuditLogsForPublicIdTest.kt
+│   │       │                   │   │   │   ├── LogApiKeyAuditTest.kt
+│   │       │                   │   │   │   ├── RotateApiKeyTest.kt
+│   │       │                   │   │   │   ├── UpdateApiKeyLastUsedAtTest.kt
+│   │       │                   │   │   │   └── ValidateApiKeyTest.kt
+│   │       │                   │   │   ├── auth
+│   │       │                   │   │   │   └── TokenServiceTests.kt
+│   │       │                   │   │   ├── inquiry
+│   │       │                   │   │   │   ├── CreateInquiryTest.kt
+│   │       │                   │   │   │   ├── DeleteInquiryTest.kt
+│   │       │                   │   │   │   ├── GetInquiryByIdTest.kt
+│   │       │                   │   │   │   ├── GetInquiryByServiceIdBetweenDatesTest.kt
+│   │       │                   │   │   │   ├── ProcessInquiryTest.kt
+│   │       │                   │   │   │   └── UpdateInquiryTest.kt
+│   │       │                   │   │   ├── mission
+│   │       │                   │   │   │   ├── Infraction
+│   │       │                   │   │   │   │   └── IsInfractionInvalidForVehicleTypeTest.kt
+│   │       │                   │   │   │   ├── PatchEnvMissionTest.kt
+│   │       │                   │   │   │   ├── action
+│   │       │                   │   │   │   │   ├── CreateNavActionTest.kt
+│   │       │                   │   │   │   │   ├── DeleteNavActionTest.kt
+│   │       │                   │   │   │   │   ├── GetAllControlPlansTest.kt
+│   │       │                   │   │   │   │   ├── GetComputeEnvActionListByMissionIdTest.kt
+│   │       │                   │   │   │   │   ├── GetComputeFishActionListByMissionIdTest.kt
+│   │       │                   │   │   │   │   ├── GetComputeNavActionListByMissionIdTest.kt
+│   │       │                   │   │   │   │   ├── GetComputeTargetEnvTest.kt
+│   │       │                   │   │   │   │   ├── GetComputeTargetTest.kt
+│   │       │                   │   │   │   │   ├── GetEnvActionByIdTest.kt
+│   │       │                   │   │   │   │   ├── GetFishActionByIdTest.kt
+│   │       │                   │   │   │   │   ├── GetNavActionByIdTest.kt
+│   │       │                   │   │   │   │   ├── MapEnvActionControlPlansTests.kt
+│   │       │                   │   │   │   │   ├── ProcessMissionActionTargetTest.kt
+│   │       │                   │   │   │   │   ├── UpdateEnvActionTest.kt
+│   │       │                   │   │   │   │   ├── UpdateFishActionTest.kt
+│   │       │                   │   │   │   │   ├── UpdateNavActionTest.kt
+│   │       │                   │   │   │   │   └── v2
+│   │       │                   │   │   │   │       ├── DeleteNavActionTest.kt
+│   │       │                   │   │   │   │       ├── DeleteTargetTest.kt
+│   │       │                   │   │   │   │       ├── GetFishActionListByMissionIdTest.kt
+│   │       │                   │   │   │   │       ├── GetNavActionListByOwnerIdTest.kt
+│   │       │                   │   │   │   │       ├── GetStatusForAction2Test.kt
+│   │       │                   │   │   │   │       ├── ProcessEnvActionTest.kt
+│   │       │                   │   │   │   │       ├── ProcessFishActionTest.kt
+│   │       │                   │   │   │   │       └── ProcessNavActionTest.kt
+│   │       │                   │   │   │   ├── crew
+│   │       │                   │   │   │   │   ├── GetAgentsCrewByMissionIdTest.kt
+│   │       │                   │   │   │   │   ├── GetServiceByControlUnitTest.kt
+│   │       │                   │   │   │   │   └── v2
+│   │       │                   │   │   │   │       ├── CreateOrUpdateAgent2Test.kt
+│   │       │                   │   │   │   │       ├── GetCrewByServiceId2Test.kt
+│   │       │                   │   │   │   │       ├── MigrateAgentTest.kt
+│   │       │                   │   │   │   │       └── ProcessMissionCrewTest.kt
+│   │       │                   │   │   │   ├── export
+│   │       │                   │   │   │   │   ├── ExportMissionAEMCombinedTest.kt
+│   │       │                   │   │   │   │   ├── ExportMissionAEMMultipleZippedTest.kt
+│   │       │                   │   │   │   │   ├── ExportMissionAEMSingleTest.kt
+│   │       │                   │   │   │   │   ├── ExportMissionPatrolCombinedTest.kt
+│   │       │                   │   │   │   │   ├── ExportMissionPatrolMultipleZippedTest.kt
+│   │       │                   │   │   │   │   ├── ExportMissionPatrolSingleTest.kt
+│   │       │                   │   │   │   │   ├── ExportMissionReportsTest.kt
+│   │       │                   │   │   │   │   ├── FillAEMExcelRowTest.kt
+│   │       │                   │   │   │   │   ├── FormatActionsForTimelineTests.kt
+│   │       │                   │   │   │   │   ├── GetInfoAboutActionTests.kt
+│   │       │                   │   │   │   │   ├── MapStatusDurationsTests.kt
+│   │       │                   │   │   │   │   └── ZipFilesTest.kt
+│   │       │                   │   │   │   ├── status
+│   │       │                   │   │   │   │   ├── GetNbOfDaysAtSeaFromNavigationStatusTests.kt
+│   │       │                   │   │   │   │   ├── GetStatusDurationsTests.kt
+│   │       │                   │   │   │   │   └── GetStatusForActionTests.kt
+│   │       │                   │   │   │   └── v2
+│   │       │                   │   │   │       ├── CreateEnvMissionTest.kt
+│   │       │                   │   │   │       ├── CreateMissionNavTest.kt
+│   │       │                   │   │   │       ├── CreateMissionTest.kt
+│   │       │                   │   │   │       ├── DeleteEnvMissionTest.kt
+│   │       │                   │   │   │       ├── DeleteMissionCrew2Test.kt
+│   │       │                   │   │   │       ├── DeleteNavMissionTest.kt
+│   │       │                   │   │   │       ├── GetComputeEnvMissionTest.kt
+│   │       │                   │   │   │       ├── GetComputeNavMissionTest.kt
+│   │       │                   │   │   │       ├── GetEnvMissionById2Test.kt
+│   │       │                   │   │   │       ├── GetMissionActionControlsTest.kt
+│   │       │                   │   │   │       ├── GetMissionCrewTest.kt
+│   │       │                   │   │   │       ├── GetMissionGeneralInfoByMissionIdTest.kt
+│   │       │                   │   │   │       ├── GetMissionsTest.kt
+│   │       │                   │   │   │       ├── GetNavMissionById2Test.kt
+│   │       │                   │   │   │       ├── GetNavMissionsTest.kt
+│   │       │                   │   │   │       ├── GetVesselsTest.kt
+│   │       │                   │   │   │       ├── PatchMissionEnvTest.kt
+│   │       │                   │   │   │       ├── PatchNavMissionTest.kt
+│   │       │                   │   │   │       ├── ProcessMissionActionTargetTest.kt
+│   │       │                   │   │   │       ├── UpdateGeneralInfoTest.kt
+│   │       │                   │   │   │       ├── administrations
+│   │       │                   │   │   │       │   ├── GetAdministrationByIdTest.kt
+│   │       │                   │   │   │       │   └── GetAdministrationsTest.kt
+│   │       │                   │   │   │       ├── controlUnitResource
+│   │       │                   │   │   │       │   └── GetControlUnitResourcesTest.kt
+│   │       │                   │   │   │       └── passengers
+│   │       │                   │   │   │           ├── DeleteMissionPassengerTest.kt
+│   │       │                   │   │   │           ├── GetMissionPassengersTest.kt
+│   │       │                   │   │   │           ├── ProcessMissionPassengersTest.kt
+│   │       │                   │   │   │           └── UpdateMissionPassengerTest.kt
+│   │       │                   │   │   ├── user
+│   │       │                   │   │   │   ├── CreateUserTest.kt
+│   │       │                   │   │   │   ├── FindByEmailTest.kt
+│   │       │                   │   │   │   ├── FindByIdTest.kt
+│   │       │                   │   │   │   ├── GetControlUnitsForUserTest.kt
+│   │       │                   │   │   │   ├── GetServiceForUserTest.kt
+│   │       │                   │   │   │   ├── GetUserFromTokenTest.kt
+│   │       │                   │   │   │   ├── GetUserListTest.kt
+│   │       │                   │   │   │   ├── SaveTest.kt
+│   │       │                   │   │   │   ├── UpdateUserPasswordTest.kt
+│   │       │                   │   │   │   └── UpdateUserTest.kt
+│   │       │                   │   │   └── utils
+│   │       │                   │   │       ├── ComputeDurationsTests.kt
+│   │       │                   │   │       ├── FormatDateTimeTests.kt
+│   │       │                   │   │       └── FormatGeoCoordsTests.kt
+│   │       │                   │   └── utils
+│   │       │                   │       ├── ComputeDurationUtilsTest.kt
+│   │       │                   │       └── UUIDUtilsTest.kt
+│   │       │                   ├── infrastructure
+│   │       │                   │   ├── api
+│   │       │                   │   │   ├── admin
+│   │       │                   │   │   │   ├── ApiAdminControllerITest.kt
+│   │       │                   │   │   │   └── bff
+│   │       │                   │   │   │       └── adapters
+│   │       │                   │   │   │           └── infractions
+│   │       │                   │   │   │               └── InfractionWithNewTargetInputTest.kt
+│   │       │                   │   │   ├── analytics
+│   │       │                   │   │   │   └── ApiAnalyticsControllerTests.kt
+│   │       │                   │   │   ├── auth
+│   │       │                   │   │   │   └── ApiAuthControllerTests.kt
+│   │       │                   │   │   └── bff
+│   │       │                   │   │       └── v2
+│   │       │                   │   │           └── MissionExportControllerTest.kt
+│   │       │                   │   ├── bff
+│   │       │                   │   │   ├── adapters
+│   │       │                   │   │   │   └── mission
+│   │       │                   │   │   │       └── MissionEnvInputTest.kt
+│   │       │                   │   │   ├── controllers
+│   │       │                   │   │   │   ├── AdministrationControllerTest.kt
+│   │       │                   │   │   │   ├── MissionRestControllerTest.kt
+│   │       │                   │   │   │   └── UserRestControllerTest.kt
+│   │       │                   │   │   └── model
+│   │       │                   │   │       ├── action
+│   │       │                   │   │       │   └── PatchedEnvActionTest.kt
+│   │       │                   │   │       ├── generalInfo
+│   │       │                   │   │       │   └── MissionGeneralInfoTest.kt
+│   │       │                   │   │       ├── infraction
+│   │       │                   │   │       │   └── InfractionsByVesselTest.kt
+│   │       │                   │   │       └── v2
+│   │       │                   │   │           ├── Control2Test.kt
+│   │       │                   │   │           ├── Infraction2Test.kt
+│   │       │                   │   │           ├── InfractionTest.kt
+│   │       │                   │   │           ├── InquiryTest.kt
+│   │       │                   │   │           ├── MissionActionTest.kt
+│   │       │                   │   │           ├── MissionEnvActionDataTest.kt
+│   │       │                   │   │           ├── MissionEnvActionTest.kt
+│   │       │                   │   │           ├── MissionFishActionTest.kt
+│   │       │                   │   │           ├── MissionGeneralInfo2Test.kt
+│   │       │                   │   │           ├── MissionNavActionDataTest.kt
+│   │       │                   │   │           ├── MissionNavActionTest.kt
+│   │       │                   │   │           ├── Target2Test.kt
+│   │       │                   │   │           ├── TargetExternalDataTest.kt
+│   │       │                   │   │           └── VesselTest.kt
+│   │       │                   │   ├── cache
+│   │       │                   │   │   └── CaffeineConfigurationTest.kt
+│   │       │                   │   ├── database
+│   │       │                   │   │   ├── AbstractDBTests.kt
+│   │       │                   │   │   ├── model
+│   │       │                   │   │   │   └── apikey
+│   │       │                   │   │   │       ├── ApiKeyAuditModelTest.kt
+│   │       │                   │   │   │       └── ApiKeyModelTest.kt
+│   │       │                   │   │   └── repositories
+│   │       │                   │   │       ├── apikey
+│   │       │                   │   │       │   ├── JPAApiKeyAuditRepositoryTest.kt
+│   │       │                   │   │       │   └── JPAApiKeyRepositoryTest.kt
+│   │       │                   │   │       └── mission
+│   │       │                   │   │           ├── action
+│   │       │                   │   │           │   └── JPAMissionActionRepositoryTest.kt
+│   │       │                   │   │           ├── crew
+│   │       │                   │   │           │   ├── JPAAgent2RepositoryTest.kt
+│   │       │                   │   │           │   ├── JPAAgentServiceRepositoryTest.kt
+│   │       │                   │   │           │   └── JPAServiceRepositoryTest.kt
+│   │       │                   │   │           └── passenger
+│   │       │                   │   │               └── JPAMissionPassengerRepositoryTest.kt
+│   │       │                   │   ├── monitorenv
+│   │       │                   │   │   ├── APIEnvMissionRepositoryTest.kt
+│   │       │                   │   │   ├── output
+│   │       │                   │   │   │   └── action
+│   │       │                   │   │   │       └── MissionEnvActionDataOutputTest.kt
+│   │       │                   │   │   └── v2
+│   │       │                   │   │       ├── APIEnvControlUnitRepositoryTest.kt
+│   │       │                   │   │       └── APIEnvMissionRepositoryTest.kt
+│   │       │                   │   └── utils
+│   │       │                   │       ├── ExportZipTest.kt
+│   │       │                   │       └── FileUtilsTest.kt
+│   │       │                   └── mocks
+│   │       │                       ├── mission
+│   │       │                       │   ├── EnvMissionMock.kt
+│   │       │                       │   ├── EnvMissionMockv2.kt
+│   │       │                       │   ├── FishMissionMock.kt
+│   │       │                       │   ├── LegacyControlUnitEntityMock.kt
+│   │       │                       │   ├── MissionEntityMock2.kt
+│   │       │                       │   ├── MissionGeneralInfo2Mock.kt
+│   │       │                       │   ├── MissionGeneralInfoEntity2Mock.kt
+│   │       │                       │   ├── MissionGeneralInfoEntityMock.kt
+│   │       │                       │   ├── MissionModelMock.kt
+│   │       │                       │   ├── MissionNavEntityMock.kt
+│   │       │                       │   ├── MultiPolygonMock.kt
+│   │       │                       │   ├── TargetEntity2Mock.kt
+│   │       │                       │   ├── TargetModel2Mock.kt
+│   │       │                       │   ├── VesselEntityMock.kt
+│   │       │                       │   ├── action
+│   │       │                       │   │   ├── ActionMockFactory.kt
+│   │       │                       │   │   ├── ControlEntity2Mock.kt
+│   │       │                       │   │   ├── ControlPlanMock.kt
+│   │       │                       │   │   ├── EnvActionControlMock.kt
+│   │       │                       │   │   ├── EnvActionControlPlanMock.kt
+│   │       │                       │   │   ├── EnvActionNoteMock.kt
+│   │       │                       │   │   ├── EnvActionSurveillanceMock.kt
+│   │       │                       │   │   ├── ExtendedEnvActionControlEntityMock.kt
+│   │       │                       │   │   ├── ExtendedEnvActionEntityMock.kt
+│   │       │                       │   │   ├── ExtendedEnvActionSurveillanceEntityMock.kt
+│   │       │                       │   │   ├── ExtendedFishActionControlEntityMock.kt
+│   │       │                       │   │   ├── ExtendedFishActionEntityMock.kt
+│   │       │                       │   │   ├── FishActionControlMock.kt
+│   │       │                       │   │   ├── MissionActionModelMock.kt
+│   │       │                       │   │   ├── MissionEnvActionEntityMock.kt
+│   │       │                       │   │   ├── MissionFishActionEntityMock.kt
+│   │       │                       │   │   └── MissionNavActionEntityMock.kt
+│   │       │                       │   ├── control
+│   │       │                       │   │   ├── ControlAdministrativeEntityMock.kt
+│   │       │                       │   │   ├── ControlGensDeMerEntityMock.kt
+│   │       │                       │   │   ├── ControlNavigationEntityMock.kt
+│   │       │                       │   │   └── ControlSecurityEntityMock.kt
+│   │       │                       │   ├── crew
+│   │       │                       │   │   ├── AgentEntityMock.kt
+│   │       │                       │   │   ├── AgentRoleEntityMock.kt
+│   │       │                       │   │   ├── AgentServiceEntityMock.kt
+│   │       │                       │   │   ├── MissionCrewEntityMock.kt
+│   │       │                       │   │   └── ServiceEntityMock.kt
+│   │       │                       │   ├── env
+│   │       │                       │   │   ├── ControlUnitMock.kt
+│   │       │                       │   │   ├── ControlUnitResourceEnvMock.kt
+│   │       │                       │   │   └── ThemeEntityMock.kt
+│   │       │                       │   ├── infraction
+│   │       │                       │   │   ├── EnvInfractionEntityMock.kt
+│   │       │                       │   │   ├── InfractionEntity2Mock.kt
+│   │       │                       │   │   └── InfractionEntityMock.kt
+│   │       │                       │   └── passenger
+│   │       │                       │       └── MissionPassengerEntityMock.kt
+│   │       │                       └── user
+│   │       │                           └── UserMock.kt
+│   │       └── resources
+│   │           └── missions
+│   │               └── mission.json
+│   └── tools
+│       └── check-clean-architecture.sh
+├── docs
+│   ├── .nojekyll
+│   ├── README.md
+│   ├── _sidebar.md
+│   ├── charte-dev
+│   │   └── index.md
+│   ├── concepts
+│   │   ├── _sidebar.md
+│   │   ├── fish-env.md
+│   │   ├── index.md
+│   │   ├── main-entities.md
+│   │   ├── missions.md
+│   │   └── users.md
+│   ├── engineering
+│   │   ├── _sidebar.md
+│   │   ├── concepts
+│   │   │   ├── auth.md
+│   │   │   ├── dates.md
+│   │   │   ├── env-vars.md
+│   │   │   ├── error-handling.md
+│   │   │   ├── index.md
+│   │   │   ├── mission-completion.md
+│   │   │   ├── missions-and-actions.md
+│   │   │   └── roles.md
+│   │   ├── images
+│   │   │   ├── hexa-archi.png
+│   │   │   ├── portainer.png
+│   │   │   ├── rapportnav-archi.png
+│   │   │   └── sonarqube.png
+│   │   ├── index.md
+│   │   ├── operations
+│   │   │   ├── index.md
+│   │   │   ├── monitoring.md
+│   │   │   └── troubleshooting.md
+│   │   └── stack
+│   │       ├── backend.md
+│   │       ├── database.md
+│   │       ├── frontend.md
+│   │       ├── index.md
+│   │       └── infra.md
+│   ├── features
+│   │   ├── _sidebar.md
+│   │   ├── aem.md
+│   │   ├── images
+│   │   │   ├── activite-navire.png
+│   │   │   ├── aem1.png
+│   │   │   ├── aem2.png
+│   │   │   ├── aem3.png
+│   │   │   ├── aem4.png
+│   │   │   ├── autres-missions.png
+│   │   │   ├── bilan-operationnel.png
+│   │   │   ├── equipage.png
+│   │   │   ├── export-aem.png
+│   │   │   ├── export-patrouille.png
+│   │   │   ├── export-zip.png
+│   │   │   ├── homepage.png
+│   │   │   ├── mission-page.png
+│   │   │   └── timeline.png
+│   │   ├── index.md
+│   │   ├── mission.md
+│   │   ├── rapport-patrouille.md
+│   │   └── regles-metier.md
+│   ├── guide.md
+│   ├── index.html
+│   ├── mco
+│   │   ├── 1-objet-et-perimetre
+│   │   │   └── index.md
+│   │   ├── 2-description-systeme
+│   │   │   └── index.md
+│   │   ├── 3-organisation-exploitation
+│   │   │   └── index.md
+│   │   ├── 4-supervision
+│   │   │   └── index.md
+│   │   ├── 5-gestion-indicents
+│   │   │   └── index.md
+│   │   ├── 6-gestion-changements
+│   │   │   └── index.md
+│   │   ├── 7-sauvegardes
+│   │   │   └── index.md
+│   │   ├── 8-capacite-perf
+│   │   │   └── index.md
+│   │   ├── 9-tracabilite
+│   │   │   └── index.md
+│   │   ├── _sidebar.md
+│   │   └── index.md
+│   ├── mcs
+│   │   ├── 1-objet-et-perimetre
+│   │   │   └── index.md
+│   │   ├── 2-gouvernance
+│   │   │   └── index.md
+│   │   ├── 3-gestion-vulnerabilites
+│   │   │   └── index.md
+│   │   ├── 4-gestion-acces
+│   │   │   └── index.md
+│   │   ├── 5-securite-env
+│   │   │   └── index.md
+│   │   ├── 6-surveillance
+│   │   │   └── index.md
+│   │   ├── 7-gestion-incidents
+│   │   │   └── index.md
+│   │   ├── 8-sauvegardes
+│   │   │   └── index.md
+│   │   ├── _sidebar.md
+│   │   └── index.md
+│   └── operations
+│       ├── _sidebar.md
+│       ├── crew.md
+│       ├── index.md
+│       └── users.md
+├── dpc_ignore-cve.xml
+├── frontend
+│   ├── .env.d.ts
+│   ├── .env.example
+│   ├── .env.integration.defaults
+│   ├── .env.local.defaults
+│   ├── .env.production.defaults
+│   ├── .eslintrc
+│   ├── .gitignore
+│   ├── .prettierrc
+│   ├── CHANGELOG.md
+│   ├── README.md
+│   ├── index.html
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── public
+│   │   ├── favicon.ico
+│   │   └── robots.txt
+│   ├── src
+│   │   ├── app.test.tsx
+│   │   ├── app.tsx
+│   │   ├── assets
+│   │   │   ├── css
+│   │   │   │   └── index.css
+│   │   │   ├── files
+│   │   │   │   └── Annexe11_modèle_fiche_incident.odt
+│   │   │   └── images
+│   │   │       ├── navire_bateau_ecole.svg
+│   │   │       ├── navire_commerce.svg
+│   │   │       ├── navire_passagers.svg
+│   │   │       ├── navire_peche_pro.svg
+│   │   │       ├── navire_plaisance_loisir.svg
+│   │   │       ├── navire_plaisance_pro.svg
+│   │   │       ├── navire_services.svg
+│   │   │       └── republique.svg
+│   │   ├── features
+│   │   │   ├── auth
+│   │   │   │   ├── components
+│   │   │   │   │   └── auth-guard.tsx
+│   │   │   │   ├── hooks
+│   │   │   │   │   ├── use-auth.test.tsx
+│   │   │   │   │   └── use-auth.tsx
+│   │   │   │   └── utils
+│   │   │   │       ├── csrf.test.ts
+│   │   │   │       ├── csrf.ts
+│   │   │   │       ├── token.test.ts
+│   │   │   │       └── token.ts
+│   │   │   ├── common
+│   │   │   │   ├── components
+│   │   │   │   │   └── ui
+│   │   │   │   │       ├── __snapshots__
+│   │   │   │   │       │   └── text.test.tsx.snap
+│   │   │   │   │       ├── header.test.tsx
+│   │   │   │   │       ├── header.tsx
+│   │   │   │   │       ├── icon
+│   │   │   │   │       │   ├── IconVesselCommerce.tsx
+│   │   │   │   │       │   ├── IconVesselFishing.tsx
+│   │   │   │   │       │   ├── IconVesselSailingLeisure.tsx
+│   │   │   │   │       │   ├── IconVesselSailingPro.tsx
+│   │   │   │   │       │   └── IconVesselServices.tsx
+│   │   │   │   │       ├── page-wrapper.test.tsx
+│   │   │   │   │       ├── page-wrapper.tsx
+│   │   │   │   │       ├── text.test.tsx
+│   │   │   │   │       ├── text.tsx
+│   │   │   │   │       ├── toogle-label.tsx
+│   │   │   │   │       └── ui-theme-wrapper.tsx
+│   │   │   │   ├── types
+│   │   │   │   │   ├── action-types.ts
+│   │   │   │   │   ├── control-types.ts
+│   │   │   │   │   ├── control-unit-types.ts
+│   │   │   │   │   ├── crew-types.ts
+│   │   │   │   │   ├── env-mission-types.ts
+│   │   │   │   │   ├── env-tags.ts
+│   │   │   │   │   ├── env-themes.ts
+│   │   │   │   │   ├── fish-mission-types.ts
+│   │   │   │   │   ├── infraction-types.ts
+│   │   │   │   │   ├── mission-types.ts
+│   │   │   │   │   └── service-types.ts
+│   │   │   │   └── utils
+│   │   │   │       ├── colors.ts
+│   │   │   │       ├── control-utils.test.ts
+│   │   │   │       ├── control-utils.ts
+│   │   │   │       ├── dates-for-humans.test.ts
+│   │   │   │       ├── dates-for-humans.ts
+│   │   │   │       ├── dates-for-machines.test.ts
+│   │   │   │       ├── dates-for-machines.ts
+│   │   │   │       ├── geometry.ts
+│   │   │   │       ├── localstorage-mock.ts
+│   │   │   │       └── status-utils.ts
+│   │   │   └── pam
+│   │   │       └── mission
+│   │   │           └── components
+│   │   │               ├── elements
+│   │   │               │   └── actions
+│   │   │               │       └── action-control-fish.tsx
+│   │   │               └── ui
+│   │   │                   ├── controls-to-complete-tag.test.tsx
+│   │   │                   └── controls-to-complete-tag.tsx
+│   │   ├── index.tsx
+│   │   ├── pages
+│   │   │   ├── error-page.tsx
+│   │   │   ├── home.test.tsx
+│   │   │   ├── home.tsx
+│   │   │   ├── login.test.tsx
+│   │   │   ├── login.tsx
+│   │   │   ├── signup.test.tsx
+│   │   │   ├── signup.tsx
+│   │   │   └── test-server.ts
+│   │   ├── query-client
+│   │   │   ├── __tests__
+│   │   │   │   └── axios.test.ts
+│   │   │   ├── axios.ts
+│   │   │   └── index.ts
+│   │   ├── react-app-env.d.ts
+│   │   ├── report-web-vitals.ts
+│   │   ├── router
+│   │   │   ├── __tests__
+│   │   │   │   └── use-global-routes.test.tsx
+│   │   │   ├── router-provider.tsx
+│   │   │   ├── router.tsx
+│   │   │   ├── routes.tsx
+│   │   │   └── use-global-routes.tsx
+│   │   ├── sentry.ts
+│   │   ├── setupTests.ts
+│   │   ├── test-utils.tsx
+│   │   ├── v2
+│   │   │   ├── features
+│   │   │   │   ├── admin
+│   │   │   │   │   ├── components
+│   │   │   │   │   │   ├── elements
+│   │   │   │   │   │   │   ├── admin-agent-item.tsx
+│   │   │   │   │   │   │   ├── admin-agent-role-item.tsx
+│   │   │   │   │   │   │   ├── admin-apikey-item.tsx
+│   │   │   │   │   │   │   ├── admin-basic-item-generic.tsx
+│   │   │   │   │   │   │   ├── admin-general-infos-item.tsx
+│   │   │   │   │   │   │   ├── admin-service-item.tsx
+│   │   │   │   │   │   │   └── admin-user-item.tsx
+│   │   │   │   │   │   └── ui
+│   │   │   │   │   │       ├── admin-agent-form.tsx
+│   │   │   │   │   │       ├── admin-agent-role.tsx
+│   │   │   │   │   │       ├── admin-apikey-form.tsx
+│   │   │   │   │   │       ├── admin-general-infos-form.tsx
+│   │   │   │   │   │       ├── admin-service-form.tsx
+│   │   │   │   │   │       ├── admin-user-form.tsx
+│   │   │   │   │   │       ├── admin-user-password-form.tsx
+│   │   │   │   │   │       └── dialog-form.tsx
+│   │   │   │   │   ├── services
+│   │   │   │   │   │   ├── use-admin-agents-service.tsx
+│   │   │   │   │   │   ├── use-admin-apikeys-service.tsx
+│   │   │   │   │   │   ├── use-admin-create-update-agents-role-service.tsx
+│   │   │   │   │   │   ├── use-admin-create-update-agents-service.tsx
+│   │   │   │   │   │   ├── use-admin-create-update-apikey-service.tsx
+│   │   │   │   │   │   ├── use-admin-create-update-services-service.tsx
+│   │   │   │   │   │   ├── use-admin-create-update-user-service.tsx
+│   │   │   │   │   │   ├── use-admin-delete-agents-service.tsx
+│   │   │   │   │   │   ├── use-admin-delete-roles-service.tsx
+│   │   │   │   │   │   ├── use-admin-delete-services-service.tsx
+│   │   │   │   │   │   ├── use-admin-disable-agent-service.tsx
+│   │   │   │   │   │   ├── use-admin-disable-apikey-service.tsx
+│   │   │   │   │   │   ├── use-admin-general-infos.tsx
+│   │   │   │   │   │   ├── use-admin-migrate-agents-service.tsx
+│   │   │   │   │   │   ├── use-admin-rorate-apikey-service.tsx
+│   │   │   │   │   │   ├── use-admin-services-service.tsx
+│   │   │   │   │   │   ├── use-admin-update-general-infos.tsx
+│   │   │   │   │   │   ├── use-admin-update-user-password-service.tsx
+│   │   │   │   │   │   └── use-admin-user-service.tsx
+│   │   │   │   │   └── types
+│   │   │   │   │       ├── admin-action.ts
+│   │   │   │   │       ├── admin-agent-types.ts
+│   │   │   │   │       ├── admin-apikey-types.ts
+│   │   │   │   │       ├── admin-general-infos-types.ts
+│   │   │   │   │       └── admin-services-type.ts
+│   │   │   │   ├── auth
+│   │   │   │   │   ├── components
+│   │   │   │   │   │   ├── admin-guard.tsx
+│   │   │   │   │   │   └── auth-guard.tsx
+│   │   │   │   │   └── hooks
+│   │   │   │   │       ├── __tests__
+│   │   │   │   │       │   └── use-auth.test.tsx
+│   │   │   │   │       └── use-auth.tsx
+│   │   │   │   ├── common
+│   │   │   │   │   ├── components
+│   │   │   │   │   │   ├── elements
+│   │   │   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   │   │   ├── export-file-button.test.tsx
+│   │   │   │   │   │   │   │   ├── mission-completeness-for-stats-tag.test.tsx
+│   │   │   │   │   │   │   │   ├── mission-list-daterange-navigator.test.tsx
+│   │   │   │   │   │   │   │   ├── offline-tag.test.tsx
+│   │   │   │   │   │   │   │   └── online-toggle.test.tsx
+│   │   │   │   │   │   │   ├── action-header-action.tsx
+│   │   │   │   │   │   │   ├── export-file-button.tsx
+│   │   │   │   │   │   │   ├── item-list-daterange-navigator.tsx
+│   │   │   │   │   │   │   ├── mission-completeness-for-stats-tag.tsx
+│   │   │   │   │   │   │   ├── mission-natinfs.tsx
+│   │   │   │   │   │   │   ├── offline-tag.tsx
+│   │   │   │   │   │   │   └── online-toggle.tsx
+│   │   │   │   │   │   ├── layout
+│   │   │   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   │   │   ├── __snapshots__
+│   │   │   │   │   │   │   │   │   ├── action-header-completeness-for-stats.test.tsx.snap
+│   │   │   │   │   │   │   │   │   ├── mission-list-page-content-wrapper.test.tsx.snap
+│   │   │   │   │   │   │   │   │   ├── mission-list-page-header-wrapper.test.tsx.snap
+│   │   │   │   │   │   │   │   │   ├── mission-list-page-wrapper.test.tsx.snap
+│   │   │   │   │   │   │   │   │   ├── page-header-wrapper.test.tsx.snap
+│   │   │   │   │   │   │   │   │   ├── page-section-wrapper.test.tsx.snap
+│   │   │   │   │   │   │   │   │   └── page-wrapper.test.tsx.snap
+│   │   │   │   │   │   │   │   ├── action-header-completeness-for-stats.test.tsx
+│   │   │   │   │   │   │   │   ├── action-header-wrapper.test.tsx
+│   │   │   │   │   │   │   │   ├── mission-list-page-content-wrapper.test.tsx
+│   │   │   │   │   │   │   │   ├── mission-list-page-header-wrapper.test.tsx
+│   │   │   │   │   │   │   │   ├── mission-list-page-wrapper.test.tsx
+│   │   │   │   │   │   │   │   ├── page-header-wrapper.test.tsx
+│   │   │   │   │   │   │   │   ├── page-section-wrapper.test.tsx
+│   │   │   │   │   │   │   │   └── page-wrapper.test.tsx
+│   │   │   │   │   │   │   ├── action-header-title-wrapper.tsx
+│   │   │   │   │   │   │   ├── action-header-wrapper.tsx
+│   │   │   │   │   │   │   ├── action-wrapper.tsx
+│   │   │   │   │   │   │   ├── admin-section-wrapper.tsx
+│   │   │   │   │   │   │   ├── mission-list-page-content-wrapper.tsx
+│   │   │   │   │   │   │   ├── mission-list-page-header-wrapper.tsx
+│   │   │   │   │   │   │   ├── mission-list-page-wrapper.tsx
+│   │   │   │   │   │   │   ├── page-footer-wrapper.tsx
+│   │   │   │   │   │   │   ├── page-header-wrapper.tsx
+│   │   │   │   │   │   │   ├── page-section-wrapper.tsx
+│   │   │   │   │   │   │   ├── page-wrapper.tsx
+│   │   │   │   │   │   │   ├── timeline-item-wrapper.tsx
+│   │   │   │   │   │   │   └── timeline-wrapper.tsx
+│   │   │   │   │   │   └── ui
+│   │   │   │   │   │       ├── __tests__
+│   │   │   │   │   │       │   ├── __snapshots__
+│   │   │   │   │   │       │   │   ├── dialog-question.test.tsx.snap
+│   │   │   │   │   │       │   │   ├── formik-coordonates-input-dmd.test.tsx.snap
+│   │   │   │   │   │       │   │   ├── formik-date-range-picker.test.tsx.snap
+│   │   │   │   │   │       │   │   ├── formik-search-vessel.test.tsx.snap
+│   │   │   │   │   │       │   │   ├── formik-select-status-reason.test.tsx.snap
+│   │   │   │   │   │       │   │   ├── formik-select-vessel-size.test.tsx.snap
+│   │   │   │   │   │       │   │   ├── formik-styled-toogle.test.tsx.snap
+│   │   │   │   │   │       │   │   ├── icon-vessel-commerce.test.tsx.snap
+│   │   │   │   │   │       │   │   ├── icon-vessel-fishing.test.tsx.snap
+│   │   │   │   │   │       │   │   ├── icon-vessel-passenger.test.tsx.snap
+│   │   │   │   │   │       │   │   ├── icon-vessel-sailing-leisure.test.tsx.snap
+│   │   │   │   │   │       │   │   ├── icon-vessel-sailing-pro.test.tsx.snap
+│   │   │   │   │   │       │   │   ├── icon-vessel-school.test.tsx.snap
+│   │   │   │   │   │       │   │   ├── mission-control-selection.test.tsx.snap
+│   │   │   │   │   │       │   │   ├── mission-incomplete-tag.test.tsx.snap
+│   │   │   │   │   │       │   │   ├── mission-list-page-sidebar.test.tsx.snap
+│   │   │   │   │   │       │   │   ├── mission-list-page-title.test.tsx.snap
+│   │   │   │   │   │       │   │   ├── mission-nantinfs-tag-fish.test.tsx.snap
+│   │   │   │   │   │       │   │   ├── mission-nantinfs-tag.test.tsx.snap
+│   │   │   │   │   │       │   │   ├── mission-page-error.test.tsx.snap
+│   │   │   │   │   │       │   │   ├── mission-page-footer.test.tsx.snap
+│   │   │   │   │   │       │   │   ├── mission-page-header-banner.test.tsx.snap
+│   │   │   │   │   │       │   │   ├── text-by-cacem.test.tsx.snap
+│   │   │   │   │   │       │   │   ├── text-by-cnsp.test.tsx.snap
+│   │   │   │   │   │       │   │   ├── vessel-name.test.tsx.snap
+│   │   │   │   │   │       │   │   └── yes-no-toogle.test.tsx.snap
+│   │   │   │   │   │       │   ├── action-header-completeness-for-stats.test.tsx
+│   │   │   │   │   │       │   ├── dialog-question.test.tsx
+│   │   │   │   │   │       │   ├── formik-coordonates-input-dmd.test.tsx
+│   │   │   │   │   │       │   ├── formik-date-range-picker.test.tsx
+│   │   │   │   │   │       │   ├── formik-search-vessel.test.tsx
+│   │   │   │   │   │       │   ├── formik-select-status-reason.test.tsx
+│   │   │   │   │   │       │   ├── formik-select-vessel-size.test.tsx
+│   │   │   │   │   │       │   ├── formik-styled-toogle.test.tsx
+│   │   │   │   │   │       │   ├── icon-vessel-commerce.test.tsx
+│   │   │   │   │   │       │   ├── icon-vessel-fishing.test.tsx
+│   │   │   │   │   │       │   ├── icon-vessel-passenger.test.tsx
+│   │   │   │   │   │       │   ├── icon-vessel-sailing-leisure.test.tsx
+│   │   │   │   │   │       │   ├── icon-vessel-sailing-pro.test.tsx
+│   │   │   │   │   │       │   ├── icon-vessel-school.test.tsx
+│   │   │   │   │   │       │   ├── mission-control-selection.test.tsx
+│   │   │   │   │   │       │   ├── mission-incomplete-tag.test.tsx
+│   │   │   │   │   │       │   ├── mission-list-page-sidebar.test.tsx
+│   │   │   │   │   │       │   ├── mission-list-page-title.test.tsx
+│   │   │   │   │   │       │   ├── mission-nantinfs-tag-fish.test.tsx
+│   │   │   │   │   │       │   ├── mission-nantinfs-tag.test.tsx
+│   │   │   │   │   │       │   ├── mission-page-error.test.tsx
+│   │   │   │   │   │       │   ├── mission-page-footer.test.tsx
+│   │   │   │   │   │       │   ├── mission-page-header-banner.test.tsx
+│   │   │   │   │   │       │   ├── mission-status-tag.test.tsx
+│   │   │   │   │   │       │   ├── text-by-cacem.test.tsx
+│   │   │   │   │   │       │   ├── text-by-cnsp.test.tsx
+│   │   │   │   │   │       │   ├── time-conversion.test.tsx
+│   │   │   │   │   │       │   ├── timeline-item-status.test.tsx
+│   │   │   │   │   │       │   ├── vessel-name.test.tsx
+│   │   │   │   │   │       │   └── yes-no-toogle.test.tsx
+│   │   │   │   │   │       ├── action-empty.tsx
+│   │   │   │   │   │       ├── action-error.tsx
+│   │   │   │   │   │       ├── action-header-completeness-for-stats.tsx
+│   │   │   │   │   │       ├── action-header-sync-status-banner.tsx
+│   │   │   │   │   │       ├── action-loader.tsx
+│   │   │   │   │   │       ├── dialog-question.tsx
+│   │   │   │   │   │       ├── foreign-establishment.tsx
+│   │   │   │   │   │       ├── formik-coordonates-input-dmd.tsx
+│   │   │   │   │   │       ├── formik-date-range-picker.tsx
+│   │   │   │   │   │       ├── formik-establishment.tsx
+│   │   │   │   │   │       ├── formik-multi-select-natinf.tsx
+│   │   │   │   │   │       ├── formik-number-input-delay.tsx
+│   │   │   │   │   │       ├── formik-search-vessel.tsx
+│   │   │   │   │   │       ├── formik-select-status-reason.tsx
+│   │   │   │   │   │       ├── formik-select-vessel-size.tsx
+│   │   │   │   │   │       ├── formik-styled-toogle.tsx
+│   │   │   │   │   │       ├── formik-text-area-delay.tsx
+│   │   │   │   │   │       ├── formik-text-input-delay.tsx
+│   │   │   │   │   │       ├── general-information-header.tsx
+│   │   │   │   │   │       ├── icon-vessel-commerce.tsx
+│   │   │   │   │   │       ├── icon-vessel-fishing.tsx
+│   │   │   │   │   │       ├── icon-vessel-passenger.tsx
+│   │   │   │   │   │       ├── icon-vessel-sailing-leisure.tsx
+│   │   │   │   │   │       ├── icon-vessel-sailing-pro.tsx
+│   │   │   │   │   │       ├── icon-vessel-school.tsx
+│   │   │   │   │   │       ├── mission-control-selection.tsx
+│   │   │   │   │   │       ├── mission-incomplete-control-tag.tsx
+│   │   │   │   │   │       ├── mission-list-page-sidebar.tsx
+│   │   │   │   │   │       ├── mission-list-page-title.tsx
+│   │   │   │   │   │       ├── mission-natinfs-tag-fish.tsx
+│   │   │   │   │   │       ├── mission-natinfs-tag.tsx
+│   │   │   │   │   │       ├── mission-page-error.tsx
+│   │   │   │   │   │       ├── mission-page-footer.tsx
+│   │   │   │   │   │       ├── mission-page-header-banner.tsx
+│   │   │   │   │   │       ├── mission-page-loading.tsx
+│   │   │   │   │   │       ├── mission-source-tag.tsx
+│   │   │   │   │   │       ├── mission-status-tag.tsx
+│   │   │   │   │   │       ├── search-establishment.tsx
+│   │   │   │   │   │       ├── text-by-cacem.tsx
+│   │   │   │   │   │       ├── text-by-cnsp.tsx
+│   │   │   │   │   │       ├── time-conversion.tsx
+│   │   │   │   │   │       ├── timeline-item-date.tsx
+│   │   │   │   │   │       ├── timeline-item-status.tsx
+│   │   │   │   │   │       ├── vessel-name.tsx
+│   │   │   │   │   │       └── yes-no-toogle.tsx
+│   │   │   │   │   ├── hooks
+│   │   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   │   ├── use-abstract-formik-form.test.tsx
+│   │   │   │   │   │   │   ├── use-abstract-formik-sub-form.test.tsx
+│   │   │   │   │   │   │   ├── use-action-status.test.tsx
+│   │   │   │   │   │   │   ├── use-action-target.test.tsx
+│   │   │   │   │   │   │   ├── use-control-check.test.tsx
+│   │   │   │   │   │   │   ├── use-coordinate.test.tsx
+│   │   │   │   │   │   │   ├── use-date.test.tsx
+│   │   │   │   │   │   │   ├── use-delay-formik.test.tsx
+│   │   │   │   │   │   │   ├── use-delay.test.tsx
+│   │   │   │   │   │   │   ├── use-global-sync-status.test.tsx
+│   │   │   │   │   │   │   ├── use-mission-completeness-for-stats.test.tsx
+│   │   │   │   │   │   │   ├── use-mission-finished.test.tsx
+│   │   │   │   │   │   │   ├── use-mission-interservices.test.tsx
+│   │   │   │   │   │   │   ├── use-mission-list.test.tsx
+│   │   │   │   │   │   │   ├── use-mission-report-export.test.tsx
+│   │   │   │   │   │   │   ├── use-mission-status.test.tsx
+│   │   │   │   │   │   │   ├── use-mission-tag.test.tsx
+│   │   │   │   │   │   │   ├── use-mission-timeline.test.tsx
+│   │   │   │   │   │   │   ├── use-mission-type.test.tsx
+│   │   │   │   │   │   │   ├── use-mission.test.tsx
+│   │   │   │   │   │   │   ├── use-offline-mode.test.tsx
+│   │   │   │   │   │   │   ├── use-offline-since.test.tsx
+│   │   │   │   │   │   │   ├── use-online-manager.test.tsx
+│   │   │   │   │   │   │   ├── use-vehicule.test.tsx
+│   │   │   │   │   │   │   └── use-vessel.test.tsx
+│   │   │   │   │   │   ├── use-abstract-formik-form.tsx
+│   │   │   │   │   │   ├── use-abstract-formik-sub-form.tsx
+│   │   │   │   │   │   ├── use-action-registry.tsx
+│   │   │   │   │   │   ├── use-action-status.tsx
+│   │   │   │   │   │   ├── use-action-target.tsx
+│   │   │   │   │   │   ├── use-agent.tsx
+│   │   │   │   │   │   ├── use-control-check.tsx
+│   │   │   │   │   │   ├── use-coordinate.tsx
+│   │   │   │   │   │   ├── use-date.tsx
+│   │   │   │   │   │   ├── use-daterange-navigator.tsx
+│   │   │   │   │   │   ├── use-delay-formik.tsx
+│   │   │   │   │   │   ├── use-delay.tsx
+│   │   │   │   │   │   ├── use-download-file.tsx
+│   │   │   │   │   │   ├── use-global-sync-status.tsx
+│   │   │   │   │   │   ├── use-mission-completeness-for-stats.tsx
+│   │   │   │   │   │   ├── use-mission-finished.tsx
+│   │   │   │   │   │   ├── use-mission-interservices.tsx
+│   │   │   │   │   │   ├── use-mission-list.tsx
+│   │   │   │   │   │   ├── use-mission-report-export.tsx
+│   │   │   │   │   │   ├── use-mission-status.tsx
+│   │   │   │   │   │   ├── use-mission-tag.tsx
+│   │   │   │   │   │   ├── use-mission-type.tsx
+│   │   │   │   │   │   ├── use-mission.tsx
+│   │   │   │   │   │   ├── use-offline-mode.tsx
+│   │   │   │   │   │   ├── use-offline-since.tsx
+│   │   │   │   │   │   ├── use-online-manager.tsx
+│   │   │   │   │   │   ├── use-password.tsx
+│   │   │   │   │   │   ├── use-sector.tsx
+│   │   │   │   │   │   ├── use-timeline-action.tsx
+│   │   │   │   │   │   ├── use-vehicule.tsx
+│   │   │   │   │   │   └── use-vessel.tsx
+│   │   │   │   │   ├── schemas
+│   │   │   │   │   │   ├── conditionally-required-helper.ts
+│   │   │   │   │   │   ├── dates-schema.ts
+│   │   │   │   │   │   └── geocoords-schema.ts
+│   │   │   │   │   ├── services
+│   │   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   │   ├── use-create-action.test.tsx
+│   │   │   │   │   │   │   ├── use-delete-action.test.tsx
+│   │   │   │   │   │   │   ├── use-mission-export.test.tsx
+│   │   │   │   │   │   │   ├── use-mission.test.tsx
+│   │   │   │   │   │   │   ├── use-missions.test.tsx
+│   │   │   │   │   │   │   ├── use-update-action.test.tsx
+│   │   │   │   │   │   │   └── use-update-general-info.test.tsx
+│   │   │   │   │   │   ├── query-keys.ts
+│   │   │   │   │   │   ├── use-action.tsx
+│   │   │   │   │   │   ├── use-administrations.tsx
+│   │   │   │   │   │   ├── use-agent-roles.tsx
+│   │   │   │   │   │   ├── use-agent-services.tsx
+│   │   │   │   │   │   ├── use-agents.tsx
+│   │   │   │   │   │   ├── use-create-action.tsx
+│   │   │   │   │   │   ├── use-delete-action.tsx
+│   │   │   │   │   │   ├── use-delete-mission.tsx
+│   │   │   │   │   │   ├── use-etablishments-service.tsx
+│   │   │   │   │   │   ├── use-mission-export.tsx
+│   │   │   │   │   │   ├── use-mission.tsx
+│   │   │   │   │   │   ├── use-missions.tsx
+│   │   │   │   │   │   ├── use-natinf-service.tsx
+│   │   │   │   │   │   ├── use-prefetch-static-data.tsx
+│   │   │   │   │   │   ├── use-resources-control-unit.tsx
+│   │   │   │   │   │   ├── use-resources.tsx
+│   │   │   │   │   │   ├── use-update-action.tsx
+│   │   │   │   │   │   ├── use-update-general-info.tsx
+│   │   │   │   │   │   ├── use-user.tsx
+│   │   │   │   │   │   └── use-vessel-service.tsx
+│   │   │   │   │   └── types
+│   │   │   │   │       ├── abstract-formik-hook.ts
+│   │   │   │   │       ├── action-type.ts
+│   │   │   │   │       ├── control-unit-types.ts
+│   │   │   │   │       ├── crew-type.ts
+│   │   │   │   │       ├── etablishment.ts
+│   │   │   │   │       ├── inquiry.ts
+│   │   │   │   │       ├── leisure-fishing-gear-type.ts
+│   │   │   │   │       ├── mission-action-data.ts
+│   │   │   │   │       ├── mission-action.ts
+│   │   │   │   │       ├── mission-export-types.ts
+│   │   │   │   │       ├── mission-types.ts
+│   │   │   │   │       ├── module-type.ts
+│   │   │   │   │       ├── network-types.ts
+│   │   │   │   │       ├── owner-type.ts
+│   │   │   │   │       ├── passenger-type.ts
+│   │   │   │   │       ├── rescue-type.ts
+│   │   │   │   │       ├── role-type.ts
+│   │   │   │   │       ├── sector-types.ts
+│   │   │   │   │       ├── service-agents-types.ts
+│   │   │   │   │       ├── target-types.ts
+│   │   │   │   │       ├── unit-management-type.ts
+│   │   │   │   │       ├── user.ts
+│   │   │   │   │       ├── vessel-type.ts
+│   │   │   │   │       └── visit-security-type.ts
+│   │   │   │   ├── inquiry
+│   │   │   │   │   ├── components
+│   │   │   │   │   │   ├── elements
+│   │   │   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   │   │   ├── __snapshots__
+│   │   │   │   │   │   │   │   │   └── inquiry-action-header.test.tsx.snap
+│   │   │   │   │   │   │   │   └── inquiry-action-header.test.tsx
+│   │   │   │   │   │   │   ├── inquiry-action-body.tsx
+│   │   │   │   │   │   │   ├── inquiry-action-header.tsx
+│   │   │   │   │   │   │   ├── inquiry-action-item.tsx
+│   │   │   │   │   │   │   ├── inquiry-action.tsx
+│   │   │   │   │   │   │   ├── inquiry-general-information-form.tsx
+│   │   │   │   │   │   │   ├── inquiry-general-information.tsx
+│   │   │   │   │   │   │   ├── inquiry-list.tsx
+│   │   │   │   │   │   │   ├── inquiry-timeline-body.tsx
+│   │   │   │   │   │   │   ├── inquiry-timeline-header.tsx
+│   │   │   │   │   │   │   ├── inquiry-timeline-item.tsx
+│   │   │   │   │   │   │   ├── inquiry-timeline-summary.tsx
+│   │   │   │   │   │   │   └── inquiry-timeline.tsx
+│   │   │   │   │   │   └── ui
+│   │   │   │   │   │       ├── __tests__
+│   │   │   │   │   │       │   ├── __snapshots__
+│   │   │   │   │   │       │   │   ├── inquiry-status-completeness.test.tsx.snap
+│   │   │   │   │   │       │   │   ├── inquiry-status-tag.test.tsx.snap
+│   │   │   │   │   │       │   │   └── inquiry-timeline-summary-item.test.tsx.snap
+│   │   │   │   │   │       │   ├── inquiry-status-completeness.test.tsx
+│   │   │   │   │   │       │   ├── inquiry-status-tag.test.tsx
+│   │   │   │   │   │       │   └── inquiry-timeline-summary-item.test.tsx
+│   │   │   │   │   │       ├── inquiry-footer.tsx
+│   │   │   │   │   │       ├── inquiry-header.tsx
+│   │   │   │   │   │       ├── inquiry-list-header.tsx
+│   │   │   │   │   │       ├── inquiry-list-item.tsx
+│   │   │   │   │   │       ├── inquiry-status-completeness.tsx
+│   │   │   │   │   │       ├── inquiry-status-tag.tsx
+│   │   │   │   │   │       ├── inquiry-timeline-item-card.tsx
+│   │   │   │   │   │       └── inquiry-timeline-summary-item.tsx
+│   │   │   │   │   ├── hooks
+│   │   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   │   ├── use-inquiry-general-information.test.tsx
+│   │   │   │   │   │   │   ├── use-inquiry-status.test.tsx
+│   │   │   │   │   │   │   └── use-inquiry.test.tsx
+│   │   │   │   │   │   ├── inquiry-schema.ts
+│   │   │   │   │   │   ├── use-inquiry-general-information.tsx
+│   │   │   │   │   │   ├── use-inquiry-status.tsx
+│   │   │   │   │   │   ├── use-inquiry-timeline-registry.tsx
+│   │   │   │   │   │   ├── use-inquiry-timeline.tsx
+│   │   │   │   │   │   └── use-inquiry.tsx
+│   │   │   │   │   └── services
+│   │   │   │   │       ├── use-create-inquiry.tsx
+│   │   │   │   │       ├── use-delete-inquiry.tsx
+│   │   │   │   │       ├── use-inquiries.tsx
+│   │   │   │   │       ├── use-inquiry.tsx
+│   │   │   │   │       └── use-update-inquiry.tsx
+│   │   │   │   ├── mission-action
+│   │   │   │   │   ├── components
+│   │   │   │   │   │   ├── elements
+│   │   │   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   │   │   ├── mission-action-item-env-control.test.tsx
+│   │   │   │   │   │   │   │   └── mission-action-item-fish-control.test.tsx
+│   │   │   │   │   │   │   ├── mission-action-item-anti-pollution.tsx
+│   │   │   │   │   │   │   ├── mission-action-item-baaem-performance.tsx
+│   │   │   │   │   │   │   ├── mission-action-item-communication.tsx
+│   │   │   │   │   │   │   ├── mission-action-item-contact.tsx
+│   │   │   │   │   │   │   ├── mission-action-item-control-nautical-leisure.tsx
+│   │   │   │   │   │   │   ├── mission-action-item-control-other.tsx
+│   │   │   │   │   │   │   ├── mission-action-item-control-sector.tsx
+│   │   │   │   │   │   │   ├── mission-action-item-control-sleeping-fishing-gear.tsx
+│   │   │   │   │   │   │   ├── mission-action-item-control.tsx
+│   │   │   │   │   │   │   ├── mission-action-item-env-control.tsx
+│   │   │   │   │   │   │   ├── mission-action-item-fish-control.tsx
+│   │   │   │   │   │   │   ├── mission-action-item-generic-control.tsx
+│   │   │   │   │   │   │   ├── mission-action-item-generic-date-observation.tsx
+│   │   │   │   │   │   │   ├── mission-action-item-hearing-conduct.tsx
+│   │   │   │   │   │   │   ├── mission-action-item-illegal-immigration.tsx
+│   │   │   │   │   │   │   ├── mission-action-item-inquiry.tsx
+│   │   │   │   │   │   │   ├── mission-action-item-meeting.tsx
+│   │   │   │   │   │   │   ├── mission-action-item-nautical-event.tsx
+│   │   │   │   │   │   │   ├── mission-action-item-nav-control.tsx
+│   │   │   │   │   │   │   ├── mission-action-item-nav-surveillance.tsx
+│   │   │   │   │   │   │   ├── mission-action-item-note.tsx
+│   │   │   │   │   │   │   ├── mission-action-item-other-field-activity.tsx
+│   │   │   │   │   │   │   ├── mission-action-item-public-order.tsx
+│   │   │   │   │   │   │   ├── mission-action-item-pv-drafting.tsx
+│   │   │   │   │   │   │   ├── mission-action-item-representation.tsx
+│   │   │   │   │   │   │   ├── mission-action-item-rescue.tsx
+│   │   │   │   │   │   │   ├── mission-action-item-resource-maintenance.tsx
+│   │   │   │   │   │   │   ├── mission-action-item-security-visit.tsx
+│   │   │   │   │   │   │   ├── mission-action-item-status.tsx
+│   │   │   │   │   │   │   ├── mission-action-item-surveillance.tsx
+│   │   │   │   │   │   │   ├── mission-action-item-training.tsx
+│   │   │   │   │   │   │   ├── mission-action-item-unit-management-planning.tsx
+│   │   │   │   │   │   │   ├── mission-action-item-unit-management-training.tsx
+│   │   │   │   │   │   │   └── mission-action-item-vigimer.tsx
+│   │   │   │   │   │   └── ui
+│   │   │   │   │   │       ├── __tests__
+│   │   │   │   │   │       │   └── mission-action-env-themes.test.tsx
+│   │   │   │   │   │       ├── mission-action-anti-pollution-warning.tsx
+│   │   │   │   │   │       ├── mission-action-control-nautical-leisure-form.tsx
+│   │   │   │   │   │       ├── mission-action-control-sector-form.tsx
+│   │   │   │   │   │       ├── mission-action-diving-operation.tsx
+│   │   │   │   │   │       ├── mission-action-env-control-plan.tsx
+│   │   │   │   │   │       ├── mission-action-env-control-summary.tsx
+│   │   │   │   │   │       ├── mission-action-env-themes.tsx
+│   │   │   │   │   │       ├── mission-action-formik-coordonate-input-dmd.tsx
+│   │   │   │   │   │       ├── mission-action-formik-number-input.tsx
+│   │   │   │   │   │       ├── mission-action-formik-text-input.tsx
+│   │   │   │   │   │       ├── mission-action-formik-toogle-unit-has-confirm.tsx
+│   │   │   │   │   │       ├── mission-action-incident-download.tsx
+│   │   │   │   │   │       └── mission-action-nav-control-warning.tsx
+│   │   │   │   │   ├── hooks
+│   │   │   │   │   │   ├── use-mission-action-anti-pollution.tsx
+│   │   │   │   │   │   ├── use-mission-action-env-control.tsx
+│   │   │   │   │   │   ├── use-mission-action-fish-control.tsx
+│   │   │   │   │   │   ├── use-mission-action-generic-control.tsx
+│   │   │   │   │   │   ├── use-mission-action-generic-date-observation.tsx
+│   │   │   │   │   │   ├── use-mission-action-illegal-immigration.tsx
+│   │   │   │   │   │   ├── use-mission-action-inquiry.tsx
+│   │   │   │   │   │   ├── use-mission-action-nav-control.tsx
+│   │   │   │   │   │   ├── use-mission-action-note.tsx
+│   │   │   │   │   │   ├── use-mission-action-rescue.tsx
+│   │   │   │   │   │   ├── use-mission-action-status.tsx
+│   │   │   │   │   │   └── use-mission-action-surveillance.tsx
+│   │   │   │   │   ├── types
+│   │   │   │   │   │   └── action-type.ts
+│   │   │   │   │   └── validation-schema
+│   │   │   │   │       ├── conrtol-nautical-leisure.ts
+│   │   │   │   │       └── date-validation.ts
+│   │   │   │   ├── mission-control
+│   │   │   │   │   ├── components
+│   │   │   │   │   │   ├── elements
+│   │   │   │   │   │   │   ├── mission-control-env-form.tsx
+│   │   │   │   │   │   │   └── mission-control-form.tsx
+│   │   │   │   │   │   └── ui
+│   │   │   │   │   │       ├── __tests__
+│   │   │   │   │   │       │   ├── __snapshots__
+│   │   │   │   │   │       │   │   ├── mission-control-nav-summary.test.tsx.snap
+│   │   │   │   │   │       │   │   ├── mission-control-title.test.tsx.snap
+│   │   │   │   │   │       │   │   └── mission-control-unit-confirm.test.tsx.snap
+│   │   │   │   │   │       │   ├── mission-control-nav-summary.test.tsx
+│   │   │   │   │   │       │   ├── mission-control-title.test.tsx
+│   │   │   │   │   │       │   └── mission-control-unit-confirm.test.tsx
+│   │   │   │   │   │       ├── mission-control-env-error.tsx
+│   │   │   │   │   │       ├── mission-control-fish-administrative-section.tsx
+│   │   │   │   │   │       ├── mission-control-fish-engines-section.tsx
+│   │   │   │   │   │       ├── mission-control-fish-fleet-segment-section.tsx
+│   │   │   │   │   │       ├── mission-control-fish-other-observation-section.tsx
+│   │   │   │   │   │       ├── mission-control-fish-seizure-section.tsx
+│   │   │   │   │   │       ├── mission-control-fish-species-section.tsx
+│   │   │   │   │   │       ├── mission-control-fomik-multi-radio.tsx
+│   │   │   │   │   │       ├── mission-control-nav-summary.tsx
+│   │   │   │   │   │       ├── mission-control-title.tsx
+│   │   │   │   │   │       └── mission-control-unit-confirm.tsx
+│   │   │   │   │   ├── hooks
+│   │   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   │   ├── use-abstract-control.test.tsx
+│   │   │   │   │   │   │   ├── use-control-env.test.tsx
+│   │   │   │   │   │   │   ├── use-control-registry.test.tsx
+│   │   │   │   │   │   │   └── use-control.test.tsx
+│   │   │   │   │   │   ├── use-abstract-control.tsx
+│   │   │   │   │   │   ├── use-control-env.tsx
+│   │   │   │   │   │   ├── use-control-registry.tsx
+│   │   │   │   │   │   └── use-control.tsx
+│   │   │   │   │   └── types
+│   │   │   │   │       └── control-hook.ts
+│   │   │   │   ├── mission-general-infos
+│   │   │   │   │   ├── components
+│   │   │   │   │   │   ├── mission-general-information-control-unit-resource.tsx
+│   │   │   │   │   │   ├── mission-general-information-crew-no-comment.tsx
+│   │   │   │   │   │   └── mission-general-information-inter-service.tsx
+│   │   │   │   │   ├── hooks
+│   │   │   │   │   │   ├── use-mission-general-infos-inter-service.tsx
+│   │   │   │   │   │   └── use-mission-general-infos.tsx
+│   │   │   │   │   ├── services
+│   │   │   │   │   │   └── use-mission-general-information.tsx
+│   │   │   │   │   └── ui
+│   │   │   │   │       ├── mission-crew-form-no-comment.tsx
+│   │   │   │   │       ├── mission-crew-list-no-comment.tsx
+│   │   │   │   │       ├── mission-crew-list.tsx
+│   │   │   │   │       ├── mission-general-information-control-unit.tsx
+│   │   │   │   │       └── mission-general-information-header.tsx
+│   │   │   │   ├── mission-infraction
+│   │   │   │   │   ├── components
+│   │   │   │   │   │   ├── elements
+│   │   │   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   │   │   └── mission-infraction-fish-summary.test.tsx
+│   │   │   │   │   │   │   ├── mission-infraction-fish-summary.tsx
+│   │   │   │   │   │   │   ├── mission-infraction-form-new.tsx
+│   │   │   │   │   │   │   ├── mission-infraction-form.tsx
+│   │   │   │   │   │   │   ├── mission-infraction-item.tsx
+│   │   │   │   │   │   │   ├── mission-infraction-list.tsx
+│   │   │   │   │   │   │   └── mission-infraction-nav-summary.tsx
+│   │   │   │   │   │   ├── layout
+│   │   │   │   │   │   │   └── mission-infraction-summary.tsx
+│   │   │   │   │   │   └── ui
+│   │   │   │   │   │       ├── mission-infraction-add-button.tsx
+│   │   │   │   │   │       ├── mission-infraction-empty.tsx
+│   │   │   │   │   │       ├── mission-infraction-env-summary-by-cacem.tsx
+│   │   │   │   │   │       ├── mission-infraction-env-title.tsx
+│   │   │   │   │   │       ├── mission-infraction-formik-controlled-person-input.tsx
+│   │   │   │   │   │       ├── mission-infraction-summary.tsx
+│   │   │   │   │   │       ├── mission-infraction-type-tag.tsx
+│   │   │   │   │   │       └── mission-infraction-vessel-form.tsx
+│   │   │   │   │   ├── hooks
+│   │   │   │   │   │   ├── use-infraction-form.tsx
+│   │   │   │   │   │   └── use-infraction.tsx
+│   │   │   │   │   └── types
+│   │   │   │   │       └── infraction-input.tsx
+│   │   │   │   ├── mission-target
+│   │   │   │   │   ├── components
+│   │   │   │   │   │   ├── elements
+│   │   │   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   │   │   ├── mission-target-control-env.test.tsx
+│   │   │   │   │   │   │   │   ├── mission-target-control-nav.test.tsx
+│   │   │   │   │   │   │   │   ├── mission-target-form.test.tsx
+│   │   │   │   │   │   │   │   ├── mission-target-infraction-form.test.tsx
+│   │   │   │   │   │   │   │   ├── mission-target-infraction-list.test.tsx
+│   │   │   │   │   │   │   │   ├── mission-target-item.test.tsx
+│   │   │   │   │   │   │   │   ├── mission-target-list.test.tsx
+│   │   │   │   │   │   │   │   └── mission-target-new.test.tsx
+│   │   │   │   │   │   │   ├── mission-target-control-env.tsx
+│   │   │   │   │   │   │   ├── mission-target-control-nav.tsx
+│   │   │   │   │   │   │   ├── mission-target-form.tsx
+│   │   │   │   │   │   │   ├── mission-target-infraction-form.tsx
+│   │   │   │   │   │   │   ├── mission-target-infraction-list.tsx
+│   │   │   │   │   │   │   ├── mission-target-inquiry-form.tsx
+│   │   │   │   │   │   │   ├── mission-target-inquiry.tsx
+│   │   │   │   │   │   │   ├── mission-target-item.tsx
+│   │   │   │   │   │   │   ├── mission-target-list.tsx
+│   │   │   │   │   │   │   └── mission-target-new.tsx
+│   │   │   │   │   │   └── ui
+│   │   │   │   │   │       ├── __tests__
+│   │   │   │   │   │       │   ├── mission-target-action.test.tsx
+│   │   │   │   │   │       │   ├── mission-target-external-data.test.tsx
+│   │   │   │   │   │       │   └── mission-target-title.test.tsx
+│   │   │   │   │   │       ├── mission-target-action.tsx
+│   │   │   │   │   │       ├── mission-target-env-summary.tsx
+│   │   │   │   │   │       ├── mission-target-external-data.tsx
+│   │   │   │   │   │       └── mission-target-title.tsx
+│   │   │   │   │   └── hooks
+│   │   │   │   │       ├── __tests__
+│   │   │   │   │       │   └── use-target.test.tsx
+│   │   │   │   │       └── use-target.tsx
+│   │   │   │   ├── mission-timeline
+│   │   │   │   │   ├── components
+│   │   │   │   │   │   ├── elements
+│   │   │   │   │   │   │   ├── mission-timeline-add-action.tsx
+│   │   │   │   │   │   │   ├── mission-timeline-add-status.tsx
+│   │   │   │   │   │   │   ├── mission-timeline-item-container.tsx
+│   │   │   │   │   │   │   ├── mission-timeline-item-control-card-footer.tsx
+│   │   │   │   │   │   │   ├── mission-timeline-item-control-card-title.tsx
+│   │   │   │   │   │   │   ├── mission-timeline-item-control-card.tsx
+│   │   │   │   │   │   │   ├── mission-timeline-item-env-control-card.tsx
+│   │   │   │   │   │   │   ├── mission-timeline-item-fish-control-card.tsx
+│   │   │   │   │   │   │   ├── mission-timeline-item-generic-card.tsx
+│   │   │   │   │   │   │   ├── mission-timeline-item-nav-control-card.tsx
+│   │   │   │   │   │   │   ├── mission-timeline-item-note-card.tsx
+│   │   │   │   │   │   │   ├── mission-timeline-item-rescue-card.tsx
+│   │   │   │   │   │   │   ├── mission-timeline-item-status-card.tsx
+│   │   │   │   │   │   │   └── mission-timeline-item-surveillance-card.tsx
+│   │   │   │   │   │   ├── layout
+│   │   │   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   │   │   ├── __snapshots__
+│   │   │   │   │   │   │   │   │   └── mission-timeline-dropdown-wrapper.test.tsx.snap
+│   │   │   │   │   │   │   │   ├── mission-timeline-dropdown-wrapper.test.tsx
+│   │   │   │   │   │   │   │   ├── mission-timeline-item-card-wrapper.test.tsx
+│   │   │   │   │   │   │   │   └── mission-timeline-item-sync-status.test.tsx
+│   │   │   │   │   │   │   ├── mission-timeline-Header-wrapper.tsx
+│   │   │   │   │   │   │   ├── mission-timeline-dropdown-wrapper.tsx
+│   │   │   │   │   │   │   ├── mission-timeline-item-card-wrapper.tsx
+│   │   │   │   │   │   │   └── mission-timeline-item-sync-status.tsx
+│   │   │   │   │   │   └── ui
+│   │   │   │   │   │       ├── __tests__
+│   │   │   │   │   │       │   ├── __snapshots__
+│   │   │   │   │   │       │   │   ├── mission-timeline-item-control-card-subtitle.test.tsx.snap
+│   │   │   │   │   │       │   │   ├── mission-timeline-item-control-card-tag.test.tsx.snap
+│   │   │   │   │   │       │   │   ├── mission-timeline-item-note-card-title.test.tsx.snap
+│   │   │   │   │   │       │   │   └── mission-timeline-item-surveillance-card-title.test.tsx.snap
+│   │   │   │   │   │       │   ├── mission-timeline-item-control-card-subtitle.test.tsx
+│   │   │   │   │   │       │   ├── mission-timeline-item-control-card-tag.test.tsx
+│   │   │   │   │   │       │   ├── mission-timeline-item-fish-control-card-title.test.tsx
+│   │   │   │   │   │       │   ├── mission-timeline-item-note-card-title.test.tsx
+│   │   │   │   │   │       │   └── mission-timeline-item-surveillance-card-title.test.tsx
+│   │   │   │   │   │       ├── mission-timeline-empty.tsx
+│   │   │   │   │   │       ├── mission-timeline-error.tsx
+│   │   │   │   │   │       ├── mission-timeline-item-card-tag.tsx
+│   │   │   │   │   │       ├── mission-timeline-item-card-title.tsx
+│   │   │   │   │   │       ├── mission-timeline-item-control-card-Subtitle.tsx
+│   │   │   │   │   │       ├── mission-timeline-item-control-card-tag.tsx
+│   │   │   │   │   │       ├── mission-timeline-item-env-control-card-title.tsx
+│   │   │   │   │   │       ├── mission-timeline-item-fish-control-card-title.tsx
+│   │   │   │   │   │       ├── mission-timeline-item-nav-control-card-title.tsx
+│   │   │   │   │   │       ├── mission-timeline-item-note-card-title.tsx
+│   │   │   │   │   │       ├── mission-timeline-item-rescue-card-title.tsx
+│   │   │   │   │   │       ├── mission-timeline-item-status-card-footer.tsx
+│   │   │   │   │   │       ├── mission-timeline-item-status-card-title.tsx
+│   │   │   │   │   │       ├── mission-timeline-item-surveillance-card-title.tsx
+│   │   │   │   │   │       ├── mission-timeline-loader.tsx
+│   │   │   │   │   │       ├── mission-timeline-status-tag-color.tsx
+│   │   │   │   │   │       └── mission-timeline-status-tag.tsx
+│   │   │   │   │   ├── hooks
+│   │   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   │   └── use-timeline.test.tsx
+│   │   │   │   │   │   ├── use-timeline-complete-for-stats.tsx
+│   │   │   │   │   │   └── use-timeline.tsx
+│   │   │   │   │   ├── services
+│   │   │   │   │   │   └── use-mission-timeline.tsx
+│   │   │   │   │   └── types
+│   │   │   │   │       └── mission-timeline-output.ts
+│   │   │   │   ├── pam
+│   │   │   │   │   ├── components
+│   │   │   │   │   │   ├── element
+│   │   │   │   │   │   │   ├── general-info
+│   │   │   │   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   │   │   │   ├── mission-general-information-crew-pam-form.test.tsx
+│   │   │   │   │   │   │   │   │   ├── mission-general-information-crew-pam.test.tsx
+│   │   │   │   │   │   │   │   │   ├── mission-general-information-form-pam.test.tsx
+│   │   │   │   │   │   │   │   │   ├── mission-general-information-pam-body.test.tsx
+│   │   │   │   │   │   │   │   │   ├── mission-general-information-pam.test.tsx
+│   │   │   │   │   │   │   │   │   ├── mission-general-information-passenger-pam-form.test.tsx
+│   │   │   │   │   │   │   │   │   ├── mission-general-information-passenger-pam.test.tsx
+│   │   │   │   │   │   │   │   │   └── mission-service.test.tsx
+│   │   │   │   │   │   │   │   ├── mission-general-information-crew-pam-form.tsx
+│   │   │   │   │   │   │   │   ├── mission-general-information-crew-pam.tsx
+│   │   │   │   │   │   │   │   ├── mission-general-information-form-pam.tsx
+│   │   │   │   │   │   │   │   ├── mission-general-information-pam-body.tsx
+│   │   │   │   │   │   │   │   ├── mission-general-information-pam.tsx
+│   │   │   │   │   │   │   │   ├── mission-general-information-passenger-pam-form.tsx
+│   │   │   │   │   │   │   │   ├── mission-general-information-passenger-pam.tsx
+│   │   │   │   │   │   │   │   └── mission-service.tsx
+│   │   │   │   │   │   │   ├── mission-action-pam-body.tsx
+│   │   │   │   │   │   │   ├── mission-action-pam-header.tsx
+│   │   │   │   │   │   │   ├── mission-action-pam-item.tsx
+│   │   │   │   │   │   │   ├── mission-action-pam.tsx
+│   │   │   │   │   │   │   ├── mission-header-pam.tsx
+│   │   │   │   │   │   │   ├── mission-list
+│   │   │   │   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   │   │   │   ├── mission-list-actions-pam.test.tsx
+│   │   │   │   │   │   │   │   │   ├── mission-list-export.test.tsx
+│   │   │   │   │   │   │   │   │   ├── mission-list-header-pam.test.tsx
+│   │   │   │   │   │   │   │   │   ├── mission-list-item-pam.test.tsx
+│   │   │   │   │   │   │   │   │   └── mission-list-pam.test.tsx
+│   │   │   │   │   │   │   │   ├── mission-list-actions-pam.tsx
+│   │   │   │   │   │   │   │   ├── mission-list-export.tsx
+│   │   │   │   │   │   │   │   ├── mission-list-header-pam.tsx
+│   │   │   │   │   │   │   │   ├── mission-list-item-pam.tsx
+│   │   │   │   │   │   │   │   └── mission-list-pam.tsx
+│   │   │   │   │   │   │   └── mission-timeline
+│   │   │   │   │   │   │       ├── __tests__
+│   │   │   │   │   │   │       │   └── mission-timeline-pam-body.test.tsx
+│   │   │   │   │   │   │       ├── mission-timeline-pam-body.tsx
+│   │   │   │   │   │   │       ├── mission-timeline-pam-header.tsx
+│   │   │   │   │   │   │       ├── mission-timeline-pam-item.tsx
+│   │   │   │   │   │   │       └── mission-timeline-pam.tsx
+│   │   │   │   │   │   └── ui
+│   │   │   │   │   │       ├── __tests__
+│   │   │   │   │   │       │   ├── __snapshots__
+│   │   │   │   │   │       │   │   └── mission-interservices-tag.test.tsx.snap
+│   │   │   │   │   │       │   ├── mission-interservices-tag.test.tsx
+│   │   │   │   │   │       │   ├── mission-psssenger-list-item-pam.test.tsx
+│   │   │   │   │   │       │   └── offline-dialog.test.tsx
+│   │   │   │   │   │       ├── mission-crew-list-item-pam.tsx
+│   │   │   │   │   │       ├── mission-interservices-tag.tsx
+│   │   │   │   │   │       ├── mission-passenger-list-item-pam.tsx
+│   │   │   │   │   │       └── offline-dialog.tsx
+│   │   │   │   │   └── hooks
+│   │   │   │   │       ├── __tests__
+│   │   │   │   │       │   └── use-pam-mission-general-information-form.test.tsx
+│   │   │   │   │       ├── use-pam-action-registry.tsx
+│   │   │   │   │       ├── use-pam-mission-general-information-form.tsx
+│   │   │   │   │       └── use-pam-timeline-registry.tsx
+│   │   │   │   └── ulam
+│   │   │   │       ├── components
+│   │   │   │       │   ├── element
+│   │   │   │       │   │   ├── __tests__
+│   │   │   │       │   │   │   └── mission-create-dialog.test.tsx
+│   │   │   │       │   │   ├── mission-action-item-ulam.tsx
+│   │   │   │       │   │   ├── mission-action-ulam-body.tsx
+│   │   │   │       │   │   ├── mission-action-ulam-header.tsx
+│   │   │   │       │   │   ├── mission-action-ulam.tsx
+│   │   │   │       │   │   ├── mission-create-dialog.tsx
+│   │   │   │       │   │   ├── mission-create-new-ulam.tsx
+│   │   │   │       │   │   ├── mission-general-information-ulam-body.tsx
+│   │   │   │       │   │   ├── mission-general-information-ulam-extended-form.tsx
+│   │   │   │       │   │   ├── mission-general-information-ulam-form.tsx
+│   │   │   │       │   │   ├── mission-general-information-ulam-initial-form.tsx
+│   │   │   │       │   │   ├── mission-general-information-ulam.tsx
+│   │   │   │       │   │   ├── mission-header-ulam.tsx
+│   │   │   │       │   │   ├── mission-list
+│   │   │   │       │   │   │   ├── __tests__
+│   │   │   │       │   │   │   │   ├── mission-list-actions-ulam.test.tsx
+│   │   │   │       │   │   │   │   ├── mission-list-header-ulam.test.tsx
+│   │   │   │       │   │   │   │   ├── mission-list-item-ulam.test.tsx
+│   │   │   │       │   │   │   │   └── mission-list-ulam.test.tsx
+│   │   │   │       │   │   │   ├── mission-list-actions-ulam.tsx
+│   │   │   │       │   │   │   ├── mission-list-header-ulam.tsx
+│   │   │   │       │   │   │   ├── mission-list-item-ulam.tsx
+│   │   │   │       │   │   │   └── mission-list-ulam.tsx
+│   │   │   │       │   │   ├── mission-timeline-ulam-body.tsx
+│   │   │   │       │   │   ├── mission-timeline-ulam-header.tsx
+│   │   │   │       │   │   ├── mission-timeline-ulam-item.tsx
+│   │   │   │       │   │   └── mission-timeline-ulam.tsx
+│   │   │   │       │   └── ui
+│   │   │   │       │       ├── mission-general-information-service-form.tsx
+│   │   │   │       │       ├── mission-icon-ulam.tsx
+│   │   │   │       │       └── mission-list-ulam-action.tsx
+│   │   │   │       ├── hooks
+│   │   │   │       │   ├── __tests__
+│   │   │   │       │   │   ├── use-ulam-crew-for-mission-list.test.tsx
+│   │   │   │       │   │   ├── use-ulam-home-unit-resources.test.tsx
+│   │   │   │       │   │   └── use-ulam-timeline-registry.test.tsx
+│   │   │   │       │   ├── use-ulam-action-registry.tsx
+│   │   │   │       │   ├── use-ulam-crew-for-mission-list.tsx
+│   │   │   │       │   ├── use-ulam-home-unit-resources.tsx
+│   │   │   │       │   ├── use-ulam-mission-general-information-form.tsx
+│   │   │   │       │   ├── use-ulam-mission-general-informations-extended-form.tsx
+│   │   │   │       │   ├── use-ulam-mission-general-informations-initial-form.tsx
+│   │   │   │       │   └── use-ulam-timeline-registry.tsx
+│   │   │   │       └── services
+│   │   │   │           └── use-create-mission.tsx
+│   │   │   ├── pages
+│   │   │   │   ├── __tests__
+│   │   │   │   │   ├── mission-list-pam-page.test.tsx
+│   │   │   │   │   └── mission-pam-page.test.tsx
+│   │   │   │   ├── admin-page.tsx
+│   │   │   │   ├── home.tsx
+│   │   │   │   ├── inquiry-list-page.tsx
+│   │   │   │   ├── inquiry-page.tsx
+│   │   │   │   ├── mission-list-pam-page.tsx
+│   │   │   │   ├── mission-list-ulam-page.tsx
+│   │   │   │   ├── mission-pam-page.tsx
+│   │   │   │   └── mission-ulam-page.tsx
+│   │   │   └── store
+│   │   │       ├── index.ts
+│   │   │       └── slices
+│   │   │           ├── action-reducer.ts
+│   │   │           ├── connectivity-reducer.ts
+│   │   │           ├── delay-query-reducer.ts
+│   │   │           ├── general-infos-complete-for-stats-reducer.ts
+│   │   │           ├── mission-reducer.ts
+│   │   │           ├── module-reducer.ts
+│   │   │           ├── timeline-reducer.ts
+│   │   │           └── user-reducer.ts
+│   │   └── vite-env.d.ts
+│   ├── tsconfig.json
+│   ├── tsconfig.node.json
+│   ├── tsconfig.prod.json
+│   ├── vite.config.ts
+│   └── vitest.config.ts
+├── infra
+│   ├── .env
+│   ├── configurations
+│   │   └── backend
+│   │       ├── application-int.properties
+│   │       ├── application-local.properties
+│   │       └── application-prod.properties
+│   ├── docker
+│   │   └── app
+│   │       ├── Dockerfile
+│   │       ├── DockerfileCI
+│   │       ├── DockerfileLocalBack
+│   │       └── DockerfileLocalFront
+│   ├── docker-compose.local.yml
+│   └── docker-compose.yml
+├── release-please-config.json
+└── sonar-project.properties
+453 directories, 1827 files

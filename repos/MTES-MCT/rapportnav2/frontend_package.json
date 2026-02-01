@@ -1,0 +1,118 @@
+{
+  "name": "frontend",
+  "version": "2.59.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "env-prepare": "import-meta-env-prepare -x ./.env.local.defaults",
+    "dev": "npm run env-prepare && vite",
+    "build": "npm run env-prepare && vite build && import-meta-env -x .env.example -p dist/index.html",
+    "build:with-sourcemaps": "vite build --sourcemap",
+    "tsc": "tsc",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 10000",
+    "preview": "vite preview",
+    "test": "vitest run src",
+    "test:watch": "vitest src",
+    "test:coverage": "vitest run --coverage",
+    "snapshots": "vitest -u",
+    "docs": "docsify serve docs"
+  },
+  "dependencies": {
+    "@date-fns/utc": "^2.1.1",
+    "@mtes-mct/monitor-ui": "^24.38.4",
+    "@sentry/react": "^10.27.0",
+    "@tanstack/query-async-storage-persister": "^5.87.1",
+    "@tanstack/react-query": "^5.87.1",
+    "@tanstack/react-query-persist-client": "^5.87.1",
+    "@tanstack/react-store": "^0.7.4",
+    "axios": "^1.12.0",
+    "date-fns": "^4.1.0",
+    "date-fns-tz": "^3.2.0",
+    "dotenv": "^17.2.2",
+    "email-validator": "^2.0.4",
+    "formik": "^2.4.6",
+    "jwt-decode": "^4.0.0",
+    "lodash": "^4.17.23",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-router-dom": "^7.7.1",
+    "react-toastify": "^11.0.5",
+    "rsuite": "^5.83.3",
+    "styled-components": "^6.1.19",
+    "uuid": "^13.0.0",
+    "web-vitals": "^5.1.0",
+    "yup": "^1.7.0"
+  },
+  "devDependencies": {
+    "@import-meta-env/cli": "^0.7.4",
+    "@import-meta-env/prepare": "^0.2.3",
+    "@import-meta-env/unplugin": "^0.6.2",
+    "@tanstack/react-query-devtools": "^5.83.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.1.0",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@types/styled-components": "^5.1.26",
+    "@types/uuid": "^10.0.0",
+    "@vitejs/plugin-react": "^4.7.0",
+    "@vitest/coverage-istanbul": "^3.2.4",
+    "eslint": "^8.57.1",
+    "eslint-config-react-app": "^7.0.1",
+    "jest-watch-typeahead": "^3.0.1",
+    "jsdom": "^26.1.0",
+    "msw": "^2.11.1",
+    "prettier": "^3.7.4",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.5",
+    "vite-plugin-eslint2": "^5.0.4",
+    "vite-plugin-pwa": "^1.0.3",
+    "vite-plugin-svgr": "4.5.0",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.2.4"
+  },
+  "overrides": {
+    "glob": "^11.0.3",
+    "qs": "6.14.1",
+    "@mtes-mct/monitor-ui": "^24.38.4"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "^4.9.6"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "proxy": "http://localhost:80",
+  "jest": {
+    "transformIgnorePatterns": [
+      "node_modules/(?!(@mtes-mct/monitor-ui))/"
+    ]
+  },
+  "lint-staged": {
+    "*.{json,md,yaml,yml}": "prettier --write",
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "bash -c 'npm run lint -- --fix'"
+    ]
+  }
+}
