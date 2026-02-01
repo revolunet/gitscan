@@ -1,0 +1,45 @@
+{
+  "name": "@betagouv/france-chaleur-urbaine-publicodes",
+  "description": "",
+  "version": "1.1.0",
+  "homepage": "https://github.com/betagouv/france-chaleur-urbaine-publicodes#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/betagouv/france-chaleur-urbaine-publicodes.git"
+  },
+  "authors": [
+    "Maxime Dréau <maxime.dreau@beta.gouv.fr>",
+    "Martin Ratinaud <martin.ratinaud@beta.gouv.fr>"
+  ],
+  "bugs": {
+    "url": "https://github.com/betagouv/france-chaleur-urbaine-publicodes/issues"
+  },
+  "license": "MIT",
+  "type": "module",
+  "main": "publicodes-build/index.js",
+  "types": "publicodes-build/index.d.ts",
+  "files": [
+    "publicodes-build"
+  ],
+  "scripts": {
+    "compile": "publicodes compile",
+    "dev": "publicodes dev",
+    "pretest": "pnpm run compile",
+    "test": "vitest run",
+    "bench": "pnpm compile && node --experimental-strip-types ./bench/index.ts",
+    "build": "pnpm compile",
+    "doc:build": "pnpm compile && pnpm --filter ./doc build"
+  },
+  "peerDependencies": {
+    "publicodes": "^1.9.0"
+  },
+  "devDependencies": {
+    "@publicodes/tools": "^1.7.2",
+    "mitata": "^0.1.6",
+    "prettier": "^3.6.2",
+    "vitest": "^2.1.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
