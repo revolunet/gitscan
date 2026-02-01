@@ -1,0 +1,547 @@
+.
+├── .devin
+│   └── wiki.json
+├── .dockerignore
+├── .env.example
+├── .github
+│   ├── PULL_REQUEST_TEMPLATE.md
+│   └── workflows
+│       ├── models-update.yml
+│       └── rankings-update.yml
+├── .gitignore
+├── .gitmodules
+├── .pylintrc
+├── .python-version
+├── .vscode
+│   ├── extensions.json
+│   └── settings.json
+├── CODE_OF_CONDUCT.md
+├── LICENSE
+├── Makefile
+├── README.md
+├── controller.py
+├── database-line.svg
+├── docker
+│   ├── .env.dist
+│   ├── Dockerfile
+│   ├── Dockerfile.front
+│   ├── build-and-push-to-harbor.sh
+│   ├── docker-compose.yml
+│   ├── generate-init-db.sh
+│   └── list-harbor-tags.sh
+├── frontend
+│   ├── .env.example
+│   ├── .gitignore
+│   ├── .npmrc
+│   ├── .prettierignore
+│   ├── .prettierrc
+│   ├── README.md
+│   ├── e2e
+│   │   └── demo.test.ts
+│   ├── eslint.config.js
+│   ├── locales
+│   │   ├── maintenance.py
+│   │   ├── messages
+│   │   │   ├── bar.json
+│   │   │   ├── da.json
+│   │   │   ├── en.json
+│   │   │   ├── es.json
+│   │   │   ├── et.json
+│   │   │   ├── fr.json
+│   │   │   ├── lt.json
+│   │   │   ├── oc.json
+│   │   │   └── sv.json
+│   │   ├── project_id
+│   │   └── settings.json
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── playwright.config.ts
+│   ├── src
+│   │   ├── app.d.ts
+│   │   ├── app.html
+│   │   ├── css
+│   │   │   ├── app.css
+│   │   │   └── icons.css
+│   │   ├── demo.spec.ts
+│   │   ├── error.html
+│   │   ├── hooks.server.ts
+│   │   ├── lib
+│   │   │   ├── api.ts
+│   │   │   ├── chatService.svelte.ts
+│   │   │   ├── components
+│   │   │   │   ├── AILogo.svelte
+│   │   │   │   ├── Copy.svelte
+│   │   │   │   ├── FAQContent.svelte
+│   │   │   │   ├── Footer.svelte
+│   │   │   │   ├── HowItWorks.svelte
+│   │   │   │   ├── IconButton.svelte
+│   │   │   │   ├── ModelCard.svelte
+│   │   │   │   ├── ModelInfoModal.svelte
+│   │   │   │   ├── Newsletter.svelte
+│   │   │   │   ├── Pending.svelte
+│   │   │   │   ├── RadioGroupCard.svelte
+│   │   │   │   ├── SEOHead.svelte
+│   │   │   │   ├── Selector.svelte
+│   │   │   │   ├── TextPrompt.svelte
+│   │   │   │   ├── ThemeSelector.svelte
+│   │   │   │   ├── Toaster.svelte
+│   │   │   │   ├── dsfr
+│   │   │   │   │   ├── Accordion.svelte
+│   │   │   │   │   ├── AccordionGroup.svelte
+│   │   │   │   │   ├── Alert.svelte
+│   │   │   │   │   ├── Badge.svelte
+│   │   │   │   │   ├── Button.svelte
+│   │   │   │   │   ├── Checkbox.svelte
+│   │   │   │   │   ├── CheckboxGroup.svelte
+│   │   │   │   │   ├── Icon.svelte
+│   │   │   │   │   ├── Link.svelte
+│   │   │   │   │   ├── Modal.svelte
+│   │   │   │   │   ├── Pagination.svelte
+│   │   │   │   │   ├── Search.svelte
+│   │   │   │   │   ├── Segmented.svelte
+│   │   │   │   │   ├── Select.svelte
+│   │   │   │   │   ├── Table.svelte
+│   │   │   │   │   ├── Tabs.svelte
+│   │   │   │   │   ├── Toast.svelte
+│   │   │   │   │   ├── Toggle.svelte
+│   │   │   │   │   ├── Tooltip.svelte
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── header
+│   │   │   │   │   ├── Header.svelte
+│   │   │   │   │   ├── LanguageSelector.svelte
+│   │   │   │   │   ├── Menubar.svelte
+│   │   │   │   │   ├── VoteGauge.svelte
+│   │   │   │   │   └── index.ts
+│   │   │   │   └── markdown
+│   │   │   │       ├── MarkdownCode.svelte
+│   │   │   │       ├── html-tags.ts
+│   │   │   │       ├── prism.css
+│   │   │   │       └── utils.ts
+│   │   │   ├── generated
+│   │   │   │   ├── models.ts
+│   │   │   │   ├── news.json
+│   │   │   │   └── suggestions.ts
+│   │   │   ├── global.svelte.ts
+│   │   │   ├── helpers
+│   │   │   │   ├── attachments.ts
+│   │   │   │   ├── useLocalStorage.svelte.ts
+│   │   │   │   └── useToast.svelte.ts
+│   │   │   ├── index.ts
+│   │   │   ├── logger.ts
+│   │   │   ├── models.ts
+│   │   │   ├── stores
+│   │   │   │   └── cohortStore.svelte.ts
+│   │   │   └── utils
+│   │   │       ├── commons.ts
+│   │   │       └── data.ts
+│   │   └── routes
+│   │       ├── (pages)
+│   │       │   ├── (general)
+│   │       │   │   ├── accessibilite
+│   │       │   │   │   └── +page.svelte
+│   │       │   │   ├── donnees-personnelles
+│   │       │   │   │   └── +page.svelte
+│   │       │   │   ├── ecoconception
+│   │       │   │   │   └── +page.svelte
+│   │       │   │   ├── mentions-legales
+│   │       │   │   │   └── +page.svelte
+│   │       │   │   └── modalites
+│   │       │   │       └── +page.svelte
+│   │       │   ├── +layout.svelte
+│   │       │   ├── +page.svelte
+│   │       │   ├── datasets
+│   │       │   │   └── +page.svelte
+│   │       │   ├── duel
+│   │       │   │   └── +page.svelte
+│   │       │   ├── modeles
+│   │       │   │   └── +page.svelte
+│   │       │   ├── news
+│   │       │   │   ├── +page.svelte
+│   │       │   │   └── bnf
+│   │       │   │       └── +page.svelte
+│   │       │   ├── product
+│   │       │   │   ├── +page.server.ts
+│   │       │   │   └── [tab]
+│   │       │   │       ├── +page.server.ts
+│   │       │   │       ├── +page.svelte
+│   │       │   │       └── components
+│   │       │   │           ├── Community.svelte
+│   │       │   │           ├── Comparator.svelte
+│   │       │   │           ├── FAQ.svelte
+│   │       │   │           ├── History.svelte
+│   │       │   │           ├── Partners.svelte
+│   │       │   │           ├── Problem.svelte
+│   │       │   │           └── index.ts
+│   │       │   └── ranking
+│   │       │       ├── +page.svelte
+│   │       │       └── components
+│   │       │           ├── Energy.svelte
+│   │       │           ├── EnergyGraph.svelte
+│   │       │           ├── Methodology.svelte
+│   │       │           ├── Preferences.svelte
+│   │       │           ├── PreferencesTable.svelte
+│   │       │           ├── RankingTable.svelte
+│   │       │           ├── WinHistogram.svelte
+│   │       │           └── index.ts
+│   │       ├── +error.svelte
+│   │       ├── +layout.svelte
+│   │       ├── +layout.ts
+│   │       └── arene
+│   │           ├── +page.svelte
+│   │           └── components
+│   │               ├── ChatBot.svelte
+│   │               ├── CopyAll.svelte
+│   │               ├── GroupedMessages.svelte
+│   │               ├── GuidedPromptSuggestions.svelte
+│   │               ├── LikeDislike.svelte
+│   │               ├── LikePanel.svelte
+│   │               ├── MessageBot.svelte
+│   │               ├── MessageUser.svelte
+│   │               ├── MiniCard.svelte
+│   │               ├── ModelSelector.svelte
+│   │               ├── RevealArea.svelte
+│   │               ├── TOSModal.svelte
+│   │               ├── ViewChat.svelte
+│   │               ├── ViewPrompt.svelte
+│   │               ├── VoteArea.svelte
+│   │               ├── VoteRadioGroup.svelte
+│   │               └── index.ts
+│   ├── static
+│   │   ├── arena
+│   │   │   ├── ranking-graph.png
+│   │   │   └── ranking-table.png
+│   │   ├── artworks
+│   │   │   ├── conclusion.svg
+│   │   │   ├── ecosystem.svg
+│   │   │   └── innovation.svg
+│   │   ├── bundle.tracing.replay.min.js
+│   │   ├── bundle.tracing.replay.min.js.map
+│   │   ├── datasets
+│   │   │   ├── bunka-ai-logo.jpg
+│   │   │   ├── bunka-analyse.png
+│   │   │   ├── bunka-visualisation.png
+│   │   │   ├── conversations-en.png
+│   │   │   ├── conversations-fr.png
+│   │   │   ├── reactions-en.png
+│   │   │   ├── reactions-fr.png
+│   │   │   ├── votes-en.png
+│   │   │   └── votes-fr.png
+│   │   ├── dsfr
+│   │   │   └── artwork
+│   │   │       ├── background
+│   │   │       │   └── ovoid.svg
+│   │   │       ├── dark.svg
+│   │   │       ├── light.svg
+│   │   │       ├── pictograms
+│   │   │       │   ├── buildings
+│   │   │       │   │   ├── city-hall.svg
+│   │   │       │   │   ├── factory.svg
+│   │   │       │   │   ├── house.svg
+│   │   │       │   │   ├── nuclear-plant.svg
+│   │   │       │   │   └── school.svg
+│   │   │       │   ├── digital
+│   │   │       │   │   ├── application.svg
+│   │   │       │   │   ├── avatar.svg
+│   │   │       │   │   ├── calendar.svg
+│   │   │       │   │   ├── coding.svg
+│   │   │       │   │   ├── data-visualization.svg
+│   │   │       │   │   ├── in-progress.svg
+│   │   │       │   │   ├── internet.svg
+│   │   │       │   │   ├── mail-send.svg
+│   │   │       │   │   └── search.svg
+│   │   │       │   ├── document
+│   │   │       │   │   ├── contract.svg
+│   │   │       │   │   ├── document-add.svg
+│   │   │       │   │   ├── document-download.svg
+│   │   │       │   │   ├── document-signature.svg
+│   │   │       │   │   ├── document.svg
+│   │   │       │   │   ├── driving-licence.svg
+│   │   │       │   │   ├── national-identity-card.svg
+│   │   │       │   │   ├── passport.svg
+│   │   │       │   │   ├── tax-stamp.svg
+│   │   │       │   │   └── vehicle-registration.svg
+│   │   │       │   ├── environment
+│   │   │       │   │   ├── environment.svg
+│   │   │       │   │   ├── food.svg
+│   │   │       │   │   ├── grocery.svg
+│   │   │       │   │   ├── human-cooperation.svg
+│   │   │       │   │   ├── leaf.svg
+│   │   │       │   │   ├── moon.svg
+│   │   │       │   │   ├── mountain.svg
+│   │   │       │   │   ├── sun.svg
+│   │   │       │   │   └── tree.svg
+│   │   │       │   ├── health
+│   │   │       │   │   ├── health.svg
+│   │   │       │   │   ├── hospital.svg
+│   │   │       │   │   ├── vaccine.svg
+│   │   │       │   │   └── virus.svg
+│   │   │       │   ├── institutions
+│   │   │       │   │   ├── firefighter.svg
+│   │   │       │   │   ├── gendarmerie.svg
+│   │   │       │   │   ├── justice.svg
+│   │   │       │   │   ├── money.svg
+│   │   │       │   │   └── police.svg
+│   │   │       │   ├── leisure
+│   │   │       │   │   ├── book.svg
+│   │   │       │   │   ├── community.svg
+│   │   │       │   │   ├── culture.svg
+│   │   │       │   │   ├── digital-art.svg
+│   │   │       │   │   └── paint.svg
+│   │   │       │   ├── map
+│   │   │       │   │   ├── airport.svg
+│   │   │       │   │   ├── location-france.svg
+│   │   │       │   │   ├── luggage.svg
+│   │   │       │   │   └── map.svg
+│   │   │       │   └── system
+│   │   │       │       ├── connection-lost.svg
+│   │   │       │       ├── error.svg
+│   │   │       │       ├── information.svg
+│   │   │       │       ├── notification.svg
+│   │   │       │       ├── padlock.svg
+│   │   │       │       ├── success.svg
+│   │   │       │       ├── system.svg
+│   │   │       │       ├── technical-error.svg
+│   │   │       │       └── warning.svg
+│   │   │       └── system.svg
+│   │   ├── duel
+│   │   │   ├── extension.png
+│   │   │   └── workshop.jpg
+│   │   ├── favicon
+│   │   │   ├── apple-touch-icon.png
+│   │   │   ├── favicon.ico
+│   │   │   ├── favicon.png
+│   │   │   ├── favicon.svg
+│   │   │   ├── manifest.webmanifest
+│   │   │   ├── web-app-manifest-192x192.png
+│   │   │   └── web-app-manifest-512x512.png
+│   │   ├── flags
+│   │   │   ├── da.png
+│   │   │   ├── en.png
+│   │   │   ├── en.svg
+│   │   │   ├── fr.png
+│   │   │   ├── fr.svg
+│   │   │   ├── lt.png
+│   │   │   ├── lt.svg
+│   │   │   ├── sv.png
+│   │   │   └── sv.svg
+│   │   ├── general
+│   │   │   └── rgesn_2025_comparIA.ods
+│   │   ├── home
+│   │   │   ├── arrow-h-mobile.svg
+│   │   │   ├── arrow-h.svg
+│   │   │   ├── comparer-da.png
+│   │   │   ├── comparer-dark-da.png
+│   │   │   ├── comparer-dark-en.png
+│   │   │   ├── comparer-dark-fr.png
+│   │   │   ├── comparer-dark-sv.png
+│   │   │   ├── comparer-dark.jpg
+│   │   │   ├── comparer-en.png
+│   │   │   ├── comparer-fr.png
+│   │   │   ├── comparer-sv.png
+│   │   │   ├── comparia-stars.png
+│   │   │   ├── datasets.svg
+│   │   │   ├── finetune.svg
+│   │   │   ├── mesurer-da.png
+│   │   │   ├── mesurer-dark-da.png
+│   │   │   ├── mesurer-dark-en.png
+│   │   │   ├── mesurer-dark-fr.png
+│   │   │   ├── mesurer-dark-sv.png
+│   │   │   ├── mesurer-dark.jpg
+│   │   │   ├── mesurer-en.png
+│   │   │   ├── mesurer-fr.png
+│   │   │   ├── mesurer-sv.png
+│   │   │   ├── prefs.svg
+│   │   │   ├── tester-dark.jpg
+│   │   │   └── tester.png
+│   │   ├── iasummit-small.png
+│   │   ├── iasummit.png
+│   │   ├── icons
+│   │   │   ├── shuffle.svg
+│   │   │   ├── sort-asc.svg
+│   │   │   └── sort-desc.svg
+│   │   ├── news
+│   │   │   ├── analyse-bunka.png
+│   │   │   ├── article-ZDNet.png
+│   │   │   ├── article-franceinfo.png
+│   │   │   ├── article-numerama.png
+│   │   │   ├── article-usine-digitale.png
+│   │   │   ├── atelier-unesco.png
+│   │   │   ├── blog-moderateur.png
+│   │   │   ├── bnf
+│   │   │   │   ├── anastasia-stasenko.jpg
+│   │   │   │   ├── andrei-mogoutov.jpg
+│   │   │   │   ├── benjamin-piwowarski.jpg
+│   │   │   │   ├── cover.jpg
+│   │   │   │   ├── cover.png
+│   │   │   │   ├── david-mas.jpg
+│   │   │   │   ├── francoise-tort.jpg
+│   │   │   │   ├── jean-cattan.jpg
+│   │   │   │   ├── louis-magnes.jpg
+│   │   │   │   ├── loup-cellard.jpg
+│   │   │   │   ├── lucie-termignon.jpg
+│   │   │   │   ├── margaux-levisalles.jpg
+│   │   │   │   ├── marie-bancal.jpg
+│   │   │   │   ├── mathilde-bras.jpg
+│   │   │   │   ├── placeholder.png
+│   │   │   │   ├── romain-delassus.jpg
+│   │   │   │   ├── samuel-rince.jpg
+│   │   │   │   ├── sasha-luccioni.jpg
+│   │   │   │   └── victor-laymand.jpg
+│   │   │   ├── bnf.png
+│   │   │   ├── duel.jpg
+│   │   │   ├── infolettre3.png
+│   │   │   ├── infolettre4.png
+│   │   │   ├── jt-france2.jpeg
+│   │   │   ├── minumechos_podcast_comparIA.jfif
+│   │   │   ├── nec-pitch.jpg
+│   │   │   ├── orbicom.jpg
+│   │   │   ├── parlezmoidia.png
+│   │   │   ├── ranking.png
+│   │   │   └── webinaire-mediation.png
+│   │   ├── orgs
+│   │   │   ├── ai
+│   │   │   │   ├── ai2.svg
+│   │   │   │   ├── ai21.webp
+│   │   │   │   ├── anthropic.png
+│   │   │   │   ├── cohere.png
+│   │   │   │   ├── deepseek.png
+│   │   │   │   ├── euroLLM.webp
+│   │   │   │   ├── google.png
+│   │   │   │   ├── huggingface.svg
+│   │   │   │   ├── liquid.svg
+│   │   │   │   ├── meta.svg
+│   │   │   │   ├── microsoft.png
+│   │   │   │   ├── minimax.png
+│   │   │   │   ├── mistral.png
+│   │   │   │   ├── moonshot-ai.webp
+│   │   │   │   ├── nous.webp
+│   │   │   │   ├── nvidia.svg
+│   │   │   │   ├── openai.svg
+│   │   │   │   ├── qwen.png
+│   │   │   │   ├── swissai.webp
+│   │   │   │   ├── xai.svg
+│   │   │   │   ├── yi.svg
+│   │   │   │   └── zhipu.svg
+│   │   │   ├── ateliernumerique.png
+│   │   │   ├── betagouv.svg
+│   │   │   ├── bnf.svg
+│   │   │   ├── cafe-ia.png
+│   │   │   ├── caire.png
+│   │   │   ├── cnnum.png
+│   │   │   ├── cnrs.svg
+│   │   │   ├── comparia.png
+│   │   │   ├── comparia.svg
+│   │   │   ├── countries
+│   │   │   │   ├── da-dark.png
+│   │   │   │   ├── da-light.png
+│   │   │   │   ├── lt.png
+│   │   │   │   └── sv.png
+│   │   │   ├── datactivist.png
+│   │   │   ├── datactivist.svg
+│   │   │   ├── dinum.png
+│   │   │   ├── dpg.png
+│   │   │   ├── educnat.png
+│   │   │   ├── etalab.svg
+│   │   │   ├── fresque-de-lia.png
+│   │   │   ├── genai.png
+│   │   │   ├── google-full.png
+│   │   │   ├── huggingface-full.svg
+│   │   │   ├── impactco2.png
+│   │   │   ├── inria.png
+│   │   │   ├── latitudes.png
+│   │   │   ├── make-org.svg
+│   │   │   ├── marianne.png
+│   │   │   ├── medialab.svg
+│   │   │   ├── microsoft-full.svg
+│   │   │   ├── minicult.svg
+│   │   │   ├── ovh.png
+│   │   │   ├── peren.svg
+│   │   │   ├── pix.svg
+│   │   │   ├── pleias.png
+│   │   │   └── scaleway.svg
+│   │   ├── product
+│   │   │   ├── chatbot-screenshot-da.png
+│   │   │   ├── chatbot-screenshot-en.png
+│   │   │   ├── chatbot-screenshot-fr.png
+│   │   │   ├── chatbot-screenshot-sv.png
+│   │   │   ├── community
+│   │   │   │   ├── aurelien-barot.png
+│   │   │   │   ├── elie-gavoty.png
+│   │   │   │   ├── hadrien-pelissier.png
+│   │   │   │   ├── lucie-termignon.png
+│   │   │   │   ├── mathilde-bras.png
+│   │   │   │   ├── nicolas-chesnais.png
+│   │   │   │   └── simonas-zilinskas.png
+│   │   │   └── comparia-europe.png
+│   │   ├── ranking
+│   │   │   └── preferences.png
+│   │   └── share-example.png
+│   ├── svelte.config.js
+│   ├── tsconfig.json
+│   ├── uno.config.ts
+│   ├── vite.config.ts
+│   ├── vitest-setup-client.ts
+│   └── yarn.lock
+├── languia
+│   ├── block_arena.py
+│   ├── config.py
+│   ├── conversation.py
+│   ├── custom_components
+│   │   ├── __init__.py
+│   │   ├── customchatbot.py
+│   │   ├── customdropdown.py
+│   │   └── customradiocard.py
+│   ├── listeners.py
+│   ├── litellm.py
+│   ├── logs.py
+│   ├── models.py
+│   ├── reveal.py
+│   ├── session.py
+│   └── utils.py
+├── main.py
+├── package.json
+├── pyproject.toml
+├── share.svg
+├── sonar-project.properties
+├── templates
+│   └── models_errors.html
+├── utils
+│   ├── __init__.py
+│   ├── add_token_count.py
+│   ├── export_dataset.py
+│   ├── ip_map.sql
+│   ├── leaderboard_cookbook.ipynb
+│   ├── merge_models.sql
+│   ├── models
+│   │   ├── __init__.py
+│   │   ├── archs.json
+│   │   ├── build_models.py
+│   │   ├── build_simplified_llm_list_ranking.py
+│   │   ├── generated-models-extra-data.json
+│   │   ├── generated-models.json
+│   │   ├── generated-preferences.json
+│   │   ├── licenses.json
+│   │   ├── maintenance.py
+│   │   ├── models.json
+│   │   └── utils.py
+│   ├── news
+│   │   ├── build_news.py
+│   │   └── fr.json
+│   ├── ranking_methods
+│   ├── schemas
+│   │   ├── conversations.sql
+│   │   ├── logs.sql
+│   │   ├── migrations
+│   │   │   ├── conversations_13102025.sql
+│   │   │   └── reactions_13102025.sql
+│   │   ├── reactions.sql
+│   │   └── votes.sql
+│   ├── suggestions
+│   │   ├── build_suggestions.py
+│   │   ├── da.json
+│   │   ├── fr.json
+│   │   └── sv.json
+│   └── topics_pii.py
+├── uv.lock
+└── yarn.lock
+82 directories, 464 files
