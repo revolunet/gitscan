@@ -1,0 +1,150 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "django-lasuite"
+version = "0.0.23"
+description = "Django La Suite - A Django library"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+authors = [
+    {name = "DINUM", email = "dev@mail.numerique.gouv.fr"},
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Framework :: Django",
+    "Framework :: Django :: 4.2",
+    "Framework :: Django :: 5.0",
+    "Framework :: Django :: 5.1",
+    "Framework :: Django :: 5.2",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+]
+dependencies = [
+    "django>=5.0",
+    "djangorestframework>=3.15.2",
+    "mozilla-django-oidc>=4.0.1",
+    "PyJWT>=2.8.0", # mozilla-django-oidc>=5.0.0
+    "joserfc>=1.4.0", # mozilla-django-oidc<5.0.0
+    "requests>=2.32.3",
+    "requests-toolbelt>=1.0.0",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/suitenumerique/django-lasuite"
+"Bug Tracker" = "https://github.com/suitenumerique/django-lasuite/issues"
+
+[project.optional-dependencies]
+build = [
+    "setuptools",
+    "wheel",
+]
+dev = [
+    "factory_boy",
+    "pytest",
+    "pytest-django",
+    "responses",
+    "ruff",
+    "django-lasuite[all]",
+    "freezegun>=1.5.5",
+]
+malware_detection = [
+    "celery>=5.0",
+]
+configuration = [
+    "django-configurations>=2.5.1",
+]
+all=[
+    "django-lasuite[malware_detection]",
+    "django-lasuite[configuration]",
+]
+
+[tool.hatch.build.targets.sdist]
+only-include = ["src"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/lasuite"]
+
+[tool.pytest.ini_options]
+python_files = "test_*.py"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+extend-exclude = ["migrations"]
+lint.select = [
+    # pycodestyle
+    "E", "W",
+    # Pyflakes
+    "F",
+    # pyupgrade
+    "UP",
+    # flake8-bugbear
+    "B",
+    # flake8-simplify
+    "SIM",
+    # isort
+    "I",
+    # flake8-logging-format
+    "G",
+    # flake8-pie
+    "PIE",
+    # flake8-comprehensions
+    "C4",
+    # flake8-django
+    "DJ",
+    # flake8-bandit
+    "S",
+    # flake8-builtins
+    "A",
+    # flake8-datetimez
+    "DTZ",
+    # flake8-gettext
+    "INT",
+    # Pylint
+    "PL",
+    # flake8-fixme
+    "FIX",
+    # flake8-self
+    "SLF",
+    # flake8-return
+    "RET",
+    # pep8-naming (N)
+    "N",
+    # pydocstyle
+    "D",
+    # flake8-pytest-style (PT)
+    "PT",
+]
+lint.ignore = [
+    # incorrect-blank-line-before-class
+    "D203",
+    # missing-blank-line-after-summary
+    "D205",
+    # multi-line-summary-first-line
+    "D212",
+]
+lint.per-file-ignores = { "**/tests/*"= [
+    # flake8-bandit
+    "S",
+    # flake8-self
+    "SLF",
+    # magic-value-comparison
+    "PLR2004",
+], "__init__.py"= [
+    # Missing docstring in public package
+    "D104"
+]}
+
+
+
+[tool.ruff.lint.isort]
+known-first-party = ["lasuite"]
