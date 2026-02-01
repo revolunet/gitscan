@@ -1,0 +1,55 @@
+{
+  "name": "@potentiel/cli",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "potentiel-cli": "./bin/run.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist tsconfig.tsbuildinfo"
+  },
+  "oclif": {
+    "bin": "potentiel-cli",
+    "commands": "./dist/commands",
+    "dirname": "cli",
+    "topicSeparator": " ",
+    "hooks": {
+      "init": "./dist/hooks/init",
+      "prerun": "./dist/hooks/healthcheck/prerun",
+      "finally": [
+        "./dist/hooks/finally",
+        "./dist/hooks/healthcheck/finally"
+      ]
+    }
+  },
+  "dependencies": {
+    "@potentiel-applications/bootstrap": "*",
+    "@potentiel-applications/document-builder": "*",
+    "@potentiel-domain/reseau": "*",
+    "@potentiel-domain/utilisateur": "*",
+    "@potentiel-infrastructure/domain-adapters": "*",
+    "@potentiel-infrastructure/ds-api-client": "*",
+    "@potentiel-infrastructure/ore-client": "*",
+    "@potentiel-libraries/csv": "*",
+    "@potentiel-libraries/file-storage": "*",
+    "@potentiel-libraries/monitoring": "*",
+    "@potentiel-statistiques/statistiques-publiques": "*",
+    "@potentiel-libraries/pg-helpers": "*",
+    "@potentiel-infrastructure/pg-event-sourcing": "*",
+    "@potentiel-infrastructure/pg-projection-read": "*",
+    "@potentiel-domain/common": "*",
+    "@potentiel-domain/projet": "*",
+    "@potentiel-infrastructure/email": "*",
+    "@oclif/core": "4.5.0",
+    "mediateur": "0.3.0",
+    "zod": "4.1.9"
+  },
+  "devDependencies": {
+    "@potentiel-config/tsconfig": "*",
+    "@types/node": "18.19.86",
+    "diff": "8.0.2",
+    "oclif": "4.20.4",
+    "tsx": "4.20.4"
+  }
+}
