@@ -1,0 +1,1217 @@
+.
+├── .dockerignore
+├── .eslintrc.js
+├── .github
+│   ├── actions
+│   │   ├── build-images
+│   │   │   └── action.yaml
+│   │   ├── deploy-via-github
+│   │   │   ├── Dockerfile
+│   │   │   ├── action.yaml
+│   │   │   └── entrypoint.sh
+│   │   ├── deploy-via-webhook
+│   │   │   ├── Dockerfile
+│   │   │   ├── action.yaml
+│   │   │   ├── entrypoint.sh
+│   │   │   └── kontinuousVersion
+│   │   └── env
+│   │       ├── Dockerfile
+│   │       ├── action.yaml
+│   │       └── entrypoint.sh
+│   ├── e2e
+│   │   ├── app-simple
+│   │   │   └── .kontinuous -> ../../../packages/kontinuous/tests/samples/app-simple
+│   │   ├── standalone-charts
+│   │   │   ├── .kontinuous -> ../../../packages/kontinuous/tests/samples/standalone-charts
+│   │   │   └── kontinuous -> ../../../packages/kontinuous/bin/kontinuous
+│   │   └── values-js
+│   │       ├── .kontinuous -> ../../../packages/kontinuous/tests/samples/values-js/
+│   │       └── kontinuous -> ../../../packages/kontinuous/bin/kontinuous
+│   ├── jsonschema
+│   │   ├── jsonschema-invalid.yml
+│   │   └── jsonschema-valid.yml
+│   ├── kontinuousVersion
+│   ├── renovate.json5
+│   └── workflows
+│       ├── build-image-degit.yml
+│       ├── build-image-kontinuous.yml
+│       ├── build-image-wait-needs.yml
+│       ├── build-image-webhook.yml
+│       ├── codeql-analysis.yml
+│       ├── release-commit.yml
+│       ├── release-publish.yml
+│       ├── review-e2e-linked.yml
+│       ├── sync-gitlab.yml
+│       ├── tests-build.yml
+│       ├── tests-deploy.yaml
+│       ├── tests-jsonschema.yml
+│       ├── tests-kubeconform.yml
+│       ├── tests-lint.yml
+│       └── tests-webhook.yml
+├── .gitignore
+├── .gitlab-ci.yml
+├── .husky
+│   └── pre-commit
+├── .lazy.lua
+├── .npmignore
+├── .nvmrc
+├── .sonarcloud.properties
+├── .versionrc.js
+├── .vscode
+│   └── settings.json
+├── .yarn
+│   ├── plugins
+│   │   └── @yarnpkg
+│   │       ├── plugin-fetch.cjs
+│   │       ├── plugin-interactive-tools.cjs
+│   │       └── plugin-workspace-tools.cjs
+│   └── releases
+│       └── yarn-4.0.0-rc.39.cjs
+├── .yarnrc.yml
+├── CHANGELOG.md
+├── CONTRIBUTING.md
+├── LICENSE
+├── README.md
+├── boilerplates
+│   ├── infra-samples
+│   │   ├── argocd
+│   │   │   ├── applications
+│   │   │   │   └── kontinuous-webhook.yaml
+│   │   │   └── kontinuous-webhook
+│   │   │       ├── Chart.yaml
+│   │   │       └── values.yaml
+│   │   └── terraform
+│   │       └── rancher-config-setup
+│   │           ├── github.tf
+│   │           └── rancher.tf
+│   ├── local-dev-home
+│   │   └── config.yaml
+│   └── repositories
+│       ├── app-with-db
+│       │   └── .kontinuous
+│       │       ├── config.yaml
+│       │       ├── env
+│       │       │   └── dev
+│       │       │       └── values.yaml
+│       │       └── values.yaml
+│       ├── next-app
+│       │   └── .kontinuous
+│       │       ├── config.yaml
+│       │       └── values.yaml
+│       ├── static-app
+│       │   └── .kontinuous
+│       │       ├── config.yaml
+│       │       └── values.yaml
+│       └── template
+│           └── .kontinuous
+│               ├── Chart.yaml
+│               ├── config.yaml
+│               ├── env
+│               │   ├── dev
+│               │   │   ├── templates
+│               │   │   │   ├── app.configmap.yaml
+│               │   │   │   ├── app.sealed.secret.yaml
+│               │   │   │   ├── franceconnect.sealed.secret.yaml
+│               │   │   │   ├── hasura.sealed.secret.yaml
+│               │   │   │   ├── keycloak.sealed.secret.yaml
+│               │   │   │   └── smtp.sealed.secret.yaml
+│               │   │   └── values.yaml
+│               │   ├── preprod
+│               │   │   └── templates
+│               │   │       ├── app.configmap.yaml
+│               │   │       ├── app.sealed.secret.yaml
+│               │   │       ├── franceconnect.sealed.secret.yaml
+│               │   │       ├── hasura.sealed.secret.yaml
+│               │   │       ├── keycloak.sealed.secret.yaml
+│               │   │       └── smtp.sealed.secret.yaml
+│               │   └── prod
+│               │       ├── templates
+│               │       │   ├── app.configmap.yaml
+│               │       │   ├── app.sealed.secret.yaml
+│               │       │   ├── franceconnect.sealed.secret.yaml
+│               │       │   ├── hasura.sealed.secret.yaml
+│               │       │   ├── keycloak.sealed.secret.yaml
+│               │       │   └── smtp.sealed.secret.yaml
+│               │       └── values.yaml
+│               ├── files
+│               │   └── realm-export.json
+│               ├── templates
+│               │   └── realm.configmap.yaml
+│               └── values.yaml
+├── docker-compose.built.yaml
+├── docker-compose.yaml
+├── docs
+│   ├── .nojekyll
+│   ├── CONTRIBUTING.md
+│   ├── README.md
+│   ├── _coverpage.md
+│   ├── _media
+│   │   ├── android-chrome-192x192.png
+│   │   ├── android-chrome-512x512.png
+│   │   ├── apple-touch-icon.png
+│   │   ├── favicon-16x16.png
+│   │   ├── favicon-32x32.png
+│   │   ├── favicon.ico
+│   │   ├── kontinuous-logo-small.png
+│   │   ├── kontinuous-logo.png
+│   │   ├── mstile-150x150.png
+│   │   ├── safari-pinned-tab.svg
+│   │   ├── site.webmanifest
+│   │   └── socialgroove-100.jpg
+│   ├── _sidebar.md
+│   ├── advanced
+│   │   ├── build.md
+│   │   ├── configuration-vars.md
+│   │   ├── configuration.md
+│   │   ├── deploy.md
+│   │   ├── features.md
+│   │   ├── lifecycle.md
+│   │   ├── paradigm.md
+│   │   ├── plugins.md
+│   │   └── webhook.md
+│   ├── browserconfig.xml
+│   ├── config.schema.json
+│   ├── extract-plugin-config-schema.js
+│   ├── faq.md
+│   ├── favicon.ico
+│   ├── images
+│   │   ├── rabbit-thug.png
+│   │   └── webhook-schema.png
+│   ├── index.html
+│   ├── sources
+│   │   └── kontinuous-logo.xcf
+│   ├── style.css
+│   └── values.schema.json
+├── kontinuous -> packages/kontinuous/bin/kontinuous
+├── package.json
+├── packages
+│   ├── argocd
+│   │   ├── Dockerfile
+│   │   └── notes.md
+│   ├── common
+│   │   ├── .eslintrc.yaml
+│   │   ├── bin
+│   │   │   └── kubejob-tail
+│   │   ├── config
+│   │   │   ├── copy-filter.js
+│   │   │   ├── download-git-org-config.js
+│   │   │   ├── env-parsers
+│   │   │   │   ├── cast-array.js
+│   │   │   │   └── yaml.js
+│   │   │   ├── load-config.js
+│   │   │   ├── load-dependencies.js
+│   │   │   ├── load-git-org-config.js
+│   │   │   ├── load-remote-config.js
+│   │   │   └── merge-projects-and-organizations.js
+│   │   ├── ctx.js
+│   │   ├── package.json
+│   │   ├── utils
+│   │   │   ├── async-shell.js
+│   │   │   ├── axios-is-network-error.js
+│   │   │   ├── axios-retry.js
+│   │   │   ├── cast-array.js
+│   │   │   ├── check-namespace-is-available.js
+│   │   │   ├── clean-git-ref.js
+│   │   │   ├── config-dependency-key.js
+│   │   │   ├── create-chart.js
+│   │   │   ├── deepmerge.js
+│   │   │   ├── degit-improved.js
+│   │   │   ├── degit-tag-has-changed.js
+│   │   │   ├── detect-kube-version.js
+│   │   │   ├── direct-logger-factory.js
+│   │   │   ├── direct-logger-parse-key-values.js
+│   │   │   ├── direct-logger-transports.js
+│   │   │   ├── download-file.js
+│   │   │   ├── events-bucket.js
+│   │   │   ├── file-hash.js
+│   │   │   ├── find-parent-dir.js
+│   │   │   ├── flatten-aggregate-error.js
+│   │   │   ├── flatten-object.js
+│   │   │   ├── get-*.js  (17 files)
+│   │   │   ├── git-env.js
+│   │   │   ├── git-ssh-command.js
+│   │   │   ├── graph-easy-exists.js
+│   │   │   ├── handle-axios-error.js
+│   │   │   ├── ignore-yarn-state.js
+│   │   │   ├── indent.js
+│   │   │   ├── index.js
+│   │   │   ├── is-abort-error.js
+│   │   │   ├── is-version-tag.js
+│   │   │   ├── java-exists.js
+│   │   │   ├── kontinuous-plugin-error.class.js
+│   │   │   ├── kontinuous-version.js
+│   │   │   ├── kube-ensure-namespace.js
+│   │   │   ├── kubectl-delete-manifest.js
+│   │   │   ├── kubectl-get-api-resource.js
+│   │   │   ├── kubectl-retry.js
+│   │   │   ├── kubectl-wait-for-ready.js
+│   │   │   ├── kubejob-tail.js
+│   │   │   ├── load-env-config-files.js
+│   │   │   ├── load-structured-config.js
+│   │   │   ├── load-yaml-file.js
+│   │   │   ├── log-tree.js
+│   │   │   ├── lower-keys.js
+│   │   │   ├── match-link-remap.js
+│   │   │   ├── matrix.js
+│   │   │   ├── need-*.js  (7 files)
+│   │   │   ├── network-error.class.js
+│   │   │   ├── normalize-degit-uri.js
+│   │   │   ├── normalize-env-key.js
+│   │   │   ├── normalize-repository-key.js
+│   │   │   ├── normalize-repository-url.js
+│   │   │   ├── parse-command.js
+│   │   │   ├── parse-git-url.js
+│   │   │   ├── parse-github-url.js
+│   │   │   ├── pattern-match.js
+│   │   │   ├── pretty-time.js
+│   │   │   ├── program-error.class.js
+│   │   │   ├── promise-all.js
+│   │   │   ├── promise-get-all.js
+│   │   │   ├── public-promise.js
+│   │   │   ├── redact-enhanced-factory.js
+│   │   │   ├── redact.js
+│   │   │   ├── ref-env.js
+│   │   │   ├── remove-all-ansi-colors.js
+│   │   │   ├── remove-nulls.js
+│   │   │   ├── remove-prefix.js
+│   │   │   ├── remove-suffix.js
+│   │   │   ├── render-tpl.js
+│   │   │   ├── repository-from-git-url.js
+│   │   │   ├── retriable-match.js
+│   │   │   ├── retriable-network.js
+│   │   │   ├── retriable-on-broken-cluster.js
+│   │   │   ├── rollout-status-exec.js
+│   │   │   ├── rollout-status-handled-kinds.js
+│   │   │   ├── rollout-status-watch.js
+│   │   │   ├── rollout-status.js
+│   │   │   ├── sanitize-label.js
+│   │   │   ├── sanitize-tag.js
+│   │   │   ├── shell.js
+│   │   │   ├── slug.js
+│   │   │   ├── snapshot-diff.js
+│   │   │   ├── stream-to-string.js
+│   │   │   ├── time-logger.js
+│   │   │   ├── ucfirst.js
+│   │   │   ├── validate-md5.js
+│   │   │   ├── wait-*.js  (5 files)
+│   │   │   ├── yaml-extends.js
+│   │   │   ├── yaml.js
+│   │   │   └── yarn-install.js
+│   │   └── versions.js
+│   ├── degit
+│   │   └── Dockerfile
+│   ├── dev-tools
+│   │   ├── .eslintrc.yaml
+│   │   ├── bin
+│   │   │   ├── release-workspace-to-npx
+│   │   │   ├── version-e2e-commit.sh
+│   │   │   ├── version-e2e-set
+│   │   │   ├── version-major-branch-push.sh
+│   │   │   └── version-major-branch.sh
+│   │   ├── lib
+│   │   │   ├── release-workspace-to-npx.js
+│   │   │   ├── standard-version-chart-updater.js
+│   │   │   ├── standard-version-e2e-updater.js
+│   │   │   ├── version-e2e-config.js
+│   │   │   ├── version-e2e-get-files.js
+│   │   │   └── version-e2e-set.js
+│   │   └── package.json
+│   ├── helm-tree
+│   │   ├── .eslintrc.yaml
+│   │   ├── bin
+│   │   │   └── build-helm-tree
+│   │   ├── build
+│   │   │   ├── build-dependency.js
+│   │   │   └── index.js
+│   │   ├── chart-tools
+│   │   │   ├── build-chart-file.js
+│   │   │   ├── index.js
+│   │   │   ├── register-subcharts.js
+│   │   │   └── set-relative-link-versions.js
+│   │   ├── dependencies
+│   │   │   ├── download-dependency-from-git-repo.js
+│   │   │   ├── download-dependency-from-helm-repo.js
+│   │   │   ├── download-git-chart.js
+│   │   │   ├── download-helm-chart.js
+│   │   │   ├── download-remote-repository.js
+│   │   │   └── recurse.js
+│   │   └── package.json
+│   ├── kontinuous
+│   │   ├── .eslintrc.yaml
+│   │   ├── .gitignore
+│   │   ├── .helmignore
+│   │   ├── .npmignore
+│   │   ├── .yarnrc.yml
+│   │   ├── Dockerfile
+│   │   ├── babel.config.js
+│   │   ├── bin
+│   │   │   └── kontinuous
+│   │   ├── jest.config.js
+│   │   ├── jsconfig.json
+│   │   ├── package.json
+│   │   ├── src
+│   │   │   ├── build
+│   │   │   │   ├── apply-patches.js
+│   │   │   │   ├── builder.js
+│   │   │   │   ├── debug-manifests.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── load-dependencies
+│   │   │   │   │   ├── before-merge-chart-values.js
+│   │   │   │   │   ├── before-merge-project-values.js
+│   │   │   │   │   ├── build-dependencies.js
+│   │   │   │   │   ├── clean-meta-values.js
+│   │   │   │   │   ├── compile-values.js
+│   │   │   │   │   ├── copy-files-dir.js
+│   │   │   │   │   ├── dependencies.js
+│   │   │   │   │   ├── expand-dot-notation.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   ├── merge-env-templates.js
+│   │   │   │   │   ├── merge-values-from-dir.js
+│   │   │   │   │   ├── merge-yaml-file-values.js
+│   │   │   │   │   ├── remove-not-enabled-values.js
+│   │   │   │   │   ├── values-enable-standalone-charts.js
+│   │   │   │   │   ├── values-override.js
+│   │   │   │   │   └── write-charts-alias.js
+│   │   │   │   ├── load-manifests.js
+│   │   │   │   ├── post-renderer.js
+│   │   │   │   ├── validate-manifests.js
+│   │   │   │   └── validation-error.js
+│   │   │   ├── cli
+│   │   │   │   ├── commands
+│   │   │   │   │   ├── build.js
+│   │   │   │   │   ├── clean.js
+│   │   │   │   │   ├── config.js
+│   │   │   │   │   ├── deploy.js
+│   │   │   │   │   ├── diff.js
+│   │   │   │   │   ├── download.js
+│   │   │   │   │   ├── env.js
+│   │   │   │   │   ├── init.js
+│   │   │   │   │   ├── load-deps.js
+│   │   │   │   │   ├── logs.js
+│   │   │   │   │   ├── slugify-subdomain.js
+│   │   │   │   │   ├── slugify.js
+│   │   │   │   │   ├── test.js
+│   │   │   │   │   └── upload.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── options.js
+│   │   │   │   └── program.js
+│   │   │   ├── deploy
+│   │   │   │   ├── build-deploy-plugins.js
+│   │   │   │   ├── deploy-hooks.js
+│   │   │   │   ├── deploy-on-webhook.js
+│   │   │   │   ├── deploy-sidecars.js
+│   │   │   │   ├── deploy-with.js
+│   │   │   │   └── index.js
+│   │   │   ├── download
+│   │   │   │   └── index.js
+│   │   │   ├── errors
+│   │   │   │   ├── exit-error.js
+│   │   │   │   ├── failed-deployment-aggregate-error.js
+│   │   │   │   └── mock-exit.js
+│   │   │   ├── index.js
+│   │   │   ├── init
+│   │   │   │   ├── index.js
+│   │   │   │   └── interactive.js
+│   │   │   ├── lib
+│   │   │   │   ├── kubectl.js
+│   │   │   │   ├── logger.js
+│   │   │   │   ├── need-bin.js
+│   │   │   │   └── rollout-status.js
+│   │   │   ├── logs
+│   │   │   │   └── index.js
+│   │   │   ├── plugins
+│   │   │   │   ├── build-js-file.js
+│   │   │   │   ├── context
+│   │   │   │   │   ├── function.js
+│   │   │   │   │   ├── get-options.js
+│   │   │   │   │   ├── get-scope.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── require.js
+│   │   │   │   └── install-packages.js
+│   │   │   ├── sentry
+│   │   │   │   ├── before-breadcrumb-ref-default.js
+│   │   │   │   ├── direct-logger-transport.js
+│   │   │   │   ├── get-config.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── init.js
+│   │   │   │   └── pre-action-factory.js
+│   │   │   ├── status
+│   │   │   │   └── index.js
+│   │   │   ├── test
+│   │   │   │   ├── diff-error.js
+│   │   │   │   ├── index.js
+│   │   │   │   └── reporter.js
+│   │   │   ├── ts-node.js
+│   │   │   └── upload
+│   │   │       └── index.js
+│   │   ├── tests
+│   │   │   ├── __snapshots__
+│   │   │   │   ├── app-*.yaml  (5 files)
+│   │   │   │   ├── chart-doesnot-exists.dev.yaml
+│   │   │   │   ├── chart-group.dev.yaml
+│   │   │   │   ├── chart-groups.dev.yaml
+│   │   │   │   ├── chart-not-in-values.dev.yaml
+│   │   │   │   ├── charts.dev.yaml
+│   │   │   │   ├── cnpg.dev.yaml
+│   │   │   │   ├── daemon.dev.yaml
+│   │   │   │   ├── deactivate-param-not-activated.dev.yaml
+│   │   │   │   ├── deactivate.dev.yaml
+│   │   │   │   ├── extends-ovh.dev.yaml
+│   │   │   │   ├── extends-ovh.prod.yaml
+│   │   │   │   ├── force-restart-optout.dev.yaml
+│   │   │   │   ├── hasura-no-ing.prod.yaml
+│   │   │   │   ├── helm-dependencies-with-not-fixed-version.dev.yaml
+│   │   │   │   ├── if-env.dev.yaml
+│   │   │   │   ├── if-env.local.yaml
+│   │   │   │   ├── include-file.dev.yaml
+│   │   │   │   ├── ingress-external-domain.prod.yaml
+│   │   │   │   ├── init-container.dev.yaml
+│   │   │   │   ├── inline-values.dev.yaml
+│   │   │   │   ├── job-builds.dev.yaml
+│   │   │   │   ├── job-no-affinity.dev.yaml
+│   │   │   │   ├── jobs-*.yaml  (8 files)
+│   │   │   │   ├── long-branch-host-patch.dev.yaml
+│   │   │   │   ├── long-branch-host.dev.yaml
+│   │   │   │   ├── maildev.dev.yaml
+│   │   │   │   ├── maildev.prod.yaml
+│   │   │   │   ├── meta-log.dev.yaml
+│   │   │   │   ├── multi-containers.dev.yaml
+│   │   │   │   ├── needs-using-argocd-sync-waves.dev.yaml
+│   │   │   │   ├── output.dev.yaml
+│   │   │   │   ├── override-env-default.dev.yaml
+│   │   │   │   ├── persist.dev.yaml
+│   │   │   │   ├── pg.dev.yaml
+│   │   │   │   ├── pg.preprod.yaml
+│   │   │   │   ├── pg.prod.yaml
+│   │   │   │   ├── pgweb.dev.yaml
+│   │   │   │   ├── post-renderer.dev.yaml
+│   │   │   │   ├── private-mode.dev.yaml
+│   │   │   │   ├── project-chart-implicit-enabled.dev.yaml
+│   │   │   │   ├── redis-volume.prod.yaml
+│   │   │   │   ├── redis.prod.yaml
+│   │   │   │   ├── repo.domifa.dev.yaml
+│   │   │   │   ├── repo.domifa.preprod.yaml
+│   │   │   │   ├── repo.domifa.prod.yaml
+│   │   │   │   ├── sample-1.dev.yaml
+│   │   │   │   ├── sample-1.preprod.yaml
+│   │   │   │   ├── sample-1.prod.yaml
+│   │   │   │   ├── socialgouv-autodevops-override.dev.yaml
+│   │   │   │   ├── socialgouv-autodevops.dev.yaml
+│   │   │   │   ├── standalone-charts.dev.yaml
+│   │   │   │   ├── values-extends.dev.yaml
+│   │   │   │   ├── values-extends.preprod.yaml
+│   │   │   │   └── values-js.dev.yaml
+│   │   │   ├── index.test.js
+│   │   │   └── samples
+│   │   │       ├── app-sidecar
+│   │   │       │   ├── config.yaml
+│   │   │       │   └── values.yaml
+│   │   │       ├── app-simple
+│   │   │       │   ├── config.yaml
+│   │   │       │   ├── env
+│   │   │       │   │   ├── dev
+│   │   │       │   │   │   └── .gitkeep
+│   │   │       │   │   └── prod
+│   │   │       │   │       └── .gitkeep
+│   │   │       │   └── values.yaml
+│   │   │       ├── app-simple-options
+│   │   │       │   ├── config.yaml
+│   │   │       │   ├── env
+│   │   │       │   │   ├── dev
+│   │   │       │   │   │   ├── .gitkeep
+│   │   │       │   │   │   └── values.yaml
+│   │   │       │   │   └── prod
+│   │   │       │   │       ├── .gitkeep
+│   │   │       │   │       └── values.yaml
+│   │   │       │   └── values.yaml
+│   │   │       ├── chart-doesnot-exists
+│   │   │       │   ├── .env
+│   │   │       │   ├── config.yaml
+│   │   │       │   └── values.yaml
+│   │   │       ├── chart-group
+│   │   │       │   ├── .env
+│   │   │       │   ├── config.yaml
+│   │   │       │   └── values.yaml
+│   │   │       ├── chart-groups
+│   │   │       │   ├── .env
+│   │   │       │   ├── config.yaml
+│   │   │       │   └── values.yaml
+│   │   │       ├── chart-not-in-values
+│   │   │       │   ├── .env
+│   │   │       │   ├── config.yaml
+│   │   │       │   └── values.yaml
+│   │   │       ├── charts
+│   │   │       │   ├── charts
+│   │   │       │   │   └── extra-job
+│   │   │       │   │       ├── env
+│   │   │       │   │       │   └── dev
+│   │   │       │   │       │       ├── templates
+│   │   │       │   │       │       │   └── sa.yaml
+│   │   │       │   │       │       └── values.yaml
+│   │   │       │   │       ├── templates
+│   │   │       │   │       │   └── my-job.yaml
+│   │   │       │   │       └── values.yaml
+│   │   │       │   ├── config.yaml
+│   │   │       │   └── values.yaml
+│   │   │       ├── daemon
+│   │   │       │   ├── config.yaml
+│   │   │       │   └── values.yaml
+│   │   │       ├── deactivate
+│   │   │       │   ├── .env
+│   │   │       │   ├── config.yaml
+│   │   │       │   └── values.yaml
+│   │   │       ├── deactivate-param-not-activated
+│   │   │       │   ├── config.yaml
+│   │   │       │   └── values.yaml
+│   │   │       ├── extends-ovh
+│   │   │       │   ├── config.yaml
+│   │   │       │   ├── env
+│   │   │       │   │   ├── dev
+│   │   │       │   │   │   └── .gitkeep
+│   │   │       │   │   └── prod
+│   │   │       │   │       └── .gitkeep
+│   │   │       │   └── values.yaml
+│   │   │       ├── force-restart-optout
+│   │   │       │   ├── config.yaml
+│   │   │       │   └── values.yaml
+│   │   │       ├── hasura-no-ing
+│   │   │       │   ├── config.yaml
+│   │   │       │   ├── env
+│   │   │       │   │   └── prod
+│   │   │       │   │       └── .gitkeep
+│   │   │       │   └── values.yaml
+│   │   │       ├── helm-dependencies-with-not-fixed-version
+│   │   │       │   ├── Chart.yaml
+│   │   │       │   └── values.yaml
+│   │   │       ├── if-env
+│   │   │       │   ├── config.yaml
+│   │   │       │   ├── env
+│   │   │       │   │   ├── dev
+│   │   │       │   │   │   └── .gitkeep
+│   │   │       │   │   └── local
+│   │   │       │   │       └── .gitkeep
+│   │   │       │   └── values.yaml
+│   │   │       ├── include-file
+│   │   │       │   └── .kontinuous
+│   │   │       │       ├── config.yaml
+│   │   │       │       ├── files
+│   │   │       │       │   └── testify.txt
+│   │   │       │       └── values.yaml
+│   │   │       ├── ingress-external-domain
+│   │   │       │   ├── config.yaml
+│   │   │       │   └── env
+│   │   │       │       └── prod
+│   │   │       │           └── values.yaml
+│   │   │       ├── inline-values
+│   │   │       │   ├── .env
+│   │   │       │   ├── config.yaml
+│   │   │       │   └── values.yaml
+│   │   │       ├── job-builds
+│   │   │       │   ├── config.yaml
+│   │   │       │   └── values.yaml
+│   │   │       ├── job-no-affinity
+│   │   │       │   ├── config.yaml
+│   │   │       │   └── values.yaml
+│   │   │       ├── jobs-build
+│   │   │       │   ├── config.yaml
+│   │   │       │   └── env
+│   │   │       │       └── dev
+│   │   │       │           └── values.yaml
+│   │   │       ├── jobs-build-options
+│   │   │       │   ├── config.yaml
+│   │   │       │   └── env
+│   │   │       │       └── dev
+│   │   │       │           └── values.yaml
+│   │   │       ├── jobs-build-stage
+│   │   │       │   ├── config.yaml
+│   │   │       │   └── env
+│   │   │       │       └── dev
+│   │   │       │           └── values.yaml
+│   │   │       ├── jobs-runs-map
+│   │   │       │   ├── config.yaml
+│   │   │       │   └── values.yaml
+│   │   │       ├── jobs-uses-degit.disabled
+│   │   │       │   ├── config.yaml
+│   │   │       │   └── env
+│   │   │       │       └── dev
+│   │   │       │           └── values.yaml
+│   │   │       ├── jobs-uses-relative
+│   │   │       │   ├── config.yaml
+│   │   │       │   └── env
+│   │   │       │       └── dev
+│   │   │       │           └── values.yaml
+│   │   │       ├── jobs-uses-self-ref
+│   │   │       │   ├── config.yaml
+│   │   │       │   └── values.yaml
+│   │   │       ├── long-branch-host
+│   │   │       │   ├── .env
+│   │   │       │   ├── config.yaml
+│   │   │       │   └── values.yaml
+│   │   │       ├── long-branch-host-patch
+│   │   │       │   ├── .env
+│   │   │       │   ├── config.yaml
+│   │   │       │   └── values.yaml
+│   │   │       ├── maildev
+│   │   │       │   ├── config.yaml
+│   │   │       │   ├── env
+│   │   │       │   │   ├── dev
+│   │   │       │   │   │   └── values.yaml
+│   │   │       │   │   └── prod
+│   │   │       │   │       └── values.yaml
+│   │   │       │   └── values.yaml
+│   │   │       ├── meta-log
+│   │   │       │   ├── config.yaml
+│   │   │       │   └── values.yaml
+│   │   │       ├── multi-containers
+│   │   │       │   ├── config.yaml
+│   │   │       │   └── templates
+│   │   │       │       └── deployments.yaml
+│   │   │       ├── needs-using-argocd-sync-waves
+│   │   │       │   ├── config.yaml
+│   │   │       │   └── values.yaml
+│   │   │       ├── output
+│   │   │       │   ├── config.yaml
+│   │   │       │   └── values.yaml
+│   │   │       ├── override-env-default
+│   │   │       │   ├── config.yaml
+│   │   │       │   └── env
+│   │   │       │       └── dev
+│   │   │       │           └── values.yaml
+│   │   │       ├── patches.disabled
+│   │   │       │   ├── .gitignore
+│   │   │       │   ├── config.yaml
+│   │   │       │   ├── package.json
+│   │   │       │   └── patches
+│   │   │       │       ├── hashwords-label.js
+│   │   │       │       └── index.js
+│   │   │       ├── persist
+│   │   │       │   ├── .env
+│   │   │       │   ├── config.yaml
+│   │   │       │   └── values.yaml
+│   │   │       ├── pg
+│   │   │       │   ├── config.yaml
+│   │   │       │   ├── env
+│   │   │       │   │   ├── preprod
+│   │   │       │   │   │   └── values.yaml
+│   │   │       │   │   └── prod
+│   │   │       │   │       └── values.yaml
+│   │   │       │   └── values.yaml
+│   │   │       ├── pgweb
+│   │   │       │   ├── config.yaml
+│   │   │       │   └── values.yaml
+│   │   │       ├── post-renderer
+│   │   │       │   ├── config.yaml
+│   │   │       │   ├── post-renderer
+│   │   │       │   └── values.yaml
+│   │   │       ├── private-mode
+│   │   │       │   ├── config.yaml
+│   │   │       │   └── values.yaml
+│   │   │       ├── project-chart-implicit-enabled
+│   │   │       │   ├── Chart.yaml
+│   │   │       │   ├── charts
+│   │   │       │   │   └── test
+│   │   │       │   │       └── templates
+│   │   │       │   │           └── deployment.yaml
+│   │   │       │   ├── config.yaml
+│   │   │       │   └── values.yaml
+│   │   │       ├── redis
+│   │   │       │   ├── config.yaml
+│   │   │       │   └── env
+│   │   │       │       └── prod
+│   │   │       │           └── values.yaml
+│   │   │       ├── redis-volume
+│   │   │       │   ├── config.yaml
+│   │   │       │   └── env
+│   │   │       │       └── prod
+│   │   │       │           └── values.yaml
+│   │   │       ├── repo.domifa
+│   │   │       │   ├── config.yaml
+│   │   │       │   ├── env
+│   │   │       │   │   ├── dev
+│   │   │       │   │   │   ├── templates
+│   │   │       │   │   │   │   └── backend.configmap.yaml
+│   │   │       │   │   │   └── values.yaml
+│   │   │       │   │   ├── preprod
+│   │   │       │   │   │   ├── templates
+│   │   │       │   │   │   │   └── backend.configmap.yaml
+│   │   │       │   │   │   └── values.yaml
+│   │   │       │   │   └── prod
+│   │   │       │   │       ├── templates
+│   │   │       │   │       │   └── backend.configmap.yaml
+│   │   │       │   │       └── values.yaml
+│   │   │       │   └── values.yaml
+│   │   │       ├── sample-1
+│   │   │       │   ├── config.yaml
+│   │   │       │   ├── env
+│   │   │       │   │   ├── dev
+│   │   │       │   │   │   ├── templates
+│   │   │       │   │   │   │   ├── app.configmap.yaml
+│   │   │       │   │   │   │   └── hasura.sealed-secret.yaml
+│   │   │       │   │   │   └── values.yaml
+│   │   │       │   │   ├── preprod
+│   │   │       │   │   │   └── templates
+│   │   │       │   │   │       ├── app.configmap.yaml -> ../../dev/templates/app.configmap.yaml
+│   │   │       │   │   │       └── hasura.sealed-secret.yaml -> ../../dev/templates/hasura.sealed-secret.yaml
+│   │   │       │   │   └── prod
+│   │   │       │   │       └── templates
+│   │   │       │   │           ├── app.configmap.yaml
+│   │   │       │   │           └── hasura.sealed-secret.yaml
+│   │   │       │   └── values.yaml
+│   │   │       ├── socialgouv-autodevops
+│   │   │       │   ├── .env
+│   │   │       │   └── .socialgouv.yaml
+│   │   │       ├── socialgouv-autodevops-override
+│   │   │       │   ├── .env
+│   │   │       │   ├── .kontinuous
+│   │   │       │   │   └── values.yaml
+│   │   │       │   └── .socialgouv.yaml
+│   │   │       ├── standalone-charts
+│   │   │       │   ├── .env
+│   │   │       │   ├── charts
+│   │   │       │   │   └── extra-job
+│   │   │       │   │       ├── templates
+│   │   │       │   │       │   └── my-job.yaml
+│   │   │       │   │       └── values.yaml
+│   │   │       │   ├── config.yaml
+│   │   │       │   └── values.yaml
+│   │   │       ├── values-extends
+│   │   │       │   ├── config.yaml
+│   │   │       │   ├── env
+│   │   │       │   │   ├── dev
+│   │   │       │   │   │   ├── values.staging.yaml -> ../values.staging.yaml
+│   │   │       │   │   │   └── values.yaml
+│   │   │       │   │   ├── preprod
+│   │   │       │   │   │   ├── values.staging.yaml -> ../values.staging.yaml
+│   │   │       │   │   │   └── values.yaml
+│   │   │       │   │   └── values.staging.yaml
+│   │   │       │   └── values.yaml
+│   │   │       └── values-js
+│   │   │           ├── config.yaml
+│   │   │           └── values.js
+│   │   └── tsconfig.json
+│   ├── wait-needs
+│   │   ├── .eslintrc.yaml
+│   │   ├── Dockerfile
+│   │   ├── bin
+│   │   │   └── wait-needs
+│   │   └── package.json
+│   └── webhook
+│       ├── .gitignore
+│       ├── .helmignore
+│       ├── Chart.yaml
+│       ├── Dockerfile
+│       ├── Dockerfile.dev
+│       ├── config.sample.yaml
+│       ├── jsconfig.json
+│       ├── nodemon.json
+│       ├── package.json
+│       ├── src
+│       │   ├── api
+│       │   │   └── v1
+│       │   │       ├── formats
+│       │   │       │   ├── clusterName.js
+│       │   │       │   ├── human-duration.js
+│       │   │       │   ├── md5.js
+│       │   │       │   ├── namespace.js
+│       │   │       │   ├── projectName.js
+│       │   │       │   └── sha1.js
+│       │   │       ├── operations
+│       │   │       │   ├── artifacts
+│       │   │       │   │   ├── download.get.js
+│       │   │       │   │   ├── download.get.spec.yaml
+│       │   │       │   │   ├── status.get.js
+│       │   │       │   │   ├── status.get.spec.yaml
+│       │   │       │   │   ├── status.post.js
+│       │   │       │   │   ├── status.post.spec.yaml
+│       │   │       │   │   ├── upload.post.js
+│       │   │       │   │   └── upload.post.spec.yaml
+│       │   │       │   ├── hooks
+│       │   │       │   │   ├── custom.post.js
+│       │   │       │   │   ├── custom.post.spec.yaml
+│       │   │       │   │   ├── github.post.js
+│       │   │       │   │   ├── github.post.spec.yaml
+│       │   │       │   │   ├── gitlab.post.js
+│       │   │       │   │   ├── gitlab.post.spec.yaml
+│       │   │       │   │   ├── user.post.js
+│       │   │       │   │   └── user.post.spec.yaml
+│       │   │       │   ├── logs
+│       │   │       │   │   ├── pipeline.get.js
+│       │   │       │   │   └── pipeline.get.spec.yaml
+│       │   │       │   └── support
+│       │   │       │       ├── debug-sentry.get.js
+│       │   │       │       ├── debug-sentry.get.spec.yaml
+│       │   │       │       ├── namespace
+│       │   │       │       │   ├── index.get.js
+│       │   │       │       │   └── index.get.spec.yaml
+│       │   │       │       ├── rollout-status.get.js
+│       │   │       │       └── rollout-status.get.spec.yaml
+│       │   │       ├── security
+│       │   │       │   ├── bearer-auth.js
+│       │   │       │   ├── gitea-hmac.js
+│       │   │       │   ├── github-hmac.js
+│       │   │       │   ├── gitlab-token.js
+│       │   │       │   └── token.js
+│       │   │       ├── services
+│       │   │       │   ├── custom.js
+│       │   │       │   ├── deleted.js
+│       │   │       │   ├── get-kubeconfig-for-ci-namespace.js
+│       │   │       │   ├── get-kubeconfig.js
+│       │   │       │   ├── get-project-tokens.js
+│       │   │       │   ├── get-project.js
+│       │   │       │   ├── get-repo-config.js
+│       │   │       │   ├── get-root-kubeconfig.js
+│       │   │       │   ├── pipeline.js
+│       │   │       │   ├── project-granted.js
+│       │   │       │   ├── pushed.js
+│       │   │       │   └── verify-hmac.js
+│       │   │       ├── spec
+│       │   │       │   ├── components
+│       │   │       │   │   ├── parameters
+│       │   │       │   │   │   └── .gitkeep
+│       │   │       │   │   ├── schemas
+│       │   │       │   │   │   ├── error.yaml
+│       │   │       │   │   │   ├── http-error.yaml
+│       │   │       │   │   │   └── text-stream.yaml
+│       │   │       │   │   └── security-schemes
+│       │   │       │   │       ├── bearer-auth.yaml
+│       │   │       │   │       ├── commit-token.yaml
+│       │   │       │   │       ├── gitea-hmac.yaml
+│       │   │       │   │       ├── github-hmac.yaml
+│       │   │       │   │       ├── gitlab-token.yaml
+│       │   │       │   │       └── token.yaml
+│       │   │       │   └── index.js
+│       │   │       └── validators
+│       │   │           ├── cluster-name.js
+│       │   │           ├── human-duration.js
+│       │   │           ├── md5.js
+│       │   │           ├── namespace.js
+│       │   │           ├── project-name.js
+│       │   │           └── sha1.js
+│       │   ├── config
+│       │   │   ├── index.js
+│       │   │   ├── load-final-config.js
+│       │   │   └── oas-uri.js
+│       │   ├── cron
+│       │   │   └── clean-artifact.js
+│       │   ├── daemon.js
+│       │   ├── index.js
+│       │   ├── k8s
+│       │   │   ├── command
+│       │   │   │   ├── job-create.js
+│       │   │   │   ├── job-delete.js
+│       │   │   │   └── job-run.js
+│       │   │   ├── resources
+│       │   │   │   ├── pipeline.job-name.js
+│       │   │   │   └── pipeline.job.js
+│       │   │   └── utils
+│       │   │       ├── kubectl.js
+│       │   │       └── rollout-status.js
+│       │   ├── plugins
+│       │   │   ├── config-reloader
+│       │   │   │   └── index.js
+│       │   │   ├── home
+│       │   │   │   └── index.js
+│       │   │   └── http-logger
+│       │   │       └── index.js
+│       │   └── server.js
+│       ├── templates
+│       │   ├── configmap.yaml
+│       │   ├── deployment.yaml
+│       │   ├── ingress.yaml
+│       │   ├── namespace.yaml
+│       │   ├── network-policy.yml
+│       │   ├── pvc.yaml
+│       │   ├── service-account.yaml
+│       │   └── service.yaml
+│       ├── tests
+│       │   ├── .eslintrc
+│       │   ├── __snapshots__
+│       │   │   └── api.v1.spec.yaml
+│       │   ├── api.test.js
+│       │   ├── sample
+│       │   │   └── awesome
+│       │   │       ├── deploy-key
+│       │   │       ├── kubeconfig
+│       │   │       └── token
+│       │   └── secrets
+│       │       └── reloadable
+│       │           └── tokens
+│       │               └── fabrique
+│       └── values.yaml
+├── plugins
+│   ├── contrib
+│   │   ├── .gitignore
+│   │   ├── .yarn
+│   │   │   ├── plugins
+│   │   │   │   └── @yarnpkg
+│   │   │   │       └── plugin-workspace-tools.cjs
+│   │   │   └── releases
+│   │   │       └── yarn-4.0.0-rc.39.cjs
+│   │   ├── .yarnrc.yml
+│   │   ├── Chart.yaml
+│   │   ├── charts
+│   │   │   ├── app
+│   │   │   │   ├── Chart.yaml
+│   │   │   │   ├── kontinuous.values.schema.json
+│   │   │   │   ├── templates
+│   │   │   │   │   ├── autoscaler.yaml
+│   │   │   │   │   ├── deployment.yaml
+│   │   │   │   │   ├── ingress-custom-headers.configmap.yaml
+│   │   │   │   │   ├── ingress.yaml
+│   │   │   │   │   ├── namespace.yaml
+│   │   │   │   │   ├── pdb.yaml
+│   │   │   │   │   ├── redirect.yaml
+│   │   │   │   │   └── service.yaml
+│   │   │   │   └── values.yaml
+│   │   │   ├── contrib-helpers
+│   │   │   │   ├── Chart.yaml
+│   │   │   │   └── templates
+│   │   │   │       ├── _anti-affinity.yaml
+│   │   │   │       ├── _ingress-host.yaml
+│   │   │   │       ├── _ingress-secret.yaml
+│   │   │   │       ├── _job.yaml
+│   │   │   │       ├── _jobs.yaml
+│   │   │   │       └── _probes.yaml
+│   │   │   ├── daemon
+│   │   │   │   ├── Chart.yaml
+│   │   │   │   ├── templates
+│   │   │   │   │   ├── autoscaler.yaml
+│   │   │   │   │   └── deployment.yaml
+│   │   │   │   └── values.yaml
+│   │   │   ├── deactivate
+│   │   │   │   ├── Chart.yaml
+│   │   │   │   └── values.yaml
+│   │   │   ├── hasura
+│   │   │   │   ├── Chart.yaml
+│   │   │   │   ├── templates
+│   │   │   │   │   ├── autoscaler.yaml
+│   │   │   │   │   ├── deployment.yaml
+│   │   │   │   │   ├── ingress.yaml
+│   │   │   │   │   └── service.yaml
+│   │   │   │   └── values.yaml
+│   │   │   ├── job
+│   │   │   │   ├── Chart.yaml
+│   │   │   │   ├── templates
+│   │   │   │   │   └── job.yaml
+│   │   │   │   └── values.yaml
+│   │   │   ├── jobs
+│   │   │   │   ├── Chart.yaml
+│   │   │   │   ├── kontinuous.values.schema.json
+│   │   │   │   ├── templates
+│   │   │   │   │   └── jobs.yaml
+│   │   │   │   └── values.yaml
+│   │   │   ├── namespace
+│   │   │   │   ├── Chart.yaml
+│   │   │   │   ├── templates
+│   │   │   │   │   ├── limits-range.yaml
+│   │   │   │   │   └── namespace.yaml
+│   │   │   │   └── values.yaml
+│   │   │   ├── output-volume
+│   │   │   │   ├── Chart.yaml
+│   │   │   │   ├── templates
+│   │   │   │   │   └── jobs-output.pvc.yaml
+│   │   │   │   └── values.yaml
+│   │   │   ├── rancher-namespace
+│   │   │   │   ├── Chart.yaml
+│   │   │   │   ├── templates
+│   │   │   │   │   ├── config.kapp.yaml
+│   │   │   │   │   ├── limits-range.yaml
+│   │   │   │   │   └── namespace.yaml
+│   │   │   │   └── values.yaml
+│   │   │   ├── redis
+│   │   │   │   ├── Chart.yaml
+│   │   │   │   ├── templates
+│   │   │   │   │   ├── deployment.yaml
+│   │   │   │   │   └── service.yaml
+│   │   │   │   └── values.yaml
+│   │   │   └── security-policies
+│   │   │       ├── Chart.yaml
+│   │   │       ├── templates
+│   │   │       │   ├── network-policy.yml
+│   │   │       │   ├── resource-quota.yaml
+│   │   │       │   └── service-account.yaml
+│   │   │       └── values.yaml
+│   │   ├── config.schema.json
+│   │   ├── debug-manifests
+│   │   │   ├── 01-resources-tree-infos.js
+│   │   │   ├── 02-dependencies-tree-infos-java.js.bak
+│   │   │   ├── 02-dependencies-tree-infos.js
+│   │   │   ├── 03-stern-show-command.js
+│   │   │   └── tests
+│   │   │       ├── __snapshots__
+│   │   │       │   └── resources-tree-infos.test.js.snap
+│   │   │       ├── resources-tree-infos.test.js
+│   │   │       └── samples
+│   │   │           ├── egapro.yaml
+│   │   │           ├── template.yaml
+│   │   │           └── www.yaml
+│   │   ├── deploy-sidecars
+│   │   │   ├── failfast.js
+│   │   │   ├── progressing.js
+│   │   │   └── stern.js
+│   │   ├── deploy-with
+│   │   │   ├── helm.js
+│   │   │   ├── kapp.js
+│   │   │   ├── kubectl-dependency-tree.js
+│   │   │   └── kubectl.js
+│   │   ├── jobs
+│   │   │   ├── build
+│   │   │   │   ├── use.schema.json
+│   │   │   │   └── use.yaml
+│   │   │   ├── build-kaniko
+│   │   │   │   ├── infos.md
+│   │   │   │   ├── use.schema.json
+│   │   │   │   └── use.yaml
+│   │   │   ├── cnpg-create-secrets
+│   │   │   │   ├── create-secrets.sh
+│   │   │   │   └── use.yaml
+│   │   │   ├── create-db
+│   │   │   │   ├── create-secret.sh
+│   │   │   │   ├── ensure-db.sh
+│   │   │   │   ├── use.schema.json
+│   │   │   │   └── use.yaml
+│   │   │   ├── deactivate
+│   │   │   │   ├── use.schema.json
+│   │   │   │   └── use.yaml
+│   │   │   ├── drop-db
+│   │   │   │   ├── drop-db.sh
+│   │   │   │   ├── use.schema.json
+│   │   │   │   └── use.yaml
+│   │   │   ├── pg-restore
+│   │   │   │   ├── restore-db.sh
+│   │   │   │   ├── use.schema.json
+│   │   │   │   └── use.yaml
+│   │   │   ├── psql
+│   │   │   │   ├── psql.sh
+│   │   │   │   ├── use.schema.json
+│   │   │   │   └── use.yaml
+│   │   │   ├── seed-db
+│   │   │   │   ├── seed-db.sh
+│   │   │   │   ├── use.schema.json
+│   │   │   │   └── use.yaml
+│   │   │   └── trigger-cronjob
+│   │   │       ├── use.schema.json
+│   │   │       └── use.yaml
+│   │   ├── kontinuous.yaml
+│   │   ├── lib
+│   │   │   ├── get-chart-name-top-parts.js
+│   │   │   ├── get-needs-dep-name.js
+│   │   │   ├── get-needs-deps.js
+│   │   │   ├── kind-is-waitable.js
+│   │   │   ├── kubernetes-resource-helpers.js
+│   │   │   ├── persist-convention.js
+│   │   │   └── rollout-status-manifests.js
+│   │   ├── package.json
+│   │   ├── patches
+│   │   │   ├── 00.0-values-patches.js
+│   │   │   ├── 00.1-labels.js
+│   │   │   ├── 00.2-annotations.js
+│   │   │   ├── 00.3-force-restart-optout.js
+│   │   │   ├── 01-namespace.js
+│   │   │   ├── 02-kapp.js
+│   │   │   ├── 03-dns-truncate.js
+│   │   │   ├── 04-on-changed.js
+│   │   │   ├── 05.0-needs.js
+│   │   │   ├── 05.1-needs-using-argocd-sync-waves.js
+│   │   │   ├── 05.1-needs-using-initcontainers.js
+│   │   │   ├── 05.1-needs-using-kapp.js
+│   │   │   ├── 06-filter-disable-kapp.js
+│   │   │   ├── 06-filter-residual-meta-values.js
+│   │   │   ├── 06-helm.js
+│   │   │   ├── 10-sort.js
+│   │   │   ├── 30-janitor.js
+│   │   │   ├── 40-add-jobs-affinity-and-tolerations.js
+│   │   │   ├── 60-private-images.js
+│   │   │   ├── 70-zero-downtime-readiness.js
+│   │   │   ├── 80-update-manifests-with-preprod-resources.js
+│   │   │   ├── certs.js
+│   │   │   ├── log.js
+│   │   │   ├── rancher-project-id.js
+│   │   │   ├── reloader.js
+│   │   │   └── tests
+│   │   │       ├── dns-truncate.test.js
+│   │   │       └── janitor.test.js
+│   │   ├── post-deploy
+│   │   │   └── notify-mattermost.js
+│   │   ├── pre-deploy
+│   │   │   ├── 01-namespaces.js
+│   │   │   ├── 01-nsplease-namespaces.js
+│   │   │   ├── 01-rancher-namespaces.js
+│   │   │   ├── 02-import-secrets.js
+│   │   │   ├── 03.0-clear.js
+│   │   │   ├── 03.1-cleaner.js
+│   │   │   ├── 03.2-clean-orphan.js
+│   │   │   └── 03.3-clean-failed.js
+│   │   ├── validators
+│   │   │   ├── dns-limit.js
+│   │   │   ├── kubeconform.js
+│   │   │   ├── needs-kapp.js
+│   │   │   ├── needs-require.js
+│   │   │   ├── no-plain-secrets.js
+│   │   │   ├── qos.js
+│   │   │   ├── rancher-project-id.js
+│   │   │   ├── resources-uniqness.js
+│   │   │   └── sealed-secrets.js
+│   │   ├── values-compilers
+│   │   │   ├── 00-clean-x-yaml-anchors.js
+│   │   │   ├── 01-unfold-charts.js
+│   │   │   ├── 03-resolve-alias-of.js
+│   │   │   ├── 04-implicit-enabled.js
+│   │   │   ├── 05-jobs.js
+│   │   │   ├── 06-global-defaults.js
+│   │   │   ├── 09-maildev.js
+│   │   │   ├── 09-pgadmin.js
+│   │   │   ├── 10-tpl-meta-values.js
+│   │   │   ├── 11-get-git-default-branch.js
+│   │   │   ├── 20-enable-hpa-when-greater-than1replica.js
+│   │   │   ├── helpers
+│   │   │   │   └── extract-components.js
+│   │   │   └── outputs.js.bak
+│   │   ├── values.yaml
+│   │   └── yarn.lock
+│   └── fabrique
+│       ├── .gitignore
+│       ├── .yarn
+│       │   ├── plugins
+│       │   │   └── @yarnpkg
+│       │   │       └── plugin-workspace-tools.cjs
+│       │   └── releases
+│       │       └── yarn-4.0.0-rc.39.cjs
+│       ├── .yarnrc.yml
+│       ├── Chart.yaml
+│       ├── charts
+│       │   ├── pg
+│       │   │   ├── Chart.yaml
+│       │   │   ├── kontinuous.values.schema.json
+│       │   │   ├── templates
+│       │   │   │   └── allow-operator.netpol.yaml
+│       │   │   └── values.yaml
+│       │   └── pgweb
+│       │       ├── Chart.yaml
+│       │       └── values.yaml
+│       ├── config.schema.json
+│       ├── extends
+│       │   ├── buildkit-service.yaml
+│       │   ├── deploy-with-kapp.yaml
+│       │   ├── deploy-with-kubectl-dependency-tree.yaml
+│       │   ├── deploy-with-kubectl.yaml
+│       │   ├── nsplease.yaml
+│       │   ├── ovh.yaml
+│       │   └── private-mode.yaml
+│       ├── kontinuous.yaml
+│       ├── package.json
+│       ├── patches
+│       │   ├── 01-set-undefined-storage-classname-cnpg.js
+│       │   ├── 02-set-undefined-storage-classname.js
+│       │   ├── 03-infra-resources.js
+│       │   └── 04-oblik.js
+│       ├── pre-deploy
+│       │   └── 01-debug-links.js
+│       ├── values-compilers
+│       │   ├── global-defaults.js
+│       │   ├── index.js
+│       │   └── socialgouv-autodevops.js
+│       ├── values.yaml
+│       └── yarn.lock
+└── yarn.lock
+324 directories, 929 files
