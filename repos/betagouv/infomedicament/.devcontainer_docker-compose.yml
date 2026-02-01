@@ -1,0 +1,60 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    volumes:
+      - ../..:/workspaces:cached
+
+    # Overrides default command so things don't shut down after the process ends.
+    command: sleep infinity
+
+    networks:
+      - dev-network
+
+    env_file:
+      - ../.env.local
+
+  # We use PostgreSQL as the database for the application data.
+  db-postgres:
+    image: postgres:15
+    restart: on-failure
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+
+    # Add "forwardPorts": ["5432"] to **devcontainer.json** to forward PostgreSQL locally.
+    # (Adding the "ports" property to this file will not forward from a Codespace.)
+    ports:
+      - "5432:5432"
+    networks:
+      - dev-network
+
+
+  # This is the container for the legacy BDPM MySQL database.
+  db-mysql:
+    image: mysql:9
+    restart: on-failure
+    volumes:
+      - mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_DATABASE: mysql
+
+    # Add "forwardPorts": ["3306"] to **devcontainer.json** to forward MySQL locally.
+    # (Adding the "ports" property to this file will not forward from a Codespace.)
+    ports:
+      - "3306:3306"
+    networks:
+      - dev-network
+
+networks:
+  dev-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
+  postgres-data:
