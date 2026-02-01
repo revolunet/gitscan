@@ -1,0 +1,67 @@
+[tool.poetry]
+name = "srdt-analysis"
+version = "0.1.0"
+description = ""
+authors = ["maxgfr <25312957+maxgfr@users.noreply.github.com>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "~3.12"
+asyncpg = "^0.30.0"
+python-dotenv = "^1.0.1"
+httpx = "^0.27.2"
+pandas = "^2.2.3"
+langchain-text-splitters = "^0.3.2"
+detect-secrets = "^1.5.0"
+pre-commit = "^4.0.1"
+lxml = "^5.3.0"
+fastapi = "^0.115.6"
+uvicorn = "^0.34.0"
+pydantic = "^2.10.4"
+pyarrow = "^20.0.0"
+tiktoken = "^0.8.0"
+sentry-sdk = {extras = ["fastapi"], version = "^2.30.0"}
+spacy = "^3.7"
+fr_core_news_md = {url = "https://github.com/explosion/spacy-models/releases/download/fr_core_news_md-3.8.0/fr_core_news_md-3.8.0.tar.gz"}
+elasticsearch = "^8"
+
+[tool.poetry.group.dev.dependencies]
+pyright = "^1.1.389"
+ruff = "^0.8.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+ingest = "srdt_analysis.scripts.ingest:start"
+api = "srdt_analysis.api.launcher:start"
+
+[tool.ruff]
+exclude = [
+    ".ruff_cache",
+    "__pycache__",
+]
+line-length = 88
+indent-width = 4
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]
+extend-select = ["I"]
+ignore = []
+fixable = ["ALL"]
+unfixable = []
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+docstring-code-format = false
+docstring-code-line-length = "dynamic"
+
+[tool.pyright]
+include = ["srdt_analysis"]
+exclude = ["**/__pycache__"]
