@@ -1,0 +1,17 @@
+version: "3"
+services:
+    db:
+        image: postgres:15
+        environment:
+            POSTGRES_USER: matomo
+            POSTGRES_PASSWORD: matomo
+            TZ: 'GMT+2'
+        ports:
+            - "5433:5432"
+    metabase:
+        image: stephaneturquay/metabase-arm64 # or metabase/metabase:latest
+        environment:
+            MB_DB_CONNECTION_URI: "postgresql://matomo:matomo@db:5432/postgres"
+        ports:
+            - "3000:3000"
+   
