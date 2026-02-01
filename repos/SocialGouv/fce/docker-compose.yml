@@ -1,0 +1,61 @@
+version: "3"
+
+services:
+  db:
+    image: postgres:13.2
+    ports:
+      - 5435:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data:delegated
+    command: postgres -c shared_preload_libraries=pg_stat_statements -c
+      pg_stat_statements.track=all
+    environment:
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: fce
+  db-strapi:
+    image: postgres:13.2
+    ports:
+      - 5456:5432
+    volumes:
+      - pgdata3:/var/lib/postgresql/data:delegated
+    command: postgres -c shared_preload_libraries=pg_stat_statements -c
+      pg_stat_statements.track=all
+    environment:
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: strapi
+  mail:
+    image: occitech/alpine-mailhog
+    ports:
+      - 1025:1025
+      - 8025:8025
+      
+  storage:
+    image: mcr.microsoft.com/azure-storage/azurite
+    ports:
+      - 10000:10000
+      - 10001:10001
+    volumes:
+      - azuritedata:/data
+
+  elastic:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.15.0
+    ports:
+      - 9200:9200
+      - 9300:9300
+    environment:
+      discovery.type: single-node
+      xpack.security.enabled: "false"
+      ES_JAVA_OPTS: -Xms2g -Xmx2g
+    volumes:
+      - elasticdata:/usr/share/elasticsearch/data
+
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+volumes:
+  pgdata:
+  pgdata2:
+  pgdata3:
+  elasticdata:
+  azuritedata:
