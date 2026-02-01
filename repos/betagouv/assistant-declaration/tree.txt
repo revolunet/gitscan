@@ -1,0 +1,774 @@
+.
+├── .buildpacks
+├── .ci.env.model
+├── .editorconfig
+├── .env.jest.model
+├── .env.model
+├── .env.test
+├── .eslintrc.js
+├── .gitattributes
+├── .github
+│   ├── ISSUE_TEMPLATE
+│   │   ├── bug_report.md
+│   │   └── feature_request.md
+│   ├── PULL_REQUEST_TEMPLATE.md
+│   ├── act
+│   │   ├── .env
+│   │   └── event.json
+│   └── workflows
+│       └── ci.yml
+├── .gitignore
+├── .npmrc
+├── .nvmrc
+├── .prettierignore
+├── .prettierrc.js
+├── .sentryclirc.model
+├── .slugignore
+├── .storybook
+│   ├── MockProvider.tsx
+│   ├── ThemedDocsContainer.tsx
+│   ├── WithDocumentRenderer.tsx
+│   ├── WithEmailClientOverviewFactory.tsx
+│   ├── WithEmailRenderer.tsx
+│   ├── auth.ts
+│   ├── document.tsx
+│   ├── email.module.scss
+│   ├── email.tsx
+│   ├── helpers.tsx
+│   ├── layout.scss
+│   ├── main.ts
+│   ├── manager-head.html
+│   ├── manager.ts
+│   ├── preview-head.html
+│   ├── preview.tsx
+│   ├── test-runner.ts
+│   └── testing.tsx
+├── .tool-versions
+├── .vscode
+│   ├── extensions.json
+│   ├── i18n-ally-reviews.yml
+│   ├── launch.json
+│   └── settings.json
+├── CODE_OF_CONDUCT.md
+├── LICENSE
+├── Procfile
+├── README.md
+├── TECHNICAL_ARCHITECTURE_DOCUMENT.md
+├── cron.json
+├── docker-compose.yaml
+├── format-legal-documents.sh
+├── instrumentation-client.ts
+├── instrumentation-edge.ts
+├── instrumentation-node.ts
+├── instrumentation.ts
+├── jest.config.ts
+├── next-env.d.ts
+├── next-i18next.config.js
+├── next.config.ts
+├── package-lock.json
+├── package.json
+├── prepare-standalone.sh
+├── public
+│   ├── assets
+│   │   ├── images
+│   │   │   ├── declaration
+│   │   │   │   ├── sacd_logo.png
+│   │   │   │   └── sacem_logo.png
+│   │   │   └── logo.png
+│   │   └── templates
+│   │       └── declaration
+│   │           ├── astp.pdf
+│   │           ├── sacd.pdf
+│   │           └── sacem.pdf
+│   ├── hero.png
+│   └── mockServiceWorker.js
+├── scalingo.json
+├── scripts
+│   ├── generate-hero-image.py
+│   └── legal-documents
+│       ├── pandoc-dsfr-adapter.lua
+│       └── pandoc-html-template.html
+├── services_diagram.drawio.svg
+├── src
+│   ├── @types
+│   │   ├── global.d.ts
+│   │   ├── i18next.d.ts
+│   │   ├── next-auth-jwt.ts
+│   │   └── next-auth.d.ts
+│   ├── app
+│   │   ├── (private)
+│   │   │   ├── PrivateLayout.stories.tsx
+│   │   │   ├── PrivateLayout.tsx
+│   │   │   ├── account
+│   │   │   │   └── settings
+│   │   │   │       ├── AccountSettingsPage.stories.tsx
+│   │   │   │       ├── AccountSettingsPage.tsx
+│   │   │   │       ├── AccountSettingsPageContext.tsx
+│   │   │   │       ├── ChangePasswordForm.stories.tsx
+│   │   │   │       ├── ChangePasswordForm.tsx
+│   │   │   │       ├── EditProfileForm.stories.tsx
+│   │   │   │       ├── EditProfileForm.tsx
+│   │   │   │       └── page.tsx
+│   │   │   ├── dashboard
+│   │   │   │   ├── DashboardPage.stories.tsx
+│   │   │   │   ├── DashboardPage.tsx
+│   │   │   │   ├── organization
+│   │   │   │   │   ├── AddEventSerieForm.stories.tsx
+│   │   │   │   │   ├── AddEventSerieForm.tsx
+│   │   │   │   │   ├── UpdateEventSerieForm.stories.tsx
+│   │   │   │   │   ├── UpdateEventSerieForm.tsx
+│   │   │   │   │   ├── [organizationId]
+│   │   │   │   │   │   ├── OrganizationPage.stories.tsx
+│   │   │   │   │   │   ├── OrganizationPage.tsx
+│   │   │   │   │   │   ├── OrganizationPageContext.tsx
+│   │   │   │   │   │   ├── page.tsx
+│   │   │   │   │   │   ├── serie
+│   │   │   │   │   │   │   └── [eventSerieId]
+│   │   │   │   │   │   │       └── declaration
+│   │   │   │   │   │   │           ├── DeclarationPage.module.scss
+│   │   │   │   │   │   │           ├── DeclarationPage.stories.tsx
+│   │   │   │   │   │   │           ├── DeclarationPage.tsx
+│   │   │   │   │   │   │           ├── DeclarationPageContext.tsx
+│   │   │   │   │   │   │           └── page.tsx
+│   │   │   │   │   │   ├── ticketing-system
+│   │   │   │   │   │   │   └── connect
+│   │   │   │   │   │   │       ├── ConnectTicketingSystemForm.stories.tsx
+│   │   │   │   │   │   │       ├── ConnectTicketingSystemForm.tsx
+│   │   │   │   │   │   │       ├── TicketingSystemConnectionPage.module.scss
+│   │   │   │   │   │   │       ├── TicketingSystemConnectionPage.stories.tsx
+│   │   │   │   │   │   │       ├── TicketingSystemConnectionPage.tsx
+│   │   │   │   │   │   │       ├── TicketingSystemConnectionPageContext.tsx
+│   │   │   │   │   │   │       └── page.tsx
+│   │   │   │   │   │   └── ticketing-systems
+│   │   │   │   │   │       ├── TicketingSystemListPage.stories.tsx
+│   │   │   │   │   │       ├── TicketingSystemListPage.tsx
+│   │   │   │   │   │       ├── UpdateTicketingSystemForm.stories.tsx
+│   │   │   │   │   │       ├── UpdateTicketingSystemForm.tsx
+│   │   │   │   │   │       └── page.tsx
+│   │   │   │   │   └── create
+│   │   │   │   │       ├── CreateOrganizationForm.stories.tsx
+│   │   │   │   │       ├── CreateOrganizationForm.tsx
+│   │   │   │   │       ├── OrganizationCreationPage.stories.tsx
+│   │   │   │   │       ├── OrganizationCreationPage.tsx
+│   │   │   │   │       ├── OrganizationCreationPageContext.tsx
+│   │   │   │   │       └── page.tsx
+│   │   │   │   └── page.tsx
+│   │   │   ├── error.tsx
+│   │   │   └── layout.tsx
+│   │   ├── (public)
+│   │   │   ├── (compliance)
+│   │   │   │   ├── accessibility
+│   │   │   │   │   ├── AccessibilityPage.stories.tsx
+│   │   │   │   │   ├── AccessibilityPage.tsx
+│   │   │   │   │   ├── generated-statement.html
+│   │   │   │   │   └── page.tsx
+│   │   │   │   ├── impact
+│   │   │   │   │   ├── ImpactPage.stories.tsx
+│   │   │   │   │   ├── ImpactPage.tsx
+│   │   │   │   │   └── page.tsx
+│   │   │   │   ├── legal-notice
+│   │   │   │   │   ├── LegalNoticePage.stories.tsx
+│   │   │   │   │   ├── LegalNoticePage.tsx
+│   │   │   │   │   ├── content.transformed.html
+│   │   │   │   │   └── page.tsx
+│   │   │   │   ├── privacy-policy
+│   │   │   │   │   ├── PrivacyPolicyPage.stories.tsx
+│   │   │   │   │   ├── PrivacyPolicyPage.tsx
+│   │   │   │   │   ├── content.transformed.html
+│   │   │   │   │   └── page.tsx
+│   │   │   │   └── terms-of-use
+│   │   │   │       ├── TermsOfUsePage.stories.tsx
+│   │   │   │       ├── TermsOfUsePage.tsx
+│   │   │   │       ├── content.transformed.html
+│   │   │   │       └── page.tsx
+│   │   │   ├── PublicLayout.module.scss
+│   │   │   ├── PublicLayout.stories.tsx
+│   │   │   ├── PublicLayout.tsx
+│   │   │   ├── about
+│   │   │   │   ├── AboutPage.stories.tsx
+│   │   │   │   ├── AboutPage.tsx
+│   │   │   │   ├── Introduction.module.scss
+│   │   │   │   ├── Introduction.stories.tsx
+│   │   │   │   ├── Introduction.tsx
+│   │   │   │   ├── KeyReasons.stories.tsx
+│   │   │   │   ├── KeyReasons.tsx
+│   │   │   │   ├── Partners.stories.tsx
+│   │   │   │   ├── Partners.tsx
+│   │   │   │   ├── QuickLinks.stories.tsx
+│   │   │   │   ├── QuickLinks.tsx
+│   │   │   │   ├── Widget.stories.tsx
+│   │   │   │   ├── Widget.tsx
+│   │   │   │   └── page.tsx
+│   │   │   ├── docs
+│   │   │   │   ├── DocsLayout.stories.tsx
+│   │   │   │   ├── DocsLayout.tsx
+│   │   │   │   ├── billetweb-connection
+│   │   │   │   │   ├── content.mdx
+│   │   │   │   │   ├── content.stories.tsx
+│   │   │   │   │   └── page.tsx
+│   │   │   │   ├── common
+│   │   │   │   │   └── ticketing-system-connection-support.mdx
+│   │   │   │   ├── helloasso-connection
+│   │   │   │   │   ├── content.mdx
+│   │   │   │   │   ├── content.stories.tsx
+│   │   │   │   │   └── page.tsx
+│   │   │   │   ├── hljs-dark.scss
+│   │   │   │   ├── hljs-light.scss
+│   │   │   │   ├── layout.scss
+│   │   │   │   ├── layout.tsx
+│   │   │   │   ├── mapado-connection
+│   │   │   │   │   ├── content.mdx
+│   │   │   │   │   ├── content.stories.tsx
+│   │   │   │   │   └── page.tsx
+│   │   │   │   ├── shotgun-connection
+│   │   │   │   │   ├── content.mdx
+│   │   │   │   │   ├── content.stories.tsx
+│   │   │   │   │   └── page.tsx
+│   │   │   │   ├── soticket-connection
+│   │   │   │   │   ├── content.mdx
+│   │   │   │   │   ├── content.stories.tsx
+│   │   │   │   │   └── page.tsx
+│   │   │   │   ├── supersoniks-connection
+│   │   │   │   │   ├── content.mdx
+│   │   │   │   │   ├── content.stories.tsx
+│   │   │   │   │   └── page.tsx
+│   │   │   │   └── ticketing-api-usage
+│   │   │   │       ├── content.mdx
+│   │   │   │       ├── content.stories.tsx
+│   │   │   │       └── page.tsx
+│   │   │   ├── frequently-asked-questions
+│   │   │   │   ├── FrequentlyAskedQuestions.stories.tsx
+│   │   │   │   ├── FrequentlyAskedQuestions.tsx
+│   │   │   │   ├── FrequentlyAskedQuestionsPage.stories.tsx
+│   │   │   │   ├── FrequentlyAskedQuestionsPage.tsx
+│   │   │   │   └── page.tsx
+│   │   │   ├── layout.scss
+│   │   │   └── layout.tsx
+│   │   ├── (visitor-only)
+│   │   │   ├── VisitorOnlyLayout.stories.tsx
+│   │   │   ├── VisitorOnlyLayout.tsx
+│   │   │   ├── auth
+│   │   │   │   ├── password
+│   │   │   │   │   ├── reset
+│   │   │   │   │   │   ├── ResetPasswordForm.stories.tsx
+│   │   │   │   │   │   ├── ResetPasswordForm.tsx
+│   │   │   │   │   │   ├── ResetPasswordPage.stories.tsx
+│   │   │   │   │   │   ├── ResetPasswordPage.tsx
+│   │   │   │   │   │   ├── ResetPasswordPageContext.tsx
+│   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   └── retrieve
+│   │   │   │   │       ├── ForgottenPasswordPage.stories.tsx
+│   │   │   │   │       ├── ForgottenPasswordPage.tsx
+│   │   │   │   │       ├── ForgottenPasswordPageContext.tsx
+│   │   │   │   │       ├── RetrievePasswordForm.stories.tsx
+│   │   │   │   │       ├── RetrievePasswordForm.tsx
+│   │   │   │   │       └── page.tsx
+│   │   │   │   ├── sign-in
+│   │   │   │   │   ├── SignInForm.stories.tsx
+│   │   │   │   │   ├── SignInForm.tsx
+│   │   │   │   │   ├── SignInPage.module.scss
+│   │   │   │   │   ├── SignInPage.stories.tsx
+│   │   │   │   │   ├── SignInPage.tsx
+│   │   │   │   │   ├── SignInPageContext.tsx
+│   │   │   │   │   └── page.tsx
+│   │   │   │   └── sign-up
+│   │   │   │       ├── SignUpForm.stories.tsx
+│   │   │   │       ├── SignUpForm.tsx
+│   │   │   │       ├── SignUpPage.module.scss
+│   │   │   │       ├── SignUpPage.stories.tsx
+│   │   │   │       ├── SignUpPage.tsx
+│   │   │   │       ├── SignUpPageContext.tsx
+│   │   │   │       └── page.tsx
+│   │   │   └── layout.tsx
+│   │   ├── ErrorLayout.tsx
+│   │   ├── Matomo.tsx
+│   │   ├── MuiDsfrThemeProvider.tsx
+│   │   ├── Providers.tsx
+│   │   ├── ProvidersContext.tsx
+│   │   ├── SentryClientProvider.tsx
+│   │   ├── ServerLayout.tsx
+│   │   ├── error.tsx
+│   │   ├── global-error.tsx
+│   │   ├── layout.scss
+│   │   ├── layout.tsx
+│   │   ├── not-found.tsx
+│   │   └── workarounds.scss
+│   ├── assets
+│   │   ├── fonts
+│   │   │   └── index.css
+│   │   └── images
+│   │       ├── declaration
+│   │       │   └── sending.svg
+│   │       ├── docs
+│   │       │   └── connection
+│   │       │       ├── billetweb
+│   │       │       │   ├── api-screen-with-token.png
+│   │       │       │   ├── api-screen.png
+│   │       │       │   └── new-token-form.png
+│   │       │       ├── helloasso
+│   │       │       │   └── api-screen.png
+│   │       │       ├── mapado
+│   │       │       │   ├── add-collaborator-button.png
+│   │       │       │   ├── add-collaborator-form.png
+│   │       │       │   ├── manage-tokens-button.png
+│   │       │       │   ├── manage-tokens-screen.png
+│   │       │       │   ├── rights-choices-1.png
+│   │       │       │   ├── rights-choices-2.png
+│   │       │       │   ├── rights-choices-3.png
+│   │       │       │   └── rights-screen.png
+│   │       │       └── shotgun
+│   │       │           ├── integrations-card.png
+│   │       │           ├── integrations-menu.png
+│   │       │           ├── parameters-menu.png
+│   │       │           └── token-screen.png
+│   │       ├── hero.svg
+│   │       ├── home
+│   │       │   ├── clock-is-ticking.svg
+│   │       │   ├── computer.svg
+│   │       │   ├── delivery.svg
+│   │       │   └── gesture.svg
+│   │       ├── partners
+│   │       │   ├── billetweb.png
+│   │       │   ├── helloasso.png
+│   │       │   ├── mapado.png
+│   │       │   ├── shotgun.png
+│   │       │   ├── soticket.png
+│   │       │   └── supersoniks.png
+│   │       ├── sign-in
+│   │       │   └── assistant.svg
+│   │       └── ticketing
+│   │           ├── billetweb.jpg
+│   │           ├── helloasso.jpg
+│   │           ├── mapado.jpg
+│   │           ├── shotgun.jpg
+│   │           ├── soticket.jpg
+│   │           └── supersoniks.jpg
+│   ├── cli
+│   │   ├── index.ts
+│   │   └── program.ts
+│   ├── client
+│   │   ├── HydrateClient.tsx
+│   │   ├── TrpcClientProvider.tsx
+│   │   ├── api-gouv-fr
+│   │   │   └── index.ts
+│   │   ├── helloasso
+│   │   │   ├── client
+│   │   │   │   ├── client.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── types.ts
+│   │   │   │   └── utils.ts
+│   │   │   ├── client.gen.ts
+│   │   │   ├── core
+│   │   │   │   ├── auth.ts
+│   │   │   │   ├── bodySerializer.ts
+│   │   │   │   ├── params.ts
+│   │   │   │   ├── pathSerializer.ts
+│   │   │   │   └── types.ts
+│   │   │   ├── index.ts
+│   │   │   ├── sdk.gen.ts
+│   │   │   └── types.gen.ts
+│   │   ├── helloasso.config.ts
+│   │   ├── mapado
+│   │   │   ├── client.gen.ts
+│   │   │   ├── index.ts
+│   │   │   ├── sdk.gen.ts
+│   │   │   └── types.gen.ts
+│   │   ├── national-address-base
+│   │   │   └── index.ts
+│   │   ├── supersoniks
+│   │   │   ├── client.gen.ts
+│   │   │   ├── index.ts
+│   │   │   ├── sdk.gen.ts
+│   │   │   └── types.gen.ts
+│   │   └── trpcClient.tsx
+│   ├── common.ts
+│   ├── components
+│   │   ├── AddressField.stories.tsx
+│   │   ├── AddressField.tsx
+│   │   ├── AmountInput.tsx
+│   │   ├── BaseForm.tsx
+│   │   ├── Button.module.scss
+│   │   ├── Button.stories.tsx
+│   │   ├── Button.tsx
+│   │   ├── CaptionedImage.tsx
+│   │   ├── CompanyField.stories.tsx
+│   │   ├── CompanyField.tsx
+│   │   ├── CompanyHeadquartersField.stories.tsx
+│   │   ├── CompanyHeadquartersField.tsx
+│   │   ├── ConfirmationDialog.stories.tsx
+│   │   ├── ConfirmationDialog.tsx
+│   │   ├── ContentWrapper.tsx
+│   │   ├── CustomDsfrNav.tsx
+│   │   ├── ErrorAlert.stories.tsx
+│   │   ├── ErrorAlert.tsx
+│   │   ├── ErrorDialog.stories.tsx
+│   │   ├── ErrorDialog.tsx
+│   │   ├── ErrorPage.stories.tsx
+│   │   ├── ErrorPage.tsx
+│   │   ├── EventFieldset.module.scss
+│   │   ├── EventFieldset.stories.tsx
+│   │   ├── EventFieldset.tsx
+│   │   ├── EventSerieCard.stories.tsx
+│   │   ├── EventSerieCard.tsx
+│   │   ├── EventSerieCardContext.tsx
+│   │   ├── EventsFieldsets.tsx
+│   │   ├── FileIcon.tsx
+│   │   ├── FileList.stories.tsx
+│   │   ├── FileList.tsx
+│   │   ├── FileListItem.stories.tsx
+│   │   ├── FileListItem.tsx
+│   │   ├── FlashMessage.stories.tsx
+│   │   ├── FlashMessage.tsx
+│   │   ├── Header.tsx
+│   │   ├── HeaderHelpItem.stories.tsx
+│   │   ├── HeaderHelpItem.tsx
+│   │   ├── HeaderUserItem.stories.tsx
+│   │   ├── HeaderUserItem.tsx
+│   │   ├── IntroductionContainer.stories.tsx
+│   │   ├── IntroductionContainer.tsx
+│   │   ├── LoadingArea.module.scss
+│   │   ├── LoadingArea.stories.tsx
+│   │   ├── LoadingArea.tsx
+│   │   ├── MainNavigation.tsx
+│   │   ├── OfficialHeadquartersIdField.tsx
+│   │   ├── OfficialIdField.tsx
+│   │   ├── PasswordMutationInput.stories.tsx
+│   │   ├── PasswordMutationInput.tsx
+│   │   ├── SacdIdField.tsx
+│   │   ├── SacemIdField.tsx
+│   │   ├── TicketingSystemCard.stories.tsx
+│   │   ├── TicketingSystemCard.tsx
+│   │   ├── TicketingSystemCardContext.tsx
+│   │   ├── documents
+│   │   │   ├── layouts
+│   │   │   │   ├── PageLayout.tsx
+│   │   │   │   ├── StandardLayout.stories.tsx
+│   │   │   │   ├── StandardLayout.tsx
+│   │   │   │   └── standard.ts
+│   │   │   ├── partials
+│   │   │   │   └── .gitkeep
+│   │   │   └── templates
+│   │   │       ├── SacemDeclaration.stories.tsx
+│   │   │       └── SacemDeclaration.tsx
+│   │   ├── emails
+│   │   │   ├── layouts
+│   │   │   │   ├── Standard.tsx
+│   │   │   │   ├── StorybookRenderer.tsx
+│   │   │   │   ├── standard.email.scss
+│   │   │   │   ├── standard.partial.scss
+│   │   │   │   ├── standard.stories.tsx
+│   │   │   │   └── standard.storybook.scss
+│   │   │   ├── partials
+│   │   │   │   └── .gitkeep
+│   │   │   └── templates
+│   │   │       ├── DeclarationAttachmentsToSacdAgency.stories.tsx
+│   │   │       ├── DeclarationAttachmentsToSacdAgency.tsx
+│   │   │       ├── DeclarationToSacemAgency.stories.tsx
+│   │   │       ├── DeclarationToSacemAgency.tsx
+│   │   │       ├── NewPasswordRequest.stories.tsx
+│   │   │       ├── NewPasswordRequest.tsx
+│   │   │       ├── PasswordChanged.stories.tsx
+│   │   │       ├── PasswordChanged.tsx
+│   │   │       ├── PasswordReset.stories.tsx
+│   │   │       ├── PasswordReset.tsx
+│   │   │       ├── SignUpConfirmation.stories.tsx
+│   │   │       ├── SignUpConfirmation.tsx
+│   │   │       ├── UserDeleted.stories.tsx
+│   │   │       ├── UserDeleted.tsx
+│   │   │       ├── WelcomeOrganizationCollaborator.stories.tsx
+│   │   │       ├── WelcomeOrganizationCollaborator.tsx
+│   │   │       └── common.ts
+│   │   ├── live-chat
+│   │   │   ├── LiveChat.stories.tsx
+│   │   │   ├── LiveChatContext.ts
+│   │   │   ├── LiveChatProvider.tsx
+│   │   │   └── useLiveChat.tsx
+│   │   ├── modal
+│   │   │   ├── ModalContext.ts
+│   │   │   ├── ModalProvider.tsx
+│   │   │   └── useModal.tsx
+│   │   ├── navigation
+│   │   │   └── useConfirmationIfUnsavedChange.tsx
+│   │   ├── uploader
+│   │   │   ├── Uploader.stories.tsx
+│   │   │   ├── Uploader.tsx
+│   │   │   ├── UploaderContext.tsx
+│   │   │   ├── UploaderFileList.stories.tsx
+│   │   │   ├── UploaderFileList.tsx
+│   │   │   ├── UploaderFileListItem.stories.tsx
+│   │   │   ├── UploaderFileListItem.tsx
+│   │   │   ├── drag-drop.scss
+│   │   │   ├── types.d.ts
+│   │   │   └── upload-icon.svg
+│   │   └── user-interface-session
+│   │       ├── UserInterfaceSessionContext.ts
+│   │       ├── UserInterfaceSessionProvider.tsx
+│   │       └── useUserInterfaceSession.tsx
+│   ├── core
+│   │   ├── declaration
+│   │   │   ├── format.ts
+│   │   │   ├── sacd.spec.ts
+│   │   │   └── sacd.ts
+│   │   ├── declaration.spec.ts
+│   │   ├── declaration.ts
+│   │   ├── sacd.ts
+│   │   ├── sacem.ts
+│   │   └── ticketing
+│   │       ├── billetweb.spec.ts
+│   │       ├── billetweb.ts
+│   │       ├── common.ts
+│   │       ├── helloasso.spec.ts
+│   │       ├── helloasso.ts
+│   │       ├── instance.ts
+│   │       ├── mapado.spec.ts
+│   │       ├── mapado.ts
+│   │       ├── shotgun.spec.ts
+│   │       ├── shotgun.ts
+│   │       ├── soticket.spec.ts
+│   │       ├── soticket.ts
+│   │       ├── supersoniks.spec.ts
+│   │       ├── supersoniks.ts
+│   │       └── synchronize.ts
+│   ├── dsfr-bootstrap
+│   │   ├── defaultColorScheme.ts
+│   │   ├── index.tsx
+│   │   └── server-only-index.tsx
+│   ├── emails
+│   │   └── mailer.ts
+│   ├── fixtures
+│   │   ├── address.ts
+│   │   ├── attachment.ts
+│   │   ├── declaration
+│   │   │   ├── common.ts
+│   │   │   ├── sacd-declaration-parameter.xml
+│   │   │   ├── sacd.ts
+│   │   │   └── sacem.ts
+│   │   ├── event.ts
+│   │   ├── image.ts
+│   │   ├── organization.ts
+│   │   ├── place.ts
+│   │   ├── rawStyleMock.ts
+│   │   ├── ticketing.ts
+│   │   ├── ui.ts
+│   │   └── user.ts
+│   ├── i18n
+│   │   ├── fr
+│   │   │   └── common.json
+│   │   └── index.ts
+│   ├── mdx-components.tsx
+│   ├── middleware.ts
+│   ├── models
+│   │   ├── actions
+│   │   │   ├── auth.ts
+│   │   │   ├── common.ts
+│   │   │   ├── declaration.ts
+│   │   │   ├── event.ts
+│   │   │   ├── organization.ts
+│   │   │   ├── ticketing.ts
+│   │   │   └── user.ts
+│   │   ├── entities
+│   │   │   ├── address.ts
+│   │   │   ├── attachment.ts
+│   │   │   ├── billetweb.ts
+│   │   │   ├── common.ts
+│   │   │   ├── country.ts
+│   │   │   ├── csv
+│   │   │   │   ├── sacd.ts
+│   │   │   │   └── sacem.ts
+│   │   │   ├── declaration
+│   │   │   │   ├── common.ts
+│   │   │   │   ├── sacd.ts
+│   │   │   │   └── sacem.ts
+│   │   │   ├── errors
+│   │   │   │   ├── helpers.ts
+│   │   │   │   └── index.ts
+│   │   │   ├── event.spec.ts
+│   │   │   ├── event.ts
+│   │   │   ├── helloasso.ts
+│   │   │   ├── mapado.ts
+│   │   │   ├── organization.ts
+│   │   │   ├── place.ts
+│   │   │   ├── sacd.ts
+│   │   │   ├── shotgun.ts
+│   │   │   ├── supersoniks.ts
+│   │   │   ├── ticketing.ts
+│   │   │   ├── ui.ts
+│   │   │   └── user.ts
+│   │   └── jobs
+│   │       └── maintenance.ts
+│   ├── pages
+│   │   └── api
+│   │       ├── auth
+│   │       │   └── [...nextauth].ts
+│   │       ├── file
+│   │       │   └── [fileId].ts
+│   │       ├── init.ts
+│   │       ├── maintenance
+│   │       │   ├── cli.ts
+│   │       │   └── jobs
+│   │       │       └── replay.ts
+│   │       ├── robots.ts
+│   │       ├── security.ts
+│   │       ├── synchronize-data-from-ticketing-systems.ts
+│   │       ├── trpc
+│   │       │   └── [trpc].ts
+│   │       └── upload
+│   │           └── [[...file]].ts
+│   ├── prisma
+│   │   ├── client.ts
+│   │   ├── index.ts
+│   │   ├── migrations
+│   │   │   ├── 20241219115058_set_up_base_to_synchronize_ticketing_data
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20241219141804_fix_wrong_relations_on_declarations
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20250102212247_remove_useless_enum
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20250108212833_add_revenues_and_expenses_for_sacem_declaration
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20250109084001_retrieve_the_event_serie_tax_rate_from_the_ticketing_system
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20250110104014_add_the_signature_declaration_place_in_the_sacem_form
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20250110111842_add_the_performance_type_for_sacem_declaration
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20250122005951_add_models_for_the_sacd_declaration
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20250217114635_add_mapado_option
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20250303164109_add_mapado_to_the_ticketing_enum
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20250403153808_add_supersoniks_to_the_ticketing_enum
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20250415171728_add_soticket_to_the_ticketing_enum
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20250707132934_add_teletransmission_markers_on_declarations
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20250709124926_adjust_the_sacd_declaration_to_have_less_fields
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20250716130912_keep_mappings_of_sacem_agencies
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20250717161843_handle_place_postal_code_for_sacem_declaration_to_send_to_the_right_agency
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20250723111724_add_helloasso_as_ticketing_system
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20250730150132_add_shotgun_as_ticketing_system
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20251016003140_prepare_headquarters_on_organizations
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20251016171950_prepare_unique_declaration_form
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20251023102202_track_ticketing_data_updates_at_the_event_level
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20251023132816_keep_mappings_of_sacd_agencies
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20251024162328_implement_attachments_and_allow_them_on_event_serie
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20251215132552_allow_using_a_manual_ticketing_system
+│   │   │   │   └── migration.sql
+│   │   │   └── migration_lock.toml
+│   │   ├── production-seed.script.ts
+│   │   ├── production-seed.ts
+│   │   ├── schema.prisma
+│   │   ├── seed.script.ts
+│   │   └── seed.ts
+│   ├── proxies
+│   │   ├── api-gouv-fr.ts
+│   │   ├── national-address-base.ts
+│   │   ├── next
+│   │   │   └── navigation.tsx
+│   │   ├── next-auth
+│   │   │   └── react.ts
+│   │   └── ticketing.ts
+│   ├── scripts
+│   │   ├── db
+│   │   │   ├── init_metabase.sql
+│   │   │   └── init_metabase_connector.sql
+│   │   └── migrations
+│   │       └── prepare_organizations_headquarters.ts
+│   ├── server
+│   │   ├── HydrateClient.tsx
+│   │   ├── app-router.ts
+│   │   ├── context.ts
+│   │   ├── mock
+│   │   │   ├── README.md
+│   │   │   ├── environment.ts
+│   │   │   ├── requests.ts
+│   │   │   └── trpc.ts
+│   │   ├── queueing
+│   │   │   ├── client.ts
+│   │   │   ├── schedule.ts
+│   │   │   └── workers
+│   │   │       └── clean-pending-uploads.ts
+│   │   ├── routers
+│   │   │   ├── auth.ts
+│   │   │   ├── common
+│   │   │   │   ├── attachment.server.ts
+│   │   │   │   ├── attachment.spec.ts
+│   │   │   │   └── attachment.ts
+│   │   │   ├── declaration.ts
+│   │   │   ├── event.ts
+│   │   │   ├── mappers
+│   │   │   │   └── index.ts
+│   │   │   ├── organization.ts
+│   │   │   ├── system.ts
+│   │   │   ├── ticketing.ts
+│   │   │   └── user.ts
+│   │   └── trpc.ts
+│   └── utils
+│       ├── api.ts
+│       ├── app-version.spec.ts
+│       ├── app-version.ts
+│       ├── assert.ts
+│       ├── attachment.ts
+│       ├── auth.ts
+│       ├── bits.ts
+│       ├── comparaison.spec.ts
+│       ├── comparaison.ts
+│       ├── country.ts
+│       ├── crisp.ts
+│       ├── database.spec.ts
+│       ├── database.ts
+│       ├── dsfr.tsx
+│       ├── email
+│       │   ├── catcher.spec.ts
+│       │   ├── catcher.ts
+│       │   └── helpers.ts
+│       ├── environment.ts
+│       ├── error.ts
+│       ├── form.ts
+│       ├── format.ts
+│       ├── grid.ts
+│       ├── hydration.ts
+│       ├── imask.ts
+│       ├── maintenance.ts
+│       ├── mdx-loader.ts
+│       ├── mdx.tsx
+│       ├── menu.ts
+│       ├── page.ts
+│       ├── pdf.ts
+│       ├── platform.ts
+│       ├── prisma.ts
+│       ├── routes
+│       │   ├── common.ts
+│       │   ├── list.spec.ts
+│       │   ├── list.ts
+│       │   ├── registry.spec.ts
+│       │   └── registry.ts
+│       ├── sentry.ts
+│       ├── sleep.ts
+│       ├── system.ts
+│       ├── testcontainers.ts
+│       ├── ticketing.ts
+│       ├── trpc.ts
+│       ├── typescript.ts
+│       ├── uppy.ts
+│       ├── url.ts
+│       ├── validation.ts
+│       ├── webpack.ts
+│       └── zod.ts
+├── start-and-wait-to-init.sh
+├── test-runner-jest-setup.js
+├── test-runner-jest.config.js
+└── tsconfig.json
+159 directories, 614 files
