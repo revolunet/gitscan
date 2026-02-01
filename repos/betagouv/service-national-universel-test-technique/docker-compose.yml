@@ -1,0 +1,20 @@
+services:
+  mongodb:
+    image: mongo
+    container_name: mongodb_run
+    ports:
+      - "27117:27017"
+    volumes:
+      - mongodb_data:/data/mongodb
+  mongo_seed:
+    image: mongo
+    depends_on:
+      - mongodb
+    links:
+      - mongodb
+    volumes:
+      - ./docker:/import
+    command: mongorestore --drop --gzip mongodb://mongodb:27017/local_app /import/seed/
+volumes:
+  mongodb_data:
+  elasticsearch_data:
