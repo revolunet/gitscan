@@ -1,0 +1,44 @@
+{
+  "name": "zacharie",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "scripts": {
+    "start": "expo start",
+    "prebuild": "/bin/sh -c 'export $(grep -v ^'#' .env.local | xargs) && yarn eas-build-pre-install && npm exec expo prebuild --clean && rm -f ./google-services.json' && rm -f ./ios/.xcode.env.local",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "web": "expo start --web",
+    "eas-build-pre-install": "echo \"This command is also run before `eas build` locally or in the cloud'\" && echo \"This command is also run before `eas build` locally or in the cloud'\" && node generate-google-service-json.js",
+    "eas-build-post-install": "rm -f ./ios/.xcode.env.local",
+    "load-env": "/bin/sh -c 'export $(grep -v ^'#' .env.production | xargs)'",
+    "build-eas:ios": "eas build -p ios",
+    "build-eas-then-submit:ios": "eas build -p ios && eas submit -p ios --latest",
+    "build-eas:android-aab": "eas build -p android",
+    "build-local:ios-ipa": "/bin/sh -c 'export $(grep -v ^'#' .env.production | xargs) && eas build -p ios --local'",
+    "build-local-then-submit:ios-ipa": "/bin/sh -c 'export $(grep -v ^'#' .env.production | xargs) && eas build -p ios --local' && eas submit -p ios",
+    "build-local:ios-ipa:debug": "echo \"This script retains XCode logs for debugging build failures. Look for a message like 'Skipping cleanup, {path/to/logs} won't be removed.'\" && /bin/sh -c 'export $(grep -v ^'#' .env.production | xargs) && EAS_LOCAL_BUILD_SKIP_CLEANUP=1 eas build -p ios --local'",
+    "build-local:android-aab": "/bin/sh -c 'export $(grep -v ^'#' .env.production | xargs) && eas build -p android --local'",
+    "expo-config": "npm exec expo config"
+  },
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "2.2.0",
+    "expo": "^54.0.12",
+    "expo-dev-client": "~6.0.13",
+    "expo-device": "~8.0.9",
+    "expo-linking": "~8.0.8",
+    "expo-notifications": "~0.32.12",
+    "expo-splash-screen": "~31.0.10",
+    "expo-status-bar": "~3.0.8",
+    "react": "19.1.0",
+    "react-native": "0.81.4",
+    "react-native-edge-to-edge": "1.6.0",
+    "react-native-safe-area-context": "~5.6.0",
+    "react-native-webview": "13.15.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.25.2",
+    "@types/react": "~19.1.10",
+    "typescript": "~5.9.2"
+  },
+  "private": true
+}
