@@ -1,0 +1,677 @@
+.
+├── .buildpacks
+├── .dockerignore
+├── .env.example
+├── .env.sample
+├── .env.test
+├── .gitattributes
+├── .github
+│   └── workflows
+│       ├── build.yaml
+│       ├── fiability.yaml
+│       ├── semantic-pr.yml
+│       ├── test.yaml
+│       └── validate-workflows.yaml
+├── .gitignore
+├── .nvmrc
+├── .rspec
+├── .rubocop.yml
+├── .rubocop_todo.yml
+├── .ruby-version
+├── AGENTS.md
+├── Aptfile
+├── Dockerfile
+├── Gemfile
+├── Gemfile.lock
+├── Guardfile
+├── Makefile
+├── Procfile
+├── README.md
+├── Rakefile
+├── app
+│   ├── admin
+│   │   ├── api_docs.rb
+│   │   ├── api_keys.rb
+│   │   ├── application_helper.rb
+│   │   ├── good_job.rb
+│   │   ├── quote_checks
+│   │   │   ├── form.rb
+│   │   │   ├── index.rb
+│   │   │   ├── recheck.rb
+│   │   │   ├── rnt.rb
+│   │   │   └── show.rb
+│   │   ├── quote_checks.rb
+│   │   ├── quote_files.rb
+│   │   ├── quotes_cases.rb
+│   │   └── rnt_checks.rb
+│   ├── assets
+│   │   ├── config
+│   │   │   └── manifest.js
+│   │   ├── images
+│   │   │   ├── .keep
+│   │   │   └── logo_mte.png
+│   │   ├── javascripts
+│   │   │   └── active_admin.js
+│   │   └── stylesheets
+│   │       ├── active_admin.scss
+│   │       └── application.css
+│   ├── channels
+│   │   └── application_cable
+│   │       ├── channel.rb
+│   │       └── connection.rb
+│   ├── controllers
+│   │   ├── active_storage
+│   │   │   └── fixed_postgresql_controller.rb
+│   │   ├── admin
+│   │   │   └── application_controller.rb
+│   │   ├── admin_user_sessions_controller.rb
+│   │   ├── api
+│   │   │   └── v1
+│   │   │       ├── api_access.rb
+│   │   │       ├── auth_controller.rb
+│   │   │       ├── base_controller.rb
+│   │   │       ├── brevo_webhooks_controller.rb
+│   │   │       ├── data_checks_controller.rb
+│   │   │       ├── handle_errors.rb
+│   │   │       ├── profiles_controller.rb
+│   │   │       ├── quote_check_feedbacks_controller.rb
+│   │   │       ├── quote_checks_controller.rb
+│   │   │       ├── quote_checks_validation_error_details_controller.rb
+│   │   │       ├── quotes_cases_controller.rb
+│   │   │       ├── quotes_cases_validation_error_details_controller.rb
+│   │   │       ├── renovation_types_controller.rb
+│   │   │       └── stats_controller.rb
+│   │   ├── application_controller.rb
+│   │   ├── concerns
+│   │   │   ├── .keep
+│   │   │   ├── admin_user_authenticatable.rb
+│   │   │   ├── file_upload_as_url.rb
+│   │   │   └── http_basic_authenticatable.rb
+│   │   ├── home_controller.rb
+│   │   └── pages_controller.rb
+│   ├── helpers
+│   │   └── application_helper.rb
+│   ├── javascript
+│   │   ├── application.js
+│   │   └── controllers
+│   │       ├── application.js
+│   │       ├── hello_controller.js
+│   │       └── index.js
+│   ├── jobs
+│   │   ├── application_job.rb
+│   │   ├── quote_check_check_job.rb
+│   │   ├── quote_check_rnt_validate_job.rb
+│   │   ├── quote_checks_timeout_job.rb
+│   │   ├── quote_file_imagify_pdf_job.rb
+│   │   ├── quote_file_security_scan_job.rb
+│   │   └── scheduled_cron_job.rb
+│   ├── mailboxes
+│   │   └── application_mailbox.rb
+│   ├── mailers
+│   │   ├── application_mailer.rb
+│   │   ├── quote_check_mailer.rb
+│   │   └── quotes_case_mailer.rb
+│   ├── models
+│   │   ├── application_record.rb
+│   │   ├── concerns
+│   │   │   ├── .keep
+│   │   │   ├── processing_logs.rb
+│   │   │   ├── quote_check_backoffice.rb
+│   │   │   ├── quote_check_edits.rb
+│   │   │   ├── quote_check_expectations.rb
+│   │   │   ├── quote_check_feedbacks.rb
+│   │   │   ├── quote_check_post_check_metadata.rb
+│   │   │   ├── quote_check_rnt_expectations.rb
+│   │   │   ├── quote_file_backoffice.rb
+│   │   │   ├── quote_file_imagified_pages.rb
+│   │   │   ├── quote_file_ocr.rb
+│   │   │   ├── quote_input_metadata.rb
+│   │   │   ├── quotes_case_backoffice.rb
+│   │   │   └── quotes_case_post_check_metadata.rb
+│   │   ├── processing_log.rb
+│   │   ├── quote_check.rb
+│   │   ├── quote_check_feedback.rb
+│   │   ├── quote_file.rb
+│   │   ├── quotes_case.rb
+│   │   └── rnt_check.rb
+│   ├── serializers
+│   │   ├── base_serializer.rb
+│   │   ├── object_with_validation_serializer.rb
+│   │   ├── quote_check_inside_case_serializer.rb
+│   │   ├── quote_check_serializer.rb
+│   │   └── quotes_case_serializer.rb
+│   ├── services
+│   │   ├── quote_check_service.rb
+│   │   ├── quote_check_timeout.rb
+│   │   ├── quote_check_upload_service.rb
+│   │   ├── quotes_case_check_service.rb
+│   │   ├── rnt_validator_service.rb
+│   │   └── stats_service.rb
+│   └── views
+│       ├── admin
+│       │   └── quote_files
+│       │       └── filter_by_file.html.erb
+│       ├── admin_user
+│       │   └── sessions
+│       │       └── new.html.erb
+│       ├── layouts
+│       │   ├── mailer.html.erb
+│       │   └── mailer.text.erb
+│       ├── quote_check_mailer
+│       │   ├── created.html.erb
+│       │   ├── created.text.erb
+│       │   ├── created_from_email.html.erb
+│       │   ├── created_from_email.text.erb
+│       │   ├── results_available.html.erb
+│       │   └── results_available.text.erb
+│       └── quotes_case_mailer
+│           ├── created_from_email.html.erb
+│           ├── created_from_email.text.erb
+│           ├── results_available.html.erb
+│           └── results_available.text.erb
+├── bin
+│   ├── bundle
+│   ├── importmap
+│   ├── rails
+│   ├── rake
+│   └── setup
+├── config
+│   ├── application.rb
+│   ├── boot.rb
+│   ├── brakeman.ignore
+│   ├── cable.yml
+│   ├── credentials.yml.enc
+│   ├── custom.rb
+│   ├── database.yml
+│   ├── environment.rb
+│   ├── environments
+│   │   ├── development.rb
+│   │   ├── production.rb
+│   │   └── test.rb
+│   ├── importmap.rb
+│   ├── initializers
+│   │   ├── 1_dotenv_validator.rb
+│   │   ├── active_admin.rb
+│   │   ├── assets.rb
+│   │   ├── brevo.rb
+│   │   ├── content_security_policy.rb
+│   │   ├── cors.rb
+│   │   ├── filter_parameter_logging.rb
+│   │   ├── good_job.rb
+│   │   ├── inflections.rb
+│   │   ├── omniauth.rb
+│   │   ├── permissions_policy.rb
+│   │   ├── rack_attack.rb
+│   │   ├── rswag_api.rb
+│   │   ├── rswag_ui.rb
+│   │   ├── ruby_llm.rb
+│   │   └── sentry.rb
+│   ├── locales
+│   │   ├── en.yml
+│   │   └── fr
+│   │       ├── back-office.yml
+│   │       ├── faker.yml
+│   │       ├── mon-devis-sans-oublis-quote-validator.yml
+│   │       ├── mon-devis-sans-oublis.yml
+│   │       └── rails.yml
+│   ├── puma.rb
+│   ├── redis.yml
+│   ├── routes
+│   │   ├── api.rb
+│   │   └── internal.rb
+│   ├── routes.rb
+│   └── storage.yml
+├── config.ru
+├── cron.json
+├── db
+│   ├── migrate
+│   │   ├── 20241126183507_create_quote_files.rb
+│   │   ├── 20241127080510_create_active_storage_tables.active_storage.rb
+│   │   ├── 20241127103358_create_quote_checks.rb
+│   │   ├── 20241129100209_create_active_storage_postgresql_tables.active_storage_postgresql.rb
+│   │   ├── 20241129100706_add_content_type_to_quote_files.rb
+│   │   ├── 20241129100846_remove_default_content_type_for_quote_files.rb
+│   │   ├── 20241129173002_add_qa_result_to_quote_checks.rb
+│   │   ├── 20241203233607_create_good_jobs.rb
+│   │   ├── 20241206113601_add_data_to_quote_files.rb
+│   │   ├── 20241206130555_make_data_of_quote_files_mandatory.rb
+│   │   ├── 20241218144013_add_error_fields_to_quote_checks.rb
+│   │   ├── 20241220094516_create_quote_check_feedbacks.rb
+│   │   ├── 20241220163151_add_parent_id_to_quote_checks.rb
+│   │   ├── 20241226191656_extend_feedbacks.rb
+│   │   ├── 20250106134626_add_private_data_qa_to_quote_checks.rb
+│   │   ├── 20250108104807_remove_is_helpful_from_quote_check_feedbacks.rb
+│   │   ├── 20250113171021_add_metadata_to_quote_checks.rb
+│   │   ├── 20250115141412_add_application_version_to_quote_checks.rb
+│   │   ├── 20250129174558_update_quote_file_unique_index.rb
+│   │   ├── 20250130070211_remove_quote_file_unique_index.rb
+│   │   ├── 20250130094608_readd_quote_file_unique_index.rb
+│   │   ├── 20250130100410_fix_active_storage_attachements_record_id.rb
+│   │   ├── 20250130115720_add_active_storage_attachments_index.rb
+│   │   ├── 20250130151151_add_expected_validation_errors_to_quote_checks.rb
+│   │   ├── 20250210155140_add_validation_error_edits_to_quote_checks.rb
+│   │   ├── 20250213085455_add_comments_to_quote_checks.rb
+│   │   ├── 20250219085306_add_commented_at_to_quote_checks.rb
+│   │   ├── 20250219145215_add_validation_error_edited_att_to_quote_checks.rb
+│   │   ├── 20250227144800_add_imagified_pages_to_quote_files.rb
+│   │   ├── 20250320151907_add_ocr_to_quote_files.rb
+│   │   ├── 20250414112615_add_security_scan_good_to_quote_files.rb
+│   │   ├── 20250416145906_add_force_ocr_to_quote_files.rb
+│   │   ├── 20250417084436_add_file_text_to_quote_checks.rb
+│   │   ├── 20250418080313_create_quote_check_logs.rb
+│   │   ├── 20250422164814_add_source_name_to_quote_checks.rb
+│   │   ├── 20250505102248_add_validation_controls_count_to_quote_checks.rb
+│   │   ├── 20250505141913_create_quotes_cases.rb
+│   │   ├── 20250506071808_add_reference_to_quote_checks.rb
+│   │   ├── 20250513090346_add_renovation_type_to_quote_checks_cases.rb
+│   │   ├── 20250513091416_add_metadata_to_quotes_cases.rb
+│   │   ├── 20250513094455_add_profile_to_quote_cases.rb
+│   │   ├── 20250603163100_add_validation_control_codes_to_quote_checks.rb
+│   │   ├── 20250604073415_add_ocr_result_to_quote_files.rb
+│   │   ├── 20250610165916_create_processing_logs.rb
+│   │   ├── 20250610165954_remove_quote_check_logs.rb
+│   │   ├── 20250616213352_remove_quote_checks_string_on_quotes_cases.rb
+│   │   ├── 20250630163734_add_errors_to_quotes_cases.rb
+│   │   ├── 20250630165352_fill_quotes_cases_finished_at.rb
+│   │   ├── 20250730140054_add_indexes_on_quote_checks.rb
+│   │   ├── 20250804130434_add_validation_error_edits_to_quotes_cases.rb
+│   │   ├── 20250815094500_add_ocr_index_on_quote_files.rb
+│   │   ├── 20251014100418_add_result_sent_at_to_quote_checks.rb
+│   │   ├── 20251020065037_create_action_mailbox_tables.action_mailbox.rb
+│   │   ├── 20251020073344_add_email_to_quote_checks_and_quotes_cases.rb
+│   │   ├── 20251106161020_add_email_to_to_quote_checks_and_quotes_cases.rb
+│   │   ├── 20251112110432_add_email_subject_to_quote_checks_and_quotes_cases.rb
+│   │   ├── 20251118082128_create_rnt_checks.rb
+│   │   ├── 20251208083342_add_expected_rnt_input_xml_to_quote_checks.rb
+│   │   └── 20260106080257_add_email_domain_to_quote_checks_and_quotes_cases.rb
+│   ├── schema.rb
+│   ├── scripts
+│   │   ├── 1-anonymize-data.sql
+│   │   ├── 2-cleanup-metabase.sql
+│   │   ├── 3-export-anonymized-data.sql
+│   │   ├── 4-import-csv-to-metabase.sql
+│   │   ├── 5-cleanup-anonymized-source-data.sql
+│   │   └── export-db-metabase.sh
+│   └── seeds.rb
+├── docker-compose.yml
+├── entrypoint.sh
+├── lib
+│   ├── assets
+│   │   └── .keep
+│   ├── brevo_api.rb
+│   ├── data_sources
+│   │   ├── data_ademe.rb
+│   │   └── sirene_api.rb
+│   ├── geste_types.rb
+│   ├── llms
+│   │   ├── albert.rb
+│   │   ├── base.rb
+│   │   ├── mistral.rb
+│   │   └── ollama.rb
+│   ├── matomo_api.rb
+│   ├── mdso_ademe_mapping.rb
+│   ├── mdso_api.rb
+│   ├── mdso_api_schema.rb
+│   ├── mdso_brevo.rb
+│   ├── quote_data_extender.rb
+│   ├── quote_error_email_generator.rb
+│   ├── quote_error_email_generator_wordings.rb
+│   ├── quote_reader
+│   │   ├── anonymizer.rb
+│   │   ├── global.rb
+│   │   ├── image
+│   │   │   ├── albert_ocr.rb
+│   │   │   ├── base.rb
+│   │   │   ├── mdso_ocr.rb
+│   │   │   ├── mdso_ocr_dots_ocr.rb
+│   │   │   ├── mdso_ocr_marker.rb
+│   │   │   ├── mdso_ocr_nanonets.rb
+│   │   │   ├── mdso_ocr_olm_ocr.rb
+│   │   │   ├── mistral_ocr.rb
+│   │   │   └── tesseract.rb.disabled
+│   │   ├── naive_text.rb
+│   │   ├── pdf.rb
+│   │   ├── private_data_qa.rb
+│   │   ├── prompts
+│   │   │   ├── private_data.txt
+│   │   │   └── works_data.txt
+│   │   ├── read_error.rb
+│   │   ├── shrinker.rb
+│   │   ├── text.rb
+│   │   └── works_data_qa.rb
+│   ├── quote_validator
+│   │   ├── admin.rb
+│   │   ├── base.rb
+│   │   ├── file.rb
+│   │   ├── global.rb
+│   │   ├── prices.rb
+│   │   ├── quotes_case.rb
+│   │   ├── timeout.rb
+│   │   └── works
+│   │       ├── chauffage.rb
+│   │       ├── eau_chaude.rb
+│   │       ├── global.rb
+│   │       ├── isolation.rb
+│   │       ├── menuiserie.rb
+│   │       └── ventilation.rb
+│   ├── rge_validator.rb
+│   ├── rnt
+│   │   ├── Gemfile
+│   │   ├── Gemfile.lock
+│   │   ├── README.md
+│   │   ├── examples
+│   │   │   ├── example_full.xml
+│   │   │   ├── example_light.xml
+│   │   │   └── rnt_projet_travaux_complet.xml
+│   │   ├── lib
+│   │   │   ├── rnt
+│   │   │   │   ├── schema.rb
+│   │   │   │   ├── schemas
+│   │   │   │   │   ├── mdd_v0.0.3.json
+│   │   │   │   │   ├── mdd_v0.0.3.xsd
+│   │   │   │   │   ├── mdd_v0.1.0.json
+│   │   │   │   │   └── mdd_v0.1.0.xsd
+│   │   │   │   ├── version.rb
+│   │   │   │   └── web_service.rb
+│   │   │   └── rnt.rb
+│   │   ├── rnt.gemspec
+│   │   ├── spec
+│   │   │   └── rnt
+│   │   │       └── schema_spec.rb
+│   │   └── xsd_to_openapi.rb
+│   ├── rnt_for_mdso
+│   │   └── rnt_works_data_prompts
+│   │       ├── ballon_ecs_effet_joule.txt
+│   │       ├── brasseur_air.txt
+│   │       ├── chaudiere_biomasse.txt
+│   │       ├── chaudiere_gaz.txt
+│   │       ├── chauffe_bain_individuel.txt
+│   │       ├── chauffe_eau_solaire.txt
+│   │       ├── chauffe_eau_thermodynamique.txt
+│   │       ├── dispositif_solaire_photovoltaique.txt
+│   │       ├── dispositif_solaire_thermique.txt
+│   │       ├── double_fenetre.txt
+│   │       ├── fenetre_porte_fenetre.txt
+│   │       ├── fenetre_toiture.txt
+│   │       ├── fermeture_isolante.txt
+│   │       ├── global.txt
+│   │       ├── isolation_combles_non_amenages.txt
+│   │       ├── isolation_mur_ite.txt
+│   │       ├── isolation_mur_iti.txt
+│   │       ├── isolation_planchers_bas.txt
+│   │       ├── isolation_sous_rampants.txt
+│   │       ├── isolation_toiture_terrasse.txt
+│   │       ├── pac_air_air.txt
+│   │       ├── pac_air_eau.txt
+│   │       ├── pac_eau_eau.txt
+│   │       ├── pac_geothermique.txt
+│   │       ├── pac_sol_eau.txt
+│   │       ├── plancher_plafond_chauffant_hydraulique.txt
+│   │       ├── poele_insert_bois_granules.txt
+│   │       ├── porte_entree.txt
+│   │       ├── protection_solaire.txt
+│   │       ├── raccordement_reseau_chaleur.txt
+│   │       ├── radiateur_electrique.txt
+│   │       ├── radiateur_hydraulique.txt
+│   │       ├── systeme_solaire_combine.txt
+│   │       ├── ventilation_hybride_hygroreglable.txt
+│   │       ├── vmc_double_flux.txt
+│   │       └── vmc_simple_flux.txt
+│   ├── siret_validator.rb
+│   ├── tasks
+│   │   ├── .keep
+│   │   ├── brevo.rake
+│   │   ├── doc.rake
+│   │   ├── quote_checks.rake
+│   │   ├── quote_files.rake
+│   │   └── rnt.rake
+│   └── tools
+│       ├── clam_av.rb
+│       ├── error_notifier.rb
+│       ├── fiability.rb
+│       ├── hash_ostruct.rb
+│       ├── html.rb
+│       ├── json_openapi.rb
+│       ├── json_to_xml.rb
+│       ├── tracking_hash.rb
+│       └── uri_extended.rb
+├── log
+│   └── .keep
+├── package-lock.json
+├── package.json
+├── public
+│   ├── 404.html
+│   ├── 422.html
+│   ├── 500.html
+│   ├── apple-touch-icon-precomposed.png
+│   ├── apple-touch-icon.png
+│   ├── favicon.ico
+│   └── robots.txt
+├── spec
+│   ├── db
+│   │   └── scripts
+│   │       └── anonymization_spec.rb
+│   ├── factories
+│   │   ├── processing_logs.rb
+│   │   ├── quote_check_feedbacks.rb
+│   │   ├── quote_check_works_data_qa_attributes.rb
+│   │   ├── quote_checks.rb
+│   │   ├── quote_files.rb
+│   │   └── quotes_case.rb
+│   ├── fixtures
+│   │   └── files
+│   │       ├── quote_files
+│   │       │   ├── Devis_multi_pages.pdf
+│   │       │   ├── Devis_test.pdf
+│   │       │   ├── Devis_test.png
+│   │       │   ├── Devis_test.zip
+│   │       │   ├── empty.pdf
+│   │       │   └── file_without_content_type
+│   │       └── rnt_openapi_schema.json
+│   ├── jobs
+│   │   └── quote_check_rnt_validate_job_spec.rb
+│   ├── lib
+│   │   ├── brevo_api_spec.rb
+│   │   ├── data_sources
+│   │   │   ├── data_ademe_spec.rb
+│   │   │   └── sirene_api_spec.rb
+│   │   ├── llms
+│   │   │   ├── albert_spec.rb
+│   │   │   ├── base_spec.rb
+│   │   │   └── mistral_spec.rb
+│   │   ├── mdso_ademe_mapping_spec.rb
+│   │   ├── mdso_api_spec.rb
+│   │   ├── mdso_brevo_spec.rb
+│   │   ├── quote_error_email_generator_spec.rb
+│   │   ├── quote_reader
+│   │   │   ├── anonymizer_spec.rb
+│   │   │   ├── image
+│   │   │   │   ├── albert_ocr_spec.rb
+│   │   │   │   ├── mdso_ocr_spec.rb
+│   │   │   │   ├── mistral_ocr_spec.rb
+│   │   │   │   └── tesseract_spec.rb
+│   │   │   ├── naive_text_spec.rb
+│   │   │   ├── pdf_spec.rb
+│   │   │   ├── private_data_qa_spec.rb
+│   │   │   └── works_data_qa_spec.rb
+│   │   ├── quote_validator
+│   │   │   ├── admin_spec.rb
+│   │   │   ├── base_spec.rb
+│   │   │   ├── global_spec.rb
+│   │   │   ├── prices_spec.rb
+│   │   │   ├── quotes_case_spec.rb
+│   │   │   └── works
+│   │   │       ├── chauffage_spec.rb
+│   │   │       └── global_spec.rb
+│   │   ├── rge_validator_spec.rb
+│   │   ├── siret_validator_spec.rb
+│   │   └── tools
+│   │       ├── fiability_spec.rb
+│   │       ├── hash_ostruct_spec.rb
+│   │       ├── json_to_xml_spec.rb
+│   │       ├── tracking_hash_spec.rb
+│   │       └── uri_extended_spec.rb
+│   ├── models
+│   │   ├── concerns
+│   │   │   ├── quote_check_edits_spec.rb
+│   │   │   ├── quote_input_metadata_spec.rb
+│   │   │   └── quotes_case_post_check_metadata_spec.rb
+│   │   ├── processing_log_spec.rb
+│   │   ├── quote_check_feedback_spec.rb
+│   │   ├── quote_check_spec.rb
+│   │   ├── quote_file_spec.rb
+│   │   └── rnt_check_spec.rb
+│   ├── openapi_doc_spec.rb
+│   ├── rails_helper.rb
+│   ├── requests
+│   │   ├── active_storage_postgresql_spec.rb
+│   │   └── api
+│   │       └── v1
+│   │           ├── auth_doc_spec.rb
+│   │           ├── auth_spec.rb
+│   │           ├── brevo_webhooks_spec.rb
+│   │           ├── data_checks_doc_spec.rb
+│   │           ├── data_checks_spec.rb
+│   │           ├── profiles_doc_spec.rb
+│   │           ├── profiles_spec.rb
+│   │           ├── quote_check_feedbacks_doc_spec.rb
+│   │           ├── quote_check_feedbacks_spec.rb
+│   │           ├── quote_check_validation_error_details_doc_spec.rb
+│   │           ├── quote_check_validation_error_details_feedbacks_doc_spec.rb
+│   │           ├── quote_check_validation_error_details_feedbacks_spec.rb
+│   │           ├── quote_checks_doc_spec.rb
+│   │           ├── quote_checks_internal_doc_spec.rb
+│   │           ├── quote_checks_spec.rb
+│   │           ├── quotes_case_validation_error_details_doc_spec.rb
+│   │           ├── quotes_cases_doc_spec.rb
+│   │           ├── quotes_cases_internal_doc_spec.rb
+│   │           ├── quotes_cases_spec.rb
+│   │           ├── renovation_types_doc_spec.rb
+│   │           ├── renovation_types_spec.rb
+│   │           ├── stats_doc_spec.rb
+│   │           └── stats_spec.rb
+│   ├── serializers
+│   │   ├── quote_check_serializer_spec.rb
+│   │   └── quotes_case_serializer_spec.rb
+│   ├── services
+│   │   ├── quote_check_service_spec.rb
+│   │   ├── quote_check_timeout_spec.rb
+│   │   ├── quotes_case_check_service_spec.rb
+│   │   ├── rnt_validator_service_spec.rb
+│   │   └── stats_service_spec.rb
+│   ├── spec_helper.rb
+│   ├── support
+│   │   ├── api_helper.rb
+│   │   └── vcr.rb
+│   ├── swagger_helper.rb
+│   └── vcr_cassettes
+│       ├── BrevoApi
+│       │   ├── _download_inbound_email_attachment
+│       │   │   ├── with_a_valid_download_token
+│       │   │   │   └── returns_the_attachment_content.yml
+│       │   │   └── with_an_invalid_download_token
+│       │   │       ├── raises_a_BadRequestError.yml
+│       │   │       ├── raises_a_Brevo_ApiError.yml
+│       │   │       └── returns_a_404_status.yml
+│       │   └── _webhooks_list
+│       │       ├── returns_a_list_of_webhooks.yml
+│       │       └── returns_a_successful_response.yml
+│       ├── DataAdeme
+│       │   └── _historique_rge
+│       │       ├── returns_the_history_of_a_company.yml
+│       │       └── with_multiple_pages
+│       │           ├── has_fetch_all_the_pages_without_next.yml
+│       │           └── returns_all_results_across_multiple_pages.yml
+│       ├── Data_Checks_API
+│       │   └── data_checks
+│       │       ├── rge
+│       │       │   └── get
+│       │       │       ├── RGE_non_trouvé_pour_Date
+│       │       │       │   └── returns_a_404_response.yml
+│       │       │       ├── RGE_non_valide
+│       │       │       │   └── returns_a_400_response.yml
+│       │       │       ├── RGE_non_valide_pour_Date
+│       │       │       │   └── returns_a_400_response.yml
+│       │       │       ├── RGE_trouvé_ou_vérifié
+│       │       │       │   └── returns_a_200_response.yml
+│       │       │       └── SIRET_non_valide
+│       │       │           └── returns_a_400_response.yml
+│       │       └── siret
+│       │           └── get
+│       │               └── SIRET_existant
+│       │                   └── returns_a_200_response.yml
+│       ├── Llms_Albert
+│       │   ├── _chat_completion
+│       │   │   ├── when_model_is_not_found
+│       │   │   │   ├── fallbacks_to_best_avalaible_model.yml
+│       │   │   │   └── works_as_usual.yml
+│       │   │   ├── with_JSON_schema
+│       │   │   │   └── returns_a_hash_with_the_expected_keys.yml
+│       │   │   └── with_RNT_JSON_schema
+│       │   │       └── returns_a_hash_with_the_expected_keys.yml
+│       │   ├── _models
+│       │   │   └── returns_the_list_of_models.yml
+│       │   └── _read_attributes
+│       │       └── returns_the_attributes.yml
+│       ├── Llms_Mistral
+│       │   ├── _chat_completion
+│       │   │   ├── returns_a_successful_complete_response.yml
+│       │   │   └── with_JSON_schema
+│       │   │       └── returns_a_hash_with_the_expected_keys.yml
+│       │   └── _read_attributes
+│       │       └── returns_the_attributes.yml
+│       ├── QuoteReader_Image_MdsoOcr
+│       │   ├── _extract_text
+│       │   │   └── returns_the_content.yml
+│       │   └── _models
+│       │       └── returns_the_list_of_models.yml
+│       ├── QuoteReader_Image_MistralOcr
+│       │   └── _extract_text
+│       │       └── returns_the_content.yml
+│       ├── SireneApi
+│       │   └── _recherche
+│       │       ├── when_the_SIRET_is_known
+│       │       │   └── 1_1_1_1.yml
+│       │       └── when_the_SIRET_is_unknown
+│       │           └── 1_1_2_1.yml
+│       ├── SiretValidator
+│       │   └── _valid_
+│       │       ├── when_the_SIRET_is_known
+│       │       │   └── 1_1_1_1.yml
+│       │       └── when_the_SIRET_is_unknown
+│       │           └── 1_1_2_1.yml
+│       └── api
+│           └── v1
+│               └── quote_checks
+│                   └── POST_
+│                       └── api
+│                           └── v1
+│                               └── quote_checks
+│                                   └── with_allowed_file_URL
+│                                       ├── returns_a_created_response.yml
+│                                       └── saves_the_QuoteFile.yml
+├── storage
+│   └── .keep
+├── swagger
+│   └── v1
+│       ├── ademe-liste-des-entreprises-rge-2_api-docs.json
+│       ├── ademe_result_schema.json
+│       ├── mon-devis-sans-oublis_api_v1_internal_swagger.yaml
+│       ├── mon-devis-sans-oublis_api_v1_partner_swagger.yaml
+│       └── quote_check_private_data_qa_attributes.json
+├── test
+│   └── mailers
+│       └── previews
+│           ├── quote_check_mailer_preview.rb
+│           └── quotes_case_mailer_preview.rb
+├── tmp
+│   ├── .keep
+│   ├── pids
+│   │   └── .keep
+│   └── storage
+│       └── .keep
+└── vendor
+    ├── .keep
+    └── javascript
+        └── .keep
+157 directories, 519 files
