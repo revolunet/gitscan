@@ -1,0 +1,376 @@
+.
+├── .gitignore
+├── CHANGELOG.md
+├── LICENCE_CeCILL_v2-1
+├── LICENSE_MIT
+├── README.md
+├── calculette_impots_m_language_parser
+│   ├── __init__.py
+│   ├── dependencies_visitors.py
+│   ├── json_dump.py
+│   ├── lighten_ast.py
+│   ├── m_language.cleanpeg
+│   ├── m_to_ast.py
+│   ├── notebooks
+│   │   ├── common_ast.ipynb
+│   │   └── graph-stats.ipynb
+│   ├── scripts
+│   │   ├── check_grammar.sh
+│   │   ├── compute_signatures.py
+│   │   └── parse_code_m.py
+│   ├── simplify_ast.py
+│   ├── tests
+│   │   ├── __init__.py
+│   │   ├── test_visitors.py
+│   │   └── valid_formulas.m
+│   └── unloop_helpers.py
+├── json
+│   ├── sources2010m_7_1
+│   │   ├── 1_ast_by_file
+│   │   │   ├── chap-1.json
+│   │   │   ├── chap-2.json
+│   │   │   ├── chap-3.json
+│   │   │   ├── chap-4.json
+│   │   │   ├── chap-51.json
+│   │   │   ├── chap-52.json
+│   │   │   ├── chap-6.json
+│   │   │   ├── chap-7.json
+│   │   │   ├── chap-81.json
+│   │   │   ├── chap-82.json
+│   │   │   ├── chap-83.json
+│   │   │   ├── chap-84.json
+│   │   │   ├── chap-85.json
+│   │   │   ├── chap-86.json
+│   │   │   ├── chap-87.json
+│   │   │   ├── chap-88.json
+│   │   │   ├── chap-aff.json
+│   │   │   ├── chap-cinr.json
+│   │   │   ├── chap-cmajo.json
+│   │   │   ├── chap-cor.json
+│   │   │   ├── chap-ctl.json
+│   │   │   ├── chap-ini.json
+│   │   │   ├── chap-inr.json
+│   │   │   ├── chap-majo.json
+│   │   │   ├── chap-perp.json
+│   │   │   ├── chap-plaf.json
+│   │   │   ├── chap-teff.json
+│   │   │   ├── chap-tl.json
+│   │   │   ├── coc1.json
+│   │   │   ├── coc2.json
+│   │   │   ├── coc3.json
+│   │   │   ├── coc4.json
+│   │   │   ├── coc5.json
+│   │   │   ├── coc7.json
+│   │   │   ├── coi1.json
+│   │   │   ├── coi2.json
+│   │   │   ├── coi3.json
+│   │   │   ├── errH.json
+│   │   │   ├── horizoc.json
+│   │   │   ├── horizoi.json
+│   │   │   ├── res-ser1.json
+│   │   │   ├── res-ser2.json
+│   │   │   └── tgvH.json
+│   │   ├── 2_simplified_ast
+│   │   │   ├── constants.json
+│   │   │   ├── formulas.json
+│   │   │   └── input_variables.json
+│   │   └── 3_light_ast
+│   │       ├── children_light.json
+│   │       ├── computing_order.json
+│   │       ├── constants_light.json
+│   │       ├── formulas_light.json
+│   │       ├── inputs_light.json
+│   │       └── unknowns_light.json
+│   ├── sources2011m_9_6
+│   │   ├── 1_ast_by_file
+│   │   │   ├── chap-1.json
+│   │   │   ├── chap-2.json
+│   │   │   ├── chap-3.json
+│   │   │   ├── chap-4.json
+│   │   │   ├── chap-51.json
+│   │   │   ├── chap-52.json
+│   │   │   ├── chap-6.json
+│   │   │   ├── chap-7.json
+│   │   │   ├── chap-81.json
+│   │   │   ├── chap-82.json
+│   │   │   ├── chap-83.json
+│   │   │   ├── chap-84.json
+│   │   │   ├── chap-85.json
+│   │   │   ├── chap-86.json
+│   │   │   ├── chap-87.json
+│   │   │   ├── chap-88.json
+│   │   │   ├── chap-aff.json
+│   │   │   ├── chap-cinr.json
+│   │   │   ├── chap-cmajo.json
+│   │   │   ├── chap-cor.json
+│   │   │   ├── chap-ctl.json
+│   │   │   ├── chap-ini.json
+│   │   │   ├── chap-inr.json
+│   │   │   ├── chap-isf.json
+│   │   │   ├── chap-majo.json
+│   │   │   ├── chap-perp.json
+│   │   │   ├── chap-plaf.json
+│   │   │   ├── chap-teff.json
+│   │   │   ├── chap-tl.json
+│   │   │   ├── coc1.json
+│   │   │   ├── coc2.json
+│   │   │   ├── coc3.json
+│   │   │   ├── coc4.json
+│   │   │   ├── coc5.json
+│   │   │   ├── coc7.json
+│   │   │   ├── coi1.json
+│   │   │   ├── coi2.json
+│   │   │   ├── coi3.json
+│   │   │   ├── errH.json
+│   │   │   ├── horizoc.json
+│   │   │   ├── horizoi.json
+│   │   │   ├── res-ser1.json
+│   │   │   ├── res-ser2.json
+│   │   │   └── tgvH.json
+│   │   ├── 2_simplified_ast
+│   │   │   ├── constants.json
+│   │   │   ├── formulas.json
+│   │   │   └── input_variables.json
+│   │   └── 3_light_ast
+│   │       ├── children_light.json
+│   │       ├── computing_order.json
+│   │       ├── constants_light.json
+│   │       ├── formulas_light.json
+│   │       ├── inputs_light.json
+│   │       └── unknowns_light.json
+│   ├── sources2012m_3_13
+│   │   ├── 1_ast_by_file
+│   │   │   ├── chap-1.json
+│   │   │   ├── chap-2.json
+│   │   │   ├── chap-3.json
+│   │   │   ├── chap-4.json
+│   │   │   ├── chap-51.json
+│   │   │   ├── chap-52.json
+│   │   │   ├── chap-6.json
+│   │   │   ├── chap-7.json
+│   │   │   ├── chap-81.json
+│   │   │   ├── chap-82.json
+│   │   │   ├── chap-83.json
+│   │   │   ├── chap-84.json
+│   │   │   ├── chap-85.json
+│   │   │   ├── chap-86.json
+│   │   │   ├── chap-87.json
+│   │   │   ├── chap-88.json
+│   │   │   ├── chap-aff.json
+│   │   │   ├── chap-cinr.json
+│   │   │   ├── chap-cmajo.json
+│   │   │   ├── chap-cor.json
+│   │   │   ├── chap-ctl.json
+│   │   │   ├── chap-ini.json
+│   │   │   ├── chap-inr.json
+│   │   │   ├── chap-isf.json
+│   │   │   ├── chap-majo.json
+│   │   │   ├── chap-perp.json
+│   │   │   ├── chap-plaf.json
+│   │   │   ├── chap-teff.json
+│   │   │   ├── chap-thr.json
+│   │   │   ├── chap-tl.json
+│   │   │   ├── coc1.json
+│   │   │   ├── coc2.json
+│   │   │   ├── coc3.json
+│   │   │   ├── coc4.json
+│   │   │   ├── coc5.json
+│   │   │   ├── coc7.json
+│   │   │   ├── coi1.json
+│   │   │   ├── coi2.json
+│   │   │   ├── coi3.json
+│   │   │   ├── errH.json
+│   │   │   ├── horizoc.json
+│   │   │   ├── horizoi.json
+│   │   │   ├── res-ser1.json
+│   │   │   ├── res-ser2.json
+│   │   │   └── tgvH.json
+│   │   ├── 2_simplified_ast
+│   │   │   ├── constants.json
+│   │   │   ├── formulas.json
+│   │   │   └── input_variables.json
+│   │   └── 3_light_ast
+│   │       ├── children_light.json
+│   │       ├── computing_order.json
+│   │       ├── constants_light.json
+│   │       ├── formulas_light.json
+│   │       ├── inputs_light.json
+│   │       └── unknowns_light.json
+│   ├── sources2013m_3_8
+│   │   ├── 1_ast_by_file
+│   │   │   ├── chap-1.json
+│   │   │   ├── chap-2.json
+│   │   │   ├── chap-3.json
+│   │   │   ├── chap-4.json
+│   │   │   ├── chap-51.json
+│   │   │   ├── chap-52.json
+│   │   │   ├── chap-6.json
+│   │   │   ├── chap-7.json
+│   │   │   ├── chap-81.json
+│   │   │   ├── chap-82.json
+│   │   │   ├── chap-83.json
+│   │   │   ├── chap-84.json
+│   │   │   ├── chap-85.json
+│   │   │   ├── chap-86.json
+│   │   │   ├── chap-87.json
+│   │   │   ├── chap-88.json
+│   │   │   ├── chap-aff.json
+│   │   │   ├── chap-cinr.json
+│   │   │   ├── chap-cmajo.json
+│   │   │   ├── chap-cor.json
+│   │   │   ├── chap-ctl.json
+│   │   │   ├── chap-ini.json
+│   │   │   ├── chap-inr.json
+│   │   │   ├── chap-isf.json
+│   │   │   ├── chap-majo.json
+│   │   │   ├── chap-perp.json
+│   │   │   ├── chap-plaf.json
+│   │   │   ├── chap-teff.json
+│   │   │   ├── chap-thr.json
+│   │   │   ├── chap-tl.json
+│   │   │   ├── coc1.json
+│   │   │   ├── coc2.json
+│   │   │   ├── coc3.json
+│   │   │   ├── coc4.json
+│   │   │   ├── coc5.json
+│   │   │   ├── coc7.json
+│   │   │   ├── coi1.json
+│   │   │   ├── coi2.json
+│   │   │   ├── coi3.json
+│   │   │   ├── errH.json
+│   │   │   ├── horizoc.json
+│   │   │   ├── horizoi.json
+│   │   │   ├── res-ser1.json
+│   │   │   ├── res-ser2.json
+│   │   │   └── tgvH.json
+│   │   ├── 2_simplified_ast
+│   │   │   ├── constants.json
+│   │   │   ├── formulas.json
+│   │   │   └── input_variables.json
+│   │   └── 3_light_ast
+│   │       ├── children_light.json
+│   │       ├── computing_order.json
+│   │       ├── constants_light.json
+│   │       ├── formulas_light.json
+│   │       ├── inputs_light.json
+│   │       └── unknowns_light.json
+│   ├── sources2014m_2_15
+│   │   ├── 1_ast_by_file
+│   │   │   ├── chap-1.json
+│   │   │   ├── chap-2.json
+│   │   │   ├── chap-3.json
+│   │   │   ├── chap-4.json
+│   │   │   ├── chap-51.json
+│   │   │   ├── chap-52.json
+│   │   │   ├── chap-6.json
+│   │   │   ├── chap-7.json
+│   │   │   ├── chap-81.json
+│   │   │   ├── chap-82.json
+│   │   │   ├── chap-83.json
+│   │   │   ├── chap-84.json
+│   │   │   ├── chap-85.json
+│   │   │   ├── chap-86.json
+│   │   │   ├── chap-87.json
+│   │   │   ├── chap-88.json
+│   │   │   ├── chap-aff.json
+│   │   │   ├── chap-cinr.json
+│   │   │   ├── chap-cmajo.json
+│   │   │   ├── chap-cor.json
+│   │   │   ├── chap-ctl.json
+│   │   │   ├── chap-ini.json
+│   │   │   ├── chap-inr.json
+│   │   │   ├── chap-isf.json
+│   │   │   ├── chap-majo.json
+│   │   │   ├── chap-perp.json
+│   │   │   ├── chap-plaf.json
+│   │   │   ├── chap-teff.json
+│   │   │   ├── chap-thr.json
+│   │   │   ├── chap-tl.json
+│   │   │   ├── coc1.json
+│   │   │   ├── coc2.json
+│   │   │   ├── coc3.json
+│   │   │   ├── coc4.json
+│   │   │   ├── coc5.json
+│   │   │   ├── coc7.json
+│   │   │   ├── coi1.json
+│   │   │   ├── coi2.json
+│   │   │   ├── coi3.json
+│   │   │   ├── errH.json
+│   │   │   ├── horizoc.json
+│   │   │   ├── horizoi.json
+│   │   │   ├── res-ser1.json
+│   │   │   ├── res-ser2.json
+│   │   │   └── tgvH.json
+│   │   ├── 2_simplified_ast
+│   │   │   ├── constants.json
+│   │   │   ├── formulas.json
+│   │   │   └── input_variables.json
+│   │   └── 3_light_ast
+│   │       ├── children_light.json
+│   │       ├── computing_order.json
+│   │       ├── constants_light.json
+│   │       ├── formulas_light.json
+│   │       ├── inputs_light.json
+│   │       └── unknowns_light.json
+│   └── sourcesm2015m_4_6
+│       ├── 1_ast_by_file
+│       │   ├── chap-1.json
+│       │   ├── chap-2.json
+│       │   ├── chap-3.json
+│       │   ├── chap-4.json
+│       │   ├── chap-51.json
+│       │   ├── chap-52.json
+│       │   ├── chap-6.json
+│       │   ├── chap-7.json
+│       │   ├── chap-81.json
+│       │   ├── chap-82.json
+│       │   ├── chap-83.json
+│       │   ├── chap-84.json
+│       │   ├── chap-85.json
+│       │   ├── chap-86.json
+│       │   ├── chap-87.json
+│       │   ├── chap-88.json
+│       │   ├── chap-aff.json
+│       │   ├── chap-cinr.json
+│       │   ├── chap-cmajo.json
+│       │   ├── chap-cor.json
+│       │   ├── chap-ctl.json
+│       │   ├── chap-ini.json
+│       │   ├── chap-inr.json
+│       │   ├── chap-isf.json
+│       │   ├── chap-majo.json
+│       │   ├── chap-perp.json
+│       │   ├── chap-plaf.json
+│       │   ├── chap-teff.json
+│       │   ├── chap-thr.json
+│       │   ├── chap-tl.json
+│       │   ├── coc1.json
+│       │   ├── coc2.json
+│       │   ├── coc3.json
+│       │   ├── coc4.json
+│       │   ├── coc5.json
+│       │   ├── coc7.json
+│       │   ├── coi1.json
+│       │   ├── coi2.json
+│       │   ├── coi3.json
+│       │   ├── errH.json
+│       │   ├── horizoc.json
+│       │   ├── horizoi.json
+│       │   ├── res-ser1.json
+│       │   ├── res-ser2.json
+│       │   └── tgvH.json
+│       ├── 2_simplified_ast
+│       │   ├── constants.json
+│       │   ├── formulas.json
+│       │   └── input_variables.json
+│       └── 3_light_ast
+│           ├── children_light.json
+│           ├── computing_order.json
+│           ├── constants_light.json
+│           ├── formulas_light.json
+│           ├── inputs_light.json
+│           └── unknowns_light.json
+├── logs.txt
+├── setup.cfg
+└── setup.py
+30 directories, 345 files
