@@ -1,0 +1,275 @@
+.
+├── .dockerignore
+├── .github
+│   ├── ISSUE_TEMPLATE
+│   │   ├── Bug_report.md
+│   │   ├── Feature_request.md
+│   │   └── Support_question.md
+│   ├── ISSUE_TEMPLATE.md
+│   ├── PULL_REQUEST_TEMPLATE.md
+│   └── workflows
+│       ├── deploy.yml
+│       ├── docker-hub.yml
+│       ├── find.yml
+│       └── release-helm-chart.yaml
+├── .gitignore
+├── .gitlint
+├── CHANGELOG.md
+├── Dockerfile
+├── LICENSE
+├── Makefile
+├── README.md
+├── bin
+│   ├── Tiltfile
+│   ├── _config.sh
+│   ├── compose
+│   ├── install-hooks.sh
+│   ├── manage
+│   ├── pause-kind.sh
+│   ├── pylint
+│   ├── pytest
+│   ├── resume-kind.sh
+│   ├── start-kind.sh
+│   ├── state
+│   ├── update-git-submodule.sh
+│   ├── update_openapi_schema
+│   └── updatekeys.sh
+├── compose.yml
+├── crowdin
+│   └── config.yml
+├── docker
+│   └── files
+│       └── usr
+│           └── local
+│               ├── bin
+│               │   └── entrypoint
+│               └── etc
+│                   └── gunicorn
+│                       └── find.py
+├── docs
+│   ├── architecture.md
+│   ├── env.md
+│   ├── evaluate-search-engine.md
+│   ├── evaluation.md
+│   ├── release.md
+│   ├── setup-for-docs.md
+│   ├── setup-for-drive.md
+│   ├── setup-indexer.md
+│   └── system-requirements.md
+├── env.d
+│   └── development
+│       ├── common.dist
+│       ├── crowdin.dist
+│       └── postgresql.dist
+├── gitlint
+│   └── gitlint_emoji.py
+├── renovate.json
+└── src
+    ├── backend
+    │   ├── .pylintrc
+    │   ├── MANIFEST.in
+    │   ├── core
+    │   │   ├── __init__.py
+    │   │   ├── admin.py
+    │   │   ├── api.py
+    │   │   ├── apps.py
+    │   │   ├── authentication.py
+    │   │   ├── enums.py
+    │   │   ├── factories.py
+    │   │   ├── management
+    │   │   │   ├── __init__.py
+    │   │   │   └── commands
+    │   │   │       ├── __init__.py
+    │   │   │       ├── create_search_pipeline.py
+    │   │   │       └── reindex_with_embedding.py
+    │   │   ├── migrations
+    │   │   │   ├── 0001_initial.py
+    │   │   │   ├── 0002_service_client_id_service_services.py
+    │   │   │   └── __init__.py
+    │   │   ├── models.py
+    │   │   ├── permissions.py
+    │   │   ├── schemas.py
+    │   │   ├── selftests.py
+    │   │   ├── selftests_builtin.py
+    │   │   ├── services
+    │   │   │   ├── __init__.py
+    │   │   │   ├── embedding.py
+    │   │   │   ├── indexing.py
+    │   │   │   ├── opensearch.py
+    │   │   │   ├── opensearch_configuration.py
+    │   │   │   └── search.py
+    │   │   ├── templates
+    │   │   │   └── admin
+    │   │   │       ├── core
+    │   │   │       │   └── services
+    │   │   │       │       └── change_list.html
+    │   │   │       ├── index.html
+    │   │   │       └── selftest.html
+    │   │   ├── tests
+    │   │   │   ├── __init__.py
+    │   │   │   ├── commands
+    │   │   │   │   ├── test_create_search_pipeline.py
+    │   │   │   │   └── test_reindex_with_embedding.py
+    │   │   │   ├── conftest.py
+    │   │   │   ├── mock
+    │   │   │   │   └── albert_embedding_response.py
+    │   │   │   ├── test_admin_selftest.py
+    │   │   │   ├── test_api_documents_delete.py
+    │   │   │   ├── test_api_documents_index_bulk.py
+    │   │   │   ├── test_api_documents_index_single.py
+    │   │   │   ├── test_api_documents_search.py
+    │   │   │   ├── test_api_documents_search_access_control.py
+    │   │   │   ├── test_embedding.py
+    │   │   │   ├── test_indexing.py
+    │   │   │   ├── test_models_services.py
+    │   │   │   ├── test_schemas.py
+    │   │   │   ├── test_search.py
+    │   │   │   ├── test_selftests.py
+    │   │   │   └── utils.py
+    │   │   ├── urls.py
+    │   │   ├── utils.py
+    │   │   └── views.py
+    │   ├── demo
+    │   │   ├── __init__.py
+    │   │   ├── defaults.py
+    │   │   ├── management
+    │   │   │   ├── __init__.py
+    │   │   │   └── commands
+    │   │   │       ├── __init__.py
+    │   │   │       └── create_demo.py
+    │   │   └── tests
+    │   │       ├── __init__.py
+    │   │       └── test_commands_create_demo.py
+    │   ├── evaluation
+    │   │   ├── __init__.py
+    │   │   ├── data
+    │   │   │   ├── __init__.py
+    │   │   │   ├── v0
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   ├── documents
+    │   │   │   │   │   └── 1_a document.txt
+    │   │   │   │   └── queries.py
+    │   │   │   └── v1
+    │   │   │       ├── __init__.py
+    │   │   │       ├── documents
+    │   │   │       │   ├── 10_La Conquête Spatiale.txt
+    │   │   │       │   ├── 11_Les Métropoles Mondiales.txt
+    │   │   │       │   ├── 12_La Seconde Guerre Mondiale.txt
+    │   │   │       │   ├── 13_Le Développement Durable.txt
+    │   │   │       │   ├── 14_La Chine contemporaine.txt
+    │   │   │       │   ├── 15_Les Grandes Découvertes.txt
+    │   │   │       │   ├── 16_L'Union Européenne.txt
+    │   │   │       │   ├── 17_La Révolution Industrielle.txt
+    │   │   │       │   ├── 18_Les Inégalités Nord-Sud.txt
+    │   │   │       │   ├── 19_Le Siècle des Lumières.txt
+    │   │   │       │   ├── 1_La Révolution Française 1789.txt
+    │   │   │       │   ├── 20_Les Ressources Énergétiques.txt
+    │   │   │       │   ├── 21_Le Lion d'Afrique.txt
+    │   │   │       │   ├── 22_Le Dauphin.txt
+    │   │   │       │   ├── 23_L'Éléphant d'Asie.txt
+    │   │   │       │   ├── 24_Le Colibri.txt
+    │   │   │       │   ├── 25_L'Ours polaire.txt
+    │   │   │       │   ├── 26_Le Caméléon.txt
+    │   │   │       │   ├── 27_Le Manchot Empereur.txt
+    │   │   │       │   ├── 28_Le Requin Blanc.txt
+    │   │   │       │   ├── 29_L'Abeille.txt
+    │   │   │       │   ├── 2_La Première Guerre Mondiale.txt
+    │   │   │       │   ├── 30_Le Guépard.txt
+    │   │   │       │   ├── 31_La Pieuvre.txt
+    │   │   │       │   ├── 32_Le Koala.txt
+    │   │   │       │   ├── 33_Le Gorille des Montagnes.txt
+    │   │   │       │   ├── 34_Le Papillon Monarque.txt
+    │   │   │       │   ├── 35_Le Loup Gris.txt
+    │   │   │       │   ├── 36_Le Kangourou Roux.txt
+    │   │   │       │   ├── 37_La Baleine à Bosse.txt
+    │   │   │       │   ├── 38_Le Serpent Python.txt
+    │   │   │       │   ├── 39_Le Hibou Grand-Duc.txt
+    │   │   │       │   ├── 3_La Décolonisation en Afrique.txt
+    │   │   │       │   ├── 40_Le Paresseux.txt
+    │   │   │       │   ├── 41_Bœuf Bourguignon.txt
+    │   │   │       │   ├── 42_Ratatouille Provençale.txt
+    │   │   │       │   ├── 43_Coq au Vin.txt
+    │   │   │       │   ├── 44_Tarte Tatin.txt
+    │   │   │       │   ├── 45_Bouillabaisse Marseillaise.txt
+    │   │   │       │   ├── 46_Quiche Lorraine.txt
+    │   │   │       │   ├── 47_Blanquette de Veau.txt
+    │   │   │       │   ├── 48_Crêpes Bretonnes.txt
+    │   │   │       │   ├── 49_Cassoulet Toulousain.txt
+    │   │   │       │   ├── 4_Le Réchauffement Climatique.txt
+    │   │   │       │   ├── 50_Soufflé au Fromage.txt
+    │   │   │       │   ├── 51_Pot-au-feu.txt
+    │   │   │       │   ├── 52_Mousse au Chocolat.txt
+    │   │   │       │   ├── 53_Gratin Dauphinois.txt
+    │   │   │       │   ├── 54_Salade de légumes.txt
+    │   │   │       │   ├── 55_Tarte au Citron Meringuée.txt
+    │   │   │       │   ├── 56_Magret de Canard aux Figues.txt
+    │   │   │       │   ├── 57_Clafoutis aux Cerises.txt
+    │   │   │       │   ├── 58_Fondue Savoyarde.txt
+    │   │   │       │   ├── 59_Crème Brûlée.txt
+    │   │   │       │   ├── 5_L'Empire Romain.txt
+    │   │   │       │   ├── 60_Tartare de Bœuf.txt
+    │   │   │       │   ├── 61_La Musique.txt
+    │   │   │       │   ├── 62_Le Cinéma.txt
+    │   │   │       │   ├── 63_La Danse.txt
+    │   │   │       │   ├── 64_La Peinture à l'Huile.txt
+    │   │   │       │   ├── 65_La Sculpture sur Pierre.txt
+    │   │   │       │   ├── 66_La Calligraphie.txt
+    │   │   │       │   ├── 67_La Photographie.txt
+    │   │   │       │   ├── 68_La Danse Contemporaine.txt
+    │   │   │       │   ├── 69_L'Origami.txt
+    │   │   │       │   ├── 6_La Renaissance Européenne.txt
+    │   │   │       │   ├── 70_La Mosaïque.txt
+    │   │   │       │   ├── 71_Le Théâtre.txt
+    │   │   │       │   ├── 72_Le Vitrail.txt
+    │   │   │       │   ├── 73_La Gravure.txt
+    │   │   │       │   ├── 74_L'éléphant.txt
+    │   │   │       │   ├── 75_Foot.txt
+    │   │   │       │   ├── 76_Il va courir.txt
+    │   │   │       │   ├── 7_La Guerre Froide.txt
+    │   │   │       │   ├── 8_L'Égypte Ancienne.txt
+    │   │   │       │   └── 9_La Mondialisation.txt
+    │   │   │       └── queries.py
+    │   │   ├── management
+    │   │   │   ├── __init__.py
+    │   │   │   └── commands
+    │   │   │       ├── __init__.py
+    │   │   │       └── evaluate_search_engine.py
+    │   │   └── tests
+    │   │       ├── __init__.py
+    │   │       └── test_evaluate_search_engine.py
+    │   ├── find
+    │   │   ├── __init__.py
+    │   │   ├── celery_app.py
+    │   │   ├── settings.py
+    │   │   ├── urls.py
+    │   │   └── wsgi.py
+    │   ├── manage.py
+    │   ├── pyproject.toml
+    │   └── uv.lock
+    └── helm
+        ├── env.d
+        │   └── dev
+        │       ├── secrets.enc.yaml
+        │       ├── values.find.yaml.gotmpl
+        │       └── values.opensearch.yaml.gotmpl
+        ├── extra
+        │   ├── Chart.yaml
+        │   └── templates
+        │       ├── backend_secret.yaml
+        │       └── openseach_secret.yaml
+        ├── find
+        │   ├── Chart.yaml
+        │   ├── README.md
+        │   ├── generate-readme.sh
+        │   ├── templates
+        │   │   ├── _helpers.tpl
+        │   │   ├── backend_deployment.yaml
+        │   │   ├── backend_job.yaml
+        │   │   ├── backend_job_createsuperuser.yaml
+        │   │   ├── backend_svc.yaml
+        │   │   ├── ingress.yaml
+        │   │   ├── ingress_admin.yaml
+        │   │   └── secret.yaml
+        │   └── values.yaml
+        └── helmfile.yaml
+52 directories, 222 files
