@@ -1,0 +1,425 @@
+.
+├── .dockerignore
+├── .github
+│   └── workflows
+│       ├── ci-cd.yml
+│       └── deploy-docs-to-github-pages.yml
+├── .gitignore
+├── .npmrc
+├── .nvmrc
+├── LICENSE
+├── README.md
+├── config
+│   ├── certs
+│   │   ├── .gitignore
+│   │   └── certs -> ./certs
+│   ├── jest
+│   │   ├── jest.config.d.ts
+│   │   ├── jest.config.mjs
+│   │   └── package.json
+│   ├── semantic-release
+│   │   ├── package.json
+│   │   ├── src
+│   │   │   └── index.ts
+│   │   └── tsconfig.json
+│   └── tsconfig
+│       ├── package.json
+│       └── tsconfig.base.json
+├── docker-compose.yml
+├── docs
+│   ├── .gitignore
+│   ├── README.md
+│   ├── babel.config.js
+│   ├── blog
+│   │   ├── 2019-05-28-first-blog-post.md
+│   │   ├── 2019-05-29-long-blog-post.md
+│   │   ├── 2021-08-01-mdx-blog-post.mdx
+│   │   ├── 2021-08-26-welcome
+│   │   │   ├── docusaurus-plushie-banner.jpeg
+│   │   │   └── index.md
+│   │   └── authors.yml
+│   ├── docs
+│   │   ├── 01-overview.md
+│   │   ├── 02-user-auth-stories.md
+│   │   ├── contributing
+│   │   │   ├── _category_.json
+│   │   │   ├── development-environment.md
+│   │   │   └── monorepo-architecture.md
+│   │   ├── cryptography
+│   │   │   ├── _category_.json
+│   │   │   ├── api-protocol.md
+│   │   │   ├── authentication.md
+│   │   │   ├── devices.md
+│   │   │   ├── encodings.md
+│   │   │   ├── forms.md
+│   │   │   ├── identity.md
+│   │   │   └── signatures.md
+│   │   ├── getting-started
+│   │   │   ├── 00-prerequisites.md
+│   │   │   ├── 01-server.md
+│   │   │   ├── 02-client.md
+│   │   │   ├── 03-react.md
+│   │   │   ├── 04-devtools.md
+│   │   │   └── _category_.json
+│   │   ├── how-to
+│   │   │   ├── 01-authentication.md
+│   │   │   ├── 02-keys.md
+│   │   │   ├── 03-sharing.md
+│   │   │   ├── 04-devices.md
+│   │   │   ├── 05-forms.md
+│   │   │   └── _category_.json
+│   │   └── use-cases
+│   │       ├── _category_.json
+│   │       └── forms.md
+│   ├── docusaurus.config.js
+│   ├── package.json
+│   ├── sidebars.js
+│   ├── src
+│   │   ├── components
+│   │   │   ├── HomepageFeatures
+│   │   │   │   ├── index.tsx
+│   │   │   │   └── styles.module.css
+│   │   │   └── Keygen.tsx
+│   │   ├── css
+│   │   │   └── custom.css
+│   │   └── pages
+│   │       ├── index.module.css
+│   │       ├── index.tsx
+│   │       └── markdown-page.md
+│   ├── static
+│   │   ├── .nojekyll
+│   │   └── img
+│   │       ├── data-visibility-e2ee.png
+│   │       ├── data-visibility-traditional-apps.png
+│   │       ├── docusaurus.png
+│   │       ├── favicon.ico
+│   │       ├── logo.svg
+│   │       ├── schema-forms-decrypt.png
+│   │       ├── schema-forms-encrypt.png
+│   │       ├── undraw_docusaurus_mountain.svg
+│   │       ├── undraw_docusaurus_react.svg
+│   │       ├── undraw_docusaurus_tree.svg
+│   │       ├── undraw_security_re_a2rk.svg
+│   │       └── undraw_shared_workspace_re_3gsu.svg
+│   └── tsconfig.json
+├── examples
+│   ├── README.md
+│   ├── fullstack
+│   │   └── contact-forms
+│   │       ├── .eslintrc.json
+│   │       ├── .gitignore
+│   │       ├── README.md
+│   │       ├── docker-compose.yml
+│   │       ├── next.config.mjs
+│   │       ├── package.json
+│   │       ├── src
+│   │       │   ├── components
+│   │       │   │   ├── CopiableReadOnlyInput.tsx
+│   │       │   │   ├── EncryptedAvatar.tsx
+│   │       │   │   ├── LoadingButton.tsx
+│   │       │   │   ├── NoSSR.tsx
+│   │       │   │   ├── ShareKeyPopup.tsx
+│   │       │   │   ├── UserIdentityInput.tsx
+│   │       │   │   ├── colorModeSwitch.tsx
+│   │       │   │   ├── devtools.tsx
+│   │       │   │   └── pageLayout.tsx
+│   │       │   ├── hasura
+│   │       │   │   ├── .env.example
+│   │       │   │   ├── Dockerfile
+│   │       │   │   ├── config.yaml
+│   │       │   │   ├── metadata
+│   │       │   │   │   ├── actions.graphql
+│   │       │   │   │   ├── actions.yaml
+│   │       │   │   │   ├── allow_list.yaml
+│   │       │   │   │   ├── api_limits.yaml
+│   │       │   │   │   ├── cron_triggers.yaml
+│   │       │   │   │   ├── databases
+│   │       │   │   │   │   ├── app
+│   │       │   │   │   │   │   └── tables
+│   │       │   │   │   │   │       ├── public_contact_form_comments.yaml
+│   │       │   │   │   │   │       ├── public_contact_form_submissions.yaml
+│   │       │   │   │   │   │       └── tables.yaml
+│   │       │   │   │   │   └── databases.yaml
+│   │       │   │   │   ├── graphql_schema_introspection.yaml
+│   │       │   │   │   ├── inherited_roles.yaml
+│   │       │   │   │   ├── network.yaml
+│   │       │   │   │   ├── query_collections.yaml
+│   │       │   │   │   ├── remote_schemas.yaml
+│   │       │   │   │   ├── rest_endpoints.yaml
+│   │       │   │   │   └── version.yaml
+│   │       │   │   └── migrations
+│   │       │   │       └── app
+│   │       │   │           ├── .gitkeep
+│   │       │   │           ├── 1668001711698_create_table_public_contact_form_answers
+│   │       │   │           │   ├── down.sql
+│   │       │   │           │   └── up.sql
+│   │       │   │           ├── 1668001783620_rename_table_public_contact_form_answers
+│   │       │   │           │   ├── down.sql
+│   │       │   │           │   └── up.sql
+│   │       │   │           ├── 1668001815031_alter_table_public_contact_form_submissions_alter_column_response_bucket_id
+│   │       │   │           │   ├── down.sql
+│   │       │   │           │   └── up.sql
+│   │       │   │           ├── 1668070405385_alter_table_public_contact_form_submissions_alter_column_title
+│   │       │   │           │   ├── down.sql
+│   │       │   │           │   └── up.sql
+│   │       │   │           ├── 1668070428204_alter_table_public_contact_form_submissions_alter_column_email
+│   │       │   │           │   ├── down.sql
+│   │       │   │           │   └── up.sql
+│   │       │   │           ├── 1670333761550_use-key-derivation-metadata
+│   │       │   │           │   ├── down.sql
+│   │       │   │           │   └── up.sql
+│   │       │   │           ├── 1672932125435_add-identity-files
+│   │       │   │           │   ├── down.sql
+│   │       │   │           │   └── up.sql
+│   │       │   │           └── 1673441400243_add-form-submission-comments-table
+│   │       │   │               ├── down.sql
+│   │       │   │               └── up.sql
+│   │       │   ├── hooks
+│   │       │   │   └── useShareKey.ts
+│   │       │   ├── lib
+│   │       │   │   ├── comments.ts
+│   │       │   │   ├── contact-form.tsx
+│   │       │   │   ├── files.ts
+│   │       │   │   └── submissions.ts
+│   │       │   └── pages
+│   │       │       ├── _app.tsx
+│   │       │       ├── api
+│   │       │       │   └── storage.ts
+│   │       │       ├── app
+│   │       │       │   └── contact-forms
+│   │       │       │       ├── [submissionBucketId]
+│   │       │       │       │   ├── [submissionId].tsx
+│   │       │       │       │   └── index.tsx
+│   │       │       │       ├── index.tsx
+│   │       │       │       └── new.tsx
+│   │       │       ├── contact-form
+│   │       │       │   └── [submissionBucketId].tsx
+│   │       │       ├── enroll-new-device.tsx
+│   │       │       ├── index.tsx
+│   │       │       ├── login.tsx
+│   │       │       └── signup.tsx
+│   │       └── tsconfig.json
+│   └── with-vue
+│       ├── .gitignore
+│       ├── README.md
+│       ├── env.d.ts
+│       ├── index.html
+│       ├── package.json
+│       ├── public
+│       │   └── favicon.ico
+│       ├── src
+│       │   ├── App.vue
+│       │   ├── assets
+│       │   │   ├── base.css
+│       │   │   ├── logo.svg
+│       │   │   └── main.css
+│       │   ├── components
+│       │   │   ├── HelloWorld.vue
+│       │   │   ├── TheWelcome.vue
+│       │   │   ├── WelcomeItem.vue
+│       │   │   └── icons
+│       │   │       ├── IconCommunity.vue
+│       │   │       ├── IconDocumentation.vue
+│       │   │       ├── IconEcosystem.vue
+│       │   │       ├── IconSupport.vue
+│       │   │       └── IconTooling.vue
+│       │   ├── main.ts
+│       │   ├── router
+│       │   │   └── index.ts
+│       │   └── views
+│       │       ├── AboutView.vue
+│       │       └── HomeView.vue
+│       ├── tsconfig.config.json
+│       ├── tsconfig.json
+│       └── vite.config.ts
+├── package.json
+├── packages
+│   ├── api
+│   │   ├── README.md
+│   │   ├── jest.config.mjs
+│   │   ├── package.json
+│   │   ├── src
+│   │   │   ├── auth.ts
+│   │   │   ├── ban.ts
+│   │   │   ├── devices.ts
+│   │   │   ├── headers.ts
+│   │   │   ├── identity.ts
+│   │   │   ├── index.ts
+│   │   │   ├── keychain.ts
+│   │   │   ├── participants.ts
+│   │   │   ├── permissions.ts
+│   │   │   ├── schemas
+│   │   │   │   ├── devices.ts
+│   │   │   │   ├── encodings.test.ts
+│   │   │   │   ├── encodings.ts
+│   │   │   │   ├── identity.ts
+│   │   │   │   └── opaque.ts
+│   │   │   ├── server
+│   │   │   │   └── webhook.ts
+│   │   │   ├── session.ts
+│   │   │   ├── sharedKey.ts
+│   │   │   ├── signup.ts
+│   │   │   ├── utils
+│   │   │   │   ├── time.test.ts
+│   │   │   │   ├── time.ts
+│   │   │   │   └── types.ts
+│   │   │   └── websocket.ts
+│   │   └── tsconfig.json
+│   ├── client
+│   │   ├── README.md
+│   │   ├── package.json
+│   │   ├── src
+│   │   │   └── index.ts
+│   │   └── tsconfig.json
+│   ├── crypto
+│   │   ├── README.md
+│   │   ├── jest.config.mjs
+│   │   ├── package.json
+│   │   ├── src
+│   │   │   ├── form
+│   │   │   │   ├── encryption.ts
+│   │   │   │   ├── form.test.ts
+│   │   │   │   └── state.ts
+│   │   │   ├── index.ts
+│   │   │   ├── shared
+│   │   │   │   ├── codec.test.ts
+│   │   │   │   ├── codec.ts
+│   │   │   │   ├── utils.test.ts
+│   │   │   │   └── utils.ts
+│   │   │   └── sodium
+│   │   │       ├── auth.ts
+│   │   │       ├── ciphers.test.ts
+│   │   │       ├── ciphers.ts
+│   │   │       ├── devices.ts
+│   │   │       ├── encryption.test.ts
+│   │   │       ├── encryption.ts
+│   │   │       ├── files.test.ts
+│   │   │       ├── files.ts
+│   │   │       ├── fingerprint.test.ts
+│   │   │       ├── fingerprint.ts
+│   │   │       ├── identity.test.ts
+│   │   │       ├── identity.ts
+│   │   │       ├── manifest.test.ts
+│   │   │       ├── manifest.ts
+│   │   │       ├── multipartSignature.test.ts
+│   │   │       ├── multipartSignature.ts
+│   │   │       ├── opaque.test.ts
+│   │   │       ├── opaque.ts
+│   │   │       └── sodium.ts
+│   │   └── tsconfig.json
+│   ├── devtools
+│   │   ├── README.md
+│   │   ├── docs
+│   │   │   └── web-component.md
+│   │   ├── package.json
+│   │   ├── src
+│   │   │   ├── components
+│   │   │   │   ├── AlgorithmBadge.tsx
+│   │   │   │   ├── AuthForm.tsx
+│   │   │   │   ├── ColorModeSwitch.tsx
+│   │   │   │   ├── DeviceRegistrationForm.tsx
+│   │   │   │   ├── Identity.tsx
+│   │   │   │   ├── PortalProvider.tsx
+│   │   │   │   ├── Sections.tsx
+│   │   │   │   ├── SodiumState.tsx
+│   │   │   │   └── UserIdentityInput.tsx
+│   │   │   ├── hooks
+│   │   │   │   └── useLocalState.ts
+│   │   │   ├── host
+│   │   │   │   ├── App.tsx
+│   │   │   │   ├── app.css
+│   │   │   │   ├── index.html
+│   │   │   │   ├── main.tsx
+│   │   │   │   └── vite-env.d.ts
+│   │   │   ├── index.tsx
+│   │   │   ├── tabs
+│   │   │   │   ├── AuthTab.tsx
+│   │   │   │   ├── DevicesTab.tsx
+│   │   │   │   ├── IdentityTab.tsx
+│   │   │   │   └── KeysTab.tsx
+│   │   │   └── view.tsx
+│   │   ├── tsconfig.json
+│   │   ├── tsconfig.node.json
+│   │   └── vite.config.ts
+│   ├── generator
+│   │   ├── README.md
+│   │   ├── package.json
+│   │   ├── src
+│   │   │   └── generate.ts
+│   │   └── tsconfig.json
+│   ├── react
+│   │   ├── README.md
+│   │   ├── package.json
+│   │   ├── src
+│   │   │   └── index.tsx
+│   │   └── tsconfig.json
+│   └── server
+│       ├── .env.example
+│       ├── .pino-prettyrc.json
+│       ├── .swcrc
+│       ├── Dockerfile
+│       ├── README.md
+│       ├── certs -> ../../config/certs
+│       ├── package.json
+│       ├── src
+│       │   ├── database
+│       │   │   ├── connectionOptions.ts
+│       │   │   ├── migrations
+│       │   │   │   ├── 00001_init
+│       │   │   │   │   └── migration.sql
+│       │   │   │   ├── 00002_add-notification-triggers
+│       │   │   │   │   └── migration.sql
+│       │   │   │   └── 00003_add-devices-table
+│       │   │   │       └── migration.sql
+│       │   │   ├── migrations.ts
+│       │   │   ├── models
+│       │   │   │   ├── devices.ts
+│       │   │   │   ├── helpers.ts
+│       │   │   │   ├── identity.ts
+│       │   │   │   ├── keychain.ts
+│       │   │   │   ├── participants.ts
+│       │   │   │   ├── permissions.ts
+│       │   │   │   └── sharedKey.ts
+│       │   │   ├── operations.ts
+│       │   │   └── seeds
+│       │   │       ├── identities.ts
+│       │   │       └── index.ts
+│       │   ├── env.ts
+│       │   ├── lib
+│       │   │   ├── crypto.ts
+│       │   │   └── tls.ts
+│       │   ├── main.ts
+│       │   ├── plugins
+│       │   │   ├── auditLog.ts
+│       │   │   ├── auth.ts
+│       │   │   ├── codeSignature.ts
+│       │   │   ├── cors.ts
+│       │   │   ├── database.ts
+│       │   │   ├── pkg.ts
+│       │   │   ├── redis.ts
+│       │   │   ├── sodium.ts
+│       │   │   ├── swagger.ts
+│       │   │   ├── webhook.ts
+│       │   │   └── websocket.ts
+│       │   ├── routes
+│       │   │   ├── auth
+│       │   │   │   ├── devices.ts
+│       │   │   │   ├── login.ts
+│       │   │   │   ├── sessions.ts
+│       │   │   │   └── signup.ts
+│       │   │   ├── ban.ts
+│       │   │   ├── identities.ts
+│       │   │   ├── info.ts
+│       │   │   ├── keychain.ts
+│       │   │   ├── notifications.ts
+│       │   │   ├── participants.ts
+│       │   │   ├── permissions.ts
+│       │   │   └── sharedKeys.ts
+│       │   ├── server.ts
+│       │   └── types.ts
+│       └── tsconfig.json
+├── pnpm-lock.yaml
+├── pnpm-workspace.yaml
+├── renovate.json
+└── turbo.json
+99 directories, 325 files

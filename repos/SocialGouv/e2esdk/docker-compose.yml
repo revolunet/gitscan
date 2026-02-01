@@ -1,0 +1,37 @@
+# This compose stack covers the backing services required for the e2esdk server
+# to run locally. They are bound to the host machine so the server can connect
+# to them directly without needing to run in a Docker context (makes for faster
+# and simpler development).
+# Volumes are persisted in the .volumes/docker/e2esdk-dev directory.
+
+version: '3'
+
+name: e2esdk-dev
+
+services:
+  db:
+    image: postgres:14.1
+    ports:
+      - '3002:5432'
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=e2esdk
+    volumes:
+      - .volumes/docker/$COMPOSE_PROJECT_NAME/db:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 1s
+      start_period: 3s
+      retries: 50
+  redis:
+    image: redis:7
+    command: redis-server --appendonly yes
+    ports:
+      - '3003:6379'
+    volumes:
+      - .volumes/docker/$COMPOSE_PROJECT_NAME/redis:/data
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli -h 127.0.0.1 ping | grep 'PONG' || exit 1"]
+      interval: 1s
+      start_period: 3s
+      retries: 10
