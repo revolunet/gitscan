@@ -1,0 +1,361 @@
+.
+├── .gitignore
+├── .pylintrc
+├── CONTRIBUTING.md
+├── LICENSE
+├── Makefile
+├── README.md
+├── alembic.ini
+├── labonneboite
+│   ├── __init__.py
+│   ├── alembic
+│   │   ├── README.md
+│   │   ├── env.py
+│   │   ├── script.py.mako
+│   │   ├── sql
+│   │   │   ├── initial_etablissements_admin_remove.sql
+│   │   │   └── initial_etablissements_admin_update.sql
+│   │   └── versions
+│   │       ├── 090e86dfc304_add_reason_column.py
+│   │       ├── 2426e6b89deb_switch_to_utf8mb4.py
+│   │       ├── 428e168fdf0c_update_users.py
+│   │       ├── 94d10e069fea_create_user_favorite_offices.py
+│   │       ├── 963bf41f07fa_add_office_admin_tables.py
+│   │       ├── ba4492177099_switch_to_utf8mb4_bis.py
+│   │       ├── e4bce598b236_user_and_social_auth.py
+│   │       └── eaba5c094998_create_etablissements_admin_add.py
+│   ├── common
+│   │   ├── __init__.py
+│   │   ├── data
+│   │   │   ├── 2016_03_22_rome_naf_filter.csv
+│   │   │   ├── city_codes.pickle
+│   │   │   ├── city_codes_v2.pickle
+│   │   │   ├── communes.json
+│   │   │   ├── consolidated_cities.csv
+│   │   │   ├── contact_modes.pickle
+│   │   │   ├── ogr_labels.csv
+│   │   │   ├── ogr_labels.pickle
+│   │   │   ├── ogr_rome_codes.csv
+│   │   │   ├── ogr_rome_codes.pickle
+│   │   │   ├── rome_naf_filter.csv
+│   │   │   └── villes_france.csv
+│   │   ├── database.py
+│   │   ├── email_util.py
+│   │   ├── encoding.py
+│   │   ├── geocoding.py
+│   │   ├── load_data.py
+│   │   ├── mapping.py
+│   │   ├── models
+│   │   │   ├── __init__.py
+│   │   │   ├── auth.py
+│   │   │   ├── base.py
+│   │   │   ├── office.py
+│   │   │   ├── office_admin.py
+│   │   │   └── user_favorite_offices.py
+│   │   ├── pdf.py
+│   │   ├── scoring.py
+│   │   ├── search.py
+│   │   ├── sortedcollection.py
+│   │   ├── util.py
+│   │   └── zipcode_geocoding.csv
+│   ├── conf
+│   │   ├── __init__.py
+│   │   └── common
+│   │       ├── __init__.py
+│   │       ├── naf_codes.py
+│   │       ├── rome_descriptions.py
+│   │       ├── rome_mobilities.py
+│   │       ├── rome_naf_mapping.py
+│   │       └── settings_common.py
+│   ├── db
+│   │   ├── etablissements_backoffice.sql
+│   │   └── etablissements_main_db.sql
+│   ├── importer
+│   │   ├── __init__.py
+│   │   ├── compute_score.py
+│   │   ├── debug.py
+│   │   ├── jobs
+│   │   │   ├── __init__.py
+│   │   │   ├── base.py
+│   │   │   ├── check_dpae.py
+│   │   │   ├── check_etablissements.py
+│   │   │   ├── compute_scores.py
+│   │   │   ├── extract_dpae.py
+│   │   │   ├── extract_etablissements.py
+│   │   │   ├── geocode.py
+│   │   │   ├── populate_flags.py
+│   │   │   └── validate_scores.py
+│   │   ├── models
+│   │   │   ├── __init__.py
+│   │   │   └── computing.py
+│   │   ├── pickle_exports
+│   │   │   └── .gitignore
+│   │   ├── sanity.py
+│   │   ├── settings.py
+│   │   ├── tests
+│   │   │   ├── __init__.py
+│   │   │   ├── data
+│   │   │   │   ├── LBB_EGCEMP_ENTREPRISE_20151119_20161219_20161219_153447.csv
+│   │   │   │   ├── LBB_XDPDPA_DPAE_20151010_20161110_20161110_174915.csv
+│   │   │   │   ├── LBB_XDPDPA_DPAE_20151010_20161110_20161110_174915.csv.bz2
+│   │   │   │   ├── LBB_XDPDPA_DPAE_20151010_20161110_20161110_174915.csv.gz
+│   │   │   │   └── LBB_XDPDPA_DPAE_20151110_20161210_20161210_094110.csv
+│   │   │   ├── test_base.py
+│   │   │   ├── test_compute_score.py
+│   │   │   ├── test_compute_scores.py
+│   │   │   ├── test_dpae.py
+│   │   │   ├── test_etablissements.py
+│   │   │   ├── test_geocode.py
+│   │   │   ├── test_importer.py
+│   │   │   └── test_scoring.py
+│   │   └── util.py
+│   ├── scripts
+│   │   ├── __init__.py
+│   │   ├── create_index.py
+│   │   ├── create_sitemap.py
+│   │   ├── loadtesting.py
+│   │   └── templates
+│   │       └── sitemap.xml
+│   ├── tests
+│   │   ├── __init__.py
+│   │   ├── app
+│   │   │   ├── __init__.py
+│   │   │   ├── test_contact_mode.py
+│   │   │   ├── test_geocoding.py
+│   │   │   ├── test_search.py
+│   │   │   ├── test_suggest_locations.py
+│   │   │   └── test_synchro.py
+│   │   ├── scripts
+│   │   │   ├── __init__.py
+│   │   │   └── test_create_index.py
+│   │   ├── test_base.py
+│   │   └── web
+│   │       ├── __init__.py
+│   │       ├── api
+│   │       │   ├── __init__.py
+│   │       │   ├── test_api.py
+│   │       │   ├── test_api_base.py
+│   │       │   └── test_api_office_details.py
+│   │       ├── integration
+│   │       │   ├── __init__.py
+│   │       │   ├── test_admin.py
+│   │       │   ├── test_auth.py
+│   │       │   ├── test_companies.py
+│   │       │   ├── test_delete_user_account.py
+│   │       │   ├── test_favorites.py
+│   │       │   ├── test_health.py
+│   │       │   ├── test_pagination.py
+│   │       │   ├── test_pro_version.py
+│   │       │   ├── test_routes.py
+│   │       │   └── test_static_pages.py
+│   │       └── selenium
+│   │           ├── __init__.py
+│   │           ├── base.py
+│   │           ├── test_reset_naf.py
+│   │           ├── test_results.py
+│   │           └── test_simple.py
+│   └── web
+│       ├── __init__.py
+│       ├── admin
+│       │   ├── __init__.py
+│       │   ├── forms.py
+│       │   ├── utils.py
+│       │   └── views
+│       │       ├── __init__.py
+│       │       ├── index.py
+│       │       ├── office_admin_add.py
+│       │       ├── office_admin_remove.py
+│       │       ├── office_admin_update.py
+│       │       └── user.py
+│       ├── api
+│       │   ├── __init__.py
+│       │   ├── util.py
+│       │   └── views.py
+│       ├── app.py
+│       ├── auth
+│       │   ├── README.md
+│       │   ├── __init__.py
+│       │   ├── backends
+│       │   │   ├── __init__.py
+│       │   │   └── peam.py
+│       │   └── views.py
+│       ├── config.py
+│       ├── health
+│       │   ├── __init__.py
+│       │   ├── util.py
+│       │   └── views.py
+│       ├── office
+│       │   ├── __init__.py
+│       │   ├── forms.py
+│       │   └── views.py
+│       ├── pagination.py
+│       ├── root
+│       │   ├── __init__.py
+│       │   └── views.py
+│       ├── search
+│       │   ├── __init__.py
+│       │   ├── forms.py
+│       │   └── views.py
+│       ├── static
+│       │   ├── css
+│       │   │   ├── _base.css
+│       │   │   ├── _global_classes.css
+│       │   │   ├── _layout.css
+│       │   │   ├── alerts.css
+│       │   │   ├── badges.css
+│       │   │   ├── breadcrumb.css
+│       │   │   ├── buttons.css
+│       │   │   ├── cookbook.css
+│       │   │   ├── cookies_banner.css
+│       │   │   ├── doorbell.css
+│       │   │   ├── dropdowns.css
+│       │   │   ├── forms.css
+│       │   │   ├── grid.css
+│       │   │   ├── home.css
+│       │   │   ├── pagination.css
+│       │   │   ├── ratings.css
+│       │   │   ├── search_results.css
+│       │   │   └── vendor
+│       │   │       ├── bootstrap-tooltip.css
+│       │   │       └── jquery-ui.css
+│       │   ├── googleaece67026df0ee76.html
+│       │   ├── images
+│       │   │   ├── cookbook
+│       │   │   │   └── construction.jpg
+│       │   │   ├── favicon.ico
+│       │   │   ├── input-icons
+│       │   │   │   ├── magnifier-white.svg
+│       │   │   │   ├── pinmap-location.svg
+│       │   │   │   └── suitcase.svg
+│       │   │   ├── logo-lbb-square.png
+│       │   │   ├── logo-lbb.png
+│       │   │   ├── logo-lbb.svg
+│       │   │   ├── logo-pe-connect.svg
+│       │   │   ├── logo-pe.svg
+│       │   │   ├── logo-pole-emploi-new.png
+│       │   │   ├── logout.svg
+│       │   │   ├── press
+│       │   │   │   ├── apec.png
+│       │   │   │   ├── france-info.jpg
+│       │   │   │   ├── france-inter.png
+│       │   │   │   ├── les-echos.png
+│       │   │   │   ├── liaisons-sociales.png
+│       │   │   │   ├── rtl.png
+│       │   │   │   └── usine-nouvelle.png
+│       │   │   ├── stars
+│       │   │   │   ├── stars.svg
+│       │   │   │   └── stars_empty.svg
+│       │   │   ├── user-color.svg
+│       │   │   ├── user.svg
+│       │   │   └── vendor
+│       │   │       └── jquery-ui-smoothness
+│       │   │           ├── ui-bg_flat_0_aaaaaa_40x100.png
+│       │   │           ├── ui-bg_flat_75_ffffff_40x100.png
+│       │   │           ├── ui-bg_glass_55_fbf9ee_1x400.png
+│       │   │           ├── ui-bg_glass_65_ffffff_1x400.png
+│       │   │           ├── ui-bg_glass_75_dadada_1x400.png
+│       │   │           ├── ui-bg_glass_75_e6e6e6_1x400.png
+│       │   │           ├── ui-bg_glass_95_fef1ec_1x400.png
+│       │   │           ├── ui-bg_highlight-soft_75_cccccc_1x100.png
+│       │   │           ├── ui-icons_222222_256x240.png
+│       │   │           ├── ui-icons_2e83ff_256x240.png
+│       │   │           ├── ui-icons_454545_256x240.png
+│       │   │           ├── ui-icons_888888_256x240.png
+│       │   │           └── ui-icons_cd0a0a_256x240.png
+│       │   ├── js
+│       │   │   ├── alerts.js
+│       │   │   ├── cookies-banner.js
+│       │   │   ├── dropdowns.js
+│       │   │   ├── form.js
+│       │   │   ├── prevent-double-form-submit.js
+│       │   │   ├── results-toggle-sidebar.js
+│       │   │   ├── results.js
+│       │   │   ├── tooltip.js
+│       │   │   ├── unobfuscate.js
+│       │   │   └── vendor
+│       │   │       ├── bootstrap-tooltip.js
+│       │   │       ├── jquery-ui.1.11.2.js
+│       │   │       ├── jquery.min.js
+│       │   │       ├── jquery.min.map
+│       │   │       └── js.cookie.js
+│       │   ├── loaderio-8a462212368a1af45b21b64ab8306e28.txt
+│       │   ├── maintenance.html
+│       │   ├── robots.txt
+│       │   └── sitemap.xml
+│       ├── templates
+│       │   ├── admin
+│       │   │   ├── index.html
+│       │   │   └── master.html
+│       │   ├── base.html
+│       │   ├── error
+│       │   │   ├── 401.html
+│       │   │   ├── 404.html
+│       │   │   └── 500.html
+│       │   ├── home.html
+│       │   ├── includes
+│       │   │   ├── alternative_distances.html
+│       │   │   ├── alternative_rome_descriptions.html
+│       │   │   ├── doorbell.html
+│       │   │   ├── office_content.html
+│       │   │   ├── office_header.html
+│       │   │   ├── pagination.html
+│       │   │   └── search_form.html
+│       │   ├── office
+│       │   │   ├── change_info.html
+│       │   │   ├── details.html
+│       │   │   └── pdf_detail.html
+│       │   ├── root
+│       │   │   ├── cgu.html
+│       │   │   ├── cookbook.html
+│       │   │   ├── faq.html
+│       │   │   ├── help.html
+│       │   │   └── press.html
+│       │   ├── search
+│       │   │   └── results.html
+│       │   └── user
+│       │       ├── account.html
+│       │       ├── account_delete.html
+│       │       └── favorites_list.html
+│       └── user
+│           ├── __init__.py
+│           ├── forms.py
+│           └── views.py
+├── requirements.txt
+├── setup.py
+├── setup.sh
+└── vagrant
+    ├── Vagrantfile
+    ├── elasticsearch.config.yml
+    ├── elasticsearch.yml
+    ├── labonneboite_dev_etablissements.sql
+    ├── labonneboite_test.sql
+    ├── mysql
+    │   ├── lbb_utf8mb4.cnf
+    │   └── my.cnf
+    ├── playbook.yml
+    ├── roles
+    │   └── elasticsearch
+    │       ├── LICENSE
+    │       ├── README.md
+    │       ├── defaults
+    │       │   └── main.yml
+    │       ├── handlers
+    │       │   └── main.yml
+    │       ├── meta
+    │       │   └── main.yml
+    │       ├── tasks
+    │       │   ├── configuration.yml
+    │       │   ├── curator.yml
+    │       │   ├── install.yml
+    │       │   ├── main.yml
+    │       │   ├── plugins.yml
+    │       │   └── prequesites.yml
+    │       ├── templates
+    │       │   ├── default.j2
+    │       │   └── elasticsearch.yml.j2
+    │       └── tests
+    │           ├── ansible.cfg
+    │           ├── hosts
+    │           └── site.yml
+    └── vars.yml
+67 directories, 293 files
