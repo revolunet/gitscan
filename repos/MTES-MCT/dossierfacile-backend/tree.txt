@@ -1,0 +1,2458 @@
+.
+├── .buildpacks
+├── .github
+│   └── workflows
+│       ├── codeql-analysis.yml
+│       └── main.yml
+├── .gitignore
+├── .nginx
+│   └── nginx.conf
+├── .rabbitmq
+│   └── rabbitmq.conf
+├── .tessdata
+│   ├── digits.traineddata
+│   └── fra.traineddata
+├── Aptfile
+├── LICENSE
+├── Procfile
+├── README.md
+├── docker-compose.dev.yml
+├── docs
+│   └── infrastructure_diagram.jpg
+├── dossier-facile-logging-library
+│   ├── pom.xml
+│   └── src
+│       ├── main
+│       │   ├── java
+│       │   │   └── fr
+│       │   │       └── dossierfacile
+│       │   │           └── logging
+│       │   │               ├── aop
+│       │   │               │   ├── SensitiveRequest.java
+│       │   │               │   └── SensitiveRequestAspect.java
+│       │   │               ├── appender
+│       │   │               │   └── CustomAppender.java
+│       │   │               ├── job
+│       │   │               │   └── LogAggregator.java
+│       │   │               ├── model
+│       │   │               │   ├── LogModel.java
+│       │   │               │   └── TaskStatus.java
+│       │   │               ├── request
+│       │   │               │   ├── LogAggregationFilter.java
+│       │   │               │   └── Oauth2LoggingHandler.java
+│       │   │               ├── serializer
+│       │   │               │   └── LogLevelSerializer.java
+│       │   │               ├── task
+│       │   │               │   └── LogAggregator.java
+│       │   │               └── util
+│       │   │                   └── LoggerUtil.java
+│       │   └── resources
+│       │       └── META-INF
+│       │           └── additional-spring-configuration-metadata.json
+│       └── test
+│           └── java
+│               └── fr
+│                   └── dossierfacile
+│                       └── logging
+│                           └── util
+│                               └── LoggerUtilTest.java
+├── dossierfacile-api-owner
+│   ├── .gitignore
+│   ├── .mvn
+│   │   └── wrapper
+│   │       ├── maven-wrapper.jar
+│   │       └── maven-wrapper.properties
+│   ├── README.md
+│   ├── lombok.config
+│   ├── mvnw
+│   ├── mvnw.cmd
+│   ├── pom.xml
+│   └── src
+│       ├── main
+│       │   ├── java
+│       │   │   └── fr
+│       │   │       └── dossierfacile
+│       │   │           └── api
+│       │   │               └── dossierfacileapiowner
+│       │   │                   ├── DossierfacileApiOwnerApplication.java
+│       │   │                   ├── annotation
+│       │   │                   │   ├── ValidDpeDate.java
+│       │   │                   │   └── ValidDpeDateValidator.java
+│       │   │                   ├── config
+│       │   │                   │   ├── ConnectionContextFilter.java
+│       │   │                   │   ├── GeneralConfig.java
+│       │   │                   │   ├── JwtConfig.java
+│       │   │                   │   ├── KeycloakConfig.java
+│       │   │                   │   ├── OpenApi30Config.java
+│       │   │                   │   ├── ResourceServerConfig.java
+│       │   │                   │   └── WebhookFilter.java
+│       │   │                   ├── log
+│       │   │                   │   ├── OwnerLogRepository.java
+│       │   │                   │   ├── OwnerLogService.java
+│       │   │                   │   └── OwnerLogServiceImpl.java
+│       │   │                   ├── mail
+│       │   │                   │   ├── ConfirmMailParams.java
+│       │   │                   │   ├── MailService.java
+│       │   │                   │   ├── MailServiceImpl.java
+│       │   │                   │   ├── NewPasswordMailParams.java
+│       │   │                   │   ├── PropertyApplicantMailParams.java
+│       │   │                   │   └── ValidatedPropertyParams.java
+│       │   │                   ├── property
+│       │   │                   │   ├── ApartmentSharingModel.java
+│       │   │                   │   ├── ApartmentSharingModelMapper.java
+│       │   │                   │   ├── LightPropertyModel.java
+│       │   │                   │   ├── OwnerPropertyMapper.java
+│       │   │                   │   ├── PropertyApartmentSharingModel.java
+│       │   │                   │   ├── PropertyApartmentSharingRepository.java
+│       │   │                   │   ├── PropertyApartmentSharingService.java
+│       │   │                   │   ├── PropertyApartmentSharingServiceImpl.java
+│       │   │                   │   ├── PropertyController.java
+│       │   │                   │   ├── PropertyForm.java
+│       │   │                   │   ├── PropertyMapper.java
+│       │   │                   │   ├── PropertyModel.java
+│       │   │                   │   ├── PropertyRepository.java
+│       │   │                   │   ├── PropertyService.java
+│       │   │                   │   ├── PropertyServiceImpl.java
+│       │   │                   │   ├── PublicPropertyController.java
+│       │   │                   │   ├── SubscriptionApartmentSharingOfTenantForm.java
+│       │   │                   │   └── TenantModel.java
+│       │   │                   ├── register
+│       │   │                   │   ├── AccountController.java
+│       │   │                   │   ├── AccountForm.java
+│       │   │                   │   ├── AuthenticationFacade.java
+│       │   │                   │   ├── AuthenticationFacadeImpl.java
+│       │   │                   │   ├── ConfirmationTokenNotFoundException.java
+│       │   │                   │   ├── EmailResetForm.java
+│       │   │                   │   ├── KeycloakService.java
+│       │   │                   │   ├── KeycloakServiceImpl.java
+│       │   │                   │   ├── PasswordForm.java
+│       │   │                   │   ├── PasswordRecoveryTokenNotFoundException.java
+│       │   │                   │   ├── PasswordRecoveryTokenRepository.java
+│       │   │                   │   ├── PasswordRecoveryTokenService.java
+│       │   │                   │   ├── PasswordRecoveryTokenServiceImpl.java
+│       │   │                   │   ├── RegisterService.java
+│       │   │                   │   ├── RegisterServiceImpl.java
+│       │   │                   │   ├── UniqueEmailActiveAccount.java
+│       │   │                   │   ├── UniqueEmailActiveAccountValidator.java
+│       │   │                   │   └── UserNotFoundException.java
+│       │   │                   ├── tasks
+│       │   │                   │   └── ScheduledTaskService.java
+│       │   │                   ├── user
+│       │   │                   │   ├── NamesForm.java
+│       │   │                   │   ├── OwnerController.java
+│       │   │                   │   ├── OwnerMapper.java
+│       │   │                   │   ├── OwnerModel.java
+│       │   │                   │   ├── OwnerRepository.java
+│       │   │                   │   ├── OwnerService.java
+│       │   │                   │   ├── OwnerServiceImpl.java
+│       │   │                   │   ├── UserRepository.java
+│       │   │                   │   ├── UserRoleRepository.java
+│       │   │                   │   ├── UserRoleService.java
+│       │   │                   │   └── UserRoleServiceImpl.java
+│       │   │                   └── webhook
+│       │   │                       ├── WebhookController.java
+│       │   │                       ├── WebhookService.java
+│       │   │                       └── WebhookServiceImpl.java
+│       │   └── resources
+│       │       ├── application.properties
+│       │       ├── liquibase.properties
+│       │       └── logback-spring-delayed.xml
+│       └── test
+│           ├── java
+│           │   └── fr
+│           │       └── dossierfacile
+│           │           └── api
+│           │               └── dossierfacileapiowner
+│           │                   ├── TestApplication.java
+│           │                   ├── property
+│           │                   │   ├── PropertyControllerTest.java
+│           │                   │   └── PropertyServiceImplTest.java
+│           │                   └── register
+│           │                       └── KeycloakServiceImplTest.java
+│           └── resources
+│               ├── application.properties
+│               └── logback-spring-delayed.xml
+├── dossierfacile-api-tenant
+│   ├── .ebignore
+│   ├── .gitignore
+│   ├── .java-version
+│   ├── README.md
+│   ├── fonts
+│   │   ├── HelveticaWorld-Bold.ttf
+│   │   ├── HelveticaWorld-BoldItalic.ttf
+│   │   ├── HelveticaWorld-Italic.ttf
+│   │   ├── HelveticaWorld-Regular.ttf
+│   │   ├── cour.ttf
+│   │   ├── courbd.ttf
+│   │   ├── courbi.ttf
+│   │   ├── couri.ttf
+│   │   ├── times.ttf
+│   │   ├── timesbd.ttf
+│   │   ├── timesbi.ttf
+│   │   └── timesi.ttf
+│   ├── lombok.config
+│   ├── mvnw
+│   ├── mvnw.cmd
+│   ├── pom.xml
+│   ├── settings.xml
+│   └── src
+│       ├── main
+│       │   ├── java
+│       │   │   └── fr
+│       │   │       └── dossierfacile
+│       │   │           └── api
+│       │   │               └── front
+│       │   │                   ├── FrontApplication.java
+│       │   │                   ├── amqp
+│       │   │                   │   ├── Producer.java
+│       │   │                   │   └── model
+│       │   │                   │       └── TenantModel.java
+│       │   │                   ├── aop
+│       │   │                   │   ├── MethodLogExecutionTimeAdvice.java
+│       │   │                   │   └── annotation
+│       │   │                   │       └── MethodLogTime.java
+│       │   │                   ├── config
+│       │   │                   │   ├── AsyncConfig.java
+│       │   │                   │   ├── AsyncTaskDecorator.java
+│       │   │                   │   ├── CustomHealthIndicator.java
+│       │   │                   │   ├── GeneralConfiguration.java
+│       │   │                   │   ├── KeycloakConfig.java
+│       │   │                   │   ├── MailConfiguration.java
+│       │   │                   │   ├── MethodSecurityConfig.java
+│       │   │                   │   ├── ResourceServerConfig.java
+│       │   │                   │   ├── SwaggerConfig.java
+│       │   │                   │   └── filter
+│       │   │                   │       ├── AbstractRateLimitingFilter.java
+│       │   │                   │       ├── ConnectionContextFilter.java
+│       │   │                   │       ├── RateLimitingFilter.java
+│       │   │                   │       └── RateLimitingSupportMailFilter.java
+│       │   │                   ├── controller
+│       │   │                   │   ├── ApartmentSharingLinkController.java
+│       │   │                   │   ├── ApplicationController.java
+│       │   │                   │   ├── CoTenantController.java
+│       │   │                   │   ├── DocumentController.java
+│       │   │                   │   ├── FileController.java
+│       │   │                   │   ├── GuarantorController.java
+│       │   │                   │   ├── MessageController.java
+│       │   │                   │   ├── OneTimeSecretController.java
+│       │   │                   │   ├── PartnerAccessController.java
+│       │   │                   │   ├── RegisterController.java
+│       │   │                   │   ├── RegisterGuarantorLegalPersonController.java
+│       │   │                   │   ├── RegisterGuarantorNaturalPersonController.java
+│       │   │                   │   ├── RegisterGuarantorOrganismController.java
+│       │   │                   │   ├── StatsController.java
+│       │   │                   │   ├── SupportController.java
+│       │   │                   │   ├── TenantController.java
+│       │   │                   │   └── UserController.java
+│       │   │                   ├── dfc
+│       │   │                   │   └── controller
+│       │   │                   │       ├── DfcSettingsController.java
+│       │   │                   │       ├── DfcTenantController.java
+│       │   │                   │       └── DfcTenantsController.java
+│       │   │                   ├── exception
+│       │   │                   │   ├── ApartmentSharingNotFoundException.java
+│       │   │                   │   ├── ApartmentSharingUnexpectedException.java
+│       │   │                   │   ├── ApplicationLinkBlockedException.java
+│       │   │                   │   ├── ClientNotFoundException.java
+│       │   │                   │   ├── CoTenantEmailAlreadyExists.java
+│       │   │                   │   ├── DocumentNotFoundException.java
+│       │   │                   │   ├── FileCannotUploadedException.java
+│       │   │                   │   ├── FileNotFoundException.java
+│       │   │                   │   ├── GuarantorNotFoundException.java
+│       │   │                   │   ├── MailSentLimitException.java
+│       │   │                   │   ├── PasswordRecoveryTokenNotFoundException.java
+│       │   │                   │   ├── PropertyNotFoundException.java
+│       │   │                   │   ├── ResendLinkTooShortException.java
+│       │   │                   │   ├── TenantIllegalStateException.java
+│       │   │                   │   ├── TenantNotFoundException.java
+│       │   │                   │   ├── TenantUserApiNotFoundException.java
+│       │   │                   │   ├── TrigramNotAuthorizedException.java
+│       │   │                   │   ├── UserApiNotFoundException.java
+│       │   │                   │   ├── UserNotFoundException.java
+│       │   │                   │   ├── controller
+│       │   │                   │   │   └── CustomRestExceptionHandler.java
+│       │   │                   │   └── model
+│       │   │                   │       └── ApiError.java
+│       │   │                   ├── form
+│       │   │                   │   ├── CommentAnalysisForm.java
+│       │   │                   │   ├── ContactForm.java
+│       │   │                   │   ├── DeleteAccountForm.java
+│       │   │                   │   ├── EmailResetForm.java
+│       │   │                   │   ├── MessageForm.java
+│       │   │                   │   ├── PasswordForm.java
+│       │   │                   │   ├── ShareFileByLinkForm.java
+│       │   │                   │   ├── ShareFileByMailForm.java
+│       │   │                   │   └── interfaces
+│       │   │                   │       └── FormWithTenantId.java
+│       │   │                   ├── mapper
+│       │   │                   │   ├── MessageMapper.java
+│       │   │                   │   ├── PartnerAccessMapper.java
+│       │   │                   │   ├── PartnerSettingsMapper.java
+│       │   │                   │   ├── PropertyOMapper.java
+│       │   │                   │   └── TenantMapper.java
+│       │   │                   ├── model
+│       │   │                   │   ├── BaseApartmentSharingModel.java
+│       │   │                   │   ├── ExpirationDateRequest.java
+│       │   │                   │   ├── KeycloakUser.java
+│       │   │                   │   ├── ListMetadata.java
+│       │   │                   │   ├── MappingFormat.java
+│       │   │                   │   ├── MessageModel.java
+│       │   │                   │   ├── ResponseWrapper.java
+│       │   │                   │   ├── TenantSortType.java
+│       │   │                   │   ├── TitleRequest.java
+│       │   │                   │   ├── TypeMessage.java
+│       │   │                   │   ├── dfc
+│       │   │                   │   │   ├── PartnerSettings.java
+│       │   │                   │   │   ├── apartment_sharing
+│       │   │                   │   │   │   ├── ApartmentSharingModel.java
+│       │   │                   │   │   │   └── TenantModel.java
+│       │   │                   │   │   └── tenant
+│       │   │                   │   │       └── ConnectedTenantModel.java
+│       │   │                   │   ├── property
+│       │   │                   │   │   ├── OwnerModel.java
+│       │   │                   │   │   └── PropertyOModel.java
+│       │   │                   │   └── tenant
+│       │   │                   │       ├── ApartmentSharingModel.java
+│       │   │                   │       ├── CoTenantModel.java
+│       │   │                   │       ├── DocumentAnalysisReportModel.java
+│       │   │                   │       ├── DocumentDeniedReasonsModel.java
+│       │   │                   │       ├── DocumentModel.java
+│       │   │                   │       ├── FileModel.java
+│       │   │                   │       ├── FranceConnectIdentity.java
+│       │   │                   │       ├── FullFolderFile.java
+│       │   │                   │       ├── GuarantorModel.java
+│       │   │                   │       ├── PartnerAccessModel.java
+│       │   │                   │       ├── SelectedOption.java
+│       │   │                   │       └── TenantModel.java
+│       │   │                   ├── partner
+│       │   │                   │   └── controller
+│       │   │                   │       ├── ApiPartnerApartmentSharingController.java
+│       │   │                   │       ├── ApiPartnerDocumentController.java
+│       │   │                   │       ├── ApiPartnerFileController.java
+│       │   │                   │       ├── ApiPartnerGuarantorController.java
+│       │   │                   │       ├── ApiPartnerMessageController.java
+│       │   │                   │       ├── ApiPartnerRegisterController.java
+│       │   │                   │       ├── ApiPartnerRegisterGuarantorLegalPersonController.java
+│       │   │                   │       ├── ApiPartnerRegisterGuarantorNaturalPersonController.java
+│       │   │                   │       ├── ApiPartnerRegisterGuarantorOrganismController.java
+│       │   │                   │       ├── ApiPartnerTenantController.java
+│       │   │                   │       └── ApiPartnerUserController.java
+│       │   │                   ├── register
+│       │   │                   │   ├── AbstractDocumentSaveStep.java
+│       │   │                   │   ├── RegisterFactory.java
+│       │   │                   │   ├── SaveStep.java
+│       │   │                   │   ├── config
+│       │   │                   │   │   └── RegisterConfig.java
+│       │   │                   │   ├── enums
+│       │   │                   │   │   └── StepRegister.java
+│       │   │                   │   ├── form
+│       │   │                   │   │   ├── DocumentForm.java
+│       │   │                   │   │   ├── IDocumentFinancialForm.java
+│       │   │                   │   │   ├── IDocumentResidencyForm.java
+│       │   │                   │   │   ├── guarantor
+│       │   │                   │   │   │   ├── DocumentGuarantorFormAbstract.java
+│       │   │                   │   │   │   ├── legal_person
+│       │   │                   │   │   │   │   ├── DocumentIdentificationGuarantorLegalPersonForm.java
+│       │   │                   │   │   │   │   ├── DocumentIdentificationRepresentanGuarantorLegalPersonForm.java
+│       │   │                   │   │   │   │   ├── NameGuarantorLegalPersonForm.java
+│       │   │                   │   │   │   │   └── NameGuarantorRepresentantLegalPersonForm.java
+│       │   │                   │   │   │   ├── natural_person
+│       │   │                   │   │   │   │   ├── DocumentFinancialGuarantorNaturalPersonForm.java
+│       │   │                   │   │   │   │   ├── DocumentIdentificationGuarantorNaturalPersonFileForm.java
+│       │   │                   │   │   │   │   ├── DocumentIdentificationGuarantorNaturalPersonForm.java
+│       │   │                   │   │   │   │   ├── DocumentProfessionalGuarantorNaturalPersonForm.java
+│       │   │                   │   │   │   │   ├── DocumentResidencyGuarantorNaturalPersonForm.java
+│       │   │                   │   │   │   │   ├── DocumentTaxGuarantorNaturalPersonForm.java
+│       │   │                   │   │   │   │   └── NameGuarantorNaturalPersonForm.java
+│       │   │                   │   │   │   └── organism
+│       │   │                   │   │   │       └── DocumentGuaranteeProviderCertificateForm.java
+│       │   │                   │   │   ├── partner
+│       │   │                   │   │   │   └── AccountPartnerForm.java
+│       │   │                   │   │   └── tenant
+│       │   │                   │   │       ├── AccountForm.java
+│       │   │                   │   │       ├── ApplicationFormV2.java
+│       │   │                   │   │       ├── CoTenantForm.java
+│       │   │                   │   │       ├── DocumentFinancialForm.java
+│       │   │                   │   │       ├── DocumentIdentificationForm.java
+│       │   │                   │   │       ├── DocumentProfessionalForm.java
+│       │   │                   │   │       ├── DocumentResidencyForm.java
+│       │   │                   │   │       ├── DocumentTaxForm.java
+│       │   │                   │   │       ├── GuarantorTypeForm.java
+│       │   │                   │   │       ├── HonorDeclarationForm.java
+│       │   │                   │   │       ├── NamesForm.java
+│       │   │                   │   │       └── UrlForm.java
+│       │   │                   │   ├── guarantor
+│       │   │                   │   │   ├── legal_person
+│       │   │                   │   │   │   ├── DocumentIdentificationGuarantorLegalPerson.java
+│       │   │                   │   │   │   ├── DocumentIdentificationRepresentanGuarantorLegalPerson.java
+│       │   │                   │   │   │   ├── NameGuarantorLegalPerson.java
+│       │   │                   │   │   │   └── NameRepresentantGuarantorLegalPerson.java
+│       │   │                   │   │   ├── natural_person
+│       │   │                   │   │   │   ├── DocumentFinancialGuarantorNaturalPerson.java
+│       │   │                   │   │   │   ├── DocumentIdentificationGuarantorNaturalPerson.java
+│       │   │                   │   │   │   ├── DocumentIdentificationGuarantorNaturalPersonFile.java
+│       │   │                   │   │   │   ├── DocumentProfessionalGuarantorNaturalPerson.java
+│       │   │                   │   │   │   ├── DocumentResidencyGuarantorNaturalPerson.java
+│       │   │                   │   │   │   ├── DocumentTaxGuarantorNaturalPerson.java
+│       │   │                   │   │   │   └── NameGuarantorNaturalPerson.java
+│       │   │                   │   │   └── organism
+│       │   │                   │   │       └── DocumentGuaranteeProviderCertificate.java
+│       │   │                   │   └── tenant
+│       │   │                   │       ├── AccountApiPartner.java
+│       │   │                   │       ├── Application.java
+│       │   │                   │       ├── DocumentFinancial.java
+│       │   │                   │       ├── DocumentIdentification.java
+│       │   │                   │       ├── DocumentProfessional.java
+│       │   │                   │       ├── DocumentResidency.java
+│       │   │                   │       ├── DocumentTax.java
+│       │   │                   │       ├── GuarantorType.java
+│       │   │                   │       ├── HonorDeclaration.java
+│       │   │                   │       └── Names.java
+│       │   │                   ├── repository
+│       │   │                   │   ├── ApiTenantLogRepository.java
+│       │   │                   │   ├── DocumentRepository.java
+│       │   │                   │   ├── FileRepository.java
+│       │   │                   │   ├── GuarantorRepository.java
+│       │   │                   │   ├── MessageRepository.java
+│       │   │                   │   ├── PasswordRecoveryTokenRepository.java
+│       │   │                   │   ├── PropertyRepository.java
+│       │   │                   │   ├── UserRepository.java
+│       │   │                   │   └── UserRoleRepository.java
+│       │   │                   ├── security
+│       │   │                   │   ├── AuthenticationFacadeImpl.java
+│       │   │                   │   ├── ClientAuthenticationFacadeImpl.java
+│       │   │                   │   ├── CustomMethodSecurityExpressionHandler.java
+│       │   │                   │   ├── CustomMethodSecurityExpressionRoot.java
+│       │   │                   │   ├── CustomPermissionEvaluator.java
+│       │   │                   │   ├── PartnerAuthorizationManager.java
+│       │   │                   │   └── interfaces
+│       │   │                   │       ├── AuthenticationFacade.java
+│       │   │                   │       └── ClientAuthenticationFacade.java
+│       │   │                   ├── service
+│       │   │                   │   ├── ApartmentSharingServiceImpl.java
+│       │   │                   │   ├── DocumentServiceImpl.java
+│       │   │                   │   ├── FileServiceImpl.java
+│       │   │                   │   ├── FinancialDocumentServiceImpl.java
+│       │   │                   │   ├── GuarantorServiceImpl.java
+│       │   │                   │   ├── KeycloakServiceImpl.java
+│       │   │                   │   ├── LinkBruteForceProtectionServiceImpl.java
+│       │   │                   │   ├── MailServiceImpl.java
+│       │   │                   │   ├── MessageServiceImpl.java
+│       │   │                   │   ├── PartnerAccessServiceImpl.java
+│       │   │                   │   ├── PasswordRecoveryTokenServiceImpl.java
+│       │   │                   │   ├── PropertyServiceImpl.java
+│       │   │                   │   ├── ScheduledTasksServiceImpl.java
+│       │   │                   │   ├── StatsServiceImpl.java
+│       │   │                   │   ├── TenantPermissionsServiceImpl.java
+│       │   │                   │   ├── TenantServiceImpl.java
+│       │   │                   │   ├── TenantStatusServiceImpl.java
+│       │   │                   │   ├── UserApiServiceImpl.java
+│       │   │                   │   ├── UserRoleServiceImpl.java
+│       │   │                   │   ├── UserServiceImpl.java
+│       │   │                   │   └── interfaces
+│       │   │                   │       ├── ApartmentSharingService.java
+│       │   │                   │       ├── BruteForceProtectionService.java
+│       │   │                   │       ├── DocumentService.java
+│       │   │                   │       ├── FileService.java
+│       │   │                   │       ├── FinancialDocumentService.java
+│       │   │                   │       ├── GuarantorService.java
+│       │   │                   │       ├── KeycloakService.java
+│       │   │                   │       ├── MailService.java
+│       │   │                   │       ├── MessageService.java
+│       │   │                   │       ├── PartnerAccessService.java
+│       │   │                   │       ├── PasswordRecoveryTokenService.java
+│       │   │                   │       ├── PropertyService.java
+│       │   │                   │       ├── ScheduledTasksService.java
+│       │   │                   │       ├── StatsService.java
+│       │   │                   │       ├── TenantPermissionsService.java
+│       │   │                   │       ├── TenantService.java
+│       │   │                   │       ├── TenantStatusService.java
+│       │   │                   │       ├── UserApiService.java
+│       │   │                   │       ├── UserRoleService.java
+│       │   │                   │       └── UserService.java
+│       │   │                   ├── util
+│       │   │                   │   ├── FilePageCounter.java
+│       │   │                   │   ├── Obfuscator.java
+│       │   │                   │   └── TrigramUtils.java
+│       │   │                   └── validator
+│       │   │                       ├── AbstractDocumentCategoriesValidator.java
+│       │   │                       ├── DocumentCategoryStepSubsetValidator.java
+│       │   │                       ├── DocumentSubcategorySubsetValidator.java
+│       │   │                       ├── ExtensionValidator.java
+│       │   │                       ├── FinancialDocumentCategoriesValidator.java
+│       │   │                       ├── LengthOfTextValidator.java
+│       │   │                       ├── NumberOfDocumentTaxValidator.java
+│       │   │                       ├── NumberOfPagesValidator.java
+│       │   │                       ├── ResidencyDocumentCategoriesValidator.java
+│       │   │                       ├── SizeFileValidator.java
+│       │   │                       ├── TenantConstraintValidator.java
+│       │   │                       ├── annotation
+│       │   │                       │   ├── DocumentCategoryStepSubset.java
+│       │   │                       │   ├── DocumentSubcategorySubset.java
+│       │   │                       │   ├── DocumentSubcategorySubsets.java
+│       │   │                       │   ├── Extension.java
+│       │   │                       │   ├── FinancialDocument.java
+│       │   │                       │   ├── LengthOfText.java
+│       │   │                       │   ├── NumberOfPages.java
+│       │   │                       │   ├── ResidencyDocument.java
+│       │   │                       │   ├── SizeFile.java
+│       │   │                       │   ├── common
+│       │   │                       │   │   └── financial
+│       │   │                       │   │       └── MonthlySumValue.java
+│       │   │                       │   ├── guarantor
+│       │   │                       │   │   ├── NumberOfDocumentGuarantor.java
+│       │   │                       │   │   └── natural_person
+│       │   │                       │   │       ├── ExistGuarantor.java
+│       │   │                       │   │       ├── financial
+│       │   │                       │   │       │   ├── NoDocumentCustomTextFinancialGuarantorNaturalPerson.java
+│       │   │                       │   │       │   └── NumberOfDocumentFinancialGuarantorNaturalPerson.java
+│       │   │                       │   │       ├── identification
+│       │   │                       │   │       │   ├── NumberOfDocumentIdentificationGuarantorNaturalPerson.java
+│       │   │                       │   │       │   └── NumberOfDocumentIdentificationGuarantorNaturalPersonFile.java
+│       │   │                       │   │       ├── professional
+│       │   │                       │   │       │   └── NumberOfDocumentProfessionalGuarantorNaturalPerson.java
+│       │   │                       │   │       ├── residency
+│       │   │                       │   │       │   ├── CustomTextResidencyGuarantorNaturalPerson.java
+│       │   │                       │   │       │   └── NumberOfDocumentResidencyGuarantorNaturalPerson.java
+│       │   │                       │   │       └── tax
+│       │   │                       │   │           ├── NumberOfDocumentTaxGuarantorNaturalPerson.java
+│       │   │                       │   │           └── OtherTaxCustomTextGuarantorNaturalPerson.java
+│       │   │                       │   └── tenant
+│       │   │                       │       ├── account
+│       │   │                       │       │   └── UniqueEmailActiveAccount.java
+│       │   │                       │       ├── application
+│       │   │                       │       │   └── v2
+│       │   │                       │       │       ├── CheckCoTenantCount.java
+│       │   │                       │       │       ├── CheckTenantTypeAcceptAccess.java
+│       │   │                       │       │       ├── CoTenantsEmailRequiredForGroup.java
+│       │   │                       │       │       ├── DeniedJoinTenant.java
+│       │   │                       │       │       ├── DistinctCoTenantEmailList.java
+│       │   │                       │       │       └── DistinctCoTenantFullNameList.java
+│       │   │                       │       ├── financial
+│       │   │                       │       │   ├── NoDocumentCustomTextFinancial.java
+│       │   │                       │       │   └── NumberOfDocumentFinancial.java
+│       │   │                       │       ├── honor_declaration
+│       │   │                       │       │   └── CheckHonorDeclarationClarification.java
+│       │   │                       │       ├── identification
+│       │   │                       │       │   └── NumberOfDocumentIdentification.java
+│       │   │                       │       ├── name
+│       │   │                       │       │   └── CheckFranceConnect.java
+│       │   │                       │       ├── profesional
+│       │   │                       │       │   └── NumberOfDocumentProfesional.java
+│       │   │                       │       ├── residency
+│       │   │                       │       │   ├── CustomTextResidency.java
+│       │   │                       │       │   └── NumberOfDocumentResidency.java
+│       │   │                       │       ├── tax
+│       │   │                       │       │   ├── NumberOfDocumentTax.java
+│       │   │                       │       │   └── OtherTaxCustomText.java
+│       │   │                       │       └── type_guarantor
+│       │   │                       │           └── MaxGuarantor.java
+│       │   │                       ├── common
+│       │   │                       │   └── financial
+│       │   │                       │       └── MonthlySumValueValidator.java
+│       │   │                       ├── group
+│       │   │                       │   ├── ApiPartner.java
+│       │   │                       │   ├── DocumentIdentificationGuarantor.java
+│       │   │                       │   ├── Dossier.java
+│       │   │                       │   ├── FinancialDocumentGroup.java
+│       │   │                       │   └── ResidencyDocumentGroup.java
+│       │   │                       ├── guarantor
+│       │   │                       │   ├── ExistGuarantorValidator.java
+│       │   │                       │   ├── NumberOfDocumentGuarantorValidator.java
+│       │   │                       │   └── natural_person
+│       │   │                       │       ├── financial
+│       │   │                       │       │   ├── NoDocumentCustomTextFinancialGuarantorNaturalPersonValidator.java
+│       │   │                       │       │   └── NumberOfDocumentFinancialGuarantorNaturalPersonValidator.java
+│       │   │                       │       ├── identification
+│       │   │                       │       │   ├── NumberOfDocumentIdentificationGuarantorNaturalPersonFileValidator.java
+│       │   │                       │       │   └── NumberOfDocumentIdentificationGuarantorNaturalPersonValidator.java
+│       │   │                       │       ├── professional
+│       │   │                       │       │   └── NumberOfDocumentProfessionalGuarantorNaturalPersonValidator.java
+│       │   │                       │       ├── residency
+│       │   │                       │       │   ├── CustomTextResidencyGuarantorNaturalPersonValidator.java
+│       │   │                       │       │   └── NumberOfDocumentResidencyGuarantorNaturalPersonValidator.java
+│       │   │                       │       └── tax
+│       │   │                       │           ├── NumberOfDocumentTaxGuarantorNaturalPersonValidator.java
+│       │   │                       │           └── OtherTaxCustomTextGuarantorNaturalPersonValidator.java
+│       │   │                       └── tenant
+│       │   │                           ├── account
+│       │   │                           │   └── UniqueEmailActiveAccountValidator.java
+│       │   │                           ├── application
+│       │   │                           │   ├── CheckCoTenantCountValidator.java
+│       │   │                           │   ├── CheckTenantTypeAcceptAccessValidator.java
+│       │   │                           │   ├── CoTenantsEmailRequiredForGroupValidator.java
+│       │   │                           │   ├── DeniedJoinTenantValidator.java
+│       │   │                           │   ├── DistinctCoTenantEmailListValidator.java
+│       │   │                           │   └── DistinctCoTenantFullNameValidator.java
+│       │   │                           ├── financial
+│       │   │                           │   ├── NoDocumentCustomTextFinancialValidator.java
+│       │   │                           │   └── NumberOfDocumentFinancialValidator.java
+│       │   │                           ├── honor_declaration
+│       │   │                           │   └── CheckHonorDeclarationClarificationValidator.java
+│       │   │                           ├── identification
+│       │   │                           │   └── NumberOfDocumentIdentificationValidator.java
+│       │   │                           ├── name
+│       │   │                           │   └── CheckFranceConnectValidator.java
+│       │   │                           ├── profesional
+│       │   │                           │   └── NumberOfDocumentProfesionalValidator.java
+│       │   │                           ├── residency
+│       │   │                           │   ├── CustomTextResidencyValidator.java
+│       │   │                           │   └── NumberOfDocumentResidencyValidator.java
+│       │   │                           ├── tax
+│       │   │                           │   ├── OtherTaxCustomTextValidator.java
+│       │   │                           │   └── TenantNumberOfDocumentTaxValidator.java
+│       │   │                           └── type_guarantor
+│       │   │                               └── MaxGuarantorValidator.java
+│       │   └── resources
+│       │       ├── META-INF
+│       │       │   └── additional-spring-configuration-metadata.json
+│       │       ├── application.properties
+│       │       ├── keystore
+│       │       │   └── dossierfacile.p12.old
+│       │       ├── liquibase.properties
+│       │       ├── logback-spring-delayed.xml
+│       │       ├── messages.properties
+│       │       └── static
+│       │           ├── fonts
+│       │           │   ├── ArialNova-Light.ttf
+│       │           │   ├── Marianne-Bold.ttf
+│       │           │   ├── Marianne-Light.ttf
+│       │           │   ├── Marianne-Regular.ttf
+│       │           │   ├── Spectral-Bold.ttf
+│       │           │   ├── Spectral-ExtraBold.ttf
+│       │           │   └── Spectral-Italic.ttf
+│       │           └── pdf
+│       │               ├── template_Dossier_PDF_attachments_and_clarification.pdf
+│       │               ├── template_Dossier_PDF_first_page_1.pdf
+│       │               └── template_Dossier_PDF_first_page_2.pdf
+│       └── test
+│           ├── java
+│           │   └── fr
+│           │       └── dossierfacile
+│           │           └── api
+│           │               └── front
+│           │                   ├── FrontApplicationTests.java
+│           │                   ├── TestApplication.java
+│           │                   ├── controller
+│           │                   │   ├── ApartmentSharingLinkControllerTest.java
+│           │                   │   ├── ApplicationControllerTest.java
+│           │                   │   ├── RegisterControllerTest.java
+│           │                   │   ├── TenantControllerTest.java
+│           │                   │   ├── UserControllerTest.java
+│           │                   │   └── registerController
+│           │                   │       ├── Helper.java
+│           │                   │       ├── RegisterControllerTest.java
+│           │                   │       └── RegisterGuarantorNaturalPersonControllerTest.java
+│           │                   ├── dfc
+│           │                   │   └── controller
+│           │                   │       ├── DfcSettingsControllerTest.java
+│           │                   │       ├── DfcTenantControllerTest.java
+│           │                   │       └── DfcTenantsControllerTest.java
+│           │                   ├── log
+│           │                   │   └── GlobalExceptionHandlerTest.java
+│           │                   ├── partner
+│           │                   │   └── controller
+│           │                   │       ├── ApiPartnerRegisterControllerTest.java
+│           │                   │       └── ApiPartnerTenantControllerTest.java
+│           │                   ├── register
+│           │                   │   └── tenant
+│           │                   │       ├── ApplicationTest.java
+│           │                   │       ├── ApplicationV2Tests.java
+│           │                   │       └── NameSaveStepTest.java
+│           │                   ├── security
+│           │                   │   ├── AuthenticationFacadeImplTest.java
+│           │                   │   ├── ClientAuthenticationFacadeImplTest.java
+│           │                   │   └── TenantPermissionsTest.java
+│           │                   ├── service
+│           │                   │   ├── ApartmentSharingServiceImplBruteForceTest.java
+│           │                   │   ├── ApartmentSharingServiceImplTest.java
+│           │                   │   ├── ApartmentSharingTrigramValidationTest.java
+│           │                   │   ├── FinancialDocumentServiceImplTest.java
+│           │                   │   ├── LinkBruteForceProtectionServiceImplTest.java
+│           │                   │   ├── ScheduledTasksServiceImplTest.java
+│           │                   │   ├── TenantPermissionsServiceImplTest.java
+│           │                   │   └── UserServiceImplTest.java
+│           │                   ├── util
+│           │                   │   ├── FilePageCounterTest.java
+│           │                   │   └── TrigramUtilsTest.java
+│           │                   └── validator
+│           │                       ├── CheckFranceConnectValidatorTest.java
+│           │                       ├── FinancialDocumentCategoriesValidatorTest.java
+│           │                       ├── NumberOfDocumentTaxValidatorTest.java
+│           │                       └── ResidencyDocumentCategoriesValidatorTest.java
+│           └── resources
+│               ├── application.properties
+│               ├── junit-platform.properties
+│               ├── logback-spring-delayed.xml
+│               ├── one-page.pdf
+│               └── two-pages.pdf
+├── dossierfacile-api-watermark
+│   ├── .ebignore
+│   ├── .gitignore
+│   ├── .java-version
+│   ├── README.md
+│   ├── pom.xml
+│   └── src
+│       ├── main
+│       │   ├── java
+│       │   │   └── fr
+│       │   │       └── dossierfacile
+│       │   │           └── api
+│       │   │               └── pdf
+│       │   │                   ├── PdfApiApplication.java
+│       │   │                   ├── amqp
+│       │   │                   │   ├── Producer.java
+│       │   │                   │   └── model
+│       │   │                   │       └── DocumentModel.java
+│       │   │                   ├── configuration
+│       │   │                   │   ├── Config.java
+│       │   │                   │   ├── SwaggerConfig.java
+│       │   │                   │   └── WebConfig.java
+│       │   │                   ├── controller
+│       │   │                   │   ├── DocumentController.java
+│       │   │                   │   └── FeedbackController.java
+│       │   │                   ├── exceptions
+│       │   │                   │   ├── DocumentBadRequestException.java
+│       │   │                   │   ├── DocumentNotFoundException.java
+│       │   │                   │   ├── DocumentTokenNotFoundException.java
+│       │   │                   │   ├── ExpectationFailedException.java
+│       │   │                   │   ├── InProgressException.java
+│       │   │                   │   ├── controller
+│       │   │                   │   │   └── CustomRestExceptionHandler.java
+│       │   │                   │   └── model
+│       │   │                   │       └── ApiError.java
+│       │   │                   ├── form
+│       │   │                   │   └── DocumentForm.java
+│       │   │                   ├── repository
+│       │   │                   │   └── FeedbackRepository.java
+│       │   │                   ├── response
+│       │   │                   │   ├── DocumentUrlResponse.java
+│       │   │                   │   └── UploadFilesResponse.java
+│       │   │                   └── service
+│       │   │                       ├── CleanDocumentScheduledService.java
+│       │   │                       ├── DocumentServiceImpl.java
+│       │   │                       ├── FeedbackServiceImpl.java
+│       │   │                       └── interfaces
+│       │   │                           ├── DocumentService.java
+│       │   │                           └── FeedbackService.java
+│       │   └── resources
+│       │       ├── application.properties
+│       │       └── logback-spring-delayed.xml
+│       └── test
+│           └── java
+│               └── fr
+│                   └── dossierfacile
+│                       └── api
+│                           └── pdf
+│                               └── PdfApiApplicationTests.java
+├── dossierfacile-bo
+│   ├── .ebignore
+│   ├── .java-version
+│   ├── README.md
+│   ├── pom.xml
+│   └── src
+│       ├── main
+│       │   ├── java
+│       │   │   └── fr
+│       │   │       └── gouv
+│       │   │           └── bo
+│       │   │               ├── BOApplication.java
+│       │   │               ├── amqp
+│       │   │               │   ├── Producer.java
+│       │   │               │   └── model
+│       │   │               │       └── DocumentModel.java
+│       │   │               ├── configuration
+│       │   │               │   ├── BOAccessDeniedHandler.java
+│       │   │               │   ├── BOConnectionContextFilter.java
+│       │   │               │   ├── CustomWebMvcConfig.java
+│       │   │               │   ├── KeycloakConfig.java
+│       │   │               │   ├── MailConfiguration.java
+│       │   │               │   ├── MessageSourceConfig.java
+│       │   │               │   ├── TestingSecurityConfig.java
+│       │   │               │   ├── WebSecurityConfig.java
+│       │   │               │   ├── XSSFilter.java
+│       │   │               │   └── XSSRequestWrapper.java
+│       │   │               ├── controller
+│       │   │               │   ├── BOApartmentSharingController.java
+│       │   │               │   ├── BOController.java
+│       │   │               │   ├── BODashboardController.java
+│       │   │               │   ├── BODocumentDeniedOptionsController.java
+│       │   │               │   ├── BOE2ETestController.java
+│       │   │               │   ├── BOErrorController.java
+│       │   │               │   ├── BOLogController.java
+│       │   │               │   ├── BOMessageController.java
+│       │   │               │   ├── BOOwnerController.java
+│       │   │               │   ├── BOProcessDossierController.java
+│       │   │               │   ├── BOPropertyController.java
+│       │   │               │   ├── BOTenantController.java
+│       │   │               │   ├── BOToolsController.java
+│       │   │               │   ├── BOUserApiController.java
+│       │   │               │   ├── BOUserController.java
+│       │   │               │   └── FileController.java
+│       │   │               ├── dto
+│       │   │               │   ├── ApartmentSharingLinkEnrichedDTO.java
+│       │   │               │   ├── BooleanDTO.java
+│       │   │               │   ├── CustomMessage.java
+│       │   │               │   ├── DeleteUserDTO.java
+│       │   │               │   ├── DisplayableBarCodeFileAnalysis.java
+│       │   │               │   ├── DisplayableFile.java
+│       │   │               │   ├── DocumentDeniedOptionsDTO.java
+│       │   │               │   ├── EmailDTO.java
+│       │   │               │   ├── GuarantorItem.java
+│       │   │               │   ├── ItemDetail.java
+│       │   │               │   ├── LinkLogDTO.java
+│       │   │               │   ├── MessageDTO.java
+│       │   │               │   ├── MessageItem.java
+│       │   │               │   ├── MetadataItem.java
+│       │   │               │   ├── Pager.java
+│       │   │               │   ├── PartnerDTO.java
+│       │   │               │   ├── ProcessCapacitiesDTO.java
+│       │   │               │   ├── ReGroupDTO.java
+│       │   │               │   ├── ResultDTO.java
+│       │   │               │   ├── TenantInfoHeader.java
+│       │   │               │   └── UserApiDTO.java
+│       │   │               ├── exception
+│       │   │               │   ├── BadRequestException.java
+│       │   │               │   ├── DocumentDeniedReasonsNotFoundException.java
+│       │   │               │   ├── DocumentNotFoundException.java
+│       │   │               │   ├── GuarantorNotFoundException.java
+│       │   │               │   ├── OAuth2AuthenticationProcessingException.java
+│       │   │               │   ├── ResourceNotFoundException.java
+│       │   │               │   ├── controller
+│       │   │               │   │   └── CustomRestExceptionHandler.java
+│       │   │               │   └── model
+│       │   │               │       └── ApiError.java
+│       │   │               ├── mapper
+│       │   │               │   ├── OwnerMapper.java
+│       │   │               │   ├── PropertyMapper.java
+│       │   │               │   └── TenantMapper.java
+│       │   │               ├── model
+│       │   │               │   ├── DataTable.java
+│       │   │               │   ├── ProcessedDocuments.java
+│       │   │               │   ├── RoleDTO.java
+│       │   │               │   ├── UserModel.java
+│       │   │               │   ├── owner
+│       │   │               │   │   ├── OwnerModel.java
+│       │   │               │   │   └── PropertyModel.java
+│       │   │               │   └── tenant
+│       │   │               │       ├── ApartmentSharingModel.java
+│       │   │               │       ├── CoTenantModel.java
+│       │   │               │       ├── DocumentModel.java
+│       │   │               │       ├── FileModel.java
+│       │   │               │       ├── GuarantorModel.java
+│       │   │               │       └── TenantModel.java
+│       │   │               ├── repository
+│       │   │               │   ├── BOApartmentSharingRepository.java
+│       │   │               │   ├── BOUserRepository.java
+│       │   │               │   ├── BoTenantLogRepository.java
+│       │   │               │   ├── DocumentDeniedOptionsRepository.java
+│       │   │               │   ├── DocumentDeniedReasonsRepository.java
+│       │   │               │   ├── DocumentRepository.java
+│       │   │               │   ├── GuarantorRepository.java
+│       │   │               │   ├── MessageRepository.java
+│       │   │               │   ├── OperatorLogRepository.java
+│       │   │               │   ├── OwnerRepository.java
+│       │   │               │   ├── PropertyApartmentSharingRepository.java
+│       │   │               │   ├── PropertyRepository.java
+│       │   │               │   ├── QuotaRepository.java
+│       │   │               │   └── UserRoleRepository.java
+│       │   │               ├── security
+│       │   │               │   ├── BOQuotaAuthorizationManager.java
+│       │   │               │   ├── RoleHierarchyConfig.java
+│       │   │               │   ├── RoleService.java
+│       │   │               │   ├── UserPrincipal.java
+│       │   │               │   └── oidc
+│       │   │               │       ├── CustomOidcUserService.java
+│       │   │               │       └── user
+│       │   │               │           ├── KeycloakOIDCUserInfo.java
+│       │   │               │           └── OIDCUserInfo.java
+│       │   │               ├── service
+│       │   │               │   ├── ApartmentSharingService.java
+│       │   │               │   ├── DocumentDeniedOptionsService.java
+│       │   │               │   ├── DocumentDeniedReasonsService.java
+│       │   │               │   ├── DocumentService.java
+│       │   │               │   ├── KeycloakService.java
+│       │   │               │   ├── MailService.java
+│       │   │               │   ├── MessageService.java
+│       │   │               │   ├── OwnerService.java
+│       │   │               │   ├── PropertyService.java
+│       │   │               │   ├── QuotaService.java
+│       │   │               │   ├── ScheduledTasksService.java
+│       │   │               │   ├── TenantLogService.java
+│       │   │               │   ├── TenantService.java
+│       │   │               │   ├── UserApiService.java
+│       │   │               │   ├── UserService.java
+│       │   │               │   └── impl
+│       │   │               │       ├── KeycloakServiceImpl.java
+│       │   │               │       └── ScheduledTasksServiceImpl.java
+│       │   │               ├── utils
+│       │   │               │   ├── DateFormatUtil.java
+│       │   │               │   ├── DocumentLabelUtils.java
+│       │   │               │   ├── ExpectedMonths.java
+│       │   │               │   └── MarkdownUtil.java
+│       │   │               └── validator
+│       │   │                   ├── ExistEmailValidator.java
+│       │   │                   └── annotation
+│       │   │                       └── ExistEmail.java
+│       │   └── resources
+│       │       ├── ESAPI.properties
+│       │       ├── application.properties
+│       │       ├── logback-spring-delayed.xml
+│       │       ├── messages.properties
+│       │       ├── static
+│       │       │   ├── assets
+│       │       │   │   └── images
+│       │       │   │       ├── banner3.jpg
+│       │       │   │       ├── favicons
+│       │       │   │       │   └── android-chrome-192x192.png
+│       │       │   │       ├── franceconnect-icon.png
+│       │       │   │       ├── logo-dark.png
+│       │       │   │       ├── logo.png
+│       │       │   │       └── logo2.png
+│       │       │   ├── css
+│       │       │   │   ├── animate.css
+│       │       │   │   ├── apartment-sharing-view.css
+│       │       │   │   ├── fix.css
+│       │       │   │   ├── main.css
+│       │       │   │   ├── main.css.map
+│       │       │   │   ├── process-file.css
+│       │       │   │   └── style.css
+│       │       │   ├── js
+│       │       │   │   ├── bo
+│       │       │   │   │   ├── index.js
+│       │       │   │   │   ├── search.js
+│       │       │   │   │   └── tenant-custom-message.js
+│       │       │   │   ├── bo.js
+│       │       │   │   ├── main.js
+│       │       │   │   ├── modify-profile-bo.js
+│       │       │   │   ├── partages-dossier.js
+│       │       │   │   └── process-file.js
+│       │       │   ├── pdf
+│       │       │   │   ├── template_document_financial.pdf
+│       │       │   │   ├── template_document_tax.pdf
+│       │       │   │   ├── template_dossier_pdf_first_pages.pdf
+│       │       │   │   ├── watermark-big.png
+│       │       │   │   └── watermark-small.png
+│       │       │   ├── pdf-viewer
+│       │       │   │   └── pdfjs-dist
+│       │       │   │       ├── LICENSE
+│       │       │   │       ├── README
+│       │       │   │       ├── build
+│       │       │   │       │   ├── pdf.js
+│       │       │   │       │   ├── pdf.js.map
+│       │       │   │       │   ├── pdf.sandbox.js
+│       │       │   │       │   ├── pdf.sandbox.js.map
+│       │       │   │       │   ├── pdf.worker.js
+│       │       │   │       │   └── pdf.worker.js.map
+│       │       │   │       └── web
+│       │       │   │           ├── cmaps
+│       │       │   │           │   ├── 78-EUC-H.bcmap
+│       │       │   │           │   ├── 78-EUC-V.bcmap
+│       │       │   │           │   ├── 78-H.bcmap
+│       │       │   │           │   ├── 78-RKSJ-H.bcmap
+│       │       │   │           │   ├── 78-RKSJ-V.bcmap
+│       │       │   │           │   ├── 78-V.bcmap
+│       │       │   │           │   ├── 78ms-RKSJ-H.bcmap
+│       │       │   │           │   ├── 78ms-RKSJ-V.bcmap
+│       │       │   │           │   ├── 83pv-RKSJ-H.bcmap
+│       │       │   │           │   ├── 90ms-RKSJ-H.bcmap
+│       │       │   │           │   ├── 90ms-RKSJ-V.bcmap
+│       │       │   │           │   ├── 90msp-RKSJ-H.bcmap
+│       │       │   │           │   ├── 90msp-RKSJ-V.bcmap
+│       │       │   │           │   ├── 90pv-RKSJ-H.bcmap
+│       │       │   │           │   ├── 90pv-RKSJ-V.bcmap
+│       │       │   │           │   ├── Add-H.bcmap
+│       │       │   │           │   ├── Add-RKSJ-H.bcmap
+│       │       │   │           │   ├── Add-RKSJ-V.bcmap
+│       │       │   │           │   ├── Add-V.bcmap
+│       │       │   │           │   ├── Adobe-*.bcmap  (27 files)
+│       │       │   │           │   ├── B5-H.bcmap
+│       │       │   │           │   ├── B5-V.bcmap
+│       │       │   │           │   ├── B5pc-H.bcmap
+│       │       │   │           │   ├── B5pc-V.bcmap
+│       │       │   │           │   ├── CNS-EUC-H.bcmap
+│       │       │   │           │   ├── CNS-EUC-V.bcmap
+│       │       │   │           │   ├── CNS1-H.bcmap
+│       │       │   │           │   ├── CNS1-V.bcmap
+│       │       │   │           │   ├── CNS2-H.bcmap
+│       │       │   │           │   ├── CNS2-V.bcmap
+│       │       │   │           │   ├── ETHK-B5-H.bcmap
+│       │       │   │           │   ├── ETHK-B5-V.bcmap
+│       │       │   │           │   ├── ETen-B5-H.bcmap
+│       │       │   │           │   ├── ETen-B5-V.bcmap
+│       │       │   │           │   ├── ETenms-B5-H.bcmap
+│       │       │   │           │   ├── ETenms-B5-V.bcmap
+│       │       │   │           │   ├── EUC-H.bcmap
+│       │       │   │           │   ├── EUC-V.bcmap
+│       │       │   │           │   ├── Ext-H.bcmap
+│       │       │   │           │   ├── Ext-RKSJ-H.bcmap
+│       │       │   │           │   ├── Ext-RKSJ-V.bcmap
+│       │       │   │           │   ├── Ext-V.bcmap
+│       │       │   │           │   ├── GB-EUC-H.bcmap
+│       │       │   │           │   ├── GB-EUC-V.bcmap
+│       │       │   │           │   ├── GB-H.bcmap
+│       │       │   │           │   ├── GB-V.bcmap
+│       │       │   │           │   ├── GBK-EUC-H.bcmap
+│       │       │   │           │   ├── GBK-EUC-V.bcmap
+│       │       │   │           │   ├── GBK2K-H.bcmap
+│       │       │   │           │   ├── GBK2K-V.bcmap
+│       │       │   │           │   ├── GBKp-EUC-H.bcmap
+│       │       │   │           │   ├── GBKp-EUC-V.bcmap
+│       │       │   │           │   ├── GBT-EUC-H.bcmap
+│       │       │   │           │   ├── GBT-EUC-V.bcmap
+│       │       │   │           │   ├── GBT-H.bcmap
+│       │       │   │           │   ├── GBT-V.bcmap
+│       │       │   │           │   ├── GBTpc-EUC-H.bcmap
+│       │       │   │           │   ├── GBTpc-EUC-V.bcmap
+│       │       │   │           │   ├── GBpc-EUC-H.bcmap
+│       │       │   │           │   ├── GBpc-EUC-V.bcmap
+│       │       │   │           │   ├── H.bcmap
+│       │       │   │           │   ├── HKdla-B5-H.bcmap
+│       │       │   │           │   ├── HKdla-B5-V.bcmap
+│       │       │   │           │   ├── HKdlb-B5-H.bcmap
+│       │       │   │           │   ├── HKdlb-B5-V.bcmap
+│       │       │   │           │   ├── HKgccs-B5-H.bcmap
+│       │       │   │           │   ├── HKgccs-B5-V.bcmap
+│       │       │   │           │   ├── HKm314-B5-H.bcmap
+│       │       │   │           │   ├── HKm314-B5-V.bcmap
+│       │       │   │           │   ├── HKm471-B5-H.bcmap
+│       │       │   │           │   ├── HKm471-B5-V.bcmap
+│       │       │   │           │   ├── HKscs-B5-H.bcmap
+│       │       │   │           │   ├── HKscs-B5-V.bcmap
+│       │       │   │           │   ├── Hankaku.bcmap
+│       │       │   │           │   ├── Hiragana.bcmap
+│       │       │   │           │   ├── KSC-*.bcmap  (6 files)
+│       │       │   │           │   ├── KSCms-UHC-H.bcmap
+│       │       │   │           │   ├── KSCms-UHC-HW-H.bcmap
+│       │       │   │           │   ├── KSCms-UHC-HW-V.bcmap
+│       │       │   │           │   ├── KSCms-UHC-V.bcmap
+│       │       │   │           │   ├── KSCpc-EUC-H.bcmap
+│       │       │   │           │   ├── KSCpc-EUC-V.bcmap
+│       │       │   │           │   ├── Katakana.bcmap
+│       │       │   │           │   ├── LICENSE
+│       │       │   │           │   ├── NWP-H.bcmap
+│       │       │   │           │   ├── NWP-V.bcmap
+│       │       │   │           │   ├── RKSJ-H.bcmap
+│       │       │   │           │   ├── RKSJ-V.bcmap
+│       │       │   │           │   ├── Roman.bcmap
+│       │       │   │           │   ├── UniCNS-*.bcmap  (8 files)
+│       │       │   │           │   ├── UniGB-*.bcmap  (8 files)
+│       │       │   │           │   ├── UniJIS-*.bcmap  (10 files)
+│       │       │   │           │   ├── UniJIS2004-UTF16-H.bcmap
+│       │       │   │           │   ├── UniJIS2004-UTF16-V.bcmap
+│       │       │   │           │   ├── UniJIS2004-UTF32-H.bcmap
+│       │       │   │           │   ├── UniJIS2004-UTF32-V.bcmap
+│       │       │   │           │   ├── UniJIS2004-UTF8-H.bcmap
+│       │       │   │           │   ├── UniJIS2004-UTF8-V.bcmap
+│       │       │   │           │   ├── UniJISPro-UCS2-HW-V.bcmap
+│       │       │   │           │   ├── UniJISPro-UCS2-V.bcmap
+│       │       │   │           │   ├── UniJISPro-UTF8-V.bcmap
+│       │       │   │           │   ├── UniJISX0213-UTF32-H.bcmap
+│       │       │   │           │   ├── UniJISX0213-UTF32-V.bcmap
+│       │       │   │           │   ├── UniJISX02132004-UTF32-H.bcmap
+│       │       │   │           │   ├── UniJISX02132004-UTF32-V.bcmap
+│       │       │   │           │   ├── UniKS-*.bcmap  (8 files)
+│       │       │   │           │   ├── V.bcmap
+│       │       │   │           │   └── WP-Symbol.bcmap
+│       │       │   │           ├── compressed.tracemonkey-pldi-09.pdf
+│       │       │   │           ├── debugger.css
+│       │       │   │           ├── debugger.js
+│       │       │   │           ├── images
+│       │       │   │           │   ├── altText_add.svg
+│       │       │   │           │   ├── altText_done.svg
+│       │       │   │           │   ├── annotation-*.svg  (11 files)
+│       │       │   │           │   ├── cursor-editorFreeText.svg
+│       │       │   │           │   ├── cursor-editorInk.svg
+│       │       │   │           │   ├── findbarButton-next.svg
+│       │       │   │           │   ├── findbarButton-previous.svg
+│       │       │   │           │   ├── gv-toolbarButton-download.svg
+│       │       │   │           │   ├── gv-toolbarButton-openinapp.svg
+│       │       │   │           │   ├── loading-dark.svg
+│       │       │   │           │   ├── loading-icon.gif
+│       │       │   │           │   ├── loading.svg
+│       │       │   │           │   ├── secondaryToolbarButton-*.svg  (14 files)
+│       │       │   │           │   ├── toolbarButton-*.svg  (21 files)
+│       │       │   │           │   ├── treeitem-collapsed.svg
+│       │       │   │           │   └── treeitem-expanded.svg
+│       │       │   │           ├── locale
+│       │       │   │           │   ├── ach
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── af
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── an
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── ar
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── ast
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── az
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── be
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── bg
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── bn
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── bo
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── br
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── brx
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── bs
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── ca
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── cak
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── ckb
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── cs
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── cy
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── da
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── de
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── dsb
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── el
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── en-CA
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── en-GB
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── en-US
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── eo
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── es-AR
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── es-CL
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── es-ES
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── es-MX
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── et
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── eu
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── fa
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── ff
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── fi
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── fr
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── fur
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── fy-NL
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── ga-IE
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── gd
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── gl
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── gn
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── gu-IN
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── he
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── hi-IN
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── hr
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── hsb
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── hu
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── hy-AM
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── hye
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── ia
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── id
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── is
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── it
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── ja
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── ka
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── kab
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── kk
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── km
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── kn
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── ko
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── lij
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── lo
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── locale.properties
+│       │       │   │           │   ├── lt
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── ltg
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── lv
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── meh
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── mk
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── mr
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── ms
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── my
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── nb-NO
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── ne-NP
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── nl
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── nn-NO
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── oc
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── pa-IN
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── pl
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── pt-BR
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── pt-PT
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── rm
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── ro
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── ru
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── sat
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── sc
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── scn
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── sco
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── si
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── sk
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── skr
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── sl
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── son
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── sq
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── sr
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── sv-SE
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── szl
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── ta
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── te
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── tg
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── th
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── tl
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── tr
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── trs
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── uk
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── ur
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── uz
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── vi
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── wo
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── xh
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   ├── zh-CN
+│       │       │   │           │   │   └── viewer.properties
+│       │       │   │           │   └── zh-TW
+│       │       │   │           │       └── viewer.properties
+│       │       │   │           ├── standard_fonts
+│       │       │   │           │   ├── FoxitDingbats.pfb
+│       │       │   │           │   ├── FoxitFixed.pfb
+│       │       │   │           │   ├── FoxitFixedBold.pfb
+│       │       │   │           │   ├── FoxitFixedBoldItalic.pfb
+│       │       │   │           │   ├── FoxitFixedItalic.pfb
+│       │       │   │           │   ├── FoxitSerif.pfb
+│       │       │   │           │   ├── FoxitSerifBold.pfb
+│       │       │   │           │   ├── FoxitSerifBoldItalic.pfb
+│       │       │   │           │   ├── FoxitSerifItalic.pfb
+│       │       │   │           │   ├── FoxitSymbol.pfb
+│       │       │   │           │   ├── LICENSE_FOXIT
+│       │       │   │           │   ├── LICENSE_LIBERATION
+│       │       │   │           │   ├── LiberationSans-Bold.ttf
+│       │       │   │           │   ├── LiberationSans-BoldItalic.ttf
+│       │       │   │           │   ├── LiberationSans-Italic.ttf
+│       │       │   │           │   └── LiberationSans-Regular.ttf
+│       │       │   │           ├── viewer.css
+│       │       │   │           ├── viewer.html
+│       │       │   │           ├── viewer.js
+│       │       │   │           └── viewer.js.map
+│       │       │   └── styles
+│       │       │       ├── _fonts.scss
+│       │       │       ├── _variables.scss
+│       │       │       └── main.scss
+│       │       ├── templates
+│       │       │   ├── bo
+│       │       │   │   ├── apartment-sharing-view.html
+│       │       │   │   ├── create-document-denied-option.html
+│       │       │   │   ├── dashboard-admin.html
+│       │       │   │   ├── dashboard.html
+│       │       │   │   ├── document-denied-options.html
+│       │       │   │   ├── edit-document-denied-option.html
+│       │       │   │   ├── failed-pdf-tenant.html
+│       │       │   │   ├── fragments
+│       │       │   │   │   ├── document-analysis.html
+│       │       │   │   │   ├── pagination-with-parameters.html
+│       │       │   │   │   ├── pagination.html
+│       │       │   │   │   └── user-api-form.html
+│       │       │   │   ├── index.html
+│       │       │   │   ├── item.html
+│       │       │   │   ├── layout-bo.html
+│       │       │   │   ├── log.html
+│       │       │   │   ├── message.html
+│       │       │   │   ├── owner.html
+│       │       │   │   ├── owners.html
+│       │       │   │   ├── process-capacities.html
+│       │       │   │   ├── process-file-layout.html
+│       │       │   │   ├── process-file.html
+│       │       │   │   ├── property.html
+│       │       │   │   ├── regroup-tenants.html
+│       │       │   │   ├── search.html
+│       │       │   │   ├── tools.html
+│       │       │   │   ├── user-api-edit.html
+│       │       │   │   ├── user-api.html
+│       │       │   │   └── users.html
+│       │       │   ├── error
+│       │       │   │   └── error.html
+│       │       │   └── include
+│       │       │       ├── fixed-header-bo.html
+│       │       │       ├── footer-bo.html
+│       │       │       ├── head-bo.html
+│       │       │       ├── process-file-layout-head.html
+│       │       │       └── scripts-bo.html
+│       │       └── validation.properties
+│       └── test
+│           └── java
+│               └── fr
+│                   └── gouv
+│                       └── bo
+│                           ├── controller
+│                           │   └── BOApartmentSharingControllerTest.java
+│                           ├── dto
+│                           │   ├── DisplayableBarCodeFileAnalysisTest.java
+│                           │   └── TenantInfoHeaderTest.java
+│                           ├── security
+│                           │   └── RoleComparatorTest.java
+│                           ├── service
+│                           │   ├── DocumentDeniedOptionsServiceTest.java
+│                           │   ├── DocumentDeniedReasonsServiceTest.java
+│                           │   └── TenantServiceFindNextTenantInCoupleTest.java
+│                           └── utils
+│                               ├── DateFormatUtilTest.java
+│                               ├── ExpectedMonthsTest.java
+│                               └── MarkdownUtilTest.java
+├── dossierfacile-common-library
+│   ├── .gitignore
+│   ├── README.md
+│   ├── pom.xml
+│   └── src
+│       ├── main
+│       │   ├── java
+│       │   │   └── fr
+│       │   │       └── dossierfacile
+│       │   │           └── common
+│       │   │               ├── config
+│       │   │               │   ├── AbstractConnectionContextFilter.java
+│       │   │               │   ├── ApiClientConfig.java
+│       │   │               │   ├── ApiVersion.java
+│       │   │               │   ├── DynamicProviderConfig.java
+│       │   │               │   ├── GlobalExceptionHandler.java
+│       │   │               │   ├── ImageIOInitializer.java
+│       │   │               │   ├── ImageMagickConfig.java
+│       │   │               │   ├── MailDependantBeanConfig.java
+│       │   │               │   ├── S3BucketConfig.java
+│       │   │               │   └── ThreeDSOutscaleConfig.java
+│       │   │               ├── constants
+│       │   │               │   └── PartnerConstants.java
+│       │   │               ├── converter
+│       │   │               │   ├── AcquisitionData.java
+│       │   │               │   ├── ListOfRulesJsonConverter.java
+│       │   │               │   ├── ListStringConverter.java
+│       │   │               │   ├── ParsedFileConverter.java
+│       │   │               │   └── StringMapJsonbConverter.java
+│       │   │               ├── deserializer
+│       │   │               │   └── EmailDeserializer.java
+│       │   │               ├── dto
+│       │   │               │   └── mail
+│       │   │               │       ├── ApartmentSharingDto.java
+│       │   │               │       ├── TenantDto.java
+│       │   │               │       ├── UserApiDto.java
+│       │   │               │       └── UserDto.java
+│       │   │               ├── entity
+│       │   │               │   ├── ApartmentSharing.java
+│       │   │               │   ├── ApartmentSharingLink.java
+│       │   │               │   ├── ApplicationLog.java
+│       │   │               │   ├── AuthenticityStatus.java
+│       │   │               │   ├── BOUser.java
+│       │   │               │   ├── BarCodeDocumentType.java
+│       │   │               │   ├── BarCodeFileAnalysis.java
+│       │   │               │   ├── BarCodeType.java
+│       │   │               │   ├── BlurryFileAnalysis.java
+│       │   │               │   ├── CallbackLog.java
+│       │   │               │   ├── ConfirmationToken.java
+│       │   │               │   ├── Document.java
+│       │   │               │   ├── DocumentAnalysisReport.java
+│       │   │               │   ├── DocumentAnalysisRule.java
+│       │   │               │   ├── DocumentAnalysisStatus.java
+│       │   │               │   ├── DocumentDeniedOptions.java
+│       │   │               │   ├── DocumentDeniedReasons.java
+│       │   │               │   ├── DocumentRule.java
+│       │   │               │   ├── DocumentRuleLevel.java
+│       │   │               │   ├── EncryptionKey.java
+│       │   │               │   ├── EncryptionKeyStatus.java
+│       │   │               │   ├── Feedback.java
+│       │   │               │   ├── File.java
+│       │   │               │   ├── FileMetadata.java
+│       │   │               │   ├── FranceIdentiteApiResult.java
+│       │   │               │   ├── FranceIdentiteApiResultAttributes.java
+│       │   │               │   ├── Guarantor.java
+│       │   │               │   ├── LinkLog.java
+│       │   │               │   ├── Message.java
+│       │   │               │   ├── ObjectStorageProvider.java
+│       │   │               │   ├── OperationAccessToken.java
+│       │   │               │   ├── OperatorLog.java
+│       │   │               │   ├── Owner.java
+│       │   │               │   ├── OwnerLog.java
+│       │   │               │   ├── ParsedFileAnalysis.java
+│       │   │               │   ├── PasswordRecoveryToken.java
+│       │   │               │   ├── Person.java
+│       │   │               │   ├── ProcessingCapacity.java
+│       │   │               │   ├── Property.java
+│       │   │               │   ├── PropertyApartmentSharing.java
+│       │   │               │   ├── PropertyId.java
+│       │   │               │   ├── PropertyLog.java
+│       │   │               │   ├── PropertyLogType.java
+│       │   │               │   ├── Quota.java
+│       │   │               │   ├── Stats.java
+│       │   │               │   ├── StorageFile.java
+│       │   │               │   ├── Tenant.java
+│       │   │               │   ├── TenantLastStatus.java
+│       │   │               │   ├── TenantLog.java
+│       │   │               │   ├── TenantUserApi.java
+│       │   │               │   ├── TenantUserApiKey.java
+│       │   │               │   ├── TokenOperationAccessType.java
+│       │   │               │   ├── User.java
+│       │   │               │   ├── UserApi.java
+│       │   │               │   ├── UserRole.java
+│       │   │               │   ├── WatermarkDocument.java
+│       │   │               │   ├── messaging
+│       │   │               │   │   ├── QueueMessage.java
+│       │   │               │   │   ├── QueueMessageStatus.java
+│       │   │               │   │   └── QueueName.java
+│       │   │               │   ├── ocr
+│       │   │               │   │   ├── BlurryResult.java
+│       │   │               │   │   ├── GuaranteeProviderFile.java
+│       │   │               │   │   ├── ParsedFile.java
+│       │   │               │   │   ├── PayslipFile.java
+│       │   │               │   │   ├── RentalReceiptFile.java
+│       │   │               │   │   ├── ScholarshipFile.java
+│       │   │               │   │   ├── TaxIncomeLeaf.java
+│       │   │               │   │   └── TaxIncomeMainFile.java
+│       │   │               │   └── shared
+│       │   │               │       └── AbstractAuditable.java
+│       │   │               ├── enums
+│       │   │               │   ├── ActionOperatorType.java
+│       │   │               │   ├── ApartmentSharingLinkType.java
+│       │   │               │   ├── ApplicationType.java
+│       │   │               │   ├── AuthProvider.java
+│       │   │               │   ├── BlurryFileAnalysisStatus.java
+│       │   │               │   ├── DocumentCategory.java
+│       │   │               │   ├── DocumentCategoryStep.java
+│       │   │               │   ├── DocumentStatus.java
+│       │   │               │   ├── DocumentSubCategory.java
+│       │   │               │   ├── FileActionUploadType.java
+│       │   │               │   ├── FileAuthenticationStatus.java
+│       │   │               │   ├── FileStatus.java
+│       │   │               │   ├── FileStorageStatus.java
+│       │   │               │   ├── FileTestResult.java
+│       │   │               │   ├── LinkType.java
+│       │   │               │   ├── LogType.java
+│       │   │               │   ├── MessageStatus.java
+│       │   │               │   ├── OwnerLogType.java
+│       │   │               │   ├── ParsedFileAnalysisStatus.java
+│       │   │               │   ├── ParsedFileClassification.java
+│       │   │               │   ├── ParsedStatus.java
+│       │   │               │   ├── PartnerCallBackType.java
+│       │   │               │   ├── PropertyFurniture.java
+│       │   │               │   ├── PropertyType.java
+│       │   │               │   ├── Role.java
+│       │   │               │   ├── StepRegisterOwner.java
+│       │   │               │   ├── TaxFileExtractionType.java
+│       │   │               │   ├── TenantFileStatus.java
+│       │   │               │   ├── TenantOwnerType.java
+│       │   │               │   ├── TenantType.java
+│       │   │               │   ├── TypeGuarantor.java
+│       │   │               │   └── UserType.java
+│       │   │               ├── exceptions
+│       │   │               │   ├── AdemeApiBadRequestException.java
+│       │   │               │   ├── AdemeApiInternalServerErrorException.java
+│       │   │               │   ├── AdemeApiNotFoundException.java
+│       │   │               │   ├── AdemeApiUnauthorizedException.java
+│       │   │               │   ├── ConfirmationTokenNotFoundException.java
+│       │   │               │   ├── FileCannotUploadedException.java
+│       │   │               │   ├── HttpBadGatewayException.java
+│       │   │               │   ├── HttpBadRequestException.java
+│       │   │               │   ├── NotFoundException.java
+│       │   │               │   ├── OvhConnectionFailedException.java
+│       │   │               │   ├── ParsingException.java
+│       │   │               │   ├── RetryableOperationException.java
+│       │   │               │   └── UnsupportedKeyException.java
+│       │   │               ├── mapper
+│       │   │               │   ├── AdemeApiResultModelToAdemeResultModelMapper.java
+│       │   │               │   ├── ApartmentSharingMapper.java
+│       │   │               │   ├── ApplicationBasicMapper.java
+│       │   │               │   ├── ApplicationFullMapper.java
+│       │   │               │   ├── ApplicationLightMapper.java
+│       │   │               │   ├── CategoriesMapper.java
+│       │   │               │   ├── MapDocumentCategories.java
+│       │   │               │   ├── VersionedCategoriesMapper.java
+│       │   │               │   ├── log
+│       │   │               │   │   ├── DeletedOwnerMapper.java
+│       │   │               │   │   └── DeletedTenantMapper.java
+│       │   │               │   └── mail
+│       │   │               │       ├── ApartmentSharingMapperForMail.java
+│       │   │               │       ├── TenantMapperForMail.java
+│       │   │               │       └── UserApiMapperForMail.java
+│       │   │               ├── model
+│       │   │               │   ├── AdemeResultModel.java
+│       │   │               │   ├── ApartmentSharingLinkModel.java
+│       │   │               │   ├── JobContext.java
+│       │   │               │   ├── JobStatus.java
+│       │   │               │   ├── S3Bucket.java
+│       │   │               │   ├── TenantUpdate.java
+│       │   │               │   ├── ademe
+│       │   │               │   │   ├── AdemeApiDiagnosticianJson.java
+│       │   │               │   │   ├── AdemeApiDpeAdministrationJson.java
+│       │   │               │   │   ├── AdemeApiDpeJson.java
+│       │   │               │   │   ├── AdemeApiResultModel.java
+│       │   │               │   │   ├── geolocalisation
+│       │   │               │   │   │   ├── AdemeApiAdresseBienJson.java
+│       │   │               │   │   │   ├── AdemeApiAdressesJson.java
+│       │   │               │   │   │   └── AdemeApiGeolocalisationJson.java
+│       │   │               │   │   └── housing
+│       │   │               │   │       ├── AdemeApiDpeGeneralCharacteristic.java
+│       │   │               │   │       ├── AdemeApiDpeHousingJson.java
+│       │   │               │   │       ├── AdemeApiDpeMeteoJson.java
+│       │   │               │   │       └── exit
+│       │   │               │   │           ├── AdemeApiDpeExitEmissionGesJson.java
+│       │   │               │   │           ├── AdemeApiDpeExitEpConsoJson.java
+│       │   │               │   │           └── AdemeApiDpeExitJson.java
+│       │   │               │   ├── apartment_sharing
+│       │   │               │   │   ├── ApplicationModel.java
+│       │   │               │   │   ├── DocumentModel.java
+│       │   │               │   │   ├── GuarantorModel.java
+│       │   │               │   │   └── TenantModel.java
+│       │   │               │   └── log
+│       │   │               │       ├── ApplicationTypeChange.java
+│       │   │               │       ├── DeletedOwnerModel.java
+│       │   │               │       ├── DeletedTenantModel.java
+│       │   │               │       ├── EditedDocument.java
+│       │   │               │       ├── EditedStep.java
+│       │   │               │       ├── EditionType.java
+│       │   │               │       └── UpdateMonthlySum.java
+│       │   │               ├── repository
+│       │   │               │   ├── ApartmentSharingLinkRepository.java
+│       │   │               │   ├── ApartmentSharingRepository.java
+│       │   │               │   ├── ApplicationLogRepository.java
+│       │   │               │   ├── BlurryFileAnalysisRepository.java
+│       │   │               │   ├── CallbackLogRepository.java
+│       │   │               │   ├── ConfirmationTokenRepository.java
+│       │   │               │   ├── DocumentAnalysisReportRepository.java
+│       │   │               │   ├── DocumentCommonRepository.java
+│       │   │               │   ├── EncryptionKeyRepository.java
+│       │   │               │   ├── FileCommonRepository.java
+│       │   │               │   ├── FileMetadataRepository.java
+│       │   │               │   ├── LinkLogRepository.java
+│       │   │               │   ├── OperationAccessTokenRepository.java
+│       │   │               │   ├── OwnerCommonRepository.java
+│       │   │               │   ├── OwnerLogCommonRepository.java
+│       │   │               │   ├── ParsedFileAnalysisRepository.java
+│       │   │               │   ├── ProcessingCapacityRepository.java
+│       │   │               │   ├── PropertyLogRepository.java
+│       │   │               │   ├── QueueMessageRepository.java
+│       │   │               │   ├── SharedFileRepository.java
+│       │   │               │   ├── StatsRepository.java
+│       │   │               │   ├── StorageFileRepository.java
+│       │   │               │   ├── TenantCommonRepository.java
+│       │   │               │   ├── TenantLogRepository.java
+│       │   │               │   ├── TenantUserApiRepository.java
+│       │   │               │   ├── UserApiRepository.java
+│       │   │               │   ├── WatermarkDocumentRepository.java
+│       │   │               │   └── projection
+│       │   │               │       └── TenantLastStatusProjection.java
+│       │   │               ├── service
+│       │   │               │   ├── AdemeApiServiceImpl.java
+│       │   │               │   ├── ApartmentSharingCommonServiceImpl.java
+│       │   │               │   ├── ApartmentSharingLinkService.java
+│       │   │               │   ├── ApplicationLogServiceImpl.java
+│       │   │               │   ├── ConfirmationTokenServiceImpl.java
+│       │   │               │   ├── DocumentHelperServiceImpl.java
+│       │   │               │   ├── EncryptionKeyServiceImpl.java
+│       │   │               │   ├── FileBatchDeletionService.java
+│       │   │               │   ├── FileStorageServiceImpl.java
+│       │   │               │   ├── KeycloakCommonServiceImpl.java
+│       │   │               │   ├── LinkLogServiceImpl.java
+│       │   │               │   ├── LocalMockStorage.java
+│       │   │               │   ├── LogServiceImpl.java
+│       │   │               │   ├── MailCommonServiceImpl.java
+│       │   │               │   ├── OperationAccessTokenServiceImpl.java
+│       │   │               │   ├── OutscaleFileStorageServiceImpl.java
+│       │   │               │   ├── OvhFileStorageServiceImpl.java
+│       │   │               │   ├── OwnerCommonServiceImpl.java
+│       │   │               │   ├── PartnerCallBackServiceImpl.java
+│       │   │               │   ├── ProcessingCapacityServiceImpl.java
+│       │   │               │   ├── QueueMessageConsumerServiceImpl.java
+│       │   │               │   ├── QueueMessageServiceImpl.java
+│       │   │               │   ├── RequestServiceImpl.java
+│       │   │               │   ├── S3FileStorageServiceImpl.java
+│       │   │               │   ├── SharedFileServiceImpl.java
+│       │   │               │   ├── TenantCommonServiceImpl.java
+│       │   │               │   ├── TenantLogCommonServiceImpl.java
+│       │   │               │   ├── interfaces
+│       │   │               │   │   ├── AdemeApiService.java
+│       │   │               │   │   ├── ApartmentSharingCommonService.java
+│       │   │               │   │   ├── ApplicationLogService.java
+│       │   │               │   │   ├── ConfirmationTokenService.java
+│       │   │               │   │   ├── DocumentHelperService.java
+│       │   │               │   │   ├── EncryptionKeyService.java
+│       │   │               │   │   ├── FileStorageProviderService.java
+│       │   │               │   │   ├── FileStorageService.java
+│       │   │               │   │   ├── KeycloakCommonService.java
+│       │   │               │   │   ├── LinkLogService.java
+│       │   │               │   │   ├── LogService.java
+│       │   │               │   │   ├── MailCommonService.java
+│       │   │               │   │   ├── OperationAccessTokenService.java
+│       │   │               │   │   ├── OwnerCommonService.java
+│       │   │               │   │   ├── PartnerCallBackService.java
+│       │   │               │   │   ├── ProcessingCapacityService.java
+│       │   │               │   │   ├── QueueMessageConsumerService.java
+│       │   │               │   │   ├── QueueMessageService.java
+│       │   │               │   │   ├── RequestService.java
+│       │   │               │   │   ├── SharedFileService.java
+│       │   │               │   │   ├── TenantCommonService.java
+│       │   │               │   │   └── TenantLogCommonService.java
+│       │   │               │   ├── model
+│       │   │               │   │   └── BulkDeleteResult.java
+│       │   │               │   └── zxing
+│       │   │               │       ├── BarcodeBbox.java
+│       │   │               │       ├── BarcodeHit.java
+│       │   │               │       ├── BarcodePoint.java
+│       │   │               │       ├── NativeBarcodeReader.java
+│       │   │               │       └── ZXingNative.java
+│       │   │               └── utils
+│       │   │                   ├── DateBasedFeatureToggle.java
+│       │   │                   ├── DateRange.java
+│       │   │                   ├── FileUtility.java
+│       │   │                   ├── ImageUtils.java
+│       │   │                   ├── JobContextUtil.java
+│       │   │                   ├── LocalDateTimeTypeAdapter.java
+│       │   │                   ├── MapperUtil.java
+│       │   │                   ├── OptionalString.java
+│       │   │                   └── TransactionalUtil.java
+│       │   └── resources
+│       │       ├── META-INF
+│       │       │   └── additional-spring-configuration-metadata.json
+│       │       ├── application.properties
+│       │       ├── darwin-aarch64
+│       │       │   └── libzxing_jna.dylib
+│       │       ├── db
+│       │       │   ├── changelog
+│       │       │   │   └── databaseChangeLog.xml
+│       │       │   └── migration
+│       │       │       ├── 202103111400-init-database.xml
+│       │       │       ├── 202103181917-droping-columns-in-tenant.xml
+│       │       │       ├── 202103190944-setting-null-values-of-honor-declaration-to-false.xml
+│       │       │       ├── 202103191037-setting-default-false-on-honor-declaration.xml
+│       │       │       ├── 202103220216-add-column-tax-process-result.xml
+│       │       │       ├── 202103250235-create-table-log.xml
+│       │       │       ├── 202103261921-adding-table-linklog.xml
+│       │       │       ├── 202103262136-adding-version-to-json-partner-link.xml
+│       │       │       ├── 202103262145-dropping-columns-username-and-password-for-userapi.xml
+│       │       │       ├── 202104221241-create-table-logcallback.xml
+│       │       │       ├── 202104221626-create-table-operator_log.xml
+│       │       │       ├── 202106030216-add-column-creation-date-document.xml
+│       │       │       ├── 202106030416-add-column-creation-date-file.xml
+│       │       │       ├── 202106180416-add-column-keycloak-id.xml
+│       │       │       ├── 202106251448-add-column-status-tenant.xml
+│       │       │       ├── 202106300416-add-column-france-connect.xml
+│       │       │       ├── 202107151023-alter-size-of-column-clarification-of-tenant.xml
+│       │       │       ├── 202107191023-add-new-column-partner-api-id.xml
+│       │       │       ├── 202108021238-add-columns-processing_start_and_end_time.xml
+│       │       │       ├── 202108081803-add-column-urlDossierPdfDocument_to_apartmentsharing.xml
+│       │       │       ├── 202108121220-droping-column-in-guarantor.xml
+│       │       │       ├── 202108130934-droping-columns-in-property_apartment_sharing.xml
+│       │       │       ├── 202108270934-add-new-columns-user-table.xml
+│       │       │       ├── 202109011450-add-column-operator_date-tenant.xml
+│       │       │       ├── 202109141107-add-column-number_of_pages-file.xml
+│       │       │       ├── 202109161828-add-columns-locked-and-retries-to-document.xml
+│       │       │       ├── 202110020137-rename-column-api_partner_id-in-table-tenant.xml
+│       │       │       ├── 202110070904-increasing-the-length-of-clarification-in-table-tenant.xml
+│       │       │       ├── 202110111929-creating-new-table-document_denied_reasons.xml
+│       │       │       ├── 202110242207-add-column-file_shareid_identification.xml
+│       │       │       ├── 202110311128-add-column-for-warnings-to-tenants.xml
+│       │       │       ├── 202111081350-modifying-contraints-from-table-document-related-to-document_denied_reasons.xml
+│       │       │       ├── 202111081516-add-column-message_id-to-table-tenant_log.xml
+│       │       │       ├── 202111091318-add-column-discard_shareid_warning.xml
+│       │       │       ├── 202111221454-droping-shareid-columns-in-file-and-document.xml
+│       │       │       ├── 202111301002-create-table-document_pdf_generation_log.xml
+│       │       │       ├── 202112151400-create-table-message-items-tenant.xml
+│       │       │       ├── 202201061620-rename-column-document-category-in-table-document_denied_options.xml
+│       │       │       ├── 202201070211-add-column-checked_options_id.xml
+│       │       │       ├── 202203291038-add-column-property-validated.xml
+│       │       │       ├── 202203311430-add-column-status-to-apartmentsharing.xml
+│       │       │       ├── 202204040900-add-columns-property-type-furniture.xml
+│       │       │       ├── 202204042900-add-columns-property-address.xml
+│       │       │       ├── 202204110752-add-column-usage_name.xml
+│       │       │       ├── 202204150955-rename-column-usage_name-in-table-user_account.xml
+│       │       │       ├── 202205030900-add-columns-property-charges.xml
+│       │       │       ├── 202205030900-add-columns-property-living-space.xml
+│       │       │       ├── 202205050900-remove-unique-constraint.xml
+│       │       │       ├── 202206151600-add-combined-constraint.xml
+│       │       │       ├── 202206271600-add-indexes.xml
+│       │       │       ├── 202206281000-add-index.xml
+│       │       │       ├── 202207050000-encryption-key-changelog.xml
+│       │       │       ├── 202207151242-create-table-document_token.xml
+│       │       │       ├── 202208090000-file-add-content-type.xml
+│       │       │       ├── 202208100000-add-code-denied-options.xml
+│       │       │       ├── 202209070000-update-code-denied-options.xml
+│       │       │       ├── 202209090000-update-code-denied-options.xml
+│       │       │       ├── 202209130000-add-bo-user.xml
+│       │       │       ├── 202209130000-update-code-denied-options.xml
+│       │       │       ├── 202209140000-alter-constraint-on-email.xml
+│       │       │       ├── 202209230000-add-column-allow-tax-check.xml
+│       │       │       ├── 202210170000-add-table-feedback.xml
+│       │       │       ├── 202211250000-add-column-preview.xml
+│       │       │       ├── 202212290000-encryption-key-add-version.xml
+│       │       │       ├── 202301230000-user-api-add-column.xml
+│       │       │       ├── 202302060000-stats-init.xml
+│       │       │       ├── 202302090000-create-storage-file.xml
+│       │       │       ├── 202302100000-update-file-column-preview.xml
+│       │       │       ├── 202302160000-create-table-monfranceconnect_validation_result.xml
+│       │       │       ├── 202303010000-update-tenant-lastupdate.xml
+│       │       │       ├── 202303080000-create-apartsharing-lastupdate.xml
+│       │       │       ├── 202303090000-insert-tenant-userapi-for-couple.xml
+│       │       │       ├── 202303150000-alter-qrcode-file-analysis-table.xml
+│       │       │       ├── 202303210000-add-dpe-columns-in-property.xml
+│       │       │       ├── 202303210000-add-dpe-emission-columns-in-property.xml
+│       │       │       ├── 202303210000-changetype.xml
+│       │       │       ├── 202303270000-changetype.xml
+│       │       │       ├── 202304030000-add-apiuser-calltoactionurl.xml
+│       │       │       ├── 202304130000-add-useraccount-constraint-keycloakid.xml
+│       │       │       ├── 202304180000-add-apartment-sharing-link.xml
+│       │       │       ├── 202304280000-add-apartment-sharing-link-mail.xml
+│       │       │       ├── 202304280000-add-avis-detected.xml
+│       │       │       ├── 202305040000-add-apartmentsharing-file-pdf.xml
+│       │       │       ├── 202305050000-add-file-storage-file.xml
+│       │       │       ├── 202305110000-add-document-watermark-storage-file.xml
+│       │       │       ├── 202305220000-update-useraccount-specialchars.xml
+│       │       │       ├── 202306010000-update-bo-user.xml
+│       │       │       ├── 202306050000-drop-columns-file.xml
+│       │       │       ├── 202306050001-drop-column-apartmentsharing.xml
+│       │       │       ├── 202306070000-create-watermark-document.xml
+│       │       │       ├── 202306080000-create-indexes-on-fk.xml
+│       │       │       ├── 202306090000-migrate-document-name.xml
+│       │       │       ├── 202306140000-alter-barcode-file-analysis-table.xml
+│       │       │       ├── 202306210000-edit-document-denied-options.xml
+│       │       │       ├── 202306290000-create-indexes-on-tenant_userapi.xml
+│       │       │       ├── 202307030000-create-index-on-property.xml
+│       │       │       ├── 202307030001-create-quota.xml
+│       │       │       ├── 202307060000-add_property_log_table.xml
+│       │       │       ├── 202307070000-drop-column-linkedclients-on-tenant.xml
+│       │       │       ├── 202307100000-create-indexes.xml
+│       │       │       ├── 202307100000-update-barcodefileanalysis-column-name.xml
+│       │       │       ├── 202307110000-add-processed-documents-column.xml
+│       │       │       ├── 202307110000-remove-cvec.xml
+│       │       │       ├── 202307280000-remove-column-allow-tax-check.xml
+│       │       │       ├── 202308010000-update-document-denied-reasons.xml
+│       │       │       ├── 202308040000-add-validated-date-to-property.xml
+│       │       │       ├── 202308090000-add-providers.xml
+│       │       │       ├── 202308220000-create-indexes.xml
+│       │       │       ├── 202308221400-drop-prospect-table.xml
+│       │       │       ├── 202308290000-create-index_storage_file.xml
+│       │       │       ├── 202309010000-add-json-profile-to-delete-account.xml
+│       │       │       ├── 202309051500-drop-column-userApi.xml
+│       │       │       ├── 202309060000-create-index_storage_file_date.xml
+│       │       │       ├── 202309110000-alter_tenant_log.xml
+│       │       │       ├── 202309140000-create-index_watermark_storage_file.xml
+│       │       │       ├── 202309200000-delete-monfranceconnect-analysis.xml
+│       │       │       ├── 202309270000-create-index_tenant_userapi.xml
+│       │       │       ├── 202310130000-drop-account_delete_log.xml
+│       │       │       ├── 202310160000-add-column-bouser.xml
+│       │       │       ├── 202310190000-create-table-owner-log.xml
+│       │       │       ├── 202310230000-create-table-garbage-collection.xml
+│       │       │       ├── 202310300000-update-property-log-table.xml
+│       │       │       ├── 202311080001-add-processed-documents-time-spent-column.xml
+│       │       │       ├── 202311090000-update-user-account-table.xml
+│       │       │       ├── 202311170000-update-tenant-table.xml
+│       │       │       ├── 202311290000-drop-tax-document-column.xml
+│       │       │       ├── 202311290001-create-document-analysis-report.xml
+│       │       │       ├── 202311290002-add-last-modified-date-column-to-document.xml
+│       │       │       ├── 202312010000-create-parsed-file-analysis-table.xml
+│       │       │       ├── 202312010000-update-tenant-log-table.xml
+│       │       │       ├── 202312050000-update-tenant-userapi-table.xml
+│       │       │       ├── 202312120000-deprecate-document-pdf-generation-log.xml
+│       │       │       ├── 202401260000-rename-sub-category-for-guarantor-organism.xml
+│       │       │       ├── 202401260001-rename-category-for-guarantor-organism.xml
+│       │       │       ├── 202401300000-change-denied-options-sub-category.xml
+│       │       │       ├── 202402210000-create-operation-access-token.xml
+│       │       │       ├── 20240308110000-add-comment-document-analysis.xml
+│       │       │       ├── 202404240000-add-retry-storage-file.xml
+│       │       │       ├── 20240430110000-fix-database-diff.xml
+│       │       │       ├── 202405240000-add-prevalidation-activated-tenant.xml
+│       │       │       ├── 20240527110000-add-columns-ademe.xml
+│       │       │       ├── 202406040000-upgrade-apartment_sharing_links.xml
+│       │       │       ├── 202406070000-create-queue-message.xml
+│       │       │       ├── 202406141100-add-columns-ademe-date.xml
+│       │       │       ├── 202406170000-update-queue-message.xml
+│       │       │       ├── 202406210000-create-views-for-rank.xml
+│       │       │       ├── 202407110000-refresh-views-function.xml
+│       │       │       ├── 202407170000-create-indexes.xml
+│       │       │       ├── 202409010000-update-queue-message.xml
+│       │       │       ├── 202409100000-create-processing-capacity.xml
+│       │       │       ├── 202409250000-create-application-log.xml
+│       │       │       ├── 20240925110000-add-column-warning-owner.xml
+│       │       │       ├── 202409300000-update-userapi.xml
+│       │       │       ├── 202410070000-update-jsonprofile-owner_log.xml
+│       │       │       ├── 202410181600-add-column-dpe-not-required.xml
+│       │       │       ├── 202411190000-add-column-abroad-residency.xml
+│       │       │       ├── 202411290000-drop-column-prevalidation-activated-tenant.xml
+│       │       │       ├── 202412030000-drop-column-password.xml
+│       │       │       ├── 202412050000-drop-column-all-internal-id.xml
+│       │       │       ├── 202501180000-add-brute-force-protection-columns.xml
+│       │       │       ├── 202501290000-add-column-document_category_step.xml
+│       │       │       ├── 202503170000-set-default-category_step-for-financial-doc.xml
+│       │       │       ├── 20250320170000-add-identity-information-on-tenant.xml
+│       │       │       ├── 202504230000-update-cdi-trial.xml
+│       │       │       ├── 202504290000-update-document-denied-reason.xml
+│       │       │       ├── 202507170000-add-document-category-on-denied-options.xml
+│       │       │       ├── 202507240000-add-bucket-to-storage-file.xml
+│       │       │       ├── 202508100000-create-blurry-file-analysis-table.xml
+│       │       │       ├── 202508120000-update-document-analysis-report.xml
+│       │       │       ├── 202508260000-new-garbage-collection-strategy.xml
+│       │       │       ├── 202509080000-update-blurry-file-analysis-report.xml
+│       │       │       ├── 202510030000-update-apartment-sharing-link.xml
+│       │       │       └── 202516120000-add-metadata-file-data.xml
+│       │       └── linux-x86-64
+│       │           └── libzxing_jna.so
+│       └── test
+│           ├── java
+│           │   └── fr
+│           │       └── dossierfacile
+│           │           └── common
+│           │               ├── entity
+│           │               │   ├── ApartmentSharingTest.java
+│           │               │   └── UserTest.java
+│           │               ├── mapper
+│           │               │   ├── ApplicationFullMapperTest.java
+│           │               │   ├── ApplicationLightMapperTest.java
+│           │               │   └── AuthenticityStatusMappingTest.java
+│           │               ├── service
+│           │               │   ├── AdemeApiServiceImplTest.java
+│           │               │   ├── ApartmentSharingLinkServiceTest.java
+│           │               │   ├── LinkLogServiceImplTest.java
+│           │               │   ├── LogServiceImplTest.java
+│           │               │   ├── OutscaleFileStorageServiceImplTest.java
+│           │               │   ├── PartnerCallBackServiceImplTest.java
+│           │               │   └── ThreeDSOutscaleFileStorageServiceImplTest.java
+│           │               └── utils
+│           │                   ├── DateBasedFeatureToggleTest.java
+│           │                   └── TestHttpResponse.java
+│           └── resources
+│               └── hello.txt
+├── dossierfacile-common-test-library
+│   ├── pom.xml
+│   └── src
+│       └── main
+│           ├── java
+│           │   └── fr
+│           │       └── dossierfacile
+│           │           ├── authentification
+│           │           │   └── JwtFactory.kt
+│           │           ├── fileAnalysis
+│           │           │   ├── FileAnalysisTestData.kt
+│           │           │   └── TestOvhFileStorageServiceImpl.kt
+│           │           └── parameterizedtest
+│           │               ├── ArgumentBuilder.java
+│           │               ├── ControllerParameter.java
+│           │               └── ParameterizedTestHelper.java
+│           └── resources
+│               └── unit-test-bucket-policy.json
+├── dossierfacile-pdf-generator
+│   ├── .ebignore
+│   ├── .gitignore
+│   ├── README.md
+│   ├── pom.xml
+│   └── src
+│       ├── main
+│       │   ├── java
+│       │   │   └── fr
+│       │   │       └── dossierfacile
+│       │   │           └── api
+│       │   │               └── pdfgenerator
+│       │   │                   ├── PdfGeneratorApplication.java
+│       │   │                   ├── amqp
+│       │   │                   │   ├── ActionType.java
+│       │   │                   │   ├── ApartmentSharingConsumer.java
+│       │   │                   │   ├── WatermarkDFDocumentConsumer.java
+│       │   │                   │   ├── WatermarkPdfConsumer.java
+│       │   │                   │   └── model
+│       │   │                   │       └── DocumentModel.java
+│       │   │                   ├── configuration
+│       │   │                   │   ├── AMQPConfig.java
+│       │   │                   │   ├── Config.java
+│       │   │                   │   └── FeatureFlipping.java
+│       │   │                   ├── exception
+│       │   │                   │   ├── ApartmentSharingUnexpectedException.java
+│       │   │                   │   ├── DocumentNotFoundException.java
+│       │   │                   │   ├── FileDownloadException.java
+│       │   │                   │   └── TenantNotFoundException.java
+│       │   │                   ├── model
+│       │   │                   │   ├── FileInputStream.java
+│       │   │                   │   ├── PageDimension.java
+│       │   │                   │   ├── PdfTemplateParameters.java
+│       │   │                   │   └── TargetImageData.java
+│       │   │                   ├── repository
+│       │   │                   │   ├── DocumentRepository.java
+│       │   │                   │   ├── FileRepository.java
+│       │   │                   │   ├── GuarantorRepository.java
+│       │   │                   │   └── TenantRepository.java
+│       │   │                   ├── service
+│       │   │                   │   ├── ApartmentSharingPdfDossierFileGenerationServiceImpl.java
+│       │   │                   │   ├── DocumentServiceImpl.java
+│       │   │                   │   ├── DownloadServiceImpl.java
+│       │   │                   │   ├── PdfGeneratorServiceImpl.java
+│       │   │                   │   ├── PdfSignatureServiceImpl.java
+│       │   │                   │   ├── interfaces
+│       │   │                   │   │   ├── ApartmentSharingPdfDossierFileGenerationService.java
+│       │   │                   │   │   ├── DocumentService.java
+│       │   │                   │   │   ├── DownloadService.java
+│       │   │                   │   │   ├── PdfGeneratorService.java
+│       │   │                   │   │   ├── PdfSignatureService.java
+│       │   │                   │   │   └── PdfTemplate.java
+│       │   │                   │   └── templates
+│       │   │                   │       ├── ApartmentSharingPdfDocumentTemplate.java
+│       │   │                   │       ├── BOIdentificationPdfDocumentTemplate.java
+│       │   │                   │       ├── BOPdfDocumentTemplate.java
+│       │   │                   │       ├── DFFilter.java
+│       │   │                   │       ├── EmptyBOPdfDocumentTemplate.java
+│       │   │                   │       └── PdfFileTemplate.java
+│       │   │                   └── util
+│       │   │                       ├── DocumentUtil.java
+│       │   │                       ├── Fonts.java
+│       │   │                       ├── PdfOptimizer.java
+│       │   │                       └── Utility.java
+│       │   └── resources
+│       │       ├── META-INF
+│       │       │   └── additional-spring-configuration-metadata.json
+│       │       ├── application.properties
+│       │       ├── dgfip-icon.png
+│       │       ├── logback-spring-delayed.xml
+│       │       ├── messages.properties
+│       │       ├── static
+│       │       │   ├── fonts
+│       │       │   │   ├── ArialNova-Light.ttf
+│       │       │   │   ├── Marianne-Bold.ttf
+│       │       │   │   ├── Marianne-Light.ttf
+│       │       │   │   ├── Marianne-Regular.ttf
+│       │       │   │   ├── Noto
+│       │       │   │   │   ├── NotoColorEmoji-Regular.ttf
+│       │       │   │   │   ├── NotoEmoji-Medium.ttf
+│       │       │   │   │   ├── NotoEmoji-Regular.ttf
+│       │       │   │   │   └── OFL.txt
+│       │       │   │   ├── Spectral-Bold.ttf
+│       │       │   │   ├── Spectral-ExtraBold.ttf
+│       │       │   │   └── Spectral-Italic.ttf
+│       │       │   └── pdf
+│       │       │       ├── template_Dossier_PDF_attachments_and_clarification.pdf
+│       │       │       ├── template_Dossier_PDF_first_page_1.pdf
+│       │       │       ├── template_Dossier_PDF_first_page_2.pdf
+│       │       │       ├── template_document_financial.pdf
+│       │       │       └── template_document_tax.pdf
+│       │       └── verified.png
+│       └── test
+│           ├── java
+│           │   └── fr
+│           │       └── dossierfacile
+│           │           └── api
+│           │               └── pdfgenerator
+│           │                   ├── service
+│           │                   │   ├── PdfGeneratorServiceImplTest.java
+│           │                   │   └── templates
+│           │                   │       ├── ApartmentSharingPdfDocumentTemplateTest.java
+│           │                   │       ├── BOPdfDocumentTemplateTest.java
+│           │                   │       ├── EmptyBOPdfDocumentTemplateTest.java
+│           │                   │       ├── IdentificationBOPdfDocumentTemplateTest.java
+│           │                   │       └── PdfFileTemplateTest.java
+│           │                   └── util
+│           │                       ├── DocumentUtilTest.java
+│           │                       ├── PdfAssert.java
+│           │                       ├── UtilityTest.java
+│           │                       └── parameterresolvers
+│           │                           ├── ApartmentSharingResolver.java
+│           │                           └── TenantResolver.java
+│           └── resources
+│               ├── CNI.jpg
+│               ├── CNI.pdf
+│               ├── CNIHorizontale.jpg
+│               ├── CNISmall.jpg
+│               ├── CNI_rotated.jpeg
+│               ├── application-test.properties
+│               ├── application.properties
+│               ├── bigH.pdf
+│               ├── expected
+│               │   └── tax-custom-text.pdf
+│               ├── landscapeid.pdf
+│               ├── landscapeid2.pdf
+│               ├── page1.pdf
+│               └── qrcode-sample.pdf
+├── dossierfacile-process-file
+│   ├── README.md
+│   ├── pom.xml
+│   └── src
+│       ├── main
+│       │   ├── java
+│       │   │   └── fr
+│       │   │       └── dossierfacile
+│       │   │           └── process
+│       │   │               └── file
+│       │   │                   ├── ProcessFileApplication.java
+│       │   │                   ├── amqp
+│       │   │                   │   ├── ActionType.java
+│       │   │                   │   ├── AnalyzeDocumentReceiver.java
+│       │   │                   │   ├── AnalyzeFileReceiver.java
+│       │   │                   │   ├── MinifyFileReceiver.java
+│       │   │                   │   └── model
+│       │   │                   │       └── TenantModel.java
+│       │   │                   ├── barcode
+│       │   │                   │   ├── InMemoryFile.java
+│       │   │                   │   ├── InMemoryImageFile.java
+│       │   │                   │   ├── InMemoryPdfFile.java
+│       │   │                   │   ├── qrcode
+│       │   │                   │   │   ├── QrCode.java
+│       │   │                   │   │   └── QrCodeReader.java
+│       │   │                   │   └── twoddoc
+│       │   │                   │       ├── TwoDDoc.java
+│       │   │                   │       ├── TwoDDocRawContent.java
+│       │   │                   │       ├── parsing
+│       │   │                   │       │   ├── TwoDDocC40Parser.java
+│       │   │                   │       │   ├── TwoDDocData.java
+│       │   │                   │       │   ├── TwoDDocDataType.java
+│       │   │                   │       │   ├── TwoDDocHeader.java
+│       │   │                   │       │   ├── TwoDDocParsingException.java
+│       │   │                   │       │   └── TwoDDocSignature.java
+│       │   │                   │       ├── reader
+│       │   │                   │       │   ├── Coordinates.java
+│       │   │                   │       │   ├── CroppedFile.java
+│       │   │                   │       │   ├── FileCropper.java
+│       │   │                   │       │   ├── KnownTwoDDocLocations.java
+│       │   │                   │       │   ├── PdfPage.java
+│       │   │                   │       │   ├── PdfTextExtractor.java
+│       │   │                   │       │   ├── PdfTwoDDocLocator.java
+│       │   │                   │       │   ├── SquarePosition.java
+│       │   │                   │       │   ├── TwoDDocDecoder.java
+│       │   │                   │       │   ├── TwoDDocFinder.java
+│       │   │                   │       │   ├── TwoDDocImageFinder.java
+│       │   │                   │       │   ├── TwoDDocPdfFinder.java
+│       │   │                   │       │   └── TwoDDocSize.java
+│       │   │                   │       └── validation
+│       │   │                   │           ├── AntsTrustServiceList.java
+│       │   │                   │           ├── SignatureAlgorithm.java
+│       │   │                   │           ├── TwoDDocCertificationAuthorities.java
+│       │   │                   │           └── TwoDDocValidationException.java
+│       │   │                   ├── configuration
+│       │   │                   │   └── Config.java
+│       │   │                   ├── repository
+│       │   │                   │   ├── BarCodeFileAnalysisRepository.java
+│       │   │                   │   ├── DocumentRepository.java
+│       │   │                   │   ├── FileRepository.java
+│       │   │                   │   └── TenantRepository.java
+│       │   │                   ├── service
+│       │   │                   │   ├── AnalyzeDocumentService.java
+│       │   │                   │   ├── AnalyzeFileService.java
+│       │   │                   │   ├── DocumentServiceImpl.java
+│       │   │                   │   ├── MinifyFileServiceImpl.java
+│       │   │                   │   ├── StorageFileLoaderService.java
+│       │   │                   │   ├── document_rules
+│       │   │                   │   │   ├── AbstractPayslipRulesValidationService.java
+│       │   │                   │   │   ├── AbstractRulesValidationService.java
+│       │   │                   │   │   ├── BlurryRulesValidationService.java
+│       │   │                   │   │   ├── DocumentRulesValidationServiceFactory.java
+│       │   │                   │   │   ├── FranceIdentiteNumeriqueRulesValidationService.java
+│       │   │                   │   │   ├── GuaranteeProviderRulesValidationService.java
+│       │   │                   │   │   ├── IncomeTaxRulesValidationService.java
+│       │   │                   │   │   ├── PayslipStandardRulesValidationService.java
+│       │   │                   │   │   ├── PublicPayslipRulesValidationService.java
+│       │   │                   │   │   ├── RentalReceiptRulesValidationService.java
+│       │   │                   │   │   ├── ScholarshipRulesValidationService.java
+│       │   │                   │   │   └── validator
+│       │   │                   │   │       ├── AbstractDocumentRuleValidator.java
+│       │   │                   │   │       ├── RuleValidatorOutput.java
+│       │   │                   │   │       ├── blurry
+│       │   │                   │   │       │   ├── BlurryRuleHasBeenAnalysedBI.java
+│       │   │                   │   │       │   ├── BlurryRuleHelper.java
+│       │   │                   │   │       │   ├── BlurryRuleIsNotBlurry.java
+│       │   │                   │   │       │   └── BlurryRuleNotAllBlankBI.java
+│       │   │                   │   │       ├── france_identite
+│       │   │                   │   │       │   ├── FranceIdentiteHasBeenParsedBI.java
+│       │   │                   │   │       │   ├── FranceIdentiteHelper.java
+│       │   │                   │   │       │   └── FranceIdentiteRuleNamesMatch.java
+│       │   │                   │   │       ├── guarantee_provider
+│       │   │                   │   │       │   ├── GuaranteeProviderHasBeenParsedBI.java
+│       │   │                   │   │       │   ├── GuaranteeProviderHelper.java
+│       │   │                   │   │       │   ├── GuaranteeProviderNamesMatch.java
+│       │   │                   │   │       │   └── GuaranteeProviderRuleYearValidity.java
+│       │   │                   │   │       ├── income_tax
+│       │   │                   │   │       │   ├── IncomeTaxHas2DDocBI.java
+│       │   │                   │   │       │   ├── IncomeTaxHasBeenParsedBI.java
+│       │   │                   │   │       │   ├── IncomeTaxHasGoodClassificationB.java
+│       │   │                   │   │       │   ├── IncomeTaxHelper.java
+│       │   │                   │   │       │   ├── IncomeTaxRuleAllTaxLeafPresent.java
+│       │   │                   │   │       │   ├── IncomeTaxRuleCheckNMinus1.java
+│       │   │                   │   │       │   ├── IncomeTaxRuleCheckNMinus3.java
+│       │   │                   │   │       │   ├── IncomeTaxRuleConsistencyB.java
+│       │   │                   │   │       │   ├── IncomeTaxRuleNamesMatch.java
+│       │   │                   │   │       │   └── IncomeTaxRuleTaxLeafPresent.java
+│       │   │                   │   │       ├── payslip
+│       │   │                   │   │       │   ├── PayslipHasBeenParsedBI.java
+│       │   │                   │   │       │   ├── PayslipRuleAmountValidity.java
+│       │   │                   │   │       │   ├── PayslipRuleCheckQRCode.java
+│       │   │                   │   │       │   ├── PayslipRuleMonthValidity.java
+│       │   │                   │   │       │   └── PayslipRuleNamesMatch.java
+│       │   │                   │   │       ├── rental
+│       │   │                   │   │       │   ├── RentalHasBeenParsedBI.java
+│       │   │                   │   │       │   ├── RentalRuleMonthValidity.java
+│       │   │                   │   │       │   ├── RentalRuleNamesMatch.java
+│       │   │                   │   │       │   └── RentalRuleNumberOfPage.java
+│       │   │                   │   │       └── scholarship
+│       │   │                   │   │           ├── ScholarShipHelper.java
+│       │   │                   │   │           ├── ScholarshipRuleAmountValidity.java
+│       │   │                   │   │           ├── ScholarshipRuleHasBeenParsed.java
+│       │   │                   │   │           ├── ScholarshipRuleNamesMatch.java
+│       │   │                   │   │           └── ScholarshipRuleYearValidity.java
+│       │   │                   │   ├── interfaces
+│       │   │                   │   │   ├── DocumentService.java
+│       │   │                   │   │   ├── MinifyFileService.java
+│       │   │                   │   │   └── ProcessTenant.java
+│       │   │                   │   ├── parsers
+│       │   │                   │   │   ├── AbstractImagesParser.java
+│       │   │                   │   │   ├── AbstractPDFParser.java
+│       │   │                   │   │   ├── FileParser.java
+│       │   │                   │   │   ├── FranceIdentiteParser.java
+│       │   │                   │   │   ├── GuaranteeFasttParser.java
+│       │   │                   │   │   ├── GuaranteeFasttV2Parser.java
+│       │   │                   │   │   ├── GuaranteeVisaleParser.java
+│       │   │                   │   │   ├── PdfPayslipStd1Parser.java
+│       │   │                   │   │   ├── PdfPayslipStd3Parser.java
+│       │   │                   │   │   ├── PublicPayslipParser.java
+│       │   │                   │   │   ├── RentalReceipt3FParser.java
+│       │   │                   │   │   ├── RentalReceiptParser.java
+│       │   │                   │   │   ├── ScholarshipCROUSPage2Parser.java
+│       │   │                   │   │   ├── ScholarshipCROUSParser.java
+│       │   │                   │   │   ├── TaxAssessment2Parser.java
+│       │   │                   │   │   ├── TaxAssessmentParser.java
+│       │   │                   │   │   ├── TaxIncomeLeafParser.java
+│       │   │                   │   │   └── tools
+│       │   │                   │   │       └── PageExtractorModel.java
+│       │   │                   │   ├── processors
+│       │   │                   │   │   ├── BarCodeFileProcessor.java
+│       │   │                   │   │   ├── FileParserProcessor.java
+│       │   │                   │   │   ├── MetadataFileProcessor.java
+│       │   │                   │   │   └── Processor.java
+│       │   │                   │   └── qrcodeanalysis
+│       │   │                   │       ├── AuthenticationRequest.java
+│       │   │                   │       ├── AuthenticationResult.java
+│       │   │                   │       ├── DocumentClassifier.java
+│       │   │                   │       ├── QrCodeDocumentIssuer.java
+│       │   │                   │       ├── QrCodeFileAuthenticator.java
+│       │   │                   │       ├── TwoDDocFileAuthenticator.java
+│       │   │                   │       └── payfit
+│       │   │                   │           ├── PaySlipVerifiedContent.java
+│       │   │                   │           ├── PayfitAmount.java
+│       │   │                   │           ├── PayfitDocumentIssuer.java
+│       │   │                   │           └── client
+│       │   │                   │               ├── PayfitAuthenticationRequest.java
+│       │   │                   │               ├── PayfitClient.java
+│       │   │                   │               └── PayfitResponse.java
+│       │   │                   └── util
+│       │   │                       ├── FileTypeUtil.java
+│       │   │                       ├── ImageUtils.java
+│       │   │                       ├── MemoryUtils.java
+│       │   │                       ├── NameUtil.java
+│       │   │                       ├── PersonNameComparator.java
+│       │   │                       ├── QrCodeFileAnalysisCriteria.java
+│       │   │                       ├── TextUtil.java
+│       │   │                       └── TwoDDocUtil.java
+│       │   └── resources
+│       │       ├── application.properties
+│       │       ├── logback-spring-delayed.xml
+│       │       └── parsers
+│       │           ├── avisImpotsFeuillet.json
+│       │           ├── avisImpotsModele1.json
+│       │           ├── avisImpotsModele2.json
+│       │           ├── bourseCROUS.json
+│       │           ├── bourseCROUSPage2.json
+│       │           ├── fasttN1ZT.json
+│       │           ├── fasttN2ZT.json
+│       │           ├── payslip3.json
+│       │           ├── payslipStd1.json
+│       │           ├── rentalReceipt3F.json
+│       │           ├── rentalReceiptStd1.json
+│       │           └── visale.json
+│       └── test
+│           ├── java
+│           │   └── fr
+│           │       └── dossierfacile
+│           │           └── process
+│           │               └── file
+│           │                   ├── IntegrationTest.java
+│           │                   ├── TestFilesUtil.java
+│           │                   ├── barcode
+│           │                   │   ├── qrcode
+│           │                   │   │   └── QrCodeReaderTest.java
+│           │                   │   └── twoddoc
+│           │                   │       ├── parsing
+│           │                   │       │   ├── TwoDDocC40ParserTest.java
+│           │                   │       │   ├── TwoDDocDataTest.java
+│           │                   │       │   └── TwoDDocHeaderTest.java
+│           │                   │       └── reader
+│           │                   │           ├── PdfTextExtractorTest.java
+│           │                   │           ├── PdfTwoDDocLocatorTest.java
+│           │                   │           ├── TwoDDocImageFinderTest.java
+│           │                   │           └── TwoDDocPdfFinderTest.java
+│           │                   ├── fileAnalysis
+│           │                   │   ├── DatasetLoader.java
+│           │                   │   ├── GuaranteeProviderDocumentTest.java
+│           │                   │   └── OvhConfiguration.java
+│           │                   ├── service
+│           │                   │   ├── AnalyzeDocumentServiceTest.java
+│           │                   │   ├── document_rules
+│           │                   │   │   ├── BlurryRulesValidationServiceTest.java
+│           │                   │   │   ├── FranceIdentiteNumeriqueRulesValidationServiceTest.java
+│           │                   │   │   ├── GuaranteeProviderRulesValidationServiceTest.java
+│           │                   │   │   ├── IncomeTaxRulesValidationServiceTest.java
+│           │                   │   │   ├── PayslipStandardRulesValidationServiceTest.java
+│           │                   │   │   ├── PublicPayslipRulesValidationServiceTest.java
+│           │                   │   │   ├── RentalReceiptRulesValidationServiceTest.java
+│           │                   │   │   ├── ScholarshipRulesValidationServiceTest.java
+│           │                   │   │   └── validator
+│           │                   │   │       ├── blurry
+│           │                   │   │       │   ├── BlurryRuleHasBeenAnalysedBITest.java
+│           │                   │   │       │   ├── BlurryRuleIsNotBlurryTest.java
+│           │                   │   │       │   └── BlurryRuleNotAllBlankBITest.java
+│           │                   │   │       ├── france_identite
+│           │                   │   │       │   ├── FranceIdentiteHasBeenParsedBITest.java
+│           │                   │   │       │   └── FranceIdentiteRuleNamesMatchTest.java
+│           │                   │   │       ├── guarantee_provider
+│           │                   │   │       │   ├── GuaranteeProviderHasBeenParsedBITest.java
+│           │                   │   │       │   ├── GuaranteeProviderNamesMatchTest.java
+│           │                   │   │       │   └── GuaranteeProviderRuleYearValidityTest.java
+│           │                   │   │       ├── income_tax
+│           │                   │   │       │   ├── IncomeTaxHas2DDocBITest.java
+│           │                   │   │       │   ├── IncomeTaxHasBeenParsedBITest.java
+│           │                   │   │       │   ├── IncomeTaxHasGoodClassificationBTest.java
+│           │                   │   │       │   ├── IncomeTaxRuleAllTaxLeafPresentTest.java
+│           │                   │   │       │   ├── IncomeTaxRuleCheckNMinus1Test.java
+│           │                   │   │       │   ├── IncomeTaxRuleCheckNMinus3Test.java
+│           │                   │   │       │   ├── IncomeTaxRuleConsistencyBTest.java
+│           │                   │   │       │   ├── IncomeTaxRuleNamesMatchTest.java
+│           │                   │   │       │   └── IncomeTaxRuleTaxLeafPresentTest.java
+│           │                   │   │       ├── payslip
+│           │                   │   │       │   ├── PayslipHasBeenParsedBITest.java
+│           │                   │   │       │   ├── PayslipRuleAmountValidityTest.java
+│           │                   │   │       │   ├── PayslipRuleCheckQRCodeTest.java
+│           │                   │   │       │   ├── PayslipRuleMonthValidityTest.java
+│           │                   │   │       │   └── PayslipRuleNamesMatchTest.java
+│           │                   │   │       ├── rental
+│           │                   │   │       │   ├── RentalHasBeenParsedBITest.java
+│           │                   │   │       │   ├── RentalRuleMonthValidityTest.java
+│           │                   │   │       │   └── RentalRuleNamesMatchTest.java
+│           │                   │   │       └── scholarship
+│           │                   │   │           ├── ScholarshipRuleAmountValidityTest.java
+│           │                   │   │           ├── ScholarshipRuleHasBeenParsedTest.java
+│           │                   │   │           ├── ScholarshipRuleNamesMatchTest.java
+│           │                   │   │           └── ScholarshipRuleYearValidityTest.java
+│           │                   │   ├── parsers
+│           │                   │   │   ├── GuaranteeFasttParserTest.java
+│           │                   │   │   ├── GuaranteeFasttV2ParserTest.java
+│           │                   │   │   ├── GuaranteeVisaleParserTest.java
+│           │                   │   │   ├── PdfPayslipParsersTest.java
+│           │                   │   │   ├── PublicPayslipFileParserTest.java
+│           │                   │   │   ├── RentalReceipt3FParserTest.java
+│           │                   │   │   ├── RentalReceiptStdOneParserTest.java
+│           │                   │   │   ├── ScholarshipParserTest.java
+│           │                   │   │   ├── TaxAssessmentParserTest.java
+│           │                   │   │   └── TaxIncomeLeafParserTest.java
+│           │                   │   └── qrcodeanalysis
+│           │                   │       ├── QrCodeFileAuthenticatorTest.java
+│           │                   │       └── payfit
+│           │                   │           ├── PayfitAmountTest.java
+│           │                   │           ├── PayfitDocumentIssuerTest.java
+│           │                   │           └── client
+│           │                   │               └── PayfitAuthenticationRequestTest.java
+│           │                   └── util
+│           │                       ├── InMemoryFileTest.java
+│           │                       ├── PersonNameComparatorTest.java
+│           │                       ├── QrCodeFileAnalysisCriteriaTest.java
+│           │                       └── TwoDDocUtilTest.java
+│           └── resources
+│               ├── application.properties
+│               ├── documents
+│               │   ├── .gitignore
+│               │   ├── 2ddoc.jpg
+│               │   ├── 2ddoc.pdf
+│               │   ├── 2ddocs.pdf
+│               │   ├── fake-payfit.pdf
+│               │   ├── monfranceconnect
+│               │   │   ├── scholarship-document.pdf
+│               │   │   ├── student-document.pdf
+│               │   │   ├── tax-document.pdf
+│               │   │   ├── unemployment-benefit-document.pdf
+│               │   │   └── unemployment-document.pdf
+│               │   ├── qr-code.jpg
+│               │   ├── qr-code.pdf
+│               │   └── test-document.pdf
+│               └── testocr.png
+├── dossierfacile-task-scheduler
+│   ├── .gitignore
+│   ├── README.md
+│   ├── mvnw
+│   ├── pom.xml
+│   └── src
+│       ├── main
+│       │   ├── java
+│       │   │   └── fr
+│       │   │       └── dossierfacile
+│       │   │           └── scheduler
+│       │   │               ├── TaskSchedulerApplication.java
+│       │   │               ├── configuration
+│       │   │               │   ├── GarbageCollectionConfiguration.java
+│       │   │               │   ├── GeneralConfiguration.java
+│       │   │               │   ├── KeycloakConfig.java
+│       │   │               │   └── MailConfiguration.java
+│       │   │               └── tasks
+│       │   │                   ├── AbstractTask.java
+│       │   │                   ├── TaskName.java
+│       │   │                   ├── ademe
+│       │   │                   │   └── CheckAdemeApiTask.java
+│       │   │                   ├── document
+│       │   │                   │   ├── DocumentDeleteMailService.java
+│       │   │                   │   ├── DocumentModel.java
+│       │   │                   │   ├── DocumentRepository.java
+│       │   │                   │   ├── DocumentTask.java
+│       │   │                   │   └── PartnerCallbackService.java
+│       │   │                   ├── garbagecollection
+│       │   │                   │   ├── GarbageCollectionDetails.java
+│       │   │                   │   ├── GarbageCollectionDetailsRepository.java
+│       │   │                   │   ├── GarbageCollectionService.java
+│       │   │                   │   ├── GarbageCollectionTask.java
+│       │   │                   │   ├── GarbageCollectionTaskOld.java
+│       │   │                   │   ├── GarbageSequenceEntity.java
+│       │   │                   │   ├── GarbageSequenceName.java
+│       │   │                   │   ├── GarbageSequenceRepository.java
+│       │   │                   │   └── StoredObject.java
+│       │   │                   ├── ownerwarning
+│       │   │                   │   ├── OwnerRepository.java
+│       │   │                   │   ├── OwnerWarningService.java
+│       │   │                   │   └── OwnerWarningTask.java
+│       │   │                   ├── storagesynchronization
+│       │   │                   │   ├── DeleteFilesTask.java
+│       │   │                   │   └── DeleteTemporaryFilesTask.java
+│       │   │                   └── tenantwarning
+│       │   │                       ├── TenantDeletionTask.java
+│       │   │                       ├── TenantRepository.java
+│       │   │                       ├── TenantWarningService.java
+│       │   │                       ├── TenantWarningTask.java
+│       │   │                       └── WarningMailSender.java
+│       │   └── resources
+│       │       ├── application.properties
+│       │       └── logback-spring-delayed.xml
+│       └── test
+│           ├── java
+│           │   └── fr
+│           │       └── dossierfacile
+│           │           └── scheduler
+│           │               └── tasks
+│           │                   └── tenantwarning
+│           │                       └── TenantRepositoryTest.java
+│           └── resources
+│               ├── application.properties
+│               └── data-two-tenant-same-apart.sql
+├── elastalert
+│   ├── README.md
+│   ├── custom-alerts
+│   │   ├── config.json
+│   │   ├── monitor_controller.py
+│   │   ├── requirements.txt
+│   │   └── rules
+│   │       ├── api_4xx_ratio_alert.py
+│   │       └── api_500_ratio_alert.py
+│   ├── deploy-rules.sh
+│   ├── example-rules
+│   │   └── example.yaml
+│   └── rules
+│       ├── cdn_suspicious.yaml
+│       ├── process-file-monitoring.yaml
+│       ├── task-scheduler-monitoring.yaml
+│       ├── task-storage-file-deletion.yaml
+│       ├── task-tenant-archiving.yaml
+│       ├── task-tenant-deletion.yaml
+│       └── task-tenant-warning.yaml
+├── france-identite-numerique-api
+│   ├── Procfile
+│   ├── README
+│   ├── attest-val-partenaires-api-1.0.3.jar
+│   └── system.properties
+├── mvnw
+├── mvnw.cmd
+├── pom.xml
+├── system.properties
+└── zxing-cpp
+    ├── Dockerfile
+    ├── README.md
+    ├── data
+    │   ├── CMakeLists.txt
+    │   └── zxing_wrapper.cpp
+    └── docker-compose.yml
+580 directories, 1981 files
