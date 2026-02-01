@@ -1,0 +1,2147 @@
+.
+├── .editorconfig
+├── .env.example
+├── .gitguardian.yml
+├── .github
+│   ├── actions
+│   │   └── setupNodeAndPackages
+│   │       └── action.yml
+│   └── workflows
+│       ├── backend.yml
+│       ├── etl.yml
+│       ├── onisep.yml
+│       ├── pullRequestBackend.yml
+│       ├── pullRequestEtl.yml
+│       ├── pullRequestSuggestion2.yml
+│       ├── pullRequestSuggestions.yml
+│       ├── pushProdOrDemo.yml
+│       ├── suggestions.yml
+│       └── suggestions2.yml
+├── .gitignore
+├── .gitlab-ci.yml
+├── LICENSE.md
+├── README.md
+├── app
+│   ├── .dockerignore
+│   ├── back
+│   │   ├── .dockerignore
+│   │   ├── .gitignore
+│   │   ├── .mvn
+│   │   │   └── wrapper
+│   │   │       ├── maven-wrapper.jar
+│   │   │       └── maven-wrapper.properties
+│   │   ├── Dockerfile.flyway
+│   │   ├── README.md
+│   │   ├── docker
+│   │   │   ├── Dockerfile
+│   │   │   └── Dockerfile.dev
+│   │   ├── mvnw
+│   │   ├── mvnw.cmd
+│   │   ├── pom.xml
+│   │   ├── src
+│   │   │   ├── main
+│   │   │   │   ├── fr
+│   │   │   │   │   └── gouv
+│   │   │   │   │       └── monprojetsup
+│   │   │   │   │           ├── MonProjetSupApplication.kt
+│   │   │   │   │           ├── authentification
+│   │   │   │   │           │   ├── application
+│   │   │   │   │           │   │   └── controller
+│   │   │   │   │           │   │       ├── AuthentifieController.kt
+│   │   │   │   │           │   │       └── AuthentifieOuPasController.kt
+│   │   │   │   │           │   ├── domain
+│   │   │   │   │           │   │   └── entity
+│   │   │   │   │           │   │       ├── ProfilConnnecte.kt
+│   │   │   │   │           │   │       ├── ProfilEleve.kt
+│   │   │   │   │           │   │       └── ProfilUtilisateur.kt
+│   │   │   │   │           │   ├── filter
+│   │   │   │   │           │   │   └── IdentificationFilter.kt
+│   │   │   │   │           │   └── usecase
+│   │   │   │   │           │       └── RecupererEleveService.kt
+│   │   │   │   │           ├── commun
+│   │   │   │   │           │   ├── Constantes.kt
+│   │   │   │   │           │   ├── auth
+│   │   │   │   │           │   │   └── infrastructure
+│   │   │   │   │           │   │       └── BearerTokenProviderService.kt
+│   │   │   │   │           │   ├── client
+│   │   │   │   │           │   │   └── ApiHttpClient.kt
+│   │   │   │   │           │   ├── clock
+│   │   │   │   │           │   │   └── MonProjetSupClock.kt
+│   │   │   │   │           │   ├── erreur
+│   │   │   │   │           │   │   ├── ApplicationControllerAdvice.kt
+│   │   │   │   │           │   │   └── domain
+│   │   │   │   │           │   │       └── MonProjetSupExceptions.kt
+│   │   │   │   │           │   ├── hateoas
+│   │   │   │   │           │   │   ├── application
+│   │   │   │   │           │   │   │   └── dto
+│   │   │   │   │           │   │   │       └── PaginationDTO.kt
+│   │   │   │   │           │   │   ├── domain
+│   │   │   │   │           │   │   │   ├── PaginationConstants.kt
+│   │   │   │   │           │   │   │   └── entity
+│   │   │   │   │           │   │   │       └── Hateoas.kt
+│   │   │   │   │           │   │   └── usecase
+│   │   │   │   │           │   │       └── HateoasBuilder.kt
+│   │   │   │   │           │   ├── lien
+│   │   │   │   │           │   │   ├── application
+│   │   │   │   │           │   │   │   └── dto
+│   │   │   │   │           │   │   │       └── LienDTO.kt
+│   │   │   │   │           │   │   ├── domain
+│   │   │   │   │           │   │   │   └── entity
+│   │   │   │   │           │   │   │       └── Lien.kt
+│   │   │   │   │           │   │   └── infrastructure
+│   │   │   │   │           │   │       └── entity
+│   │   │   │   │           │   │           └── LienEntity.kt
+│   │   │   │   │           │   ├── recherche
+│   │   │   │   │           │   │   └── usecase
+│   │   │   │   │           │   │       └── FiltrerRechercheBuilder.kt
+│   │   │   │   │           │   └── utilitaires
+│   │   │   │   │           │       └── ListUtilitaire.kt
+│   │   │   │   │           ├── configuration
+│   │   │   │   │           │   ├── HttpClientConfiguration.kt
+│   │   │   │   │           │   ├── JacksonConfiguration.kt
+│   │   │   │   │           │   ├── LoggerConfiguration.kt
+│   │   │   │   │           │   ├── SecuriteConfiguration.kt
+│   │   │   │   │           │   └── SwaggerConfiguration.kt
+│   │   │   │   │           ├── eleve
+│   │   │   │   │           │   ├── application
+│   │   │   │   │           │   │   ├── controller
+│   │   │   │   │           │   │   │   ├── ProfilEleveController.kt
+│   │   │   │   │           │   │   │   └── TraceEleveController.kt
+│   │   │   │   │           │   │   └── dto
+│   │   │   │   │           │   │       ├── AjoutCompteParcoursupDTO.kt
+│   │   │   │   │           │   │       ├── ModificationProfilDTO.kt
+│   │   │   │   │           │   │       ├── ProfilDTO.kt
+│   │   │   │   │           │   │       ├── ProgressionDTO.kt
+│   │   │   │   │           │   │       └── TraceDTO.kt
+│   │   │   │   │           │   ├── domain
+│   │   │   │   │           │   │   ├── entity
+│   │   │   │   │           │   │   │   ├── ActionEleve.kt
+│   │   │   │   │           │   │   │   ├── CommuneFavorite.kt
+│   │   │   │   │           │   │   │   ├── FormationFavorite.kt
+│   │   │   │   │           │   │   │   ├── ModificationProfilEleve.kt
+│   │   │   │   │           │   │   │   ├── ParametresPourRecupererToken.kt
+│   │   │   │   │           │   │   │   ├── Trace.kt
+│   │   │   │   │           │   │   │   └── VoeuFavori.kt
+│   │   │   │   │           │   │   └── port
+│   │   │   │   │           │   │       ├── CompteParcoursupRepository.kt
+│   │   │   │   │           │   │       ├── EleveRepository.kt
+│   │   │   │   │           │   │       └── TraceRepository.kt
+│   │   │   │   │           │   ├── infrastructure
+│   │   │   │   │           │   │   ├── entity
+│   │   │   │   │           │   │   │   ├── CommuneEntity.kt
+│   │   │   │   │           │   │   │   ├── CompteParcoursupEntity.kt
+│   │   │   │   │           │   │   │   ├── FormationFavoriteEntity.kt
+│   │   │   │   │           │   │   │   ├── ProfilEleveEntity.kt
+│   │   │   │   │           │   │   │   ├── TraceEntity.kt
+│   │   │   │   │           │   │   │   └── VoeuFavoriEntity.kt
+│   │   │   │   │           │   │   └── repository
+│   │   │   │   │           │   │       ├── CompteParcoursupBDDRepository.kt
+│   │   │   │   │           │   │       ├── CompteParcoursupJPARepository.kt
+│   │   │   │   │           │   │       ├── EleveBDDRepository.kt
+│   │   │   │   │           │   │       ├── EleveJPARepository.kt
+│   │   │   │   │           │   │       ├── TraceBDDRepository.kt
+│   │   │   │   │           │   │       └── TraceJPARepository.kt
+│   │   │   │   │           │   └── usecase
+│   │   │   │   │           │       ├── AjoutTraceService.kt
+│   │   │   │   │           │       ├── MajIndicateurPortfolioService.kt
+│   │   │   │   │           │       ├── MiseAJourEleveService.kt
+│   │   │   │   │           │       ├── MiseAJourIdParcoursupService.kt
+│   │   │   │   │           │       ├── RecupererAssociationFormationsVoeuxService.kt
+│   │   │   │   │           │       └── RecupererProgressionService.kt
+│   │   │   │   │           ├── formation
+│   │   │   │   │           │   ├── application
+│   │   │   │   │           │   │   ├── controller
+│   │   │   │   │           │   │   │   └── FormationController.kt
+│   │   │   │   │           │   │   └── dto
+│   │   │   │   │           │   │       ├── BaccalaureatDTO.kt
+│   │   │   │   │           │   │       ├── FormationAvecExplicationsDTO.kt
+│   │   │   │   │           │   │       ├── FormationCourteDTO.kt
+│   │   │   │   │           │   │       ├── FormationsAvecExplicationsDTO.kt
+│   │   │   │   │           │   │       ├── FormationsCourtesDTO.kt
+│   │   │   │   │           │   │       ├── GetFichesFormationsDTO.kt
+│   │   │   │   │           │   │       ├── GetFormationDTO.kt
+│   │   │   │   │           │   │       ├── GetSuggestionsDTO.kt
+│   │   │   │   │           │   │       └── RechercheFormationsDTO.kt
+│   │   │   │   │           │   ├── domain
+│   │   │   │   │           │   │   ├── entity
+│   │   │   │   │           │   │   │   ├── CommuneAvecVoeuxAuxAlentours.kt
+│   │   │   │   │           │   │   │   ├── CommuneCourte.kt
+│   │   │   │   │           │   │   │   ├── CritereAnalyseCandidature.kt
+│   │   │   │   │           │   │   │   ├── ExplicationsSuggestionEtExemplesMetiers.kt
+│   │   │   │   │           │   │   │   ├── FicheFormation.kt
+│   │   │   │   │           │   │   │   ├── Formation.kt
+│   │   │   │   │           │   │   │   ├── FormationCourte.kt
+│   │   │   │   │           │   │   │   ├── ResultatRechercheFormationCourte.kt
+│   │   │   │   │           │   │   │   ├── StatistiquesDesAdmis.kt
+│   │   │   │   │           │   │   │   ├── SuggestionsPourUnProfil.kt
+│   │   │   │   │           │   │   │   └── Voeu.kt
+│   │   │   │   │           │   │   └── port
+│   │   │   │   │           │   │       ├── CommunesAvecVoeuxAuxAlentoursRepository.kt
+│   │   │   │   │           │   │       ├── CriteresAnalyseCandidatureRepository.kt
+│   │   │   │   │           │   │       ├── FormationRepository.kt
+│   │   │   │   │           │   │       ├── FrequencesCumuleesDesMoyenneDesAdmisRepository.kt
+│   │   │   │   │           │   │       ├── RechercheFormationRepository.kt
+│   │   │   │   │           │   │       ├── SuggestionHttpClient.kt
+│   │   │   │   │           │   │       └── VoeuRepository.kt
+│   │   │   │   │           │   ├── infrastructure
+│   │   │   │   │           │   │   ├── client
+│   │   │   │   │           │   │   │   └── SuggestionApiHttpClient.kt
+│   │   │   │   │           │   │   ├── dto
+│   │   │   │   │           │   │   │   ├── APISuggestionProfilDTO.kt
+│   │   │   │   │           │   │   │   ├── APISuggestionReponseDTO.kt
+│   │   │   │   │           │   │   │   ├── APISuggestionRequeteDTO.kt
+│   │   │   │   │           │   │   │   ├── AffiniteProfilRequeteDTO.kt
+│   │   │   │   │           │   │   │   ├── AffinitesProfilReponseDTO.kt
+│   │   │   │   │           │   │   │   ├── ExplicationFormationPourUnProfilReponseDTO.kt
+│   │   │   │   │           │   │   │   └── ExplicationFormationPourUnProfilRequeteDTO.kt
+│   │   │   │   │           │   │   ├── entity
+│   │   │   │   │           │   │   │   ├── CommunesAvecVoeuxAuxAlentoursEntity.kt
+│   │   │   │   │           │   │   │   ├── CritereAnalyseCandidatureEntity.kt
+│   │   │   │   │           │   │   │   ├── ExpandedLabelEntity.kt
+│   │   │   │   │           │   │   │   ├── FormationEntity.kt
+│   │   │   │   │           │   │   │   ├── JoinFormationVoeuEntity.kt
+│   │   │   │   │           │   │   │   ├── JoinFormationVoeuQuery.kt
+│   │   │   │   │           │   │   │   ├── MoyenneGeneraleAdmisEntity.kt
+│   │   │   │   │           │   │   │   ├── MoyenneGeneraleAdmisQuery.kt
+│   │   │   │   │           │   │   │   ├── RechercheFormationEntity.kt
+│   │   │   │   │           │   │   │   └── VoeuEntity.kt
+│   │   │   │   │           │   │   └── repository
+│   │   │   │   │           │   │       ├── CommunesAvecVoeuxAuxAlentoursBDDRepository.kt
+│   │   │   │   │           │   │       ├── CommunesAvecVoeuxAuxAlentoursJPARepository.kt
+│   │   │   │   │           │   │       ├── CriteresAnalyseCandidatureBDDRepository.kt
+│   │   │   │   │           │   │       ├── CriteresAnalyseCandidatureJPARepository.kt
+│   │   │   │   │           │   │       ├── FormationBDDRepository.kt
+│   │   │   │   │           │   │       ├── FormationDetailleeJPARepository.kt
+│   │   │   │   │           │   │       ├── FormationJPARepository.kt
+│   │   │   │   │           │   │       ├── FrequencesCumuleesDesMoyenneDesAdmisBDDRepository.kt
+│   │   │   │   │           │   │       ├── RechercheFormationBDDRepository.kt
+│   │   │   │   │           │   │       ├── VoeuBDDRepository.kt
+│   │   │   │   │           │   │       ├── VoeuCourtJPARepository.kt
+│   │   │   │   │           │   │       └── VoeuJPARepository.kt
+│   │   │   │   │           │   └── usecase
+│   │   │   │   │           │       ├── CalculDuTauxDAffiniteBuilder.kt
+│   │   │   │   │           │       ├── ChoixEleveService.kt
+│   │   │   │   │           │       ├── CritereAnalyseCandidatureService.kt
+│   │   │   │   │           │       ├── MetiersTriesParProfilBuilder.kt
+│   │   │   │   │           │       ├── OrdonnerRechercheFormationsBuilder.kt
+│   │   │   │   │           │       ├── RechercherFormationsService.kt
+│   │   │   │   │           │       ├── RecupererExplicationsEtExemplesMetiersPourFormationService.kt
+│   │   │   │   │           │       ├── RecupererFicheFormationService.kt
+│   │   │   │   │           │       ├── RecupererFichesFormationsService.kt
+│   │   │   │   │           │       ├── RecupererFormationsService.kt
+│   │   │   │   │           │       ├── RecupererInformationsSurLesVoeuxEtLeursCommunesService.kt
+│   │   │   │   │           │       ├── StatistiquesDesAdmisBuilder.kt
+│   │   │   │   │           │       ├── StatistiquesDesAdmisPourFormationsService.kt
+│   │   │   │   │           │       └── SuggestionsFormationsService.kt
+│   │   │   │   │           ├── logging
+│   │   │   │   │           │   ├── LogguerReponsesFilter.kt
+│   │   │   │   │           │   ├── MonProjetSupLogger.kt
+│   │   │   │   │           │   └── domain
+│   │   │   │   │           │       ├── ExceptionALogguer.kt
+│   │   │   │   │           │       └── ReponseALogguer.kt
+│   │   │   │   │           ├── metier
+│   │   │   │   │           │   ├── application
+│   │   │   │   │           │   │   ├── controller
+│   │   │   │   │           │   │   │   └── MetierController.kt
+│   │   │   │   │           │   │   └── dto
+│   │   │   │   │           │   │       ├── MetierCourtDTO.kt
+│   │   │   │   │           │   │       ├── MetierDTO.kt
+│   │   │   │   │           │   │       ├── MetiersAvecSesFormationsDTO.kt
+│   │   │   │   │           │   │       └── MetiersCourtsDTO.kt
+│   │   │   │   │           │   ├── domain
+│   │   │   │   │           │   │   ├── entity
+│   │   │   │   │           │   │   │   ├── Metier.kt
+│   │   │   │   │           │   │   │   ├── MetierCourt.kt
+│   │   │   │   │           │   │   │   └── ResultatRechercheMetierCourt.kt
+│   │   │   │   │           │   │   └── port
+│   │   │   │   │           │   │       ├── MetierRepository.kt
+│   │   │   │   │           │   │       └── RechercheMetierRepository.kt
+│   │   │   │   │           │   ├── infrastructure
+│   │   │   │   │           │   │   ├── entity
+│   │   │   │   │           │   │   │   ├── JoinMetierFormationEntity.kt
+│   │   │   │   │           │   │   │   ├── MetierCourtEntity.kt
+│   │   │   │   │           │   │   │   ├── MetierEntity.kt
+│   │   │   │   │           │   │   │   └── RechercheMetierEntity.kt
+│   │   │   │   │           │   │   └── repository
+│   │   │   │   │           │   │       ├── MetierBDDRepository.kt
+│   │   │   │   │           │   │       ├── MetierCourtJPARepository.kt
+│   │   │   │   │           │   │       ├── MetierJPARepository.kt
+│   │   │   │   │           │   │       └── RechercheMetierBDDRepository.kt
+│   │   │   │   │           │   └── usecase
+│   │   │   │   │           │       ├── RechercherMetiersService.kt
+│   │   │   │   │           │       └── RecupererMetiersService.kt
+│   │   │   │   │           ├── parametre
+│   │   │   │   │           │   ├── domain
+│   │   │   │   │           │   │   ├── entity
+│   │   │   │   │           │   │   │   └── Parametre.kt
+│   │   │   │   │           │   │   └── port
+│   │   │   │   │           │   │       └── ParametreRepository.kt
+│   │   │   │   │           │   ├── infrastructure
+│   │   │   │   │           │   │   ├── ParametreBDDRepository.kt
+│   │   │   │   │           │   │   ├── ParametreEntity.kt
+│   │   │   │   │           │   │   └── ParametreJPARepository.kt
+│   │   │   │   │           │   └── usecase
+│   │   │   │   │           │       └── EtlEnCoursFilter.kt
+│   │   │   │   │           ├── parcoursup
+│   │   │   │   │           │   ├── domain
+│   │   │   │   │           │   │   ├── entity
+│   │   │   │   │           │   │   │   └── FavorisParcoursup.kt
+│   │   │   │   │           │   │   └── port
+│   │   │   │   │           │   │       ├── ParcoursupApiFavorisClient.kt
+│   │   │   │   │           │   │       └── ParcoursupAuthentClient.kt
+│   │   │   │   │           │   └── infrastructure
+│   │   │   │   │           │       ├── client
+│   │   │   │   │           │       │   ├── ParcoursupAuthentClient.kt
+│   │   │   │   │           │       │   ├── ParcoursupFavorisApiFavorisClient.kt
+│   │   │   │   │           │       │   └── ParcoursupJwtDecoder.kt
+│   │   │   │   │           │       └── dto
+│   │   │   │   │           │           └── ParcoursupFavorisReponseDTO.kt
+│   │   │   │   │           └── referentiel
+│   │   │   │   │               ├── application
+│   │   │   │   │               │   ├── controller
+│   │   │   │   │               │   │   └── ReferentielController.kt
+│   │   │   │   │               │   └── dto
+│   │   │   │   │               │       ├── CategorieDomaineDTO.kt
+│   │   │   │   │               │       ├── DomaineDTO.kt
+│   │   │   │   │               │       ├── InteretCategorieDTO.kt
+│   │   │   │   │               │       ├── InteretSousCategorieDTO.kt
+│   │   │   │   │               │       ├── ReferentielDTO.kt
+│   │   │   │   │               │       └── SpecialitesDTO.kt
+│   │   │   │   │               ├── domain
+│   │   │   │   │               │   ├── entity
+│   │   │   │   │               │   │   ├── Baccalaureat.kt
+│   │   │   │   │               │   │   ├── ChoixAlternance.kt
+│   │   │   │   │               │   │   ├── ChoixDureeEtudesPrevue.kt
+│   │   │   │   │               │   │   ├── ChoixNiveau.kt
+│   │   │   │   │               │   │   ├── Domaine.kt
+│   │   │   │   │               │   │   ├── InteretSousCategorie.kt
+│   │   │   │   │               │   │   ├── Label.kt
+│   │   │   │   │               │   │   ├── Referentiel.kt
+│   │   │   │   │               │   │   ├── SituationAvanceeProjetSup.kt
+│   │   │   │   │               │   │   └── Specialite.kt
+│   │   │   │   │               │   └── port
+│   │   │   │   │               │       ├── BaccalaureatRepository.kt
+│   │   │   │   │               │       ├── BaccalaureatSpecialiteRepository.kt
+│   │   │   │   │               │       ├── DomaineRepository.kt
+│   │   │   │   │               │       ├── InteretRepository.kt
+│   │   │   │   │               │       ├── LabelsRepository.kt
+│   │   │   │   │               │       └── SpecialitesRepository.kt
+│   │   │   │   │               ├── infrastructure
+│   │   │   │   │               │   ├── entity
+│   │   │   │   │               │   │   ├── BaccalaureatEntity.kt
+│   │   │   │   │               │   │   ├── BaccalaureatSpecialiteEntity.kt
+│   │   │   │   │               │   │   ├── CategorieDomaineEntity.kt
+│   │   │   │   │               │   │   ├── DomaineEntity.kt
+│   │   │   │   │               │   │   ├── InteretCategorieEntity.kt
+│   │   │   │   │               │   │   ├── InteretEntity.kt
+│   │   │   │   │               │   │   ├── InteretSousCategorieEntity.kt
+│   │   │   │   │               │   │   ├── LabelEntity.kt
+│   │   │   │   │               │   │   └── SpecialiteEntity.kt
+│   │   │   │   │               │   └── repository
+│   │   │   │   │               │       ├── BaccalaureatBDDRepository.kt
+│   │   │   │   │               │       ├── BaccalaureatJPARepository.kt
+│   │   │   │   │               │       ├── BaccalaureatSpecialiteBDDRepository.kt
+│   │   │   │   │               │       ├── BaccalaureatSpecialiteJPARepository.kt
+│   │   │   │   │               │       ├── CategorieDomaineJPARepository.kt
+│   │   │   │   │               │       ├── DomaineBDDRepository.kt
+│   │   │   │   │               │       ├── DomaineJPARepository.kt
+│   │   │   │   │               │       ├── InteretBDDRepository.kt
+│   │   │   │   │               │       ├── InteretCategorieJPARepository.kt
+│   │   │   │   │               │       ├── InteretSousCategorieJPARepository.kt
+│   │   │   │   │               │       ├── LabelBDDRepository.kt
+│   │   │   │   │               │       ├── LabelJPARepository.kt
+│   │   │   │   │               │       ├── SpecialiteBDDRepository.kt
+│   │   │   │   │               │       └── SpecialiteJPARepository.kt
+│   │   │   │   │               └── usecase
+│   │   │   │   │                   └── ReferentielService.kt
+│   │   │   │   └── resources
+│   │   │   │       ├── application.properties
+│   │   │   │       ├── db
+│   │   │   │       │   └── migration
+│   │   │   │       │       ├── V1_0__init.sql
+│   │   │   │       │       ├── V1_10__ajout_corbeille_formations_profil_eleve.sql
+│   │   │   │       │       ├── V1_11__modification_colonne_formations_favorites.sql
+│   │   │   │       │       ├── V1_12__etl_renommage_tables_ref.sql
+│   │   │   │       │       ├── V1_13__adaptation_profil.sql
+│   │   │   │       │       ├── V1_14__ajout_join_formation_metier.sql
+│   │   │   │       │       ├── V1_15__suppression_anciennes_tables.sql
+│   │   │   │       │       ├── V1_16__supprimer_coordonnees_geo.sql
+│   │   │   │       │       ├── V1_17__ajout_formations_ideo_ref_formations.sql
+│   │   │   │       │       ├── V1_18__ajout_nom_et_insee_sugg_ville.sql
+│   │   │   │       │       ├── V1_19__ajout_description_et_sous_domaines.sql
+│   │   │   │       │       ├── V1_1__ajout_table_specialite.sql
+│   │   │   │       │       ├── V1_20__ajout_formations_villes_renom_triplets_affectations.sql
+│   │   │   │       │       ├── V1_21__creation_table_eleve_compte_parcoursup.sql
+│   │   │   │       │       ├── V1_22__modif_format_table_join_ville_voeux.sql
+│   │   │   │       │       ├── V1_23__modification_voeux.sql
+│   │   │   │       │       ├── V1_24__ajout_type_formation_dans_ref_formation.sql
+│   │   │   │       │       ├── V1_25__migrer_uuid_en_string.sql
+│   │   │   │       │       ├── V1_26__marquage_formations_metiers_voeux_obsoletes.sql
+│   │   │   │       │       ├── V1_27__reset_table_formation_voeux.sql
+│   │   │   │       │       ├── V1_28__migrer_les_formations_fr27.sql
+│   │   │   │       │       ├── V1_29__migrer_les_formations_fr24_et_fr27.sql
+│   │   │   │       │       ├── V1_2__modification_table_formation.sql
+│   │   │   │       │       ├── V1_30__migrer_les_formations_fr21.sql
+│   │   │   │       │       ├── V1_31__ajout_motsclefs_table_metier.sql
+│   │   │   │       │       ├── V1_32__ajout_table_parametre.sql
+│   │   │   │       │       ├── V1_33__ajout_flag_seulement_en_app.sql
+│   │   │   │       │       ├── V1_34__ajout_type_bac_carte.sql
+│   │   │   │       │       ├── V1_35__ajout_lien_voeu.sql
+│   │   │   │       │       ├── V1_36__ajout_description_interet_sous_categorie.sql
+│   │   │   │       │       ├── V1_37__force_update_voeux.sql
+│   │   │   │       │       ├── V1_38__creation_table_formation_voeu.sql
+│   │   │   │       │       ├── V1_39__ajout_voeux_favoris.sql
+│   │   │   │       │       ├── V1_3__modification_tables.sql
+│   │   │   │       │       ├── V1_40__renommage_table_sugg.sql
+│   │   │   │       │       ├── V1_41__force_full_formation_update.sql
+│   │   │   │       │       ├── V1_42__ajout_trace.sql
+│   │   │   │       │       ├── V1_43__supprime_moy_gen.sql
+│   │   │   │       │       ├── V1_44__creation_vue_mots_clefs.sql
+│   │   │   │       │       ├── V1_45__creation_table_ref_join_voeu_ville.sql
+│   │   │   │       │       ├── V1_46__migrer_les_formations_las.sql
+│   │   │   │       │       ├── V1_47__creer_table_profil_reference.sql
+│   │   │   │       │       ├── V1_48__migrer_table_profil_reference.sql
+│   │   │   │       │       ├── V1_49__ajouter_champ_lettres.sql
+│   │   │   │       │       ├── V1_4__renommage_interet_domaine.sql
+│   │   │   │       │       ├── V1_50__supprime_colonnes_formation.sql
+│   │   │   │       │       ├── V1_51__ajout_colonnes_formation.sql
+│   │   │   │       │       ├── V1_52__ajout_table_reference_lyceen.sql
+│   │   │   │       │       ├── V1_53__augmente_taille_champs_ref_formation.sql
+│   │   │   │       │       ├── V1_5__changement_liens_en_jsonb.sql
+│   │   │   │       │       ├── V1_6__drop_repartition_admis.sql
+│   │   │   │       │       ├── V1_7__drop_join_metier_formation.sql
+│   │   │   │       │       ├── V1_8__create_join_baccalaureat_specialite.sql
+│   │   │   │       │       └── V1_9__create_table_profil_eleve.sql
+│   │   │   │       └── logback.xml
+│   │   │   └── test
+│   │   │       ├── fr
+│   │   │       │   └── gouv
+│   │   │       │       └── monprojetsup
+│   │   │       │           ├── authentification
+│   │   │       │           │   ├── filter
+│   │   │       │           │   │   └── FilterTest.kt
+│   │   │       │           │   └── usecase
+│   │   │       │           │       └── RecupererEleveServiceTest.kt
+│   │   │       │           ├── commun
+│   │   │       │           │   ├── ConnecteAvecUnEleve.kt
+│   │   │       │           │   ├── ConnecteAvecUnEnseignant.kt
+│   │   │       │           │   ├── ConnecteSansId.kt
+│   │   │       │           │   ├── MonProjetSupTestConfiguration.kt
+│   │   │       │           │   ├── application
+│   │   │       │           │   │   └── controller
+│   │   │       │           │   │       └── ControllerTest.kt
+│   │   │       │           │   ├── hateoas
+│   │   │       │           │   │   └── usecase
+│   │   │       │           │   │       └── HateoasBuilderTest.kt
+│   │   │       │           │   ├── helper
+│   │   │       │           │   │   └── MockitoHelper.kt
+│   │   │       │           │   ├── infrastructure
+│   │   │       │           │   │   └── repository
+│   │   │       │           │   │       └── BDDRepositoryTest.kt
+│   │   │       │           │   └── recherche
+│   │   │       │           │       └── usecase
+│   │   │       │           │           └── FiltrerRechercheBuilderTest.kt
+│   │   │       │           ├── eleve
+│   │   │       │           │   ├── application
+│   │   │       │           │   │   └── controller
+│   │   │       │           │   │       └── ProfilEleveControllerTest.kt
+│   │   │       │           │   ├── entity
+│   │   │       │           │   │   └── CommunesFavorites.kt
+│   │   │       │           │   ├── infrastructure
+│   │   │       │           │   │   └── repository
+│   │   │       │           │   │       ├── CompteParcoursupBDDRepositoryTest.kt
+│   │   │       │           │   │       ├── EleveBDDRepositoryTest.kt
+│   │   │       │           │   │       └── TraceRepositoryTest.kt
+│   │   │       │           │   └── usecase
+│   │   │       │           │       ├── AjoutTraceServiceTest.kt
+│   │   │       │           │       ├── MiseAJourEleveServiceTest.kt
+│   │   │       │           │       ├── MiseAJourIdParcoursupServiceTest.kt
+│   │   │       │           │       └── RecupererAssociationFormationsVoeuxServiceTest.kt
+│   │   │       │           ├── formation
+│   │   │       │           │   ├── application
+│   │   │       │           │   │   └── controller
+│   │   │       │           │   │       └── FormationControllerTest.kt
+│   │   │       │           │   ├── entity
+│   │   │       │           │   │   └── CommunesCourtes.kt
+│   │   │       │           │   ├── infrastructure
+│   │   │       │           │   │   ├── client
+│   │   │       │           │   │   │   ├── APISuggestionProfilDTOTest.kt
+│   │   │       │           │   │   │   └── SuggestionApiHttpClientTest.kt
+│   │   │       │           │   │   └── repository
+│   │   │       │           │   │       ├── CommunesFavoritesAvecVoeuxAuxAlentoursBDDRepositoryTest.kt
+│   │   │       │           │   │       ├── CriteresAnalyseCandidatureBDDRepositoryTest.kt
+│   │   │       │           │   │       ├── DomaineBDDRepositoryTest.kt
+│   │   │       │           │   │       ├── FormationBDDRepositoryTest.kt
+│   │   │       │           │   │       ├── FrequencesCumuleesDesMoyenneDesAdmisBDDRepositoryTest.kt
+│   │   │       │           │   │       ├── InteretBDDRepositoryTest.kt
+│   │   │       │           │   │       ├── RechercheFormationBDDRepositoryTest.kt
+│   │   │       │           │   │       ├── SpecialiteBDDRepositoryTest.kt
+│   │   │       │           │   │       └── VoeuBDDRepositoryTest.kt
+│   │   │       │           │   └── usecase
+│   │   │       │           │       ├── CalculDuTauxDAffiniteBuilderTest.kt
+│   │   │       │           │       ├── ChoixEleveServiceTest.kt
+│   │   │       │           │       ├── CritereAnalyseCandidatureServiceTest.kt
+│   │   │       │           │       ├── MetiersTriesParProfilBuilderTest.kt
+│   │   │       │           │       ├── OrdonnerRechercheFormationsBuilderTest.kt
+│   │   │       │           │       ├── RechercherFormationsEnd2EndTest.kt
+│   │   │       │           │       ├── RechercherFormationsServiceTest.kt
+│   │   │       │           │       ├── RecupererExplicationsEtExemplesMetiersPourFormationServiceTest.kt
+│   │   │       │           │       ├── RecupererFicheFormationServiceTest.kt
+│   │   │       │           │       ├── RecupererFichesFormationsServiceTest.kt
+│   │   │       │           │       ├── RecupererInformationsSurLesVoeuxEtLeursCommunesFavoritesServiceTest.kt
+│   │   │       │           │       ├── StatistiquesDesAdmisBuilderTest.kt
+│   │   │       │           │       ├── StatistiquesDesAdmisPourFormationsServiceTest.kt
+│   │   │       │           │       └── SuggestionsFormationsServiceTest.kt
+│   │   │       │           ├── metier
+│   │   │       │           │   ├── application
+│   │   │       │           │   │   └── controller
+│   │   │       │           │   │       └── MetiersControllerTest.kt
+│   │   │       │           │   ├── infrastructure
+│   │   │       │           │   │   └── repository
+│   │   │       │           │   │       ├── MetierBDDRepositoryTest.kt
+│   │   │       │           │   │       └── RechercheMetierBDDRepositoryTest.kt
+│   │   │       │           │   └── usecase
+│   │   │       │           │       ├── RechercherMetiersServiceTest.kt
+│   │   │       │           │       └── RecupererMetiersServiceTest.kt
+│   │   │       │           ├── parametre
+│   │   │       │           │   └── infrastructure
+│   │   │       │           │       └── ParametreBDDRepositoryTest.kt
+│   │   │       │           ├── parcoursup
+│   │   │       │           │   └── infrastructure
+│   │   │       │           │       └── client
+│   │   │       │           │           ├── ParcoursupAuthentClientTest.kt
+│   │   │       │           │           └── ParcoursupFavorisApiFavorisClientTest.kt
+│   │   │       │           └── referentiel
+│   │   │       │               ├── application
+│   │   │       │               │   └── controller
+│   │   │       │               │       └── ReferentielControllerTest.kt
+│   │   │       │               ├── infrastructure
+│   │   │       │               │   └── repository
+│   │   │       │               │       ├── BaccalaureatBDDRepositoryTest.kt
+│   │   │       │               │       └── BaccalaureatSpecialiteBDDRepositoryTest.kt
+│   │   │       │               └── usecase
+│   │   │       │                   └── ReferentielServiceTest.kt
+│   │   │       └── resources
+│   │   │           ├── application-test-withRealData.properties
+│   │   │           ├── baccalaureat.sql
+│   │   │           ├── baccalaureat_specialite.sql
+│   │   │           ├── comptes_parcoursup.sql
+│   │   │           ├── critere_analyse_candidature.sql
+│   │   │           ├── domaine.sql
+│   │   │           ├── formation.sql
+│   │   │           ├── formation_voeu.sql
+│   │   │           ├── interet.sql
+│   │   │           ├── join_ville_voeu.sql
+│   │   │           ├── metier.sql
+│   │   │           ├── moyenne_generale_admis.sql
+│   │   │           ├── recherche_formation.sql
+│   │   │           ├── recherche_metier.sql
+│   │   │           ├── recherchesReferences.json
+│   │   │           ├── specialite.sql
+│   │   │           └── trace.sql
+│   │   └── system.properties
+│   ├── etl
+│   │   ├── README.md
+│   │   ├── docker
+│   │   │   └── Dockerfile
+│   │   ├── etl-common
+│   │   │   ├── pom.xml
+│   │   │   └── src
+│   │   │       └── main
+│   │   │           ├── java
+│   │   │           │   └── fr
+│   │   │           │       └── gouv
+│   │   │           │           └── monprojetsup
+│   │   │           │               └── data
+│   │   │           │                   ├── Constants.java
+│   │   │           │                   ├── Helpers.java
+│   │   │           │                   ├── model
+│   │   │           │                   │   ├── Edge.java
+│   │   │           │                   │   ├── Formation.java
+│   │   │           │                   │   ├── LatLng.java
+│   │   │           │                   │   ├── PanierVoeux.java
+│   │   │           │                   │   ├── Specialite.java
+│   │   │           │                   │   ├── StatsFormation.java
+│   │   │           │                   │   ├── Ville.java
+│   │   │           │                   │   ├── Voeu.java
+│   │   │           │                   │   ├── attendus
+│   │   │           │                   │   │   ├── Attendus.java
+│   │   │           │                   │   │   └── GrilleAnalyse.java
+│   │   │           │                   │   ├── bacs
+│   │   │           │                   │   │   └── Bac.java
+│   │   │           │                   │   ├── cities
+│   │   │           │                   │   │   ├── CitiesExternal.java
+│   │   │           │                   │   │   ├── CityExternal.java
+│   │   │           │                   │   │   └── Coords.java
+│   │   │           │                   │   ├── descriptifs
+│   │   │           │                   │   │   ├── DescriptifFormation.java
+│   │   │           │                   │   │   ├── DescriptifsFormationsMetiers.java
+│   │   │           │                   │   │   └── Summary.java
+│   │   │           │                   │   ├── formations
+│   │   │           │                   │   │   ├── ActionFormationOni.java
+│   │   │           │                   │   │   ├── Filiere.java
+│   │   │           │                   │   │   ├── FilierePsupVersIdeoData.java
+│   │   │           │                   │   │   ├── FilieresToFormationsOnisep.java
+│   │   │           │                   │   │   ├── Formation.java
+│   │   │           │                   │   │   ├── FormationIdeoDuSup.java
+│   │   │           │                   │   │   └── Formations.java
+│   │   │           │                   │   ├── graph
+│   │   │           │                   │   │   ├── Edges.java
+│   │   │           │                   │   │   └── Path.java
+│   │   │           │                   │   ├── liens
+│   │   │           │                   │   │   └── UrlsUpdater.java
+│   │   │           │                   │   ├── metiers
+│   │   │           │                   │   │   ├── MetierIdeo.java
+│   │   │           │                   │   │   ├── Metiers.java
+│   │   │           │                   │   │   └── MetiersScrapped.java
+│   │   │           │                   │   ├── onisep
+│   │   │           │                   │   │   ├── OnisepData.java
+│   │   │           │                   │   │   ├── SousDomaineWeb.java
+│   │   │           │                   │   │   ├── formations
+│   │   │           │                   │   │   │   ├── FicheFormationIdeo.java
+│   │   │           │                   │   │   │   ├── FormationIdeoSimple.java
+│   │   │           │                   │   │   │   └── PsupToIdeoCorrespondance.java
+│   │   │           │                   │   │   └── metiers
+│   │   │           │                   │   │       ├── FicheMetierIdeo.java
+│   │   │           │                   │   │       └── MetierIdeoSimple.java
+│   │   │           │                   │   ├── psup
+│   │   │           │                   │   │   ├── AdmissionStats.java
+│   │   │           │                   │   │   ├── CorrelationPaireFiliere.java
+│   │   │           │                   │   │   ├── Correlations.java
+│   │   │           │                   │   │   ├── CorrelationsParBac.java
+│   │   │           │                   │   │   ├── DescriptifVoeu.java
+│   │   │           │                   │   │   ├── DescriptifsFormations.java
+│   │   │           │                   │   │   ├── DureesEtudes.java
+│   │   │           │                   │   │   ├── Filiere.java
+│   │   │           │                   │   │   ├── FormationsSimilaires.java
+│   │   │           │                   │   │   ├── FormationsSimilairesParBac.java
+│   │   │           │                   │   │   ├── LettreMotivation.java
+│   │   │           │                   │   │   ├── PsupData.java
+│   │   │           │                   │   │   └── SpeBac.java
+│   │   │           │                   │   ├── rome
+│   │   │           │                   │   │   ├── InteretsRome.java
+│   │   │           │                   │   │   ├── RomeData.java
+│   │   │           │                   │   │   └── Themes.java
+│   │   │           │                   │   ├── specialites
+│   │   │           │                   │   │   └── Specialites.java
+│   │   │           │                   │   ├── stats
+│   │   │           │                   │   │   ├── AdmisMatiereBacAnnee.java
+│   │   │           │                   │   │   ├── AdmisMatiereBacAnneeStats.java
+│   │   │           │                   │   │   ├── Middle50.java
+│   │   │           │                   │   │   ├── PsupStatistiques.java
+│   │   │           │                   │   │   ├── StatFront.java
+│   │   │           │                   │   │   ├── Statistique.java
+│   │   │           │                   │   │   ├── StatistiquesAdmisParBac.java
+│   │   │           │                   │   │   ├── StatistiquesAdmisParGroupe.java
+│   │   │           │                   │   │   ├── StatistiquesAdmisParMatiere.java
+│   │   │           │                   │   │   ├── StatsContainers.java
+│   │   │           │                   │   │   ├── TauxSpecialites.java
+│   │   │           │                   │   │   └── TauxSpecialitesParGroupe.java
+│   │   │           │                   │   ├── tags
+│   │   │           │                   │   │   ├── TagsFormations.java
+│   │   │           │                   │   │   └── TagsSources.java
+│   │   │           │                   │   └── taxonomie
+│   │   │           │                   │       └── Taxonomie.java
+│   │   │           │                   └── tools
+│   │   │           │                       ├── CsvTools.java
+│   │   │           │                       ├── GeodeticDistance.java
+│   │   │           │                       └── Serialisation.java
+│   │   │           └── kotlin
+│   │   │               └── fr
+│   │   │                   └── gouv
+│   │   │                       └── monprojetsup
+│   │   │                           └── data
+│   │   │                               ├── RemoteFileAccess.kt
+│   │   │                               ├── TestData.kt
+│   │   │                               ├── commun
+│   │   │                               │   └── entity
+│   │   │                               │       └── LienEntity.kt
+│   │   │                               ├── eleve
+│   │   │                               │   └── entity
+│   │   │                               │       ├── ChoixAlternance.kt
+│   │   │                               │       ├── ChoixDureeEtudesPrevue.kt
+│   │   │                               │       ├── ChoixNiveau.kt
+│   │   │                               │       └── SituationAvanceeProjetSup.kt
+│   │   │                               ├── formation
+│   │   │                               │   └── entity
+│   │   │                               │       ├── CritereAnalyseCandidatureEntity.kt
+│   │   │                               │       ├── FormationEntity.kt
+│   │   │                               │       ├── FormationVoeuEntity.kt
+│   │   │                               │       ├── MoyenneGeneraleAdmisEntity.kt
+│   │   │                               │       ├── VilleVoeuxEntity.kt
+│   │   │                               │       └── VoeuEntity.kt
+│   │   │                               ├── formationmetier
+│   │   │                               │   └── entity
+│   │   │                               │       └── FormationMetierEntity.kt
+│   │   │                               ├── metier
+│   │   │                               │   └── entity
+│   │   │                               │       └── MetierEntity.kt
+│   │   │                               ├── parametre
+│   │   │                               │   └── entity
+│   │   │                               │       └── ParametreEntity.kt
+│   │   │                               ├── referentiel
+│   │   │                               │   └── entity
+│   │   │                               │       ├── BaccalaureatEntity.kt
+│   │   │                               │       ├── BaccalaureatSpecialiteEntity.kt
+│   │   │                               │       ├── DomaineEntity.kt
+│   │   │                               │       ├── DomaineIdeoEntity.kt
+│   │   │                               │       ├── DomainesCategorieEntity.kt
+│   │   │                               │       ├── InteretCategorieEntity.kt
+│   │   │                               │       ├── InteretEntity.kt
+│   │   │                               │       ├── InteretSousCategorieEntity.kt
+│   │   │                               │       └── SpecialiteEntity.kt
+│   │   │                               └── suggestions
+│   │   │                                   └── entity
+│   │   │                                       ├── SuggestionsEdgeEntity.kt
+│   │   │                                       ├── SuggestionsLabelEntity.kt
+│   │   │                                       ├── SuggestionsPaniersVoeuxEntity.kt
+│   │   │                                       ├── SuggestionsProfilEntity.kt
+│   │   │                                       ├── SuggestionsVilleEntity.kt
+│   │   │                                       └── profil
+│   │   │                                           ├── CommuneEntity.kt
+│   │   │                                           ├── CompteParcoursupEntity.kt
+│   │   │                                           ├── FormationFavoriteEntity.kt
+│   │   │                                           └── VoeuFavoriEntity.kt
+│   │   ├── etl-ideo
+│   │   │   ├── pom.xml
+│   │   │   └── src
+│   │   │       └── main
+│   │   │           ├── kotlin
+│   │   │           │   ├── Config.kt
+│   │   │           │   └── UpdateIdeoData.kt
+│   │   │           └── resources
+│   │   │               └── application.properties
+│   │   ├── etl-psup
+│   │   │   ├── pom.xml
+│   │   │   └── src
+│   │   │       └── main
+│   │   │           ├── java
+│   │   │           │   └── fr
+│   │   │           │       └── gouv
+│   │   │           │           └── monprojetsup
+│   │   │           │               └── data
+│   │   │           │                   └── psup
+│   │   │           │                       ├── AlgoCarteConfig.java
+│   │   │           │                       ├── AlgoCarteEntree.java
+│   │   │           │                       ├── ConnecteurBackendSQL.java
+│   │   │           │                       ├── ConnecteurJsonCarteSQL.java
+│   │   │           │                       ├── FormationCarteAlgoTags.java
+│   │   │           │                       ├── PsupDataSources.java
+│   │   │           │                       ├── Scores.java
+│   │   │           │                       ├── exceptions
+│   │   │           │                       │   ├── AccesDonneesException.java
+│   │   │           │                       │   └── AccesDonneesExceptionMessage.java
+│   │   │           │                       └── tags
+│   │   │           │                           └── MergeDuplicateTags.java
+│   │   │           ├── kotlin
+│   │   │           │   ├── Config.kt
+│   │   │           │   └── UpdatePsupData.kt
+│   │   │           └── resources
+│   │   │               ├── application.properties
+│   │   │               └── psupdb
+│   │   │                   ├── preExportScript2024.sql
+│   │   │                   └── preExportScript2025.sql
+│   │   ├── etl-updatedb
+│   │   │   ├── pom.xml
+│   │   │   └── src
+│   │   │       ├── main
+│   │   │       │   ├── java
+│   │   │       │   │   └── fr
+│   │   │       │   │       └── gouv
+│   │   │       │   │           └── monprojetsup
+│   │   │       │   │               └── data
+│   │   │       │   │                   └── etl
+│   │   │       │   │                       ├── labels
+│   │   │       │   │                       │   └── Labels.java
+│   │   │       │   │                       └── loaders
+│   │   │       │   │                           ├── CsvTools.java
+│   │   │       │   │                           ├── DataSources.java
+│   │   │       │   │                           ├── DescriptifsLoader.java
+│   │   │       │   │                           ├── DomainesMpsLoader.java
+│   │   │       │   │                           ├── InteretsLoader.java
+│   │   │       │   │                           ├── OnisepDataLoader.java
+│   │   │       │   │                           ├── RomeDataLoader.java
+│   │   │       │   │                           └── SpecialitesLoader.java
+│   │   │       │   ├── kotlin
+│   │   │       │   │   └── fr
+│   │   │       │   │       └── gouv
+│   │   │       │   │           └── monprojetsup
+│   │   │       │   │               └── data
+│   │   │       │   │                   └── etl
+│   │   │       │   │                       ├── BatchUpdate.kt
+│   │   │       │   │                       ├── Config.kt
+│   │   │       │   │                       ├── MpsDataFromFiles.kt
+│   │   │       │   │                       ├── MpsDataPort.kt
+│   │   │       │   │                       ├── UpdateMpsDb.kt
+│   │   │       │   │                       ├── formation
+│   │   │       │   │                       │   └── UpdateFormationDbs.kt
+│   │   │       │   │                       ├── formationmetier
+│   │   │       │   │                       │   └── UpdateFormationMetierDbs.kt
+│   │   │       │   │                       ├── metier
+│   │   │       │   │                       │   └── UpdateMetierDbs.kt
+│   │   │       │   │                       ├── parametre
+│   │   │       │   │                       │   └── UpdateParametreDb.kt
+│   │   │       │   │                       ├── referentiel
+│   │   │       │   │                       │   └── UpdateReferentielDbs.kt
+│   │   │       │   │                       └── suggestions
+│   │   │       │   │                           └── UpdateSuggestionsDbs.kt
+│   │   │       │   └── resources
+│   │   │       │       ├── application.properties
+│   │   │       │       └── db
+│   │   │       │           └── migration -> ../../../../../../back/src/main/resources/db/migration
+│   │   │       └── test
+│   │   │           ├── kotlin
+│   │   │           │   └── fr
+│   │   │           │       └── gouv
+│   │   │           │           └── monprojetsup
+│   │   │           │               └── data
+│   │   │           │                   └── etl
+│   │   │           │                       ├── db
+│   │   │           │                       │   ├── BDDRepositoryTest.kt
+│   │   │           │                       │   └── UpdateDbsTest.kt
+│   │   │           │                       ├── loaders
+│   │   │           │                       │   ├── EdgesTest.kt
+│   │   │           │                       │   ├── FormationsIdeoDuSupTest.kt
+│   │   │           │                       │   ├── LoadersTest.kt
+│   │   │           │                       │   ├── OnisepDataLoaderTest.kt
+│   │   │           │                       │   ├── PsupToIdeoCorrespondanceTest.kt
+│   │   │           │                       │   └── SpecialitesLoaderTest.kt
+│   │   │           │                       └── port
+│   │   │           │                           ├── DataPortTest.kt
+│   │   │           │                           ├── FormationsMpsTests.kt
+│   │   │           │                           ├── MetiersMpsTests.kt
+│   │   │           │                           └── MpsDataPortTest.kt
+│   │   │           └── resources
+│   │   │               ├── application-test.properties
+│   │   │               └── logging.properties
+│   │   ├── mvnw
+│   │   ├── mvnw.cmd
+│   │   └── pom.xml
+│   ├── front
+│   │   ├── .dockerignore
+│   │   ├── .env.ci
+│   │   ├── .env.example
+│   │   ├── .gitignore
+│   │   ├── .license-reportrc
+│   │   ├── .nvmrc
+│   │   ├── .prettierrc
+│   │   ├── LICENSES_THIRD_PARTY.md
+│   │   ├── README.md
+│   │   ├── docker
+│   │   │   ├── Dockerfile
+│   │   │   ├── Dockerfile.dev
+│   │   │   ├── html
+│   │   │   │   └── 50x.html
+│   │   │   └── nginx.conf.template
+│   │   ├── docker-compose.dev.yml
+│   │   ├── eslint.config.js
+│   │   ├── index.html
+│   │   ├── nginx.conf
+│   │   ├── package-lock.json
+│   │   ├── package.json
+│   │   ├── playwright.config.ts
+│   │   ├── postcss.config.js
+│   │   ├── public
+│   │   │   └── images-de-fond
+│   │   │       ├── bandeau-confirmation-inscription.svg
+│   │   │       ├── inscription.svg
+│   │   │       └── tableau-de-bord.svg
+│   │   ├── src
+│   │   │   ├── app.tsx
+│   │   │   ├── assets
+│   │   │   │   ├── avenirs.svg
+│   │   │   │   ├── avis.svg
+│   │   │   │   ├── confirmation.svg
+│   │   │   │   ├── explorer.svg
+│   │   │   │   ├── favoris.svg
+│   │   │   │   ├── icone-mps.svg
+│   │   │   │   ├── logo
+│   │   │   │   │   ├── logo-avenirs.svg
+│   │   │   │   │   ├── logo-beta-gouv.svg
+│   │   │   │   │   ├── logo-cnrs.svg
+│   │   │   │   │   └── logo-mps.svg
+│   │   │   │   ├── logo-onisep.svg
+│   │   │   │   ├── parcoursup-fav.svg
+│   │   │   │   ├── parcoursup-mps.svg
+│   │   │   │   ├── profil.svg
+│   │   │   │   └── temoignage.svg
+│   │   │   ├── components
+│   │   │   │   ├── AnimationChargement
+│   │   │   │   │   └── AnimationChargement.tsx
+│   │   │   │   ├── Bouton
+│   │   │   │   │   ├── Bouton.interface.tsx
+│   │   │   │   │   └── Bouton.tsx
+│   │   │   │   ├── BoutonRadioRiche
+│   │   │   │   │   ├── BoutonRadioRiche.interface.tsx
+│   │   │   │   │   └── BoutonRadioRiche.tsx
+│   │   │   │   ├── BoutonSquelette
+│   │   │   │   │   ├── BoutonSquelette.interface.tsx
+│   │   │   │   │   └── BoutonSquelette.tsx
+│   │   │   │   ├── Carte
+│   │   │   │   │   ├── Carte.interface.tsx
+│   │   │   │   │   └── Carte.tsx
+│   │   │   │   ├── ChampDeRecherche
+│   │   │   │   │   ├── ChampDeRecherche.interface.tsx
+│   │   │   │   │   └── ChampDeRecherche.tsx
+│   │   │   │   ├── ChampDeRechercheFormulaire
+│   │   │   │   │   ├── ChampDeRechercheFormulaire.interface.tsx
+│   │   │   │   │   └── ChampDeRechercheFormulaire.tsx
+│   │   │   │   ├── ChampDeSaisieSquelette
+│   │   │   │   │   ├── ChampDeSaisieSquelette.interface.tsx
+│   │   │   │   │   ├── ChampDeSaisieSquelette.tsx
+│   │   │   │   │   └── useChampDeSaisieSquelette.tsx
+│   │   │   │   ├── ChampZoneDeTexte
+│   │   │   │   │   ├── ChampZoneDeTexte.interface.tsx
+│   │   │   │   │   └── ChampZoneDeTexte.tsx
+│   │   │   │   ├── CurseurCranté
+│   │   │   │   │   ├── CurseurCranté.interface.tsx
+│   │   │   │   │   └── CurseurCranté.tsx
+│   │   │   │   ├── Erreur
+│   │   │   │   │   ├── Erreur.interface.tsx
+│   │   │   │   │   └── Erreur.tsx
+│   │   │   │   ├── FiltresGroupésParCatégorie
+│   │   │   │   │   ├── FiltresGroupésParCatégorie.interface.tsx
+│   │   │   │   │   ├── FiltresGroupésParCatégorie.tsx
+│   │   │   │   │   └── ModaleCatégorie
+│   │   │   │   │       ├── ModaleCatégorie.interface.tsx
+│   │   │   │   │       └── ModaleCatégorie.tsx
+│   │   │   │   ├── GraphiqueRépartitionMoyenne
+│   │   │   │   │   ├── GraphiqueRépartitionMoyenne.interface.tsx
+│   │   │   │   │   └── GraphiqueRépartitionMoyenne.tsx
+│   │   │   │   ├── IllustrationBoutonRadioEmoji
+│   │   │   │   │   ├── IllustrationBoutonRadioEmoji.interface.tsx
+│   │   │   │   │   └── IllustrationBoutonRadioEmoji.tsx
+│   │   │   │   ├── Lien
+│   │   │   │   │   ├── LienExterne
+│   │   │   │   │   │   ├── LienExterne.interface.ts
+│   │   │   │   │   │   ├── LienExterne.tsx
+│   │   │   │   │   │   └── usecase
+│   │   │   │   │   │       └── SuivreLienExterne.ts
+│   │   │   │   │   ├── LienInterne
+│   │   │   │   │   │   ├── LienInterne.interface.ts
+│   │   │   │   │   │   └── LienInterne.tsx
+│   │   │   │   │   ├── useLien.interface.ts
+│   │   │   │   │   └── useLien.ts
+│   │   │   │   ├── LienÉvitement
+│   │   │   │   │   └── LienÉvitement.tsx
+│   │   │   │   ├── ListeLiensExternesSousFormeBouton
+│   │   │   │   │   ├── ListeLiensExternesSousFormeBouton.interface.tsx
+│   │   │   │   │   └── ListeLiensExternesSousFormeBouton.tsx
+│   │   │   │   ├── Recherche
+│   │   │   │   │   ├── Recherche.interface.tsx
+│   │   │   │   │   ├── Recherche.tsx
+│   │   │   │   │   └── useRecherche.ts
+│   │   │   │   ├── SélecteurFavoris
+│   │   │   │   │   ├── Favori
+│   │   │   │   │   │   ├── Favori.interface.ts
+│   │   │   │   │   │   └── Favori.tsx
+│   │   │   │   │   ├── ListeDeFavoris
+│   │   │   │   │   │   ├── ListeDeFavoris.interface.ts
+│   │   │   │   │   │   ├── ListeDeFavoris.tsx
+│   │   │   │   │   │   └── useListeDeFavoris.ts
+│   │   │   │   │   └── MaSélectionFavoris
+│   │   │   │   │       ├── MaSélectionFavoris.interface.ts
+│   │   │   │   │       └── MaSélectionFavoris.tsx
+│   │   │   │   ├── TagFiltreAvecEmoji
+│   │   │   │   │   ├── TagFiltreAvecEmoji.interface.tsx
+│   │   │   │   │   └── TagFiltreAvecEmoji.tsx
+│   │   │   │   ├── TexteTronqué
+│   │   │   │   │   ├── TexteTronqué.interface.tsx
+│   │   │   │   │   └── TexteTronqué.tsx
+│   │   │   │   ├── Titre
+│   │   │   │   │   ├── Titre.interface.tsx
+│   │   │   │   │   └── Titre.tsx
+│   │   │   │   ├── Toast
+│   │   │   │   │   ├── Toast.tsx
+│   │   │   │   │   └── useToastStore
+│   │   │   │   │       ├── useToastStore.interface.ts
+│   │   │   │   │       └── useToastStore.ts
+│   │   │   │   └── _layout
+│   │   │   │       ├── Entête
+│   │   │   │       │   ├── Entête.tsx
+│   │   │   │       │   ├── useEntête.test.ts
+│   │   │   │       │   └── useEntête.tsx
+│   │   │   │       ├── FormationSansRecherchePageLayout
+│   │   │   │       │   ├── FormationSansRecherchePageLayout.interface.tsx
+│   │   │   │       │   └── FormationSansRecherchePageLayout.tsx
+│   │   │   │       ├── Head
+│   │   │   │       │   ├── Head.interface.ts
+│   │   │   │       │   └── Head.tsx
+│   │   │   │       ├── ListeEtAperçuLayout
+│   │   │   │       │   ├── ListeEtAperçuBarreLatérale
+│   │   │   │       │   │   ├── ListeEtAperçuBarreLatérale.interface.tsx
+│   │   │   │       │   │   └── ListeEtAperçuBarreLatérale.tsx
+│   │   │   │       │   ├── ListeEtAperçuContenu
+│   │   │   │       │   │   ├── ListeEtAperçuContenu.interface.tsx
+│   │   │   │       │   │   └── ListeEtAperçuContenu.tsx
+│   │   │   │       │   ├── ListeEtAperçuLayout.interface.tsx
+│   │   │   │       │   ├── ListeEtAperçuLayout.tsx
+│   │   │   │       │   └── useListeEtAperçuStore
+│   │   │   │       │       ├── useListeEtAperçuStore.interface.ts
+│   │   │   │       │       └── useListeEtAperçuStore.ts
+│   │   │   │       ├── MainLayout
+│   │   │   │       │   └── MainLayout.tsx
+│   │   │   │       ├── PiedDePage
+│   │   │   │       │   ├── PiedDePage.tsx
+│   │   │   │       │   └── usePiedDePage.tsx
+│   │   │   │       └── useLayout.tsx
+│   │   │   ├── configuration
+│   │   │   │   ├── constantes.ts
+│   │   │   │   ├── dépendances
+│   │   │   │   │   └── dépendances.ts
+│   │   │   │   ├── environnement.ts
+│   │   │   │   ├── i18n
+│   │   │   │   │   ├── i18n.ts
+│   │   │   │   │   └── locales
+│   │   │   │   │       └── localeFR.ts
+│   │   │   │   └── lib
+│   │   │   │       ├── oidc-client.ts
+│   │   │   │       ├── sentry.ts
+│   │   │   │       ├── tanstack-query.ts
+│   │   │   │       └── tanstack-router.ts
+│   │   │   ├── features
+│   │   │   │   ├── commune
+│   │   │   │   │   ├── domain
+│   │   │   │   │   │   └── commune.interface.ts
+│   │   │   │   │   ├── infrastructure
+│   │   │   │   │   │   └── gateway
+│   │   │   │   │   │       ├── communeHttpRepository
+│   │   │   │   │   │       │   ├── communeHttpRepository.interface.ts
+│   │   │   │   │   │       │   └── communeHttpRepository.ts
+│   │   │   │   │   │       ├── communeInMemoryRepository
+│   │   │   │   │   │       │   └── communeInMemoryRepository.ts
+│   │   │   │   │   │       └── communeRepository.interface.ts
+│   │   │   │   │   ├── ui
+│   │   │   │   │   │   ├── ListeDeCommunesSuggérées
+│   │   │   │   │   │   │   ├── ListeDeCommunesSuggérées.interface.ts
+│   │   │   │   │   │   │   └── ListeDeCommunesSuggérées.tsx
+│   │   │   │   │   │   ├── MaSélectionCommunes
+│   │   │   │   │   │   │   ├── MaSélectionCommunes.tsx
+│   │   │   │   │   │   │   └── useMaSélectionCommunes.ts
+│   │   │   │   │   │   ├── ModaleParcoursupEvent
+│   │   │   │   │   │   │   ├── ModaleParcoursupEvent.interface.tsx
+│   │   │   │   │   │   │   ├── ModaleParcoursupEvent.tsx
+│   │   │   │   │   │   │   └── useModaleParcoursupEvent.tsx
+│   │   │   │   │   │   ├── RechercheCommunes
+│   │   │   │   │   │   │   ├── RechercheCommunes.tsx
+│   │   │   │   │   │   │   └── useRechercheCommunes.tsx
+│   │   │   │   │   │   ├── communeQueries.tsx
+│   │   │   │   │   │   └── useCommune.tsx
+│   │   │   │   │   └── usecase
+│   │   │   │   │       └── RechercherCommunes.ts
+│   │   │   │   ├── formation
+│   │   │   │   │   ├── domain
+│   │   │   │   │   │   └── formation.interface.ts
+│   │   │   │   │   ├── infrastructure
+│   │   │   │   │   │   ├── formationRepository.interface.ts
+│   │   │   │   │   │   └── gateway
+│   │   │   │   │   │       ├── formationHttpRepository
+│   │   │   │   │   │       │   ├── formationHttpRepository.interface.ts
+│   │   │   │   │   │       │   ├── formationHttpRepository.test.ts
+│   │   │   │   │   │       │   └── formationHttpRepository.ts
+│   │   │   │   │   │       └── formationInMemoryRepository
+│   │   │   │   │   │           └── formationInMemoryRepository.ts
+│   │   │   │   │   ├── ui
+│   │   │   │   │   │   ├── CarteFormation
+│   │   │   │   │   │   │   ├── CarteFormation.interface.tsx
+│   │   │   │   │   │   │   └── CarteFormation.tsx
+│   │   │   │   │   │   ├── CommunesProposantLaFormation
+│   │   │   │   │   │   │   ├── CommunesProposantLaFormation.interface.tsx
+│   │   │   │   │   │   │   └── CommunesProposantLaFormation.tsx
+│   │   │   │   │   │   ├── FormationMasquée
+│   │   │   │   │   │   │   ├── FormationMasquée.interface.tsx
+│   │   │   │   │   │   │   └── FormationMasquée.tsx
+│   │   │   │   │   │   ├── FormationPage
+│   │   │   │   │   │   │   ├── BarreLatéraleFormation
+│   │   │   │   │   │   │   │   ├── BarreLatéraleFormation.interface.tsx
+│   │   │   │   │   │   │   │   ├── BarreLatéraleFormation.tsx
+│   │   │   │   │   │   │   │   ├── BoutonRetourAuxSuggestions
+│   │   │   │   │   │   │   │   │   └── BoutonRetourAuxSuggestions.tsx
+│   │   │   │   │   │   │   │   └── RechercheFormations
+│   │   │   │   │   │   │   │       ├── RechercheFormations.tsx
+│   │   │   │   │   │   │   │       └── useRechercheFormations.tsx
+│   │   │   │   │   │   │   ├── FicheFormation
+│   │   │   │   │   │   │   │   ├── BlocAlternanceFicheFormation
+│   │   │   │   │   │   │   │   │   └── BlocAlternanceFicheFormation.tsx
+│   │   │   │   │   │   │   │   ├── BoutonsActionsFicheFormation
+│   │   │   │   │   │   │   │   │   ├── BoutonsActionsFicheFormation.interface.ts
+│   │   │   │   │   │   │   │   │   ├── BoutonsActionsFicheFormation.tsx
+│   │   │   │   │   │   │   │   │   └── useBoutonsActionsFicheFormation.tsx
+│   │   │   │   │   │   │   │   ├── ExplicationsCorrespondanceFicheFormation
+│   │   │   │   │   │   │   │   │   ├── ExplicationCorrespondanceListeÉlementsFicheFormation
+│   │   │   │   │   │   │   │   │   │   ├── ExplicationCorrespondanceListeÉlementsFicheFormation.interface.tsx
+│   │   │   │   │   │   │   │   │   │   └── ExplicationCorrespondanceListeÉlementsFicheFormation.tsx
+│   │   │   │   │   │   │   │   │   ├── ExplicationCorrespondanceÉlementFicheFormation
+│   │   │   │   │   │   │   │   │   │   ├── ExplicationCorrespondanceÉlementFicheFormation.interface.tsx
+│   │   │   │   │   │   │   │   │   │   └── ExplicationCorrespondanceÉlementFicheFormation.tsx
+│   │   │   │   │   │   │   │   │   ├── ExplicationsCorrespondanceFicheFormation.interface.tsx
+│   │   │   │   │   │   │   │   │   └── ExplicationsCorrespondanceFicheFormation.tsx
+│   │   │   │   │   │   │   │   ├── FicheFormation.interface.ts
+│   │   │   │   │   │   │   │   ├── FicheFormation.tsx
+│   │   │   │   │   │   │   │   ├── FormationFavorite
+│   │   │   │   │   │   │   │   │   ├── Ambition
+│   │   │   │   │   │   │   │   │   │   ├── Ambition.tsx
+│   │   │   │   │   │   │   │   │   │   └── useAmbition.tsx
+│   │   │   │   │   │   │   │   │   ├── FormationFavorite.tsx
+│   │   │   │   │   │   │   │   │   └── NotePersonnelleFormation
+│   │   │   │   │   │   │   │   │       ├── NotePersonnelleFormation.interface.tsx
+│   │   │   │   │   │   │   │   │       ├── NotePersonnelleFormation.tsx
+│   │   │   │   │   │   │   │   │       └── useNotePersonnelleFormation.tsx
+│   │   │   │   │   │   │   │   ├── MétiersAccessiblesFicheFormation
+│   │   │   │   │   │   │   │   │   ├── MétiersAccessiblesFicheFormation.interface.tsx
+│   │   │   │   │   │   │   │   │   ├── MétiersAccessiblesFicheFormation.tsx
+│   │   │   │   │   │   │   │   │   └── useMétiersAccessiblesFicheFormation.tsx
+│   │   │   │   │   │   │   │   └── OngletsFicheFormation
+│   │   │   │   │   │   │   │       ├── OngletCritèresFicheFormation
+│   │   │   │   │   │   │   │       │   ├── OngletCritèresFicheFormation.interface.tsx
+│   │   │   │   │   │   │   │       │   └── OngletCritèresFicheFormation.tsx
+│   │   │   │   │   │   │   │       ├── OngletFormationFicheFormation
+│   │   │   │   │   │   │   │       │   ├── OngletFormationFicheFormation.interface.tsx
+│   │   │   │   │   │   │   │       │   └── OngletFormationFicheFormation.tsx
+│   │   │   │   │   │   │   │       ├── OngletsFicheFormation.interface.tsx
+│   │   │   │   │   │   │   │       ├── OngletsFicheFormation.tsx
+│   │   │   │   │   │   │   │       └── useOngletsFicheFormation.tsx
+│   │   │   │   │   │   │   ├── FormationPage.tsx
+│   │   │   │   │   │   │   └── FormationSansRecherchePage.tsx
+│   │   │   │   │   │   ├── ListeFormations
+│   │   │   │   │   │   │   ├── ListeFormations.interface.tsx
+│   │   │   │   │   │   │   └── ListeFormations.tsx
+│   │   │   │   │   │   ├── NombreAffinité
+│   │   │   │   │   │   │   ├── NombreAffinité.interface.tsx
+│   │   │   │   │   │   │   └── NombreAffinité.tsx
+│   │   │   │   │   │   ├── SélectionFormationsFavorites
+│   │   │   │   │   │   │   ├── ListeDeFormationsSuggérées
+│   │   │   │   │   │   │   │   ├── ListeDeFormationsSuggérées.interface.ts
+│   │   │   │   │   │   │   │   └── ListeDeFormationsSuggérées.tsx
+│   │   │   │   │   │   │   ├── MaSélectionFormations
+│   │   │   │   │   │   │   │   ├── MaSélectionFormations.tsx
+│   │   │   │   │   │   │   │   └── useMaSélectionFormations.ts
+│   │   │   │   │   │   │   └── RechercheFormations
+│   │   │   │   │   │   │       ├── RechercheFormations.tsx
+│   │   │   │   │   │   │       └── useRechercheFormations.tsx
+│   │   │   │   │   │   ├── Voeux
+│   │   │   │   │   │   │   ├── ListeDeVoeuxSuggérés
+│   │   │   │   │   │   │   │   ├── ListeDeVoeuxSuggérés.interface.ts
+│   │   │   │   │   │   │   │   └── ListeDeVoeuxSuggérés.tsx
+│   │   │   │   │   │   │   ├── MaSélectionVoeux
+│   │   │   │   │   │   │   │   ├── MaSélectionVoeux.tsx
+│   │   │   │   │   │   │   │   └── useMaSélectionVoeux.ts
+│   │   │   │   │   │   │   ├── RechercheVoeux
+│   │   │   │   │   │   │   │   ├── RechercheVoeux.tsx
+│   │   │   │   │   │   │   │   └── useRechercheVoeux.tsx
+│   │   │   │   │   │   │   ├── Voeux.tsx
+│   │   │   │   │   │   │   ├── VoeuxOngletToutesLesCommunes
+│   │   │   │   │   │   │   │   └── VoeuxOngletToutesLesCommunes.tsx
+│   │   │   │   │   │   │   ├── VoeuxOngletUneCommune
+│   │   │   │   │   │   │   │   ├── VoeuxOngletUneCommune.interface.tsx
+│   │   │   │   │   │   │   │   ├── VoeuxOngletUneCommune.tsx
+│   │   │   │   │   │   │   │   └── useVoeuxOngletUneCommune.ts
+│   │   │   │   │   │   │   ├── useVoeu.tsx
+│   │   │   │   │   │   │   ├── useVoeux.tsx
+│   │   │   │   │   │   │   └── voeuxQueries.tsx
+│   │   │   │   │   │   ├── formationQueries.tsx
+│   │   │   │   │   │   ├── hooks
+│   │   │   │   │   │   │   ├── CarteFormation
+│   │   │   │   │   │   │   │   └── useVoirFormation.ts
+│   │   │   │   │   │   │   └── FormationPage
+│   │   │   │   │   │   │       ├── MétiersAccessiblesFicheFormation
+│   │   │   │   │   │   │       │   └── useVoirMétier.ts
+│   │   │   │   │   │   │       └── OngletsFicheFormation
+│   │   │   │   │   │   │           └── useSélectionneOnglet
+│   │   │   │   │   │   │               ├── useSélectionneOngletFicheFormation.ts
+│   │   │   │   │   │   │               └── useSélectionneOngletFicheFormationArgs.interface.ts
+│   │   │   │   │   │   └── useFormation.tsx
+│   │   │   │   │   └── usecase
+│   │   │   │   │       ├── RechercherFichesFormations.ts
+│   │   │   │   │       ├── RechercherFormations.ts
+│   │   │   │   │       ├── RechercherVoeux.ts
+│   │   │   │   │       ├── RécupérerFicheFormation.ts
+│   │   │   │   │       ├── RécupérerFichesFormations.ts
+│   │   │   │   │       ├── RécupérerFormations.ts
+│   │   │   │   │       ├── SuggérerFormations.ts
+│   │   │   │   │       ├── VoirFormation.ts
+│   │   │   │   │       ├── VoirMétier.ts
+│   │   │   │   │       └── VoirOngletFormation.ts
+│   │   │   │   ├── métier
+│   │   │   │   │   ├── domain
+│   │   │   │   │   │   └── métier.interface.ts
+│   │   │   │   │   ├── infrastructure
+│   │   │   │   │   │   ├── gateway
+│   │   │   │   │   │   │   ├── métierHttpRepository
+│   │   │   │   │   │   │   │   ├── métierHttpRepository.interface.ts
+│   │   │   │   │   │   │   │   └── métierHttpRepository.ts
+│   │   │   │   │   │   │   └── métierInMemoryRepository
+│   │   │   │   │   │   │       └── métierInMemoryRepository.ts
+│   │   │   │   │   │   └── métierRepository.interface.ts
+│   │   │   │   │   ├── ui
+│   │   │   │   │   │   ├── BoutonsActionsMétier
+│   │   │   │   │   │   │   ├── BoutonsActionsFicheMétier.tsx
+│   │   │   │   │   │   │   ├── BoutonsActionsMétier.interface.ts
+│   │   │   │   │   │   │   └── useBoutonsActionsMétier.tsx
+│   │   │   │   │   │   ├── CarteMétier
+│   │   │   │   │   │   │   ├── CarteMétier.interface.tsx
+│   │   │   │   │   │   │   └── CarteMétier.tsx
+│   │   │   │   │   │   ├── FicheMétier
+│   │   │   │   │   │   │   ├── FicheMétier.interface.ts
+│   │   │   │   │   │   │   └── FicheMétier.tsx
+│   │   │   │   │   │   ├── ListeMétiers
+│   │   │   │   │   │   │   ├── ListeMétiers.interface.tsx
+│   │   │   │   │   │   │   └── ListeMétiers.tsx
+│   │   │   │   │   │   ├── ModaleMétier
+│   │   │   │   │   │   │   ├── ModaleMétier.interface.tsx
+│   │   │   │   │   │   │   ├── ModaleMétier.tsx
+│   │   │   │   │   │   │   └── useModaleMétier.tsx
+│   │   │   │   │   │   ├── SélectionMétiersFavoris
+│   │   │   │   │   │   │   ├── ListeDeMétiersSuggérés
+│   │   │   │   │   │   │   │   ├── ListeDeMétiersSuggérés.interface.ts
+│   │   │   │   │   │   │   │   └── ListeDeMétiersSuggérés.tsx
+│   │   │   │   │   │   │   ├── MaSélectionMétiers
+│   │   │   │   │   │   │   │   ├── MaSélectionMétiers.tsx
+│   │   │   │   │   │   │   │   └── useMaSélectionMétiers.ts
+│   │   │   │   │   │   │   └── RechercheMétiers
+│   │   │   │   │   │   │       ├── RechercheMétiers.tsx
+│   │   │   │   │   │   │       └── useRechercheMétiers.tsx
+│   │   │   │   │   │   ├── métierQueries.tsx
+│   │   │   │   │   │   └── useMétier.tsx
+│   │   │   │   │   └── usecase
+│   │   │   │   │       ├── RechercherMétiers.ts
+│   │   │   │   │       ├── RécupérerMétier.ts
+│   │   │   │   │       └── RécupérerMétiers.ts
+│   │   │   │   ├── pagesObligatoires
+│   │   │   │   │   └── ui
+│   │   │   │   │       ├── CookiesPage
+│   │   │   │   │       │   └── CookiesPage.tsx
+│   │   │   │   │       ├── DéclarationAccessibilitéPage
+│   │   │   │   │       │   └── DéclarationAccessibilitéPage.tsx
+│   │   │   │   │       └── PlanDuSitePage
+│   │   │   │   │           └── PlanDuSitePage.tsx
+│   │   │   │   ├── référentielDonnées
+│   │   │   │   │   ├── domain
+│   │   │   │   │   │   └── référentielDonnées.interface.ts
+│   │   │   │   │   ├── infrastructure
+│   │   │   │   │   │   ├── gateway
+│   │   │   │   │   │   │   ├── référentielDonnéesHttpRepository
+│   │   │   │   │   │   │   │   ├── référentielDonnéesHttpRepository.interface.ts
+│   │   │   │   │   │   │   │   └── référentielDonnéesHttpRepository.ts
+│   │   │   │   │   │   │   └── référentielDonnéesInMemoryRepository
+│   │   │   │   │   │   │       └── référentielDonnéesInMemoryRepository.ts
+│   │   │   │   │   │   └── référentielDonnéesRepository.interface.ts
+│   │   │   │   │   ├── ui
+│   │   │   │   │   │   └── référentielDonnéesQueries.tsx
+│   │   │   │   │   └── usecase
+│   │   │   │   │       └── RécupérerRéférentielDonnées.ts
+│   │   │   │   ├── utilisateur
+│   │   │   │   │   └── ui
+│   │   │   │   │       └── useUtilisateur.ts
+│   │   │   │   └── élève
+│   │   │   │       ├── domain
+│   │   │   │       │   └── élève.interface.ts
+│   │   │   │       ├── infrastructure
+│   │   │   │       │   └── gateway
+│   │   │   │       │       ├── élèveHttpRepository
+│   │   │   │       │       │   ├── élèveHttpRepository.interface.ts
+│   │   │   │       │       │   └── élèveHttpRepository.ts
+│   │   │   │       │       ├── élèveRepository.interface.ts
+│   │   │   │       │       └── élèveSessionStorageRepository
+│   │   │   │       │           └── élèveSessionStorageRepository.ts
+│   │   │   │       ├── ui
+│   │   │   │       │   ├── FavorisÉlèvePage
+│   │   │   │       │   │   ├── AucunFavoris
+│   │   │   │       │   │   │   ├── AucunFavoris.interface.ts
+│   │   │   │       │   │   │   └── AucunFavoris.tsx
+│   │   │   │       │   │   ├── BarreLatéraleFavoris
+│   │   │   │       │   │   │   ├── BarreLatéraleFavoris.interface.ts
+│   │   │   │       │   │   │   ├── BarreLatéraleFavoris.tsx
+│   │   │   │       │   │   │   └── useBarreLatéraleFavoris.tsx
+│   │   │   │       │   │   ├── ContenuFavoris
+│   │   │   │       │   │   │   └── ContenuFavoris.tsx
+│   │   │   │       │   │   └── FavorisÉlèvePage.tsx
+│   │   │   │       │   ├── ParcoursInscriptionÉlève
+│   │   │   │       │   │   ├── ConfirmationInscriptionÉlève
+│   │   │   │       │   │   │   └── ConfirmationInscriptionÉlève.tsx
+│   │   │   │       │   │   ├── InscriptionÉlèvePage
+│   │   │   │       │   │   │   └── InscriptionÉlèvePage.tsx
+│   │   │   │       │   │   ├── LayoutInscriptionÉlève
+│   │   │   │       │   │   │   └── LayoutInscriptionÉlève.tsx
+│   │   │   │       │   │   └── useInscriptionÉlèveStore
+│   │   │   │       │   │       ├── useInscriptionÉlèveStore.interface.ts
+│   │   │   │       │   │       └── useInscriptionÉlèveStore.ts
+│   │   │   │       │   ├── ProfilÉlèvePage
+│   │   │   │       │   │   ├── FormationsMasquées
+│   │   │   │       │   │   │   ├── FormationsMasquées.tsx
+│   │   │   │       │   │   │   └── useFormationsMasquées.ts
+│   │   │   │       │   │   ├── ModifierProfilÉlèveForm
+│   │   │   │       │   │   │   ├── ModifierProfilÉlèveForm.interface.ts
+│   │   │   │       │   │   │   └── ModifierProfilÉlèveForm.tsx
+│   │   │   │       │   │   └── ProfilÉlèvePage.tsx
+│   │   │   │       │   ├── TableauDeBordÉlèvePage
+│   │   │   │       │   │   ├── CarteAvisÉlève
+│   │   │   │       │   │   │   └── CarteAvisÉlève.tsx
+│   │   │   │       │   │   ├── CarteParcourSupÉlève
+│   │   │   │       │   │   │   ├── CarteParcourSupÉlève.tsx
+│   │   │   │       │   │   │   └── ModaleParcourSup
+│   │   │   │       │   │   │       ├── ModaleParcourSup.interface.tsx
+│   │   │   │       │   │   │       ├── ModaleParcourSup.tsx
+│   │   │   │       │   │   │       └── useModaleParcourSup.tsx
+│   │   │   │       │   │   ├── CartePrimaireTableauDeBordÉlève
+│   │   │   │       │   │   │   ├── CartePrimaireTableauDeBordÉlève.interface.tsx
+│   │   │   │       │   │   │   └── CartePrimaireTableauDeBordÉlève.tsx
+│   │   │   │       │   │   ├── CarteSecondaireTableauDeBordÉlève
+│   │   │   │       │   │   │   ├── CarteSecondaireTableauDeBordÉlève.interface.tsx
+│   │   │   │       │   │   │   └── CarteSecondaireTableauDeBordÉlève.tsx
+│   │   │   │       │   │   ├── CarteTémoignageÉlève
+│   │   │   │       │   │   │   ├── CarteTémoignageÉlève.interface.tsx
+│   │   │   │       │   │   │   └── CarteTémoignageÉlève.tsx
+│   │   │   │       │   │   ├── TableauDeBordÉlèvePage.tsx
+│   │   │   │       │   │   └── useTableauDeBordÉlèvePage.tsx
+│   │   │   │       │   ├── formulaires
+│   │   │   │       │   │   ├── DomainesForm
+│   │   │   │       │   │   │   ├── DomainesForm.interface.ts
+│   │   │   │       │   │   │   ├── DomainesForm.tsx
+│   │   │   │       │   │   │   ├── DomainesForm.validation.ts
+│   │   │   │       │   │   │   └── useDomainesForm.ts
+│   │   │   │       │   │   ├── FormationsForm
+│   │   │   │       │   │   │   ├── FormationsForm.interface.ts
+│   │   │   │       │   │   │   ├── FormationsForm.tsx
+│   │   │   │       │   │   │   ├── useFormationsForm.tsx
+│   │   │   │       │   │   │   └── useSituationFormationsFormationsForm.tsx
+│   │   │   │       │   │   ├── IntérêtsForm
+│   │   │   │       │   │   │   ├── IntérêtsForm.interface.ts
+│   │   │   │       │   │   │   ├── IntérêtsForm.tsx
+│   │   │   │       │   │   │   ├── IntérêtsForm.validation.ts
+│   │   │   │       │   │   │   └── useIntérêtsForm.ts
+│   │   │   │       │   │   ├── MétiersForm
+│   │   │   │       │   │   │   ├── MétiersForm.interface.ts
+│   │   │   │       │   │   │   ├── MétiersForm.tsx
+│   │   │   │       │   │   │   ├── useMétiersForm.tsx
+│   │   │   │       │   │   │   └── useSituationMétiersMétiersForm.tsx
+│   │   │   │       │   │   ├── ProjetForm
+│   │   │   │       │   │   │   ├── ProjetForm.interface.ts
+│   │   │   │       │   │   │   ├── ProjetForm.tsx
+│   │   │   │       │   │   │   ├── ProjetForm.validation.ts
+│   │   │   │       │   │   │   └── useProjetForm.ts
+│   │   │   │       │   │   ├── ScolaritéForm
+│   │   │   │       │   │   │   ├── ScolaritéForm.interface.ts
+│   │   │   │       │   │   │   ├── ScolaritéForm.tsx
+│   │   │   │       │   │   │   ├── ScolaritéForm.validation.ts
+│   │   │   │       │   │   │   ├── Spécialités
+│   │   │   │       │   │   │   │   ├── ListeDeSpécialitésSuggérées
+│   │   │   │       │   │   │   │   │   ├── ListeDeSpécialitésSuggérées.interface.ts
+│   │   │   │       │   │   │   │   │   └── ListeDeSpécialitésSuggérées.tsx
+│   │   │   │       │   │   │   │   ├── MaSélectionSpécialités
+│   │   │   │       │   │   │   │   │   ├── MaSélectionSpécialités.tsx
+│   │   │   │       │   │   │   │   │   └── useMaSélectionSpécialités.ts
+│   │   │   │       │   │   │   │   ├── RechercheSpécialités
+│   │   │   │       │   │   │   │   │   ├── RechercheSpécialités.interface.ts
+│   │   │   │       │   │   │   │   │   ├── RechercheSpécialités.tsx
+│   │   │   │       │   │   │   │   │   └── useRechercheSpécialités.tsx
+│   │   │   │       │   │   │   │   ├── spécialitéQueries.tsx
+│   │   │   │       │   │   │   │   └── useSpécialité.tsx
+│   │   │   │       │   │   │   └── useScolaritéForm.ts
+│   │   │   │       │   │   └── ÉtudeForm
+│   │   │   │       │   │       ├── useÉtudeForm.ts
+│   │   │   │       │   │       ├── ÉtudeForm.interface.ts
+│   │   │   │       │   │       ├── ÉtudeForm.tsx
+│   │   │   │       │   │       └── ÉtudeForm.validation.ts
+│   │   │   │       │   ├── hooks
+│   │   │   │       │   │   ├── useÉlève
+│   │   │   │       │   │   │   └── useÉlève.ts
+│   │   │   │       │   │   ├── useÉlèveForm
+│   │   │   │       │   │   │   ├── useÉlèveForm.interface.ts
+│   │   │   │       │   │   │   └── useÉlèveForm.ts
+│   │   │   │       │   │   ├── useÉlèveMutation
+│   │   │   │       │   │   │   ├── useÉlèveMutation.interface.ts
+│   │   │   │       │   │   │   └── useÉlèveMutation.ts
+│   │   │   │       │   │   ├── useÉlèveProgression
+│   │   │   │       │   │   │   └── useÉlèveProgression.ts
+│   │   │   │       │   │   └── useÉlèveRedirection
+│   │   │   │       │   │       └── useÉlèveRedirection.ts
+│   │   │   │       │   └── élèveQueries.tsx
+│   │   │   │       └── usecase
+│   │   │   │           ├── AssocierCompteParcourSupÉlève.ts
+│   │   │   │           ├── MettreÀJourAmbitionsÉlève.ts
+│   │   │   │           ├── MettreÀJourCommunesÉlève.ts
+│   │   │   │           ├── MettreÀJourFormationsMasquéesÉlève.ts
+│   │   │   │           ├── MettreÀJourFormationsÉlève.ts
+│   │   │   │           ├── MettreÀJourMétiersÉlève.ts
+│   │   │   │           ├── MettreÀJourNotesPersonnellesÉlève.ts
+│   │   │   │           ├── MettreÀJourProfilÉlève.ts
+│   │   │   │           ├── MettreÀJourSpécialitésÉlève.ts
+│   │   │   │           ├── MettreÀJourVoeuxÉlève.ts
+│   │   │   │           ├── RechercherSpécialités.ts
+│   │   │   │           ├── RécupérerProfilÉlève.ts
+│   │   │   │           ├── RécupérerProgressionÉlève.ts
+│   │   │   │           ├── SupprimerTousLesMétiersÉlève.ts
+│   │   │   │           └── SupprimerToutesLesFormationsÉlève.ts
+│   │   │   ├── routeTree.gen.ts
+│   │   │   ├── routes
+│   │   │   │   ├── __root.tsx
+│   │   │   │   ├── _main
+│   │   │   │   │   ├── _main.tsx
+│   │   │   │   │   ├── eleve
+│   │   │   │   │   │   ├── _inscription
+│   │   │   │   │   │   │   └── inscription
+│   │   │   │   │   │   │       ├── confirmation
+│   │   │   │   │   │   │       │   └── index.lazy.tsx
+│   │   │   │   │   │   │       ├── domaines
+│   │   │   │   │   │   │       │   └── index.lazy.tsx
+│   │   │   │   │   │   │       ├── etude
+│   │   │   │   │   │   │       │   └── index.lazy.tsx
+│   │   │   │   │   │   │       ├── formations
+│   │   │   │   │   │   │       │   └── index.lazy.tsx
+│   │   │   │   │   │   │       ├── interets
+│   │   │   │   │   │   │       │   └── index.lazy.tsx
+│   │   │   │   │   │   │       ├── metiers
+│   │   │   │   │   │   │       │   └── index.lazy.tsx
+│   │   │   │   │   │   │       ├── projet
+│   │   │   │   │   │   │       │   └── index.lazy.tsx
+│   │   │   │   │   │   │       └── scolarite
+│   │   │   │   │   │   │           └── index.lazy.tsx
+│   │   │   │   │   │   └── _inscription.tsx
+│   │   │   │   │   ├── favoris
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── formations
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── profil
+│   │   │   │   │       └── index.lazy.tsx
+│   │   │   │   ├── _main.tsx
+│   │   │   │   ├── _public
+│   │   │   │   │   ├── cookies
+│   │   │   │   │   │   └── index.lazy.tsx
+│   │   │   │   │   ├── declaration-accessiblite
+│   │   │   │   │   │   └── index.lazy.tsx
+│   │   │   │   │   ├── formation
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   └── plan-du-site
+│   │   │   │   │       └── index.lazy.tsx
+│   │   │   │   ├── _public.tsx
+│   │   │   │   ├── connexion
+│   │   │   │   │   └── index.tsx
+│   │   │   │   └── parcoursup-callback
+│   │   │   │       └── index.tsx
+│   │   │   ├── services
+│   │   │   │   ├── analytics
+│   │   │   │   │   ├── analytics.interface.ts
+│   │   │   │   │   ├── analyticsConsoleRepository
+│   │   │   │   │   │   └── analyticsConsoleRepository.ts
+│   │   │   │   │   └── analyticsMatomoRepository
+│   │   │   │   │       └── analyticsMatomoRepository.ts
+│   │   │   │   ├── erreurs
+│   │   │   │   │   ├── erreurs.ts
+│   │   │   │   │   └── erreursHttp.ts
+│   │   │   │   ├── httpClient
+│   │   │   │   │   ├── httpClient.interface.ts
+│   │   │   │   │   ├── httpClient.test.ts
+│   │   │   │   │   └── httpClient.ts
+│   │   │   │   ├── logger
+│   │   │   │   │   ├── consoleLogger
+│   │   │   │   │   │   └── consoleLogger.ts
+│   │   │   │   │   ├── logger.interface.ts
+│   │   │   │   │   └── sentryLogger
+│   │   │   │   │       └── sentryLogger.ts
+│   │   │   │   ├── mpsApiHttpClient
+│   │   │   │   │   ├── mpsApiHttpClient.interface.ts
+│   │   │   │   │   └── mpsApiHttpClient.ts
+│   │   │   │   └── trace
+│   │   │   │       ├── trace.interface.ts
+│   │   │   │       ├── traceHttpService
+│   │   │   │       │   ├── traceHttpService.interface.ts
+│   │   │   │       │   └── traceHttpService.ts
+│   │   │   │       └── traceSessionStorageService
+│   │   │   │           └── traceSessionStorageService.ts
+│   │   │   ├── style
+│   │   │   │   └── global.scss
+│   │   │   ├── tests-e2e
+│   │   │   │   └── élève
+│   │   │   │       ├── accessibilité.spec.ts
+│   │   │   │       ├── entête.spec.ts
+│   │   │   │       ├── favoris.spec.ts
+│   │   │   │       ├── formations
+│   │   │   │       │   ├── formations-inscription-élève.spec.ts
+│   │   │   │       │   ├── formations-masquer.spec.ts
+│   │   │   │       │   ├── formations-rechercher.spec.ts
+│   │   │   │       │   ├── formations-sélectionner.spec.ts
+│   │   │   │       │   └── formations.spec.ts
+│   │   │   │       ├── helpers
+│   │   │   │       │   ├── GlobalTestHelper.ts
+│   │   │   │       │   ├── InscriptionTestHelper.ts
+│   │   │   │       │   ├── ListeEtAperçuTestHelper.ts
+│   │   │   │       │   └── ÉlèveTestHelper.ts
+│   │   │   │       ├── inscription
+│   │   │   │       │   ├── inscription-centres-intérêts.spec.ts
+│   │   │   │       │   ├── inscription-confirmation.spec.ts
+│   │   │   │       │   ├── inscription-domaines.spec.ts
+│   │   │   │       │   ├── inscription-projet.spec.ts
+│   │   │   │       │   ├── inscription-scolarité.spec.ts
+│   │   │   │       │   └── inscription-étude.spec.ts
+│   │   │   │       ├── métiers
+│   │   │   │       │   ├── métiers-inscription-élève.spec.ts
+│   │   │   │       │   └── métiers-modale.spec.ts
+│   │   │   │       ├── profil.spec.ts
+│   │   │   │       └── tableau-de-bord.spec.ts
+│   │   │   ├── types
+│   │   │   │   ├── api-mps.d.ts
+│   │   │   │   ├── commons.ts
+│   │   │   │   └── dsfr.d.ts
+│   │   │   └── utils
+│   │   │       ├── array.ts
+│   │   │       ├── crypto.ts
+│   │   │       └── url.ts
+│   │   ├── tailwind.config.js
+│   │   ├── tsconfig.json
+│   │   ├── tsconfig.node.json
+│   │   ├── vite.config.ts
+│   │   └── vitest.config.mts
+│   ├── suggestions
+│   │   ├── README.md
+│   │   ├── docker
+│   │   │   └── Dockerfile
+│   │   ├── mvnw
+│   │   ├── mvnw.cmd
+│   │   ├── pom.xml
+│   │   ├── suggestions-algo
+│   │   │   ├── pom.xml
+│   │   │   └── src
+│   │   │       └── main
+│   │   │           ├── java
+│   │   │           │   └── fr
+│   │   │           │       └── gouv
+│   │   │           │           └── monprojetsup
+│   │   │           │               └── suggestions
+│   │   │           │                   ├── Constants.java
+│   │   │           │                   ├── algo
+│   │   │           │                   │   ├── Affinite.java
+│   │   │           │                   │   ├── AffinityEvaluator.java
+│   │   │           │                   │   ├── AlgoSuggestions.java
+│   │   │           │                   │   ├── Config.java
+│   │   │           │                   │   ├── DataSuggestions2.java
+│   │   │           │                   │   ├── NaiveBayesExplanation.java
+│   │   │           │                   │   ├── NaiveBayesExplanations.java
+│   │   │           │                   │   ├── NaiveBayesScore.java
+│   │   │           │                   │   ├── Suggestion.java
+│   │   │           │                   │   └── Suggestions.java
+│   │   │           │                   ├── data
+│   │   │           │                   │   ├── SuggestionsData.java
+│   │   │           │                   │   └── model
+│   │   │           │                   │       ├── Edges.java
+│   │   │           │                   │       └── Path.java
+│   │   │           │                   ├── dto
+│   │   │           │                   │   ├── ChoiceDTO.java
+│   │   │           │                   │   ├── GetAffinitiesServiceDTO.java
+│   │   │           │                   │   ├── GetExplanationsAndExamplesServiceDTO.java
+│   │   │           │                   │   ├── GetSuggestionsConfigServiceDTO.java
+│   │   │           │                   │   ├── ProfileDTO.java
+│   │   │           │                   │   ├── ResponseHeader.java
+│   │   │           │                   │   ├── SetSuggestionsConfigServiceDTO.java
+│   │   │           │                   │   └── explanations
+│   │   │           │                   │       ├── Explanation.java
+│   │   │           │                   │       ├── ExplanationGeo.java
+│   │   │           │                   │       └── NaivesBayesExplanation.java
+│   │   │           │                   ├── port
+│   │   │           │                   │   ├── CandidatsPort.java
+│   │   │           │                   │   ├── ConfigPort.java
+│   │   │           │                   │   ├── EdgesPort.java
+│   │   │           │                   │   ├── FormationsMetiersPort.java
+│   │   │           │                   │   ├── FormationsPort.java
+│   │   │           │                   │   ├── FormationsVoeuxPort.java
+│   │   │           │                   │   ├── LabelsPort.java
+│   │   │           │                   │   ├── ParametresPort.java
+│   │   │           │                   │   ├── VillesPort.java
+│   │   │           │                   │   └── VoeuxPort.java
+│   │   │           │                   └── tools
+│   │   │           │                       └── Stats.java
+│   │   │           └── kotlin
+│   │   │               └── fr
+│   │   │                   └── gouv
+│   │   │                       └── monprojetsup
+│   │   │                           └── suggestions
+│   │   │                               ├── config
+│   │   │                               │   └── Jacksonconfig.kt
+│   │   │                               ├── entities
+│   │   │                               │   ├── Suggestions2Entities.kt
+│   │   │                               │   └── SuggestionsConfigEntity.kt
+│   │   │                               └── infrastructure
+│   │   │                                   ├── CandidatsRepository.kt
+│   │   │                                   ├── EdgesRepository.kt
+│   │   │                                   ├── FormationsMetiersRepository.kt
+│   │   │                                   ├── FormationsRepository.kt
+│   │   │                                   ├── FormationsVoeuxRepository.kt
+│   │   │                                   ├── LabelsRepository.kt
+│   │   │                                   ├── ParametresRepository.kt
+│   │   │                                   ├── SuggestionConfigRepository.kt
+│   │   │                                   ├── VillesRepository.kt
+│   │   │                                   └── VoeuxRepository.kt
+│   │   ├── suggestions-export
+│   │   │   ├── pom.xml
+│   │   │   └── src
+│   │   │       └── main
+│   │   │           ├── java
+│   │   │           │   └── fr
+│   │   │           │       └── gouv
+│   │   │           │           └── monprojetsup
+│   │   │           │               └── suggestions
+│   │   │           │                   └── export
+│   │   │           │                       ├── experts
+│   │   │           │                       │   ├── DocsGenerator.java
+│   │   │           │                       │   ├── ReferenceCase.java
+│   │   │           │                       │   ├── ReferenceCases.java
+│   │   │           │                       │   ├── SuggestionsEvaluator.java
+│   │   │           │                       │   └── SuggestionsGenerator.java
+│   │   │           │                       └── reference
+│   │   │           │                           └── AuditSuggestionsData.java
+│   │   │           ├── kotlin
+│   │   │           │   └── fr
+│   │   │           │       └── gouv
+│   │   │           │           └── monprojetsup
+│   │   │           │               └── suggestions
+│   │   │           │                   └── export
+│   │   │           │                       ├── Repositories.kt
+│   │   │           │                       └── RunDiagnostics.kt
+│   │   │           └── resources
+│   │   │               └── application.properties
+│   │   └── suggestions-server
+│   │       ├── pom.xml
+│   │       └── src
+│   │           ├── main
+│   │           │   ├── kotlin
+│   │           │   │   └── fr
+│   │           │   │       └── gouv
+│   │           │   │           └── monprojetsup
+│   │           │   │               └── suggestions
+│   │           │   │                   └── server
+│   │           │   │                       ├── ApplicationSuggestions.kt
+│   │           │   │                       ├── commun
+│   │           │   │                       │   ├── client
+│   │           │   │                       │   │   └── ApiHttpClient.kt
+│   │           │   │                       │   └── exceptions
+│   │           │   │                       │       └── Exceptions.kt
+│   │           │   │                       ├── configuration
+│   │           │   │                       │   ├── HttpClientConfiguration.kt
+│   │           │   │                       │   ├── LoggerConfiguration.kt
+│   │           │   │                       │   ├── SecurityConfiguration.kt
+│   │           │   │                       │   └── SwaggerConfig.kt
+│   │           │   │                       ├── controllers
+│   │           │   │                       │   └── SuggestionsControllers.kt
+│   │           │   │                       ├── domain
+│   │           │   │                       │   └── port
+│   │           │   │                       │       └── Suggestions2Service.kt
+│   │           │   │                       ├── infrastructure
+│   │           │   │                       │   └── client
+│   │           │   │                       │       └── Suggestion2ApiHttpClient.kt
+│   │           │   │                       ├── logging
+│   │           │   │                       │   ├── LogguerReponsesFilter.kt
+│   │           │   │                       │   ├── MpsLogger.kt
+│   │           │   │                       │   └── domain
+│   │           │   │                       │       ├── ExceptionALogguer.kt
+│   │           │   │                       │       └── ReponseALogguer.kt
+│   │           │   │                       └── usecase
+│   │           │   │                           ├── AlgoConfigurationService.kt
+│   │           │   │                           ├── ExplanationsService.kt
+│   │           │   │                           └── SuggestionsService.kt
+│   │           │   └── resources
+│   │           │       └── application.properties
+│   │           └── test
+│   │               ├── fr
+│   │               │   └── gouv
+│   │               │       └── monprojetsup
+│   │               │           └── suggestions
+│   │               │               └── server
+│   │               │                   └── controllers
+│   │               │                       └── SuggestionsControllersEnd2EndTest.kt
+│   │               └── resources
+│   │                   ├── application-test.properties
+│   │                   └── references.json
+│   └── suggestions2
+│       ├── .dockerignore
+│       ├── .env.example
+│       ├── .gitignore
+│       ├── Dockerfile
+│       ├── README.md
+│       ├── app
+│       │   ├── __init__.py
+│       │   ├── adapters
+│       │   │   ├── __init__.py
+│       │   │   ├── http
+│       │   │   │   ├── __init__.py
+│       │   │   │   ├── health_check.py
+│       │   │   │   ├── make_endpoint.py
+│       │   │   │   ├── request.py
+│       │   │   │   └── response.py
+│       │   │   ├── naive_bayes.py
+│       │   │   ├── pg_database.py
+│       │   │   └── test_naive_bayes.py
+│       │   ├── application
+│       │   │   ├── __init__.py
+│       │   │   └── service.py
+│       │   ├── config.py
+│       │   ├── db_schema.py
+│       │   ├── domain
+│       │   │   ├── __init__.py
+│       │   │   ├── models
+│       │   │   │   ├── __init__.py
+│       │   │   │   ├── config.py
+│       │   │   │   ├── explanation.py
+│       │   │   │   ├── profile.py
+│       │   │   │   └── suggestion.py
+│       │   │   └── ports
+│       │   │       ├── __init__.py
+│       │   │       ├── data_repository.py
+│       │   │       ├── service.py
+│       │   │       └── suggestion.py
+│       │   ├── nomenclatures.py
+│       │   └── setup_fastapi.py
+│       └── pyproject.toml
+├── doc
+│   ├── MPS - Doc de presentation.pdf
+│   ├── MPS - Doc technique.pdf
+│   └── architecture.png
+├── docker-compose.dev-full.yml
+├── docker-compose.dev-minimal.yml
+├── keycloak
+│   ├── LICENSE.txt
+│   ├── Procfile
+│   ├── README.md
+│   ├── bin
+│   │   ├── client
+│   │   │   ├── keycloak-admin-cli-24.0.4.jar
+│   │   │   ├── keycloak-client-registration-cli-24.0.4.jar
+│   │   │   └── lib
+│   │   │       ├── bcprov-jdk18on-1.77.jar
+│   │   │       ├── keycloak-crypto-default-24.0.4.jar
+│   │   │       └── keycloak-crypto-fips1402-24.0.4.jar
+│   │   ├── federation-sssd-setup.sh
+│   │   ├── kc.bat
+│   │   ├── kc.sh
+│   │   ├── kcadm.bat
+│   │   ├── kcadm.sh
+│   │   ├── kcreg.bat
+│   │   └── kcreg.sh
+│   ├── conf
+│   │   ├── README.md
+│   │   ├── cache-ispn.xml
+│   │   └── keycloak.conf
+│   ├── create-env.sh
+│   ├── init.sql
+│   ├── lib
+│   │   ├── app
+│   │   │   └── keycloak.jar
+│   │   ├── lib
+│   │   │   ├── boot
+│   │   │   │   ├── io.github.crac.org-crac-0.1.3.jar
+│   │   │   │   ├── io.quarkus.quarkus-bootstrap-runner-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-development-mode-spi-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-vertx-latebound-mdc-provider-3.8.4.jar
+│   │   │   │   ├── io.smallrye.common.smallrye-common-constraint-2.2.0.jar
+│   │   │   │   ├── io.smallrye.common.smallrye-common-cpu-2.2.0.jar
+│   │   │   │   ├── io.smallrye.common.smallrye-common-expression-2.2.0.jar
+│   │   │   │   ├── io.smallrye.common.smallrye-common-function-2.2.0.jar
+│   │   │   │   ├── io.smallrye.common.smallrye-common-io-2.2.0.jar
+│   │   │   │   ├── io.smallrye.common.smallrye-common-net-2.2.0.jar
+│   │   │   │   ├── io.smallrye.common.smallrye-common-os-2.2.0.jar
+│   │   │   │   ├── io.smallrye.common.smallrye-common-ref-2.2.0.jar
+│   │   │   │   ├── jakarta.json.jakarta.json-api-2.1.3.jar
+│   │   │   │   ├── org.eclipse.parsson.parsson-1.1.5.jar
+│   │   │   │   ├── org.jboss.logging.jboss-logging-3.5.3.Final.jar
+│   │   │   │   └── org.jboss.logmanager.jboss-logmanager-3.0.4.Final.jar
+│   │   │   ├── deployment
+│   │   │   │   ├── appmodel.dat
+│   │   │   │   ├── com.fasterxml.jackson.dataformat.jackson-dataformat-yaml-2.16.1.jar
+│   │   │   │   ├── deployment-class-path.dat
+│   │   │   │   ├── io.mvnpm.importmap-1.0.10.jar
+│   │   │   │   ├── io.quarkus.arc.arc-processor-3.8.4.jar
+│   │   │   │   ├── io.quarkus.gizmo.gizmo-1.7.0.jar
+│   │   │   │   ├── io.quarkus.http.quarkus-http-core-5.2.1.Final.jar
+│   │   │   │   ├── io.quarkus.http.quarkus-http-http-core-5.2.1.Final.jar
+│   │   │   │   ├── io.quarkus.http.quarkus-http-servlet-5.2.1.Final.jar
+│   │   │   │   ├── io.quarkus.quarkus-agroal-deployment-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-agroal-spi-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-arc-deployment-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-arc-test-supplement-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-bootstrap-app-model-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-bootstrap-core-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-builder-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-caffeine-deployment-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-class-change-agent-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-core-deployment-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-credentials-deployment-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-datasource-deployment-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-datasource-deployment-spi-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-devtools-utilities-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-hibernate-orm-deployment-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-hibernate-orm-deployment-spi-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-hibernate-validator-spi-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-jackson-deployment-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-jackson-spi-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-jaxrs-spi-deployment-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-jdbc-h2-deployment-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-jdbc-mariadb-deployment-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-jdbc-mssql-deployment-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-jdbc-mysql-deployment-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-jdbc-oracle-deployment-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-jdbc-postgresql-deployment-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-jsonp-deployment-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-kubernetes-service-binding-spi-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-kubernetes-spi-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-logging-gelf-deployment-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-logging-json-deployment-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-micrometer-deployment-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-micrometer-registry-prometheus-deployment-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-mutiny-deployment-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-narayana-jta-deployment-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-netty-deployment-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-panache-common-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-panache-common-deployment-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-panache-hibernate-common-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-panache-hibernate-common-deployment-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-reactive-routes-deployment-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-resteasy-common-spi-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-resteasy-reactive-common-deployment-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-resteasy-reactive-deployment-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-resteasy-reactive-jackson-common-deployment-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-resteasy-reactive-jackson-deployment-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-resteasy-reactive-server-spi-deployment-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-resteasy-reactive-spi-deployment-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-security-spi-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-smallrye-context-propagation-deployment-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-smallrye-context-propagation-spi-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-smallrye-health-deployment-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-smallrye-health-spi-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-smallrye-openapi-spi-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-undertow-spi-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-vertx-deployment-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-vertx-http-deployment-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-vertx-http-deployment-spi-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-vertx-http-dev-ui-spi-3.8.4.jar
+│   │   │   │   ├── io.quarkus.quarkus-virtual-threads-deployment-3.8.4.jar
+│   │   │   │   ├── io.quarkus.qute.qute-core-3.8.4.jar
+│   │   │   │   ├── io.quarkus.resteasy.reactive.resteasy-reactive-common-processor-3.8.4.jar
+│   │   │   │   ├── io.quarkus.resteasy.reactive.resteasy-reactive-processor-3.8.4.jar
+│   │   │   │   ├── io.smallrye.jandex-3.1.6.jar
+│   │   │   │   ├── io.smallrye.smallrye-health-ui-4.1.0.jar
+│   │   │   │   ├── io.smallrye.smallrye-open-api-core-3.10.0.jar
+│   │   │   │   ├── jakarta.servlet.jakarta.servlet-api-6.0.0.jar
+│   │   │   │   ├── org.aesh.aesh-2.7.jar
+│   │   │   │   ├── org.aesh.readline-2.4.jar
+│   │   │   │   ├── org.eclipse.microprofile.openapi.microprofile-openapi-api-3.1.1.jar
+│   │   │   │   ├── org.fusesource.jansi.jansi-2.4.0.jar
+│   │   │   │   ├── org.graalvm.sdk.nativeimage-23.1.2.jar
+│   │   │   │   ├── org.graalvm.sdk.word-23.1.2.jar
+│   │   │   │   └── org.keycloak.keycloak-quarkus-server-deployment-24.0.4.jar
+│   │   │   └── main
+│   │   │       ├── biz.paluch.logging.logstash-gelf-1.15.1.jar
+│   │   │       ├── com.fasterxml.classmate-1.6.0.jar
+│   │   │       ├── com.fasterxml.jackson.core.jackson-annotations-2.16.1.jar
+│   │   │       ├── com.fasterxml.jackson.core.jackson-core-2.16.1.jar
+│   │   │       ├── com.fasterxml.jackson.core.jackson-databind-2.16.1.jar
+│   │   │       ├── com.fasterxml.jackson.dataformat.jackson-dataformat-cbor-2.16.1.jar
+│   │   │       ├── com.fasterxml.jackson.datatype.jackson-datatype-jdk8-2.16.1.jar
+│   │   │       ├── com.fasterxml.jackson.datatype.jackson-datatype-jsr310-2.16.1.jar
+│   │   │       ├── com.fasterxml.jackson.module.jackson-module-parameter-names-2.16.1.jar
+│   │   │       ├── com.github.ben-manes.caffeine.caffeine-3.1.5.jar
+│   │   │       ├── com.github.ua-parser.uap-java-1.5.4.jar
+│   │   │       ├── com.github.waffle.waffle-jna-3.3.0.jar
+│   │   │       ├── com.google.guava.guava-33.0.0-jre.jar
+│   │   │       ├── com.google.zxing.core-3.4.0.jar
+│   │   │       ├── com.google.zxing.javase-3.4.0.jar
+│   │   │       ├── com.googlecode.owasp-java-html-sanitizer.owasp-java-html-sanitizer-20220608.1.jar
+│   │   │       ├── com.h2database.h2-2.2.224.jar
+│   │   │       ├── com.microsoft.sqlserver.mssql-jdbc-12.4.2.jre11.jar
+│   │   │       ├── com.mysql.mysql-connector-j-8.3.0.jar
+│   │   │       ├── com.opencsv.opencsv-5.8.jar
+│   │   │       ├── com.oracle.database.jdbc.ojdbc11-23.3.0.23.09.jar
+│   │   │       ├── com.oracle.database.nls.orai18n-23.3.0.23.09.jar
+│   │   │       ├── com.squareup.protoparser-4.0.3.jar
+│   │   │       ├── com.sun.istack.istack-commons-runtime-3.0.10.jar
+│   │   │       ├── com.sun.xml.messaging.saaj.saaj-impl-2.0.1.jar
+│   │   │       ├── com.webauthn4j.webauthn4j-core-0.21.5.RELEASE.jar
+│   │   │       ├── com.webauthn4j.webauthn4j-util-0.21.5.RELEASE.jar
+│   │   │       ├── commons-codec.commons-codec-1.16.1.jar
+│   │   │       ├── commons-io.commons-io-2.15.1.jar
+│   │   │       ├── info.picocli.picocli-4.7.5.jar
+│   │   │       ├── io.agroal.agroal-api-2.3.jar
+│   │   │       ├── io.agroal.agroal-narayana-2.3.jar
+│   │   │       ├── io.agroal.agroal-pool-2.3.jar
+│   │   │       ├── io.micrometer.micrometer-commons-1.12.2.jar
+│   │   │       ├── io.micrometer.micrometer-core-1.12.2.jar
+│   │   │       ├── io.micrometer.micrometer-observation-1.12.2.jar
+│   │   │       ├── io.micrometer.micrometer-registry-prometheus-1.12.2.jar
+│   │   │       ├── io.netty.netty-buffer-4.1.108.Final.jar
+│   │   │       ├── io.netty.netty-codec-4.1.108.Final.jar
+│   │   │       ├── io.netty.netty-codec-dns-4.1.108.Final.jar
+│   │   │       ├── io.netty.netty-codec-haproxy-4.1.108.Final.jar
+│   │   │       ├── io.netty.netty-codec-http-4.1.108.Final.jar
+│   │   │       ├── io.netty.netty-codec-http2-4.1.108.Final.jar
+│   │   │       ├── io.netty.netty-codec-socks-4.1.108.Final.jar
+│   │   │       ├── io.netty.netty-common-4.1.108.Final.jar
+│   │   │       ├── io.netty.netty-handler-4.1.108.Final.jar
+│   │   │       ├── io.netty.netty-handler-proxy-4.1.108.Final.jar
+│   │   │       ├── io.netty.netty-resolver-4.1.108.Final.jar
+│   │   │       ├── io.netty.netty-resolver-dns-4.1.108.Final.jar
+│   │   │       ├── io.netty.netty-transport-4.1.108.Final.jar
+│   │   │       ├── io.netty.netty-transport-classes-epoll-4.1.108.Final.jar
+│   │   │       ├── io.netty.netty-transport-native-epoll-4.1.108.Final-linux-aarch_64.jar
+│   │   │       ├── io.netty.netty-transport-native-epoll-4.1.108.Final-linux-x86_64.jar
+│   │   │       ├── io.netty.netty-transport-native-unix-common-4.1.108.Final.jar
+│   │   │       ├── io.prometheus.simpleclient-0.16.0.jar
+│   │   │       ├── io.prometheus.simpleclient_common-0.16.0.jar
+│   │   │       ├── io.prometheus.simpleclient_tracer_common-0.16.0.jar
+│   │   │       ├── io.prometheus.simpleclient_tracer_otel-0.16.0.jar
+│   │   │       ├── io.prometheus.simpleclient_tracer_otel_agent-0.16.0.jar
+│   │   │       ├── io.quarkus.arc.arc-3.8.4.jar
+│   │   │       ├── io.quarkus.quarkus-agroal-3.8.4.jar
+│   │   │       ├── io.quarkus.quarkus-arc-3.8.4.jar
+│   │   │       ├── io.quarkus.quarkus-caffeine-3.8.4.jar
+│   │   │       ├── io.quarkus.quarkus-core-3.8.4.jar
+│   │   │       ├── io.quarkus.quarkus-credentials-3.8.4.jar
+│   │   │       ├── io.quarkus.quarkus-datasource-3.8.4.jar
+│   │   │       ├── io.quarkus.quarkus-datasource-common-3.8.4.jar
+│   │   │       ├── io.quarkus.quarkus-fs-util-0.0.10.jar
+│   │   │       ├── io.quarkus.quarkus-hibernate-orm-3.8.4.jar
+│   │   │       ├── io.quarkus.quarkus-jackson-3.8.4.jar
+│   │   │       ├── io.quarkus.quarkus-jdbc-h2-3.8.4.jar
+│   │   │       ├── io.quarkus.quarkus-jdbc-mariadb-3.8.4.jar
+│   │   │       ├── io.quarkus.quarkus-jdbc-mssql-3.8.4.jar
+│   │   │       ├── io.quarkus.quarkus-jdbc-mysql-3.8.4.jar
+│   │   │       ├── io.quarkus.quarkus-jdbc-oracle-3.8.4.jar
+│   │   │       ├── io.quarkus.quarkus-jdbc-postgresql-3.8.4.jar
+│   │   │       ├── io.quarkus.quarkus-jsonp-3.8.4.jar
+│   │   │       ├── io.quarkus.quarkus-logging-gelf-3.8.4.jar
+│   │   │       ├── io.quarkus.quarkus-logging-json-3.8.4.jar
+│   │   │       ├── io.quarkus.quarkus-micrometer-3.8.4.jar
+│   │   │       ├── io.quarkus.quarkus-micrometer-registry-prometheus-3.8.4.jar
+│   │   │       ├── io.quarkus.quarkus-mutiny-3.8.4.jar
+│   │   │       ├── io.quarkus.quarkus-narayana-jta-3.8.4.jar
+│   │   │       ├── io.quarkus.quarkus-netty-3.8.4.jar
+│   │   │       ├── io.quarkus.quarkus-reactive-routes-3.8.4.jar
+│   │   │       ├── io.quarkus.quarkus-resteasy-reactive-3.8.4.jar
+│   │   │       ├── io.quarkus.quarkus-resteasy-reactive-common-3.8.4.jar
+│   │   │       ├── io.quarkus.quarkus-resteasy-reactive-jackson-3.8.4.jar
+│   │   │       ├── io.quarkus.quarkus-resteasy-reactive-jackson-common-3.8.4.jar
+│   │   │       ├── io.quarkus.quarkus-security-runtime-spi-3.8.4.jar
+│   │   │       ├── io.quarkus.quarkus-smallrye-context-propagation-3.8.4.jar
+│   │   │       ├── io.quarkus.quarkus-smallrye-health-3.8.4.jar
+│   │   │       ├── io.quarkus.quarkus-transaction-annotations-3.8.4.jar
+│   │   │       ├── io.quarkus.quarkus-vertx-3.8.4.jar
+│   │   │       ├── io.quarkus.quarkus-vertx-http-3.8.4.jar
+│   │   │       ├── io.quarkus.quarkus-virtual-threads-3.8.4.jar
+│   │   │       ├── io.quarkus.resteasy.reactive.resteasy-reactive-3.8.4.jar
+│   │   │       ├── io.quarkus.resteasy.reactive.resteasy-reactive-common-3.8.4.jar
+│   │   │       ├── io.quarkus.resteasy.reactive.resteasy-reactive-common-types-3.8.4.jar
+│   │   │       ├── io.quarkus.resteasy.reactive.resteasy-reactive-jackson-3.8.4.jar
+│   │   │       ├── io.quarkus.resteasy.reactive.resteasy-reactive-vertx-3.8.4.jar
+│   │   │       ├── io.quarkus.security.quarkus-security-2.0.3.Final.jar
+│   │   │       ├── io.reactivex.rxjava3.rxjava-3.1.8.jar
+│   │   │       ├── io.smallrye.common.smallrye-common-annotation-2.2.0.jar
+│   │   │       ├── io.smallrye.common.smallrye-common-classloader-2.2.0.jar
+│   │   │       ├── io.smallrye.common.smallrye-common-vertx-context-2.2.0.jar
+│   │   │       ├── io.smallrye.config.smallrye-config-3.5.4.jar
+│   │   │       ├── io.smallrye.config.smallrye-config-common-3.5.4.jar
+│   │   │       ├── io.smallrye.config.smallrye-config-core-3.5.4.jar
+│   │   │       ├── io.smallrye.config.smallrye-config-source-keystore-3.5.4.jar
+│   │   │       ├── io.smallrye.reactive.mutiny-2.5.8.jar
+│   │   │       ├── io.smallrye.reactive.mutiny-smallrye-context-propagation-2.5.8.jar
+│   │   │       ├── io.smallrye.reactive.mutiny-zero-flow-adapters-1.0.0.jar
+│   │   │       ├── io.smallrye.reactive.smallrye-mutiny-vertx-auth-common-3.11.0.jar
+│   │   │       ├── io.smallrye.reactive.smallrye-mutiny-vertx-bridge-common-3.11.0.jar
+│   │   │       ├── io.smallrye.reactive.smallrye-mutiny-vertx-core-3.11.0.jar
+│   │   │       ├── io.smallrye.reactive.smallrye-mutiny-vertx-runtime-3.11.0.jar
+│   │   │       ├── io.smallrye.reactive.smallrye-mutiny-vertx-uri-template-3.11.0.jar
+│   │   │       ├── io.smallrye.reactive.smallrye-mutiny-vertx-web-3.11.0.jar
+│   │   │       ├── io.smallrye.reactive.smallrye-mutiny-vertx-web-common-3.11.0.jar
+│   │   │       ├── io.smallrye.reactive.smallrye-reactive-converter-api-3.0.1.jar
+│   │   │       ├── io.smallrye.reactive.smallrye-reactive-converter-mutiny-3.0.1.jar
+│   │   │       ├── io.smallrye.reactive.vertx-mutiny-generator-3.11.0.jar
+│   │   │       ├── io.smallrye.smallrye-context-propagation-2.1.0.jar
+│   │   │       ├── io.smallrye.smallrye-context-propagation-api-2.1.0.jar
+│   │   │       ├── io.smallrye.smallrye-context-propagation-jta-2.1.0.jar
+│   │   │       ├── io.smallrye.smallrye-context-propagation-storage-2.1.0.jar
+│   │   │       ├── io.smallrye.smallrye-fault-tolerance-vertx-6.2.6.jar
+│   │   │       ├── io.smallrye.smallrye-health-4.1.0.jar
+│   │   │       ├── io.smallrye.smallrye-health-api-4.1.0.jar
+│   │   │       ├── io.smallrye.smallrye-health-provided-checks-4.1.0.jar
+│   │   │       ├── io.vertx.vertx-auth-common-4.5.7.jar
+│   │   │       ├── io.vertx.vertx-bridge-common-4.5.7.jar
+│   │   │       ├── io.vertx.vertx-codegen-4.5.7.jar
+│   │   │       ├── io.vertx.vertx-core-4.5.7.jar
+│   │   │       ├── io.vertx.vertx-web-4.5.7.jar
+│   │   │       ├── io.vertx.vertx-web-common-4.5.7.jar
+│   │   │       ├── jakarta.activation.jakarta.activation-api-2.1.2.jar
+│   │   │       ├── jakarta.annotation.jakarta.annotation-api-2.1.1.jar
+│   │   │       ├── jakarta.el.jakarta.el-api-5.0.1.jar
+│   │   │       ├── jakarta.enterprise.jakarta.enterprise.cdi-api-4.0.1.jar
+│   │   │       ├── jakarta.enterprise.jakarta.enterprise.lang-model-4.0.1.jar
+│   │   │       ├── jakarta.inject.jakarta.inject-api-2.0.1.jar
+│   │   │       ├── jakarta.interceptor.jakarta.interceptor-api-2.1.0.jar
+│   │   │       ├── jakarta.mail.jakarta.mail-api-2.1.1.jar
+│   │   │       ├── jakarta.persistence.jakarta.persistence-api-3.1.0.jar
+│   │   │       ├── jakarta.resource.jakarta.resource-api-2.1.0.jar
+│   │   │       ├── jakarta.transaction.jakarta.transaction-api-2.0.1.jar
+│   │   │       ├── jakarta.validation.jakarta.validation-api-3.0.2.jar
+│   │   │       ├── jakarta.ws.rs.jakarta.ws.rs-api-3.1.0.jar
+│   │   │       ├── jakarta.xml.bind.jakarta.xml.bind-api-4.0.1.jar
+│   │   │       ├── jakarta.xml.soap.jakarta.xml.soap-api-3.0.0.jar
+│   │   │       ├── javax.xml.bind.jaxb-api-2.3.1.jar
+│   │   │       ├── net.bytebuddy.byte-buddy-1.14.11.jar
+│   │   │       ├── net.java.dev.jna.jna-5.8.0.jar
+│   │   │       ├── net.java.dev.jna.jna-platform-5.8.0.jar
+│   │   │       ├── org.antlr.antlr4-runtime-4.13.0.jar
+│   │   │       ├── org.apache.commons.commons-collections4-4.4.jar
+│   │   │       ├── org.apache.commons.commons-lang3-3.14.0.jar
+│   │   │       ├── org.apache.httpcomponents.httpclient-4.5.14.jar
+│   │   │       ├── org.apache.httpcomponents.httpcore-4.4.16.jar
+│   │   │       ├── org.apache.kerby.kerby-asn1-2.0.3.jar
+│   │   │       ├── org.apache.santuario.xmlsec-2.2.6.jar
+│   │   │       ├── org.bouncycastle.bcpkix-jdk18on-1.77.jar
+│   │   │       ├── org.bouncycastle.bcprov-jdk18on-1.77.jar
+│   │   │       ├── org.bouncycastle.bcutil-jdk18on-1.77.jar
+│   │   │       ├── org.eclipse.angus.angus-activation-2.0.1.jar
+│   │   │       ├── org.eclipse.angus.angus-mail-2.0.1.jar
+│   │   │       ├── org.eclipse.microprofile.config.microprofile-config-api-3.0.3.jar
+│   │   │       ├── org.eclipse.microprofile.context-propagation.microprofile-context-propagation-api-1.3.jar
+│   │   │       ├── org.eclipse.microprofile.health.microprofile-health-api-4.0.1.jar
+│   │   │       ├── org.eclipse.microprofile.reactive-streams-operators.microprofile-reactive-streams-operators-api-3.0.jar
+│   │   │       ├── org.freemarker.freemarker-2.3.32.jar
+│   │   │       ├── org.glassfish.jaxb.jaxb-core-4.0.4.jar
+│   │   │       ├── org.glassfish.jaxb.jaxb-runtime-4.0.4.jar
+│   │   │       ├── org.glassfish.jaxb.txw2-4.0.4.jar
+│   │   │       ├── org.hdrhistogram.HdrHistogram-2.1.12.jar
+│   │   │       ├── org.hibernate.common.hibernate-commons-annotations-6.0.6.Final.jar
+│   │   │       ├── org.hibernate.orm.hibernate-core-6.4.4.Final.jar
+│   │   │       ├── org.hibernate.orm.hibernate-graalvm-6.4.4.Final.jar
+│   │   │       ├── org.hibernate.quarkus-local-cache-0.3.0.jar
+│   │   │       ├── org.infinispan.infinispan-cachestore-remote-14.0.27.Final.jar
+│   │   │       ├── org.infinispan.infinispan-client-hotrod-jakarta-14.0.27.Final.jar
+│   │   │       ├── org.infinispan.infinispan-commons-jakarta-14.0.27.Final.jar
+│   │   │       ├── org.infinispan.infinispan-core-jakarta-14.0.27.Final.jar
+│   │   │       ├── org.infinispan.infinispan-jboss-marshalling-14.0.27.Final.jar
+│   │   │       ├── org.infinispan.protostream.protostream-4.6.5.Final.jar
+│   │   │       ├── org.infinispan.protostream.protostream-types-4.6.5.Final.jar
+│   │   │       ├── org.javassist.javassist-3.29.1-GA.jar
+│   │   │       ├── org.jboss.invocation.jboss-invocation-2.0.0.Final.jar
+│   │   │       ├── org.jboss.jboss-transaction-spi-8.0.0.Final.jar
+│   │   │       ├── org.jboss.logging.commons-logging-jboss-logging-1.0.0.Final.jar
+│   │   │       ├── org.jboss.logging.jboss-logging-annotations-2.2.1.Final.jar
+│   │   │       ├── org.jboss.marshalling.jboss-marshalling-2.1.4.Final.jar
+│   │   │       ├── org.jboss.marshalling.jboss-marshalling-river-2.1.4.Final.jar
+│   │   │       ├── org.jboss.narayana.jta.narayana-jta-7.0.0.Final.jar
+│   │   │       ├── org.jboss.narayana.jts.narayana-jts-integration-7.0.0.Final.jar
+│   │   │       ├── org.jboss.resteasy.resteasy-core-spi-6.2.7.Final.jar
+│   │   │       ├── org.jboss.slf4j.slf4j-jboss-logmanager-2.0.0.Final.jar
+│   │   │       ├── org.jboss.threads.jboss-threads-3.5.1.Final.jar
+│   │   │       ├── org.jgroups.jgroups-5.2.23.Final.jar
+│   │   │       ├── org.jvnet.staxex.stax-ex-2.0.1.jar
+│   │   │       ├── org.keycloak.keycloak-account-ui-24.0.4.jar
+│   │   │       ├── org.keycloak.keycloak-admin-ui-24.0.4.jar
+│   │   │       ├── org.keycloak.keycloak-authz-policy-common-24.0.4.jar
+│   │   │       ├── org.keycloak.keycloak-common-24.0.4.jar
+│   │   │       ├── org.keycloak.keycloak-config-api-24.0.4.jar
+│   │   │       ├── org.keycloak.keycloak-core-24.0.4.jar
+│   │   │       ├── org.keycloak.keycloak-crypto-default-24.0.4.jar
+│   │   │       ├── org.keycloak.keycloak-crypto-fips1402-24.0.4.jar
+│   │   │       ├── org.keycloak.keycloak-js-adapter-jar-24.0.4.jar
+│   │   │       ├── org.keycloak.keycloak-kerberos-federation-24.0.4.jar
+│   │   │       ├── org.keycloak.keycloak-ldap-federation-24.0.4.jar
+│   │   │       ├── org.keycloak.keycloak-model-infinispan-24.0.4.jar
+│   │   │       ├── org.keycloak.keycloak-model-jpa-24.0.4.jar
+│   │   │       ├── org.keycloak.keycloak-model-legacy-24.0.4.jar
+│   │   │       ├── org.keycloak.keycloak-model-storage-24.0.4.jar
+│   │   │       ├── org.keycloak.keycloak-model-storage-private-24.0.4.jar
+│   │   │       ├── org.keycloak.keycloak-model-storage-services-24.0.4.jar
+│   │   │       ├── org.keycloak.keycloak-quarkus-server-24.0.4.jar
+│   │   │       ├── org.keycloak.keycloak-rest-admin-ui-ext-24.0.4.jar
+│   │   │       ├── org.keycloak.keycloak-saml-core-24.0.4.jar
+│   │   │       ├── org.keycloak.keycloak-saml-core-public-24.0.4.jar
+│   │   │       ├── org.keycloak.keycloak-server-spi-24.0.4.jar
+│   │   │       ├── org.keycloak.keycloak-server-spi-private-24.0.4.jar
+│   │   │       ├── org.keycloak.keycloak-services-24.0.4.jar
+│   │   │       ├── org.keycloak.keycloak-sssd-federation-24.0.4.jar
+│   │   │       ├── org.keycloak.keycloak-themes-24.0.4.jar
+│   │   │       ├── org.latencyutils.LatencyUtils-2.0.3.jar
+│   │   │       ├── org.liquibase.liquibase-core-4.25.1.jar
+│   │   │       ├── org.locationtech.jts.jts-core-1.17.0.jar
+│   │   │       ├── org.mariadb.jdbc.mariadb-java-client-3.3.3.jar
+│   │   │       ├── org.openjdk.nashorn.nashorn-core-15.4.jar
+│   │   │       ├── org.ow2.asm.asm-9.6.jar
+│   │   │       ├── org.ow2.asm.asm-analysis-9.6.jar
+│   │   │       ├── org.ow2.asm.asm-commons-9.6.jar
+│   │   │       ├── org.ow2.asm.asm-tree-9.6.jar
+│   │   │       ├── org.ow2.asm.asm-util-9.6.jar
+│   │   │       ├── org.postgresql.postgresql-42.7.2.jar
+│   │   │       ├── org.reactivestreams.reactive-streams-1.0.4.jar
+│   │   │       ├── org.slf4j.slf4j-api-2.0.6.jar
+│   │   │       ├── org.snakeyaml.snakeyaml-engine-2.6.jar
+│   │   │       ├── org.twitter4j.twitter4j-core-4.1.2.jar
+│   │   │       ├── org.wildfly.common.wildfly-common-1.5.4.Final-format-001.jar
+│   │   │       ├── org.wildfly.security.wildfly-elytron-asn1-2.2.3.Final.jar
+│   │   │       ├── org.wildfly.security.wildfly-elytron-auth-2.2.3.Final.jar
+│   │   │       ├── org.wildfly.security.wildfly-elytron-auth-server-2.2.3.Final.jar
+│   │   │       ├── org.wildfly.security.wildfly-elytron-base-2.2.3.Final.jar
+│   │   │       ├── org.wildfly.security.wildfly-elytron-credential-2.2.3.Final.jar
+│   │   │       ├── org.wildfly.security.wildfly-elytron-http-2.2.3.Final.jar
+│   │   │       ├── org.wildfly.security.wildfly-elytron-keystore-2.2.3.Final.jar
+│   │   │       ├── org.wildfly.security.wildfly-elytron-mechanism-2.2.3.Final.jar
+│   │   │       ├── org.wildfly.security.wildfly-elytron-mechanism-digest-2.2.3.Final.jar
+│   │   │       ├── org.wildfly.security.wildfly-elytron-mechanism-gssapi-2.2.3.Final.jar
+│   │   │       ├── org.wildfly.security.wildfly-elytron-mechanism-oauth2-2.2.3.Final.jar
+│   │   │       ├── org.wildfly.security.wildfly-elytron-mechanism-scram-2.2.3.Final.jar
+│   │   │       ├── org.wildfly.security.wildfly-elytron-password-impl-2.2.3.Final.jar
+│   │   │       ├── org.wildfly.security.wildfly-elytron-permission-2.2.3.Final.jar
+│   │   │       ├── org.wildfly.security.wildfly-elytron-provider-util-2.2.3.Final.jar
+│   │   │       ├── org.wildfly.security.wildfly-elytron-sasl-2.2.3.Final.jar
+│   │   │       ├── org.wildfly.security.wildfly-elytron-sasl-digest-2.2.3.Final.jar
+│   │   │       ├── org.wildfly.security.wildfly-elytron-sasl-external-2.2.3.Final.jar
+│   │   │       ├── org.wildfly.security.wildfly-elytron-sasl-gs2-2.2.3.Final.jar
+│   │   │       ├── org.wildfly.security.wildfly-elytron-sasl-gssapi-2.2.3.Final.jar
+│   │   │       ├── org.wildfly.security.wildfly-elytron-sasl-oauth2-2.2.3.Final.jar
+│   │   │       ├── org.wildfly.security.wildfly-elytron-sasl-plain-2.2.3.Final.jar
+│   │   │       ├── org.wildfly.security.wildfly-elytron-sasl-scram-2.2.3.Final.jar
+│   │   │       ├── org.wildfly.security.wildfly-elytron-security-manager-action-2.2.3.Final.jar
+│   │   │       ├── org.wildfly.security.wildfly-elytron-ssl-2.2.3.Final.jar
+│   │   │       ├── org.wildfly.security.wildfly-elytron-util-2.2.3.Final.jar
+│   │   │       ├── org.wildfly.security.wildfly-elytron-x500-2.2.3.Final.jar
+│   │   │       ├── org.wildfly.security.wildfly-elytron-x500-cert-2.2.3.Final.jar
+│   │   │       ├── org.wildfly.security.wildfly-elytron-x500-cert-util-2.2.3.Final.jar
+│   │   │       └── org.yaml.snakeyaml-2.0.jar
+│   │   ├── quarkus
+│   │   │   ├── build-system.properties
+│   │   │   ├── generated-bytecode.jar
+│   │   │   ├── quarkus-application.dat
+│   │   │   └── transformed-bytecode.jar
+│   │   └── quarkus-run.jar
+│   ├── providers
+│   │   └── README.md
+│   ├── scripts
+│   │   └── create_experts_accounts.py
+│   ├── system.properties
+│   ├── themes
+│   │   └── README.md
+│   └── version.txt
+├── outils
+│   ├── data
+│   │   └── augmentation
+│   │       ├── .env.example
+│   │       ├── .gitignore
+│   │       ├── README.md
+│   │       ├── db.py
+│   │       ├── main.py
+│   │       └── requirements.txt
+│   └── suggestions
+│       └── learning_betas
+│           ├── README.md
+│           ├── datasets
+│           │   └── training_dataset_example.json
+│           ├── learning_betas.py
+│           ├── load_dataset.py
+│           ├── outputs
+│           │   └── results_dataset_example.json
+│           └── requirements.txt
+├── site-public
+│   └── statics
+│       └── index.html
+└── test-db
+    └── init-scripts
+        ├── 01-configure.sql
+        ├── 02-mps_test_db.sql
+        └── 03-mps_ref_test_db.sql
+611 directories, 1535 files
