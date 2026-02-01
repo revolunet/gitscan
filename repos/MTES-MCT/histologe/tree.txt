@@ -1,0 +1,2613 @@
+.
+├── .buildpacks
+├── .docker
+│   ├── matomo
+│   │   ├── db.env
+│   │   └── update-config-ini.sh
+│   ├── mysql
+│   │   └── init.sql
+│   ├── nginx
+│   │   ├── Dockerfile
+│   │   └── default.conf
+│   ├── php-fpm
+│   │   └── Dockerfile
+│   ├── php-worker
+│   │   ├── Dockerfile
+│   │   └── supervisord.conf
+│   └── scalingo-job
+│       ├── Dockerfile
+│       └── sync-db.sh
+├── .env
+├── .env.sample
+├── .github
+│   ├── pull_request_template.md
+│   └── workflows
+│       ├── main.yml
+│       └── playwright.yml
+├── .gitignore
+├── .npmrc
+├── .php-cs-fixer.dist.php
+├── .prettierrc
+├── .scalingo
+│   └── nginx
+│       └── server.location
+├── .slugignore
+├── LICENSE
+├── Makefile
+├── Procfile
+├── README.md
+├── assets
+│   ├── bootstrap.js
+│   ├── controllers.json
+│   ├── files
+│   │   ├── 1_Demande_de_transmission_d_une_copie_d_un_DPE.docx
+│   │   ├── 2_Information_au_bailleur_Mise_en_conformite.docx
+│   │   ├── 3_Mise_en_demeure.docx
+│   │   ├── 4_Invitation_a_contacter_l_ADIL.docx
+│   │   ├── 5_Engagement_du_bailleur_a_realiser_des_travaux.docx
+│   │   ├── 6_Saisine_de_la_Commission_departementale_de_conciliation.docx
+│   │   ├── Engagement_du_bailleur_a_realiser_des_travaux.docx
+│   │   ├── GUIDE-QUI-REPARE-QUI-ENTRETIENT-Ministere2016-1.pdf
+│   │   ├── Grille-visite.pdf
+│   │   ├── Lettre-information-proprietaire-bailleur_A-COMPLETER.pdf
+│   │   └── zone_modele.csv
+│   ├── json
+│   │   └── Signalement
+│   │       ├── desordres_profile_occupant.json
+│   │       ├── desordres_profile_tiers.json
+│   │       ├── dictionary.json
+│   │       ├── empty.json
+│   │       ├── questions_profile_bailleur.json
+│   │       ├── questions_profile_bailleur_occupant.json
+│   │       ├── questions_profile_locataire.json
+│   │       ├── questions_profile_service_secours.json
+│   │       ├── questions_profile_tiers_particulier.json
+│   │       ├── questions_profile_tiers_pro.json
+│   │       └── questions_profile_tous.json
+│   ├── scripts
+│   │   ├── app-back-bo.ts
+│   │   ├── app-front-signalement-form.ts
+│   │   ├── app-front-stats.ts
+│   │   ├── app.ts
+│   │   ├── base-import.ts
+│   │   ├── vanilla
+│   │   │   ├── controllers
+│   │   │   │   ├── activate_account
+│   │   │   │   │   └── activate_account.js
+│   │   │   │   ├── back_api_user
+│   │   │   │   │   └── back_api_user.js
+│   │   │   │   ├── back_archived_signalements
+│   │   │   │   │   └── back_archived_signalements_reactiver.js
+│   │   │   │   ├── back_archived_users_index
+│   │   │   │   │   └── back_archived_users_index.js
+│   │   │   │   ├── back_auto_affectation_rule
+│   │   │   │   │   └── form_auto_affectation_rule.js
+│   │   │   │   ├── back_bailleur_view
+│   │   │   │   │   └── back_bailleur_index.js
+│   │   │   │   ├── back_dashboard
+│   │   │   │   │   ├── back_dashboard.js
+│   │   │   │   │   ├── filter_handler.js
+│   │   │   │   │   ├── sort_handler.js
+│   │   │   │   │   └── tabs_loader.js
+│   │   │   │   ├── back_partner_index
+│   │   │   │   │   └── back_partner_index.js
+│   │   │   │   ├── back_partner_view
+│   │   │   │   │   └── form_partner.js
+│   │   │   │   ├── back_profil_edit_email
+│   │   │   │   │   └── back_profil_edit_email.js
+│   │   │   │   ├── back_signalement_edit_file
+│   │   │   │   │   └── back_signalement_edit_file.js
+│   │   │   │   ├── back_signalement_form
+│   │   │   │   │   └── back_signalement_form.js
+│   │   │   │   ├── back_signalement_list_export
+│   │   │   │   │   └── back_signalement_list_export.js
+│   │   │   │   ├── back_signalement_view
+│   │   │   │   │   ├── back_view_signalement.js
+│   │   │   │   │   ├── form_acceptation_refus.js
+│   │   │   │   │   ├── form_cloture_modal.js
+│   │   │   │   │   ├── form_upload_documents.js
+│   │   │   │   │   ├── input_autocomplete_bailleur.js
+│   │   │   │   │   ├── pick-localisation.js
+│   │   │   │   │   ├── toggle-suivi-auto.js
+│   │   │   │   │   └── zip_selection_photos.js
+│   │   │   │   ├── back_territory_management_document
+│   │   │   │   │   └── back_territory_management_document_index.js
+│   │   │   │   ├── back_territory_view
+│   │   │   │   │   └── back_territory_index.js
+│   │   │   │   ├── back_user_index
+│   │   │   │   │   └── form_user.js
+│   │   │   │   ├── back_zone_view
+│   │   │   │   │   └── back_zone_index.js
+│   │   │   │   ├── environment.js
+│   │   │   │   ├── form_account.js
+│   │   │   │   ├── form_nde.js
+│   │   │   │   ├── form_notification.js
+│   │   │   │   ├── form_visite.js
+│   │   │   │   ├── front_demande_lien_signalement
+│   │   │   │   │   └── front_demande_lien_signalement.js
+│   │   │   │   ├── front_dossier_bailleur
+│   │   │   │   │   └── front_dossier_bailleur.js
+│   │   │   │   └── front_suivi_signalement
+│   │   │   │       ├── front_suivi_signalement.js
+│   │   │   │       └── front_suivi_signalement_message.js
+│   │   │   └── services
+│   │   │       ├── bo_modales.js
+│   │   │       ├── component
+│   │   │       │   ├── component_json_response_handler.js
+│   │   │       │   ├── component_phone_number_row.js
+│   │   │       │   ├── component_search_address.js
+│   │   │       │   ├── component_search_and_select_badges.js
+│   │   │       │   ├── component_search_autocomplete.js
+│   │   │       │   ├── component_search_checkbox.js
+│   │   │       │   └── component_select_all_checkbox.js
+│   │   │       ├── cookie
+│   │   │       │   ├── cookie_banner.js
+│   │   │       │   ├── cookie_matomo_tracking.js
+│   │   │       │   └── cookie_utils.js
+│   │   │       ├── deprecated
+│   │   │       │   └── table_sortable.js
+│   │   │       ├── file
+│   │   │       │   └── file_delete.js
+│   │   │       ├── form
+│   │   │       │   ├── ajax_form_handler.js
+│   │   │       │   └── form_helper.js
+│   │   │       ├── maintenance_banner.js
+│   │   │       └── ui
+│   │   │           ├── list_filter_helper.js
+│   │   │           ├── metabase_resizer.js
+│   │   │           ├── modales_helper.js
+│   │   │           ├── notice_helper.js
+│   │   │           ├── responsive_array.js
+│   │   │           └── tabs_manager.js
+│   │   └── vue
+│   │       ├── components
+│   │       │   ├── common
+│   │       │   │   ├── AppAutoComplete.vue
+│   │       │   │   ├── AppNumber.vue
+│   │       │   │   ├── AppSearch.vue
+│   │       │   │   ├── HistoBOTabHeader.vue
+│   │       │   │   ├── HistoButton.vue
+│   │       │   │   ├── HistoCheckbox.vue
+│   │       │   │   ├── HistoFranceMap.vue
+│   │       │   │   ├── HistoInterfaceSelectOption.ts
+│   │       │   │   ├── HistoMultiSelect.vue
+│   │       │   │   ├── HistoSelect.vue
+│   │       │   │   └── external
+│   │       │   │       ├── HistoDataTable.vue
+│   │       │   │       ├── HistoDatePicker.vue
+│   │       │   │       └── chartjs
+│   │       │   │           ├── HistoChartBar.vue
+│   │       │   │           ├── HistoChartDoughnut.vue
+│   │       │   │           ├── HistoChartLine.vue
+│   │       │   │           └── HistoChartPie.vue
+│   │       │   ├── front-stats
+│   │       │   │   ├── TheHistoAppFrontStats.vue
+│   │       │   │   ├── TheHistoFrontStatsDetailsItem.vue
+│   │       │   │   ├── TheHistoFrontStatsGlobal.vue
+│   │       │   │   ├── TheHistoFrontStatsTerritory.vue
+│   │       │   │   ├── TheHistoFrontStatsTerritoryItem.vue
+│   │       │   │   ├── TheHistoFrontStatsYearToggle.vue
+│   │       │   │   ├── requests.ts
+│   │       │   │   └── store.ts
+│   │       │   ├── signalement-form
+│   │       │   │   ├── TheSignalementAppForm.vue
+│   │       │   │   ├── address_subscreen.json
+│   │       │   │   ├── components
+│   │       │   │   │   ├── SignalementFormAddress.vue
+│   │       │   │   │   ├── SignalementFormAutocomplete.vue
+│   │       │   │   │   ├── SignalementFormBreadCrumbs.vue
+│   │       │   │   │   ├── SignalementFormButton.vue
+│   │       │   │   │   ├── SignalementFormCheckbox.vue
+│   │       │   │   │   ├── SignalementFormComponentGenerator.vue
+│   │       │   │   │   ├── SignalementFormConfirmation.vue
+│   │       │   │   │   ├── SignalementFormCounter.vue
+│   │       │   │   │   ├── SignalementFormDate.vue
+│   │       │   │   │   ├── SignalementFormDisorderCategoryItem.vue
+│   │       │   │   │   ├── SignalementFormDisorderCategoryList.vue
+│   │       │   │   │   ├── SignalementFormDisorderOverview.vue
+│   │       │   │   │   ├── SignalementFormEmailfield.vue
+│   │       │   │   │   ├── SignalementFormIcon.vue
+│   │       │   │   │   ├── SignalementFormInfo.vue
+│   │       │   │   │   ├── SignalementFormLink.vue
+│   │       │   │   │   ├── SignalementFormModal.vue
+│   │       │   │   │   ├── SignalementFormModalAlreadyExists.vue
+│   │       │   │   │   ├── SignalementFormModalBackHome.vue
+│   │       │   │   │   ├── SignalementFormOnlyChoice.vue
+│   │       │   │   │   ├── SignalementFormOverview.vue
+│   │       │   │   │   ├── SignalementFormParagraph.vue
+│   │       │   │   │   ├── SignalementFormParagraphList.vue
+│   │       │   │   │   ├── SignalementFormPhonefield.vue
+│   │       │   │   │   ├── SignalementFormRoomList.vue
+│   │       │   │   │   ├── SignalementFormScreen.vue
+│   │       │   │   │   ├── SignalementFormSelect.vue
+│   │       │   │   │   ├── SignalementFormSubscreen.vue
+│   │       │   │   │   ├── SignalementFormTextarea.vue
+│   │       │   │   │   ├── SignalementFormTextfield.vue
+│   │       │   │   │   ├── SignalementFormTime.vue
+│   │       │   │   │   ├── SignalementFormUpload.vue
+│   │       │   │   │   ├── SignalementFormUploadDocuments.vue
+│   │       │   │   │   ├── SignalementFormUploadPhotos.vue
+│   │       │   │   │   ├── SignalementFormWarning.vue
+│   │       │   │   │   └── SignalementFormYear.vue
+│   │       │   │   ├── countries.ts
+│   │       │   │   ├── dictionary-store.ts
+│   │       │   │   ├── interfaces
+│   │       │   │   │   ├── interfaceComponent.ts
+│   │       │   │   │   ├── interfaceCountryPhoneItem.ts
+│   │       │   │   │   ├── interfaceMenuItem.ts
+│   │       │   │   │   ├── interfacePictureDescription.ts
+│   │       │   │   │   └── interfaceZoneComponents.ts
+│   │       │   │   ├── matomo.ts
+│   │       │   │   ├── requests.ts
+│   │       │   │   ├── services
+│   │       │   │   │   ├── componentValidator.ts
+│   │       │   │   │   ├── dictionaryManager.ts
+│   │       │   │   │   ├── disorderScreenNavigator.ts
+│   │       │   │   │   ├── profileUpdater.ts
+│   │       │   │   │   ├── subscreenManager.ts
+│   │       │   │   │   └── variableReplacer.ts
+│   │       │   │   └── store.ts
+│   │       │   ├── signalement-view
+│   │       │   │   ├── TheSignalementAppList.vue
+│   │       │   │   ├── TheSignalementCartoApp.vue
+│   │       │   │   ├── components
+│   │       │   │   │   ├── SignalementListCards.vue
+│   │       │   │   │   ├── SignalementListHeader.vue
+│   │       │   │   │   ├── SignalementListPagination.vue
+│   │       │   │   │   ├── SignalementViewCarto.vue
+│   │       │   │   │   ├── SignalementViewFilters.vue
+│   │       │   │   │   ├── SignalementViewModalEditSearch.vue
+│   │       │   │   │   └── SignalementViewModalSaveSearch.vue
+│   │       │   │   ├── interfaces
+│   │       │   │   │   ├── SearchInterfaceSelectOption.ts
+│   │       │   │   │   ├── filters.ts
+│   │       │   │   │   ├── queryParameter.ts
+│   │       │   │   │   ├── signalementItem.ts
+│   │       │   │   │   └── signalementMarkerOptions.ts
+│   │       │   │   ├── requests.ts
+│   │       │   │   ├── services
+│   │       │   │   │   └── badgeFilterLabelBuilder.ts
+│   │       │   │   ├── store.ts
+│   │       │   │   └── utils
+│   │       │   │       └── signalementUtils.ts
+│   │       │   └── stats
+│   │       │       ├── TheHistoAppStats.vue
+│   │       │       ├── TheHistoStatsDetails.vue
+│   │       │       ├── TheHistoStatsDetailsItem.vue
+│   │       │       ├── TheHistoStatsFilters.vue
+│   │       │       ├── TheHistoStatsGlobal.vue
+│   │       │       ├── requests.ts
+│   │       │       └── store.ts
+│   │       ├── front-stats.ts
+│   │       ├── img
+│   │       │   ├── fr--warning-fill.svg
+│   │       │   └── france-map.svg
+│   │       ├── index.ts
+│   │       ├── signalement-carto.ts
+│   │       ├── signalement-form.ts
+│   │       ├── signalement-list.ts
+│   │       └── utils
+│   │           └── variableTester.ts
+│   ├── shims-tsx.d.ts
+│   ├── shims-vue.d.ts
+│   ├── styles
+│   │   └── histologe.scss
+│   └── tsconfig.json
+├── bin
+│   ├── console
+│   └── phpunit
+├── clamav
+│   └── data
+│       └── PDF_Malicious_PDF_JS_Heuristics.yar
+├── composer.json
+├── composer.lock
+├── config
+│   ├── app
+│   │   ├── competences.yaml
+│   │   ├── cron_scheduler.yaml
+│   │   ├── csp.yaml
+│   │   └── suivi_messages.yaml
+│   ├── bundles.php
+│   ├── packages
+│   │   ├── cache.yaml
+│   │   ├── clamav.yaml
+│   │   ├── dev
+│   │   │   ├── debug.yaml
+│   │   │   ├── monolog.yaml
+│   │   │   └── web_profiler.yaml
+│   │   ├── doctrine.yaml
+│   │   ├── doctrine_migrations.yaml
+│   │   ├── flysystem.yaml
+│   │   ├── framework.yaml
+│   │   ├── html_sanitizer.yaml
+│   │   ├── lock.yaml
+│   │   ├── mailer.yaml
+│   │   ├── messenger.yaml
+│   │   ├── nelmio_api_doc.yaml
+│   │   ├── notifier.yaml
+│   │   ├── prod
+│   │   │   ├── deprecations.yaml
+│   │   │   ├── doctrine.yaml
+│   │   │   └── monolog.yaml
+│   │   ├── rate_limiter.yaml
+│   │   ├── routing.yaml
+│   │   ├── scheb_2fa.yaml
+│   │   ├── security.yaml
+│   │   ├── sentry.yaml
+│   │   ├── test
+│   │   │   ├── dama_doctrine_test_bundle.yaml
+│   │   │   ├── doctrine.yaml
+│   │   │   ├── monolog.yaml
+│   │   │   └── validator.yaml
+│   │   ├── translation.yaml
+│   │   ├── twig.yaml
+│   │   ├── url_signer.yaml
+│   │   ├── validator.yaml
+│   │   ├── webpack_encore.yaml
+│   │   └── workflow.yaml
+│   ├── preload.php
+│   ├── reference.php
+│   ├── routes
+│   │   ├── dev
+│   │   │   └── web_profiler.yaml
+│   │   ├── framework.yaml
+│   │   ├── nelmio_api_doc.yaml
+│   │   └── scheb_2fa.yaml
+│   ├── routes.yaml
+│   ├── services.yaml
+│   └── services_test.yaml
+├── cron.json
+├── docker-compose.tools.yml
+├── docker-compose.yml
+├── docs
+│   ├── API.md
+│   ├── ARCHITECTURE.md
+│   ├── CONTRIBUTING.md
+│   ├── EXPLOITATION.md
+│   ├── SECURITY.md
+│   ├── assets
+│   │   ├── archi-histologe.jpg
+│   │   ├── diagramme-ci.svg
+│   │   ├── diagramme-commit.svg
+│   │   ├── diagramme-deploiement.svg
+│   │   ├── schema-bdd-affectation.png
+│   │   ├── schema-bdd-notification.png
+│   │   ├── schema-bdd-signalement-1-desordres.png
+│   │   ├── schema-bdd-signalement-2-desordres.png
+│   │   ├── schema-bdd-signalement-autres.png
+│   │   ├── schema-bdd-user.png
+│   │   └── schema-bdd.svg
+│   └── incident-response
+│       ├── README.md
+│       ├── procedure-database-deletion.md
+│       ├── procedure-dns-compromission.md
+│       ├── template-postmortem.md
+│       └── template-procedure.md
+├── eslint.vanilla.config.mjs
+├── eslint.vue.config.mjs
+├── grumphp.yml
+├── migrations
+│   ├── .gitignore
+│   └── Version*.php  (72 files)
+├── package-lock.json
+├── package.json
+├── phpstan.neon
+├── phpunit.xml.dist
+├── public
+│   ├── error.html
+│   ├── favicon.ico
+│   ├── fonts
+│   │   ├── Marianne-Bold.woff
+│   │   ├── Marianne-Bold.woff2
+│   │   ├── Marianne-Bold_Italic.woff
+│   │   ├── Marianne-Bold_Italic.woff2
+│   │   ├── Marianne-Light.woff
+│   │   ├── Marianne-Light.woff2
+│   │   ├── Marianne-Light_Italic.woff
+│   │   ├── Marianne-Light_Italic.woff2
+│   │   ├── Marianne-Medium.woff
+│   │   ├── Marianne-Medium.woff2
+│   │   ├── Marianne-Medium_Italic.woff
+│   │   ├── Marianne-Medium_Italic.woff2
+│   │   ├── Marianne-Regular.woff
+│   │   ├── Marianne-Regular.woff2
+│   │   ├── Marianne-Regular_Italic.woff
+│   │   ├── Marianne-Regular_Italic.woff2
+│   │   ├── Spectral-ExtraBold.woff
+│   │   ├── Spectral-ExtraBold.woff2
+│   │   ├── Spectral-Regular.woff
+│   │   └── Spectral-Regular.woff2
+│   ├── img
+│   │   ├── doc-file-403.png
+│   │   ├── easter
+│   │   │   └── casper.png
+│   │   ├── favicon.ico
+│   │   ├── form
+│   │   │   ├── BATIMENT
+│   │   │   │   ├── Picto-accessibilite_et_alentours.svg
+│   │   │   │   ├── Picto-batiment.svg
+│   │   │   │   ├── Picto-bruit_pollution_sonore.svg
+│   │   │   │   ├── Picto-eau_evacuation.svg
+│   │   │   │   ├── Picto-isolation_batiment.svg
+│   │   │   │   ├── Picto-maintenance_equipement.svg
+│   │   │   │   ├── Picto-presence_nuisibles.svg
+│   │   │   │   ├── Picto-proprete_entretien.svg
+│   │   │   │   ├── Picto-protection_incendie.svg
+│   │   │   │   └── Picto-securite_risque_chute.svg
+│   │   │   ├── LOGEMENT
+│   │   │   │   ├── Picto-aeration_ventilation.svg
+│   │   │   │   ├── Picto-bruit_pollution_sonore.svg
+│   │   │   │   ├── Picto-chauffage_isolation.svg
+│   │   │   │   ├── Picto-eau_evacuation.svg
+│   │   │   │   ├── Picto-electricite.svg
+│   │   │   │   ├── Picto-humidite_moisissure.svg
+│   │   │   │   ├── Picto-logement.svg
+│   │   │   │   ├── Picto-lumiere_naturelle.svg
+│   │   │   │   ├── Picto-presence_nuisibles.svg
+│   │   │   │   ├── Picto-proprete.svg
+│   │   │   │   └── Picto-securite.svg
+│   │   │   ├── PIECES
+│   │   │   │   ├── Picto-SDB.svg
+│   │   │   │   ├── Picto-SDB_WC.svg
+│   │   │   │   ├── Picto-WC.svg
+│   │   │   │   ├── Picto-chambre.svg
+│   │   │   │   ├── Picto-cuisine.svg
+│   │   │   │   └── Picto-salon.svg
+│   │   │   └── screens
+│   │   │       ├── adresse_coordonnees-colors.svg
+│   │   │       ├── adresse_coordonnees.svg
+│   │   │       ├── desordres.svg
+│   │   │       ├── procedure-colors.svg
+│   │   │       ├── procedure.svg
+│   │   │       ├── situation_foyer .svg
+│   │   │       ├── situation_foyer-colors.svg
+│   │   │       ├── type_composition_logement-colors.svg
+│   │   │       └── type_composition_logement.svg
+│   │   ├── grave-actif.svg
+│   │   ├── home
+│   │   │   ├── step-1.svg
+│   │   │   ├── step-2.svg
+│   │   │   ├── step-3.svg
+│   │   │   └── step-4.svg
+│   │   ├── image-404.png
+│   │   ├── index.html
+│   │   ├── logo-signal-logement-small.original.svg
+│   │   ├── logo-signal-logement.svg
+│   │   ├── moyen-actif.svg
+│   │   ├── picto-dsfr
+│   │   │   ├── calendar.svg
+│   │   │   ├── community.svg
+│   │   │   ├── conclusion.svg
+│   │   │   ├── connection-lost.svg
+│   │   │   ├── cuisine.svg
+│   │   │   ├── document-search.svg
+│   │   │   ├── document.svg
+│   │   │   ├── electricite.svg
+│   │   │   ├── error.svg
+│   │   │   ├── file-csv.svg
+│   │   │   ├── file-xls.svg
+│   │   │   ├── house.svg
+│   │   │   ├── information.svg
+│   │   │   ├── mail-send.svg
+│   │   │   ├── notification.svg
+│   │   │   ├── organisation-logement.svg
+│   │   │   ├── paint.svg
+│   │   │   ├── presse-card.svg
+│   │   │   ├── salon.svg
+│   │   │   ├── sdb-wc.svg
+│   │   │   ├── success.svg
+│   │   │   ├── system.svg
+│   │   │   └── warning.svg
+│   │   ├── sample_resize.png
+│   │   ├── sample_thumb.png
+│   │   ├── technical-error.svg
+│   │   └── tres-grave-actif.svg
+│   ├── index.php
+│   ├── js
+│   │   ├── wellknown.js
+│   │   └── zone_map.js
+│   ├── robots.txt
+│   └── service-secours
+│       ├── android-chrome-192x192.png
+│       ├── android-chrome-512x512.png
+│       ├── apple-touch-icon.png
+│       ├── favicon-16x16.png
+│       ├── favicon-32x32.png
+│       ├── favicon.ico
+│       └── site.webmanifest
+├── scalingo.json
+├── scripts
+│   ├── clean.sh
+│   ├── postdeploy.sh
+│   ├── retry-failed-interconnection.sh
+│   ├── sync-db.sh
+│   ├── sync-esabora-sish.sh
+│   └── upload-s3.sh
+├── src
+│   ├── Command
+│   │   ├── Clock
+│   │   │   └── ScheduledTaskCommand.php
+│   │   ├── CreateSignalementPhotoVariantsCommand.php
+│   │   ├── Cron
+│   │   │   ├── AbstractCronCommand.php
+│   │   │   ├── AbstractSynchronizeEsaboraCommand.php
+│   │   │   ├── AnonymizeExpiredAccountCommand.php
+│   │   │   ├── AskFeedbackUsagerCommand.php
+│   │   │   ├── ClearEntitiesCommand.php
+│   │   │   ├── ClearStorageOriginalFileCommand.php
+│   │   │   ├── ClearStorageTmpFolderCommand.php
+│   │   │   ├── Handler
+│   │   │   │   └── ClearEntitiesHandler.php
+│   │   │   ├── MonitorMessengerQueuesCommand.php
+│   │   │   ├── NotifyAndArchiveInactiveAccountCommand.php
+│   │   │   ├── NotifyVisitsCommand.php
+│   │   │   ├── RemindInactiveUserCommand.php
+│   │   │   ├── RemindInjonctionSignalementCommand.php
+│   │   │   ├── RemindPendingDraftsCommand.php
+│   │   │   ├── ResetInjonctionNoResponseCommand.php
+│   │   │   ├── RetryFailedEmailsCommand.php
+│   │   │   ├── RetryFailedPushCommand.php
+│   │   │   ├── SendSuiviWaitingNotificationCommand.php
+│   │   │   ├── SendSummaryEmailsCommand.php
+│   │   │   ├── SynchronizeEsaboraSCHSCommand.php
+│   │   │   ├── SynchronizeEsaboraSISHCommand.php
+│   │   │   ├── SynchronizeIdossCommand.php
+│   │   │   └── SynchronizeInterventionSISHCommand.php
+│   │   ├── ImportBailleurCommand.php
+│   │   ├── ImportGridAffectationCommand.php
+│   │   ├── ImportSignalementCommand.php
+│   │   ├── LoadEpciCommand.php
+│   │   ├── MergePartnersCommand.php
+│   │   ├── PushEsaboraDossierCommand.php
+│   │   ├── PushIdossDossierCommand.php
+│   │   ├── ReinitAdminPasswordsCommand.php
+│   │   ├── ScanFilesCommand.php
+│   │   ├── SlugifyDocumentSignalementCommand.php
+│   │   ├── Temp
+│   │   │   ├── .gitignore
+│   │   │   └── RemoveImportedSignalementDeuxSevresCommand.php
+│   │   ├── UpdateCommunesCommand.php
+│   │   └── UpdateSignalementDocumentFieldsCommand.php
+│   ├── Controller
+│   │   ├── .gitignore
+│   │   ├── Api
+│   │   │   ├── AffectationUpdateController.php
+│   │   │   ├── ArreteCreateController.php
+│   │   │   ├── SignalementCreateController.php
+│   │   │   ├── SignalementFileUpdateController.php
+│   │   │   ├── SignalementFileUploadController.php
+│   │   │   ├── SignalementListController.php
+│   │   │   ├── SuiviCreateController.php
+│   │   │   ├── UserGetMeController.php
+│   │   │   ├── VisiteCreateController.php
+│   │   │   └── VisiteUploadDocumentsController.php
+│   │   ├── Back
+│   │   │   ├── AdminTerritoryFilesController.php
+│   │   │   ├── AffectationController.php
+│   │   │   ├── AnnuaireController.php
+│   │   │   ├── ArchivedSignalementController.php
+│   │   │   ├── AutoAffectationRuleController.php
+│   │   │   ├── AutoAssignerSimulatorController.php
+│   │   │   ├── BackAffectationWithoutSubscriptionController.php
+│   │   │   ├── BackArchivedPartnerController.php
+│   │   │   ├── BackArchivedUsersController.php
+│   │   │   ├── BackBailleurController.php
+│   │   │   ├── BackSignalementQualificationController.php
+│   │   │   ├── BackStatistiquesController.php
+│   │   │   ├── BackTerritoryController.php
+│   │   │   ├── BackZoneController.php
+│   │   │   ├── CartographieController.php
+│   │   │   ├── CguController.php
+│   │   │   ├── ConfigClubEventController.php
+│   │   │   ├── DashboardController.php
+│   │   │   ├── DashboardTabPanelController.php
+│   │   │   ├── ExportSignalementController.php
+│   │   │   ├── HistoryEntryController.php
+│   │   │   ├── InterconnexionController.php
+│   │   │   ├── MetabaseController.php
+│   │   │   ├── NotificationController.php
+│   │   │   ├── PartnerController.php
+│   │   │   ├── PopNotificationController.php
+│   │   │   ├── ProfilController.php
+│   │   │   ├── RialToolController.php
+│   │   │   ├── SettingsController.php
+│   │   │   ├── SignalementActionController.php
+│   │   │   ├── SignalementController.php
+│   │   │   ├── SignalementCreateController.php
+│   │   │   ├── SignalementEditController.php
+│   │   │   ├── SignalementFileController.php
+│   │   │   ├── SignalementFileGenerateZipController.php
+│   │   │   ├── SignalementInjonctionController.php
+│   │   │   ├── SignalementListController.php
+│   │   │   ├── SignalementVisitesController.php
+│   │   │   ├── SitemapController.php
+│   │   │   ├── SuiviSummariesController.php
+│   │   │   ├── TagController.php
+│   │   │   ├── TerritoryFilesController.php
+│   │   │   ├── TerritoryManagementController.php
+│   │   │   ├── UserApiPermissionController.php
+│   │   │   ├── UserController.php
+│   │   │   └── UserSearchFilterController.php
+│   │   ├── BailleurController.php
+│   │   ├── DocApiController.php
+│   │   ├── FileController.php
+│   │   ├── HomepageController.php
+│   │   ├── IframeController.php
+│   │   ├── QuestionController.php
+│   │   ├── Security
+│   │   │   ├── CspReportController.php
+│   │   │   ├── ProConnectController.php
+│   │   │   ├── SecurityController.php
+│   │   │   └── UserAccountController.php
+│   │   ├── SendEmailController.php
+│   │   ├── ServiceSecours
+│   │   │   └── ServiceSecoursController.php
+│   │   ├── SignalementController.php
+│   │   ├── SignalementFileController.php
+│   │   ├── StatistiquesController.php
+│   │   ├── SuiviBailleurController.php
+│   │   └── Webhook
+│   │       └── BrevoWebhookController.php
+│   ├── DataFixtures
+│   │   ├── Files
+│   │   │   ├── Affectation.yml
+│   │   │   ├── AutoAffectationRule.yml
+│   │   │   ├── Bailleur.yml
+│   │   │   ├── ClubEvent.yml
+│   │   │   ├── Critere.yml
+│   │   │   ├── Criticite.yml
+│   │   │   ├── DesordreCategorie.yml
+│   │   │   ├── DesordreCritere.yml
+│   │   │   ├── DesordrePrecision.yml
+│   │   │   ├── EmailDeliveryIssue.yml
+│   │   │   ├── Epci.yml
+│   │   │   ├── Intervention.yml
+│   │   │   ├── JobEvent.yml
+│   │   │   ├── NewSignalement.yml
+│   │   │   ├── Notification.yml
+│   │   │   ├── Partner.yml
+│   │   │   ├── Signalement.yml
+│   │   │   ├── SignalementDraft.yml
+│   │   │   ├── Situation.yml
+│   │   │   ├── Suivi.yml
+│   │   │   ├── Tag.yml
+│   │   │   ├── Territory.yml
+│   │   │   ├── User.yml
+│   │   │   ├── UserApiPermission.yml
+│   │   │   ├── Zone.yml
+│   │   │   ├── codespostaux.csv
+│   │   │   └── signalement_draft_payload
+│   │   │       ├── bailleur.json
+│   │   │       ├── bailleur_occupant.json
+│   │   │       ├── locataire.json
+│   │   │       ├── locataire_all_in.json
+│   │   │       ├── service_secours.json
+│   │   │       ├── step
+│   │   │       │   ├── info_procedure_bail
+│   │   │       │   │   └── tiers_particulier.json
+│   │   │       │   └── validation_signalement
+│   │   │       │       ├── bailleur.json
+│   │   │       │       ├── bailleur_occupant.json
+│   │   │       │       ├── locataire.json
+│   │   │       │       └── service_secours.json
+│   │   │       ├── tiers_particulier.json
+│   │   │       └── tiers_pro.json
+│   │   ├── Images
+│   │   │   ├── sample.heic
+│   │   │   └── sample.png
+│   │   └── Loader
+│   │       ├── LoadAffectationData.php
+│   │       ├── LoadAutoAffectationRuleData.php
+│   │       ├── LoadBailleurData.php
+│   │       ├── LoadClubEventData.php
+│   │       ├── LoadCommuneData.php
+│   │       ├── LoadCritereData.php
+│   │       ├── LoadCriticiteData.php
+│   │       ├── LoadDesordreCategorieData.php
+│   │       ├── LoadDesordreCritereData.php
+│   │       ├── LoadDesordrePrecisionData.php
+│   │       ├── LoadEmailDeliveryIssue.php
+│   │       ├── LoadEpciData.php
+│   │       ├── LoadFileData.php
+│   │       ├── LoadInterventionData.php
+│   │       ├── LoadJobEventData.php
+│   │       ├── LoadNotification.php
+│   │       ├── LoadPartnerData.php
+│   │       ├── LoadSignalementData.php
+│   │       ├── LoadSignalementDraft.php
+│   │       ├── LoadSituationData.php
+│   │       ├── LoadSuiviData.php
+│   │       ├── LoadTagData.php
+│   │       ├── LoadTerritoryData.php
+│   │       ├── LoadUserApiPermission.php
+│   │       ├── LoadUserData.php
+│   │       └── LoadZoneData.php
+│   ├── Dto
+│   │   ├── AgentSelection.php
+│   │   ├── Api
+│   │   │   ├── Model
+│   │   │   │   ├── Adresse.php
+│   │   │   │   ├── Affectation.php
+│   │   │   │   ├── Desordre.php
+│   │   │   │   ├── File.php
+│   │   │   │   ├── Partner.php
+│   │   │   │   ├── Personne.php
+│   │   │   │   ├── Suivi.php
+│   │   │   │   └── Visite.php
+│   │   │   ├── Request
+│   │   │   │   ├── AffectationRequest.php
+│   │   │   │   ├── ArreteRequest.php
+│   │   │   │   ├── DesordrePrecisionLibreRequest.php
+│   │   │   │   ├── DesordreRequest.php
+│   │   │   │   ├── FileRequest.php
+│   │   │   │   ├── FilesUploadRequest.php
+│   │   │   │   ├── RequestFileInterface.php
+│   │   │   │   ├── RequestInterface.php
+│   │   │   │   ├── SignalementListQueryParams.php
+│   │   │   │   ├── SignalementRequest.php
+│   │   │   │   ├── SuiviRequest.php
+│   │   │   │   └── VisiteRequest.php
+│   │   │   └── Response
+│   │   │       ├── AffectationResponse.php
+│   │   │       ├── ArreteResponse.php
+│   │   │       ├── SignalementResponse.php
+│   │   │       ├── SuiviResponse.php
+│   │   │       └── UserMeResponse.php
+│   │   ├── Command
+│   │   │   └── CommandContext.php
+│   │   ├── CountPartner.php
+│   │   ├── DemandeLienSignalement.php
+│   │   ├── NotificationSuiviUser.php
+│   │   ├── RefusAffectation.php
+│   │   ├── RefusSignalement.php
+│   │   ├── ReponseInjonctionBailleur.php
+│   │   ├── Request
+│   │   │   ├── Signalement
+│   │   │   │   ├── AdresseOccupantRequest.php
+│   │   │   │   ├── CompositionLogementRequest.php
+│   │   │   │   ├── CoordonneesAgenceRequest.php
+│   │   │   │   ├── CoordonneesBailleurRequest.php
+│   │   │   │   ├── CoordonneesFoyerRequest.php
+│   │   │   │   ├── CoordonneesTiersRequest.php
+│   │   │   │   ├── GenerateFileZipSelectionRequest.php
+│   │   │   │   ├── InformationsLogementRequest.php
+│   │   │   │   ├── InviteTiersRequest.php
+│   │   │   │   ├── ProcedureDemarchesRequest.php
+│   │   │   │   ├── QualificationNDERequest.php
+│   │   │   │   ├── RequestInterface.php
+│   │   │   │   ├── SignalementDraftRequest.php
+│   │   │   │   ├── SignalementSearchQuery.php
+│   │   │   │   ├── SituationFoyerRequest.php
+│   │   │   │   └── VisiteRequest.php
+│   │   │   └── UserSearchFilterRequest.php
+│   │   ├── Settings.php
+│   │   ├── SignalementAffectationClose.php
+│   │   ├── SignalementAffectationListView.php
+│   │   ├── SignalementExport.php
+│   │   ├── StatisticsFilters.php
+│   │   ├── StopProcedure.php
+│   │   └── SuiviCategory.php
+│   ├── Entity
+│   │   ├── .gitignore
+│   │   ├── Affectation.php
+│   │   ├── ApiUserToken.php
+│   │   ├── AutoAffectationRule.php
+│   │   ├── Bailleur.php
+│   │   ├── BailleurTerritory.php
+│   │   ├── Behaviour
+│   │   │   ├── EntityHistoryCollectionInterface.php
+│   │   │   ├── EntityHistoryInterface.php
+│   │   │   ├── EntitySanitizerInterface.php
+│   │   │   ├── EnumTrait.php
+│   │   │   └── TimestampableTrait.php
+│   │   ├── ClubEvent.php
+│   │   ├── Commune.php
+│   │   ├── Critere.php
+│   │   ├── Criticite.php
+│   │   ├── DesordreCategorie.php
+│   │   ├── DesordreCritere.php
+│   │   ├── DesordrePrecision.php
+│   │   ├── DoctrineType
+│   │   │   └── Signalement
+│   │   │       ├── InformationComplementaireType.php
+│   │   │       ├── InformationProcedureType.php
+│   │   │       ├── SituationFoyerType.php
+│   │   │       └── TypeCompositionLogementType.php
+│   │   ├── EmailDeliveryIssue.php
+│   │   ├── Enum
+│   │   │   ├── AffectationStatus.php
+│   │   │   ├── Api
+│   │   │   │   └── PersonneType.php
+│   │   │   ├── BrevoEvent.php
+│   │   │   ├── ChauffageType.php
+│   │   │   ├── DebutDesordres.php
+│   │   │   ├── DesordreCritereZone.php
+│   │   │   ├── DocumentType.php
+│   │   │   ├── EtageType.php
+│   │   │   ├── HistoryEntryEvent.php
+│   │   │   ├── InterfacageType.php
+│   │   │   ├── InterventionType.php
+│   │   │   ├── MotifCloture.php
+│   │   │   ├── MotifRefus.php
+│   │   │   ├── MoyenContact.php
+│   │   │   ├── NotificationType.php
+│   │   │   ├── OccupantLink.php
+│   │   │   ├── PartnerType.php
+│   │   │   ├── ProcedureType.php
+│   │   │   ├── ProfileDeclarant.php
+│   │   │   ├── ProprioType.php
+│   │   │   ├── Qualification.php
+│   │   │   ├── QualificationStatus.php
+│   │   │   ├── SISHDossierType.php
+│   │   │   ├── SignalementDraftStatus.php
+│   │   │   ├── SignalementStatus.php
+│   │   │   ├── SuiviCategory.php
+│   │   │   ├── UserStatus.php
+│   │   │   ├── VisiteStatus.php
+│   │   │   └── ZoneType.php
+│   │   ├── Epci.php
+│   │   ├── FailedEmail.php
+│   │   ├── File.php
+│   │   ├── HistoryEntry.php
+│   │   ├── Intervention.php
+│   │   ├── JobEvent.php
+│   │   ├── Model
+│   │   │   ├── InformationComplementaire.php
+│   │   │   ├── InformationProcedure.php
+│   │   │   ├── SituationFoyer.php
+│   │   │   └── TypeCompositionLogement.php
+│   │   ├── Notification.php
+│   │   ├── Partner.php
+│   │   ├── PopNotification.php
+│   │   ├── Signalement.php
+│   │   ├── SignalementDraft.php
+│   │   ├── SignalementQualification.php
+│   │   ├── SignalementUsager.php
+│   │   ├── Situation.php
+│   │   ├── Suivi.php
+│   │   ├── SuiviFile.php
+│   │   ├── Tag.php
+│   │   ├── Territory.php
+│   │   ├── User.php
+│   │   ├── UserApiPermission.php
+│   │   ├── UserPartner.php
+│   │   ├── UserSearchFilter.php
+│   │   ├── UserSignalementSubscription.php
+│   │   ├── View
+│   │   │   └── ViewLatestIntervention.php
+│   │   └── Zone.php
+│   ├── Event
+│   │   ├── AffectationAnsweredEvent.php
+│   │   ├── AffectationClosedEvent.php
+│   │   ├── AffectationCreatedEvent.php
+│   │   ├── FileUploadedEvent.php
+│   │   ├── InterventionCreatedEvent.php
+│   │   ├── InterventionEditedEvent.php
+│   │   ├── InterventionRescheduledEvent.php
+│   │   ├── InterventionUpdatedByEsaboraEvent.php
+│   │   ├── SignalementClosedEvent.php
+│   │   ├── SignalementDraftCompletedEvent.php
+│   │   ├── SignalementViewedEvent.php
+│   │   ├── SuiviCreatedEvent.php
+│   │   └── SuiviViewedEvent.php
+│   ├── EventListener
+│   │   ├── AuthentificationSuccessListener.php
+│   │   ├── Behaviour
+│   │   │   └── DoctrineListenerRemoverTrait.php
+│   │   ├── ConsoleCommandListener.php
+│   │   ├── ContentSecurityPolicyListener.php
+│   │   ├── EntityHistoryListener.php
+│   │   ├── EntitySanitizerListener.php
+│   │   ├── ExceptionListener.php
+│   │   ├── InterventionEditedListener.php
+│   │   ├── MaintenanceListener.php
+│   │   ├── RequestApiExceptionListener.php
+│   │   ├── SecurityApiExceptionListener.php
+│   │   ├── SeoPageNotFoundRedirectListener.php
+│   │   ├── SignalementUpdatedListener.php
+│   │   ├── SuiviCreatedListener.php
+│   │   ├── SuiviTransformerListener.php
+│   │   └── UserCreatedListener.php
+│   ├── EventSubscriber
+│   │   ├── AffectationAnsweredSubscriber.php
+│   │   ├── AffectationClosedSubscriber.php
+│   │   ├── AffectationCreatedSubscriber.php
+│   │   ├── ApiLimiterSubscriber.php
+│   │   ├── ApiRequestIdSubscriber.php
+│   │   ├── FileUploadedSubscriber.php
+│   │   ├── HistoryEntryFlushSubscriber.php
+│   │   ├── InterventionAbortedSubscriber.php
+│   │   ├── InterventionCanceledSubscriber.php
+│   │   ├── InterventionConfirmedSubscriber.php
+│   │   ├── InterventionCreatedSubscriber.php
+│   │   ├── InterventionEditedSubscriber.php
+│   │   ├── InterventionRescheduledSubscriber.php
+│   │   ├── InterventionUpdatedByEsaboraSubscriber.php
+│   │   ├── LogoutSubscriber.php
+│   │   ├── MailerSubscriber.php
+│   │   ├── SignalementClosedSubscriber.php
+│   │   ├── SignalementDraftCompletedSubscriber.php
+│   │   ├── SignalementViewedSubscriber.php
+│   │   ├── SuiviCreatedSubscriber.php
+│   │   └── WorkerMessageEventSubscriber.php
+│   ├── Exception
+│   │   ├── File
+│   │   │   ├── EmptyFileException.php
+│   │   │   ├── MaxUploadSizeExceededException.php
+│   │   │   └── UnsupportedFileFormatException.php
+│   │   ├── ProConnect
+│   │   │   └── ProConnectException.php
+│   │   ├── Signalement
+│   │   │   ├── DesordreTraitementProcessorNotFound.php
+│   │   │   └── PrecisionNotFound.php
+│   │   ├── Suivi
+│   │   │   └── UsagerNotificationRequiredException.php
+│   │   └── User
+│   │       └── UserEmailNotFoundException.php
+│   ├── Factory
+│   │   ├── Api
+│   │   │   ├── FileFactory.php
+│   │   │   ├── SignalementResponseFactory.php
+│   │   │   └── VisiteFactory.php
+│   │   ├── CommuneFactory.php
+│   │   ├── FileFactory.php
+│   │   ├── HistoryEntryFactory.php
+│   │   ├── Interconnection
+│   │   │   ├── DossierMessageFactoryInterface.php
+│   │   │   ├── Esabora
+│   │   │   │   ├── AbstractDossierMessageFactory.php
+│   │   │   │   ├── DossierMessageSCHSFactory.php
+│   │   │   │   └── DossierMessageSISHFactory.php
+│   │   │   ├── Idoss
+│   │   │   │   └── DossierMessageFactory.php
+│   │   │   └── Oilhi
+│   │   │       └── DossierMessageFactory.php
+│   │   ├── InterventionFactory.php
+│   │   ├── NotificationFactory.php
+│   │   ├── PartnerFactory.php
+│   │   ├── SettingsFactory.php
+│   │   ├── Signalement
+│   │   │   ├── InformationComplementaireFactory.php
+│   │   │   ├── InformationProcedureFactory.php
+│   │   │   ├── SituationFoyerFactory.php
+│   │   │   └── TypeCompositionLogementFactory.php
+│   │   ├── SignalementAffectationListViewFactory.php
+│   │   ├── SignalementDraftFactory.php
+│   │   ├── SignalementExportFactory.php
+│   │   ├── SignalementFactory.php
+│   │   ├── SignalementQualificationFactory.php
+│   │   ├── SignalementSearchQueryFactory.php
+│   │   ├── SignalementVisiteRequestFactory.php
+│   │   └── UserFactory.php
+│   ├── Form
+│   │   ├── AddSuiviType.php
+│   │   ├── AddTagType.php
+│   │   ├── AgentSelectionType.php
+│   │   ├── AutoAffectationRuleType.php
+│   │   ├── BailleurType.php
+│   │   ├── ClotureType.php
+│   │   ├── ClubEventType.php
+│   │   ├── CoordonneesBailleurType.php
+│   │   ├── DemandeLienSignalementType.php
+│   │   ├── EditTagType.php
+│   │   ├── MessageUsagerType.php
+│   │   ├── PartnerPerimetreType.php
+│   │   ├── PartnerType.php
+│   │   ├── RefusAffectationType.php
+│   │   ├── RefusSignalementType.php
+│   │   ├── ReponseInjonctionBailleurType.php
+│   │   ├── SearchAffectationWithoutSubscriptionType.php
+│   │   ├── SearchAnnuaireAgentType.php
+│   │   ├── SearchArchivedPartnerType.php
+│   │   ├── SearchArchivedSignalementType.php
+│   │   ├── SearchArchivedUserType.php
+│   │   ├── SearchAutoAffectationRuleType.php
+│   │   ├── SearchBailleurType.php
+│   │   ├── SearchClubEventType.php
+│   │   ├── SearchDashboardAverifierType.php
+│   │   ├── SearchDraftType.php
+│   │   ├── SearchInterconnexionType.php
+│   │   ├── SearchNotificationType.php
+│   │   ├── SearchPartnerType.php
+│   │   ├── SearchSignalementInjonctionType.php
+│   │   ├── SearchTagType.php
+│   │   ├── SearchTerritoryFilesType.php
+│   │   ├── SearchUserType.php
+│   │   ├── SearchZoneType.php
+│   │   ├── ServiceSecoursType.php
+│   │   ├── SignalementDraftAddressType.php
+│   │   ├── SignalementDraftCoordonneesType.php
+│   │   ├── SignalementDraftDesordresType.php
+│   │   ├── SignalementDraftLogementType.php
+│   │   ├── SignalementDraftSituationType.php
+│   │   ├── StopProcedureType.php
+│   │   ├── SuiviSummariesType.php
+│   │   ├── TerritoryFileType.php
+│   │   ├── Type
+│   │   │   ├── PhoneType.php
+│   │   │   ├── SearchAutocompleteType.php
+│   │   │   ├── SearchCheckboxEnumType.php
+│   │   │   ├── SearchCheckboxType.php
+│   │   │   └── TerritoryChoiceType.php
+│   │   ├── UsagerBasculeProcedureType.php
+│   │   ├── UsagerCancelProcedureType.php
+│   │   ├── UsagerCoordonneesTiersType.php
+│   │   ├── UsagerPoursuivreProcedureType.php
+│   │   ├── UserApiPermissionType.php
+│   │   ├── UserApiType.php
+│   │   ├── UserNotificationEmailType.php
+│   │   ├── UserPartnerEmailType.php
+│   │   ├── UserPartnerType.php
+│   │   ├── UserProfilInfoType.php
+│   │   ├── UserType.php
+│   │   └── ZoneType.php
+│   ├── FormHandler
+│   │   └── ContactFormHandler.php
+│   ├── Kernel.php
+│   ├── Manager
+│   │   ├── AbstractManager.php
+│   │   ├── AffectationManager.php
+│   │   ├── AutoAffectationRuleManager.php
+│   │   ├── CommuneManager.php
+│   │   ├── DesordreCritereManager.php
+│   │   ├── FailedEmailManager.php
+│   │   ├── FileManager.php
+│   │   ├── HistoryEntryManager.php
+│   │   ├── InterventionManager.php
+│   │   ├── JobEventManager.php
+│   │   ├── Manager.php
+│   │   ├── ManagerInterface.php
+│   │   ├── PartnerManager.php
+│   │   ├── PopNotificationManager.php
+│   │   ├── SignalementDraftManager.php
+│   │   ├── SignalementManager.php
+│   │   ├── SignalementUsagerManager.php
+│   │   ├── SuiviManager.php
+│   │   ├── TagManager.php
+│   │   ├── TerritoryManager.php
+│   │   ├── UserManager.php
+│   │   └── UserSignalementSubscriptionManager.php
+│   ├── Messenger
+│   │   ├── InterconnectionBus.php
+│   │   ├── Message
+│   │   │   ├── DossierMessageInterface.php
+│   │   │   ├── Esabora
+│   │   │   │   ├── DossierMessageSCHS.php
+│   │   │   │   └── DossierMessageSISH.php
+│   │   │   ├── FileDuplicationMessage.php
+│   │   │   ├── GenerateFileZipMessage.php
+│   │   │   ├── Idoss
+│   │   │   │   └── DossierMessage.php
+│   │   │   ├── InactiveUserExportMessage.php
+│   │   │   ├── ListExportMessage.php
+│   │   │   ├── NewSignalementCheckFileMessage.php
+│   │   │   ├── Oilhi
+│   │   │   │   └── DossierMessage.php
+│   │   │   ├── PdfExportMessage.php
+│   │   │   ├── SignalementDraftProcessMessage.php
+│   │   │   ├── SuiviSummariesMessage.php
+│   │   │   └── UserExportMessage.php
+│   │   └── MessageHandler
+│   │       ├── Esabora
+│   │       │   ├── DossierMessageSCHSHandler.php
+│   │       │   └── DossierMessageSISHHandler.php
+│   │       ├── FileDuplicationMessageHandler.php
+│   │       ├── GenerateFileZipMessageHandler.php
+│   │       ├── Idoss
+│   │       │   └── DossierMessageHandler.php
+│   │       ├── InactiveUserExportMessageHandler.php
+│   │       ├── ListExportMessageHandler.php
+│   │       ├── NewSignalementCheckFileMessageHandler.php
+│   │       ├── Oilhi
+│   │       │   └── DossierMessageHandler.php
+│   │       ├── PdfExportMessageHandler.php
+│   │       ├── SignalementAddressUpdateAndAutoAssignMessageHandler.php
+│   │       ├── SignalementDraftFileMessageHandler.php
+│   │       ├── SuiviSummariesMessageHandler.php
+│   │       └── UserExportMessageHandler.php
+│   ├── Repository
+│   │   ├── AffectationRepository.php
+│   │   ├── ApiUserTokenRepository.php
+│   │   ├── AutoAffectationRuleRepository.php
+│   │   ├── BailleurRepository.php
+│   │   ├── BailleurTerritoryRepository.php
+│   │   ├── Behaviour
+│   │   │   ├── EntityCleanerRepositoryInterface.php
+│   │   │   └── MessengerFailedCleaner.php
+│   │   ├── ClubEventRepository.php
+│   │   ├── CommuneRepository.php
+│   │   ├── CritereRepository.php
+│   │   ├── CriticiteRepository.php
+│   │   ├── DesordreCategorieRepository.php
+│   │   ├── DesordreCritereRepository.php
+│   │   ├── DesordrePrecisionRepository.php
+│   │   ├── EmailDeliveryIssueRepository.php
+│   │   ├── EpciRepository.php
+│   │   ├── FailedEmailRepository.php
+│   │   ├── FileRepository.php
+│   │   ├── HistoryEntryRepository.php
+│   │   ├── InterventionRepository.php
+│   │   ├── JobEventRepository.php
+│   │   ├── NotificationRepository.php
+│   │   ├── PartnerRepository.php
+│   │   ├── PopNotificationRepository.php
+│   │   ├── Query
+│   │   │   ├── EmailAlert
+│   │   │   │   ├── PartnerQueryService.php
+│   │   │   │   └── UserQueryService.php
+│   │   │   └── SignalementList
+│   │   │       ├── ExportIterableQuery.php
+│   │   │       ├── ListPaginatorQuery.php
+│   │   │       ├── MapGeoDataQuery.php
+│   │   │       └── QueryBuilderFactory.php
+│   │   ├── SignalementDraftRepository.php
+│   │   ├── SignalementQualificationRepository.php
+│   │   ├── SignalementRepository.php
+│   │   ├── SignalementUsagerRepository.php
+│   │   ├── SituationRepository.php
+│   │   ├── SuiviFileRepository.php
+│   │   ├── SuiviRepository.php
+│   │   ├── TagRepository.php
+│   │   ├── TerritoryRepository.php
+│   │   ├── UserApiPermissionRepository.php
+│   │   ├── UserPartnerRepository.php
+│   │   ├── UserRepository.php
+│   │   ├── UserSearchFilterRepository.php
+│   │   ├── UserSignalementSubscriptionRepository.php
+│   │   └── ZoneRepository.php
+│   ├── Security
+│   │   ├── Authenticator
+│   │   │   ├── CodeSuiviLoginAuthenticator.php
+│   │   │   ├── FormLoginAuthenticator.php
+│   │   │   ├── JsonLoginAuthenticator.php
+│   │   │   ├── LoginBailleurAuthenticator.php
+│   │   │   └── TokenAuthenticator.php
+│   │   ├── Provider
+│   │   │   ├── SignalementBailleurProvider.php
+│   │   │   └── SignalementUserProvider.php
+│   │   ├── User
+│   │   │   ├── SignalementBailleur.php
+│   │   │   └── SignalementUser.php
+│   │   └── Voter
+│   │       ├── AffectationVoter.php
+│   │       ├── Api
+│   │       │   ├── ApiAffectationVoter.php
+│   │       │   ├── ApiFileVoter.php
+│   │       │   ├── ApiInterventionVoter.php
+│   │       │   └── ApiSignalementPartnerVoter.php
+│   │       ├── FileVoter.php
+│   │       ├── InjonctionBailleurVoter.php
+│   │       ├── InterventionVoter.php
+│   │       ├── PartnerVoter.php
+│   │       ├── SignalementFoVoter.php
+│   │       ├── SignalementVoter.php
+│   │       ├── SuiviVoter.php
+│   │       ├── TabPanelVoter.php
+│   │       ├── TagVoter.php
+│   │       ├── TerritoryVoter.php
+│   │       ├── UserVoter.php
+│   │       └── ZoneVoter.php
+│   ├── Serializer
+│   │   ├── SignalementDraftRequestNormalizer.php
+│   │   └── SignalementDraftRequestSerializer.php
+│   ├── Service
+│   │   ├── ApiLogger.php
+│   │   ├── Behaviour
+│   │   │   └── SearchQueryTrait.php
+│   │   ├── ClubEventService.php
+│   │   ├── DashboardTabPanel
+│   │   │   ├── Kpi
+│   │   │   │   ├── CountAfermer.php
+│   │   │   │   ├── CountDossiersAVerifier.php
+│   │   │   │   ├── CountDossiersMessagesUsagers.php
+│   │   │   │   ├── CountNouveauxDossiers.php
+│   │   │   │   ├── TabCountKpi.php
+│   │   │   │   ├── TabCountKpiBuilder.php
+│   │   │   │   └── TabCountKpiCacheHelper.php
+│   │   │   ├── TabBody.php
+│   │   │   ├── TabBodyLoader
+│   │   │   │   ├── AbstractTabBodyLoader.php
+│   │   │   │   ├── DossierDemandesFermetureUsagerTabBodyLoader.php
+│   │   │   │   ├── DossiersActiviteRecenteTabBodyLoader.php
+│   │   │   │   ├── DossiersAdresseEmailAverifierTabBodyLoader.php
+│   │   │   │   ├── DossiersDernierActionTabBodyLoader.php
+│   │   │   │   ├── DossiersFermePartenaireTousTabBodyLoader.php
+│   │   │   │   ├── DossiersFormProTabBodyLoader.php
+│   │   │   │   ├── DossiersFormUsagerTabBodyLoader.php
+│   │   │   │   ├── DossiersMessagesApresFermetureTabBodyLoader.php
+│   │   │   │   ├── DossiersMessagesNouveauxTabBodyLoader.php
+│   │   │   │   ├── DossiersMessagesUsagersSansReponseTabBodyLoader.php
+│   │   │   │   ├── DossiersNewAffectationTabBodyLoader.php
+│   │   │   │   ├── DossiersNoAgentTabBodyLoader.php
+│   │   │   │   ├── DossiersNonAffectationTabBodyLoader.php
+│   │   │   │   ├── DossiersRelanceUsagerSansReponseTabBodyLoader.php
+│   │   │   │   ├── DossiersSansActivitePartenaireTabBodyLoader.php
+│   │   │   │   └── TabBodyLoaderInterface.php
+│   │   │   ├── TabBodyLoaderCollection.php
+│   │   │   ├── TabBodyType.php
+│   │   │   ├── TabDataManager.php
+│   │   │   ├── TabDossier.php
+│   │   │   ├── TabDossierResult.php
+│   │   │   └── TabQueryParameters.php
+│   │   ├── EmailAlertChecker.php
+│   │   ├── FileListService.php
+│   │   ├── FileVisibilityService.php
+│   │   ├── Files
+│   │   │   ├── DocumentProvider.php
+│   │   │   ├── FilenameGenerator.php
+│   │   │   ├── ImageBase64Encoder.php
+│   │   │   ├── ImageVariantProvider.php
+│   │   │   ├── ZipHelper.php
+│   │   │   └── ZipStreamBuilder.php
+│   │   ├── FormHelper.php
+│   │   ├── Gouv
+│   │   │   ├── Ban
+│   │   │   │   ├── AddressService.php
+│   │   │   │   └── Response
+│   │   │   │       └── Address.php
+│   │   │   ├── ProConnect
+│   │   │   │   ├── Model
+│   │   │   │   │   ├── JWK.php
+│   │   │   │   │   └── ProConnectUser.php
+│   │   │   │   ├── ProConnectAuthentication.php
+│   │   │   │   ├── ProConnectContext.php
+│   │   │   │   ├── ProConnectHttpClient.php
+│   │   │   │   ├── ProConnectJwtParser.php
+│   │   │   │   ├── ProConnectJwtValidator.php
+│   │   │   │   ├── Request
+│   │   │   │   │   ├── AuthorizationRequest.php
+│   │   │   │   │   ├── CallbackRequest.php
+│   │   │   │   │   ├── LogoutRequest.php
+│   │   │   │   │   └── OAuth2TokenRequest.php
+│   │   │   │   └── Response
+│   │   │   │       ├── DiscoveryEndpointsResponse.php
+│   │   │   │       ├── JWKSResponse.php
+│   │   │   │       └── OAuth2TokenResponse.php
+│   │   │   ├── Rial
+│   │   │   │   ├── Request
+│   │   │   │   │   ├── RialHeaders.php
+│   │   │   │   │   └── RialSearchLocauxParams.php
+│   │   │   │   └── RialService.php
+│   │   │   └── Rnb
+│   │   │       ├── Response
+│   │   │       │   └── RnbBuilding.php
+│   │   │       └── RnbService.php
+│   │   ├── History
+│   │   │   ├── EntityComparator.php
+│   │   │   └── HistoryEntryBuffer.php
+│   │   ├── HtmlCleaner.php
+│   │   ├── HtmlTargetContentsService.php
+│   │   ├── ImageManipulationHandler.php
+│   │   ├── Import
+│   │   │   ├── Bailleur
+│   │   │   │   ├── BailleurHeader.php
+│   │   │   │   └── BailleurLoader.php
+│   │   │   ├── CsvParser.php
+│   │   │   ├── CsvWriter.php
+│   │   │   ├── GridAffectation
+│   │   │   │   ├── GridAffectationHeader.php
+│   │   │   │   └── GridAffectationLoader.php
+│   │   │   └── Signalement
+│   │   │       ├── SignalementImportImageHeader.php
+│   │   │       ├── SignalementImportLoader.php
+│   │   │       └── SignalementImportMapper.php
+│   │   ├── InactiveUserExportLoader.php
+│   │   ├── InjonctionBailleur
+│   │   │   ├── BailleurLoginCodeGenerator.php
+│   │   │   ├── CourrierBailleurGenerator.php
+│   │   │   ├── EngagementTravauxBailleurGenerator.php
+│   │   │   └── InjonctionBailleurService.php
+│   │   ├── Interconnection
+│   │   │   ├── Esabora
+│   │   │   │   ├── AbstractEsaboraService.php
+│   │   │   │   ├── AttachmentsUtils.php
+│   │   │   │   ├── CiviliteMapper.php
+│   │   │   │   ├── DateParser.php
+│   │   │   │   ├── Enum
+│   │   │   │   │   ├── EsaboraStatus.php
+│   │   │   │   │   ├── PersonneQualite.php
+│   │   │   │   │   └── PersonneType.php
+│   │   │   │   ├── EsaboraManager.php
+│   │   │   │   ├── EsaboraSCHSService.php
+│   │   │   │   ├── EsaboraSISHService.php
+│   │   │   │   ├── EsaboraServiceInterface.php
+│   │   │   │   ├── Handler
+│   │   │   │   │   ├── AbstractDossierSISHHandler.php
+│   │   │   │   │   ├── DossierAdresseServiceHandler.php
+│   │   │   │   │   ├── DossierPersonneServiceHandler.php
+│   │   │   │   │   ├── DossierSISHHandlerInterface.php
+│   │   │   │   │   ├── DossierServiceHandler.php
+│   │   │   │   │   ├── InterventionArreteServiceHandler.php
+│   │   │   │   │   ├── InterventionSISHHandlerInterface.php
+│   │   │   │   │   └── InterventionVisiteServiceHandler.php
+│   │   │   │   ├── Model
+│   │   │   │   │   └── DossierMessageSISHPersonne.php
+│   │   │   │   └── Response
+│   │   │   │       ├── DossierArreteSISHCollectionResponse.php
+│   │   │   │       ├── DossierCollectionResponseInterface.php
+│   │   │   │       ├── DossierEventFilesSCHSResponse.php
+│   │   │   │       ├── DossierEventsSCHSCollectionResponse.php
+│   │   │   │       ├── DossierPushSISHResponse.php
+│   │   │   │       ├── DossierResponseInterface.php
+│   │   │   │       ├── DossierStateSCHSResponse.php
+│   │   │   │       ├── DossierStateSISHResponse.php
+│   │   │   │       ├── DossierVisiteSISHCollectionResponse.php
+│   │   │   │       └── Model
+│   │   │   │           ├── DossierArreteSISH.php
+│   │   │   │           ├── DossierEventSCHS.php
+│   │   │   │           └── DossierVisiteSISH.php
+│   │   │   ├── Idoss
+│   │   │   │   └── IdossService.php
+│   │   │   ├── JobEventHttpClient.php
+│   │   │   ├── JobEventMetaData.php
+│   │   │   └── Oilhi
+│   │   │       ├── HookZapierService.php
+│   │   │       └── Model
+│   │   │           └── Desordre.php
+│   │   ├── Intervention
+│   │   │   └── InterventionDescriptionGenerator.php
+│   │   ├── ListFilters
+│   │   │   ├── SearchAffectationWithoutSubscription.php
+│   │   │   ├── SearchAnnuaireAgent.php
+│   │   │   ├── SearchArchivedPartner.php
+│   │   │   ├── SearchArchivedSignalement.php
+│   │   │   ├── SearchArchivedUser.php
+│   │   │   ├── SearchAutoAffectationRule.php
+│   │   │   ├── SearchBailleur.php
+│   │   │   ├── SearchClubEvent.php
+│   │   │   ├── SearchDashboardAverifier.php
+│   │   │   ├── SearchDraft.php
+│   │   │   ├── SearchInterconnexion.php
+│   │   │   ├── SearchNotification.php
+│   │   │   ├── SearchPartner.php
+│   │   │   ├── SearchSignalementInjonction.php
+│   │   │   ├── SearchTag.php
+│   │   │   ├── SearchTerritory.php
+│   │   │   ├── SearchTerritoryFiles.php
+│   │   │   ├── SearchUser.php
+│   │   │   └── SearchZone.php
+│   │   ├── Mailer
+│   │   │   ├── AuthCodeMailer.php
+│   │   │   ├── Mail
+│   │   │   │   ├── AbstractNotificationMailer.php
+│   │   │   │   ├── Account
+│   │   │   │   │   ├── AccountActivationBoMailer.php
+│   │   │   │   │   ├── AccountActivationFoMailer.php
+│   │   │   │   │   ├── AccountActivationReminderMailer.php
+│   │   │   │   │   ├── AccountDeleteMailer.php
+│   │   │   │   │   ├── AccountLostPasswordMailer.php
+│   │   │   │   │   ├── AccountNewTerritoryMailer.php
+│   │   │   │   │   ├── AccountReactivationMailer.php
+│   │   │   │   │   ├── AccountRemoveFromTerritoryMailer.php
+│   │   │   │   │   ├── AccountTransferMailer.php
+│   │   │   │   │   ├── AccountUserSoonArchivedMailer.php
+│   │   │   │   │   └── AccountsSoonArchivedMailer.php
+│   │   │   │   ├── Contact
+│   │   │   │   │   └── ContactFormMailer.php
+│   │   │   │   ├── Cron
+│   │   │   │   │   └── CronMailer.php
+│   │   │   │   ├── Error
+│   │   │   │   │   └── ErrorSignalementMailer.php
+│   │   │   │   ├── NotificationMailerInterface.php
+│   │   │   │   ├── Profil
+│   │   │   │   │   ├── ProfilEditEmailMailer.php
+│   │   │   │   │   └── ProfilEditPasswordMailer.php
+│   │   │   │   ├── Signalement
+│   │   │   │   │   ├── AssignementNewMailer.php
+│   │   │   │   │   ├── ContinueFromDraftMailer.php
+│   │   │   │   │   ├── DownloadExportMailer.php
+│   │   │   │   │   ├── InactiveUserExportMailer.php
+│   │   │   │   │   ├── SignalementClosedToAllPartnersMailer.php
+│   │   │   │   │   ├── SignalementClosedToOnePartnerMailer.php
+│   │   │   │   │   ├── SignalementClosedToUsagerMailer.php
+│   │   │   │   │   ├── SignalementConfirmInjonctionBailleurMailer.php
+│   │   │   │   │   ├── SignalementConfirmInjonctionMailer.php
+│   │   │   │   │   ├── SignalementConfirmReceptionMailer.php
+│   │   │   │   │   ├── SignalementFeedbackUsagerThirdMailer.php
+│   │   │   │   │   ├── SignalementFeedbackUsagerWithResponseMailer.php
+│   │   │   │   │   ├── SignalementFeedbackUsagerWithoutResponseMailer.php
+│   │   │   │   │   ├── SignalementInviteTiersMailer.php
+│   │   │   │   │   ├── SignalementLienSuiviMailer.php
+│   │   │   │   │   ├── SignalementNewMailer.php
+│   │   │   │   │   ├── SignalementPdfExportMailer.php
+│   │   │   │   │   ├── SignalementRefusalMailer.php
+│   │   │   │   │   ├── SignalementReminderInjonctionBailleurMailer.php
+│   │   │   │   │   ├── SignalementSuiviSummariesExportMailer.php
+│   │   │   │   │   ├── SignalementUserExportMailer.php
+│   │   │   │   │   └── SignalementValidationMailer.php
+│   │   │   │   ├── SignalementDraft
+│   │   │   │   │   └── SignalementDraftPendingBailleurPrevenuMailer.php
+│   │   │   │   ├── Suivi
+│   │   │   │   │   ├── SuiviArreteToUsagerMailer.php
+│   │   │   │   │   ├── SuiviDemandeAbandonProcedureToAdminMailer.php
+│   │   │   │   │   ├── SuiviDemandeAbandonProcedureToOtherUsagerMailer.php
+│   │   │   │   │   ├── SuiviDemandeAbandonProcedureToUsagerMailer.php
+│   │   │   │   │   ├── SuiviNewCommentBackMailer.php
+│   │   │   │   │   ├── SuiviNewCommentFrontMailer.php
+│   │   │   │   │   ├── SuiviVisiteAbortedToPartnerMailer.php
+│   │   │   │   │   ├── SuiviVisiteAbortedToUsagerMailer.php
+│   │   │   │   │   ├── SuiviVisiteCanceledMailer.php
+│   │   │   │   │   ├── SuiviVisiteCanceledToUsagerMailer.php
+│   │   │   │   │   ├── SuiviVisiteConfirmedToPartnerMailer.php
+│   │   │   │   │   ├── SuiviVisiteConfirmedToUsagerMailer.php
+│   │   │   │   │   ├── SuiviVisiteCreatedToUsagerMailer.php
+│   │   │   │   │   ├── SuiviVisiteEditedToUsagerMailer.php
+│   │   │   │   │   ├── SuiviVisiteFutureReminderToPartnerMailer.php
+│   │   │   │   │   ├── SuiviVisiteFutureReminderToUsagerMailer.php
+│   │   │   │   │   ├── SuiviVisiteNeededMailer.php
+│   │   │   │   │   ├── SuiviVisitePastReminderToPartnerMailer.php
+│   │   │   │   │   └── SuiviVisiteRescheduledToUsagerMailer.php
+│   │   │   │   └── Summary
+│   │   │   │       └── NotificationSummaryMailer.php
+│   │   │   ├── NotificationMail.php
+│   │   │   ├── NotificationMailerRegistry.php
+│   │   │   ├── NotificationMailerType.php
+│   │   │   └── SummaryMailService.php
+│   │   ├── Menu
+│   │   │   ├── MenuBuilder.php
+│   │   │   └── MenuItem.php
+│   │   ├── MessageHelper.php
+│   │   ├── Metabase
+│   │   │   ├── DashboardFilter.php
+│   │   │   ├── DashboardFilterType.php
+│   │   │   ├── DashboardKey.php
+│   │   │   └── DashboardUrlGenerator.php
+│   │   ├── Notification
+│   │   │   └── NotificationCounter.php
+│   │   ├── NotificationAndMailSender.php
+│   │   ├── RequestDataExtractor.php
+│   │   ├── Sanitizer.php
+│   │   ├── Security
+│   │   │   ├── FileScanner.php
+│   │   │   ├── PartnerAuthorizedResolver.php
+│   │   │   └── TwoFactorCondition.php
+│   │   ├── Signalement
+│   │   │   ├── AutoAssigner.php
+│   │   │   ├── CriticiteCalculator.php
+│   │   │   ├── DescriptionFilesBuilder.php
+│   │   │   ├── DesordreTraitement
+│   │   │   │   ├── DesordreBatimentIsolationDernierEtageToit.php
+│   │   │   │   ├── DesordreBatimentIsolationInfiltrationEau.php
+│   │   │   │   ├── DesordreBatimentSecuriteEscalier.php
+│   │   │   │   ├── DesordreBatimentSecuriteMursFissures.php
+│   │   │   │   ├── DesordreBatimentSecuriteSol.php
+│   │   │   │   ├── DesordreCompositionLogementLoader.php
+│   │   │   │   ├── DesordreLogementAerationVentilationDefectueuse.php
+│   │   │   │   ├── DesordreLogementElectriciteManquePrises.php
+│   │   │   │   ├── DesordreLogementHumidite.php
+│   │   │   │   ├── DesordreLogementPlafondTropBas.php
+│   │   │   │   ├── DesordreLogementSecuritePlomb.php
+│   │   │   │   ├── DesordreTraitementInterface.php
+│   │   │   │   ├── DesordreTraitementNuisibles.php
+│   │   │   │   ├── DesordreTraitementOuiNon.php
+│   │   │   │   ├── DesordreTraitementPieces.php
+│   │   │   │   └── DesordreTraitementProcessor.php
+│   │   │   ├── Export
+│   │   │   │   ├── SignalementExportFiltersDisplay.php
+│   │   │   │   ├── SignalementExportHeader.php
+│   │   │   │   ├── SignalementExportLoader.php
+│   │   │   │   ├── SignalementExportPdfGenerator.php
+│   │   │   │   └── SignalementExportSelectableColumns.php
+│   │   │   ├── PhotoHelper.php
+│   │   │   ├── PostalCodeHomeChecker.php
+│   │   │   ├── Qualification
+│   │   │   │   ├── QualificationStatusService.php
+│   │   │   │   └── SignalementQualificationUpdater.php
+│   │   │   ├── ReferenceGenerator.php
+│   │   │   ├── SearchFilter.php
+│   │   │   ├── SearchFilterOptionDataProvider.php
+│   │   │   ├── SignalementAddressUpdater.php
+│   │   │   ├── SignalementAffectationHelper.php
+│   │   │   ├── SignalementApiFactory.php
+│   │   │   ├── SignalementBoManager.php
+│   │   │   ├── SignalementBuilder.php
+│   │   │   ├── SignalementDesordresProcessor.php
+│   │   │   ├── SignalementDocumentTypeMapper.php
+│   │   │   ├── SignalementDraftHelper.php
+│   │   │   ├── SignalementDuplicateChecker.php
+│   │   │   ├── SignalementFileProcessor.php
+│   │   │   ├── SignalementInputValueMapper.php
+│   │   │   ├── SignalementQualificationNde.php
+│   │   │   ├── SuiviHelper.php
+│   │   │   ├── SuiviSeenMarker.php
+│   │   │   ├── VisiteNotifier.php
+│   │   │   └── ZipcodeProvider.php
+│   │   ├── Statistics
+│   │   │   ├── BatimentDesordresStatisticProvider.php
+│   │   │   ├── CriticitePercentStatisticProvider.php
+│   │   │   ├── CriticiteStatisticProvider.php
+│   │   │   ├── DesordresCategoriesStatisticProvider.php
+│   │   │   ├── FilteredBackAnalyticsProvider.php
+│   │   │   ├── GlobalAnalyticsProvider.php
+│   │   │   ├── GlobalBackAnalyticsProvider.php
+│   │   │   ├── ListCommunesStatisticProvider.php
+│   │   │   ├── ListEpciStatisticProvider.php
+│   │   │   ├── ListTagsStatisticProvider.php
+│   │   │   ├── ListTerritoryStatisticProvider.php
+│   │   │   ├── LogementDesordresStatisticProvider.php
+│   │   │   ├── MonthStatisticProvider.php
+│   │   │   ├── MotifClotureStatisticProvider.php
+│   │   │   ├── PartenaireStatisticProvider.php
+│   │   │   ├── SituationStatisticProvider.php
+│   │   │   ├── StatusStatisticProvider.php
+│   │   │   ├── TerritoryStatisticProvider.php
+│   │   │   └── VisiteStatisticProvider.php
+│   │   ├── SuiviCategoryMapper.php
+│   │   ├── SuiviTransformerService.php
+│   │   ├── TimezoneProvider.php
+│   │   ├── Token
+│   │   │   ├── AbstractTokenGenerator.php
+│   │   │   ├── ActivationTokenGenerator.php
+│   │   │   ├── TokenGenerator.php
+│   │   │   └── TokenGeneratorInterface.php
+│   │   ├── UploadHandlerService.php
+│   │   ├── UrlHelper.php
+│   │   ├── UserAvatar.php
+│   │   └── UserExportLoader.php
+│   ├── Specification
+│   │   ├── Affectation
+│   │   │   ├── AllocataireSpecification.php
+│   │   │   ├── CodeInseeSpecification.php
+│   │   │   ├── ParcSpecification.php
+│   │   │   ├── PartnerExcludeSpecification.php
+│   │   │   ├── PartnerTypeSpecification.php
+│   │   │   ├── ProcedureSuspecteeSpecification.php
+│   │   │   └── ProfilDeclarantSpecification.php
+│   │   ├── AndSpecification.php
+│   │   ├── Context
+│   │   │   ├── PartnerSignalementContext.php
+│   │   │   └── SpecificationContextInterface.php
+│   │   ├── Signalement
+│   │   │   ├── FirstAffectationAcceptedSpecification.php
+│   │   │   └── SuroccupationSpecification.php
+│   │   └── SpecificationInterface.php
+│   ├── Twig
+│   │   ├── AppExtension.php
+│   │   ├── EnumExtension.php
+│   │   └── MenuExtension.php
+│   ├── Utils
+│   │   ├── AddressParser.php
+│   │   ├── AttributeParser.php
+│   │   ├── CommuneHelper.php
+│   │   ├── DataPropertyArrayFilter.php
+│   │   ├── DateHelper.php
+│   │   ├── Enum
+│   │   │   └── ExtensionAdresse.php
+│   │   ├── EscalierParser.php
+│   │   ├── EtageParser.php
+│   │   ├── ImportCommune.php
+│   │   ├── Json.php
+│   │   ├── Phone.php
+│   │   └── TrimHelper.php
+│   └── Validator
+│       ├── ApiDesordreRequest.php
+│       ├── ApiDesordreRequestValidator.php
+│       ├── Behaviour
+│       │   └── MonthYearValidatorTrait.php
+│       ├── DateNaissanceValidatorTrait.php
+│       ├── EmailFormatValidator.php
+│       ├── InseeToExclude.php
+│       ├── InseeToExcludeValidator.php
+│       ├── InseeToInclude.php
+│       ├── InseeToIncludeValidator.php
+│       ├── IsTerritoryActive.php
+│       ├── IsTerritoryActiveValidator.php
+│       ├── PartnerToExclude.php
+│       ├── PartnerToExcludeValidator.php
+│       ├── PostalCodeInseeCoherence.php
+│       ├── PostalCodeInseeCoherenceValidator.php
+│       ├── SanitizedLength.php
+│       ├── SanitizedLengthValidator.php
+│       ├── TelephoneFormat.php
+│       ├── TelephoneFormatValidator.php
+│       ├── UserPartnerEmail.php
+│       ├── UserPartnerEmailMulti.php
+│       ├── UserPartnerEmailMultiValidator.php
+│       ├── UserPartnerEmailValidator.php
+│       ├── UserSearchFilterParams.php
+│       ├── UserSearchFilterParamsValidator.php
+│       ├── ValidFiles.php
+│       ├── ValidFilesValidator.php
+│       ├── ValidPartnerType.php
+│       ├── ValidPartnerTypeValidator.php
+│       ├── ValidProfileDeclarant.php
+│       ├── ValidProfileDeclarantValidator.php
+│       ├── ValueLessThanOtherValue.php
+│       └── ValueLessThanOtherValueValidator.php
+├── symfony.lock
+├── templates
+│   ├── _partials
+│   │   ├── _demande-lien-signalement-container.html.twig
+│   │   ├── _demande-lien-signalement-intro.html.twig
+│   │   ├── _demande-lien-signalement-ok.html.twig
+│   │   ├── _demande-lien-signalement-rate-limit.html.twig
+│   │   ├── _modal-duplicate-addresses.html.twig
+│   │   ├── _modal_accept_affectation.html.twig
+│   │   ├── _modal_accept_signalement.html.twig
+│   │   ├── _modal_affectation.html.twig
+│   │   ├── _modal_agents_subscription.html.twig
+│   │   ├── _modal_closed_territory.html.twig
+│   │   ├── _modal_cloture.html.twig
+│   │   ├── _modal_dpe.html.twig
+│   │   ├── _modal_duplicate.html.twig
+│   │   ├── _modal_edit_nde.html.twig
+│   │   ├── _modal_file_delete.html.twig
+│   │   ├── _modal_form_bo_quit_validation.html.twig
+│   │   ├── _modal_historique_affectation.html.twig
+│   │   ├── _modal_localisation.html.twig
+│   │   ├── _modal_partner_delete.html.twig
+│   │   ├── _modal_pick_localisation.html.twig
+│   │   ├── _modal_refus_affectation.html.twig
+│   │   ├── _modal_refus_signalement.html.twig
+│   │   ├── _modal_reinit_affectation.html.twig
+│   │   ├── _modal_reopen_signalement.html.twig
+│   │   ├── _modal_send_lien_suivi.html.twig
+│   │   ├── _modal_transfer_subscription.html.twig
+│   │   ├── _modal_upload_files.html.twig
+│   │   ├── _modal_upload_files_usager.html.twig
+│   │   ├── _modal_user_create.html.twig
+│   │   ├── _modal_user_create_email.html.twig
+│   │   ├── _modal_user_create_form.html.twig
+│   │   ├── _modal_user_create_multi.html.twig
+│   │   ├── _modal_user_delete.html.twig
+│   │   ├── _modal_user_disable.html.twig
+│   │   ├── _modal_user_edit.html.twig
+│   │   ├── _modal_user_edit_form.html.twig
+│   │   ├── _modal_user_transfer.html.twig
+│   │   ├── _select_file_document_type.html.twig
+│   │   ├── _tooltip_photo_template.html.twig
+│   │   ├── back
+│   │   │   └── table.html.twig
+│   │   ├── macros.html.twig
+│   │   ├── metabase
+│   │   │   └── _iframe.html.twig
+│   │   └── signalement
+│   │       ├── add_suivi.html.twig
+│   │       ├── conclude-procedure.html.twig
+│   │       ├── desordre-precision-label.html.twig
+│   │       ├── display_alert.html.twig
+│   │       ├── qualification.html.twig
+│   │       ├── signalement-typecomposition-etage.html.twig
+│   │       └── signalement-typecomposition-fenetres.html.twig
+│   ├── back
+│   │   ├── _nav_bo_profile_link.html.twig
+│   │   ├── admin-territory-files
+│   │   │   ├── _table-list-results.html.twig
+│   │   │   ├── _title-list-results.html.twig
+│   │   │   ├── add.html.twig
+│   │   │   ├── edit.html.twig
+│   │   │   └── index.html.twig
+│   │   ├── affectation-without-subscription
+│   │   │   └── index.html.twig
+│   │   ├── annuaire
+│   │   │   ├── export-annuaire.html.twig
+│   │   │   └── index.html.twig
+│   │   ├── auto-affectation-rule
+│   │   │   ├── _form.html.twig
+│   │   │   ├── _modal_autoaffectationrule_delete.html.twig
+│   │   │   ├── _title-and-table-list-results.html.twig
+│   │   │   ├── edit.html.twig
+│   │   │   └── index.html.twig
+│   │   ├── auto-assigner-simulator
+│   │   │   ├── index.html.twig
+│   │   │   └── territory.html.twig
+│   │   ├── bailleur
+│   │   │   ├── _table-list-results.html.twig
+│   │   │   ├── _title-list-results.html.twig
+│   │   │   ├── edit.html.twig
+│   │   │   └── index.html.twig
+│   │   ├── base_bo.html.twig
+│   │   ├── breadcrumb_bo.html.twig
+│   │   ├── cartographie
+│   │   │   └── index.html.twig
+│   │   ├── cgu
+│   │   │   ├── archive_2022-08-12.html.twig
+│   │   │   ├── archive_2023-01-20.html.twig
+│   │   │   ├── archive_2024-07-24.html.twig
+│   │   │   ├── archive_version.html.twig
+│   │   │   ├── archives.html.twig
+│   │   │   └── cgu_bo.html.twig
+│   │   ├── config_club_event
+│   │   │   ├── add.html.twig
+│   │   │   ├── edit.html.twig
+│   │   │   └── index.html.twig
+│   │   ├── dashboard
+│   │   │   ├── _header.html.twig
+│   │   │   ├── components
+│   │   │   │   ├── _card.html.twig
+│   │   │   │   ├── _footer_link.html.twig
+│   │   │   │   ├── _section_tab_dossiers_nouveaux.html.twig
+│   │   │   │   ├── _select_sort_dossiers_nouveaux.html.twig
+│   │   │   │   └── _tuile.html.twig
+│   │   │   ├── index.html.twig
+│   │   │   └── tabs
+│   │   │       ├── _body_blank.html.twig
+│   │   │       ├── accueil
+│   │   │       │   ├── _body_derniere_action_dossiers.html.twig
+│   │   │       │   └── tab_accueil.html.twig
+│   │   │       ├── dossiers_a_fermer
+│   │   │       │   ├── _body_dossier_demande_fermeture_usager.html.twig
+│   │   │       │   ├── _body_dossier_ferme_partenaire_tous.html.twig
+│   │   │       │   ├── _body_dossier_relance_usager_sans_reponse.html.twig
+│   │   │       │   ├── _header_dossier_a_fermer.html.twig
+│   │   │       │   └── tab_dossier_a_fermer.html.twig
+│   │   │       ├── dossiers_a_verifier
+│   │   │       │   ├── _body_dossier_adresse_email_a_verifier.html.twig
+│   │   │       │   ├── _body_dossier_sans_activite_partenaire.html.twig
+│   │   │       │   ├── _header_dossier_a_verifier.html.twig
+│   │   │       │   └── tab_dossier_a_verifier.html.twig
+│   │   │       ├── dossiers_activite_recente
+│   │   │       │   ├── _body_dossier_activite_recente.html.twig
+│   │   │       │   ├── _header_dossier_activite_recente.html.twig
+│   │   │       │   └── tab_dossier_activite_recente.html.twig
+│   │   │       ├── dossiers_messages_usagers
+│   │   │       │   ├── _body_dossier_messages_apres_fermeture.html.twig
+│   │   │       │   ├── _body_dossier_messages_nouveaux.html.twig
+│   │   │       │   ├── _body_dossier_messages_usagers_sans_reponse.html.twig
+│   │   │       │   ├── _header_dossier_messages_usagers.html.twig
+│   │   │       │   └── tab_dossier_messages_usagers.html.twig
+│   │   │       └── dossiers_nouveaux
+│   │   │           ├── _body_dossier_new_affectation.html.twig
+│   │   │           ├── _body_dossier_no_agent.html.twig
+│   │   │           ├── _body_dossier_non_affectation.html.twig
+│   │   │           ├── _body_dossier_pro.html.twig
+│   │   │           ├── _body_dossier_usager.html.twig
+│   │   │           ├── _header_dossier_nouveaux.html.twig
+│   │   │           └── tab_dossier_nouveaux.html.twig
+│   │   ├── header_main_menu.html.twig
+│   │   ├── indicateurs_pnlhi
+│   │   │   └── index.html.twig
+│   │   ├── interconnexion
+│   │   │   ├── _modal_detail.html.twig
+│   │   │   └── index.html.twig
+│   │   ├── nav_bo.html.twig
+│   │   ├── notifications
+│   │   │   ├── _mass-action-btns.html.twig
+│   │   │   ├── _table-list-results.html.twig
+│   │   │   ├── _title-list-results.html.twig
+│   │   │   └── index.html.twig
+│   │   ├── partner
+│   │   │   ├── _delete_form.html.twig
+│   │   │   ├── _form.html.twig
+│   │   │   ├── _table-list-results.html.twig
+│   │   │   ├── _title-list-results.html.twig
+│   │   │   ├── _view-agent-list.html.twig
+│   │   │   ├── edit-perimetre.html.twig
+│   │   │   ├── edit.html.twig
+│   │   │   ├── index.html.twig
+│   │   │   └── view.html.twig
+│   │   ├── partner_archived
+│   │   │   └── index.html.twig
+│   │   ├── pop-notification
+│   │   │   └── index.html.twig
+│   │   ├── profil
+│   │   │   ├── _adresse-email.html.twig
+│   │   │   ├── _mes-informations.html.twig
+│   │   │   ├── _modal_profil_email.html.twig
+│   │   │   ├── _modal_profil_infos.html.twig
+│   │   │   ├── _modal_profil_infos_content.html.twig
+│   │   │   ├── _modal_profil_notification_email.html.twig
+│   │   │   ├── _modal_profil_password.html.twig
+│   │   │   ├── _notifications-email.html.twig
+│   │   │   └── index.html.twig
+│   │   ├── resumes-suivi
+│   │   │   └── index.html.twig
+│   │   ├── signalement
+│   │   │   ├── list
+│   │   │   │   └── index.html.twig
+│   │   │   ├── view
+│   │   │   │   ├── _menu_actions_photo_situation.html.twig
+│   │   │   │   ├── _static_picto.html.twig
+│   │   │   │   ├── add-edit-suivi-form.html.twig
+│   │   │   │   ├── affectation
+│   │   │   │   │   ├── _item-with-action.html.twig
+│   │   │   │   │   ├── _item.html.twig
+│   │   │   │   │   └── _subscriptions-list.html.twig
+│   │   │   │   ├── bloc-suivis.html.twig
+│   │   │   │   ├── criticite-qualifications.html.twig
+│   │   │   │   ├── edit-modals
+│   │   │   │   │   ├── edit-address.html.twig
+│   │   │   │   │   ├── edit-composition-logement.html.twig
+│   │   │   │   │   ├── edit-coordonnees-agence.html.twig
+│   │   │   │   │   ├── edit-coordonnees-bailleur.html.twig
+│   │   │   │   │   ├── edit-coordonnees-foyer.html.twig
+│   │   │   │   │   ├── edit-coordonnees-tiers.html.twig
+│   │   │   │   │   ├── edit-file.html.twig
+│   │   │   │   │   ├── edit-informations-logement.html.twig
+│   │   │   │   │   ├── edit-invite-tiers.html.twig
+│   │   │   │   │   ├── edit-procedure-demarches.html.twig
+│   │   │   │   │   ├── edit-situation-foyer.html.twig
+│   │   │   │   │   └── edit-suivi.html.twig
+│   │   │   │   ├── header
+│   │   │   │   │   ├── _address.html.twig
+│   │   │   │   │   ├── _badges.html.twig
+│   │   │   │   │   ├── _esabora_alert.html.twig
+│   │   │   │   │   ├── _infos-creation.html.twig
+│   │   │   │   │   ├── _main-action.html.twig
+│   │   │   │   │   ├── _menu.html.twig
+│   │   │   │   │   ├── _tags-with-modal.html.twig
+│   │   │   │   │   ├── _tags.html.twig
+│   │   │   │   │   ├── _title-with-status.html.twig
+│   │   │   │   │   └── _title.html.twig
+│   │   │   │   ├── header.html.twig
+│   │   │   │   ├── information
+│   │   │   │   │   ├── information-agence.html.twig
+│   │   │   │   │   ├── information-bailleur.html.twig
+│   │   │   │   │   ├── information-composition.html.twig
+│   │   │   │   │   ├── information-foyer.html.twig
+│   │   │   │   │   ├── information-logement.html.twig
+│   │   │   │   │   ├── information-procedure.html.twig
+│   │   │   │   │   ├── information-situation-foyer.html.twig
+│   │   │   │   │   └── information-tiers.html.twig
+│   │   │   │   ├── nde.html.twig
+│   │   │   │   ├── partners.html.twig
+│   │   │   │   ├── photos-album.html.twig
+│   │   │   │   ├── photos-documents.html.twig
+│   │   │   │   ├── suivis.html.twig
+│   │   │   │   ├── tabs
+│   │   │   │   │   ├── tab-activite.html.twig
+│   │   │   │   │   ├── tab-documents.html.twig
+│   │   │   │   │   ├── tab-foyer.html.twig
+│   │   │   │   │   └── tab-situation.html.twig
+│   │   │   │   ├── tabs.html.twig
+│   │   │   │   ├── user-declaration-desordre-item.html.twig
+│   │   │   │   ├── user-declaration-desordre-list.html.twig
+│   │   │   │   ├── user-declaration-desordre-photo.html.twig
+│   │   │   │   ├── user-declaration-situations.html.twig
+│   │   │   │   └── visites
+│   │   │   │       ├── modals
+│   │   │   │       │   ├── visites-modal-add.html.twig
+│   │   │   │       │   ├── visites-modal-cancel.html.twig
+│   │   │   │       │   ├── visites-modal-confirm.html.twig
+│   │   │   │       │   ├── visites-modal-edit.html.twig
+│   │   │   │       │   ├── visites-modal-reschedule.html.twig
+│   │   │   │       │   ├── visites-modal-upload-files.html.twig
+│   │   │   │       │   └── visites-modals.html.twig
+│   │   │   │       ├── visite-item.html.twig
+│   │   │   │       ├── visite-status.html.twig
+│   │   │   │       ├── visites-buttons.html.twig
+│   │   │   │       ├── visites-form-confirm-fields.html.twig
+│   │   │   │       └── visites-list.html.twig
+│   │   │   └── view.html.twig
+│   │   ├── signalement-injonction
+│   │   │   ├── courrier-bailleur.html.twig
+│   │   │   ├── engagement-travaux-bailleur.html.twig
+│   │   │   └── index.html.twig
+│   │   ├── signalement_archived
+│   │   │   └── index.html.twig
+│   │   ├── signalement_create
+│   │   │   ├── _modal_duplicate_content.html.twig
+│   │   │   ├── _modal_duplicate_draft_content.html.twig
+│   │   │   ├── index.html.twig
+│   │   │   └── tabs
+│   │   │       ├── _partial_facultative.html.twig
+│   │   │       ├── tab-adresse.html.twig
+│   │   │       ├── tab-coordonnees.html.twig
+│   │   │       ├── tab-desordres.html.twig
+│   │   │       ├── tab-logement.html.twig
+│   │   │       ├── tab-situation.html.twig
+│   │   │       └── tab-validation.html.twig
+│   │   ├── signalement_drafts
+│   │   │   ├── draft_card.html.twig
+│   │   │   ├── index.html.twig
+│   │   │   └── need_validation_card.html.twig
+│   │   ├── signalement_export
+│   │   │   └── index.html.twig
+│   │   ├── sitemap
+│   │   │   └── index.html.twig
+│   │   ├── staging_notice.html.twig
+│   │   ├── statistiques
+│   │   │   └── index.html.twig
+│   │   ├── tags
+│   │   │   ├── _table-list-results.html.twig
+│   │   │   ├── _title-list-results.html.twig
+│   │   │   └── index.html.twig
+│   │   ├── territory-files
+│   │   │   └── index.html.twig
+│   │   ├── territory-management
+│   │   │   └── index.html.twig
+│   │   ├── tools
+│   │   │   └── rial.html.twig
+│   │   ├── user
+│   │   │   ├── export-inactive-accounts.html.twig
+│   │   │   ├── export.html.twig
+│   │   │   ├── inactive-accounts.html.twig
+│   │   │   └── index.html.twig
+│   │   ├── user_api_permission
+│   │   │   ├── _form.html.twig
+│   │   │   ├── _modal_user_api_permission_delete.html.twig
+│   │   │   ├── _table-list-results.html.twig
+│   │   │   ├── _title-list-results.html.twig
+│   │   │   ├── add-user.html.twig
+│   │   │   ├── create.html.twig
+│   │   │   ├── edit.html.twig
+│   │   │   └── index.html.twig
+│   │   ├── user_archived
+│   │   │   ├── _form.html.twig
+│   │   │   ├── edit.html.twig
+│   │   │   └── index.html.twig
+│   │   └── zone
+│   │       ├── _table-list-results.html.twig
+│   │       ├── _title-list-results.html.twig
+│   │       ├── edit.html.twig
+│   │       ├── index.html.twig
+│   │       └── show.html.twig
+│   ├── base.html.twig
+│   ├── breadcrumbs.html.twig
+│   ├── bundles
+│   │   ├── NelmioApiDocBundle
+│   │   │   ├── Redocly
+│   │   │   │   └── index.html.twig
+│   │   │   └── SwaggerUi
+│   │   │       └── index.html.twig
+│   │   ├── SchebTwoFactorBundle
+│   │   │   └── Authentication
+│   │   │       └── form.html.twig
+│   │   └── TwigBundle
+│   │       └── Exception
+│   │           ├── error.html.twig
+│   │           ├── error403.html.twig
+│   │           └── error404.html.twig
+│   ├── consent_banner
+│   │   ├── _modal_consent.html.twig
+│   │   └── banner.html.twig
+│   ├── doc-api
+│   │   ├── desordres-and-precisions-choices.html.twig
+│   │   └── desordres.html.twig
+│   ├── emails
+│   │   ├── account_new_territory_email.html.twig
+│   │   ├── account_remove_from_territory_email.html.twig
+│   │   ├── account_user_soon_archived_email.html.twig
+│   │   ├── accounts_soon_archived_email.html.twig
+│   │   ├── accuse_injonction_email.html.twig
+│   │   ├── accuse_reception_email.html.twig
+│   │   ├── affectation_email.html.twig
+│   │   ├── ask_bail_dpe_signalement_email.html.twig
+│   │   ├── base_email.html.twig
+│   │   ├── closed_to_partner_signalement_email.html.twig
+│   │   ├── closed_to_partners_signalement_email.html.twig
+│   │   ├── closed_to_usager_signalement_email.html.twig
+│   │   ├── continue_from_draft_email.html.twig
+│   │   ├── cron_email.html.twig
+│   │   ├── delete_account_email.html.twig
+│   │   ├── demande_*.twig  (5 files)
+│   │   ├── download_export.html.twig
+│   │   ├── erreur_signalement_email.html.twig
+│   │   ├── inactive_user_export.html.twig
+│   │   ├── invite_tiers_email.html.twig
+│   │   ├── lien_suivi_signalement_email.html.twig
+│   │   ├── login_link_email.html.twig
+│   │   ├── lost_pass_email.html.twig
+│   │   ├── migration_pass_email.html.twig
+│   │   ├── new_signalement_email.html.twig
+│   │   ├── notification_summary_email.html.twig
+│   │   ├── nouveau_*.twig  (15 files)
+│   │   ├── profil_edit_email.html.twig
+│   │   ├── profil_edit_password.html.twig
+│   │   ├── reactive_account_email.html.twig
+│   │   ├── refus_signalement_email.html.twig
+│   │   ├── signalement_draft_pending_bailleur_prevenu.html.twig
+│   │   ├── signalement_pdf_export.html.twig
+│   │   ├── signalement_user_export.html.twig
+│   │   ├── suivi_summaries_export.html.twig
+│   │   ├── transfer_account_email.html.twig
+│   │   └── validation_signalement_email.html.twig
+│   ├── flash-messages.html.twig
+│   ├── footer.html.twig
+│   ├── form
+│   │   ├── dsfr_theme.html.twig
+│   │   ├── form-choice-export-format.html.twig
+│   │   └── form-demande-lien-signalement.html.twig
+│   ├── front
+│   │   ├── _partials
+│   │   │   ├── _desordre.html.twig
+│   │   │   ├── _suivi_signalement_card.html.twig
+│   │   │   ├── _suivi_signalement_card_right.html.twig
+│   │   │   ├── _suivi_signalement_card_status.html.twig
+│   │   │   ├── _suivi_signalement_inviter_tiers.html.twig
+│   │   │   └── _suivi_signalement_prevenir_bailleur.html.twig
+│   │   ├── cgu_agents.html.twig
+│   │   ├── dossier_bailleur.html.twig
+│   │   ├── flash-messages.html.twig
+│   │   ├── formulaire_signalement.html.twig
+│   │   ├── statistiques.html.twig
+│   │   ├── suivi_signalement_cancel_procedure_intro.html.twig
+│   │   ├── suivi_signalement_cancel_procedure_validation.html.twig
+│   │   ├── suivi_signalement_complete.html.twig
+│   │   ├── suivi_signalement_coordonnees_tiers.html.twig
+│   │   ├── suivi_signalement_dashboard.html.twig
+│   │   ├── suivi_signalement_documents.html.twig
+│   │   ├── suivi_signalement_dossier.html.twig
+│   │   ├── suivi_signalement_messages.html.twig
+│   │   ├── suivi_signalement_poursuivre_procedure_bascule.html.twig
+│   │   ├── suivi_signalement_poursuivre_procedure_validation.html.twig
+│   │   └── suivi_signalement_tiers_cgu.html.twig
+│   ├── header.html.twig
+│   ├── iframe
+│   │   ├── base-iframe.html.twig
+│   │   ├── demande_lien_signalement.html.twig
+│   │   ├── statistiques.html.twig
+│   │   └── test.html.twig
+│   ├── maintenance
+│   │   └── banner.html.twig
+│   ├── pdf
+│   │   ├── base_pdf.html.twig
+│   │   ├── partial_desordre.html.twig
+│   │   └── signalement.html.twig
+│   ├── security
+│   │   ├── _form_pro_connect.html.twig
+│   │   ├── login.html.twig
+│   │   ├── login_activation.html.twig
+│   │   ├── login_bailleur.html.twig
+│   │   ├── login_link_sent.html.twig
+│   │   ├── login_suivi_signalement.html.twig
+│   │   ├── reset_password.html.twig
+│   │   └── reset_password_new.html.twig
+│   ├── service_secours
+│   │   ├── _header.html.twig
+│   │   ├── base.html.twig
+│   │   └── index.html.twig
+│   └── skiplink.html.twig
+├── tests
+│   ├── ApiHelper.php
+│   ├── FileHelper.php
+│   ├── FixturesHelper.php
+│   ├── Functional
+│   │   ├── Command
+│   │   │   ├── Cron
+│   │   │   │   ├── AnonymizeExpiredAccountCommandTest.php
+│   │   │   │   ├── AskFeedbackUsagerCommandTest.php
+│   │   │   │   ├── ClearEntitiesCommandTest.php
+│   │   │   │   ├── ClearStorageOriginalFileCommandTest.php
+│   │   │   │   ├── ClearStorageTmpFolderCommandTest.php
+│   │   │   │   ├── NotifyAndArchiveInactiveAccountCommandTest.php
+│   │   │   │   ├── RemindInactiveUserCommandTest.php
+│   │   │   │   ├── RemindInjonctionSignalementCommandTest.php
+│   │   │   │   ├── RemindPendingDraftsCommandTest.php
+│   │   │   │   ├── ResetInjonctionNoResponseCommandTest.php
+│   │   │   │   ├── SendSuiviWaitingNotificationCommandTest.php
+│   │   │   │   ├── SendSummaryEmailsCommandTest.php
+│   │   │   │   └── SynchronizeInterventionSISHCommandTest.php
+│   │   │   ├── LoadEpciCommandTest.php
+│   │   │   ├── MergePartnersCommandTest.php
+│   │   │   └── NotifyVisitsCommandTest.php
+│   │   ├── Controller
+│   │   │   ├── AffectationControllerTest.php
+│   │   │   ├── Api
+│   │   │   │   ├── AffectationUpdateControllerTest.php
+│   │   │   │   ├── ArreteCreateControllerTest.php
+│   │   │   │   ├── SignalementCreateControllerTest.php
+│   │   │   │   ├── SignalementFileUpdateControllerTest.php
+│   │   │   │   ├── SignalementFileUploadControllerTest.php
+│   │   │   │   ├── SignalementListControllerTest.php
+│   │   │   │   ├── SuiviCreateControllerTest.php
+│   │   │   │   ├── UserGetMeControllerTest.php
+│   │   │   │   ├── VisiteCreateControllerTest.php
+│   │   │   │   └── VisiteUploadDocumentsControllerTest.php
+│   │   │   ├── ArchivedSignalementControllerTest.php
+│   │   │   ├── AutoAffectationRuleControllerTest.php
+│   │   │   ├── Back
+│   │   │   │   ├── AdminTerritoryFilesControllerTest.php
+│   │   │   │   ├── BackArchivedPartnerControllerTest.php
+│   │   │   │   ├── BackBailleurControllerTest.php
+│   │   │   │   ├── BackTagControllerTest.php
+│   │   │   │   ├── BackTerritoryControllerTest.php
+│   │   │   │   ├── BackUserControllerTest.php
+│   │   │   │   ├── BackZoneControllerTest.php
+│   │   │   │   ├── CguControllerTest.php
+│   │   │   │   ├── ConfigClubEventControllerTest.php
+│   │   │   │   ├── DashboardControllerTest.php
+│   │   │   │   ├── DashboardTabPanelControllerTest.php
+│   │   │   │   ├── HistoryEntryControllerTest.php
+│   │   │   │   ├── InterconnexionControllerTest.php
+│   │   │   │   ├── ProfilControllerTest.php
+│   │   │   │   ├── SignalementActionControllerTest.php
+│   │   │   │   ├── SignalementControllerTest.php
+│   │   │   │   ├── SignalementCreateControllerTest.php
+│   │   │   │   ├── SignalementEditControllerTest.php
+│   │   │   │   ├── SignalementFileControllerTest.php
+│   │   │   │   ├── SignalementFileGenerateZipControllerTest.php
+│   │   │   │   ├── SignalementListControllerTest.php
+│   │   │   │   ├── SignalementVisitesControllerTest.php
+│   │   │   │   ├── TerritoryFilesControllerTest.php
+│   │   │   │   ├── UserApiPermissionControllerTest.php
+│   │   │   │   └── UserSearchFilterControllerTest.php
+│   │   │   ├── BackArchivedUsersControllerTest.php
+│   │   │   ├── BackSignalementQualificationControllerTest.php
+│   │   │   ├── BackStatistiquesControllerTest.php
+│   │   │   ├── BailleurControllerTest.php
+│   │   │   ├── CartographieControllerTest.php
+│   │   │   ├── FileControllerTest.php
+│   │   │   ├── IframeControllerTest.php
+│   │   │   ├── NotificationControllerTest.php
+│   │   │   ├── PartnerControllerTest.php
+│   │   │   ├── QuestionControllerTest.php
+│   │   │   ├── Security
+│   │   │   │   ├── CspReportControllerTest.php
+│   │   │   │   └── ProConnectControllerTest.php
+│   │   │   ├── SecurityControllerTest.php
+│   │   │   ├── SettingsControllerTest.php
+│   │   │   ├── SignalementControllerTest.php
+│   │   │   ├── SignalementFileControllerTest.php
+│   │   │   ├── StatistiquesControllerTest.php
+│   │   │   ├── SuiviBailleurControllerTest.php
+│   │   │   ├── UserAccountControllerTest.php
+│   │   │   ├── UserControllerTest.php
+│   │   │   └── Webhook
+│   │   │       └── BrevoWebhookControllerTest.php
+│   │   ├── EmailAlertCheckerTest.php
+│   │   ├── EventListener
+│   │   │   ├── AuthentificationSuccessListenerTest.php
+│   │   │   └── MaintenanceListenerTest.php
+│   │   ├── EventSubscriber
+│   │   │   ├── InterventionAbortedSubscriberTest.php
+│   │   │   ├── InterventionCanceledSubscriberTest.php
+│   │   │   ├── InterventionConfirmedSubscriberTest.php
+│   │   │   ├── InterventionCreatedSubscriberTest.php
+│   │   │   ├── InterventionEditedSubscriberTest.php
+│   │   │   ├── InterventionRescheduledSubscriberTest.php
+│   │   │   ├── InterventionUpdatedByEsaboraSubscriberTest.php
+│   │   │   ├── SignalementClosedSubscriberTest.php
+│   │   │   └── SignalementViewedSubscriberTest.php
+│   │   ├── Factory
+│   │   │   ├── Oilhi
+│   │   │   │   └── DossierMessageFactoryTest.php
+│   │   │   └── SignalementAffectationListViewFactoryTest.php
+│   │   ├── Manager
+│   │   │   ├── AffectationManagerTest.php
+│   │   │   ├── Esabora
+│   │   │   │   └── EsaboraManagerTest.php
+│   │   │   ├── FileManagerTest.php
+│   │   │   ├── HistoryEntryManagerTest.php
+│   │   │   ├── InterventionManagerTest.php
+│   │   │   ├── JobEventManagerTest.php
+│   │   │   ├── PopNotificationManagerTest.php
+│   │   │   ├── SignalementDraftManagerTest.php
+│   │   │   ├── SignalementManagerTest.php
+│   │   │   ├── SuiviManagerTest.php
+│   │   │   └── UserManagerTest.php
+│   │   ├── Messenger
+│   │   │   └── MessageHandler
+│   │   │       ├── InactiveUserExportMessageHandlerTest.php
+│   │   │       ├── ListExportMessageHandlerTest.php
+│   │   │       ├── PdfExportMessageHandlerTest.php
+│   │   │       ├── SignalementAddressUpdateAndAutoAssignMessageHandlerTest.php
+│   │   │       ├── SignalementDraftFileMessageHandlerTest.php
+│   │   │       └── UserExportMessageHandlerTest.php
+│   │   ├── Repository
+│   │   │   ├── AffectationRepositoryTest.php
+│   │   │   ├── AutoAffectationRuleRepositoryTest.php
+│   │   │   ├── BailleurRepositoryTest.php
+│   │   │   ├── CommuneRepositoryTest.php
+│   │   │   ├── FileRepositoryTest.php
+│   │   │   ├── JobEventRepositoryTest.php
+│   │   │   ├── PartnerRepositoryTest.php
+│   │   │   ├── Query
+│   │   │   │   └── SignalementList
+│   │   │   │       ├── MapGeoDataQueryTest.php
+│   │   │   │       └── QueryBuilderFactoryTest.php
+│   │   │   ├── SignalementRepositoryTest.php
+│   │   │   ├── SuiviRepositoryTest.php
+│   │   │   ├── UserRepositoryTest.php
+│   │   │   └── ZoneRepositoryTest.php
+│   │   ├── Service
+│   │   │   ├── Esabora
+│   │   │   │   └── CiviliteMapperTest.php
+│   │   │   ├── Import
+│   │   │   │   ├── Bailleur
+│   │   │   │   │   └── BailleurLoaderTest.php
+│   │   │   │   ├── CsvParserTest.php
+│   │   │   │   ├── CsvWriterTest.php
+│   │   │   │   ├── GridAffectation
+│   │   │   │   │   └── GridAffectationLoaderTest.php
+│   │   │   │   └── Signalement
+│   │   │   │       └── SignalementImportLoaderTest.php
+│   │   │   ├── Mailer
+│   │   │   │   └── SummaryMailServiceTest.php
+│   │   │   ├── Notification
+│   │   │   │   └── NotificationCounterTest.php
+│   │   │   ├── NotificationAndMailSenderTest.php
+│   │   │   ├── Security
+│   │   │   │   └── PartnerAuthorizedResolverTest.php
+│   │   │   ├── Signalement
+│   │   │   │   ├── CriticiteCalculatorTest.php
+│   │   │   │   ├── DesordreTraitement
+│   │   │   │   │   ├── DesordreBatimentIsolationDernierEtageToitTest.php
+│   │   │   │   │   ├── DesordreBatimentIsolationInfiltrationEauTest.php
+│   │   │   │   │   ├── DesordreBatimentSecuriteEscalierTest.php
+│   │   │   │   │   ├── DesordreBatimentSecuriteMursFissuresTest.php
+│   │   │   │   │   ├── DesordreBatimentSecuriteSolTest.php
+│   │   │   │   │   ├── DesordreCompositionLogementLoaderTest.php
+│   │   │   │   │   ├── DesordreLogementAerationVentilationDefectueuseTest.php
+│   │   │   │   │   ├── DesordreLogementElectriciteManquePrisesTest.php
+│   │   │   │   │   ├── DesordreLogementHumiditeTest.php
+│   │   │   │   │   ├── DesordreLogementSecuritePlombTest.php
+│   │   │   │   │   ├── DesordreTraitementNuisiblesTest.php
+│   │   │   │   │   └── DesordreTraitementPiecesTest.php
+│   │   │   │   ├── PhotoHelperTest.php
+│   │   │   │   ├── PostalCodeHomeCheckerTest.php
+│   │   │   │   ├── Qualification
+│   │   │   │   │   ├── QualificationServiceTest.php
+│   │   │   │   │   └── QualificationStatusServiceTest.php
+│   │   │   │   ├── ReferenceGeneratorTest.php
+│   │   │   │   ├── SearchFilterOptionDataProviderTest.php
+│   │   │   │   ├── SignalementBuilderTest.php
+│   │   │   │   ├── SuiviSeenMarkerTest.php
+│   │   │   │   ├── VisiteNotifierTest.php
+│   │   │   │   └── ZipCodeProviderTest.php
+│   │   │   ├── Statistics
+│   │   │   │   ├── BatimentDesordresStatisticProviderTest.php
+│   │   │   │   ├── DesordresCategoriesStatisticProviderTest.php
+│   │   │   │   ├── GlobalAnalyticsProviderTest.php
+│   │   │   │   ├── GlobalBackAnalyticsProviderTest.php
+│   │   │   │   ├── ListCommunesStatisticProviderTest.php
+│   │   │   │   ├── LogementDesordresStatisticProviderTest.php
+│   │   │   │   └── MotifClotureStatisticProviderTest.php
+│   │   │   ├── Token
+│   │   │   │   └── ActivationTokenGeneratorTest.php
+│   │   │   └── UploadHandlerServiceTest.php
+│   │   └── Specification
+│   │       ├── Affectation
+│   │       │   ├── AllocataireSpecificationTest.php
+│   │       │   ├── CodeInseeSpecificationTest.php
+│   │       │   ├── ParcSpecificationTest.php
+│   │       │   ├── PartnerExcludeSpecificationTest.php
+│   │       │   ├── PartnerTypeSpecificationTest.php
+│   │       │   ├── ProcedureSuspecteeSpecificationTest.php
+│   │       │   └── ProfilDeclarantSpecificationTest.php
+│   │       ├── AndSpecificationTest.php
+│   │       └── Signalement
+│   │           ├── FirstAffectationAcceptedSpecificationTest.php
+│   │           └── SuroccupationSpecificationTest.php
+│   ├── KernelServiceHelperTrait.php
+│   ├── MockableResizeImage.php
+│   ├── MockableThumbnailImage.php
+│   ├── SessionHelper.php
+│   ├── SmokeTest.php
+│   ├── Unit
+│   │   ├── Command
+│   │   │   ├── Cron
+│   │   │   │   ├── MonitorMessengerQueuesCommandTest.php
+│   │   │   │   ├── SynchronizeEsaboraSCHSCommandTest.php
+│   │   │   │   ├── SynchronizeEsaboraSISHCommandTest.php
+│   │   │   │   └── SynchronizeInterventionSISHCommandTest.php
+│   │   │   ├── ImportBailleurCommandTest.php
+│   │   │   ├── ImportGridAffectationCommandTest.php
+│   │   │   ├── ImportSignalementCommandTest.php
+│   │   │   ├── PushEsaboraDossierCommandTest.php
+│   │   │   ├── PushIdossDossierCommandTest.php
+│   │   │   └── UpdateSignalementDocumentFieldsCommandTest.php
+│   │   ├── Dto
+│   │   │   ├── Api
+│   │   │   │   └── Model
+│   │   │   │       └── PartnerTest.php
+│   │   │   ├── Command
+│   │   │   │   └── CommandContextTest.php
+│   │   │   ├── Request
+│   │   │   │   └── Signalement
+│   │   │   │       ├── AdresseOccupantRequestTest.php
+│   │   │   │       ├── CompositionLogementRequestTest.php
+│   │   │   │       ├── CoordonneesFoyerRequestTest.php
+│   │   │   │       ├── CoordonneesTiersRequestTest.php
+│   │   │   │       ├── InformationsLogementRequestTest.php
+│   │   │   │       ├── ProcedureDemarchesRequestTest.php
+│   │   │   │       ├── SignalementDraftRequestTest.php
+│   │   │   │       ├── SignalementSearchQueryTest.php
+│   │   │   │       ├── SituationFoyerRequestTest.php
+│   │   │   │       └── VisiteRequestTest.php
+│   │   │   └── SettingsTest.php
+│   │   ├── Entity
+│   │   │   ├── AffectationTest.php
+│   │   │   ├── AutoAffectationRuleTest.php
+│   │   │   ├── CommuneTest.php
+│   │   │   ├── Enum
+│   │   │   │   ├── InterventionTypeTest.php
+│   │   │   │   └── ProfileDeclarantTest.php
+│   │   │   ├── InterventionTest.php
+│   │   │   ├── JobEventTest.php
+│   │   │   ├── PartnerTest.php
+│   │   │   ├── SignalementDraftTest.php
+│   │   │   ├── SignalementQualificationTest.php
+│   │   │   ├── SignalementTest.php
+│   │   │   ├── SuiviTest.php
+│   │   │   ├── TerritoryTest.php
+│   │   │   └── UserTest.php
+│   │   ├── EventListener
+│   │   │   ├── Behaviour
+│   │   │   │   └── DoctrineListenerRemoverTraitTest.php
+│   │   │   └── InterventionEditedListenerTest.php
+│   │   ├── EventSubscriber
+│   │   │   ├── LogoutSubscriberTest.php
+│   │   │   ├── MailerSubscriberTest.php
+│   │   │   └── WorkerMessageEventSubscriberTest.php
+│   │   ├── Factory
+│   │   │   ├── CommuneFactoryTest.php
+│   │   │   ├── Esabora
+│   │   │   │   ├── DossierMessageSCHSFactoryTest.php
+│   │   │   │   └── DossierMessageSISHFactoryTest.php
+│   │   │   ├── FileFactoryTest.php
+│   │   │   ├── InterventionFactoryTest.php
+│   │   │   ├── NotificationFactoryTest.php
+│   │   │   ├── PartnerFactoryTest.php
+│   │   │   ├── SignalementExportFactoryTest.php
+│   │   │   ├── SignalementFactoryTest.php
+│   │   │   ├── SignalementQualificationFactoryTest.php
+│   │   │   └── UserFactoryTest.php
+│   │   ├── Form
+│   │   │   ├── AgentsSelectionTypeTest.php
+│   │   │   └── SearchDashboardAverifierTypeTest.php
+│   │   ├── Messenger
+│   │   │   └── MessageHandler
+│   │   │       ├── Esabora
+│   │   │       │   └── DossierMessageHandlerTest.php
+│   │   │       ├── GenerateFileZipMessageHandlerTest.php
+│   │   │       ├── Idoss
+│   │   │       │   └── DossierMessageHandlerTest.php
+│   │   │       ├── NewSignalementCheckFileMessageHandlerTest.php
+│   │   │       └── Oilhi
+│   │   │           └── DossierMessageHandlerTest.php
+│   │   ├── Security
+│   │   │   ├── Authenticator
+│   │   │   │   ├── CodeSuiviLoginAuthenticatorTest.php
+│   │   │   │   ├── JsonLoginAuthenticatorTest.php
+│   │   │   │   └── TokenAuthenticatorTest.php
+│   │   │   ├── Provider
+│   │   │   │   └── SignalementUserProviderTest.php
+│   │   │   └── Voter
+│   │   │       └── TabPanelVoterTest.php
+│   │   ├── Serializer
+│   │   │   └── SignalementDraftRequestNormalizerTest.php
+│   │   ├── Service
+│   │   │   ├── AutoAssignerTest.php
+│   │   │   ├── DashboardTabPanel
+│   │   │   │   ├── Kpi
+│   │   │   │   │   ├── CountAfermerTest.php
+│   │   │   │   │   ├── CountDossiersMessagesUsagersTest.php
+│   │   │   │   │   └── TabCountKpiBuilderTest.php
+│   │   │   │   ├── TabBodyLoader
+│   │   │   │   │   ├── DossierDemandesFermetureUsagerTabBodyLoaderTest.php
+│   │   │   │   │   ├── DossiersActiviteRecenteTabBodyLoaderTest.php
+│   │   │   │   │   ├── DossiersDernierActionTabBodyLoaderTest.php
+│   │   │   │   │   ├── DossiersFermePartenaireTousTabBodyLoaderTest.php
+│   │   │   │   │   ├── DossiersMessagesApresFermetureTabBodyLoaderTest.php
+│   │   │   │   │   ├── DossiersMessagesNouveauxTabBodyLoaderTest.php
+│   │   │   │   │   ├── DossiersMessagesUsagersSansReponseTabBodyLoaderTest.php
+│   │   │   │   │   ├── DossiersRelanceUsagerSansReponseTabBodyLoaderTest.php
+│   │   │   │   │   └── DossiersSansActivitePartenaireTabBodyLoaderTest.php
+│   │   │   │   ├── TabBodyTest.php
+│   │   │   │   ├── TabDataManagerTest.php
+│   │   │   │   └── TabQueryParametersTest.php
+│   │   │   ├── EmailAlertCheckerTest.php
+│   │   │   ├── Esabora
+│   │   │   │   ├── AttachmentsUtilsTest.php
+│   │   │   │   ├── DateParserTest.php
+│   │   │   │   ├── EsaboraManagerTest.php
+│   │   │   │   ├── EsaboraSCHSServiceTest.php
+│   │   │   │   ├── EsaboraSISHServiceTest.php
+│   │   │   │   ├── Handler
+│   │   │   │   │   ├── DossierAdresseServiceHandlerTest.php
+│   │   │   │   │   ├── DossierPersonneServiceHandlerTest.php
+│   │   │   │   │   ├── DossierServiceHandlerTest.php
+│   │   │   │   │   ├── InterventionArreteServiceHandlerTest.php
+│   │   │   │   │   └── InterventionVisiteServiceHandlerTest.php
+│   │   │   │   └── Response
+│   │   │   │       ├── DossierArreteSISHCollectionResponseTest.php
+│   │   │   │       ├── DossierPushSISHResponseTest.php
+│   │   │   │       ├── DossierStateSCHSResponseTest.php
+│   │   │   │       ├── DossierStateSISHResponseTest.php
+│   │   │   │       └── DossierVisiteSISHCollectionResponseTest.php
+│   │   │   ├── FileListServiceTest.php
+│   │   │   ├── FileScannerTest.php
+│   │   │   ├── FileVisibilityServiceTest.php
+│   │   │   ├── Files
+│   │   │   │   ├── ImageVariantProviderTest.php
+│   │   │   │   ├── ZipHelperTest.php
+│   │   │   │   └── ZipStreamBuilderTest.php
+│   │   │   ├── Gouv
+│   │   │   │   ├── Ban
+│   │   │   │   │   └── AddressServiceTest.php
+│   │   │   │   ├── ProConnect
+│   │   │   │   │   ├── ProConnectAuthenticationTest.php
+│   │   │   │   │   ├── ProConnectContextTest.php
+│   │   │   │   │   ├── ProConnectHttpClientTest.php
+│   │   │   │   │   ├── ProConnectJwtParserTest.php
+│   │   │   │   │   ├── ProConnectJwtValidatorTest.php
+│   │   │   │   │   └── Response
+│   │   │   │   │       ├── JWKSResponseTest.php
+│   │   │   │   │       └── OAuth2TokenResponseTest.php
+│   │   │   │   ├── Rial
+│   │   │   │   │   ├── Request
+│   │   │   │   │   │   └── RialSearchLocauxParamsTest.php
+│   │   │   │   │   └── RialServiceTest.php
+│   │   │   │   └── Rnb
+│   │   │   │       └── RnbServiceTest.php
+│   │   │   ├── History
+│   │   │   │   ├── EntityComparatorTest.php
+│   │   │   │   └── HistoryEntryBufferTest.php
+│   │   │   ├── HtmlCleanerTest.php
+│   │   │   ├── Idoss
+│   │   │   │   └── IdossServiceTest.php
+│   │   │   ├── ImageInterventionHandlerTest.php
+│   │   │   ├── InjonctionBailleur
+│   │   │   │   ├── BailleurLoginCodeGeneratorTest.php
+│   │   │   │   ├── ClubEventServiceTest.php
+│   │   │   │   └── InjonctionBailleurServiceTest.php
+│   │   │   ├── Interconnection
+│   │   │   │   └── JobEventHttpClientTest.php
+│   │   │   ├── Intervention
+│   │   │   │   └── InterventionDescriptionGeneratorTest.php
+│   │   │   ├── Mailer
+│   │   │   │   └── NotificationMailerRegistryTest.php
+│   │   │   ├── Menu
+│   │   │   │   └── MenuBuilderTest.php
+│   │   │   ├── Metabase
+│   │   │   │   └── DashboardUrlGeneratorTest.php
+│   │   │   ├── Oilhi
+│   │   │   │   └── HookZapierServiceTest.php
+│   │   │   ├── Signalement
+│   │   │   │   ├── DesordreTraitement
+│   │   │   │   │   └── DesordreTraitementProcessorTest.php
+│   │   │   │   ├── Export
+│   │   │   │   │   ├── SignalementExportLoaderTest.php
+│   │   │   │   │   └── SignalementExportPdfTest.php
+│   │   │   │   ├── Qualification
+│   │   │   │   │   └── SignalementQualificationUpdaterTest.php
+│   │   │   │   ├── SignalementDraftHelperTest.php
+│   │   │   │   ├── SignalementDuplicateCheckerTest.php
+│   │   │   │   ├── SignalementFileProcessorTest.php
+│   │   │   │   └── SignalementInputValueMapperTest.php
+│   │   │   ├── TimezoneProviderTest.php
+│   │   │   ├── UrlHelperTest.php
+│   │   │   └── UserAvatarTest.php
+│   │   ├── Twig
+│   │   │   └── AppExtensionTest.php
+│   │   ├── Utils
+│   │   │   ├── AddressParserTest.php
+│   │   │   ├── AttributeParserTest.php
+│   │   │   ├── CommuneHelperTest.php
+│   │   │   ├── DataPropertyArrayFilterTest.php
+│   │   │   ├── DateHelperTest.php
+│   │   │   ├── EscalierParserTest.php
+│   │   │   ├── EtageParserTest.php
+│   │   │   ├── JsonTest.php
+│   │   │   ├── PhoneTest.php
+│   │   │   └── TrimHelperTest.php
+│   │   └── Validator
+│   │       ├── Behaviour
+│   │       │   └── MonthYearValidatorTraitTest.php
+│   │       ├── EmailFormatValidatorTest.php
+│   │       ├── InseeToExcludeValidatorTest.php
+│   │       ├── InseeToIncludeValidatorTest.php
+│   │       ├── PartnerToExcludeValidatorTest.php
+│   │       ├── PostalCodeInseeCoherenceValidatorTest.php
+│   │       ├── SanitizedLengthValidatorTest.php
+│   │       ├── ValidPartnerTypeValidatorTest.php
+│   │       ├── ValidProfileDeclarantValidatorTest.php
+│   │       └── ValueLessThanOtherValueValidatorTest.php
+│   ├── UserHelper.php
+│   ├── bootstrap.php
+│   ├── e2e
+│   │   ├── package-lock.json
+│   │   ├── package.json
+│   │   ├── playwright.config.ts
+│   │   ├── tests
+│   │   │   ├── dashboard_tabs.spec.ts
+│   │   │   ├── form_usager.spec.ts
+│   │   │   ├── form_usager_locataire.spec.ts
+│   │   │   └── login.spec.ts
+│   │   └── utils
+│   │       └── vue-app-helper.ts
+│   ├── files
+│   │   ├── betagouv
+│   │   │   └── get_api_rnb_buildings_response.json
+│   │   ├── datagouv
+│   │   │   ├── get_api_ban_collection_response.json
+│   │   │   ├── get_api_ban_item_response.json
+│   │   │   ├── get_api_ban_item_response_13202.json
+│   │   │   └── get_api_ban_item_response_13203.json
+│   │   ├── post_signalement_draft_payload.json
+│   │   ├── sample.heic
+│   │   ├── sample.jpg
+│   │   ├── sample.pdf
+│   │   └── sample.png
+│   └── phpstan-bootstrap.php
+├── tmp
+│   └── .gitgnore
+├── tools
+│   ├── histologe
+│   │   ├── demo-silo.postman_environment.json
+│   │   ├── local-silo.postman_environment.json
+│   │   └── signal-logement.postman_collection.json
+│   ├── newman
+│   │   ├── .npmrc
+│   │   ├── package-lock.json
+│   │   ├── package.json
+│   │   └── run_concurrency_request.js
+│   ├── php-cs-fixer
+│   │   ├── composer.json
+│   │   └── composer.lock
+│   └── wiremock
+│       ├── composer.json
+│       ├── composer.lock
+│       ├── postman
+│       │   ├── brevo-mock.postman_collection.json
+│       │   ├── esabora-mock.postman_collection.json
+│       │   ├── idoss-env.postman_environment.json
+│       │   ├── idoss.postman_collection.json
+│       │   └── proconnect.mock.postman_collection.json
+│       └── src
+│           ├── Mock
+│           │   ├── AppMock.php
+│           │   ├── Brevo
+│           │   │   └── BrevoMock.php
+│           │   ├── Esabora
+│           │   │   ├── AbstractEsaboraMock.php
+│           │   │   ├── EsaboraSCHSMock.php
+│           │   │   └── EsaboraSISHMock.php
+│           │   ├── Idoss
+│           │   │   └── IdossMock.php
+│           │   ├── ProConnect
+│           │   │   └── ProConnectMock.php
+│           │   └── Rial
+│           │       └── RialMock.php
+│           └── Resources
+│               ├── Brevo
+│               │   ├── blocked.json
+│               │   ├── clicked.json
+│               │   ├── delivered.json
+│               │   ├── error.json
+│               │   ├── hard_bounce.json
+│               │   ├── invalid_email.json
+│               │   ├── opened.json
+│               │   ├── sent.json
+│               │   ├── soft_bounce.json
+│               │   ├── spam.json
+│               │   └── unique_opened.json
+│               ├── Esabora
+│               │   ├── schs
+│               │   │   ├── ws_etat_dossier_sas
+│               │   │   │   ├── etat_a_traiter.json
+│               │   │   │   ├── etat_importe.json
+│               │   │   │   ├── etat_non_importe.json
+│               │   │   │   ├── etat_non_trouve.json
+│               │   │   │   └── etat_termine.json
+│               │   │   ├── ws_etat_sas.json
+│               │   │   ├── ws_get_dossier_event_files.json
+│               │   │   ├── ws_get_dossier_events.json
+│               │   │   └── ws_import.json
+│               │   └── sish
+│               │       ├── ws_arretes_dossier_sas.json
+│               │       ├── ws_arretes_dossier_sas_termine.json
+│               │       ├── ws_arretes_dossier_sas_termine_insalubrite.json
+│               │       ├── ws_dossier.json
+│               │       ├── ws_dossier_adresse.json
+│               │       ├── ws_dossier_personne.json
+│               │       ├── ws_etat_dossier_sas
+│               │       │   ├── etat_importe.json
+│               │       │   ├── etat_rejete.json
+│               │       │   └── etat_termine.json
+│               │       ├── ws_visites_dossier_sas.json
+│               │       └── ws_visites_dossier_sas_en_cours.json
+│               ├── Idoss
+│               │   ├── authentification.json
+│               │   ├── creatDossHistologe-2023-12.json
+│               │   ├── creatDossHistologe-2023-13.json
+│               │   ├── creatDossHistologe-2023-14.json
+│               │   ├── creatDossHistologe-2023-15.json
+│               │   ├── creatDossHistologe-2023-9.json
+│               │   ├── listStatutsHistologe.json
+│               │   └── uploadFileRepoHistologe.json
+│               ├── ProConnect
+│               │   ├── jwks.json
+│               │   ├── openid-configuration.json
+│               │   ├── token.json
+│               │   └── userinfo.txt
+│               └── Rial
+│                   ├── infos.json
+│                   ├── list.json
+│                   └── token.json
+├── translations
+│   ├── .gitignore
+│   └── security.fr.yaml
+└── webpack.config.js
+442 directories, 2259 files
