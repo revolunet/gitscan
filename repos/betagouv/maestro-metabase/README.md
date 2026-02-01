@@ -1,0 +1,1 @@
+# Deploying Metabase to Scalingo
