@@ -1,0 +1,1461 @@
+.
+├── .env.dist
+├── .github
+│   ├── dependabot.yml
+│   └── workflows
+│       └── ci.yaml
+├── .gitignore
+├── .npmrc
+├── .prettierignore
+├── .prettierrc.json
+├── LICENSE
+├── Procfile
+├── README.md
+├── SECURITY.md
+├── cron.json
+├── eslint.config.mjs
+├── next.config.js
+├── package.json
+├── pnpm-lock.yaml
+├── pnpm-workspace.yaml
+├── postcss.config.js
+├── prisma
+│   ├── migrations
+│   │   ├── 20240229131118_init
+│   │   │   └── migration.sql
+│   │   ├── 20240304145830_some_estimation_fields_are_optional
+│   │   │   └── migration.sql
+│   │   ├── 20240307074927_remove_unused_estimation_fields
+│   │   │   └── migration.sql
+│   │   ├── 20240308155429_update_db_generated_id_to_random_id
+│   │   │   └── migration.sql
+│   │   ├── 20240314135617_add_update_date_for_estimation
+│   │   │   └── migration.sql
+│   │   ├── 20240319092510_add_recommandations_viewed_by_user
+│   │   │   └── migration.sql
+│   │   ├── 20240319100324_cascade_delete_estimation_when_deleting_projet
+│   │   │   └── migration.sql
+│   │   ├── 20240325174020_add_selection_fiches_diag_to_user
+│   │   │   └── migration.sql
+│   │   ├── 20240418100930_fiche_selection_column_are_not_nullable_anymore
+│   │   │   └── migration.sql
+│   │   ├── 20240424135335_add_projet_and_estimation_delete_columns
+│   │   │   └── migration.sql
+│   │   ├── 20240513140500_create_climadiag_table
+│   │   │   └── migration.sql
+│   │   ├── 20240513145511_add_autoincrement_for_climadiag_id
+│   │   │   └── migration.sql
+│   │   ├── 20240604133140_remove_fiches_solutions_validated_field
+│   │   │   └── migration.sql
+│   │   ├── 20240618131309_add_aide_to_estimations
+│   │   │   └── migration.sql
+│   │   ├── 20240618164104_add_estimation_aide_table
+│   │   │   └── migration.sql
+│   │   ├── 20240620112318_add_aides_territoires_perimeter_id_field
+│   │   │   └── migration.sql
+│   │   ├── 20240624142413_update_aide_territoire_id_column
+│   │   │   └── migration.sql
+│   │   ├── 20240624143258_update_estimations_aides
+│   │   │   └── migration.sql
+│   │   ├── 20240625105659_drop_user_id_from_aide_table
+│   │   │   └── migration.sql
+│   │   ├── 20240627122103_change_aide_submission_deadline_type
+│   │   │   └── migration.sql
+│   │   ├── 20240702091151_add_user_canal_acquisition
+│   │   │   └── migration.sql
+│   │   ├── 20240710122316_add_user_projet_table
+│   │   │   └── migration.sql
+│   │   ├── 20240710134054_updaet_id_for_user_projet_and_invitation_token
+│   │   │   └── migration.sql
+│   │   ├── 20240710135555_update_user_id_in_user_projet_table
+│   │   │   └── migration.sql
+│   │   ├── 20240710160155_migrate_user_data_projets
+│   │   │   └── migration.sql
+│   │   ├── 20240808141700_email_not_mandatory_for_user_projet_table
+│   │   │   └── migration.sql
+│   │   ├── 20240821143843_add_mail_templates
+│   │   │   └── migration.sql
+│   │   ├── 20240827174901_zephyr
+│   │   │   └── migration.sql
+│   │   ├── 20240828112918_add_unique_constraint_to_conversation_id
+│   │   │   └── migration.sql
+│   │   ├── 20240902090119_replace_uuid
+│   │   │   └── migration.sql
+│   │   ├── 20240902093804_update_conversation_id_to_ragtime_id
+│   │   │   └── migration.sql
+│   │   ├── 20240902162125_rename_agent_conversationnel_table_to_conversations
+│   │   │   └── migration.sql
+│   │   ├── 20240910092336_add_is_viewed_column_in_user_projet_table
+│   │   │   └── migration.sql
+│   │   ├── 20240910093417_add_nb_views_and_last_viewed_at_column_in_user_projet
+│   │   │   └── migration.sql
+│   │   ├── 20240926070842_add_contact_message_email_type
+│   │   │   └── migration.sql
+│   │   ├── 20240926093222_add_updated_add_field_to_projet
+│   │   │   └── migration.sql
+│   │   ├── 20240927084725_add_analytics_table
+│   │   │   └── migration.sql
+│   │   ├── 20240927090808_update_type_key_in_analytics_table
+│   │   │   └── migration.sql
+│   │   ├── 20240927121927_change_key_analytics
+│   │   │   └── migration.sql
+│   │   ├── 20240927122125_change_reference_id_type
+│   │   │   └── migration.sql
+│   │   ├── 20241001093235_update_analytic_event_type
+│   │   │   └── migration.sql
+│   │   ├── 20241002151752_create_sync_log_table
+│   │   │   └── migration.sql
+│   │   ├── 20241002154224_make_updated_at_nullable
+│   │   │   └── migration.sql
+│   │   ├── 20241007085155_change_sync_log_name_to_cron_jobs
+│   │   │   └── migration.sql
+│   │   ├── 20241008164008_change_updated_at_type
+│   │   │   └── migration.sql
+│   │   ├── 20241009091813_edit_analytics_table
+│   │   │   └── migration.sql
+│   │   ├── 20241025140637_add_sourcing_and_is_public_type
+│   │   │   └── migration.sql
+│   │   ├── 20241028164603_update_schema_for_sourcing_feature
+│   │   │   └── migration.sql
+│   │   ├── 20241030135359_update_sourcing_table
+│   │   │   └── migration.sql
+│   │   ├── 20241030135611_projet_is_public_field_can_be_null
+│   │   │   └── migration.sql
+│   │   ├── 20241030135723_revert_default_values_for_is_public_projet
+│   │   │   └── migration.sql
+│   │   ├── 20241108091813_migrate_canal_acquisition_demo
+│   │   │   └── migration.sql
+│   │   ├── 20241108180427_source_user_projet_instead_of_projet
+│   │   │   └── migration.sql
+│   │   ├── 20241113142902_add_user_siren_info
+│   │   │   └── migration.sql
+│   │   ├── 20241113145059_change_nom_etablissement_column_name
+│   │   │   └── migration.sql
+│   │   ├── 20241113161829_migrate_canal_acquisition_appel_charge_projet
+│   │   │   └── migration.sql
+│   │   ├── 20241202181154_add_adresse_all_info_columns
+│   │   │   └── migration.sql
+│   │   ├── 20241204181925_add_communication_preferences_field
+│   │   │   └── migration.sql
+│   │   ├── 20241209092748_add_sourcing_rex_column_in_projet_table
+│   │   │   └── migration.sql
+│   │   ├── 20241209135819_update_email_type
+│   │   │   └── migration.sql
+│   │   ├── 20241210101752_add_no_activity_after_signup_type_to_email
+│   │   │   └── migration.sql
+│   │   ├── 20241210154607_add_email_template
+│   │   │   └── migration.sql
+│   │   ├── 20241210172647_update_job_type
+│   │   │   └── migration.sql
+│   │   ├── 20241211100239_change_email_type_for_projet_creation
+│   │   │   └── migration.sql
+│   │   ├── 20241211145747_add_user_id_to_email_table
+│   │   │   └── migration.sql
+│   │   ├── 20241217151106_add_analytics_event_type_for_projet_visibility
+│   │   │   └── migration.sql
+│   │   ├── 20241217161442_fix_analytics_event_type_name
+│   │   │   └── migration.sql
+│   │   ├── 20241218092515_reprise_donnees_analytics
+│   │   │   └── migration.sql
+│   │   ├── 20250122094553_add_created_date_and_creator_for_aide_estimation_table
+│   │   │   └── migration.sql
+│   │   ├── 20250127135228_add_projet_fiche_table
+│   │   │   └── migration.sql
+│   │   ├── 20250128091623_update_nullable_to_non_nullable_fields
+│   │   │   └── migration.sql
+│   │   ├── 20250131150100_projet_fiche_data_init
+│   │   │   └── migration.sql
+│   │   ├── 20250212172647_add_connect_sync_job_type
+│   │   │   └── migration.sql
+│   │   ├── 20250317075302_create_diagnostic_simulation_table
+│   │   │   └── migration.sql
+│   │   ├── 20250317144308_add_validated_field_in_diagnostic_simulation_table
+│   │   │   └── migration.sql
+│   │   ├── 20250402150321_initial_values_are_not_mandatory_anymore_in_diagnostic_simulation_table
+│   │   │   └── migration.sql
+│   │   ├── 20250404144157_add_new_email_template
+│   │   │   └── migration.sql
+│   │   ├── 20250423131558_add_the_budget_field_for_projet
+│   │   │   └── migration.sql
+│   │   ├── 20250512134240_add_population_field_for_climadiag
+│   │   │   └── migration.sql
+│   │   ├── 20250513161333_add_index_on_climadiag_table
+│   │   │   └── migration.sql
+│   │   ├── 20250603142855_remove_selection_fiches_fields_in_user_table
+│   │   │   └── migration.sql
+│   │   ├── 20250620120118_add_lcz_coverage_in_climadiag_table
+│   │   │   └── migration.sql
+│   │   ├── 20250620124215_add_unique_constraint_on_code_insee_climadiag_table
+│   │   │   └── migration.sql
+│   │   ├── 20250622142238_add_adresse_all_infos_in_climadiag_table
+│   │   │   └── migration.sql
+│   │   ├── 20250916051547_add_searchable_field_for_climadiag
+│   │   │   └── migration.sql
+│   │   ├── 20251006065553_add_csm_reminder_emails
+│   │   │   └── migration.sql
+│   │   ├── 20251006132711_add_projet_statut_column
+│   │   │   └── migration.sql
+│   │   ├── 20251006134122_add_statut_projet_analytics_event
+│   │   │   └── migration.sql
+│   │   ├── 20251009142606_statut_user_column
+│   │   │   └── migration.sql
+│   │   ├── 20251009150018_new_analytics_for_update_user_statut
+│   │   │   └── migration.sql
+│   │   ├── 20251009152611_change_reference_id_type_in_analytics_table
+│   │   │   └── migration.sql
+│   │   ├── 20251010130510_add_projet_remind_to_do_solution_emailtype
+│   │   │   └── migration.sql
+│   │   ├── 20251010144626_add_projet_remind_to_do_diagnostic_email_type
+│   │   │   └── migration.sql
+│   │   ├── 20251010161554_add_accept_communication_suivi_projet_on_user_table
+│   │   │   └── migration.sql
+│   │   ├── 20251013150713_add_projet_unfinished_inactive_email
+│   │   │   └── migration.sql
+│   │   ├── 20251014154804_template_mail_user_sans_projet
+│   │   │   └── migration.sql
+│   │   ├── 20251015143530_add_projet_finished_to_get_rex_email
+│   │   │   └── migration.sql
+│   │   ├── 20251015154355_add_projet_finished_questionnaire_satisfaction_mail
+│   │   │   └── migration.sql
+│   │   ├── 20251015174219_add_projet_unfinished_inactive2_mail
+│   │   │   └── migration.sql
+│   │   ├── 20251015174932_remove_template_as_it_is_not_designed_yt
+│   │   │   └── migration.sql
+│   │   ├── 20251016133425_add_welcome_message_v2_mail
+│   │   │   └── migration.sql
+│   │   ├── 20251017185008_remove_autre_statut_user
+│   │   │   └── migration.sql
+│   │   ├── 20251017185441_remove_statut_projet_autre_and_add_statut_user_autre
+│   │   │   └── migration.sql
+│   │   ├── 20251021094815_add_no_projet_after_signup_mail3_email
+│   │   │   └── migration.sql
+│   │   ├── 20251110104823_migration_canaux_d_acquisition
+│   │   │   └── migration.sql
+│   │   ├── 20251121163229_create_user_last_brows_date_column
+│   │   │   └── migration.sql
+│   │   ├── 20251124103010_fill_user_last_browsing_date_field
+│   │   │   └── migration.sql
+│   │   ├── 20251210095453_new_estimation_tables
+│   │   │   └── migration.sql
+│   │   ├── 20251210103217_nullable_field_for_estimation_table
+│   │   │   └── migration.sql
+│   │   ├── 20251214211715_
+│   │   │   └── migration.sql
+│   │   ├── 20251216221413_add_price_override_for_simple_fiche_solution_estimation
+│   │   │   └── migration.sql
+│   │   ├── 20251222075021_created_at_and_updated_at_columns_for_estimation_tables
+│   │   │   └── migration.sql
+│   │   ├── 20260107071451_add_unicity_on_estimation_fiche_solution_and_materiau
+│   │   │   └── migration.sql
+│   │   └── migration_lock.toml
+│   └── schema.prisma
+├── public
+│   ├── documents
+│   │   └── diagnostic
+│   │       └── indicateurs-environnementaux
+│   │           └── pfmv-calcul-indicateurs-environnementaux.pdf
+│   ├── favicon
+│   │   ├── android-chrome-192x192.png
+│   │   ├── apple-touch-icon.png
+│   │   ├── favicon.svg
+│   │   └── manifest.webmanifest
+│   ├── favicon.ico
+│   ├── fonts
+│   │   ├── Marianne-ExtraBold.woff
+│   │   ├── Marianne-ExtraBold.woff2
+│   │   ├── Marianne-ExtraBold_Italic.woff
+│   │   └── Marianne-ExtraBold_Italic.woff2
+│   ├── images
+│   │   ├── annuaire
+│   │   │   ├── annuaire-france-visible.svg
+│   │   │   ├── annuaire-label-collectivite.svg
+│   │   │   ├── annuaire-map-satellite.png
+│   │   │   ├── annuaire-map-terrain.png
+│   │   │   ├── annuaire-my-location.svg
+│   │   │   ├── annuaire-no-selection.svg
+│   │   │   ├── annuaire-projet-in-progress-active.png
+│   │   │   ├── annuaire-projet-in-progress-active.svg
+│   │   │   ├── annuaire-projet-in-progress-focus.png
+│   │   │   ├── annuaire-projet-in-progress.png
+│   │   │   ├── annuaire-projet-in-progress.svg
+│   │   │   ├── annuaire-projet-ma-collectivite-active.svg
+│   │   │   ├── annuaire-projet-ma-collectivite.svg
+│   │   │   ├── annuaire-projet-rex-active.png
+│   │   │   ├── annuaire-projet-rex-active.svg
+│   │   │   ├── annuaire-projet-rex-focus.png
+│   │   │   ├── annuaire-projet-rex.png
+│   │   │   └── annuaire-projet-rex.svg
+│   │   ├── auth
+│   │   │   └── user.svg
+│   │   ├── climadiag
+│   │   │   ├── climadiag-jour-tres-chaud.svg
+│   │   │   ├── climadiag-jour-vdc.svg
+│   │   │   ├── climadiag-meteo-france.png
+│   │   │   ├── climadiag-nuits-chaudes.svg
+│   │   │   ├── meteo-france.svg
+│   │   │   └── republique-francaise-logo.jpg
+│   │   ├── cobenefices
+│   │   │   ├── abriter_biodiversite.svg
+│   │   │   ├── ameliorer_bien_etre_sante.svg
+│   │   │   ├── ameliorer_qualite_air.svg
+│   │   │   ├── cobenefice-blank.svg
+│   │   │   ├── creer_lien_social.svg
+│   │   │   ├── faire_economies_eau_potable.svg
+│   │   │   ├── filtrer_pollutions_preserver_qualite_eaux.svg
+│   │   │   ├── gerer_eaux_pluviales.svg
+│   │   │   ├── prevenir_risques_innondation.svg
+│   │   │   ├── prolongee_durabilite_equipement.svg
+│   │   │   ├── reduide_place_voiture_en_ville.svg
+│   │   │   ├── reduire_consommations_energetiques.svg
+│   │   │   ├── reduire_nuisances_sonores.svg
+│   │   │   ├── rendre_espaces_publics_plus_accueillants.svg
+│   │   │   ├── rendre_ville_plus_ludique.svg
+│   │   │   ├── sensibiliser_vivant_nature.svg
+│   │   │   └── sequestrer_du_carbone.svg
+│   │   ├── echelle
+│   │   │   ├── echelle-espace.svg
+│   │   │   ├── echelle-territoire.svg
+│   │   │   └── echelle-toutes.svg
+│   │   ├── espace-projet
+│   │   │   ├── annuaire.svg
+│   │   │   ├── collaborer.svg
+│   │   │   ├── connexion-espace-projet.svg
+│   │   │   ├── diagnostic.svg
+│   │   │   ├── empty-projet.jpg
+│   │   │   ├── estimation.svg
+│   │   │   ├── financement.svg
+│   │   │   ├── services
+│   │   │   │   ├── carte.svg
+│   │   │   │   ├── recommandations.svg
+│   │   │   │   └── statut.svg
+│   │   │   ├── solutions.svg
+│   │   │   ├── statut
+│   │   │   │   ├── action-banner-bg.svg
+│   │   │   │   ├── action-en_cours.png
+│   │   │   │   ├── action-termine.svg
+│   │   │   │   ├── statut-projet-autre.svg
+│   │   │   │   ├── statut-projet-besoin-aide.svg
+│   │   │   │   ├── statut-projet-en-cours.svg
+│   │   │   │   ├── statut-projet-termine.svg
+│   │   │   │   ├── statut-user-pas-compris.svg
+│   │   │   │   ├── statut-user-pas-maintenant.svg
+│   │   │   │   ├── statut-user-pas-trouve.svg
+│   │   │   │   └── statut-user-sans-pfmv.svg
+│   │   │   ├── viewer-mode.svg
+│   │   │   └── wave.svg
+│   │   ├── espace-projet-incentive
+│   │   │   ├── background.svg
+│   │   │   ├── euros.svg
+│   │   │   ├── guide.svg
+│   │   │   └── trouver-solutions.svg
+│   │   ├── espaces
+│   │   │   ├── espace-icone-batiment.svg
+│   │   │   ├── espace-icone-cour-ecole.svg
+│   │   │   ├── espace-icone-cour-parc-jardin.svg
+│   │   │   ├── espace-icone-parking.svg
+│   │   │   ├── espace-icone-place.svg
+│   │   │   ├── espace-icone-rond-point.svg
+│   │   │   ├── espace-icone-rue.svg
+│   │   │   └── espace-icone-tous-espaces.svg
+│   │   ├── fiches-diagnostic
+│   │   │   ├── confort-thermique.svg
+│   │   │   ├── diag-icone-bg-thick.svg
+│   │   │   ├── diag-icone-bg.svg
+│   │   │   ├── guide-icone.svg
+│   │   │   ├── guide-personne.svg
+│   │   │   ├── guide-ville.svg
+│   │   │   ├── icu.svg
+│   │   │   ├── indicateurs-environnementaux
+│   │   │   │   ├── ampoule-idee.svg
+│   │   │   │   ├── biodiversite.svg
+│   │   │   │   ├── canopee.svg
+│   │   │   │   ├── echelle-biodiversite.svg
+│   │   │   │   ├── echelle-curseur.svg
+│   │   │   │   ├── echelle-permeabilite.svg
+│   │   │   │   ├── echelle-rafraichissement-urbain.svg
+│   │   │   │   ├── logo-tribu.jpg
+│   │   │   │   ├── permeabilite.svg
+│   │   │   │   ├── question
+│   │   │   │   │   ├── bassinFontaine.jpg
+│   │   │   │   │   ├── bassinMineraux.jpg
+│   │   │   │   │   ├── bassinPaysager.jpg
+│   │   │   │   │   ├── groupe-arbre.svg
+│   │   │   │   │   ├── groupe-bassin.svg
+│   │   │   │   │   ├── groupe-ombrage.svg
+│   │   │   │   │   ├── groupe-revetement-sol.svg
+│   │   │   │   │   ├── groupe-surface-vegetalisee.svg
+│   │   │   │   │   ├── groupe-toiture.svg
+│   │   │   │   │   ├── nbArbresJeunes.jpg
+│   │   │   │   │   ├── nbArbresMoyens.jpg
+│   │   │   │   │   ├── ombrageNonVegetalise.jpg
+│   │   │   │   │   ├── ombrageVegetalise.jpg
+│   │   │   │   │   ├── revetementBeton.jpg
+│   │   │   │   │   ├── revetementBiosources.jpg
+│   │   │   │   │   ├── revetementBitume.jpg
+│   │   │   │   │   ├── revetementGrenaille.jpg
+│   │   │   │   │   ├── revetementPaves.jpg
+│   │   │   │   │   ├── surfaceBuissonante.jpg
+│   │   │   │   │   ├── surfaceDalleSousSol.jpg
+│   │   │   │   │   ├── surfaceHerbacee.jpg
+│   │   │   │   │   ├── toitureClaire.jpg
+│   │   │   │   │   ├── toitureFoncee.jpg
+│   │   │   │   │   ├── toiturePanneauxPhoto.jpg
+│   │   │   │   │   ├── toitureTuile.jpg
+│   │   │   │   │   ├── toitureVegetaliseeEpaisse.jpg
+│   │   │   │   │   └── toitureVegetaliseeMince.jpg
+│   │   │   │   ├── rafraichissement-urbain.svg
+│   │   │   │   └── tribu-exemple-plan.jpg
+│   │   │   ├── parcours-indicateurs-environnementaux.svg
+│   │   │   └── parcours-prestation.svg
+│   │   ├── fiches-solutions
+│   │   │   ├── aides-territoires.svg
+│   │   │   ├── entretien.svg
+│   │   │   ├── oups.svg
+│   │   │   └── picto-thermometre.svg
+│   │   ├── financement
+│   │   │   ├── beneficiaires.svg
+│   │   │   ├── financement.svg
+│   │   │   ├── ingenierie.svg
+│   │   │   ├── maj.svg
+│   │   │   ├── no-result.svg
+│   │   │   ├── porteur-aide.svg
+│   │   │   ├── recurrence.svg
+│   │   │   ├── subvention.svg
+│   │   │   └── zone-geo.svg
+│   │   ├── homepage
+│   │   │   ├── home-hero.jpg
+│   │   │   ├── home-start-1.jpg
+│   │   │   ├── home-start-2.svg
+│   │   │   ├── rex
+│   │   │   │   ├── cour-oasis-berthelot-montrouge.jpg
+│   │   │   │   ├── lyon-arbres-de-pluie.jpg
+│   │   │   │   ├── micro-foret-bordeaux.jpeg
+│   │   │   │   ├── toulouse-plus-fraiche.jpeg
+│   │   │   │   └── verdissons-nos-murs-lille.jpeg
+│   │   │   ├── solution-bleue.jpg
+│   │   │   ├── solution-douce.jpg
+│   │   │   ├── solution-grise.jpg
+│   │   │   ├── solution-verte.jpg
+│   │   │   └── solutions
+│   │   │       ├── arbres-vegetaux-cour-ecole.jpg
+│   │   │       ├── batiment-ecole-adaptation-renovation-batiments.jpg
+│   │   │       ├── comportements-collectifs.jpg
+│   │   │       ├── facade-vegetalisee.jpg
+│   │   │       ├── revetement-albedo-eleve.jpeg
+│   │   │       ├── stockage-eau-de-pluie.jpeg
+│   │   │       └── stockage-eau-pluie-ecole.jpeg
+│   │   ├── lcz
+│   │   │   └── logo-cerema.svg
+│   │   ├── linkedin.svg
+│   │   ├── logo-ademe-amf.jpg
+│   │   ├── logo-ademe-amf.png
+│   │   ├── logo-ademe-amf.webp
+│   │   ├── logo-ademe-pfmv.svg
+│   │   ├── logo-ademe.svg
+│   │   ├── logo-amf.webp
+│   │   ├── logo-anru.webp
+│   │   ├── logo-pfmv-seul.svg
+│   │   ├── logo-pfmv.svg
+│   │   ├── logo-rf.svg
+│   │   ├── navigation
+│   │   │   ├── creer-projet.webp
+│   │   │   ├── faire-diagnostic.webp
+│   │   │   ├── rex-diagnostic.webp
+│   │   │   ├── rex-projet.webp
+│   │   │   └── trouver-solution.webp
+│   │   ├── odd
+│   │   │   ├── odd1.svg
+│   │   │   ├── odd10.svg
+│   │   │   ├── odd11.svg
+│   │   │   ├── odd12.svg
+│   │   │   ├── odd13.svg
+│   │   │   ├── odd14.svg
+│   │   │   ├── odd15.svg
+│   │   │   ├── odd16.svg
+│   │   │   ├── odd17.svg
+│   │   │   ├── odd2.svg
+│   │   │   ├── odd3.svg
+│   │   │   ├── odd4.svg
+│   │   │   ├── odd5.svg
+│   │   │   ├── odd6.svg
+│   │   │   ├── odd7.svg
+│   │   │   ├── odd8.svg
+│   │   │   └── odd9.svg
+│   │   ├── open-graph
+│   │   │   ├── aide-decision-landscape.svg
+│   │   │   └── aide-decision-portrait.svg
+│   │   ├── placeholder.svg
+│   │   ├── rex-diagnostic
+│   │   │   └── rex-diag-pdf.jpg
+│   │   ├── surchauffe-urbaine
+│   │   │   ├── point-attention.svg
+│   │   │   ├── surchauffe-notions-confort-thermique.svg
+│   │   │   ├── surchauffe-notions-icu.svg
+│   │   │   ├── surchauffe-teaser-analyse.jpg
+│   │   │   ├── surchauffe-teaser-methodes.jpg
+│   │   │   ├── surchauffe-teaser-rex.jpg
+│   │   │   ├── timing-arrow.svg
+│   │   │   ├── timing-projet-espace-public.svg
+│   │   │   ├── timing-projet-urbain.svg
+│   │   │   ├── timing-strategie-territoriale.svg
+│   │   │   └── timing-usage.svg
+│   │   ├── tableau-de-bord
+│   │   │   ├── annuaire.svg
+│   │   │   ├── diagnostic.svg
+│   │   │   ├── estimation.svg
+│   │   │   ├── financement.svg
+│   │   │   ├── renseignement.svg
+│   │   │   └── solution.svg
+│   │   ├── webinaire
+│   │   │   ├── webinaire-video-future.svg
+│   │   │   └── webinaire-video-past.svg
+│   │   └── zephyr
+│   │       ├── question.svg
+│   │       ├── send.svg
+│   │       └── zephyr.png
+│   └── videos
+│       └── homepage
+│           └── video-homepage.mp4
+├── scripts
+│   ├── README.md
+│   ├── analytics
+│   │   └── get-matomo-territoire-search.tsx
+│   ├── connect-sync.ts
+│   ├── csm-mail-batch.ts
+│   ├── fill-adresse-all-infos-field.ts
+│   ├── fill-climadiag-tables.tsx
+│   ├── fill-lcz-infos.tsx
+│   ├── fill-user-etablissement-field.tsx
+│   ├── hubspot-sync.ts
+│   ├── migrate-estimation-materiaux.ts
+│   └── update-climadiag-population.tsx
+├── sentry.client.config.ts
+├── sentry.edge.config.ts
+├── sentry.server.config.ts
+├── src
+│   ├── actions
+│   │   ├── actions-types.ts
+│   │   ├── collectivites
+│   │   │   └── get-or-create-collectivite-from-form.ts
+│   │   ├── diagnostic-simulation
+│   │   │   ├── comeback-later-diagnostic-simulation-action.ts
+│   │   │   └── upsert-diagnostic-simulation-action.ts
+│   │   ├── estimation
+│   │   │   ├── add-aide-in-estimation-action.ts
+│   │   │   ├── create-estimation-action.ts
+│   │   │   ├── delete-aide-in-estimation-action.ts
+│   │   │   ├── delete-estimation-action.ts
+│   │   │   └── update-estimation-materiaux-action.ts
+│   │   ├── projets
+│   │   │   ├── delete-projet-action.ts
+│   │   │   ├── generate-annuaire-contacts-csv-action.ts
+│   │   │   ├── get-pending-user-projets-action.ts
+│   │   │   ├── get-public-projets-action.ts
+│   │   │   ├── get-user-projets-action.ts
+│   │   │   ├── leave-projet-action.ts
+│   │   │   ├── update-fiches-projet-action.ts
+│   │   │   ├── update-maturite-projet-action.ts
+│   │   │   ├── update-projet-statut-action.ts
+│   │   │   ├── update-projet-visibility-action.ts
+│   │   │   ├── update-recommandations-viewed-by-user-action.ts
+│   │   │   ├── update-rex-contact-in-projet-action.ts
+│   │   │   ├── update-user-contact-in-projet-action.ts
+│   │   │   └── upsert-projet-action.ts
+│   │   ├── userProjet
+│   │   │   ├── accept-project-invitation-action.ts
+│   │   │   ├── accept-project-request-action.ts
+│   │   │   ├── attach-invitation-to-user-action.ts
+│   │   │   ├── decline-project-invitation-action.ts
+│   │   │   ├── decline-project-request-action.ts
+│   │   │   ├── delete-user-from-projet-action.ts
+│   │   │   ├── request-to-join-project-action.ts
+│   │   │   └── update-user-projet-last-viewed-action.ts
+│   │   └── users
+│   │       ├── discard-information-action.ts
+│   │       ├── edit-user-info-action.ts
+│   │       ├── get-user-info-action.ts
+│   │       ├── invite-user-action.ts
+│   │       ├── resend-invitation-action.ts
+│   │       ├── update-user-browsing-date-action.ts
+│   │       ├── update-user-role-project-action.ts
+│   │       └── update-user-statut-action.ts
+│   ├── app
+│   │   ├── (auth)
+│   │   │   ├── connexion
+│   │   │   │   └── page.tsx
+│   │   │   └── logout
+│   │   │       ├── LogoutClient.tsx
+│   │   │       ├── agentconnect
+│   │   │       │   └── page.tsx
+│   │   │       ├── layout.tsx
+│   │   │       └── page.tsx
+│   │   ├── (private)
+│   │   │   ├── espace-projet
+│   │   │   │   ├── ListProjetsPageClient.tsx
+│   │   │   │   ├── [projetId]
+│   │   │   │   │   ├── annuaire
+│   │   │   │   │   │   ├── layout.tsx
+│   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   ├── diagnostic
+│   │   │   │   │   │   ├── choix-parcours
+│   │   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   │   ├── indicateurs-environnementaux
+│   │   │   │   │   │   │   ├── presentation
+│   │   │   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   │   │   ├── questions
+│   │   │   │   │   │   │   │   ├── IndicateursEnvironnementauxQuestionsPageClient.tsx
+│   │   │   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   │   │   └── resultats
+│   │   │   │   │   │   │       ├── IndicateursEnvironnementauxResultatsPageClient.tsx
+│   │   │   │   │   │   │       └── page.tsx
+│   │   │   │   │   │   └── prestation
+│   │   │   │   │   │       ├── fiche-diagnostic
+│   │   │   │   │   │       │   └── [ficheDiagnosticSlug]
+│   │   │   │   │   │       │       └── page.tsx
+│   │   │   │   │   │       ├── layout.tsx
+│   │   │   │   │   │       ├── liste
+│   │   │   │   │   │       │   └── page.tsx
+│   │   │   │   │   │       ├── retour-experience
+│   │   │   │   │   │       │   └── [rexSlug]
+│   │   │   │   │   │       │       └── page.tsx
+│   │   │   │   │   │       └── selection
+│   │   │   │   │   │           └── page.tsx
+│   │   │   │   │   ├── estimation
+│   │   │   │   │   │   ├── creation
+│   │   │   │   │   │   │   ├── CreateEstimationPageClient.tsx
+│   │   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   │   ├── layout.tsx
+│   │   │   │   │   │   └── liste
+│   │   │   │   │   │       ├── ListeEstimationPageClient.tsx
+│   │   │   │   │   │       └── page.tsx
+│   │   │   │   │   ├── fiche-solution
+│   │   │   │   │   │   ├── [ficheSolutionSlug]
+│   │   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   │   ├── liste
+│   │   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   │   ├── page.tsx
+│   │   │   │   │   │   └── recommandations
+│   │   │   │   │   │       └── page.tsx
+│   │   │   │   │   ├── financement
+│   │   │   │   │   │   ├── edit
+│   │   │   │   │   │   │   └── [estimationId]
+│   │   │   │   │   │   │       └── page.tsx
+│   │   │   │   │   │   ├── layout.tsx
+│   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   ├── info-projet
+│   │   │   │   │   │   ├── UpdateProjetForm.tsx
+│   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   ├── layout.tsx
+│   │   │   │   │   ├── projet
+│   │   │   │   │   │   ├── [retourExperienceSlug]
+│   │   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   ├── statut-projet
+│   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   ├── tableau-de-bord
+│   │   │   │   │   │   ├── TableauDeBordPageClient.tsx
+│   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   └── utilisateurs-projet
+│   │   │   │   │       └── page.tsx
+│   │   │   │   ├── creation-projet
+│   │   │   │   │   └── page.tsx
+│   │   │   │   ├── layout.tsx
+│   │   │   │   └── page.tsx
+│   │   │   ├── info-perso
+│   │   │   │   └── page.tsx
+│   │   │   └── statut-perso
+│   │   │       └── page.tsx
+│   │   ├── (site-vitrine)
+│   │   │   ├── aide-decision
+│   │   │   │   ├── [aideDecisionEtapeSlug]
+│   │   │   │   │   ├── layout.tsx
+│   │   │   │   │   └── page.tsx
+│   │   │   │   ├── layout.tsx
+│   │   │   │   └── page.tsx
+│   │   │   ├── fiche-solution
+│   │   │   │   ├── [ficheSolutionSlug]
+│   │   │   │   │   └── page.tsx
+│   │   │   │   └── page.tsx
+│   │   │   ├── recherche
+│   │   │   │   └── page.tsx
+│   │   │   ├── retour-experience
+│   │   │   │   ├── diagnostic
+│   │   │   │   │   ├── [rexSlug]
+│   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   └── page.tsx
+│   │   │   │   └── projet
+│   │   │   │       ├── [retourExperienceSlug]
+│   │   │   │       │   └── page.tsx
+│   │   │   │       └── page.tsx
+│   │   │   └── surchauffe-urbaine
+│   │   │       ├── fiche-diagnostic
+│   │   │       │   └── [ficheDiagnosticSlug]
+│   │   │       │       └── page.tsx
+│   │   │       ├── notions-cles
+│   │   │       │   └── page.tsx
+│   │   │       ├── page.tsx
+│   │   │       ├── quand-faire-un-diagnostic
+│   │   │       │   └── page.tsx
+│   │   │       └── territoire
+│   │   │           └── page.tsx
+│   │   ├── (static)
+│   │   │   ├── accessibilite
+│   │   │   │   └── page.tsx
+│   │   │   ├── budget
+│   │   │   │   └── page.tsx
+│   │   │   ├── contact
+│   │   │   │   └── page.tsx
+│   │   │   ├── mentions-legales
+│   │   │   │   └── page.tsx
+│   │   │   ├── newsletter
+│   │   │   │   └── page.tsx
+│   │   │   ├── plan-du-site
+│   │   │   │   ├── page.module.css
+│   │   │   │   └── page.tsx
+│   │   │   ├── politique-de-confidentialite
+│   │   │   │   └── page.tsx
+│   │   │   ├── politique-des-cookies
+│   │   │   │   └── page.tsx
+│   │   │   ├── stats
+│   │   │   │   └── page.tsx
+│   │   │   └── webinaires
+│   │   │       └── page.tsx
+│   │   ├── api
+│   │   │   ├── auth
+│   │   │   │   └── [...nextauth]
+│   │   │   │       └── route.ts
+│   │   │   ├── download-pdf
+│   │   │   │   └── route.ts
+│   │   │   ├── fuzzy-search
+│   │   │   │   └── route.ts
+│   │   │   ├── get-aides-territoires-aide-by-aide-id
+│   │   │   │   └── route.ts
+│   │   │   ├── get-available-projects-for-collectivite
+│   │   │   │   └── route.ts
+│   │   │   ├── get-climadiag-info-for-user-projects
+│   │   │   │   └── route.ts
+│   │   │   ├── get-fiche-diagnostic
+│   │   │   │   └── route.ts
+│   │   │   ├── get-fiches-diagnostic
+│   │   │   │   └── route.ts
+│   │   │   ├── get-fiches-solutions
+│   │   │   │   └── route.ts
+│   │   │   ├── get-fiches-solutions-complete
+│   │   │   │   └── route.ts
+│   │   │   ├── get-public-projet-by-id
+│   │   │   │   └── route.ts
+│   │   │   ├── get-rex-aquagir
+│   │   │   │   └── route.ts
+│   │   │   ├── get-rex-by-slug
+│   │   │   │   └── route.ts
+│   │   │   ├── get-rex-with-contacts-by-id
+│   │   │   │   └── route.ts
+│   │   │   ├── revalidate-cache
+│   │   │   │   └── route.ts
+│   │   │   ├── search-aides-for-estimation
+│   │   │   │   └── route.ts
+│   │   │   ├── search-climadiag-info
+│   │   │   │   └── route.ts
+│   │   │   ├── search-climadiag-public-info
+│   │   │   │   └── route.ts
+│   │   │   └── stats
+│   │   │       └── route.ts
+│   │   ├── defaultColorScheme.ts
+│   │   ├── dsfr-provider.tsx
+│   │   ├── error.tsx
+│   │   ├── global-error.tsx
+│   │   ├── globals.css
+│   │   ├── layout.tsx
+│   │   ├── not-found.tsx
+│   │   ├── page.tsx
+│   │   ├── robots.ts
+│   │   ├── server-only-index.tsx
+│   │   └── sitemap.ts
+│   ├── components
+│   │   ├── aideDecision
+│   │   │   ├── AideDecisionBreadcrumbs.tsx
+│   │   │   ├── AideDecisionBreadcrumbsStyles.module.css
+│   │   │   ├── AideDecisionEtapeCard.tsx
+│   │   │   ├── AideDecisionFirstStepCard.tsx
+│   │   │   ├── AideDecisionResult.tsx
+│   │   │   └── aide-decision-breadcrumb-link.tsx
+│   │   ├── analytics
+│   │   │   └── helpers.ts
+│   │   ├── annuaire
+│   │   │   ├── annuaire-card-filters.tsx
+│   │   │   ├── annuaire-empty.tsx
+│   │   │   ├── annuaire-projet-visibility.tsx
+│   │   │   ├── annuaire-title.tsx
+│   │   │   ├── annuaire.tsx
+│   │   │   ├── annuaireSavedContacts.tsx
+│   │   │   ├── contacts
+│   │   │   │   ├── annuaire-contact-card.tsx
+│   │   │   │   ├── annuaire-contact-save-button.tsx
+│   │   │   │   ├── annuaire-rex-concact-card-skeleton.tsx
+│   │   │   │   └── annuaire-rex-contact-card-fetcher.tsx
+│   │   │   ├── filters
+│   │   │   │   ├── annuaire-filter-adresse.tsx
+│   │   │   │   ├── annuaire-filter-budget.tsx
+│   │   │   │   ├── annuaire-filter-projet-status.tsx
+│   │   │   │   ├── annuaire-filter-type-espace.tsx
+│   │   │   │   ├── annuaire-filters-accordion.tsx
+│   │   │   │   ├── annuaire-filters.tsx
+│   │   │   │   └── use-annuaire-filters.ts
+│   │   │   ├── helpers.ts
+│   │   │   ├── hooks.tsx
+│   │   │   ├── map
+│   │   │   │   ├── annuaire-map-client.tsx
+│   │   │   │   ├── annuaire-map-clusters.tsx
+│   │   │   │   ├── annuaire-map-container.tsx
+│   │   │   │   ├── annuaire-map-focus.tsx
+│   │   │   │   ├── annuaire-map-legend.tsx
+│   │   │   │   ├── annuaire-map-skeleton.tsx
+│   │   │   │   └── carte-facile.css
+│   │   │   ├── side-panel
+│   │   │   │   ├── annuaire-contacts-downloader.tsx
+│   │   │   │   ├── annuaire-in-progress-projet-container.tsx
+│   │   │   │   ├── annuaire-in-progress-projet-content.tsx
+│   │   │   │   ├── annuaire-in-progress-projet-skeleton.tsx
+│   │   │   │   ├── annuaire-no-visible-markers.tsx
+│   │   │   │   ├── annuaire-only-visible-clusters.tsx
+│   │   │   │   ├── annuaire-rex-container.tsx
+│   │   │   │   ├── annuaire-rex-content-see-project.tsx
+│   │   │   │   ├── annuaire-rex-content-see-projet-modal-skeleton.tsx
+│   │   │   │   ├── annuaire-rex-content-see-projet-modal.tsx
+│   │   │   │   ├── annuaire-rex-content.tsx
+│   │   │   │   ├── annuaire-rex-skeleton.tsx
+│   │   │   │   ├── annuaire-side-panel-close-selected-projet.tsx
+│   │   │   │   ├── annuaire-side-panel-list-container.tsx
+│   │   │   │   ├── annuaire-side-panel-selected-projet-container.tsx
+│   │   │   │   ├── annuaire-side-panel-tracking.tsx
+│   │   │   │   ├── annuaire-user-projet-location.tsx
+│   │   │   │   └── projet-card
+│   │   │   │       ├── annuaire-in-progress-card-container.tsx
+│   │   │   │       ├── annuaire-in-progress-card-content.tsx
+│   │   │   │       ├── annuaire-in-progress-card-skeleton.tsx
+│   │   │   │       ├── annuaire-projet-list-cards.tsx
+│   │   │   │       ├── annuaire-rex-card-container.tsx
+│   │   │   │       ├── annuaire-rex-card-content.tsx
+│   │   │   │       └── annuaire-rex-card-skeleton.tsx
+│   │   │   ├── types.ts
+│   │   │   └── use-annuaire-card-filters.ts
+│   │   ├── authentication
+│   │   │   ├── SessionProvider.tsx
+│   │   │   ├── SignoutButton.tsx
+│   │   │   ├── auth-button-espace-projet.tsx
+│   │   │   ├── auth-button-user.tsx
+│   │   │   └── auth-buttons.tsx
+│   │   ├── climadiag
+│   │   │   ├── climadia-indicateurs-data.tsx
+│   │   │   ├── climadiag-downloader.tsx
+│   │   │   ├── climadiag-indicateurs-header.tsx
+│   │   │   ├── climadiag-indicateurs-line-jour.tsx
+│   │   │   ├── climadiag-indicateurs-line-legend.tsx
+│   │   │   ├── climadiag-indicateurs-line.tsx
+│   │   │   ├── climadiag-indicateurs-tab-button.tsx
+│   │   │   ├── climadiag-indicateurs-tab-buttons.tsx
+│   │   │   ├── climadiag-indicateurs-tabs.tsx
+│   │   │   ├── climadiag-indicateurs.tsx
+│   │   │   ├── climadiag-panel.tsx
+│   │   │   ├── climadiag-viewer-header.tsx
+│   │   │   ├── climadiag-viewer-item.tsx
+│   │   │   ├── climadiag-viewer.tsx
+│   │   │   ├── helpers.ts
+│   │   │   ├── hooks
+│   │   │   │   └── use-climadiag-indicateur-tabs.ts
+│   │   │   └── types.ts
+│   │   ├── common
+│   │   │   ├── CmsRichText.tsx
+│   │   │   ├── CollectiviteInputFormField.tsx
+│   │   │   ├── CustomAccordion.tsx
+│   │   │   ├── CustomDSFRQuote.tsx
+│   │   │   ├── CustomTabButton.tsx
+│   │   │   ├── CustomTodoStep.tsx
+│   │   │   ├── FilterButton.tsx
+│   │   │   ├── InputFormField.tsx
+│   │   │   ├── MonthPickerFormField.tsx
+│   │   │   ├── ObjectifsDeveloppementDurable.tsx
+│   │   │   ├── RedAsterisk.tsx
+│   │   │   ├── SelectFormField.tsx
+│   │   │   ├── accomagnement-espace-projet-card.tsx
+│   │   │   ├── address-input-form-field.tsx
+│   │   │   ├── all-solutions-board.tsx
+│   │   │   ├── annuaire-card-accordion.tsx
+│   │   │   ├── big-tooltip.tsx
+│   │   │   ├── button-share-url.tsx
+│   │   │   ├── common-skip-links.tsx
+│   │   │   ├── conditional-renderer.tsx
+│   │   │   ├── copy-field.tsx
+│   │   │   ├── currency-input-form-field.tsx
+│   │   │   ├── display-user-name.tsx
+│   │   │   ├── espace-projet-incentive
+│   │   │   │   └── espace-projet-incentive-banner.tsx
+│   │   │   ├── fiche-card-skeleton.tsx
+│   │   │   ├── fiche-completion-label.tsx
+│   │   │   ├── generic-links
+│   │   │   │   ├── generic-link.tsx
+│   │   │   │   └── route-couples.ts
+│   │   │   ├── generic-save-fiche
+│   │   │   │   ├── fiche-diag-link.tsx
+│   │   │   │   ├── generic-fiche-link.tsx
+│   │   │   │   ├── generic-save-button-authenticated-inside-projet.tsx
+│   │   │   │   ├── generic-save-button-authenticated-outside-projet.tsx
+│   │   │   │   ├── generic-save-button-element.tsx
+│   │   │   │   ├── generic-save-button-unauthenticated.tsx
+│   │   │   │   ├── generic-save-button.tsx
+│   │   │   │   ├── generic-save-modal-authenticated-inside-projet.tsx
+│   │   │   │   ├── generic-save-modal-authenticated-outside-projet.tsx
+│   │   │   │   ├── generic-save-modal-unauthenticated.tsx
+│   │   │   │   ├── generic-save-modal.tsx
+│   │   │   │   ├── helpers.ts
+│   │   │   │   └── index.tsx
+│   │   │   ├── hidden.tsx
+│   │   │   ├── image-loader.tsx
+│   │   │   ├── lecteur-mode-label.tsx
+│   │   │   ├── link-without-prefetch.tsx
+│   │   │   ├── mandatory-fields-mention.tsx
+│   │   │   ├── newsletter-linkedin.tsx
+│   │   │   ├── notifications
+│   │   │   │   └── index.tsx
+│   │   │   ├── pagination.tsx
+│   │   │   ├── pictos
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── picto-espace-selector.tsx
+│   │   │   │   ├── picto-pfmv.tsx
+│   │   │   │   └── picto-tableau-de-bord.tsx
+│   │   │   ├── popup-menu.tsx
+│   │   │   ├── projet-visibility-form-field.tsx
+│   │   │   ├── projet-visibility.tsx
+│   │   │   ├── protected-espace-projet-url.tsx
+│   │   │   ├── publish-information.tsx
+│   │   │   ├── separator.tsx
+│   │   │   ├── show-more-rich-text.tsx
+│   │   │   ├── simple-custom-accordion.tsx
+│   │   │   ├── site-vitrine-breadcumb
+│   │   │   │   ├── site-vitrine-breadcrumb.tsx
+│   │   │   │   └── site-vitrine-breadcumb-list.ts
+│   │   │   ├── spinner.tsx
+│   │   │   ├── splide-controllers.tsx
+│   │   │   └── zoomed-image.tsx
+│   │   ├── cookie
+│   │   │   └── consentManagement.tsx
+│   │   ├── diagnostic-indien
+│   │   │   ├── indien-coeff-explanation-modal.tsx
+│   │   │   ├── indien-reminder-modal.tsx
+│   │   │   ├── indien-result-combinaison-advice.tsx
+│   │   │   ├── indien-result-range.tsx
+│   │   │   ├── indien-result-ranges.tsx
+│   │   │   ├── indien-result-surface-repartition.tsx
+│   │   │   └── pdf
+│   │   │       ├── indien-result-downloader.tsx
+│   │   │       ├── indien-result-pdf-header.tsx
+│   │   │       └── indien-result-pdf-page.tsx
+│   │   ├── error
+│   │   │   └── UserNotFoundError.tsx
+│   │   ├── espace-projet
+│   │   │   ├── banner
+│   │   │   │   ├── banner-projet-breadcrumb.tsx
+│   │   │   │   ├── banner-projet-skeleton.tsx
+│   │   │   │   ├── banner-projet.tsx
+│   │   │   │   ├── breadcrumb-list
+│   │   │   │   │   ├── espace-projet-breadcurmb-annuaire.ts
+│   │   │   │   │   ├── espace-projet-breadcurmb-diag.ts
+│   │   │   │   │   ├── espace-projet-breadcurmb-estimation.ts
+│   │   │   │   │   ├── espace-projet-breadcurmb-financement.ts
+│   │   │   │   │   └── espace-projet-breadcurmb-solution.ts
+│   │   │   │   └── espace-projet-breadcurmb-list.tsx
+│   │   │   ├── recommandations-solutions
+│   │   │   │   └── recommandations-fiche-solution.tsx
+│   │   │   ├── statut-common
+│   │   │   │   └── statut-action-contact.tsx
+│   │   │   ├── statut-projet
+│   │   │   │   ├── projet-last-modification.tsx
+│   │   │   │   ├── statut-action-projet-annuaire.tsx
+│   │   │   │   ├── statut-action-projet-questionnaire-satisfaction.tsx
+│   │   │   │   ├── statut-projet-action-banner.tsx
+│   │   │   │   ├── statut-projet-actions.tsx
+│   │   │   │   ├── statut-projet-buttons.tsx
+│   │   │   │   ├── statut-projet-page.tsx
+│   │   │   │   └── statut-projet.ts
+│   │   │   ├── statut-user
+│   │   │   │   ├── statut-action-user-annuaire.tsx
+│   │   │   │   ├── statut-action-user-questionnaire-satisfaction.tsx
+│   │   │   │   ├── statut-user-actions.tsx
+│   │   │   │   ├── statut-user-buttons.tsx
+│   │   │   │   ├── statut-user-page.tsx
+│   │   │   │   └── statut-user.ts
+│   │   │   └── utilisateurs-projet
+│   │   │       ├── helpers.tsx
+│   │   │       ├── partage-member-modification-role-modale.tsx
+│   │   │       ├── partage-overview-admin.tsx
+│   │   │       ├── partage-overview-delete-or-quit-modale.tsx
+│   │   │       ├── partage-overview-member-initiales.tsx
+│   │   │       ├── partage-overview-member-invite-button.tsx
+│   │   │       ├── partage-overview-member-section.tsx
+│   │   │       ├── partage-overview-member-status-accepted-admin.tsx
+│   │   │       ├── partage-overview-member-status-invited.tsx
+│   │   │       ├── partage-overview-member-status-requested.tsx
+│   │   │       ├── partage-overview-member.tsx
+│   │   │       ├── partage-overview-popup-menu.tsx
+│   │   │       ├── partage-overview-quit.tsx
+│   │   │       └── partage-overview-wrapper.tsx
+│   │   ├── estimation
+│   │   │   ├── estimation-card-price-info-completed.tsx
+│   │   │   ├── estimation-card-price-info.tsx
+│   │   │   ├── estimation-delete-modal.tsx
+│   │   │   ├── estimation-overview-card.tsx
+│   │   │   └── materiaux-modal
+│   │   │       ├── estimation-materiaux-fiche-solution-recap.tsx
+│   │   │       ├── estimation-materiaux-modal-container.tsx
+│   │   │       ├── estimation-materiaux-modal-content.tsx
+│   │   │       ├── estimation-materiaux-validation.tsx
+│   │   │       └── other-usages-materiau.tsx
+│   │   ├── ficheSolution
+│   │   │   ├── FicheSolutionInfoComparatif.tsx
+│   │   │   ├── FicheSolutionSmallHorizontalCard.tsx
+│   │   │   ├── FicheSolutionTabFinancements.tsx
+│   │   │   ├── FicheSolutionTabMateriaux.tsx
+│   │   │   ├── FicheSolutionTabMiseEnOeuvre.tsx
+│   │   │   ├── FicheSolutionTabOups.tsx
+│   │   │   ├── FicheSolutionTabSynthese.tsx
+│   │   │   ├── fiche-solution-card-with-fetcher.tsx
+│   │   │   ├── fiche-solution-card.tsx
+│   │   │   ├── fiche-solution-side-menu.tsx
+│   │   │   ├── fiche-solution-small-card-container.tsx
+│   │   │   ├── fiche-solution-small-card.tsx
+│   │   │   ├── fiche-solution.tsx
+│   │   │   ├── fiches-solutions.tsx
+│   │   │   └── helpers.ts
+│   │   ├── fiches-diagnostic
+│   │   │   ├── fiche-diagnostic-bloc-avantages.tsx
+│   │   │   ├── fiche-diagnostic-bloc-besoin-et-indicateurs.tsx
+│   │   │   ├── fiche-diagnostic-bloc-meo.tsx
+│   │   │   ├── fiche-diagnostic-bloc-methode.tsx
+│   │   │   ├── fiche-diagnostic-bloc-retour-experience.tsx
+│   │   │   ├── fiche-diagnostic-bloc-text.tsx
+│   │   │   ├── fiche-diagnostic-blocs.tsx
+│   │   │   ├── fiche-diagnostic-card-skeleton.tsx
+│   │   │   ├── fiche-diagnostic-card.tsx
+│   │   │   ├── fiche-diagnostic-choix-parcours.tsx
+│   │   │   ├── fiche-diagnostic-choix-with-filters.tsx
+│   │   │   ├── fiche-diagnostic-component.tsx
+│   │   │   ├── fiche-diagnostic-description-modal.tsx
+│   │   │   ├── fiche-diagnostic-echelle-thermique-filter.tsx
+│   │   │   ├── fiche-diagnostic-guide.tsx
+│   │   │   ├── fiche-diagnostic-header.tsx
+│   │   │   ├── fiche-diagnostic-projet-liste-add-button.tsx
+│   │   │   ├── fiche-diagnostic-side-menu.tsx
+│   │   │   ├── fiches-diagnostics-projet-empty.tsx
+│   │   │   └── fiches-diagnostics-projet-selected.tsx
+│   │   ├── fiches-solutions-projet
+│   │   │   ├── fiches-solutions-projet-empty.tsx
+│   │   │   ├── fiches-solutions-projet-header.tsx
+│   │   │   ├── fiches-solutions-projet-selected.tsx
+│   │   │   ├── fiches-solutions-projet.tsx
+│   │   │   └── index.ts
+│   │   ├── filters
+│   │   │   ├── AideDecisionSortFilter.tsx
+│   │   │   ├── BaisseTemperatureFilter.tsx
+│   │   │   ├── RegionFilter.tsx
+│   │   │   ├── TypeSolutionFilter.tsx
+│   │   │   └── type-espace-filter-component.tsx
+│   │   ├── financement
+│   │   │   ├── aide
+│   │   │   │   ├── aide-card-save-button.tsx
+│   │   │   │   ├── aide-card-skeleton.tsx
+│   │   │   │   ├── aide-card-with-fetcher.tsx
+│   │   │   │   ├── aide-card.tsx
+│   │   │   │   ├── aide-edit-filter.tsx
+│   │   │   │   ├── aide-edit-sort-field.tsx
+│   │   │   │   ├── aide-edit.tsx
+│   │   │   │   ├── aide-estimation-liste-link.tsx
+│   │   │   │   ├── aide-estimations-card-deadline.tsx
+│   │   │   │   ├── aide-estimations-card-label-fiche-solution.tsx
+│   │   │   │   ├── aide-estimations-card-label.tsx
+│   │   │   │   ├── aide-estimations-card-warning-remaining-day.tsx
+│   │   │   │   ├── aide-estimations-card-with-selection.tsx
+│   │   │   │   ├── aide-estimations-card-without-selection.tsx
+│   │   │   │   ├── aide-estimations-card.tsx
+│   │   │   │   ├── aide-estimations-liste-empty.tsx
+│   │   │   │   ├── aide-estimations-liste-header.tsx
+│   │   │   │   ├── aide-estimations-liste.tsx
+│   │   │   │   ├── aide-estimations-panel-header.tsx
+│   │   │   │   ├── aide-estimations-recap.tsx
+│   │   │   │   ├── aide-fiche-modal.tsx
+│   │   │   │   ├── aide-fiche-panel-line.tsx
+│   │   │   │   ├── aide-fiche.tsx
+│   │   │   │   ├── aide-info-lines-show-more.tsx
+│   │   │   │   └── aide-info-lines.tsx
+│   │   │   ├── helpers.tsx
+│   │   │   ├── index.tsx
+│   │   │   └── types.ts
+│   │   ├── homepage
+│   │   │   ├── homepage-data.tsx
+│   │   │   ├── homepage-hero-pictos.tsx
+│   │   │   ├── homepage-hero.tsx
+│   │   │   ├── homepage-inspirer-card.tsx
+│   │   │   ├── homepage-inspirer.tsx
+│   │   │   ├── homepage-odd.tsx
+│   │   │   ├── homepage-projet.tsx
+│   │   │   ├── homepage-start.tsx
+│   │   │   ├── homepage-stories-controllers.tsx
+│   │   │   ├── homepage-stories.tsx
+│   │   │   ├── homepage-story.tsx
+│   │   │   └── homepage.tsx
+│   │   ├── hubspot
+│   │   │   ├── path-page-view.tsx
+│   │   │   ├── script.tsx
+│   │   │   ├── track-hubspot.tsx
+│   │   │   └── types.ts
+│   │   ├── layout
+│   │   │   ├── AppFooter.tsx
+│   │   │   ├── AppHeader.tsx
+│   │   │   ├── MainLayoutProviders.tsx
+│   │   │   └── NavigationMenu.tsx
+│   │   ├── liste-projets
+│   │   │   ├── available-projets-for-collectivite-button.tsx
+│   │   │   ├── available-projets-for-collectivite-modal.tsx
+│   │   │   ├── empty.tsx
+│   │   │   ├── header.tsx
+│   │   │   ├── helpers.ts
+│   │   │   ├── index.tsx
+│   │   │   ├── liste.tsx
+│   │   │   ├── projet-card.tsx
+│   │   │   └── use-projet-card-actions.ts
+│   │   ├── matomo
+│   │   │   ├── matomo-page-view.tsx
+│   │   │   └── matomo-script.tsx
+│   │   ├── maturite
+│   │   │   ├── maturite-progress.tsx
+│   │   │   └── maturite.tsx
+│   │   ├── navigation
+│   │   │   └── navigation-card.tsx
+│   │   ├── projet
+│   │   │   ├── projet-retour-experience-content.tsx
+│   │   │   ├── projet-retour-experience-with-fetcher.tsx
+│   │   │   └── projet-retour-experiences.tsx
+│   │   ├── recherche
+│   │   │   ├── page.module.css
+│   │   │   ├── recherche-barre.tsx
+│   │   │   ├── recherche-helpers.ts
+│   │   │   ├── recherche-resultats-skeleton.tsx
+│   │   │   ├── recherche-resultats.tsx
+│   │   │   ├── recherche-suggestions.tsx
+│   │   │   └── recherche-types.ts
+│   │   ├── retour-experience-diag
+│   │   │   ├── retour-experience-diag-card-espace-projet.tsx
+│   │   │   ├── retour-experience-diag-card-picto.tsx
+│   │   │   ├── retour-experience-diag-card-site-vitrine.tsx
+│   │   │   ├── retour-experience-diag-card.tsx
+│   │   │   ├── retour-experience-diag-combinaison.tsx
+│   │   │   ├── retour-experience-diag-contacts.tsx
+│   │   │   ├── retour-experience-diag-informations.tsx
+│   │   │   ├── retour-experience-diag-pdf.tsx
+│   │   │   ├── retour-experience-diag-principaux-resultats.tsx
+│   │   │   └── retour-experience-diag.tsx
+│   │   ├── retourExperience
+│   │   │   ├── CalendrierRetourExperienceAccordion.tsx
+│   │   │   ├── ItemRetourExperience.tsx
+│   │   │   ├── ItemRetourExperienceExtraInfo.tsx
+│   │   │   ├── RetourExperienceCard.tsx
+│   │   │   ├── RetourExperienceExtraInfoPanel.tsx
+│   │   │   ├── SituationRetourExperienceCard.tsx
+│   │   │   └── SolutionRetourExperienceCard.tsx
+│   │   ├── signin
+│   │   │   └── SignInCard.tsx
+│   │   ├── surchauffe-urbaine
+│   │   │   ├── surchauffe-urbaine-notions-component.tsx
+│   │   │   ├── surchauffe-urbaine-notions.ts
+│   │   │   ├── surchauffe-urbaine-stories-component.tsx
+│   │   │   ├── surchauffe-urbaine-stories-controllers.tsx
+│   │   │   ├── surchauffe-urbaine-stories.tsx
+│   │   │   ├── surchauffe-urbaine-story-card.tsx
+│   │   │   ├── surchauffe-urbaine-timing-component.tsx
+│   │   │   ├── surchauffe-urbaine-timing-slide-controllers.tsx
+│   │   │   ├── surchauffe-urbaine-timings.tsx
+│   │   │   ├── teaser-diagnostic-card.tsx
+│   │   │   ├── teaser-diagnostic-component.tsx
+│   │   │   └── territoire
+│   │   │       ├── lcz-legend.ts
+│   │   │       ├── lcz-map-loading-error-alert.tsx
+│   │   │       ├── lcz-map-skeleton.tsx
+│   │   │       ├── search-helpers.ts
+│   │   │       ├── surchauffe-urbaine-climadiag.tsx
+│   │   │       ├── surchauffe-urbaine-lcz-map-container.tsx
+│   │   │       ├── surchauffe-urbaine-lcz-map-focus.tsx
+│   │   │       ├── surchauffe-urbaine-lcz-map-helpers.tsx
+│   │   │       ├── surchauffe-urbaine-lcz-map.tsx
+│   │   │       ├── surchauffe-urbaine-map-lcz-explanation.tsx
+│   │   │       ├── surchauffe-urbaine-map-lcz-legend.tsx
+│   │   │       └── surchauffe-urbaine-territoire-search.tsx
+│   │   ├── tableau-de-bord
+│   │   │   ├── helpers.ts
+│   │   │   ├── services-sidebar
+│   │   │   │   ├── service-annuaire.tsx
+│   │   │   │   ├── service-recommandations.tsx
+│   │   │   │   ├── service-status-projet.tsx
+│   │   │   │   └── services-sidebar.tsx
+│   │   │   ├── tableau-de-bord-suivi-banner.tsx
+│   │   │   ├── tableau-de-bord-suivi-card-progress.tsx
+│   │   │   ├── tableau-de-bord-suivi-card-with-estimation.tsx
+│   │   │   ├── tableau-de-bord-suivi-card-with-fiches-solutions.tsx
+│   │   │   ├── tableau-de-bord-suivi-card-with-text.tsx
+│   │   │   ├── tableau-de-bord-suivi-card.tsx
+│   │   │   ├── tableau-de-bord-suivi-estimation-disabled.tsx
+│   │   │   ├── tableau-de-bord-suivi-financement-disabled.tsx
+│   │   │   ├── tableau-de-bord-suivi.tsx
+│   │   │   └── viewer-mode-modal.tsx
+│   │   ├── user
+│   │   │   └── UserBrowsingTracker.tsx
+│   │   └── webinaires
+│   │       ├── webinaire-card.tsx
+│   │       ├── webinaire-subscription-button.tsx
+│   │       ├── webinaires-helpers.ts
+│   │       └── webinaires-list.tsx
+│   ├── forms
+│   │   ├── collectivite
+│   │   │   └── collectivite-form-schema.ts
+│   │   ├── contact
+│   │   │   └── contact-iframe.tsx
+│   │   ├── estimation
+│   │   │   ├── EstimationFormSchema.ts
+│   │   │   ├── EstimationInfoForm.tsx
+│   │   │   ├── editable-price-field.tsx
+│   │   │   ├── estimation-materiau-field-unique.tsx
+│   │   │   ├── estimation-materiau-field.tsx
+│   │   │   ├── estimation-materiau-form-schema.ts
+│   │   │   ├── estimation-materiau-form-simple-field-schema.ts
+│   │   │   ├── estimation-materiau-form-simple-field.tsx
+│   │   │   ├── estimation-materiau-form.tsx
+│   │   │   └── estimation-materiau-global-price-footer.tsx
+│   │   ├── indicateursEnvironnementaux
+│   │   │   ├── indicateurs-environnementaux-form-schema.ts
+│   │   │   └── indicateurs-environnementaux-form.tsx
+│   │   ├── newsletter
+│   │   │   └── newsletter-iframe.tsx
+│   │   ├── partage
+│   │   │   ├── partage-user-invitation.ts
+│   │   │   └── partage-user-modification-schema.ts
+│   │   ├── projet
+│   │   │   ├── ProjetInfoForm.tsx
+│   │   │   └── ProjetInfoFormSchema.ts
+│   │   └── user
+│   │       ├── UserInfoForm.tsx
+│   │       └── UserInfoFormSchema.ts
+│   ├── generated
+│   │   └── prisma
+│   │       └── client
+│   │           ├── client.d.ts
+│   │           ├── client.js
+│   │           ├── default.d.ts
+│   │           ├── default.js
+│   │           ├── edge.d.ts
+│   │           ├── edge.js
+│   │           ├── index-browser.js
+│   │           ├── index.d.ts
+│   │           ├── index.js
+│   │           ├── libquery_engine-debian-openssl-3.0.x.so.node
+│   │           ├── package.json
+│   │           ├── query_engine-windows.dll.node
+│   │           ├── runtime
+│   │           │   ├── edge-esm.js
+│   │           │   ├── edge.js
+│   │           │   ├── index-browser.d.ts
+│   │           │   ├── index-browser.js
+│   │           │   ├── library.d.ts
+│   │           │   ├── library.js
+│   │           │   ├── react-native.js
+│   │           │   ├── wasm-compiler-edge.js
+│   │           │   └── wasm-engine-edge.js
+│   │           ├── schema.prisma
+│   │           ├── wasm.d.ts
+│   │           └── wasm.js
+│   ├── helpers
+│   │   ├── aideDecisionSortFilter.ts
+│   │   ├── baisseTemperatureFicheSolution.tsx
+│   │   ├── canalAcquisition.ts
+│   │   ├── common.tsx
+│   │   ├── cout
+│   │   │   ├── cout-common.tsx
+│   │   │   ├── cout-fiche-solution.tsx
+│   │   │   └── cout-materiau.tsx
+│   │   ├── credits-image.ts
+│   │   ├── csv-utils.ts
+│   │   ├── dateUtils.ts
+│   │   ├── delaiTravauxFiche.tsx
+│   │   ├── estimation.ts
+│   │   ├── ficheDiagnostic
+│   │   │   ├── echelle-spatiale-diagnostic.ts
+│   │   │   └── echelle-thermique-diagnostic.ts
+│   │   ├── indicateurs-environnementaux
+│   │   │   ├── indi-en-helpers.ts
+│   │   │   ├── indi-en-questions.ts
+│   │   │   ├── indi-en-types.ts
+│   │   │   ├── indicateurs-environnementaux-list.ts
+│   │   │   └── indicateurs-environnementaux-ranges.ts
+│   │   ├── listUtils.ts
+│   │   ├── matomo
+│   │   │   ├── matomo-tags.ts
+│   │   │   └── track-matomo.ts
+│   │   ├── maturite-projet.tsx
+│   │   ├── messages.ts
+│   │   ├── metadata
+│   │   │   └── helpers.ts
+│   │   ├── pdf-utils.ts
+│   │   ├── permission-manager.ts
+│   │   ├── porteeBaisseTemperatureFicheSolution.tsx
+│   │   ├── regions.ts
+│   │   ├── result-manager.ts
+│   │   ├── retourExperience
+│   │   │   ├── climatRetourExperience.ts
+│   │   │   └── temporaliteRetourExperience.ts
+│   │   ├── revalidate-tag-call.ts
+│   │   ├── routes.ts
+│   │   ├── type-espace-filter.ts
+│   │   ├── type-fiche-solution.tsx
+│   │   ├── user-role.ts
+│   │   └── user.ts
+│   ├── hooks
+│   │   ├── use-aide-estimation-edit-filter.ts
+│   │   ├── use-aide-estimation-edit-sort-method.ts
+│   │   ├── use-aides-selected-by-estimation.ts
+│   │   ├── use-can-edit-projet.ts
+│   │   ├── use-click-outside-management.ts
+│   │   ├── use-delayed-loading.ts
+│   │   ├── use-estimation-fs-global-price.ts
+│   │   ├── use-fiches-solutions-titles.ts
+│   │   ├── use-get-aide-saved-in-estimation-id.ts
+│   │   ├── use-is-lecteur.ts
+│   │   ├── use-pagination.tsx
+│   │   ├── use-recommandations-for-current-projet.ts
+│   │   ├── use-recommandations-viewed.ts
+│   │   ├── use-swr-with-fetcher.tsx
+│   │   ├── use-unsaved-changes.ts
+│   │   ├── useAideDecisionSortFilter.ts
+│   │   ├── useMultipleValuesFilter.ts
+│   │   └── useTypeEspaceFilter.ts
+│   ├── lib
+│   │   ├── adresseApi
+│   │   │   ├── banApiHelper.ts
+│   │   │   ├── fetch.ts
+│   │   │   └── types.d.ts
+│   │   ├── aidesTerritoires
+│   │   │   ├── fetch.ts
+│   │   │   ├── helpers.ts
+│   │   │   └── types.d.ts
+│   │   ├── departements
+│   │   │   └── index.ts
+│   │   ├── next-auth
+│   │   │   └── auth.ts
+│   │   ├── prisma
+│   │   │   ├── prisma-aide-estimation-queries.ts
+│   │   │   ├── prisma-analytics-queries.ts
+│   │   │   ├── prisma-climadiag-queries.ts
+│   │   │   ├── prisma-cron-jobs-queries.ts
+│   │   │   ├── prisma-diagnostic-simulation-queries.ts
+│   │   │   ├── prisma-email-queries.ts
+│   │   │   ├── prisma-projet-fiche-queries.ts
+│   │   │   ├── prisma-projet-sourcing-contact-queries.ts
+│   │   │   ├── prisma-user-projet-queries.ts
+│   │   │   ├── prismaAideQueries.ts
+│   │   │   ├── prismaClient.ts
+│   │   │   ├── prismaCollectiviteQueries.ts
+│   │   │   ├── prismaCustomTypes.d.ts
+│   │   │   ├── prismaCustomTypesHelper.ts
+│   │   │   ├── prismaEstimationQueries.ts
+│   │   │   ├── prismaProjetQueries.ts
+│   │   │   ├── prismaUserCollectiviteQueries.ts
+│   │   │   └── prismaUserQueries.ts
+│   │   ├── sentry
+│   │   │   └── sentryCustomMessage.ts
+│   │   ├── siren
+│   │   │   ├── fetch.ts
+│   │   │   └── types.d.ts
+│   │   └── strapi
+│   │       ├── helpers
+│   │       │   ├── getHistoryFromAideDecision.ts
+│   │       │   └── strapiArrayUtils.ts
+│   │       ├── queries
+│   │       │   ├── aideDecisionQueries.ts
+│   │       │   ├── commonStrapiFilters.ts
+│   │       │   ├── fiches-diagnostic-queries.ts
+│   │       │   ├── fichesSolutionsQueries.ts
+│   │       │   ├── retour-experience-diag-queries.ts
+│   │       │   ├── retoursExperienceQueries.ts
+│   │       │   ├── strapiFragments.ts
+│   │       │   └── webinaires-queries.ts
+│   │       ├── strapiClient.ts
+│   │       └── types
+│   │           ├── api
+│   │           │   ├── aide-decision-etape.ts
+│   │           │   ├── cobenefice.ts
+│   │           │   ├── fiche-diagnostic.ts
+│   │           │   ├── fiche-solution.ts
+│   │           │   ├── lien-rex-diagnostic.ts
+│   │           │   ├── materiau.ts
+│   │           │   ├── objectif-developpement-durable.ts
+│   │           │   ├── region.ts
+│   │           │   ├── retour-experience-diagnostic.ts
+│   │           │   ├── retour-experience.ts
+│   │           │   ├── solution-retour-experience.ts
+│   │           │   └── webinaire.ts
+│   │           ├── common
+│   │           │   ├── AdminPanelRelationPropertyModification.ts
+│   │           │   ├── Media.ts
+│   │           │   ├── MediaFormat.ts
+│   │           │   ├── Payload.ts
+│   │           │   └── User.ts
+│   │           ├── components
+│   │           │   ├── common
+│   │           │   │   ├── Citation.ts
+│   │           │   │   └── ImageWithCaption.ts
+│   │           │   ├── fiche-diagnostic
+│   │           │   │   ├── EtapeMiseEnOeuvre.ts
+│   │           │   │   └── UtiliteMethode.ts
+│   │           │   ├── fiche-solution
+│   │           │   │   ├── AideRegionale.ts
+│   │           │   │   ├── EtapeDiagnostic.ts
+│   │           │   │   ├── EtapeEntretien.ts
+│   │           │   │   ├── EtapeMiseEnOeuvre.ts
+│   │           │   │   └── Oups.ts
+│   │           │   └── retour-experience
+│   │           │       ├── Calendrier.ts
+│   │           │       ├── Contact.ts
+│   │           │       └── Situation.ts
+│   │           └── strapi-custom-types.ts
+│   ├── middleware.ts
+│   ├── services
+│   │   ├── brevo
+│   │   │   ├── brevo-api.ts
+│   │   │   └── index.ts
+│   │   ├── connect
+│   │   │   ├── connect-helpers.ts
+│   │   │   ├── index.ts
+│   │   │   └── types.ts
+│   │   ├── hubspot
+│   │   │   ├── hubspot-helpers.ts
+│   │   │   └── index.ts
+│   │   └── mattermost
+│   │       ├── index.ts
+│   │       └── mattermost-helpers.ts
+│   ├── stores
+│   │   ├── modal
+│   │   │   ├── provider.tsx
+│   │   │   └── store.ts
+│   │   ├── projets
+│   │   │   ├── client.tsx
+│   │   │   ├── helper.ts
+│   │   │   ├── provider.tsx
+│   │   │   ├── server.tsx
+│   │   │   └── store.ts
+│   │   └── user
+│   │       ├── client.tsx
+│   │       ├── provider.tsx
+│   │       ├── server.tsx
+│   │       └── store.ts
+│   └── types
+│       ├── global.d.ts
+│       └── nextAuth.d.ts
+├── tailwind.config.js
+└── tsconfig.json
+361 directories, 1099 files
