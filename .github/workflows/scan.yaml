@@ -71,10 +71,23 @@ jobs:
                   echo "${{ matrix.sites.url }}"
                   ./fetch-repo.sh "${{ matrix.sites.url }}"
 
-            - uses: EndBug/add-and-commit@v9
-              with:
-                  add: "./repos/${{ matrix.sites.full_name }}"
-                  author_name: "BetaBot"
-                  author_email: "infra@incubateur.net"
-                  message: "update: ${{ matrix.sites.full_name }}"
-                  pull: "--rebase --autostash"
+            - name: Commit changes
+              run: |
+                  git config user.name "BetaBot"
+                  git config user.email "infra@incubateur.net"
+                  git add "./repos/${{ matrix.sites.full_name }}"
+
+                  # Check if there are changes to commit
+                  if git diff --staged --quiet; then
+                    echo "No changes to commit"
+                    exit 0
+                  fi
+
+                  git commit -m "update: ${{ matrix.sites.full_name }}"
+
+                  # Retry push with rebase up to 5 times
+                  for i in {1..5}; do
+                    git pull --rebase --autostash && git push && break
+                    echo "Push failed, retrying ($i/5)..."
+                    sleep $((i * 2))
+                  done
