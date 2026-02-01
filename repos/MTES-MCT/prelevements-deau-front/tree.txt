@@ -1,0 +1,412 @@
+.
+├── .env.sample
+├── .github
+│   └── workflows
+│       ├── default.yml
+│       └── storybook.yml
+├── .gitignore
+├── .slugignore
+├── .storybook
+│   ├── main.js
+│   └── preview.js
+├── .yarnrc.yml
+├── Procfile
+├── README.md
+├── ava-loader.js
+├── ava.config.js
+├── jsconfig.json
+├── next.config.mjs
+├── package.json
+├── postcss.config.mjs
+├── public
+│   └── images
+│       ├── assets
+│       │   └── erreur-technique.svg
+│       ├── capture-carte-points-prelevement.jpg
+│       └── favicon.ico
+├── scalingo.json
+├── src
+│   ├── app
+│   │   ├── api
+│   │   │   ├── auth
+│   │   │   │   └── verify
+│   │   │   │       └── [token]
+│   │   │   │           └── route.js
+│   │   │   └── util
+│   │   │       └── request.js
+│   │   ├── auth
+│   │   │   ├── callback
+│   │   │   │   └── page.js
+│   │   │   ├── error
+│   │   │   │   └── page.js
+│   │   │   ├── nextauth
+│   │   │   │   └── [...nextauth]
+│   │   │   │       └── route.js
+│   │   │   └── verify
+│   │   │       └── [token]
+│   │   │           └── route.js
+│   │   ├── default-color-scheme.js
+│   │   ├── dossiers
+│   │   │   ├── [dossierId]
+│   │   │   │   ├── layout.js
+│   │   │   │   └── page.js
+│   │   │   └── page.js
+│   │   ├── error.js
+│   │   ├── exploitations
+│   │   │   ├── [id]
+│   │   │   │   ├── edit
+│   │   │   │   │   └── page.js
+│   │   │   │   └── page.js
+│   │   │   └── new
+│   │   │       └── page.js
+│   │   ├── favicon.ico
+│   │   ├── globals.css
+│   │   ├── layout.js
+│   │   ├── loading.js
+│   │   ├── login
+│   │   │   └── page.js
+│   │   ├── not-found.js
+│   │   ├── page.js
+│   │   ├── points-prelevement
+│   │   │   ├── [id]
+│   │   │   │   ├── edit
+│   │   │   │   │   └── page.js
+│   │   │   │   ├── layout.js
+│   │   │   │   ├── loading.js
+│   │   │   │   └── page.js
+│   │   │   ├── new
+│   │   │   │   └── page.js
+│   │   │   └── page.js
+│   │   ├── preleveurs
+│   │   │   ├── [id]
+│   │   │   │   ├── documents
+│   │   │   │   │   └── new
+│   │   │   │   │       └── page.js
+│   │   │   │   ├── edit
+│   │   │   │   │   └── page.js
+│   │   │   │   ├── page.js
+│   │   │   │   └── regles
+│   │   │   │       ├── [regleId]
+│   │   │   │       │   └── page.js
+│   │   │   │       └── new
+│   │   │   │           └── page.js
+│   │   │   ├── new
+│   │   │   │   └── page.js
+│   │   │   └── page.js
+│   │   └── validateur
+│   │       ├── layout.js
+│   │       └── page.js
+│   ├── components
+│   │   ├── PrelevementsSeriesExplorer
+│   │   │   ├── aggregated-series-explorer.js
+│   │   │   ├── aggregated-series-explorer.stories.jsx
+│   │   │   ├── chart-with-range-slider.js
+│   │   │   ├── constants
+│   │   │   │   ├── __tests__
+│   │   │   │   │   └── parameters.test.js
+│   │   │   │   ├── colors.js
+│   │   │   │   ├── index.js
+│   │   │   │   └── parameters.js
+│   │   │   ├── formatters.js
+│   │   │   ├── index.js
+│   │   │   ├── loading-state.js
+│   │   │   ├── parameter-comments.js
+│   │   │   ├── parameter-operators-selector.js
+│   │   │   ├── parameter-selector.js
+│   │   │   ├── prelevements-series-explorer.stories.jsx
+│   │   │   ├── use-chart-series.js
+│   │   │   ├── use-load-series-values.js
+│   │   │   ├── use-parameter-selection.js
+│   │   │   ├── use-timeline.js
+│   │   │   ├── util.test.js
+│   │   │   └── utils
+│   │   │       ├── __tests__
+│   │   │       │   ├── aggregation.test.js
+│   │   │       │   ├── date-range-periods.test.js
+│   │   │       │   ├── gap-detection.test.js
+│   │   │       │   └── time-bucketing.test.js
+│   │   │       ├── aggregation.js
+│   │   │       ├── date-range-periods.js
+│   │   │       ├── gap-detection.js
+│   │   │       ├── index.js
+│   │   │       ├── parameter-display.js
+│   │   │       └── time-bucketing.js
+│   │   ├── calendar-grid.js
+│   │   ├── declarations
+│   │   │   ├── dossier
+│   │   │   │   ├── declarant-details.js
+│   │   │   │   ├── demandeur-details.js
+│   │   │   │   ├── dossier-card.js
+│   │   │   │   ├── dossier-header.js
+│   │   │   │   ├── dossiers-breadcrumb.js
+│   │   │   │   ├── dossiers-filters.js
+│   │   │   │   ├── dossiers-tabs.js
+│   │   │   │   ├── infos.js
+│   │   │   │   ├── points-prelevement-details.js
+│   │   │   │   ├── prelevements
+│   │   │   │   │   ├── compteur.js
+│   │   │   │   │   ├── declaration-file-details.js
+│   │   │   │   │   ├── parameter-trend-chart.js
+│   │   │   │   │   ├── prelevements-accordion.js
+│   │   │   │   │   └── volumes-pompes.js
+│   │   │   │   └── preleveur-details.js
+│   │   │   ├── dossier-details.js
+│   │   │   ├── dossier-state-badge.js
+│   │   │   ├── dossiers-list.js
+│   │   │   ├── file-validation-errors.js
+│   │   │   ├── month-prevelement-calendar.js
+│   │   │   ├── prelevement-type-badge.js
+│   │   │   ├── prelevements-calendar
+│   │   │   │   ├── index.js
+│   │   │   │   ├── util.js
+│   │   │   │   └── util.test.js
+│   │   │   ├── type-saisie-badge.js
+│   │   │   ├── validateur
+│   │   │   │   ├── file-validation-result.js
+│   │   │   │   └── form.js
+│   │   │   └── validation-status.js
+│   │   ├── documents
+│   │   │   ├── document-edit-dialog.js
+│   │   │   ├── document.js
+│   │   │   └── documents-list.js
+│   │   ├── exploitations
+│   │   │   ├── exploitation-item.js
+│   │   │   ├── exploitations-list-item.js
+│   │   │   └── exploitations-list.js
+│   │   ├── footer.js
+│   │   ├── form
+│   │   │   ├── day-month-selector.js
+│   │   │   ├── document-form.js
+│   │   │   ├── document-upload-form.js
+│   │   │   ├── exploitation-creation-form.js
+│   │   │   ├── exploitation-edition-form.js
+│   │   │   ├── exploitation-form.js
+│   │   │   ├── mini-map-form.js
+│   │   │   ├── optional-point-fields-form.js
+│   │   │   ├── optional-preleveur-fields-form.js
+│   │   │   ├── point-creation-form.js
+│   │   │   ├── point-edition-form.js
+│   │   │   ├── point-form.js
+│   │   │   ├── preleveur-delete-section.js
+│   │   │   ├── preleveur-form.js
+│   │   │   ├── preleveur-moral-form.js
+│   │   │   ├── preleveur-physique-form.js
+│   │   │   ├── regle-creation-form.js
+│   │   │   ├── regle-edition-form.js
+│   │   │   ├── regle-form.js
+│   │   │   ├── regles-form.js
+│   │   │   ├── search-autocomplete.js
+│   │   │   └── search-by-company.js
+│   │   ├── header.js
+│   │   ├── layout
+│   │   │   └── side-panel.js
+│   │   ├── map
+│   │   │   ├── index.js
+│   │   │   ├── legend-colors.js
+│   │   │   ├── legend.js
+│   │   │   ├── map-filters.js
+│   │   │   ├── point.js
+│   │   │   ├── points-list-header.js
+│   │   │   ├── points-list.js
+│   │   │   ├── points-prelevements-map.js
+│   │   │   ├── popup.js
+│   │   │   └── styles
+│   │   │       ├── photo.json
+│   │   │       ├── plan-ign.json
+│   │   │       ├── vector-ign.json
+│   │   │       └── vector.json
+│   │   ├── permissions
+│   │   │   └── index.js
+│   │   ├── points-prelevement
+│   │   │   ├── debits-reserves-chart.js
+│   │   │   ├── documents-chart.js
+│   │   │   ├── legend-chart.js
+│   │   │   ├── point-identification.js
+│   │   │   ├── point-localisation.js
+│   │   │   ├── point-tabs.js
+│   │   │   ├── regularisations-chart.js
+│   │   │   └── series-explorer.js
+│   │   ├── preleveurs
+│   │   │   ├── preleveur-map.js
+│   │   │   ├── preleveur.js
+│   │   │   └── preleveurs-list.js
+│   │   ├── providers
+│   │   │   └── session-provider.js
+│   │   ├── regle.js
+│   │   ├── regles
+│   │   │   ├── regles-list-card.js
+│   │   │   └── regles-list-card.stories.js
+│   │   └── ui
+│   │       ├── AccordionCentered
+│   │       │   ├── accordion-centered.stories.js
+│   │       │   └── index.js
+│   │       ├── Calendar
+│   │       │   ├── calendar.stories.js
+│   │       │   ├── index.js
+│   │       │   ├── util.js
+│   │       │   └── util.test.js
+│   │       ├── CalendarGrid
+│   │       │   ├── calendar-grid.stories.js
+│   │       │   ├── index.js
+│   │       │   ├── util.js
+│   │       │   └── util.test.js
+│   │       ├── CompactAlert
+│   │       │   ├── compact-alert.stories.js
+│   │       │   └── index.js
+│   │       ├── CompactListItem
+│   │       │   ├── compact-list-item.stories.js
+│   │       │   └── index.js
+│   │       ├── Counter
+│   │       │   ├── counter.stories.js
+│   │       │   └── index.js
+│   │       ├── Datepicker
+│   │       │   ├── datepicker.js
+│   │       │   ├── datepicker.stories.js
+│   │       │   ├── index.js
+│   │       │   ├── month-view.js
+│   │       │   └── years-view.js
+│   │       ├── DividerSection
+│   │       │   ├── divider-section.stories.js
+│   │       │   └── index.js
+│   │       ├── DocumentItem
+│   │       │   ├── document-item.stories.js
+│   │       │   └── index.js
+│   │       ├── EntityHeader
+│   │       │   ├── entity-header.stories.js
+│   │       │   └── index.js
+│   │       ├── ExpandableListItem
+│   │       │   ├── expandable-list-item.stories.js
+│   │       │   └── index.js
+│   │       ├── FileDropzone
+│   │       │   ├── file-dropzone.stories.js
+│   │       │   ├── index.css
+│   │       │   └── index.js
+│   │       ├── FormErrors
+│   │       │   └── index.js
+│   │       ├── GroupedMultiselect
+│   │       │   ├── grouped-multiselect.stories.js
+│   │       │   ├── index.css
+│   │       │   ├── index.js
+│   │       │   └── utils.js
+│   │       ├── Icon
+│   │       │   ├── icon.stories.js
+│   │       │   └── index.js
+│   │       ├── InfoBox
+│   │       │   ├── index.js
+│   │       │   └── info-box.stories.js
+│   │       ├── LabelValue
+│   │       │   ├── index.js
+│   │       │   └── label-value.stories.js
+│   │       ├── LabelWithIcon
+│   │       │   ├── index.js
+│   │       │   └── label-with-icon.stories.js
+│   │       ├── LegendCalendar
+│   │       │   ├── index.js
+│   │       │   └── legend-calendar.stories.js
+│   │       ├── ListItem
+│   │       │   ├── index.js
+│   │       │   ├── list-item.stories.js
+│   │       │   └── style.css
+│   │       ├── LoadingOverlay
+│   │       │   ├── index.js
+│   │       │   └── loading-overlay.stories.js
+│   │       ├── LoginHeaderItem
+│   │       │   ├── index.js
+│   │       │   └── login-header-item.stories.js
+│   │       ├── MetasList
+│   │       │   ├── index.js
+│   │       │   └── metas-list.stories.js
+│   │       ├── PeriodSelectorHeader
+│   │       │   ├── index.js
+│   │       │   └── period-selector-header.stories.js
+│   │       ├── PeriodTooltip
+│   │       │   ├── index.js
+│   │       │   └── period-tooltip.stories.js
+│   │       ├── Pictogram
+│   │       │   ├── index.js
+│   │       │   └── pictogram.stories.js
+│   │       ├── Pie
+│   │       │   ├── index.js
+│   │       │   └── pie.stories.js
+│   │       ├── PrelevementsHistory
+│   │       │   ├── data-test.json
+│   │       │   ├── index.js
+│   │       │   └── prelevements-history.stories.js
+│   │       ├── ResumeCard
+│   │       │   ├── index.js
+│   │       │   └── resume-card.stories.js
+│   │       ├── SectionCard
+│   │       │   ├── index.js
+│   │       │   └── section-card.stories.js
+│   │       ├── SidedSection
+│   │       │   ├── index.js
+│   │       │   └── sided-section.stories.js
+│   │       ├── SimpleLoading
+│   │       │   ├── index.js
+│   │       │   └── simple-loading.stories.js
+│   │       ├── TagsList
+│   │       │   ├── index.js
+│   │       │   └── tags-list.stories.js
+│   │       └── TimeSeriesChart
+│   │           ├── build-composed-series.js
+│   │           ├── build-composed-series.test.js
+│   │           ├── index.js
+│   │           ├── time-series-chart.stories.js
+│   │           ├── util.js
+│   │           └── util.test.js
+│   ├── contexts
+│   │   └── auth-context.js
+│   ├── dsfr-bootstrap
+│   │   ├── default-color-scheme.js
+│   │   ├── index.js
+│   │   └── server-only-index.js
+│   ├── hook
+│   │   ├── use-event.js
+│   │   ├── use-form-submit.js
+│   │   ├── use-managed-selection.js
+│   │   └── use-permissions.js
+│   ├── lib
+│   │   ├── auth-errors.js
+│   │   ├── calendar-colors.js
+│   │   ├── communes.js
+│   │   ├── dossier.js
+│   │   ├── exploitation.js
+│   │   ├── exploitation.test.js
+│   │   ├── export-csv.js
+│   │   ├── format-date.js
+│   │   ├── local-series-registry.js
+│   │   ├── points-prelevement.js
+│   │   ├── preleveurs.js
+│   │   ├── regles.js
+│   │   └── urls.js
+│   ├── middleware.js
+│   ├── server
+│   │   ├── actions
+│   │   │   ├── auth.js
+│   │   │   ├── documents.js
+│   │   │   ├── dossiers.js
+│   │   │   ├── exploitations.js
+│   │   │   ├── index.js
+│   │   │   ├── points-prelevement.js
+│   │   │   ├── preleveurs.js
+│   │   │   ├── regles.js
+│   │   │   ├── series.js
+│   │   │   └── stats.js
+│   │   ├── api-wrapper.js
+│   │   └── auth.js
+│   └── utils
+│       ├── __tests__
+│       │   ├── frequency.test.js
+│       │   └── string.test.js
+│       ├── chart.js
+│       ├── frequency-parsing.js
+│       ├── frequency.js
+│       ├── number.js
+│       ├── point-prelevement.js
+│       ├── preleveurs.js
+│       ├── size.js
+│       ├── string.js
+│       └── time.js
+├── tailwind.config.js
+└── yarn.lock
+107 directories, 304 files
