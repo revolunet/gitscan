@@ -1,0 +1,544 @@
+.
+├── .env.dist
+├── .eslintrc.json
+├── .github
+│   └── workflows
+│       └── build.yml
+├── .gitignore
+├── .npmrc
+├── .prettierignore
+├── .prettierrc.json
+├── .slugignore
+├── LICENSE
+├── Procfile
+├── README.md
+├── __mocks__
+│   └── uuid.ts
+├── docker-compose.yml
+├── e2e
+│   ├── api.spec.ts
+│   ├── auth.spec.ts
+│   ├── data
+│   │   └── exemple.csv
+│   ├── declaration.spec.ts
+│   ├── history.spec.ts
+│   ├── organisations.spec.ts
+│   ├── search.spec.ts
+│   ├── user.spec.ts
+│   └── utils
+│       ├── login.ts
+│       └── retry.ts
+├── eslint.config.mjs
+├── jest.afterAll.ts
+├── jest.beforeAll.ts
+├── jest.config.js
+├── jest.setup.ts
+├── next.config.ts
+├── package.json
+├── playwright.config.ts
+├── pnpm-lock.yaml
+├── prisma
+│   ├── migrations
+│   │   ├── 20250707095534_init
+│   │   │   └── migration.sql
+│   │   ├── 20250710090637_remove_traceability
+│   │   │   └── migration.sql
+│   │   ├── 20250722155555_add_detail
+│   │   │   └── migration.sql
+│   │   ├── 20250724155118_remove_versions
+│   │   │   └── migration.sql
+│   │   ├── 20250725081522_add_detail
+│   │   │   └── migration.sql
+│   │   ├── 20250728070847_add_order
+│   │   │   └── migration.sql
+│   │   ├── 20250801080715_remove_space
+│   │   │   └── migration.sql
+│   │   ├── 20250807091353_add_index
+│   │   │   └── migration.sql
+│   │   ├── 20250808075231_add_re_uploads
+│   │   │   └── migration.sql
+│   │   ├── 20250820100750_rename_brand
+│   │   │   └── migration.sql
+│   │   ├── 20250903164327_remove_date
+│   │   │   └── migration.sql
+│   │   ├── 20250922073400_change_camel_case
+│   │   │   └── migration.sql
+│   │   ├── 20251001090935_add_role
+│   │   │   └── migration.sql
+│   │   ├── 20251003082731_organization_infos
+│   │   │   └── migration.sql
+│   │   ├── 20251022094731_add_product_information
+│   │   │   └── migration.sql
+│   │   ├── 20251023150717_empty_trims
+│   │   │   └── migration.sql
+│   │   ├── 20251028111757_organization_type
+│   │   │   └── migration.sql
+│   │   ├── 20251103110113_brand_info
+│   │   │   └── migration.sql
+│   │   ├── 20251104091127_brand_id
+│   │   │   └── migration.sql
+│   │   ├── 20251205095756_organization_name
+│   │   │   └── migration.sql
+│   │   ├── 20251217155051_add_category_slug
+│   │   │   └── migration.sql
+│   │   ├── 20251223085127_add_password
+│   │   │   └── migration.sql
+│   │   ├── 20260120133316_remove_upload_unicity
+│   │   │   └── migration.sql
+│   │   ├── 20260127134044_add_gs1_informations
+│   │   │   └── migration.sql
+│   │   ├── 20260129082905_add_more_gs1_informations
+│   │   │   └── migration.sql
+│   │   └── migration_lock.toml
+│   ├── schema.prisma
+│   └── seed
+│       └── index.ts
+├── prisma.config.ts
+├── public
+│   ├── charte.pdf
+│   ├── exemple
+│   │   ├── exemple-ecobalyse.csv
+│   │   ├── exemple-en.csv
+│   │   ├── exemple.csv
+│   │   └── exemple.xlsx
+│   ├── icons
+│   │   ├── calecon.svg
+│   │   ├── chaussettes.svg
+│   │   ├── chemise.svg
+│   │   ├── coat.svg
+│   │   ├── jean.svg
+│   │   ├── jupe.svg
+│   │   ├── maillot-de-bain.svg
+│   │   ├── manteau.svg
+│   │   ├── pantalon.svg
+│   │   ├── pull.svg
+│   │   ├── slip.svg
+│   │   └── tshirt.svg
+│   ├── images
+│   │   ├── catalog.svg
+│   │   ├── contract.svg
+│   │   ├── distributor.png
+│   │   ├── etiquette.svg
+│   │   ├── impactmode.png
+│   │   ├── information.png
+│   │   ├── informations
+│   │   │   ├── affichage-logo.png
+│   │   │   ├── climate.svg
+│   │   │   ├── cycle-vie.png
+│   │   │   ├── ecosystem.svg
+│   │   │   ├── france.svg
+│   │   │   ├── logo-example.png
+│   │   │   ├── loi.svg
+│   │   │   └── water.svg
+│   │   ├── key-results
+│   │   │   ├── clothes-bag.png
+│   │   │   ├── clothes-pile.png
+│   │   │   ├── polar-bear.png
+│   │   │   └── sewing-machine.png
+│   │   ├── mail-send.svg
+│   │   ├── other.png
+│   │   ├── scores
+│   │   │   ├── biodiversity.svg
+│   │   │   ├── climat.svg
+│   │   │   ├── other.svg
+│   │   │   ├── quality.svg
+│   │   │   └── ressources.svg
+│   │   ├── search.svg
+│   │   ├── searchicon.svg
+│   │   ├── self-training.svg
+│   │   ├── tshirt-2.png
+│   │   └── tshirt.jpg
+│   └── notice-reglementaire.pdf
+├── queue.ts
+├── scalingo.json
+├── src
+│   ├── api
+│   │   └── doc.json
+│   ├── app
+│   │   ├── admin
+│   │   │   └── page.tsx
+│   │   ├── api
+│   │   │   ├── auth
+│   │   │   │   └── [...nextauth]
+│   │   │   │       └── route.ts
+│   │   │   ├── documentation
+│   │   │   │   └── route.ts
+│   │   │   ├── image
+│   │   │   │   ├── image.test.ts
+│   │   │   │   └── route.ts
+│   │   │   ├── organisation
+│   │   │   │   └── route.ts
+│   │   │   ├── page.tsx
+│   │   │   └── produits
+│   │   │       ├── [gtin]
+│   │   │       │   ├── historique
+│   │   │       │   │   └── route.ts
+│   │   │       │   └── route.ts
+│   │   │       ├── lot
+│   │   │       │   └── route.ts
+│   │   │       ├── route.ts
+│   │   │       └── tous
+│   │   │           └── route.ts
+│   │   ├── conditions-generales-utilisation
+│   │   │   └── page.tsx
+│   │   ├── declarations
+│   │   │   └── page.tsx
+│   │   ├── documentation
+│   │   │   ├── api
+│   │   │   │   └── page.tsx
+│   │   │   └── page.tsx
+│   │   ├── exports
+│   │   │   └── [file]
+│   │   │       └── route.ts
+│   │   ├── forget-password
+│   │   │   └── page.tsx
+│   │   ├── informations
+│   │   │   └── page.tsx
+│   │   ├── layout.tsx
+│   │   ├── login
+│   │   │   └── page.tsx
+│   │   ├── logout
+│   │   │   ├── page.tsx
+│   │   │   └── proconnect
+│   │   │       └── page.tsx
+│   │   ├── marques
+│   │   │   ├── [brandId]
+│   │   │   │   ├── [gtin]
+│   │   │   │   │   ├── [version]
+│   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   └── page.tsx
+│   │   │   │   └── page.tsx
+│   │   │   └── page.tsx
+│   │   ├── mentions-legales
+│   │   │   └── page.tsx
+│   │   ├── organisation
+│   │   │   ├── page.tsx
+│   │   │   └── type
+│   │   │       └── page.tsx
+│   │   ├── page.tsx
+│   │   ├── plan-du-site
+│   │   │   └── page.tsx
+│   │   ├── politique-de-confidentialite
+│   │   │   └── page.tsx
+│   │   ├── produits
+│   │   │   ├── [gtin]
+│   │   │   │   ├── [version]
+│   │   │   │   │   └── page.tsx
+│   │   │   │   └── page.tsx
+│   │   │   └── page.tsx
+│   │   ├── professionnels
+│   │   │   └── page.tsx
+│   │   ├── recherche
+│   │   │   └── page.tsx
+│   │   ├── reset-password
+│   │   │   └── [id]
+│   │   │       └── page.tsx
+│   │   └── stats
+│   │       └── page.tsx
+│   ├── components
+│   │   ├── API
+│   │   │   ├── Keys.module.css
+│   │   │   └── Keys.tsx
+│   │   ├── Block
+│   │   │   ├── BackLink.module.css
+│   │   │   ├── BackLink.tsx
+│   │   │   ├── Block.module.css
+│   │   │   └── Block.tsx
+│   │   ├── Brand
+│   │   │   ├── BrandHeader.module.css
+│   │   │   ├── BrandHeader.tsx
+│   │   │   ├── BrandProductsTable.module.css
+│   │   │   ├── BrandProductsTable.tsx
+│   │   │   ├── BrandsList.module.css
+│   │   │   └── BrandsList.tsx
+│   │   ├── Button
+│   │   │   ├── Loading.module.css
+│   │   │   ├── Loading.tsx
+│   │   │   ├── LoadingButton.tsx
+│   │   │   └── ProConnect.tsx
+│   │   ├── Documentation
+│   │   │   ├── AllDocs.tsx
+│   │   │   ├── Default.tsx
+│   │   │   ├── Ecobalyse.tsx
+│   │   │   ├── En.tsx
+│   │   │   └── Fr.tsx
+│   │   ├── Footer
+│   │   │   └── Footer.tsx
+│   │   ├── Header
+│   │   │   └── Header.tsx
+│   │   ├── Home
+│   │   │   ├── HomeBanner.module.css
+│   │   │   ├── HomeBanner.tsx
+│   │   │   ├── InformationBanner.tsx
+│   │   │   ├── InformationProBanner.tsx
+│   │   │   ├── KeyResult.module.css
+│   │   │   ├── KeyResult.tsx
+│   │   │   ├── KeyResults.module.css
+│   │   │   ├── KeyResults.tsx
+│   │   │   ├── LastBrands.tsx
+│   │   │   ├── OrganizationTypeBanner.tsx
+│   │   │   ├── SearchBanner.module.css
+│   │   │   └── SearchBanner.tsx
+│   │   ├── Label
+│   │   │   └── Label.tsx
+│   │   ├── Login
+│   │   │   └── ResetPasswordForm.tsx
+│   │   ├── Matomo
+│   │   │   └── Matomo.ts
+│   │   ├── Mentions
+│   │   │   ├── LegalContainer.module.css
+│   │   │   └── LegalContainer.tsx
+│   │   ├── Organization
+│   │   │   ├── Brand
+│   │   │   │   ├── BrandOrganization.tsx
+│   │   │   │   ├── Brands.tsx
+│   │   │   │   ├── MyBrands.tsx
+│   │   │   │   ├── NewBrand.tsx
+│   │   │   │   ├── OtherBrands.tsx
+│   │   │   │   └── UpdateBrand.tsx
+│   │   │   ├── ConsultancyOrganization.tsx
+│   │   │   ├── Contact.module.css
+│   │   │   ├── Contact.tsx
+│   │   │   ├── Delegation
+│   │   │   │   ├── Delegations.tsx
+│   │   │   │   ├── DeleteDelegation.tsx
+│   │   │   │   ├── MyDelegations.tsx
+│   │   │   │   ├── NewDelegation.tsx
+│   │   │   │   └── OtherDelegations.tsx
+│   │   │   ├── DistributorOrganization.tsx
+│   │   │   ├── Informations.module.css
+│   │   │   ├── Informations.tsx
+│   │   │   ├── MyOrganization.tsx
+│   │   │   ├── OrganizationName.module.css
+│   │   │   ├── OrganizationName.tsx
+│   │   │   ├── OtherOrganization.module.css
+│   │   │   └── OtherOrganization.tsx
+│   │   ├── Product
+│   │   │   ├── BrandSelection.tsx
+│   │   │   ├── DownloadExport.tsx
+│   │   │   ├── DownloadScore.tsx
+│   │   │   ├── DownloadScores.tsx
+│   │   │   ├── DurabilityBadge.module.css
+│   │   │   ├── DurabilityBadge.tsx
+│   │   │   ├── Exports.tsx
+│   │   │   ├── ExportsTable.tsx
+│   │   │   ├── NewExport.tsx
+│   │   │   ├── Product.module.css
+│   │   │   ├── Product.tsx
+│   │   │   ├── ProductHistory.tsx
+│   │   │   ├── ProductLink.module.css
+│   │   │   ├── ProductLink.tsx
+│   │   │   ├── ProductScore.module.css
+│   │   │   ├── ProductScore.tsx
+│   │   │   ├── ProductScoreImpacts.tsx
+│   │   │   ├── Products.tsx
+│   │   │   ├── PublicProductScoreImpact.module.css
+│   │   │   ├── PublicProductScoreImpact.tsx
+│   │   │   ├── Search
+│   │   │   │   ├── SearchActions.module.css
+│   │   │   │   ├── SearchActions.tsx
+│   │   │   │   ├── SearchContainer.module.css
+│   │   │   │   ├── SearchContainer.tsx
+│   │   │   │   ├── SearchFilters.tsx
+│   │   │   │   ├── SearchResults.module.css
+│   │   │   │   └── SearchResults.tsx
+│   │   │   ├── Search.tsx
+│   │   │   └── StatusBadge.tsx
+│   │   ├── Provider
+│   │   │   └── AuthProvider.tsx
+│   │   ├── Search
+│   │   │   ├── SearchInput.module.css
+│   │   │   └── SearchInput.tsx
+│   │   ├── Statistics
+│   │   │   ├── StatsList.module.css
+│   │   │   └── StatsList.tsx
+│   │   ├── Table
+│   │   │   ├── Table.module.css
+│   │   │   └── Table.tsx
+│   │   ├── Test
+│   │   │   └── TestBanner.tsx
+│   │   └── Upload
+│   │       ├── Download.tsx
+│   │       ├── StatusBadge.tsx
+│   │       ├── Upload.module.css
+│   │       ├── Upload.tsx
+│   │       └── Uploads.tsx
+│   ├── css
+│   │   ├── dsfr.css
+│   │   ├── login.css
+│   │   └── reset.css
+│   ├── db
+│   │   ├── brands.test.ts
+│   │   ├── brands.ts
+│   │   ├── export.test.ts
+│   │   ├── export.ts
+│   │   ├── organization.test.ts
+│   │   ├── organization.ts
+│   │   ├── prismaClient.ts
+│   │   ├── product.test.ts
+│   │   ├── product.ts
+│   │   ├── score.test.ts
+│   │   ├── score.ts
+│   │   ├── testUtils.ts
+│   │   ├── upload.test.ts
+│   │   ├── upload.ts
+│   │   ├── user.test.ts
+│   │   └── user.ts
+│   ├── dsfr-bootstrap
+│   │   ├── defaultColorScheme.ts
+│   │   ├── index.tsx
+│   │   └── server-only-index.tsx
+│   ├── proxy.ts
+│   ├── scripts
+│   │   ├── createMail.ts
+│   │   ├── dataGouv.ts
+│   │   ├── decryptEcobalyseData.ts
+│   │   ├── downloadCSV.ts
+│   │   ├── generateCSV.ts
+│   │   ├── getEcobalyseIds.ts
+│   │   ├── getGS1Informations.ts
+│   │   ├── getProducts.ts
+│   │   ├── recalculateHashes.ts
+│   │   ├── sendWelcomeMail.ts
+│   │   ├── siretInfo.ts
+│   │   └── updateCategorySlug.ts
+│   ├── serverFunctions
+│   │   ├── brand.ts
+│   │   ├── export.ts
+│   │   ├── organization.ts
+│   │   ├── product.ts
+│   │   ├── siret.ts
+│   │   ├── upload.ts
+│   │   └── user.ts
+│   ├── services
+│   │   ├── auth
+│   │   │   ├── auth.test.ts
+│   │   │   ├── auth.ts
+│   │   │   ├── config.ts
+│   │   │   ├── password.ts
+│   │   │   ├── redirect.ts
+│   │   │   └── user.ts
+│   │   ├── download.ts
+│   │   ├── emails
+│   │   │   ├── email.ts
+│   │   │   └── views
+│   │   │       ├── reset.ejs
+│   │   │       ├── test-upload-error.ejs
+│   │   │       ├── test-upload-success.ejs
+│   │   │       ├── upload-error.ejs
+│   │   │       ├── upload-success.ejs
+│   │   │       └── welcome.ejs
+│   │   ├── format.ts
+│   │   ├── stats
+│   │   │   └── stats.ts
+│   │   ├── upload.ts
+│   │   └── validation
+│   │       ├── api.test.ts
+│   │       ├── api.ts
+│   │       ├── image.test.ts
+│   │       ├── image.ts
+│   │       ├── printing.ts
+│   │       ├── product.test.ts
+│   │       ├── product.ts
+│   │       └── zodValidationTest.ts
+│   ├── types
+│   │   ├── Ecobalyse.ts
+│   │   ├── Next.ts
+│   │   ├── Product.ts
+│   │   ├── Siret.ts
+│   │   ├── User.ts
+│   │   └── window.ts
+│   ├── utils
+│   │   ├── admin
+│   │   │   └── nafs.ts
+│   │   ├── api
+│   │   │   └── products.ts
+│   │   ├── brands
+│   │   │   └── computeBrandStats.ts
+│   │   ├── ecobalyse
+│   │   │   ├── api.test.ts
+│   │   │   ├── api.ts
+│   │   │   ├── batches.ts
+│   │   │   ├── config.ts
+│   │   │   ├── decrypt.ts
+│   │   │   ├── elm.ts
+│   │   │   ├── mappings.ts
+│   │   │   ├── processes_impacts.json.enc
+│   │   │   └── server-app.js
+│   │   ├── encryption
+│   │   │   ├── encryption.test.ts
+│   │   │   ├── encryption.ts
+│   │   │   ├── hash.test.ts
+│   │   │   └── hash.ts
+│   │   ├── label
+│   │   │   ├── size.ts
+│   │   │   └── svg.ts
+│   │   ├── matomo.ts
+│   │   ├── organization
+│   │   │   ├── brands.test.ts
+│   │   │   ├── brands.ts
+│   │   │   ├── canDeclare.ts
+│   │   │   └── types.ts
+│   │   ├── parsing
+│   │   │   ├── csv
+│   │   │   │   ├── parse.test.ts
+│   │   │   │   └── parse.ts
+│   │   │   ├── excel
+│   │   │   │   ├── parse.test.ts
+│   │   │   │   └── parse.ts
+│   │   │   ├── parsing.ts
+│   │   │   └── parsingTest.ts
+│   │   ├── product
+│   │   │   └── impacts.ts
+│   │   ├── queue
+│   │   │   ├── exports.test.ts
+│   │   │   ├── exports.ts
+│   │   │   ├── products.test.ts
+│   │   │   ├── products.ts
+│   │   │   ├── sleep.ts
+│   │   │   ├── uploads.test.ts
+│   │   │   └── uploads.ts
+│   │   ├── s3
+│   │   │   └── bucket.ts
+│   │   ├── test.ts
+│   │   ├── types
+│   │   │   ├── accessory.ts
+│   │   │   ├── business.ts
+│   │   │   ├── country.ts
+│   │   │   ├── impression.ts
+│   │   │   ├── material.ts
+│   │   │   └── productCategory.ts
+│   │   └── validation
+│   │       ├── gtin.test.ts
+│   │       ├── gtin.ts
+│   │       ├── score.test.ts
+│   │       └── score.ts
+│   └── views
+│       ├── APIDocPage.tsx
+│       ├── APIKey.tsx
+│       ├── Admin.tsx
+│       ├── BrandDetail.tsx
+│       ├── Brands.tsx
+│       ├── ConditionsGeneralesUtilisation.tsx
+│       ├── Declarations.tsx
+│       ├── Documentation.tsx
+│       ├── EmptyProduct.tsx
+│       ├── ForgetPassword.tsx
+│       ├── Home.tsx
+│       ├── InfoTri.tsx
+│       ├── Informations.module.css
+│       ├── Informations.tsx
+│       ├── Login.tsx
+│       ├── Logout.tsx
+│       ├── MentionsLegales.tsx
+│       ├── Organization.tsx
+│       ├── OrganizationType.tsx
+│       ├── PlanDuSite.tsx
+│       ├── PolitiqueDeConfidentialite.tsx
+│       ├── Product.tsx
+│       ├── Products.tsx
+│       ├── ResetPassword.tsx
+│       ├── SearchProducts.tsx
+│       └── Statistics.tsx
+└── tsconfig.json
+138 directories, 405 files
