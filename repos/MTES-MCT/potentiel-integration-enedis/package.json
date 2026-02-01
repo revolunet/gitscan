@@ -1,0 +1,62 @@
+{
+  "name": "@potentiel/enedis-integration",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "codegen": "openapi-typescript http://localhost:3000/api/openapi -o ./src/potentiel-api.d.ts",
+    "build": "tsc",
+    "lint": "npx @biomejs/biome check --fix ./src",
+    "lint:check": "npx @biomejs/biome check --no-errors-on-unmatched --files-ignore-unknown=true --colors=off",
+    "format": "npx @biomejs/biome format --write ./src",
+    "start:import": "./bin/run.js import",
+    "start:export": "./bin/run.js export",
+    "dev:import": "./bin/dev.js import",
+    "dev:export": "./bin/dev.js export"
+  },
+  "keywords": [],
+  "author": "L'équipe Potentiel <team@potentiel.beta.gouv.fr> (https://potentiel.beta.gouv.fr/)",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/MTES-MCT/potentiel/issues"
+  },
+  "homepage": "https://potentiel.beta.gouv.fr",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MTES-MCT/potentiel.git"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.2.0",
+    "@tsconfig/node24": "24.0.3",
+    "@types/node": "22.9.0",
+    "lefthook": "1.8.5",
+    "openapi-typescript": "7.10.1",
+    "tsx": "4.21.0",
+    "typescript": "5.9.3"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "3.815.0",
+    "@json2csv/plainjs": "7.0.6",
+    "@oclif/core": "4.8.0",
+    "csv-parse": "5.5.6",
+    "dotenv": "16.4.5",
+    "oclif": "4.22.54",
+    "openapi-fetch": "0.15.0",
+    "openid-client": "6.1.3",
+    "winston": "3.17.0",
+    "zod": "3.23.8"
+  },
+  "bin": {
+    "potentiel-integration-enedis": "./bin/run.js"
+  },
+  "oclif": {
+    "bin": "potentiel-integration-enedis",
+    "commands": "./dist/commands",
+    "dirname": "potentiel-integration-enedis",
+    "topicSeparator": " "
+  },
+  "engines": {
+    "node": "24.10.0"
+  }
+}
