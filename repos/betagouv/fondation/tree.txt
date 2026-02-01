@@ -1,0 +1,875 @@
+.
+├── .github
+│   ├── copilot-instructions.md
+│   └── workflows
+│       ├── build-and-upload-api-artifact.yml
+│       ├── build-and-upload-client-artifact.yml
+│       ├── continuous-delivery.yml
+│       ├── deploy-production.yml
+│       ├── deploy-to-scalingo.yml
+│       ├── integration-checks.yml
+│       └── validates-pr.yml
+├── .gitignore
+├── .husky
+│   └── pre-push
+├── .nvmrc
+├── LICENSE
+├── README.md
+├── apps
+│   ├── api
+│   │   ├── .env.e2e
+│   │   ├── .env.example
+│   │   ├── .gitignore
+│   │   ├── .prettierignore
+│   │   ├── .prettierrc
+│   │   ├── .sqlfluff
+│   │   ├── .vscode
+│   │   │   └── settings.json
+│   │   ├── cli
+│   │   │   ├── ingest-jurisdictions-xml.ts
+│   │   │   └── move-files.ts
+│   │   ├── docs
+│   │   │   ├── adr
+│   │   │   │   └── 2025-10-22-sortie-hexa.md
+│   │   │   └── adr-lolfi
+│   │   │       └── magistrat.md
+│   │   ├── drizzle
+│   │   │   ├── 0000_init_contexts.sql
+│   │   │   ├── 0001_reports_context_nullable_biography.sql
+│   │   │   ├── 0002_reports_context_more_transparency_enum_values.sql
+│   │   │   ├── 0003_add_created_at.sql
+│   │   │   ├── 0004_reports_context_add_reporter_names.sql
+│   │   │   ├── 0005_nomination_file_id_in_report_pm.sql
+│   │   │   ├── 0006_shared_kernel_context_add_domain_events_table.sql
+│   │   │   ├── 0007_reporters_context_add_observers.sql
+│   │   │   ├── 0008_reporters_context_nomination_file_id_not_nullable.sql
+│   │   │   ├── 0009_data_administration_context__null_observers_by_default.sql
+│   │   │   ├── 0010_shared_kernel_context__fix_snake_case.sql
+│   │   │   ├── 0011_reports_context__add_folder_number.sql
+│   │   │   ├── 0012_data_administration_context__null_folder_number_by_default.sql
+│   │   │   ├── 0013_reports_context__add_attached_files_table.sql
+│   │   │   ├── 0014_files_context__add_schema_and_files_table.sql
+│   │   │   ├── 0015_data_admin_context__add_pg_2024_to_transparencies.sql
+│   │   │   ├── 0016_reports_context__add_attached_file_name.sql
+│   │   │   ├── 0017_files_context__add_bucket.sql
+│   │   │   ├── 0018_reports_context__add_file_id.sql
+│   │   │   ├── 0019_reports_context__add_transparency_values.sql
+│   │   │   ├── 0020_files_context__rename_outscale_by_scaleway.sql
+│   │   │   ├── 0021_reports_context__rename_state_enum_value.sql
+│   │   │   ├── 0022_reports_context__all_reports_in_progress.sql
+│   │   │   ├── 0023_identity_and_access_context__init.sql
+│   │   │   ├── 0024_indentity_and_access_context__user_created_at.sql
+│   │   │   ├── 0025_identity_and_access_context_add_session_table.sql
+│   │   │   ├── 0026_indentity_and_access_context__add_session_invalidated_at.sql
+│   │   │   ├── 0027_identity_and_access_context__unique_user_email.sql
+│   │   │   ├── 0028_reports_context__add_reporter_id.sql
+│   │   │   ├── 0029_reports_context__replace_reporter_name_by_id.sql
+│   │   │   ├── 0030_identity_and_access_context__add_user_gender.sql
+│   │   │   ├── 0031_data_administration_context__add_cabinet_21_01_2025_to_transparency.sql
+│   │   │   ├── 0032_data_administration_context__remove_state.sql
+│   │   │   ├── 0033_data_administration_context__add_06_02_2025_to_transparency.sql
+│   │   │   ├── 0034_data_administration_context__add_20_02_2025_to_transparency.sql
+│   │   │   ├── 0035_reports_context__rename_transparency_march_2025.sql
+│   │   │   ├── 0036_data_administration__add_3_march_transparency.sql
+│   │   │   ├── 0037_reports_context__attached_files_value_objects.sql
+│   │   │   ├── 0038_reports__add_reports_versions.sql
+│   │   │   ├── 0039_reports__merge_rules_and_remove_old_ones.sql
+│   │   │   ├── 0040_reports__add_new_statutory_rule.sql
+│   │   │   ├── 0041_reports__add_nomination_ca_avant_4_ans.sql
+│   │   │   ├── 0042_iac__add_files.sql
+│   │   │   ├── 0043_reports__add_nomination_ca_avant_4_ans_to_all_reports.sql
+│   │   │   ├── 0044_iac__add_siege_to_file_type.sql
+│   │   │   ├── 0045_iac__gender_mandatory_migration.sql
+│   │   │   ├── 0046_data_administration__add_transpa_30_avril_2025.sql
+│   │   │   ├── 0047_nominations__create_context_and_migrate_data.sql
+│   │   │   ├── 0048_data_admin__text_nom_transparence.sql
+│   │   │   ├── 0049_iac__role-adjoint-secretaire-general.sql
+│   │   │   ├── 0050_nominations__add_session_content.sql
+│   │   │   ├── 0051_data_admin__add_transparence_dates.sql
+│   │   │   ├── 0052_data_admin__unique_name_formation_and_date.sql
+│   │   │   ├── 0053_data_admin__add_expected_session_content.sql
+│   │   │   ├── 0054_nominations_rename_session_name.sql
+│   │   │   ├── 0055_nominations__rename_session_automne_name.sql
+│   │   │   ├── 0056_data_admin__remove_empty_observants.sql
+│   │   │   ├── 0057_data-administration-context_add-transparences-files-table.sql
+│   │   │   ├── 0058_adds_jurisdiction_exclusion_tables.sql
+│   │   │   ├── 0059_add_affectation_versioning.sql
+│   │   │   ├── 0060_unique-index-affectation-version.sql
+│   │   │   └── meta
+│   │   │       ├── 0000_snapshot.json
+│   │   │       ├── 0001_snapshot.json
+│   │   │       ├── 0002_snapshot.json
+│   │   │       ├── 0003_snapshot.json
+│   │   │       ├── 0004_snapshot.json
+│   │   │       ├── 0005_snapshot.json
+│   │   │       ├── 0006_snapshot.json
+│   │   │       ├── 0007_snapshot.json
+│   │   │       ├── 0008_snapshot.json
+│   │   │       ├── 0009_snapshot.json
+│   │   │       ├── 0010_snapshot.json
+│   │   │       ├── 0011_snapshot.json
+│   │   │       ├── 0012_snapshot.json
+│   │   │       ├── 0013_snapshot.json
+│   │   │       ├── 0014_snapshot.json
+│   │   │       ├── 0015_snapshot.json
+│   │   │       ├── 0016_snapshot.json
+│   │   │       ├── 0017_snapshot.json
+│   │   │       ├── 0018_snapshot.json
+│   │   │       ├── 0019_snapshot.json
+│   │   │       ├── 0020_snapshot.json
+│   │   │       ├── 0021_snapshot.json
+│   │   │       ├── 0022_snapshot.json
+│   │   │       ├── 0023_snapshot.json
+│   │   │       ├── 0024_snapshot.json
+│   │   │       ├── 0025_snapshot.json
+│   │   │       ├── 0026_snapshot.json
+│   │   │       ├── 0027_snapshot.json
+│   │   │       ├── 0028_snapshot.json
+│   │   │       ├── 0029_snapshot.json
+│   │   │       ├── 0030_snapshot.json
+│   │   │       ├── 0031_snapshot.json
+│   │   │       ├── 0032_snapshot.json
+│   │   │       ├── 0033_snapshot.json
+│   │   │       ├── 0034_snapshot.json
+│   │   │       ├── 0035_snapshot.json
+│   │   │       ├── 0036_snapshot.json
+│   │   │       ├── 0037_snapshot.json
+│   │   │       ├── 0038_snapshot.json
+│   │   │       ├── 0039_snapshot.json
+│   │   │       ├── 0040_snapshot.json
+│   │   │       ├── 0041_snapshot.json
+│   │   │       ├── 0042_snapshot.json
+│   │   │       ├── 0043_snapshot.json
+│   │   │       ├── 0044_snapshot.json
+│   │   │       ├── 0045_snapshot.json
+│   │   │       ├── 0046_snapshot.json
+│   │   │       ├── 0047_snapshot.json
+│   │   │       ├── 0048_snapshot.json
+│   │   │       ├── 0049_snapshot.json
+│   │   │       ├── 0050_snapshot.json
+│   │   │       ├── 0051_snapshot.json
+│   │   │       ├── 0052_snapshot.json
+│   │   │       ├── 0053_snapshot.json
+│   │   │       ├── 0054_snapshot.json
+│   │   │       ├── 0055_snapshot.json
+│   │   │       ├── 0056_snapshot.json
+│   │   │       ├── 0057_snapshot.json
+│   │   │       ├── 0058_snapshot.json
+│   │   │       ├── 0059_snapshot.json
+│   │   │       ├── 0060_snapshot.json
+│   │   │       └── _journal.json
+│   │   ├── eslint.config.mjs
+│   │   ├── nest-cli.json
+│   │   ├── package.json
+│   │   ├── prisma
+│   │   │   ├── migrations
+│   │   │   │   ├── 0_init
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20251111090126_adds_report_file_table
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20251118161120_stores_affectations_in_association_table
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20251126134047_add_commentaire_sg
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20251128100000_add_comment_access
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20251128183806_adds_report_to_nomination_file_relation
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20251202121342_migrates_nomination_file_content_from_json_to_columns
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20251216144846_moves_report_files
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20251223202028_adds_public_file_url_table
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20251231091432_adds_magistrat_table
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20251231092918_adds_observation_tables
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20260105132712_adds_nomination_file_outcome
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20260113145216_member_memos
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20260116103048_adds_summary
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20260119155635_unique_observation_per_magistrat_per_nomination_file
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20260121114742_observations_comment
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20260121144817_adds_file_sortable_targeted_grade
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20260126153859_adds_observations_follow_up
+│   │   │   │   │   └── migration.sql
+│   │   │   │   └── migration_lock.toml
+│   │   │   ├── schema.prisma
+│   │   │   ├── schemas
+│   │   │   │   ├── data.prisma
+│   │   │   │   ├── files.prisma
+│   │   │   │   ├── identity.prisma
+│   │   │   │   ├── magistrat.prisma
+│   │   │   │   ├── nominations.prisma
+│   │   │   │   ├── observation.prisma
+│   │   │   │   ├── reports.prisma
+│   │   │   │   └── shared-kernel.prisma
+│   │   │   └── sql
+│   │   │       ├── detailsMemberRawQuery.sql
+│   │   │       ├── findMagistratExternalIdByFullName.sql
+│   │   │       ├── listMemberGardeDesSceauxSessions.sql
+│   │   │       └── listMembersRawQuery.sql
+│   │   ├── prisma.config.ts
+│   │   ├── scalingo
+│   │   │   ├── .buildpacks
+│   │   │   └── Procfile
+│   │   ├── scripts
+│   │   │   ├── affectation-transpa-aux-presidents.sh
+│   │   │   ├── build-for-scalingo.sh
+│   │   │   ├── import-nominations-from-local-file-to-scalingo.sh
+│   │   │   ├── init-buckets.js
+│   │   │   ├── register-users-to-scalingo.sh
+│   │   │   └── scalingo-utils.sh
+│   │   ├── src
+│   │   │   ├── app.module.ts
+│   │   │   ├── cli.ts
+│   │   │   ├── main.ts
+│   │   │   ├── modules
+│   │   │   │   ├── framework
+│   │   │   │   │   ├── clock.ts
+│   │   │   │   │   ├── config
+│   │   │   │   │   │   ├── config.constants.ts
+│   │   │   │   │   │   ├── config.module.ts
+│   │   │   │   │   │   ├── config.schema.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── database
+│   │   │   │   │   │   ├── database.constants.ts
+│   │   │   │   │   │   ├── database.module.ts
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   └── prisma.service.ts
+│   │   │   │   │   ├── exception.ts
+│   │   │   │   │   ├── files
+│   │   │   │   │   │   ├── files.controller.ts
+│   │   │   │   │   │   ├── files.module.ts
+│   │   │   │   │   │   ├── files.ts
+│   │   │   │   │   │   ├── files.types.ts
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   ├── mime-type.ts
+│   │   │   │   │   │   ├── multipart
+│   │   │   │   │   │   │   ├── README.md
+│   │   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   │   ├── multipart.decorator.ts
+│   │   │   │   │   │   │   ├── multipart.file.ts
+│   │   │   │   │   │   │   ├── multipart.interceptor.ts
+│   │   │   │   │   │   │   ├── multipart.spec.ts
+│   │   │   │   │   │   │   ├── multipart.types.ts
+│   │   │   │   │   │   │   └── store-file.interceptor.ts
+│   │   │   │   │   │   └── sanitizers
+│   │   │   │   │   │       ├── image.sanitizer.ts
+│   │   │   │   │   │       ├── index.ts
+│   │   │   │   │   │       ├── pdf.sanitizer.ts
+│   │   │   │   │   │       └── sanitizer.ts
+│   │   │   │   │   ├── framework.module.ts
+│   │   │   │   │   ├── observability.ts
+│   │   │   │   │   ├── openapi.ts
+│   │   │   │   │   ├── pagination.ts
+│   │   │   │   │   └── sorting.ts
+│   │   │   │   ├── maintenance
+│   │   │   │   │   ├── infrastructure
+│   │   │   │   │   │   ├── cli
+│   │   │   │   │   │   │   ├── ingest-magistrats.cli.ts
+│   │   │   │   │   │   │   └── maintenance-cli.module.ts
+│   │   │   │   │   │   ├── ingest-xml-jurisdiction.e2e-spec.ts
+│   │   │   │   │   │   ├── ingest-xml-jurisdiction.use-case.ts
+│   │   │   │   │   │   ├── ingest-xml-magistrat.use-case.ts
+│   │   │   │   │   │   └── maintenance.service.ts
+│   │   │   │   │   └── maintenance.module.ts
+│   │   │   │   ├── members
+│   │   │   │   │   ├── domain
+│   │   │   │   │   │   ├── jurisdiction.ts
+│   │   │   │   │   │   ├── member.spec.ts
+│   │   │   │   │   │   └── member.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── infrastructure
+│   │   │   │   │   │   ├── dtos
+│   │   │   │   │   │   │   ├── jurisdictions.dto.ts
+│   │   │   │   │   │   │   └── members.dto.ts
+│   │   │   │   │   │   ├── jurisdictions.service.ts
+│   │   │   │   │   │   ├── member-repository.ts
+│   │   │   │   │   │   ├── member.dto.ts
+│   │   │   │   │   │   ├── member.utils.ts
+│   │   │   │   │   │   ├── members.service.ts
+│   │   │   │   │   │   └── queries
+│   │   │   │   │   │       ├── details-member.query.ts
+│   │   │   │   │   │       ├── internal-find-members-by-full-name.query.ts
+│   │   │   │   │   │       ├── internal-find-members.query.ts
+│   │   │   │   │   │       ├── list-members.query.ts
+│   │   │   │   │   │       └── search-jurisdictions.query.ts
+│   │   │   │   │   ├── jurisdictions.controller.ts
+│   │   │   │   │   ├── members.controller.ts
+│   │   │   │   │   ├── members.e2e-spec.ts
+│   │   │   │   │   └── members.module.ts
+│   │   │   │   ├── observation
+│   │   │   │   │   ├── domain
+│   │   │   │   │   │   ├── observation-follow-up.spec.ts
+│   │   │   │   │   │   ├── observation-follow-up.ts
+│   │   │   │   │   │   ├── observation.spec.ts
+│   │   │   │   │   │   └── observation.ts
+│   │   │   │   │   ├── infrastructure
+│   │   │   │   │   │   ├── dtos
+│   │   │   │   │   │   │   ├── observation-member-comment.dto.ts
+│   │   │   │   │   │   │   └── observation.dto.ts
+│   │   │   │   │   │   ├── magistrat.service.ts
+│   │   │   │   │   │   ├── queries
+│   │   │   │   │   │   │   ├── get-observation-details.query.ts
+│   │   │   │   │   │   │   ├── get-observation-file-url.query.ts
+│   │   │   │   │   │   │   ├── list-observations.query.ts
+│   │   │   │   │   │   │   └── search-magistrats.query.ts
+│   │   │   │   │   │   └── repositories
+│   │   │   │   │   │       └── observation.repository.ts
+│   │   │   │   │   ├── magistrat.controller.ts
+│   │   │   │   │   ├── observation.controller.ts
+│   │   │   │   │   ├── observation.module.ts
+│   │   │   │   │   └── observation.service.ts
+│   │   │   │   ├── report
+│   │   │   │   │   ├── domain
+│   │   │   │   │   │   ├── report.spec.ts
+│   │   │   │   │   │   └── report.ts
+│   │   │   │   │   ├── infrastructure
+│   │   │   │   │   │   ├── dtos
+│   │   │   │   │   │   │   └── report.dto.ts
+│   │   │   │   │   │   ├── queries
+│   │   │   │   │   │   │   ├── detail-report.query.ts
+│   │   │   │   │   │   │   └── get-report-file-urls.query.ts
+│   │   │   │   │   │   └── report.repository.ts
+│   │   │   │   │   ├── report.controller.ts
+│   │   │   │   │   ├── report.e2e-spec.ts
+│   │   │   │   │   ├── report.module.ts
+│   │   │   │   │   └── report.service.ts
+│   │   │   │   ├── root.module.ts
+│   │   │   │   ├── session
+│   │   │   │   │   ├── domain
+│   │   │   │   │   │   ├── auto-affectations.spec.ts
+│   │   │   │   │   │   ├── auto-affectations.ts
+│   │   │   │   │   │   ├── lodam-xlsx-to-nomination-session.spec.ts
+│   │   │   │   │   │   ├── lodam-xlsx-to-nomination-session.ts
+│   │   │   │   │   │   ├── nomination-file-outcome.spec.ts
+│   │   │   │   │   │   ├── nomination-file-outcome.ts
+│   │   │   │   │   │   ├── nomination-file.ts
+│   │   │   │   │   │   ├── nomination-session.spec.ts
+│   │   │   │   │   │   ├── nomination-session.ts
+│   │   │   │   │   │   ├── statut-affectation.enum.ts
+│   │   │   │   │   │   └── summary.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── infrastructure
+│   │   │   │   │   │   ├── dtos
+│   │   │   │   │   │   │   ├── auto-affectation.dto.ts
+│   │   │   │   │   │   │   ├── nomination-file.dto.ts
+│   │   │   │   │   │   │   ├── nomination-session.dto.ts
+│   │   │   │   │   │   │   └── summary.dto.ts
+│   │   │   │   │   │   ├── finders
+│   │   │   │   │   │   │   ├── affectation-version.finder.ts
+│   │   │   │   │   │   │   ├── auto-affectations.finder.ts
+│   │   │   │   │   │   │   ├── nomination-session-file.finder.ts
+│   │   │   │   │   │   │   └── unaffected-files.finder.ts
+│   │   │   │   │   │   ├── lodam-xlsx.pipe.ts
+│   │   │   │   │   │   ├── queries
+│   │   │   │   │   │   │   ├── count-unaffected-files.query.ts
+│   │   │   │   │   │   │   ├── detail-nomination-session-affectation-version.query.ts
+│   │   │   │   │   │   │   ├── detail-nomination-session-attachment.query.ts
+│   │   │   │   │   │   │   ├── detail-nomination-session.query.ts
+│   │   │   │   │   │   │   ├── detail-summary.query.ts
+│   │   │   │   │   │   │   ├── get-lolfi-magistrat-url.query.ts
+│   │   │   │   │   │   │   ├── get-nomination-file-with-comment.query.ts
+│   │   │   │   │   │   │   ├── get-summary-attachment-url.query.ts
+│   │   │   │   │   │   │   ├── internal-detail-member-session.query.ts
+│   │   │   │   │   │   │   ├── internal-list-member-sessions.query.ts
+│   │   │   │   │   │   │   ├── list-currently-affected-reporters.query.ts
+│   │   │   │   │   │   │   ├── list-nomination-files-as-excel.query.ts
+│   │   │   │   │   │   │   ├── list-nomination-files.query.ts
+│   │   │   │   │   │   │   ├── list-nomination-session-attachments.query.ts
+│   │   │   │   │   │   │   └── list-nomination-sessions.query.ts
+│   │   │   │   │   │   ├── repositories
+│   │   │   │   │   │   │   ├── nomination-session-report-rules.ts
+│   │   │   │   │   │   │   ├── nomination-session.repository.ts
+│   │   │   │   │   │   │   ├── sortable-targeted-grade.ts
+│   │   │   │   │   │   │   └── summary.repository.ts
+│   │   │   │   │   │   ├── session.filter.ts
+│   │   │   │   │   │   ├── sessions.service.ts
+│   │   │   │   │   │   ├── summary.filter.ts
+│   │   │   │   │   │   └── summary.service.ts
+│   │   │   │   │   ├── session.controller.ts
+│   │   │   │   │   ├── session.e2e-spec.ts
+│   │   │   │   │   ├── session.module.ts
+│   │   │   │   │   ├── summary.controller.ts
+│   │   │   │   │   └── summary.module.ts
+│   │   │   │   ├── shared
+│   │   │   │   │   └── mappers
+│   │   │   │   │       ├── formation.mapper.ts
+│   │   │   │   │       ├── gender-enum.mapper.ts
+│   │   │   │   │       ├── grade.mapper.ts
+│   │   │   │   │       ├── priorite.mapper.ts
+│   │   │   │   │       ├── rapport-statut.mapper.ts
+│   │   │   │   │       ├── report-file-usage.mapper.ts
+│   │   │   │   │       ├── role-enum.mapper.ts
+│   │   │   │   │       ├── statut-affectation.mapper.ts
+│   │   │   │   │       └── type-de-saisine-enum.mapper.ts
+│   │   │   │   └── simple-auth
+│   │   │   │       ├── domain
+│   │   │   │       │   ├── auth-password.ts
+│   │   │   │       │   ├── auth-session.ts
+│   │   │   │       │   └── auth-user.ts
+│   │   │   │       ├── index.ts
+│   │   │   │       ├── infrastructure
+│   │   │   │       │   ├── auth.filter.ts
+│   │   │   │       │   ├── cli
+│   │   │   │       │   │   ├── auth-cli.module.ts
+│   │   │   │       │   │   └── register-user.cli.ts
+│   │   │   │       │   ├── dto
+│   │   │   │       │   │   └── auth.dto.ts
+│   │   │   │       │   ├── queries
+│   │   │   │       │   │   ├── details-user-from-session-id.query.ts
+│   │   │   │       │   │   ├── details-user.query.ts
+│   │   │   │       │   │   └── list-users.query.ts
+│   │   │   │       │   └── repositories
+│   │   │   │       │       └── auth-user.repository.ts
+│   │   │   │       ├── simple-auth.controller.ts
+│   │   │   │       ├── simple-auth.decorator.ts
+│   │   │   │       ├── simple-auth.e2e-spec.ts
+│   │   │   │       ├── simple-auth.middleware.ts
+│   │   │   │       ├── simple-auth.module.ts
+│   │   │   │       └── simple-auth.service.ts
+│   │   │   ├── types
+│   │   │   │   └── express.d.ts
+│   │   │   └── utils
+│   │   │       ├── assert-never.ts
+│   │   │       ├── capitalize.ts
+│   │   │       ├── date-only.ts
+│   │   │       ├── id.ts
+│   │   │       ├── is-defined.ts
+│   │   │       ├── iterables.ts
+│   │   │       ├── noop.ts
+│   │   │       ├── promises.ts
+│   │   │       └── time.ts
+│   │   ├── test
+│   │   │   ├── assets
+│   │   │   │   └── lodam
+│   │   │   │       ├── lodam_transparence.xlsx
+│   │   │   │       └── lodam_transparence_observers_updated.xlsx
+│   │   │   ├── docker-compose-test.yaml
+│   │   │   └── jest
+│   │   │       ├── jest-all.config.ts
+│   │   │       ├── jest-e2e.config.ts
+│   │   │       ├── jest-integration.config.ts
+│   │   │       └── jest-migration.config.ts
+│   │   ├── tsconfig.build.json
+│   │   └── tsconfig.json
+│   └── client
+│       ├── .gitignore
+│       ├── .prettierignore
+│       ├── .prettierrc
+│       ├── README.md
+│       ├── eslint.config.js
+│       ├── index.html
+│       ├── openapi-ts.config.ts
+│       ├── package.json
+│       ├── postcss.config.js
+│       ├── public
+│       │   ├── favicon.staging.svg
+│       │   ├── favicon.svg
+│       │   └── logo.png
+│       ├── scalingo
+│       │   ├── .buildpacks
+│       │   ├── Procfile
+│       │   └── nginx.conf.erb
+│       ├── src
+│       │   ├── Builders
+│       │   │   └── ReportVMRules.builder.ts
+│       │   ├── HomePage.tsx
+│       │   ├── VM
+│       │   │   └── ReportVM.ts
+│       │   ├── assets
+│       │   │   └── react.svg
+│       │   ├── components
+│       │   │   ├── guards
+│       │   │   │   └── AuthGuard.tsx
+│       │   │   ├── layout
+│       │   │   │   ├── AppFooter.tsx
+│       │   │   │   ├── Avatar.tsx
+│       │   │   │   ├── Header.tsx
+│       │   │   │   ├── LolfiCsm.tsx
+│       │   │   │   └── PageLayout.tsx
+│       │   │   ├── login
+│       │   │   │   ├── AuthenticationFailedAlert.tsx
+│       │   │   │   └── Login.tsx
+│       │   │   ├── reports
+│       │   │   │   ├── components
+│       │   │   │   │   ├── ReportList
+│       │   │   │   │   │   ├── FiltresRapports.tsx
+│       │   │   │   │   │   ├── HeaderReportList.tsx
+│       │   │   │   │   │   ├── NewReportsCount.tsx
+│       │   │   │   │   │   ├── ReportList.tsx
+│       │   │   │   │   │   ├── ReportListPage.tsx
+│       │   │   │   │   │   ├── ReportStateTag.tsx
+│       │   │   │   │   │   ├── ReportsDnVueGenerale.tsx
+│       │   │   │   │   │   ├── ReportsTable.css
+│       │   │   │   │   │   ├── ReportsTable.tsx
+│       │   │   │   │   │   └── TransparencyAttachmentsSection.tsx
+│       │   │   │   │   ├── ReportOverview
+│       │   │   │   │   │   ├── AttachedFileUpload.tsx
+│       │   │   │   │   │   ├── AttachedFilesList.tsx
+│       │   │   │   │   │   ├── AutoSaveNotice.tsx
+│       │   │   │   │   │   ├── Biography.tsx
+│       │   │   │   │   │   ├── Card.tsx
+│       │   │   │   │   │   ├── MagistratIdentity.tsx
+│       │   │   │   │   │   ├── Observers.tsx
+│       │   │   │   │   │   ├── ReportEditor.tsx
+│       │   │   │   │   │   ├── ReportOverview.tsx
+│       │   │   │   │   │   ├── ReportOverviewPage.tsx
+│       │   │   │   │   │   ├── ReportOverviewState.tsx
+│       │   │   │   │   │   ├── ReportRule.tsx
+│       │   │   │   │   │   ├── ReportRules.tsx
+│       │   │   │   │   │   ├── ReportSummaryCard.css
+│       │   │   │   │   │   ├── ReportSummaryCard.tsx
+│       │   │   │   │   │   ├── Summary.tsx
+│       │   │   │   │   │   ├── TextareaCard.tsx
+│       │   │   │   │   │   ├── TipTapEditor
+│       │   │   │   │   │   │   ├── MenuBar.tsx
+│       │   │   │   │   │   │   ├── buttons
+│       │   │   │   │   │   │   │   ├── BoldButton.tsx
+│       │   │   │   │   │   │   │   ├── BulletListButton.tsx
+│       │   │   │   │   │   │   │   ├── EditorButton.tsx
+│       │   │   │   │   │   │   │   ├── HeadingButton.tsx
+│       │   │   │   │   │   │   │   ├── HighlightButton.tsx
+│       │   │   │   │   │   │   │   ├── ImageUploadButton.tsx
+│       │   │   │   │   │   │   │   ├── IndentDecreaseButton.tsx
+│       │   │   │   │   │   │   │   ├── IndentIncreaseButton.tsx
+│       │   │   │   │   │   │   │   ├── ItalicButton.tsx
+│       │   │   │   │   │   │   │   ├── OrderedListButton.tsx
+│       │   │   │   │   │   │   │   ├── RedoButton.tsx
+│       │   │   │   │   │   │   │   ├── TextColorButton.tsx
+│       │   │   │   │   │   │   │   ├── UnderlineButton.tsx
+│       │   │   │   │   │   │   │   └── UndoButton.tsx
+│       │   │   │   │   │   │   ├── extensions
+│       │   │   │   │   │   │   │   ├── ImageUploadPreview.tsx
+│       │   │   │   │   │   │   │   ├── constant.ts
+│       │   │   │   │   │   │   │   ├── editor-file-uploader.ts
+│       │   │   │   │   │   │   │   ├── file-handler-extension.ts
+│       │   │   │   │   │   │   │   └── useTipTapExtensions.ts
+│       │   │   │   │   │   │   ├── hooks
+│       │   │   │   │   │   │   │   ├── useIsBlurred.ts
+│       │   │   │   │   │   │   │   └── useMarkPriority.ts
+│       │   │   │   │   │   │   ├── index.tsx
+│       │   │   │   │   │   │   └── markPriorityFactory.ts
+│       │   │   │   │   │   └── hooks
+│       │   │   │   │   │       └── useObservedSections.ts
+│       │   │   │   │   └── Transparencies
+│       │   │   │   │       ├── SessionBlock.tsx
+│       │   │   │   │       ├── SessionCsmList.tsx
+│       │   │   │   │       ├── SessionGardeDesSceauxList.tsx
+│       │   │   │   │       └── Sessions.tsx
+│       │   │   │   ├── dom
+│       │   │   │   │   ├── html-ids.ts
+│       │   │   │   │   ├── scroll-to-summary-section.ts
+│       │   │   │   │   ├── summary-scroll-listeners.ts
+│       │   │   │   │   └── summary-section-observer-factory.ts
+│       │   │   │   └── labels
+│       │   │   │       ├── labels-mappers.ts
+│       │   │   │       ├── report-list-table-labels.ts
+│       │   │   │       ├── rules-labels.tsx
+│       │   │   │       ├── state-filter-labels.ts
+│       │   │   │       ├── state-label.mapper.ts
+│       │   │   │       └── summary-labels.ts
+│       │   │   ├── secretariat-general
+│       │   │   │   ├── Dashboard.tsx
+│       │   │   │   ├── membres
+│       │   │   │   │   ├── details
+│       │   │   │   │   │   ├── DetailsMember.tsx
+│       │   │   │   │   │   ├── DetailsMemberHeader.tsx
+│       │   │   │   │   │   ├── DetailsMemberStats.tsx
+│       │   │   │   │   │   ├── JurisdictionAutocomplete.tsx
+│       │   │   │   │   │   └── JurisdictionSelector.tsx
+│       │   │   │   │   ├── jurisdictions.queries.ts
+│       │   │   │   │   └── list
+│       │   │   │   │       ├── MemberList.tsx
+│       │   │   │   │       ├── MemberListHeader.tsx
+│       │   │   │   │       └── MemberListStateCell.tsx
+│       │   │   │   ├── session
+│       │   │   │   │   ├── FiltresSessions.tsx
+│       │   │   │   │   └── ManageSession.tsx
+│       │   │   │   └── transparence
+│       │   │   │       ├── content
+│       │   │   │       │   ├── Transparence.tsx
+│       │   │   │       │   └── tableau-de-bord
+│       │   │   │       │       ├── actions
+│       │   │   │       │       │   ├── ImportAttachmentModal.tsx
+│       │   │   │       │       │   ├── ImportObservantsModal.tsx
+│       │   │   │       │       │   └── TableauDeBordActions.tsx
+│       │   │   │       │       └── resume
+│       │   │   │       │           ├── TableauDeBordEditTransparence.tsx
+│       │   │   │       │           ├── TableauDeBordResume.tsx
+│       │   │   │       │           └── TableauDeBordResumeDetails.tsx
+│       │   │   │       └── nouvelle-transparence
+│       │   │   │           ├── NouvelleTransparence.tsx
+│       │   │   │           └── UploadExcelFailedAlert.tsx
+│       │   │   ├── shared
+│       │   │   │   ├── Breadcrumb.tsx
+│       │   │   │   ├── Card.tsx
+│       │   │   │   ├── DeleteAttachmentModal.tsx
+│       │   │   │   ├── DropdownFilter.tsx
+│       │   │   │   ├── DropdownMenu.tsx
+│       │   │   │   ├── DropdownSelect.tsx
+│       │   │   │   ├── ErrorMessage.tsx
+│       │   │   │   ├── HintImportXlsxFile.tsx
+│       │   │   │   ├── LolfiMagistratLink.tsx
+│       │   │   │   ├── NominationSessionAttachmentList.tsx
+│       │   │   │   ├── ObservationDetailsContent.tsx
+│       │   │   │   ├── ObservationLinks.tsx
+│       │   │   │   ├── PageContentLayout.tsx
+│       │   │   │   ├── ScrollToTop.tsx
+│       │   │   │   ├── SortButton.tsx
+│       │   │   │   ├── StagingAppLayout.tsx
+│       │   │   │   ├── SuccessModal.tsx
+│       │   │   │   ├── TableControl.tsx
+│       │   │   │   ├── TableauDossiersDeNomination.css
+│       │   │   │   ├── TextValue.tsx
+│       │   │   │   ├── UserChipsSelect.tsx
+│       │   │   │   ├── alerts
+│       │   │   │   │   ├── AlertsProvider.tsx
+│       │   │   │   │   └── alerts.context.ts
+│       │   │   │   ├── data-table
+│       │   │   │   │   ├── DataTable.tsx
+│       │   │   │   │   ├── ReactTableBody.tsx
+│       │   │   │   │   ├── ReactTableColumnVisibility.tsx
+│       │   │   │   │   ├── ReactTableContent.tsx
+│       │   │   │   │   ├── ReactTableFilterColumn.tsx
+│       │   │   │   │   ├── ReactTableFilterColumnAsyncList.tsx
+│       │   │   │   │   ├── ReactTableFilterSearch.tsx
+│       │   │   │   │   ├── ReactTableHead.tsx
+│       │   │   │   │   ├── ReactTablePagination.tsx
+│       │   │   │   │   ├── ReactTableWrapper.tsx
+│       │   │   │   │   ├── hooks
+│       │   │   │   │   │   ├── assert-is-page-size.ts
+│       │   │   │   │   │   ├── data-table-parsers.ts
+│       │   │   │   │   │   ├── data-table-state.ts
+│       │   │   │   │   │   ├── useDataTable.ts
+│       │   │   │   │   │   ├── useDataTableState.ts
+│       │   │   │   │   │   └── useQueryDataTableState.ts
+│       │   │   │   │   └── index.ts
+│       │   │   │   ├── filter-configurations.ts
+│       │   │   │   ├── loaders
+│       │   │   │   │   └── pulse
+│       │   │   │   │       ├── Pulse.css
+│       │   │   │   │       ├── Pulse.tsx
+│       │   │   │   │       └── index.ts
+│       │   │   │   ├── nomination-files-table
+│       │   │   │   │   ├── NominationFilesTable.tsx
+│       │   │   │   │   ├── components
+│       │   │   │   │   │   ├── NominationFilesActionsBar.tsx
+│       │   │   │   │   │   ├── NominationFilesAffectationsStatus.tsx
+│       │   │   │   │   │   ├── NominationFilesAutoAffectationButton.tsx
+│       │   │   │   │   │   ├── NominationFilesBatchOperationsButton.tsx
+│       │   │   │   │   │   ├── NominationFilesPrioritySelector.tsx
+│       │   │   │   │   │   ├── NominationFilesReporterSelector.tsx
+│       │   │   │   │   │   ├── NominationFilesSaveAffectationsButton.tsx
+│       │   │   │   │   │   ├── NominationFilesToggleEditionModeButton.tsx
+│       │   │   │   │   │   └── cells
+│       │   │   │   │   │       ├── NominationFilesPrioritySelector.tsx
+│       │   │   │   │   │       ├── magistrat-details
+│       │   │   │   │   │       │   ├── MagistratDetails.tsx
+│       │   │   │   │   │       │   ├── MagistratDnModale.tsx
+│       │   │   │   │   │       │   ├── MagistratRouteDetails.tsx
+│       │   │   │   │   │       │   ├── MagistratSummaryButton.tsx
+│       │   │   │   │   │       │   ├── magistrat-comment
+│       │   │   │   │   │       │   │   ├── MagistratComment.tsx
+│       │   │   │   │   │       │   │   ├── MagistratCommentEdit.tsx
+│       │   │   │   │   │       │   │   └── MagistratCommentView.tsx
+│       │   │   │   │   │       │   └── member-memo
+│       │   │   │   │   │       │       ├── MemberMemo.css
+│       │   │   │   │   │       │       └── MemberMemo.tsx
+│       │   │   │   │   │       ├── nomination-file-outcome
+│       │   │   │   │   │       │   ├── NominationFileOutcome.tsx
+│       │   │   │   │   │       │   ├── NominationFileOutcomeBadge.tsx
+│       │   │   │   │   │       │   ├── NominationFileOutcomeCommentModal.tsx
+│       │   │   │   │   │       │   ├── NominationFileOutcomeCommentModalProvider.tsx
+│       │   │   │   │   │       │   ├── NominationFileOutcomeSelector.tsx
+│       │   │   │   │   │       │   └── OutcomeCommentModalContext.ts
+│       │   │   │   │   │       ├── observation-follow-up
+│       │   │   │   │   │       │   ├── ObservationFollowUpReminderContext.ts
+│       │   │   │   │   │       │   ├── ObservationFollowUpReminderModal.tsx
+│       │   │   │   │   │       │   ├── ObservationFollowUpReminderProvider.tsx
+│       │   │   │   │   │       │   └── useObservationFollowUpReminderModal.hook.ts
+│       │   │   │   │   │       ├── observations
+│       │   │   │   │   │       │   ├── ObservantsCell.tsx
+│       │   │   │   │   │       │   ├── ObservationForm.tsx
+│       │   │   │   │   │       │   ├── ObservationsList.tsx
+│       │   │   │   │   │       │   └── ObservationsModalContext.tsx
+│       │   │   │   │   │       └── reporters
+│       │   │   │   │   │           ├── DropdownRapporteurs.tsx
+│       │   │   │   │   │           ├── RapporteursDropdownBase.tsx
+│       │   │   │   │   │           └── ReportersCell.tsx
+│       │   │   │   │   ├── contexts
+│       │   │   │   │   │   ├── FilesAffectationsProvider.tsx
+│       │   │   │   │   │   ├── FilesSelectionProvider.tsx
+│       │   │   │   │   │   ├── NominationFilesTableProvider.tsx
+│       │   │   │   │   │   ├── files-affectations.context.ts
+│       │   │   │   │   │   ├── files-selection.context.ts
+│       │   │   │   │   │   └── files-table.context.ts
+│       │   │   │   │   └── useNominationFilesTableColumns.hook.tsx
+│       │   │   │   ├── observations
+│       │   │   │   │   └── follow-up-selector
+│       │   │   │   │       ├── ObservationFollowUpCommentContext.ts
+│       │   │   │   │       ├── ObservationFollowUpCommentDialog.tsx
+│       │   │   │   │       ├── ObservationFollowUpCommentDialogProvider.tsx
+│       │   │   │   │       ├── ObservationFollowUpSelector.tsx
+│       │   │   │   │       └── useObservationFollowUpCommentDialog.ts
+│       │   │   │   ├── ovoid.tsx
+│       │   │   │   └── user-avatar
+│       │   │   │       ├── UserAvatar.tsx
+│       │   │   │       ├── UserAvatarList.tsx
+│       │   │   │       ├── index.ts
+│       │   │   │       └── user-avatar.utils.ts
+│       │   │   └── summary
+│       │   │       ├── Summary.tsx
+│       │   │       ├── components
+│       │   │       │   ├── SummaryAutoSaveNotice.tsx
+│       │   │       │   ├── SummaryBreadcrumb.tsx
+│       │   │       │   ├── SummaryContainer.tsx
+│       │   │       │   ├── SummaryOutcomeNotice.tsx
+│       │   │       │   ├── SummaryReaderSelector.tsx
+│       │   │       │   ├── SummarySectionAttachments.tsx
+│       │   │       │   ├── SummarySectionBiography.tsx
+│       │   │       │   ├── SummarySectionCard.tsx
+│       │   │       │   ├── SummarySectionContent.css
+│       │   │       │   ├── SummarySectionContent.tsx
+│       │   │       │   ├── SummarySectionEditor.tsx
+│       │   │       │   ├── SummarySectionMagistrat.tsx
+│       │   │       │   ├── SummarySectionObservations.tsx
+│       │   │       │   └── SummarySideNav.tsx
+│       │   │       └── useVisibleSummarySections.ts
+│       │   ├── constants
+│       │   │   ├── authorized-roles.constants.ts
+│       │   │   ├── mimetypes.constants.ts
+│       │   │   ├── sg-anchor-attributes.ts
+│       │   │   └── summary-sections.constants.ts
+│       │   ├── generated
+│       │   │   └── api
+│       │   │       ├── client
+│       │   │       │   ├── client.ts
+│       │   │       │   ├── index.ts
+│       │   │       │   ├── types.ts
+│       │   │       │   └── utils.ts
+│       │   │       ├── client.ts
+│       │   │       ├── core
+│       │   │       │   ├── auth.ts
+│       │   │       │   ├── bodySerializer.ts
+│       │   │       │   ├── params.ts
+│       │   │       │   ├── pathSerializer.ts
+│       │   │       │   ├── queryKeySerializer.ts
+│       │   │       │   ├── serverSentEvents.ts
+│       │   │       │   ├── types.ts
+│       │   │       │   └── utils.ts
+│       │   │       ├── sdk.ts
+│       │   │       └── types.ts
+│       │   ├── hooks
+│       │   │   ├── roles.hook.ts
+│       │   │   ├── useConfirmation.hook.tsx
+│       │   │   ├── useFilterOptions.hook.ts
+│       │   │   ├── useFiltering.hook.ts
+│       │   │   ├── useLocallyStoredState.hook.ts
+│       │   │   ├── usePagination.hook.ts
+│       │   │   ├── useSorting.hook.ts
+│       │   │   └── useTable.hook.ts
+│       │   ├── index.css
+│       │   ├── instrument.ts
+│       │   ├── main.tsx
+│       │   ├── models
+│       │   │   ├── breadcrumb-vm.model.ts
+│       │   │   └── date-only.model.ts
+│       │   ├── pages
+│       │   │   ├── HelpPage.tsx
+│       │   │   ├── LoginPage.tsx
+│       │   │   ├── LolfiRedirectMagistratPage.tsx
+│       │   │   ├── secretariat-general
+│       │   │   │   ├── ManageSessionPage.tsx
+│       │   │   │   ├── MemberListPage.tsx
+│       │   │   │   ├── NouvelleTransparencePage.tsx
+│       │   │   │   ├── SecretariatGeneralPage.tsx
+│       │   │   │   ├── SecretariatLayout.tsx
+│       │   │   │   ├── TransparencePage.tsx
+│       │   │   │   ├── membres
+│       │   │   │   │   └── DetailsMemberPage.tsx
+│       │   │   │   └── observations
+│       │   │   │       └── ObservationDetailsPage.tsx
+│       │   │   ├── summary
+│       │   │   │   ├── SummaryContext.ts
+│       │   │   │   ├── SummaryNotFound.tsx
+│       │   │   │   └── SummaryPage.tsx
+│       │   │   └── transparence
+│       │   │       ├── SessionsPage.tsx
+│       │   │       └── TransparencesLayout.tsx
+│       │   ├── queries
+│       │   │   ├── auth.queries.ts
+│       │   │   ├── members.queries.ts
+│       │   │   ├── nomination-sessions.queries.ts
+│       │   │   ├── observations.queries.ts
+│       │   │   ├── reports.queries.ts
+│       │   │   └── summary.queries.ts
+│       │   ├── router
+│       │   │   ├── AppErrorBoundary.tsx
+│       │   │   └── AppRouter.tsx
+│       │   ├── tanstack-react-table.d.ts
+│       │   ├── types
+│       │   │   ├── date-only.types.ts
+│       │   │   ├── enums.types.ts
+│       │   │   ├── table.types.ts
+│       │   │   └── utils.types.ts
+│       │   ├── utils
+│       │   │   ├── InvalidMimeType.error.ts
+│       │   │   ├── date-transparence-routes.utils.ts
+│       │   │   ├── deterministicUuidGenerator.ts
+│       │   │   ├── fileProvider.ts
+│       │   │   ├── format-report-list.utils.tsx
+│       │   │   ├── formations-routes.utils.ts
+│       │   │   ├── gds-transparencies-routes.utils.ts
+│       │   │   ├── get-initials.ts
+│       │   │   ├── http-exception.ts
+│       │   │   ├── http.config.ts
+│       │   │   ├── nomination-file.ts
+│       │   │   ├── realFileProvider.ts
+│       │   │   ├── route-path.utils.tsx
+│       │   │   ├── sg-breadcrumb.utils.tsx
+│       │   │   ├── string.utils.ts
+│       │   │   ├── transparences-breadcrumb.utils.tsx
+│       │   │   └── user.utils.ts
+│       │   └── vite-env.d.ts
+│       ├── tailwind.config.js
+│       ├── tsconfig.app.json
+│       ├── tsconfig.json
+│       ├── tsconfig.node.json
+│       └── vite.config.ts
+├── package.json
+├── packages
+│   └── shared-models
+│       ├── .gitignore
+│       ├── .vscode
+│       │   └── settings.json
+│       ├── models
+│       │   ├── date.ts
+│       │   ├── gender.ts
+│       │   ├── index.ts
+│       │   ├── magistrat.namespace.ts
+│       │   ├── nomination-file.namespace.ts
+│       │   ├── nomination-file.ts
+│       │   ├── priorite.enum.ts
+│       │   ├── report-retrieval-vm.ts
+│       │   ├── reports-listing-vm.ts
+│       │   ├── role.ts
+│       │   ├── rule.builder.ts
+│       │   ├── session
+│       │   │   ├── dossier-de-nomination.ts
+│       │   │   ├── session-content.ts
+│       │   │   └── session-metadata.ts
+│       │   ├── transparency.enum.ts
+│       │   └── type-de-saisine.enum.ts
+│       ├── package.json
+│       └── tsconfig.json
+├── pnpm-lock.yaml
+└── pnpm-workspace.yaml
+164 directories, 710 files
