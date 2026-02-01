@@ -1,0 +1,680 @@
+.
+├── .eslintignore
+├── .eslintrc.js
+├── .gitattributes
+├── .github
+│   └── workflows
+│       └── ci.yaml
+├── .gitignore
+├── .prettierignore
+├── .prettierrc.json
+├── .storybook
+│   ├── DocsContainer.js
+│   ├── customTheme.js
+│   ├── main.js
+│   ├── manager-head.html
+│   ├── preview.js
+│   └── static
+│       ├── CNAME
+│       ├── logo.png
+│       └── repo-card.png
+├── CONTRIBUTING.md
+├── LICENSE
+├── README.fr.md
+├── README.md
+├── package.json
+├── patches
+│   └── @gouvfr+dsfr+1.14.2.patch
+├── publiccode.yml
+├── scripts
+│   ├── README.md
+│   ├── build
+│   │   ├── build.ts
+│   │   ├── cssToTs
+│   │   │   ├── breakpoints.ts
+│   │   │   ├── classNames.ts
+│   │   │   ├── colorDecisionAndCorrespondingOptions.ts
+│   │   │   ├── colorDecisions.ts
+│   │   │   ├── colorOptions.ts
+│   │   │   ├── cssToTs.ts
+│   │   │   ├── cssVariable.ts
+│   │   │   ├── index.ts
+│   │   │   ├── spacing.ts
+│   │   │   └── typography.ts
+│   │   ├── early-color-scheme.js
+│   │   ├── icons.ts
+│   │   ├── index.ts
+│   │   ├── main.css
+│   │   ├── marianne-index.css
+│   │   ├── parseCss.ts
+│   │   └── patchCssForMui.ts
+│   ├── link-in-external-project.ts
+│   ├── link-in-integration-apps.ts
+│   ├── picto-builder.ts
+│   ├── tools
+│   │   ├── cssColorRegexp.ts
+│   │   ├── multiReplace.ts
+│   │   ├── threeDigitColorHexToSixDigitsColorHex.ts
+│   │   └── tsc.ts
+│   └── tsconfig.json
+├── src
+│   ├── Accordion.tsx
+│   ├── AgentConnectButton.tsx
+│   ├── Alert.tsx
+│   ├── Badge.tsx
+│   ├── Breadcrumb.tsx
+│   ├── Button.tsx
+│   ├── ButtonsGroup.tsx
+│   ├── CallOut.tsx
+│   ├── Card.tsx
+│   ├── Chart
+│   │   ├── BarChart.tsx
+│   │   ├── BarLineChart.tsx
+│   │   ├── GaugeChart.tsx
+│   │   ├── LineChart.tsx
+│   │   ├── MultiLineChart.tsx
+│   │   ├── PieChart.tsx
+│   │   ├── RadarChart.tsx
+│   │   ├── ScatterChart.tsx
+│   │   └── chartWrapper.tsx
+│   ├── Checkbox.tsx
+│   ├── Display
+│   │   ├── Artwork
+│   │   │   ├── Artwork.tsx
+│   │   │   ├── ArtworkGov.tsx
+│   │   │   ├── ArtworkWhiteLabel
+│   │   │   │   ├── ArtworkWhiteLabel.tsx
+│   │   │   │   ├── DisplayArtworkWhiteLabelProvider.tsx
+│   │   │   │   ├── context.ts
+│   │   │   │   └── useArtworkWhiteLabel.ts
+│   │   │   └── index.ts
+│   │   ├── Display.tsx
+│   │   └── index.ts
+│   ├── Download.tsx
+│   ├── Follow.tsx
+│   ├── Footer.tsx
+│   ├── FranceConnectButton.tsx
+│   ├── Header
+│   │   ├── Header.tsx
+│   │   ├── index.ts
+│   │   └── useIsHeaderMenuModalOpen.ts
+│   ├── Highlight.tsx
+│   ├── Input.tsx
+│   ├── LanguageSelect.tsx
+│   ├── MainNavigation
+│   │   ├── MainNavigation.tsx
+│   │   ├── MegaMenu.tsx
+│   │   ├── Menu.tsx
+│   │   └── index.ts
+│   ├── Modal
+│   │   ├── Modal.tsx
+│   │   ├── index.ts
+│   │   └── useIsModalOpen.ts
+│   ├── MonCompteProButton.tsx
+│   ├── Notice.tsx
+│   ├── Pagination.tsx
+│   ├── ProConnectButton.tsx
+│   ├── Quote.tsx
+│   ├── RadioButtons.tsx
+│   ├── Range.tsx
+│   ├── SearchBar
+│   │   ├── SearchBar.tsx
+│   │   ├── SearchButton.tsx
+│   │   └── index.tsx
+│   ├── SegmentedControl.tsx
+│   ├── Select.tsx
+│   ├── SelectNext.tsx
+│   ├── SideMenu.tsx
+│   ├── SkipLinks.tsx
+│   ├── Stepper.tsx
+│   ├── Summary.tsx
+│   ├── Table.tsx
+│   ├── Tabs.tsx
+│   ├── Tag.tsx
+│   ├── TagsGroup.tsx
+│   ├── Tile.tsx
+│   ├── ToggleSwitch.tsx
+│   ├── ToggleSwitchGroup.tsx
+│   ├── Tooltip.tsx
+│   ├── Upload.tsx
+│   ├── assets
+│   │   ├── agentconnect-btn-alternatif-hover.svg
+│   │   ├── agentconnect-btn-alternatif.svg
+│   │   ├── agentconnect-btn-principal-hover.svg
+│   │   ├── agentconnect-btn-principal.svg
+│   │   ├── agentconnect.css
+│   │   ├── blank-favicon.svg
+│   │   ├── dsfr_plus_icons.css
+│   │   ├── dsfr_plus_icons.scss
+│   │   ├── language-select.css
+│   │   ├── moncomptepro.css
+│   │   ├── proconnect-btn.css
+│   │   └── search-bar.css
+│   ├── bin
+│   │   ├── README.md
+│   │   ├── copy-dsfr-to-public.ts
+│   │   ├── only-include-used-icons.ts
+│   │   ├── react-dsfr.ts
+│   │   ├── readPublicDirPath.ts
+│   │   ├── tools
+│   │   │   ├── crawl.ts
+│   │   │   ├── crawlSync.ts
+│   │   │   ├── fnv1aHashToHex.ts
+│   │   │   ├── fs.existsAsync.ts
+│   │   │   ├── getAbsoluteAndInOsFormatPath.ts
+│   │   │   ├── getProjectRoot.ts
+│   │   │   ├── modifyHtmlHrefs.ts
+│   │   │   └── transformCodebase.ts
+│   │   └── tsconfig.json
+│   ├── blocks
+│   │   └── PasswordInput.tsx
+│   ├── consentManagement
+│   │   ├── ConsentBannerAndConsentManagement
+│   │   │   ├── ConsentBanner.tsx
+│   │   │   ├── ConsentBannerAndConsentManagement.tsx
+│   │   │   ├── ConsentManagement.tsx
+│   │   │   ├── index.ts
+│   │   │   └── translation.tsx
+│   │   ├── Placeholder.tsx
+│   │   ├── createConsentManagement.ts
+│   │   ├── index.ts
+│   │   ├── processConsentChanges.ts
+│   │   ├── types.ts
+│   │   └── useConsent.ts
+│   ├── eulerianAnalytics.ts
+│   ├── fr
+│   │   ├── breakpoints.ts
+│   │   ├── colors.ts
+│   │   ├── cx.ts
+│   │   ├── index.ts
+│   │   ├── shadows.ts
+│   │   └── spacing.ts
+│   ├── global.d.ts
+│   ├── i18n.ts
+│   ├── link.tsx
+│   ├── mui
+│   │   ├── index.ts
+│   │   ├── mui.tsx
+│   │   └── useIsGov.tsx
+│   ├── next-app-router
+│   │   ├── DsfrHead.tsx
+│   │   ├── DsfrProvider.tsx
+│   │   ├── getHtmlAttributes.tsx
+│   │   ├── index.ts
+│   │   ├── server-only-index.ts
+│   │   └── zz_internal
+│   │       ├── defaultColorScheme.ts
+│   │       └── fontUrlByFileBasename.ts
+│   ├── next-pagesdir.tsx
+│   ├── picto
+│   │   ├── Accessibility.tsx
+│   │   ├── Airport.tsx
+│   │   ├── Application.tsx
+│   │   ├── Archive.tsx
+│   │   ├── ArmyTank.tsx
+│   │   ├── Art.tsx
+│   │   ├── Astronaut.tsx
+│   │   ├── Audio.tsx
+│   │   ├── Avatar.tsx
+│   │   ├── Backpack.tsx
+│   │   ├── Base.tsx
+│   │   ├── Binders.tsx
+│   │   ├── Book.tsx
+│   │   ├── Calendar.tsx
+│   │   ├── Catalog.tsx
+│   │   ├── CityHall.tsx
+│   │   ├── Coding.tsx
+│   │   ├── Community.tsx
+│   │   ├── Companie.tsx
+│   │   ├── Compass.tsx
+│   │   ├── Conclusion.tsx
+│   │   ├── ConnectionLost.tsx
+│   │   ├── Contract.tsx
+│   │   ├── Culture.tsx
+│   │   ├── DataVisualization.tsx
+│   │   ├── Datalma.tsx
+│   │   ├── DigitalArt.tsx
+│   │   ├── Doctor.tsx
+│   │   ├── Document.tsx
+│   │   ├── DocumentAdd.tsx
+│   │   ├── DocumentDownload.tsx
+│   │   ├── DocumentSearch.tsx
+│   │   ├── DrivingLicense.tsx
+│   │   ├── DrivingLicenseNew.tsx
+│   │   ├── EarOff.tsx
+│   │   ├── Ecosystem.tsx
+│   │   ├── Environment.tsx
+│   │   ├── Error.tsx
+│   │   ├── EyeOff.tsx
+│   │   ├── Factory.tsx
+│   │   ├── Firefighter.tsx
+│   │   ├── FlowList.tsx
+│   │   ├── FlowSettings.tsx
+│   │   ├── Food.tsx
+│   │   ├── Gendarmerie.tsx
+│   │   ├── Grocery.tsx
+│   │   ├── Health.tsx
+│   │   ├── Hospital.tsx
+│   │   ├── House.tsx
+│   │   ├── HumanCooperation.tsx
+│   │   ├── InProgress.tsx
+│   │   ├── Information.tsx
+│   │   ├── Innovation.tsx
+│   │   ├── InternationalDrivingLicense.tsx
+│   │   ├── InternationalDrivingLicenseNew.tsx
+│   │   ├── Internet.tsx
+│   │   ├── JusticeScales.tsx
+│   │   ├── Language.tsx
+│   │   ├── Leaf.tsx
+│   │   ├── LocationFrance.tsx
+│   │   ├── LocationOverseasFrance.tsx
+│   │   ├── Luggage.tsx
+│   │   ├── MainSend.tsx
+│   │   ├── Map.tsx
+│   │   ├── MapPin.tsx
+│   │   ├── MedicalResearch.tsx
+│   │   ├── MentalDisabilities.tsx
+│   │   ├── Money.tsx
+│   │   ├── Moon.tsx
+│   │   ├── Mountain.tsx
+│   │   ├── NationalIdentityCard.tsx
+│   │   ├── NationalIdentityCardPassport.tsx
+│   │   ├── NavyAnchor.tsx
+│   │   ├── NavyBachi.tsx
+│   │   ├── Notification.tsx
+│   │   ├── NuclearPlant.tsx
+│   │   ├── Paint.tsx
+│   │   ├── Passport.tsx
+│   │   ├── Pictures.tsx
+│   │   ├── Podcast.tsx
+│   │   ├── Police.tsx
+│   │   ├── PressCard.tsx
+│   │   ├── School.tsx
+│   │   ├── Search.tsx
+│   │   ├── SelfTraining.tsx
+│   │   ├── SignDocument.tsx
+│   │   ├── Smartphone.tsx
+│   │   ├── Success.tsx
+│   │   ├── Sun.tsx
+│   │   ├── System.tsx
+│   │   ├── TaxStamp.tsx
+│   │   ├── TechnicalError.tsx
+│   │   ├── TravelBack.tsx
+│   │   ├── Tree.tsx
+│   │   ├── Vaccine.tsx
+│   │   ├── VehicleRegistrationDocument.tsx
+│   │   ├── Video.tsx
+│   │   ├── VideoGames.tsx
+│   │   ├── Virus.tsx
+│   │   ├── Warning.tsx
+│   │   ├── Wheelchair.tsx
+│   │   ├── index.d.ts
+│   │   ├── index.ts
+│   │   ├── pictogrammes-svg
+│   │   │   ├── Accessibility.svg
+│   │   │   ├── Airport.svg
+│   │   │   ├── Application.svg
+│   │   │   ├── Archive.svg
+│   │   │   ├── ArmyTank.svg
+│   │   │   ├── Art.svg
+│   │   │   ├── Astronaut.svg
+│   │   │   ├── Audio.svg
+│   │   │   ├── Avatar.svg
+│   │   │   ├── Backpack.svg
+│   │   │   ├── Base.svg
+│   │   │   ├── Binders.svg
+│   │   │   ├── Book.svg
+│   │   │   ├── Calendar.svg
+│   │   │   ├── Catalog.svg
+│   │   │   ├── CityHall.svg
+│   │   │   ├── Coding.svg
+│   │   │   ├── Community.svg
+│   │   │   ├── Companie.svg
+│   │   │   ├── Compass.svg
+│   │   │   ├── Conclusion.svg
+│   │   │   ├── ConnectionLost.svg
+│   │   │   ├── Contract.svg
+│   │   │   ├── Culture.svg
+│   │   │   ├── DataVisualization.svg
+│   │   │   ├── Datalma.svg
+│   │   │   ├── DigitalArt.svg
+│   │   │   ├── Doctor.svg
+│   │   │   ├── Document.svg
+│   │   │   ├── DocumentAdd.svg
+│   │   │   ├── DocumentDownload.svg
+│   │   │   ├── DocumentSearch.svg
+│   │   │   ├── DrivingLicense.svg
+│   │   │   ├── DrivingLicenseNew.svg
+│   │   │   ├── EarOff.svg
+│   │   │   ├── Ecosystem.svg
+│   │   │   ├── Environment.svg
+│   │   │   ├── Error.svg
+│   │   │   ├── EyeOff.svg
+│   │   │   ├── Factory.svg
+│   │   │   ├── Firefighter.svg
+│   │   │   ├── FlowList.svg
+│   │   │   ├── FlowSettings.svg
+│   │   │   ├── Food.svg
+│   │   │   ├── Gendarmerie.svg
+│   │   │   ├── Grocery.svg
+│   │   │   ├── Health.svg
+│   │   │   ├── Hospital.svg
+│   │   │   ├── House.svg
+│   │   │   ├── HumanCooperation.svg
+│   │   │   ├── InProgress.svg
+│   │   │   ├── Information.svg
+│   │   │   ├── Innovation.svg
+│   │   │   ├── InternationalDrivingLicense.svg
+│   │   │   ├── InternationalDrivingLicenseNew.svg
+│   │   │   ├── Internet.svg
+│   │   │   ├── JusticeScales.svg
+│   │   │   ├── Language.svg
+│   │   │   ├── Leaf.svg
+│   │   │   ├── LocationFrance.svg
+│   │   │   ├── LocationOverseasFrance.svg
+│   │   │   ├── Luggage.svg
+│   │   │   ├── MainSend.svg
+│   │   │   ├── Map.svg
+│   │   │   ├── MapPin.svg
+│   │   │   ├── MedicalResearch.svg
+│   │   │   ├── MentalDisabilities.svg
+│   │   │   ├── Money.svg
+│   │   │   ├── Moon.svg
+│   │   │   ├── Mountain.svg
+│   │   │   ├── NationalIdentityCard.svg
+│   │   │   ├── NationalIdentityCardPassport.svg
+│   │   │   ├── NavyAnchor.svg
+│   │   │   ├── NavyBachi.svg
+│   │   │   ├── Notification.svg
+│   │   │   ├── NuclearPlant.svg
+│   │   │   ├── Paint.svg
+│   │   │   ├── Passport.svg
+│   │   │   ├── Pictures.svg
+│   │   │   ├── Podcast.svg
+│   │   │   ├── Police.svg
+│   │   │   ├── PressCard.svg
+│   │   │   ├── School.svg
+│   │   │   ├── Search.svg
+│   │   │   ├── SelfTraining.svg
+│   │   │   ├── SignDocument.svg
+│   │   │   ├── Smartphone.svg
+│   │   │   ├── Success.svg
+│   │   │   ├── Sun.svg
+│   │   │   ├── System.svg
+│   │   │   ├── TaxStamp.svg
+│   │   │   ├── TechnicalError.svg
+│   │   │   ├── TravelBack.svg
+│   │   │   ├── Tree.svg
+│   │   │   ├── Vaccine.svg
+│   │   │   ├── VehicleRegistrationDocument.svg
+│   │   │   ├── Video.svg
+│   │   │   ├── VideoGames.svg
+│   │   │   ├── Virus.svg
+│   │   │   ├── Warning.svg
+│   │   │   └── Wheelchair.svg
+│   │   └── utils
+│   │       └── PictoWrapper.tsx
+│   ├── shared
+│   │   └── Fieldset.tsx
+│   ├── spa.ts
+│   ├── start.ts
+│   ├── tools
+│   │   ├── Deferred.ts
+│   │   ├── JSX.ts
+│   │   ├── StatefulObservable
+│   │   │   ├── README.md
+│   │   │   ├── StatefulObservable.ts
+│   │   │   ├── hooks
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── useObservable.ts
+│   │   │   │   └── useRerenderOnChange.ts
+│   │   │   └── index.ts
+│   │   ├── UnpackProps.ts
+│   │   ├── cx.ts
+│   │   ├── deepAssign.ts
+│   │   ├── deepCopy.ts
+│   │   ├── generateValidHtmlId.ts
+│   │   ├── getAssetUrl.ts
+│   │   ├── getBaseFontSizePx.ts
+│   │   ├── isBrowser.ts
+│   │   ├── memoize.ts
+│   │   ├── observeInputValue.ts
+│   │   ├── partition.ts
+│   │   ├── powerhooks
+│   │   │   ├── useCallbackFactory.ts
+│   │   │   ├── useConst.ts
+│   │   │   ├── useConstCallback.ts
+│   │   │   └── useNamedState.tsx
+│   │   ├── signal.ts
+│   │   ├── structuredCloneButFunctions.ts
+│   │   ├── useAnalyticsId.ts
+│   │   └── useWindowInnerSize.ts
+│   ├── tsconfig.json
+│   ├── tss.ts
+│   ├── useBreakpointsValues.ts
+│   ├── useBreakpointsValuesPx.ts
+│   ├── useColors.ts
+│   ├── useIsDark
+│   │   ├── client.ts
+│   │   ├── constants.ts
+│   │   ├── index.ts
+│   │   ├── scriptToRunAsap.ts
+│   │   └── server.ts
+│   └── zz_internal
+│       └── brandTopAndHomeLinkProps.ts
+├── stories
+│   ├── Accordion.stories.tsx
+│   ├── AgentConnectButton.stories.tsx
+│   ├── Alert.stories.tsx
+│   ├── Badge.stories.tsx
+│   ├── Breadcrumb.stories.tsx
+│   ├── Button.stories.tsx
+│   ├── ButtonsGroup.stories.tsx
+│   ├── CallOut.stories.tsx
+│   ├── Card.stories.tsx
+│   ├── Checkbox.stories.tsx
+│   ├── ColorHelper
+│   │   ├── ColorDecisionCard.tsx
+│   │   ├── ColorHelper.tsx
+│   │   ├── CopyToClipboardButton.tsx
+│   │   ├── Search.tsx
+│   │   ├── index.ts
+│   │   └── tools
+│   │       └── useQueryParams.ts
+│   ├── ConsentManagement.stories.tsx
+│   ├── Display.stories.tsx
+│   ├── Download.stories.tsx
+│   ├── Follow.stories.tsx
+│   ├── Footer.stories.tsx
+│   ├── FranceConnectButton.stories.tsx
+│   ├── Header.stories.tsx
+│   ├── Highlight.stories.tsx
+│   ├── Input.stories.tsx
+│   ├── LanguageSelect.stories.tsx
+│   ├── MainNavigation.stories.tsx
+│   ├── Modal.stories.tsx
+│   ├── MonComptePro.stories.tsx
+│   ├── Notice.stories.tsx
+│   ├── Pagination.stories.tsx
+│   ├── Pictograms.stories.mdx
+│   ├── ProConnectButton.stories.tsx
+│   ├── Quote.stories.tsx
+│   ├── RadioButtons.stories.tsx
+│   ├── Range.stories.tsx
+│   ├── RotatingLogo.tsx
+│   ├── SearchBar.stories.tsx
+│   ├── SegmentedControl.stories.tsx
+│   ├── Select.stories.tsx
+│   ├── SelectNext.stories.tsx
+│   ├── SideMenu.stories.tsx
+│   ├── SkipLinks.stories.tsx
+│   ├── Stepper.stories.tsx
+│   ├── Summary.stories.tsx
+│   ├── Table.stories.tsx
+│   ├── Tabs.stories.tsx
+│   ├── Tag.stories.tsx
+│   ├── TagsGroup.stories.tsx
+│   ├── Tile.stories.tsx
+│   ├── ToggleSwitch.stories.tsx
+│   ├── ToggleSwitchGroup.stories.tsx
+│   ├── Tooltip.stories.tsx
+│   ├── Upload.stories.tsx
+│   ├── assets
+│   │   ├── city-hall.svg
+│   │   ├── logo-in.png
+│   │   ├── logo-out.png
+│   │   ├── placeholder.16x9.png
+│   │   └── placeholder.9x16.png
+│   ├── blocks
+│   │   ├── PasswordInput.stories.tsx
+│   │   └── sectionName.ts
+│   ├── charts
+│   │   ├── BarChart.stories.tsx
+│   │   ├── BarLineChart.stories.tsx
+│   │   ├── GaugeChart.stories.tsx
+│   │   ├── LineChart.stories.tsx
+│   │   ├── MultiLineChart.stories.tsx
+│   │   ├── PieChart.stories.tsx
+│   │   ├── RadarChart.stories.tsx
+│   │   ├── ScatterChart.stories.tsx
+│   │   └── sectionName.ts
+│   ├── colorHelper.stories.mdx
+│   ├── getStory.tsx
+│   ├── global.d.ts
+│   ├── intro.stories.mdx
+│   ├── picto
+│   │   ├── Pictograms.tsx
+│   │   └── Search.tsx
+│   ├── sectionName.ts
+│   └── utils.css
+├── test
+│   ├── integration
+│   │   ├── README.md
+│   │   ├── cra
+│   │   │   ├── .gitignore
+│   │   │   ├── README.md
+│   │   │   ├── package.json
+│   │   │   ├── public
+│   │   │   │   ├── index.html
+│   │   │   │   └── robots.txt
+│   │   │   ├── src
+│   │   │   │   ├── Home.tsx
+│   │   │   │   ├── Mui.tsx
+│   │   │   │   ├── MyDialog.tsx
+│   │   │   │   ├── Picto.tsx
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── react-app-env.d.ts
+│   │   │   │   └── router.ts
+│   │   │   ├── tsconfig.json
+│   │   │   └── yarn.lock
+│   │   ├── next-appdir
+│   │   │   ├── .eslintrc
+│   │   │   ├── .gitignore
+│   │   │   ├── README.md
+│   │   │   ├── app
+│   │   │   │   ├── DefaultTrustedPolicy.tsx
+│   │   │   │   ├── Follow.tsx
+│   │   │   │   ├── Navigation.tsx
+│   │   │   │   ├── StartDsfr.tsx
+│   │   │   │   ├── consentManagement.tsx
+│   │   │   │   ├── defaultColorScheme.ts
+│   │   │   │   ├── dsfr-chart
+│   │   │   │   │   └── page.tsx
+│   │   │   │   ├── layout.tsx
+│   │   │   │   ├── main.module.css
+│   │   │   │   ├── mui
+│   │   │   │   │   └── page.tsx
+│   │   │   │   └── page.tsx
+│   │   │   ├── middleware.ts
+│   │   │   ├── next-env.d.ts
+│   │   │   ├── next.config.js
+│   │   │   ├── package.json
+│   │   │   ├── public
+│   │   │   │   ├── favicon.ico
+│   │   │   │   └── vercel.svg
+│   │   │   ├── tsconfig.json
+│   │   │   ├── ui
+│   │   │   │   ├── ClientComponent.tsx
+│   │   │   │   ├── ClientFooterItem.tsx
+│   │   │   │   └── ClientHeaderQuickAccessItem.tsx
+│   │   │   └── yarn.lock
+│   │   ├── next-pagesdir
+│   │   │   ├── .eslintrc
+│   │   │   ├── .gitignore
+│   │   │   ├── README.md
+│   │   │   ├── next-env.d.ts
+│   │   │   ├── next.config.js
+│   │   │   ├── package.json
+│   │   │   ├── pages
+│   │   │   │   ├── _app.tsx
+│   │   │   │   ├── _document.tsx
+│   │   │   │   ├── index.tsx
+│   │   │   │   └── mui.tsx
+│   │   │   ├── tsconfig.json
+│   │   │   └── yarn.lock
+│   │   └── vite
+│   │       ├── .gitignore
+│   │       ├── README.md
+│   │       ├── index.html
+│   │       ├── package.json
+│   │       ├── public
+│   │       │   └── .keep
+│   │       ├── src
+│   │       │   ├── Home.tsx
+│   │       │   ├── Mui.tsx
+│   │       │   ├── Picto.tsx
+│   │       │   ├── assets
+│   │       │   │   └── city-hall.svg
+│   │       │   ├── consentManagement.tsx
+│   │       │   ├── main.tsx
+│   │       │   └── vite-env.d.ts
+│   │       ├── tsconfig.json
+│   │       ├── tsconfig.node.json
+│   │       ├── vite.config.ts
+│   │       └── yarn.lock
+│   ├── runtime
+│   │   ├── README.md
+│   │   ├── lib
+│   │   │   ├── gdpr.test.ts
+│   │   │   └── spacing.test.ts
+│   │   └── scripts
+│   │       ├── breakpoints
+│   │       │   ├── generateBreakpointsTsCode.test.ts
+│   │       │   └── parseBreakpointsValues.test.ts
+│   │       ├── classNames
+│   │       │   ├── generateClassNamesTsCode.test.ts
+│   │       │   └── parseClassNames.test.ts
+│   │       ├── colorDecisions
+│   │       │   ├── generateGetColorDecisionsTsCode.test.ts
+│   │       │   ├── parseColorDecisionName.test.ts
+│   │       │   └── parseColorDecisions.test.ts
+│   │       ├── colorOptions
+│   │       │   ├── generateGetColorOptionsTsCode.test.ts
+│   │       │   ├── getThemePath.test.ts
+│   │       │   ├── parseColorOptionName.test.ts
+│   │       │   └── parseColorOptions.test.ts
+│   │       ├── cssVariable.test.ts
+│   │       ├── icons
+│   │       │   ├── generateIconsRawCssCode.test.ts
+│   │       │   └── getPatchedRawCssCodeForCompatWithRemixIcon.test.ts
+│   │       ├── spacing
+│   │       │   ├── generateSpacingTsCode.test.ts
+│   │       │   └── parseSpacing.test.ts
+│   │       └── typography
+│   │           ├── generateTypographyTsCode.test.ts
+│   │           └── parseTypographyVariants.test.ts
+│   └── types
+│       ├── Checkbox.tsx
+│       ├── README.md
+│       ├── RadioButtons.tsx
+│       ├── Select.tsx
+│       ├── Tag.tsx
+│       ├── Tooltip.tsx
+│       ├── consentManagement.tsx
+│       ├── i18n.ts
+│       ├── libBinSync.ts
+│       └── spacing.ts
+├── tsproject.json
+├── vitest.config.js
+└── yarn.lock
+74 directories, 605 files
