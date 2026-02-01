@@ -1,0 +1,824 @@
+.
+├── .gitignore
+├── .rubocop.yml
+├── .rubocop_todo.yml
+├── .travis.yml
+├── CONTRIBUTING.md
+├── Gemfile
+├── Gemfile.lock
+├── Guardfile
+├── INSTALL.md
+├── LICENSE
+├── README.md
+├── Rakefile
+├── Vagrantfile
+├── app
+│   ├── assets
+│   │   ├── fonts
+│   │   │   ├── suse-icons.eot
+│   │   │   ├── suse-icons.svg
+│   │   │   ├── suse-icons.ttf
+│   │   │   └── suse-icons.woff
+│   │   ├── images
+│   │   │   ├── images
+│   │   │   │   ├── back_disabled.png
+│   │   │   │   ├── back_enabled.png
+│   │   │   │   ├── back_enabled_hover.png
+│   │   │   │   ├── forward_disabled.png
+│   │   │   │   ├── forward_enabled.png
+│   │   │   │   ├── forward_enabled_hover.png
+│   │   │   │   ├── sort_asc.png
+│   │   │   │   ├── sort_asc_disabled.png
+│   │   │   │   ├── sort_both.png
+│   │   │   │   ├── sort_desc.png
+│   │   │   │   ├── sort_desc_disabled.png
+│   │   │   │   ├── ui-bg_glass_55_fcf0ba_1x400.png
+│   │   │   │   ├── ui-bg_gloss-wave_100_ece8da_500x100.png
+│   │   │   │   ├── ui-bg_highlight-hard_100_f5f3e5_1x100.png
+│   │   │   │   ├── ui-bg_highlight-hard_100_fafaf4_1x100.png
+│   │   │   │   ├── ui-bg_highlight-hard_15_459e00_1x100.png
+│   │   │   │   ├── ui-bg_highlight-hard_95_cccccc_1x100.png
+│   │   │   │   ├── ui-bg_highlight-soft_25_67b021_1x100.png
+│   │   │   │   ├── ui-bg_highlight-soft_95_ffedad_1x100.png
+│   │   │   │   ├── ui-bg_inset-soft_15_2b2922_1x100.png
+│   │   │   │   ├── ui-icons_808080_256x240.png
+│   │   │   │   ├── ui-icons_847e71_256x240.png
+│   │   │   │   ├── ui-icons_8DC262_256x240.png
+│   │   │   │   ├── ui-icons_cd0a0a_256x240.png
+│   │   │   │   ├── ui-icons_eeeeee_256x240.png
+│   │   │   │   └── ui-icons_ffffff_256x240.png
+│   │   │   ├── person_large.png
+│   │   │   ├── person_small.png
+│   │   │   ├── person_tiny.png
+│   │   │   ├── rails.png
+│   │   │   ├── slideshare.png
+│   │   │   ├── speakerdeck.png
+│   │   │   ├── star-bright.png
+│   │   │   ├── star-glow.png
+│   │   │   ├── star.png
+│   │   │   └── suse.svg
+│   │   ├── javascripts
+│   │   │   ├── application.js
+│   │   │   ├── osem-bootstrap.js
+│   │   │   ├── osem-commercials.js
+│   │   │   ├── osem-dashboard.js
+│   │   │   ├── osem-datatables.js
+│   │   │   ├── osem-datepickers.js
+│   │   │   ├── osem-switch.js
+│   │   │   ├── osem-tickets.js
+│   │   │   └── osem.js
+│   │   └── stylesheets
+│   │       ├── application.css
+│   │       ├── breakpoints.css.scss
+│   │       ├── jquery-ui-timepicker-addon.css
+│   │       ├── osem-admin.css.scss
+│   │       ├── osem-dashboard.css.scss
+│   │       ├── osem-fonts.css.scss
+│   │       ├── osem-rating.css.scss
+│   │       ├── osem-schedule-print.css
+│   │       ├── osem-schedule.css.scss
+│   │       ├── osem-splash.css.scss
+│   │       ├── osem.css.scss
+│   │       └── strap-on.css.scss
+│   ├── controllers
+│   │   ├── admin
+│   │   │   ├── base_controller.rb
+│   │   │   ├── call_for_papers_controller.rb
+│   │   │   ├── campaigns_controller.rb
+│   │   │   ├── cfps_controller.rb
+│   │   │   ├── comments_controller.rb
+│   │   │   ├── commercials_controller.rb
+│   │   │   ├── conference_controller.rb
+│   │   │   ├── contacts_controller.rb
+│   │   │   ├── difficulty_levels_controller.rb
+│   │   │   ├── emails_controller.rb
+│   │   │   ├── event_types_controller.rb
+│   │   │   ├── events_controller.rb
+│   │   │   ├── lodgings_controller.rb
+│   │   │   ├── programs_controller.rb
+│   │   │   ├── questions_controller.rb
+│   │   │   ├── registration_periods_controller.rb
+│   │   │   ├── registrations_controller.rb
+│   │   │   ├── roles_controller.rb
+│   │   │   ├── rooms_controller.rb
+│   │   │   ├── schedules_controller.rb
+│   │   │   ├── splashpages_controller.rb
+│   │   │   ├── sponsors_controller.rb
+│   │   │   ├── sponsorship_levels_controller.rb
+│   │   │   ├── targets_controller.rb
+│   │   │   ├── tickets_controller.rb
+│   │   │   ├── tracks_controller.rb
+│   │   │   ├── users_controller.rb
+│   │   │   ├── venues_controller.rb
+│   │   │   └── volunteers_controller.rb
+│   │   ├── api
+│   │   │   ├── base_controller.rb
+│   │   │   └── v1
+│   │   │       ├── conferences_controller.rb
+│   │   │       ├── events_controller.rb
+│   │   │       ├── rooms_controller.rb
+│   │   │       ├── speakers_controller.rb
+│   │   │       └── tracks_controller.rb
+│   │   ├── application_controller.rb
+│   │   ├── commercials_controller.rb
+│   │   ├── conference_controller.rb
+│   │   ├── conference_registrations_controller.rb
+│   │   ├── confirmations_controller.rb
+│   │   ├── proposal_controller.rb
+│   │   ├── registrations_controller.rb
+│   │   ├── subscriptions_controller.rb
+│   │   ├── ticket_purchases_controller.rb
+│   │   ├── tickets_controller.rb
+│   │   ├── users
+│   │   │   └── omniauth_callbacks_controller.rb
+│   │   └── users_controller.rb
+│   ├── helpers
+│   │   └── application_helper.rb
+│   ├── mailers
+│   │   ├── .gitkeep
+│   │   └── mailbot.rb
+│   ├── models
+│   │   ├── .gitkeep
+│   │   ├── ability.rb
+│   │   ├── ahoy
+│   │   │   ├── event.rb
+│   │   │   └── program.rb
+│   │   ├── answer.rb
+│   │   ├── call_for_paper.rb
+│   │   ├── campaign.rb
+│   │   ├── cfp.rb
+│   │   ├── comment.rb
+│   │   ├── commercial.rb
+│   │   ├── conference.rb
+│   │   ├── contact.rb
+│   │   ├── datatable.rb
+│   │   ├── dietary_choice.rb
+│   │   ├── difficulty_level.rb
+│   │   ├── email_settings.rb
+│   │   ├── event.rb
+│   │   ├── event_type.rb
+│   │   ├── event_user.rb
+│   │   ├── events_registration.rb
+│   │   ├── lodging.rb
+│   │   ├── openid.rb
+│   │   ├── photo.rb
+│   │   ├── program.rb
+│   │   ├── qanswer.rb
+│   │   ├── question.rb
+│   │   ├── question_type.rb
+│   │   ├── registration.rb
+│   │   ├── registration_period.rb
+│   │   ├── revision_observer.rb
+│   │   ├── role.rb
+│   │   ├── room.rb
+│   │   ├── social_event.rb
+│   │   ├── splashpage.rb
+│   │   ├── sponsor.rb
+│   │   ├── sponsorship_level.rb
+│   │   ├── subscription.rb
+│   │   ├── target.rb
+│   │   ├── ticket.rb
+│   │   ├── ticket_purchase.rb
+│   │   ├── track.rb
+│   │   ├── user.rb
+│   │   ├── vchoice.rb
+│   │   ├── vday.rb
+│   │   ├── venue.rb
+│   │   ├── visit.rb
+│   │   ├── vote.rb
+│   │   └── vposition.rb
+│   ├── serializers
+│   │   ├── conference_serializer.rb
+│   │   ├── conferences_array_serializer.rb
+│   │   ├── event_serializer.rb
+│   │   ├── room_serializer.rb
+│   │   ├── speaker_serializer.rb
+│   │   └── track_serializer.rb
+│   └── views
+│       ├── admin
+│       │   ├── campaigns
+│       │   │   ├── _form.html.haml
+│       │   │   └── index.html.haml
+│       │   ├── cfps
+│       │   │   ├── _form.html.haml
+│       │   │   └── show.html.haml
+│       │   ├── comments
+│       │   │   ├── _all_comments.html.haml
+│       │   │   ├── _posted_comments.html.haml
+│       │   │   ├── _unread_comments.html.haml
+│       │   │   └── index.html.haml
+│       │   ├── commercials
+│       │   │   └── index.html.haml
+│       │   ├── conference
+│       │   │   ├── _campaigns.html.haml
+│       │   │   ├── _doughnut_chart.html.haml
+│       │   │   ├── _line_chart.html.haml
+│       │   │   ├── _recent_registrations.html.haml
+│       │   │   ├── _recent_submissions.html.haml
+│       │   │   ├── _recent_users.html.haml
+│       │   │   ├── _targets.html.haml
+│       │   │   ├── _todo_list.html.haml
+│       │   │   ├── _top_submitter.html.haml
+│       │   │   ├── edit.html.haml
+│       │   │   ├── index.html.haml
+│       │   │   ├── new.html.haml
+│       │   │   └── show.html.haml
+│       │   ├── contacts
+│       │   │   └── edit.html.haml
+│       │   ├── difficulty_levels
+│       │   │   ├── _form.html.haml
+│       │   │   └── index.html.haml
+│       │   ├── emails
+│       │   │   ├── _help.html.haml
+│       │   │   ├── comment_template.text.erb
+│       │   │   └── index.html.haml
+│       │   ├── event_types
+│       │   │   ├── _form.html.haml
+│       │   │   └── index.html.haml
+│       │   ├── events
+│       │   │   ├── _change_state_dropdown.html.haml
+│       │   │   ├── _nested_comments.html.haml
+│       │   │   ├── _proposal.html.haml
+│       │   │   ├── _user_fields.html.haml
+│       │   │   ├── _voting.html.haml
+│       │   │   ├── edit.html.haml
+│       │   │   ├── index.html.haml
+│       │   │   ├── show.html.haml
+│       │   │   └── vote.js.erb
+│       │   ├── lodgings
+│       │   │   ├── _form.html.haml
+│       │   │   └── index.html.haml
+│       │   ├── programs
+│       │   │   ├── _form.html.haml
+│       │   │   └── show.html.haml
+│       │   ├── questions
+│       │   │   ├── _answer_fields.html.haml
+│       │   │   ├── _form.html.haml
+│       │   │   ├── _questions.html.haml
+│       │   │   ├── destroy.js.erb
+│       │   │   ├── edit.html.haml
+│       │   │   ├── index.html.haml
+│       │   │   └── show.html.haml
+│       │   ├── registration_periods
+│       │   │   ├── _form.html.haml
+│       │   │   └── show.html.haml
+│       │   ├── registrations
+│       │   │   ├── _questions.html.haml
+│       │   │   ├── edit.html.haml
+│       │   │   ├── index.html.haml
+│       │   │   ├── index.pdf.prawn
+│       │   │   └── index.xlsx.axlsx
+│       │   ├── roles
+│       │   │   ├── _form.html.haml
+│       │   │   ├── _users.html.haml
+│       │   │   ├── index.html.haml
+│       │   │   ├── show.html.haml
+│       │   │   └── toggle_user.js.erb
+│       │   ├── rooms
+│       │   │   ├── _form.html.haml
+│       │   │   └── index.html.haml
+│       │   ├── schedules
+│       │   │   ├── _day_tab.html.haml
+│       │   │   └── show.html.haml
+│       │   ├── splashpages
+│       │   │   ├── _form.html.haml
+│       │   │   └── show.html.haml
+│       │   ├── sponsors
+│       │   │   ├── _form.html.haml
+│       │   │   └── index.html.haml
+│       │   ├── sponsorship_levels
+│       │   │   ├── _form.html.haml
+│       │   │   └── index.html.haml
+│       │   ├── targets
+│       │   │   ├── _form.html.haml
+│       │   │   └── index.html.haml
+│       │   ├── tickets
+│       │   │   ├── _form.html.haml
+│       │   │   ├── index.html.haml
+│       │   │   └── show.html.haml
+│       │   ├── tracks
+│       │   │   ├── _form.html.haml
+│       │   │   ├── index.html.haml
+│       │   │   └── show.html.haml
+│       │   ├── users
+│       │   │   ├── _form.html.haml
+│       │   │   ├── _submissions.html.haml
+│       │   │   ├── index.html.haml
+│       │   │   └── show.html.haml
+│       │   ├── venues
+│       │   │   ├── _form.html.haml
+│       │   │   └── show.html.haml
+│       │   └── volunteers
+│       │       ├── _vday_fields.html.erb
+│       │       ├── _volunteers_table.html.haml
+│       │       ├── _vposition_fields.html.erb
+│       │       ├── index.html.haml
+│       │       └── show.html.haml
+│       ├── application
+│       │   ├── edit.html.haml
+│       │   └── new.html.haml
+│       ├── commercials
+│       │   ├── edit.html.haml
+│       │   └── new.html.haml
+│       ├── conference
+│       │   ├── _all_events.html.erb
+│       │   ├── _call_for_paper.html.haml
+│       │   ├── _conference_details.html.haml
+│       │   ├── _footer.html.haml
+│       │   ├── _gallery.html.haml
+│       │   ├── _gallery_photo.html.haml
+│       │   ├── _lodging.html.haml
+│       │   ├── _program.html.haml
+│       │   ├── _registration.html.haml
+│       │   ├── _schedule.html.erb
+│       │   ├── _schedule_item.html.haml
+│       │   ├── _schedule_splashpage.html.haml
+│       │   ├── _social_media.html.haml
+│       │   ├── _sponsors.html.haml
+│       │   ├── _tickets.html.haml
+│       │   ├── _venue.html.haml
+│       │   ├── _venue_map.html.haml
+│       │   ├── index.html.haml
+│       │   ├── schedule.html.erb
+│       │   └── show.html.haml
+│       ├── conference_registrations
+│       │   ├── _form.html.haml
+│       │   ├── _questions.html.haml
+│       │   ├── _registration_info.html.haml
+│       │   ├── _ticket.html.haml
+│       │   ├── _tickets.html.haml
+│       │   ├── _volunteer.html.haml
+│       │   └── show.html.haml
+│       ├── devise
+│       │   ├── confirmations
+│       │   │   └── new.html.haml
+│       │   ├── passwords
+│       │   │   ├── edit.html.haml
+│       │   │   └── new.html.haml
+│       │   ├── registrations
+│       │   │   ├── _volunteeruser.html.haml
+│       │   │   ├── edit.html.haml
+│       │   │   └── new.html.haml
+│       │   ├── sessions
+│       │   │   └── new.html.haml
+│       │   └── shared
+│       │       ├── _help.html.haml
+│       │       ├── _links.html.haml
+│       │       ├── _openid.html.haml
+│       │       ├── _openid_links.html.haml
+│       │       ├── _sign_in_form_embedded.html.haml
+│       │       └── _sign_up_form_embedded.html.haml
+│       ├── layouts
+│       │   ├── _admin.html.haml
+│       │   ├── _admin_sidebar.html.haml
+│       │   ├── _admin_sidebar_index.html.haml
+│       │   ├── _messages.html.haml
+│       │   ├── _navigation.html.haml
+│       │   ├── _user_menu.html.haml
+│       │   ├── application.html.haml
+│       │   └── schedule.html.haml
+│       ├── proposal
+│       │   ├── _encouragement_text.html.haml
+│       │   ├── _form.html.haml
+│       │   ├── _proposal_form.html.haml
+│       │   ├── _tooltip.html.haml
+│       │   ├── edit.html.haml
+│       │   ├── index.html.haml
+│       │   ├── new.html.haml
+│       │   └── show.html.haml
+│       ├── shared
+│       │   ├── _dynamic_association.html.haml
+│       │   ├── _media_item.html.haml
+│       │   └── _media_items.html.haml
+│       ├── tickets
+│       │   ├── _ticket.html.haml
+│       │   └── index.html.haml
+│       └── users
+│           ├── edit.html.haml
+│           └── show.html.haml
+├── bin
+│   ├── delayed_job
+│   ├── rails
+│   ├── rspec
+│   └── spring
+├── bootstrap.sh
+├── config
+│   ├── application.rb
+│   ├── boot.rb
+│   ├── config.yml.example
+│   ├── database.yml.example
+│   ├── deploy.rb
+│   ├── environment.rb
+│   ├── environments
+│   │   ├── development.rb
+│   │   ├── production.rb
+│   │   └── test.rb
+│   ├── initializers
+│   │   ├── ahoy.rb
+│   │   ├── backtrace_silencers.rb
+│   │   ├── devise.rb
+│   │   ├── formtastic.rb
+│   │   ├── hoptoad.rb
+│   │   ├── inflections.rb
+│   │   ├── mime_types.rb
+│   │   ├── money.rb
+│   │   ├── rolify.rb
+│   │   ├── session_store.rb
+│   │   ├── time_formats.rb
+│   │   └── wrap_parameters.rb
+│   ├── locales
+│   │   ├── devise.en.yml
+│   │   └── en.yml
+│   ├── piwik.yml.example
+│   ├── routes.rb
+│   ├── schedule.rb
+│   └── secrets.yml.example
+├── config.ru
+├── db
+│   ├── migrate
+│   │   ├── 20121223110942_devise_create_users.rb
+│   │   ├── 20121223115038_create_conferences_table.rb
+│   │   ├── 20121223115106_create_people_table.rb
+│   │   ├── 20121223115117_create_rooms_table.rb
+│   │   ├── 20121223115125_create_tracks_table.rb
+│   │   ├── 20121223115135_create_events_table.rb
+│   │   ├── 20121223120413_create_event_types.rb
+│   │   ├── 20121223122307_create_event_people_table.rb
+│   │   ├── 20121223122842_create_venue_table.rb
+│   │   ├── 20121223135240_create_roles_table.rb
+│   │   ├── 20121223135447_user_roles_table.rb
+│   │   ├── 20121224144728_create_cfp_table.rb
+│   │   ├── 20130103134212_create_registrations_table.rb
+│   │   ├── 20130104142209_create_comments.rb
+│   │   ├── 20130104142839_acts_as_commentable_upgrade_migration.rb
+│   │   ├── 20130105115603_create_event_attachments_table.rb
+│   │   ├── 20130107112833_add_registration_dates_to_conferences_table.rb
+│   │   ├── 20130107113653_remove_cfp_and_reg_booleans_from_conferences.rb
+│   │   ├── 20130107114930_create_versions.rb
+│   │   ├── 20130113105652_create_email_table.rb
+│   │   ├── 20130113132225_add_subjects_to_email_settings.rb
+│   │   ├── 20130117130949_add_logo_to_conferences_table.rb
+│   │   ├── 20130120104029_change_arrival_registrations_date_to_datetime.rb
+│   │   ├── 20130131100257_add_minimum_and_maximum_abstract_lengths_to_event_types.rb
+│   │   ├── 20130202091022_add_dietary_choice_to_conferences.rb
+│   │   ├── 20130202091051_create_dietary_choices_table.rb
+│   │   ├── 20130202091229_add_dietary_choice_to_registration.rb
+│   │   ├── 20130202093137_add_dietary_text_to_registration.rb
+│   │   ├── 20130202102024_add_handicapped_access_to_registrations.rb
+│   │   ├── 20130202130737_create_supporter_level_table.rb
+│   │   ├── 20130202130923_create_table_supporter_registrations.rb
+│   │   ├── 20130202131932_add_use_supporter_levels_to_conferences.rb
+│   │   ├── 20130206192339_rename_attending_social_events_with_partner.rb
+│   │   ├── 20130211170728_add_irc_nick_to_people_table.rb
+│   │   ├── 20130216070725_create_social_events_table.rb
+│   │   ├── 20130216120112_create_registrations_social_events_table.rb
+│   │   ├── 20130216122155_set_registration_defaults_to_false.rb
+│   │   ├── 20130216122417_add_special_needs_field_to_registrations.rb
+│   │   ├── 20130515125823_change_attachment_default.rb
+│   │   ├── 20130515131420_change_venue_types.rb
+│   │   ├── 20130626095459_add_video_id_to_events.rb
+│   │   ├── 20130705055128_add_revision_to_conference.rb
+│   │   ├── 20130711043459_create_events_registrations_table.rb
+│   │   ├── 20130711044247_add_require_registration_to_events.rb
+│   │   ├── 20130712072609_add_attended_to_registrations.rb
+│   │   ├── 20130728055450_add_schedule_changes_to_call_for_papers.rb
+│   │   ├── 20130815085420_create_votes.rb
+│   │   ├── 20130815201317_add_rating_to_call_for_papers.rb
+│   │   ├── 20130815201511_add_rating_desc_to_call_for_papers.rb
+│   │   ├── 20130821094246_add_volunteer_to_registrations.rb
+│   │   ├── 20130821102003_add_volunteer_experience_to_registrations.rb
+│   │   ├── 20130821102047_add_tshirt_to_people.rb
+│   │   ├── 20130821102108_add_mobile_to_people.rb
+│   │   ├── 20130821102404_add_languages_to_people.rb
+│   │   ├── 20130821102543_add_use_vpositions_to_conferences.rb
+│   │   ├── 20130821102618_add_use_vdays_to_conferences.rb
+│   │   ├── 20130821133651_create_vpositions.rb
+│   │   ├── 20130821133850_create_vdays.rb
+│   │   ├── 20131022131450_add_created_at_to_supporter_registrations.rb
+│   │   ├── 20131228132353_change_default_rating_in_call_for_papers.rb
+│   │   ├── 20131228214532_create_vchoices.rb
+│   │   ├── 20131229072532_registrations_vchoices.rb
+│   │   ├── 20140109190643_create_questions.rb
+│   │   ├── 20140109190844_create_question_types.rb
+│   │   ├── 20140109191042_create_answers.rb
+│   │   ├── 20140109191145_create_qanswers.rb
+│   │   ├── 20140109191321_create_conferences_questions.rb
+│   │   ├── 20140112192801_create_qanswers_registrations.rb
+│   │   ├── 20140212172244_create_difficulty_levels.rb
+│   │   ├── 20140212175251_add_use_difficulty_levels_to_conference.rb
+│   │   ├── 20140213122424_add_difficulty_level_id_to_events.rb
+│   │   ├── 20140304192527_add_use_volunteers_to_conference.rb
+│   │   ├── 20140305102505_use_vdays_vpositions_defaults.rb
+│   │   ├── 20140319143547_rename_video_to_media_on_events.rb
+│   │   ├── 20140401094729_add_schedule_public_to_call_for_papers.rb
+│   │   ├── 20140414131028_add_video_to_conferences.rb
+│   │   ├── 20140514140013_remove_rating_desc_from_cfp.rb
+│   │   ├── 20140528072939_add_color_to_conference.rb
+│   │   ├── 20140528084706_add_description_to_conference.rb
+│   │   ├── 20140528115842_add_registration_description_to_conference.rb
+│   │   ├── 20140529133052_add_ticket_description_to_conference.rb
+│   │   ├── 20140529133228_add_description_to_supporter_level.rb
+│   │   ├── 20140529133339_add_ticket_price_to_supporter_level.rb
+│   │   ├── 20140530082708_remove_color_defaults.rb
+│   │   ├── 20140603092041_create_openids.rb
+│   │   ├── 20140604061951_create_lodgings.rb
+│   │   ├── 20140604142949_remove_hard_deadline_from_call_for_papers.rb
+│   │   ├── 20140605055802_create_sponsorship_levels.rb
+│   │   ├── 20140605115251_create_sponsors.rb
+│   │   ├── 20140605125153_update_event_states.rb
+│   │   ├── 20140606102331_add_sponsor_description_to_conference.rb
+│   │   ├── 20140606102358_add_sponsor_email_to_conference.rb
+│   │   ├── 20140609172219_add_person_attributes_to_user.rb
+│   │   ├── 20140610064046_create_photos.rb
+│   │   ├── 20140610163947_create_event_users.rb
+│   │   ├── 20140610165551_migrate_data_person_to_user.rb
+│   │   ├── 20140610173021_change_person_id_to_user_id_in_registrations.rb
+│   │   ├── 20140611123926_change_person_id_to_user_id_in_votes.rb
+│   │   ├── 20140612141123_add_color_to_event_type.rb
+│   │   ├── 20140612181230_add_social_urls_to_conference.rb
+│   │   ├── 20140613083115_add_photo_to_venue.rb
+│   │   ├── 20140614171853_add_lodging_description_to_conference.rb
+│   │   ├── 20140614174354_add_website_link_to_lodging.rb
+│   │   ├── 20140616131731_add_make_conference_public_to_conference.rb
+│   │   ├── 20140616132153_create_targets.rb
+│   │   ├── 20140616132456_create_campaigns.rb
+│   │   ├── 20140617140018_add_checkboxes_for_splash_components_to_conference.rb
+│   │   ├── 20140617141918_add_include_cfp_in_splash_to_call_for_papers.rb
+│   │   ├── 20140617145048_add_venue_checkboxes_to_venue.rb
+│   │   ├── 20140620130306_add_banner_photo_to_conference.rb
+│   │   ├── 20140620134535_add_include_banner_in_splash_to_conference.rb
+│   │   ├── 20140623100942_create_visits.rb
+│   │   ├── 20140623101032_create_ahoy_events.rb
+│   │   ├── 20140623150541_drop_person_and_event_person_tables.rb
+│   │   ├── 20140625112608_add_week_to_event.rb
+│   │   ├── 20140625114813_add_week_to_registration.rb
+│   │   ├── 20140627165718_add_instagram_url_to_conference.rb
+│   │   ├── 20140701123203_add_events_per_week_to_conference.rb
+│   │   ├── 20140707120158_add_conference_dates_updates_to_email_settings.rb
+│   │   ├── 20140710130608_add_conference_registration_dates_updates_to_email_settings.rb
+│   │   ├── 20140711072651_add_description_and_resource_to_roles.rb
+│   │   ├── 20140711113037_add_venue_update_to_email_settings.rb
+│   │   ├── 20140714141156_add_volunteer_fields_to_user.rb
+│   │   ├── 20140716115448_add_default_value_to_email_settings.rb
+│   │   ├── 20140718103856_add_is_admin_to_users.rb
+│   │   ├── 20140719160903_create_delayed_jobs.rb
+│   │   ├── 20140724113107_add_call_for_papers_updates_to_email_settings.rb
+│   │   ├── 20140724153520_create_subscriptions.rb
+│   │   ├── 20140730104658_migrate_roles_for_cancancan.rb
+│   │   ├── 20140731153332_create_contacts.rb
+│   │   ├── 20140731165107_move_conference_contact_details_to_contact.rb
+│   │   ├── 20140801103645_create_commercials.rb
+│   │   ├── 20140801164901_move_conference_media_to_commercial.rb
+│   │   ├── 20140801170430_move_event_media_to_commercial.rb
+│   │   ├── 20140804185823_create_registration_periods.rb
+│   │   ├── 20140812065531_move_conference_registration_data_to_registration_periods.rb
+│   │   ├── 20140819124315_rename_supporter_level_to_ticket.rb
+│   │   ├── 20140820093735_migrating_supporter_registrations_to_ticket_users.rb
+│   │   ├── 20140820123503_assign_users_to_events.rb
+│   │   ├── 20140820124117_undo_wrong_migration20140801080705_add_users_to_events.rb
+│   │   ├── 20140821103643_split_ticket_price_in_price_and_currency.rb
+│   │   ├── 20140825091222_create_splashpages.rb
+│   │   ├── 20140825093132_move_splashpage_attributes_from_conference_to_splashpage.rb
+│   │   ├── 20140930092923_move_sponsor_email_to_contact.rb
+│   │   ├── 20141031225545_add_require_handicapped_access_to_questions.rb
+│   │   ├── 20141031225606_add_attending_with_partner_to_questions.rb
+│   │   ├── 20141031225620_add_staying_at_suggested_hotel_to_questions.rb
+│   │   ├── 20141031225635_add_attending_social_events_to_questions.rb
+│   │   ├── 20141103132913_add_username_to_users.rb
+│   │   ├── 20141104131625_generate_username.rb
+│   │   ├── 20141106141750_add_is_disabled_flag_to_user.rb
+│   │   ├── 20141109172204_set_room_public_default_to_false.rb
+│   │   ├── 20141113134103_add_position_to_sponsorship_level.rb
+│   │   ├── 20141117214230_move_banner_description_to_conference.rb
+│   │   ├── 20141117222919_drop_splash_descriptions_and_photo.rb
+│   │   ├── 20141118143700_add_address_fields_to_venue.rb
+│   │   ├── 20141118150427_cleanup_venue.rb
+│   │   ├── 20141118153918_change_venue_conference_association.rb
+│   │   ├── 20141118162030_change_lodging_association_to_conference.rb
+│   │   ├── 20141120205757_remove_public_from_room.rb
+│   │   ├── 20141121102656_remove_description_from_call_for_paper.rb
+│   │   ├── 20141127161313_add_is_highlight_in_events.rb
+│   │   ├── 20141128073306_migrate_data_remove_column_include_cfp_in_splash_add_column_include_cfp.rb
+│   │   ├── 20141130182139_drop_table_event_attachments.rb
+│   │   ├── 20150304135935_add_created_atto_qanswer.rb
+│   │   ├── 20150415121038_add_description_to_event_type.rb
+│   │   ├── 20150417050953_add_url_to_commercial.rb
+│   │   ├── 20150929142405_change_postalcode_format_in_venues.rb
+│   │   ├── 20151005161518_rename_templates_in_email_settings.rb
+│   │   ├── 20151018152439_create_programs_table.rb
+│   │   ├── 20151018154513_rename_conference_id_to_program_id_in_events_tracks_difficulty_levels.rb
+│   │   ├── 20151021113015_rename_email_settings_with_cfp_and_program.rb
+│   │   ├── 20151031092713_change_conference_id_to_venue_id_in_rooms.rb
+│   │   ├── 20160201221411_add_registration_limit_to_conferences.rb
+│   │   └── 20160226133808_rename_roles_users_to_users_roles.rb
+│   ├── schema.rb
+│   └── seeds.rb
+├── doc
+│   └── README_FOR_APP
+├── lib
+│   ├── assets
+│   │   └── .gitkeep
+│   ├── tasks
+│   │   ├── .gitkeep
+│   │   ├── dump_db.rake
+│   │   ├── factory_girl.rake
+│   │   └── user.rake
+│   └── templates
+│       └── erb
+│           └── scaffold
+│               └── _form.html.erb
+├── public
+│   ├── 404.html
+│   ├── 422.html
+│   ├── 500.html
+│   ├── favicon.ico
+│   ├── img
+│   │   ├── glyphicons-halflings-white.png
+│   │   ├── glyphicons-halflings.png
+│   │   ├── loading.gif
+│   │   └── progressbar.gif
+│   ├── javascripts
+│   │   └── schedule
+│   │       ├── date.format.js
+│   │       ├── jquery-1.8.3.js
+│   │       ├── jquery-ui-1.9.2.custom.min.js
+│   │       └── schedule.js
+│   ├── robots.txt
+│   └── stylesheets
+│       └── schedule
+│           ├── images
+│           │   ├── ui-bg_flat_0_aaaaaa_40x100.png
+│           │   ├── ui-bg_flat_75_ffffff_40x100.png
+│           │   ├── ui-bg_glass_55_fbf9ee_1x400.png
+│           │   ├── ui-bg_glass_65_ffffff_1x400.png
+│           │   ├── ui-bg_glass_75_dadada_1x400.png
+│           │   ├── ui-bg_glass_75_e6e6e6_1x400.png
+│           │   ├── ui-bg_glass_95_fef1ec_1x400.png
+│           │   ├── ui-bg_highlight-soft_75_cccccc_1x100.png
+│           │   ├── ui-icons_222222_256x240.png
+│           │   ├── ui-icons_2e83ff_256x240.png
+│           │   ├── ui-icons_454545_256x240.png
+│           │   ├── ui-icons_888888_256x240.png
+│           │   └── ui-icons_cd0a0a_256x240.png
+│           ├── jquery-ui-1.9.2.custom.min.css
+│           └── schedule.css
+├── spec
+│   ├── controllers
+│   │   ├── admin
+│   │   │   ├── comments_controller_spec.rb
+│   │   │   ├── conferences_controller_spec.rb
+│   │   │   ├── programs_controller_spec.rb
+│   │   │   ├── registration_periods_controller_spec.rb
+│   │   │   ├── roles_controller_spec.rb
+│   │   │   ├── rooms_controller_spec.rb
+│   │   │   ├── targets_controller_spec.rb
+│   │   │   └── users_controller_spec.rb
+│   │   ├── api
+│   │   │   └── v1
+│   │   │       ├── rooms_controller_spec.rb
+│   │   │       └── tracks_controller_spec.rb
+│   │   ├── conference_controller_spec.rb
+│   │   ├── subscriptions_controller_spec.rb
+│   │   └── users_controller_spec.rb
+│   ├── factories
+│   │   ├── answer.rb
+│   │   ├── campaigns.rb
+│   │   ├── cfps.rb
+│   │   ├── comments.rb
+│   │   ├── commercials.rb
+│   │   ├── conferences.rb
+│   │   ├── difficulty_levels.rb
+│   │   ├── email_settings.rb
+│   │   ├── event_types.rb
+│   │   ├── event_users.rb
+│   │   ├── events.rb
+│   │   ├── lodgings.rb
+│   │   ├── programs.rb
+│   │   ├── qanswer.rb
+│   │   ├── question.rb
+│   │   ├── question_type.rb
+│   │   ├── registration.rb
+│   │   ├── registration_periods.rb
+│   │   ├── roles.rb
+│   │   ├── rooms.rb
+│   │   ├── social_events.rb
+│   │   ├── splashpages.rb
+│   │   ├── sponsors.rb
+│   │   ├── sponsorship_levels.rb
+│   │   ├── subscriptions.rb
+│   │   ├── targets.rb
+│   │   ├── ticket_purchases.rb
+│   │   ├── tickets.rb
+│   │   ├── tracks.rb
+│   │   ├── users.rb
+│   │   ├── vdays.rb
+│   │   ├── venues.rb
+│   │   ├── visits.rb
+│   │   ├── votes.rb
+│   │   └── vpositions.rb
+│   ├── features
+│   │   ├── ability_spec.rb
+│   │   ├── base_controller_spec.rb
+│   │   ├── campaign_spec.rb
+│   │   ├── cfp_spec.rb
+│   │   ├── commercials_spec.rb
+│   │   ├── conference_registration_spec.rb
+│   │   ├── conference_spec.rb
+│   │   ├── contact_spec.rb
+│   │   ├── difficulty_levels_spec.rb
+│   │   ├── email_spec.rb
+│   │   ├── event_types_spec.rb
+│   │   ├── lodgings_spec.rb
+│   │   ├── omniauth_spec.rb
+│   │   ├── program_spec.rb
+│   │   ├── proposal_spec.rb
+│   │   ├── registration_periods_spec.rb
+│   │   ├── rooms_spec.rb
+│   │   ├── splashpage_spec.rb
+│   │   ├── sponsor_spec.rb
+│   │   ├── sponsorship_level_spec.rb
+│   │   ├── ticket_purchases_spec.rb
+│   │   ├── tickets_spec.rb
+│   │   ├── tracks_spec.rb
+│   │   ├── user_spec.rb
+│   │   ├── venues_spec.rb
+│   │   └── volunteers_spec.rb
+│   ├── fixtures
+│   │   └── test.txt
+│   ├── models
+│   │   ├── ability_spec.rb
+│   │   ├── campaign_spec.rb
+│   │   ├── cfp_spec.rb
+│   │   ├── comment_spec.rb
+│   │   ├── commercial_spec.rb
+│   │   ├── conference_spec.rb
+│   │   ├── event_spec.rb
+│   │   ├── program_spec.rb
+│   │   ├── registration_period_spec.rb
+│   │   ├── registration_spec.rb
+│   │   ├── role_spec.rb
+│   │   ├── room_spec.rb
+│   │   ├── sponsor_spec.rb
+│   │   ├── sponsorship_level_spec.rb
+│   │   ├── target_spec.rb
+│   │   ├── ticket_purchase_spec.rb
+│   │   ├── ticket_spec.rb
+│   │   └── user_spec.rb
+│   ├── spec_helper.rb
+│   ├── support
+│   │   ├── database_cleaner.rb
+│   │   ├── external_request.rb
+│   │   ├── factory_girl.rb
+│   │   ├── flash.rb
+│   │   ├── kneet_connections.rb
+│   │   ├── login_macros.rb
+│   │   ├── omniauth_macros.rb
+│   │   ├── save_feature_failures.rb
+│   │   └── sidebar.rb
+│   └── views
+│       ├── admin
+│       │   ├── cfps
+│       │   │   └── show.html.haml_spec.rb
+│       │   ├── conference
+│       │   │   ├── edit.html.haml_spec.rb
+│       │   │   ├── index.html.haml_spec.rb
+│       │   │   ├── new.html.haml_spec.rb
+│       │   │   └── show.html.haml_spec.rb
+│       │   ├── difficulty_levels
+│       │   │   └── index.html.haml_spec.rb
+│       │   ├── emails
+│       │   │   └── index.html.haml_spec.rb
+│       │   ├── event_types
+│       │   │   └── index.html.haml_spec.rb
+│       │   ├── events
+│       │   │   └── index.html.haml_spec.rb
+│       │   ├── lodgings
+│       │   │   └── index.html.haml_spec.rb
+│       │   ├── programs
+│       │   │   └── show.html.haml_spec.rb
+│       │   ├── roles
+│       │   │   ├── index.html.haml_spec.rb
+│       │   │   └── show.html.haml_spec.rb
+│       │   ├── rooms
+│       │   │   └── index.html.haml_spec.rb
+│       │   ├── sponsors
+│       │   │   └── index.html.haml_spec.rb
+│       │   ├── sponsorship_levels
+│       │   │   └── index.html.haml_spec.rb
+│       │   ├── tracks
+│       │   │   └── index.html.haml_spec.rb
+│       │   └── volunteers
+│       │       ├── index.html.haml_spec.rb
+│       │       └── show.html.haml_spec.rb
+│       └── conference
+│           ├── index.html.haml_spec.rb
+│           └── show.html.haml_spec.rb
+└── vendor
+    ├── assets
+    │   ├── javascripts
+    │   │   └── .gitkeep
+    │   └── stylesheets
+    │       └── .gitkeep
+    └── plugins
+        └── .gitkeep
+115 directories, 708 files
