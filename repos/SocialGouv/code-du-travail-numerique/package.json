@@ -1,0 +1,53 @@
+{
+  "name": "@socialgouv/code-du-travail",
+  "private": true,
+  "license": "MIT",
+  "description": "Code du travail",
+  "homepage": "https://github.com/SocialGouv/code-du-travail-numerique#readme",
+  "scripts": {
+    "prepare": "husky",
+    "build": "lerna run build --scope=@socialgouv/cdtn-utils --scope=@socialgouv/modeles-social --scope=@cdt/frontend --stream",
+    "build:npm": "lerna run build --scope=@socialgouv/cdtn-utils --scope=@socialgouv/modeles-social --stream",
+    "clean": "lerna clean && rm -rf node_modules",
+    "dev": "lerna run dev --parallel",
+    "type-check": "lerna run type-check --stream",
+    "dev:frontend": "lerna run dev --parallel --scope=@cdt/frontend --scope=@socialgouv/modeles-social --stream",
+    "dev:simulate-deployment": "NEXT_PUBLIC_SITE_URL=https://code-du-travail-numerique-preprod.ovh.fabrique.social.gouv.fr pnpm --filter @cdt/frontend build && pnpm --filter @cdt/frontend start",
+    "start": "lerna run start --scope=@cdt/frontend --stream",
+    "start:production": "cd packages/code-du-travail-frontend && pnpm run start",
+    "test": "pnpm run test:frontend && pnpm run test:modeles && pnpm run test:utils",
+    "test:modeles": "lerna run test --scope=@socialgouv/modeles-social --stream",
+    "test:frontend": "lerna run test:frontend --scope=@cdt/frontend --stream",
+    "test:utils": "lerna run test --scope=@socialgouv/cdtn-utils --stream",
+    "test:api": "lerna run test:api --scope=@cdt/frontend --stream",
+    "test:e2e": "lerna run test:e2e --scope=@cdt/frontend --stream",
+    "test:e2e:ui": "lerna run test:e2e:ui --scope=@cdt/frontend --stream",
+    "test:update": "lerna run test:update --scope=@cdt/frontend --stream",
+    "test:update:frontend": "lerna run test:update --scope=@cdt/frontend --stream",
+    "test:update:api": "lerna run test:api:update --scope=@cdt/frontend --stream",
+    "lint": "lerna run lint",
+    "lint:fix": "lerna run lint -- --fix",
+    "lint:quiet": "lerna run lint -- --quiet",
+    "format": "lerna run format --stream",
+    "format:check": "lerna run format:check --stream",
+    "precommit": "lerna run precommit --stream",
+    "repair": "lerna repair"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SocialGouv/code-du-travail-numerique.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SocialGouv/code-du-travail-numerique/issues"
+  },
+  "devDependencies": {
+    "husky": "~9.1.7",
+    "lerna": "~9.0.3"
+  },
+  "engines": {
+    "node": ">= 24",
+    "pnpm": ">= 10"
+  },
+  "version": "0.0.0",
+  "packageManager": "pnpm@10.24.0"
+}
