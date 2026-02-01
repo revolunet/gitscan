@@ -1,0 +1,1030 @@
+.
+├── .github
+│   ├── actions
+│   │   ├── install-dependencies
+│   │   │   └── action.yml
+│   │   ├── install-playwright
+│   │   │   └── action.yml
+│   │   ├── run-backend
+│   │   │   └── action.yml
+│   │   └── setup-database
+│   │       └── action.yml
+│   ├── dependabot.yml
+│   └── workflows
+│       ├── e2e.yml
+│       ├── lighthouse.yml
+│       └── unit.yml
+├── .gitignore
+├── .husky
+│   └── pre-commit
+├── .lintstagedrc.json
+├── .npmrc
+├── .nvmrc
+├── LICENSE
+├── Makefile
+├── README.md
+├── apps
+│   ├── backend
+│   │   ├── .env.example
+│   │   ├── .npmrc
+│   │   ├── .prettierignore
+│   │   ├── .prettierrc
+│   │   ├── Procfile
+│   │   ├── doc
+│   │   │   └── entities-relationships-diagram.mermaid
+│   │   ├── eslint.config.mjs
+│   │   ├── nest-cli.json
+│   │   ├── nodemon.json
+│   │   ├── package.json
+│   │   ├── src
+│   │   │   ├── app.module.ts
+│   │   │   ├── application
+│   │   │   │   ├── acquisition-simulation
+│   │   │   │   │   ├── usecases
+│   │   │   │   │   │   ├── calculateConversionFunnel.usecase.ts
+│   │   │   │   │   │   ├── count.usecase.ts
+│   │   │   │   │   │   ├── create.params.ts
+│   │   │   │   │   │   ├── create.usecase.ts
+│   │   │   │   │   │   ├── update.params.ts
+│   │   │   │   │   │   └── update.usecase.ts
+│   │   │   │   │   └── views
+│   │   │   │   │       ├── acquisition-simulation-calculate-conversion-tunnel.view.ts
+│   │   │   │   │       └── acquisition-simulation.view.ts
+│   │   │   │   ├── auth
+│   │   │   │   │   └── usecases
+│   │   │   │   │       ├── login.params.ts
+│   │   │   │   │       └── login.usecase.ts
+│   │   │   │   ├── brs-diffusion-website
+│   │   │   │   │   ├── usecases
+│   │   │   │   │   │   ├── create.params.ts
+│   │   │   │   │   │   ├── create.usecase.ts
+│   │   │   │   │   │   ├── delete.params.ts
+│   │   │   │   │   │   ├── delete.usecase.ts
+│   │   │   │   │   │   ├── findAll.params.ts
+│   │   │   │   │   │   ├── findAll.usecase.ts
+│   │   │   │   │   │   ├── findAllByDepartement.params.ts
+│   │   │   │   │   │   ├── findAllByDepartement.usecase.ts
+│   │   │   │   │   │   ├── findAllByRegion.params.ts
+│   │   │   │   │   │   ├── findAllByRegion.usecase.ts
+│   │   │   │   │   │   ├── findById.params.ts
+│   │   │   │   │   │   ├── findById.usecase.ts
+│   │   │   │   │   │   ├── update.params.ts
+│   │   │   │   │   │   └── update.usecase.ts
+│   │   │   │   │   └── views
+│   │   │   │   │       └── brs-diffusion-website.view.ts
+│   │   │   │   ├── common
+│   │   │   │   │   └── pagination.ts
+│   │   │   │   ├── departement
+│   │   │   │   │   ├── usecases
+│   │   │   │   │   │   ├── findAll.params.ts
+│   │   │   │   │   │   ├── findAll.usecase.ts
+│   │   │   │   │   │   ├── findManyByNames.params.ts
+│   │   │   │   │   │   ├── findManyByNames.usecase.ts
+│   │   │   │   │   │   ├── save.params.ts
+│   │   │   │   │   │   └── save.usecase.ts
+│   │   │   │   │   └── views
+│   │   │   │   │       ├── departement.view.ts
+│   │   │   │   │       └── relationnal.view.ts
+│   │   │   │   ├── distributor
+│   │   │   │   │   ├── usecases
+│   │   │   │   │   │   ├── create.params.ts
+│   │   │   │   │   │   ├── create.usecase.ts
+│   │   │   │   │   │   ├── delete.params.ts
+│   │   │   │   │   │   ├── delete.usecase.ts
+│   │   │   │   │   │   ├── findAll.params.ts
+│   │   │   │   │   │   ├── findAll.usecase.ts
+│   │   │   │   │   │   ├── findById.params.ts
+│   │   │   │   │   │   ├── findById.usecase.ts
+│   │   │   │   │   │   ├── findManyByIds.params.ts
+│   │   │   │   │   │   ├── findManyByIds.usecase.ts
+│   │   │   │   │   │   ├── update.params.ts
+│   │   │   │   │   │   └── update.usecase.ts
+│   │   │   │   │   └── views
+│   │   │   │   │       ├── distributor.view.ts
+│   │   │   │   │       └── relationnal.view.ts
+│   │   │   │   ├── landbot-customer
+│   │   │   │   │   ├── usecases
+│   │   │   │   │   │   ├── calculateConversionFunnel.usecase.ts
+│   │   │   │   │   │   ├── countSimulations.params.ts
+│   │   │   │   │   │   ├── countSimulations.usecase.ts
+│   │   │   │   │   │   ├── create.params.ts
+│   │   │   │   │   │   ├── create.usecase.ts
+│   │   │   │   │   │   ├── findLast.usecase.ts
+│   │   │   │   │   │   ├── groupByBrsKnowledge.usecase.ts
+│   │   │   │   │   │   ├── groupByDepartements.usecase.ts
+│   │   │   │   │   │   ├── groupByEligibility.usecase.ts
+│   │   │   │   │   │   ├── groupByRealEstateSituation.usecase.ts
+│   │   │   │   │   │   ├── groupByRegion.params.ts
+│   │   │   │   │   │   ├── groupByRegions.usecase.ts
+│   │   │   │   │   │   └── groupSimulationsByYearAndMonth.usecase.ts
+│   │   │   │   │   └── views
+│   │   │   │   │       ├── landbot-customer-calculate-conversion-tunnel.view.ts
+│   │   │   │   │       ├── landbot-customer-group-by-departements.view.ts
+│   │   │   │   │       ├── landbot-customer-group-by-field.view.ts
+│   │   │   │   │       ├── landbot-customer-group-by-regions.view.ts
+│   │   │   │   │       ├── landbot-customer.view.ts
+│   │   │   │   │       └── landbot-custommer-group-simulations-by-year-and-month.view.ts
+│   │   │   │   ├── municipality
+│   │   │   │   │   ├── usecases
+│   │   │   │   │   │   ├── create.params.ts
+│   │   │   │   │   │   ├── create.usecase.ts
+│   │   │   │   │   │   ├── findOneByInseeCode.params.ts
+│   │   │   │   │   │   └── findOneByInseeCode.usecase.ts
+│   │   │   │   │   └── views
+│   │   │   │   │       └── municipality.view.ts
+│   │   │   │   ├── ofs
+│   │   │   │   │   ├── usecases
+│   │   │   │   │   │   ├── create.params.ts
+│   │   │   │   │   │   ├── create.usecase.ts
+│   │   │   │   │   │   ├── delete.params.ts
+│   │   │   │   │   │   ├── delete.usecase.ts
+│   │   │   │   │   │   ├── findAll.params.ts
+│   │   │   │   │   │   ├── findAll.usecase.ts
+│   │   │   │   │   │   ├── findById.params.ts
+│   │   │   │   │   │   ├── findById.usecase.ts
+│   │   │   │   │   │   ├── update.params.ts
+│   │   │   │   │   │   └── update.usecase.ts
+│   │   │   │   │   └── views
+│   │   │   │   │       └── ofs.view.ts
+│   │   │   │   ├── region
+│   │   │   │   │   ├── usecases
+│   │   │   │   │   │   ├── findAll.params.ts
+│   │   │   │   │   │   ├── findAll.usecase.ts
+│   │   │   │   │   │   ├── findOneByName.params.ts
+│   │   │   │   │   │   ├── findOneByName.usecase.ts
+│   │   │   │   │   │   ├── save.params.ts
+│   │   │   │   │   │   ├── save.usecase.ts
+│   │   │   │   │   │   ├── udpate.params.ts
+│   │   │   │   │   │   └── update.usecase.ts
+│   │   │   │   │   └── views
+│   │   │   │   │       ├── region.view.ts
+│   │   │   │   │       └── relationnal.view.ts
+│   │   │   │   └── user
+│   │   │   │       ├── usecases
+│   │   │   │       │   ├── findOneByEmail.params.ts
+│   │   │   │       │   ├── findOneByEmail.usecase.ts
+│   │   │   │       │   ├── save.params.ts
+│   │   │   │       │   └── save.usecase.ts
+│   │   │   │       └── views
+│   │   │   │           └── user.view.ts
+│   │   │   ├── assets
+│   │   │   │   ├── fonts
+│   │   │   │   │   ├── Marianne-Bold.woff
+│   │   │   │   │   ├── Marianne-Bold.woff2
+│   │   │   │   │   ├── Marianne-Bold_Italic.woff
+│   │   │   │   │   ├── Marianne-Bold_Italic.woff2
+│   │   │   │   │   ├── Marianne-Light.woff
+│   │   │   │   │   ├── Marianne-Light.woff2
+│   │   │   │   │   ├── Marianne-Light_Italic.woff
+│   │   │   │   │   ├── Marianne-Light_Italic.woff2
+│   │   │   │   │   ├── Marianne-Medium.woff
+│   │   │   │   │   ├── Marianne-Medium.woff2
+│   │   │   │   │   ├── Marianne-Medium_Italic.woff
+│   │   │   │   │   ├── Marianne-Medium_Italic.woff2
+│   │   │   │   │   ├── Marianne-Regular.woff
+│   │   │   │   │   ├── Marianne-Regular.woff2
+│   │   │   │   │   ├── Marianne-Regular_Italic.woff
+│   │   │   │   │   ├── Marianne-Regular_Italic.woff2
+│   │   │   │   │   ├── Spectral-ExtraBold.woff
+│   │   │   │   │   ├── Spectral-ExtraBold.woff2
+│   │   │   │   │   ├── Spectral-Regular.woff
+│   │   │   │   │   └── Spectral-Regular.woff2
+│   │   │   │   ├── images
+│   │   │   │   │   ├── favicon.ico
+│   │   │   │   │   └── favicon.svg
+│   │   │   │   └── styles
+│   │   │   │       └── main.css
+│   │   │   ├── domain
+│   │   │   │   ├── acquisition-simulation
+│   │   │   │   │   ├── acquisition-simulation.interface.ts
+│   │   │   │   │   └── acquisition-simulation.repository.interface.ts
+│   │   │   │   ├── brs-diffusion-website
+│   │   │   │   │   ├── brs-diffusion-website.interface.ts
+│   │   │   │   │   └── brs-diffusion-website.repository.interface.ts
+│   │   │   │   ├── brs-zone
+│   │   │   │   │   └── brz-zone.type.ts
+│   │   │   │   ├── common
+│   │   │   │   │   └── paginationProps.ts
+│   │   │   │   ├── csv-file
+│   │   │   │   │   └── csv-file.service.interface.ts
+│   │   │   │   ├── datagouv
+│   │   │   │   │   └── datagouv.repository.interface.ts
+│   │   │   │   ├── departement
+│   │   │   │   │   ├── departement.interface.ts
+│   │   │   │   │   └── departement.repository.interface.ts
+│   │   │   │   ├── distributor
+│   │   │   │   │   ├── distributor.interface.ts
+│   │   │   │   │   └── distributor.repository.interface.ts
+│   │   │   │   ├── geocoder
+│   │   │   │   │   └── geocoder.service.interface.ts
+│   │   │   │   ├── landbot-api-client
+│   │   │   │   │   ├── landbot-api-client-list-customers.interface.ts
+│   │   │   │   │   └── landbot-api-client.repository.interface.ts
+│   │   │   │   ├── landbot-customer
+│   │   │   │   │   ├── landbot-customer.interface.ts
+│   │   │   │   │   └── landbot-customer.repository.interface.ts
+│   │   │   │   ├── municipality
+│   │   │   │   │   ├── municipality.interface.ts
+│   │   │   │   │   └── municipality.repository.interface.ts
+│   │   │   │   ├── ofs
+│   │   │   │   │   ├── ofs.interface.ts
+│   │   │   │   │   └── ofs.repository.interface.ts
+│   │   │   │   ├── region
+│   │   │   │   │   ├── region.interface.ts
+│   │   │   │   │   └── region.repository.interface.ts
+│   │   │   │   └── user
+│   │   │   │       ├── password
+│   │   │   │       │   └── password-hasher.interface.ts
+│   │   │   │       ├── user.interface.ts
+│   │   │   │       └── user.repository.interface.ts
+│   │   │   ├── infrastructure
+│   │   │   │   ├── acquisition-simulation
+│   │   │   │   │   ├── acquisition-simulation.entity.ts
+│   │   │   │   │   ├── acquisition-simulation.module.ts
+│   │   │   │   │   ├── acquisition-simulation.repository.ts
+│   │   │   │   │   ├── controllers
+│   │   │   │   │   │   └── api
+│   │   │   │   │   │       ├── create-acquisition-simulation.controller.ts
+│   │   │   │   │   │       ├── get-acquisition-simulation-conversion-funnel.controller.ts
+│   │   │   │   │   │       └── update-acquisition-simulation.controller.ts
+│   │   │   │   │   └── dtos
+│   │   │   │   │       ├── create.dto.ts
+│   │   │   │   │       └── update.dto.ts
+│   │   │   │   ├── admin
+│   │   │   │   │   └── home
+│   │   │   │   │       ├── controllers
+│   │   │   │   │       │   └── home.controller.ts
+│   │   │   │   │       └── home.module.ts
+│   │   │   │   ├── auth
+│   │   │   │   │   ├── auth.module.ts
+│   │   │   │   │   ├── controllers
+│   │   │   │   │   │   ├── login.controller.ts
+│   │   │   │   │   │   └── logout.controller.ts
+│   │   │   │   │   ├── dtos
+│   │   │   │   │   │   └── login.dto.ts
+│   │   │   │   │   ├── filters
+│   │   │   │   │   │   └── local.requireAuth.filter.ts
+│   │   │   │   │   ├── guards
+│   │   │   │   │   │   ├── api-key.guard.ts
+│   │   │   │   │   │   ├── local.guard.ts
+│   │   │   │   │   │   ├── local.isAuthenticated.guard.ts
+│   │   │   │   │   │   └── redirectIfAuthenticated.guard.ts
+│   │   │   │   │   ├── serializers
+│   │   │   │   │   │   └── user.serializer.ts
+│   │   │   │   │   └── strategies
+│   │   │   │   │       └── local.strategy.ts
+│   │   │   │   ├── brs-diffusion-website
+│   │   │   │   │   ├── brs-diffusion-website.entity.ts
+│   │   │   │   │   ├── brs-diffusion-website.module.ts
+│   │   │   │   │   ├── brs-diffusion-website.repository.ts
+│   │   │   │   │   ├── controllers
+│   │   │   │   │   │   ├── admin
+│   │   │   │   │   │   │   ├── create-brs-diffusion-website.controller.ts
+│   │   │   │   │   │   │   ├── delete-brs-diffusion-website.controller.ts
+│   │   │   │   │   │   │   ├── get-brs-diffusion-websites.controller.ts
+│   │   │   │   │   │   │   └── update-brs-diffusion-website.controller.ts
+│   │   │   │   │   │   └── api
+│   │   │   │   │   │       └── get-brs-diffusion-websites.controller.ts
+│   │   │   │   │   └── dtos
+│   │   │   │   │       ├── create.dto.ts
+│   │   │   │   │       ├── getAll.dto.ts
+│   │   │   │   │       └── update.dto.ts
+│   │   │   │   ├── common
+│   │   │   │   │   └── dtos
+│   │   │   │   │       ├── id.dto.ts
+│   │   │   │   │       └── pagination.dto.ts
+│   │   │   │   ├── config
+│   │   │   │   │   ├── api-documentation.config.ts
+│   │   │   │   │   └── view-engine.config.ts
+│   │   │   │   ├── csv-file
+│   │   │   │   │   ├── csv-file.module.ts
+│   │   │   │   │   └── csv-file.service.ts
+│   │   │   │   ├── datagouv
+│   │   │   │   │   ├── cron
+│   │   │   │   │   │   └── upload-monthly-statistics.ts
+│   │   │   │   │   ├── datagouv.module.ts
+│   │   │   │   │   └── datagouv.repository.ts
+│   │   │   │   ├── decorators
+│   │   │   │   │   └── apiPaginatedResponse.ts
+│   │   │   │   ├── departement
+│   │   │   │   │   ├── controllers
+│   │   │   │   │   │   └── api
+│   │   │   │   │   │       └── get-brs-diffusion-websites.controller.ts
+│   │   │   │   │   ├── departement.entity.ts
+│   │   │   │   │   ├── departement.module.ts
+│   │   │   │   │   └── departement.repository.ts
+│   │   │   │   ├── distributor
+│   │   │   │   │   ├── controllers
+│   │   │   │   │   │   └── admin
+│   │   │   │   │   │       ├── create-distributor.controller.ts
+│   │   │   │   │   │       ├── delete-distributor.controller.ts
+│   │   │   │   │   │       ├── get-distributors.controller.ts
+│   │   │   │   │   │       └── update-distributor.controller.ts
+│   │   │   │   │   ├── distributor.entity.ts
+│   │   │   │   │   ├── distributor.module.ts
+│   │   │   │   │   ├── distributor.repository.ts
+│   │   │   │   │   └── dtos
+│   │   │   │   │       ├── create.dto.ts
+│   │   │   │   │       └── update.dto.ts
+│   │   │   │   ├── geocoder
+│   │   │   │   │   ├── generated-address-datagouv-types.ts
+│   │   │   │   │   ├── geocoder.module.ts
+│   │   │   │   │   ├── geocoder.service.ts
+│   │   │   │   │   └── types.ts
+│   │   │   │   ├── landbot-api-client
+│   │   │   │   │   ├── landbot-api-client.module.ts
+│   │   │   │   │   └── landbot-api-client.repository.ts
+│   │   │   │   ├── landbot-customer
+│   │   │   │   │   ├── controllers
+│   │   │   │   │   │   └── api
+│   │   │   │   │   │       ├── get-landbot-customers-by-field.controller.ts
+│   │   │   │   │   │       ├── get-landbot-customers-conversion-funnel.controller.ts
+│   │   │   │   │   │       ├── get-landbot-customers-grouped-by-departements.controller.ts
+│   │   │   │   │   │       ├── get-landbot-customers-grouped-by-regions.controller.ts
+│   │   │   │   │   │       └── get-landbot-customers-simulations-monthly-summary.controller.ts
+│   │   │   │   │   ├── cron
+│   │   │   │   │   │   └── import-landbot-customers.ts
+│   │   │   │   │   ├── dtos
+│   │   │   │   │   │   └── getLandbotCustomersByField.dto.ts
+│   │   │   │   │   ├── landbot-customer.entity.ts
+│   │   │   │   │   ├── landbot-customer.module.ts
+│   │   │   │   │   └── landbot-customer.repository.ts
+│   │   │   │   ├── middlewares
+│   │   │   │   │   ├── method-override.middleware.ts
+│   │   │   │   │   └── to-locals.middleware.ts
+│   │   │   │   ├── municipality
+│   │   │   │   │   ├── controllers
+│   │   │   │   │   │   └── api
+│   │   │   │   │   │       └── get-municipality-by-insee-code.ts
+│   │   │   │   │   ├── dtos
+│   │   │   │   │   │   └── getMunicipalityByInseeCode.dto.ts
+│   │   │   │   │   ├── municipality.entity.ts
+│   │   │   │   │   ├── municipality.module.ts
+│   │   │   │   │   └── municipality.repository.ts
+│   │   │   │   ├── not-found
+│   │   │   │   │   ├── controllers
+│   │   │   │   │   │   └── not-found.controller.ts
+│   │   │   │   │   ├── filters
+│   │   │   │   │   │   └── not-found.filter.ts
+│   │   │   │   │   └── not-found.module.ts
+│   │   │   │   ├── ofs
+│   │   │   │   │   ├── controllers
+│   │   │   │   │   │   ├── admin
+│   │   │   │   │   │   │   ├── create-ofs.controller.ts
+│   │   │   │   │   │   │   ├── delete-ofs.controller.ts
+│   │   │   │   │   │   │   ├── get-ofss.controller.ts
+│   │   │   │   │   │   │   └── update-ofs.controller.ts
+│   │   │   │   │   │   └── api
+│   │   │   │   │   │       └── get-ofss.controller.ts
+│   │   │   │   │   ├── dtos
+│   │   │   │   │   │   ├── create.dto.ts
+│   │   │   │   │   │   ├── getOfss.dto.ts
+│   │   │   │   │   │   └── update.dto.ts
+│   │   │   │   │   ├── ofs.entity.ts
+│   │   │   │   │   ├── ofs.module.ts
+│   │   │   │   │   └── ofs.repository.ts
+│   │   │   │   ├── persistence
+│   │   │   │   │   ├── migrations
+│   │   │   │   │   │   ├── 1740654749195-create_region_departement_tables.ts
+│   │   │   │   │   │   ├── 1745918245812-create_ofs_table.ts
+│   │   │   │   │   │   ├── 1746609091309-create_distributor_table.ts
+│   │   │   │   │   │   ├── 1746609892914-complete_many_to_many_relationships.ts
+│   │   │   │   │   │   ├── 1746778804495-alter_ofs_columns.ts
+│   │   │   │   │   │   ├── 1746785733435-add_timestamps_to_tables.ts
+│   │   │   │   │   │   ├── 1747919446691-add_user_and_session_tables.ts
+│   │   │   │   │   │   ├── 1754302189501-create_brs_diffusion_website_table.ts
+│   │   │   │   │   │   ├── 1754560766071-add_earthdistance_extension_and_brs_diffusion_website_location_index.ts
+│   │   │   │   │   │   ├── 1756386138443-create_brs_diffusion_webiste_lat_lng_index.ts
+│   │   │   │   │   │   ├── 1759741507969-create_municipality_table.ts
+│   │   │   │   │   │   ├── 1760435908830-add_produces_brs_column_to_ofs.ts
+│   │   │   │   │   │   ├── 1761138258767-create_acquisition_simulation_table.ts
+│   │   │   │   │   │   ├── 1761554189707-fix_brs-fees_number_type.ts
+│   │   │   │   │   │   ├── 1762963671211-create_landbot_customer_table.ts
+│   │   │   │   │   │   ├── 1763375221343-change_landbot_customer_table_date_type.ts
+│   │   │   │   │   │   ├── 1763386244889-change_landbot_customer_table_date_type.ts
+│   │   │   │   │   │   ├── 1764079774414-add_code_to_region.ts
+│   │   │   │   │   │   ├── 1765273408763-add_is-partner_to_ofs.ts
+│   │   │   │   │   │   └── 1767785657416-complete_landbot_customer_table.ts
+│   │   │   │   │   ├── seeds
+│   │   │   │   │   │   ├── brs-diffusion-website
+│   │   │   │   │   │   │   ├── data.ts
+│   │   │   │   │   │   │   ├── module.ts
+│   │   │   │   │   │   │   ├── run.ts
+│   │   │   │   │   │   │   └── seed.ts
+│   │   │   │   │   │   ├── landbot-customer
+│   │   │   │   │   │   │   ├── module.ts
+│   │   │   │   │   │   │   ├── run.ts
+│   │   │   │   │   │   │   └── seed.ts
+│   │   │   │   │   │   ├── municipality
+│   │   │   │   │   │   │   ├── data.ts
+│   │   │   │   │   │   │   ├── module.ts
+│   │   │   │   │   │   │   ├── run.ts
+│   │   │   │   │   │   │   └── seed.ts
+│   │   │   │   │   │   ├── ofs
+│   │   │   │   │   │   │   ├── data.ts
+│   │   │   │   │   │   │   ├── module.ts
+│   │   │   │   │   │   │   ├── run.ts
+│   │   │   │   │   │   │   └── seed.ts
+│   │   │   │   │   │   ├── regions-code
+│   │   │   │   │   │   │   ├── data.ts
+│   │   │   │   │   │   │   ├── module.ts
+│   │   │   │   │   │   │   ├── run.ts
+│   │   │   │   │   │   │   └── seed.ts
+│   │   │   │   │   │   ├── regions-departements
+│   │   │   │   │   │   │   ├── data.ts
+│   │   │   │   │   │   │   ├── module.ts
+│   │   │   │   │   │   │   ├── run.ts
+│   │   │   │   │   │   │   └── seed.ts
+│   │   │   │   │   │   ├── test-data
+│   │   │   │   │   │   │   ├── data.ts
+│   │   │   │   │   │   │   ├── module.ts
+│   │   │   │   │   │   │   ├── run.ts
+│   │   │   │   │   │   │   └── seed.ts
+│   │   │   │   │   │   └── user
+│   │   │   │   │   │       ├── module.ts
+│   │   │   │   │   │       ├── run.ts
+│   │   │   │   │   │       └── seed.ts
+│   │   │   │   │   ├── typeorm-cli.config.ts
+│   │   │   │   │   └── typeorm.config.ts
+│   │   │   │   ├── region
+│   │   │   │   │   ├── controllers
+│   │   │   │   │   │   └── api
+│   │   │   │   │   │       └── get-brs-diffusion-websites.controller.ts
+│   │   │   │   │   ├── region.entity.ts
+│   │   │   │   │   ├── region.module.ts
+│   │   │   │   │   └── region.repository.ts
+│   │   │   │   ├── session
+│   │   │   │   │   ├── session.entity.ts
+│   │   │   │   │   └── session.middleware.ts
+│   │   │   │   └── user
+│   │   │   │       ├── password
+│   │   │   │       │   └── password-hasher.ts
+│   │   │   │       ├── user.entity.ts
+│   │   │   │       ├── user.module.ts
+│   │   │   │       └── user.repository.ts
+│   │   │   ├── instrument.ts
+│   │   │   ├── main.ts
+│   │   │   ├── types
+│   │   │   │   └── request-with-flash.ts
+│   │   │   └── views
+│   │   │       ├── 404.hbs
+│   │   │       ├── auth
+│   │   │       │   └── login.hbs
+│   │   │       ├── brs-diffusion-website
+│   │   │       │   ├── index.hbs
+│   │   │       │   └── update.hbs
+│   │   │       ├── distributor
+│   │   │       │   ├── index.hbs
+│   │   │       │   └── update.hbs
+│   │   │       ├── factories
+│   │   │       │   └── table.factories.ts
+│   │   │       ├── index.hbs
+│   │   │       ├── layouts
+│   │   │       │   ├── auth.hbs
+│   │   │       │   └── main.hbs
+│   │   │       ├── ofs
+│   │   │       │   ├── index.hbs
+│   │   │       │   └── update.hbs
+│   │   │       ├── partials
+│   │   │       │   ├── alerts
+│   │   │       │   │   ├── error.hbs
+│   │   │       │   │   ├── success.hbs
+│   │   │       │   │   └── toast.hbs
+│   │   │       │   ├── breadcrumb.hbs
+│   │   │       │   ├── forms
+│   │   │       │   │   ├── brs_diffusion_website
+│   │   │       │   │   │   ├── create.hbs
+│   │   │       │   │   │   ├── delete.hbs
+│   │   │       │   │   │   └── update.hbs
+│   │   │       │   │   ├── distributor
+│   │   │       │   │   │   ├── create.hbs
+│   │   │       │   │   │   ├── delete.hbs
+│   │   │       │   │   │   └── update.hbs
+│   │   │       │   │   └── ofs
+│   │   │       │   │       ├── create.hbs
+│   │   │       │   │       ├── delete.hbs
+│   │   │       │   │       └── update.hbs
+│   │   │       │   ├── head.hbs
+│   │   │       │   ├── icons
+│   │   │       │   │   ├── arrow_up_right.hbs
+│   │   │       │   │   ├── building.hbs
+│   │   │       │   │   ├── check_circle.hbs
+│   │   │       │   │   ├── chevron_left.hbs
+│   │   │       │   │   ├── chevron_right.hbs
+│   │   │       │   │   ├── close.hbs
+│   │   │       │   │   ├── close_circle.hbs
+│   │   │       │   │   ├── dots_horizontal.hbs
+│   │   │       │   │   ├── link.hbs
+│   │   │       │   │   ├── logo.hbs
+│   │   │       │   │   ├── logout.hbs
+│   │   │       │   │   ├── plus.hbs
+│   │   │       │   │   ├── store.hbs
+│   │   │       │   │   └── trash_bin.hbs
+│   │   │       │   ├── menu.hbs
+│   │   │       │   ├── modal.hbs
+│   │   │       │   ├── page_header.hbs
+│   │   │       │   ├── scripts.hbs
+│   │   │       │   └── table.hbs
+│   │   │       └── utils
+│   │   │           └── translations.ts
+│   │   ├── test
+│   │   │   ├── application
+│   │   │   │   ├── acquisition-simulation
+│   │   │   │   │   └── usecases
+│   │   │   │   │       ├── calculateConversionFunnel.usecase.unit-spec.ts
+│   │   │   │   │       ├── count.usecase.unit-spec.ts
+│   │   │   │   │       ├── create.usecase.unit-spec.ts
+│   │   │   │   │       └── update.usecase.unit-spec.ts
+│   │   │   │   ├── auth
+│   │   │   │   │   └── login.usecase.unit-spec.ts
+│   │   │   │   ├── brs-diffusion-website
+│   │   │   │   │   └── usecases
+│   │   │   │   │       ├── create.usecase.unit-spec.ts
+│   │   │   │   │       ├── delete.usecase.unit-spec.ts
+│   │   │   │   │       ├── findAll.usecase.unit-spec.ts
+│   │   │   │   │       ├── findAllByDepartement.usecase.unit-spec.ts
+│   │   │   │   │       ├── findAllByRegion.usecase.unit-spec.ts
+│   │   │   │   │       ├── findById.usecase.unit-spec.ts
+│   │   │   │   │       └── update.usecase.unit-spec.ts
+│   │   │   │   ├── common
+│   │   │   │   │   └── pagination.unit-spec.ts
+│   │   │   │   ├── departement
+│   │   │   │   │   └── usecases
+│   │   │   │   │       ├── findAll.usecase.unit-spec.ts
+│   │   │   │   │       ├── findManyByNames.usecase.unit-spec.ts
+│   │   │   │   │       └── save.usecase.unit-spec.ts
+│   │   │   │   ├── distributor
+│   │   │   │   │   └── usecases
+│   │   │   │   │       ├── create.usecase.unit-spec.ts
+│   │   │   │   │       ├── delete.usecase.unit-spec.ts
+│   │   │   │   │       ├── findAll.usecase.unit-spec.ts
+│   │   │   │   │       ├── findById.usecase.unit-spec.ts
+│   │   │   │   │       ├── findManyByIds.usecase.unit-spec.ts
+│   │   │   │   │       └── update.usecase.unit-spec.ts
+│   │   │   │   ├── landbot-customer
+│   │   │   │   │   └── usecases
+│   │   │   │   │       ├── calculateConversionFunnel.usecase.unit-spec.ts
+│   │   │   │   │       ├── countSimulations.usecase.unit-spec.ts
+│   │   │   │   │       ├── create.usecase.unit-spec.ts
+│   │   │   │   │       ├── findLast.usecase.unit-spec.ts
+│   │   │   │   │       ├── groupByBrsKnowledge.usecase.unit-spec.ts
+│   │   │   │   │       ├── groupByDepartements.usecase.unit-spec.ts
+│   │   │   │   │       ├── groupByEligibility.usecase.unit-spec.ts
+│   │   │   │   │       ├── groupByRealEstateSituation.usecase.unit-spec.ts
+│   │   │   │   │       ├── groupByRegions.usecase.unit-spec.ts
+│   │   │   │   │       └── groupSimulationsByYearAndMonth.usecase.unit-spec.ts
+│   │   │   │   ├── municipality
+│   │   │   │   │   └── usecases
+│   │   │   │   │       ├── create.usecase.unit-spec.ts
+│   │   │   │   │       └── findOneByInseeCode.unit-spec.ts
+│   │   │   │   ├── ofs
+│   │   │   │   │   └── usecases
+│   │   │   │   │       ├── create.usecase.unit-spec.ts
+│   │   │   │   │       ├── delete.usecase.unit-spec.ts
+│   │   │   │   │       ├── findAll.usecase.unit-spec.ts
+│   │   │   │   │       ├── findById.usecase.unit-spec.ts
+│   │   │   │   │       └── update.usecase.unit-spec.ts
+│   │   │   │   ├── region
+│   │   │   │   │   └── usecases
+│   │   │   │   │       ├── findAll.usecase.unit-spec.ts
+│   │   │   │   │       ├── findOneByName.usecase.unit-spec.ts
+│   │   │   │   │       ├── save.usecase.unit-spec.ts
+│   │   │   │   │       └── update.usecase.unit-spec.ts
+│   │   │   │   └── user
+│   │   │   │       └── usecases
+│   │   │   │           ├── findOneByEmail.usecase.unit-spec.ts
+│   │   │   │           └── save.usecase.unit-spec.ts
+│   │   │   ├── config
+│   │   │   │   ├── setup.e2e.ts
+│   │   │   │   └── setup.integration.ts
+│   │   │   ├── domain
+│   │   │   │   └── common
+│   │   │   │       └── paginationProps.unit-spec.ts
+│   │   │   ├── infrastructure
+│   │   │   │   ├── acquisition-simulation
+│   │   │   │   │   ├── acquisition-simulation.entity.unit-spec.ts
+│   │   │   │   │   ├── acquisition-simulation.repository.unit-spec.ts
+│   │   │   │   │   ├── controllers
+│   │   │   │   │   │   └── api
+│   │   │   │   │   │       ├── create-acquisition-simulation.controller.e2e-spec.ts
+│   │   │   │   │   │       ├── get-acquisition-simulation-conversion-funnel.controller.e2e-spec.ts
+│   │   │   │   │   │       └── update-acquisition-simulation.controller.e2e-spec.ts
+│   │   │   │   │   └── dtos
+│   │   │   │   │       ├── create.dto.unit-spec.ts
+│   │   │   │   │       └── update.dto.unit-spec.ts
+│   │   │   │   ├── brs-diffusion-website
+│   │   │   │   │   ├── brs-diffusion-website.entity.unit-spec.ts
+│   │   │   │   │   ├── brs-diffusion-website.repository.unit-spec.ts
+│   │   │   │   │   ├── controllers
+│   │   │   │   │   │   └── api
+│   │   │   │   │   │       └── get-brs-diffusion-websites.controller.e2e-spec.ts
+│   │   │   │   │   └── dtos
+│   │   │   │   │       ├── create.dto.unit-spec.ts
+│   │   │   │   │       └── getAll.dto.unit-spec.ts
+│   │   │   │   ├── common
+│   │   │   │   │   └── dtos
+│   │   │   │   │       ├── id.dto.unit-spec.ts
+│   │   │   │   │       └── pagination.dto.unit-spec.ts
+│   │   │   │   ├── csv-file
+│   │   │   │   │   └── csv-file.service.unit-spec.ts
+│   │   │   │   ├── datagouv
+│   │   │   │   │   └── datagouv.repository.unit-spec.ts
+│   │   │   │   ├── departement
+│   │   │   │   │   ├── controllers
+│   │   │   │   │   │   └── api
+│   │   │   │   │   │       └── get-brs-diffusion-website.controller.e2e-spec.ts
+│   │   │   │   │   ├── departement.entity.unit-spec.ts
+│   │   │   │   │   └── departement.repository.unit-spec.ts
+│   │   │   │   ├── distributor
+│   │   │   │   │   ├── distributor.entity.unit-spec.ts
+│   │   │   │   │   ├── distributor.repository.unit-spec.ts
+│   │   │   │   │   └── dtos
+│   │   │   │   │       ├── create.dto.unit-spec.ts
+│   │   │   │   │       └── update.dto.unit-spec.ts
+│   │   │   │   ├── geocoder
+│   │   │   │   │   └── geocoder.service.unit-spec.ts
+│   │   │   │   ├── landbot-api-client
+│   │   │   │   │   └── landbot-api-client.repository.unit-spec.ts
+│   │   │   │   ├── landbot-customer
+│   │   │   │   │   ├── controllers
+│   │   │   │   │   │   └── api
+│   │   │   │   │   │       ├── get-landbot-customers-by-field.controller.e2e-spec.ts
+│   │   │   │   │   │       ├── get-landbot-customers-conversion-funnel.controller.e2e-spec.ts
+│   │   │   │   │   │       ├── get-landbot-customers-grouped-by-departements.controller.e2e-spec.ts
+│   │   │   │   │   │       ├── get-landbot-customers-grouped-by-regions.controller.e2e-spec.ts
+│   │   │   │   │   │       └── get-landbot-customers-simulations-monthly-summary.controller.e2e-spec.ts
+│   │   │   │   │   ├── dtos
+│   │   │   │   │   │   └── getLandbotCustomersByField.dto.unit-spec.ts
+│   │   │   │   │   ├── landbot-customer.entity.unit-spec.ts
+│   │   │   │   │   └── landbot-customer.repository.unit-spec.ts
+│   │   │   │   ├── municipality
+│   │   │   │   │   ├── controllers
+│   │   │   │   │   │   └── get-municipality-by-insee-code.e2e-spec.ts
+│   │   │   │   │   ├── dtos
+│   │   │   │   │   │   └── getMunicipalityByInseeCode.dto.unit-spec.ts
+│   │   │   │   │   └── municipality.repository.unit-spec.ts
+│   │   │   │   ├── ofs
+│   │   │   │   │   ├── controllers
+│   │   │   │   │   │   └── api
+│   │   │   │   │   │       └── get-ofss.controller.e2e-spec.ts
+│   │   │   │   │   ├── dtos
+│   │   │   │   │   │   └── update.dto.unit-spec.ts
+│   │   │   │   │   ├── ofs.entity.unit-spec.ts
+│   │   │   │   │   └── ofs.repository.unit-spec.ts
+│   │   │   │   ├── region
+│   │   │   │   │   ├── controllers
+│   │   │   │   │   │   └── api
+│   │   │   │   │   │       └── get-brs-diffusion-website.controller.e2e-spec.ts
+│   │   │   │   │   ├── region.entity.unit-spec.ts
+│   │   │   │   │   └── region.repository.unit-spec.ts
+│   │   │   │   └── user
+│   │   │   │       └── password
+│   │   │   │           └── password-hasher.unit-spec.ts
+│   │   │   └── mocks
+│   │   │       ├── e2e
+│   │   │       │   └── ofs.ts
+│   │   │       └── integration
+│   │   │           ├── acquisition-simulation.ts
+│   │   │           ├── brs-diffusion-website.ts
+│   │   │           ├── departement.ts
+│   │   │           ├── distributor.ts
+│   │   │           ├── geocoder.ts
+│   │   │           ├── landbot-api-client.ts
+│   │   │           ├── landbot-customer.ts
+│   │   │           ├── municipality.ts
+│   │   │           ├── ofs.ts
+│   │   │           ├── region.ts
+│   │   │           └── user.ts
+│   │   ├── tsconfig.build.json
+│   │   └── tsconfig.json
+│   └── frontend
+│       ├── .env.example
+│       ├── .lighthouse-desktop.json
+│       ├── .lighthouse-mobile.json
+│       ├── .npmrc
+│       ├── .npmrc copy
+│       ├── .prettierignore
+│       ├── .prettierrc
+│       ├── Procfile
+│       ├── eslint.config.js
+│       ├── nginx.conf
+│       ├── package.json
+│       ├── playwright.config.ts
+│       ├── postcss.config.js
+│       ├── src
+│       │   ├── ambient.d.ts
+│       │   ├── app.d.ts
+│       │   ├── app.html
+│       │   ├── assets
+│       │   │   ├── icons
+│       │   │   │   ├── end-of-path.svg
+│       │   │   │   ├── mascotte-celebrating.svg
+│       │   │   │   ├── mascotte-showing.svg
+│       │   │   │   ├── mascotte-thinking.svg
+│       │   │   │   ├── mascotte-waving.svg
+│       │   │   │   ├── service.svg
+│       │   │   │   └── sofa.svg
+│       │   │   ├── illustrations
+│       │   │   │   ├── brs-etape-1.svg
+│       │   │   │   ├── brs-etape-2.svg
+│       │   │   │   ├── brs-etape-3.svg
+│       │   │   │   ├── brs-etape-4.svg
+│       │   │   │   ├── brs-etape-5.svg
+│       │   │   │   ├── home-hero-trim.svg
+│       │   │   │   └── logo.svg
+│       │   │   ├── images
+│       │   │   │   ├── amandine.jpg
+│       │   │   │   ├── arthur.jpg
+│       │   │   │   ├── benoit.jpg
+│       │   │   │   ├── bloc-marque.jpg
+│       │   │   │   ├── brs-1.jpg
+│       │   │   │   ├── brs-2.jpg
+│       │   │   │   ├── brs-3.jpg
+│       │   │   │   ├── brs-4.jpg
+│       │   │   │   ├── brs-5.jpg
+│       │   │   │   ├── home-card-1.jpg
+│       │   │   │   ├── home-card-2.jpg
+│       │   │   │   ├── home-card-3.jpg
+│       │   │   │   ├── home-hero.jpg
+│       │   │   │   ├── laure.jpg
+│       │   │   │   ├── map-ofs.jpg
+│       │   │   │   ├── mathieu.jpg
+│       │   │   │   ├── nathan.jpg
+│       │   │   │   └── simuler-eligibilite-hero.jpg
+│       │   │   └── styles
+│       │   │       ├── _icons.css
+│       │   │       ├── _vars.css
+│       │   │       ├── main.css
+│       │   │       └── map.css
+│       │   ├── hooks.client.ts
+│       │   ├── hooks.server.ts
+│       │   ├── lib
+│       │   │   ├── api
+│       │   │   │   └── ign.ts
+│       │   │   ├── components
+│       │   │   │   ├── common
+│       │   │   │   │   ├── Accordion.svelte
+│       │   │   │   │   ├── Alert.svelte
+│       │   │   │   │   ├── Autocomplete.svelte
+│       │   │   │   │   ├── Badge.svelte
+│       │   │   │   │   ├── Charts
+│       │   │   │   │   │   ├── ChartProvider.svelte
+│       │   │   │   │   │   ├── LineChart.svelte
+│       │   │   │   │   │   ├── MapChart.svelte
+│       │   │   │   │   │   └── PieChart.svelte
+│       │   │   │   │   ├── Consent.svelte
+│       │   │   │   │   ├── ContentPageSubtitle.svelte
+│       │   │   │   │   ├── Disclaimer.svelte
+│       │   │   │   │   ├── GradientBackgroundWrapper.svelte
+│       │   │   │   │   ├── Heros
+│       │   │   │   │   │   └── ContentPageHero.svelte
+│       │   │   │   │   ├── Highlight.svelte
+│       │   │   │   │   ├── HorizontalCard.svelte
+│       │   │   │   │   ├── Image.svelte
+│       │   │   │   │   ├── Input.svelte
+│       │   │   │   │   ├── KeyPoint.svelte
+│       │   │   │   │   ├── Loader.svelte
+│       │   │   │   │   ├── Notice.svelte
+│       │   │   │   │   ├── PageCta.svelte
+│       │   │   │   │   ├── Pagination.svelte
+│       │   │   │   │   ├── Panels
+│       │   │   │   │   │   └── CalloutPanel.svelte
+│       │   │   │   │   ├── Photograph.svelte
+│       │   │   │   │   ├── Pictogram.svelte
+│       │   │   │   │   ├── Radio.svelte
+│       │   │   │   │   ├── RadioFieldset.svelte
+│       │   │   │   │   ├── Section.svelte
+│       │   │   │   │   ├── Select.svelte
+│       │   │   │   │   ├── ShadowedBox.svelte
+│       │   │   │   │   ├── SideNavPage
+│       │   │   │   │   │   ├── Nav.svelte
+│       │   │   │   │   │   ├── Page.svelte
+│       │   │   │   │   │   ├── Step.svelte
+│       │   │   │   │   │   └── StepLink.svelte
+│       │   │   │   │   ├── Stepper.svelte
+│       │   │   │   │   ├── Steppers
+│       │   │   │   │   │   └── VerticalStepper.svelte
+│       │   │   │   │   ├── Table.svelte
+│       │   │   │   │   ├── Tile.svelte
+│       │   │   │   │   └── Tooltip.svelte
+│       │   │   │   ├── layout
+│       │   │   │   │   ├── Analytics.svelte
+│       │   │   │   │   ├── Favicon.svelte
+│       │   │   │   │   ├── Footer.svelte
+│       │   │   │   │   ├── Header.svelte
+│       │   │   │   │   ├── NoScrollOnNavigation.svelte
+│       │   │   │   │   └── SkipLinks.svelte
+│       │   │   │   └── pages
+│       │   │   │       ├── accueil
+│       │   │   │       │   ├── Hero.svelte
+│       │   │   │       │   ├── Infos.svelte
+│       │   │   │       │   ├── Promesses.svelte
+│       │   │   │       │   └── Verbatims.svelte
+│       │   │   │       ├── annuaire
+│       │   │   │       │   ├── Card.svelte
+│       │   │   │       │   ├── Filters.svelte
+│       │   │   │       │   ├── ListView.svelte
+│       │   │   │       │   ├── MapView.svelte
+│       │   │   │       │   ├── NoResult.svelte
+│       │   │   │       │   ├── Radius.svelte
+│       │   │   │       │   └── Toggle.svelte
+│       │   │   │       ├── blog
+│       │   │   │       │   ├── ArticleCard.svelte
+│       │   │   │       │   └── ArticlePage.svelte
+│       │   │   │       ├── notre-mission
+│       │   │   │       │   ├── Chronology.svelte
+│       │   │   │       │   ├── Hero.svelte
+│       │   │   │       │   └── Team.svelte
+│       │   │   │       ├── organismes-de-foncier-solidaire
+│       │   │   │       │   ├── Definition.svelte
+│       │   │   │       │   ├── OfsList.svelte
+│       │   │   │       │   ├── Proximity.svelte
+│       │   │   │       │   ├── Role.svelte
+│       │   │   │       │   ├── Synthesis.svelte
+│       │   │   │       │   └── TitleWithMascotte.svelte
+│       │   │   │       ├── simulateur-acquisition
+│       │   │   │       │   ├── Action.svelte
+│       │   │   │       │   ├── Actions.svelte
+│       │   │   │       │   ├── Description.svelte
+│       │   │   │       │   ├── FeesSynthesis.svelte
+│       │   │   │       │   ├── Form.svelte
+│       │   │   │       │   ├── GlobalSynthesis.svelte
+│       │   │   │       │   ├── LissageSynthesis.svelte
+│       │   │   │       │   ├── OperationSynthesis.svelte
+│       │   │   │       │   ├── Step1.svelte
+│       │   │   │       │   ├── Step2.svelte
+│       │   │   │       │   ├── Step3.svelte
+│       │   │   │       │   ├── Step4.svelte
+│       │   │   │       │   ├── Step5.svelte
+│       │   │   │       │   ├── Step6.svelte
+│       │   │   │       │   ├── Step7.svelte
+│       │   │   │       │   ├── Step8.svelte
+│       │   │   │       │   ├── Wrapper.svelte
+│       │   │   │       │   └── synthesis
+│       │   │   │       │       ├── Block.svelte
+│       │   │   │       │       ├── Row.svelte
+│       │   │   │       │       └── RowContainer.svelte
+│       │   │   │       ├── simulateur-eligibilite
+│       │   │   │       │   ├── Chatbot.svelte
+│       │   │   │       │   ├── Data.svelte
+│       │   │   │       │   ├── Hero.svelte
+│       │   │   │       │   └── Simulator.svelte
+│       │   │   │       └── statistiques
+│       │   │   │           ├── AcquisitionSimulationsConversionFunnel.svelte
+│       │   │   │           ├── ConversionFunnel.svelte
+│       │   │   │           ├── DepartementalConnectionCount.svelte
+│       │   │   │           ├── HousingTypesRepartition.svelte
+│       │   │   │           ├── RegionalConnectionCount.svelte
+│       │   │   │           ├── SimulationsCount.svelte
+│       │   │   │           ├── StatisticBox.svelte
+│       │   │   │           └── Stats.svelte
+│       │   │   ├── index.ts
+│       │   │   ├── managers
+│       │   │   │   ├── acquisition-simulator.svelte.ts
+│       │   │   │   ├── annuaire.svelte.ts
+│       │   │   │   ├── consent.svelte.ts
+│       │   │   │   └── dsfr.svelte.ts
+│       │   │   ├── server
+│       │   │   │   └── cache.ts
+│       │   │   └── utils
+│       │   │       ├── api-types.ts
+│       │   │       ├── constants.ts
+│       │   │       ├── definitions.ts
+│       │   │       ├── formatters.ts
+│       │   │       ├── generated-address-datagouv-types.ts
+│       │   │       ├── generated-api-types.ts
+│       │   │       ├── helpers.ts
+│       │   │       ├── lissage-ptz.ts
+│       │   │       ├── mascottes.ts
+│       │   │       ├── pictograms.ts
+│       │   │       └── sentry.ts
+│       │   └── routes
+│       │       ├── (accueil)
+│       │       │   └── +page.svelte
+│       │       ├── +error.svelte
+│       │       ├── +layout.svelte
+│       │       ├── +layout.ts
+│       │       ├── accessibilite
+│       │       │   └── +page.svelte
+│       │       ├── action-logement
+│       │       │   └── +page.svelte
+│       │       ├── api
+│       │       │   ├── acquisition-simulations
+│       │       │   │   ├── +server.ts
+│       │       │   │   ├── [id]
+│       │       │   │   │   └── +server.ts
+│       │       │   │   └── conversion-funnel
+│       │       │   │       └── +server.ts
+│       │       │   ├── brs-diffusion-websites
+│       │       │   │   ├── +server.ts
+│       │       │   │   └── all
+│       │       │   │       └── +server.ts
+│       │       │   ├── landbot-customers
+│       │       │   │   ├── [field]
+│       │       │   │   │   └── +server.ts
+│       │       │   │   ├── conversion-funnel
+│       │       │   │   │   └── +server.ts
+│       │       │   │   └── simulations
+│       │       │   │       ├── by-departements
+│       │       │   │       │   └── +server.ts
+│       │       │   │       ├── by-regions
+│       │       │   │       │   └── +server.ts
+│       │       │   │       └── monthly-summary
+│       │       │   │           └── +server.ts
+│       │       │   ├── municipalities
+│       │       │   │   └── [inseeCode]
+│       │       │   │       └── +server.ts
+│       │       │   └── ofss
+│       │       │       ├── +server.ts
+│       │       │       └── partner
+│       │       │           └── +server.ts
+│       │       ├── blog
+│       │       │   ├── +page.svelte
+│       │       │   ├── 5-idees-recues-sur-le-bail-reel-solidaire-brs
+│       │       │   │   └── +page.svelte
+│       │       │   ├── acheter-son-logement-sans-se-ruiner-3-solutions-a-connaitre-absolument
+│       │       │   │   └── +page.svelte
+│       │       │   ├── articles.ts
+│       │       │   ├── comment-savoir-si-je-suis-eligible-au-bail-reel-solidaire-brs
+│       │       │   │   └── +page.svelte
+│       │       │   ├── definitions.ts
+│       │       │   ├── la-succession-en-bail-reel-solidaire-brs
+│       │       │   │   └── +page.svelte
+│       │       │   ├── le-bail-reel-solidaire-brs-cest-quoi-exactement
+│       │       │   │   └── +page.svelte
+│       │       │   ├── les-inconvenients-ou-contreparties-du-bail-reel-solidaire-brs
+│       │       │   │   └── +page.svelte
+│       │       │   ├── puis-je-acheter-un-logement-en-brs-si-je-suis-deja-proprietaire
+│       │       │   │   └── +page.svelte
+│       │       │   └── un-exemple-pour-vous-projeter-dans-votre-achat-en-brs
+│       │       │       └── +page.svelte
+│       │       ├── conditions-generales-d-utilisation
+│       │       │   └── +page.svelte
+│       │       ├── espace-presse
+│       │       │   └── +page.svelte
+│       │       ├── logements-brs-disponibles
+│       │       │   ├── +page.svelte
+│       │       │   └── +page.ts
+│       │       ├── mentions-legales
+│       │       │   └── +page.svelte
+│       │       ├── notre-mission
+│       │       │   ├── +page.server.ts
+│       │       │   └── +page.svelte
+│       │       ├── nous-contacter
+│       │       │   └── +page.svelte
+│       │       ├── organismes-de-foncier-solidaire
+│       │       │   ├── +page.server.ts
+│       │       │   └── +page.svelte
+│       │       ├── organismes-fonciers-solidaires
+│       │       │   └── +page.server.ts
+│       │       ├── politique-de-confidentialite
+│       │       │   └── +page.svelte
+│       │       ├── questionnaire
+│       │       │   └── +page.svelte
+│       │       ├── revendre-mon-bien-en-brs
+│       │       │   ├── +page.svelte
+│       │       │   └── content.ts
+│       │       ├── simulateur-acquisition
+│       │       │   └── +page.svelte
+│       │       ├── simulateur-eligibilite
+│       │       │   ├── +page.server.ts
+│       │       │   └── +page.svelte
+│       │       ├── sitemap.xml
+│       │       │   └── +server.ts
+│       │       ├── statistiques
+│       │       │   ├── +page.server.ts
+│       │       │   └── +page.svelte
+│       │       └── tout-savoir-sur-le-bail-reel-solidaire-brs
+│       │           ├── +page.svelte
+│       │           ├── [slug]
+│       │           │   ├── +page.server.ts
+│       │           │   ├── +page.svelte
+│       │           │   └── content.ts
+│       │           └── content.ts
+│       ├── static
+│       │   ├── favicon.ico
+│       │   ├── revenu-fiscal-de-reference.png
+│       │   └── robots.txt
+│       ├── svelte.config.js
+│       ├── tests
+│       │   ├── e2e
+│       │   │   ├── a11y.spec.ts
+│       │   │   └── blog
+│       │   │       ├── [slug]
+│       │   │       │   └── blogPost.spec.ts
+│       │   │       └── blog.spec.ts
+│       │   ├── mocks
+│       │   │   └── ofss.ts
+│       │   └── unit
+│       │       └── src
+│       │           └── lib
+│       │               └── utils
+│       │                   ├── formatters.spec.ts
+│       │                   └── lissage-ptz.spec.ts
+│       ├── tsconfig.json
+│       └── vite.config.ts
+├── docker-compose.yml
+├── package-lock.json
+├── package.json
+└── renovate.json
+303 directories, 726 files
