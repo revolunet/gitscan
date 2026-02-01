@@ -1,0 +1,63 @@
+{
+  "name": "@etalab/project-legal",
+  "version": "0.6.0",
+  "description": "Projection de coordonnées WGS-84 vers le système légal français en vigueur",
+  "main": "./index.js",
+  "repository": "https://github.com/etalab/project-legal",
+  "author": "Jérôme Desboeufs <jerome.desboeufs@data.gouv.fr>",
+  "license": "MIT",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "lib",
+    "browser",
+    "index.js",
+    "browser.js",
+    "projections.json"
+  ],
+  "scripts": {
+    "lint": "xo",
+    "test": "c8 --all ava",
+    "test-lcov": "c8 --all --reporter=lcov ava",
+    "transpile": "babel lib --out-dir browser",
+    "prepublishOnly": "yarn transpile"
+  },
+  "dependencies": {
+    "proj4": "^2.9.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.21.0",
+    "@babel/core": "^7.21.4",
+    "@babel/preset-env": "^7.21.4",
+    "ava": "^5.2.0",
+    "c8": "^7.13.0",
+    "xo": "^0.54.1"
+  },
+  "xo": {
+    "semicolon": false,
+    "space": 2,
+    "rules": {
+      "unicorn/no-zero-fractions": "off",
+      "unicorn/prefer-module": "off",
+      "comma-dangle": [
+        "error",
+        "never"
+      ],
+      "import/extensions": "off"
+    }
+  },
+  "engines": {
+    "node": ">= 14.15"
+  },
+  "browser": {
+    "./index.js": "./browser.js"
+  },
+  "browserslist": "> 0.5% in FR, last 2 versions, Firefox ESR, not ie 11, not dead",
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  }
+}
