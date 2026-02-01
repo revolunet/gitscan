@@ -1,0 +1,310 @@
+.
+├── .dockerignore
+├── .env.dist
+├── .github
+│   └── workflows
+│       └── main.yml
+├── .gitignore
+├── .npmrc
+├── .prettierrc
+├── Dockerfile
+├── Procfile
+├── README.md
+├── biome.json
+├── ci
+│   ├── docker-compose.development.yaml
+│   └── docker-compose.main.yaml
+├── db
+│   ├── init
+│   │   └── multiple-databases.sh
+│   ├── migrate.ts
+│   └── migrations
+│       ├── 01-add_users.sql
+│       ├── 02-create_items_table.sql
+│       ├── 05-add-whitelist.sql
+│       ├── 07-add_service_instructeurs.sql
+│       ├── 08-migrate_report.sql
+│       ├── 09-add_redacted_id.sql
+│       ├── 901-add_applicant_mail.sql
+│       ├── 902-rework_clauses.sql
+│       ├── 904-add_pdf_snapshot.sql
+│       ├── 905-add_report_city.sql
+│       ├── 906-add_report_zipcode.sql
+│       ├── 907-add_pictures.sql
+│       ├── 908-add_tmp_pictures.sql
+│       ├── 909-add_picture_lines.sql
+│       ├── 910-add_picture_final_url.sql
+│       ├── 911-add_transactions.sql
+│       ├── 912-change_report_service.sql
+│       ├── 913-add_sent_email.sql
+│       ├── 914-add_suggested_email.sql
+│       ├── 915-add_user_settings.sql
+│       ├── 916-add_udap_number.sql
+│       ├── 917-add_udap_id_to_settings.sql
+│       └── 918-fill_settings_udapid.sql
+├── docker-compose.yaml
+├── images
+│   └── db-workflow.png
+├── package.json
+├── packages
+│   ├── backend
+│   │   ├── data
+│   │   │   └── udap.json
+│   │   ├── drizzle.config.ts
+│   │   ├── openapi.json
+│   │   ├── package.json
+│   │   ├── public
+│   │   │   ├── fonts
+│   │   │   │   ├── Marianne-Bold.ttf
+│   │   │   │   ├── Marianne-BoldItalic.ttf
+│   │   │   │   ├── Marianne-Regular.ttf
+│   │   │   │   └── Marianne-RegularItalic.ttf
+│   │   │   ├── marianne.png
+│   │   │   └── marianne_footer.png
+│   │   ├── src
+│   │   │   ├── db
+│   │   │   │   └── db.ts
+│   │   │   ├── db-types.d.ts
+│   │   │   ├── envVars.ts
+│   │   │   ├── features
+│   │   │   │   ├── debug.ts
+│   │   │   │   ├── errors.ts
+│   │   │   │   ├── image.ts
+│   │   │   │   ├── mail.ts
+│   │   │   │   └── sentry.ts
+│   │   │   ├── hmr.ts
+│   │   │   ├── index.ts
+│   │   │   ├── router.ts
+│   │   │   ├── routes
+│   │   │   │   ├── authMiddleware.ts
+│   │   │   │   ├── index.d.ts
+│   │   │   │   ├── pdfRoutes.tsx
+│   │   │   │   ├── staticDataRoutes.ts
+│   │   │   │   ├── syncRoutes.ts
+│   │   │   │   ├── tschemas.ts
+│   │   │   │   ├── uploadRoutes.tsx
+│   │   │   │   └── userRoutes.ts
+│   │   │   ├── services
+│   │   │   │   ├── services.ts
+│   │   │   │   ├── staticDataService.ts
+│   │   │   │   ├── syncService.ts
+│   │   │   │   ├── uploadService.ts
+│   │   │   │   └── userService.ts
+│   │   │   ├── tmp.ts
+│   │   │   └── types.ts
+│   │   ├── test.png
+│   │   ├── tests
+│   │   │   └── user.test.ts
+│   │   ├── tsconfig.json
+│   │   └── vite.config.ts
+│   ├── frontend
+│   │   ├── .eslintrc.cjs
+│   │   ├── .gitignore
+│   │   ├── README.md
+│   │   ├── WIP-dsfr-variables.json
+│   │   ├── analyse
+│   │   ├── dsfr-tokens.json
+│   │   ├── index.dist.css
+│   │   ├── index.html
+│   │   ├── package.json
+│   │   ├── panda.config.ts
+│   │   ├── park-ui.json
+│   │   ├── postcss.config.cjs
+│   │   ├── public
+│   │   │   ├── Tableau de bord mon compte rendu VIF (1).png
+│   │   │   ├── env.js
+│   │   │   ├── fonts
+│   │   │   │   ├── Marianne-Bold.ttf
+│   │   │   │   ├── Marianne-BoldItalic.ttf
+│   │   │   │   ├── Marianne-Regular.ttf
+│   │   │   │   └── Marianne-RegularItalic.ttf
+│   │   │   ├── marianne.png
+│   │   │   ├── marianne_footer.png
+│   │   │   ├── pdf_header.png
+│   │   │   ├── pdfjs
+│   │   │   │   ├── build
+│   │   │   │   │   ├── pdf.d.mts
+│   │   │   │   │   ├── pdf.min.mjs
+│   │   │   │   │   ├── pdf.mjs
+│   │   │   │   │   ├── pdf.mjs.map
+│   │   │   │   │   ├── pdf.sandbox.min.mjs
+│   │   │   │   │   ├── pdf.sandbox.mjs
+│   │   │   │   │   ├── pdf.sandbox.mjs.map
+│   │   │   │   │   ├── pdf.worker.min.mjs
+│   │   │   │   │   ├── pdf.worker.mjs
+│   │   │   │   │   └── pdf.worker.mjs.map
+│   │   │   │   ├── image_decoders
+│   │   │   │   │   ├── pdf.image_decoders.min.mjs
+│   │   │   │   │   ├── pdf.image_decoders.mjs
+│   │   │   │   │   └── pdf.image_decoders.mjs.map
+│   │   │   │   └── web
+│   │   │   │       ├── images
+│   │   │   │       │   ├── altText_add.svg
+│   │   │   │       │   ├── altText_done.svg
+│   │   │   │       │   ├── annotation-check.svg
+│   │   │   │       │   ├── annotation-comment.svg
+│   │   │   │       │   ├── annotation-help.svg
+│   │   │   │       │   ├── annotation-insert.svg
+│   │   │   │       │   ├── annotation-key.svg
+│   │   │   │       │   ├── annotation-newparagraph.svg
+│   │   │   │       │   ├── annotation-noicon.svg
+│   │   │   │       │   ├── annotation-note.svg
+│   │   │   │       │   ├── annotation-paperclip.svg
+│   │   │   │       │   ├── annotation-paragraph.svg
+│   │   │   │       │   ├── annotation-pushpin.svg
+│   │   │   │       │   ├── cursor-editorFreeHighlight.svg
+│   │   │   │       │   ├── cursor-editorFreeText.svg
+│   │   │   │       │   ├── cursor-editorInk.svg
+│   │   │   │       │   ├── cursor-editorTextHighlight.svg
+│   │   │   │       │   ├── editor-toolbar-delete.svg
+│   │   │   │       │   ├── loading-icon.gif
+│   │   │   │       │   ├── toolbarButton-editorHighlight.svg
+│   │   │   │       │   └── toolbarButton-menuArrow.svg
+│   │   │   │       ├── pdf_viewer.css
+│   │   │   │       ├── pdf_viewer.d.mts
+│   │   │   │       ├── pdf_viewer.mjs
+│   │   │   │       └── pdf_viewer.mjs.map
+│   │   │   ├── version.js
+│   │   │   ├── vite.svg
+│   │   │   ├── wa-sqlite-async.mjs
+│   │   │   └── wa-sqlite-async.wasm
+│   │   ├── remove-layers-plugin.cjs
+│   │   ├── scripts
+│   │   │   ├── createEnvFile.ts
+│   │   │   ├── generatePandaDS.ts
+│   │   │   ├── parseDsfrFRVariable.ts
+│   │   │   ├── setVersion.ts
+│   │   │   └── treeParser.ts
+│   │   ├── src
+│   │   │   ├── App.tsx
+│   │   │   ├── api.gen.ts
+│   │   │   ├── api.ts
+│   │   │   ├── assets
+│   │   │   │   ├── noResults.svg
+│   │   │   │   ├── react.svg
+│   │   │   │   ├── sent.svg
+│   │   │   │   └── welcome.svg
+│   │   │   ├── components
+│   │   │   │   ├── AppBanner.tsx
+│   │   │   │   ├── Banner.tsx
+│   │   │   │   ├── Chip.tsx
+│   │   │   │   ├── ColorPicker.tsx
+│   │   │   │   ├── Combobox.tsx
+│   │   │   │   ├── CompatibilityAlert.tsx
+│   │   │   │   ├── EmailInput.tsx
+│   │   │   │   ├── EnsureUser.tsx
+│   │   │   │   ├── FullWidthButton.tsx
+│   │   │   │   ├── InputGroup.tsx
+│   │   │   │   ├── LoginForm.tsx
+│   │   │   │   ├── MutationAlert.tsx
+│   │   │   │   ├── PasswordInput.tsx
+│   │   │   │   ├── Popover.tsx
+│   │   │   │   ├── RedirectIfUser.tsx
+│   │   │   │   ├── ReportSearch.tsx
+│   │   │   │   ├── SignupForm.tsx
+│   │   │   │   ├── SmartAddressInput.tsx
+│   │   │   │   ├── Spinner.tsx
+│   │   │   │   ├── SyncForm.tsx
+│   │   │   │   ├── Tabs.tsx
+│   │   │   │   ├── chips
+│   │   │   │   │   ├── ContactChips.tsx
+│   │   │   │   │   ├── DecisionChips.tsx
+│   │   │   │   │   ├── FurtherInfoChips.tsx
+│   │   │   │   │   └── SpaceTypeChips.tsx
+│   │   │   │   └── createStyleContext.tsx
+│   │   │   ├── contexts
+│   │   │   │   └── AuthContext.tsx
+│   │   │   ├── db
+│   │   │   │   ├── AppSchema.ts
+│   │   │   │   ├── Connector.ts
+│   │   │   │   └── db.ts
+│   │   │   ├── envVars.ts
+│   │   │   ├── features
+│   │   │   │   ├── DisabledContext.tsx
+│   │   │   │   ├── InfoForm.tsx
+│   │   │   │   ├── Layout.tsx
+│   │   │   │   ├── NotesForm.tsx
+│   │   │   │   ├── ReportActions.tsx
+│   │   │   │   ├── ReportList.tsx
+│   │   │   │   ├── ServiceInstructeurSelect.tsx
+│   │   │   │   ├── address.tsx
+│   │   │   │   ├── audio-record
+│   │   │   │   │   └── SpeechRecorder.tsx
+│   │   │   │   ├── chips
+│   │   │   │   │   ├── ChipList.tsx
+│   │   │   │   │   └── useChipOptions.tsx
+│   │   │   │   ├── idb.ts
+│   │   │   │   ├── menu
+│   │   │   │   │   ├── ClauseMenu.tsx
+│   │   │   │   │   ├── HelpMenu.tsx
+│   │   │   │   │   ├── MenuActions.tsx
+│   │   │   │   │   ├── MenuButton.tsx
+│   │   │   │   │   ├── MenuTitle.tsx
+│   │   │   │   │   ├── ServicesMenu.tsx
+│   │   │   │   │   ├── Share.tsx
+│   │   │   │   │   └── menuMachine.tsx
+│   │   │   │   ├── suggestionsMachine.ts
+│   │   │   │   ├── text-editor
+│   │   │   │   │   ├── TextEditor.tsx
+│   │   │   │   │   ├── TextEditorContext.tsx
+│   │   │   │   │   └── TextEditorToolbar.tsx
+│   │   │   │   ├── upload
+│   │   │   │   │   ├── DrawingCanvas.tsx
+│   │   │   │   │   └── UploadImage.tsx
+│   │   │   │   └── userSettings.ts
+│   │   │   ├── hooks
+│   │   │   │   ├── useAppStatus.tsx
+│   │   │   │   ├── useCanEditReport.tsx
+│   │   │   │   ├── useHref.tsx
+│   │   │   │   ├── useIntersectionObserver.tsx
+│   │   │   │   ├── useIsDesktop.tsx
+│   │   │   │   ├── useLocalStorageState.tsx
+│   │   │   │   └── useUserSettings.tsx
+│   │   │   ├── index.css
+│   │   │   ├── main.tsx
+│   │   │   ├── routeTree.gen.ts
+│   │   │   ├── routes
+│   │   │   │   ├── __root.tsx
+│   │   │   │   ├── account.tsx
+│   │   │   │   ├── edit.$reportId.tsx
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── login.tsx
+│   │   │   │   ├── pdf.$reportId.tsx
+│   │   │   │   ├── reset-password.$link.tsx
+│   │   │   │   ├── reset-password.index.lazy.tsx
+│   │   │   │   ├── signup.lazy.tsx
+│   │   │   │   └── udap.tsx
+│   │   │   ├── service-worker
+│   │   │   │   ├── electric.ts
+│   │   │   │   └── sw.ts
+│   │   │   ├── service-worker.d.ts
+│   │   │   ├── utils.ts
+│   │   │   └── vite-env.d.ts
+│   │   ├── theme
+│   │   │   └── recipes
+│   │   │       ├── popover.ts
+│   │   │       └── tabs.ts
+│   │   ├── tsconfig.json
+│   │   ├── tsconfig.node.json
+│   │   └── vite.config.ts
+│   └── pdf
+│       ├── package.json
+│       ├── src
+│       │   ├── index.ts
+│       │   ├── report.tsx
+│       │   └── serviceInstructeur.json
+│       └── tsconfig.json
+├── patches
+│   └── react-pdf-html@2.0.4.patch
+├── playwright.config.ts
+├── pnpm-lock.yaml
+├── pnpm-workspace.yaml
+├── powersync-config.yaml
+├── scalingo.json
+├── scripts
+│   └── clear-db.sh
+└── tests
+    ├── app.spec.ts
+    ├── user.spec.ts
+    └── utils.ts
+50 directories, 259 files
