@@ -1,0 +1,402 @@
+.
+├── .editorconfig
+├── .env.example
+├── .env.test
+├── .github
+│   └── workflows
+│       └── default.yml
+├── .gitignore
+├── .storybook
+│   ├── decorators.tsx
+│   ├── inertia-mock.tsx
+│   ├── main.ts
+│   ├── preview.ts
+│   └── vitest.setup.ts
+├── LICENSE
+├── README.md
+├── ace.js
+├── adonisrc.ts
+├── app
+│   ├── controllers
+│   │   ├── accueil_controller.ts
+│   │   ├── exploitations_controller.ts
+│   │   ├── log_entries_controller.ts
+│   │   ├── session_controller.ts
+│   │   └── visualisation_controller.ts
+│   ├── dto
+│   │   ├── exploitation_dto.ts
+│   │   ├── log_entry_dto.ts
+│   │   ├── log_entry_tag_dto.ts
+│   │   └── parcelle_dto.ts
+│   ├── exceptions
+│   │   └── handler.ts
+│   ├── helpers
+│   │   └── flash_message.ts
+│   ├── middleware
+│   │   ├── auth_middleware.ts
+│   │   ├── container_bindings_middleware.ts
+│   │   ├── guest_middleware.ts
+│   │   └── silent_auth_middleware.ts
+│   ├── models
+│   │   ├── contact.ts
+│   │   ├── culture.ts
+│   │   ├── culture_group.ts
+│   │   ├── event_log.ts
+│   │   ├── exploitation.ts
+│   │   ├── exploitation_tag.ts
+│   │   ├── log_entry.ts
+│   │   ├── log_entry_tag.ts
+│   │   ├── parcelle.ts
+│   │   ├── territoire.ts
+│   │   └── user.ts
+│   ├── services
+│   │   ├── event_logger_service.ts
+│   │   ├── exploitation_service.ts
+│   │   ├── log_entry_service.ts
+│   │   ├── log_entry_tag_service.ts
+│   │   └── parcelle_service.ts
+│   └── validators
+│       ├── create_exploitation.ts
+│       ├── log_entry.ts
+│       ├── log_entry_tag.ts
+│       └── parcelle.ts
+├── bin
+│   ├── console.ts
+│   ├── server.ts
+│   └── test.ts
+├── config
+│   ├── app.ts
+│   ├── auth.ts
+│   ├── bodyparser.ts
+│   ├── cors.ts
+│   ├── database.ts
+│   ├── hash.ts
+│   ├── inertia.ts
+│   ├── logger.ts
+│   ├── session.ts
+│   ├── shield.ts
+│   ├── static.ts
+│   └── vite.ts
+├── database
+│   ├── data
+│   │   └── cultures.json
+│   ├── factories
+│   │   ├── contact_factory.ts
+│   │   ├── exploitation_factory.ts
+│   │   ├── exploitation_tag_factory.ts
+│   │   ├── log_entry_factory.ts
+│   │   ├── log_entry_tag_factory.ts
+│   │   ├── territoire_factory.ts
+│   │   └── user_factory.ts
+│   ├── migrations
+│   │   ├── 1761308813851_create_users_table.ts
+│   │   ├── 1761747120565_setup_extensions.ts
+│   │   ├── 1761747222717_create_exploitations_table.ts
+│   │   ├── 1761759723274_create_exploitation_tags_table.ts
+│   │   ├── 1761817149107_create_remember_me_tokens_table.ts
+│   │   ├── 1761837948662_create_exploitation_tag_relations_table.ts
+│   │   ├── 1762188051300_alter_exploitations_table.ts
+│   │   ├── 1762249110644_create_contacts_table.ts
+│   │   ├── 1762445567941_alter_exploitations_table.ts
+│   │   ├── 1763049300052_create_territoires_table.ts
+│   │   ├── 1763050994941_alter_exploitations_table.ts
+│   │   ├── 1763133530099_alter_contacts_table.ts
+│   │   ├── 1763394813956_create_log_entries_table.ts
+│   │   ├── 1763395022726_create_exploitation_tag_log_entries_relation_table.ts
+│   │   ├── 1763459139337_alter_exploitation_tags_table.ts
+│   │   ├── 1763459333596_drop_exploitation_tag_relations_table.ts
+│   │   ├── 1763999979898_create_log_entry_tags_table.ts
+│   │   ├── 1764003020705_drop_siret_unique_constraint.ts
+│   │   ├── 1764065091180_create_log_entry_tag_relations_table.ts
+│   │   ├── 1764066208938_drop_type_structure_check.ts
+│   │   ├── 1764164984302_create_exploitation_tag_relations_table.ts
+│   │   ├── 1764165073511_drop_exploitation_tag_log_entries_relation_table.ts
+│   │   ├── 1764165216771_alter_exploitation_tags_table.ts
+│   │   ├── 1764174745387_alter_log_entries_table.ts
+│   │   ├── 1765554285029_create_culture_groups_table.ts
+│   │   ├── 1765554285029_create_cultures_table.ts
+│   │   ├── 1765554293675_create_parcelles_table.ts
+│   │   ├── 1767802748028_create_event_logs_table.ts
+│   │   └── 1769623231204_alter_exploitation_table.ts
+│   └── seeders
+│       ├── 1_user_seeder.ts
+│       ├── 2_exploitation_seeder.ts
+│       ├── 3_culture_group_seeder.ts
+│       ├── 4_culture_seeder.ts
+│       └── 5_mvp_seeder.ts
+├── eslint.config.js
+├── inertia
+│   ├── app
+│   │   ├── app.tsx
+│   │   └── ssr.tsx
+│   ├── components
+│   │   ├── analyses-section.tsx
+│   │   ├── authentification-bloc.tsx
+│   │   ├── cultures-filters.tsx
+│   │   ├── exploitation-id
+│   │   │   ├── EntryLogForm.tsx
+│   │   │   ├── ExploitationAddressCard.tsx
+│   │   │   ├── ExploitationContactCard.tsx
+│   │   │   ├── ExploitationInformationCard.tsx
+│   │   │   ├── ExploitationLog.tsx
+│   │   │   ├── ExploitationMainColumn.tsx
+│   │   │   ├── ExploitationMap.tsx
+│   │   │   └── TagSelector.tsx
+│   │   ├── exploitations
+│   │   │   ├── exploitations-list.tsx
+│   │   │   ├── exploitations-table.tsx
+│   │   │   └── form
+│   │   │       ├── exploitation-contact.tsx
+│   │   │       ├── exploitation-form.tsx
+│   │   │       ├── exploitation-identification.tsx
+│   │   │       ├── exploitation-localisation.tsx
+│   │   │       └── exploitation-map-form.tsx
+│   │   ├── flash-message.tsx
+│   │   ├── groupe-culture-tag.tsx
+│   │   ├── log-entry-id
+│   │   │   ├── LogEntryInformationCard.tsx
+│   │   │   ├── LogEntryNoteCard.tsx
+│   │   │   └── LogEntryTagsCard.tsx
+│   │   ├── map
+│   │   │   ├── VisualisationMap.tsx
+│   │   │   ├── popup-exploitation.tsx
+│   │   │   ├── popup-parcelle.tsx
+│   │   │   └── styles
+│   │   │       ├── map.css
+│   │   │       ├── parcelles.tsx
+│   │   │       ├── photo.json
+│   │   │       ├── plan-ign.json
+│   │   │       ├── vector.json
+│   │   │       └── zonage.tsx
+│   │   ├── map-layer-filters.tsx
+│   │   ├── search-adresse.tsx
+│   │   ├── search-autocomplete.tsx
+│   │   ├── search-raison-sociale.tsx
+│   │   ├── visualisation-exploitation-infos.tsx
+│   │   ├── visualisation-left-side-bar.tsx
+│   │   └── visualisation-right-side-bar.tsx
+│   ├── css
+│   │   └── app.css
+│   ├── functions
+│   │   ├── contacts.ts
+│   │   ├── cultures-group.tsx
+│   │   ├── cultures-types.tsx
+│   │   ├── date.ts
+│   │   ├── map.ts
+│   │   ├── size.ts
+│   │   └── string.ts
+│   ├── hooks
+│   │   └── use-is-light.tsx
+│   ├── lib
+│   │   ├── communes.ts
+│   │   ├── exploitations.ts
+│   │   └── export_csv.ts
+│   ├── pages
+│   │   ├── accueil.tsx
+│   │   ├── errors
+│   │   │   ├── not_found.tsx
+│   │   │   └── server_error.tsx
+│   │   ├── exploitations
+│   │   │   ├── creation.tsx
+│   │   │   ├── edition.tsx
+│   │   │   ├── id.tsx
+│   │   │   └── index.tsx
+│   │   ├── home.tsx
+│   │   ├── journal
+│   │   │   ├── creation.tsx
+│   │   │   ├── edition.tsx
+│   │   │   └── id.tsx
+│   │   ├── login.tsx
+│   │   └── visualisation.tsx
+│   ├── tsconfig.json
+│   └── ui
+│       ├── AlertDrawer
+│       │   ├── alert-drawer.stories.tsx
+│       │   ├── custom.css
+│       │   └── index.tsx
+│       ├── ButtonWithSelector
+│       │   ├── button-with-selector.stories.tsx
+│       │   └── index.tsx
+│       ├── Charts
+│       │   └── Doughnut
+│       │       ├── doughnut.stories.tsx
+│       │       └── index.tsx
+│       ├── CustomTag
+│       │   ├── custom-tag.stories.tsx
+│       │   └── index.tsx
+│       ├── DeleteAlert
+│       │   ├── delete-alert.stories.tsx
+│       │   └── index.tsx
+│       ├── Divider
+│       │   ├── divider.stories.tsx
+│       │   └── index.tsx
+│       ├── EmptyPlaceholder
+│       │   ├── empty-placeholder.css
+│       │   ├── empty-placeholder.stories.tsx
+│       │   └── index.tsx
+│       ├── FileItemList
+│       │   ├── file-item.tsx
+│       │   ├── file-items-list.stories.tsx
+│       │   └── index.tsx
+│       ├── InputWithSelector
+│       │   ├── dropdown-item.tsx
+│       │   ├── index.tsx
+│       │   └── input-with-selector.stories.tsx
+│       ├── LabelInfo
+│       │   ├── index.tsx
+│       │   └── label-info.stories.tsx
+│       ├── LabeledProgressBar
+│       │   ├── index.tsx
+│       │   └── labeled-progress-bar.stories.tsx
+│       ├── ListItem
+│       │   ├── index.tsx
+│       │   └── list-item.stories.tsx
+│       ├── Loader
+│       │   ├── index.tsx
+│       │   ├── loader.stories.tsx
+│       │   └── spinner-animation.css
+│       ├── MajorSelector
+│       │   ├── index.css
+│       │   ├── index.tsx
+│       │   └── major-selector.stories.tsx
+│       ├── MetasList
+│       │   ├── index.tsx
+│       │   └── metas-list.stories.tsx
+│       ├── MoreButton
+│       │   ├── index.tsx
+│       │   └── more-button.stories.tsx
+│       ├── ProgressBar
+│       │   ├── index.tsx
+│       │   └── progress-bar.stories.tsx
+│       ├── SectionCard
+│       │   ├── index.tsx
+│       │   └── section-card.stories.tsx
+│       ├── SelectorMenu
+│       │   ├── index.tsx
+│       │   └── selector-menu.stories.tsx
+│       ├── SmallSection
+│       │   ├── index.tsx
+│       │   └── small-section.stories.tsx
+│       ├── TagsList
+│       │   ├── index.tsx
+│       │   └── tags-list.stories.tsx
+│       ├── Timeline
+│       │   ├── index.tsx
+│       │   ├── timeline-animation.css
+│       │   └── timeline.stories.tsx
+│       ├── Toaster
+│       │   ├── index.tsx
+│       │   └── toaster.stories.tsx
+│       ├── cultures-pictos.stories.tsx
+│       ├── example
+│       │   ├── example.stories.js
+│       │   └── index.tsx
+│       └── layouts
+│           ├── MapLayout
+│           │   ├── index.tsx
+│           │   └── map-layout.stories.tsx
+│           ├── layout.stories.tsx
+│           └── layout.tsx
+├── package-lock.json
+├── package.json
+├── public
+│   ├── Illustration-hero.png
+│   ├── cultures-pictos
+│   │   ├── dark
+│   │   │   ├── groupe-1.png
+│   │   │   ├── groupe-10.png
+│   │   │   ├── groupe-11.png
+│   │   │   ├── groupe-12.png
+│   │   │   ├── groupe-13.png
+│   │   │   ├── groupe-14.png
+│   │   │   ├── groupe-15.png
+│   │   │   ├── groupe-16.png
+│   │   │   ├── groupe-17.png
+│   │   │   ├── groupe-18.png
+│   │   │   ├── groupe-19.png
+│   │   │   ├── groupe-2.png
+│   │   │   ├── groupe-20.png
+│   │   │   ├── groupe-21.png
+│   │   │   ├── groupe-22.png
+│   │   │   ├── groupe-23.png
+│   │   │   ├── groupe-24.png
+│   │   │   ├── groupe-25.png
+│   │   │   ├── groupe-26.png
+│   │   │   ├── groupe-27.png
+│   │   │   ├── groupe-28.png
+│   │   │   ├── groupe-3.png
+│   │   │   ├── groupe-4.png
+│   │   │   ├── groupe-5.png
+│   │   │   ├── groupe-6.png
+│   │   │   ├── groupe-7.png
+│   │   │   ├── groupe-8.png
+│   │   │   └── groupe-9.png
+│   │   └── light
+│   │       ├── groupe-1.png
+│   │       ├── groupe-10.png
+│   │       ├── groupe-11.png
+│   │       ├── groupe-12.png
+│   │       ├── groupe-13.png
+│   │       ├── groupe-14.png
+│   │       ├── groupe-15.png
+│   │       ├── groupe-16.png
+│   │       ├── groupe-17.png
+│   │       ├── groupe-18.png
+│   │       ├── groupe-19.png
+│   │       ├── groupe-2.png
+│   │       ├── groupe-20.png
+│   │       ├── groupe-21.png
+│   │       ├── groupe-22.png
+│   │       ├── groupe-23.png
+│   │       ├── groupe-24.png
+│   │       ├── groupe-25.png
+│   │       ├── groupe-26.png
+│   │       ├── groupe-27.png
+│   │       ├── groupe-28.png
+│   │       ├── groupe-3.png
+│   │       ├── groupe-4.png
+│   │       ├── groupe-5.png
+│   │       ├── groupe-6.png
+│   │       ├── groupe-7.png
+│   │       ├── groupe-8.png
+│   │       └── groupe-9.png
+│   └── placeholder-illustrations
+│       ├── exploitations.png
+│       └── journal-colored.png
+├── resources
+│   └── views
+│       └── inertia_layout.edge
+├── scalingo-postbuild.sh
+├── start
+│   ├── env.ts
+│   ├── kernel.ts
+│   └── routes.ts
+├── start_db.sh
+├── start_local_prod.sh
+├── tests
+│   ├── bootstrap.ts
+│   ├── functional
+│   │   ├── exploitation
+│   │   │   ├── exploitation_create.spec.ts
+│   │   │   ├── exploitation_destroy.spec.ts
+│   │   │   ├── exploitation_get.spec.ts
+│   │   │   └── exploitation_update.spec.ts
+│   │   └── visualisation
+│   │       └── assign_parcelles.spec.ts
+│   └── unit
+│       ├── contact
+│       │   └── contact.spec.ts
+│       ├── exploitation
+│       │   ├── exploitation.spec.ts
+│       │   └── exploitation_service.spec.ts
+│       └── log_entry
+│           ├── log_entry_service.spec.ts
+│           └── log_entry_tag_service.spec.ts
+├── tsconfig.json
+├── types
+│   ├── flash_messages.ts
+│   └── models.ts
+├── vite.config.ts
+├── vitest.config.ts
+└── vitest.shims.d.ts
+82 directories, 319 files
