@@ -1,0 +1,316 @@
+.
+├── .gitignore
+├── README.md
+└── gpu_jpeg2k
+    ├── .cproject
+    ├── .project
+    ├── .settings
+    │   └── org.eclipse.cdt.codan.core.prefs
+    ├── CMake
+    │   ├── FindFreeImage.cmake
+    │   └── cuda
+    │       ├── FindCUDA
+    │       │   ├── make2cmake.cmake
+    │       │   ├── parse_cubin.cmake
+    │       │   └── run_nvcc.cmake
+    │       └── FindCUDA.cmake
+    ├── CMakeLists.txt
+    ├── README.build
+    ├── bsq.config
+    ├── config
+    │   ├── CMakeLists.txt
+    │   ├── arguments.c
+    │   ├── arguments.h
+    │   ├── help.h
+    │   ├── ini.c
+    │   ├── ini.h
+    │   ├── init_device.c
+    │   ├── init_device.h
+    │   ├── parameters.c
+    │   └── parameters.h
+    ├── config_files
+    │   ├── default.config
+    │   ├── hyperspectral_lossless.config
+    │   ├── hyperspectral_lossy.config
+    │   ├── lossless.config
+    │   └── lossy.config
+    ├── copyright.txt
+    ├── decoder.c
+    ├── default.config
+    ├── dwt
+    │   ├── CMakeLists.txt
+    │   ├── dwt.cu
+    │   ├── dwt.h
+    │   ├── fwt.cu
+    │   ├── fwt.h
+    │   ├── fwt_1d.cu
+    │   ├── fwt_1d.h
+    │   ├── fwt_new.cu
+    │   ├── fwt_new.h
+    │   ├── iwt.cu
+    │   ├── iwt.h
+    │   ├── iwt_1d.cu
+    │   ├── iwt_1d.h
+    │   ├── iwt_new.cu
+    │   ├── iwt_new.h
+    │   ├── kernel.cu
+    │   └── kernel.h
+    ├── encoder.c
+    ├── file_access
+    │   ├── CMakeLists.txt
+    │   ├── file_access.c
+    │   └── file_access.h
+    ├── file_format
+    │   ├── CMakeLists.txt
+    │   ├── README
+    │   ├── boxes.c
+    │   └── boxes.h
+    ├── freeimage
+    │   ├── include
+    │   │   └── FreeImage.h
+    │   └── lib
+    │       ├── libfreeimage-3.14.1.so
+    │       ├── libfreeimage.a
+    │       ├── libfreeimage.so
+    │       └── libfreeimage.so.3
+    ├── j2k_main.doxyfile
+    ├── jp2_decoder.c
+    ├── klt
+    │   ├── CMakeLists.txt
+    │   ├── adjust.cu
+    │   ├── adjust.h
+    │   ├── analysis.cu
+    │   ├── analysis.h
+    │   ├── blocks.c
+    │   ├── blocks.h
+    │   ├── calc_cov.cu
+    │   ├── calc_cov.h
+    │   ├── calc_cov_mat.cu
+    │   ├── calc_cov_mat.h
+    │   ├── gs.cu
+    │   ├── gs.h
+    │   ├── klt.cu
+    │   ├── klt.h
+    │   ├── klt_klt_gpu.diff
+    │   ├── mct_transform.cu
+    │   ├── mct_transform.h
+    │   ├── mean_adjust_data.cu
+    │   ├── mean_adjust_data.h
+    │   ├── reduce.cu
+    │   ├── reduce.h
+    │   ├── shift.cu
+    │   ├── shift.h
+    │   ├── test_calc_cov.cu
+    │   └── test_calc_cov_mat.cu
+    ├── misc
+    │   ├── CMakeLists.txt
+    │   ├── cuda_errors.cu
+    │   ├── cuda_errors.h
+    │   ├── memory_management.cu
+    │   └── memory_management.cuh
+    ├── preprocessing
+    │   ├── CMakeLists.txt
+    │   ├── TODO
+    │   ├── mct.c
+    │   ├── mct.h
+    │   ├── preprocess.cu
+    │   ├── preprocess_gpu.cu
+    │   ├── preprocess_gpu.h
+    │   └── preprocessing_constants.cuh
+    ├── print_info
+    │   ├── print_info.c
+    │   └── print_info.h
+    ├── results
+    │   ├── change_format.awk
+    │   ├── enc_lossless.sh
+    │   ├── enc_lossy.sh
+    │   ├── parser.awk
+    │   ├── results_kakadu_onecore.txt
+    │   ├── results_lossless.txt
+    │   ├── results_lossy.txt
+    │   └── rgb8bit
+    │       ├── results_128_lossless_gtx580.txt
+    │       ├── results_128_lossless_teslaM2050_dev0.txt
+    │       ├── results_128_lossless_teslaS1070_dev1.txt
+    │       ├── results_128_lossy_gtx580.txt
+    │       ├── results_128_lossy_teslaM2050_dev0.txt
+    │       ├── results_128_lossy_teslaS1070_dev1.txt
+    │       ├── results_256_lossless_gtx580.txt
+    │       ├── results_256_lossless_teslaM2050_dev0.txt
+    │       ├── results_256_lossless_teslaM2050_dev1.txt
+    │       ├── results_256_lossless_teslaS1070.txt
+    │       ├── results_256_lossy_gtx580.txt
+    │       ├── results_256_lossy_teslaM2050_dev0.txt
+    │       ├── results_256_lossy_teslaM2050_dev1.txt
+    │       ├── results_256_lossy_teslaS1070.txt
+    │       ├── results_64_lossless_gtx580.txt
+    │       ├── results_64_lossless_teslaM2050_dev0.txt
+    │       ├── results_64_lossless_teslaS1070_dev1.txt
+    │       ├── results_64_lossy_teslaM2050_dev0.txt
+    │       ├── results_64_lossy_teslaS1070_dev1.txt
+    │       ├── results_lossless_gtx580.txt
+    │       ├── results_lossless_teslat10.txt
+    │       ├── results_lossy_gtx580.txt
+    │       └── results_lossy_teslat10.txt
+    ├── scripts
+    │   └── clean.sh
+    ├── test
+    │   ├── dbg_fiwt_1d.cu
+    │   ├── dbg_fiwt_1d.h
+    │   ├── dbg_fwt_1d.cu
+    │   ├── dbg_fwt_1d.h
+    │   ├── dbg_iwt_1d.cu
+    │   ├── dbg_iwt_1d.h
+    │   ├── dbg_wt.cu
+    │   └── dbg_wt.h
+    ├── test.cu
+    ├── tier1
+    │   ├── CMakeLists.txt
+    │   ├── bpc
+    │   │   ├── CMakeLists.txt
+    │   │   ├── bpc.cpp
+    │   │   ├── gpu_bpc.cu
+    │   │   ├── gpu_bpc.h
+    │   │   ├── gpu_convert.cu
+    │   │   ├── gpu_convert.h
+    │   │   ├── test_gpu_bpc.cpp
+    │   │   └── test_gpu_bpc.h
+    │   ├── coeff_coder
+    │   │   ├── CMakeLists.txt
+    │   │   ├── coeff_coder_pcrd.cu
+    │   │   ├── coeff_coder_pcrd.cuh
+    │   │   ├── gpu_c2luts.cuh
+    │   │   ├── gpu_coder.h
+    │   │   ├── gpu_coeff_coder.cpp
+    │   │   ├── gpu_coeff_coder2.cu
+    │   │   ├── gpu_coeff_coder2.cuh
+    │   │   ├── gpu_mq-coder.cuh
+    │   │   ├── sample_data.h
+    │   │   └── test_gpu_coder.cpp
+    │   ├── dequantizer.cu
+    │   ├── dequantizer.h
+    │   ├── ebcot
+    │   │   ├── CMakeLists.txt
+    │   │   ├── coeff_coder_pcrd.cu
+    │   │   ├── coeff_coder_pcrd.cuh
+    │   │   ├── gpu_c2luts.cuh
+    │   │   ├── gpu_coder.h
+    │   │   ├── gpu_coeff_coder.cpp
+    │   │   ├── gpu_coeff_coder2.cu
+    │   │   ├── gpu_coeff_coder2.cuh
+    │   │   ├── gpu_mq-coder.cuh
+    │   │   ├── mqc
+    │   │   │   ├── CMakeLists.txt
+    │   │   │   ├── common.h
+    │   │   │   ├── library
+    │   │   │   │   └── openjpeg
+    │   │   │   │       ├── CMakeLists.txt
+    │   │   │   │       ├── Makefile
+    │   │   │   │       ├── bio.c
+    │   │   │   │       ├── bio.h
+    │   │   │   │       ├── cio.c
+    │   │   │   │       ├── cio.h
+    │   │   │   │       ├── dwt.c
+    │   │   │   │       ├── dwt.h
+    │   │   │   │       ├── event.c
+    │   │   │   │       ├── event.h
+    │   │   │   │       ├── fix.h
+    │   │   │   │       ├── image.c
+    │   │   │   │       ├── image.h
+    │   │   │   │       ├── int.h
+    │   │   │   │       ├── j2k.c
+    │   │   │   │       ├── j2k.h
+    │   │   │   │       ├── j2k_lib.c
+    │   │   │   │       ├── j2k_lib.h
+    │   │   │   │       ├── jp2.c
+    │   │   │   │       ├── jp2.h
+    │   │   │   │       ├── jpt.c
+    │   │   │   │       ├── jpt.h
+    │   │   │   │       ├── mct.c
+    │   │   │   │       ├── mct.h
+    │   │   │   │       ├── mqc.c
+    │   │   │   │       ├── mqc.h
+    │   │   │   │       ├── openjpeg.c
+    │   │   │   │       ├── openjpeg.h
+    │   │   │   │       ├── opj_config.h
+    │   │   │   │       ├── opj_convert.c
+    │   │   │   │       ├── opj_convert.h
+    │   │   │   │       ├── opj_includes.h
+    │   │   │   │       ├── opj_malloc.h
+    │   │   │   │       ├── pi.c
+    │   │   │   │       ├── pi.h
+    │   │   │   │       ├── raw.c
+    │   │   │   │       ├── raw.h
+    │   │   │   │       ├── t1.c
+    │   │   │   │       ├── t1.h
+    │   │   │   │       ├── t1_generate_luts.c
+    │   │   │   │       ├── t1_luts.h
+    │   │   │   │       ├── t2.c
+    │   │   │   │       ├── t2.h
+    │   │   │   │       ├── tcd.c
+    │   │   │   │       ├── tcd.h
+    │   │   │   │       ├── tgt.c
+    │   │   │   │       └── tgt.h
+    │   │   │   ├── mqc_common.h
+    │   │   │   ├── mqc_configuration.cu
+    │   │   │   ├── mqc_configuration.h
+    │   │   │   ├── mqc_data.c
+    │   │   │   ├── mqc_data.h
+    │   │   │   ├── mqc_develop.cu
+    │   │   │   ├── mqc_develop.h
+    │   │   │   ├── mqc_opj_helper.c
+    │   │   │   ├── mqc_opj_helper.h
+    │   │   │   ├── mqc_wrapper.cpp
+    │   │   │   ├── mqc_wrapper.h
+    │   │   │   ├── timer.c
+    │   │   │   └── timer.h
+    │   │   ├── test_gpu_coeff_coder.cpp
+    │   │   └── test_gpu_coeff_coder.h
+    │   ├── quantization.c
+    │   ├── quantization.h
+    │   ├── quantizer.cu
+    │   ├── quantizer.h
+    │   ├── rate-distortion.cu
+    │   └── rate-distortion.h
+    ├── tier2
+    │   ├── CMakeLists.txt
+    │   ├── backup.c
+    │   ├── backup_tag_tree.c
+    │   ├── buffer.c
+    │   ├── buffer.h
+    │   ├── codestream.c
+    │   ├── codestream.h
+    │   ├── codestream_mct.c
+    │   ├── codestream_mct.h
+    │   ├── dbg_tier2.c
+    │   ├── dbg_tier2.h
+    │   ├── markers.h
+    │   ├── tag_tree.h
+    │   ├── tag_tree_decode.c
+    │   ├── tag_tree_encode.c
+    │   ├── tag_tree_encode.h
+    │   ├── write_codestream.c
+    │   └── write_codestream.h
+    └── types
+        ├── CMakeLists.txt
+        ├── buffered_stream.c
+        ├── buffered_stream.h
+        ├── dbg_image.c
+        ├── dbg_image.h
+        ├── image.c
+        ├── image.h
+        ├── image_bil.c
+        ├── image_bil.h
+        ├── image_bip.c
+        ├── image_bip.h
+        ├── image_bsq.c
+        ├── image_bsq.h
+        ├── image_hyper.c
+        ├── image_hyper.h
+        ├── image_mct.h
+        ├── image_ordinary.c
+        ├── image_ordinary.h
+        ├── image_types.h
+        ├── show_image.c
+        └── show_image.h
+31 directories, 284 files
