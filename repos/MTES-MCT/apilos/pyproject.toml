@@ -1,0 +1,91 @@
+[tool.coverage.run]
+omit = [
+    "*/__init__.py",
+    "*/tests/*",
+    "*/migrations/*",
+    "ecoloweb/*",
+    # TODO: add tests on the following modules and remove them from this list
+    "conventions/services/upload_objects.py",
+]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "core.settings"
+
+[tool.ruff]
+line-length = 120
+show-fixes = true
+target-version = "py312"
+exclude = [
+    ".venv",
+    "bin",
+    "documents",
+    "node_modules",
+    "staticfiles",
+    "templates",
+]
+
+[tool.ruff.lint]
+select = [
+    "B",   # flake8-bugbear
+    "BLE", # flake8-blind-except
+    "C90", # mccabe
+    "E",   # pycodestyle
+    "F",   # Pyflakes
+    "I",   # isort
+    "INP", # flake8-no-pep420
+    "N",   # pep8-naming
+    "PGH", # pygrep-hooks
+    "Q",   # flake8-quotes
+    "T20", # flake8-print
+    "TID", # flake8-tidy-imports
+    "UP",  # pyupgrade
+    "W",   # pycodestyle
+]
+unfixable = ["B"]
+
+
+[tool.ruff.lint.extend-per-file-ignores]
+"__init__.py" = ["F401", "F403"]
+"scripts/*.py" = ["INP001"]
+"**/migrations/*.py" = ["E501", "N806"]
+# TODO: ignored because of low coverage, fix and remove
+"conventions/services/upload_objects.py" = ["UP", "C901"]
+"conventions/services/recapitulatif.py" = ["UP"]
+"conventions/views/avenants.py" = ["I001"]
+# TODO: changing imports order make tests fail, fix and remove
+"ecoloweb/services/__init__.py" = ["I001"]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10 # TODO: very high value, reduce to 10
+
+[tool.ruff.lint.isort]
+case-sensitive = true
+known-third-party = [
+    "boto3",
+    "botocore",
+    "celery",
+    "decouple",
+    "dj_database_url",
+    "django_cas_ng",
+    "django",
+    "docx",
+    "docxtpl",
+    "drf_spectacular",
+    "factory",
+    "openpyxl",
+    "rest_framework_simplejwt",
+    "rest_framework",
+    "sentry_sdk",
+    "simple_history",
+    "storages",
+    "waffle",
+    "zipfile",
+]
+split-on-trailing-comma = true
+section-order = [
+    "future",
+    "standard-library",
+    "third-party",
+    "first-party",
+    "local-folder",
+]

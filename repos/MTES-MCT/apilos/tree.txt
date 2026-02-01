@@ -1,0 +1,1064 @@
+.
+├── .buildpacks
+├── .docker
+│   ├── postgres
+│   │   ├── .gitignore
+│   │   └── scripts
+│   │       └── ecoloweb.sh
+│   └── redis
+│       ├── conf
+│       │   └── redis.conf
+│       └── data
+│           └── .gitignore
+├── .env.template
+├── .env.test
+├── .github
+│   ├── CODEOWNERS
+│   ├── dependabot.yml
+│   ├── files
+│   │   └── create-multiple-postgresql-databases.sh
+│   ├── pull_request_template.md
+│   └── workflows
+│       ├── codeql-analysis.yml
+│       ├── db_backup_download.yml
+│       ├── publish-docs.yml
+│       ├── push-branch-main.yml
+│       ├── push-branch-recette.yml
+│       ├── push-pull-request.yml
+│       ├── push-version-tag.yml
+│       ├── run_check.yml
+│       ├── run_tests.yml
+│       └── s3_backup.yml
+├── .gitignore
+├── .pre-commit-config.yaml
+├── .slugignore
+├── .sonarcloud.properties
+├── .tool-versions
+├── Aptfile
+├── LICENSE
+├── Makefile
+├── Procfile
+├── Procfile.dev
+├── README.md
+├── STATS.md
+├── admin
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── filters.py
+│   └── tests
+│       ├── __init__.py
+│       └── test_filters.py
+├── api
+│   ├── __init__.py
+│   └── siap
+│       └── v0
+│           ├── __init__.py
+│           ├── apps.py
+│           └── urls.py
+├── api-siap-int.json
+├── apilos_settings
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── api
+│   │   ├── __init__.py
+│   │   ├── api_views.py
+│   │   └── tests
+│   │       ├── __init__.py
+│   │       └── test_apis.py
+│   ├── apps.py
+│   ├── fixtures
+│   │   └── departements.json
+│   ├── forms
+│   │   ├── __init__.py
+│   │   └── delegataires_form.py
+│   ├── migrations
+│   │   ├── 0001_initial_squashed_0004_auto_20230207_2328.py
+│   │   ├── 0005_alter_departement_code_insee_region.py
+│   │   ├── 0006_commune.py
+│   │   └── __init__.py
+│   ├── models.py
+│   ├── services
+│   │   ├── __init__.py
+│   │   ├── delegataires.py
+│   │   └── list_services.py
+│   ├── tests
+│   │   ├── __init__.py
+│   │   ├── test_services.py
+│   │   └── test_views.py
+│   ├── urls.py
+│   └── views.py
+├── bailleurs
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── fixtures
+│   │   └── bailleurs_for_tests.json
+│   ├── migrations
+│   │   ├── 0001_initial_squashed_0027_remove_search_vector_trigger.py
+│   │   └── __init__.py
+│   ├── models.py
+│   └── tests
+│       ├── __init__.py
+│       ├── factories.py
+│       └── test_models.py
+├── bin
+│   ├── post_deploy
+│   └── restart_workers_script.sh
+├── comments
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── migrations
+│   │   ├── 0001_initial_squashed_0003_comment_comment_statut_idx.py
+│   │   └── __init__.py
+│   ├── models.py
+│   ├── tests
+│   │   ├── __init__.py
+│   │   ├── test_models.py
+│   │   └── test_views.py
+│   ├── urls.py
+│   └── views.py
+├── conventions
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── fixtures
+│   │   ├── avenant_types.json
+│   │   └── conventions_for_tests.json
+│   ├── forms
+│   │   ├── __init__.py
+│   │   ├── avenant.py
+│   │   ├── bailleur.py
+│   │   ├── convention_form_administration.py
+│   │   ├── convention_form_annexes.py
+│   │   ├── convention_form_attribution.py
+│   │   ├── convention_form_bailleur.py
+│   │   ├── convention_form_cadatre.py
+│   │   ├── convention_form_champ_libre.py
+│   │   ├── convention_form_collectif.py
+│   │   ├── convention_form_commentaires.py
+│   │   ├── convention_form_dates.py
+│   │   ├── convention_form_denonciation.py
+│   │   ├── convention_form_edd.py
+│   │   ├── convention_form_finalisation.py
+│   │   ├── convention_form_financement.py
+│   │   ├── convention_form_foyer_residence_variantes.py
+│   │   ├── convention_form_logements.py
+│   │   ├── convention_form_programme.py
+│   │   ├── convention_form_resiliation.py
+│   │   ├── convention_form_selection.py
+│   │   ├── convention_form_simulateur_loyer.py
+│   │   ├── convention_form_type_stationnements.py
+│   │   ├── convention_from_operation.py
+│   │   ├── convention_mixed_form_initialisation.py
+│   │   ├── convention_number.py
+│   │   ├── evenement.py
+│   │   ├── notification.py
+│   │   ├── programme_number.py
+│   │   ├── type1and2.py
+│   │   └── upload.py
+│   ├── management
+│   │   ├── __init__.py
+│   │   └── commands
+│   │       ├── __init__.py
+│   │       ├── cancel_old_conventions.py
+│   │       ├── clear_all_data.py
+│   │       ├── deduplicate_programme.py
+│   │       ├── denonciation_batch.py
+│   │       ├── export_conventions.py
+│   │       ├── fix_corse_dpt_code.py
+│   │       ├── fix_region_code.py
+│   │       ├── generate_pdf.py
+│   │       ├── get_delivery_statistics.py
+│   │       ├── normalize_ecoloweb_conventions_status.py
+│   │       ├── programme_update_administration.py
+│   │       ├── programme_update_bailleur.py
+│   │       ├── remove_lot_without_convention.py
+│   │       ├── remove_programme_without_convention.py
+│   │       ├── set_convention_numero_pour_recherche.py
+│   │       ├── update_conventions_bailleurs.py
+│   │       └── update_financement.py
+│   ├── migrations
+│   │   ├── 0001_initial_squashed_0083_convention_fichier_override_cerfa.py
+│   │   ├── 0084_alter_convention_financement.py
+│   │   ├── 0085_convention_numero_pour_recherche_1.py
+│   │   ├── 0086_alter_convention_financement.py
+│   │   ├── 0087_alter_convention_financement.py
+│   │   ├── 0088_move_comments.py
+│   │   ├── 0089_alter_convention_financement.py
+│   │   ├── 0090_pret_lot.py
+│   │   ├── 0091_migrate_prets.py
+│   │   ├── 0092_remove_pret_convention_alter_pret_lot.py
+│   │   ├── 0093_evenement_pieces_jointes.py
+│   │   ├── 0094_convention_convention_cree_le_idx.py
+│   │   ├── 0095_alter_convention_financement.py
+│   │   ├── 0096_alter_convention_financement.py
+│   │   ├── 0097_convention_identification_bailleur_and_more.py
+│   │   ├── 0098_alter_convention_financement.py
+│   │   ├── 0099_remove_convention_unique_display_name_and_more.py
+│   │   ├── 0100_auto_20241213_1554.py
+│   │   ├── 0101_alter_convention_financement.py
+│   │   ├── 0102_remove_convention_financement.py
+│   │   ├── 0103_alter_convention_date_envoi_spf_and_more.py
+│   │   ├── 0104_convention_nom_fichier_publication_spf_and_more.py
+│   │   └── __init__.py
+│   ├── models
+│   │   ├── __init__.py
+│   │   ├── avenant_type.py
+│   │   ├── choices.py
+│   │   ├── convention.py
+│   │   ├── convention_history.py
+│   │   ├── evenement.py
+│   │   ├── piece_jointe.py
+│   │   └── pret.py
+│   ├── permissions.py
+│   ├── services
+│   │   ├── __init__.py
+│   │   ├── alertes.py
+│   │   ├── annexes.py
+│   │   ├── avenants.py
+│   │   ├── bailleurs.py
+│   │   ├── cadastre.py
+│   │   ├── champ_libre.py
+│   │   ├── collectif.py
+│   │   ├── commentaires.py
+│   │   ├── convention_generator.py
+│   │   ├── conventions.py
+│   │   ├── denonciation.py
+│   │   ├── edd.py
+│   │   ├── file.py
+│   │   ├── finalisation.py
+│   │   ├── financement.py
+│   │   ├── foyer_attribution.py
+│   │   ├── from_operation.py
+│   │   ├── logements.py
+│   │   ├── recapitulatif.py
+│   │   ├── residence_attribution.py
+│   │   ├── resiliation.py
+│   │   ├── search.py
+│   │   ├── selection.py
+│   │   ├── services_programmes.py
+│   │   ├── type_stationnement.py
+│   │   ├── upload_objects.py
+│   │   ├── utils.py
+│   │   └── variantes.py
+│   ├── signals.py
+│   ├── tasks.py
+│   ├── templatetags
+│   │   ├── __init__.py
+│   │   ├── custom_filters.py
+│   │   └── display_filters.py
+│   ├── tests
+│   │   ├── __init__.py
+│   │   ├── custom_filters
+│   │   │   ├── __init__.py
+│   │   │   ├── test_convention_list_custom_filters.py
+│   │   │   └── test_main_custom_filters.py
+│   │   ├── fixtures
+│   │   │   └── convention.pdf
+│   │   ├── fixtures.py
+│   │   ├── forms
+│   │   │   ├── __init__.py
+│   │   │   └── test_convention_mixed_form_initialisation.py
+│   │   ├── models
+│   │   │   ├── __init__.py
+│   │   │   ├── test_avenant_type.py
+│   │   │   ├── test_contributors.py
+│   │   │   ├── test_convention.py
+│   │   │   ├── test_evenement.py
+│   │   │   └── test_pret.py
+│   │   ├── services
+│   │   │   ├── __init__.py
+│   │   │   ├── test_alertes.py
+│   │   │   ├── test_annexes_service.py
+│   │   │   ├── test_avenants_service.py
+│   │   │   ├── test_bailleur_service.py
+│   │   │   ├── test_cadastre_service.py
+│   │   │   ├── test_cancel_service.py
+│   │   │   ├── test_collectif_service.py
+│   │   │   ├── test_commentaires_service.py
+│   │   │   ├── test_convention_generator.py
+│   │   │   ├── test_conventions_service.py
+│   │   │   ├── test_edd_service.py
+│   │   │   ├── test_financement_service.py
+│   │   │   ├── test_foyer_attribution_service.py
+│   │   │   ├── test_from_operation.py
+│   │   │   ├── test_logements_service.py
+│   │   │   ├── test_other_services.py
+│   │   │   ├── test_programme_service.py
+│   │   │   ├── test_recapitulatif_service.py
+│   │   │   ├── test_residence_attribution_service.py
+│   │   │   ├── test_resiliation_service.py
+│   │   │   ├── test_search.py
+│   │   │   ├── test_selection_service.py
+│   │   │   ├── test_type_stationnement_service.py
+│   │   │   ├── test_upload_objects.py
+│   │   │   ├── test_utils.py
+│   │   │   └── test_variantes_service.py
+│   │   ├── test_task.py
+│   │   └── views
+│   │       ├── __init__.py
+│   │       ├── abstract.py
+│   │       ├── test_annexes_view.py
+│   │       ├── test_avenants.py
+│   │       ├── test_bailleur_view.py
+│   │       ├── test_cadastre_view.py
+│   │       ├── test_collectif_view.py
+│   │       ├── test_comments_view.py
+│   │       ├── test_conventions_mix.py
+│   │       ├── test_denonciation_view.py
+│   │       ├── test_edd_view.py
+│   │       ├── test_finalisation.py
+│   │       ├── test_financement_view.py
+│   │       ├── test_form_steps.py
+│   │       ├── test_foyer_attribution_view.py
+│   │       ├── test_foyer_residence_logements_view.py
+│   │       ├── test_from_operation_views.py
+│   │       ├── test_journal_view.py
+│   │       ├── test_logements_view.py
+│   │       ├── test_preview_view.py
+│   │       ├── test_programme_view.py
+│   │       ├── test_recapitulatif_view.py
+│   │       ├── test_residence_attribution_view.py
+│   │       ├── test_resiliation_view.py
+│   │       ├── test_selection_view.py
+│   │       ├── test_type_stationnement_view.py
+│   │       ├── test_upload_signed_view.py
+│   │       └── test_variantes_view.py
+│   ├── urls.py
+│   └── views
+│       ├── __init__.py
+│       ├── avenants.py
+│       ├── convention_finalisation.py
+│       ├── convention_form.py
+│       ├── convention_form_annexes.py
+│       ├── convention_form_bailleur.py
+│       ├── convention_form_cadastre.py
+│       ├── convention_form_champ_libre.py
+│       ├── convention_form_collectif.py
+│       ├── convention_form_commentaires.py
+│       ├── convention_form_denonciation.py
+│       ├── convention_form_edd.py
+│       ├── convention_form_financement.py
+│       ├── convention_form_foyer_attribution.py
+│       ├── convention_form_foyer_residence_logements.py
+│       ├── convention_form_from_operation.py
+│       ├── convention_form_logements.py
+│       ├── convention_form_programme.py
+│       ├── convention_form_residence_attribution.py
+│       ├── convention_form_resiliation.py
+│       ├── convention_form_selection.py
+│       ├── convention_form_type_stationnement.py
+│       ├── convention_form_variante.py
+│       ├── conventions.py
+│       └── conventions_mix.py
+├── core
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── backends.py
+│   ├── context_processor.py
+│   ├── exceptions
+│   │   ├── __init__.py
+│   │   └── handler.py
+│   ├── forms.py
+│   ├── manage.py
+│   ├── middleware.py
+│   ├── request.py
+│   ├── services.py
+│   ├── settings.py
+│   ├── signals.py
+│   ├── sitemaps.py
+│   ├── stepper.py
+│   ├── storage.py
+│   ├── tests
+│   │   ├── __init__.py
+│   │   ├── factories.py
+│   │   ├── test_contact_view.py
+│   │   ├── test_utils.py
+│   │   └── utils_assertions.py
+│   ├── urls.py
+│   ├── utils.py
+│   ├── views.py
+│   ├── worker.py
+│   └── wsgi.py
+├── cron.json
+├── dataset_staging.json
+├── dev-requirements.in
+├── dev-requirements.txt
+├── doc-requirements.in
+├── doc-requirements.txt
+├── docker-compose.yml
+├── docs
+│   ├── ADMIN.md
+│   ├── ADRESSE.md
+│   ├── ALERTES.md
+│   ├── AVENANTS.md
+│   ├── COMMENTAIRES.md
+│   ├── DEPLOIEMENT.md
+│   ├── DEVELOPPEUR.md
+│   ├── DOC_GENERATION.md
+│   ├── ECOLOWEB.md
+│   ├── ETAPES.md
+│   ├── FEATURE_FLAGS.md
+│   ├── NPM-SECURITY.md
+│   ├── PCA_PRA.md
+│   ├── README.md
+│   ├── RECHERCHE.md
+│   ├── S3_BACKUP.md
+│   ├── SIAP-APiLos.md
+│   ├── STATUTS.md
+│   ├── THIRDPARTYSERVICES.md
+│   ├── __init__.py
+│   ├── _static
+│   │   ├── ArchitectureAPilos.png
+│   │   ├── configuration_github_pages_apilos.png
+│   │   ├── get-token1.png
+│   │   ├── get-token2.png
+│   │   └── get-token3.png
+│   ├── conf.py
+│   └── how-to
+│       └── code_insee_management.md
+├── documents
+│   ├── Avenant-template.docx
+│   ├── FicheCAF-template.docx
+│   ├── Foyer-template.docx
+│   ├── FoyerResidence-Avenant-template.docx
+│   ├── HLM-template.docx
+│   ├── Residence-template.docx
+│   ├── SEM-template.docx
+│   ├── Type1-template.docx
+│   └── Type2-template.docx
+├── ecoloweb
+│   ├── __init__.py
+│   ├── apps.py
+│   ├── management
+│   │   ├── __init__.py
+│   │   └── commands
+│   │       ├── __init__.py
+│   │       ├── ecoloweb_import_departement.py
+│   │       ├── ecoloweb_import_loyers_indices.py
+│   │       ├── ecoloweb_pj_promote.py
+│   │       └── ecoloweb_purge_import.py
+│   ├── migrations
+│   │   ├── 0001_create_ecolo_reference_squashed_0005_ecoloreference_apilos_model_id_idx.py
+│   │   └── __init__.py
+│   ├── models.py
+│   ├── services
+│   │   ├── __init__.py
+│   │   ├── importers.py
+│   │   ├── importers_administrations.py
+│   │   ├── importers_bailleurs.py
+│   │   ├── importers_conventions.py
+│   │   ├── importers_programmes.py
+│   │   ├── query_iterator.py
+│   │   ├── resources
+│   │   │   └── sql
+│   │   │       ├── importers
+│   │   │       │   ├── administration.sql
+│   │   │       │   ├── bailleur.sql
+│   │   │       │   ├── convention.sql
+│   │   │       │   ├── evenements.sql
+│   │   │       │   ├── logement.sql
+│   │   │       │   ├── lot.sql
+│   │   │       │   ├── pieces_jointes.sql
+│   │   │       │   ├── programme.sql
+│   │   │       │   ├── programme_annexes.sql
+│   │   │       │   ├── references_cadastrales.sql
+│   │   │       │   ├── repartitions_surface.sql
+│   │   │       │   └── types_stationnement.sql
+│   │   │       └── setup
+│   │   │           └── convention_historique.sql
+│   │   └── siret_resolver.py
+│   └── tests
+│       ├── __init__.py
+│       ├── resources
+│       │   ├── .gitignore
+│       │   └── sql
+│       │       ├── 01_ddl
+│       │       │   ├── 0010_ecolo_valeurparamstatic.sql
+│       │       │   ├── 0011_ecolo_naturelogement.sql
+│       │       │   ├── 0013_ecolo_famillefinancement.sql
+│       │       │   ├── 0014_ecolo_categorie_financement.sql
+│       │       │   ├── 0015_ecolo_typefinancement.sql
+│       │       │   ├── 0016_ecolo_region.sql
+│       │       │   ├── 0017_ecolo_departement.sql
+│       │       │   ├── 0019_ecolo_commune.sql
+│       │       │   ├── 0020_ecolo_entitegestadresse.sql
+│       │       │   ├── 0021_ecolo_entitegest.sql
+│       │       │   ├── 0025_ecolo_naturebailleur.sql
+│       │       │   ├── 0026_ecolo_sousnaturebailleur.sql
+│       │       │   ├── 0027_ecolo_adressebailleur.sql
+│       │       │   ├── 0028_ecolo_bailleur.sql
+│       │       │   ├── 0029_ecolo_contactbailleur.sql
+│       │       │   ├── 0040_ecolo_conventiontype.sql
+│       │       │   ├── 0043_ecolo_conventionapl.sql
+│       │       │   ├── 0044_ecolo_avenant.sql
+│       │       │   ├── 0045_ecolo_conventiondonneesgenerales.sql
+│       │       │   ├── 0046_ecolo_avenant_typeavenant.sql
+│       │       │   ├── 0048_ecolo_piecejointe.sql
+│       │       │   ├── 0050_ecolo_programmelogement.sql
+│       │       │   ├── 0051_ecolo_programmeadresse.sql
+│       │       │   ├── 0053_ecolo_annexe.sql
+│       │       │   ├── 0054_ecolo_infocadastrale.sql
+│       │       │   ├── 0060_ecolo_logemantadresse.sql
+│       │       │   └── 0061_ecolo_logement.sql
+│       │       └── 02_dcl
+│       │           ├── 0010_ecolo_valeurparamstatic.sql
+│       │           ├── 0011_ecolo_naturelogement.sql
+│       │           ├── 0013_ecolo_famillefinancement.sql
+│       │           ├── 0014_ecolo_categorie_financement.sql
+│       │           ├── 0015_ecolo_typefinancement.sql
+│       │           ├── 0016_ecolo_region.sql
+│       │           ├── 0017_ecolo_departement.sql
+│       │           ├── 0019_ecolo_commune.sql
+│       │           ├── 0020_ecolo_entitegestadresse.sql
+│       │           ├── 0021_ecolo_entitegest.sql
+│       │           ├── 0025_ecolo_naturebailleur.sql
+│       │           ├── 0026_ecolo_sousnaturebailleur.sql
+│       │           ├── 0027_ecolo_adressebailleur.sql
+│       │           ├── 0028_ecolo_bailleur.sql
+│       │           ├── 0040_ecolo_conventiontype.sql
+│       │           ├── 0043_ecolo_conventionapl.sql
+│       │           ├── 0044_ecolo_avenant.sql
+│       │           ├── 0045_ecolo_conventiondonneesgenerales.sql
+│       │           ├── 0048_ecolo_piecejointe.sql
+│       │           ├── 0050_ecolo_programmelogement.sql
+│       │           ├── 0051_ecolo_programmeadresse.sql
+│       │           ├── 0053_ecolo_annexe.sql
+│       │           └── 0054_ecolo_infocadastrale.sql
+│       └── test_import.py
+├── ficheCAF.docx
+├── instructeurs
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── fixtures
+│   │   └── instructeurs_for_tests.json
+│   ├── forms.py
+│   ├── migrations
+│   │   ├── 0001_initial_squashed_0017_auto_20230925_1209.py
+│   │   └── __init__.py
+│   ├── models.py
+│   └── tests
+│       ├── __init__.py
+│       ├── factories.py
+│       └── test_models.py
+├── manage.py
+├── media
+│   └── .gitkeep
+├── package-lock.json
+├── package.json
+├── programmes
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── api
+│   │   ├── __init__.py
+│   │   ├── operation_api_views.py
+│   │   ├── operation_serializers.py
+│   │   └── tests
+│   │       ├── __init__.py
+│   │       ├── fixtures.py
+│   │       └── test_apis.py
+│   ├── apps.py
+│   ├── fixtures
+│   │   └── programmes_for_tests.json
+│   ├── management
+│   │   ├── __init__.py
+│   │   └── commands
+│   │       ├── __init__.py
+│   │       ├── check_code_insee_commune.py
+│   │       ├── check_code_insee_dpt.py
+│   │       ├── init_anah_from_bailleur.py
+│   │       └── update_programme_administration.py
+│   ├── migrations
+│   │   ├── 0001_initial_squashed_0091_programme_reassign_command_old_admin_backup.py
+│   │   ├── 0092_remove_programme_programme_numero_galion_idx_and_more.py
+│   │   ├── 0093_alter_typestationnement_typologie.py
+│   │   ├── 0094_alter_lot_financement_alter_programme_zone_abc.py
+│   │   ├── 0095_programme_numero_operation_pour_recherche.py
+│   │   ├── 0096_programme_seconde_vie.py
+│   │   ├── 0097_alter_lot_financement.py
+│   │   ├── 0098_alter_lot_financement.py
+│   │   ├── 0099_alter_lot_financement.py
+│   │   ├── 0100_remove_programme_reassign_command_old_admin_backup.py
+│   │   ├── 0101_programme_reassign_command_old_admin_backup.py
+│   │   ├── 0102_alter_logement_blank_and_null.py
+│   │   ├── 0103_alter_lot_blank_and_null.py
+│   │   ├── 0104_alter_ref_cadastrale_blank_and_null.py
+│   │   ├── 0105_alter_ref_programme1_blank_and_null.py
+│   │   ├── 0106_alter_ref_programme2_blank_and_null.py
+│   │   ├── 0107_alter_ref_programme3_blank_and_null.py
+│   │   ├── 0108_alter_ref_programme4_blank_and_null.py
+│   │   ├── 0109_alter_ref_programme5_blank_and_null.py
+│   │   ├── 0110_alter_ref_programme6_blank_and_null.py
+│   │   ├── 0111_historicalprogramme.py
+│   │   ├── 0112_programme_prog_code_insee_reg_idx_and_more.py
+│   │   ├── 0113_lot_loyer_associations_foncieres.py
+│   │   ├── 0114_logement_import_order.py
+│   │   ├── 0115_alter_lot_financement.py
+│   │   ├── 0116_alter_lot_financement.py
+│   │   ├── 0117_alter_lot_financement.py
+│   │   ├── 0118_lot_convention.py
+│   │   ├── 0119_fill_lot_convention.py
+│   │   ├── 0120_lot_unique_convention_financement_and_more.py
+│   │   ├── 0121_logementcorrigee_logementcorrigeesansloyer_and_more.py
+│   │   ├── 0122_alter_lot_financement.py
+│   │   ├── 0123_referencecadastrale_autre_and_more.py
+│   │   ├── 0124_alter_lot_financement.py
+│   │   ├── 0125_remove_lot_programme.py
+│   │   ├── 0126_remove_lot_unique_convention_financement_and_more.py
+│   │   ├── 0127_alter_typestationnement_typologie.py
+│   │   ├── 0128_historicalprogramme_anah_programme_anah.py
+│   │   ├── 0129_remove_lot_unique_convention.py
+│   │   ├── 0129_update_programme_edd_values.py
+│   │   ├── 0130_merge_20251103_1120.py
+│   │   └── __init__.py
+│   ├── models
+│   │   ├── __init__.py
+│   │   ├── choices.py
+│   │   ├── indice_evolution_loyer.py
+│   │   └── models.py
+│   ├── services.py
+│   ├── signals.py
+│   ├── tests
+│   │   ├── __init__.py
+│   │   ├── test_models.py
+│   │   ├── test_services.py
+│   │   ├── test_utils.py
+│   │   └── test_views.py
+│   ├── urls.py
+│   ├── utils.py
+│   └── views.py
+├── pyproject.toml
+├── requirements.in
+├── requirements.txt
+├── runtime.txt
+├── scalingo.json
+├── siap
+│   ├── __init__.py
+│   ├── apps.py
+│   ├── custom_middleware.py
+│   ├── exceptions.py
+│   ├── siap_authentication.py
+│   └── siap_client
+│       ├── __init__.py
+│       ├── client.py
+│       ├── mock_data.py
+│       ├── schemas.py
+│       ├── tests
+│       │   ├── __init__.py
+│       │   ├── conftest.py
+│       │   ├── test_schemas.py
+│       │   └── test_siap_client_utils.py
+│       └── utils.py
+├── static
+│   ├── choices
+│   │   ├── choices.min.css
+│   │   └── choices.min.js
+│   ├── css
+│   │   ├── main.css
+│   │   ├── ui_siap.css
+│   │   └── user_feedback.css
+│   ├── dropzonejs
+│   │   ├── basic.css
+│   │   ├── dropzone-amd-module.js
+│   │   ├── dropzone.css
+│   │   ├── dropzone.js
+│   │   └── min
+│   │       ├── basic.min.css
+│   │       ├── dropzone-amd-module.min.js
+│   │       ├── dropzone.min.css
+│   │       └── dropzone.min.js
+│   ├── files
+│   │   ├── annexes.xlsx
+│   │   ├── cadastre.xlsx
+│   │   ├── communes.xlsx
+│   │   ├── delegataires.xlsx
+│   │   ├── financement.xlsx
+│   │   ├── foyer_residence_logements.xlsx
+│   │   ├── listing_bailleur.xlsx
+│   │   ├── locaux_collectifs.xlsx
+│   │   ├── logements.xlsx
+│   │   ├── logements_corrigee.xlsx
+│   │   ├── logements_corrigee_sans_loyer.xlsx
+│   │   ├── logements_edd.xlsx
+│   │   ├── logements_sans_loyer.xlsx
+│   │   ├── stationnements.xlsx
+│   │   └── tous_les_templates_xlsx.zip
+│   ├── icons
+│   │   ├── chat.svg
+│   │   ├── download.svg
+│   │   ├── information.svg
+│   │   ├── loading.gif
+│   │   ├── not_found.png
+│   │   ├── upload.svg
+│   │   └── warning.svg
+│   ├── img
+│   │   ├── Logo_Cerfa.svg
+│   │   ├── accueil.jpg
+│   │   ├── architecture_apilos.jpg
+│   │   ├── circleci.png
+│   │   ├── data-rafiki.svg
+│   │   ├── ecoloweb.svg
+│   │   ├── favicon.ico
+│   │   ├── img.png
+│   │   ├── immeuble2.jpeg
+│   │   ├── logo-APiLos.svg
+│   │   ├── logo-beta.jpg
+│   │   ├── logo-fabriquenumerique.svg
+│   │   ├── logo-marianne.png
+│   │   ├── logo-marianne.svg
+│   │   ├── pdf.png
+│   │   ├── rf_logo.png
+│   │   └── sabrina_derdiche.jpg
+│   ├── js
+│   │   ├── comment-factory.js
+│   │   ├── dropzone-client.js
+│   │   ├── header-size.js
+│   │   ├── logements-table.js
+│   │   ├── main.js
+│   │   └── type1and2.js
+│   └── virtual-select
+│       └── dist
+│           ├── virtual-select.min.css
+│           └── virtual-select.min.js
+├── stats
+│   ├── __init__.py
+│   ├── apps.py
+│   ├── migrations
+│   │   ├── 0001_metabase_views.py
+│   │   └── __init__.py
+│   ├── tests
+│   │   ├── __init__.py
+│   │   └── test_views.py
+│   ├── urls.py
+│   └── views.py
+├── templates
+│   ├── 403.html
+│   ├── 404.html
+│   ├── 500.html
+│   ├── admin
+│   │   └── login.html
+│   ├── comments
+│   │   └── opened_comments.html
+│   ├── common
+│   │   ├── FAQ_link.html
+│   │   ├── button
+│   │   │   ├── login.html
+│   │   │   ├── next_and_save.html
+│   │   │   ├── noteditable_button.html
+│   │   │   ├── previous.html
+│   │   │   └── return_convention_index.html
+│   │   ├── display_checkbox.html
+│   │   ├── display_field_if_exists.html
+│   │   ├── display_files.html
+│   │   ├── display_listfield_if_exists.html
+│   │   ├── display_text_and_files_if_exists.html
+│   │   ├── display_textfield_if_exists.html
+│   │   ├── editable_fields_info.html
+│   │   ├── form
+│   │   │   ├── _input_search_select_core.html
+│   │   │   ├── disable_form_input.html
+│   │   │   ├── download_upload_form.html
+│   │   │   ├── input_checkbox.html
+│   │   │   ├── input_date.html
+│   │   │   ├── input_files.html
+│   │   │   ├── input_financement.html
+│   │   │   ├── input_multiselect.html
+│   │   │   ├── input_multiselect_choices.html
+│   │   │   ├── input_number.html
+│   │   │   ├── input_numero_publication.html
+│   │   │   ├── input_search_select.html
+│   │   │   ├── input_search_select_unified.html
+│   │   │   ├── input_select.html
+│   │   │   ├── input_telephone.html
+│   │   │   ├── input_text.html
+│   │   │   ├── input_textarea.html
+│   │   │   ├── input_upload.html
+│   │   │   ├── required_field.html
+│   │   │   └── required_field_star.html
+│   │   ├── help_field.html
+│   │   ├── messages.html
+│   │   ├── nav_bar.html
+│   │   ├── required_fields_info.html
+│   │   ├── step_progressbar.html
+│   │   ├── table
+│   │   │   ├── display_order_icon.html
+│   │   │   ├── display_order_item.html
+│   │   │   └── pagination.html
+│   │   └── utils
+│   │       ├── comments_field.html
+│   │       └── comments_header.html
+│   ├── contact.html
+│   ├── conventions
+│   │   ├── _bailleur_administration.html
+│   │   ├── _bailleur_entreprise.html
+│   │   ├── _bailleur_signataire.html
+│   │   ├── _convention_redirect_script.html
+│   │   ├── _partial
+│   │   │   ├── create_action.html
+│   │   │   ├── search_header.html
+│   │   │   └── step_section.html
+│   │   ├── actions
+│   │   │   ├── back_to_en_publication.html
+│   │   │   ├── back_to_instruction.html
+│   │   │   ├── back_to_signie.html
+│   │   │   ├── bailleur_notification.html
+│   │   │   ├── cancel_convention.html
+│   │   │   ├── delete.html
+│   │   │   ├── display_resiliation_info.html
+│   │   │   ├── display_spf_info.html
+│   │   │   ├── edit_numero_convention.html
+│   │   │   ├── edit_numero_operation.html
+│   │   │   ├── fiche_caf.html
+│   │   │   ├── generate_convention.html
+│   │   │   ├── goto.html
+│   │   │   ├── instructeur_notification.html
+│   │   │   ├── instructeur_validation.html
+│   │   │   ├── remove_from_avenant.html
+│   │   │   ├── send_to_post.html
+│   │   │   ├── submit_convention.html
+│   │   │   ├── type1and2_options.html
+│   │   │   ├── update_date_publication.html
+│   │   │   ├── update_date_resiliation.html
+│   │   │   ├── update_date_signature.html
+│   │   │   ├── upload_publication_document.html
+│   │   │   ├── upload_signed_document.html
+│   │   │   ├── validate_denonciation.html
+│   │   │   └── validate_resiliation.html
+│   │   ├── annexes.html
+│   │   ├── attribution
+│   │   │   ├── autres_modalitees.html
+│   │   │   └── reservation_prefectoral.html
+│   │   ├── avenant
+│   │   │   ├── bailleur_update_start.html
+│   │   │   ├── champ_libre_start.html
+│   │   │   ├── commentaires_update_start.html
+│   │   │   ├── complete_form_for_avenants.html
+│   │   │   ├── denonciation_start.html
+│   │   │   ├── financement_update_start.html
+│   │   │   ├── form_avenants_for_avenant.html
+│   │   │   ├── list_avenants_for_avenant.html
+│   │   │   ├── logements_update_start.html
+│   │   │   ├── new_avenant_start.html
+│   │   │   ├── new_avenants_for_avenant.html
+│   │   │   ├── new_convention_for_avenant.html
+│   │   │   ├── programme_update_start.html
+│   │   │   ├── resiliation_start.html
+│   │   │   ├── search_for_avenant.html
+│   │   │   └── televersement_avenants_for_avenant_start.html
+│   │   ├── avenant_list.html
+│   │   ├── bailleur.html
+│   │   ├── cadastre.html
+│   │   ├── calculette_loyer.html
+│   │   ├── champ_libre.html
+│   │   ├── collectif.html
+│   │   ├── commentaires.html
+│   │   ├── common
+│   │   │   ├── avenants_checkboxes.html
+│   │   │   ├── dropzone_css.html
+│   │   │   ├── dropzone_js.html
+│   │   │   ├── form_annexes.html
+│   │   │   ├── form_collectif.html
+│   │   │   ├── form_commentaires.html
+│   │   │   ├── form_footer_button.html
+│   │   │   ├── form_foyer_residence_logements.html
+│   │   │   ├── form_header.html
+│   │   │   ├── form_logements.html
+│   │   │   ├── form_optional_errors_modal.html
+│   │   │   ├── form_stationnements.html
+│   │   │   ├── form_upload_publication_document.html
+│   │   │   ├── form_upload_signed_document.html
+│   │   │   ├── formset_logements.html
+│   │   │   └── stepper.html
+│   │   ├── contributors.html
+│   │   ├── convention_list.html
+│   │   ├── convention_list_filters_new.html
+│   │   ├── denonciation.html
+│   │   ├── denonciation_list.html
+│   │   ├── edd.html
+│   │   ├── finalisation
+│   │   │   ├── cerfa.html
+│   │   │   ├── numero.html
+│   │   │   └── validation.html
+│   │   ├── financement.html
+│   │   ├── foyer_attribution.html
+│   │   ├── foyer_residence_logements.html
+│   │   ├── from_operation
+│   │   │   ├── add_avenants.html
+│   │   │   ├── add_convention.html
+│   │   │   ├── select_operation.html
+│   │   │   └── select_operation_list.html
+│   │   ├── home
+│   │   │   ├── bailleur_cerbere_no_convention.html
+│   │   │   ├── bailleur_no_convention.html
+│   │   │   ├── instructeur_cerbere_no_convention.html
+│   │   │   ├── instructeur_no_convention.html
+│   │   │   └── statut_tag.html
+│   │   ├── index.html
+│   │   ├── journal.html
+│   │   ├── logements.html
+│   │   ├── new_convention_anru.html
+│   │   ├── new_convention_choice.html
+│   │   ├── no_convention_document.html
+│   │   ├── post.html
+│   │   ├── post_action.html
+│   │   ├── preview.html
+│   │   ├── programme.html
+│   │   ├── publication
+│   │   │   ├── preview_document.html
+│   │   │   └── publication_date.html
+│   │   ├── recapitulatif
+│   │   │   ├── _card.html
+│   │   │   ├── administration.html
+│   │   │   ├── alert_convention.html
+│   │   │   ├── annexes.html
+│   │   │   ├── annexes_inner_content.html
+│   │   │   ├── bailleur.html
+│   │   │   ├── cadastre_inner_content.html
+│   │   │   ├── champ_libre.html
+│   │   │   ├── collectif.html
+│   │   │   ├── collectif_inner_content.html
+│   │   │   ├── commentaires.html
+│   │   │   ├── convention.html
+│   │   │   ├── denonciation.html
+│   │   │   ├── edd.html
+│   │   │   ├── financement.html
+│   │   │   ├── foyer_attribution.html
+│   │   │   ├── foyer_residence_logements.html
+│   │   │   ├── logements.html
+│   │   │   ├── operation.html
+│   │   │   ├── pieces_jointes.html
+│   │   │   ├── references_cadastrales.html
+│   │   │   ├── residence_attribution.html
+│   │   │   ├── resiliation.html
+│   │   │   ├── resiliation_acte.html
+│   │   │   ├── stationnements.html
+│   │   │   ├── uncheck_modal.html
+│   │   │   └── variantes.html
+│   │   ├── recapitulatif.html
+│   │   ├── residence_attribution.html
+│   │   ├── resiliation.html
+│   │   ├── resiliation_acte.html
+│   │   ├── resiliation_base.html
+│   │   ├── resiliation_list.html
+│   │   ├── saved.html
+│   │   ├── sent.html
+│   │   ├── stationnements.html
+│   │   ├── submitted.html
+│   │   ├── upload_signed
+│   │   │   ├── preview_document.html
+│   │   │   └── signature_date.html
+│   │   └── variantes.html
+│   ├── editorial
+│   │   ├── accessibilite.html
+│   │   └── cgu.html
+│   ├── index.html
+│   ├── layout
+│   │   ├── base.html
+│   │   ├── footer.html
+│   │   ├── header.html
+│   │   ├── header_cerbere.html
+│   │   ├── header_no_cerbere.html
+│   │   ├── javascript_load.html
+│   │   ├── sentry.html
+│   │   ├── siap
+│   │   │   ├── habilitations.html
+│   │   │   └── menu.html
+│   │   └── teasers
+│   │       ├── bailleur_presentation.html
+│   │       ├── instructeur_presentation.html
+│   │       └── main_presentation.html
+│   ├── operations
+│   │   ├── common
+│   │   │   └── form_header.html
+│   │   ├── conventions.html
+│   │   └── seconde_vie
+│   │       ├── choice.html
+│   │       ├── existing.html
+│   │       └── new.html
+│   ├── registration
+│   │   ├── login.html
+│   │   ├── password_reset_complete.html
+│   │   ├── password_reset_confirm.html
+│   │   ├── password_reset_done.html
+│   │   ├── password_reset_email.html
+│   │   └── password_reset_form.html
+│   ├── settings
+│   │   ├── administrations.html
+│   │   ├── bailleur_list_table.html
+│   │   ├── bailleurs.html
+│   │   ├── common
+│   │   │   └── side_menu.html
+│   │   ├── delegataires
+│   │   │   ├── base.html
+│   │   │   ├── form.html
+│   │   │   └── preview.html
+│   │   ├── edit_administration.html
+│   │   ├── edit_bailleur.html
+│   │   ├── form
+│   │   │   ├── email_preferences.html
+│   │   │   ├── select_administration.html
+│   │   │   └── select_bailleur.html
+│   │   ├── user_list.html
+│   │   ├── user_profile.html
+│   │   └── users.html
+│   └── stats
+│       └── index.html
+├── upload
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── fixtures
+│   │   └── upload_for_tests.json
+│   ├── management
+│   │   └── commands
+│   │       ├── __init__.py
+│   │       └── fix_text_and_files_fields.py
+│   ├── migrations
+│   │   ├── 0001_initial_squashed_0006_auto_20220107_1209.py
+│   │   ├── 0007_uploadedfile_realname.py
+│   │   ├── 0008_alter_uploadedfile_filename_and_more.py
+│   │   ├── 0009_alter_uploadedfile_filename_and_more.py
+│   │   └── __init__.py
+│   ├── models.py
+│   ├── services.py
+│   ├── tasks.py
+│   ├── tests
+│   │   ├── __init__.py
+│   │   ├── test_models.py
+│   │   ├── test_services.py
+│   │   ├── test_tasks.py
+│   │   └── test_views.py
+│   ├── urls.py
+│   └── views.py
+└── users
+    ├── __init__.py
+    ├── admin.py
+    ├── apps.py
+    ├── fixtures
+    │   ├── auth.json
+    │   └── users_for_tests.json
+    ├── forms.py
+    ├── management
+    │   ├── __init__.py
+    │   └── commands
+    │       ├── __init__.py
+    │       └── remove_duplicate_siap_users.py
+    ├── migrations
+    │   ├── 0001_initial_squashed_0024_remove_read_popup.py
+    │   ├── 0025_remove_historicaluser_administrateur_de_compte_and_more.py
+    │   ├── 0026_historicaluser_secondary_email_user_secondary_email.py
+    │   └── __init__.py
+    ├── models.py
+    ├── services.py
+    ├── tests
+    │   ├── __init__.py
+    │   ├── factories.py
+    │   ├── test_models.py
+    │   └── test_views.py
+    ├── type_models.py
+    ├── urls.py
+    └── views.py
+145 directories, 918 files
