@@ -1,0 +1,934 @@
+.
+├── .env.template
+├── .github
+│   └── workflows
+│       ├── checkov.yml
+│       ├── compare-financements.yml
+│       ├── deploiement-node.yml
+│       ├── deploiement-wc-demande-diag.yml
+│       ├── deploiement.yml
+│       └── integration-continue.yml
+├── .gitignore
+├── .npmrc
+├── .nvmrc
+├── .prettierrc.json
+├── Dockerfile
+├── LICENSE
+├── README.md
+├── back
+│   ├── eslint.config.mjs
+│   ├── knexfile.ts
+│   ├── migrations
+│   │   ├── 20250306110943_creeTableUtilisateurs.ts
+│   │   ├── 20250312154055_ajouteColonneDonneesAUtilisateurs.ts
+│   │   ├── 20250318084856_creeTableResultatsTest.ts
+│   │   ├── 20250319092512_ajouteColonneDateAResultatsTest.ts
+│   │   ├── 20250320153515_creeTableFavoris.ts
+│   │   ├── 20250321095409_renommeColonneIdFavoris.ts
+│   │   ├── 20250324094416_ajouteColonneIdListeFavoris.ts
+│   │   ├── 20250512144152_creeTableSessionsGroupe.ts
+│   │   ├── 20250519092509_ajouteColonneCodeSessionGroupe.ts
+│   │   ├── 20250612122433_ajouteColonneHacheEmailUtilisateurs.ts
+│   │   ├── 20250612123742_remplisColonnesHacheEmailUtilisateur.ts
+│   │   ├── 20250613070435_creationTableVersioningSecretHachage.ts
+│   │   ├── 20250613095840_ajouteColonneEmailHashResultatsTest.ts
+│   │   ├── 20250613095958_ajouteColonneEmailHashFavoris.ts
+│   │   ├── 20250613100157_remplisColonnesEmailHashResultatsTestEtFavoris.ts
+│   │   ├── 20250617150853_supprimeColonneEmailCleEtrangere.ts
+│   │   ├── 20250618095417_supprimeColonneEmailUtilisateur.ts
+│   │   ├── 20250618125054_supprimeColonneUtilisateurHache256.ts
+│   │   ├── 20250709074649_supprimeReponsesTestInvalides.ts
+│   │   ├── 20251203141105_migreFavorisDeGuides.ts
+│   │   └── README.md
+│   ├── package.json
+│   ├── src
+│   │   ├── admin
+│   │   │   ├── consoleAdministration.ts
+│   │   │   ├── migrationChiffrement.ts
+│   │   │   └── migrationHash.ts
+│   │   ├── api
+│   │   │   ├── adaptateurJWT.ts
+│   │   │   ├── configurationServeur.ts
+│   │   │   ├── favoris
+│   │   │   │   ├── ressourceFavori.ts
+│   │   │   │   ├── ressourceFavoris.ts
+│   │   │   │   └── ressourceFavorisPartages.ts
+│   │   │   ├── fournisseurChemin.ts
+│   │   │   ├── guides
+│   │   │   │   ├── guidePresentation.ts
+│   │   │   │   ├── ressourceDocumentGuide.ts
+│   │   │   │   ├── ressourceGuide.ts
+│   │   │   │   ├── ressourceGuides.ts
+│   │   │   │   └── ressourceGuidesMemesCollections.ts
+│   │   │   ├── middleware.ts
+│   │   │   ├── mon-aide-cyber
+│   │   │   │   └── ressourceDemandesAide.ts
+│   │   │   ├── msc.ts
+│   │   │   ├── oidc
+│   │   │   │   ├── adaptateurOIDC.ts
+│   │   │   │   ├── ressourceApresAuthentificationOIDC.ts
+│   │   │   │   ├── ressourceApresDeconnexionOIDC.ts
+│   │   │   │   ├── ressourceConnexionOIDC.ts
+│   │   │   │   └── ressourceDeconnexionOIDC.ts
+│   │   │   ├── ressourceAnnuaireDepartements.ts
+│   │   │   ├── ressourceAnnuaireOrganisations.ts
+│   │   │   ├── ressourceAnnuaireRegions.ts
+│   │   │   ├── ressourceAnnuaireSecteursActivite.ts
+│   │   │   ├── ressourceAnnuaireTranchesEffectif.ts
+│   │   │   ├── ressourceAvisUtilisateur.ts
+│   │   │   ├── ressourceFinancement.ts
+│   │   │   ├── ressourceFinancements.ts
+│   │   │   ├── ressourceInformationsCreationCompte.ts
+│   │   │   ├── ressourceInfosSite.ts
+│   │   │   ├── ressourcePageConnexion.ts
+│   │   │   ├── ressourcePageCrisp.ts
+│   │   │   ├── ressourcePageProduit.ts
+│   │   │   ├── ressourcePagesJekyll.ts
+│   │   │   ├── ressourcePagesJekyllConnectees.ts
+│   │   │   ├── ressourceProfil.ts
+│   │   │   ├── ressourceRetoursExperience.ts
+│   │   │   ├── ressourceStatistiques.ts
+│   │   │   ├── ressourceUtilisateurs.ts
+│   │   │   ├── ressourceVisa.ts
+│   │   │   └── testMaturite
+│   │   │       ├── ressourceDernierResultatDeTest.ts
+│   │   │       ├── ressourceRepartitionDesResultatsDeTest.ts
+│   │   │       ├── ressourceResultatDeTest.ts
+│   │   │       ├── ressourceResultatsDeTest.ts
+│   │   │       ├── ressourceResultatsSessionDeGroupe.ts
+│   │   │       ├── ressourceSessionDeGroupe.ts
+│   │   │       └── ressourceSessionsDeGroupe.ts
+│   │   ├── bus
+│   │   │   ├── busEvenements.ts
+│   │   │   ├── cablage.ts
+│   │   │   ├── consigneEvenementAvisUtilisateurDonneDansJournal.ts
+│   │   │   ├── consigneEvenementCompteCreeDansJournal.ts
+│   │   │   ├── consigneEvenementMAJFavorisUtilisateurDansJournal.ts
+│   │   │   ├── consigneEvenementProprieteTestRevendiqueeDansJournal.ts
+│   │   │   ├── consigneEvenementRetourExperienceDonneDansJournal.ts
+│   │   │   ├── consigneEvenementTestRealiseDansJournal.ts
+│   │   │   ├── consigneEvenementUtilisateurConnecteDansJournal.ts
+│   │   │   ├── creeContactBrevo.ts
+│   │   │   ├── envoieEmailCreationCompte.ts
+│   │   │   ├── evenements
+│   │   │   │   ├── avisUtilisateurDonne.ts
+│   │   │   │   ├── compteCree.ts
+│   │   │   │   ├── documentGuideTelecharge.ts
+│   │   │   │   ├── proprieteTestRevendiquee.ts
+│   │   │   │   ├── retourExperienceDonne.ts
+│   │   │   │   ├── testRealise.ts
+│   │   │   │   ├── utilisateurConnecte.ts
+│   │   │   │   └── visaTelecharge.ts
+│   │   │   ├── miseAJourFavorisUtilisateur.ts
+│   │   │   ├── rapporteEvenementGuideTelechargeDansTraqueur.ts
+│   │   │   └── rapporteEvenementVisaTelechargeDansTraqueur.ts
+│   │   ├── express.d.ts
+│   │   ├── infra
+│   │   │   ├── EntrepotSessionDeGroupePostgres.ts
+│   │   │   ├── RechercheEntrepriseAvecCache.ts
+│   │   │   ├── adaptateurAnalytique.ts
+│   │   │   ├── adaptateurCellar.ts
+│   │   │   ├── adaptateurChiffrement.ts
+│   │   │   ├── adaptateurEmailBrevo.ts
+│   │   │   ├── adaptateurEmailConsole.ts
+│   │   │   ├── adaptateurEnvironnement.ts
+│   │   │   ├── adaptateurGestionErreurSentry.ts
+│   │   │   ├── adaptateurGestionErreurVide.ts
+│   │   │   ├── adaptateurHachage.ts
+│   │   │   ├── adaptateurHorloge.ts
+│   │   │   ├── adaptateurJournal.ts
+│   │   │   ├── adaptateurJournalPostgres.ts
+│   │   │   ├── adaptateurMonAideCyber.ts
+│   │   │   ├── adaptateurMonAideCyberVide.ts
+│   │   │   ├── adaptateurProfilAnssi.ts
+│   │   │   ├── adaptateurProfilAnssiVide.ts
+│   │   │   ├── adaptateurRechercheEntreprise.ts
+│   │   │   ├── cache.ts
+│   │   │   ├── clientHttp.ts
+│   │   │   ├── donneesEvenement.ts
+│   │   │   ├── entrepotFavoriPostgres.ts
+│   │   │   ├── entrepotFinancementGrist.ts
+│   │   │   ├── entrepotGrist.ts
+│   │   │   ├── entrepotGuideGrist.ts
+│   │   │   ├── entrepotResultatTestPostgres.ts
+│   │   │   ├── entrepotSecretHachagePostgres.ts
+│   │   │   ├── entrepotUtilisateurMPAPostgres.ts
+│   │   │   ├── fournisseurHorloge.ts
+│   │   │   ├── grist.ts
+│   │   │   ├── markdown.ts
+│   │   │   ├── messagerieMattermost.ts
+│   │   │   ├── serviceVerificationCoherenceSecretsHachage.ts
+│   │   │   └── utilisateurBDD.ts
+│   │   ├── metier
+│   │   │   ├── adaptateurEmail.ts
+│   │   │   ├── besoinCyber.ts
+│   │   │   ├── entrepotFavori.ts
+│   │   │   ├── entrepotFinancement.ts
+│   │   │   ├── entrepotGuide.ts
+│   │   │   ├── entrepotResultatTest.ts
+│   │   │   ├── entrepotSessionDeGroupe.ts
+│   │   │   ├── entrepotUtilisateur.ts
+│   │   │   ├── favori.ts
+│   │   │   ├── financement.ts
+│   │   │   ├── generateurCodeSessionDeGroupe.ts
+│   │   │   ├── guide.ts
+│   │   │   ├── messagerieInstantanee.ts
+│   │   │   ├── niveauDeSatisfaction.ts
+│   │   │   ├── referentielDepartements.ts
+│   │   │   ├── referentielDomainesDeSpecialite.ts
+│   │   │   ├── referentielRegions.ts
+│   │   │   ├── referentielSecteurs.ts
+│   │   │   ├── referentielTranchesEffectifEtablissement.ts
+│   │   │   ├── repartitionResultatsTest.ts
+│   │   │   ├── resultatTestMaturite.ts
+│   │   │   ├── sessionDeGroupe.ts
+│   │   │   ├── statistiques.ts
+│   │   │   └── utilisateur.ts
+│   │   └── serveur.ts
+│   ├── tests
+│   │   ├── admin
+│   │   │   └── migrationHash.spec.ts
+│   │   ├── api
+│   │   │   ├── cookie.ts
+│   │   │   ├── fauxObjets.ts
+│   │   │   ├── favoris
+│   │   │   │   ├── ressourceFavori.spec.ts
+│   │   │   │   ├── ressourceFavoris.spec.ts
+│   │   │   │   └── ressourceFavorisPartages.spec.ts
+│   │   │   ├── guides
+│   │   │   │   ├── constructeurGuideGrist.ts
+│   │   │   │   ├── ressourceDocumentGuide.spec.ts
+│   │   │   │   ├── ressourceGuide.spec.ts
+│   │   │   │   ├── ressourceGuides.spec.ts
+│   │   │   │   └── ressourceGuidesMemesCollections.spec.ts
+│   │   │   ├── middleware.spec.ts
+│   │   │   ├── mon-aide-cyber
+│   │   │   │   └── ressourceDemandesAide.spec.ts
+│   │   │   ├── objetsPretsALEmploi.ts
+│   │   │   ├── oidc
+│   │   │   │   ├── ressourceApresAuthentificationOIDC.spec.ts
+│   │   │   │   ├── ressourceApresDeconnexionOIDC.spec.ts
+│   │   │   │   ├── ressourceConnexionOIDC.spec.ts
+│   │   │   │   └── ressourceDeconnexionOIDC.spec.ts
+│   │   │   ├── ressourceAnnuaireDepartements.spec.ts
+│   │   │   ├── ressourceAnnuaireOrganisations.spec.ts
+│   │   │   ├── ressourceAnnuaireRegions.spec.ts
+│   │   │   ├── ressourceAnnuaireSecteursActivite.spec.ts
+│   │   │   ├── ressourceAnnuaireTranchesEffectif.spec.ts
+│   │   │   ├── ressourceAvisUtilisateur.spec.ts
+│   │   │   ├── ressourceFinancement.spec.ts
+│   │   │   ├── ressourceFinancements.spec.ts
+│   │   │   ├── ressourceInformationsCreationCompte.spec.ts
+│   │   │   ├── ressourceInfosSite.spec.ts
+│   │   │   ├── ressourcePageConnexion.spec.ts
+│   │   │   ├── ressourcePageCrisp.spec.ts
+│   │   │   ├── ressourcePageProduit.spec.ts
+│   │   │   ├── ressourcePagesJekyll.spec.ts
+│   │   │   ├── ressourcePagesJekyllConnectees.spec.ts
+│   │   │   ├── ressourceProfil.spec.ts
+│   │   │   ├── ressourceRetoursExperience.spec.ts
+│   │   │   ├── ressourceStatistiques.spec.ts
+│   │   │   ├── ressourceUtilisateurs.spec.ts
+│   │   │   ├── ressourceVisa.spec.ts
+│   │   │   └── testMaturite
+│   │   │       ├── ressourceDernierResultatDeTest.spec.ts
+│   │   │       ├── ressourceRepartitionDesResultatsDeTest.spec.ts
+│   │   │       ├── ressourceResultatDeTest.spec.ts
+│   │   │       ├── ressourceResultatsDeTest.spec.ts
+│   │   │       ├── ressourceResultatsSessionDeGroupe.spec.ts
+│   │   │       ├── ressourceSessionDeGroupe.spec.ts
+│   │   │       └── ressourceSessionsDeGroupe.spec.ts
+│   │   ├── bus
+│   │   │   ├── busEvenements.spec.ts
+│   │   │   ├── busPourLesTests.ts
+│   │   │   ├── consigneEvenementAvisUtilisateurDonneDansJournal.spec.ts
+│   │   │   ├── consigneEvenementCompteCreeDansJournal.spec.ts
+│   │   │   ├── consigneEvenementMAJFavorisUtilisateurDansJournal.spec.ts
+│   │   │   ├── consigneEvenementProprieteTestRevendiqueeDansJournal.spec.ts
+│   │   │   ├── consigneEvenementRetourExperienceDonneDansJournal.spec.ts
+│   │   │   ├── consigneEvenementTestRealiseDansJournal.spec.ts
+│   │   │   ├── consigneEvenementUtilisateurConnecteDansJournal.spec.ts
+│   │   │   ├── creeContactBrevo.spec.ts
+│   │   │   ├── envoieEmailCreationCompte.spec.ts
+│   │   │   ├── rapporteEvenementGuideTelechargeDansTraqueur.spec.ts
+│   │   │   └── rapporteEvenementVisaTelechargeDansTraqueur.spec.ts
+│   │   ├── infra
+│   │   │   ├── EntrepotGristGenerique.ts
+│   │   │   ├── RechercheEntrepriseAvecCache.spec.ts
+│   │   │   ├── adaptateurEnvironnement.spec.ts
+│   │   │   ├── adaptateurHachage.spec.ts
+│   │   │   ├── adaptateurMatomo.spec.ts
+│   │   │   ├── cache.spec.ts
+│   │   │   ├── entrepotFinancementGrist.spec.ts
+│   │   │   ├── entrepotGrist.spec.ts
+│   │   │   ├── entrepotGuideGrist.spec.ts
+│   │   │   ├── fournisseurHorlogeDeTest.ts
+│   │   │   ├── markdown.spec.ts
+│   │   │   └── serviceVerificationCoherenceSecretsHachage.spec.ts
+│   │   ├── metier
+│   │   │   ├── ResultatTestMaturiteCreateur.ts
+│   │   │   ├── generateurCodeSessionDeGroupe.spec.ts
+│   │   │   ├── repartitionResultatsTest.spec.ts
+│   │   │   ├── resultatTestMaturite.spec.ts
+│   │   │   ├── sessionDeGroupe.spec.ts
+│   │   │   └── utilisateur.spec.ts
+│   │   ├── mockCmsCrisp.ts
+│   │   ├── persistance
+│   │   │   ├── EntrepotSessionDeGroupeMemoire.ts
+│   │   │   ├── entrepotFavoriMemoire.ts
+│   │   │   ├── entrepotFinancementMemoire.ts
+│   │   │   ├── entrepotGuideMemoire.ts
+│   │   │   ├── entrepotMemoire.ts
+│   │   │   ├── entrepotResultatTestMemoire.ts
+│   │   │   └── entrepotUtilisateurMemoire.ts
+│   │   └── ressources
+│   │       └── factice.html
+│   └── tsconfig.json
+├── demande-diag
+│   ├── .gitignore
+│   ├── README.md
+│   ├── package.json
+│   ├── plugin
+│   │   └── remplaceVersionsDansPhp.ts
+│   ├── public
+│   │   ├── README.md
+│   │   └── demande-diag.php
+│   ├── src
+│   │   ├── DemandeDiagnostic.svelte
+│   │   ├── index.ts
+│   │   ├── styles.scss
+│   │   └── vite.d.ts
+│   ├── tsconfig.json
+│   ├── tsconfig.node.json
+│   └── vite.config.ts
+├── docker-compose.yml
+├── front
+│   ├── 404.html
+│   ├── Gemfile
+│   ├── Gemfile.lock
+│   ├── _config.yml
+│   ├── _data
+│   │   ├── catalogue.yml
+│   │   ├── meta-description.yml
+│   │   ├── nis2.yml
+│   │   ├── parcours-approfondir.yml
+│   │   └── parcours-debuter.yml
+│   ├── _includes
+│   │   ├── action-parcours-avec-items.html
+│   │   ├── avis-utilisateur.html
+│   │   ├── bandeau-maintenance.html
+│   │   ├── carte-item.html
+│   │   ├── centre-aide.html
+│   │   ├── encart-cyberdepart.html
+│   │   ├── encart-nis2.html
+│   │   ├── footer.html
+│   │   ├── head.html
+│   │   ├── header.html
+│   │   ├── script-donnees-json.html
+│   │   └── tableau-json.html
+│   ├── _layouts
+│   │   ├── accueil.html
+│   │   ├── defaut.html
+│   │   ├── guide.html
+│   │   ├── page-statique.html
+│   │   ├── parcours.html
+│   │   ├── service.html
+│   │   └── test-maturite.html
+│   ├── _ressources
+│   │   ├── avis-bulletin.md
+│   │   ├── cnil-ensemble.md
+│   │   ├── cnil-reco.md
+│   │   ├── cyber-dico.md
+│   │   ├── cyber-enjeux-pro.md
+│   │   ├── cyber-enjeux.md
+│   │   ├── cybermalveillance.md
+│   │   ├── demainspecialistecyber-affiches.md
+│   │   ├── ebios.md
+│   │   ├── label-expert-cyber.md
+│   │   ├── livret-cyber-enjeux.md
+│   │   ├── malette-cyber.md
+│   │   ├── nl-industrie.md
+│   │   ├── panorama.md
+│   │   ├── prestas-ebios.md
+│   │   ├── publications.md
+│   │   ├── rapport-menace.md
+│   │   ├── revue-presse.md
+│   │   ├── risques-cyber.md
+│   │   ├── secnumedu.md
+│   │   ├── secnumedufc.md
+│   │   ├── sensy-crise.md
+│   │   ├── visa-secu-produit.md
+│   │   └── visa-secu.md
+│   ├── _services
+│   │   ├── NIS2.md
+│   │   ├── ads.md
+│   │   ├── assistance-reponse-incidents.md
+│   │   ├── conseil-technique.md
+│   │   ├── cot.md
+│   │   ├── demainspecialistecyber.md
+│   │   ├── diagnostic-17cyber.md
+│   │   ├── hackropole.md
+│   │   ├── mon-aide-cyber-aidants.md
+│   │   ├── mon-aide-cyber.md
+│   │   ├── mon-espace-nis2.md
+│   │   ├── mon-service-securise.md
+│   │   ├── mooc-ebios-rm.md
+│   │   ├── pack-parcours-secu.md
+│   │   ├── pix.md
+│   │   ├── secnum-academie.md
+│   │   ├── sens-cyber.md
+│   │   ├── silene.md
+│   │   └── transmission-signalements.md
+│   ├── aPropos.html
+│   ├── accessibilite.html
+│   ├── accueil.html
+│   ├── apres-authentification.html
+│   ├── assets
+│   │   ├── fonts
+│   │   │   ├── Marianne-Bold.woff
+│   │   │   ├── Marianne-Bold.woff2
+│   │   │   ├── Marianne-Bold_Italic.woff
+│   │   │   ├── Marianne-Bold_Italic.woff2
+│   │   │   ├── Marianne-ExtraBold.woff
+│   │   │   ├── Marianne-ExtraBold.woff2
+│   │   │   ├── Marianne-Light.woff
+│   │   │   ├── Marianne-Light.woff2
+│   │   │   ├── Marianne-Light_Italic.woff
+│   │   │   ├── Marianne-Light_Italic.woff2
+│   │   │   ├── Marianne-Medium.woff
+│   │   │   ├── Marianne-Medium.woff2
+│   │   │   ├── Marianne-Medium_Italic.woff
+│   │   │   ├── Marianne-Medium_Italic.woff2
+│   │   │   ├── Marianne-Regular.woff
+│   │   │   ├── Marianne-Regular.woff2
+│   │   │   ├── Marianne-Regular_Italic.woff
+│   │   │   └── Marianne-Regular_Italic.woff2
+│   │   ├── icones
+│   │   │   ├── icone-check-line.svg
+│   │   │   ├── icone-danger.svg
+│   │   │   └── icone-fleche-gauche.svg
+│   │   ├── images
+│   │   │   ├── approfondir-cyber.png
+│   │   │   ├── coche-jaune-sur-rond-noir.svg
+│   │   │   ├── coche-ronde-active.svg
+│   │   │   ├── coche-ronde-inactive.svg
+│   │   │   ├── contacts-resultat-vide.svg
+│   │   │   ├── debuter-cyber.png
+│   │   │   ├── directive-nis2-avec-bulle-fond-gris.svg
+│   │   │   ├── directive-nis2.svg
+│   │   │   ├── dragon-coeur.svg
+│   │   │   ├── dragon-kart.svg
+│   │   │   ├── ecrans-virtuels-avec-femme-au-centre.svg
+│   │   │   ├── encart-homologation
+│   │   │   │   ├── encartHomologation.desktop.png
+│   │   │   │   ├── encartHomologation.mobile.png
+│   │   │   │   └── encartHomologation.tablette.png
+│   │   │   ├── erreur.svg
+│   │   │   ├── floriane-bizdev.jpg
+│   │   │   ├── icone-*.svg  (32 files)
+│   │   │   ├── icone_loupe.svg
+│   │   │   ├── illustration-*.svg  (18 files)
+│   │   │   ├── illustrations-services
+│   │   │   │   ├── ads
+│   │   │   │   │   └── ads.png
+│   │   │   │   ├── assistance-reponse-incidents
+│   │   │   │   │   └── assistance-reponse-incidents.png
+│   │   │   │   ├── avis-bulletin
+│   │   │   │   │   └── avis-bulletin.png
+│   │   │   │   ├── cnil-ensemble
+│   │   │   │   │   └── cnil-ensemble.png
+│   │   │   │   ├── cnil-reco
+│   │   │   │   │   └── cnil-reco.png
+│   │   │   │   ├── conseil-technique
+│   │   │   │   │   └── conseil-technique.png
+│   │   │   │   ├── cot
+│   │   │   │   │   └── cot.png
+│   │   │   │   ├── cyber-dico
+│   │   │   │   │   └── cyber-dico.png
+│   │   │   │   ├── cyber-enjeux
+│   │   │   │   │   ├── cyber-enjeux-demainspe.png
+│   │   │   │   │   └── cyber-enjeux.png
+│   │   │   │   ├── cyber-enjeux-pro
+│   │   │   │   │   └── cyber-enjeux-pro.png
+│   │   │   │   ├── cybermalveillance
+│   │   │   │   │   └── cybermalveillance.png
+│   │   │   │   ├── demainspecialistecyber
+│   │   │   │   │   ├── demainspecialistecyber-cyberenjeux.png
+│   │   │   │   │   └── demainspecialistecyber.png
+│   │   │   │   ├── diagnostic-17cyber
+│   │   │   │   │   └── diagnostic-17cyber.png
+│   │   │   │   ├── ebios
+│   │   │   │   │   └── ebios.png
+│   │   │   │   ├── hackropole
+│   │   │   │   │   └── hackropole.png
+│   │   │   │   ├── kit-cyber
+│   │   │   │   │   └── kit-cyber.png
+│   │   │   │   ├── label-cyber-expert
+│   │   │   │   │   └── label-cyber-expert.png
+│   │   │   │   ├── livret-cyber-enjeux
+│   │   │   │   │   └── livret-cyber-enjeux.png
+│   │   │   │   ├── mac
+│   │   │   │   │   ├── mac-accompagnement.png
+│   │   │   │   │   ├── mac-diag.png
+│   │   │   │   │   └── mac.png
+│   │   │   │   ├── malette-cyber
+│   │   │   │   │   └── malette-cyber.png
+│   │   │   │   ├── mooc-ebios-rm
+│   │   │   │   │   └── mooc-ebios-rm.png
+│   │   │   │   ├── mss
+│   │   │   │   │   ├── mss-accompagnement.png
+│   │   │   │   │   ├── mss-securiser.webp
+│   │   │   │   │   └── mss.png
+│   │   │   │   ├── nis2
+│   │   │   │   │   ├── menis2.png
+│   │   │   │   │   ├── nis2.png
+│   │   │   │   │   └── nis2parcours.png
+│   │   │   │   ├── nl-industries
+│   │   │   │   │   └── nl-industries.png
+│   │   │   │   ├── pack-parcours-secu
+│   │   │   │   │   └── pack-parcours-secu.png
+│   │   │   │   ├── panorama
+│   │   │   │   │   └── panorama.png
+│   │   │   │   ├── pix
+│   │   │   │   │   └── pix.png
+│   │   │   │   ├── prestas-ebios
+│   │   │   │   │   └── prestas-ebios.png
+│   │   │   │   ├── publications
+│   │   │   │   │   └── publications.png
+│   │   │   │   ├── rapport-menace
+│   │   │   │   │   └── rapport-menace.png
+│   │   │   │   ├── revue-presse
+│   │   │   │   │   └── revue-presse.png
+│   │   │   │   ├── risques-cyber
+│   │   │   │   │   └── risques-cyber.png
+│   │   │   │   ├── secnumacademie
+│   │   │   │   │   ├── secnum-academie.png
+│   │   │   │   │   └── secnumacademie-video.png
+│   │   │   │   ├── secnumedu
+│   │   │   │   │   └── secnumedu.png
+│   │   │   │   ├── secnumedufc
+│   │   │   │   │   └── secnumedufc.png
+│   │   │   │   ├── sens-cyber
+│   │   │   │   │   └── sens-cyber.png
+│   │   │   │   ├── sensy-crise
+│   │   │   │   │   └── sensy-crise.png
+│   │   │   │   ├── silene
+│   │   │   │   │   └── silene.png
+│   │   │   │   ├── transmission-signalements
+│   │   │   │   │   └── transmission-signalements.png
+│   │   │   │   └── visa-secu
+│   │   │   │       └── visa-secu.png
+│   │   │   ├── image-generique.avif
+│   │   │   ├── jumelles-avec-bulle-fond-gris.svg
+│   │   │   ├── logo-afcdp.avif
+│   │   │   ├── logo-amrf.avif
+│   │   │   ├── logo-anct.svg
+│   │   │   ├── logo-anssi.svg
+│   │   │   ├── logo-suite-territoriale.svg
+│   │   │   ├── logo-umih.svg
+│   │   │   ├── maintenance.svg
+│   │   │   ├── marelle-avec-bulle-fond-gris.svg
+│   │   │   ├── marianne-dark.svg
+│   │   │   ├── motif-fond-opacite-30.avif
+│   │   │   ├── motif-fond-service-opacite-16.avif
+│   │   │   ├── motif-fond-service.avif
+│   │   │   ├── pile-de-pieces.svg
+│   │   │   ├── pro_connect.svg
+│   │   │   ├── pro_connect_hover.svg
+│   │   │   ├── stat-diagnostics-cyber.svg
+│   │   │   ├── stat-services-et-ressources-consultes.svg
+│   │   │   ├── stat-test-maturite.svg
+│   │   │   ├── stat-utilisateurs-inscrits.svg
+│   │   │   ├── test-maturite
+│   │   │   │   ├── comparaison-floue-md.avif
+│   │   │   │   ├── comparaison-floue-xs.avif
+│   │   │   │   ├── illustration-adoption-solutions.svg
+│   │   │   │   ├── illustration-budget.svg
+│   │   │   │   ├── illustration-infos-complementaires.svg
+│   │   │   │   ├── illustration-pilotage.svg
+│   │   │   │   ├── illustration-posture.svg
+│   │   │   │   ├── illustration-prise-en-compte-risque.svg
+│   │   │   │   ├── illustration-ressources-humaines.svg
+│   │   │   │   ├── niveaux
+│   │   │   │   │   ├── confirme.svg
+│   │   │   │   │   ├── emergent.svg
+│   │   │   │   │   ├── insuffisant.svg
+│   │   │   │   │   ├── intermediaire.svg
+│   │   │   │   │   └── optimal.svg
+│   │   │   │   └── test-maturite.png
+│   │   │   ├── trois-mains-croisees.svg
+│   │   │   └── trouver-parcours.png
+│   │   └── styles
+│   │       ├── accueil.scss
+│   │       ├── boutons.scss
+│   │       ├── carte-item.scss
+│   │       ├── catalogue.scss
+│   │       ├── commun.scss
+│   │       ├── connexion.scss
+│   │       ├── controle-segmente.scss
+│   │       ├── dsfr.scss
+│   │       ├── encart-cyberdepart.scss
+│   │       ├── fonts.scss
+│   │       ├── grille.scss
+│   │       ├── maintenance.scss
+│   │       ├── niveaux-maturite.scss
+│   │       ├── page-statique.scss
+│   │       ├── parcours.scss
+│   │       ├── prestataires-labellises.scss
+│   │       ├── responsive.scss
+│   │       ├── service.scss
+│   │       ├── site.scss
+│   │       └── test-maturite.scss
+│   ├── catalogue.html
+│   ├── cgu.html
+│   ├── confidentialite.html
+│   ├── connexion.html
+│   ├── contacts.html
+│   ├── creation-compte.html
+│   ├── demande-aide-mon-aide-cyber.html
+│   ├── favicon.ico
+│   ├── favoris-partages.html
+│   ├── favoris.html
+│   ├── financements.html
+│   ├── formulaire-matomo.html
+│   ├── guides.html
+│   ├── inscription.html
+│   ├── lib-svelte
+│   │   ├── .gitignore
+│   │   ├── .prettierrc
+│   │   ├── README.md
+│   │   ├── eslint.config.mjs
+│   │   ├── index.html
+│   │   ├── package.json
+│   │   ├── src
+│   │   │   ├── avis-utilisateur
+│   │   │   │   ├── AvisUtilisateur.svelte
+│   │   │   │   └── ControleAvisUtilisateur.ts
+│   │   │   ├── badge-agent-anssi
+│   │   │   │   └── BadgeAgentAnssi.svelte
+│   │   │   ├── catalogue
+│   │   │   │   ├── CarteItem.svelte
+│   │   │   │   ├── Catalogue.svelte
+│   │   │   │   ├── Catalogue.types.ts
+│   │   │   │   ├── ContenuCarteItem.svelte
+│   │   │   │   ├── EnteteFiltres.svelte
+│   │   │   │   ├── FiltreAccessibilite.svelte
+│   │   │   │   ├── FiltreBesoin.svelte
+│   │   │   │   ├── FiltreSource.svelte
+│   │   │   │   ├── FiltreTypologie.svelte
+│   │   │   │   ├── Guide.types.ts
+│   │   │   │   ├── fragmentDeNavigation.ts
+│   │   │   │   ├── guides
+│   │   │   │   │   ├── BadgesDeCollections.svelte
+│   │   │   │   │   ├── BoutonsDocumentsGuide.svelte
+│   │   │   │   │   ├── FiltreCollection.svelte
+│   │   │   │   │   ├── FiltreLangue.svelte
+│   │   │   │   │   ├── Guide.svelte
+│   │   │   │   │   ├── InciteCreerUnCompte.svelte
+│   │   │   │   │   ├── ListeGuideMemeCollection.svelte
+│   │   │   │   │   ├── SqueletteCarteGuide.svelte
+│   │   │   │   │   └── guide.ts
+│   │   │   │   └── stores
+│   │   │   │       ├── catalogue.store.ts
+│   │   │   │       ├── catalogueFiltre.store.ts
+│   │   │   │       ├── catalogueParBesoin.ts
+│   │   │   │       ├── guides
+│   │   │   │       │   ├── guides.store.ts
+│   │   │   │       │   ├── guidesFiltres.store.ts
+│   │   │   │       │   ├── nombreGuides.store.ts
+│   │   │   │       │   ├── rechercheParCollection.store.ts
+│   │   │   │       │   └── rechercheParLangue.store.ts
+│   │   │   │       ├── itemsCatalogueEnFavori.ts
+│   │   │   │       ├── limitationRecherche.ts
+│   │   │   │       ├── nombreResultats.store.ts
+│   │   │   │       ├── rechercheParBesoin.store.ts
+│   │   │   │       ├── rechercheParDroitAcces.store.ts
+│   │   │   │       ├── rechercheParSource.store.ts
+│   │   │   │       ├── rechercheParTypologie.store.ts
+│   │   │   │       ├── rechercheTextuelle.store.ts
+│   │   │   │       └── recherches.store.ts
+│   │   │   ├── centre-aide
+│   │   │   │   └── CentreAide.svelte
+│   │   │   ├── contacts
+│   │   │   │   ├── Contacts.svelte
+│   │   │   │   ├── FiltresContacts.svelte
+│   │   │   │   ├── NoteInformation.svelte
+│   │   │   │   ├── SelectSecteurContacts.svelte
+│   │   │   │   ├── contacts.donnees.ts
+│   │   │   │   ├── contacts.ts
+│   │   │   │   └── contacts.type.ts
+│   │   │   ├── creation-compte
+│   │   │   │   ├── CreationCompte.svelte
+│   │   │   │   ├── SelectionDepartement.svelte
+│   │   │   │   ├── SelectionDomaineSpecialite.svelte
+│   │   │   │   └── creationCompte.d.ts
+│   │   │   ├── demande-aide-mon-aide-cyber
+│   │   │   │   ├── ConfirmationCreationDemandeAide.svelte
+│   │   │   │   ├── DemandeAideMAC.svelte
+│   │   │   │   ├── DemandeDiagnosticSimplifiee.svelte
+│   │   │   │   ├── DialogueSortieDiagnostic.svelte
+│   │   │   │   ├── DonneesFormulaireDemandeAide.ts
+│   │   │   │   ├── FoireAuxQuestions.svelte
+│   │   │   │   ├── FormulaireDemandeAide.svelte
+│   │   │   │   └── FormulaireDemandeSimplifiee.svelte
+│   │   │   ├── directives
+│   │   │   │   ├── actions.svelte.ts
+│   │   │   │   └── validationChamp.ts
+│   │   │   ├── favoris
+│   │   │   │   ├── BoutonFavori.svelte
+│   │   │   │   ├── ContenuFavoris.svelte
+│   │   │   │   ├── FavorisPartages.svelte
+│   │   │   │   └── MesFavoris.svelte
+│   │   │   ├── financements
+│   │   │   │   ├── BadgeTypeFinancement.svelte
+│   │   │   │   ├── CarteFinancement.svelte
+│   │   │   │   ├── DetailsFinancement.svelte
+│   │   │   │   ├── FiltresFinancements.svelte
+│   │   │   │   ├── Financements.svelte
+│   │   │   │   ├── ListeDesFinancements.svelte
+│   │   │   │   ├── MenuFinancement.svelte
+│   │   │   │   ├── SectionDetailsFinancement.svelte
+│   │   │   │   ├── SqueletteCarteFinancement.svelte
+│   │   │   │   ├── SqueletteCheckbox.svelte
+│   │   │   │   ├── financement.ts
+│   │   │   │   └── stores
+│   │   │   │       ├── financements.store.ts
+│   │   │   │       ├── financementsFiltre.store.ts
+│   │   │   │       ├── rechercheParRegion.store.ts
+│   │   │   │       ├── rechercheParTypeFinancement.store.ts
+│   │   │   │       └── rechercheParTypeOrganisation.store.ts
+│   │   │   ├── identification
+│   │   │   │   └── ZoneIdentification.svelte
+│   │   │   ├── main-avis-utilisateur.ts
+│   │   │   ├── main-badge-agent-anssi.ts
+│   │   │   ├── main-bandeau-maintenance.ts
+│   │   │   ├── main-barometre-simplifie.ts
+│   │   │   ├── main-bouton-favori.ts
+│   │   │   ├── main-catalogue.ts
+│   │   │   ├── main-centre-aide.ts
+│   │   │   ├── main-contacts.ts
+│   │   │   ├── main-creation-compte.ts
+│   │   │   ├── main-demande-aide-mon-aide-cyber.ts
+│   │   │   ├── main-demande-diagnostic.ts
+│   │   │   ├── main-favoris-partages.ts
+│   │   │   ├── main-favoris.ts
+│   │   │   ├── main-fil-ariane.ts
+│   │   │   ├── main-financements.ts
+│   │   │   ├── main-guide.ts
+│   │   │   ├── main-identification.ts
+│   │   │   ├── main-maturite-utilisateur.ts
+│   │   │   ├── main-navigation.ts
+│   │   │   ├── main-niveaux-maturite.ts
+│   │   │   ├── main-page-crisp.ts
+│   │   │   ├── main-resultats-session-groupe.ts
+│   │   │   ├── main-session-groupe.ts
+│   │   │   ├── main-statistiques.ts
+│   │   │   ├── main-test-maturite.ts
+│   │   │   ├── maintenance
+│   │   │   │   └── BandeauMaintenance.svelte
+│   │   │   ├── navigation
+│   │   │   │   ├── LienNavigation.svelte
+│   │   │   │   ├── LienNavigationMobile.svelte
+│   │   │   │   ├── MenuBurger.svelte
+│   │   │   │   ├── Navigation.svelte
+│   │   │   │   ├── NavigationBureau.svelte
+│   │   │   │   └── NavigationMobile.svelte
+│   │   │   ├── niveaux-maturite
+│   │   │   │   ├── IllustrationNiveauMaturite.svelte
+│   │   │   │   ├── NiveauxMaturite.donnees.ts
+│   │   │   │   ├── NiveauxMaturite.svelte
+│   │   │   │   ├── NiveauxMaturite.type.ts
+│   │   │   │   └── SelectNiveauMaturite.svelte
+│   │   │   ├── page-crisp
+│   │   │   │   └── PageCrisp.svelte
+│   │   │   ├── statistiques
+│   │   │   │   ├── Statistiques.svelte
+│   │   │   │   ├── Tuile.svelte
+│   │   │   │   └── statistiques.type.ts
+│   │   │   ├── stores
+│   │   │   │   ├── favoris.store.ts
+│   │   │   │   └── profil.store.ts
+│   │   │   ├── test-maturite
+│   │   │   │   ├── BarometreSimplifie.svelte
+│   │   │   │   ├── BoutonsPartageTest.svelte
+│   │   │   │   ├── CarteTestMaturite.svelte
+│   │   │   │   ├── ComparaisonTest.svelte
+│   │   │   │   ├── EncartDeRecommandationMaturiteFaible.svelte
+│   │   │   │   ├── EncartDeRecommandationMaturiteForte.svelte
+│   │   │   │   ├── EncartDeRecommandationSelonMaturite.svelte
+│   │   │   │   ├── EncartDeRecommandationVersCatalogue.svelte
+│   │   │   │   ├── GraphiqueAnneau.svelte
+│   │   │   │   ├── HistoriqueTests.svelte
+│   │   │   │   ├── LegendeAnneau.svelte
+│   │   │   │   ├── LegendeLigne.svelte
+│   │   │   │   ├── LegendeRadarSessionGroupe.svelte
+│   │   │   │   ├── MaturiteUtilisateur.svelte
+│   │   │   │   ├── MessageNonResponsabilite.svelte
+│   │   │   │   ├── ModaleNouvelleSessionGroupe.svelte
+│   │   │   │   ├── OngletsTest.svelte
+│   │   │   │   ├── PartageTest.svelte
+│   │   │   │   ├── PropositionRefaireTest.svelte
+│   │   │   │   ├── RadarSessionGroupe.svelte
+│   │   │   │   ├── ResultatsMonOrganisation.svelte
+│   │   │   │   ├── ResultatsSessionGroupe.svelte
+│   │   │   │   ├── ResultatsTest.type.ts
+│   │   │   │   ├── ResultatsTestMaturite.svelte
+│   │   │   │   ├── ResumeRadarComparaison.svelte
+│   │   │   │   ├── SelectRegion.svelte
+│   │   │   │   ├── SelectSecteurActivite.svelte
+│   │   │   │   ├── SelectTailleOrganisation.svelte
+│   │   │   │   ├── SelecteurSimple.svelte
+│   │   │   │   ├── SelecteurSimple.ts
+│   │   │   │   ├── Serie.ts
+│   │   │   │   ├── SessionGroupe.svelte
+│   │   │   │   ├── SessionGroupe.ts
+│   │   │   │   ├── TestMaturite.donnees.ts
+│   │   │   │   ├── TestMaturite.svelte
+│   │   │   │   ├── TestMaturite.type.ts
+│   │   │   │   ├── TuilesMaturite.svelte
+│   │   │   │   ├── TuilesMaturiteSessionGroupe.svelte
+│   │   │   │   ├── resultatTest.ts
+│   │   │   │   └── stores
+│   │   │   │       └── questionnaire.store.ts
+│   │   │   ├── ui
+│   │   │   │   ├── Alerte.svelte
+│   │   │   │   ├── Bouton.svelte
+│   │   │   │   ├── BoutonFermerModale.svelte
+│   │   │   │   ├── ChampRecherche.svelte
+│   │   │   │   ├── ChampTexte.svelte
+│   │   │   │   ├── ConteneurOnglets.svelte
+│   │   │   │   ├── ControleFormulaire.svelte
+│   │   │   │   ├── Etapier.svelte
+│   │   │   │   ├── FermetureSurClicEnDehors.svelte
+│   │   │   │   ├── FilAriane.svelte
+│   │   │   │   ├── FiltresBureau.svelte
+│   │   │   │   ├── FiltresMobile.svelte
+│   │   │   │   ├── Formulaire.svelte
+│   │   │   │   ├── Hero.svelte
+│   │   │   │   ├── Icone.svelte
+│   │   │   │   ├── MenuFlottant.svelte
+│   │   │   │   ├── Onglet.svelte
+│   │   │   │   ├── SectionAccordeon.svelte
+│   │   │   │   ├── Separateur.svelte
+│   │   │   │   ├── ZoneTexte.svelte
+│   │   │   │   ├── badge.type.ts
+│   │   │   │   ├── filAriane.ts
+│   │   │   │   └── formulaire
+│   │   │   │       ├── SelectionOrganisation.svelte
+│   │   │   │       └── SelectionOrganisation.types.ts
+│   │   │   ├── utils
+│   │   │   │   ├── arrondis.ts
+│   │   │   │   └── aseptisationDuHtml.ts
+│   │   │   └── vite-env.d.ts
+│   │   ├── svelte.config.js
+│   │   ├── test
+│   │   │   ├── avis-utilisateur
+│   │   │   │   └── ControleAvisUtilisateur.spec.ts
+│   │   │   ├── catalogue
+│   │   │   │   ├── fragmentDeNavigation.spec.ts
+│   │   │   │   └── stores
+│   │   │   │       ├── catalogue.store.spec.ts
+│   │   │   │       ├── catalogueFiltre.store.spec.ts
+│   │   │   │       ├── guidesFiltres.spec.ts
+│   │   │   │       ├── nombreGuides.store.spec.ts
+│   │   │   │       ├── nombreResultats.store.spec.ts
+│   │   │   │       ├── objetsExemples.ts
+│   │   │   │       ├── rechercheParBesoin.store.spec.ts
+│   │   │   │       ├── rechercheParCollection.spec.ts
+│   │   │   │       ├── rechercheParDroitAcces.store.spec.ts
+│   │   │   │       ├── rechercheParLangue.spec.ts
+│   │   │   │       ├── rechercheParSource.store.spec.ts
+│   │   │   │       ├── rechercheParTypologie.store.spec.ts
+│   │   │   │       └── recherches.store.spec.ts
+│   │   │   ├── contacts
+│   │   │   │   └── contacts.spec.ts
+│   │   │   ├── financements
+│   │   │   │   └── stores
+│   │   │   │       ├── financementsFiltre.store.spec.ts
+│   │   │   │       ├── rechercheParRegion.store.spec.ts
+│   │   │   │       ├── rechercheParTypeFinancement.store.spec.ts
+│   │   │   │       └── rechercheParTypeOrgnanisation.store.spec.ts
+│   │   │   ├── stores
+│   │   │   │   └── profil.store.spec.ts
+│   │   │   └── test-maturite
+│   │   │       ├── repartitions.spec.ts
+│   │   │       └── stores
+│   │   │           └── questionnaire.store.spec.ts
+│   │   ├── tsconfig.json
+│   │   ├── tsconfig.node.json
+│   │   ├── vite.config.ts
+│   │   └── vitest.config.js
+│   ├── ma-maturite.html
+│   ├── maintenance.html
+│   ├── mentionsLegales.html
+│   ├── nis2.html
+│   ├── niveaux-maturite.html
+│   ├── package.json
+│   ├── parcours-approfondir.html
+│   ├── parcours-debuter.html
+│   ├── prestataires.html
+│   ├── promouvoir-diagnostic-cyber.html
+│   ├── promouvoir-msc.html
+│   ├── resultats-session-groupe.html
+│   ├── scripts
+│   │   ├── apres-authentification.js
+│   │   ├── matomo.js
+│   │   ├── matomoTagManager.js
+│   │   ├── optOutMatomo.js
+│   │   ├── parcours.js
+│   │   ├── scroll.js
+│   │   ├── sentry.js
+│   │   └── service.js
+│   ├── securite.html
+│   ├── services-anssi.html
+│   ├── session-groupe.html
+│   ├── statistiques.html
+│   ├── test
+│   │   └── scroll.test.js
+│   ├── test-maturite.html
+│   └── vitest.config.js
+├── mise-a-jour-financements
+│   ├── .env.template
+│   ├── eslint.config.mjs
+│   ├── package.json
+│   ├── src
+│   │   ├── index.ts
+│   │   ├── infra
+│   │   │   ├── adaptateurEnvironnement.ts
+│   │   │   ├── adaptateurSourceExterne.ts
+│   │   │   ├── aseptisationDuHtml.ts
+│   │   │   ├── clientHttp.ts
+│   │   │   ├── entrepotFinancement.ts
+│   │   │   ├── generateurDeRapportsFichier.ts
+│   │   │   └── generateurDeRapportsHtml.ts
+│   │   └── metier
+│   │       ├── comparateurFinancement.ts
+│   │       ├── differenceFinancement.ts
+│   │       ├── financement.ts
+│   │       ├── generateurDeRapports.ts
+│   │       └── nouveauFinancement.ts
+│   ├── tests
+│   │   ├── infra
+│   │   │   ├── adaptateurSourceExterne.spec.ts
+│   │   │   ├── entrepotFinancement.spec.ts
+│   │   │   └── fauxAdaptateurEnvironnement.ts
+│   │   └── metier
+│   │       └── comparateurFinancement.spec.ts
+│   └── tsconfig.json
+├── package.json
+├── pnpm-lock.yaml
+├── pnpm-workspace.yaml
+└── recuperation-guides
+    ├── package.json
+    ├── src
+    │   ├── index.ts
+    │   ├── lecteurDeSiteHttp.ts
+    │   ├── recuperateurDAdressesDesGuides.ts
+    │   ├── recuperateurDocuments.ts
+    │   ├── recuperateurGuide.ts
+    │   └── transformateurCsv.ts
+    ├── tests
+    │   ├── recuperateurDAdressesDesGuides.spec.ts
+    │   └── recuperateurGuide.spec.ts
+    └── tsconfig.json
+139 directories, 842 files
