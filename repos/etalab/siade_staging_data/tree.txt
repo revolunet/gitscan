@@ -1,0 +1,827 @@
+.
+├── .github
+│   ├── ISSUE_TEMPLATE
+│   │   ├── ajout-endpoint.md
+│   │   ├── ajout-payloads.md
+│   │   └── signaler-un-bug.md
+│   └── workflows
+│       ├── reload.yml
+│       └── tests.yml
+├── .gitignore
+├── .rspec
+├── .ruby-version
+├── CLAUDE.md
+├── Gemfile
+├── Gemfile.lock
+├── LICENSE
+├── README.md
+├── Untitled
+├── bin
+│   ├── bootstrap_payload.rb
+│   ├── generate_payload_readme.rb
+│   ├── generate_token.rb
+│   ├── import_latest_open_api_files.sh
+│   ├── reload_mock_backend.rb
+│   └── test_using_docker.sh
+├── data
+│   └── siade_authorizations.yml
+├── future_payloads
+│   ├── README.md
+│   └── example.yml
+├── lib
+│   ├── generate_code_sample_from_path.rb
+│   ├── generate_payload_readme.rb
+│   ├── generate_summary_csv.rb
+│   ├── open_api_helpers.rb
+│   ├── open_api_schema_to_example.rb
+│   └── payloads_helpers.rb
+├── openapi_files
+│   ├── api_entreprise.yaml
+│   ├── api_particulier.yaml
+│   └── api_particulier_v2.yaml
+├── payloads
+│   ├── README.md
+│   ├── api_entreprise_v3_acoss_attestations_sociales
+│   │   ├── 200.yaml
+│   │   ├── 404.yaml
+│   │   ├── README.md
+│   │   └── summary.csv
+│   ├── api_entreprise_v3_ademe_certificats_rge
+│   │   ├── 200.yml
+│   │   ├── 404.yml
+│   │   ├── README.md
+│   │   ├── exemple-ademe-rge-certificat-certibat.pdf
+│   │   ├── exemple-ademe-rge-certificat-qualifelec.pdf
+│   │   ├── exemple-ademe-rge-certificat_qualibat.pdf
+│   │   ├── exemple-ademe-rge-certificat_tableau-de-l-ordre.pdf
+│   │   ├── exemple-ademe-rge-certificats-organisme-qualitenr.pdf
+│   │   └── summary.csv
+│   ├── api_entreprise_v3_cibtp_attestation_cotisations_conges_payes_chomage_intemperies
+│   │   ├── 200.yaml
+│   │   ├── 404.yaml
+│   │   ├── 504.yaml
+│   │   ├── README.md
+│   │   ├── summary.csv
+│   │   └── test_cibtp_certificat.pdf
+│   ├── api_entreprise_v3_cnetp_attestation_cotisations_conges_payes_chomage_intemperies
+│   │   ├── 200.yaml
+│   │   ├── 404.yaml
+│   │   ├── 504.yaml
+│   │   ├── README.md
+│   │   ├── summary.csv
+│   │   └── test_cnetp_certificat.pdf
+│   ├── api_entreprise_v3_dgfip_attestations_fiscales
+│   │   ├── 200.yaml
+│   │   ├── 404.yaml
+│   │   ├── README.md
+│   │   ├── attestation_delivree.yaml
+│   │   ├── entite_hors_perimetre.yaml
+│   │   └── summary.csv
+│   ├── api_entreprise_v3_dgfip_chiffres_affaires
+│   │   ├── 200-2022.yaml
+│   │   ├── 200-2023.yaml
+│   │   ├── 200-2024.yaml
+│   │   ├── 404.yaml
+│   │   ├── README.md
+│   │   └── summary.csv
+│   ├── api_entreprise_v3_dgfip_liasses_fiscales
+│   │   ├── 200.yml
+│   │   ├── 404.yml
+│   │   ├── README.md
+│   │   └── summary.csv
+│   ├── api_entreprise_v3_fntp_carte_professionnelle_travaux_publics
+│   │   ├── 200.yml
+│   │   ├── 404.yml
+│   │   ├── README.md
+│   │   ├── carte_professionnelle_tp_test.pdf
+│   │   └── summary.csv
+│   ├── api_entreprise_v3_gip_mds_effectifs_annuels_entreprise
+│   │   ├── 200-2022.yaml
+│   │   ├── 200-2023.yaml
+│   │   ├── 200-2024.yaml
+│   │   ├── 200-boeth.yaml
+│   │   ├── 404.yaml
+│   │   ├── README.md
+│   │   └── summary.csv
+│   ├── api_entreprise_v3_gip_mds_effectifs_mensuels_etablissement
+│   │   ├── 200-boeth.yaml
+│   │   ├── 200.yaml
+│   │   ├── 404.yaml
+│   │   ├── README.md
+│   │   └── summary.csv
+│   ├── api_entreprise_v3_inpi_rne_actes_bilans
+│   │   ├── 200.yaml
+│   │   ├── 404.yaml
+│   │   ├── README.md
+│   │   ├── exemple-bilan-inpi.pdf
+│   │   └── summary.csv
+│   ├── api_entreprise_v3_inpi_rne_beneficiaires_effectifs
+│   │   ├── 200.yaml
+│   │   ├── 404.yaml
+│   │   ├── README.md
+│   │   └── summary.csv
+│   ├── api_entreprise_v3_insee_adresses_etablissements
+│   │   ├── README.md
+│   │   ├── association.yaml
+│   │   ├── association_regime_alsace_moselle.yaml
+│   │   ├── personne_morale.yaml
+│   │   ├── personne_morale_etat_cesse.yaml
+│   │   ├── personne_physique_diffusible.yaml
+│   │   ├── personne_physique_non-diffusible.yaml
+│   │   └── summary.csv
+│   ├── api_entreprise_v3_insee_adresses_etablissements_diffusables
+│   │   ├── README.md
+│   │   ├── association.yaml
+│   │   ├── association_regime_alsace_moselle.yaml
+│   │   ├── personne_morale.yaml
+│   │   ├── personne_morale_etat_cesse.yaml
+│   │   ├── personne_physique_diffusible.yaml
+│   │   ├── personne_physique_non-diffusible.yaml
+│   │   └── summary.csv
+│   ├── api_entreprise_v3_insee_etablissements
+│   │   ├── 200.yaml
+│   │   ├── 404.yaml
+│   │   ├── README.md
+│   │   ├── association.yaml
+│   │   ├── association_regime_alsace_moselle.yaml
+│   │   ├── personne_morale.yaml
+│   │   ├── personne_morale_etat_cesse.yaml
+│   │   ├── personne_physique_diffusible.yaml
+│   │   ├── personne_physique_non-diffusible.yaml
+│   │   └── summary.csv
+│   ├── api_entreprise_v3_insee_etablissements_diffusables
+│   │   ├── README.md
+│   │   ├── association.yaml
+│   │   ├── association_regime_alsace_moselle.yaml
+│   │   ├── personne_morale.yaml
+│   │   ├── personne_morale_etat_cesse.yaml
+│   │   ├── personne_physique_diffusible.yaml
+│   │   ├── personne_physique_non-diffusible.yaml
+│   │   └── summary.csv
+│   ├── api_entreprise_v3_insee_sieges_diffusables_unites_legales
+│   │   ├── README.md
+│   │   ├── association.yaml
+│   │   ├── association_regime_alsace_moselle.yaml
+│   │   ├── personne_morale.yaml
+│   │   ├── personne_morale_etat_cesse.yaml
+│   │   ├── personne_physique_diffusible.yaml
+│   │   ├── personne_physique_non-diffusible.yaml
+│   │   └── summary.csv
+│   ├── api_entreprise_v3_insee_sieges_unites_legales
+│   │   ├── README.md
+│   │   ├── association.yaml
+│   │   ├── association_regime_alsace_moselle.yaml
+│   │   ├── personne_morale.yaml
+│   │   ├── personne_morale_etat_cesse.yaml
+│   │   ├── personne_physique_diffusible.yaml
+│   │   ├── personne_physique_non-diffusible.yaml
+│   │   └── summary.csv
+│   ├── api_entreprise_v3_insee_successions
+│   │   ├── 200.yaml
+│   │   ├── 403.yaml
+│   │   ├── 404.yaml
+│   │   ├── 502.yaml
+│   │   ├── 504.yaml
+│   │   ├── README.md
+│   │   └── summary.csv
+│   ├── api_entreprise_v3_insee_unites_legales
+│   │   ├── README.md
+│   │   ├── association.yaml
+│   │   ├── association_regime_alsace_moselle.yaml
+│   │   ├── personne_morale.yaml
+│   │   ├── personne_morale_etat_cesse.yaml
+│   │   ├── personne_physique_diffusible.yaml
+│   │   ├── personne_physique_non-diffusible.yaml
+│   │   └── summary.csv
+│   ├── api_entreprise_v3_insee_unites_legales_diffusables
+│   │   ├── README.md
+│   │   ├── association.yaml
+│   │   ├── association_regime_alsace_moselle.yaml
+│   │   ├── personne_morale.yaml
+│   │   ├── personne_morale_etat_cesse.yaml
+│   │   ├── personne_physique_diffusible.yaml
+│   │   ├── personne_physique_non-diffusible.yaml
+│   │   └── summary.csv
+│   ├── api_entreprise_v3_msa_conformites_cotisations
+│   │   ├── 200.yaml
+│   │   ├── 404.yaml
+│   │   ├── README.md
+│   │   └── summary.csv
+│   ├── api_entreprise_v3_opqibi_certifications_ingenierie
+│   │   ├── 200.yml
+│   │   ├── 404.yml
+│   │   ├── README.md
+│   │   └── summary.csv
+│   ├── api_entreprise_v3_probtp_attestations_cotisation_retraite
+│   │   ├── 200.yml
+│   │   ├── 404.yml
+│   │   ├── README.md
+│   │   ├── summary.csv
+│   │   └── test_probtp_attestation.pdf
+│   ├── api_entreprise_v3_qualifelec_certificats
+│   │   ├── 200-certification-qualifelec_2-certificats_sans-domaine.yaml
+│   │   ├── 200-certification-qualifelec_probatoire_rge.yaml
+│   │   ├── 200-certification-qualifelec_rge_sans-domaine.yaml
+│   │   ├── 404.yaml
+│   │   ├── README.md
+│   │   ├── exemple-certificat-qualifelec-bac-a-sable.jpg
+│   │   └── summary.csv
+│   ├── api_entreprise_v4_acoss_attestations_sociales
+│   │   ├── README.md
+│   │   ├── attestation_delivree.yaml
+│   │   ├── attestation_non_delivree.yaml
+│   │   ├── attestation_vigilance_test.pdf
+│   │   ├── entite_hors_perimetre.yaml
+│   │   └── summary.csv
+│   ├── api_entreprise_v4_dgfip_attestations_fiscales
+│   │   ├── 200.yaml
+│   │   ├── 404.yaml
+│   │   ├── README.md
+│   │   ├── attestation_delivree.yaml
+│   │   ├── entite_hors_perimetre.yaml
+│   │   └── summary.csv
+│   ├── api_entreprise_v4_mi_unites_legales
+│   │   ├── README.md
+│   │   ├── association.yaml
+│   │   ├── association_regime_alsace_moselle.yaml
+│   │   ├── association_sans_siren.yaml
+│   │   └── summary.csv
+│   ├── api_entreprise_v4_mi_unites_legales_open_data
+│   │   ├── 404.yaml
+│   │   ├── README.md
+│   │   ├── association.yaml
+│   │   ├── association_regime_alsace_moselle.yaml
+│   │   ├── association_sans_siren.yaml
+│   │   └── summary.csv
+│   ├── api_entreprise_v4_qualibat_certifications_batiment
+│   │   ├── 200.yml
+│   │   ├── 404.yml
+│   │   ├── README.md
+│   │   ├── exemple-qualibat.pdf
+│   │   └── summary.csv
+│   ├── api_particulier_v2_cnaf_quotient_familial
+│   │   ├── 200.yaml
+│   │   ├── 200_4400100.yaml
+│   │   ├── 200_4400101.yaml
+│   │   ├── 200_4400102.yaml
+│   │   ├── 200_4400103.yaml
+│   │   ├── 200_4400104.yaml
+│   │   ├── 200_4400105.yaml
+│   │   ├── 200_4400106.yaml
+│   │   ├── 200_4400107.yaml
+│   │   ├── 200_4400108.yaml
+│   │   ├── 200_4400109.yaml
+│   │   ├── 200_4400110.yaml
+│   │   ├── 200_4400111.yaml
+│   │   ├── 200_4400112.yaml
+│   │   ├── 200_4400113.yaml
+│   │   ├── 200_4400114.yaml
+│   │   ├── 200_4400115.yaml
+│   │   ├── 200_4400116.yaml
+│   │   ├── 200_4400117.yaml
+│   │   ├── 404.yaml
+│   │   ├── 500.yaml
+│   │   ├── 503.yaml
+│   │   ├── README.md
+│   │   └── summary.csv
+│   ├── api_particulier_v2_cnav_allocation_adulte_handicape
+│   │   ├── 200_beneficiaire.yaml
+│   │   ├── 200_non_beneficiaire.yaml
+│   │   ├── 404.yaml
+│   │   ├── 503.yaml
+│   │   ├── README.md
+│   │   ├── fake_france_connect_cnaf.yml
+│   │   ├── fake_france_connect_cnaf_2.yml
+│   │   ├── france_connect_cnaf.yaml
+│   │   └── summary.csv
+│   ├── api_particulier_v2_cnav_allocation_soutien_familial
+│   │   ├── 200_beneficiaire.yaml
+│   │   ├── 200_non_beneficiaire.yaml
+│   │   ├── 404.yaml
+│   │   ├── 503.yaml
+│   │   ├── README.md
+│   │   ├── fake_france_connect_cnaf.yml
+│   │   ├── fake_france_connect_cnaf_2.yml
+│   │   ├── france_connect_cnaf.yaml
+│   │   └── summary.csv
+│   ├── api_particulier_v2_cnav_complementaire_sante_solidaire
+│   │   ├── 200-beneficiaire_avec_participation-feminin.yaml
+│   │   ├── 200-beneficiaire_sans_participation-masculin-pays_etranger.yaml
+│   │   ├── 200-non-beneficiaire_masculin.yaml
+│   │   ├── 200_beneficiaire_sans_participation_financiere_femme_2.yaml
+│   │   ├── 200_beneficiaire_sans_participation_financiere_femme_3.yaml
+│   │   ├── 200_beneficiaire_sans_participation_financiere_femme_4.yaml
+│   │   ├── 200_beneficiaire_sans_participation_financiere_femme_5.yaml
+│   │   ├── 200_beneficiaire_sans_participation_financiere_femme_6.yaml
+│   │   ├── 200_beneficiaire_sans_participation_financiere_femme_7.yaml
+│   │   ├── 200_beneficiaire_sans_participation_financiere_femme_8.yaml
+│   │   ├── 400.yaml
+│   │   ├── 404.yaml
+│   │   ├── 503.yaml
+│   │   ├── 504.yaml
+│   │   ├── README.md
+│   │   ├── TST_404.yaml
+│   │   ├── beneficiaire_avec_participation_financiere_etranger_femme_200.yml
+│   │   ├── beneficiaire_avec_participation_financiere_etranger_femme_200_2.yml
+│   │   ├── beneficiaire_avec_participation_financiere_femme_200.yml
+│   │   ├── beneficiaire_sans_participation_financiere_femme_200_futur_proche.yml
+│   │   ├── beneficiaire_sans_participation_financiere_homme_200.yml
+│   │   ├── beneficiaire_sans_participation_financiere_homme_200_10.yaml
+│   │   ├── beneficiaire_sans_participation_financiere_homme_200_11.yaml
+│   │   ├── beneficiaire_sans_participation_financiere_homme_200_2.yml
+│   │   ├── beneficiaire_sans_participation_financiere_homme_200_3.yml
+│   │   ├── beneficiaire_sans_participation_financiere_homme_200_4.yml
+│   │   ├── beneficiaire_sans_participation_financiere_homme_200_5.yaml
+│   │   ├── beneficiaire_sans_participation_financiere_homme_200_6.yaml
+│   │   ├── beneficiaire_sans_participation_financiere_homme_200_7.yaml
+│   │   ├── beneficiaire_sans_participation_financiere_homme_200_8.yaml
+│   │   ├── beneficiaire_sans_participation_financiere_homme_200_9.yaml
+│   │   ├── beneficiaire_sans_participation_financiere_homme_200_futur.yml
+│   │   ├── beneficiaire_sans_participation_financiere_homme_200_futur_proche.yml
+│   │   ├── dossier_allocataire_inexistant_404.yml
+│   │   ├── erreur_fournisseur_503.yml
+│   │   ├── fake_france_connect_cnaf.yml
+│   │   ├── fake_france_connect_cnaf_2.yml
+│   │   ├── france_connect_cnaf.yml
+│   │   ├── non_beneficaire_css_homme_200.yml
+│   │   └── summary.csv
+│   ├── api_particulier_v2_cnav_prime_activite
+│   │   ├── 200_beneficiaire_majoration.yaml
+│   │   ├── 200_beneficiaire_sans_majoration.yaml
+│   │   ├── 200_non_beneficiaire.yaml
+│   │   ├── 404.yaml
+│   │   ├── 503.yaml
+│   │   ├── README.md
+│   │   ├── fake_france_connect_cnaf.yml
+│   │   ├── fake_france_connect_cnaf_2.yml
+│   │   ├── france_connect_cnaf.yaml
+│   │   └── summary.csv
+│   ├── api_particulier_v2_cnav_quotient_familial_v2
+│   │   ├── 200-couple-2_enfants-cas-etranger-qf_msa_600.yaml
+│   │   ├── 200-couple-2_enfants-qf_msa_150_mai23.yaml
+│   │   ├── 200-couple-2_enfants-qf_msa_150_sept2024.yaml
+│   │   ├── 200-couple-2_enfants-second-allocataire-qf_300.yaml
+│   │   ├── 200-couple-2_enfants-second-allocataire-qf_954.yaml
+│   │   ├── 200-etranger-celibataire-2_enfants-qf_cnaf_300_sept2024.yaml
+│   │   ├── 200-identite-cas-etranger-qf_424.yaml
+│   │   ├── 200-identite-cas-etranger.yaml
+│   │   ├── 200-identite-cas-limite-erreur-phonetique.yaml
+│   │   ├── 200-identite-cas-limite-faute-de-frappe.yaml
+│   │   ├── 200-identite-cas-nominal-peu-de-donnee-naissance.yaml
+│   │   ├── 200-identite-cas-nominal-peu-de-donnee-prenom.yaml
+│   │   ├── 200-identite-cas-nominal.yaml
+│   │   ├── 200-seul-1_enfant-qf_caf_650.yaml
+│   │   ├── 200-seul-sans_enfant-qf_846.yaml
+│   │   ├── 200-seul-sans_enfant-qf_caf_2550.yaml
+│   │   ├── 404-identite-cas-limite-erreur-phonetique.yaml
+│   │   ├── 404-identite-cas-limite-faute-de-frappe.yaml
+│   │   ├── 404-identite-cas-nominal-trop-peu-de-donnee-naissance.yaml
+│   │   ├── 404-identite-cas-nominal-trop-peu-de-donnee-prenom.yaml
+│   │   ├── 404.yaml
+│   │   ├── 503.yaml
+│   │   ├── README.md
+│   │   ├── fake_france_connect_cnaf.yml
+│   │   ├── fake_france_connect_cnaf_2.yml
+│   │   ├── france_connect_200_cnaf_1_parent_3_mineurs.yml
+│   │   ├── france_connect_200_cnaf_2_parents_0_enfant.yml
+│   │   ├── france_connect_200_cnaf_2_parents_2_mineurs.yml
+│   │   ├── france_connect_200_cnaf_2_parents_2_mineurs_1_majeur.yml
+│   │   ├── france_connect_200_cnaf_2_parents_3_mineurs.yml
+│   │   ├── france_connect_200_cnaf_2_parents_3_mineurs_1_nom_avec_caracteres_speciaux.yml
+│   │   ├── france_connect_200_cnaf_2_parents_3_mineurs_1_prenom_compose_sans_tiret.yml
+│   │   ├── france_connect_200_cnaf_2_parents_3_mineurs_dont_1_naissance_inconnue_null.yml
+│   │   ├── france_connect_200_cnaf_2_parents_4_mineurs_1_majeur.yml
+│   │   ├── france_connect_200_cnaf_2_parents_dont_1_avec_jour_00_3_mineurs.yml
+│   │   ├── france_connect_200_msa_1_parent_1_mineur_2_majeurs.yml
+│   │   ├── france_connect_200_msa_2_parents_3_mineurs_1_prenom_compose_tiret.yml
+│   │   ├── france_connect_200_msa_2_parents_3_mineurs_dont_1_naissance_00.yml
+│   │   ├── france_connect_200_msa_2_parents_3_mineurs_dont_1_naissance_inconnue_chaine_vide.yml
+│   │   ├── france_connect_200_msa_2_parents_5_mineurs.yml
+│   │   ├── france_connect_cnaf.yml
+│   │   ├── france_connect_error.yml
+│   │   └── summary.csv
+│   ├── api_particulier_v2_cnav_revenu_solidarite_active
+│   │   ├── 200_beneficiaire_majoration.yaml
+│   │   ├── 200_beneficiaire_sans_majoration.yaml
+│   │   ├── 200_non_beneficiaire.yaml
+│   │   ├── 404.yaml
+│   │   ├── 503.yaml
+│   │   ├── README.md
+│   │   ├── fake_france_connect_cnaf.yml
+│   │   ├── fake_france_connect_cnaf_2.yml
+│   │   ├── france_connect_cnaf.yaml
+│   │   └── summary.csv
+│   ├── api_particulier_v2_cnous_student_scholarship
+│   │   ├── 404.yaml
+│   │   ├── 409.yaml
+│   │   ├── 500.yaml
+│   │   ├── 503.yaml
+│   │   ├── README.md
+│   │   ├── civility.yml
+│   │   ├── fake_france_connect_cnous.yml
+│   │   ├── fake_france_connect_cnous_2.yml
+│   │   ├── fake_france_connect_cnous_with_less_scopes.yml
+│   │   ├── france_connect_cnous.yml
+│   │   ├── ine.yml
+│   │   ├── ine_1234567890B_expired.yml
+│   │   ├── ine_1234567890C_level_6.yml
+│   │   ├── ine_1234567890D_level_7.yml
+│   │   ├── ine_1234567891A_level_6_toulouse_2025.yml
+│   │   ├── ine_1234567891B_level_6_toulouse_2025.yml
+│   │   ├── ine_1234567891C_level_7_toulouse_2025.yml
+│   │   ├── ine_1234567891D_level_7_toulouse_2025.yml
+│   │   └── summary.csv
+│   ├── api_particulier_v2_men_scolarites
+│   │   ├── 200.yaml
+│   │   ├── 400.yaml
+│   │   ├── 404.yaml
+│   │   ├── 503.yaml
+│   │   ├── 504.yaml
+│   │   ├── README.md
+│   │   └── summary.csv
+│   ├── api_particulier_v2_mesri_student_status
+│   │   ├── 404.yaml
+│   │   ├── 500.yaml
+│   │   ├── 503.yaml
+│   │   ├── README.md
+│   │   ├── cicility_etudiant_formation_continue.yml
+│   │   ├── civility_*.yml  (60 files)
+│   │   ├── fake_france_connect_mesri.yml
+│   │   ├── fake_france_connect_mesri_2.yml
+│   │   ├── france_connect_mesri.yml
+│   │   ├── ine.yaml
+│   │   ├── ine_*.yaml  (17 files)
+│   │   └── summary.csv
+│   ├── api_particulier_v2_pole_emploi_indemnites
+│   │   ├── 200.yaml
+│   │   ├── 404.yaml
+│   │   ├── README.md
+│   │   └── summary.csv
+│   ├── api_particulier_v2_pole_emploi_statut
+│   │   ├── 200.yaml
+│   │   ├── 404.yaml
+│   │   ├── 500.yaml
+│   │   ├── 503.yaml
+│   │   ├── README.md
+│   │   ├── id_123456A_inscrit_toulouse.yaml
+│   │   ├── id_123457A_inscrit_toulouse_2025.yaml
+│   │   ├── id_123458A_inscrit_toulouse_2025.yaml
+│   │   ├── id_123459A_inscrit_toulouse_2025.yaml
+│   │   ├── id_123460A_inscrit_toulouse_2025.yaml
+│   │   ├── id_123461A_desinscrit_toulouse_2025.yaml
+│   │   ├── id_123462A_desinscrit_toulouse_2025.yaml
+│   │   └── summary.csv
+│   ├── api_particulier_v3_ants_extrait_immatriculation_vehicule_with_france_connect
+│   │   ├── 1.2_Parisien_VP_ES.yaml
+│   │   ├── 1_Parisien_VP_ES.yaml
+│   │   ├── 2_N-Parisien_VP_ES.yaml
+│   │   ├── 3_Parisien_VP_EL.yaml
+│   │   ├── 404.yaml
+│   │   ├── 4_Parisien_VP_VBE_Multicritère.yaml
+│   │   ├── 5_Parisien_incoherence.yaml
+│   │   ├── 6_Parisien_2RM.yaml
+│   │   ├── 7_non_parisien_siv.yaml
+│   │   ├── README.md
+│   │   ├── Test-Yves.yaml
+│   │   ├── fake_france_connect_extrait_immatriculation_vehicule.yaml
+│   │   ├── fake_france_connect_extrait_immatriculation_vehicule_dgfip_lyon_1.yaml
+│   │   ├── fake_france_connect_extrait_immatriculation_vehicule_dgfip_paris_1.yaml
+│   │   ├── fake_france_connect_extrait_immatriculation_vehicule_dgfip_paris_2.yaml
+│   │   ├── france_connect_extrait_immatriculation_vehicule_locataire.yaml
+│   │   └── summary.csv
+│   ├── api_particulier_v3_cnav_allocation_adulte_handicape_with_civility
+│   │   ├── 200_beneficiaire.yaml
+│   │   ├── 200_non_beneficiaire.yaml
+│   │   ├── 404.yaml
+│   │   ├── 429.yaml
+│   │   ├── 502.yaml
+│   │   ├── 504.yaml
+│   │   ├── README.md
+│   │   └── summary.csv
+│   ├── api_particulier_v3_cnav_allocation_adulte_handicape_with_france_connect
+│   │   ├── 404.yaml
+│   │   ├── README.md
+│   │   ├── fake_france_connect_cnaf.yml
+│   │   ├── fake_france_connect_cnaf_2.yml
+│   │   ├── france_connect_cnaf.yaml
+│   │   └── summary.csv
+│   ├── api_particulier_v3_cnav_allocation_soutien_familial_with_civility
+│   │   ├── 200_beneficiaire.yaml
+│   │   ├── 200_non_beneficiaire.yaml
+│   │   ├── 404.yaml
+│   │   ├── 429.yaml
+│   │   ├── 502.yaml
+│   │   ├── 504.yaml
+│   │   ├── README.md
+│   │   └── summary.csv
+│   ├── api_particulier_v3_cnav_allocation_soutien_familial_with_france_connect
+│   │   ├── 404.yaml
+│   │   ├── README.md
+│   │   ├── fake_france_connect_cnaf.yml
+│   │   ├── fake_france_connect_cnaf_2.yml
+│   │   ├── france_connect_cnaf.yaml
+│   │   └── summary.csv
+│   ├── api_particulier_v3_cnav_complementaire_sante_solidaire_with_civility
+│   │   ├── 200-beneficiaire_avec_participation-feminin.yaml
+│   │   ├── 200-beneficiaire_sans_participation-masculin-pays_etranger.yaml
+│   │   ├── 200-bernanrd-julien-masculin.yaml
+│   │   ├── 200-bernanrd-maxime-masculin-enfant.yaml
+│   │   ├── 200-dupont-laura-feminin.yaml
+│   │   ├── 200-enfant-beneficiaire-c2s-alexis-durand.yaml
+│   │   ├── 200-enfant-beneficiaire-c2s-leo-garnier.yaml
+│   │   ├── 200-enfant-majeur-beneficiaire-c2s.yaml
+│   │   ├── 200-enfant-non-beneficiaire-c2s-nolan-garnier.yaml
+│   │   ├── 200-favre-sarah-feminin.yaml
+│   │   ├── 200-giraud-anne-feminin.yaml
+│   │   ├── 200-giraud-ines-feminin-enfant.yaml
+│   │   ├── 200-martin-lucas-masculin-enfant.yaml
+│   │   ├── 200-martin-pierre-masculin.yaml
+│   │   ├── 200-non-beneficiaire_masculin.yaml
+│   │   ├── 200-parent-1_enfant-beneficiaires-c2s.yaml
+│   │   ├── 200-parent-beneficiaire-2_enfants-statuts-differents.yaml
+│   │   ├── 200-parent-non-beneficiaire-enfant-majeur-beneficiaire.yaml
+│   │   ├── 200-parent-sans-enfant-beneficiaire-c2s.yaml
+│   │   ├── 200-rousseau-thomas-masculin.yaml
+│   │   ├── 403.yaml
+│   │   ├── 404.yaml
+│   │   ├── 422.yaml
+│   │   ├── 429.yaml
+│   │   ├── 502.yaml
+│   │   ├── 504.yaml
+│   │   ├── README.md
+│   │   ├── beneficiaire_avec_participation_financiere_etranger_femme_200.yml
+│   │   ├── beneficiaire_avec_participation_financiere_etranger_femme_200_2.yml
+│   │   ├── beneficiaire_avec_participation_financiere_femme_200.yml
+│   │   ├── beneficiaire_sans_participation_financiere_homme_200.yml
+│   │   ├── beneficiaire_sans_participation_financiere_homme_200_2.yml
+│   │   ├── beneficiaire_sans_participation_financiere_homme_200_3.yml
+│   │   ├── beneficiaire_sans_participation_financiere_homme_200_4.yml
+│   │   ├── beneficiaire_sans_participation_financiere_homme_200_5.yaml
+│   │   ├── beneficiaire_sans_participation_financiere_homme_200_futur.yml
+│   │   ├── beneficiaire_sans_participation_financiere_homme_200_futur_proche.yml
+│   │   ├── non_beneficaire_css_homme_200.yml
+│   │   ├── non_beneficiaire_200.yaml
+│   │   └── summary.csv
+│   ├── api_particulier_v3_cnav_complementaire_sante_solidaire_with_france_connect
+│   │   ├── 404.yaml
+│   │   ├── README.md
+│   │   ├── fake_france_connect_cnaf.yml
+│   │   ├── fake_france_connect_cnaf_2.yml
+│   │   ├── france_connect_cnaf.yml
+│   │   └── summary.csv
+│   ├── api_particulier_v3_cnav_participation_familiale_eaje_with_civility
+│   │   ├── 200-identite-cas-nominal.yaml
+│   │   ├── 404.yaml
+│   │   ├── 429.yaml
+│   │   ├── 502.yaml
+│   │   ├── 504.yaml
+│   │   ├── README.md
+│   │   └── summary.csv
+│   ├── api_particulier_v3_cnav_participation_familiale_eaje_with_france_connect
+│   │   ├── 404.yaml
+│   │   ├── README.md
+│   │   ├── fake_france_connect_cnaf.yml
+│   │   ├── fake_france_connect_cnaf_2.yml
+│   │   ├── france_connect_cnaf.yml
+│   │   └── summary.csv
+│   ├── api_particulier_v3_cnav_prime_activite_with_civility
+│   │   ├── 200_beneficiaire_majoration.yaml
+│   │   ├── 200_beneficiaire_sans_majoration.yaml
+│   │   ├── 200_non_beneficiaire.yaml
+│   │   ├── 404.yaml
+│   │   ├── 429.yaml
+│   │   ├── 502.yaml
+│   │   ├── 504.yaml
+│   │   ├── README.md
+│   │   └── summary.csv
+│   ├── api_particulier_v3_cnav_prime_activite_with_france_connect
+│   │   ├── 404.yaml
+│   │   ├── README.md
+│   │   ├── fake_france_connect_cnaf.yml
+│   │   ├── fake_france_connect_cnaf_2.yml
+│   │   ├── france_connect_cnaf.yaml
+│   │   └── summary.csv
+│   ├── api_particulier_v3_cnav_quotient_familial_with_civility
+│   │   ├── 200-couple-2_enfants-qf_msa_150_mai23.yaml
+│   │   ├── 200-couple-2_enfants-qf_msa_150_sept2024.yaml
+│   │   ├── 200-etranger-celibataire-2_enfants-qf_cnaf_300_sept2024.yaml
+│   │   ├── 200-famille-4_enfants.yaml
+│   │   ├── 200-giraud-anne-3_enfants.yaml
+│   │   ├── 200-identite-cas-etranger.yaml
+│   │   ├── 200-identite-cas-limite-erreur-phonetique.yaml
+│   │   ├── 200-identite-cas-limite-faute-de-frappe.yaml
+│   │   ├── 200-identite-cas-nominal-peu-de-donnee-naissance.yaml
+│   │   ├── 200-identite-cas-nominal-peu-de-donnee-prenom.yaml
+│   │   ├── 200-identite-cas-nominal.yaml
+│   │   ├── 200-martin-pierre-3_enfants.yaml
+│   │   ├── 200-parent-1_enfant_non_scolarise.yaml
+│   │   ├── 200-parent-2_enfants.yaml
+│   │   ├── 200-parent-3_enfants.yaml
+│   │   ├── 200-roux-david-3_enfants-tuteur.yaml
+│   │   ├── 200-seul-1_enfant-qf_caf_650.yaml
+│   │   ├── 200-seul-sans_enfant-qf_caf_2550.yaml
+│   │   ├── 200-usager-base-france_connect.yaml
+│   │   ├── 404-identite-cas-limite-erreur-phonetique.yaml
+│   │   ├── 404-identite-cas-limite-faute-de-frappe.yaml
+│   │   ├── 404-identite-cas-nominal-trop-peu-de-donnee-naissance.yaml
+│   │   ├── 404-identite-cas-nominal-trop-peu-de-donnee-prenom.yaml
+│   │   ├── 404.yaml
+│   │   ├── 429.yaml
+│   │   ├── 502.yaml
+│   │   ├── 504.yaml
+│   │   ├── README.md
+│   │   └── summary.csv
+│   ├── api_particulier_v3_cnav_quotient_familial_with_france_connect
+│   │   ├── 404.yaml
+│   │   ├── README.md
+│   │   ├── fake_france_connect_cnaf.yml
+│   │   ├── fake_france_connect_cnaf_2.yml
+│   │   ├── france_connect_200_1_parent_0_enfant_cnaf.yml
+│   │   ├── france_connect_200_cnaf_1_parent_3_mineurs.yml
+│   │   ├── france_connect_200_cnaf_2_parents_0_enfant.yml
+│   │   ├── france_connect_200_cnaf_2_parents_2_mineurs_1_majeur.yml
+│   │   ├── france_connect_200_cnaf_2_parents_3_mineurs.yml
+│   │   ├── france_connect_200_cnaf_2_parents_3_mineurs_1_nom_avec_caracteres_speciaux.yml
+│   │   ├── france_connect_200_cnaf_2_parents_3_mineurs_1_prenom_compose_sans_tiret.yml
+│   │   ├── france_connect_200_cnaf_2_parents_3_mineurs_dont_1_jour_et_mois_inconnus.yml
+│   │   ├── france_connect_200_cnaf_2_parents_4_mineurs_1_majeur.yml
+│   │   ├── france_connect_200_msa_1_parent_1_mineur_2_majeurs.yml
+│   │   ├── france_connect_200_msa_2_parents_5_mineurs.yml
+│   │   └── summary.csv
+│   ├── api_particulier_v3_cnav_revenu_solidarite_active_with_civility
+│   │   ├── 200_beneficiaire_majoration.yaml
+│   │   ├── 200_beneficiaire_sans_majoration.yaml
+│   │   ├── 200_non_beneficiaire.yaml
+│   │   ├── 404.yaml
+│   │   ├── 429.yaml
+│   │   ├── 502.yaml
+│   │   ├── 504.yaml
+│   │   ├── README.md
+│   │   └── summary.csv
+│   ├── api_particulier_v3_cnav_revenu_solidarite_active_with_france_connect
+│   │   ├── 404.yaml
+│   │   ├── README.md
+│   │   ├── fake_france_connect_cnaf.yml
+│   │   ├── fake_france_connect_cnaf_2.yml
+│   │   ├── france_connect_cnaf.yaml
+│   │   └── summary.csv
+│   ├── api_particulier_v3_cnous_etudiant_boursier_with_civility
+│   │   ├── 404.yaml
+│   │   ├── README.md
+│   │   ├── civility.yml
+│   │   └── summary.csv
+│   ├── api_particulier_v3_cnous_etudiant_boursier_with_france_connect
+│   │   ├── 404.yaml
+│   │   ├── README.md
+│   │   ├── fake_france_connect_cnous.yml
+│   │   ├── fake_france_connect_cnous_2.yml
+│   │   ├── france_connect_cnous.yml
+│   │   └── summary.csv
+│   ├── api_particulier_v3_cnous_etudiant_boursier_with_ine
+│   │   ├── 404.yaml
+│   │   ├── README.md
+│   │   ├── ine.yml
+│   │   ├── ine_1234567890B_expired.yml
+│   │   ├── ine_1234567890C_level_6.yml
+│   │   ├── ine_1234567890D_level_7.yml
+│   │   └── summary.csv
+│   ├── api_particulier_v3_dsnj_service_national_with_civility
+│   │   ├── 200_en_regle.yaml
+│   │   ├── 200_indetermine.yaml
+│   │   ├── 200_non_concerne.yaml
+│   │   ├── 200_pas_en_regle.yaml
+│   │   ├── 403_access_denied.yaml
+│   │   ├── 404.yaml
+│   │   ├── 429_quota_exceeded.yaml
+│   │   ├── 502_bad_gateway.yaml
+│   │   ├── 504_gateway_timeout.yaml
+│   │   ├── README.md
+│   │   └── summary.csv
+│   ├── api_particulier_v3_dsnj_service_national_with_france_connect
+│   │   ├── 404.yaml
+│   │   ├── README.md
+│   │   ├── fake_france_connect_service_national.yaml
+│   │   ├── france_connect_service_national_moins_25ans.yaml
+│   │   └── summary.csv
+│   ├── api_particulier_v3_france_travail_indemnites_with_identifiant
+│   │   ├── 200.yaml
+│   │   ├── 404.yaml
+│   │   ├── README.md
+│   │   └── summary.csv
+│   ├── api_particulier_v3_france_travail_statut_with_identifiant
+│   │   ├── 200.yaml
+│   │   ├── 404.yaml
+│   │   ├── README.md
+│   │   └── summary.csv
+│   ├── api_particulier_v3_gip_mds_service_civique_with_civility
+│   │   ├── 200-volontaire-actif-et-passe.yaml
+│   │   ├── 200-volontaire-actif.yaml
+│   │   ├── 200-volontaire-passe.yaml
+│   │   ├── 200-volontaire-sans-contrat.yaml
+│   │   ├── 404.yaml
+│   │   ├── 422.yaml
+│   │   ├── 502.yaml
+│   │   ├── 504.yaml
+│   │   ├── README.md
+│   │   └── summary.csv
+│   ├── api_particulier_v3_gip_mds_service_civique_with_france_connect
+│   │   ├── 200-volontaire-actif-et-passe.yaml
+│   │   ├── 200-volontaire-actif.yaml
+│   │   ├── 200-volontaire-passe.yaml
+│   │   ├── 200-volontaire-sans-contrat.yaml
+│   │   ├── 404.yaml
+│   │   ├── README.md
+│   │   ├── fake_france_connect_all_fc.yaml
+│   │   ├── fake_france_connect_service_civique.yaml
+│   │   └── summary.csv
+│   ├── api_particulier_v3_men_scolarites_with_civility
+│   │   ├── 200-eleve-boursier-amine-benali.yaml
+│   │   ├── 200-eleve-boursier-chloe-riviere.yaml
+│   │   ├── 200-eleve-boursier-elise-ferrand.yaml
+│   │   ├── 200-eleve-boursier-emma-martin.yaml
+│   │   ├── 200-eleve-boursier-louise-dupont.yaml
+│   │   ├── 200-eleve-boursier-maxime-dupont.yaml
+│   │   ├── 200-eleve-boursier-sarah-giraud.yaml
+│   │   ├── 200-eleve-boursier-yassine-caron.yaml
+│   │   ├── 200-eleve-non-boursier-adam-saydou.yaml
+│   │   ├── 200-eleve-non-boursier-clara-robert.yaml
+│   │   ├── 200-eleve-non-boursier-hugo-leroy.yaml
+│   │   ├── 200-eleve-non-boursier-ines-dupont.yaml
+│   │   ├── 200-eleve-non-boursier-justine-martine.yaml
+│   │   ├── 200-eleve-non-boursier-lea-giraud.yaml
+│   │   ├── 200-eleve-non-boursier-louis-petit.yaml
+│   │   ├── 200-eleve-non-boursier-non-scolarise-elise-ferrand.yaml
+│   │   ├── 200.yaml
+│   │   ├── 404.yaml
+│   │   ├── 504.yaml
+│   │   ├── README.md
+│   │   ├── boursier_*.yaml  (19 files)
+│   │   ├── non_*.yaml  (11 files)
+│   │   └── summary.csv
+│   ├── api_particulier_v3_mesri_statut_etudiant_with_civility
+│   │   ├── 404.yaml
+│   │   ├── README.md
+│   │   ├── civility_*.yml  (61 files)
+│   │   └── summary.csv
+│   ├── api_particulier_v3_mesri_statut_etudiant_with_france_connect
+│   │   ├── 404.yaml
+│   │   ├── README.md
+│   │   ├── fake_france_connect_mesri.yml
+│   │   ├── fake_france_connect_mesri_2.yml
+│   │   ├── france_connect_mesri.yml
+│   │   └── summary.csv
+│   ├── api_particulier_v3_mesri_statut_etudiant_with_ine
+│   │   ├── 404.yaml
+│   │   ├── README.md
+│   │   ├── ine.yaml
+│   │   ├── ine_0100007108D.yaml
+│   │   ├── ine_0100008010J.yaml
+│   │   ├── ine_012345678AA.yaml
+│   │   ├── ine_1234567890B_expired.yaml
+│   │   ├── ine_1234567890C_2023_toulouse.yaml
+│   │   ├── ine_1234567890D_2023_toulouse.yaml
+│   │   ├── ine_1234567890E_2023_paris.yaml
+│   │   ├── ine_1234567890F_2024_toulouse.yaml
+│   │   ├── ine_655888578AE.yaml
+│   │   ├── ine_660309901AG.yaml
+│   │   ├── ine_675773666AD.yaml
+│   │   └── summary.csv
+│   ├── api_particulier_v3_sdh_statut_sportif_with_identifiant
+│   │   ├── 200.yaml
+│   │   ├── 403.yaml
+│   │   ├── 404.yaml
+│   │   ├── 422.yaml
+│   │   ├── 429.yaml
+│   │   ├── 502.yaml
+│   │   ├── 504.yaml
+│   │   ├── README.md
+│   │   └── summary.csv
+│   └── france_connect
+│       ├── README.md
+│       ├── all_fc.yml
+│       ├── ants.yml
+│       ├── cnaf_css.yml
+│       ├── cnaf_eaje.yml
+│       ├── cnaf_qfv2.yml
+│       ├── cnous.yaml
+│       ├── cnous_with_less_scopes.yaml
+│       ├── extra_description.md
+│       ├── mesri.yml
+│       ├── service_civique.yml
+│       └── summary.csv
+├── run.txt
+├── spec
+│   ├── acceptances
+│   │   ├── duplicate_params_spec.rb
+│   │   ├── france_connect_spec.rb
+│   │   ├── generate_payload_readme_spec.rb
+│   │   └── payloads_spec.rb
+│   ├── france_connect_json_schema.json
+│   ├── lib
+│   │   ├── generate_code_sample_from_path_spec.rb
+│   │   └── generate_summary_csv_spec.rb
+│   └── spec_helper.rb
+└── tokens
+    ├── README.md
+    └── default
+86 directories, 903 files
