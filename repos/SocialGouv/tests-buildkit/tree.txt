@@ -1,0 +1,1999 @@
+.
+├── .dockerignore
+├── .editorconfig
+├── .env
+├── .envrc
+├── .eslintignore
+├── .eslintrc.yaml
+├── .github
+│   ├── CODEOWNERS
+│   ├── renovate.json
+│   ├── stale.yml
+│   └── workflows
+│       ├── codeql-analysis.yml
+│       ├── deactivate.yaml
+│       ├── preproduction.yaml
+│       ├── production.yaml
+│       ├── quality.yml
+│       ├── release.yml
+│       ├── review-auto.yaml
+│       └── review.yaml
+├── .gitignore
+├── .husky
+│   └── pre-commit
+├── .kontinuous
+│   ├── config.yaml
+│   ├── env
+│   │   ├── dev
+│   │   │   ├── templates
+│   │   │   │   ├── alert.configmap.yaml
+│   │   │   │   ├── alert.sealed-secret.yaml
+│   │   │   │   ├── cdtn-prod-backups-access-key.sealed-secret.yaml
+│   │   │   │   ├── contributions.configmap.yaml
+│   │   │   │   ├── contributions.sealed-secret.yaml
+│   │   │   │   ├── export.configmap.yaml
+│   │   │   │   ├── export.sealed-secret.yaml
+│   │   │   │   ├── hasura.configmap.yaml
+│   │   │   │   ├── hasura.sealed-secret.yaml
+│   │   │   │   ├── ingester.configmap.yaml
+│   │   │   │   ├── ingester.sealed-secret.yaml
+│   │   │   │   ├── npm-tiptap.sealed-secret.yaml
+│   │   │   │   ├── www.configmap.yaml
+│   │   │   │   └── www.sealed-secret.yaml
+│   │   │   └── values.yaml
+│   │   ├── preprod
+│   │   │   ├── templates
+│   │   │   │   ├── alert.configmap.yaml
+│   │   │   │   ├── alert.sealed-secret.yaml
+│   │   │   │   ├── cdtn-prod-backups-access-key.sealed-secret.yaml
+│   │   │   │   ├── contributions.configmap.yaml
+│   │   │   │   ├── contributions.sealed-secret.yaml
+│   │   │   │   ├── export.configmap.yaml
+│   │   │   │   ├── export.sealed-secret.yaml
+│   │   │   │   ├── hasura.configmap.yaml
+│   │   │   │   ├── hasura.sealed-secret.yaml
+│   │   │   │   ├── ingester.configmap.yaml
+│   │   │   │   ├── ingester.sealed-secret.yaml
+│   │   │   │   ├── npm-tiptap.sealed-secret.yaml -> ../../dev/templates/npm-tiptap.sealed-secret.yaml
+│   │   │   │   ├── www.configmap.yaml
+│   │   │   │   └── www.sealed-secret.yaml
+│   │   │   └── values.yaml
+│   │   └── prod
+│   │       ├── templates
+│   │       │   ├── alert.configmap.yaml
+│   │       │   ├── alert.sealed-secret.yaml
+│   │       │   ├── contributions.configmap.yaml
+│   │       │   ├── contributions.sealed-secret.yaml
+│   │       │   ├── export.configmap.yaml
+│   │       │   ├── export.sealed-secret.yaml
+│   │       │   ├── hasura.configmap.yaml
+│   │       │   ├── hasura.sealed-secret.yaml
+│   │       │   ├── ingester.configmap.yaml
+│   │       │   ├── ingester.sealed-secret.yaml
+│   │       │   ├── npm-titap.sealed-secret.yaml
+│   │       │   ├── www.configmap.yaml
+│   │       │   └── www.sealed-secret.yaml
+│   │       └── values.yaml
+│   ├── sql
+│   │   └── post-restore.sql
+│   ├── templates
+│   │   ├── alert.cronjob.yaml
+│   │   ├── alert.job.tpl
+│   │   ├── cleanup.cronjob.yaml
+│   │   ├── cleanup.job.tpl
+│   │   ├── ingester.cronjob.yaml
+│   │   └── ingester.job.tpl
+│   └── values.yaml
+├── .node-version
+├── .sonarcloud.properties
+├── .yarn
+│   ├── plugins
+│   │   └── @yarnpkg
+│   │       ├── plugin-fetch.cjs
+│   │       └── plugin-workspace-tools.cjs
+│   └── releases
+│       └── yarn-3.6.3.cjs
+├── .yarnrc.yml
+├── CHANGELOG.md
+├── CONTRIBUTING.md
+├── HOWTO.md
+├── README.md
+├── docker
+│   └── elasticsearch
+│       ├── Dockerfile
+│       └── elasticsearch.yml
+├── docker-compose.yml
+├── lerna.json
+├── package-scripts.yml
+├── package.json
+├── scripts
+│   ├── connect_db.sh
+│   ├── dump_db.sh
+│   ├── reset_from_dump.sh
+│   └── select_contributions_refs.sql
+├── shared
+│   ├── elasticsearch
+│   │   ├── .eslintignore
+│   │   ├── .eslintrc.json
+│   │   ├── .gitignore
+│   │   ├── CHANGELOG.md
+│   │   ├── package.json
+│   │   └── src
+│   │       ├── analysis.js
+│   │       ├── dataset
+│   │       │   ├── stop_words
+│   │       │   │   ├── index.js
+│   │       │   │   └── stop_words.json
+│   │       │   └── synonyms
+│   │       │       ├── TESS.json
+│   │       │       ├── cdtn_synonyms.json
+│   │       │       └── index.js
+│   │       ├── esClientUtil.test.js
+│   │       ├── esClientUtils.js
+│   │       ├── esIndexName.js
+│   │       ├── index.js
+│   │       ├── mapping
+│   │       │   ├── document.mapping.js
+│   │       │   ├── index.js
+│   │       │   └── suggestion.mapping.js
+│   │       └── vectorizer
+│   │           ├── index.js
+│   │           └── index.test.js
+│   ├── eslint-config
+│   │   ├── CHANGELOG.md
+│   │   ├── index.js
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── types
+│   │   ├── .gitignore
+│   │   ├── CHANGELOG.md
+│   │   ├── EditorialContent.ts
+│   │   ├── contributions.ts
+│   │   ├── dila-resolver.ts
+│   │   ├── documents.ts
+│   │   ├── export
+│   │   │   ├── agreements.ts
+│   │   │   ├── contributions.ts
+│   │   │   ├── global.ts
+│   │   │   └── index.ts
+│   │   ├── global.ts
+│   │   ├── index.ts
+│   │   ├── package.json
+│   │   ├── tsconfig.json
+│   │   └── utils.ts
+│   └── utils
+│       ├── .gitignore
+│       ├── CHANGELOG.md
+│       ├── jest.config.js
+│       ├── package.json
+│       ├── src
+│       │   ├── __tests__
+│       │   │   ├── __mocks__
+│       │   │   │   ├── kaliArticle.json
+│       │   │   │   └── legiArticle.json
+│       │   │   └── dila-resolver.test.ts
+│       │   ├── array-utils.ts
+│       │   ├── config.ts
+│       │   ├── dila-resolver.ts
+│       │   ├── gql-client.ts
+│       │   ├── id-generator.ts
+│       │   ├── index.ts
+│       │   ├── logger.ts
+│       │   └── url-generator.ts
+│       └── tsconfig.json
+├── targets
+│   ├── alert-cli
+│   │   ├── .dockerignore
+│   │   ├── .eslintignore
+│   │   ├── .eslintrc.json
+│   │   ├── .gitignore
+│   │   ├── @types
+│   │   │   ├── unist-util-parents.d.ts
+│   │   │   └── unist-util-select.d.ts
+│   │   ├── CHANGELOG.md
+│   │   ├── Dockerfile
+│   │   ├── jest.config.js
+│   │   ├── package.json
+│   │   ├── src
+│   │   │   ├── dares
+│   │   │   │   ├── __tests__
+│   │   │   │   │   └── scrapping.test.ts
+│   │   │   │   ├── config.ts
+│   │   │   │   ├── difference.ts
+│   │   │   │   ├── download.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── save.ts
+│   │   │   │   ├── scrapping.ts
+│   │   │   │   └── types.ts
+│   │   │   ├── diff
+│   │   │   │   ├── dila
+│   │   │   │   │   ├── CompareDilaContent.ts
+│   │   │   │   │   ├── RelevantDocuments.ts
+│   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   ├── RelevantDocumentsExtractorStub.ts
+│   │   │   │   │   │   └── relevantContent.test.ts
+│   │   │   │   │   ├── extractReferences
+│   │   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   │   ├── editorialContents.test.ts
+│   │   │   │   │   │   │   ├── ficheTravailEmploi.test.ts
+│   │   │   │   │   │   │   ├── mailTemplates.test.ts
+│   │   │   │   │   │   │   └── mocks
+│   │   │   │   │   │   │       ├── editorialContent.payload.json
+│   │   │   │   │   │   │       └── mailTemplate.payload.json
+│   │   │   │   │   │   ├── contribution
+│   │   │   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   │   │   ├── getContributionsReferences.test.ts
+│   │   │   │   │   │   │   │   └── getOldContrib.test.ts
+│   │   │   │   │   │   │   ├── getContributionsReferences.ts
+│   │   │   │   │   │   │   ├── getOldContribRef.ts
+│   │   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   │   └── queryContributionsReferences.ts
+│   │   │   │   │   │   ├── editorialContents.ts
+│   │   │   │   │   │   ├── ficheTravailEmploi.ts
+│   │   │   │   │   │   └── mailTemplates.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── kali
+│   │   │   │   │   │   ├── ProcessAgreementChanges.ts
+│   │   │   │   │   │   ├── ProcessAgreementDataDiff.ts
+│   │   │   │   │   │   ├── ProcessAgreementFileChanges.ts
+│   │   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   │   ├── dataset
+│   │   │   │   │   │   │   │   ├── filechanges_kali_agreement_added.json
+│   │   │   │   │   │   │   │   ├── filechanges_kali_agreement_irrevelant_changes.json
+│   │   │   │   │   │   │   │   ├── filechanges_kali_agreement_no_changes.json
+│   │   │   │   │   │   │   │   ├── filechanges_kali_agreement_removed.json
+│   │   │   │   │   │   │   │   └── filechanges_kali_agreement_revelant_changes.json
+│   │   │   │   │   │   │   ├── dilaDataDiff.spec.ts
+│   │   │   │   │   │   │   └── processAgreementFileChanges.spec.ts
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   └── types.ts
+│   │   │   │   │   ├── legi
+│   │   │   │   │   │   ├── ProcessCodeChanges.ts
+│   │   │   │   │   │   ├── ProcessCodeDataDiff.ts
+│   │   │   │   │   │   ├── ProcessCodeFileChanges.ts
+│   │   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   │   ├── dataset
+│   │   │   │   │   │   │   │   ├── filechanges_legi_code_irrevelant_changes.json
+│   │   │   │   │   │   │   │   ├── filechanges_legi_code_no_changes.json
+│   │   │   │   │   │   │   │   └── filechanges_legi_code_revelant_changes.json
+│   │   │   │   │   │   │   └── dilaDataDiff.spec.ts
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   └── types.ts
+│   │   │   │   │   └── types.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── shared
+│   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   └── getDocumentsWithRelations.test.ts
+│   │   │   │   │   ├── getAllDocumentsBySource.ts
+│   │   │   │   │   ├── getContributionsCdtnReferences.ts
+│   │   │   │   │   ├── getDocumentQuery.gql.ts
+│   │   │   │   │   ├── getDocumentsWithRelations.ts
+│   │   │   │   │   └── getSupportedAgreements.ts
+│   │   │   │   ├── sp
+│   │   │   │   │   ├── getContributionsWithFicheSp.ts
+│   │   │   │   │   ├── getRelevantDocument
+│   │   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   │   └── contributions.test.ts
+│   │   │   │   │   │   ├── contributions.ts
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   └── themesAndPrequalified.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   └── travail-data
+│   │   │   │       ├── __tests__
+│   │   │   │       │   ├── GetChanges.test.ts
+│   │   │   │       │   └── dataset
+│   │   │   │       │       ├── newFirstAugustWithMajorChanges.json
+│   │   │   │       │       ├── newFirstJulyWithTechnicalChanges.json
+│   │   │   │       │       └── oldFirstJuly.json
+│   │   │   │       ├── getRelevantDocument
+│   │   │   │       │   ├── __tests__
+│   │   │   │       │   │   └── contributions.test.ts
+│   │   │   │       │   ├── contributions.ts
+│   │   │   │       │   ├── index.ts
+│   │   │   │       │   └── themesAndPrequalified.ts
+│   │   │   │       └── index.ts
+│   │   │   ├── index.ts
+│   │   │   ├── repositories
+│   │   │   │   ├── AlertRepository.ts
+│   │   │   │   ├── FicheSPRepository.ts
+│   │   │   │   ├── SourcesRepository.ts
+│   │   │   │   └── WarningRepository.ts
+│   │   │   ├── types.ts
+│   │   │   └── utils
+│   │   │       ├── __tests__
+│   │   │       │   ├── api.raw.test.ts
+│   │   │       │   ├── api.tags.test.ts
+│   │   │       │   └── get-diff.test.ts
+│   │   │       ├── batch-promises.ts
+│   │   │       ├── get-diff.ts
+│   │   │       ├── github.ts
+│   │   │       └── node-git.helpers.ts
+│   │   └── tsconfig.json
+│   ├── contributions
+│   │   ├── .babelrc
+│   │   ├── .browserslistrc
+│   │   ├── .dockerignore
+│   │   ├── .gitignore
+│   │   ├── CHANGELOG.md
+│   │   ├── Dockerfile
+│   │   ├── LICENSE
+│   │   ├── jest.config.js
+│   │   ├── next.config.js
+│   │   ├── package.json
+│   │   ├── pages
+│   │   │   ├── 404.js
+│   │   │   ├── _app.js
+│   │   │   ├── _document.js
+│   │   │   ├── _error.js
+│   │   │   ├── admin
+│   │   │   │   ├── agreements
+│   │   │   │   │   ├── edit.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── new.jsx
+│   │   │   │   ├── answers
+│   │   │   │   │   ├── edit.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── print.js
+│   │   │   │   ├── answers-references
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── generic-answers
+│   │   │   │   │   ├── edit.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── print.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── legacy-tracker
+│   │   │   │   │   ├── agreement.js
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── locations
+│   │   │   │   │   ├── edit.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── new.js
+│   │   │   │   ├── logs
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── migrations
+│   │   │   │   │   ├── edit.js
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── questions
+│   │   │   │   │   ├── edit.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── new.jsx
+│   │   │   │   ├── tracker
+│   │   │   │   │   └── index.js
+│   │   │   │   └── users
+│   │   │   │       ├── edit.js
+│   │   │   │       ├── index.js
+│   │   │   │       └── new.js
+│   │   │   ├── answers
+│   │   │   │   ├── edit.js
+│   │   │   │   ├── index.js
+│   │   │   │   └── view.js
+│   │   │   ├── api
+│   │   │   │   └── graphql.js
+│   │   │   ├── charter.js
+│   │   │   └── index.js
+│   │   ├── public
+│   │   │   ├── favicon.ico
+│   │   │   └── static
+│   │   │       ├── assets
+│   │   │       │   └── icons
+│   │   │       │       └── external-link.svg
+│   │   │       ├── docs
+│   │   │       │   ├── Charte-Redactionnelle-v2019.03.pdf
+│   │   │       │   ├── Charte-Redactionnelle-v2019.05.pdf
+│   │   │       │   ├── Premiers-retours-sur-la-validation-des-contributions.docx
+│   │   │       │   ├── Proposition-de-reponse-types-CC-metallurgie-locales.docx
+│   │   │       │   └── Reformulation-des-intitules-de-question.xlsx
+│   │   │       ├── fonts
+│   │   │       │   ├── muli-latin-200.woff
+│   │   │       │   ├── muli-latin-200.woff2
+│   │   │       │   ├── muli-latin-200italic.woff
+│   │   │       │   ├── muli-latin-200italic.woff2
+│   │   │       │   ├── muli-latin-300.woff
+│   │   │       │   ├── muli-latin-300.woff2
+│   │   │       │   ├── muli-latin-300italic.woff
+│   │   │       │   ├── muli-latin-300italic.woff2
+│   │   │       │   ├── muli-latin-400.woff
+│   │   │       │   ├── muli-latin-400.woff2
+│   │   │       │   ├── muli-latin-400italic.woff
+│   │   │       │   ├── muli-latin-400italic.woff2
+│   │   │       │   ├── muli-latin-600.woff
+│   │   │       │   ├── muli-latin-600.woff2
+│   │   │       │   ├── muli-latin-600italic.woff
+│   │   │       │   ├── muli-latin-600italic.woff2
+│   │   │       │   ├── muli-latin-700.woff
+│   │   │       │   ├── muli-latin-700.woff2
+│   │   │       │   ├── muli-latin-700italic.woff
+│   │   │       │   ├── muli-latin-700italic.woff2
+│   │   │       │   ├── muli-latin-800.woff
+│   │   │       │   ├── muli-latin-800.woff2
+│   │   │       │   ├── muli-latin-800italic.woff
+│   │   │       │   ├── muli-latin-800italic.woff2
+│   │   │       │   ├── muli-latin-900.woff
+│   │   │       │   ├── muli-latin-900.woff2
+│   │   │       │   ├── muli-latin-900italic.woff
+│   │   │       │   └── muli-latin-900italic.woff2
+│   │   │       ├── icons
+│   │   │       │   ├── android-chrome-192x192.png
+│   │   │       │   ├── android-chrome-512x512.png
+│   │   │       │   ├── apple-touch-icon.png
+│   │   │       │   ├── favicon-16x16.png
+│   │   │       │   └── favicon-32x32.png
+│   │   │       ├── images
+│   │   │       │   ├── delete.svg
+│   │   │       │   ├── ie.png
+│   │   │       │   ├── link.svg
+│   │   │       │   ├── redo.svg
+│   │   │       │   └── undo.svg
+│   │   │       └── site.webmanifest
+│   │   ├── server
+│   │   │   ├── constants.js
+│   │   │   ├── index.js
+│   │   │   ├── libs
+│   │   │   │   ├── refreshToken.js
+│   │   │   │   └── reportError.js
+│   │   │   ├── middlewares
+│   │   │   │   ├── isInternetExplorer.js
+│   │   │   │   └── withAuthentication.js
+│   │   │   └── router.js
+│   │   ├── src
+│   │   │   ├── actions
+│   │   │   │   ├── agreements.js
+│   │   │   │   ├── alerts.js
+│   │   │   │   ├── answers-references.js
+│   │   │   │   ├── answers.js
+│   │   │   │   ├── comments.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── legal-references.js
+│   │   │   │   ├── logs.js
+│   │   │   │   ├── modal.js
+│   │   │   │   ├── questions.js
+│   │   │   │   └── types.js
+│   │   │   ├── api
+│   │   │   │   ├── agreements.js
+│   │   │   │   ├── index.js
+│   │   │   │   └── questions.js
+│   │   │   ├── blocks
+│   │   │   │   ├── Answer
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── AnswerEditionContent
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── AnswerEditionHead
+│   │   │   │   │   ├── Actions.js
+│   │   │   │   │   ├── Tab.js
+│   │   │   │   │   ├── Tabs.js
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── AnswerEditionReferences
+│   │   │   │   │   └── index.js
+│   │   │   │   └── Login
+│   │   │   │       ├── Form.js
+│   │   │   │       ├── index.js
+│   │   │   │       └── styles.js
+│   │   │   ├── cache.js
+│   │   │   ├── components
+│   │   │   │   ├── AdminForm
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── styles.js
+│   │   │   │   ├── AdminIndex
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── styles.js
+│   │   │   │   ├── Answer
+│   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   └── index.test.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── index.style.js
+│   │   │   │   ├── Comment
+│   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   └── index.test.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── index.style.js
+│   │   │   │   ├── Editor
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── LegalReferences
+│   │   │   │   │   ├── Selector.js
+│   │   │   │   │   ├── Selector.style.js
+│   │   │   │   │   ├── Tag.js
+│   │   │   │   │   ├── Tag.style.js
+│   │   │   │   │   ├── TagEditor.js
+│   │   │   │   │   ├── TagEditor.style.js
+│   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   ├── Selector.test.js
+│   │   │   │   │   │   ├── Tag.test.js
+│   │   │   │   │   │   ├── TagEditor.test.js
+│   │   │   │   │   │   └── index.test.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── index.style.js
+│   │   │   │   ├── Modal
+│   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   └── index.test.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── index.style.js
+│   │   │   │   ├── Pagination
+│   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   └── index.test.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── index.style.js
+│   │   │   │   └── Tree
+│   │   │   │       ├── index.js
+│   │   │   │       └── index.style.js
+│   │   │   ├── constants.js
+│   │   │   ├── elements
+│   │   │   │   ├── Button.js
+│   │   │   │   ├── Checkbox.js
+│   │   │   │   ├── ContentTitle.js
+│   │   │   │   ├── Field.js
+│   │   │   │   ├── Hr.js
+│   │   │   │   ├── Icon.js
+│   │   │   │   ├── Idcc.js
+│   │   │   │   ├── Input.js
+│   │   │   │   ├── Link.js
+│   │   │   │   ├── LoadingSpinner.js
+│   │   │   │   ├── MarkdownEditor.js
+│   │   │   │   ├── Radio.js
+│   │   │   │   ├── SavingSpinner.js
+│   │   │   │   ├── Select.js
+│   │   │   │   ├── Subtitle.js
+│   │   │   │   ├── Table.js
+│   │   │   │   ├── Textarea.js
+│   │   │   │   ├── Title.js
+│   │   │   │   └── __tests__
+│   │   │   │       ├── Button.test.js
+│   │   │   │       ├── Checkbox.test.js
+│   │   │   │       ├── ContentTitle.test.js
+│   │   │   │       ├── Field.test.js
+│   │   │   │       ├── Hr.test.js
+│   │   │   │       ├── Icon.test.js
+│   │   │   │       ├── Idcc.test.js
+│   │   │   │       ├── Input.test.js
+│   │   │   │       ├── Link.test.js
+│   │   │   │       ├── LoadingSpinner.test.js
+│   │   │   │       ├── Radio.test.js
+│   │   │   │       ├── SavingSpinner.test.js
+│   │   │   │       ├── Select.test.js
+│   │   │   │       ├── Subitle.test.js
+│   │   │   │       ├── Table.test.js
+│   │   │   │       ├── Textarea.test.js
+│   │   │   │       └── Title.test.js
+│   │   │   ├── helpers
+│   │   │   │   ├── __tests__
+│   │   │   │   │   ├── capitalize.test.js
+│   │   │   │   │   ├── excerpt.test.js
+│   │   │   │   │   ├── humanizeLogAction.test.js
+│   │   │   │   │   ├── isNode.test.js
+│   │   │   │   │   └── shortenAgreementName.test.js
+│   │   │   │   ├── capitalize.js
+│   │   │   │   ├── excerpt.js
+│   │   │   │   ├── humanizeLogAction.js
+│   │   │   │   ├── isNode.js
+│   │   │   │   └── shortenAgreementName.js
+│   │   │   ├── layouts
+│   │   │   │   ├── AdminMain
+│   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   └── index.test.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── styles.js
+│   │   │   │   ├── AdminMenu
+│   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   └── index.test.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── index.style.js
+│   │   │   │   ├── Header
+│   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   └── index.test.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── styles.js
+│   │   │   │   ├── Main
+│   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   └── index.test.js
+│   │   │   │   │   ├── globalStyles.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── styles.js
+│   │   │   │   └── Menu
+│   │   │   │       ├── __tests__
+│   │   │   │       │   └── index.test.js
+│   │   │   │       ├── index.js
+│   │   │   │       └── styles.js
+│   │   │   ├── libs
+│   │   │   │   ├── GraphQLApi.js
+│   │   │   │   ├── RefreshToken.js
+│   │   │   │   ├── __tests__
+│   │   │   │   │   ├── generatePassword.test.js
+│   │   │   │   │   ├── makeApiFilter.test.js
+│   │   │   │   │   ├── markdown.test.js
+│   │   │   │   │   └── stringFrIncludes.test.js
+│   │   │   │   ├── api.js
+│   │   │   │   ├── cache.js
+│   │   │   │   ├── cdtnApi.js
+│   │   │   │   ├── customMoment.js
+│   │   │   │   ├── customNumeral.js
+│   │   │   │   ├── customPostgrester.js
+│   │   │   │   ├── generatePassword.js
+│   │   │   │   ├── getCurrentUser.js
+│   │   │   │   ├── getMe.js
+│   │   │   │   ├── graphql
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   ├── mutation.js
+│   │   │   │   │   └── queries.js
+│   │   │   │   ├── makeApiFilter.js
+│   │   │   │   ├── markdown.js
+│   │   │   │   ├── stringFrIncludes.js
+│   │   │   │   └── toast.js
+│   │   │   ├── props
+│   │   │   │   ├── FullAnswer.js
+│   │   │   │   ├── LegalReference.js
+│   │   │   │   ├── Tree.js
+│   │   │   │   ├── __tests__
+│   │   │   │   │   └── validators.test.js
+│   │   │   │   └── validators.js
+│   │   │   ├── reducers
+│   │   │   │   ├── agreements.js
+│   │   │   │   ├── alerts.js
+│   │   │   │   ├── answers-references.js
+│   │   │   │   ├── answers.js
+│   │   │   │   ├── comments.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── legal-references.js
+│   │   │   │   ├── logs.js
+│   │   │   │   ├── modal.js
+│   │   │   │   └── questions.js
+│   │   │   ├── sagas
+│   │   │   │   ├── agreements
+│   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   └── load.test.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── load.js
+│   │   │   │   ├── alerts
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   ├── load.js
+│   │   │   │   │   ├── processOne.js
+│   │   │   │   │   └── selectOne.js
+│   │   │   │   ├── answers
+│   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   └── load.test.js
+│   │   │   │   │   ├── addReferences.js
+│   │   │   │   │   ├── cancel.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   ├── load.js
+│   │   │   │   │   ├── loadOne.js
+│   │   │   │   │   ├── removeReferences.js
+│   │   │   │   │   ├── setFilter.js
+│   │   │   │   │   ├── setFilters.js
+│   │   │   │   │   ├── toggleCheck.js
+│   │   │   │   │   ├── updateGenericReference.js
+│   │   │   │   │   ├── updateReferences.js
+│   │   │   │   │   └── updateState.js
+│   │   │   │   ├── answers-references
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   ├── load.js
+│   │   │   │   │   ├── setFilter.js
+│   │   │   │   │   └── setFilters.js
+│   │   │   │   ├── comments
+│   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   ├── createOne.test.js
+│   │   │   │   │   │   ├── delete.test.js
+│   │   │   │   │   │   └── load.test.js
+│   │   │   │   │   ├── createOne.js
+│   │   │   │   │   ├── delete.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── load.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── legal-references
+│   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   └── load.test.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── load.js
+│   │   │   │   ├── logs
+│   │   │   │   │   ├── deleteOlderThanOneWeek.js
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   └── load.js
+│   │   │   │   ├── modal
+│   │   │   │   │   └── index.js
+│   │   │   │   └── questions
+│   │   │   │       ├── __tests__
+│   │   │   │       │   └── load.test.js
+│   │   │   │       ├── index.js
+│   │   │   │       └── load.js
+│   │   │   ├── selectors.js
+│   │   │   ├── store.js
+│   │   │   ├── svgs
+│   │   │   │   ├── Marianne.js
+│   │   │   │   ├── Welcome.js
+│   │   │   │   ├── marianne.svg
+│   │   │   │   └── welcome.svg
+│   │   │   ├── templates
+│   │   │   │   ├── withAdminEdit.js
+│   │   │   │   └── withAdminNew.js
+│   │   │   ├── texts.js
+│   │   │   └── utils
+│   │   │       ├── api.js
+│   │   │       ├── index.js
+│   │   │       └── process.js
+│   │   └── tests
+│   │       ├── globals
+│   │       │   └── sessionStorage.js
+│   │       ├── helpers
+│   │       │   ├── answerWithKo.js
+│   │       │   ├── answerWithOk.js
+│   │       │   ├── answerWithType.js
+│   │       │   ├── answerWithValue.js
+│   │       │   └── findByTestId.js
+│   │       ├── jest.setup.js
+│   │       ├── mappers
+│   │       │   └── fileTransformer.js
+│   │       ├── matchers
+│   │       │   ├── toHaveTestRenderedChild.js
+│   │       │   ├── toHaveTestRenderedChildLength.js
+│   │       │   ├── toHaveTestRenderedClassName.js
+│   │       │   ├── toHaveTestRenderedProperty.js
+│   │       │   ├── toHaveTestRenderedStyleRule.js
+│   │       │   ├── toHaveTestRenderedTextContent.js
+│   │       │   └── toHaveTestRenderedType.js
+│   │       ├── mocks
+│   │       │   └── nextRouter.js
+│   │       └── utils
+│   │           └── runTestRenderedProperty.js
+│   ├── export-elasticsearch
+│   │   ├── .eslintignore
+│   │   ├── .eslintrc.json
+│   │   ├── .gitignore
+│   │   ├── .swcrc
+│   │   ├── CHANGELOG.md
+│   │   ├── Dockerfile
+│   │   ├── dataset
+│   │   │   └── suggestions.txt
+│   │   ├── jest.config.js
+│   │   ├── nodemon.json
+│   │   ├── package.json
+│   │   ├── request.http
+│   │   ├── src
+│   │   │   ├── controllers
+│   │   │   │   ├── __test__
+│   │   │   │   │   ├── export.test.ts
+│   │   │   │   │   ├── fake
+│   │   │   │   │   │   └── export.ts
+│   │   │   │   │   └── monitoring.test.ts
+│   │   │   │   ├── export.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── middlewares
+│   │   │   │   │   ├── export.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   └── monitoring.ts
+│   │   │   ├── index.ts
+│   │   │   ├── ingester
+│   │   │   │   ├── __fixtures__
+│   │   │   │   │   └── suggestion_data_test.txt
+│   │   │   │   ├── __tests__
+│   │   │   │   │   ├── breadcrumbs.test.ts
+│   │   │   │   │   └── cdtnDocuments.test.ts
+│   │   │   │   ├── agreements
+│   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   ├── generateArticleByTheme.test.ts
+│   │   │   │   │   │   ├── getArticleId.test.ts
+│   │   │   │   │   │   ├── getArticleNumberWithPath.test.ts
+│   │   │   │   │   │   ├── getIdcc.test.ts
+│   │   │   │   │   │   ├── getInfoMessage.test.ts
+│   │   │   │   │   │   └── getTheme.test.ts
+│   │   │   │   │   ├── generate.ts
+│   │   │   │   │   ├── getAgreementsArticlesByTheme.ts
+│   │   │   │   │   ├── getIdcc.ts
+│   │   │   │   │   ├── getInfoMessage.ts
+│   │   │   │   │   ├── getTheme.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── breadcrumbs.ts
+│   │   │   │   ├── buildThemes.js
+│   │   │   │   ├── cdtnDocuments.ts
+│   │   │   │   ├── context.ts
+│   │   │   │   ├── contributions
+│   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   ├── addGlossaryToContent.test.ts
+│   │   │   │   │   │   ├── generateContent.test.ts
+│   │   │   │   │   │   ├── generateLinkedContent.test.ts
+│   │   │   │   │   │   ├── generateMessageBlock.test.ts
+│   │   │   │   │   │   ├── generateReferences.test.ts
+│   │   │   │   │   │   ├── getCcInfos.test.ts
+│   │   │   │   │   │   ├── getCcSupported.test.ts
+│   │   │   │   │   │   └── helpers.test.ts
+│   │   │   │   │   ├── addGlossaryToContent.ts
+│   │   │   │   │   ├── fetchAgreementMessage.ts
+│   │   │   │   │   ├── fetchCcUnextended.ts
+│   │   │   │   │   ├── fetchFicheSp.ts
+│   │   │   │   │   ├── fetchLinkedContent.ts
+│   │   │   │   │   ├── fetchMessageBlock.ts
+│   │   │   │   │   ├── generate.ts
+│   │   │   │   │   ├── generateContent.ts
+│   │   │   │   │   ├── generateLinkedContent.ts
+│   │   │   │   │   ├── generateMessageBlock.ts
+│   │   │   │   │   ├── generateMetadata.ts
+│   │   │   │   │   ├── generateReferences.ts
+│   │   │   │   │   ├── getCcInfos.ts
+│   │   │   │   │   ├── getCcSupported.ts
+│   │   │   │   │   ├── helpers.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── documents
+│   │   │   │   │   ├── fetchCdtnAdminDocuments.ts
+│   │   │   │   │   └── fetchGlossary.ts
+│   │   │   │   ├── exportStatus
+│   │   │   │   │   └── updateExportEsStatusWithDocumentsCount.ts
+│   │   │   │   ├── fichesTravailSplitter.js
+│   │   │   │   ├── glossary
+│   │   │   │   │   ├── __mock__
+│   │   │   │   │   │   └── glossaryData.ts
+│   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   └── glossary.test.ts
+│   │   │   │   │   ├── createGlossaryTransform.ts
+│   │   │   │   │   ├── explodeGlossaryTerms.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── insertWebComponentGlossary.ts
+│   │   │   │   │   └── types.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── ingest.ts
+│   │   │   │   ├── markdown.ts
+│   │   │   │   ├── monolog.js
+│   │   │   │   ├── plan-de-contenu.js
+│   │   │   │   ├── suggestion-cli.js
+│   │   │   │   ├── suggestion.test.ts
+│   │   │   │   ├── suggestion.ts
+│   │   │   │   ├── themes
+│   │   │   │   │   └── fetchThemes.ts
+│   │   │   │   ├── types
+│   │   │   │   │   ├── Glossary.ts
+│   │   │   │   │   ├── GraphQL.ts
+│   │   │   │   │   └── themes.ts
+│   │   │   │   ├── types.ts
+│   │   │   │   ├── utils
+│   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   ├── detectNullInObject.test.ts
+│   │   │   │   │   │   └── index.test.ts
+│   │   │   │   │   ├── detectNullInObject.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── isHtml.ts
+│   │   │   │   │   └── keyParser.ts
+│   │   │   │   ├── versions.js
+│   │   │   │   └── versions.test.js
+│   │   │   ├── repositories
+│   │   │   │   ├── agreements.ts
+│   │   │   │   ├── azure.ts
+│   │   │   │   ├── graphql
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── mutation.ts
+│   │   │   │   │   └── queries.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   └── status.ts
+│   │   │   ├── server.ts
+│   │   │   ├── services
+│   │   │   │   ├── __test__
+│   │   │   │   │   ├── export.test.ts
+│   │   │   │   │   └── fake
+│   │   │   │   │       ├── copy.ts
+│   │   │   │   │       ├── export.ts
+│   │   │   │   │       └── sitemap.ts
+│   │   │   │   ├── agreements.ts
+│   │   │   │   ├── copy.ts
+│   │   │   │   ├── export.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   └── sitemap.ts
+│   │   │   ├── utils
+│   │   │   │   ├── buffer.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── mattermost.ts
+│   │   │   │   ├── name.ts
+│   │   │   │   └── wait.ts
+│   │   │   └── workers
+│   │   │       ├── index.ts
+│   │   │       ├── ingester-preprod.ts
+│   │   │       ├── ingester-prod.ts
+│   │   │       └── run.ts
+│   │   └── tsconfig.json
+│   ├── frontend
+│   │   ├── .eslintrc.js
+│   │   ├── .eslintrc.json
+│   │   ├── .gitignore
+│   │   ├── CHANGELOG.md
+│   │   ├── Dockerfile
+│   │   ├── __mocks__
+│   │   │   ├── @codegouvfr
+│   │   │   │   └── react-dsfr
+│   │   │   │       ├── index.ts
+│   │   │   │       └── useIsDark.ts
+│   │   │   └── next
+│   │   │       └── router.ts
+│   │   ├── jest.config.js
+│   │   ├── next-env.d.ts
+│   │   ├── next.config.js
+│   │   ├── package.json
+│   │   ├── public
+│   │   │   ├── favicon.ico
+│   │   │   ├── fonts
+│   │   │   │   ├── muli-light.woff
+│   │   │   │   ├── muli-light.woff2
+│   │   │   │   ├── muli-semibold.woff
+│   │   │   │   ├── muli-semibold.woff2
+│   │   │   │   ├── muli.woff
+│   │   │   │   └── muli.woff2
+│   │   │   ├── fonts.css
+│   │   │   └── img
+│   │   │       └── logo.png
+│   │   ├── src
+│   │   │   ├── __tests__
+│   │   │   │   ├── contenus
+│   │   │   │   │   └── contentList.test.tsx
+│   │   │   │   └── sitemap.test.ts
+│   │   │   ├── components
+│   │   │   │   ├── MarkdownLink.js
+│   │   │   │   ├── Roles.tsx
+│   │   │   │   ├── alerts
+│   │   │   │   │   ├── AlertTabs.tsx
+│   │   │   │   │   ├── AlertTitle.tsx
+│   │   │   │   │   ├── Status.tsx
+│   │   │   │   │   └── warning
+│   │   │   │   │       ├── AlertWarning.tsx
+│   │   │   │   │       ├── warning.mutation.ts
+│   │   │   │   │       └── warning.query.ts
+│   │   │   │   ├── button
+│   │   │   │   │   ├── CopyButton.js
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── changes
+│   │   │   │   │   ├── ChangeGroup.tsx
+│   │   │   │   │   ├── ChangesFiche.tsx
+│   │   │   │   │   ├── ViewDiff.js
+│   │   │   │   │   └── diff.worker.js
+│   │   │   │   ├── comments
+│   │   │   │   │   ├── Comment.js
+│   │   │   │   │   ├── CommentForm.js
+│   │   │   │   │   ├── CommentList.js
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── confirmButton
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── contributions
+│   │   │   │   │   ├── answers
+│   │   │   │   │   │   ├── Answer.tsx
+│   │   │   │   │   │   ├── AnswerForm.tsx
+│   │   │   │   │   │   ├── Comment.tsx
+│   │   │   │   │   │   ├── Comments.tsx
+│   │   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   │   └── AnswerForm.test.tsx
+│   │   │   │   │   │   ├── answer.mutation.ts
+│   │   │   │   │   │   ├── answer.query.ts
+│   │   │   │   │   │   ├── answerGeneric.query.ts
+│   │   │   │   │   │   ├── answerReferences.ts
+│   │   │   │   │   │   ├── answerStatus.mutation.ts
+│   │   │   │   │   │   ├── comments.mutation.ts
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   ├── references
+│   │   │   │   │   │   │   ├── CdtnReferenceInput.tsx
+│   │   │   │   │   │   │   ├── FicheSpDocumentInput.tsx
+│   │   │   │   │   │   │   ├── KaliReferenceInput.tsx
+│   │   │   │   │   │   │   ├── LegiReferenceInput.tsx
+│   │   │   │   │   │   │   ├── OtherReferenceInput.tsx
+│   │   │   │   │   │   │   ├── ReferenceInput.tsx
+│   │   │   │   │   │   │   ├── cdtnReferencesSearch.query.ts
+│   │   │   │   │   │   │   ├── ficheSpReferenceSearch.query.ts
+│   │   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   │   ├── kaliReferencesSearch.query.ts
+│   │   │   │   │   │   │   └── legiReferencesSearch.query.ts
+│   │   │   │   │   │   └── usePublishAnswer.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── questionList
+│   │   │   │   │   │   ├── QuestionList.query.ts
+│   │   │   │   │   │   ├── QuestionList.tsx
+│   │   │   │   │   │   ├── QuestionRow.tsx
+│   │   │   │   │   │   ├── __mocks__
+│   │   │   │   │   │   │   └── QuestionList.query.ts
+│   │   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   │   └── QuestionList.test.tsx
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── questions
+│   │   │   │   │   │   ├── EditQuestion.tsx
+│   │   │   │   │   │   ├── EditQuestionAnswerList.tsx
+│   │   │   │   │   │   ├── EditQuestionForm.tsx
+│   │   │   │   │   │   ├── Question.mutation.ts
+│   │   │   │   │   │   ├── Question.query.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── status
+│   │   │   │   │   │   ├── Status.tsx
+│   │   │   │   │   │   ├── StatusRecap.tsx
+│   │   │   │   │   │   ├── StatusStats.tsx
+│   │   │   │   │   │   ├── data.tsx
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   └── utils.ts
+│   │   │   │   │   └── type.ts
+│   │   │   │   ├── dialog
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── documents
+│   │   │   │   │   ├── Actions.js
+│   │   │   │   │   ├── Container.js
+│   │   │   │   │   ├── List.js
+│   │   │   │   │   └── SearchFilters.js
+│   │   │   │   ├── editor
+│   │   │   │   │   ├── CodeEditor.tsx
+│   │   │   │   │   └── EditorWrapper.tsx
+│   │   │   │   ├── editorialContent
+│   │   │   │   │   ├── ContentSections.tsx
+│   │   │   │   │   ├── EditorialContent.tsx
+│   │   │   │   │   ├── MarkdownPreviewModal.tsx
+│   │   │   │   │   ├── ReferenceBlocks.tsx
+│   │   │   │   │   ├── References.tsx
+│   │   │   │   │   ├── Section.tsx
+│   │   │   │   │   ├── SectionBlock.tsx
+│   │   │   │   │   ├── SectionBlocks.tsx
+│   │   │   │   │   ├── SectionContent.tsx
+│   │   │   │   │   ├── SectionImage.tsx
+│   │   │   │   │   ├── SectionText.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── export-es
+│   │   │   │   │   ├── EnvironmentBadge.tsx
+│   │   │   │   │   ├── InformationsDialog.tsx
+│   │   │   │   │   ├── Status.tsx
+│   │   │   │   │   ├── TableCellDiff.tsx
+│   │   │   │   │   ├── TriggerButton.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── fiches-sp
+│   │   │   │   │   ├── addFiche.js
+│   │   │   │   │   ├── addFicheForm.js
+│   │   │   │   │   ├── fichesSpContainer.js
+│   │   │   │   │   ├── list.tsx
+│   │   │   │   │   └── selectActions.js
+│   │   │   │   ├── forms
+│   │   │   │   │   ├── Autocomplete
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── AutocompleteChips
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── Checkbox
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── ContentPicker
+│   │   │   │   │   │   ├── ContentSearch.js
+│   │   │   │   │   │   ├── SortableList.js
+│   │   │   │   │   │   ├── ThemePicker.js
+│   │   │   │   │   │   ├── ThemeSearch.js
+│   │   │   │   │   │   └── index.js
+│   │   │   │   │   ├── EditionField
+│   │   │   │   │   │   ├── Editor.tsx
+│   │   │   │   │   │   ├── MenuSpecial.tsx
+│   │   │   │   │   │   ├── MenuStyle.tsx
+│   │   │   │   │   │   ├── MenuTable.tsx
+│   │   │   │   │   │   ├── extensions
+│   │   │   │   │   │   │   ├── Alert.ts
+│   │   │   │   │   │   │   ├── Titles.ts
+│   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   ├── icons
+│   │   │   │   │   │   │   ├── DeleteColumn.tsx
+│   │   │   │   │   │   │   ├── DeleteRow.tsx
+│   │   │   │   │   │   │   ├── InsertColumnLeft.tsx
+│   │   │   │   │   │   │   ├── InsertColumnRight.tsx
+│   │   │   │   │   │   │   ├── InsertRowBottom.tsx
+│   │   │   │   │   │   │   ├── InsertRowTop.tsx
+│   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── ErrorMessage.js
+│   │   │   │   │   ├── Fieldset.js
+│   │   │   │   │   ├── File
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── IconPicker.js
+│   │   │   │   │   ├── LegiReferences
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   ├── legiReferencesSearch.query.ts
+│   │   │   │   │   │   └── type.ts
+│   │   │   │   │   ├── Lister
+│   │   │   │   │   │   ├── List.js
+│   │   │   │   │   │   └── index.js
+│   │   │   │   │   ├── OtherReferences
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   └── type.ts
+│   │   │   │   │   ├── RadioGroup
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── Select
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── Switch
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── TextField
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── TitleBox.tsx
+│   │   │   │   │   ├── ToggleButtonGroup
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   └── type.ts
+│   │   │   │   ├── glossary
+│   │   │   │   │   ├── TermForm.js
+│   │   │   │   │   └── TermList.js
+│   │   │   │   ├── highlights
+│   │   │   │   │   ├── Highlight.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── home
+│   │   │   │   │   ├── DuplicateItems.tsx
+│   │   │   │   │   ├── InvisibleLinkedDocument.tsx
+│   │   │   │   │   └── UnThemedContent.tsx
+│   │   │   │   ├── layout
+│   │   │   │   │   ├── Container.js
+│   │   │   │   │   ├── LogoAdmin.tsx
+│   │   │   │   │   ├── Nav.js
+│   │   │   │   │   ├── Navigation.tsx
+│   │   │   │   │   ├── NavigationAggregation.query.ts
+│   │   │   │   │   ├── NavigationGroup.tsx
+│   │   │   │   │   ├── NavigationItem.tsx
+│   │   │   │   │   ├── Stack.js
+│   │   │   │   │   ├── UserMenu.tsx
+│   │   │   │   │   ├── auth.layout.tsx
+│   │   │   │   │   ├── header.tsx
+│   │   │   │   │   ├── password.layout.js
+│   │   │   │   │   └── spaces.js
+│   │   │   │   ├── list
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── login
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── pagination
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── prequalified
+│   │   │   │   │   ├── Prequalified.tsx
+│   │   │   │   │   ├── ValidationBar.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── references
+│   │   │   │   │   ├── ContributionsReferencesView.tsx
+│   │   │   │   │   ├── CustomTabPanel.tsx
+│   │   │   │   │   ├── ReferencesTabs.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── storage
+│   │   │   │   │   └── DropZone.tsx
+│   │   │   │   ├── table
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── themes
+│   │   │   │   │   ├── Form.js
+│   │   │   │   │   ├── List.js
+│   │   │   │   │   ├── Map.js
+│   │   │   │   │   ├── MapModal.js
+│   │   │   │   │   └── updateContentsMutation.js
+│   │   │   │   ├── user
+│   │   │   │   │   ├── List.js
+│   │   │   │   │   ├── PasswordForm.js
+│   │   │   │   │   └── UserForm.js
+│   │   │   │   └── utils
+│   │   │   │       ├── BreadcrumbLink.tsx
+│   │   │   │       ├── Pagination.tsx
+│   │   │   │       ├── SimpleLink.tsx
+│   │   │   │       ├── SnackBar.tsx
+│   │   │   │       ├── icons.tsx
+│   │   │   │       └── index.ts
+│   │   │   ├── config.ts
+│   │   │   ├── css
+│   │   │   │   └── modeles.css
+│   │   │   ├── hoc
+│   │   │   │   ├── CustomUrqlClient.js
+│   │   │   │   ├── UserProvider.js
+│   │   │   │   └── getDisplayName.js
+│   │   │   ├── hooks
+│   │   │   │   ├── exportEs.ts
+│   │   │   │   ├── index.js
+│   │   │   │   └── useUser.js
+│   │   │   ├── index.d.ts
+│   │   │   ├── lib
+│   │   │   │   ├── __tests__
+│   │   │   │   │   └── mutationUtils.test.ts
+│   │   │   │   ├── api
+│   │   │   │   │   ├── ApiClient.ts
+│   │   │   │   │   ├── ApiErrors.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── apiError.ts
+│   │   │   │   ├── auth
+│   │   │   │   │   ├── auth.const.ts
+│   │   │   │   │   ├── cookie.ts
+│   │   │   │   │   ├── exchanges.js
+│   │   │   │   │   ├── jwt.js
+│   │   │   │   │   └── token.js
+│   │   │   │   ├── azure.js
+│   │   │   │   ├── contenus
+│   │   │   │   │   └── utils.ts
+│   │   │   │   ├── debounce.js
+│   │   │   │   ├── duration.js
+│   │   │   │   ├── emails
+│   │   │   │   │   ├── activateAccount.ts
+│   │   │   │   │   ├── getAccountSecretToken.ts
+│   │   │   │   │   ├── lostPassword.js
+│   │   │   │   │   ├── passwordChangeConfirm.js
+│   │   │   │   │   └── sendmail.js
+│   │   │   │   ├── jsx.tsx
+│   │   │   │   ├── mutationUtils.ts
+│   │   │   │   ├── preview
+│   │   │   │   │   ├── glossary.js
+│   │   │   │   │   ├── markdown.js
+│   │   │   │   │   └── preview.gql.js
+│   │   │   │   ├── references
+│   │   │   │   │   ├── __mocks__
+│   │   │   │   │   │   └── fetchKaliReferences.ts
+│   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   └── recentKaliReferences.test.ts
+│   │   │   │   │   ├── fetchKaliReferences.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   └── recentKaliReferences.ts
+│   │   │   │   ├── regex.js
+│   │   │   │   ├── relations.js
+│   │   │   │   ├── request.ts
+│   │   │   │   └── secu.ts
+│   │   │   ├── models.ts
+│   │   │   ├── modules
+│   │   │   │   ├── agreements
+│   │   │   │   │   ├── api
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   ├── query.ts
+│   │   │   │   │   │   └── repository.ts
+│   │   │   │   │   ├── components
+│   │   │   │   │   │   ├── Common
+│   │   │   │   │   │   │   ├── Form.tsx
+│   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   ├── Creation
+│   │   │   │   │   │   │   ├── agreement.mutation.ts
+│   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   ├── Edition
+│   │   │   │   │   │   │   ├── agreement.mutation.ts
+│   │   │   │   │   │   │   ├── agreement.query.ts
+│   │   │   │   │   │   │   ├── delete.mutation.ts
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   └── publish.mutation.ts
+│   │   │   │   │   │   ├── List
+│   │   │   │   │   │   │   ├── Row.tsx
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   └── list.query.ts
+│   │   │   │   │   │   ├── graphql.type.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   └── type.ts
+│   │   │   │   ├── common
+│   │   │   │   │   ├── components
+│   │   │   │   │   │   └── modals
+│   │   │   │   │   │       └── ConfirmModal.tsx
+│   │   │   │   │   └── type.ts
+│   │   │   │   ├── contribution
+│   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   └── mapContributionToDocument.test.ts
+│   │   │   │   │   ├── api
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   ├── query.ts
+│   │   │   │   │   │   └── repository.ts
+│   │   │   │   │   ├── generateSlug.ts
+│   │   │   │   │   ├── getReferences.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   └── mapContributionToDocument.ts
+│   │   │   │   ├── documents
+│   │   │   │   │   ├── api
+│   │   │   │   │   │   ├── documents.controller.ts
+│   │   │   │   │   │   ├── documents.mutation.ts
+│   │   │   │   │   │   ├── documents.query.ts
+│   │   │   │   │   │   ├── documents.repository.ts
+│   │   │   │   │   │   ├── documents.service.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── export
+│   │   │   │   │   ├── components
+│   │   │   │   │   │   ├── ShowDocumentsToUpdateModal.tsx
+│   │   │   │   │   │   ├── document-list.tsx
+│   │   │   │   │   │   ├── export.tsx
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── document.query.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── informations
+│   │   │   │   │   ├── api
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   ├── informations.query.ts
+│   │   │   │   │   │   └── informations.repository.ts
+│   │   │   │   │   ├── components
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   ├── informationsEdit
+│   │   │   │   │   │   │   ├── Informations.query.ts
+│   │   │   │   │   │   │   ├── InformationsBlock.tsx
+│   │   │   │   │   │   │   ├── InformationsBlockContent.tsx
+│   │   │   │   │   │   │   ├── InformationsBlockGraphic.tsx
+│   │   │   │   │   │   │   ├── InformationsBlockText.tsx
+│   │   │   │   │   │   │   ├── InformationsContent.tsx
+│   │   │   │   │   │   │   ├── InformationsCreate.tsx
+│   │   │   │   │   │   │   ├── InformationsEdit.tsx
+│   │   │   │   │   │   │   ├── InformationsForm.tsx
+│   │   │   │   │   │   │   ├── InformationsReference.tsx
+│   │   │   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   │   │   ├── InformationsForm.test.tsx
+│   │   │   │   │   │   │   │   └── editInformation.mapping.test.ts
+│   │   │   │   │   │   │   ├── deleteInformation.mutation.ts
+│   │   │   │   │   │   │   ├── editInformation.mapping.ts
+│   │   │   │   │   │   │   ├── editInformation.mutation.ts
+│   │   │   │   │   │   │   ├── editInformation.type.ts
+│   │   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   │   └── publishInformation.mutation.ts
+│   │   │   │   │   │   └── informationsList
+│   │   │   │   │   │       ├── InformationsList.query.ts
+│   │   │   │   │   │       ├── InformationsList.tsx
+│   │   │   │   │   │       ├── InformationsRow.tsx
+│   │   │   │   │   │       └── index.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   └── type.ts
+│   │   │   │   ├── models
+│   │   │   │   │   ├── api
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   ├── modelRepository.ts
+│   │   │   │   │   │   └── modelsQuery.ts
+│   │   │   │   │   ├── components
+│   │   │   │   │   │   ├── Common
+│   │   │   │   │   │   │   ├── Form.tsx
+│   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   ├── Creation
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   └── model.mutation.ts
+│   │   │   │   │   │   ├── Edition
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   ├── model.mutation.ts
+│   │   │   │   │   │   │   ├── model.query.ts
+│   │   │   │   │   │   │   └── publish.mutation.ts
+│   │   │   │   │   │   ├── List
+│   │   │   │   │   │   │   ├── Row.tsx
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   └── list.query.ts
+│   │   │   │   │   │   ├── graphql.type.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   └── type.ts
+│   │   │   │   └── references
+│   │   │   │       ├── ContributionAnswerReferences.tsx
+│   │   │   │       └── useContributionReferencesQuery.tsx
+│   │   │   ├── pages
+│   │   │   │   ├── 404.tsx
+│   │   │   │   ├── _app.js
+│   │   │   │   ├── _document.js
+│   │   │   │   ├── _error.js
+│   │   │   │   ├── agreements
+│   │   │   │   │   ├── [agreementId].tsx
+│   │   │   │   │   ├── creation.tsx
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── alerts
+│   │   │   │   │   └── [[...params]].tsx
+│   │   │   │   ├── api
+│   │   │   │   │   ├── actions
+│   │   │   │   │   │   ├── email_account_activation.ts
+│   │   │   │   │   │   ├── email_password_request.js
+│   │   │   │   │   │   ├── preview.js
+│   │   │   │   │   │   ├── publish.ts
+│   │   │   │   │   │   └── recent_kali_references.ts
+│   │   │   │   │   ├── activate_account.js
+│   │   │   │   │   ├── change_password.js
+│   │   │   │   │   ├── export.ts
+│   │   │   │   │   ├── get_user_email.gql.js
+│   │   │   │   │   ├── graphql.js
+│   │   │   │   │   ├── id.js
+│   │   │   │   │   ├── login.gql.js
+│   │   │   │   │   ├── login.js
+│   │   │   │   │   ├── logout.js
+│   │   │   │   │   ├── password.gql.js
+│   │   │   │   │   ├── refresh_token.gql.js
+│   │   │   │   │   ├── refresh_token.js
+│   │   │   │   │   ├── renew_password.js
+│   │   │   │   │   ├── reset_password.js
+│   │   │   │   │   ├── sitemap.ts
+│   │   │   │   │   ├── slug.js
+│   │   │   │   │   ├── storage
+│   │   │   │   │   │   ├── [path].js
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── validation.js
+│   │   │   │   │   └── webhooks
+│   │   │   │   │       └── publication.js
+│   │   │   │   ├── change_password.tsx
+│   │   │   │   ├── contenus
+│   │   │   │   │   ├── [id].tsx
+│   │   │   │   │   ├── create
+│   │   │   │   │   │   ├── [[...source]].tsx
+│   │   │   │   │   │   └── createContent.mutation.graphql
+│   │   │   │   │   ├── edit
+│   │   │   │   │   │   ├── [id].tsx
+│   │   │   │   │   │   ├── deleteContent.mutation.graphql
+│   │   │   │   │   │   ├── editContent.mutation.graphql
+│   │   │   │   │   │   └── getContent.query.graphql
+│   │   │   │   │   ├── fiches-sp.tsx
+│   │   │   │   │   ├── getDocument.query.graphql
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── updateDocument.mutation.graphql
+│   │   │   │   ├── contributions
+│   │   │   │   │   ├── answers
+│   │   │   │   │   │   └── [answerId].tsx
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── questions
+│   │   │   │   │       └── [questionId].tsx
+│   │   │   │   ├── duplicates.tsx
+│   │   │   │   ├── fichiers.tsx
+│   │   │   │   ├── ghost-documents.tsx
+│   │   │   │   ├── glossary
+│   │   │   │   │   ├── edit
+│   │   │   │   │   │   └── [[...id]].js
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── healthz.js
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── informations
+│   │   │   │   │   ├── [id].tsx
+│   │   │   │   │   ├── creation.tsx
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── kali
+│   │   │   │   │   └── blocks.js
+│   │   │   │   ├── login.js
+│   │   │   │   ├── mises-a-jour.tsx
+│   │   │   │   ├── models
+│   │   │   │   │   ├── [modelId].tsx
+│   │   │   │   │   ├── creation.tsx
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── reset_password.js
+│   │   │   │   ├── themes
+│   │   │   │   │   ├── [[...id]].js
+│   │   │   │   │   ├── [id]
+│   │   │   │   │   │   └── create.js
+│   │   │   │   │   ├── create.js
+│   │   │   │   │   └── edit
+│   │   │   │   │       └── [id].js
+│   │   │   │   ├── unthemed.js
+│   │   │   │   ├── user
+│   │   │   │   │   ├── account.js
+│   │   │   │   │   ├── edit
+│   │   │   │   │   │   └── [id].js
+│   │   │   │   │   ├── edit.js
+│   │   │   │   │   ├── new.js
+│   │   │   │   │   └── password.js
+│   │   │   │   └── users.js
+│   │   │   ├── theme.ts
+│   │   │   └── types
+│   │   │       ├── common.ts
+│   │   │       ├── content.ts
+│   │   │       └── index.ts
+│   │   ├── test
+│   │   │   └── jest.setup.js
+│   │   └── tsconfig.json
+│   ├── hasura
+│   │   ├── .gitignore
+│   │   ├── Dockerfile
+│   │   ├── config.yaml
+│   │   ├── metadata
+│   │   │   ├── actions.graphql
+│   │   │   ├── actions.yaml
+│   │   │   ├── allow_list.yaml
+│   │   │   ├── api_limits.yaml
+│   │   │   ├── backend_configs.yaml
+│   │   │   ├── cron_triggers.yaml
+│   │   │   ├── databases
+│   │   │   │   ├── databases.yaml
+│   │   │   │   └── default
+│   │   │   │       └── tables
+│   │   │   │           ├── agreement_agreements.yaml
+│   │   │   │           ├── auth_refresh_tokens.yaml
+│   │   │   │           ├── auth_user_roles.yaml
+│   │   │   │           ├── auth_users.yaml
+│   │   │   │           ├── contrib_*.yaml  (7 files)
+│   │   │   │           ├── contribution_*.yaml  (11 files)
+│   │   │   │           ├── information_*.yaml  (6 files)
+│   │   │   │           ├── model_models.yaml
+│   │   │   │           ├── model_models_legi_references.yaml
+│   │   │   │           ├── model_models_other_references.yaml
+│   │   │   │           ├── public_*.yaml  (17 files)
+│   │   │   │           ├── tables.yaml
+│   │   │   │           ├── v1_fiches_sp.yaml
+│   │   │   │           ├── v1_fiches_travail_data_alerts.yaml
+│   │   │   │           ├── v1_fiches_vdd_alerts.yaml
+│   │   │   │           ├── v1_kali_data_alerts.yaml
+│   │   │   │           └── v1_legi_data_alerts.yaml
+│   │   │   ├── graphql_schema_introspection.yaml
+│   │   │   ├── inherited_roles.yaml
+│   │   │   ├── metrics_config.yaml
+│   │   │   ├── network.yaml
+│   │   │   ├── opentelemetry.yaml
+│   │   │   ├── query_collections.yaml
+│   │   │   ├── remote_schemas.yaml
+│   │   │   ├── rest_endpoints.yaml
+│   │   │   └── version.yaml
+│   │   └── migrations
+│   │       └── default
+│   │           ├── 1588758007277_init
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1591618615701_alerts
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1600080497002_documents
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1600793735536_document_relations
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1601308761894_glossary
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1603187284602_alter_table_public_documents_drop_constraint_documents_initial_id_source_key
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1604939228600_alter_table_public_documents_add_column_is_available
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1605258418691_migrate_alert_changes
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1605258418692_create_table_public_kali_blocks
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1606230745147_new_glossary
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1606401836569_version
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1610533021186_migrate-sources-tag
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1613474820206_audit_trigger
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1613478848457_add_audit
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1613499638772_alert_clean
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1615474434522_create_table_public_service_public_contents
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1616080671217_create_fichesp_view
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1616589467679_remove_cleanup
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1622037465876_update_sources_may21
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1622826255588_fix_may_migration
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1623671351346_add_prequalified_alert
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1626873285830_pipelines
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1647885999287_create_table_public_export_es_status
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1652809586807_add_contributions
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1654608190000_trigger_to_updated_at
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1654699066000_audit_contributions
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1657204944428_migrate_section_block_array
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1662457877363_admin_role_change
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1663615034619_restart_contrib_answer_comment_id
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1667573194424_update_tools
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1674207705123_alter_table_auth_users_add_column_deleted
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1678803221253_refacto-log-audit
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1681304933841_create_table_public_agreements
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1681305260575_create_schema_contribution
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1681305313006_create_table_contribution_questions
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1681305480539_create_table_contribution_answers
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1681374425672_contribution-init
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1681719866038_alter_table_contribution_answers_add_column_status
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1682085812323_alter_table_contribution_answers
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1682496847074_create_table_contribution_question_messages
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1682496847075_init_table_contribution_question_messages
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1682498216477_alter_table_contribution_questions_add_column_message_id
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1682498252748_set_fk_contribution_questions_message_id
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1683814599931_alter_table_contribution_answers_add_column_id
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1683814614873_modify_primarykey_contribution_answers
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1683814636273_modify_primarykey_contribution_answers
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1683814685605_alter_table_contribution_answers_add_unique_question_id_agreement_id
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1683815452188_create_table_contribution_answer_comments
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1683815452189_create_table_contribution_answers_status
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1684251619920_create_table_public_kali_articles
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1684308251280_alter_table_public_agreements_add_column_kali_id
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1684327825619_create_table_public_legi_articles
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1684921950860_create_table_contribution_answer_kali_references
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1684934717457_create_table_contribution_answer_legi_references
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1684935202477_create_table_contribution_answer_cdtn_documents
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1684940441628_create_table_contribution_answer_other_references
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1685956075162_alter_table_contribution_answer_kali_references_add_column_label
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1686132899169_alter_table_contribution_answer_kali_references_add_column_id
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1686135400046_alter_table_contribution_answer_legi_references_add_column_id
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1686146234841_alter_table_public_kali_articles_alter_column_path
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1686146253165_alter_table_public_legi_articles_alter_column_index
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1686146298847_alter_table_public_kali_articles_add_column_label
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1686649565713_alter_table_public_kali_articles_add_column_created_at
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1690978452471_alter_table_public_legi_articles_drop_constraint_legi_articles_cid_key
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1691573610814_create_table_public_alert_warnings
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1691573987854_alter_table_public_alert_warnings_add_column_source
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1693311202850_insert_into_public_sources
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1693483321181_alter_table_contribution_question_messages_add_column_content_agreement_unhandled
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1693483376875_alter_table_contribution_question_messages_add_column_content_agreement_unplanned
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1693580386416_alter_table_contribution_answers_add_column_updated_at
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1693835658115_create_schema_information
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1693836035778_create_table_information_informations
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1693836242023_create_table_information_informations_contents
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1693837558650_create_table_public_files
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1693837558654_create_table_information_informations_contents_blocks
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1693908863392_create_table_information_informations_contents_references
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1693912613427_create_table_information_informations_references
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1693991664253_create_table_information_informations_contents_blocks_contents
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1694012383773_migrate_info_page
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1695203843006_alter_table_contribution_answers_add_column_url_sp
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1695213519884_alter_table_contribution_questions_add_column_order
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1695650060440_alter_table_contribution_answers_alter_column_url_sp
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1695650115403_set_fk_contribution_answers_content_service_public_cdtn_id
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1695651246643_alter_table_contribution_answers_alter_column_other_answer
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1696398926000_create_schema_model
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1696398927000_create_table_model_models
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1696398928000_create_table_model_models_other_references
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1696398929000_create_table_model_models_legi_references
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1696398930000_insert_models
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1696398931000_audit_models_tables
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1696425195146_delete_obsolete_contribution_questions
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1696861396000_restore_contribution_question_3_and_delete_5
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1696861396050_add_3248
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1696861397000_add_trigger_on_contribution
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1698219011952_alter_table_public_files_add_column_created_at
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1698219011954_update_document_highlight
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1698219011955_update_contrib
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1700139430720_update_contribution_question_messages_data
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1700215552179_alter_table_contribution_question_messages_alter_column_content_agreement_unhandled
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1700846261130_alter_table_public_kali_articles_add_column_section
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1701337776490_clean-hn-contrib
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1701443932222_alter_table_public_kali_blocks_add_unique_id
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1701444478201_insert_into_public_kali_blocks
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1701770305044_delete-650-contrib
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1701783161585_alter_table_contribution_answers_add_column_messageNothingNoCDT
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1702046689327_add-CC-3248-highlight
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1702375825834_3248-hightlight-before-01012024
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1702473399272_add-lot-2-contribution-question
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1702483986908_question-bloc-wording-change
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1702537735282_alter_table_public_export_es_status_add_column_error
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1702549668954_fix_question_55_index
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1702637792555_question-bloc-wording-bloc2
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1702917350000_fix_duplicate_initial_id
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1702983524099_delete_old_meta
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1704814350436_alter_table_contribution_answers_add_column_description
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1704982796000_redeploy_39_51
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1704990248129_insert_contrib_description
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1705675302543_fix_duplicate_initial_id_39_51
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1705675302544_move_hn_contribs
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1706543495439_alter_table_public_agreements_add_column_is_supported
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1706543532882_alter_table_public_agreements_alter_column_is_supported
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1706543619099_alter_table_public_agreements_add_column_root_text
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1706545115195_alter_table_public_agreements_add_column_short_name
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1706545158302_alter_table_public_agreements_add_column_legifrance_url
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1706622645693_alter_table_public_agreements_add_column_worker_number
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1706624756678_alter_table_public_export_es_status_add_column_informations
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1706624800029_alter_table_public_agreements_alter_column_kali_id
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1706624800030_alter_table_agreement_agreements_add_column_publication_date
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1706624800031_alter_table_agreement_agreements_add_column_synonyms
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1706624800032_update_existing_agreements
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1706624800033_add_missing_agreements
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1706680159740_alter_table_public_agreements_add_column_updated_at
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1706680159741_create_schema_agreement
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1706680159742_alter_table_public_agreements_move_schema_agreement
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1706680159745_update_document_initial_id_for_agreements
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1706700856662_alter_table_public_export_es_status_alter_column_informations
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1707930744365_add_lot_3
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1708090757744_alter_table_public_documents_add_check_constraint_slug_not_null_and_not_empty
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1708090794355_alter_table_public_documents_add_check_constraint_source_not_null_and_not_empty
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1708363331936_alter_table_agreement_agreements_add_column_is_extended
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1708427376180_create_table_contribution_agreement_messages
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           ├── 1708684548610_alter_table_agreement_agreements_alter_column_is_extended
+│   │           │   ├── down.sql
+│   │           │   └── up.sql
+│   │           └── 1709629363000_add_lot_4
+│   │               ├── down.sql
+│   │               └── up.sql
+│   └── ingester
+│       ├── .eslintignore
+│       ├── .eslintrc.json
+│       ├── .gitignore
+│       ├── @types
+│       │   ├── unist-util-find.d.ts
+│       │   ├── unist-util-flat-filter.d.ts
+│       │   └── unist-util-parents.d.ts
+│       ├── CHANGELOG.md
+│       ├── Dockerfile
+│       ├── jest.config.js
+│       ├── package.json
+│       ├── src
+│       │   ├── articles
+│       │   │   ├── index.ts
+│       │   │   ├── kali
+│       │   │   │   ├── __tests__
+│       │   │   │   │   ├── agreement-articles-with-path.test.ts
+│       │   │   │   │   ├── articles.json
+│       │   │   │   │   ├── indexed-article.test.ts
+│       │   │   │   │   ├── kali-data.json
+│       │   │   │   │   ├── load-agreement-articles.specs.ts
+│       │   │   │   │   └── section.test.ts
+│       │   │   │   ├── agreement-articles-with-path.ts
+│       │   │   │   ├── index.ts
+│       │   │   │   ├── indexed-article.ts
+│       │   │   │   ├── load-agreement-articles.ts
+│       │   │   │   ├── load-supported-agreements.ts
+│       │   │   │   └── update-agreement-articles.ts
+│       │   │   ├── legi
+│       │   │   │   ├── __tests__
+│       │   │   │   │   ├── labour-code.json
+│       │   │   │   │   └── load-labour-code-articles.specs.ts
+│       │   │   │   ├── index.ts
+│       │   │   │   ├── load-labour-code-articles.ts
+│       │   │   │   └── update-labour-code-articles.ts
+│       │   │   ├── update-kali-articles.ts
+│       │   │   └── update-legi-articles.ts
+│       │   ├── cli.ts
+│       │   ├── index.d.ts
+│       │   ├── lib
+│       │   │   ├── __tests__
+│       │   │   │   └── bacthPromises.test.ts
+│       │   │   ├── batchPromises.ts
+│       │   │   ├── data-loaders.ts
+│       │   │   ├── fetchContributions
+│       │   │   │   ├── AgreementRepository.ts
+│       │   │   │   ├── AnswerExtractor.ts
+│       │   │   │   ├── ContributionRepository.ts
+│       │   │   │   ├── __mocks__
+│       │   │   │   │   ├── AgreementMock.ts
+│       │   │   │   │   ├── ContributionMock.ts
+│       │   │   │   │   ├── input-agreements.json
+│       │   │   │   │   └── input-questions.json
+│       │   │   │   ├── __tests__
+│       │   │   │   │   ├── expected.json
+│       │   │   │   │   └── fetchContributions.test.ts
+│       │   │   │   ├── index.ts
+│       │   │   │   ├── query.ts
+│       │   │   │   └── types.ts
+│       │   │   ├── formatIdcc.ts
+│       │   │   ├── getJson.ts
+│       │   │   ├── hasura-mutations-queries.ts
+│       │   │   └── referenceResolver.ts
+│       │   └── transform
+│       │       ├── contributions
+│       │       │   ├── fetchContributions.ts
+│       │       │   ├── fetchSupportedAgreements.ts
+│       │       │   ├── index.ts
+│       │       │   ├── setContributionsAvailabilityToTrue.ts
+│       │       │   └── updateDocument.ts
+│       │       ├── fiche-travail-emploi.ts
+│       │       ├── fichesServicePublic
+│       │       │   ├── __tests__
+│       │       │   │   └── parseReferences.test.ts
+│       │       │   ├── fetchAgreementsWithKaliId.ts
+│       │       │   ├── filter.ts
+│       │       │   ├── format.ts
+│       │       │   ├── index.ts
+│       │       │   └── parseReference.ts
+│       │       └── legi-data
+│       │           ├── data-loaders.ts
+│       │           └── index.ts
+│       └── tsconfig.json
+├── trivy.yaml
+├── tsconfig.build.json
+├── tsconfig.json
+└── yarn.lock
+498 directories, 1537 files
