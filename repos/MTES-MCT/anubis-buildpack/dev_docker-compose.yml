@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+    anubis:
+        build: .
+        volumes: 
+            - .:/buildpack
+            - cache:/cache
+            - build:/build
+            - env:/env
+            - app:/app
+        env_file: ./anubis/.env
+        ports: 
+            - 8080:8080
+            - 9090:9090
+        healthcheck:
+            test: ["CMD", "anubis", "--healthcheck"]
+            interval: 5s
+            timeout: 30s
+            retries: 5
+            start_period: 500ms
+        depends_on:
+            - krakend
+    nginx:
+        image: owasp/modsecurity-crs
+        volumes:
+            - "./nginx/:/etc/nginx/conf.d/"
+            - "./www:/usr/share/nginx/html"
+        ports: 
+            - 80:80
+        depends_on:
+            - anubis
+volumes: 
+    db_volume:
+    cache:
+    build:
+    env:
+    app:
