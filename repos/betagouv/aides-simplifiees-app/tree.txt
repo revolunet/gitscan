@@ -1,0 +1,662 @@
+.
+├── .c8rc.json
+├── .dockerignore
+├── .editorconfig
+├── .env.template
+├── .env.test
+├── .github
+│   ├── actions
+│   │   ├── setup-playwright
+│   │   │   └── action.yml
+│   │   └── setup-publicodes
+│   │       └── action.yml
+│   ├── copilot-critical-rules.md
+│   ├── copilot-instructions.md
+│   └── workflows
+│       ├── build-push.yml
+│       └── tests.yml
+├── .gitignore
+├── .husky
+│   └── pre-commit
+├── .npmrc
+├── .nvmrc
+├── .prettier-config
+├── .vscode
+│   ├── extensions.json
+│   └── settings.example.json
+├── CHANGELOG.md
+├── LICENSE
+├── Makefile
+├── README.md
+├── ace.js
+├── adonisrc.ts
+├── app
+│   ├── controllers
+│   │   ├── admin
+│   │   │   ├── admin_aide_controller.ts
+│   │   │   ├── admin_dashboard_controller.ts
+│   │   │   ├── admin_notion_controller.ts
+│   │   │   ├── admin_page_controller.ts
+│   │   │   ├── admin_persona_controller.ts
+│   │   │   ├── admin_simulateur_controller.ts
+│   │   │   └── admin_type_aide_controller.ts
+│   │   ├── api
+│   │   │   ├── demarches_simplifiees_controller.ts
+│   │   │   ├── form_submission_controller.ts
+│   │   │   ├── geo_api_controller.ts
+│   │   │   ├── openfisca_controller.ts
+│   │   │   └── statistics_controller.ts
+│   │   ├── auth_controller.ts
+│   │   ├── content
+│   │   │   ├── aide_controller.ts
+│   │   │   ├── notion_controller.ts
+│   │   │   ├── page_controller.ts
+│   │   │   └── simulateur_controller.ts
+│   │   ├── health_checks_controller.ts
+│   │   └── static_pages_controller.ts
+│   ├── exceptions
+│   │   └── handler.ts
+│   ├── middleware
+│   │   ├── admin_middleware.ts
+│   │   ├── auth_middleware.ts
+│   │   ├── container_bindings_middleware.ts
+│   │   ├── guest_middleware.ts
+│   │   ├── monitoring_middleware.ts
+│   │   ├── preserve_debug_param_middleware.ts
+│   │   ├── preserve_iframe_param_middleware.ts
+│   │   ├── request_logging_middleware.ts
+│   │   ├── resume_query_middleware.ts
+│   │   ├── share_env_middleware.ts
+│   │   ├── silent_auth_middleware.ts
+│   │   ├── static_cors_middleware.ts
+│   │   └── throttle_middleware.ts
+│   ├── models
+│   │   ├── aide.ts
+│   │   ├── choice.ts
+│   │   ├── form_submission.ts
+│   │   ├── notion.ts
+│   │   ├── page.ts
+│   │   ├── persona.ts
+│   │   ├── question.ts
+│   │   ├── simulateur.ts
+│   │   ├── step.ts
+│   │   ├── type_aide.ts
+│   │   └── user.ts
+│   ├── services
+│   │   ├── logging_service.ts
+│   │   ├── matomo_reporting_service.ts
+│   │   └── simulateur_service.ts
+│   └── utils
+│       ├── bundle-optimization.plan.llm.txt
+│       ├── error-handling.plan.llm.txt
+│       ├── sanitize.ts
+│       └── security-improvements.plan.llm.txt
+├── bin
+│   ├── console.ts
+│   ├── server.ts
+│   └── test.ts
+├── config
+│   ├── app.ts
+│   ├── auth.ts
+│   ├── bodyparser.ts
+│   ├── cors.ts
+│   ├── database.ts
+│   ├── hash.ts
+│   ├── iframe_integration.ts
+│   ├── inertia.ts
+│   ├── logger.ts
+│   ├── session.ts
+│   ├── shield.ts
+│   ├── static.ts
+│   └── vite.ts
+├── database
+│   ├── migrations
+│   │   ├── 1689930000000_create_simulateurs_tables.ts
+│   │   ├── 1743683518144_create_users_table.ts
+│   │   ├── 1744717211763_create_pages_table.ts
+│   │   ├── 1744717215406_create_notions_table.ts
+│   │   ├── 1744717222924_create_aides_table.ts
+│   │   ├── 1744723710958_create_add_is_admin_to_users_table.ts
+│   │   ├── 1744734216323_create_add_description_to_notions_table.ts
+│   │   ├── 1745326921316_create_form_submissions_table.ts
+│   │   ├── 1747834760990_delete_simulateur_short_titles_column.ts
+│   │   ├── 1747839842709_create_publish_status_columns.ts
+│   │   ├── 1747839842710_delete_notion_category_column.ts
+│   │   ├── 1748000000000_create_personas_table.ts
+│   │   ├── 1752223692198_rename_simulator_id_to_simulateur_slug_in_form_submissions_table.ts
+│   │   ├── 1762933571004_create_unlisted_status.ts
+│   │   ├── 1762933612258_standardize_description_columns.ts
+│   │   ├── 1762933614720_update_columns_nullability.ts
+│   │   ├── 1762933617246_add_tooltip_column_to_choice.ts
+│   │   ├── 1762933620010_create_type_aides_table.ts
+│   │   ├── 1762933622758_update_aides_type_relationship.ts
+│   │   ├── 1762933625806_create_add_uses_publicodes_to_simulateurs_table.ts
+│   │   └── 1762933779192_add_demarches_simplifiees_to_aides.ts
+│   ├── seeders
+│   │   ├── 0_user_seeder.ts
+│   │   ├── 1_type_aide_seeder.ts
+│   │   ├── 2_aide_seeder.ts
+│   │   ├── 3_simulateur_seeder.ts
+│   │   ├── 4_notion_seeder.ts
+│   │   ├── 5_page_seeder.ts
+│   │   └── 6_persona_seeder.ts
+│   └── seeders_data
+│       ├── aides
+│       │   ├── aide-personnalisee-logement.md
+│       │   ├── fond-solidarite-logement.md
+│       │   ├── garantie-visale.md
+│       │   ├── locapass.md
+│       │   ├── mobilite-master-1.md
+│       │   └── mobilite-parcoursup.md
+│       ├── notions
+│       │   ├── handicap.md
+│       │   ├── logement-conventionne.md
+│       │   ├── loyer-montant-charges.md
+│       │   ├── montant-ca-micro-entreprise.md
+│       │   ├── montant-chomage.md
+│       │   ├── montant-parents.md
+│       │   └── salaire-imposable.md
+│       ├── pages
+│       │   ├── accessibilite.md
+│       │   ├── apropos.md
+│       │   ├── cgu.md
+│       │   ├── cookies.md
+│       │   ├── donnees-personnelles.md
+│       │   └── mentions-legales.md
+│       └── personas
+│           └── personas-demenagement-logement.json
+├── docs
+│   ├── architecture.md
+│   ├── features
+│   │   ├── admin.md
+│   │   ├── aides.md
+│   │   ├── content.md
+│   │   ├── form-submission.md
+│   │   └── simulateurs.md
+│   ├── integrations
+│   │   ├── api-integrations.md
+│   │   ├── demarches-simplifiees.md
+│   │   ├── iframe-integration.md
+│   │   ├── openfisca.md
+│   │   └── publicodes.md
+│   └── technical
+│       ├── database.md
+│       ├── events.md
+│       ├── infrastructure.md
+│       ├── logging.md
+│       ├── services.md
+│       ├── stores.md
+│       ├── testing.md
+│       └── views.md
+├── eslint.config.js
+├── inertia
+│   ├── app
+│   │   ├── app.ts
+│   │   ├── shared.ts
+│   │   └── ssr.ts
+│   ├── components
+│   │   ├── CrispButton.vue
+│   │   ├── DsfrLink.vue
+│   │   ├── DsfrPictogram.vue
+│   │   ├── DsfrSelectPatch.vue
+│   │   ├── ErrorBoundary.vue
+│   │   ├── LoadingSpinner.vue
+│   │   ├── MatomoOptOut.vue
+│   │   ├── PartenairesSection.vue
+│   │   ├── RouterLink.vue
+│   │   ├── SchemeModal.vue
+│   │   ├── admin
+│   │   │   ├── AdminItemFormContainer.vue
+│   │   │   ├── AdminItemsListContainer.vue
+│   │   │   ├── AideForm.vue
+│   │   │   ├── DsfrSlugInput.vue
+│   │   │   ├── NotionForm.vue
+│   │   │   ├── PageForm.vue
+│   │   │   ├── PersonaForm.vue
+│   │   │   ├── RichTextEditor.vue
+│   │   │   ├── SimulateurForm.vue
+│   │   │   └── TypeAideForm.vue
+│   │   ├── aides
+│   │   │   ├── AideCard.vue
+│   │   │   ├── AideMontant.vue
+│   │   │   ├── AideMontantCard.vue
+│   │   │   ├── AidesList.vue
+│   │   │   ├── DemarchesSimplifiedButton.vue
+│   │   │   └── TypeAideTag.vue
+│   │   ├── layout
+│   │   │   ├── AdminPageHeading.vue
+│   │   │   ├── BrandBackgroundContainer.vue
+│   │   │   ├── BrandBackgroundTexture.vue
+│   │   │   ├── BreadcrumbSectionContainer.vue
+│   │   │   ├── HtmlContent.vue
+│   │   │   ├── IframeLayout.vue
+│   │   │   ├── SectionContainer.vue
+│   │   │   ├── SectionSeparator.vue
+│   │   │   ├── SharedDsfrLayout.vue
+│   │   │   └── UserSimulationLayout.vue
+│   │   └── survey
+│   │       ├── BooleanQuestion.vue
+│   │       ├── ComboboxQuestion.vue
+│   │       ├── DateQuestion.vue
+│   │       ├── FormDebugPanel.vue
+│   │       ├── MultiSelectQuestion.vue
+│   │       ├── NumberQuestion.vue
+│   │       ├── PublicodesSurvey.vue
+│   │       ├── RadioButtonQuestion.vue
+│   │       ├── Survey.vue
+│   │       ├── SurveyChoiceScreen.vue
+│   │       ├── SurveyForm.vue
+│   │       ├── SurveyIntermediaryResultsPage.vue
+│   │       ├── SurveyNavigation.vue
+│   │       ├── SurveyPage.vue
+│   │       ├── SurveyQuestion.vue
+│   │       ├── SurveyWelcomeScreen.vue
+│   │       └── UnkownQuestionType.vue
+│   ├── composables
+│   │   ├── surveys
+│   │   │   ├── index.ts
+│   │   │   ├── refactor-store.plan.llm.txt
+│   │   │   ├── use_survey_answers.ts
+│   │   │   ├── use_survey_navigation.ts
+│   │   │   ├── use_survey_questions.ts
+│   │   │   ├── use_survey_validation.ts
+│   │   │   └── use_survey_visibility.ts
+│   │   ├── use_dynamic_eligibility.ts
+│   │   ├── use_eligibility_service.ts
+│   │   ├── use_form_submission.ts
+│   │   ├── use_is_iframe.ts
+│   │   ├── use_publicodes_form.ts
+│   │   ├── use_simulation.ts
+│   │   ├── use_survey_schema_manager.ts
+│   │   └── use_surveys_store_definer.ts
+│   ├── icon_collections.ts
+│   ├── layouts
+│   │   ├── default.vue
+│   │   └── user-simulation.vue
+│   ├── pages
+│   │   ├── admin
+│   │   │   ├── aides
+│   │   │   │   ├── create.vue
+│   │   │   │   ├── edit.vue
+│   │   │   │   └── index.vue
+│   │   │   ├── dashboard.vue
+│   │   │   ├── notions
+│   │   │   │   ├── create.vue
+│   │   │   │   ├── edit.vue
+│   │   │   │   └── index.vue
+│   │   │   ├── pages
+│   │   │   │   ├── create.vue
+│   │   │   │   ├── edit.vue
+│   │   │   │   └── index.vue
+│   │   │   ├── personas
+│   │   │   │   ├── create.vue
+│   │   │   │   ├── edit.vue
+│   │   │   │   └── index.vue
+│   │   │   ├── simulateurs
+│   │   │   │   ├── create.vue
+│   │   │   │   ├── edit.vue
+│   │   │   │   └── index.vue
+│   │   │   └── type_aides
+│   │   │       ├── create.vue
+│   │   │       ├── edit.vue
+│   │   │       └── index.vue
+│   │   ├── auth
+│   │   │   └── login.vue
+│   │   ├── content
+│   │   │   ├── aides
+│   │   │   │   ├── aide.vue
+│   │   │   │   ├── aides.vue
+│   │   │   │   └── resultats-aide.vue
+│   │   │   ├── notions
+│   │   │   │   ├── notion.vue
+│   │   │   │   ├── notions.vue
+│   │   │   │   └── simulateur-notion.vue
+│   │   │   └── pages
+│   │   │       └── page.vue
+│   │   ├── error.vue
+│   │   ├── home.vue
+│   │   ├── simulateurs
+│   │   │   ├── index.vue
+│   │   │   ├── recapitulatif.vue
+│   │   │   ├── resultats.vue
+│   │   │   └── simulateur.vue
+│   │   └── static
+│   │       ├── contact.vue
+│   │       ├── cookies.vue
+│   │       ├── integrer-nos-simulateurs.vue
+│   │       ├── partenaires.vue
+│   │       └── statistiques.vue
+│   ├── services
+│   │   ├── autocomplete_service.ts
+│   │   ├── condition_service.ts
+│   │   ├── eligibility_service.ts
+│   │   ├── error_tracker_service.ts
+│   │   ├── formatting_service.ts
+│   │   ├── matomo_service.ts
+│   │   ├── openfisca
+│   │   │   ├── beautify_results.ts
+│   │   │   ├── build_calculation_request.ts
+│   │   │   ├── constants.ts
+│   │   │   ├── date_periods.ts
+│   │   │   ├── dispatchers.ts
+│   │   │   ├── errors.ts
+│   │   │   ├── formatters.ts
+│   │   │   ├── questions_variables.ts
+│   │   │   ├── request-builder
+│   │   │   │   ├── entity_manager.ts
+│   │   │   │   ├── famille_manager.ts
+│   │   │   │   ├── foyer_fiscal_manager.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── individu_manager.ts
+│   │   │   │   ├── mapping_resolver.ts
+│   │   │   │   ├── menage_manager.ts
+│   │   │   │   ├── request_builder.ts
+│   │   │   │   └── types.ts
+│   │   │   ├── standardize_birth_date.ts
+│   │   │   └── variables.ts
+│   │   ├── publicodes_loader_service.ts
+│   │   └── validation_service.ts
+│   ├── stores
+│   │   ├── breadcrumbs.ts
+│   │   ├── crisp.ts
+│   │   ├── scheme.ts
+│   │   ├── survey_debug.ts
+│   │   └── surveys.ts
+│   ├── styles
+│   │   ├── _dsfr-patch.scss
+│   │   ├── _dsfr-spacings.scss
+│   │   └── main.scss
+│   ├── tsconfig.json
+│   ├── types
+│   │   ├── answer.d.ts
+│   │   ├── eliminate-any-types.plan.llm.txt
+│   │   ├── modules.d.ts
+│   │   ├── openfisca.d.ts
+│   │   ├── publicodes_surveys.d.ts
+│   │   └── survey.d.ts
+│   └── utils
+│       ├── compare_versions.ts
+│       ├── date_time.ts
+│       ├── dom.ts
+│       └── url.ts
+├── infra
+│   ├── .gitignore
+│   ├── docker-compose.dev.yml
+│   ├── docker-compose.preprod.yml
+│   ├── docker-compose.prod.yml
+│   ├── dockerfiles
+│   │   ├── leximpact.Dockerfile
+│   │   └── main-app.Dockerfile
+│   └── scripts
+│       ├── docker-build-app.sh
+│       ├── docker-build-leximpact.sh
+│       └── health-check.sh
+├── logfile
+├── package-lock.json
+├── package.json
+├── packages
+│   ├── publicodes-aom-bordeaux
+│   │   ├── .gitattributes
+│   │   ├── .gitignore
+│   │   ├── .prettierrc.yaml
+│   │   ├── README.md
+│   │   ├── package-lock.json
+│   │   ├── package.json
+│   │   ├── pnpm-lock.yaml
+│   │   ├── situations
+│   │   │   └── salaire.publicodes
+│   │   ├── source.md
+│   │   └── src
+│   │       ├── dispositifs
+│   │       │   ├── abonnement-annuel.publicodes
+│   │       │   ├── abonnement-mensuel.publicodes
+│   │       │   ├── occasionnel-deux-voyages.publicodes
+│   │       │   ├── occasionnel-dix-voyages.publicodes
+│   │       │   └── occasionnel-un-voyage.publicodes
+│   │       ├── helpers.publicodes
+│   │       ├── resultat.publicodes
+│   │       └── variables.publicodes
+│   ├── publicodes-aom-rennes
+│   │   ├── .gitattributes
+│   │   ├── .gitignore
+│   │   ├── .prettierrc.yaml
+│   │   ├── README.md
+│   │   ├── package-lock.json
+│   │   ├── package.json
+│   │   ├── pnpm-lock.yaml
+│   │   └── src
+│   │       ├── dispositifs
+│   │       │   ├── abonnement-annuel.publicodes
+│   │       │   ├── abonnement-jeune-2-trajets.publicodes
+│   │       │   ├── abonnement-mensuel.publicodes
+│   │       │   ├── formule-voyages.publicodes
+│   │       │   ├── occasionnel-un-voyage.publicodes
+│   │       │   └── pass-qualite-air.publicodes
+│   │       ├── helpers.publicodes
+│   │       ├── resultat.publicodes
+│   │       └── variables.publicodes
+│   └── publicodes-entreprise-innovation
+│       ├── .gitattributes
+│       ├── .github
+│       │   └── workflows
+│       │       └── publish.yml
+│       ├── .gitignore
+│       ├── .prettierrc.yaml
+│       ├── .vscode
+│       │   ├── extensions.json
+│       │   └── settings.json
+│       ├── README.md
+│       ├── package-lock.json
+│       ├── package.json
+│       ├── situations
+│       │   └── cico.publicodes
+│       └── src
+│           ├── dispositifs
+│           │   ├── cico.publicodes
+│           │   ├── cii.publicodes
+│           │   ├── cir.publicodes
+│           │   ├── jec.publicodes
+│           │   ├── jei.publicodes
+│           │   └── jeu.publicodes
+│           ├── helpers.publicodes
+│           ├── variables.publicodes
+│           └── variables_explications.publicodes
+├── pnpm-lock.yaml
+├── pnpm-workspace.yaml
+├── public
+│   ├── android-chrome-192x192.png
+│   ├── android-chrome-512x512.png
+│   ├── apple-touch-icon.png
+│   ├── artworks
+│   │   ├── custom-pictograms
+│   │   │   ├── accessibility.svg
+│   │   │   ├── demenagement.svg
+│   │   │   ├── house.svg
+│   │   │   ├── innovation.svg
+│   │   │   ├── parentalite.svg
+│   │   │   └── template.svg
+│   │   ├── ovoid.svg
+│   │   ├── pictograms
+│   │   │   ├── buildings
+│   │   │   │   ├── city-hall.svg
+│   │   │   │   ├── factory.svg
+│   │   │   │   ├── house.svg
+│   │   │   │   ├── nuclear-plant.svg
+│   │   │   │   └── school.svg
+│   │   │   ├── digital
+│   │   │   │   ├── application.svg
+│   │   │   │   ├── avatar.svg
+│   │   │   │   ├── calendar.svg
+│   │   │   │   ├── coding.svg
+│   │   │   │   ├── data-visualization.svg
+│   │   │   │   ├── in-progress.svg
+│   │   │   │   ├── internet.svg
+│   │   │   │   ├── mail-send.svg
+│   │   │   │   └── search.svg
+│   │   │   ├── document
+│   │   │   │   ├── contract.svg
+│   │   │   │   ├── document-add.svg
+│   │   │   │   ├── document-download.svg
+│   │   │   │   ├── document-signature.svg
+│   │   │   │   ├── document.svg
+│   │   │   │   ├── driving-licence.svg
+│   │   │   │   ├── national-identity-card.svg
+│   │   │   │   ├── passport.svg
+│   │   │   │   ├── tax-stamp.svg
+│   │   │   │   └── vehicle-registration.svg
+│   │   │   ├── environment
+│   │   │   │   ├── environment.svg
+│   │   │   │   ├── food.svg
+│   │   │   │   ├── grocery.svg
+│   │   │   │   ├── human-cooperation.svg
+│   │   │   │   ├── leaf.svg
+│   │   │   │   ├── moon.svg
+│   │   │   │   ├── mountain.svg
+│   │   │   │   ├── sun.svg
+│   │   │   │   └── tree.svg
+│   │   │   ├── health
+│   │   │   │   ├── health.svg
+│   │   │   │   ├── hospital.svg
+│   │   │   │   ├── vaccine.svg
+│   │   │   │   └── virus.svg
+│   │   │   ├── institutions
+│   │   │   │   ├── firefighter.svg
+│   │   │   │   ├── gendarmerie.svg
+│   │   │   │   ├── justice.svg
+│   │   │   │   ├── money.svg
+│   │   │   │   └── police.svg
+│   │   │   ├── leisure
+│   │   │   │   ├── book.svg
+│   │   │   │   ├── community.svg
+│   │   │   │   ├── culture.svg
+│   │   │   │   ├── digital-art.svg
+│   │   │   │   └── paint.svg
+│   │   │   ├── map
+│   │   │   │   ├── airport.svg
+│   │   │   │   ├── location-france.svg
+│   │   │   │   ├── luggage.svg
+│   │   │   │   └── map.svg
+│   │   │   └── system
+│   │   │       ├── connection-lost.svg
+│   │   │       ├── error.svg
+│   │   │       ├── information.svg
+│   │   │       ├── notification.svg
+│   │   │       ├── padlock.svg
+│   │   │       ├── success.svg
+│   │   │       ├── system.svg
+│   │   │       ├── technical-error.svg
+│   │   │       └── warning.svg
+│   │   └── technical-error.svg
+│   ├── assets
+│   │   ├── iframe-integration@1.0.1.js
+│   │   ├── iframe-integration@1.1.0.js
+│   │   └── iframe-integration@1.1.1.js
+│   ├── browserconfig.xml
+│   ├── favicon-16x16.png
+│   ├── favicon-32x32.png
+│   ├── favicon.ico
+│   ├── forms
+│   │   ├── aom-bordeaux.json
+│   │   ├── comprehensive-test.json
+│   │   ├── demenagement-logement.json
+│   │   ├── entreprise-innovation.json
+│   │   ├── simple-test.json
+│   │   └── test.json
+│   ├── logos
+│   │   ├── Dge.png
+│   │   ├── boris.svg
+│   │   ├── dila.png
+│   │   ├── logo-etuloge.png
+│   │   ├── logo-imojeune.png
+│   │   ├── logo-lokaviz.png
+│   │   ├── logo-mon-logement-etudiant.png
+│   │   └── logo-service-public.png
+│   ├── manifest.json
+│   └── marianne-icone.png
+├── queries
+│   ├── query-1
+│   └── query-2
+├── resources
+│   └── views
+│       └── inertia_layout.edge
+├── scripts
+│   ├── accessibility_report.cjs
+│   ├── build_icons_collections.js
+│   ├── build_iframe_integration.js
+│   ├── build_logger.js
+│   ├── build_publicodes.js
+│   ├── detect_icons.js
+│   └── generate_sri_hash.js
+├── shared
+│   └── types
+│       ├── admin.d.ts
+│       ├── aides.d.ts
+│       └── error_tracker.ts
+├── src
+│   └── assets
+│       └── iframe-integration.js
+├── start
+│   ├── db_validation.ts
+│   ├── env.ts
+│   ├── env_validation.ts
+│   ├── events.ts
+│   ├── health.ts
+│   ├── kernel.ts
+│   └── routes.ts
+├── tests
+│   ├── bootstrap.ts
+│   ├── e2e
+│   │   ├── 01_app.spec.ts
+│   │   ├── 02_simulation.spec.ts
+│   │   ├── 02_simulation_resume.spec.ts
+│   │   ├── 03_a11y.spec.ts
+│   │   ├── axe.config.ts
+│   │   ├── helpers
+│   │   │   └── test_helpers.ts
+│   │   ├── test_logger.ts
+│   │   └── tsconfig.json
+│   ├── fixtures
+│   │   ├── aide_factory.ts
+│   │   ├── notion_factory.ts
+│   │   ├── page_factory.ts
+│   │   ├── simulateur_factory.ts
+│   │   ├── type_aide_factory.ts
+│   │   └── user_factory.ts
+│   ├── frontend
+│   │   ├── .gitkeep
+│   │   ├── utils
+│   │   │   └── openfisca
+│   │   │       ├── conflict_detection.spec.ts
+│   │   │       ├── entity_managers.spec.ts
+│   │   │       └── request_builder.spec.ts
+│   │   └── vitest-setup.plan.llm.txt
+│   ├── unit
+│   │   ├── basic.spec.ts
+│   │   ├── controllers
+│   │   │   ├── admin
+│   │   │   │   ├── admin_persona_controller.spec.ts
+│   │   │   │   └── admin_simulateur_controller.spec.ts
+│   │   │   ├── api
+│   │   │   │   ├── form_submission_controller.spec.ts
+│   │   │   │   ├── geo_api_controller.spec.ts
+│   │   │   │   ├── openfisca_controller.spec.ts
+│   │   │   │   └── statistics_controller.spec.ts
+│   │   │   └── content
+│   │   │       ├── aide_controller.spec.ts
+│   │   │       ├── notion_controller.spec.ts
+│   │   │       ├── page_controller.spec.ts
+│   │   │       └── simulateur_controller.spec.ts
+│   │   └── models
+│   │       ├── aide.spec.ts
+│   │       ├── notion.spec.ts
+│   │       ├── page.spec.ts
+│   │       ├── persona.spec.ts
+│   │       └── simulateur.spec.ts
+│   └── utils
+│       └── db_setup.ts
+├── tsconfig.base.json
+├── tsconfig.json
+├── vite.config.ts
+├── vite.iframe-integration.config.ts
+└── vitest.config.ts
+121 directories, 540 files
