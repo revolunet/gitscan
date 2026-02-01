@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  # PostgreSQL with pgvector extension
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: classifia-postgres
+    environment:
+      POSTGRES_DB: classifia
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - '5999:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - classifia-network
+    restart: always
+
+  # Redis for BullMQ
+  redis:
+    image: redis:8-alpine
+    container_name: classifia-redis
+    ports:
+      - '6999:6379'
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - classifia-network
+    restart: always
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  classifia-network:
+    driver: bridge
