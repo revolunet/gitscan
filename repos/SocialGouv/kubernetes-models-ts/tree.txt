@@ -1,0 +1,582 @@
+.
+├── .changeset
+│   ├── README.md
+│   └── config.json
+├── .eslintignore
+├── .eslintrc
+├── .github
+│   ├── ISSUE_TEMPLATE
+│   │   ├── bug_report.md
+│   │   ├── crd-package-request.md
+│   │   └── feature_request.md
+│   ├── actions
+│   │   ├── build-packages
+│   │   │   └── action.yml
+│   │   └── install-deps
+│   │       └── action.yml
+│   └── workflows
+│       ├── release.yml
+│       ├── snapshot-release.yml
+│       └── test.yml
+├── .gitignore
+├── .husky
+│   └── pre-commit
+├── .npmrc
+├── .prettierignore
+├── .prettierrc
+├── .vitest
+│   └── setup.ts
+├── CODE_OF_CONDUCT.md
+├── CONTRIBUTING.md
+├── LICENSE
+├── README.md
+├── core
+│   ├── base
+│   │   ├── CHANGELOG.md
+│   │   ├── package.json
+│   │   ├── src
+│   │   │   ├── __tests__
+│   │   │   │   └── model.ts
+│   │   │   ├── index.ts
+│   │   │   ├── meta.ts
+│   │   │   └── model.ts
+│   │   └── tsconfig.json
+│   └── validate
+│       ├── CHANGELOG.md
+│       ├── package.json
+│       ├── src
+│       │   ├── __tests__
+│       │   │   ├── formats.ts
+│       │   │   └── validate.ts
+│       │   ├── formats.ts
+│       │   ├── index.ts
+│       │   ├── runtime
+│       │   │   ├── equal.ts
+│       │   │   ├── parseJson.ts
+│       │   │   ├── quote.ts
+│       │   │   ├── re2.ts
+│       │   │   ├── timestamp.ts
+│       │   │   ├── ucs2length.ts
+│       │   │   ├── uri.ts
+│       │   │   └── validation_error.ts
+│       │   ├── utils.ts
+│       │   └── validate.ts
+│       ├── tsconfig.json
+│       └── types.d.ts
+├── examples
+│   ├── basic.ts
+│   └── deno
+│       ├── crd.ts
+│       └── pod.ts
+├── first-party
+│   ├── apimachinery
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── package.json
+│   │   ├── scripts
+│   │   │   └── generate.ts
+│   │   └── tsconfig.json
+│   └── kubernetes-models
+│       ├── CHANGELOG.md
+│       ├── README.md
+│       ├── __tests__
+│       │   ├── class.ts
+│       │   ├── esm.mjs
+│       │   ├── type-guard.ts
+│       │   └── validate.ts
+│       ├── package.json
+│       ├── scripts
+│       │   └── generate.ts
+│       └── tsconfig.json
+├── internal
+│   └── publish-scripts
+│       ├── CHANGELOG.md
+│       ├── bin
+│       │   └── publish-scripts.js
+│       ├── package.json
+│       ├── src
+│       │   ├── build.ts
+│       │   ├── index.ts
+│       │   └── prepack.ts
+│       └── tsconfig.json
+├── package.json
+├── pnpm-lock.yaml
+├── pnpm-workspace.yaml
+├── scripts
+│   ├── new-crd-package.ts
+│   └── publish.sh
+├── third-party
+│   ├── argo-cd
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── argo-rollouts
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── argo-workflows
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── autoscaler
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   ├── class.ts
+│   │   │   └── validate.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── cert-manager
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   ├── class.ts
+│   │   │   ├── esm.mjs
+│   │   │   └── type-guard.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── cilium
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   ├── class.ts
+│   │   │   └── validate.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── clickhouse
+│   │   ├── .gitignore
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   ├── scripts
+│   │   │   └── download-crd.ts
+│   │   └── tsconfig.json
+│   ├── cloudnative-pg
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── contour
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── elastic-cloud
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── envoy-gateway
+│   │   ├── .gitignore
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   ├── scripts
+│   │   │   └── download-crd.ts
+│   │   └── tsconfig.json
+│   ├── external-secrets
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── fission
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── flagger
+│   │   ├── .gitignore
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   ├── scripts
+│   │   │   └── download-crd.ts
+│   │   └── tsconfig.json
+│   ├── flink
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── flux-cd
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── gateway-api
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── gke
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   ├── class.ts
+│   │   │   └── validate.ts
+│   │   ├── crd
+│   │   │   ├── backendconfigs.yaml
+│   │   │   ├── clusterimportconfigs.yaml
+│   │   │   ├── computeclasses.yaml
+│   │   │   ├── entitlements.yaml
+│   │   │   ├── frontendconfigs.yaml
+│   │   │   ├── managedcertificates.yaml
+│   │   │   ├── memberships.yaml
+│   │   │   ├── multidimpodautoscalers.yaml
+│   │   │   ├── networkloggings.yaml
+│   │   │   ├── podmonitors.yaml
+│   │   │   ├── redirectservices.yaml
+│   │   │   ├── serviceattachments.yaml
+│   │   │   ├── serviceexports.yaml
+│   │   │   ├── serviceimportconfigs.yaml
+│   │   │   ├── serviceimports.yaml
+│   │   │   ├── servicenetworkendpointgroups.yaml
+│   │   │   └── updateinfos.yaml
+│   │   ├── package.json
+│   │   ├── scripts
+│   │   │   └── dump-crd.ts
+│   │   └── tsconfig.json
+│   ├── grafana-agent-operator
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── grafana-operator
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── hierarchical-namespaces
+│   │   ├── CHANGELOG.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── istio
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── jaeger-operator
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── k8ssandra-operator
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── kapp-controller
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── karpenter
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── keda
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── knative
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── kubedb
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── kyverno
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── linkerd
+│   │   ├── .gitignore
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   ├── scripts
+│   │   │   └── download-crd.ts
+│   │   └── tsconfig.json
+│   ├── longhorn
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── nats
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── opentelemetry-operator
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── pipelines-as-code
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── postgres-operator
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   ├── class.ts
+│   │   │   └── validate.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── prometheus-operator
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   ├── class.ts
+│   │   │   └── validate.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── pulsar-resources-operator
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── rabbitmq-cluster-operator
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── rabbitmq-messaging-topology-operator
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── redis-operator
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── sealed-secrets
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   ├── class.ts
+│   │   │   └── validate.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── seldon-core-operator
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── shipwright
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   ├── v1alpha1.ts
+│   │   │   └── v1beta1.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── smi
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── spicedb
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── spiffe
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── strimzi-kafka-operator
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── thanos-operator
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── tidb-operator
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── traefik
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── __tests__
+│   │   │   └── class.ts
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   └── victoria-metrics-operator
+│       ├── .gitignore
+│       ├── CHANGELOG.md
+│       ├── README.md
+│       ├── __tests__
+│       │   └── class.ts
+│       ├── package.json
+│       └── tsconfig.json
+├── tsc-multi.json
+├── tsconfig.build.json
+├── tsconfig.json
+├── turbo.json
+├── utils
+│   ├── crd-generate
+│   │   ├── CHANGELOG.md
+│   │   ├── bin
+│   │   │   └── crd-generate.js
+│   │   ├── package.json
+│   │   ├── src
+│   │   │   ├── cli.ts
+│   │   │   ├── generate.ts
+│   │   │   ├── generators
+│   │   │   │   ├── alias.ts
+│   │   │   │   ├── definition.ts
+│   │   │   │   └── schema.ts
+│   │   │   ├── index.ts
+│   │   │   └── utils.ts
+│   │   └── tsconfig.json
+│   ├── generate
+│   │   ├── CHANGELOG.md
+│   │   ├── package.json
+│   │   ├── src
+│   │   │   ├── import.ts
+│   │   │   ├── index.ts
+│   │   │   ├── interface.ts
+│   │   │   ├── nullable-ref.ts
+│   │   │   ├── pattern.ts
+│   │   │   ├── schema.ts
+│   │   │   ├── types.ts
+│   │   │   └── utils.ts
+│   │   └── tsconfig.json
+│   ├── openapi-generate
+│   │   ├── CHANGELOG.md
+│   │   ├── bin
+│   │   │   └── openapi-generate.js
+│   │   ├── package.json
+│   │   ├── src
+│   │   │   ├── cli.ts
+│   │   │   ├── context.ts
+│   │   │   ├── generate.ts
+│   │   │   ├── generators
+│   │   │   │   ├── alias.ts
+│   │   │   │   ├── definition.ts
+│   │   │   │   └── schema.ts
+│   │   │   ├── index.ts
+│   │   │   ├── string.ts
+│   │   │   └── utils.ts
+│   │   └── tsconfig.json
+│   ├── read-input
+│   │   ├── CHANGELOG.md
+│   │   ├── package.json
+│   │   ├── src
+│   │   │   ├── http.ts
+│   │   │   ├── index.ts
+│   │   │   └── read.ts
+│   │   └── tsconfig.json
+│   └── string-util
+│       ├── CHANGELOG.md
+│       ├── package.json
+│       ├── src
+│       │   ├── comment.ts
+│       │   ├── index.ts
+│       │   ├── string.ts
+│       │   └── unquote.ts
+│       └── tsconfig.json
+└── vitest.config.ts
+157 directories, 424 files

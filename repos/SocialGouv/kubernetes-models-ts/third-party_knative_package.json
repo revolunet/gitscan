@@ -1,0 +1,53 @@
+{
+  "name": "@kubernetes-models/knative",
+  "version": "2.4.4",
+  "description": "Knative models",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tommy351/kubernetes-models-ts.git"
+  },
+  "homepage": "https://github.com/tommy351/kubernetes-models-ts/tree/master/third-party/knative",
+  "author": "Tommy Chen <tommy351@gmail.com>",
+  "license": "MIT",
+  "main": "index.cjs",
+  "module": "index.mjs",
+  "types": "index.d.ts",
+  "sideEffects": false,
+  "scripts": {
+    "build": "crd-generate && publish-scripts build",
+    "prepack": "publish-scripts prepack"
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "dist",
+    "linkDirectory": true
+  },
+  "keywords": [
+    "kubernetes",
+    "kubernetes-models",
+    "knative"
+  ],
+  "engines": {
+    "node": ">=14"
+  },
+  "dependencies": {
+    "@kubernetes-models/apimachinery": "workspace:^",
+    "@kubernetes-models/base": "workspace:^",
+    "@kubernetes-models/validate": "workspace:^",
+    "@swc/helpers": "^0.5.8"
+  },
+  "devDependencies": {
+    "@kubernetes-models/crd-generate": "workspace:^",
+    "@kubernetes-models/publish-scripts": "workspace:^",
+    "vitest": "^0.29.8"
+  },
+  "crd-generate": {
+    "input": [
+      "https://github.com/knative/serving/releases/download/knative-v1.10.1/serving-crds.yaml",
+      "https://github.com/knative/eventing/releases/download/knative-v1.10.0/eventing-crds.yaml",
+      "https://github.com/knative/operator/releases/download/knative-v1.10.0/operator.yaml"
+    ],
+    "output": "./gen",
+    "yamlVersion": "1.1"
+  }
+}
