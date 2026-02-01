@@ -1,0 +1,633 @@
+.
+├── .coveragerc
+├── .env.example
+├── .github
+│   ├── .env.ci.example
+│   ├── ISSUE_TEMPLATE
+│   │   └── feature_request.md
+│   ├── PULL_REQUEST_TEMPLATE
+│   │   └── pull_request_template.md
+│   ├── README_INTEGRATION_TESTS.md
+│   ├── assets
+│   │   ├── logo.svg
+│   │   └── playground.config.yml
+│   ├── badges
+│   │   └── coverage.json
+│   ├── codeql.config.yml
+│   ├── compose.ci.yml
+│   └── workflows
+│       ├── build_and_deploy.yml
+│       ├── codeql_scan.yml
+│       ├── deploy_documentation.yml
+│       ├── generate_documentation.yml
+│       ├── run_tests.yml
+│       ├── secrets_scan.yml
+│       └── update_pyproject_version.yml
+├── .gitignore
+├── .pre-commit-config.yaml
+├── CONTRIBUTING.md
+├── LICENSE
+├── Makefile
+├── README.md
+├── SECURITY.md
+├── adr
+│   ├── 001-clean-architecture-migration.md
+│   ├── 2026-01-30-es-scaling.md
+│   ├── README.md
+│   └── scripts
+│       └── 2026-01-30-es-migration.py
+├── api
+│   ├── .coveragerc
+│   ├── Dockerfile
+│   ├── __init__.py
+│   ├── alembic
+│   │   ├── env.py
+│   │   ├── script.py.mako
+│   │   └── versions
+│   │       ├── 2025_03_11_1552-9a9c82ec2470_create_usages_table.py
+│   │       ├── 2025_04_02_1603-e78eaed1bcb2_add_auth.py
+│   │       ├── 2025_04_04_1641-8c5ae2a3d4d0_remove_delete_cascade_usage_token_id.py
+│   │       ├── 2025_04_15_1513-a4ac45e7c990_remove_unique_name_on_token_and_.py
+│   │       ├── 2025_04_17_1201-896cbf4c2cbb_add_new_columns_to_usages_table.py
+│   │       ├── 2025_05_12_1613-5553fa60acfa_remove_default_role_attribut.py
+│   │       ├── 2025_05_28_1541-752279f74929_add_cost_and_budget_colonne.py
+│   │       ├── 2025_06_16_1029-37d92be0a44c_add_environnement_impact_in_db.py
+│   │       ├── 2025_07_11_1151-564856827493_add_email_and_sub_fields_in_user_table.py
+│   │       ├── 2025_08_14_0837-28019ec49533_change_permission_types.py
+│   │       ├── 2025_08_14_1732-c1e54102255e_add_organisation_table.py
+│   │       ├── 2025_08_22_1157-788a3b052a11_move_user_auth_from_ui_to_app.py
+│   │       ├── 2025_08_23_1934-479aeeae940b_db_schema_for_model_router_client.py
+│   │       ├── 2025_09_07_1246-17be379f45ac_force_non_null_email.py
+│   │       ├── 2025_09_25_0000-a1b2c3d4e5f6_add_celery_related_fields.py
+│   │       ├── 2025_11_13_2012-9ba1f6a21f20_refacto_model_provision.py
+│   │       ├── 2025_11_13_2152-05211e3047e8_add_index_to_usage.py
+│   │       ├── 2025_11_14_1642-85459163c680_rename_qos_value_to_qos_limit.py
+│   │       ├── 2025_11_19_1120-0ae7dc72ec5c_add_mistral_type.py
+│   │       ├── 2025_11_19_1711-843230e94aec_rename_usage_columns.py
+│   │       ├── 2025_12_09_1858-9b3cdc1e64dd_add_image_to_text_model_type.py
+│   │       ├── 2025_12_11_1010-2d2550e0771d_add_unique_constraint_on_organization_.py
+│   │       ├── 2025_12_16_1535-1db1572f2605_add_unique_constraint_on_provider_by_.py
+│   │       ├── 2025_12_16_1737-d2e9e967501b_add_default_value_carbon_params.py
+│   │       ├── 2025_12_17_0947-551b2920b23c_add_provider_router_list_relationship.py
+│   │       └── 2025_12_22_1507-f02a2525b97c_remove_carbon_footprint_prefix.py
+│   ├── alembic.ini
+│   ├── clients
+│   │   ├── __init__.py
+│   │   ├── model
+│   │   │   ├── __init__.py
+│   │   │   ├── _albertmodelprovider.py
+│   │   │   ├── _basemodelprovider.py
+│   │   │   ├── _mistralmodelprovider.py
+│   │   │   ├── _openaimodelprovider.py
+│   │   │   ├── _teimodelprovider.py
+│   │   │   └── _vllmmodelprovider.py
+│   │   └── parser
+│   │       ├── __init__.py
+│   │       ├── _albertparserclient.py
+│   │       ├── _baseparserclient.py
+│   │       └── _markerparserclient.py
+│   ├── dependencies.py
+│   ├── domain
+│   │   ├── __init__.py
+│   │   ├── key
+│   │   │   ├── __init__.py
+│   │   │   ├── _keyrepository.py
+│   │   │   └── entities.py
+│   │   ├── role
+│   │   │   ├── __init__.py
+│   │   │   ├── _rolerepository.py
+│   │   │   └── entities.py
+│   │   ├── router
+│   │   │   ├── __init__.py
+│   │   │   ├── _routerrepository.py
+│   │   │   └── entities.py
+│   │   ├── user
+│   │   │   ├── __init__.py
+│   │   │   ├── _userrepository.py
+│   │   │   └── entities.py
+│   │   └── userinfo
+│   │       ├── __init__.py
+│   │       ├── _userinforepository.py
+│   │       └── entities.py
+│   ├── endpoints
+│   │   ├── __init__.py
+│   │   ├── admin
+│   │   │   ├── __init__.py
+│   │   │   ├── organizations.py
+│   │   │   ├── providers.py
+│   │   │   ├── roles.py
+│   │   │   ├── routers.py
+│   │   │   ├── tokens.py
+│   │   │   └── users.py
+│   │   ├── audio.py
+│   │   ├── auth.py
+│   │   ├── chat.py
+│   │   ├── chunks.py
+│   │   ├── collections.py
+│   │   ├── documents.py
+│   │   ├── embeddings.py
+│   │   ├── files.py
+│   │   ├── me
+│   │   │   ├── __init__.py
+│   │   │   ├── info.py
+│   │   │   ├── keys.py
+│   │   │   └── usage.py
+│   │   ├── ocr.py
+│   │   ├── parse.py
+│   │   ├── proconnect
+│   │   │   ├── __init__.py
+│   │   │   ├── token.py
+│   │   │   └── user.py
+│   │   ├── rerank.py
+│   │   └── search.py
+│   ├── helpers
+│   │   ├── __init__.py
+│   │   ├── _accesscontroller.py
+│   │   ├── _documentmanager.py
+│   │   ├── _elasticsearchvectorstore.py
+│   │   ├── _identityaccessmanager.py
+│   │   ├── _limiter.py
+│   │   ├── _parsermanager.py
+│   │   ├── _streamingresponsewithstatuscode.py
+│   │   ├── _usagemanager.py
+│   │   ├── _usagetokenizer.py
+│   │   ├── auth_encryption.py
+│   │   ├── data
+│   │   │   ├── __init__.py
+│   │   │   └── chunkers
+│   │   │       ├── __init__.py
+│   │   │       ├── _basesplitter.py
+│   │   │       ├── _nosplitter.py
+│   │   │       └── _recursivecharactertextsplitter.py
+│   │   ├── documents
+│   │   │   └── __init__.py
+│   │   ├── load_balancing
+│   │   │   ├── __init__.py
+│   │   │   ├── _baseloadbalancingstrategy.py
+│   │   │   ├── _leastbusyloadbalancingstrategy.py
+│   │   │   └── _shuffleloadbalancingstrategy.py
+│   │   └── models
+│   │       ├── __init__.py
+│   │       └── _modelregistry.py
+│   ├── infrastructure
+│   │   ├── __init__.py
+│   │   ├── fastapi
+│   │   │   ├── __init__.py
+│   │   │   ├── access.py
+│   │   │   ├── context.py
+│   │   │   ├── endpoints
+│   │   │   │   ├── __init__.py
+│   │   │   │   └── models.py
+│   │   │   └── schemas
+│   │   │       ├── __init__.py
+│   │   │       └── models.py
+│   │   └── postgres
+│   │       ├── __init__.py
+│   │       ├── _postgreskeyrepository.py
+│   │       ├── _postgresrolesrepository.py
+│   │       ├── _postgresrouterrepository.py
+│   │       ├── _postgresuserinforepository.py
+│   │       └── _postgresusersrepository.py
+│   ├── main.py
+│   ├── schemas
+│   │   ├── __init__.py
+│   │   ├── admin
+│   │   │   ├── __init__.py
+│   │   │   ├── organizations.py
+│   │   │   ├── providers.py
+│   │   │   ├── roles.py
+│   │   │   ├── routers.py
+│   │   │   ├── tokens.py
+│   │   │   └── users.py
+│   │   ├── audio.py
+│   │   ├── auth.py
+│   │   ├── chat.py
+│   │   ├── chunks.py
+│   │   ├── collections.py
+│   │   ├── core
+│   │   │   ├── __init__.py
+│   │   │   ├── configuration.py
+│   │   │   ├── context.py
+│   │   │   ├── documents.py
+│   │   │   ├── elasticsearch.py
+│   │   │   └── models.py
+│   │   ├── documents.py
+│   │   ├── embeddings.py
+│   │   ├── exception.py
+│   │   ├── files.py
+│   │   ├── me
+│   │   │   ├── __init__.py
+│   │   │   ├── info.py
+│   │   │   ├── keys.py
+│   │   │   └── usage.py
+│   │   ├── models.py
+│   │   ├── ocr.py
+│   │   ├── parse.py
+│   │   ├── rerank.py
+│   │   ├── search.py
+│   │   └── usage.py
+│   ├── sql
+│   │   ├── models.py
+│   │   └── session.py
+│   ├── tasks
+│   │   ├── __init__.py
+│   │   ├── _celery.py
+│   │   └── routing.py
+│   ├── tests
+│   │   ├── helpers.py
+│   │   ├── integ
+│   │   │   ├── assets
+│   │   │   │   ├── audio.mp3
+│   │   │   │   ├── audio.wav
+│   │   │   │   ├── html.html
+│   │   │   │   ├── json.json
+│   │   │   │   ├── json_wrong_format.json
+│   │   │   │   ├── markdown.md
+│   │   │   │   ├── pdf.pdf
+│   │   │   │   └── pdf_too_large.pdf
+│   │   │   ├── config.test.yml
+│   │   │   ├── conftest.py
+│   │   │   ├── snapshots
+│   │   │   │   ├── test_audio
+│   │   │   │   │   ├── test_audio_transcriptions_invalid_model
+│   │   │   │   │   │   └── audio_transcriptions_invalid_model
+│   │   │   │   │   ├── test_audio_transcriptions_mp3
+│   │   │   │   │   │   └── audio_transcriptions_mp3
+│   │   │   │   │   ├── test_audio_transcriptions_text_output
+│   │   │   │   │   │   └── audio_transcriptions_text_output
+│   │   │   │   │   └── test_audio_transcriptions_wav
+│   │   │   │   │       └── audio_transcriptions_wav
+│   │   │   │   └── test_ocr
+│   │   │   │       ├── test_ocr_custom_dpi
+│   │   │   │       │   └── ocr_custom_dpi
+│   │   │   │       ├── test_ocr_invalid_file_type
+│   │   │   │       │   └── ocr_invalid_file_type
+│   │   │   │       ├── test_ocr_pdf_successful
+│   │   │   │       │   └── ocr_pdf_successful
+│   │   │   │       ├── test_ocr_too_large_file
+│   │   │   │       │   └── ocr_too_large_file
+│   │   │   │       └── test_ocr_without_authentication
+│   │   │   │           └── ocr_without_authentication
+│   │   │   ├── test_admin
+│   │   │   │   ├── test_admin.py
+│   │   │   │   ├── test_admin_providers.py
+│   │   │   │   ├── test_admin_routers.py
+│   │   │   │   └── test_identityaccessmanager.py
+│   │   │   ├── test_audio.py
+│   │   │   ├── test_chat.py
+│   │   │   ├── test_chunks.py
+│   │   │   ├── test_collections.py
+│   │   │   ├── test_documents.py
+│   │   │   ├── test_files.py
+│   │   │   ├── test_me.py
+│   │   │   ├── test_models.py
+│   │   │   ├── test_parsing.py
+│   │   │   ├── test_providers
+│   │   │   │   ├── test_mistral_image_to_text.py
+│   │   │   │   ├── test_mistral_speech_automatic_regonition.py
+│   │   │   │   ├── test_mistral_text_image_to_text.py
+│   │   │   │   ├── test_tei_text_classification.py
+│   │   │   │   └── test_tei_text_embeddings_inference.py
+│   │   │   ├── test_search.py
+│   │   │   ├── test_swagger.py
+│   │   │   ├── utils
+│   │   │   │   └── snapshot_assertions.py
+│   │   │   └── utils.py
+│   │   ├── integration
+│   │   │   ├── conftest.py
+│   │   │   ├── factories.py
+│   │   │   ├── test_models.py
+│   │   │   └── test_postgresrouterrepository.py
+│   │   └── unit
+│   │       ├── test_endpoints
+│   │       │   ├── mock.py
+│   │       │   └── test_auth.py
+│   │       ├── test_helpers
+│   │       │   ├── test_accesscontroller.py
+│   │       │   ├── test_documentmanager.py
+│   │       │   ├── test_identityaccessmanager
+│   │       │   │   ├── test_login.py
+│   │       │   │   ├── test_organization.py
+│   │       │   │   ├── test_roles.py
+│   │       │   │   ├── test_tokens.py
+│   │       │   │   └── test_users.py
+│   │       │   ├── test_limiter.py
+│   │       │   ├── test_modelregistry
+│   │       │   │   ├── test_providers.py
+│   │       │   │   └── test_routers.py
+│   │       │   └── test_parsermanager.py
+│   │       ├── test_proconnect.py
+│   │       ├── test_utils
+│   │       │   ├── test_carbon.py
+│   │       │   └── test_qos.py
+│   │       └── use_case
+│   │           ├── factories.py
+│   │           └── test_getmodelsusecase.py
+│   ├── use_cases
+│   │   ├── __init__.py
+│   │   └── models
+│   │       ├── __init__.py
+│   │       └── _getmodelsusecase.py
+│   └── utils
+│       ├── __init__.py
+│       ├── carbon.py
+│       ├── configuration.py
+│       ├── context.py
+│       ├── dependencies.py
+│       ├── exceptions.py
+│       ├── hooks_decorator.py
+│       ├── lifespan.py
+│       ├── load_balancing.py
+│       ├── logging.py
+│       ├── qos.py
+│       ├── redis.py
+│       ├── routing.py
+│       └── variables.py
+├── compose.example.yml
+├── config.example.yml
+├── docs
+│   ├── .dockerignore
+│   ├── .gitignore
+│   ├── .prettierignore
+│   ├── .prettierrc
+│   ├── Dockerfile
+│   ├── README.md
+│   ├── blog
+│   │   ├── 2026-01-29-0.4.0-release-note.md
+│   │   ├── authors.yml
+│   │   └── tags.yml
+│   ├── celery.md
+│   ├── docs
+│   │   ├── contributing
+│   │   │   ├── commit-hooks.md
+│   │   │   ├── development-environment.md
+│   │   │   ├── documentation.md
+│   │   │   ├── index.mdx
+│   │   │   ├── sql.md
+│   │   │   └── tests.md
+│   │   ├── dependencies
+│   │   │   ├── celery.md
+│   │   │   ├── postgres.md
+│   │   │   ├── prometheus.md
+│   │   │   ├── redis.md
+│   │   │   ├── sentry.md
+│   │   │   └── vector_store.md
+│   │   ├── functionalities
+│   │   │   ├── budget.md
+│   │   │   ├── document-management
+│   │   │   │   ├── collections.md
+│   │   │   │   ├── index.md
+│   │   │   │   ├── parsing-and-chunking.md
+│   │   │   │   └── search.md
+│   │   │   ├── environmental_footprint.md
+│   │   │   ├── iam
+│   │   │   │   ├── api-keys.md
+│   │   │   │   ├── index.md
+│   │   │   │   ├── organizations-projects-users.md
+│   │   │   │   └── roles-permissions-rate-limitings.md
+│   │   │   ├── rate-limiting.md
+│   │   │   └── usage.md
+│   │   ├── getting-started
+│   │   │   ├── configuration_file.md
+│   │   │   ├── environment_variables.md
+│   │   │   └── quickstart.md
+│   │   ├── guides
+│   │   │   ├── IDE.md
+│   │   │   ├── audio_transcriptions.md
+│   │   │   ├── chat_completions.md
+│   │   │   ├── models.md
+│   │   │   ├── ocr.md
+│   │   │   └── rag.md
+│   │   ├── index.mdx
+│   │   └── models
+│   │       ├── configuration.md
+│   │       ├── models.md
+│   │       └── routing.md
+│   ├── docusaurus.config.ts
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── sidebars.ts
+│   ├── src
+│   │   ├── components
+│   │   │   ├── Card
+│   │   │   │   ├── CardBody
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── CardFooter
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── CardHeader
+│   │   │   │   │   └── index.tsx
+│   │   │   │   └── index.tsx
+│   │   │   ├── ContributorsStatic
+│   │   │   │   └── index.tsx
+│   │   │   └── HomepageFeatures
+│   │   │       ├── index.tsx
+│   │   │       └── styles.module.css
+│   │   ├── css
+│   │   │   └── custom.css
+│   │   ├── data
+│   │   │   └── contributors.json
+│   │   ├── pages
+│   │   │   └── index.mdx
+│   │   ├── scripts
+│   │   │   └── fetch-contributor.js
+│   │   └── theme
+│   │       └── MDXComponents.js
+│   ├── static
+│   │   ├── .nojekyll
+│   │   ├── functionnalities
+│   │   │   └── document-management
+│   │   │       └── search
+│   │   │           └── semantic_source_priority_boost.png
+│   │   └── img
+│   │       ├── banner.png
+│   │       ├── centralsupelec_logo.png
+│   │       ├── collections_001.png
+│   │       ├── collections_002.png
+│   │       ├── collections_003.png
+│   │       ├── collections_004.png
+│   │       ├── collections_005.png
+│   │       ├── deployment_001.png
+│   │       ├── dinum_logo.png
+│   │       ├── guides
+│   │       │   ├── ocr_10.jpg
+│   │       │   ├── ocr_11.jpg
+│   │       │   ├── ocr_12.jpg
+│   │       │   ├── ocr_13.jpg
+│   │       │   ├── ocr_15.jpg
+│   │       │   ├── ocr_16.jpg
+│   │       │   ├── ocr_17.jpg
+│   │       │   └── ocr_18.jpg
+│   │       ├── logo.svg
+│   │       ├── ogl_architecture.png
+│   │       ├── playground
+│   │       │   ├── environmental_footprint_1.png
+│   │       │   └── environmental_footprint_2.png
+│   │       ├── undraw_docusaurus_mountain.svg
+│   │       ├── undraw_docusaurus_react.svg
+│   │       └── undraw_docusaurus_tree.svg
+│   ├── tsconfig.json
+│   ├── tutorials
+│   │   ├── audio_transcriptions.ipynb
+│   │   ├── chat_completions.ipynb
+│   │   ├── models.ipynb
+│   │   ├── ocr.ipynb
+│   │   └── rag.ipynb
+│   └── yarn.lock
+├── import_circular_diagram.md
+├── playground
+│   ├── Dockerfile
+│   ├── app
+│   │   ├── __init__.py
+│   │   ├── app.py
+│   │   ├── core
+│   │   │   ├── __init__.py
+│   │   │   ├── configuration.py
+│   │   │   └── variables.py
+│   │   ├── features
+│   │   │   ├── __init__.py
+│   │   │   ├── account
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── components
+│   │   │   │   │   ├── __init__.py
+│   │   │   │   │   ├── account_header.py
+│   │   │   │   │   ├── account_info_card.py
+│   │   │   │   │   └── account_password_card.py
+│   │   │   │   ├── page.py
+│   │   │   │   └── state.py
+│   │   │   ├── auth
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── components
+│   │   │   │   │   ├── __init__.py
+│   │   │   │   │   └── forms.py
+│   │   │   │   └── state.py
+│   │   │   ├── chat
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── components
+│   │   │   │   │   ├── __init__.py
+│   │   │   │   │   ├── headers.py
+│   │   │   │   │   ├── input_bars.py
+│   │   │   │   │   ├── messages.py
+│   │   │   │   │   ├── sidebars.py
+│   │   │   │   │   └── windows.py
+│   │   │   │   ├── models.py
+│   │   │   │   ├── page.py
+│   │   │   │   └── state.py
+│   │   │   ├── keys
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── components
+│   │   │   │   │   ├── __init__.py
+│   │   │   │   │   ├── dialogs.py
+│   │   │   │   │   ├── forms.py
+│   │   │   │   │   ├── headers.py
+│   │   │   │   │   └── lists.py
+│   │   │   │   ├── models.py
+│   │   │   │   ├── page.py
+│   │   │   │   └── state.py
+│   │   │   ├── navigation
+│   │   │   │   ├── __init__.py
+│   │   │   │   └── components
+│   │   │   │       ├── __init__.py
+│   │   │   │       └── sidebars.py
+│   │   │   ├── organizations
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── components
+│   │   │   │   │   ├── __init__.py
+│   │   │   │   │   ├── dialogs.py
+│   │   │   │   │   ├── forms.py
+│   │   │   │   │   ├── headers.py
+│   │   │   │   │   └── lists.py
+│   │   │   │   ├── models.py
+│   │   │   │   ├── page.py
+│   │   │   │   └── state.py
+│   │   │   ├── providers
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── components
+│   │   │   │   │   ├── __init__.py
+│   │   │   │   │   ├── dialogs.py
+│   │   │   │   │   ├── forms.py
+│   │   │   │   │   ├── headers.py
+│   │   │   │   │   └── lists.py
+│   │   │   │   ├── models.py
+│   │   │   │   ├── page.py
+│   │   │   │   └── state.py
+│   │   │   ├── roles
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── components
+│   │   │   │   │   ├── __init__.py
+│   │   │   │   │   ├── dialogs.py
+│   │   │   │   │   ├── forms.py
+│   │   │   │   │   ├── headers.py
+│   │   │   │   │   └── lists.py
+│   │   │   │   ├── models.py
+│   │   │   │   ├── page.py
+│   │   │   │   └── state.py
+│   │   │   ├── routers
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── components
+│   │   │   │   │   ├── __init__.py
+│   │   │   │   │   ├── dialogs.py
+│   │   │   │   │   ├── forms.py
+│   │   │   │   │   ├── headers.py
+│   │   │   │   │   └── lists.py
+│   │   │   │   ├── models.py
+│   │   │   │   ├── page.py
+│   │   │   │   └── state.py
+│   │   │   ├── usage
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── components
+│   │   │   │   │   ├── __init__.py
+│   │   │   │   │   ├── headers.py
+│   │   │   │   │   └── lists.py
+│   │   │   │   ├── models.py
+│   │   │   │   ├── page.py
+│   │   │   │   └── state.py
+│   │   │   └── users
+│   │   │       ├── __init__.py
+│   │   │       ├── components
+│   │   │       │   ├── __init__.py
+│   │   │       │   ├── dialogs.py
+│   │   │       │   ├── forms.py
+│   │   │       │   ├── headers.py
+│   │   │       │   └── lists.py
+│   │   │       ├── models.py
+│   │   │       ├── page.py
+│   │   │       └── state.py
+│   │   └── shared
+│   │       ├── __init__.py
+│   │       ├── components
+│   │       │   ├── __init__.py
+│   │       │   ├── dark_mode_toggle.py
+│   │       │   ├── dialogs.py
+│   │       │   ├── forms.py
+│   │       │   ├── headers.py
+│   │       │   ├── lists.py
+│   │       │   ├── page.py
+│   │       │   ├── pagination.py
+│   │       │   └── toasts.py
+│   │       ├── layouts
+│   │       │   ├── __init__.py
+│   │       │   └── authenticated.py
+│   │       ├── models
+│   │       │   ├── __init__.py
+│   │       │   └── entities.py
+│   │       └── states
+│   │           ├── __init__.py
+│   │           └── entity_state.py
+│   ├── assets
+│   │   ├── favicon.svg
+│   │   └── logo.svg
+│   ├── nginx.conf
+│   ├── rxconfig.py
+│   └── supervisord.conf
+├── pyproject.toml
+├── pytest.ini
+└── scripts
+    ├── create_first_user.py
+    ├── docs
+    │   ├── configuration_header.md
+    │   ├── convert_notebooks_to_docs.py
+    │   └── generate_configuration_documentation.py
+    ├── manage_docs_dns.py
+    ├── startup_api.sh
+    └── startup_worker.sh
+137 directories, 495 files
