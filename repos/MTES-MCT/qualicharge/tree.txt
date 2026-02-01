@@ -1,0 +1,749 @@
+.
+├── .gitbook.yaml
+├── .github
+│   └── workflows
+│       ├── api.yml
+│       ├── chore.yml
+│       ├── client.yml
+│       ├── dashboard.yml
+│       ├── docker-images.yml
+│       ├── prefect.yml
+│       ├── python-packages.yml
+│       └── security.yml
+├── .gitignore
+├── LICENSE
+├── Makefile
+├── README.md
+├── bin
+│   ├── alembic
+│   ├── compose
+│   ├── data7
+│   ├── djlint
+│   ├── htpasswd
+│   ├── jupytext
+│   ├── kc-init
+│   ├── manage
+│   ├── metabase-init
+│   ├── minio-init
+│   ├── pg_dump
+│   ├── prefect
+│   ├── psql
+│   ├── pytest
+│   ├── qcc
+│   ├── qcm
+│   └── uv
+├── data
+│   ├── bench.csv
+│   ├── irve-dynamique-sessions.json.gz
+│   ├── irve-dynamique-statuses.json.gz
+│   ├── irve-statique.json.gz
+│   ├── irve-statique.parquet
+│   ├── qualicharge-api-data.sql
+│   └── qualicharge-api-schema.sql
+├── docker-compose.yml
+├── docs
+│   ├── README.md
+│   ├── SUMMARY.md
+│   ├── dashboard
+│   │   ├── img
+│   │   │   ├── 0-dashboard-index-without-pending-consent.png
+│   │   │   ├── 0-dashboard-index.png
+│   │   │   ├── 1-consent-index-with-upcoming-consents.png
+│   │   │   ├── 1-consent-index-without-data.png
+│   │   │   ├── 1-consent-index.png
+│   │   │   ├── 2-consent-manage-contract-holder-mandatory-error-2.png
+│   │   │   ├── 2-consent-manage-contract-holder-mandatory-error.png
+│   │   │   ├── 2-consent-manage.png
+│   │   │   ├── 2a-consent-manage-contract-holder-form.png
+│   │   │   ├── 2b-consent-manage-contract-holder-read-only.png
+│   │   │   └── 2c-consent-manage-overfow-pdls.png
+│   │   └── renewable
+│   │       └── img
+│   │           ├── 0-dashboard-index.png
+│   │           ├── 1-renewable-index.png
+│   │           ├── 2-mamange-delivery-points.png
+│   │           └── 3-renewable-manage.png
+│   ├── img
+│   │   ├── QualiCharge-Swagger-auth.gif
+│   │   └── QualiCharge-Swagger.png
+│   ├── schemas.md
+│   └── user
+│       ├── README.md
+│       ├── auth.md
+│       ├── cookbook.md
+│       └── fair.md
+├── env.d
+│   ├── api
+│   ├── bench
+│   ├── client
+│   ├── dashboard
+│   ├── keycloak
+│   ├── locust
+│   ├── metabase
+│   ├── minio
+│   ├── notebook
+│   ├── opendata
+│   ├── postgresql
+│   ├── prefect
+│   ├── prefect-qc
+│   ├── prefect-test
+│   ├── prefect-worker
+│   └── terraform
+├── provisioning
+│   ├── main.tf
+│   └── provider.tf
+├── renovate.json
+├── scripts
+│   ├── _common.sh
+│   ├── create-api-users.sh
+│   ├── groups.csv.example
+│   ├── reset-password.sh
+│   └── users.csv.example
+└── src
+    ├── api
+    │   ├── .dockerignore
+    │   ├── .python-version
+    │   ├── CHANGELOG.md
+    │   ├── Dockerfile
+    │   ├── Procfile
+    │   ├── Procfile.dev
+    │   ├── cron.json
+    │   ├── logging-config.dev.yaml
+    │   ├── logging-config.prod.yaml
+    │   ├── postdeploy.sh
+    │   ├── pyproject.toml
+    │   ├── qualicharge
+    │   │   ├── __init__.py
+    │   │   ├── __main__.py
+    │   │   ├── alembic.ini
+    │   │   ├── api
+    │   │   │   ├── __init__.py
+    │   │   │   ├── utils.py
+    │   │   │   └── v1
+    │   │   │       ├── __init__.py
+    │   │   │       └── routers
+    │   │   │           ├── __init__.py
+    │   │   │           ├── auth.py
+    │   │   │           ├── dynamic.py
+    │   │   │           ├── manage.py
+    │   │   │           └── static.py
+    │   │   ├── auth
+    │   │   │   ├── __init__.py
+    │   │   │   ├── factories.py
+    │   │   │   ├── models.py
+    │   │   │   ├── oidc.py
+    │   │   │   ├── schemas.py
+    │   │   │   └── utils.py
+    │   │   ├── cli.py
+    │   │   ├── conf.py
+    │   │   ├── db.py
+    │   │   ├── exceptions.py
+    │   │   ├── factories
+    │   │   │   ├── __init__.py
+    │   │   │   ├── dynamic.py
+    │   │   │   └── static.py
+    │   │   ├── fixtures
+    │   │   │   ├── __init__.py
+    │   │   │   └── operational_units.py
+    │   │   ├── migrations
+    │   │   │   ├── __init__.py
+    │   │   │   ├── env.py
+    │   │   │   ├── script.py.mako
+    │   │   │   └── versions
+    │   │   │       ├── 0212626f1356_add_pdc_and_station_fk_indexes.py
+    │   │   │       ├── 04c49c60ebcb_ou_data_update.py
+    │   │   │       ├── 0abf671b893f_add_lateststatus_schema.py
+    │   │   │       ├── 1270d547e358_ou_data_update.py
+    │   │   │       ├── 161e8a262e0a_admin_level_population_area_data_.py
+    │   │   │       ├── 2664a0b4ce11_add_static_schema.py
+    │   │   │       ├── 2d5ecaec5672_fix_status_hypertable_creation.py
+    │   │   │       ├── 3386c644d6ba_add_dynamic_schema.py
+    │   │   │       ├── 3418dcb45915_make_user_email_unique.py
+    │   │   │       ├── 37189f57d370_add_auditability.py
+    │   │   │       ├── 378708931885_add_user_password_field.py
+    │   │   │       ├── 3e8ea07e5b66_alter_db_enum_to_varchar.py
+    │   │   │       ├── 3eaef66b7629_ou_data_update.py
+    │   │   │       ├── 4b99d15436b0_add_statique_materialized_view.py
+    │   │   │       ├── 5e801b64ce1c_ou_data_update.py
+    │   │   │       ├── 6e610f62bcc6_add_missing_fk.py
+    │   │   │       ├── 7568f5ff860e_add_user_and_group_schemas.py
+    │   │   │       ├── 7b8c33d8399d_add_admin_geo_boundaries.py
+    │   │   │       ├── 80d63e775b17_add_soft_delete_to_pointdecharge_and_.py
+    │   │   │       ├── 8144a7d2553d_update_localisation_uniqueness_.py
+    │   │   │       ├── 8580168c2cef_add_location_address_unique_constraint.py
+    │   │   │       ├── 9ae109e209c9_update_db_enum_values_and_type.py
+    │   │   │       ├── 9d22385a3ae8_add_operational_unit_schema.py
+    │   │   │       ├── __init__.py
+    │   │   │       ├── b0bcee4ed64a_drop_session_and_status_extra_indexes.py
+    │   │   │       ├── b10e85cde5d0_admin_level_add_population_area.py
+    │   │   │       ├── b4c72cbe1932_rename_pointdecharge_and_station_views.py
+    │   │   │       ├── b5ef0fba88a7_add_user_last_login_field.py
+    │   │   │       ├── b69ed697b446_fix_admin_bound_types.py
+    │   │   │       ├── b7d33b01adac_station_datetime_to_date.py
+    │   │   │       ├── b8a68ed35a6f_move_to_active_station_and_pdc_views.py
+    │   │   │       ├── bac4e97547ad_ou_data_update.py
+    │   │   │       ├── c09664a85912_handle_stations_fk.py
+    │   │   │       ├── cefaa3fcc0d4_ou_data_update.py
+    │   │   │       ├── d198170d222f_localisation_code_insee_commune_is_.py
+    │   │   │       ├── d1e96368f232_id_pdc_itinerance_should_be_unique.py
+    │   │   │       ├── d3d2c20f8efd_update_enum_definitions.py
+    │   │   │       ├── d5ad363e0b71_ou_data_update.py
+    │   │   │       ├── d7425ed47afd_fix_session_hypertable_creation.py
+    │   │   │       ├── da896549e09c_remove_location_unique_together_.py
+    │   │   │       ├── e6909c3712d8_add_user_scopes.py
+    │   │   │       ├── f0f871ac556d_add_missing_dynamic_indexes.py
+    │   │   │       ├── f2f66c7c092a_ou_data_update.py
+    │   │   │       ├── f5416bc7dd5f_import_admin_geo_fixtures.py
+    │   │   │       ├── fda96abb970d_add_operational_unit_data.py
+    │   │   │       └── ff52adf974c7_operational_units_data_update.py
+    │   │   ├── models
+    │   │   │   ├── __init__.py
+    │   │   │   ├── dynamic.py
+    │   │   │   ├── static.py
+    │   │   │   └── utils.py
+    │   │   └── schemas
+    │   │       ├── __init__.py
+    │   │       ├── core.py
+    │   │       ├── geo.py
+    │   │       ├── sql.py
+    │   │       └── utils.py
+    │   ├── scripts
+    │   │   ├── clean-old-activity.sql
+    │   │   ├── clean-orphans.sql
+    │   │   └── data_retention_procedure.sql
+    │   ├── start.sh
+    │   ├── tests
+    │   │   ├── __init__.py
+    │   │   ├── api
+    │   │   │   ├── __init__.py
+    │   │   │   └── v1
+    │   │   │       ├── __init__.py
+    │   │   │       └── routers
+    │   │   │           ├── __init__.py
+    │   │   │           ├── test_auth.py
+    │   │   │           ├── test_dynamic.py
+    │   │   │           ├── test_manage.py
+    │   │   │           └── test_statique.py
+    │   │   ├── auth
+    │   │   │   ├── __init__.py
+    │   │   │   ├── test_oidc.py
+    │   │   │   ├── test_schemas.py
+    │   │   │   └── test_utils.py
+    │   │   ├── conftest.py
+    │   │   ├── fixtures
+    │   │   │   ├── __init__.py
+    │   │   │   ├── app.py
+    │   │   │   ├── cli.py
+    │   │   │   └── db.py
+    │   │   ├── models
+    │   │   │   ├── __init__.py
+    │   │   │   ├── test_dynamic.py
+    │   │   │   ├── test_static.py
+    │   │   │   └── test_utils.py
+    │   │   ├── schemas
+    │   │   │   ├── __init__.py
+    │   │   │   ├── test_sql.py
+    │   │   │   ├── test_static.py
+    │   │   │   └── test_utils.py
+    │   │   ├── test_cli.py
+    │   │   └── test_db.py
+    │   └── uv.lock
+    ├── bench
+    │   ├── Dockerfile
+    │   ├── README.md
+    │   ├── cli.py
+    │   └── locustfile.py
+    ├── client
+    │   ├── .python-version
+    │   ├── CHANGELOG.md
+    │   ├── Dockerfile
+    │   ├── LICENSE
+    │   ├── README.md
+    │   ├── pyproject.toml
+    │   ├── qcc
+    │   │   ├── __init__.py
+    │   │   ├── __main__.py
+    │   │   ├── cli
+    │   │   │   ├── __init__.py
+    │   │   │   ├── api.py
+    │   │   │   ├── auth.py
+    │   │   │   ├── codes.py
+    │   │   │   ├── manage.py
+    │   │   │   ├── session.py
+    │   │   │   ├── static.py
+    │   │   │   ├── status.py
+    │   │   │   └── utils.py
+    │   │   ├── client.py
+    │   │   ├── conf.py
+    │   │   ├── endpoints
+    │   │   │   ├── __init__.py
+    │   │   │   ├── auth.py
+    │   │   │   ├── base.py
+    │   │   │   ├── dynamic.py
+    │   │   │   ├── manage.py
+    │   │   │   └── static.py
+    │   │   ├── exceptions.py
+    │   │   ├── http.py
+    │   │   └── models.py
+    │   ├── tests
+    │   │   ├── __init__.py
+    │   │   ├── cli
+    │   │   │   ├── __init__.py
+    │   │   │   ├── test_auth.py
+    │   │   │   ├── test_main.py
+    │   │   │   ├── test_manage.py
+    │   │   │   ├── test_session.py
+    │   │   │   ├── test_static.py
+    │   │   │   └── test_status.py
+    │   │   ├── conftest.py
+    │   │   ├── endpoints
+    │   │   │   ├── __init__.py
+    │   │   │   ├── test_auth.py
+    │   │   │   ├── test_dynamic.py
+    │   │   │   ├── test_manage.py
+    │   │   │   └── test_static.py
+    │   │   ├── test_client.py
+    │   │   └── test_http.py
+    │   └── uv.lock
+    ├── dashboard
+    │   ├── .python-version
+    │   ├── CHANGELOG.md
+    │   ├── Dockerfile
+    │   ├── Procfile
+    │   ├── Procfile.dev
+    │   ├── apps
+    │   │   ├── __init__.py
+    │   │   ├── auth
+    │   │   │   ├── __init__.py
+    │   │   │   ├── admin.py
+    │   │   │   ├── apps.py
+    │   │   │   ├── backends.py
+    │   │   │   ├── factories.py
+    │   │   │   ├── mails.py
+    │   │   │   ├── middleware.py
+    │   │   │   ├── migrations
+    │   │   │   │   ├── 0001_initial_squashed_0003_dashboarduser_is_validated.py
+    │   │   │   │   └── __init__.py
+    │   │   │   ├── mixins.py
+    │   │   │   ├── models.py
+    │   │   │   ├── templates
+    │   │   │   │   └── auth
+    │   │   │   │       └── user_not_validated.html
+    │   │   │   ├── tests
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   ├── test_backends.py
+    │   │   │   │   ├── test_mails.py
+    │   │   │   │   ├── test_mixins.py
+    │   │   │   │   └── test_models.py
+    │   │   │   ├── urls.py
+    │   │   │   └── views.py
+    │   │   ├── consent
+    │   │   │   ├── __init__.py
+    │   │   │   ├── admin.py
+    │   │   │   ├── apps.py
+    │   │   │   ├── exceptions.py
+    │   │   │   ├── factories.py
+    │   │   │   ├── fixtures
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   └── consent.py
+    │   │   │   ├── forms.py
+    │   │   │   ├── helpers.py
+    │   │   │   ├── management
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   └── commands
+    │   │   │   │       ├── __init__.py
+    │   │   │   │       ├── notifawaitingconsents.py
+    │   │   │   │       ├── renewconsents.py
+    │   │   │   │       └── seed_consent.py
+    │   │   │   ├── managers.py
+    │   │   │   ├── migrations
+    │   │   │   │   ├── 0001_squashed_0009_alter_consent_options_and_more.py
+    │   │   │   │   └── __init__.py
+    │   │   │   ├── mixins.py
+    │   │   │   ├── models.py
+    │   │   │   ├── settings.py
+    │   │   │   ├── signals.py
+    │   │   │   ├── static
+    │   │   │   │   └── apps
+    │   │   │   │       └── consent
+    │   │   │   │           ├── css
+    │   │   │   │           │   └── app.css
+    │   │   │   │           └── js
+    │   │   │   │               └── app.js
+    │   │   │   ├── templates
+    │   │   │   │   └── consent
+    │   │   │   │       ├── base.html
+    │   │   │   │       ├── fields
+    │   │   │   │       │   ├── _checkbox_fields.html
+    │   │   │   │       │   ├── _hidden_fields.html
+    │   │   │   │       │   └── _input_fields.html
+    │   │   │   │       ├── forms
+    │   │   │   │       │   └── widgets
+    │   │   │   │       │       └── checkbox.html
+    │   │   │   │       ├── includes
+    │   │   │   │       │   ├── _consent_summary_awaiting_card.html
+    │   │   │   │       │   ├── _consent_summary_awaiting_card_content.html
+    │   │   │   │       │   ├── _consent_summary_upcoming_card.html
+    │   │   │   │       │   ├── _consent_summary_upcoming_card_content.html
+    │   │   │   │       │   ├── _consent_summary_validated_card.html
+    │   │   │   │       │   ├── _consent_summary_validated_card_content.html
+    │   │   │   │       │   ├── _manage_authorisations.html
+    │   │   │   │       │   ├── _manage_company_informations.html
+    │   │   │   │       │   ├── _manage_consents.html
+    │   │   │   │       │   ├── _manage_consents_control_authority.html
+    │   │   │   │       │   ├── _manage_consents_date_place.html
+    │   │   │   │       │   ├── _no_data_card.html
+    │   │   │   │       │   └── _table_row.html
+    │   │   │   │       ├── index.html
+    │   │   │   │       ├── manage.html
+    │   │   │   │       └── validated.html
+    │   │   │   ├── templatetags
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   └── consent_filters.py
+    │   │   │   ├── tests
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   ├── conftest.py
+    │   │   │   │   ├── test_admin.py
+    │   │   │   │   ├── test_commands_notifawaitingconsents.py
+    │   │   │   │   ├── test_commands_renewconsents.py
+    │   │   │   │   ├── test_helpers.py
+    │   │   │   │   ├── test_models.py
+    │   │   │   │   ├── test_signals.py
+    │   │   │   │   ├── test_templatetags.py
+    │   │   │   │   ├── test_utils.py
+    │   │   │   │   ├── test_validators.py
+    │   │   │   │   └── test_views.py
+    │   │   │   ├── urls.py
+    │   │   │   ├── utils.py
+    │   │   │   ├── validators.py
+    │   │   │   └── views.py
+    │   │   ├── core
+    │   │   │   ├── __init__.py
+    │   │   │   ├── abstract_models.py
+    │   │   │   ├── admin.py
+    │   │   │   ├── annuaire_entreprise_api
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   ├── adapters.py
+    │   │   │   │   └── clients.py
+    │   │   │   ├── apps.py
+    │   │   │   ├── context_processors.py
+    │   │   │   ├── factories.py
+    │   │   │   ├── helpers.py
+    │   │   │   ├── management
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   └── commands
+    │   │   │   │       ├── __init__.py
+    │   │   │   │       ├── base_command.py
+    │   │   │   │       ├── populateentity.py
+    │   │   │   │       └── syncdeliverypoints.py
+    │   │   │   ├── managers.py
+    │   │   │   ├── migrations
+    │   │   │   │   ├── 0001_squashed_0010_station.py
+    │   │   │   │   ├── 0011_alter_deliverypoint_managers_and_more.py
+    │   │   │   │   ├── 0012_entity_can_bypass_renewable_period.py
+    │   │   │   │   └── __init__.py
+    │   │   │   ├── mixins.py
+    │   │   │   ├── models.py
+    │   │   │   ├── qualicharge_api
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   ├── adapters.py
+    │   │   │   │   └── clients.py
+    │   │   │   ├── static
+    │   │   │   │   └── apps
+    │   │   │   │       └── core
+    │   │   │   │           └── js
+    │   │   │   │               └── app.js
+    │   │   │   ├── templatetags
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   └── dashboard_filters.py
+    │   │   │   ├── tests
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   ├── test_annuaire_entreprise_adapters.py
+    │   │   │   │   ├── test_annuaire_entreprise_clients.py
+    │   │   │   │   ├── test_commands_syncdeliverypoints.py
+    │   │   │   │   ├── test_dashboard_filters.py
+    │   │   │   │   ├── test_helpers.py
+    │   │   │   │   ├── test_mixins.py
+    │   │   │   │   ├── test_models.py
+    │   │   │   │   ├── test_qualicharge_api_adapters.py
+    │   │   │   │   ├── test_qualicharge_api_clients.py
+    │   │   │   │   ├── test_utils.py
+    │   │   │   │   └── test_validators.py
+    │   │   │   ├── utils.py
+    │   │   │   ├── validators.py
+    │   │   │   └── views.py
+    │   │   ├── home
+    │   │   │   ├── __init__.py
+    │   │   │   ├── apps.py
+    │   │   │   ├── templates
+    │   │   │   │   └── home
+    │   │   │   │       ├── base.html
+    │   │   │   │       ├── cards
+    │   │   │   │       │   ├── consent.html
+    │   │   │   │       │   └── renewable.html
+    │   │   │   │       └── index.html
+    │   │   │   ├── tests
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   └── test_views.py
+    │   │   │   ├── urls.py
+    │   │   │   └── views.py
+    │   │   └── renewable
+    │   │       ├── __init__.py
+    │   │       ├── admin.py
+    │   │       ├── apps.py
+    │   │       ├── factories.py
+    │   │       ├── fixtures
+    │   │       │   ├── __init__.py
+    │   │       │   └── renewable.py
+    │   │       ├── forms.py
+    │   │       ├── helpers.py
+    │   │       ├── management
+    │   │       │   ├── __init__.py
+    │   │       │   └── commands
+    │   │       │       ├── __init__.py
+    │   │       │       ├── notifopening.py
+    │   │       │       └── seed_renewable.py
+    │   │       ├── managers.py
+    │   │       ├── migrations
+    │   │       │   ├── 0001_initial.py
+    │   │       │   ├── 0002_renewable_has_confirmed_information_accuracy_and_more.py
+    │   │       │   └── __init__.py
+    │   │       ├── models.py
+    │   │       ├── templates
+    │   │       │   └── renewable
+    │   │       │       ├── base.html
+    │   │       │       ├── forms
+    │   │       │       │   └── widgets
+    │   │       │       │       └── checkbox.html
+    │   │       │       ├── includes
+    │   │       │       │   ├── _manage_delivery_points.html
+    │   │       │       │   ├── _manage_meters.html
+    │   │       │       │   ├── _manage_meters_authorisations.html
+    │   │       │       │   ├── _manage_meters_date_place.html
+    │   │       │       │   ├── _no_data_card.html
+    │   │       │       │   ├── _summary_delivery_points.html
+    │   │       │       │   ├── _summary_delivery_points_content.html
+    │   │       │       │   ├── _summary_pending_card.html
+    │   │       │       │   ├── _summary_pending_card_content.html
+    │   │       │       │   ├── _summary_submitted_card.html
+    │   │       │       │   └── _summary_submitted_card_content.html
+    │   │       │       ├── index.html
+    │   │       │       ├── manage.html
+    │   │       │       ├── manage_delivery_points.html
+    │   │       │       ├── restricted_period.html
+    │   │       │       └── submitted.html
+    │   │       ├── templatetags
+    │   │       │   ├── __init__.py
+    │   │       │   └── renewable_tags.py
+    │   │       ├── tests
+    │   │       │   ├── __init__.py
+    │   │       │   ├── conftest.py
+    │   │       │   ├── test_forms.py
+    │   │       │   ├── test_helpers.py
+    │   │       │   ├── test_renewable_tags.py
+    │   │       │   └── test_view.py
+    │   │       ├── urls.py
+    │   │       └── views.py
+    │   ├── cron.json
+    │   ├── dashboard
+    │   │   ├── __init__.py
+    │   │   ├── asgi.py
+    │   │   ├── fixtures
+    │   │   │   └── dsfr_fixtures.json
+    │   │   ├── settings.py
+    │   │   ├── static
+    │   │   │   └── dashboard
+    │   │   │       ├── img
+    │   │   │       │   ├── agreement.svg
+    │   │   │       │   ├── error.svg
+    │   │   │       │   ├── information.svg
+    │   │   │       │   ├── secure-folder.svg
+    │   │   │       │   ├── technical-error.svg
+    │   │   │       │   ├── warning.svg
+    │   │   │       │   └── wind-turbine.svg
+    │   │   │       └── js
+    │   │   │           └── common.js
+    │   │   ├── tests
+    │   │   │   └── __init__.py
+    │   │   ├── urls.py
+    │   │   └── wsgi.py
+    │   ├── locale
+    │   │   └── fr
+    │   │       └── LC_MESSAGES
+    │   │           ├── django.mo
+    │   │           └── django.po
+    │   ├── manage.py
+    │   ├── post_deploy.sh
+    │   ├── pyproject.toml
+    │   ├── readme.md
+    │   ├── start.sh
+    │   ├── templates
+    │   │   ├── 403.html
+    │   │   ├── 404.html
+    │   │   ├── 500.html
+    │   │   ├── base.html
+    │   │   ├── blocks
+    │   │   │   ├── footer.html
+    │   │   │   ├── header.html
+    │   │   │   ├── language_selector.html
+    │   │   │   ├── logout.html
+    │   │   │   └── main_menu.html
+    │   │   ├── components
+    │   │   │   └── _contact_link.html
+    │   │   ├── registration
+    │   │   │   └── login.html
+    │   │   └── robots.txt
+    │   ├── tests
+    │   │   ├── __init__.py
+    │   │   └── test_fake.py
+    │   └── uv.lock
+    ├── metabase
+    │   ├── custom.sql
+    │   └── maps
+    │       ├── metropole_dep.geojson
+    │       ├── metropole_reg.geojson
+    │       └── region_*.geojson  (70 files)
+    ├── notebook
+    │   ├── CHANGELOG.md
+    │   ├── Dockerfile
+    │   ├── analyses
+    │   │   └── .keep
+    │   ├── example.md
+    │   ├── experimentation
+    │   │   ├── create_indicators.md
+    │   │   ├── create_query.py
+    │   │   ├── test_fonction_histo.md
+    │   │   └── tests_historisation.md
+    │   ├── indicators
+    │   │   ├── .keep
+    │   │   ├── config_indicators.json
+    │   │   └── reference_indicators.md
+    │   ├── misc
+    │   │   ├── analyze-scalingo-logs.md
+    │   │   ├── api-benchmark.md
+    │   │   ├── clean-static-dataset.md
+    │   │   ├── generate-dynamic-test-datasets.md
+    │   │   ├── import-geo-boundaries.md
+    │   │   ├── import-geo-population-area.md
+    │   │   ├── import-static.md
+    │   │   ├── maps.md
+    │   │   └── migrate_metabase_questions.md
+    │   └── tiruert
+    │       └── integration-carbure.md
+    ├── opendata
+    │   ├── .buildpacks
+    │   ├── .python-version
+    │   ├── .secrets.yaml
+    │   ├── CHANGELOG.md
+    │   ├── Dockerfile
+    │   ├── Procfile
+    │   ├── data7.yaml
+    │   ├── pyproject.toml
+    │   ├── servers.conf.erb
+    │   ├── settings.yaml
+    │   ├── start.sh
+    │   └── uv.lock
+    └── prefect
+        ├── .python-version
+        ├── CHANGELOG.md
+        ├── Dockerfile
+        ├── Procfile
+        ├── Procfile.dev
+        ├── __inactivated__cron.json
+        ├── clean-offline-workers.sh
+        ├── cooling
+        │   ├── __init__.py
+        │   ├── sessions.py
+        │   └── statuses.py
+        ├── indicators
+        │   ├── __init__.py
+        │   ├── conf.py
+        │   ├── db.py
+        │   ├── extract
+        │   │   └── e4.py
+        │   ├── historicize
+        │   │   └── up.py
+        │   ├── infrastructure
+        │   │   ├── __init__.py
+        │   │   ├── i1.py
+        │   │   ├── i4.py
+        │   │   ├── i7.py
+        │   │   └── t1.py
+        │   ├── models.py
+        │   ├── run.py
+        │   ├── schemas.py
+        │   ├── strategy.py
+        │   ├── types.py
+        │   ├── usage
+        │   │   ├── u10.py
+        │   │   ├── u11.py
+        │   │   ├── u12.py
+        │   │   ├── u13.py
+        │   │   ├── u5.py
+        │   │   ├── u6.py
+        │   │   └── u9.py
+        │   └── utils.py
+        ├── post-deploy.sh
+        ├── prefect-deploy-all.sh
+        ├── prefect.yaml
+        ├── pyproject.toml
+        ├── quality
+        │   ├── __init__.py
+        │   ├── expectations
+        │   │   ├── __init__.py
+        │   │   ├── dynamic.py
+        │   │   ├── parameters.py
+        │   │   └── static.py
+        │   ├── flows
+        │   │   ├── __init__.py
+        │   │   ├── dynamic.py
+        │   │   ├── quality_run.py
+        │   │   └── static.py
+        │   └── templates
+        │       └── quality-by-unit.md.j2
+        ├── start.sh
+        ├── tests
+        │   ├── __init__.py
+        │   ├── conftest.py
+        │   ├── cooling
+        │   │   ├── __init__.py
+        │   │   ├── test_sessions.py
+        │   │   └── test_statuses.py
+        │   ├── extract
+        │   │   ├── __init__.py
+        │   │   └── test_e4.py
+        │   ├── historicize
+        │   │   └── test_up.py
+        │   ├── infrastructure
+        │   │   ├── __init__.py
+        │   │   ├── test_db.py
+        │   │   ├── test_i1.py
+        │   │   ├── test_i4.py
+        │   │   ├── test_i7.py
+        │   │   ├── test_t1.py
+        │   │   └── test_utils.py
+        │   ├── parameters.py
+        │   ├── quality
+        │   │   ├── __init__.py
+        │   │   ├── test_dynamic.py
+        │   │   └── test_static.py
+        │   ├── tiruert
+        │   │   ├── __init__.py
+        │   │   ├── test_carbure.py
+        │   │   ├── test_run.py
+        │   │   └── test_submit.py
+        │   └── usage
+        │       ├── test_u10.py
+        │       ├── test_u11.py
+        │       ├── test_u12.py
+        │       ├── test_u13.py
+        │       ├── test_u5.py
+        │       ├── test_u6.py
+        │       └── test_u9.py
+        ├── tiruert
+        │   ├── __init__.py
+        │   ├── carbure.py
+        │   ├── run.py
+        │   └── submit.py
+        └── uv.lock
+143 directories, 674 files

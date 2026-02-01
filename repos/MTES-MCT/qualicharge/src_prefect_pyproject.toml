@@ -1,0 +1,122 @@
+#
+# QualiCharge prefect package
+#
+[project]
+name = "qualicharge-prefect"
+version = "0.0.1"
+requires-python = "~=3.12.0"
+dependencies = [
+  "data7==1.0.1",
+  "email-validator>=2.3.0",
+  "geoalchemy2[shapely]==0.18.1",
+  "geopandas==1.1.2",
+  "great_expectations[postgresql]==1.10.0",
+  "pandas==2.3.3",
+  "prefect==3.6.9",
+  "psycopg[pool,binary]==3.3.2",
+  "pyarrow==22.0.0",
+  "pydantic==2.12.5",
+  "s3fs==2025.12.0",
+  "tabulate==0.9.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+  "black==25.12.0",
+  "freezegun==1.5.5",
+  "honcho==2.0.0",
+  "mypy==1.19.1",
+  "pandas-stubs==2.3.3.251219",
+  "pytest==9.0.2",
+  "pytest-cov==7.0.0",
+  "pytest-responses>=0.5.1",
+  "ruff==0.14.10",
+  "setuptools==80.9.0",
+  "types-python-dateutil",
+  "types-requests>=2.32.4.20250913",
+]
+
+[tool.uv]
+package = true
+
+[[tool.uv.index]]
+name = "pypi"
+url = "https://pypi.org/simple"
+
+[tool.uv.sources]
+qualicharge-prefect = { path = ".", editable = true }
+
+[tool.hatch.build.targets.wheel]
+packages = [
+  "cooling", 
+  "indicators", 
+  "quality", 
+  "tiruert",
+]
+
+# Third party packages configuration
+[tool.pytest.ini_options]
+addopts = "-v --cov-report term-missing --cov=indicators --cov=quality --cov=cooling --cov=tiruert"
+python_files = [
+    "test_*.py",
+    "tests.py",
+]
+testpaths = [
+    "tests",
+]
+
+[tool.ruff]
+target-version = "py312"
+# Exclude a variety of commonly ignored directories.
+exclude = []
+
+[tool.ruff.lint]
+select = [
+    "B",  # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "D",  # pydocstyle
+    "E",  # pycodestyle error
+    "F",  # Pyflakes
+    "I",  # Isort
+    "ISC",  # flake8-implicit-str-concat
+    "PLC",  # Pylint Convention
+    "PLE",  # Pylint Error
+    "PLR",  # Pylint Refactor
+    "PLW",  # Pylint Warning
+    "RUF100",  # Ruff unused-noqa
+    "S",  # flake8-bandit
+    "T20", # flake8-print
+    "W",  # pycodestyle warning
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = [
+    "S101", # use of assert
+]
+
+[tool.ruff.lint.pydocstyle]
+# Use Google-style docstrings.
+convention = "google"
+
+[tool.mypy]
+plugins = "pydantic.mypy"
+files = "./**/*.py"
+# Temporary disable typing issue with prefect:
+# https://github.com/PrefectHQ/prefect/issues/19469
+disable_error_code = [
+  "unused-coroutine",
+]
+
+[[tool.mypy.overrides]]
+module = [
+  "data7.*", 
+  "great_expectations.*", 
+  "pyarrow", 
+  "ruamel.*", 
+  "s3fs",
+]
+ignore_missing_imports = true
