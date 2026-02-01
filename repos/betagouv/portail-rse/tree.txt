@@ -1,0 +1,872 @@
+.
+├── .buildpacks
+├── .env.example
+├── .github
+│   └── workflows
+│       └── test.yml
+├── .gitignore
+├── .npmrc
+├── .pre-commit-config.yaml
+├── .python-version.bak
+├── LICENSE
+├── Makefile
+├── Pipfile
+├── Pipfile.lock
+├── Procfile
+├── Procfile.dev
+├── README.md
+├── cron.json
+├── doc
+│   ├── ADR
+│   │   ├── 2022-09-13 Django+PostgreSQL.md
+│   │   ├── 2022-10-04 CategoryField.md
+│   │   ├── 2023-01-31 Svelte+Vite.md
+│   │   ├── 2023-02-08 Metabase.md
+│   │   ├── 2023-03-01 Habilitation.md
+│   │   ├── 2023-06-16 CaracterisquesAnnuelles.md
+│   │   ├── 2024-10-03 SitesFaciles.md
+│   │   ├── 2025-02-15 IA.md
+│   │   ├── 2025-05-22 Invitation.md
+│   │   ├── 2025-06-24 Fusion documents personnels et officiels.md
+│   │   ├── 2025-09-23 ProConnect.md
+│   │   └── IA_portail-rse.jpg
+│   ├── collaboration.md
+│   ├── homologation
+│   │   ├── README.md
+│   │   ├── diagramme_cas_utilisation.plantuml
+│   │   ├── extration_dependances.py
+│   │   └── vue_generale.plantuml
+│   ├── metabase.md
+│   ├── overview.md
+│   ├── overview.puml
+│   ├── overview.svg
+│   └── site vitrine.md
+├── docker-compose.yml
+├── front
+│   ├── README.md
+│   ├── jsconfig.json
+│   ├── src
+│   │   ├── lib
+│   │   │   ├── ExternalFieldToggle.svelte
+│   │   │   ├── GroupeFields.svelte
+│   │   │   ├── InteretPublicField.svelte
+│   │   │   ├── PasswordValidattion.svelte
+│   │   │   ├── assets
+│   │   │   │   └── spinner.svg
+│   │   │   └── stores.js
+│   │   ├── main.js
+│   │   └── vite-env.d.ts
+│   └── vite.config.js
+├── impact
+│   ├── analyseia
+│   │   ├── __init__.py
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── decorators.py
+│   │   ├── forms.py
+│   │   ├── helpers.py
+│   │   ├── migrations
+│   │   │   ├── 0001_initial.py
+│   │   │   ├── 0002_auto_20251014_1459.py
+│   │   │   └── __init__.py
+│   │   ├── models.py
+│   │   ├── templates
+│   │   │   ├── analyseia
+│   │   │   │   └── accueil.html
+│   │   │   ├── fragments
+│   │   │   │   └── statut_analyse.html
+│   │   │   └── snippets
+│   │   │       └── onglets_analyses.html
+│   │   ├── tests
+│   │   │   ├── __init__.py
+│   │   │   ├── conftest.py
+│   │   │   ├── test_export_xlsx.py
+│   │   │   ├── test_synthese.py
+│   │   │   └── test_views.py
+│   │   ├── urls.py
+│   │   ├── views.py
+│   │   └── xlsx
+│   │       ├── esrs
+│   │       │   ├── template_synthese_E.xlsx
+│   │       │   ├── template_synthese_ESG.xlsx
+│   │       │   ├── template_synthese_G.xlsx
+│   │       │   └── template_synthese_S.xlsx
+│   │       └── theme
+│   │           ├── template_synthese_E.xlsx
+│   │           ├── template_synthese_ESG.xlsx
+│   │           ├── template_synthese_G.xlsx
+│   │           └── template_synthese_S.xlsx
+│   ├── api
+│   │   ├── __init__.py
+│   │   ├── analyse_ia.py
+│   │   ├── bges.py
+│   │   ├── egapro.py
+│   │   ├── exceptions.py
+│   │   ├── infos_entreprise.py
+│   │   ├── ratios_financiers.py
+│   │   ├── recherche_entreprises.py
+│   │   ├── sirene.py
+│   │   └── tests
+│   │       ├── __init__.py
+│   │       ├── test_analyse_ia.py
+│   │       ├── test_bges.py
+│   │       ├── test_egapro.py
+│   │       ├── test_infos_entreprises.py
+│   │       ├── test_ratios_financiers.py
+│   │       ├── test_recherche_entreprises.py
+│   │       └── test_sirene.py
+│   ├── conftest.py
+│   ├── entreprises
+│   │   ├── __init__.py
+│   │   ├── admin.py
+│   │   ├── context_processors.py
+│   │   ├── decorators.py
+│   │   ├── exceptions.py
+│   │   ├── forms.py
+│   │   ├── management
+│   │   │   ├── __init__.py
+│   │   │   └── commands
+│   │   │       ├── __init__.py
+│   │   │       ├── force_categorie_juridique_sirene.py
+│   │   │       ├── force_code_naf.py
+│   │   │       ├── force_code_pays_etranger_sirene.py
+│   │   │       └── force_denomination.py
+│   │   ├── migrations
+│   │   │   ├── 0001_initial.py
+│   │   │   ├── 0002_habilitation.py
+│   │   │   ├── 0003_create_through_relations.py
+│   │   │   ├── 0004_remove_entreprise_users_and_more.py
+│   │   │   ├── 0005_entreprise_users.py
+│   │   │   ├── 0006_alter_habilitation_fonctions.py
+│   │   │   ├── 0007_entreprise_created_at_entreprise_updated_at.py
+│   │   │   ├── 0008_alter_entreprise_effectif.py
+│   │   │   ├── 0009_habilitation_confirmed_at.py
+│   │   │   ├── 0010_alter_habilitation_entreprise_and_more.py
+│   │   │   ├── 0011_alter_entreprise_users.py
+│   │   │   ├── 0012_delete_habilitation.py
+│   │   │   ├── 0013_alter_entreprise_bdese_accord.py
+│   │   │   ├── 0014_alter_entreprise_effectif_and_more.py
+│   │   │   ├── 0015_rename_raison_sociale_entreprise_denomination.py
+│   │   │   ├── 0016_alter_entreprise_effectif.py
+│   │   │   ├── 0017_evolution.py
+│   │   │   ├── 0018_remove_entreprise_bdese_accord_and_more.py
+│   │   │   ├── 0019_evolution_created_at_evolution_updated_at.py
+│   │   │   ├── 0020_evolution_uniques_caracteristiques_annuelles.py
+│   │   │   ├── 0021_rename_evolution_caracteristiquesannuelles_and_more.py
+│   │   │   ├── 0022_alter_caracteristiquesannuelles_entreprise.py
+│   │   │   ├── 0023_caracteristiquesannuelles_effectif_outre_mer.py
+│   │   │   ├── 0024_caracteristiquesannuelles_bilan_and_more.py
+│   │   │   ├── 0025_caracteristiquesannuelles_systeme_management_energie.py
+│   │   │   ├── 0026_entreprise_date_cloture_exercice.py
+│   │   │   ├── 0027_caracteristiquesannuelles_date_cloture_exercice.py
+│   │   │   ├── 0028_caracteristiquesannuelles_tranche_bilan_consolide_and_more.py
+│   │   │   ├── 0029_alter_caracteristiquesannuelles_bdese_accord.py
+│   │   │   ├── 0030_alter_caracteristiquesannuelles_effectif.py
+│   │   │   ├── 0031_caracteristiquesannuelles_effectif_groupe_and_more.py
+│   │   │   ├── 0032_alter_caracteristiquesannuelles_effectif.py
+│   │   │   ├── 0033_entreprise_date_derniere_qualification.py
+│   │   │   ├── 0034_entreprise_categorie_juridique_sirene.py
+│   │   │   ├── 0035_caracteristiquesannuelles_effectif_permanent.py
+│   │   │   ├── 0036_caracteristiquesannuelles_effectif_groupe_permanent_and_more.py
+│   │   │   ├── 0037_entreprise_est_cotee.py
+│   │   │   ├── 0038_alter_caracteristiquesannuelles_effectif_and_more.py
+│   │   │   ├── 0039_caracteristiquesannuelles_effectif_groupe_france_and_more.py
+│   │   │   ├── 0040_entreprise_est_societe_mere_and_more.py
+│   │   │   ├── 0041_alter_caracteristiquesannuelles_effectif_and_more.py
+│   │   │   ├── 0042_alter_caracteristiquesannuelles_effectif_and_more.py
+│   │   │   ├── 0043_alter_caracteristiquesannuelles_tranche_bilan_consolide_and_more.py
+│   │   │   ├── 0044_entreprise_est_interet_public.py
+│   │   │   ├── 0045_entreprise_code_pays_etranger_sirene.py
+│   │   │   ├── 0046_alter_caracteristiquesannuelles_tranche_bilan_and_more.py
+│   │   │   ├── 0047_alter_caracteristiquesannuelles_tranche_bilan_and_more.py
+│   │   │   ├── 0048_entreprise_code_naf.py
+│   │   │   ├── 0049_caracteristiquesannuelles_effectif_securite_sociale_and_more.py
+│   │   │   ├── 0050_remove_caracteristiquesannuelles_effectif_permanent.py
+│   │   │   ├── 0051_remove_caracteristiquesannuelles_effectif_groupe_permanent.py
+│   │   │   ├── 0052_entreprise_analyses_ia.py
+│   │   │   ├── 0053_alter_entreprise_analyses_ia.py
+│   │   │   └── __init__.py
+│   │   ├── models.py
+│   │   ├── templates
+│   │   │   ├── entreprises
+│   │   │   │   ├── index.html
+│   │   │   │   └── qualification.html
+│   │   │   ├── fragments
+│   │   │   │   ├── resultats_recherche_entreprise.html
+│   │   │   │   └── siren_field.html
+│   │   │   └── snippets
+│   │   │       ├── modale_quitter_entreprise.html
+│   │   │       └── recherche_entreprise.html
+│   │   ├── tests
+│   │   │   ├── __init__.py
+│   │   │   ├── conftest.py
+│   │   │   ├── test_commands.py
+│   │   │   ├── test_forms.py
+│   │   │   ├── test_models.py
+│   │   │   └── test_views.py
+│   │   ├── urls.py
+│   │   └── views.py
+│   ├── habilitations
+│   │   ├── __init__.py
+│   │   ├── admin.py
+│   │   ├── context_processors.py
+│   │   ├── decorators.py
+│   │   ├── enums.py
+│   │   ├── forms.py
+│   │   ├── management
+│   │   │   └── commands
+│   │   │       └── supprime_utilisateurs_sur_entreprise_test.py
+│   │   ├── migrations
+│   │   │   ├── 0001_initial.py
+│   │   │   ├── 0002_copy_habilitations_data.py
+│   │   │   ├── 0003_alter_habilitation_confirmed_at.py
+│   │   │   ├── 0004_habilitation_created_at_habilitation_updated_at.py
+│   │   │   ├── 0005_alter_habilitation_created_at_and_more.py
+│   │   │   ├── 0006_habilitation_role_alter_habilitation_confirmed_at_and_more.py
+│   │   │   ├── 0007_remove_habilitation_role_entreprise_user_and_more.py
+│   │   │   ├── 0008_habilitation_invitation.py
+│   │   │   ├── 0009_alter_habilitation_invitation.py
+│   │   │   └── __init__.py
+│   │   ├── models.py
+│   │   ├── templates
+│   │   │   └── snippets
+│   │   │       ├── contributeurs.html
+│   │   │       ├── formulaire_invitation.html
+│   │   │       ├── modale_modifier_habilitation.html
+│   │   │       └── modale_retirer_habilitation.html
+│   │   ├── tests
+│   │   │   ├── test_commands.py
+│   │   │   ├── test_decorators.py
+│   │   │   ├── test_models.py
+│   │   │   ├── test_security_vulnerabilities.py
+│   │   │   ├── test_user_role.py
+│   │   │   └── test_views.py
+│   │   ├── urls.py
+│   │   └── views.py
+│   ├── impact
+│   │   ├── __init__.py
+│   │   ├── admin_urls.py
+│   │   ├── asgi.py
+│   │   ├── db_routers.py
+│   │   ├── hosts.py
+│   │   ├── password_validation.py
+│   │   ├── settings.py
+│   │   ├── urls.py
+│   │   └── wsgi.py
+│   ├── invitations
+│   │   ├── admin.py
+│   │   ├── migrations
+│   │   │   ├── 0001_initial.py
+│   │   │   ├── 0002_invitation_inviteur.py
+│   │   │   ├── 0003_remove_invitation_code.py
+│   │   │   ├── 0004_invitation_date_acceptation.py
+│   │   │   ├── 0005_alter_invitation_inviteur.py
+│   │   │   ├── 0006_alter_invitation_role.py
+│   │   │   └── __init__.py
+│   │   ├── models.py
+│   │   └── tests
+│   │       ├── __init__.py
+│   │       └── test_models.py
+│   ├── logs
+│   │   ├── __init__.py
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── decorators.py
+│   │   ├── event.py
+│   │   ├── migrations
+│   │   │   ├── 0001_initial.py
+│   │   │   └── __init__.py
+│   │   ├── models.py
+│   │   └── tests
+│   │       ├── __init__.py
+│   │       ├── test_decorators.py
+│   │       ├── test_handler.py
+│   │       └── test_models.py
+│   ├── manage.py
+│   ├── metabase
+│   │   ├── __init__.py
+│   │   ├── management
+│   │   │   ├── __init__.py
+│   │   │   └── commands
+│   │   │       ├── __init__.py
+│   │   │       ├── sync_bges.py
+│   │   │       ├── sync_egapro.py
+│   │   │       └── sync_metabase.py
+│   │   ├── migrations
+│   │   │   ├── 0001_initial.py
+│   │   │   ├── 0002_habilitation_ajoutee_le_habilitation_modifiee_le.py
+│   │   │   ├── 0003_entreprise_date_cloture_exercice_and_more.py
+│   │   │   ├── 0004_entreprise_appartient_groupe_and_more.py
+│   │   │   ├── 0005_entreprise_effectif_outre_mer.py
+│   │   │   ├── 0006_entreprise_effectif_groupe_and_more.py
+│   │   │   ├── 0007_utilisateur_connecte_le_and_more.py
+│   │   │   ├── 0008_entreprise_date_derniere_qualification.py
+│   │   │   ├── 0009_entreprise_categorie_juridique_sirene.py
+│   │   │   ├── 0010_entreprise_effectif_groupe_permanent_and_more.py
+│   │   │   ├── 0011_bdese.py
+│   │   │   ├── 0012_indexegapro.py
+│   │   │   ├── 0013_stats.py
+│   │   │   ├── 0014_bges.py
+│   │   │   ├── 0015_entreprise_effectif_groupe_france_and_more.py
+│   │   │   ├── 0016_entreprise_est_interet_public_entreprise_pays.py
+│   │   │   ├── 0017_entreprise_code_naf.py
+│   │   │   ├── 0018_invitation_habilitation_invitation.py
+│   │   │   ├── 0019_remove_entreprise_effectif_permanent.py
+│   │   │   ├── 0020_remove_entreprise_effectif_groupe_permanent.py
+│   │   │   ├── 0021_entreprise_effectif_securite_sociale.py
+│   │   │   ├── 0022_remove_bdese_utilisateur.py
+│   │   │   ├── 0023_csrd.py
+│   │   │   ├── 0024_tempbges_tempegapro.py
+│   │   │   ├── 0025_vsme.py
+│   │   │   ├── 0026_analyseia.py
+│   │   │   ├── 0027_analyseia_nom_fichier.py
+│   │   │   └── __init__.py
+│   │   ├── models.py
+│   │   └── tests.py
+│   ├── oidc
+│   │   ├── __init__.py
+│   │   ├── backends.py
+│   │   ├── context_processors.py
+│   │   ├── middlewares.py
+│   │   ├── urls.py
+│   │   └── views.py
+│   ├── public
+│   │   ├── __init__.py
+│   │   ├── apps.py
+│   │   ├── forms.py
+│   │   ├── migrations
+│   │   │   └── __init__.py
+│   │   ├── templates
+│   │   │   ├── fragments
+│   │   │   │   └── simulation_form.html
+│   │   │   └── public
+│   │   │       ├── contact.html
+│   │   │       ├── erreur_terminale.html
+│   │   │       ├── resultats_simulation.html
+│   │   │       ├── simulation.html
+│   │   │       └── stats.html
+│   │   ├── templatetags
+│   │   │   ├── __init__.py
+│   │   │   ├── absolute_url.py
+│   │   │   └── filters.py
+│   │   ├── tests
+│   │   │   ├── __init__.py
+│   │   │   ├── test_forms.py
+│   │   │   ├── test_simulation.py
+│   │   │   ├── test_templatetags.py
+│   │   │   └── tests.py
+│   │   ├── urls.py
+│   │   └── views.py
+│   ├── reglementations
+│   │   ├── __init__.py
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── enums.py
+│   │   ├── forms
+│   │   │   ├── __init__.py
+│   │   │   ├── bdese.py
+│   │   │   └── csrd.py
+│   │   ├── management
+│   │   │   └── commands
+│   │   │       └── maj_reglementation_officielle.py
+│   │   ├── migrations
+│   │   │   ├── 0001_initial.py
+│   │   │   ├── 0002_alter_bdese_300_annee_alter_bdese_50_300_annee.py
+│   │   │   ├── 0003_alter_bdese_300_nombre_unites_absence_and_more.py
+│   │   │   ├── 0004_bdese_50_300_completion_steps.py
+│   │   │   ├── 0005_alter_bdese_50_300_completion_steps.py
+│   │   │   ├── 0006_rename_mecenat_bdese_50_300_mecenat_recu_and_more.py
+│   │   │   ├── 0007_bdese_300_created_at_bdese_300_updated_at_and_more.py
+│   │   │   ├── 0008_remove_bdese_50_300_nombre_stagiaires_and_more.py
+│   │   │   ├── 0009_bdese_300_indicateurs_externes_and_more.py
+│   │   │   ├── 0010_alter_bdese_50_300_mecenat_recu_and_more.py
+│   │   │   ├── 0011_rename_indicateurs_externes_bdese_300_external_fields_and_more.py
+│   │   │   ├── 0012_bdese_300_niveaux_hierarchiques.py
+│   │   │   ├── 0013_bdese_300_age_moyen_par_niveau_hierarchique_femme_and_more.py
+│   │   │   ├── 0014_alter_bdese_300_completion_steps_and_more.py
+│   │   │   ├── 0015_alter_bdese_300_complement_salaire_conge_adoption_and_more.py
+│   │   │   ├── 0016_bdese_300_user_bdese_50_300_user.py
+│   │   │   ├── 0017_transform_official_bdese_into_personal_bdese.py
+│   │   │   ├── 0018_officialbdese_300_officialbdese_50_300_and_more.py
+│   │   │   ├── 0019_rename_bilan_gaz_effet_de_serre_bdese_300_bilan_gaz_effet_de_serre_non_soumis_dpef_and_more.py
+│   │   │   ├── 0020_bdeseavecaccord.py
+│   │   │   ├── 0021_officialbdeseavecaccord_personalbdeseavecaccord.py
+│   │   │   ├── 0022_bdese_300_uniques_personalbdese_300_and_more.py
+│   │   │   ├── 0023_rapportcsrd_enjeu_and_more.py
+│   │   │   ├── 0024_rapportcsrd_etape_validee.py
+│   │   │   ├── 0025_alter_rapportcsrd_etape_validee.py
+│   │   │   ├── 0026_enjeu_materiel.py
+│   │   │   ├── 0027_rapportcsrd_lien_rapport.py
+│   │   │   ├── 0028_rapportcsrd_bloque.py
+│   │   │   ├── 0029_rename_csrd_step_id.py
+│   │   │   ├── 0030_documentanalyseia.py
+│   │   │   ├── 0031_fusion_rapports_csrd.py
+│   │   │   ├── 0032_fusion_bdese.py
+│   │   │   ├── 0033_delete_officialbdese_300_delete_officialbdese_50_300_and_more.py
+│   │   │   ├── 0034_alter_bdese_300_external_fields_alter_bdese_300_user_and_more.py
+│   │   │   ├── 0035_rapportcsrd_analyses_ia.py
+│   │   │   ├── 0036_delete_documentanalyseia.py
+│   │   │   └── __init__.py
+│   │   ├── models
+│   │   │   ├── __init__.py
+│   │   │   ├── bdse.py
+│   │   │   ├── csrd.py
+│   │   │   └── index_egapro.py
+│   │   ├── templates
+│   │   │   ├── fragments
+│   │   │   │   ├── creation_enjeu.html
+│   │   │   │   ├── esrs.html
+│   │   │   │   ├── esrs_materiels.html
+│   │   │   │   ├── lien_rapport.html
+│   │   │   │   ├── liste_enjeux_materiels.html
+│   │   │   │   ├── liste_enjeux_selectionnes.html
+│   │   │   │   ├── selection_enjeux.html
+│   │   │   │   ├── selection_enjeux_materiels.html
+│   │   │   │   └── telechargement_xlsx.html
+│   │   │   ├── reglementations
+│   │   │   │   ├── 0_categories_professionnelles.html
+│   │   │   │   ├── base_bdese_pdf.html
+│   │   │   │   ├── bdese_300
+│   │   │   │   │   ├── 10_transferts_commerciaux_et_financiers.html
+│   │   │   │   │   ├── 11_environnement.html
+│   │   │   │   │   ├── 1_investissement_social.html
+│   │   │   │   │   ├── 2_investissement_matériel_et_immatériel.html
+│   │   │   │   │   ├── 3_egalite_professionnelle.html
+│   │   │   │   │   ├── 4_fonds_propres_endettement_impots.html
+│   │   │   │   │   ├── 5_remuneration.html
+│   │   │   │   │   ├── 6_representation_du_personnel_et_activites_sociales_et_culturelles.html
+│   │   │   │   │   ├── 7_remuneration_des_financeurs.html
+│   │   │   │   │   ├── 8_flux_financiers.html
+│   │   │   │   │   └── 9_partenariats.html
+│   │   │   │   ├── bdese_300_pdf.html
+│   │   │   │   ├── bdese_50_300
+│   │   │   │   │   ├── 10_transferts_commerciaux_et_financiers.html
+│   │   │   │   │   ├── 11_environnement.html
+│   │   │   │   │   ├── 1_investissement_social.html
+│   │   │   │   │   ├── 2_investissement_matériel_et_immatériel.html
+│   │   │   │   │   ├── 3_egalite_professionnelle.html
+│   │   │   │   │   ├── 4_fonds_propres_endettement_impots.html
+│   │   │   │   │   ├── 5_remuneration.html
+│   │   │   │   │   ├── 6_representation_du_personnel_et_activites_sociales_et_culturelles.html
+│   │   │   │   │   ├── 7_remuneration_des_financeurs.html
+│   │   │   │   │   ├── 8_flux_financiers.html
+│   │   │   │   │   └── 9_partenariats.html
+│   │   │   │   ├── bdese_50_300_pdf.html
+│   │   │   │   ├── csrd
+│   │   │   │   │   ├── etape-analyse-ecart.html
+│   │   │   │   │   ├── etape-analyse-materialite.html
+│   │   │   │   │   ├── etape-introduction.html
+│   │   │   │   │   ├── etape-redaction-rapport-durabilite.html
+│   │   │   │   │   ├── etape-selection-enjeux.html
+│   │   │   │   │   └── etape-selection-informations.html
+│   │   │   │   └── tableau_de_bord
+│   │   │   │       ├── analyse_double_materialite.html
+│   │   │   │       ├── audit-energetique.html
+│   │   │   │       ├── base.html
+│   │   │   │       ├── bdese.html
+│   │   │   │       ├── beges-et-plan-de-transition.html
+│   │   │   │       ├── csrd.html
+│   │   │   │       ├── dispositif-anti-corruption.html
+│   │   │   │       ├── dispositif-dalerte.html
+│   │   │   │       ├── index-egalite-professionnelle.html
+│   │   │   │       ├── index.html
+│   │   │   │       ├── plan-de-vigilance.html
+│   │   │   │       ├── rapport.html
+│   │   │   │       ├── reglementations.html
+│   │   │   │       ├── resume.html
+│   │   │   │       └── vsme.html
+│   │   │   ├── snippets
+│   │   │   │   ├── bdese_field.html
+│   │   │   │   ├── bdese_header.html
+│   │   │   │   ├── bdese_menu.html
+│   │   │   │   ├── bdese_submit.html
+│   │   │   │   ├── category_json_widget.html
+│   │   │   │   ├── csrd_header.html
+│   │   │   │   ├── csrd_menu.html
+│   │   │   │   ├── csrd_submit.html
+│   │   │   │   ├── field_pdf.html
+│   │   │   │   ├── list_json_widget.html
+│   │   │   │   ├── modal_ESRS
+│   │   │   │   │   ├── ESRS_1.html
+│   │   │   │   │   ├── ESRS_2.html
+│   │   │   │   │   ├── ESRS_E1.html
+│   │   │   │   │   ├── ESRS_E2.html
+│   │   │   │   │   ├── ESRS_E3.html
+│   │   │   │   │   ├── ESRS_E4.html
+│   │   │   │   │   ├── ESRS_E5.html
+│   │   │   │   │   ├── ESRS_G1.html
+│   │   │   │   │   ├── ESRS_S1.html
+│   │   │   │   │   ├── ESRS_S2.html
+│   │   │   │   │   ├── ESRS_S3.html
+│   │   │   │   │   └── ESRS_S4.html
+│   │   │   │   ├── reglementation_card.html
+│   │   │   │   ├── tab_maj_nombre_enjeux.html
+│   │   │   │   └── tableau_de_bord_menu.html
+│   │   │   └── widgets
+│   │   │       └── enjeu_option.html
+│   │   ├── templatetags
+│   │   │   ├── __init__.py
+│   │   │   └── random_tools.py
+│   │   ├── tests
+│   │   │   ├── __init__.py
+│   │   │   ├── conftest.py
+│   │   │   ├── test_audit_energetique_reglementation.py
+│   │   │   ├── test_bges_reglementation.py
+│   │   │   ├── test_dispositif_alerte.py
+│   │   │   ├── test_dispositif_anticorruption.py
+│   │   │   ├── test_index.py
+│   │   │   ├── test_index_egapro_models.py
+│   │   │   ├── test_index_egapro_reglementation.py
+│   │   │   ├── test_plan_vigilance_reglementation.py
+│   │   │   ├── test_reglementations.py
+│   │   │   ├── test_tableau_de_bord.py
+│   │   │   ├── tests_bdese
+│   │   │   │   ├── test_bdese_forms.py
+│   │   │   │   ├── test_bdese_models.py
+│   │   │   │   ├── test_bdese_reglementation.py
+│   │   │   │   └── test_bdese_views.py
+│   │   │   └── tests_csrd
+│   │   │       ├── test_csrd_fragments.py
+│   │   │       ├── test_csrd_models.py
+│   │   │       ├── test_csrd_reglementation.py
+│   │   │       └── test_csrd_views.py
+│   │   ├── urls.py
+│   │   ├── utils.py
+│   │   └── views
+│   │       ├── __init__.py
+│   │       ├── audit_energetique.py
+│   │       ├── base.py
+│   │       ├── bdese.py
+│   │       ├── bges.py
+│   │       ├── csrd
+│   │       │   ├── __init__.py
+│   │       │   ├── csrd.py
+│   │       │   ├── decorators.py
+│   │       │   ├── fragments
+│   │       │   │   ├── __init__.py
+│   │       │   │   ├── enjeux.py
+│   │       │   │   ├── enjeux_materiels.py
+│   │       │   │   ├── rapport.py
+│   │       │   │   └── urls.py
+│   │       │   └── urls.py
+│   │       ├── dispositif_alerte.py
+│   │       ├── dispositif_anticorruption.py
+│   │       ├── index_egapro.py
+│   │       └── plan_vigilance.py
+│   ├── security
+│   │   ├── __init__.py
+│   │   ├── apps.py
+│   │   └── middlewares.py
+│   ├── static
+│   │   ├── CSRD
+│   │   │   ├── ESRS-1
+│   │   │   │   ├── CSRD-ESRS-1.pdf
+│   │   │   │   └── Guide-d-application-ANC-ESRS-1.pdf
+│   │   │   ├── ESRS-2
+│   │   │   │   ├── CSRD-ESRS-2.pdf
+│   │   │   │   ├── Data-point-ESRS-2.xlsx
+│   │   │   │   └── Guide-d-application-ANC-ESRS-2.pdf
+│   │   │   ├── ESRS-E1
+│   │   │   │   ├── CSRD-ESRS-E1.pdf
+│   │   │   │   ├── Data-point-ESRS-E1.xlsx
+│   │   │   │   ├── Guide-d-application-ANC-ESRS-E1.pdf
+│   │   │   │   └── Tableau-ESRS-E1.xlsx
+│   │   │   ├── ESRS-E2
+│   │   │   │   ├── CSRD-ESRS-E2.pdf
+│   │   │   │   ├── Data-point-ESRS-E2.xlsx
+│   │   │   │   └── Guide-d-application-ANC-ESRS-E2.pdf
+│   │   │   ├── ESRS-E3
+│   │   │   │   ├── CSRD-ESRS-E3.pdf
+│   │   │   │   ├── Data-point-ESRS-E3.xlsx
+│   │   │   │   └── Guide-d-application-ANC-ESRS-E3.pdf
+│   │   │   ├── ESRS-E4
+│   │   │   │   ├── CSRD-ESRS-E4.pdf
+│   │   │   │   ├── Data-point-ESRS-E4.xlsx
+│   │   │   │   ├── Guide-d-application-ANC-ESRS-E4.pdf
+│   │   │   │   └── Tableau-ESRS-E4.xlsx
+│   │   │   ├── ESRS-E5
+│   │   │   │   ├── CSRD-ESRS-E5.pdf
+│   │   │   │   ├── Data-point-ESRS-E5.xlsx
+│   │   │   │   └── Guide-d-application-ANC-ESRS-E5.pdf
+│   │   │   ├── ESRS-G1
+│   │   │   │   ├── CSRD-ESRS-G1.pdf
+│   │   │   │   ├── Data-point-ESRS-G1.xlsx
+│   │   │   │   ├── Guide-d-application-ANC-ESRS-G1.pdf
+│   │   │   │   ├── Guide-mise-en-oeuvre-indicateurs-CSRD-AFA.pdf
+│   │   │   │   └── Tableau-ESRS-G1.xlsx
+│   │   │   ├── ESRS-S1
+│   │   │   │   ├── CSRD-ESRS-S1.pdf
+│   │   │   │   ├── Data-point-ESRS-S1.xlsx
+│   │   │   │   ├── Guide-d-application-ANC-ESRS-S1.pdf
+│   │   │   │   └── Tableau-ESRS-S1.xlsx
+│   │   │   ├── ESRS-S2
+│   │   │   │   ├── CSRD-ESRS-S2.pdf
+│   │   │   │   ├── Data-point-ESRS-S2.xlsx
+│   │   │   │   └── Guide-d-application-ANC-ESRS-S2-3-4.pdf
+│   │   │   ├── ESRS-S3
+│   │   │   │   ├── CSRD-ESRS-S3.pdf
+│   │   │   │   └── Data-point-ESRS-S3.xlsx
+│   │   │   ├── ESRS-S4
+│   │   │   │   ├── CSRD-ESRS-S4.pdf
+│   │   │   │   └── Data-point-ESRS-S4.xlsx
+│   │   │   └── ESRS_Data_Points_EFRAG.xlsx
+│   │   ├── docs
+│   │   │   └── vsme
+│   │   │       ├── VSME-Digital-Template-1.0.0.xlsx
+│   │   │       ├── VSME-Digital-Template-1.1.1.xlsx
+│   │   │       ├── VSME-Digital-Template-Français.xlsx
+│   │   │       └── vsme-norme-volontaire-pour-pme-non-cotee.pdf
+│   │   ├── fonts
+│   │   │   ├── Marianne
+│   │   │   │   ├── Marianne-Bold.otf
+│   │   │   │   ├── Marianne-BoldItalic.otf
+│   │   │   │   ├── Marianne-ExtraBold.otf
+│   │   │   │   ├── Marianne-ExtraBoldItalic.otf
+│   │   │   │   ├── Marianne-Light.otf
+│   │   │   │   ├── Marianne-LightItalic.otf
+│   │   │   │   ├── Marianne-Medium.otf
+│   │   │   │   ├── Marianne-MediumItalic.otf
+│   │   │   │   ├── Marianne-Regular.otf
+│   │   │   │   ├── Marianne-RegularItalic.otf
+│   │   │   │   ├── Marianne-Thin.otf
+│   │   │   │   └── Marianne-ThinItalic.otf
+│   │   │   ├── README.txt
+│   │   │   └── Spectral
+│   │   │       ├── OFL.txt
+│   │   │       ├── Spectral-Bold.ttf
+│   │   │       ├── Spectral-BoldItalic.ttf
+│   │   │       ├── Spectral-ExtraBold.ttf
+│   │   │       ├── Spectral-ExtraBoldItalic.ttf
+│   │   │       ├── Spectral-ExtraLight.ttf
+│   │   │       ├── Spectral-ExtraLightItalic.ttf
+│   │   │       ├── Spectral-Italic.ttf
+│   │   │       ├── Spectral-Light.ttf
+│   │   │       ├── Spectral-LightItalic.ttf
+│   │   │       ├── Spectral-Medium.ttf
+│   │   │       ├── Spectral-MediumItalic.ttf
+│   │   │       ├── Spectral-Regular.ttf
+│   │   │       ├── Spectral-SemiBold.ttf
+│   │   │       └── Spectral-SemiBoldItalic.ttf
+│   │   ├── img
+│   │   │   ├── Checklist.png
+│   │   │   ├── Destinataires.png
+│   │   │   ├── Durable.png
+│   │   │   ├── Entreprise.png
+│   │   │   ├── Environnement.png
+│   │   │   ├── Gouvernance.png
+│   │   │   ├── Objectif.png
+│   │   │   ├── Quand.png
+│   │   │   ├── Sanction.png
+│   │   │   ├── Social.png
+│   │   │   ├── analyseia.png
+│   │   │   ├── communautes.png
+│   │   │   ├── conditions.png
+│   │   │   ├── connaitre.png
+│   │   │   ├── consommateurs.png
+│   │   │   ├── dashboard.png
+│   │   │   ├── droits.png
+│   │   │   ├── durable-2x3.png
+│   │   │   ├── environnement-2x3.png
+│   │   │   ├── espace_csrd
+│   │   │   │   ├── GRI.png
+│   │   │   │   ├── MSCI.png
+│   │   │   │   ├── SASB.png
+│   │   │   │   ├── double-materialite.png
+│   │   │   │   ├── grille-evaluation-incidence-negative.svg
+│   │   │   │   ├── icon-phase-1.png
+│   │   │   │   ├── icon-phase-2.png
+│   │   │   │   ├── icon-phase-3.png
+│   │   │   │   ├── lock.svg
+│   │   │   │   ├── matrice-double-materialite.svg
+│   │   │   │   ├── phase1.png
+│   │   │   │   ├── phase2.png
+│   │   │   │   ├── phase3.png
+│   │   │   │   ├── picto-env.png
+│   │   │   │   ├── picto-gov.png
+│   │   │   │   ├── picto-social.png
+│   │   │   │   ├── processus-de-decision.png
+│   │   │   │   ├── processus-decision-double-materialite.svg
+│   │   │   │   ├── processus-decision-point-de-donnee.svg
+│   │   │   │   ├── rapport-de-durabilite.svg
+│   │   │   │   ├── structure-rapport.svg
+│   │   │   │   └── tableau-exigences-publication.png
+│   │   │   ├── gouvernance-2x3.png
+│   │   │   ├── home.png
+│   │   │   ├── icon-phase1.png
+│   │   │   ├── icon-phase2.png
+│   │   │   ├── icon-phase3.png
+│   │   │   ├── illustration-ESG.png
+│   │   │   ├── indicateurs.png
+│   │   │   ├── locked.svg
+│   │   │   ├── logo.png
+│   │   │   ├── loyaute.png
+│   │   │   ├── piloter.png
+│   │   │   ├── portail-1920.png
+│   │   │   ├── simulation.png
+│   │   │   ├── social-2x3.png
+│   │   │   └── spinner.svg
+│   │   ├── js
+│   │   │   ├── htmx.min.js
+│   │   │   ├── idiomorph-ext.min.js
+│   │   │   ├── lang
+│   │   │   │   └── tarteaucitron.fr.js
+│   │   │   ├── tarteaucitron.js
+│   │   │   ├── tarteaucitron.matomo.service.js
+│   │   │   └── tarteaucitron.services.js
+│   │   └── scss
+│   │       ├── app.scss
+│   │       ├── constantes.scss
+│   │       ├── dsfr-theme-tac.scss
+│   │       ├── progression-cercle.scss
+│   │       └── styles.scss
+│   ├── templates
+│   │   ├── 403.html
+│   │   ├── 404.html
+│   │   ├── 500.html
+│   │   ├── base.html
+│   │   └── snippets
+│   │       ├── entete_page.html
+│   │       ├── field.html
+│   │       └── fieldset_element.html
+│   ├── users
+│   │   ├── __init__.py
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── forms.py
+│   │   ├── management
+│   │   │   ├── __init__.py
+│   │   │   └── commands
+│   │   │       ├── __init__.py
+│   │   │       ├── import_utilisateurs_brevo.py
+│   │   │       └── supprime_utilisateurs_non_confirmes.py
+│   │   ├── migrations
+│   │   │   ├── 0001_initial.py
+│   │   │   ├── 0002_user_acceptation_cgu_user_reception_actualites.py
+│   │   │   ├── 0003_user_nom_user_prenom.py
+│   │   │   ├── 0004_user_created_at_user_updated_at.py
+│   │   │   ├── 0005_user_is_email_confirmed.py
+│   │   │   ├── 0006_alter_user_options_alter_user_acceptation_cgu_and_more.py
+│   │   │   ├── 0007_alter_user_is_staff.py
+│   │   │   ├── 0008_user_sub_pc.py
+│   │   │   └── __init__.py
+│   │   ├── models.py
+│   │   ├── templates
+│   │   │   ├── includes
+│   │   │   │   ├── login_email_password.html
+│   │   │   │   └── login_proconnect.html
+│   │   │   └── users
+│   │   │       ├── account.html
+│   │   │       ├── creation.html
+│   │   │       ├── email
+│   │   │       │   ├── confirm_email.html
+│   │   │       │   ├── password_reset_email.html
+│   │   │       │   └── password_reset_subject.txt
+│   │   │       ├── login.html
+│   │   │       ├── password_reset_confirm.html
+│   │   │       └── password_reset_form.html
+│   │   ├── tests
+│   │   │   ├── __init__.py
+│   │   │   ├── test_commands.py
+│   │   │   ├── test_forms.py
+│   │   │   └── test_views.py
+│   │   ├── urls.py
+│   │   └── views.py
+│   ├── utils
+│   │   ├── __init__.py
+│   │   ├── analyse_rapports_csrd.py
+│   │   ├── anonymisation.py
+│   │   ├── categories_juridiques.py
+│   │   ├── codes_nace.py
+│   │   ├── codes_naf.py
+│   │   ├── combustibles.py
+│   │   ├── context_processors.py
+│   │   ├── export_entreprises_departement.py
+│   │   ├── forms.py
+│   │   ├── htmx.py
+│   │   ├── middlewares.py
+│   │   ├── mock_response.py
+│   │   ├── models.py
+│   │   ├── origine_departement.py
+│   │   ├── pays.py
+│   │   ├── retard_egapro.py
+│   │   ├── tests
+│   │   │   ├── test_anonymisation.py
+│   │   │   ├── test_anonymise.py
+│   │   │   └── test_tokens.py
+│   │   ├── tokens.py
+│   │   └── xlsx.py
+│   └── vsme
+│       ├── __init__.py
+│       ├── admin.py
+│       ├── apps.py
+│       ├── export.py
+│       ├── forms.py
+│       ├── migrations
+│       │   ├── 0001_initial.py
+│       │   ├── 0002_alter_rapportvsme_annee.py
+│       │   ├── 0003_rename_data_indicateur__data.py
+│       │   └── __init__.py
+│       ├── models.py
+│       ├── schemas
+│       │   ├── B1.json
+│       │   ├── B10.json
+│       │   ├── B11.json
+│       │   ├── B2.json
+│       │   ├── B3.json
+│       │   ├── B4.json
+│       │   ├── B5.json
+│       │   ├── B6.json
+│       │   ├── B7.json
+│       │   ├── B8.json
+│       │   ├── B9.json
+│       │   ├── C1.json
+│       │   ├── C6.json
+│       │   ├── C8.json
+│       │   └── C9.json
+│       ├── templates
+│       │   ├── etapes
+│       │   │   ├── introduction.html
+│       │   │   ├── module-base.html
+│       │   │   └── module-complet.html
+│       │   ├── fragments
+│       │   │   └── indicateur.html
+│       │   ├── snippets
+│       │   │   ├── bandeau.html
+│       │   │   ├── entete.html
+│       │   │   ├── menu.html
+│       │   │   └── tuile_exigence_publication.html
+│       │   └── vsme
+│       │       ├── categorie.html
+│       │       ├── categories.html
+│       │       └── exigence_de_publication.html
+│       ├── templatetags
+│       │   ├── __init__.py
+│       │   ├── geolocalisation.py
+│       │   └── progression_vsme.py
+│       ├── tests
+│       │   ├── __init__.py
+│       │   ├── conftest.py
+│       │   ├── test_annees.py
+│       │   ├── test_donnees_calculees.py
+│       │   ├── test_etapes.py
+│       │   ├── test_export.py
+│       │   ├── test_extra_validators.py
+│       │   ├── test_forms.py
+│       │   ├── test_indicateur.py
+│       │   ├── test_indicateurs.py
+│       │   ├── test_models.py
+│       │   ├── test_navigation_annees.py
+│       │   └── test_preremplissage.py
+│       ├── urls.py
+│       ├── views.py
+│       └── xlsx
+│           └── VSME.xlsx
+├── manage.py -> impact/manage.py
+├── package-lock.json
+├── package.json
+├── pytest.ini
+├── scripts
+│   └── sync_metabase.sh
+├── servers.conf.erb
+└── start.sh
+131 directories, 740 files
