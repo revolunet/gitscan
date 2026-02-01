@@ -1,0 +1,2538 @@
+.
+├── .gitattributes
+├── .github
+│   ├── dependabot.yml
+│   └── workflows
+│       ├── ci_cd.yml
+│       ├── https-deploy-production.yaml
+│       ├── https-deploy-sandbox.yaml
+│       └── https-deploy-staging.yaml
+├── .gitignore
+├── .prettierrc.yaml
+├── .rspec
+├── .rubocop.yml
+├── .ruby-version
+├── CLAUDE.md
+├── Dockerfile
+├── Gemfile
+├── Gemfile.lock
+├── Guardfile
+├── LICENCE
+├── Makefile
+├── README.md
+├── Rakefile
+├── app
+│   ├── assets
+│   │   ├── config
+│   │   │   └── manifest.js
+│   │   ├── fonts
+│   │   │   ├── Marianne-Bold.woff
+│   │   │   ├── Marianne-Bold.woff2
+│   │   │   ├── Marianne-Bold_Italic.woff
+│   │   │   ├── Marianne-Bold_Italic.woff2
+│   │   │   ├── Marianne-Light.woff
+│   │   │   ├── Marianne-Light.woff2
+│   │   │   ├── Marianne-Light_Italic.woff
+│   │   │   ├── Marianne-Light_Italic.woff2
+│   │   │   ├── Marianne-Medium.woff
+│   │   │   ├── Marianne-Medium.woff2
+│   │   │   ├── Marianne-Medium_Italic.woff
+│   │   │   ├── Marianne-Medium_Italic.woff2
+│   │   │   ├── Marianne-Regular.woff
+│   │   │   ├── Marianne-Regular.woff2
+│   │   │   ├── Marianne-Regular_Italic.woff
+│   │   │   ├── Marianne-Regular_Italic.woff2
+│   │   │   ├── Spectral-ExtraBold.woff
+│   │   │   ├── Spectral-ExtraBold.woff2
+│   │   │   ├── Spectral-Regular.woff
+│   │   │   └── Spectral-Regular.woff2
+│   │   ├── images
+│   │   │   ├── .keep
+│   │   │   ├── api_entreprise
+│   │   │   │   ├── blog
+│   │   │   │   │   ├── non-diffusible-catalogue-deux-types-d-api.png
+│   │   │   │   │   ├── non-diffusible-image-principale.png
+│   │   │   │   │   ├── num-tva-intra.png
+│   │   │   │   │   ├── references-sites-modification-donnees-exemple-maquette.png
+│   │   │   │   │   └── references-sites-modification-donnees.png
+│   │   │   │   ├── cas_usages
+│   │   │   │   │   └── pictos
+│   │   │   │   │       ├── aides_publiques.svg
+│   │   │   │   │       ├── editeur.svg
+│   │   │   │   │       ├── formulaire.svg
+│   │   │   │   │       ├── fraude.svg
+│   │   │   │   │       ├── marches_publics.svg
+│   │   │   │   │       ├── socle_de_base.svg
+│   │   │   │   │       ├── subventions_associations.svg
+│   │   │   │   │       └── use_case_examples
+│   │   │   │   │           ├── marches-publics-use_cas_example_1a.png
+│   │   │   │   │           ├── marches-publics-use_cas_example_1b.png
+│   │   │   │   │           ├── marches-publics-use_cas_example_2.png
+│   │   │   │   │           ├── portail-gru-use_case_example_1a.png
+│   │   │   │   │           ├── portail-gru-use_case_example_1b.png
+│   │   │   │   │           ├── portail-gru-use_case_example_1c.png
+│   │   │   │   │           ├── portail-gru-use_case_example_1d.png
+│   │   │   │   │           ├── users_logo_region-nouvelle-aquitaine.png
+│   │   │   │   │           ├── users_logo_region-reunion.png
+│   │   │   │   │           └── users_logo_venissieux.png
+│   │   │   │   ├── fonctionnement-api-entreprise.png
+│   │   │   │   └── home
+│   │   │   │       └── pictos
+│   │   │   │           ├── donnees-certifiees.svg
+│   │   │   │           ├── fournisseur-donnees.svg
+│   │   │   │           ├── interfacage.svg
+│   │   │   │           ├── marches_publics.svg
+│   │   │   │           └── un-seul-compte.svg
+│   │   │   ├── api_particulier
+│   │   │   │   ├── api-qf_plafond-remuneration-enfant-majeur.png
+│   │   │   │   ├── blog
+│   │   │   │   │   ├── lieu-naissance-code-cog-backoffice-1.png
+│   │   │   │   │   ├── lieu-naissance-code-cog-backoffice-2.png
+│   │   │   │   │   ├── lieu-naissance-code-cog-backoffice-3.png
+│   │   │   │   │   ├── lieu-naissance-code-cog-carte-vitale-1.png
+│   │   │   │   │   ├── lieu-naissance-code-cog-carte-vitale-2.png
+│   │   │   │   │   ├── lieu-naissance-code-cog-carte-vitale-3.png
+│   │   │   │   │   └── lieu-naissance-code-cog-en-tete.png
+│   │   │   │   ├── cas_usages
+│   │   │   │   │   ├── images
+│   │   │   │   │   │   ├── logo-dep-drome.png
+│   │   │   │   │   │   ├── logo-dep-haute-savoie.png
+│   │   │   │   │   │   ├── logo-gendarmerie-nationale.svg
+│   │   │   │   │   │   ├── logo-ministere-europe-aff-etrangeres.svg
+│   │   │   │   │   │   ├── logo-ville-lyon.svg
+│   │   │   │   │   │   └── sitiv.png
+│   │   │   │   │   └── pictos
+│   │   │   │   │       ├── aides_facultatives.svg
+│   │   │   │   │       ├── cantines-colleges-lycees-tarification.svg
+│   │   │   │   │       ├── ccas.svg
+│   │   │   │   │       ├── gestion_rh_secteur_public.svg
+│   │   │   │   │       ├── modalite_appel_france_connect.svg
+│   │   │   │   │       ├── modalite_formulaire_qf.svg
+│   │   │   │   │       ├── stationnement-residentiel.svg
+│   │   │   │   │       ├── tarification_municipale_enfance.svg
+│   │   │   │   │       └── tarification_transports.svg
+│   │   │   │   ├── diagramme-modalite-appel-france-connect.png
+│   │   │   │   ├── fonctionnement-api-particulier.png
+│   │   │   │   └── parcours-usagers-franceconnect.png
+│   │   │   ├── favicons
+│   │   │   │   ├── android-chrome-192x192.png
+│   │   │   │   ├── android-chrome-512x512.png
+│   │   │   │   ├── apple-touch-icon.png
+│   │   │   │   ├── favicon.ico
+│   │   │   │   ├── favicon.svg
+│   │   │   │   └── manifest.webmanifest
+│   │   │   ├── icons
+│   │   │   │   ├── buildings
+│   │   │   │   │   ├── ancient-gate-fill.svg
+│   │   │   │   │   ├── ancient-gate-line.svg
+│   │   │   │   │   ├── ancient-pavilion-fill.svg
+│   │   │   │   │   ├── ancient-pavilion-line.svg
+│   │   │   │   │   ├── bank-fill.svg
+│   │   │   │   │   ├── bank-line.svg
+│   │   │   │   │   ├── building-fill.svg
+│   │   │   │   │   ├── building-line.svg
+│   │   │   │   │   ├── community-fill.svg
+│   │   │   │   │   ├── community-line.svg
+│   │   │   │   │   ├── government-fill.svg
+│   │   │   │   │   ├── government-line.svg
+│   │   │   │   │   ├── home-4-fill.svg
+│   │   │   │   │   ├── home-4-line.svg
+│   │   │   │   │   ├── hospital-fill.svg
+│   │   │   │   │   ├── hospital-line.svg
+│   │   │   │   │   ├── hotel-fill.svg
+│   │   │   │   │   ├── hotel-line.svg
+│   │   │   │   │   ├── store-fill.svg
+│   │   │   │   │   └── store-line.svg
+│   │   │   │   ├── business
+│   │   │   │   │   ├── archive-fill.svg
+│   │   │   │   │   ├── archive-line.svg
+│   │   │   │   │   ├── attachment-fill.svg
+│   │   │   │   │   ├── attachment-line.svg
+│   │   │   │   │   ├── award-fill.svg
+│   │   │   │   │   ├── award-line.svg
+│   │   │   │   │   ├── bar-chart-box-fill.svg
+│   │   │   │   │   ├── bar-chart-box-line.svg
+│   │   │   │   │   ├── bookmark-fill.svg
+│   │   │   │   │   ├── bookmark-line.svg
+│   │   │   │   │   ├── briefcase-fill.svg
+│   │   │   │   │   ├── briefcase-line.svg
+│   │   │   │   │   ├── calendar-*.svg  (6 files)
+│   │   │   │   │   ├── cloud-fill.svg
+│   │   │   │   │   ├── cloud-line.svg
+│   │   │   │   │   ├── copyright-fill.svg
+│   │   │   │   │   ├── copyright-line.svg
+│   │   │   │   │   ├── customer-service-fill.svg
+│   │   │   │   │   ├── customer-service-line.svg
+│   │   │   │   │   ├── flag-fill.svg
+│   │   │   │   │   ├── flag-line.svg
+│   │   │   │   │   ├── global-fill.svg
+│   │   │   │   │   ├── global-line.svg
+│   │   │   │   │   ├── line-chart-fill.svg
+│   │   │   │   │   ├── line-chart-line.svg
+│   │   │   │   │   ├── links-fill.svg
+│   │   │   │   │   ├── links-line.svg
+│   │   │   │   │   ├── mail-fill.svg
+│   │   │   │   │   ├── mail-line.svg
+│   │   │   │   │   ├── mail-open-fill.svg
+│   │   │   │   │   ├── mail-open-line.svg
+│   │   │   │   │   ├── medal-fill.svg
+│   │   │   │   │   ├── medal-line.svg
+│   │   │   │   │   ├── pie-chart-2-fill.svg
+│   │   │   │   │   ├── pie-chart-2-line.svg
+│   │   │   │   │   ├── pie-chart-box-fill.svg
+│   │   │   │   │   ├── pie-chart-box-line.svg
+│   │   │   │   │   ├── printer-fill.svg
+│   │   │   │   │   ├── printer-line.svg
+│   │   │   │   │   ├── profil-fill.svg
+│   │   │   │   │   ├── profil-line.svg
+│   │   │   │   │   ├── projector-2-fill.svg
+│   │   │   │   │   ├── projector-2-line.svg
+│   │   │   │   │   ├── send-plane-fill.svg
+│   │   │   │   │   ├── send-plane-line.svg
+│   │   │   │   │   ├── slideshow-fill.svg
+│   │   │   │   │   ├── slideshow-line.svg
+│   │   │   │   │   ├── window-fill.svg
+│   │   │   │   │   └── window-line.svg
+│   │   │   │   ├── communication
+│   │   │   │   │   ├── chat-2-fill.svg
+│   │   │   │   │   ├── chat-2-line.svg
+│   │   │   │   │   ├── chat-3-fill.svg
+│   │   │   │   │   ├── chat-3-line.svg
+│   │   │   │   │   ├── chat-check-fill.svg
+│   │   │   │   │   ├── chat-check-line.svg
+│   │   │   │   │   ├── chat-delete-fill.svg
+│   │   │   │   │   ├── chat-delete-line.svg
+│   │   │   │   │   ├── chat-poll-fill.svg
+│   │   │   │   │   ├── chat-poll-line.svg
+│   │   │   │   │   ├── discuss-fill.svg
+│   │   │   │   │   ├── discuss-line.svg
+│   │   │   │   │   ├── feedback-fill.svg
+│   │   │   │   │   ├── feedback-line.svg
+│   │   │   │   │   ├── message-2-fill.svg
+│   │   │   │   │   ├── message-2-line.svg
+│   │   │   │   │   ├── question-answer-fill.svg
+│   │   │   │   │   ├── question-answer-line.svg
+│   │   │   │   │   ├── questionnaire-fill.svg
+│   │   │   │   │   ├── questionnaire-line.svg
+│   │   │   │   │   ├── video-chat-fill.svg
+│   │   │   │   │   └── video-chat-line.svg
+│   │   │   │   ├── design
+│   │   │   │   │   ├── ball-pen-fill.svg
+│   │   │   │   │   ├── ball-pen-line.svg
+│   │   │   │   │   ├── brush-3-fill.svg
+│   │   │   │   │   ├── brush-3-line.svg
+│   │   │   │   │   ├── brush-fill.svg
+│   │   │   │   │   ├── brush-line.svg
+│   │   │   │   │   ├── contrast-fill.svg
+│   │   │   │   │   ├── contrast-line.svg
+│   │   │   │   │   ├── crop-fill.svg
+│   │   │   │   │   ├── crop-line.svg
+│   │   │   │   │   ├── drag-move-2-fill.svg
+│   │   │   │   │   ├── drag-move-2-line.svg
+│   │   │   │   │   ├── drop-fill.svg
+│   │   │   │   │   ├── drop-line.svg
+│   │   │   │   │   ├── edit-box-fill.svg
+│   │   │   │   │   ├── edit-box-line.svg
+│   │   │   │   │   ├── edit-fill.svg
+│   │   │   │   │   ├── edit-line.svg
+│   │   │   │   │   ├── ink-bottle-fill.svg
+│   │   │   │   │   ├── ink-bottle-line.svg
+│   │   │   │   │   ├── layout-grid-fill.svg
+│   │   │   │   │   ├── layout-grid-line.svg
+│   │   │   │   │   ├── mark-pen-fill.svg
+│   │   │   │   │   ├── mark-pen-line.svg
+│   │   │   │   │   ├── paint-brush-fill.svg
+│   │   │   │   │   ├── paint-brush-line.svg
+│   │   │   │   │   ├── paint-fill.svg
+│   │   │   │   │   ├── paint-line.svg
+│   │   │   │   │   ├── palette-fill.svg
+│   │   │   │   │   ├── palette-line.svg
+│   │   │   │   │   ├── pantone-fill.svg
+│   │   │   │   │   ├── pantone-line.svg
+│   │   │   │   │   ├── pen-nib-fill.svg
+│   │   │   │   │   ├── pen-nib-line.svg
+│   │   │   │   │   ├── pencil-fill.svg
+│   │   │   │   │   ├── pencil-line.svg
+│   │   │   │   │   ├── pencil-ruler-fill.svg
+│   │   │   │   │   ├── pencil-ruler-line.svg
+│   │   │   │   │   ├── sip-fill.svg
+│   │   │   │   │   ├── sip-line.svg
+│   │   │   │   │   ├── table-fill.svg
+│   │   │   │   │   └── table-line.svg
+│   │   │   │   ├── development
+│   │   │   │   │   ├── bug-fill.svg
+│   │   │   │   │   ├── bug-line.svg
+│   │   │   │   │   ├── code-box-fill.svg
+│   │   │   │   │   ├── code-box-line.svg
+│   │   │   │   │   ├── code-s-slash-line.svg
+│   │   │   │   │   ├── cursor-fill.svg
+│   │   │   │   │   ├── cursor-line.svg
+│   │   │   │   │   ├── git-branch-fill.svg
+│   │   │   │   │   ├── git-branch-line.svg
+│   │   │   │   │   ├── git-commit-fill.svg
+│   │   │   │   │   ├── git-commit-line.svg
+│   │   │   │   │   ├── git-merge-fill.svg
+│   │   │   │   │   ├── git-merge-line.svg
+│   │   │   │   │   ├── git-pull-request-fill.svg
+│   │   │   │   │   ├── git-pull-request-line.svg
+│   │   │   │   │   ├── git-repository-commits-fill.svg
+│   │   │   │   │   ├── git-repository-commits-line.svg
+│   │   │   │   │   ├── git-repository-fill.svg
+│   │   │   │   │   ├── git-repository-line.svg
+│   │   │   │   │   ├── git-repository-private-fill.svg
+│   │   │   │   │   ├── git-repository-private-line.svg
+│   │   │   │   │   ├── terminal-box-fill.svg
+│   │   │   │   │   ├── terminal-box-line.svg
+│   │   │   │   │   ├── terminal-line.svg
+│   │   │   │   │   ├── terminal-window-fill.svg
+│   │   │   │   │   └── terminal-window-line.svg
+│   │   │   │   ├── device
+│   │   │   │   │   ├── bluetooth-fill.svg
+│   │   │   │   │   ├── bluetooth-line.svg
+│   │   │   │   │   ├── computer-fill.svg
+│   │   │   │   │   ├── computer-line.svg
+│   │   │   │   │   ├── dashboard-3-fill.svg
+│   │   │   │   │   ├── dashboard-3-line.svg
+│   │   │   │   │   ├── database-fill.svg
+│   │   │   │   │   ├── database-line.svg
+│   │   │   │   │   ├── device-fill.svg
+│   │   │   │   │   ├── device-line.svg
+│   │   │   │   │   ├── hard-drive-2-fill.svg
+│   │   │   │   │   ├── hard-drive-2-line.svg
+│   │   │   │   │   ├── mac-fill.svg
+│   │   │   │   │   ├── mac-line.svg
+│   │   │   │   │   ├── phone-fill.svg
+│   │   │   │   │   ├── phone-line.svg
+│   │   │   │   │   ├── qr-code-fill.svg
+│   │   │   │   │   ├── qr-code-line.svg
+│   │   │   │   │   ├── rss-fill.svg
+│   │   │   │   │   ├── rss-line.svg
+│   │   │   │   │   ├── save-3-fill.svg
+│   │   │   │   │   ├── save-3-line.svg
+│   │   │   │   │   ├── save-fill.svg
+│   │   │   │   │   ├── save-line.svg
+│   │   │   │   │   ├── server-fill.svg
+│   │   │   │   │   ├── server-line.svg
+│   │   │   │   │   ├── smartphone-fill.svg
+│   │   │   │   │   ├── smartphone-line.svg
+│   │   │   │   │   ├── tablet-fill.svg
+│   │   │   │   │   ├── tablet-line.svg
+│   │   │   │   │   ├── tv-fill.svg
+│   │   │   │   │   ├── tv-line.svg
+│   │   │   │   │   ├── wifi-fill.svg
+│   │   │   │   │   └── wifi-line.svg
+│   │   │   │   ├── document
+│   │   │   │   │   ├── article-fill.svg
+│   │   │   │   │   ├── article-line.svg
+│   │   │   │   │   ├── book-2-fill.svg
+│   │   │   │   │   ├── book-2-line.svg
+│   │   │   │   │   ├── booklet-fill.svg
+│   │   │   │   │   ├── booklet-line.svg
+│   │   │   │   │   ├── clipboard-fill.svg
+│   │   │   │   │   ├── clipboard-line.svg
+│   │   │   │   │   ├── draft-fill.svg
+│   │   │   │   │   ├── draft-line.svg
+│   │   │   │   │   ├── file-add-fill.svg
+│   │   │   │   │   ├── file-add-line.svg
+│   │   │   │   │   ├── file-download-fill.svg
+│   │   │   │   │   ├── file-download-line.svg
+│   │   │   │   │   ├── file-fill.svg
+│   │   │   │   │   ├── file-line.svg
+│   │   │   │   │   ├── file-pdf-fill.svg
+│   │   │   │   │   ├── file-pdf-line.svg
+│   │   │   │   │   ├── file-text-fill.svg
+│   │   │   │   │   ├── file-text-line.svg
+│   │   │   │   │   ├── folder-2-fill.svg
+│   │   │   │   │   ├── folder-2-line.svg
+│   │   │   │   │   ├── newspaper-fill.svg
+│   │   │   │   │   ├── newspaper-line.svg
+│   │   │   │   │   ├── survey-fill.svg
+│   │   │   │   │   ├── survey-line.svg
+│   │   │   │   │   ├── todo-fill.svg
+│   │   │   │   │   └── todo-line.svg
+│   │   │   │   ├── editor
+│   │   │   │   │   ├── code-view.svg
+│   │   │   │   │   ├── font-size.svg
+│   │   │   │   │   ├── fr--bold.svg
+│   │   │   │   │   ├── fr--highlight.svg
+│   │   │   │   │   ├── fr--quote-fill.svg
+│   │   │   │   │   ├── fr--quote-line.svg
+│   │   │   │   │   ├── h-1.svg
+│   │   │   │   │   ├── h-2.svg
+│   │   │   │   │   ├── h-3.svg
+│   │   │   │   │   ├── h-4.svg
+│   │   │   │   │   ├── h-5.svg
+│   │   │   │   │   ├── h-6.svg
+│   │   │   │   │   ├── hashtag.svg
+│   │   │   │   │   ├── italic.svg
+│   │   │   │   │   ├── link-unlink.svg
+│   │   │   │   │   ├── link.svg
+│   │   │   │   │   ├── list-ordered.svg
+│   │   │   │   │   ├── list-unordered.svg
+│   │   │   │   │   ├── question-mark.svg
+│   │   │   │   │   ├── separator.svg
+│   │   │   │   │   ├── space.svg
+│   │   │   │   │   ├── subscript.svg
+│   │   │   │   │   ├── superscript.svg
+│   │   │   │   │   ├── table-2.svg
+│   │   │   │   │   └── translate-2.svg
+│   │   │   │   ├── finance
+│   │   │   │   │   ├── bank-card-fill.svg
+│   │   │   │   │   ├── bank-card-line.svg
+│   │   │   │   │   ├── coin-fill.svg
+│   │   │   │   │   ├── gift-fill.svg
+│   │   │   │   │   ├── gift-line.svg
+│   │   │   │   │   ├── money-euro-box-fill.svg
+│   │   │   │   │   ├── money-euro-box-line.svg
+│   │   │   │   │   ├── money-euro-circle-fill.svg
+│   │   │   │   │   ├── money-euro-circle-line.svg
+│   │   │   │   │   ├── secure-payment-fill.svg
+│   │   │   │   │   ├── secure-payment-line.svg
+│   │   │   │   │   ├── shopping-bag-fill.svg
+│   │   │   │   │   ├── shopping-bag-line.svg
+│   │   │   │   │   ├── shopping-cart-2-fill.svg
+│   │   │   │   │   ├── shopping-cart-2-line.svg
+│   │   │   │   │   ├── trophy-fill.svg
+│   │   │   │   │   └── trophy-line.svg
+│   │   │   │   ├── health
+│   │   │   │   │   ├── capsule-fill.svg
+│   │   │   │   │   ├── capsule-line.svg
+│   │   │   │   │   ├── dislike-fill.svg
+│   │   │   │   │   ├── dislike-line.svg
+│   │   │   │   │   ├── dossier-fill.svg
+│   │   │   │   │   ├── dossier-line.svg
+│   │   │   │   │   ├── first-aid-kit-fill.svg
+│   │   │   │   │   ├── first-aid-kit-line.svg
+│   │   │   │   │   ├── hand-sanitizer-fill.svg
+│   │   │   │   │   ├── hand-sanitizer-line.svg
+│   │   │   │   │   ├── health-book-fill.svg
+│   │   │   │   │   ├── health-book-line.svg
+│   │   │   │   │   ├── heart-fill.svg
+│   │   │   │   │   ├── heart-line.svg
+│   │   │   │   │   ├── heart-pulse-fill.svg
+│   │   │   │   │   ├── heart-pulse-line.svg
+│   │   │   │   │   ├── lungs-fill.svg
+│   │   │   │   │   ├── lungs-line.svg
+│   │   │   │   │   ├── medicine-bottle-fill.svg
+│   │   │   │   │   ├── medicine-bottle-line.svg
+│   │   │   │   │   ├── mental-health-fill.svg
+│   │   │   │   │   ├── mental-health-line.svg
+│   │   │   │   │   ├── microscope-fill.svg
+│   │   │   │   │   ├── microscope-line.svg
+│   │   │   │   │   ├── psychotherapy-fill.svg
+│   │   │   │   │   ├── psychotherapy-line.svg
+│   │   │   │   │   ├── pulse-line.svg
+│   │   │   │   │   ├── stethoscope-fill.svg
+│   │   │   │   │   ├── stethoscope-line.svg
+│   │   │   │   │   ├── surgical-mask-fill.svg
+│   │   │   │   │   ├── surgical-mask-line.svg
+│   │   │   │   │   ├── syringe-fill.svg
+│   │   │   │   │   ├── syringe-line.svg
+│   │   │   │   │   ├── test-tube-fill.svg
+│   │   │   │   │   ├── test-tube-line.svg
+│   │   │   │   │   ├── thermometer-fill.svg
+│   │   │   │   │   ├── thermometer-line.svg
+│   │   │   │   │   ├── virus-fill.svg
+│   │   │   │   │   └── virus-line.svg
+│   │   │   │   ├── logo
+│   │   │   │   │   ├── chrome-fill.svg
+│   │   │   │   │   ├── chrome-line.svg
+│   │   │   │   │   ├── edge-fill.svg
+│   │   │   │   │   ├── edge-line.svg
+│   │   │   │   │   ├── facebook-circle-fill.svg
+│   │   │   │   │   ├── facebook-circle-line.svg
+│   │   │   │   │   ├── firefox-fill.svg
+│   │   │   │   │   ├── firefox-line.svg
+│   │   │   │   │   ├── fr--dailymotion-fill.svg
+│   │   │   │   │   ├── fr--dailymotion-line.svg
+│   │   │   │   │   ├── fr--tiktok-fill.svg
+│   │   │   │   │   ├── fr--tiktok-line.svg
+│   │   │   │   │   ├── github-fill.svg
+│   │   │   │   │   ├── github-line.svg
+│   │   │   │   │   ├── google-fill.svg
+│   │   │   │   │   ├── google-line.svg
+│   │   │   │   │   ├── ie-fill.svg
+│   │   │   │   │   ├── ie-line.svg
+│   │   │   │   │   ├── instagram-fill.svg
+│   │   │   │   │   ├── instagram-line.svg
+│   │   │   │   │   ├── linkedin-box-fill.svg
+│   │   │   │   │   ├── linkedin-box-line.svg
+│   │   │   │   │   ├── mastodon-fill.svg
+│   │   │   │   │   ├── mastodon-line.svg
+│   │   │   │   │   ├── npmjs-fill.svg
+│   │   │   │   │   ├── npmjs-line.svg
+│   │   │   │   │   ├── remixicon-fill.svg
+│   │   │   │   │   ├── remixicon-line.svg
+│   │   │   │   │   ├── safari-fill.svg
+│   │   │   │   │   ├── safari-line.svg
+│   │   │   │   │   ├── slack-fill.svg
+│   │   │   │   │   ├── slack-line.svg
+│   │   │   │   │   ├── snapchat-fill.svg
+│   │   │   │   │   ├── snapchat-line.svg
+│   │   │   │   │   ├── telegram-fill.svg
+│   │   │   │   │   ├── telegram-line.svg
+│   │   │   │   │   ├── twitch-fill.svg
+│   │   │   │   │   ├── twitch-line.svg
+│   │   │   │   │   ├── twitter-fill.svg
+│   │   │   │   │   ├── twitter-line.svg
+│   │   │   │   │   ├── vimeo-fill.svg
+│   │   │   │   │   ├── vimeo-line.svg
+│   │   │   │   │   ├── vuejs-fill.svg
+│   │   │   │   │   ├── vuejs-line.svg
+│   │   │   │   │   ├── youtube-fill.svg
+│   │   │   │   │   └── youtube-line.svg
+│   │   │   │   ├── map
+│   │   │   │   │   ├── anchor-fill.svg
+│   │   │   │   │   ├── anchor-line.svg
+│   │   │   │   │   ├── bike-fill.svg
+│   │   │   │   │   ├── bike-line.svg
+│   │   │   │   │   ├── bus-fill.svg
+│   │   │   │   │   ├── bus-line.svg
+│   │   │   │   │   ├── car-fill.svg
+│   │   │   │   │   ├── car-line.svg
+│   │   │   │   │   ├── caravan-fill.svg
+│   │   │   │   │   ├── caravan-line.svg
+│   │   │   │   │   ├── charging-pile-2-fill.svg
+│   │   │   │   │   ├── charging-pile-2-line.svg
+│   │   │   │   │   ├── compass-3-fill.svg
+│   │   │   │   │   ├── compass-3-line.svg
+│   │   │   │   │   ├── cup-fill.svg
+│   │   │   │   │   ├── cup-line.svg
+│   │   │   │   │   ├── earth-fill.svg
+│   │   │   │   │   ├── earth-line.svg
+│   │   │   │   │   ├── france-fill.svg
+│   │   │   │   │   ├── france-line.svg
+│   │   │   │   │   ├── gas-station-fill.svg
+│   │   │   │   │   ├── gas-station-line.svg
+│   │   │   │   │   ├── goblet-fill.svg
+│   │   │   │   │   ├── goblet-line.svg
+│   │   │   │   │   ├── map-pin-2-fill.svg
+│   │   │   │   │   ├── map-pin-2-line.svg
+│   │   │   │   │   ├── map-pin-user-fill.svg
+│   │   │   │   │   ├── map-pin-user-line.svg
+│   │   │   │   │   ├── motorbike-fill.svg
+│   │   │   │   │   ├── motorbike-line.svg
+│   │   │   │   │   ├── passport-fill.svg
+│   │   │   │   │   ├── passport-line.svg
+│   │   │   │   │   ├── restaurant-fill.svg
+│   │   │   │   │   ├── restaurant-line.svg
+│   │   │   │   │   ├── road-map-fill.svg
+│   │   │   │   │   ├── road-map-line.svg
+│   │   │   │   │   ├── sailboat-fill.svg
+│   │   │   │   │   ├── sailboat-line.svg
+│   │   │   │   │   ├── ship-2-fill.svg
+│   │   │   │   │   ├── ship-2-line.svg
+│   │   │   │   │   ├── signal-tower-fill.svg
+│   │   │   │   │   ├── signal-tower-line.svg
+│   │   │   │   │   ├── suitcase-2-fill.svg
+│   │   │   │   │   ├── suitcase-2-line.svg
+│   │   │   │   │   ├── taxi-fill.svg
+│   │   │   │   │   ├── taxi-line.svg
+│   │   │   │   │   ├── train-fill.svg
+│   │   │   │   │   └── train-line.svg
+│   │   │   │   ├── media
+│   │   │   │   │   ├── camera-fill.svg
+│   │   │   │   │   ├── camera-line.svg
+│   │   │   │   │   ├── clapperboard-fill.svg
+│   │   │   │   │   ├── clapperboard-line.svg
+│   │   │   │   │   ├── equalizer-fill.svg
+│   │   │   │   │   ├── equalizer-line.svg
+│   │   │   │   │   ├── film-fill.svg
+│   │   │   │   │   ├── film-line.svg
+│   │   │   │   │   ├── gallery-fill.svg
+│   │   │   │   │   ├── gallery-line.svg
+│   │   │   │   │   ├── headphone-fill.svg
+│   │   │   │   │   ├── headphone-line.svg
+│   │   │   │   │   ├── image-add-fill.svg
+│   │   │   │   │   ├── image-add-line.svg
+│   │   │   │   │   ├── image-edit-fill.svg
+│   │   │   │   │   ├── image-edit-line.svg
+│   │   │   │   │   ├── image-fill.svg
+│   │   │   │   │   ├── image-line.svg
+│   │   │   │   │   ├── live-fill.svg
+│   │   │   │   │   ├── live-line.svg
+│   │   │   │   │   ├── mic-fill.svg
+│   │   │   │   │   ├── mic-line.svg
+│   │   │   │   │   ├── music-2-fill.svg
+│   │   │   │   │   ├── music-2-line.svg
+│   │   │   │   │   ├── notification-3-fill.svg
+│   │   │   │   │   ├── notification-3-line.svg
+│   │   │   │   │   ├── pause-circle-fill.svg
+│   │   │   │   │   ├── pause-circle-line.svg
+│   │   │   │   │   ├── play-circle-fill.svg
+│   │   │   │   │   ├── play-circle-line.svg
+│   │   │   │   │   ├── stop-circle-fill.svg
+│   │   │   │   │   ├── stop-circle-line.svg
+│   │   │   │   │   ├── transcription.svg
+│   │   │   │   │   ├── volume-down-fill.svg
+│   │   │   │   │   ├── volume-down-line.svg
+│   │   │   │   │   ├── volume-mute-fill.svg
+│   │   │   │   │   ├── volume-mute-line.svg
+│   │   │   │   │   ├── volume-up-fill.svg
+│   │   │   │   │   └── volume-up-line.svg
+│   │   │   │   ├── others
+│   │   │   │   │   ├── leaf-fill.svg
+│   │   │   │   │   ├── leaf-line.svg
+│   │   │   │   │   ├── lightbulb-fill.svg
+│   │   │   │   │   ├── lightbulb-line.svg
+│   │   │   │   │   ├── plant-fill.svg
+│   │   │   │   │   ├── plant-line.svg
+│   │   │   │   │   ├── recycle-fill.svg
+│   │   │   │   │   ├── recycle-line.svg
+│   │   │   │   │   ├── scales-3-fill.svg
+│   │   │   │   │   ├── scales-3-line.svg
+│   │   │   │   │   ├── seedling-fill.svg
+│   │   │   │   │   ├── seedling-line.svg
+│   │   │   │   │   ├── umbrella-fill.svg
+│   │   │   │   │   └── umbrella-line.svg
+│   │   │   │   ├── system
+│   │   │   │   │   ├── add-circle-fill.svg
+│   │   │   │   │   ├── add-circle-line.svg
+│   │   │   │   │   ├── add-line.svg
+│   │   │   │   │   ├── alarm-warning-fill.svg
+│   │   │   │   │   ├── alarm-warning-line.svg
+│   │   │   │   │   ├── alert-fill.svg
+│   │   │   │   │   ├── alert-line.svg
+│   │   │   │   │   ├── arrow-*.svg  (21 files)
+│   │   │   │   │   ├── check-line.svg
+│   │   │   │   │   ├── checkbox-circle-fill.svg
+│   │   │   │   │   ├── checkbox-circle-line.svg
+│   │   │   │   │   ├── checkbox-fill.svg
+│   │   │   │   │   ├── checkbox-line.svg
+│   │   │   │   │   ├── close-circle-fill.svg
+│   │   │   │   │   ├── close-circle-line.svg
+│   │   │   │   │   ├── close-line.svg
+│   │   │   │   │   ├── delete-bin-fill.svg
+│   │   │   │   │   ├── delete-bin-line.svg
+│   │   │   │   │   ├── download-fill.svg
+│   │   │   │   │   ├── download-line.svg
+│   │   │   │   │   ├── error-warning-fill.svg
+│   │   │   │   │   ├── error-warning-line.svg
+│   │   │   │   │   ├── external-link-fill.svg
+│   │   │   │   │   ├── external-link-line.svg
+│   │   │   │   │   ├── eye-fill.svg
+│   │   │   │   │   ├── eye-line.svg
+│   │   │   │   │   ├── eye-off-fill.svg
+│   │   │   │   │   ├── eye-off-line.svg
+│   │   │   │   │   ├── filter-fill.svg
+│   │   │   │   │   ├── filter-line.svg
+│   │   │   │   │   ├── fr-*.svg  (13 files)
+│   │   │   │   │   ├── information-fill.svg
+│   │   │   │   │   ├── information-line.svg
+│   │   │   │   │   ├── lock-fill.svg
+│   │   │   │   │   ├── lock-line.svg
+│   │   │   │   │   ├── lock-unlock-fill.svg
+│   │   │   │   │   ├── lock-unlock-line.svg
+│   │   │   │   │   ├── logout-box-r-fill.svg
+│   │   │   │   │   ├── logout-box-r-line.svg
+│   │   │   │   │   ├── menu-2-fill.svg
+│   │   │   │   │   ├── menu-fill.svg
+│   │   │   │   │   ├── more-fill.svg
+│   │   │   │   │   ├── more-line.svg
+│   │   │   │   │   ├── notification-badge-fill.svg
+│   │   │   │   │   ├── notification-badge-line.svg
+│   │   │   │   │   ├── question-fill.svg
+│   │   │   │   │   ├── question-line.svg
+│   │   │   │   │   ├── refresh-fill.svg
+│   │   │   │   │   ├── refresh-line.svg
+│   │   │   │   │   ├── search-fill.svg
+│   │   │   │   │   ├── search-line.svg
+│   │   │   │   │   ├── settings-5-fill.svg
+│   │   │   │   │   ├── settings-5-line.svg
+│   │   │   │   │   ├── shield-fill.svg
+│   │   │   │   │   ├── shield-line.svg
+│   │   │   │   │   ├── star-fill.svg
+│   │   │   │   │   ├── star-line.svg
+│   │   │   │   │   ├── star-s-fill.svg
+│   │   │   │   │   ├── star-s-line.svg
+│   │   │   │   │   ├── subtract-line.svg
+│   │   │   │   │   ├── thumb-down-fill.svg
+│   │   │   │   │   ├── thumb-down-line.svg
+│   │   │   │   │   ├── thumb-up-fill.svg
+│   │   │   │   │   ├── thumb-up-line.svg
+│   │   │   │   │   ├── time-fill.svg
+│   │   │   │   │   ├── time-line.svg
+│   │   │   │   │   ├── timer-fill.svg
+│   │   │   │   │   ├── timer-line.svg
+│   │   │   │   │   ├── upload-2-fill.svg
+│   │   │   │   │   ├── upload-2-line.svg
+│   │   │   │   │   ├── upload-fill.svg
+│   │   │   │   │   ├── upload-line.svg
+│   │   │   │   │   ├── zoom-in-fill.svg
+│   │   │   │   │   ├── zoom-in-line.svg
+│   │   │   │   │   ├── zoom-out-fill.svg
+│   │   │   │   │   └── zoom-out-line.svg
+│   │   │   │   ├── user
+│   │   │   │   │   ├── account-circle-fill.svg
+│   │   │   │   │   ├── account-circle-line.svg
+│   │   │   │   │   ├── account-pin-circle-fill.svg
+│   │   │   │   │   ├── account-pin-circle-line.svg
+│   │   │   │   │   ├── admin-fill.svg
+│   │   │   │   │   ├── admin-line.svg
+│   │   │   │   │   ├── group-fill.svg
+│   │   │   │   │   ├── group-line.svg
+│   │   │   │   │   ├── parent-fill.svg
+│   │   │   │   │   ├── parent-line.svg
+│   │   │   │   │   ├── team-fill.svg
+│   │   │   │   │   ├── team-line.svg
+│   │   │   │   │   ├── user-add-fill.svg
+│   │   │   │   │   ├── user-add-line.svg
+│   │   │   │   │   ├── user-fill.svg
+│   │   │   │   │   ├── user-heart-fill.svg
+│   │   │   │   │   ├── user-heart-line.svg
+│   │   │   │   │   ├── user-line.svg
+│   │   │   │   │   ├── user-search-fill.svg
+│   │   │   │   │   ├── user-search-line.svg
+│   │   │   │   │   ├── user-setting-fill.svg
+│   │   │   │   │   ├── user-setting-line.svg
+│   │   │   │   │   ├── user-star-fill.svg
+│   │   │   │   │   └── user-star-line.svg
+│   │   │   │   └── weather
+│   │   │   │       ├── cloudy-2-fill.svg
+│   │   │   │       ├── cloudy-2-line.svg
+│   │   │   │       ├── flashlight-fill.svg
+│   │   │   │       ├── flashlight-line.svg
+│   │   │   │       ├── moon-fill.svg
+│   │   │   │       ├── moon-line.svg
+│   │   │   │       ├── sun-fill.svg
+│   │   │   │       └── sun-line.svg
+│   │   │   ├── loading.gif
+│   │   │   ├── mailers
+│   │   │   │   ├── api_entreprise
+│   │   │   │   │   └── header-logo-api.png
+│   │   │   │   ├── api_particulier
+│   │   │   │   │   └── header-logo-api.png
+│   │   │   │   └── header-logo-dinum.png
+│   │   │   ├── mon_compte_pro.svg
+│   │   │   └── providers
+│   │   │       ├── api_entreprise
+│   │   │       │   ├── acoss.png
+│   │   │       │   ├── ademe.png
+│   │   │       │   ├── agefiph.png
+│   │   │       │   ├── agencebio.png
+│   │   │       │   ├── bdf.png
+│   │   │       │   ├── carif_oref.png
+│   │   │       │   ├── cibtp.png
+│   │   │       │   ├── cma.png
+│   │   │       │   ├── cnetp.png
+│   │   │       │   ├── commission_europeenne.png
+│   │   │       │   ├── data_subvention.png
+│   │   │       │   ├── dgfip.png
+│   │   │       │   ├── djepva.png
+│   │   │       │   ├── douanes.png
+│   │   │       │   ├── fabsocial.png
+│   │   │       │   ├── fntp.png
+│   │   │       │   ├── gipmds.png
+│   │   │       │   ├── infogreffe.png
+│   │   │       │   ├── inpi.png
+│   │   │       │   ├── insee.png
+│   │   │       │   ├── mi.png
+│   │   │       │   ├── msa.png
+│   │   │       │   ├── opqibi.png
+│   │   │       │   ├── probtp.png
+│   │   │       │   ├── qualibat.png
+│   │   │       │   ├── qualifelec.png
+│   │   │       │   ├── rna.png
+│   │   │       │   └── urssaf.png
+│   │   │       └── api_particulier
+│   │   │           ├── ants.png
+│   │   │           ├── cnaf.png
+│   │   │           ├── cnav.png
+│   │   │           ├── cnous.png
+│   │   │           ├── dsnj.png
+│   │   │           ├── education_nationale.png
+│   │   │           ├── mesri.png
+│   │   │           ├── pole_emploi.png
+│   │   │           ├── sphere_sociale.png
+│   │   │           └── sport_data_hub.png
+│   │   ├── javascripts
+│   │   │   ├── admin.js
+│   │   │   ├── api_entreprise.js
+│   │   │   ├── api_particulier.js
+│   │   │   ├── controllers
+│   │   │   │   ├── anchor_buttons_controller.js
+│   │   │   │   ├── clipboard_controller.js
+│   │   │   │   ├── datetime_now_controller.js
+│   │   │   │   └── search_catalogue_controller.js
+│   │   │   ├── dsfr.module.js
+│   │   │   └── utils
+│   │   │       ├── auto_open_accordeon.js
+│   │   │       ├── table_search.js
+│   │   │       └── tooltip.js
+│   │   └── stylesheets
+│   │       ├── admin.scss
+│   │       ├── api_entreprise
+│   │       │   ├── pages
+│   │       │   │   ├── .gitkeep
+│   │       │   │   ├── attestations.scss
+│   │       │   │   ├── catalogue.scss
+│   │       │   │   ├── home
+│   │       │   │   │   ├── _section_developers.scss
+│   │       │   │   │   ├── _section_endpoints.scss
+│   │       │   │   │   ├── _section_howto.scss
+│   │       │   │   │   └── _section_partners.scss
+│   │       │   │   ├── home.scss
+│   │       │   │   └── profile.scss
+│   │       │   └── shame.scss
+│   │       ├── api_entreprise.scss
+│   │       ├── api_particulier
+│   │       │   └── pages
+│   │       │       ├── catalogue.scss
+│   │       │       ├── documentation.scss
+│   │       │       └── home.scss
+│   │       ├── api_particulier.scss
+│   │       ├── commons.scss
+│   │       ├── components
+│   │       │   ├── api_status.scss
+│   │       │   ├── circles.scss
+│   │       │   ├── code.scss
+│   │       │   ├── endpoint_card.scss
+│   │       │   ├── loader.scss
+│   │       │   ├── markdown_to_html.scss
+│   │       │   ├── modal.scss
+│   │       │   ├── progress-bar.scss
+│   │       │   ├── token_card.scss
+│   │       │   └── tooltip.scss
+│   │       ├── dsfr-corrections.scss
+│   │       ├── dsfr-extensions.scss
+│   │       ├── dsfr-fonts.scss
+│   │       ├── dsfr-utility.scss
+│   │       ├── dsfr.scss
+│   │       └── shared
+│   │           └── pages
+│   │               ├── cas_usage.scss
+│   │               ├── cas_usages.scss
+│   │               ├── documentation.scss
+│   │               ├── endpoint.scss
+│   │               ├── faq.scss
+│   │               ├── home
+│   │               │   ├── _section_access.scss
+│   │               │   ├── _section_demonstrateur.scss
+│   │               │   └── _section_developers.scss
+│   │               └── redoc.scss
+│   ├── clients
+│   │   ├── abstract_hubee_api_client.rb
+│   │   ├── abstract_insee_api_client.rb
+│   │   ├── formulaire_qf_api_client.rb
+│   │   ├── hubee_api_authentication.rb
+│   │   ├── hubee_api_client.rb
+│   │   ├── insee_api_authentication.rb
+│   │   └── insee_sirene_api_client.rb
+│   ├── controllers
+│   │   ├── admin
+│   │   │   ├── audit_notifications_controller.rb
+│   │   │   ├── editors_controller.rb
+│   │   │   ├── provider_dashboards_controller.rb
+│   │   │   ├── tokens
+│   │   │   │   └── bans_controller.rb
+│   │   │   ├── tokens_controller.rb
+│   │   │   └── users_controller.rb
+│   │   ├── admin_controller.rb
+│   │   ├── api
+│   │   │   ├── datapass_webhooks_controller.rb
+│   │   │   ├── datapass_webhooks_v2_controller.rb
+│   │   │   └── frontal_controller.rb
+│   │   ├── api_controller.rb
+│   │   ├── api_entreprise
+│   │   │   ├── authenticated_users_controller.rb
+│   │   │   ├── authorization_requests_controller.rb
+│   │   │   ├── blog_posts_controller.rb
+│   │   │   ├── cas_usages_controller.rb
+│   │   │   ├── documentation_controller.rb
+│   │   │   ├── download_attestations_controller.rb
+│   │   │   ├── endpoints_controller.rb
+│   │   │   ├── errors_controller.rb
+│   │   │   ├── faq_controller.rb
+│   │   │   ├── pages_controller.rb
+│   │   │   ├── prolong_token_wizard_controller.rb
+│   │   │   ├── public_token_magic_links_controller.rb
+│   │   │   ├── sessions_controller.rb
+│   │   │   ├── stats_controller.rb
+│   │   │   ├── tokens_controller.rb
+│   │   │   ├── transfer_tokens_controller.rb
+│   │   │   └── users_controller.rb
+│   │   ├── api_entreprise_controller.rb
+│   │   ├── api_particulier
+│   │   │   ├── authenticated_users_controller.rb
+│   │   │   ├── authorization_requests_controller.rb
+│   │   │   ├── blog_posts_controller.rb
+│   │   │   ├── cas_usages_controller.rb
+│   │   │   ├── documentation_controller.rb
+│   │   │   ├── endpoints_controller.rb
+│   │   │   ├── errors_controller.rb
+│   │   │   ├── faq_controller.rb
+│   │   │   ├── pages_controller.rb
+│   │   │   ├── prolong_token_wizard_controller.rb
+│   │   │   ├── public_token_magic_links_controller.rb
+│   │   │   ├── reporters_controller.rb
+│   │   │   ├── sessions_controller.rb
+│   │   │   ├── stats_controller.rb
+│   │   │   ├── tokens_controller.rb
+│   │   │   ├── transfer_tokens_controller.rb
+│   │   │   └── users_controller.rb
+│   │   ├── api_particulier_controller.rb
+│   │   ├── application_controller.rb
+│   │   ├── concerns
+│   │   │   ├── .keep
+│   │   │   ├── authenticated_user_management.rb
+│   │   │   ├── authorization_requests_management.rb
+│   │   │   ├── cas_usages_management.rb
+│   │   │   ├── datapass_webhooks.rb
+│   │   │   ├── global_http_errors_management.rb
+│   │   │   ├── prolong_token_wizard_management.rb
+│   │   │   ├── public_token_magic_links_management.rb
+│   │   │   ├── sessions_management.rb
+│   │   │   ├── tokens_management.rb
+│   │   │   ├── transfer_tokens_management.rb
+│   │   │   └── user_management.rb
+│   │   ├── editor
+│   │   │   └── authorization_requests_controller.rb
+│   │   ├── editor_controller.rb
+│   │   ├── provider
+│   │   │   └── dashboard_controller.rb
+│   │   └── provider_controller.rb
+│   ├── decorators
+│   │   ├── application_decorator.rb
+│   │   ├── endpoint_decorator.rb
+│   │   └── token_decorator.rb
+│   ├── errors
+│   │   └── siade_client_error.rb
+│   ├── facade
+│   │   ├── entreprise_with_attestations_facade.rb
+│   │   ├── provider_stats_facade.rb
+│   │   └── token_stats_facade.rb
+│   ├── helpers
+│   │   ├── active_links.rb
+│   │   ├── application_helper.rb
+│   │   ├── authorization_request_helper.rb
+│   │   ├── dsfr_stepper_helper.rb
+│   │   ├── endpoint_helper.rb
+│   │   ├── external_url_helper.rb
+│   │   ├── friendly_date_helper.rb
+│   │   ├── scope_helper.rb
+│   │   ├── tag_color_helper.rb
+│   │   └── user_sessions_helper.rb
+│   ├── interactors
+│   │   ├── admin
+│   │   │   ├── audit_notifications
+│   │   │   │   ├── create_model.rb
+│   │   │   │   └── send_email.rb
+│   │   │   └── tokens
+│   │   │       ├── ban_token.rb
+│   │   │       ├── regenerate_token.rb
+│   │   │       └── send_ban_email.rb
+│   │   ├── application_interactor.rb
+│   │   ├── datapass_webhook
+│   │   │   ├── adapt_v2_to_v1.rb
+│   │   │   ├── api_particulier
+│   │   │   │   ├── create_formulaire_qf_collectivity.rb
+│   │   │   │   ├── create_hubee_organization.rb
+│   │   │   │   ├── create_hubee_subscription.rb
+│   │   │   │   └── notify_reporters.rb
+│   │   │   ├── archive_current_authorization_request.rb
+│   │   │   ├── archive_previous_authorization_request.rb
+│   │   │   ├── create_or_prolong_token.rb
+│   │   │   ├── extract_mailjet_variables.rb
+│   │   │   ├── find_or_create_authorization_request.rb
+│   │   │   ├── find_or_create_organization.rb
+│   │   │   ├── find_or_create_user.rb
+│   │   │   ├── refuse_current_authorization_request.rb
+│   │   │   ├── revoke_current_token.rb
+│   │   │   ├── schedule_authorization_request_emails.rb
+│   │   │   ├── schedule_create_formulaire_qf_resources_job.rb
+│   │   │   └── update_mailjet_contacts.rb
+│   │   ├── magic_link
+│   │   │   └── create_model.rb
+│   │   ├── token
+│   │   │   ├── create_magic_link.rb
+│   │   │   ├── deliver_expiration_notice_emails.rb
+│   │   │   ├── retrieve_expiring.rb
+│   │   │   └── send_email_with_magic_link.rb
+│   │   ├── user
+│   │   │   └── proconnect_login.rb
+│   │   └── validate_email.rb
+│   ├── jobs
+│   │   ├── application_job.rb
+│   │   ├── create_formulaire_qf_resources_job.rb
+│   │   ├── healthcheck_job.rb
+│   │   ├── schedule_authorization_request_email_job.rb
+│   │   ├── schedule_expiration_notice_email_job.rb
+│   │   ├── token_expiration_notice_job.rb
+│   │   └── update_organization_insee_payload_job.rb
+│   ├── lib
+│   │   ├── access_token.rb
+│   │   ├── api_entreprise_domain_constraint.rb
+│   │   ├── api_particulier_domain_constraint.rb
+│   │   ├── authorization_request_condition_facade.rb
+│   │   ├── hub_signature.rb
+│   │   └── seeds.rb
+│   ├── mailers
+│   │   ├── api_entreprise
+│   │   │   ├── audit_mailer.rb
+│   │   │   ├── authorization_request_mailer.rb
+│   │   │   └── token_mailer.rb
+│   │   ├── api_entreprise_mailer.rb
+│   │   ├── api_particulier
+│   │   │   ├── audit_mailer.rb
+│   │   │   ├── authorization_request_mailer.rb
+│   │   │   ├── reporters_mailer.rb
+│   │   │   └── token_mailer.rb
+│   │   ├── api_particulier_mailer.rb
+│   │   ├── application_mailer.rb
+│   │   └── concerns
+│   │       ├── audit_mailers_commons.rb
+│   │       └── token_mailers_commons.rb
+│   ├── models
+│   │   ├── abstract_blog_post.rb
+│   │   ├── abstract_cas_usage.rb
+│   │   ├── abstract_documentation_page.rb
+│   │   ├── abstract_endpoint.rb
+│   │   ├── abstract_faq_entry.rb
+│   │   ├── abstract_provider.rb
+│   │   ├── access_log.rb
+│   │   ├── api_entreprise
+│   │   │   ├── blog_post.rb
+│   │   │   ├── cas_usage.rb
+│   │   │   ├── documentation_page.rb
+│   │   │   ├── endpoint.rb
+│   │   │   ├── faq_entry.rb
+│   │   │   └── provider.rb
+│   │   ├── api_particulier
+│   │   │   ├── abstract_endpoint.rb
+│   │   │   ├── blog_post.rb
+│   │   │   ├── cas_usage.rb
+│   │   │   ├── documentation_page.rb
+│   │   │   ├── endpoint.rb
+│   │   │   ├── endpoint_v2.rb
+│   │   │   ├── faq_entry.rb
+│   │   │   └── provider.rb
+│   │   ├── application_record.rb
+│   │   ├── audit_notification.rb
+│   │   ├── authorization_request.rb
+│   │   ├── concerns
+│   │   │   ├── .keep
+│   │   │   └── abstract_api_class.rb
+│   │   ├── documentation_searchable_chunk.rb
+│   │   ├── editor.rb
+│   │   ├── entreprise.rb
+│   │   ├── magic_link.rb
+│   │   ├── organization.rb
+│   │   ├── prolong_token_wizard.rb
+│   │   ├── token.rb
+│   │   ├── user.rb
+│   │   └── user_authorization_request_role.rb
+│   ├── organizers
+│   │   ├── admin
+│   │   │   ├── audit_notifications
+│   │   │   │   └── create.rb
+│   │   │   └── tokens
+│   │   │       └── ban.rb
+│   │   ├── application_organizer.rb
+│   │   ├── datapass_webhook
+│   │   │   ├── api_entreprise.rb
+│   │   │   ├── api_particulier.rb
+│   │   │   ├── create_formulaire_qf_resources.rb
+│   │   │   └── v2
+│   │   │       ├── api_entreprise.rb
+│   │   │       └── api_particulier.rb
+│   │   └── token
+│   │       ├── deliver_magic_link_to_email.rb
+│   │       └── send_expiration_notices.rb
+│   ├── policies
+│   │   ├── application_policy.rb
+│   │   ├── download_attestations_policy.rb
+│   │   └── token_policy.rb
+│   ├── services
+│   │   ├── abstract_open_api_definition.rb
+│   │   ├── access_logs_counts.rb
+│   │   ├── api_entreprise
+│   │   │   └── open_api_definition.rb
+│   │   ├── api_particulier
+│   │   │   ├── open_api_definition.rb
+│   │   │   └── open_api_definition_v2.rb
+│   │   ├── markdown_interpolator.rb
+│   │   ├── metabase_embed_service.rb
+│   │   ├── migrate_legacy_token_service.rb
+│   │   ├── monitoring_service.rb
+│   │   ├── open_api_schema_to_example.rb
+│   │   ├── open_bureau_date.rb
+│   │   ├── siade.rb
+│   │   └── status_page.rb
+│   ├── stores
+│   │   ├── abstract_endpoints_store.rb
+│   │   ├── api_entreprise
+│   │   │   └── endpoints_store.rb
+│   │   └── api_particulier
+│   │       └── endpoints_store.rb
+│   └── views
+│       ├── admin
+│       │   ├── audit_notifications
+│       │   │   ├── index.html.erb
+│       │   │   └── new.html.erb
+│       │   ├── editors
+│       │   │   ├── edit.html.erb
+│       │   │   └── index.html.erb
+│       │   ├── provider_dashboards
+│       │   │   └── index.html.erb
+│       │   ├── tokens
+│       │   │   ├── bans
+│       │   │   │   └── new.html.erb
+│       │   │   └── index.html.erb
+│       │   └── users
+│       │       ├── edit.html.erb
+│       │       └── index.html.erb
+│       ├── api_entreprise
+│       │   ├── authorization_request_mailer
+│       │   │   ├── _banner_demande_valide.html.mjml
+│       │   │   ├── _block_accelerer_demande.html.mjml
+│       │   │   ├── _block_analytics.html.mjml
+│       │   │   ├── _block_authorization_request.html.mjml
+│       │   │   ├── _block_help_demande.html.mjml
+│       │   │   ├── _block_mise_en_production.html.mjml
+│       │   │   ├── _block_newsletter.html.mjml
+│       │   │   ├── _block_questions.html.mjml
+│       │   │   ├── _block_refusal_might_be_error.html.mjml
+│       │   │   ├── _block_subscribed_newsletter.html.mjml
+│       │   │   ├── _button_login.html.mjml
+│       │   │   ├── _embarquement_valide_welcome.html.mjml
+│       │   │   ├── _greetings.html.mjml
+│       │   │   ├── _info_subscribe_incidents.html.mjml
+│       │   │   ├── _info_you_dont_understand.html.mjml
+│       │   │   ├── _list_scopes.html.mjml
+│       │   │   ├── demande_recue.html.mjml
+│       │   │   ├── embarquement_brouillon_en_attente.html.mjml
+│       │   │   ├── embarquement_demande_refusee.html.mjml
+│       │   │   ├── embarquement_modifications_demandees.html.mjml
+│       │   │   ├── embarquement_valide_to_demandeur_is_metier_not_tech.html.mjml
+│       │   │   ├── embarquement_valide_to_demandeur_is_tech_is_metier.html.mjml
+│       │   │   ├── embarquement_valide_to_demandeur_is_tech_not_metier.html.mjml
+│       │   │   ├── embarquement_valide_to_demandeur_seulement.html.mjml
+│       │   │   ├── embarquement_valide_to_editeur.html.mjml
+│       │   │   ├── embarquement_valide_to_metier_cc_demandeur_tech.html.mjml
+│       │   │   ├── embarquement_valide_to_tech_cc_demandeur_metier.html.mjml
+│       │   │   ├── update_demande_recue.html.mjml
+│       │   │   ├── update_embarquement_brouillon_en_attente.html.mjml
+│       │   │   ├── update_embarquement_demande_refusee.html.mjml
+│       │   │   ├── update_embarquement_modifications_demandees.html.mjml
+│       │   │   └── update_embarquement_valide_to_demandeur.html.mjml
+│       │   ├── cas_usages
+│       │   │   ├── index.html.erb
+│       │   │   └── show.html.erb
+│       │   ├── documentation
+│       │   │   ├── _banner.html.erb
+│       │   │   ├── _menu.html.erb
+│       │   │   └── index.html.erb
+│       │   ├── download_attestations
+│       │   │   ├── _result.html.erb
+│       │   │   ├── create.html.erb
+│       │   │   ├── create.turbo_stream.erb
+│       │   │   └── new.html.erb
+│       │   ├── endpoints
+│       │   │   ├── _details.html.erb
+│       │   │   ├── _endpoint.html.erb
+│       │   │   ├── _use_cases.html.erb
+│       │   │   ├── index.html.erb
+│       │   │   └── show.html.erb
+│       │   ├── faq
+│       │   │   └── index.html.erb
+│       │   ├── pages
+│       │   │   ├── _cgu.html.erb
+│       │   │   ├── _donnees_personnelles.html.erb
+│       │   │   ├── cgu.html.erb
+│       │   │   ├── donnees_personnelles.html.erb
+│       │   │   ├── home
+│       │   │   │   ├── _section_access.html.erb
+│       │   │   │   ├── _section_developers.html.erb
+│       │   │   │   ├── _section_endpoints.html.erb
+│       │   │   │   ├── _section_howto.html.erb
+│       │   │   │   ├── _section_partners.html.erb
+│       │   │   │   ├── _section_use_cases.html.erb
+│       │   │   │   └── _section_welcome.html.erb
+│       │   │   ├── home.html.erb
+│       │   │   ├── newsletter
+│       │   │   │   ├── _banner.html.erb
+│       │   │   │   └── _main.html.erb
+│       │   │   └── newsletter.html.erb
+│       │   ├── sessions
+│       │   │   └── new.html.erb
+│       │   ├── stats
+│       │   │   └── index.html.erb
+│       │   ├── token_mailer
+│       │   │   ├── _banner.html.mjml
+│       │   │   ├── _block_help_renewal.html.mjml
+│       │   │   ├── banned.mjml
+│       │   │   ├── expiration_notice_0J.mjml
+│       │   │   ├── expiration_notice_15J.mjml
+│       │   │   ├── expiration_notice_30J.mjml
+│       │   │   ├── expiration_notice_60J.mjml
+│       │   │   ├── expiration_notice_7J.mjml
+│       │   │   ├── expiration_notice_90J.mjml
+│       │   │   ├── magic_link.html.mjml
+│       │   │   └── magic_link.text.erb
+│       │   └── user_mailer
+│       │       ├── notify_datapass_for_data_reconciliation.html.mjml
+│       │       ├── notify_datapass_for_data_reconciliation.text.erb
+│       │       ├── transfer_ownership.html.mjml
+│       │       └── transfer_ownership.text.erb
+│       ├── api_particulier
+│       │   ├── authorization_request_mailer
+│       │   │   ├── _banner_demande_valide.html.mjml
+│       │   │   ├── _block_accelerer_demande.html.mjml
+│       │   │   ├── _block_analytics.html.mjml
+│       │   │   ├── _block_authorization_request.html.mjml
+│       │   │   ├── _block_help_demande.html.mjml
+│       │   │   ├── _block_mise_en_production.html.mjml
+│       │   │   ├── _block_newsletter.html.mjml
+│       │   │   ├── _block_questions.html.mjml
+│       │   │   ├── _block_refusal_might_be_error.html.mjml
+│       │   │   ├── _block_subscribed_newsletter.html.mjml
+│       │   │   ├── _button_login.html.mjml
+│       │   │   ├── _embarquement_valide_welcome.html.mjml
+│       │   │   ├── _greetings.html.mjml
+│       │   │   ├── _info_subscribe_incidents.html.mjml
+│       │   │   ├── _info_you_dont_understand.html.mjml
+│       │   │   ├── _list_scopes.html.mjml
+│       │   │   ├── demande_recue.html.mjml
+│       │   │   ├── embarquement_brouillon_en_attente.html.mjml
+│       │   │   ├── embarquement_demande_refusee.html.mjml
+│       │   │   ├── embarquement_modifications_demandees.html.mjml
+│       │   │   ├── embarquement_valide_to_demandeur_is_tech.html.mjml
+│       │   │   ├── embarquement_valide_to_demandeur_seulement.html.mjml
+│       │   │   ├── embarquement_valide_to_tech_cc_demandeur.html.mjml
+│       │   │   ├── update_demande_recue.html.mjml
+│       │   │   ├── update_embarquement_brouillon_en_attente.html.mjml
+│       │   │   ├── update_embarquement_demande_refusee.html.mjml
+│       │   │   ├── update_embarquement_modifications_demandees.html.mjml
+│       │   │   └── update_embarquement_valide_to_demandeur.html.mjml
+│       │   ├── cas_usages
+│       │   │   ├── index.html.erb
+│       │   │   └── show.html.erb
+│       │   ├── documentation
+│       │   │   ├── _banner.html.erb
+│       │   │   ├── _menu.html.erb
+│       │   │   └── index.html.erb
+│       │   ├── endpoints
+│       │   │   ├── _details.html.erb
+│       │   │   ├── _endpoint.html.erb
+│       │   │   ├── _use_cases.html.erb
+│       │   │   ├── index.html.erb
+│       │   │   └── show.html.erb
+│       │   ├── faq
+│       │   │   └── index.html.erb
+│       │   ├── pages
+│       │   │   ├── _donnees_personnelles.html.erb
+│       │   │   ├── donnees_personnelles.html.erb
+│       │   │   ├── home
+│       │   │   │   ├── _section_access.html.erb
+│       │   │   │   ├── _section_demonstrateur.html.erb
+│       │   │   │   ├── _section_developers.html.erb
+│       │   │   │   ├── _section_partners.html.erb
+│       │   │   │   ├── _section_use_cases.html.erb
+│       │   │   │   └── _section_welcome.html.erb
+│       │   │   ├── home.html.erb
+│       │   │   ├── newsletter
+│       │   │   │   ├── _banner.html.erb
+│       │   │   │   └── _main.html.erb
+│       │   │   └── newsletter.html.erb
+│       │   ├── reporters
+│       │   │   └── index.html.erb
+│       │   ├── reporters_mailer
+│       │   │   ├── approve.text.erb
+│       │   │   └── submit.text.erb
+│       │   ├── sessions
+│       │   │   └── new.html.erb
+│       │   ├── stats
+│       │   │   └── index.html.erb
+│       │   ├── token_mailer
+│       │   │   ├── _banner.html.mjml
+│       │   │   ├── _block_help_renewal.html.mjml
+│       │   │   ├── banned.mjml
+│       │   │   ├── expiration_notice_0J.mjml
+│       │   │   ├── expiration_notice_15J.mjml
+│       │   │   ├── expiration_notice_30J.mjml
+│       │   │   ├── expiration_notice_60J.mjml
+│       │   │   ├── expiration_notice_7J.mjml
+│       │   │   ├── expiration_notice_90J.mjml
+│       │   │   ├── magic_link.html.mjml
+│       │   │   └── magic_link.text.erb
+│       │   └── user_mailer
+│       │       ├── notify_datapass_for_data_reconciliation.html.mjml
+│       │       ├── notify_datapass_for_data_reconciliation.text.erb
+│       │       ├── transfer_ownership.html.mjml
+│       │       └── transfer_ownership.text.erb
+│       ├── editor
+│       │   └── authorization_requests
+│       │       └── index.html.erb
+│       ├── errors
+│       │   └── show.html.erb
+│       ├── kaminari
+│       │   ├── _first_page.html.erb
+│       │   ├── _gap.html.erb
+│       │   ├── _last_page.html.erb
+│       │   ├── _next_page.html.erb
+│       │   ├── _page.html.erb
+│       │   ├── _paginator.html.erb
+│       │   └── _prev_page.html.erb
+│       ├── layouts
+│       │   ├── admin.html.erb
+│       │   ├── api_entreprise
+│       │   │   ├── application.html.erb
+│       │   │   └── no_container.html.erb
+│       │   ├── api_particulier
+│       │   │   ├── application.html.erb
+│       │   │   └── no_container.html.erb
+│       │   ├── editor.html.erb
+│       │   ├── mailer.html.mjml
+│       │   ├── mailer.text.erb
+│       │   └── provider.html.erb
+│       ├── provider
+│       │   └── dashboard
+│       │       ├── index.html.erb
+│       │       └── show.html.erb
+│       └── shared
+│           ├── _alerts.html.erb
+│           ├── _common_head_scripts.html.erb
+│           ├── _development_warning.html.erb
+│           ├── _faq_sidemenu_list_item.html.erb
+│           ├── _favicons.html.erb
+│           ├── _impersonate.html.erb
+│           ├── _loader.html.erb
+│           ├── _matomo.html.erb
+│           ├── _metabase.html.erb
+│           ├── _modal.html.erb
+│           ├── _newsletter_banner.html.erb
+│           ├── _tooltip.html.erb
+│           ├── admin
+│           │   └── _header.html.erb
+│           ├── api_entreprise
+│           │   ├── _containerized_body.html.erb
+│           │   ├── _footer.html.erb
+│           │   ├── _header.html.erb
+│           │   ├── header
+│           │   │   ├── _menu.html.erb
+│           │   │   ├── _search_desktop.html.erb
+│           │   │   └── _tools.html.erb
+│           │   └── mailers
+│           │       ├── _footer.html.mjml
+│           │       └── _header.html.mjml
+│           ├── api_particulier
+│           │   ├── _containerized_body.html.erb
+│           │   ├── _footer.html.erb
+│           │   ├── _header.html.erb
+│           │   ├── header
+│           │   │   ├── _menu.html.erb
+│           │   │   └── _tools.html.erb
+│           │   └── mailers
+│           │       ├── _footer.html.mjml
+│           │       └── _header.html.mjml
+│           ├── audit_mailer
+│           │   └── notify.mjml
+│           ├── authorization_requests
+│           │   ├── _breadcrumb.html.erb
+│           │   ├── _header.html.erb
+│           │   ├── _summary.html.erb
+│           │   ├── actions
+│           │   │   ├── _no_action.html.erb
+│           │   │   ├── _prolong.html.erb
+│           │   │   └── _show.html.erb
+│           │   ├── index.html.erb
+│           │   └── show.html.erb
+│           ├── blog_posts
+│           │   └── show.html.erb
+│           ├── cas_usages
+│           │   ├── _list-api.html.erb
+│           │   ├── _others.html.erb
+│           │   └── _show.html.erb
+│           ├── editor
+│           │   └── _header.html.erb
+│           ├── endpoints
+│           │   ├── _property.html.erb
+│           │   └── example.html.erb
+│           ├── faq
+│           │   └── _faq_entry.html.erb
+│           ├── pages
+│           │   ├── _home_alerts.html.erb
+│           │   ├── accessibility.html.erb
+│           │   ├── current_status.html.erb
+│           │   ├── mentions.html.erb
+│           │   ├── redoc.html.erb
+│           │   ├── redoc_v2.html.erb
+│           │   └── redoc_v3.html.erb
+│           ├── prolong_token_wizard
+│           │   ├── _contact.html.erb
+│           │   ├── build
+│           │   │   ├── _header.html.erb
+│           │   │   ├── _stepper.html.erb
+│           │   │   └── _wizard_buttons.html.erb
+│           │   ├── contacts.html.erb
+│           │   ├── owner.html.erb
+│           │   ├── project_purpose.html.erb
+│           │   ├── prolonged.html.erb
+│           │   └── summary.html.erb
+│           ├── provider
+│           │   └── _header.html.erb
+│           ├── public_token_magic_links
+│           │   └── show.html.erb
+│           ├── sessions
+│           │   ├── _bypass_login_info.html.erb
+│           │   └── _new.html.erb
+│           ├── tokens
+│           │   ├── _detail.html.erb
+│           │   ├── _detail_short.html.erb
+│           │   ├── _hashed_value_input.html.erb
+│           │   ├── _reveal_token_button.html.erb
+│           │   ├── _scopes.html.erb
+│           │   ├── _show.html.erb
+│           │   ├── ask_for_prolongation.html.erb
+│           │   ├── cannot_show.html.erb
+│           │   ├── prolong.html.erb
+│           │   ├── renew.html.erb
+│           │   ├── show.html.erb
+│           │   └── stats.html.erb
+│           ├── transfer_tokens
+│           │   └── new.html.erb
+│           └── users
+│               ├── _user.html.erb
+│               └── profile.html.erb
+├── bin
+│   ├── brakeman
+│   ├── bundle
+│   ├── deploy
+│   ├── download_latest_open_api_definitions.sh
+│   ├── install.sh
+│   ├── local.sh
+│   ├── rails
+│   ├── rake
+│   ├── rspec
+│   ├── setup
+│   └── update
+├── config
+│   ├── api-entreprise-v3-openapi.yml
+│   ├── api-particulier-openapi-v2.yml
+│   ├── api-particulier-openapi-v3.yml
+│   ├── api-particulier-openapi.yml
+│   ├── apientreprise_test_token
+│   ├── application.rb
+│   ├── blog_posts
+│   │   ├── api_entreprise
+│   │   │   ├── hello-world.md
+│   │   │   ├── insee-non-diffusibles.md
+│   │   │   ├── num-tva-intra-v3.md
+│   │   │   └── references-sites-modification-donnees.md
+│   │   └── api_particulier
+│   │       ├── hello-world.md
+│   │       ├── migration-api-particulier-v3.md
+│   │       └── parametre-lieu-naissance-code-cog.md
+│   ├── boot.rb
+│   ├── brakeman.ignore
+│   ├── cable.yml
+│   ├── cache_redis.yml
+│   ├── cancelled_open_bureau_dates.yml
+│   ├── credentials
+│   │   ├── development.key -> test.key
+│   │   ├── development.yml.enc -> test.yml.enc
+│   │   ├── production.yml.enc
+│   │   ├── sandbox.yml.enc
+│   │   ├── staging.yml.enc
+│   │   ├── test.key
+│   │   └── test.yml.enc
+│   ├── data
+│   │   └── scopes
+│   │       ├── entreprise.yml
+│   │       └── particulier.yml
+│   ├── database.yml
+│   ├── datapass_webhooks_entreprise.yml
+│   ├── datapass_webhooks_particulier.yml
+│   ├── endpoints
+│   │   ├── api_entreprise
+│   │   │   ├── 10_dgfip_chiffres_affaires.yml
+│   │   │   ├── 12_bdf_bilans.yml
+│   │   │   ├── 13_dgfip_liasses_fiscales.yml
+│   │   │   ├── 14_dgfip_attestation_fiscale.yml
+│   │   │   ├── 15_urssaf_attestation_vigilance.yml
+│   │   │   ├── 16_msa_conformites_cotisations.yml
+│   │   │   ├── 17_probtp_conformites_cotisations_retraite.yml
+│   │   │   ├── 18_fntp_cartes_pro_travaux_publics.yml
+│   │   │   ├── 19_cnetp_attestations_cotisations_conges_payes_chomage_intemperies.yml
+│   │   │   ├── 1_insee_etablissements.yml
+│   │   │   ├── 1_insee_successions.yml
+│   │   │   ├── 20_agencebio_certifications_bio.yml
+│   │   │   ├── 21_ademe_certifications_rge.yml
+│   │   │   ├── 22_qualibat_certifications_batiment.yml
+│   │   │   ├── 23_opqibi_certifications_ingenierie.yml
+│   │   │   ├── 24_qualifelec_certificat.yml
+│   │   │   ├── 2_infogreffe_extrait_rcs.yml
+│   │   │   ├── 2_infogreffe_mandataires_sociaux.yml
+│   │   │   ├── 2_inpi_extrait_rne.yml
+│   │   │   ├── 30_commission_europeene_vies.yml
+│   │   │   ├── 31_cibtp_attestations_cotisations_chomage_intemperies.yml
+│   │   │   ├── 3_insee_adresse_etablissement.yml
+│   │   │   ├── 3_insee_siege_social.yml
+│   │   │   ├── 3_insee_unites_legales.yml
+│   │   │   ├── 4_ministere_interieur_rna_v3.yml
+│   │   │   ├── 4_ministere_interieur_v4.yml
+│   │   │   ├── 5_inpi_rne_actes_bilans.yml
+│   │   │   ├── 5_inpi_rne_beneficiaires.yml
+│   │   │   ├── 6_fabnum_conventions_collectives.yml
+│   │   │   ├── 7_cmafrance_rnm.yml
+│   │   │   ├── 9_douanes_eori.yml
+│   │   │   ├── carif_oref_certifications_qualiopi_france_competences.yml
+│   │   │   ├── datasubvention_subventions.yml
+│   │   │   ├── dgfip_liens_capitalistiques.yml
+│   │   │   └── gip_mds_effectifs.yml
+│   │   ├── api_particulier
+│   │   │   ├── ants_siv.yml
+│   │   │   ├── cnaf_msa_prestation_de_service_unique.yml
+│   │   │   ├── cnaf_msa_quotient_familial.yml
+│   │   │   ├── cnav_allocation_adulte_handicape.yml
+│   │   │   ├── cnav_allocation_soutien_familial.yml
+│   │   │   ├── cnav_complementaire_sante_solidaire.yml
+│   │   │   ├── cnav_prime_activite.yml
+│   │   │   ├── cnav_revenu_solidarite_active.yml
+│   │   │   ├── cnous_student_scholarship.yml
+│   │   │   ├── dsnj_service_national.yml
+│   │   │   ├── education_nationale_statut_eleve.yml
+│   │   │   ├── mesri_student_status.yml
+│   │   │   ├── pole_emploi.yml
+│   │   │   ├── sport_data_hub_sportif_haut_niveau.yml
+│   │   │   ├── v2_cnaf_msa_quotient_familial_v1.yml
+│   │   │   ├── v2_cnaf_msa_quotient_familial_v2.yml
+│   │   │   ├── v2_cnav_allocation_adulte_handicape.yml
+│   │   │   ├── v2_cnav_allocation_soutien_familial.yml
+│   │   │   ├── v2_cnav_complementaire_sante_solidaire.yml
+│   │   │   ├── v2_cnav_prime_activite.yml
+│   │   │   ├── v2_cnav_revenu_solidarite_active.yml
+│   │   │   ├── v2_cnous_student_scholarship.yml
+│   │   │   ├── v2_education_nationale_statut_eleve.yml
+│   │   │   ├── v2_mesri_student_status.yml
+│   │   │   └── v2_pole_emploi.yml
+│   │   ├── template.entreprise.yml.example
+│   │   └── template.particulier.yml.example
+│   ├── environment.rb
+│   ├── environments
+│   │   ├── development.rb
+│   │   ├── production.rb
+│   │   ├── sandbox.rb
+│   │   ├── staging.rb
+│   │   └── test.rb
+│   ├── i18n-tasks.yml
+│   ├── initializers
+│   │   ├── application_controller_renderer.rb
+│   │   ├── assets.rb
+│   │   ├── backtrace_silencers.rb
+│   │   ├── content_security_policy.rb
+│   │   ├── cookies_serializer.rb
+│   │   ├── cors.rb
+│   │   ├── filter_parameter_logging.rb
+│   │   ├── frontal.rb
+│   │   ├── frontal_mailer.rb
+│   │   ├── gaffe.rb
+│   │   ├── generators.rb
+│   │   ├── good_job.rb
+│   │   ├── inflections.rb
+│   │   ├── logstasher.rb
+│   │   ├── mailjet.rb
+│   │   ├── mime_types.rb
+│   │   ├── new_framework_defaults_7_0.rb
+│   │   ├── omniauth.rb
+│   │   ├── permissions_policy.rb
+│   │   ├── sentry.rb
+│   │   ├── strong_migrations.rb
+│   │   └── wrap_parameters.rb
+│   ├── locales
+│   │   ├── api_entreprise
+│   │   │   ├── cas_usages_entries.fr.yml
+│   │   │   ├── documentation.fr.yml
+│   │   │   ├── endpoint.fr.yml
+│   │   │   ├── faq_entries.fr.yml
+│   │   │   ├── fr.yml
+│   │   │   ├── missing_endpoints.fr.yml
+│   │   │   └── providers.fr.yml
+│   │   ├── api_particulier
+│   │   │   ├── cas_usages_entries.fr.yml
+│   │   │   ├── documentation.fr.yml
+│   │   │   ├── faq_entries.fr.yml
+│   │   │   ├── fr.yml
+│   │   │   └── providers.fr.yml
+│   │   ├── errors.fr.yml
+│   │   ├── fr.yml
+│   │   ├── mailers.fr.yml
+│   │   ├── models
+│   │   │   └── audit_notification.fr.yml
+│   │   ├── pagination.fr.yml
+│   │   └── reporter_groups.fr.yml
+│   ├── puma.rb
+│   ├── redis.yml
+│   ├── routes
+│   │   ├── api_entreprise.rb
+│   │   └── api_particulier.rb
+│   ├── routes.rb
+│   ├── schedule.yml
+│   ├── seo
+│   │   └── robots.txt
+│   ├── sitemap
+│   │   ├── api-entreprise.rb
+│   │   └── api-particulier.rb
+│   ├── sitemap.rb
+│   └── storage.yml
+├── config.ru
+├── db
+│   ├── migrate
+│   │   ├── 20221025080557_initial_schema.rb
+│   │   ├── 20230316095426_merge_contacts_into_users.rb
+│   │   ├── 20230529094940_delete_admin_from_users.rb
+│   │   ├── 20230621113853_add_indexes_to_user_authorization_request_roles.rb
+│   │   ├── 20230623074703_remove_scopes_tables.rb
+│   │   ├── 20230712084011_remove_useless_attributes_on_users.rb
+│   │   ├── 20230922102926_revoking_not_used_authorization_request_with_no_datapass.rb
+│   │   ├── 20231010150356_token_add_blacklisted_at.rb
+│   │   ├── 20231012152426_migrate_blacklisted_authorization_request_to_revoked.rb
+│   │   ├── 20231013073346_token_remove_blacklisted_archived.rb
+│   │   ├── 20231020161819_create_good_jobs.rb
+│   │   ├── 20231107094324_remove_access_request_survey_sent_to_tokens.rb
+│   │   ├── 20231108173009_migrate_from_json_to_jsonb.rb
+│   │   ├── 20231214133032_create_prolong_token_wizards.rb
+│   │   ├── 20240624152759_add_extra_infos_to_authorization_requests.rb
+│   │   ├── 20240827075246_create_good_job_settings.rb
+│   │   ├── 20240827075247_create_index_good_jobs_jobs_on_priority_created_at_when_unfinished.rb
+│   │   ├── 20240827075248_create_good_job_batches.rb
+│   │   ├── 20240827075249_create_good_job_executions.rb
+│   │   ├── 20240827075250_create_good_jobs_error_event.rb
+│   │   ├── 20240827075251_recreate_good_job_cron_indexes_with_conditional.rb
+│   │   ├── 20240827075252_create_good_job_labels.rb
+│   │   ├── 20240827075253_create_good_job_labels_index.rb
+│   │   ├── 20240827075254_remove_good_job_active_id_index.rb
+│   │   ├── 20240827075255_create_index_good_job_jobs_for_candidate_lookup.rb
+│   │   ├── 20240827075256_create_good_job_execution_error_backtrace.rb
+│   │   ├── 20240827075257_create_good_job_process_lock_ids.rb
+│   │   ├── 20240827075258_create_good_job_process_lock_indexes.rb
+│   │   ├── 20240827075259_create_good_job_execution_duration.rb
+│   │   ├── 20240910082154_add_public_id_to_authorization_requests.rb
+│   │   ├── 20241207111810_create_editors.rb
+│   │   ├── 20250110090753_add_can_copy_token_to_editors.rb
+│   │   ├── 20250304085243_add_provider_uids_to_users.rb
+│   │   ├── 20250326104012_migrate_tokens_scopes_to_api_particulier_v3.rb
+│   │   ├── 20250522060041_create_organizations.rb
+│   │   ├── 20250701105448_create_audit_notifications.rb
+│   │   ├── 20250930175106_add_mcp_to_tokens.rb
+│   │   ├── 20251024094616_add_used_to_tokens.rb
+│   │   └── 20260114112301_downcase_user_emails.rb
+│   ├── schema.rb
+│   └── seeds.rb
+├── docker
+│   ├── db
+│   │   └── init.sql
+│   └── entrypoint.sh
+├── docker-compose.yml
+├── docs
+│   ├── blog_posts.md
+│   ├── design.md
+│   ├── endpoint.md
+│   ├── search.md
+│   ├── tech-modal-turbo.md
+│   ├── webhooks.md
+│   └── wordings.md
+├── dumps
+│   └── .keep
+├── lib
+│   ├── admin_tooling
+│   │   ├── fqf_healthcheck.rb
+│   │   └── fqf_healthcheck_runner.rb
+│   ├── assets
+│   │   └── .keep
+│   └── tasks
+│       ├── .keep
+│       ├── cache.rake
+│       ├── db_seed.rake
+│       ├── import_datapass.rake
+│       └── token.rake
+├── log
+│   └── .keep
+├── postgresql_setup.txt
+├── public
+│   ├── api-entreprise-v3-openapi.yml -> ../config/api-entreprise-v3-openapi.yml
+│   ├── apple-touch-icon-precomposed.png
+│   ├── apple-touch-icon.png
+│   ├── favicon.ico
+│   ├── files
+│   │   ├── api-entreprise_liasses_fiscales_liste-des-champs-par-imprime.xls
+│   │   ├── attestation-fiscale-dgfip-exemple.pdf
+│   │   ├── attestation-sociale-urssaf-exemple.pdf
+│   │   ├── beneficiaires-effectifs-cerfa-gie.pdf
+│   │   ├── beneficiaires-effectifs-cerfa-societes.pdf
+│   │   ├── beneficiaires-effectifs-fiche-explicative-greffes.pdf
+│   │   ├── cerfa-2059f-2059g.pdf
+│   │   ├── cgu-api-particulier-2022-03.pdf
+│   │   ├── correspondance_champs_v2_entreprises.pdf
+│   │   ├── correspondance_champs_v2_etablissements.pdf
+│   │   ├── correspondance_champs_v2_v3_insee.xlsx
+│   │   ├── exemple-ademe-rge-certificat-certibat.pdf
+│   │   ├── exemple-ademe-rge-certificat-qualifelec.pdf
+│   │   ├── exemple-ademe-rge-certificat_qualibat.pdf
+│   │   ├── exemple-ademe-rge-certificat_tableau-de-l-ordre.pdf
+│   │   ├── exemple-ademe-rge-certificats-organisme-qualitenr.pdf
+│   │   ├── exemple-certificat-qualifelec.pdf
+│   │   ├── exemple-cibtp-attestations_cotisations_conges_payes_chomage_intemperies.pdf
+│   │   ├── exemple-cnetp-attestations_cotisations_conges_payes_chomage_intemperies.pdf
+│   │   ├── exemple-dgfip-attestation-fiscale.pdf
+│   │   ├── exemple-fntp-carte-professionnelle-travaux-publics.pdf
+│   │   ├── exemple-inpi-actes-changements-objetsocial-denominationsociale-activite.pdf
+│   │   ├── exemple-inpi-actes-date-cloture-exercice-social.pdf
+│   │   ├── exemple-inpi-actes-declaration-regularite-conformite.pdf
+│   │   ├── exemple-inpi-actes-statuts.pdf
+│   │   ├── exemple-inpi-comptes-annuels-bilan.pdf
+│   │   ├── exemple-probtp-conformites_cotisations_retraite.pdf
+│   │   ├── exemple-qualibat-certificat.pdf
+│   │   ├── exemple-urssaf-attestation-sociale.pdf
+│   │   ├── formulaire-unique-subventions-associations-cerfa_12156-06.pdf
+│   │   ├── gip_mds_effectifs_methode_calcul_urssaf.pdf
+│   │   ├── modalite_formulaire_qf_guide_collectivites.pdf
+│   │   ├── modalite_formulaire_qf_guide_editeurs.pdf
+│   │   ├── modalite_formulaire_qf_kit_communication.pptx
+│   │   └── rapport-gart.pdf
+│   └── icons
+│       ├── buildings
+│       │   ├── ancient-gate-fill.svg
+│       │   ├── ancient-gate-line.svg
+│       │   ├── ancient-pavilion-fill.svg
+│       │   ├── ancient-pavilion-line.svg
+│       │   ├── bank-fill.svg
+│       │   ├── bank-line.svg
+│       │   ├── building-fill.svg
+│       │   ├── building-line.svg
+│       │   ├── community-fill.svg
+│       │   ├── community-line.svg
+│       │   ├── government-fill.svg
+│       │   ├── government-line.svg
+│       │   ├── home-4-fill.svg
+│       │   ├── home-4-line.svg
+│       │   ├── hospital-fill.svg
+│       │   ├── hospital-line.svg
+│       │   ├── hotel-fill.svg
+│       │   ├── hotel-line.svg
+│       │   ├── store-fill.svg
+│       │   └── store-line.svg
+│       ├── business
+│       │   ├── archive-fill.svg
+│       │   ├── archive-line.svg
+│       │   ├── attachment-fill.svg
+│       │   ├── attachment-line.svg
+│       │   ├── award-fill.svg
+│       │   ├── award-line.svg
+│       │   ├── bar-chart-box-fill.svg
+│       │   ├── bar-chart-box-line.svg
+│       │   ├── bookmark-fill.svg
+│       │   ├── bookmark-line.svg
+│       │   ├── briefcase-fill.svg
+│       │   ├── briefcase-line.svg
+│       │   ├── calendar-*.svg  (6 files)
+│       │   ├── cloud-fill.svg
+│       │   ├── cloud-line.svg
+│       │   ├── copyright-fill.svg
+│       │   ├── copyright-line.svg
+│       │   ├── customer-service-fill.svg
+│       │   ├── customer-service-line.svg
+│       │   ├── flag-fill.svg
+│       │   ├── flag-line.svg
+│       │   ├── global-fill.svg
+│       │   ├── global-line.svg
+│       │   ├── line-chart-fill.svg
+│       │   ├── line-chart-line.svg
+│       │   ├── links-fill.svg
+│       │   ├── links-line.svg
+│       │   ├── mail-fill.svg
+│       │   ├── mail-line.svg
+│       │   ├── mail-open-fill.svg
+│       │   ├── mail-open-line.svg
+│       │   ├── medal-fill.svg
+│       │   ├── medal-line.svg
+│       │   ├── pie-chart-2-fill.svg
+│       │   ├── pie-chart-2-line.svg
+│       │   ├── pie-chart-box-fill.svg
+│       │   ├── pie-chart-box-line.svg
+│       │   ├── printer-fill.svg
+│       │   ├── printer-line.svg
+│       │   ├── profil-fill.svg
+│       │   ├── profil-line.svg
+│       │   ├── projector-2-fill.svg
+│       │   ├── projector-2-line.svg
+│       │   ├── send-plane-fill.svg
+│       │   ├── send-plane-line.svg
+│       │   ├── slideshow-fill.svg
+│       │   ├── slideshow-line.svg
+│       │   ├── window-fill.svg
+│       │   └── window-line.svg
+│       ├── communication
+│       │   ├── chat-2-fill.svg
+│       │   ├── chat-2-line.svg
+│       │   ├── chat-3-fill.svg
+│       │   ├── chat-3-line.svg
+│       │   ├── chat-check-fill.svg
+│       │   ├── chat-check-line.svg
+│       │   ├── chat-delete-fill.svg
+│       │   ├── chat-delete-line.svg
+│       │   ├── chat-poll-fill.svg
+│       │   ├── chat-poll-line.svg
+│       │   ├── discuss-fill.svg
+│       │   ├── discuss-line.svg
+│       │   ├── feedback-fill.svg
+│       │   ├── feedback-line.svg
+│       │   ├── message-2-fill.svg
+│       │   ├── message-2-line.svg
+│       │   ├── question-answer-fill.svg
+│       │   ├── question-answer-line.svg
+│       │   ├── questionnaire-fill.svg
+│       │   ├── questionnaire-line.svg
+│       │   ├── video-chat-fill.svg
+│       │   └── video-chat-line.svg
+│       ├── design
+│       │   ├── ball-pen-fill.svg
+│       │   ├── ball-pen-line.svg
+│       │   ├── brush-3-fill.svg
+│       │   ├── brush-3-line.svg
+│       │   ├── brush-fill.svg
+│       │   ├── brush-line.svg
+│       │   ├── contrast-fill.svg
+│       │   ├── contrast-line.svg
+│       │   ├── crop-fill.svg
+│       │   ├── crop-line.svg
+│       │   ├── drag-move-2-fill.svg
+│       │   ├── drag-move-2-line.svg
+│       │   ├── drop-fill.svg
+│       │   ├── drop-line.svg
+│       │   ├── edit-box-fill.svg
+│       │   ├── edit-box-line.svg
+│       │   ├── edit-fill.svg
+│       │   ├── edit-line.svg
+│       │   ├── ink-bottle-fill.svg
+│       │   ├── ink-bottle-line.svg
+│       │   ├── layout-grid-fill.svg
+│       │   ├── layout-grid-line.svg
+│       │   ├── mark-pen-fill.svg
+│       │   ├── mark-pen-line.svg
+│       │   ├── paint-brush-fill.svg
+│       │   ├── paint-brush-line.svg
+│       │   ├── paint-fill.svg
+│       │   ├── paint-line.svg
+│       │   ├── palette-fill.svg
+│       │   ├── palette-line.svg
+│       │   ├── pantone-fill.svg
+│       │   ├── pantone-line.svg
+│       │   ├── pen-nib-fill.svg
+│       │   ├── pen-nib-line.svg
+│       │   ├── pencil-fill.svg
+│       │   ├── pencil-line.svg
+│       │   ├── pencil-ruler-fill.svg
+│       │   ├── pencil-ruler-line.svg
+│       │   ├── sip-fill.svg
+│       │   ├── sip-line.svg
+│       │   ├── table-fill.svg
+│       │   └── table-line.svg
+│       ├── development
+│       │   ├── bug-fill.svg
+│       │   ├── bug-line.svg
+│       │   ├── code-box-fill.svg
+│       │   ├── code-box-line.svg
+│       │   ├── code-s-slash-line.svg
+│       │   ├── cursor-fill.svg
+│       │   ├── cursor-line.svg
+│       │   ├── git-branch-fill.svg
+│       │   ├── git-branch-line.svg
+│       │   ├── git-commit-fill.svg
+│       │   ├── git-commit-line.svg
+│       │   ├── git-merge-fill.svg
+│       │   ├── git-merge-line.svg
+│       │   ├── git-pull-request-fill.svg
+│       │   ├── git-pull-request-line.svg
+│       │   ├── git-repository-commits-fill.svg
+│       │   ├── git-repository-commits-line.svg
+│       │   ├── git-repository-fill.svg
+│       │   ├── git-repository-line.svg
+│       │   ├── git-repository-private-fill.svg
+│       │   ├── git-repository-private-line.svg
+│       │   ├── terminal-box-fill.svg
+│       │   ├── terminal-box-line.svg
+│       │   ├── terminal-line.svg
+│       │   ├── terminal-window-fill.svg
+│       │   └── terminal-window-line.svg
+│       ├── device
+│       │   ├── bluetooth-fill.svg
+│       │   ├── bluetooth-line.svg
+│       │   ├── computer-fill.svg
+│       │   ├── computer-line.svg
+│       │   ├── dashboard-3-fill.svg
+│       │   ├── dashboard-3-line.svg
+│       │   ├── database-fill.svg
+│       │   ├── database-line.svg
+│       │   ├── device-fill.svg
+│       │   ├── device-line.svg
+│       │   ├── hard-drive-2-fill.svg
+│       │   ├── hard-drive-2-line.svg
+│       │   ├── mac-fill.svg
+│       │   ├── mac-line.svg
+│       │   ├── phone-fill.svg
+│       │   ├── phone-line.svg
+│       │   ├── qr-code-fill.svg
+│       │   ├── qr-code-line.svg
+│       │   ├── rss-fill.svg
+│       │   ├── rss-line.svg
+│       │   ├── save-3-fill.svg
+│       │   ├── save-3-line.svg
+│       │   ├── save-fill.svg
+│       │   ├── save-line.svg
+│       │   ├── server-fill.svg
+│       │   ├── server-line.svg
+│       │   ├── smartphone-fill.svg
+│       │   ├── smartphone-line.svg
+│       │   ├── tablet-fill.svg
+│       │   ├── tablet-line.svg
+│       │   ├── tv-fill.svg
+│       │   ├── tv-line.svg
+│       │   ├── wifi-fill.svg
+│       │   └── wifi-line.svg
+│       ├── document
+│       │   ├── article-fill.svg
+│       │   ├── article-line.svg
+│       │   ├── book-2-fill.svg
+│       │   ├── book-2-line.svg
+│       │   ├── booklet-fill.svg
+│       │   ├── booklet-line.svg
+│       │   ├── clipboard-fill.svg
+│       │   ├── clipboard-line.svg
+│       │   ├── draft-fill.svg
+│       │   ├── draft-line.svg
+│       │   ├── file-add-fill.svg
+│       │   ├── file-add-line.svg
+│       │   ├── file-download-fill.svg
+│       │   ├── file-download-line.svg
+│       │   ├── file-fill.svg
+│       │   ├── file-line.svg
+│       │   ├── file-pdf-fill.svg
+│       │   ├── file-pdf-line.svg
+│       │   ├── file-text-fill.svg
+│       │   ├── file-text-line.svg
+│       │   ├── folder-2-fill.svg
+│       │   ├── folder-2-line.svg
+│       │   ├── newspaper-fill.svg
+│       │   ├── newspaper-line.svg
+│       │   ├── survey-fill.svg
+│       │   ├── survey-line.svg
+│       │   ├── todo-fill.svg
+│       │   └── todo-line.svg
+│       ├── editor
+│       │   ├── code-view.svg
+│       │   ├── font-size.svg
+│       │   ├── fr--bold.svg
+│       │   ├── fr--highlight.svg
+│       │   ├── fr--quote-fill.svg
+│       │   ├── fr--quote-line.svg
+│       │   ├── h-1.svg
+│       │   ├── h-2.svg
+│       │   ├── h-3.svg
+│       │   ├── h-4.svg
+│       │   ├── h-5.svg
+│       │   ├── h-6.svg
+│       │   ├── hashtag.svg
+│       │   ├── italic.svg
+│       │   ├── link-unlink.svg
+│       │   ├── link.svg
+│       │   ├── list-ordered.svg
+│       │   ├── list-unordered.svg
+│       │   ├── question-mark.svg
+│       │   ├── separator.svg
+│       │   ├── space.svg
+│       │   ├── subscript.svg
+│       │   ├── superscript.svg
+│       │   ├── table-2.svg
+│       │   └── translate-2.svg
+│       ├── finance
+│       │   ├── bank-card-fill.svg
+│       │   ├── bank-card-line.svg
+│       │   ├── coin-fill.svg
+│       │   ├── gift-fill.svg
+│       │   ├── gift-line.svg
+│       │   ├── money-euro-box-fill.svg
+│       │   ├── money-euro-box-line.svg
+│       │   ├── money-euro-circle-fill.svg
+│       │   ├── money-euro-circle-line.svg
+│       │   ├── secure-payment-fill.svg
+│       │   ├── secure-payment-line.svg
+│       │   ├── shopping-bag-fill.svg
+│       │   ├── shopping-bag-line.svg
+│       │   ├── shopping-cart-2-fill.svg
+│       │   ├── shopping-cart-2-line.svg
+│       │   ├── trophy-fill.svg
+│       │   └── trophy-line.svg
+│       ├── health
+│       │   ├── capsule-fill.svg
+│       │   ├── capsule-line.svg
+│       │   ├── dislike-fill.svg
+│       │   ├── dislike-line.svg
+│       │   ├── dossier-fill.svg
+│       │   ├── dossier-line.svg
+│       │   ├── first-aid-kit-fill.svg
+│       │   ├── first-aid-kit-line.svg
+│       │   ├── hand-sanitizer-fill.svg
+│       │   ├── hand-sanitizer-line.svg
+│       │   ├── health-book-fill.svg
+│       │   ├── health-book-line.svg
+│       │   ├── heart-fill.svg
+│       │   ├── heart-line.svg
+│       │   ├── heart-pulse-fill.svg
+│       │   ├── heart-pulse-line.svg
+│       │   ├── lungs-fill.svg
+│       │   ├── lungs-line.svg
+│       │   ├── medicine-bottle-fill.svg
+│       │   ├── medicine-bottle-line.svg
+│       │   ├── mental-health-fill.svg
+│       │   ├── mental-health-line.svg
+│       │   ├── microscope-fill.svg
+│       │   ├── microscope-line.svg
+│       │   ├── psychotherapy-fill.svg
+│       │   ├── psychotherapy-line.svg
+│       │   ├── pulse-line.svg
+│       │   ├── stethoscope-fill.svg
+│       │   ├── stethoscope-line.svg
+│       │   ├── surgical-mask-fill.svg
+│       │   ├── surgical-mask-line.svg
+│       │   ├── syringe-fill.svg
+│       │   ├── syringe-line.svg
+│       │   ├── test-tube-fill.svg
+│       │   ├── test-tube-line.svg
+│       │   ├── thermometer-fill.svg
+│       │   ├── thermometer-line.svg
+│       │   ├── virus-fill.svg
+│       │   └── virus-line.svg
+│       ├── logo
+│       │   ├── chrome-fill.svg
+│       │   ├── chrome-line.svg
+│       │   ├── edge-fill.svg
+│       │   ├── edge-line.svg
+│       │   ├── facebook-circle-fill.svg
+│       │   ├── facebook-circle-line.svg
+│       │   ├── firefox-fill.svg
+│       │   ├── firefox-line.svg
+│       │   ├── fr--dailymotion-fill.svg
+│       │   ├── fr--dailymotion-line.svg
+│       │   ├── fr--tiktok-fill.svg
+│       │   ├── fr--tiktok-line.svg
+│       │   ├── github-fill.svg
+│       │   ├── github-line.svg
+│       │   ├── google-fill.svg
+│       │   ├── google-line.svg
+│       │   ├── ie-fill.svg
+│       │   ├── ie-line.svg
+│       │   ├── instagram-fill.svg
+│       │   ├── instagram-line.svg
+│       │   ├── linkedin-box-fill.svg
+│       │   ├── linkedin-box-line.svg
+│       │   ├── mastodon-fill.svg
+│       │   ├── mastodon-line.svg
+│       │   ├── npmjs-fill.svg
+│       │   ├── npmjs-line.svg
+│       │   ├── remixicon-fill.svg
+│       │   ├── remixicon-line.svg
+│       │   ├── safari-fill.svg
+│       │   ├── safari-line.svg
+│       │   ├── slack-fill.svg
+│       │   ├── slack-line.svg
+│       │   ├── snapchat-fill.svg
+│       │   ├── snapchat-line.svg
+│       │   ├── telegram-fill.svg
+│       │   ├── telegram-line.svg
+│       │   ├── twitch-fill.svg
+│       │   ├── twitch-line.svg
+│       │   ├── twitter-fill.svg
+│       │   ├── twitter-line.svg
+│       │   ├── vimeo-fill.svg
+│       │   ├── vimeo-line.svg
+│       │   ├── vuejs-fill.svg
+│       │   ├── vuejs-line.svg
+│       │   ├── youtube-fill.svg
+│       │   └── youtube-line.svg
+│       ├── map
+│       │   ├── anchor-fill.svg
+│       │   ├── anchor-line.svg
+│       │   ├── bike-fill.svg
+│       │   ├── bike-line.svg
+│       │   ├── bus-fill.svg
+│       │   ├── bus-line.svg
+│       │   ├── car-fill.svg
+│       │   ├── car-line.svg
+│       │   ├── caravan-fill.svg
+│       │   ├── caravan-line.svg
+│       │   ├── charging-pile-2-fill.svg
+│       │   ├── charging-pile-2-line.svg
+│       │   ├── compass-3-fill.svg
+│       │   ├── compass-3-line.svg
+│       │   ├── cup-fill.svg
+│       │   ├── cup-line.svg
+│       │   ├── earth-fill.svg
+│       │   ├── earth-line.svg
+│       │   ├── france-fill.svg
+│       │   ├── france-line.svg
+│       │   ├── gas-station-fill.svg
+│       │   ├── gas-station-line.svg
+│       │   ├── goblet-fill.svg
+│       │   ├── goblet-line.svg
+│       │   ├── map-pin-2-fill.svg
+│       │   ├── map-pin-2-line.svg
+│       │   ├── map-pin-user-fill.svg
+│       │   ├── map-pin-user-line.svg
+│       │   ├── motorbike-fill.svg
+│       │   ├── motorbike-line.svg
+│       │   ├── passport-fill.svg
+│       │   ├── passport-line.svg
+│       │   ├── restaurant-fill.svg
+│       │   ├── restaurant-line.svg
+│       │   ├── road-map-fill.svg
+│       │   ├── road-map-line.svg
+│       │   ├── sailboat-fill.svg
+│       │   ├── sailboat-line.svg
+│       │   ├── ship-2-fill.svg
+│       │   ├── ship-2-line.svg
+│       │   ├── signal-tower-fill.svg
+│       │   ├── signal-tower-line.svg
+│       │   ├── suitcase-2-fill.svg
+│       │   ├── suitcase-2-line.svg
+│       │   ├── taxi-fill.svg
+│       │   ├── taxi-line.svg
+│       │   ├── train-fill.svg
+│       │   └── train-line.svg
+│       ├── media
+│       │   ├── camera-fill.svg
+│       │   ├── camera-line.svg
+│       │   ├── clapperboard-fill.svg
+│       │   ├── clapperboard-line.svg
+│       │   ├── equalizer-fill.svg
+│       │   ├── equalizer-line.svg
+│       │   ├── film-fill.svg
+│       │   ├── film-line.svg
+│       │   ├── gallery-fill.svg
+│       │   ├── gallery-line.svg
+│       │   ├── headphone-fill.svg
+│       │   ├── headphone-line.svg
+│       │   ├── image-add-fill.svg
+│       │   ├── image-add-line.svg
+│       │   ├── image-edit-fill.svg
+│       │   ├── image-edit-line.svg
+│       │   ├── image-fill.svg
+│       │   ├── image-line.svg
+│       │   ├── live-fill.svg
+│       │   ├── live-line.svg
+│       │   ├── mic-fill.svg
+│       │   ├── mic-line.svg
+│       │   ├── music-2-fill.svg
+│       │   ├── music-2-line.svg
+│       │   ├── notification-3-fill.svg
+│       │   ├── notification-3-line.svg
+│       │   ├── pause-circle-fill.svg
+│       │   ├── pause-circle-line.svg
+│       │   ├── play-circle-fill.svg
+│       │   ├── play-circle-line.svg
+│       │   ├── stop-circle-fill.svg
+│       │   ├── stop-circle-line.svg
+│       │   ├── transcription.svg
+│       │   ├── volume-down-fill.svg
+│       │   ├── volume-down-line.svg
+│       │   ├── volume-mute-fill.svg
+│       │   ├── volume-mute-line.svg
+│       │   ├── volume-up-fill.svg
+│       │   └── volume-up-line.svg
+│       ├── others
+│       │   ├── leaf-fill.svg
+│       │   ├── leaf-line.svg
+│       │   ├── lightbulb-fill.svg
+│       │   ├── lightbulb-line.svg
+│       │   ├── plant-fill.svg
+│       │   ├── plant-line.svg
+│       │   ├── recycle-fill.svg
+│       │   ├── recycle-line.svg
+│       │   ├── scales-3-fill.svg
+│       │   ├── scales-3-line.svg
+│       │   ├── seedling-fill.svg
+│       │   ├── seedling-line.svg
+│       │   ├── umbrella-fill.svg
+│       │   └── umbrella-line.svg
+│       ├── system
+│       │   ├── add-circle-fill.svg
+│       │   ├── add-circle-line.svg
+│       │   ├── add-line.svg
+│       │   ├── alarm-warning-fill.svg
+│       │   ├── alarm-warning-line.svg
+│       │   ├── alert-fill.svg
+│       │   ├── alert-line.svg
+│       │   ├── arrow-*.svg  (21 files)
+│       │   ├── check-line.svg
+│       │   ├── checkbox-circle-fill.svg
+│       │   ├── checkbox-circle-line.svg
+│       │   ├── checkbox-fill.svg
+│       │   ├── checkbox-line.svg
+│       │   ├── close-circle-fill.svg
+│       │   ├── close-circle-line.svg
+│       │   ├── close-line.svg
+│       │   ├── delete-bin-fill.svg
+│       │   ├── delete-bin-line.svg
+│       │   ├── download-fill.svg
+│       │   ├── download-line.svg
+│       │   ├── error-warning-fill.svg
+│       │   ├── error-warning-line.svg
+│       │   ├── external-link-fill.svg
+│       │   ├── external-link-line.svg
+│       │   ├── eye-fill.svg
+│       │   ├── eye-line.svg
+│       │   ├── eye-off-fill.svg
+│       │   ├── eye-off-line.svg
+│       │   ├── filter-fill.svg
+│       │   ├── filter-line.svg
+│       │   ├── fr-*.svg  (13 files)
+│       │   ├── information-fill.svg
+│       │   ├── information-line.svg
+│       │   ├── lock-fill.svg
+│       │   ├── lock-line.svg
+│       │   ├── lock-unlock-fill.svg
+│       │   ├── lock-unlock-line.svg
+│       │   ├── logout-box-r-fill.svg
+│       │   ├── logout-box-r-line.svg
+│       │   ├── menu-2-fill.svg
+│       │   ├── menu-fill.svg
+│       │   ├── more-fill.svg
+│       │   ├── more-line.svg
+│       │   ├── notification-badge-fill.svg
+│       │   ├── notification-badge-line.svg
+│       │   ├── question-fill.svg
+│       │   ├── question-line.svg
+│       │   ├── refresh-fill.svg
+│       │   ├── refresh-line.svg
+│       │   ├── search-fill.svg
+│       │   ├── search-line.svg
+│       │   ├── settings-5-fill.svg
+│       │   ├── settings-5-line.svg
+│       │   ├── shield-fill.svg
+│       │   ├── shield-line.svg
+│       │   ├── star-fill.svg
+│       │   ├── star-line.svg
+│       │   ├── star-s-fill.svg
+│       │   ├── star-s-line.svg
+│       │   ├── subtract-line.svg
+│       │   ├── thumb-down-fill.svg
+│       │   ├── thumb-down-line.svg
+│       │   ├── thumb-up-fill.svg
+│       │   ├── thumb-up-line.svg
+│       │   ├── time-fill.svg
+│       │   ├── time-line.svg
+│       │   ├── timer-fill.svg
+│       │   ├── timer-line.svg
+│       │   ├── upload-2-fill.svg
+│       │   ├── upload-2-line.svg
+│       │   ├── upload-fill.svg
+│       │   ├── upload-line.svg
+│       │   ├── zoom-in-fill.svg
+│       │   ├── zoom-in-line.svg
+│       │   ├── zoom-out-fill.svg
+│       │   └── zoom-out-line.svg
+│       ├── user
+│       │   ├── account-circle-fill.svg
+│       │   ├── account-circle-line.svg
+│       │   ├── account-pin-circle-fill.svg
+│       │   ├── account-pin-circle-line.svg
+│       │   ├── admin-fill.svg
+│       │   ├── admin-line.svg
+│       │   ├── group-fill.svg
+│       │   ├── group-line.svg
+│       │   ├── parent-fill.svg
+│       │   ├── parent-line.svg
+│       │   ├── team-fill.svg
+│       │   ├── team-line.svg
+│       │   ├── user-add-fill.svg
+│       │   ├── user-add-line.svg
+│       │   ├── user-fill.svg
+│       │   ├── user-heart-fill.svg
+│       │   ├── user-heart-line.svg
+│       │   ├── user-line.svg
+│       │   ├── user-search-fill.svg
+│       │   ├── user-search-line.svg
+│       │   ├── user-setting-fill.svg
+│       │   ├── user-setting-line.svg
+│       │   ├── user-star-fill.svg
+│       │   └── user-star-line.svg
+│       └── weather
+│           ├── cloudy-2-fill.svg
+│           ├── cloudy-2-line.svg
+│           ├── flashlight-fill.svg
+│           ├── flashlight-line.svg
+│           ├── moon-fill.svg
+│           ├── moon-line.svg
+│           ├── sun-fill.svg
+│           └── sun-line.svg
+├── scripts
+│   └── import_master_keys.sh
+├── spec
+│   ├── .rubocop.yml
+│   ├── acceptances
+│   │   └── datapass_webhooks_config_format_spec.rb
+│   ├── clients
+│   │   ├── hubee_api_client_spec.rb
+│   │   └── insee_sirene_api_client_spec.rb
+│   ├── controllers
+│   │   ├── api
+│   │   │   ├── datapass_webhooks_controller_spec.rb
+│   │   │   ├── datapass_webhooks_v2_controller_spec.rb
+│   │   │   └── frontal_controller_spec.rb
+│   │   ├── api_entreprise
+│   │   │   ├── authenticated_users_controller_spec.rb
+│   │   │   ├── sessions_controller_spec.rb
+│   │   │   └── stats_controller_spec.rb
+│   │   └── api_particulier
+│   │       ├── authenticated_users_controller_spec.rb
+│   │       └── stats_controller_spec.rb
+│   ├── decorators
+│   │   └── token_decorator_spec.rb
+│   ├── facade
+│   │   └── entreprise_with_attestations_facade_spec.rb
+│   ├── factories
+│   │   ├── access_logs.rb
+│   │   ├── audit_notifications.rb
+│   │   ├── authorization_requests.rb
+│   │   ├── datapass_webhooks.rb
+│   │   ├── datapass_webhooks_v2.rb
+│   │   ├── editors.rb
+│   │   ├── entreprises.rb
+│   │   ├── magic_links.rb
+│   │   ├── organizations.rb
+│   │   ├── prolong_token_wizard.rb
+│   │   ├── tokens.rb
+│   │   ├── user_authorization_request_roles.rb
+│   │   └── users.rb
+│   ├── features
+│   │   ├── admin
+│   │   │   ├── access_spec.rb
+│   │   │   ├── audit_notifications_spec.rb
+│   │   │   ├── editors_spec.rb
+│   │   │   ├── provider_dashboards_spec.rb
+│   │   │   ├── tokens_spec.rb
+│   │   │   └── users_spec.rb
+│   │   ├── api_entreprise
+│   │   │   ├── access_spec.rb
+│   │   │   ├── blog_spec.rb
+│   │   │   ├── cas_usages_spec.rb
+│   │   │   ├── create_token_magic_link_spec.rb
+│   │   │   ├── documentation_spec.rb
+│   │   │   ├── download_attestations_spec.rb
+│   │   │   ├── endpoints
+│   │   │   │   ├── index_spec.rb
+│   │   │   │   └── show_spec.rb
+│   │   │   ├── faq_spec.rb
+│   │   │   ├── logout_spec.rb
+│   │   │   ├── pages_spec.rb
+│   │   │   ├── root_path_spec.rb
+│   │   │   ├── show_token_from_magic_link_spec.rb
+│   │   │   ├── signin_process_datapass_spec.rb
+│   │   │   ├── stats_spec.rb
+│   │   │   ├── status_header_spec.rb
+│   │   │   ├── token_renew_spec.rb
+│   │   │   ├── token_stats_spec.rb
+│   │   │   └── user_profile_spec.rb
+│   │   ├── api_particulier
+│   │   │   ├── ask_for_prolongation_token_spec.rb
+│   │   │   ├── authorization_request_index_spec.rb
+│   │   │   ├── authorization_request_show_spec.rb
+│   │   │   ├── blog_spec.rb
+│   │   │   ├── cas_usages_spec.rb
+│   │   │   ├── create_token_magic_link_spec.rb
+│   │   │   ├── documentation_spec.rb
+│   │   │   ├── endpoints
+│   │   │   │   ├── index_spec.rb
+│   │   │   │   └── show_spec.rb
+│   │   │   ├── faq_spec.rb
+│   │   │   ├── logout_spec.rb
+│   │   │   ├── pages_spec.rb
+│   │   │   ├── profile_spec.rb
+│   │   │   ├── reporters_spec.rb
+│   │   │   ├── show_token_from_magic_link_spec.rb
+│   │   │   ├── show_token_spec.rb
+│   │   │   ├── signin_process_datapass_spec.rb
+│   │   │   └── stats_spec.rb
+│   │   ├── datapass_webhooks
+│   │   │   └── mails_spec.rb
+│   │   ├── editor
+│   │   │   ├── access_spec.rb
+│   │   │   └── authorization_requests_spec.rb
+│   │   ├── prolong_token_build_spec.rb
+│   │   ├── prolong_token_spec.rb
+│   │   ├── prolong_token_start_spec.rb
+│   │   └── provider
+│   │       ├── access_spec.rb
+│   │       └── navigation_spec.rb
+│   ├── fixtures
+│   │   ├── insee
+│   │   │   ├── 12000101100010.json
+│   │   │   ├── 13002526500013.json
+│   │   │   ├── 21330075900015.json
+│   │   │   ├── 21340172201787.json
+│   │   │   └── 21750001600019.json
+│   │   └── insee_unite_legale_example.json
+│   ├── helpers
+│   │   ├── feature_helper.rb
+│   │   └── specs_helper.rb
+│   ├── helpers_spec
+│   │   ├── external_url_helper_spec.rb
+│   │   └── scope_helper_spec.rb
+│   ├── i18n_spec.rb
+│   ├── interactors
+│   │   ├── admin
+│   │   │   └── audit_notifications
+│   │   │       └── create_model_spec.rb
+│   │   ├── datapass_webhook
+│   │   │   ├── api_particulier
+│   │   │   │   ├── create_formulaire_qf_collectivity_spec.rb
+│   │   │   │   ├── create_hubee_organization_spec.rb
+│   │   │   │   ├── create_hubee_subscription_spec.rb
+│   │   │   │   └── notify_reporters_spec.rb
+│   │   │   ├── archive_current_authorization_request_spec.rb
+│   │   │   ├── archive_previous_authorization_request_spec.rb
+│   │   │   ├── create_or_prolong_token_spec.rb
+│   │   │   ├── extract_mailjet_variables_spec.rb
+│   │   │   ├── find_or_create_authorization_request_spec.rb
+│   │   │   ├── find_or_create_user_spec.rb
+│   │   │   ├── refuse_current_authorization_request_spec.rb
+│   │   │   ├── revoke_current_token_spec.rb
+│   │   │   ├── schedule_authorization_request_emails_spec.rb
+│   │   │   └── update_mailjet_contacts_spec.rb
+│   │   └── user
+│   │       └── proconnect_login_spec.rb
+│   ├── jobs
+│   │   ├── create_formulaire_qf_resources_job_spec.rb
+│   │   ├── healthcheck_job_spec.rb
+│   │   ├── schedule_authorization_request_email_job_spec.rb
+│   │   ├── schedule_expiration_notice_email_job_spec.rb
+│   │   ├── token_expiration_notice_job_spec.rb
+│   │   └── update_organization_insee_payload_job_spec.rb
+│   ├── lib
+│   │   ├── access_token_spec.rb
+│   │   ├── authorization_request_condition_facade_spec.rb
+│   │   ├── hub_signature_spec.rb
+│   │   ├── seeds_spec.rb
+│   │   └── tasks
+│   │       ├── sitemap_spec.rb
+│   │       └── token_spec.rb
+│   ├── mailers
+│   │   ├── api_entreprise
+│   │   │   ├── audit_mailer_spec.rb
+│   │   │   ├── authorization_request_mailer_spec.rb
+│   │   │   └── token_mailer_spec.rb
+│   │   ├── api_particulier
+│   │   │   ├── authorization_request_mailer_spec.rb
+│   │   │   ├── reporters_mailer_spec.rb
+│   │   │   └── token_mailer_spec.rb
+│   │   └── previews
+│   │       ├── api_entreprise
+│   │       │   ├── audit_mailer_preview.rb
+│   │       │   ├── authorization_request_mailer_preview.rb
+│   │       │   └── token_mailer_preview.rb
+│   │       └── api_particulier
+│   │           ├── audit_mailer_preview.rb
+│   │           ├── authorization_request_mailer_preview.rb
+│   │           ├── reporters_mailer_preview.rb
+│   │           └── token_mailer_preview.rb
+│   ├── models
+│   │   ├── access_log_spec.rb
+│   │   ├── api_entreprise
+│   │   │   ├── blog_post_spec.rb
+│   │   │   ├── endpoint_spec.rb
+│   │   │   ├── faq_entry_spec.rb
+│   │   │   └── provider_spec.rb
+│   │   ├── api_particulier
+│   │   │   ├── blog_post_spec.rb
+│   │   │   ├── endpoint_spec.rb
+│   │   │   ├── endpoint_v2_spec.rb
+│   │   │   ├── faq_entry_spec.rb
+│   │   │   └── provider_spec.rb
+│   │   ├── audit_notification_spec.rb
+│   │   ├── authorization_request_spec.rb
+│   │   ├── documentation_searchable_chunk_spec.rb
+│   │   ├── editor_spec.rb
+│   │   ├── entreprise_spec.rb
+│   │   ├── magic_link_spec.rb
+│   │   ├── organization_spec.rb
+│   │   ├── prolong_token_wizard_spec.rb
+│   │   ├── token_spec.rb
+│   │   ├── user_authorization_request_role_spec.rb
+│   │   └── user_spec.rb
+│   ├── organizers
+│   │   ├── admin
+│   │   │   ├── audit_notifications
+│   │   │   │   └── create_spec.rb
+│   │   │   └── tokens
+│   │   │       └── ban_spec.rb
+│   │   ├── datapass_webhook
+│   │   │   ├── api_entreprise_spec.rb
+│   │   │   ├── api_particulier_spec.rb
+│   │   │   ├── create_formulaire_qf_resources_spec.rb
+│   │   │   └── v2
+│   │   │       ├── api_entreprise_spec.rb
+│   │   │       └── api_particulier_spec.rb
+│   │   └── token
+│   │       ├── deliver_magic_link_to_email_spec.rb
+│   │       └── send_expiration_notices_spec.rb
+│   ├── rails_helper.rb
+│   ├── services
+│   │   ├── metabase_embed_service_spec.rb
+│   │   ├── migrate_legacy_token_service_spec.rb
+│   │   ├── open_api_schema_to_example_spec.rb
+│   │   ├── open_bureau_date_spec.rb
+│   │   ├── siade_spec.rb
+│   │   └── status_page_spec.rb
+│   ├── spec_helper.rb
+│   ├── stores
+│   │   └── api_entreprise
+│   │       └── endpoints_store_spec.rb
+│   └── support
+│       ├── hubee_api_mocks.rb
+│       ├── insee_sirene_api_mocks.rb
+│       ├── shared_context
+│       │   └── mute_rake_tasks.rb
+│       └── shared_examples
+│           ├── controllers
+│           │   ├── authenticated_users_controller.rb
+│           │   └── stats_controller.rb
+│           ├── datapass_webhooks.rb
+│           ├── features
+│           │   ├── blog.rb
+│           │   ├── cas_usages.rb
+│           │   ├── create_token_magic_link.rb
+│           │   ├── documentation.rb
+│           │   ├── endpoints
+│           │   │   ├── index.rb
+│           │   │   └── show.rb
+│           │   ├── faq.rb
+│           │   ├── logout.rb
+│           │   ├── pages.rb
+│           │   ├── show_token_from_magic_link.rb
+│           │   ├── signin_process_datapass.rb
+│           │   ├── stats.rb
+│           │   └── user_profile.rb
+│           ├── flash_notification.rb
+│           ├── mailers
+│           │   ├── authorization_request_mailer.rb
+│           │   └── token_mailer.rb
+│           ├── models
+│           │   ├── blog_post.rb
+│           │   ├── endpoint.rb
+│           │   ├── faq_entry.rb
+│           │   └── provider.rb
+│           ├── organizers
+│           │   ├── datapass_webhook
+│           │   │   └── base_spec.rb
+│           │   └── user
+│           │       └── o_auth_login.rb
+│           └── token_magic_link.rb
+├── storage
+│   └── .keep
+├── tmp
+│   └── .keep
+├── token_export
+│   └── .gitkeep
+└── vendor
+    └── .keep
+294 directories, 2317 files
