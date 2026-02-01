@@ -1,0 +1,581 @@
+.
+├── .dockerignore
+├── .editorconfig
+├── .env.template
+├── .gitattributes
+├── .github
+│   └── workflows
+│       ├── CLEVER_CLOUD.md
+│       ├── UPGRADE_FROM_UPSTREAM.md
+│       └── clever-cloud.yml
+├── .gitignore
+├── .hadolint.yaml
+├── .pre-commit-config.yaml
+├── Cargo.lock
+├── Cargo.toml
+├── Dockerfile -> docker/Dockerfile.debian
+├── LICENSE.txt
+├── README.md
+├── SECURITY.md
+├── build.rs
+├── clevercloud
+│   ├── post_build_hook.sh
+│   └── pre_build_hook.sh
+├── diesel.toml
+├── docker
+│   ├── DockerSettings.yaml
+│   ├── Dockerfile.alpine
+│   ├── Dockerfile.debian
+│   ├── Dockerfile.j2
+│   ├── Makefile
+│   ├── README.md
+│   ├── bake.sh
+│   ├── bake_env.sh
+│   ├── docker-bake.hcl
+│   ├── healthcheck.sh
+│   ├── podman-bake.sh
+│   ├── render_template
+│   └── start.sh
+├── macros
+│   ├── Cargo.toml
+│   └── src
+│       └── lib.rs
+├── migrations
+│   ├── mysql
+│   │   ├── 2018-01-14-171611_create_tables
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2018-02-17-205753_create_collections_and_orgs
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2018-04-27-155151_create_users_ciphers
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2018-05-08-161616_create_collection_cipher_map
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2018-05-25-232323_update_attachments_reference
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2018-06-01-112529_update_devices_twofactor_remember
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2018-07-11-181453_create_u2f_twofactor
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2018-08-27-172114_update_ciphers
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2018-09-10-111213_add_invites
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2018-09-19-144557_add_kdf_columns
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2018-11-27-152651_add_att_key_columns
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2019-05-26-216651_rename_key_and_type_columns
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2019-10-10-083032_add_column_to_twofactor
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2019-11-17-011009_add_email_verification
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2020-03-13-205045_add_policy_table
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2020-04-09-235005_add_cipher_delete_date
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2020-07-01-214531_add_hide_passwords
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2020-08-02-025025_add_favorites_table
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2020-11-30-224000_add_user_enabled
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2020-12-09-173101_add_stamp_exception
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2021-03-11-190243_add_sends
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2021-04-30-233251_add_reprompt
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2021-05-11-205202_add_hide_email
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2021-07-01-203140_add_password_reset_keys
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2021-08-30-193501_create_emergency_access
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2021-10-24-164321_add_2fa_incomplete
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2022-01-17-234911_add_api_key
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2022-03-02-210038_update_devices_primary_key
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2022-07-27-110000_add_group_support
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2022-10-18-170602_add_events
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2023-01-06-151600_add_reset_password_support
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2023-01-11-205851_add_avatar_color
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2023-01-31-222222_add_argon2
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2023-02-18-125735_push_uuid_table
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2023-06-02-200424_create_organization_api_key
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2023-06-17-200424_create_auth_requests_table
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2023-06-28-133700_add_collection_external_id
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2023-09-01-170620_update_auth_request_table
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2023-09-02-212336_move_user_external_id
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2023-10-21-221242_add_cipher_key
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2024-01-12-210182_change_attachment_size
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2024-02-14-135828_change_time_stamp_data_type
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2024-06-05-131359_add_2fa_duo_store
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2024-09-04-091351_use_device_type_for_mails
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   └── 2025-01-09-172300_add_manage
+│   │       ├── down.sql
+│   │       └── up.sql
+│   ├── postgresql
+│   │   ├── 2019-09-12-100000_create_tables
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2019-09-16-150000_fix_attachments
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2019-10-10-083032_add_column_to_twofactor
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2019-11-17-011009_add_email_verification
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2020-03-13-205045_add_policy_table
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2020-04-09-235005_add_cipher_delete_date
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2020-07-01-214531_add_hide_passwords
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2020-08-02-025025_add_favorites_table
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2020-11-30-224000_add_user_enabled
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2020-12-09-173101_add_stamp_exception
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2021-03-11-190243_add_sends
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2021-03-15-163412_rename_send_key
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2021-04-30-233251_add_reprompt
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2021-05-11-205202_add_hide_email
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2021-07-01-203140_add_password_reset_keys
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2021-08-30-193501_create_emergency_access
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2021-10-24-164321_add_2fa_incomplete
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2022-01-17-234911_add_api_key
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2022-03-02-210038_update_devices_primary_key
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2022-07-27-110000_add_group_support
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2022-10-18-170602_add_events
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2023-01-06-151600_add_reset_password_support
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2023-01-11-205851_add_avatar_color
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2023-01-31-222222_add_argon2
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2023-02-18-125735_push_uuid_table
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2023-06-02-200424_create_organization_api_key
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2023-06-17-200424_create_auth_requests_table
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2023-06-28-133700_add_collection_external_id
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2023-09-01-170620_update_auth_request_table
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2023-09-02-212336_move_user_external_id
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2023-10-21-221242_add_cipher_key
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2024-01-12-210182_change_attachment_size
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2024-02-14-135953_change_time_stamp_data_type
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2024-06-05-131359_add_2fa_duo_store
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   ├── 2024-09-04-091351_use_device_type_for_mails
+│   │   │   ├── down.sql
+│   │   │   └── up.sql
+│   │   └── 2025-01-09-172300_add_manage
+│   │       ├── down.sql
+│   │       └── up.sql
+│   └── sqlite
+│       ├── 2018-01-14-171611_create_tables
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2018-02-17-205753_create_collections_and_orgs
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2018-04-27-155151_create_users_ciphers
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2018-05-08-161616_create_collection_cipher_map
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2018-05-25-232323_update_attachments_reference
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2018-06-01-112529_update_devices_twofactor_remember
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2018-07-11-181453_create_u2f_twofactor
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2018-08-27-172114_update_ciphers
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2018-09-10-111213_add_invites
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2018-09-19-144557_add_kdf_columns
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2018-11-27-152651_add_att_key_columns
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2019-05-26-216651_rename_key_and_type_columns
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2019-10-10-083032_add_column_to_twofactor
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2019-11-17-011009_add_email_verification
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2020-03-13-205045_add_policy_table
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2020-04-09-235005_add_cipher_delete_date
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2020-07-01-214531_add_hide_passwords
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2020-08-02-025025_add_favorites_table
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2020-11-30-224000_add_user_enabled
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2020-12-09-173101_add_stamp_exception
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2021-03-11-190243_add_sends
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2021-03-15-163412_rename_send_key
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2021-04-30-233251_add_reprompt
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2021-05-11-205202_add_hide_email
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2021-07-01-203140_add_password_reset_keys
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2021-08-30-193501_create_emergency_access
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2021-10-24-164321_add_2fa_incomplete
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2022-01-17-234911_add_api_key
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2022-03-02-210038_update_devices_primary_key
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2022-07-27-110000_add_group_support
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2022-10-18-170602_add_events
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2023-01-06-151600_add_reset_password_support
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2023-01-11-205851_add_avatar_color
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2023-01-31-222222_add_argon2
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2023-02-18-125735_push_uuid_table
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2023-06-02-200424_create_organization_api_key
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2023-06-17-200424_create_auth_requests_table
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2023-06-28-133700_add_collection_external_id
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2023-09-01-170620_update_auth_request_table
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2023-09-02-212336_move_user_external_id
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2023-10-21-221242_add_cipher_key
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2024-01-12-210182_change_attachment_size
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2024-02-14-140000_change_time_stamp_data_type
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2024-06-05-131359_add_2fa_duo_store
+│       │   ├── down.sql
+│       │   └── up.sql
+│       ├── 2024-09-04-091351_use_device_type_for_mails
+│       │   ├── down.sql
+│       │   └── up.sql
+│       └── 2025-01-09-172300_add_manage
+│           ├── down.sql
+│           └── up.sql
+├── resources
+│   ├── 404.svg
+│   ├── vaultwarden-icon-white.svg
+│   ├── vaultwarden-icon.svg
+│   ├── vaultwarden-logo-auto.svg
+│   ├── vaultwarden-logo-white.svg
+│   └── vaultwarden-logo.svg
+├── rust-toolchain.toml
+├── rustfmt.toml
+├── src
+│   ├── api
+│   │   ├── admin.rs
+│   │   ├── core
+│   │   │   ├── accounts.rs
+│   │   │   ├── ciphers.rs
+│   │   │   ├── emergency_access.rs
+│   │   │   ├── events.rs
+│   │   │   ├── folders.rs
+│   │   │   ├── mod.rs
+│   │   │   ├── organizations.rs
+│   │   │   ├── public.rs
+│   │   │   ├── sends.rs
+│   │   │   └── two_factor
+│   │   │       ├── authenticator.rs
+│   │   │       ├── duo.rs
+│   │   │       ├── duo_oidc.rs
+│   │   │       ├── email.rs
+│   │   │       ├── mod.rs
+│   │   │       ├── protected_actions.rs
+│   │   │       ├── webauthn.rs
+│   │   │       └── yubikey.rs
+│   │   ├── icons.rs
+│   │   ├── identity.rs
+│   │   ├── mod.rs
+│   │   ├── notifications.rs
+│   │   ├── push.rs
+│   │   └── web.rs
+│   ├── auth.rs
+│   ├── config.rs
+│   ├── crypto.rs
+│   ├── db
+│   │   ├── mod.rs
+│   │   ├── models
+│   │   │   ├── attachment.rs
+│   │   │   ├── auth_request.rs
+│   │   │   ├── cipher.rs
+│   │   │   ├── collection.rs
+│   │   │   ├── device.rs
+│   │   │   ├── emergency_access.rs
+│   │   │   ├── event.rs
+│   │   │   ├── favorite.rs
+│   │   │   ├── folder.rs
+│   │   │   ├── group.rs
+│   │   │   ├── mod.rs
+│   │   │   ├── org_policy.rs
+│   │   │   ├── organization.rs
+│   │   │   ├── send.rs
+│   │   │   ├── two_factor.rs
+│   │   │   ├── two_factor_duo_context.rs
+│   │   │   ├── two_factor_incomplete.rs
+│   │   │   └── user.rs
+│   │   └── schemas
+│   │       ├── mysql
+│   │       │   └── schema.rs
+│   │       ├── postgresql
+│   │       │   └── schema.rs
+│   │       └── sqlite
+│   │           └── schema.rs
+│   ├── error.rs
+│   ├── http_client.rs
+│   ├── mail.rs
+│   ├── main.rs
+│   ├── ratelimit.rs
+│   ├── static
+│   │   ├── global_domains.json
+│   │   ├── images
+│   │   │   ├── 404.png
+│   │   │   ├── error-x.svg
+│   │   │   ├── fallback-icon.png
+│   │   │   ├── hibp.png
+│   │   │   ├── logo-gray.png
+│   │   │   ├── mail-github.png
+│   │   │   ├── vaultwarden-favicon.png
+│   │   │   └── vaultwarden-icon.png
+│   │   ├── scripts
+│   │   │   ├── 404.css
+│   │   │   ├── admin.css
+│   │   │   ├── admin.js
+│   │   │   ├── admin_diagnostics.js
+│   │   │   ├── admin_organizations.js
+│   │   │   ├── admin_settings.js
+│   │   │   ├── admin_users.js
+│   │   │   ├── bootstrap.bundle.js
+│   │   │   ├── bootstrap.css
+│   │   │   ├── datatables.css
+│   │   │   ├── datatables.js
+│   │   │   ├── jdenticon-3.3.0.js
+│   │   │   └── jquery-3.7.1.slim.js
+│   │   └── templates
+│   │       ├── 404.hbs
+│   │       ├── admin
+│   │       │   ├── base.hbs
+│   │       │   ├── diagnostics.hbs
+│   │       │   ├── login.hbs
+│   │       │   ├── organizations.hbs
+│   │       │   ├── settings.hbs
+│   │       │   └── users.hbs
+│   │       ├── email
+│   │       │   ├── admin_reset_password.hbs
+│   │       │   ├── admin_reset_password.html.hbs
+│   │       │   ├── change_email.hbs
+│   │       │   ├── change_email.html.hbs
+│   │       │   ├── change_email_existing.hbs
+│   │       │   ├── change_email_existing.html.hbs
+│   │       │   ├── delete_account.hbs
+│   │       │   ├── delete_account.html.hbs
+│   │       │   ├── email_footer.hbs
+│   │       │   ├── email_footer_text.hbs
+│   │       │   ├── email_header.hbs
+│   │       │   ├── emergency_*.hbs  (14 files)
+│   │       │   ├── incomplete_2fa_login.hbs
+│   │       │   ├── incomplete_2fa_login.html.hbs
+│   │       │   ├── invite_accepted.hbs
+│   │       │   ├── invite_accepted.html.hbs
+│   │       │   ├── invite_confirmed.hbs
+│   │       │   ├── invite_confirmed.html.hbs
+│   │       │   ├── new_device_logged_in.hbs
+│   │       │   ├── new_device_logged_in.html.hbs
+│   │       │   ├── protected_action.hbs
+│   │       │   ├── protected_action.html.hbs
+│   │       │   ├── pw_hint_none.hbs
+│   │       │   ├── pw_hint_none.html.hbs
+│   │       │   ├── pw_hint_some.hbs
+│   │       │   ├── pw_hint_some.html.hbs
+│   │       │   ├── register_verify_email.hbs
+│   │       │   ├── register_verify_email.html.hbs
+│   │       │   ├── send_*.hbs  (8 files)
+│   │       │   ├── smtp_test.hbs
+│   │       │   ├── smtp_test.html.hbs
+│   │       │   ├── twofactor_email.hbs
+│   │       │   ├── twofactor_email.html.hbs
+│   │       │   ├── verify_email.hbs
+│   │       │   ├── verify_email.html.hbs
+│   │       │   ├── welcome.hbs
+│   │       │   ├── welcome.html.hbs
+│   │       │   ├── welcome_must_verify.hbs
+│   │       │   └── welcome_must_verify.html.hbs
+│   │       └── scss
+│   │           ├── user.vaultwarden.scss.hbs
+│   │           └── vaultwarden.scss.hbs
+│   └── util.rs
+└── tools
+    └── global_domains.py
+157 directories, 443 files
