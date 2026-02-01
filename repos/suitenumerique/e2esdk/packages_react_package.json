@@ -1,0 +1,56 @@
+{
+  "name": "@socialgouv/e2esdk-react",
+  "version": "0.0.0-semantically-released",
+  "license": "Apache-2.0",
+  "description": "React components & hooks for e2eSDK client",
+  "author": {
+    "name": "François Best",
+    "email": "npm.e2esdk@francoisbest.com",
+    "url": "https://francoisbest.com"
+  },
+  "repository": "https://github.com/SocialGouv/e2esdk",
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js"
+    }
+  },
+  "tsup": {
+    "entry": [
+      "src/index.tsx"
+    ],
+    "dts": true,
+    "treeshake": true
+  },
+  "files": [
+    "dist/",
+    "sceau.json"
+  ],
+  "scripts": {
+    "dev": "tsup --format esm --watch",
+    "build:npm": "tsup --clean --format esm,cjs",
+    "typecheck": "tsc",
+    "prepack": "sceau sign"
+  },
+  "peerDependencies": {
+    "@socialgouv/e2esdk-client": "workspace:^",
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0"
+  },
+  "devDependencies": {
+    "@socialgouv/e2esdk-client": "workspace:^",
+    "@socialgouv/e2esdk-config-typescript": "workspace:*",
+    "@types/node": "^18.15.5",
+    "@types/react": "^18.0.28",
+    "react": "^18.2.0",
+    "sceau": "^1.3.0",
+    "tsup": "^6.7.0",
+    "typescript": "^4.9.5"
+  }
+}
