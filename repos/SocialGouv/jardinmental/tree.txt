@@ -1,0 +1,828 @@
+.
+├── .github
+│   ├── renovate.json
+│   └── workflows
+│       ├── api-tests.yml
+│       ├── app-tests.yml
+│       ├── codeql-analysis.yml
+│       ├── deactivate.yaml
+│       ├── preproduction.yaml
+│       ├── production.yaml
+│       ├── release-android.yml
+│       ├── release-ios.yml
+│       ├── release.yml
+│       ├── review-auto.yaml
+│       └── review.yaml
+├── .gitignore
+├── .husky
+│   └── pre-commit
+├── .kontinuous
+│   ├── config.yaml
+│   ├── env
+│   │   ├── dev
+│   │   │   └── templates
+│   │   │       └── api.sealed-secret.yaml
+│   │   ├── preprod
+│   │   │   ├── templates
+│   │   │   │   └── api.sealed-secret.yaml -> ../../dev/templates/api.sealed-secret.yaml
+│   │   │   └── values.yaml
+│   │   └── prod
+│   │       ├── templates
+│   │       │   ├── api.sealed-secret.yaml
+│   │       │   └── reminder.cronjob.yaml
+│   │       └── values.yaml
+│   └── values.yaml
+├── .npmrc
+├── .releaserc.yml
+├── .talismanrc
+├── .vscode
+│   ├── launch.json
+│   └── settings.json
+├── CHANGELOG.md
+├── LICENSE
+├── README.md
+├── api
+│   ├── .dockerignore
+│   ├── .env.example
+│   ├── .env.production
+│   ├── .env.staging
+│   ├── .gitignore
+│   ├── .npmrc
+│   ├── Dockerfile
+│   ├── Dockerfile.cron
+│   ├── README.md
+│   ├── docker-compose.yaml
+│   ├── jest.config.js
+│   ├── nodemon.json
+│   ├── package.json
+│   ├── prisma
+│   │   ├── migrations
+│   │   │   ├── 20221012154723_init
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20221110090013_reminder_inactivity
+│   │   │   │   └── migration.sql
+│   │   │   └── migration_lock.toml
+│   │   └── schema.prisma
+│   ├── src
+│   │   ├── __tests__
+│   │   │   └── reminder.test.ts
+│   │   ├── config.ts
+│   │   ├── controllers
+│   │   │   ├── debug.ts
+│   │   │   ├── event.js
+│   │   │   ├── mail.js
+│   │   │   └── reminder.js
+│   │   ├── index.ts
+│   │   ├── middlewares
+│   │   │   ├── errors.js
+│   │   │   ├── hmac.js
+│   │   │   ├── rateLimit.js
+│   │   │   └── versionCheck.js
+│   │   ├── prisma.js
+│   │   ├── reminderCronJobRunner.js
+│   │   ├── third-parties
+│   │   │   ├── expo-notifications.js
+│   │   │   ├── matomo.js
+│   │   │   ├── pushNotification.js
+│   │   │   └── sentry.ts
+│   │   ├── types
+│   │   │   ├── api.types.ts
+│   │   │   ├── config.types.ts
+│   │   │   ├── express.types.ts
+│   │   │   ├── index.ts
+│   │   │   └── prisma.types.ts
+│   │   └── utils.js
+│   └── tsconfig.json
+├── app
+│   ├── .buckconfig
+│   ├── .env.example
+│   ├── .eslintrc.js
+│   ├── .flowconfig
+│   ├── .gitignore
+│   ├── .prettierrc.js
+│   ├── App.tsx
+│   ├── README.md
+│   ├── UPDATE.md
+│   ├── __mocks__
+│   │   └── fileMock.js
+│   ├── __tests__
+│   │   ├── components
+│   │   │   ├── DataExportImport.test.tsx
+│   │   │   ├── DaySurvey.test.tsx
+│   │   │   ├── Export.test.tsx
+│   │   │   ├── MyText.test.tsx
+│   │   │   └── ReminderOnboarding.test.tsx
+│   │   ├── localStorage
+│   │   │   ├── goals.test.ts
+│   │   │   └── index.test.js
+│   │   └── setup.ts
+│   ├── app.json
+│   ├── assets
+│   │   ├── fonts
+│   │   │   ├── Karla-Bold.ttf
+│   │   │   ├── Karla-BoldItalic.ttf
+│   │   │   ├── Karla-ExtraBold.ttf
+│   │   │   ├── Karla-ExtraBoldItalic.ttf
+│   │   │   ├── Karla-ExtraLight.ttf
+│   │   │   ├── Karla-ExtraLightItalic.ttf
+│   │   │   ├── Karla-Italic.ttf
+│   │   │   ├── Karla-Light.ttf
+│   │   │   ├── Karla-LightItalic.ttf
+│   │   │   ├── Karla-Medium.ttf
+│   │   │   ├── Karla-MediumItalic.ttf
+│   │   │   ├── Karla-Regular.ttf
+│   │   │   ├── Karla-SemiBold.ttf
+│   │   │   ├── Karla-SemiBoldItalic.ttf
+│   │   │   ├── SourceSans3-Black.ttf
+│   │   │   ├── SourceSans3-BlackItalic.ttf
+│   │   │   ├── SourceSans3-Bold.ttf
+│   │   │   ├── SourceSans3-BoldItalic.ttf
+│   │   │   ├── SourceSans3-ExtraBold.ttf
+│   │   │   ├── SourceSans3-ExtraBoldItalic.ttf
+│   │   │   ├── SourceSans3-ExtraLight.ttf
+│   │   │   ├── SourceSans3-ExtraLightItalic.ttf
+│   │   │   ├── SourceSans3-Italic-VariableFont_wght.ttf
+│   │   │   ├── SourceSans3-Italic.ttf
+│   │   │   ├── SourceSans3-Light.ttf
+│   │   │   ├── SourceSans3-LightItalic.ttf
+│   │   │   ├── SourceSans3-Medium.ttf
+│   │   │   ├── SourceSans3-MediumItalic.ttf
+│   │   │   ├── SourceSans3-Regular.ttf
+│   │   │   ├── SourceSans3-SemiBold.ttf
+│   │   │   ├── SourceSans3-SemiBoldItalic.ttf
+│   │   │   └── SourceSans3-VariableFont_wght.ttf
+│   │   ├── imgs
+│   │   │   ├── CrisisPlanFinalIllu.png
+│   │   │   ├── am.png
+│   │   │   ├── bootsplash_logo.png
+│   │   │   ├── calendar.png
+│   │   │   ├── correlation.png
+│   │   │   ├── courbe.png
+│   │   │   ├── goal.png
+│   │   │   ├── ic_launcher-web.png
+│   │   │   ├── ic_launcher.png
+│   │   │   ├── ic_launcher_foreground.png
+│   │   │   ├── ic_launcher_round.png
+│   │   │   ├── ic_notification.png
+│   │   │   ├── icon.png
+│   │   │   ├── illustration-no-note.png
+│   │   │   ├── indicateur.png
+│   │   │   ├── logo.png
+│   │   │   ├── logo2.png
+│   │   │   ├── onboarding
+│   │   │   │   └── carousel
+│   │   │   │       ├── commity.png
+│   │   │   │       ├── outils.png
+│   │   │   │       ├── psy.png
+│   │   │   │       ├── resource.png
+│   │   │   │       └── welcome.png
+│   │   │   ├── playstore-icon.png
+│   │   │   ├── playstore-presentation.png
+│   │   │   ├── resources
+│   │   │   │   ├── Article*.png  (51 files)
+│   │   │   │   └── cat-*.tsx  (5 files)
+│   │   │   └── tools
+│   │   │       ├── modus-operandi-android
+│   │   │       │   ├── gps-1.png
+│   │   │       │   ├── gps-2.png
+│   │   │       │   └── gps-3.png
+│   │   │       └── modus-operandi-ios
+│   │   │           ├── ios-gps-1.png
+│   │   │           ├── ios-gps-2.png
+│   │   │           ├── ios-gps-3.png
+│   │   │           ├── ios-gps-4.png
+│   │   │           └── ios-gps-5.png
+│   │   ├── lottiefiles
+│   │   │   ├── 54953-confetti.json
+│   │   │   └── checkmark.json
+│   │   ├── svg
+│   │   │   ├── AllEmoji.js
+│   │   │   ├── Arrow.js
+│   │   │   ├── Bin.js
+│   │   │   ├── CheckBoard.js
+│   │   │   ├── DangerIcon.js
+│   │   │   ├── Done.js
+│   │   │   ├── ExerciseMenu.js
+│   │   │   ├── Gear.js
+│   │   │   ├── Globe.js
+│   │   │   ├── GraphMenu.js
+│   │   │   ├── HeartBubble.js
+│   │   │   ├── IllustrationOnboarding2.1.svg
+│   │   │   ├── IllustrationOnboarding2.2.svg
+│   │   │   ├── Lock.js
+│   │   │   ├── Pencil.js
+│   │   │   ├── People.js
+│   │   │   ├── Phone.js
+│   │   │   ├── Plus.js
+│   │   │   ├── PlusCross.js
+│   │   │   ├── QuestionMark.js
+│   │   │   ├── Support.js
+│   │   │   ├── SurveyMenu.js
+│   │   │   ├── WelcomeIcon.js
+│   │   │   ├── arrow-left.js
+│   │   │   ├── arrow-right.js
+│   │   │   ├── arrow-up.svg
+│   │   │   ├── bad.svg
+│   │   │   ├── bin.svg
+│   │   │   ├── bin2.svg
+│   │   │   ├── burger-badge.svg
+│   │   │   ├── burger.svg
+│   │   │   ├── calendar.svg
+│   │   │   ├── calendar2.svg
+│   │   │   ├── cgu-setting.svg
+│   │   │   ├── check.svg
+│   │   │   ├── chevron-down.svg
+│   │   │   ├── chevron-right.svg
+│   │   │   ├── chevron-up.svg
+│   │   │   ├── clock.svg
+│   │   │   ├── cross.svg
+│   │   │   ├── delete.svg
+│   │   │   ├── drugs.svg
+│   │   │   ├── edit.svg
+│   │   │   ├── export-data-setting.svg
+│   │   │   ├── export-data.svg
+│   │   │   ├── felicitation.js
+│   │   │   ├── gear.svg
+│   │   │   ├── goal.svg
+│   │   │   ├── good.svg
+│   │   │   ├── hearts.svg
+│   │   │   ├── icon
+│   │   │   │   ├── AlertTriangle.tsx
+│   │   │   │   ├── Analytics.tsx
+│   │   │   │   ├── AppMobile.tsx
+│   │   │   │   ├── Arrow.tsx
+│   │   │   │   ├── ArrowCircleRight.tsx
+│   │   │   │   ├── ArrowUp.tsx
+│   │   │   │   ├── Bell.tsx
+│   │   │   │   ├── BookOpen.tsx
+│   │   │   │   ├── Bookmark.tsx
+│   │   │   │   ├── BookmarkAdd.tsx
+│   │   │   │   ├── BookmarkMinus.tsx
+│   │   │   │   ├── Briefcase.tsx
+│   │   │   │   ├── Calendar.tsx
+│   │   │   │   ├── Cart.tsx
+│   │   │   │   ├── Chatbot.tsx
+│   │   │   │   ├── CircleCheckMark.tsx
+│   │   │   │   ├── CircleQuestionMark.tsx
+│   │   │   │   ├── Clock.tsx
+│   │   │   │   ├── CloseCross.tsx
+│   │   │   │   ├── Cloud.tsx
+│   │   │   │   ├── Cognitive.tsx
+│   │   │   │   ├── Cross.tsx
+│   │   │   │   ├── Deaf.tsx
+│   │   │   │   ├── Download.tsx
+│   │   │   │   ├── DropPoint.tsx
+│   │   │   │   ├── Drug.tsx
+│   │   │   │   ├── Eye.tsx
+│   │   │   │   ├── EyeOff.tsx
+│   │   │   │   ├── File.tsx
+│   │   │   │   ├── Film.tsx
+│   │   │   │   ├── Formation.tsx
+│   │   │   │   ├── Goal.tsx
+│   │   │   │   ├── Headphones.tsx
+│   │   │   │   ├── Health.tsx
+│   │   │   │   ├── Heart.tsx
+│   │   │   │   ├── HeartActivity.tsx
+│   │   │   │   ├── HeartFull.tsx
+│   │   │   │   ├── HeartHand.tsx
+│   │   │   │   ├── HorizontalDots.tsx
+│   │   │   │   ├── Huricane.tsx
+│   │   │   │   ├── IconBg.tsx
+│   │   │   │   ├── ImageIcon.tsx
+│   │   │   │   ├── Info.tsx
+│   │   │   │   ├── InfoCircle.tsx
+│   │   │   │   ├── Instagram.tsx
+│   │   │   │   ├── LifeEvent.tsx
+│   │   │   │   ├── Lifebuoy.tsx
+│   │   │   │   ├── LightBulb.tsx
+│   │   │   │   ├── Link.tsx
+│   │   │   │   ├── LinkExternal.tsx
+│   │   │   │   ├── Lock.tsx
+│   │   │   │   ├── Locker.tsx
+│   │   │   │   ├── Mail.tsx
+│   │   │   │   ├── Map.tsx
+│   │   │   │   ├── MegaphoneIcon.tsx
+│   │   │   │   ├── Menu.tsx
+│   │   │   │   ├── MessageHeartCircle.tsx
+│   │   │   │   ├── MessageTextCircle.tsx
+│   │   │   │   ├── MoonStar.tsx
+│   │   │   │   ├── Organisation.tsx
+│   │   │   │   ├── Other.tsx
+│   │   │   │   ├── ParagraphSpacing.tsx
+│   │   │   │   ├── Pencil.tsx
+│   │   │   │   ├── People.tsx
+│   │   │   │   ├── Phone.tsx
+│   │   │   │   ├── PlayCircle.tsx
+│   │   │   │   ├── Potion.tsx
+│   │   │   │   ├── Profile.tsx
+│   │   │   │   ├── PuzzlePiece.tsx
+│   │   │   │   ├── Quizz.tsx
+│   │   │   │   ├── Save.tsx
+│   │   │   │   ├── Settings.tsx
+│   │   │   │   ├── Share.tsx
+│   │   │   │   ├── SimplePlus.tsx
+│   │   │   │   ├── Star.tsx
+│   │   │   │   ├── StickerSquare.tsx
+│   │   │   │   ├── StopWatch.tsx
+│   │   │   │   ├── Substance.tsx
+│   │   │   │   ├── Survey.tsx
+│   │   │   │   ├── Target.tsx
+│   │   │   │   ├── ThumbsDown.tsx
+│   │   │   │   ├── ThumbsUp.tsx
+│   │   │   │   ├── Trash.tsx
+│   │   │   │   ├── TrendUp.tsx
+│   │   │   │   ├── Tune.tsx
+│   │   │   │   ├── User.tsx
+│   │   │   │   ├── Users.tsx
+│   │   │   │   ├── ValidatedStamp.tsx
+│   │   │   │   ├── Wave.tsx
+│   │   │   │   ├── WifiOff.tsx
+│   │   │   │   ├── WinkSmiley.tsx
+│   │   │   │   ├── Work.tsx
+│   │   │   │   ├── Zap.tsx
+│   │   │   │   ├── behaviour.tsx
+│   │   │   │   ├── check.tsx
+│   │   │   │   ├── chevron.tsx
+│   │   │   │   ├── moon.tsx
+│   │   │   │   ├── plus.tsx
+│   │   │   │   └── thought.tsx
+│   │   │   ├── illustrations
+│   │   │   │   ├── EmptyCorrelationIllustration.tsx
+│   │   │   │   ├── Leaf.tsx
+│   │   │   │   ├── MonochromeLogo.tsx
+│   │   │   │   └── TwoLeaf.tsx
+│   │   │   ├── important.svg
+│   │   │   ├── indicateur.svg
+│   │   │   ├── info.svg
+│   │   │   ├── info2.svg
+│   │   │   ├── light-bulb.svg
+│   │   │   ├── middle.svg
+│   │   │   ├── news.svg
+│   │   │   ├── notes.svg
+│   │   │   ├── plus-1.svg
+│   │   │   ├── plus-beck.svg
+│   │   │   ├── plus-survey.svg
+│   │   │   ├── plus.svg
+│   │   │   ├── plus2.svg
+│   │   │   ├── presentation.svg
+│   │   │   ├── protection.svg
+│   │   │   ├── reminder-setting.svg
+│   │   │   ├── reminder.js
+│   │   │   ├── reminder.svg
+│   │   │   ├── reorder.svg
+│   │   │   ├── share.svg
+│   │   │   ├── smileys
+│   │   │   │   ├── bad.tsx
+│   │   │   │   ├── good.tsx
+│   │   │   │   ├── middle.tsx
+│   │   │   │   ├── veryBad.tsx
+│   │   │   │   └── veryGood.tsx
+│   │   │   ├── symptoms-setting.svg
+│   │   │   ├── tabBar.svg
+│   │   │   ├── thoughts.svg
+│   │   │   ├── thumbs-up.svg
+│   │   │   ├── today.svg
+│   │   │   ├── traitement.js
+│   │   │   ├── tune.svg
+│   │   │   ├── veryBad.svg
+│   │   │   ├── veryGood.svg
+│   │   │   └── yesterday.svg
+│   │   └── videos
+│   │       └── sante-mentale-exercice-coherence-cardiaque.mp4
+│   ├── babel.config.js
+│   ├── credentials.json
+│   ├── eas.json
+│   ├── get-ip.sh
+│   ├── index.js
+│   ├── jest-svg-transformer.js
+│   ├── jest.config.js
+│   ├── metro.config.js
+│   ├── package.json
+│   ├── scripts
+│   │   ├── publish_android.sh
+│   │   ├── publish_ios.sh
+│   │   └── publish_ios_github.sh
+│   ├── src
+│   │   ├── components
+│   │   │   ├── Accordion.tsx
+│   │   │   ├── AddElemToList.tsx
+│   │   │   ├── AvatarGroup.tsx
+│   │   │   ├── BackButton.js
+│   │   │   ├── Badge.tsx
+│   │   │   ├── BasicCard.tsx
+│   │   │   ├── Button.tsx
+│   │   │   ├── Button2.js
+│   │   │   ├── Card.tsx
+│   │   │   ├── CircledIcon.tsx
+│   │   │   ├── Collapsable.js
+│   │   │   ├── DatePicker.js
+│   │   │   ├── DiscretSlider.tsx
+│   │   │   ├── DrugDoseBottomSheet.tsx
+│   │   │   ├── DrugsBottomSheet.tsx
+│   │   │   ├── FloatingPlusButton.tsx
+│   │   │   ├── ForwardButton.js
+│   │   │   ├── Header.tsx
+│   │   │   ├── HeaderUsageExample.tsx
+│   │   │   ├── HelpText.tsx
+│   │   │   ├── HelpView.tsx
+│   │   │   ├── Icon.js
+│   │   │   ├── IndicatorsBottomSheet.tsx
+│   │   │   ├── InfoModal.js
+│   │   │   ├── InputCheckbox.tsx
+│   │   │   ├── InputGroup.tsx
+│   │   │   ├── InputLabel.tsx
+│   │   │   ├── InputText.tsx
+│   │   │   ├── InputToggle.tsx
+│   │   │   ├── JMButton.tsx
+│   │   │   ├── ListItem
+│   │   │   │   └── NavigationListItem.tsx
+│   │   │   ├── MyText.js
+│   │   │   ├── RoundButtonIcon.js
+│   │   │   ├── Screen.js
+│   │   │   ├── ScreenHeader.js
+│   │   │   ├── SelectInput.js
+│   │   │   ├── SelectionnableItem.tsx
+│   │   │   ├── Separator.tsx
+│   │   │   ├── StatusBar.tsx
+│   │   │   ├── StepIndicator.tsx
+│   │   │   ├── TextTag.js
+│   │   │   ├── Title.tsx
+│   │   │   ├── ToggleButton.tsx
+│   │   │   ├── Typography.tsx
+│   │   │   ├── bubble
+│   │   │   │   ├── export-item.tsx
+│   │   │   │   ├── index.tsx
+│   │   │   │   └── reminder-item.tsx
+│   │   │   ├── drawer
+│   │   │   │   ├── ContactBottomSheet.tsx
+│   │   │   │   ├── drawer-item.tsx
+│   │   │   │   ├── index.tsx
+│   │   │   │   └── legal-item.tsx
+│   │   │   ├── gauge
+│   │   │   │   ├── GaugeChart.tsx
+│   │   │   │   └── index.tsx
+│   │   │   ├── onboarding
+│   │   │   │   ├── CarouselSlide.tsx
+│   │   │   │   ├── CheckInHeader.tsx
+│   │   │   │   ├── NavigationButtons.tsx
+│   │   │   │   └── ProgressIndicator.tsx
+│   │   │   ├── survey
+│   │   │   │   ├── Boolean.tsx
+│   │   │   │   ├── IndicatorSurveyItem.tsx
+│   │   │   │   ├── ScreenTitle.tsx
+│   │   │   │   ├── Smiley.tsx
+│   │   │   │   └── SurveyProgressBar.tsx
+│   │   │   └── timePicker.js
+│   │   ├── config.js
+│   │   ├── context
+│   │   │   ├── BottomSheetContext.tsx
+│   │   │   ├── IndicatorEditContext.tsx
+│   │   │   ├── StatusBarContext.tsx
+│   │   │   ├── diaryData.tsx
+│   │   │   ├── diaryNotes.js
+│   │   │   ├── needUpdate.js
+│   │   │   └── userProfile.tsx
+│   │   ├── entities
+│   │   │   ├── DiaryData.ts
+│   │   │   ├── Drug.ts
+│   │   │   ├── Goal.ts
+│   │   │   ├── Indicator.ts
+│   │   │   ├── IndicatorCategories.ts
+│   │   │   ├── IndicatorOrder.ts
+│   │   │   ├── IndicatorType.ts
+│   │   │   ├── SurveyScreen.ts
+│   │   │   └── ToolItem.ts
+│   │   ├── hooks
+│   │   │   ├── useDevCorrelationConfig.ts
+│   │   │   └── useInAppBrowserConfig.ts
+│   │   ├── navigation
+│   │   │   ├── router.tsx
+│   │   │   └── tabs.tsx
+│   │   ├── scenes
+│   │   │   ├── beck
+│   │   │   │   ├── SelectDateComponent.js
+│   │   │   │   ├── SelectTimeComponent.js
+│   │   │   │   ├── Step0.js
+│   │   │   │   ├── Step1.js
+│   │   │   │   ├── Step2.js
+│   │   │   │   ├── Step3.js
+│   │   │   │   ├── Step4.js
+│   │   │   │   ├── Step5.js
+│   │   │   │   ├── activate.js
+│   │   │   │   ├── index.tsx
+│   │   │   │   └── view.js
+│   │   │   ├── checklist
+│   │   │   │   └── CheckListScreen.tsx
+│   │   │   ├── commity
+│   │   │   │   └── CommityScreen.tsx
+│   │   │   ├── contribute
+│   │   │   │   └── contributeCard.js
+│   │   │   ├── crisis-plan
+│   │   │   │   ├── CrisisAuthorizedContactBottomSheet.tsx
+│   │   │   │   ├── CrisisBottomSheet.tsx
+│   │   │   │   ├── CrisisContactBottomSheet.tsx
+│   │   │   │   ├── CrisisContactListBottomSheet.tsx
+│   │   │   │   ├── CrisisHeader.tsx
+│   │   │   │   ├── CrisisListBottomSheet.tsx
+│   │   │   │   ├── CrisisMediaBottomSheet.tsx
+│   │   │   │   ├── CrisisNavigationButtons.tsx
+│   │   │   │   ├── CrisisPlan.tsx
+│   │   │   │   ├── CrisisPlanInputBox.tsx
+│   │   │   │   ├── CrisisPlanIntro.tsx
+│   │   │   │   ├── CrisisPlanSlideActivities.tsx
+│   │   │   │   ├── CrisisPlanSlideAlertSignal.tsx
+│   │   │   │   ├── CrisisPlanSlideComponent.tsx
+│   │   │   │   ├── CrisisPlanSlideContactChangeIdea.tsx
+│   │   │   │   ├── CrisisPlanSlideContactHelp.tsx
+│   │   │   │   ├── CrisisPlanSlideContactProfessional.tsx
+│   │   │   │   ├── CrisisPlanSlideFinal.tsx
+│   │   │   │   ├── CrisisPlanSlideReasonToLive.tsx
+│   │   │   │   ├── CrisisPlanSlideSafety.tsx
+│   │   │   │   ├── CrisisPlanSumupCards
+│   │   │   │   │   ├── ActivitiesCard.tsx
+│   │   │   │   │   ├── AlertCard.tsx
+│   │   │   │   │   ├── ChangeIdeasCard.tsx
+│   │   │   │   │   ├── HelpCard.tsx
+│   │   │   │   │   ├── ProfessionalCard.tsx
+│   │   │   │   │   ├── ReasonToLiveCard.tsx
+│   │   │   │   │   └── SafetyCard.tsx
+│   │   │   │   ├── CrisisPlanSumupList.tsx
+│   │   │   │   ├── CrisisProgressBar.tsx
+│   │   │   │   └── CrisisSumUpBottomSheet.tsx
+│   │   │   ├── data-export-import
+│   │   │   │   └── DataExportImport.tsx
+│   │   │   ├── dev-mode
+│   │   │   │   └── index.tsx
+│   │   │   ├── diary
+│   │   │   │   ├── DiaryNote.js
+│   │   │   │   ├── DiaryNotes.js
+│   │   │   │   ├── DiarySymptom.tsx
+│   │   │   │   ├── DiarySymptoms.tsx
+│   │   │   │   └── index.tsx
+│   │   │   ├── drugs
+│   │   │   │   ├── drugs-list.tsx
+│   │   │   │   ├── drugs-management.tsx
+│   │   │   │   └── drugs-survey.tsx
+│   │   │   ├── exercise
+│   │   │   │   ├── exercise-item.js
+│   │   │   │   └── index.tsx
+│   │   │   ├── export
+│   │   │   │   ├── export.tsx
+│   │   │   │   └── utils.js
+│   │   │   ├── faq
+│   │   │   │   ├── FaqData.tsx
+│   │   │   │   ├── FaqDetailScreen.tsx
+│   │   │   │   └── FaqMainScreen.tsx
+│   │   │   ├── goals
+│   │   │   │   ├── settings
+│   │   │   │   │   ├── GoalAddCheckable.js
+│   │   │   │   │   ├── GoalConfig.tsx
+│   │   │   │   │   ├── GoalDaySelector.tsx
+│   │   │   │   │   ├── GoalElementSelection.tsx
+│   │   │   │   │   ├── GoalsAddOptions.tsx
+│   │   │   │   │   ├── GoalsCreateForm.tsx
+│   │   │   │   │   ├── GoalsSettings.tsx
+│   │   │   │   │   └── GoalsSettingsMore.js
+│   │   │   │   ├── status
+│   │   │   │   │   ├── GoalsStatus.tsx
+│   │   │   │   │   └── GoalsStatusNoData.js
+│   │   │   │   ├── suivi
+│   │   │   │   │   ├── GoalsChartPie.tsx
+│   │   │   │   │   └── GoalsFriseGraph.js
+│   │   │   │   └── survey
+│   │   │   │       ├── GoalCheckboxItem.tsx
+│   │   │   │       └── GoalsDaySurvey.tsx
+│   │   │   ├── indicateurs
+│   │   │   │   ├── CategorieElements.tsx
+│   │   │   │   ├── CreateIndicator
+│   │   │   │   │   ├── ChooseIndicatorOrder.tsx
+│   │   │   │   │   ├── ChooseIndicatorType.tsx
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── editIndicateurs
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── index.tsx
+│   │   │   │   └── settings
+│   │   │   │       └── IndicatorsSettingsMore.tsx
+│   │   │   ├── infos
+│   │   │   │   └── index.js
+│   │   │   ├── legal
+│   │   │   │   ├── cgu-screen.js
+│   │   │   │   ├── legal-mentions-screen.js
+│   │   │   │   ├── legal-screen.js
+│   │   │   │   └── privacy-screen.js
+│   │   │   ├── news
+│   │   │   │   ├── Item.js
+│   │   │   │   ├── card.js
+│   │   │   │   ├── index.js
+│   │   │   │   └── latestChangesModal.js
+│   │   │   ├── onboarding-v2
+│   │   │   │   ├── AlertBanner.tsx
+│   │   │   │   ├── BannerAnimatedHeader.tsx
+│   │   │   │   ├── BannerHeader.tsx
+│   │   │   │   ├── BannerHeaderIntro.tsx
+│   │   │   │   ├── BeigeCard.tsx
+│   │   │   │   ├── BeigeWrapperScreen.tsx
+│   │   │   │   ├── CarouselScreen.tsx
+│   │   │   │   ├── InstructionText.tsx
+│   │   │   │   ├── IntroScreen.tsx
+│   │   │   │   ├── OnboardingLoadingScreen.tsx
+│   │   │   │   ├── ProfileScreen.tsx
+│   │   │   │   ├── ProgressHeader.tsx
+│   │   │   │   ├── checkIn
+│   │   │   │   │   ├── OnboardingCheckInIntroductionCompletedScreen.tsx
+│   │   │   │   │   ├── OnboardingCheckInStartScreen.tsx
+│   │   │   │   │   ├── mood
+│   │   │   │   │   │   ├── OnboardingCheckInHowDoYouFeelDetailsScreen.tsx
+│   │   │   │   │   │   ├── OnboardingCheckInHowDoYouFeelScreen.tsx
+│   │   │   │   │   │   └── OnboardingCheckInMoodSummaryScreen.tsx
+│   │   │   │   │   └── sleep
+│   │   │   │   │       └── OnboardingCheckInSleepScreen.tsx
+│   │   │   │   ├── data
+│   │   │   │   │   ├── carouselData.tsx
+│   │   │   │   │   └── helperData.tsx
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── indicators
+│   │   │   │   │   ├── IndicatorModal.tsx
+│   │   │   │   │   └── OnboardingChooseIndicatorScreen.tsx
+│   │   │   │   ├── personalization
+│   │   │   │   │   ├── DifficultiesScreen.tsx
+│   │   │   │   │   ├── OnboardingPersonalizationStartScreen.tsx
+│   │   │   │   │   └── SubCategoriesScreen.tsx
+│   │   │   │   └── types.ts
+│   │   │   ├── presentation
+│   │   │   │   └── index.js
+│   │   │   ├── reminder
+│   │   │   │   ├── checkOldReminder.js
+│   │   │   │   ├── inactivityReminder.js
+│   │   │   │   ├── index.js
+│   │   │   │   └── reminder.tsx
+│   │   │   ├── resources
+│   │   │   │   ├── ExternalResourceCard.tsx
+│   │   │   │   ├── ExternalResourcesScreen.tsx
+│   │   │   │   ├── MarkdownStyled.tsx
+│   │   │   │   ├── ResourceArticle.tsx
+│   │   │   │   ├── ResourceCard.tsx
+│   │   │   │   ├── ResourceCategories.tsx
+│   │   │   │   ├── ResourceCategoryList.tsx
+│   │   │   │   ├── data
+│   │   │   │   │   ├── resources.ts
+│   │   │   │   │   └── resourcesExternal.ts
+│   │   │   │   └── index.tsx
+│   │   │   ├── settings
+│   │   │   │   ├── setting-item.js
+│   │   │   │   └── settings-modal.tsx
+│   │   │   ├── status
+│   │   │   │   ├── DiaryDetail.tsx
+│   │   │   │   ├── DiaryList.tsx
+│   │   │   │   ├── NewStatusItem.tsx
+│   │   │   │   ├── NoData.tsx
+│   │   │   │   ├── TabPicker.js
+│   │   │   │   ├── bannerProNPS.js
+│   │   │   │   ├── context.tsx
+│   │   │   │   ├── fake-diary-data.js
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── notes.js
+│   │   │   │   ├── patient-state-item.tsx
+│   │   │   │   ├── posology.tsx
+│   │   │   │   ├── recapCompletion.tsx
+│   │   │   │   ├── status-item.tsx
+│   │   │   │   ├── too-late.js
+│   │   │   │   ├── toxic.js
+│   │   │   │   └── utils
+│   │   │   │       └── index.js
+│   │   │   ├── suivi
+│   │   │   │   ├── Bilan.tsx
+│   │   │   │   ├── DateOrTimeDisplay.js
+│   │   │   │   ├── Legend.tsx
+│   │   │   │   ├── Pie.tsx
+│   │   │   │   ├── PieYesNo.tsx
+│   │   │   │   ├── RangeDate.tsx
+│   │   │   │   ├── ScorePicker.tsx
+│   │   │   │   ├── chartPicker.tsx
+│   │   │   │   ├── chartPie.tsx
+│   │   │   │   ├── correlation
+│   │   │   │   │   ├── Correlation.tsx
+│   │   │   │   │   ├── CorrelationChart.tsx
+│   │   │   │   │   ├── DataMonitoringPeriodHelpView.tsx
+│   │   │   │   │   ├── FriseFilterBar.tsx
+│   │   │   │   │   ├── FriseGraph.tsx
+│   │   │   │   │   ├── FriseGraphExample.js
+│   │   │   │   │   ├── FriseGraphList.tsx
+│   │   │   │   │   ├── FriseInfoButton.tsx
+│   │   │   │   │   ├── ModalCorrelation.tsx
+│   │   │   │   │   └── ModalDetailCorrelation.tsx
+│   │   │   │   ├── frises
+│   │   │   │   │   └── Frise.tsx
+│   │   │   │   └── triggers
+│   │   │   │       ├── Card.tsx
+│   │   │   │       ├── Chevron.tsx
+│   │   │   │       ├── EventFilterHeader.tsx
+│   │   │   │       ├── IndicatorsBottomSheet.tsx
+│   │   │   │       ├── ModalTrigger.tsx
+│   │   │   │       ├── PeriodBottomSheet.tsx
+│   │   │   │       ├── StateBottomSheet.tsx
+│   │   │   │       └── triggers.tsx
+│   │   │   ├── support
+│   │   │   │   └── SupportScreen.tsx
+│   │   │   ├── survey
+│   │   │   │   ├── DaySurveyCustomBottomSheet.tsx
+│   │   │   │   ├── InputQuestion.tsx
+│   │   │   │   ├── QuestionYesNo.js
+│   │   │   │   ├── SurveySuccessScreen.tsx
+│   │   │   │   ├── daySurvey.tsx
+│   │   │   │   ├── notes-screen.tsx
+│   │   │   │   ├── selectDay.tsx
+│   │   │   │   └── survey-data.js
+│   │   │   ├── survey-v2
+│   │   │   │   ├── AnimatedHeaderScrollScreen.tsx
+│   │   │   │   ├── ContextScreen.tsx
+│   │   │   │   ├── EncouragementScreen.tsx
+│   │   │   │   ├── GoalsScreen.tsx
+│   │   │   │   ├── IndicatorScreen.tsx
+│   │   │   │   ├── SurveyContext.tsx
+│   │   │   │   ├── SurveyNavigator.tsx
+│   │   │   │   ├── SurveyScreenWrapper.tsx
+│   │   │   │   ├── ToxicScreen.tsx
+│   │   │   │   ├── data
+│   │   │   │   │   └── encouragementData.ts
+│   │   │   │   ├── hooks
+│   │   │   │   │   └── useSurveyScreens.ts
+│   │   │   │   └── utils.js
+│   │   │   ├── tools
+│   │   │   │   ├── Background.tsx
+│   │   │   │   ├── BeckBottomSheet.tsx
+│   │   │   │   ├── BreathExercice.tsx
+│   │   │   │   ├── ExportReminderBottomSheet.tsx
+│   │   │   │   ├── ModusOperandiBottomSheet.tsx
+│   │   │   │   ├── ToolBottomSheet.tsx
+│   │   │   │   ├── ToolFilterBottomSheet.tsx
+│   │   │   │   ├── ToolFilterButton.tsx
+│   │   │   │   ├── ToolItem.tsx
+│   │   │   │   ├── ToolScreen.tsx
+│   │   │   │   ├── ToolScreenIntro.tsx
+│   │   │   │   ├── ToolSelectionInfoScreen.tsx
+│   │   │   │   ├── ToolThemeFilterBottomSheet.tsx
+│   │   │   │   ├── toolUtils.tsx
+│   │   │   │   └── toolsData.tsx
+│   │   │   ├── variation
+│   │   │   │   ├── chart.js
+│   │   │   │   ├── daily-chart.js
+│   │   │   │   ├── day-title.js
+│   │   │   │   ├── variation.tsx
+│   │   │   │   └── week-picker.tsx
+│   │   │   └── videos
+│   │   │       └── CoherenceCardiaqueVideoScreen.tsx
+│   │   ├── services
+│   │   │   ├── EnvironmentIndicator.js
+│   │   │   ├── NPS
+│   │   │   │   ├── Mark.js
+│   │   │   │   ├── NPS.tsx
+│   │   │   │   └── NPSManager.js
+│   │   │   ├── api.js
+│   │   │   ├── logEvents.ts
+│   │   │   ├── mail.js
+│   │   │   ├── matomo.js
+│   │   │   ├── notifications-expo.js
+│   │   │   └── notifications.js
+│   │   ├── styles
+│   │   │   └── beck.js
+│   │   ├── types
+│   │   │   └── global.d.ts
+│   │   └── utils
+│   │       ├── autoLayoutAnimation.js
+│   │       ├── checklistBanner.ts
+│   │       ├── className.ts
+│   │       ├── colors.js
+│   │       ├── constants.ts
+│   │       ├── date
+│   │       │   ├── daysOfWeek.js
+│   │       │   ├── helpers.js
+│   │       │   └── polyfill.js
+│   │       ├── drugs-list.js
+│   │       ├── generateHmac.js
+│   │       ├── goalsConstants.js
+│   │       ├── index.js
+│   │       ├── indicatorUtils.ts
+│   │       ├── liste_indicateurs.1.ts
+│   │       ├── localStorage
+│   │       │   ├── beck.tsx
+│   │       │   ├── createStorage.js
+│   │       │   ├── goals.ts
+│   │       │   ├── index.ts
+│   │       │   └── utils.js
+│   │       ├── mood.tsx
+│   │       ├── reminder.ts
+│   │       ├── share.js
+│   │       ├── string-util.tsx
+│   │       └── typography.ts
+│   ├── tailwind.config.js
+│   ├── tsconfig.json
+│   └── update-mobile-app-version.js
+├── app-redirect
+│   ├── Dockerfile
+│   └── html
+│       └── index.html
+├── package.json
+├── pnpm-lock.yaml
+└── pnpm-workspace.yaml
+118 directories, 763 files
