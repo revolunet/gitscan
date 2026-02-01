@@ -1,0 +1,57 @@
+{
+  "name": "infra-as-blueprint",
+  "description": "Provision infra with flexible blueprints",
+  "version": "1.0.2",
+  "main": "infra-as-blueprint",
+  "license": "MIT",
+  "dependencies": {
+    "@foundernetes/axios": "^1.5.2",
+    "@foundernetes/blueprint": "^1.5.2",
+    "@foundernetes/std": "^1.5.2",
+    "dayjs": "^1.11.10",
+    "dotenv": "^16.3.1",
+    "fs-extra": "^11.2.0",
+    "lodash": "^4.17.21",
+    "tweetsodium": "0.0.5"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.36.1",
+    "commit-and-tag-version": "^10.1.0",
+    "eslint": "^8.48.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "husky": "^8.0.3",
+    "link-module-alias": "^1.2.0",
+    "lint-staged": "^14.0.1",
+    "pkg": "^5.8.1",
+    "prettier": "^3.0.3"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "yarn playbook",
+    "dev": "DEBUG_AXIOS=true yarn start",
+    "playbook": "node index.js playbook",
+    "postinstall": "link-module-alias",
+    "lint": "eslint .",
+    "build": "yarn build:ncc && yarn build:pkg",
+    "build:ncc": "rm -rf dist && ncc build",
+    "build:pkg": "pkg -t node18-linuxstatic-x64 -o ./dist-bin/infra-as-blueprint --compress=GZip ./dist/index.js",
+    "precommit": "lint-staged",
+    "prepare": "husky install",
+    "release": "commit-and-tag-version",
+    "docker:build": "docker compose build",
+    "docker:run": "docker compose run --build infra-as-blueprint"
+  },
+  "type": "commonjs",
+  "_moduleAliases": {
+    "~": "src"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix"
+    ]
+  },
+  "packageManager": "yarn@4.0.2"
+}
