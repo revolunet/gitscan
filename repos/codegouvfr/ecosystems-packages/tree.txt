@@ -1,0 +1,643 @@
+.
+├── .dockerignore
+├── .gitattributes
+├── .github
+│   ├── dependabot.yml
+│   └── workflows
+│       └── ci.yml
+├── .gitignore
+├── .ruby-version
+├── CITATION.cff
+├── DEVELOPMENT.md
+├── Dockerfile
+├── Gemfile
+├── Gemfile.lock
+├── LICENSE
+├── Procfile
+├── README.md
+├── Rakefile
+├── app
+│   ├── assets
+│   │   ├── config
+│   │   │   └── manifest.js
+│   │   ├── images
+│   │   │   ├── .keep
+│   │   │   ├── ecosystems-logo-white.svg
+│   │   │   └── ecosystems-logo.svg
+│   │   ├── javascripts
+│   │   │   └── application.js
+│   │   └── stylesheets
+│   │       └── application.scss
+│   ├── controllers
+│   │   ├── api
+│   │   │   └── v1
+│   │   │       ├── application_controller.rb
+│   │   │       ├── dependencies_controller.rb
+│   │   │       ├── keywords_controller.rb
+│   │   │       ├── maintainers_controller.rb
+│   │   │       ├── namespaces_controller.rb
+│   │   │       ├── packages_controller.rb
+│   │   │       ├── registries_controller.rb
+│   │   │       └── versions_controller.rb
+│   │   ├── application_controller.rb
+│   │   ├── concerns
+│   │   │   └── .keep
+│   │   ├── critical_controller.rb
+│   │   ├── ecosystems_controller.rb
+│   │   ├── errors_controller.rb
+│   │   ├── exports_controller.rb
+│   │   ├── funding_controller.rb
+│   │   ├── home_controller.rb
+│   │   ├── infrastructure_controller.rb
+│   │   ├── keywords_controller.rb
+│   │   ├── maintainers_controller.rb
+│   │   ├── namespaces_controller.rb
+│   │   ├── packages_controller.rb
+│   │   ├── registries_controller.rb
+│   │   ├── top_controller.rb
+│   │   ├── underproduction_controller.rb
+│   │   ├── unseen_controller.rb
+│   │   └── versions_controller.rb
+│   ├── helpers
+│   │   └── application_helper.rb
+│   ├── models
+│   │   ├── application_record.rb
+│   │   ├── concerns
+│   │   │   └── .keep
+│   │   ├── dependency.rb
+│   │   ├── ecosystem
+│   │   │   ├── actions.rb
+│   │   │   ├── adelie.rb
+│   │   │   ├── alpine.rb
+│   │   │   ├── base.rb
+│   │   │   ├── bioconductor.rb
+│   │   │   ├── bower.rb
+│   │   │   ├── cargo.rb
+│   │   │   ├── carthage.rb
+│   │   │   ├── clojars.rb
+│   │   │   ├── cocoapods.rb
+│   │   │   ├── conda.rb
+│   │   │   ├── cpan.rb
+│   │   │   ├── cran.rb
+│   │   │   ├── deno.rb
+│   │   │   ├── docker.rb
+│   │   │   ├── elm.rb
+│   │   │   ├── elpa.rb
+│   │   │   ├── go.rb
+│   │   │   ├── hackage.rb
+│   │   │   ├── hex.rb
+│   │   │   ├── homebrew.rb
+│   │   │   ├── julia.rb
+│   │   │   ├── maven.rb
+│   │   │   ├── npm.rb
+│   │   │   ├── nuget.rb
+│   │   │   ├── packagist.rb
+│   │   │   ├── postmarketos.rb
+│   │   │   ├── pub.rb
+│   │   │   ├── puppet.rb
+│   │   │   ├── pypi.rb
+│   │   │   ├── racket.rb
+│   │   │   ├── rubygems.rb
+│   │   │   ├── spack.rb
+│   │   │   ├── swiftpm.rb
+│   │   │   └── vcpkg.rb
+│   │   ├── export.rb
+│   │   ├── maintainer.rb
+│   │   ├── maintainership.rb
+│   │   ├── package.rb
+│   │   ├── registry.rb
+│   │   └── version.rb
+│   ├── services
+│   │   ├── bitbucket_url_parser.rb
+│   │   ├── github_url_parser.rb
+│   │   ├── gitlab_url_parser.rb
+│   │   └── url_parser.rb
+│   ├── sidekiq
+│   │   ├── check_status_worker.rb
+│   │   ├── sync_maintainers_worker.rb
+│   │   ├── sync_package_worker.rb
+│   │   ├── update_advisories_worker.rb
+│   │   ├── update_dependent_packages_count_worker.rb
+│   │   ├── update_dependent_repos_count_worker.rb
+│   │   ├── update_details_worker.rb
+│   │   ├── update_integrity_worker.rb
+│   │   ├── update_package_worker.rb
+│   │   ├── update_rankings_worker.rb
+│   │   ├── update_repo_metadata_worker.rb
+│   │   └── update_versions_worker.rb
+│   └── views
+│       ├── api
+│       │   └── v1
+│       │       ├── dependencies
+│       │       │   ├── _dependency.json.jbuilder
+│       │       │   ├── _dependency_with_package.json.jbuilder
+│       │       │   └── index.json.jbuilder
+│       │       ├── keywords
+│       │       │   ├── _keyword.json.jbuilder
+│       │       │   ├── index.json.jbuilder
+│       │       │   └── show.json.jbuilder
+│       │       ├── maintainers
+│       │       │   ├── _maintainer.json.jbuilder
+│       │       │   ├── index.json.jbuilder
+│       │       │   ├── packages.json.jbuilder
+│       │       │   └── show.json.jbuilder
+│       │       ├── maintainerships
+│       │       │   └── _maintainership.json.jbuilder
+│       │       ├── namespaces
+│       │       │   ├── _namespace.json.jbuilder
+│       │       │   ├── index.json.jbuilder
+│       │       │   ├── packages.json.jbuilder
+│       │       │   └── show.json.jbuilder
+│       │       ├── packages
+│       │       │   ├── _package.json.jbuilder
+│       │       │   ├── dependent_packages.json.jbuilder
+│       │       │   ├── index.json.jbuilder
+│       │       │   ├── lookup.json.jbuilder
+│       │       │   ├── related_packages.json.jbuilder
+│       │       │   └── show.json.jbuilder
+│       │       ├── registries
+│       │       │   ├── _registry.json.jbuilder
+│       │       │   ├── index.json.jbuilder
+│       │       │   └── show.json.jbuilder
+│       │       └── versions
+│       │           ├── _version.json.jbuilder
+│       │           ├── _version_with_package.json.jbuilder
+│       │           ├── index.json.jbuilder
+│       │           ├── recent.json.jbuilder
+│       │           └── show.json.jbuilder
+│       ├── critical
+│       │   └── index.html.erb
+│       ├── ecosystems
+│       │   ├── index.html.erb
+│       │   └── show.html.erb
+│       ├── errors
+│       │   ├── internal.html.erb
+│       │   ├── not_found.html.erb
+│       │   └── unprocessable.html.erb
+│       ├── exports
+│       │   ├── _export.html.erb
+│       │   └── index.html.erb
+│       ├── funding
+│       │   ├── index.html.erb
+│       │   ├── platforms.html.erb
+│       │   └── show.html.erb
+│       ├── home
+│       │   └── index.html.erb
+│       ├── infrastructure
+│       │   └── index.html.erb
+│       ├── keywords
+│       │   ├── index.html.erb
+│       │   └── show.html.erb
+│       ├── layouts
+│       │   └── application.html.erb
+│       ├── maintainers
+│       │   ├── _maintainer.html.erb
+│       │   ├── _sort.html.erb
+│       │   ├── index.html.erb
+│       │   ├── namespaces.html.erb
+│       │   └── show.html.erb
+│       ├── maintainerships
+│       │   └── _maintainership.html.erb
+│       ├── namespaces
+│       │   ├── _namespace.html.erb
+│       │   ├── index.html.erb
+│       │   ├── maintainers.html.erb
+│       │   └── show.html.erb
+│       ├── packages
+│       │   ├── _details.html.erb
+│       │   ├── _package.html.erb
+│       │   ├── _sort.html.erb
+│       │   ├── _tabs.html.erb
+│       │   ├── advisories.html.erb
+│       │   ├── dependent_packages.html.erb
+│       │   ├── index.html.erb
+│       │   ├── maintainers.html.erb
+│       │   ├── related_packages.html.erb
+│       │   └── show.html.erb
+│       ├── registries
+│       │   ├── _registry.html.erb
+│       │   ├── keyword.html.erb
+│       │   ├── keywords.html.erb
+│       │   └── status.html.erb
+│       ├── top
+│       │   ├── ecosystem.html.erb
+│       │   └── index.html.erb
+│       ├── underproduction
+│       │   ├── index.html.erb
+│       │   └── show.html.erb
+│       ├── unseen
+│       │   └── index.html.erb
+│       └── versions
+│           ├── _version.html.erb
+│           ├── _version_with_package.html.erb
+│           ├── index.html.erb
+│           ├── recent.html.erb
+│           └── show.html.erb
+├── app.db.json
+├── app.json
+├── bin
+│   ├── bundle
+│   ├── docker-start
+│   ├── rails
+│   ├── rake
+│   └── setup
+├── config
+│   ├── application.rb
+│   ├── appsignal.yml
+│   ├── boot.rb
+│   ├── credentials.yml.enc
+│   ├── database.yml
+│   ├── environment.rb
+│   ├── environments
+│   │   ├── development.rb
+│   │   ├── production.rb
+│   │   └── test.rb
+│   ├── initializers
+│   │   ├── assets.rb
+│   │   ├── content_security_policy.rb
+│   │   ├── cors.rb
+│   │   ├── faraday.rb
+│   │   ├── filter_parameter_logging.rb
+│   │   ├── inflections.rb
+│   │   ├── lograge.rb
+│   │   ├── oj.rb
+│   │   ├── pagy.rb
+│   │   ├── permissions_policy.rb
+│   │   ├── rack_attack.rb
+│   │   ├── redis.rb
+│   │   ├── rswag-ui.rb
+│   │   ├── rswag_api.rb
+│   │   └── sidekiq.rb
+│   ├── locales
+│   │   └── en.yml
+│   ├── puma.rb
+│   ├── routes.rb
+│   ├── sidekiq.yml
+│   └── sitemap.rb
+├── config.ru
+├── db
+│   ├── migrate
+│   │   ├── 20220322111947_create_packages.rb
+│   │   ├── 20220322112107_create_versions.rb
+│   │   ├── 20220322112247_create_dependencies.rb
+│   │   ├── 20220322112901_create_registries.rb
+│   │   ├── 20220401125927_add_github_to_registries.rb
+│   │   ├── 20220406103634_add_registry_index_to_packages.rb
+│   │   ├── 20220406103759_add_package_index_to_versions.rb
+│   │   ├── 20220406103826_add_version_index_to_dependencies.rb
+│   │   ├── 20220409151058_add_name_index_on_packages.rb
+│   │   ├── 20220419100926_add_metadata_to_packages.rb
+│   │   ├── 20220511105143_add_metadata_to_versions.rb
+│   │   ├── 20220816145914_create_exports.rb
+│   │   ├── 20220818124706_add_repository_metadata_to_packages.rb
+│   │   ├── 20220919161859_add_package_name_index_to_dependencies.rb
+│   │   ├── 20220920112841_add_dependent_packages_count_to_packages.rb
+│   │   ├── 20220921110142_add_downloads_to_packages.rb
+│   │   ├── 20220926143651_update_dependency_index.rb
+│   │   ├── 20220927142328_add_latest_release_published_at_index_to_packages.rb
+│   │   ├── 20220927161500_increase_downloads_limit.rb
+│   │   ├── 20221003140816_add_metadata_to_registries.rb
+│   │   ├── 20221014151935_add_dependent_repos_count_to_packages.rb
+│   │   ├── 20221016142208_add_rankings_to_packages.rb
+│   │   ├── 20221017092205_add_indexes_to_packages.rb
+│   │   ├── 20221017094058_add_update_indexes_on_packages.rb
+│   │   ├── 20221017095032_add_more_indexes_to_packages.rb
+│   │   ├── 20221026101120_add_package_id_index_to_dependencies.rb
+│   │   ├── 20221107105917_create_maintainers.rb
+│   │   ├── 20221107110743_create_maintainerships.rb
+│   │   ├── 20221108144654_add_maintainer_indexes.rb
+│   │   ├── 20221109144913_add_versions_index.rb
+│   │   ├── 20221114112439_add_maintainers_count_to_regsitries.rb
+│   │   ├── 20221115092616_add_namespace_to_packages.rb
+│   │   ├── 20221121145134_add_namespaces_count_to_registries.rb
+│   │   ├── 20230116172049_add_index_on_repository_url.rb
+│   │   ├── 20230126111104_add_updated_at_index_to_packages.rb
+│   │   ├── 20230126114039_add_last_synced_at_index_to_packages.rb
+│   │   ├── 20230131121427_add_version_to_registries.rb
+│   │   ├── 20230222152307_add_advisories_to_packages.rb
+│   │   ├── 20230223142522_add_maintainers_count_to_packages.rb
+│   │   ├── 20230322104012_add_ecosystem_index_to_dependencies.rb
+│   │   ├── 20230328120420_add_first_release_published_at_to_packages.rb
+│   │   ├── 20230330132353_add_keywords_count_to_registries.rb
+│   │   ├── 20230330141457_repurpose_keywords_field.rb
+│   │   ├── 20230403161631_add_keywords_index.rb
+│   │   ├── 20230516121954_add_docker_fields_to_packages.rb
+│   │   ├── 20230518162516_add_index_on_docker_downloads_count.rb
+│   │   ├── 20230724131917_case_insensitive_repository_url_index.rb
+│   │   ├── 20230724140154_add_repository_url_index.rb
+│   │   ├── 20230817160101_add_issue_metadata_to_packages.rb
+│   │   ├── 20230904151818_add_unique_version_number_index.rb
+│   │   ├── 20231114121723_add_registry_id_to_versions.rb
+│   │   ├── 20231201153821_add_versions_count_to_registries.rb
+│   │   ├── 20240206124019_add_downloads_to_registries.rb
+│   │   ├── 20240225160813_add_critical_to_packages.rb
+│   │   ├── 20240225175644_add_critical_index.rb
+│   │   ├── 20240311135604_add_total_downloads_to_maintainers.rb
+│   │   ├── 20240405130745_add_organization_to_maintainers.rb
+│   │   ├── 20240513101131_add_latest_to_versions.rb
+│   │   ├── 20240513150011_add_unique_index_to_maintainerships.rb
+│   │   ├── 20240909155640_add_dependent_repos_count_to_registries.rb
+│   │   ├── 20241014142042_drop_extra_indexes.rb
+│   │   ├── 20241014143423_add_partial_index_to_packages.rb
+│   │   ├── 20241031104703_add_active_packages_count_to_registries.rb
+│   │   └── 20241108134112_add_versions_updated_at_to_packages.rb
+│   ├── schema.rb
+│   └── seeds.rb
+├── docker-compose.yml
+├── lib
+│   ├── assets
+│   │   └── .keep
+│   └── tasks
+│       ├── .keep
+│       ├── czi.rake
+│       ├── exports.rake
+│       ├── open_data.rake
+│       └── packages.rake
+├── log
+│   └── .keep
+├── openapi
+│   └── api
+│       └── v1
+│           └── openapi.yaml
+├── public
+│   ├── android-chrome-192x192.png
+│   ├── android-chrome-512x512.png
+│   ├── apple-touch-icon.png
+│   ├── favicon-16x16.png
+│   ├── favicon-32x32.png
+│   ├── favicon.ico
+│   ├── robots.txt
+│   └── site.webmanifest
+├── test
+│   ├── controllers
+│   │   ├── .keep
+│   │   ├── api
+│   │   │   └── v1
+│   │   │       ├── dependencies_controller_test.rb
+│   │   │       ├── maintainers_controller_test.rb
+│   │   │       ├── namespaces_controller_test.rb
+│   │   │       ├── packages_controller_test.rb
+│   │   │       ├── registries_controller_test.rb
+│   │   │       └── versions_controller_test.rb
+│   │   ├── errors_controller_test.rb
+│   │   ├── exports_controller_test.rb
+│   │   ├── home_controller_test.rb
+│   │   ├── maintainers_controller.rb
+│   │   ├── namespaces_controller.rb
+│   │   ├── packages_controller_test.rb
+│   │   └── versions_controller_test.rb
+│   ├── fixtures
+│   │   └── files
+│   │       ├── .keep
+│   │       ├── actions
+│   │       │   ├── action.yml
+│   │       │   ├── action.yml.1
+│   │       │   ├── actions
+│   │       │   ├── lookup?url=https:%2F%2Fgithub.com%2Fgetsentry%2Faction-git-diff-suggestions
+│   │       │   └── tags
+│   │       ├── bower
+│   │       │   ├── bower.json
+│   │       │   ├── bower.json.1
+│   │       │   ├── lookup?url=https:%2F%2Fgithub.com%2Fangular%2Fbower-angular
+│   │       │   ├── packages
+│   │       │   └── tags
+│   │       ├── cargo
+│   │       │   ├── crates
+│   │       │   ├── crates2
+│   │       │   ├── dependencies
+│   │       │   ├── parameters_lib
+│   │       │   └── summary
+│   │       ├── carthage
+│   │       │   ├── Cartfile
+│   │       │   ├── carthage
+│   │       │   ├── lookup?url=https:%2F%2Fgithub.com%2FCarthage%2FReactiveTask
+│   │       │   └── tags
+│   │       ├── clojars
+│   │       │   ├── all-poms.txt
+│   │       │   ├── index.html
+│   │       │   ├── maven-metadata.xml
+│   │       │   ├── missionary
+│   │       │   ├── missionary-b.25.pom
+│   │       │   └── missionary-b.26.pom
+│   │       ├── cocoapods
+│   │       │   ├── AppNetworkManager.podspec.json
+│   │       │   ├── Foo.podspec.json
+│   │       │   ├── all_pods.txt
+│   │       │   ├── all_pods_versions_1_3_5.txt
+│   │       │   ├── all_pods_versions_2_2_2.txt
+│   │       │   ├── lookup?url=https:%2F%2Fgithub.com%2Fdeepesh259nitk%2FmixedFramework
+│   │       │   ├── master.atom
+│   │       │   └── tags
+│   │       ├── conda
+│   │       │   └── index.html
+│   │       ├── cpan
+│   │       │   ├── Dpkg
+│   │       │   ├── _search?fields=distribution&q=status:latest&scroll=1m&size=5000
+│   │       │   ├── _search?fields=distribution&q=status:latest&size=100&sort=date:desc
+│   │       │   ├── _search?fields=version,date&q=distribution:Dpkg&size=5000
+│   │       │   ├── _search?q=distribution:Dpkg&size=5000
+│   │       │   └── scroll?scroll=1m&scroll_id=cXVlcnlUaGVuRmV0Y2g7Mzs4ODgwOTU5OTpwRlJ6eDBNSFNKdW8tMGprOEZCMUdnOzUyMDI4Mzc1Nzg6LTY5R01xYVRRajZwWGIzZlA4Q2lxUTs1MjAyODM3NTc5Oi02OUdNcWFUUWo2cFhiM2ZQOENpcVE7MDs=
+│   │       ├── cran
+│   │       │   ├── AssetAllocation_0.1.0.tar.gz
+│   │       │   ├── archives.html
+│   │       │   ├── available_packages_by_date.html
+│   │       │   ├── ggroups_2.1.0.tar.gz
+│   │       │   ├── index.html
+│   │       │   └── pack
+│   │       ├── deno
+│   │       │   ├── deno_es
+│   │       │   ├── deps_v2.json
+│   │       │   ├── meta.json
+│   │       │   ├── meta.json.1
+│   │       │   ├── meta.json.2
+│   │       │   ├── modules
+│   │       │   ├── modules?page=1&limit=100
+│   │       │   ├── modules?page=2&limit=100
+│   │       │   └── versions.json
+│   │       ├── elm
+│   │       │   ├── 1
+│   │       │   ├── all-packages
+│   │       │   ├── elm.json
+│   │       │   └── releases.json
+│   │       ├── elpa
+│   │       │   ├── ample-theme.html
+│   │       │   └── index.html
+│   │       ├── go
+│   │       │   ├── index
+│   │       │   ├── index?since=2019-04-18T02:07:41.336899Z
+│   │       │   ├── list
+│   │       │   ├── rand
+│   │       │   ├── smithy-go?tab=versions
+│   │       │   ├── v1.9.0.info
+│   │       │   └── v1.9.0.mod
+│   │       ├── hackage
+│   │       │   ├── aeson-0.2.0.0
+│   │       │   ├── blockfrost-client
+│   │       │   ├── blockfrost-client.rss
+│   │       │   ├── names
+│   │       │   └── recent.rss
+│   │       ├── hex
+│   │       │   ├── 0.1.0
+│   │       │   ├── 0.1.0-rc.0
+│   │       │   ├── 0.1.0-rc.1
+│   │       │   ├── 0.1.0-rc.2
+│   │       │   ├── 0.1.1
+│   │       │   ├── new-packages
+│   │       │   ├── packages-1
+│   │       │   ├── packages-2
+│   │       │   ├── phoenix_copy
+│   │       │   └── updated-packages
+│   │       ├── homebrew
+│   │       │   ├── abook.json
+│   │       │   ├── formula.json
+│   │       │   └── master.atom
+│   │       ├── julia
+│   │       │   ├── 0.0.4.pkg.json
+│   │       │   ├── Inequality
+│   │       │   ├── Registry.toml
+│   │       │   ├── Registry.toml.atom
+│   │       │   ├── graphql.json
+│   │       │   ├── info
+│   │       │   ├── lookup?url=https:%2F%2Fgithub.com%2FJosepER%2FInequality.jl
+│   │       │   ├── pkg.json
+│   │       │   └── tags
+│   │       ├── list?url=https:%2F%2Fcrates.io%2Fapi%2Fv1%2Fcrates%2Frand%2F1.0.0%2Fdownload
+│   │       ├── maven
+│   │       │   ├── archetype-catalog.xml
+│   │       │   ├── maven-metadata.xml
+│   │       │   ├── recent
+│   │       │   ├── zio-aws-autoscaling_3-5.17.102.7.pom
+│   │       │   └── zio-aws-autoscaling_3-5.17.225.2.pom
+│   │       ├── npm
+│   │       │   ├── base62
+│   │       │   ├── base62.1
+│   │       │   ├── names.json
+│   │       │   ├── new-rss
+│   │       │   └── recent
+│   │       ├── nuget
+│   │       │   ├── index.json
+│   │       │   ├── ogcapi.net.sqlserver
+│   │       │   ├── page15386.json
+│   │       │   └── query_packageid:OgcApi.Net.SqlServer
+│   │       ├── packagist
+│   │       │   ├── instagram-php-graph-sdk.json
+│   │       │   ├── instagram-php-graph-sdk.json.1
+│   │       │   ├── list.json
+│   │       │   ├── log.json
+│   │       │   ├── log.json.1
+│   │       │   ├── packages.rss
+│   │       │   └── releases.rss
+│   │       ├── pub
+│   │       │   ├── bloc
+│   │       │   ├── package-names
+│   │       │   ├── packages?page=1
+│   │       │   └── packages?page=2
+│   │       ├── puppet
+│   │       │   ├── modules?limit=100&offset=0
+│   │       │   ├── modules?limit=100&offset=100
+│   │       │   ├── modules?limit=100&sort_by=latest_release
+│   │       │   ├── puppet-fail2ban
+│   │       │   ├── puppet-fail2ban-4.0.0
+│   │       │   └── puppet-fail2ban-4.1.0
+│   │       ├── pypi
+│   │       │   ├── 0.1.2.32
+│   │       │   ├── easybuild-easyconfigs-json
+│   │       │   ├── index.html
+│   │       │   ├── packages.xml
+│   │       │   ├── recent
+│   │       │   ├── siuba-0.3.0-json
+│   │       │   ├── updates.xml
+│   │       │   ├── yiban
+│   │       │   └── yiban-0.1.2.32-json
+│   │       ├── racket
+│   │       │   └── pkgs-all.json.gz
+│   │       ├── rubygems
+│   │       │   ├── 0.2.6.json
+│   │       │   ├── 0.3.0.json
+│   │       │   ├── just_updated.json
+│   │       │   ├── latest.json
+│   │       │   ├── lookup?url=https:%2F%2Fgithub.com%2Fphillbaker%2Frubystats
+│   │       │   ├── nokogiri-versions.json
+│   │       │   ├── nokogiri.json
+│   │       │   ├── rubystats-versions.json
+│   │       │   ├── rubystats.json
+│   │       │   └── specs.4.8.gz
+│   │       ├── spack
+│   │       │   ├── 3proxy.json
+│   │       │   ├── develop.atom
+│   │       │   ├── packages.json
+│   │       │   └── repology.json
+│   │       ├── swiftpm
+│   │       │   ├── Package.resolved
+│   │       │   ├── lookup?url=https:%2F%2Fgithub.com%2Fswift-cloud%2FCompute
+│   │       │   ├── main.atom
+│   │       │   ├── packages.json
+│   │       │   └── tags
+│   │       └── vcpkg
+│   │           ├── master.atom
+│   │           └── output.json
+│   ├── helpers
+│   │   └── .keep
+│   ├── integration
+│   │   ├── .keep
+│   │   └── openapi_test.rb
+│   ├── models
+│   │   ├── .keep
+│   │   ├── carthage_test.rb
+│   │   ├── dependency_test.rb
+│   │   ├── ecosystem
+│   │   │   ├── actions_test.rb
+│   │   │   ├── bower_test.rb
+│   │   │   ├── cargo_test.rb
+│   │   │   ├── clojars_test.rb
+│   │   │   ├── cocoapods_test.rb
+│   │   │   ├── conda_test.rb
+│   │   │   ├── cpan_test.rb
+│   │   │   ├── cran_test.rb
+│   │   │   ├── deno_test.rb
+│   │   │   ├── elm_test.rb
+│   │   │   ├── elpa_test.rb
+│   │   │   ├── go_test.rb
+│   │   │   ├── hackage_test.rb
+│   │   │   ├── hex_test.rb
+│   │   │   ├── homebrew_test.rb
+│   │   │   ├── julia_test.rb
+│   │   │   ├── maven_test.rb
+│   │   │   ├── npm_test.rb
+│   │   │   ├── nuget_test.rb
+│   │   │   ├── packagist_test.rb
+│   │   │   ├── pub_test.rb
+│   │   │   ├── puppet_test.rb
+│   │   │   ├── pypi_test.rb
+│   │   │   ├── racket_test.rb
+│   │   │   ├── rubygems_test.rb
+│   │   │   ├── spack_test.rb
+│   │   │   ├── swiftpm_test.rb
+│   │   │   └── vcpkg_test.rb
+│   │   ├── export_test.rb
+│   │   ├── maintainer_test.rb
+│   │   ├── maintainership_test.rb
+│   │   ├── package_test.rb
+│   │   ├── registry_test.rb
+│   │   └── version_test.rb
+│   ├── services
+│   │   ├── bitbucket_url_parser_test.rb
+│   │   ├── github_url_parser_test.rb
+│   │   ├── gitlab_url_parser_test.rb
+│   │   └── url_parser_test.rb
+│   ├── sidekiq
+│   │   └── sync_package_worker_test.rb
+│   ├── system
+│   │   └── .keep
+│   ├── tasks
+│   │   └── packages_rake_test.rb
+│   └── test_helper.rb
+├── tmp
+│   ├── .keep
+│   ├── pids
+│   │   └── .keep
+│   └── storage
+│       └── .keep
+└── vendor
+    └── .keep
+110 directories, 532 files
