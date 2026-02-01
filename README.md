@@ -1,6 +1,8 @@
 # GitScan
 
-Automated GitHub public repository scanner. Collects metadata, documentation, dependencies, and commit history from public repositories.
+Automated GitHub public repository scanner. Collects metadata, documentation, dependencies, and commit history from public repositories. Optionally generates AI-powered structured overviews.
+
+Demo frontend on https://revolunet.github.io/gitscan
 
 ## Overview
 
@@ -30,6 +32,7 @@ For each repository:
 - **Commit history**: Last 90 days
 - **File tree**: Compressed directory structure
 - **GitHub metadata**: Languages, topics, issues count, etc.
+- **AI Overview** (optional): Structured JSON with description, features, tech stack, and more
 
 ## Data Structure
 
@@ -43,17 +46,20 @@ repos/
 │       ├── github.json
 │       ├── commits.txt
 │       ├── tree.txt
-│       └── package.json
+│       ├── package.json
+│       └── overview.json   # AI-generated structured overview
 └── ...
 ```
 
 ## Scripts
 
-| Script                             | Description                                                                 |
-| ---------------------------------- | --------------------------------------------------------------------------- |
-| [fetch-repos.sh](./fetch-repos.sh) | Fetches repository lists from all organizations in [orgas.txt](./orgas.txt) |
-| [fetch-repo.sh](./fetch-repo.sh)   | Analyzes a single repository and extracts its data                          |
-| [minitree.py](./minitree.py)       | Compresses `tree` output by grouping similar filenames                      |
+| Script                                                   | Description                                                                 |
+| -------------------------------------------------------- | --------------------------------------------------------------------------- |
+| [fetch-repos.sh](./fetch-repos.sh)                       | Fetches repository lists from all organizations in [orgas.txt](./orgas.txt) |
+| [fetch-repo.sh](./fetch-repo.sh)                         | Analyzes a single repository and extracts its data                          |
+| [minitree.py](./minitree.py)                             | Compresses `tree` output by grouping similar filenames                      |
+| [generate-repo-overview.sh](./generate-repo-overview.sh) | Generates AI-powered overview for a single repository                       |
+| [generate-overviews.sh](./generate-overviews.sh)         | Batch generates overviews for all repositories                              |
 
 ## Usage
 
@@ -61,6 +67,15 @@ repos/
 
 ```bash
 export GITHUB_TOKEN="your_github_token"
+```
+
+For AI overview generation:
+
+```bash
+export OPENAI_API_KEY="your_openai_api_key"
+# Optional: use a different OpenAI-compatible API
+export OPENAI_BASE_URL="https://api.openai.com/v1"
+export OPENAI_MODEL="gpt-4o"
 ```
 
 ### Fetch all organization repository lists
@@ -74,6 +89,38 @@ export GITHUB_TOKEN="your_github_token"
 ```bash
 ./fetch-repo.sh https://github.com/betagouv/moncomptepro
 ```
+
+### Generate AI overview for a repository
+
+```bash
+./generate-repo-overview.sh repos/betagouv/moncomptepro
+```
+
+### Generate overviews for all repositories
+
+```bash
+./generate-overviews.sh
+```
+
+## AI Overview Schema
+
+The `overview.json` files follow a [JSON Schema](./schemas/repository.schema.json) with fields including:
+
+| Field          | Description                                           |
+| -------------- | ----------------------------------------------------- |
+| `description`  | Concise project description (in French)               |
+| `language`     | Primary programming language                          |
+| `features`     | User-facing features and capabilities                 |
+| `audience`     | Target users (public, professionals, admin agents...) |
+| `dependencies` | Main frameworks, libraries, and services              |
+| `components`   | Technical architecture components                     |
+| `auth`         | Authentication methods and providers                  |
+| `tests`        | Testing setup and frameworks                          |
+| `workflows`    | CI/CD workflows                                       |
+| `status`       | Maintenance status (active, archived, deprecated...)  |
+| `license`      | SPDX license identifier                               |
+| `metrics`      | Stars, forks, contributors, open issues               |
+| `tags`         | Keywords for categorization                           |
 
 ## GitHub Actions
 
