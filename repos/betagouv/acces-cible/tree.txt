@@ -1,0 +1,451 @@
+.
+├── .buildpacks
+├── .dockerignore
+├── .git-blame-ignore-revs
+├── .gitattributes
+├── .github
+│   ├── ISSUE_TEMPLATE
+│   │   ├── bug.md
+│   │   ├── chore.md
+│   │   └── feature.md
+│   ├── codeql
+│   │   └── codeql-config.yml
+│   ├── dependabot.yml
+│   └── workflows
+│       └── ci.yml
+├── .gitignore
+├── .rspec
+├── .rubocop.yml
+├── .ruby-version
+├── Dockerfile
+├── Dockerfile.dev
+├── Gemfile
+├── Gemfile.lock
+├── Guardfile
+├── LICENSE
+├── Makefile
+├── Procfile
+├── Procfile.dev
+├── README.md
+├── Rakefile
+├── SECURITY.md
+├── app
+│   ├── assets
+│   │   ├── builds
+│   │   │   └── .keep
+│   │   ├── images
+│   │   │   └── .keep
+│   │   └── stylesheets
+│   │       └── application.scss
+│   ├── components
+│   │   ├── application_component.rb
+│   │   ├── concerns
+│   │   │   └── component_store_accessor.rb
+│   │   └── dsfr
+│   │       ├── pagination_component.html.erb
+│   │       ├── pagination_component.rb
+│   │       ├── sidemenu_component.html.erb
+│   │       ├── sidemenu_component.rb
+│   │       ├── sidemenu_item_component.rb
+│   │       ├── table_component.html.erb
+│   │       ├── table_component.rb
+│   │       └── tooltip_component.rb
+│   ├── controllers
+│   │   ├── application_controller.rb
+│   │   ├── audits_controller.rb
+│   │   ├── concerns
+│   │   │   ├── .keep
+│   │   │   └── authentication.rb
+│   │   ├── errors_controller.rb
+│   │   ├── pages_controller.rb
+│   │   ├── sessions_controller.rb
+│   │   ├── sites_controller.rb
+│   │   ├── tags_controller.rb
+│   │   └── users_controller.rb
+│   ├── export
+│   │   └── site_csv_export.rb
+│   ├── helpers
+│   │   ├── application_helper.rb
+│   │   ├── check_helper.rb
+│   │   ├── dsfr_helper.rb
+│   │   ├── error_helper.rb
+│   │   ├── icon_helper.rb
+│   │   └── page_helper.rb
+│   ├── javascript
+│   │   ├── application.js
+│   │   └── controllers
+│   │       ├── application.js
+│   │       ├── autosubmit_controller.js
+│   │       ├── dragover_controller.js
+│   │       ├── focus_controller.js
+│   │       ├── frame_controller.js
+│   │       ├── index.js
+│   │       ├── modal_controller.js
+│   │       └── table_controller.js
+│   ├── jobs
+│   │   ├── application_job.rb
+│   │   ├── fetch_resources_job.rb
+│   │   ├── process_audit_job.rb
+│   │   ├── remove_inactive_sessions_job.rb
+│   │   ├── remove_inactive_teams_job.rb
+│   │   ├── remove_inactive_users_job.rb
+│   │   ├── remove_orphan_tags_job.rb
+│   │   └── run_check_job.rb
+│   ├── libs
+│   │   └── string_comparison.rb
+│   ├── mailers
+│   │   └── application_mailer.rb
+│   ├── models
+│   │   ├── application_record.rb
+│   │   ├── audit.rb
+│   │   ├── axe_violation.rb
+│   │   ├── browser.rb
+│   │   ├── check.rb
+│   │   ├── check_state_machine.rb
+│   │   ├── check_transition.rb
+│   │   ├── checks
+│   │   │   ├── accessibility_mention.rb
+│   │   │   ├── accessibility_page_heading.rb
+│   │   │   ├── analyze_accessibility_page.rb
+│   │   │   ├── analyze_plan.rb
+│   │   │   ├── analyze_schema.rb
+│   │   │   ├── find_accessibility_page.rb
+│   │   │   ├── language_indication.rb
+│   │   │   ├── reachable.rb
+│   │   │   └── run_axe_on_homepage.rb
+│   │   ├── concerns
+│   │   │   └── accessibility_document_analyzer.rb
+│   │   ├── crawler.rb
+│   │   ├── current.rb
+│   │   ├── link
+│   │   │   └── invalid_uri_error.rb
+│   │   ├── link.rb
+│   │   ├── link_list.rb
+│   │   ├── page.rb
+│   │   ├── page_heading_status.rb
+│   │   ├── session.rb
+│   │   ├── site.rb
+│   │   ├── site_tag.rb
+│   │   ├── site_upload.rb
+│   │   ├── tag.rb
+│   │   ├── team.rb
+│   │   └── user.rb
+│   ├── queries
+│   │   └── site_query.rb
+│   ├── services
+│   │   ├── fetch_home_page_service.rb
+│   │   └── find_accessibility_page_service.rb
+│   ├── validators
+│   │   ├── email_validator.rb
+│   │   └── url_validator.rb
+│   └── views
+│       ├── checks
+│       │   ├── _accessibility_mention.html.erb
+│       │   ├── _accessibility_page_heading.html.erb
+│       │   ├── _analyze_accessibility_page.html.erb
+│       │   ├── _analyze_plan.html.erb
+│       │   ├── _analyze_schema.html.erb
+│       │   ├── _find_accessibility_page.html.erb
+│       │   ├── _language_indication.html.erb
+│       │   ├── _reachable.html.erb
+│       │   └── _run_axe_on_homepage.html.erb
+│       ├── errors
+│       │   ├── internal_server_error.html.erb
+│       │   └── not_found.html.erb
+│       ├── layouts
+│       │   ├── application.html.erb
+│       │   ├── mailer.html.erb
+│       │   ├── mailer.text.erb
+│       │   └── modal.html.erb
+│       ├── pages
+│       │   ├── accessibilite.html.md
+│       │   ├── accueil.html.md
+│       │   ├── checks
+│       │   │   ├── accessibility_mention.html.md
+│       │   │   ├── accessibility_page_heading.html.md
+│       │   │   ├── analyze_accessibility_page.html.md
+│       │   │   ├── analyze_plan.html.md
+│       │   │   ├── analyze_schema.html.md
+│       │   │   ├── find_accessibility_page.html.md
+│       │   │   ├── language_indication.html.md
+│       │   │   ├── reachable.html.md
+│       │   │   └── run_axe_on_homepage.html.md
+│       │   ├── contact.html.erb
+│       │   ├── cookies.html.md
+│       │   ├── display_mode.html.erb
+│       │   ├── donnees_personnelles.html.erb
+│       │   ├── help.html.erb
+│       │   ├── mentions_legales.html.md
+│       │   └── plan.html.erb
+│       ├── pwa
+│       │   ├── manifest.json.erb
+│       │   └── service-worker.js
+│       ├── sessions
+│       │   └── new.html.erb
+│       ├── shared
+│       │   ├── _filter.html.erb
+│       │   ├── _flash.html.erb
+│       │   ├── _footer.html.erb
+│       │   ├── _header.html.erb
+│       │   ├── _menu.html.erb
+│       │   └── _skiplinks.html.erb
+│       ├── sites
+│       │   ├── _form.html.erb
+│       │   ├── _site.html.erb
+│       │   ├── _tags_form.html.erb
+│       │   ├── edit.html.erb
+│       │   ├── index.html.erb
+│       │   ├── new.html.erb
+│       │   └── show.html.erb
+│       ├── tags
+│       │   ├── _form.html.erb
+│       │   ├── edit.html.erb
+│       │   ├── index.html.erb
+│       │   └── show.html.erb
+│       └── users
+│           └── show.html.erb
+├── bin
+│   ├── brakeman
+│   ├── bundle
+│   ├── cucumber
+│   ├── dev
+│   ├── docker-entrypoint
+│   ├── importmap
+│   ├── jobs
+│   ├── rails
+│   ├── rake
+│   ├── rubocop
+│   ├── scalingo
+│   ├── setup
+│   ├── tdd
+│   └── test
+├── config
+│   ├── application.rb
+│   ├── boot.rb
+│   ├── brakeman.ignore
+│   ├── cable.yml
+│   ├── cache.yml
+│   ├── credentials.yml.enc
+│   ├── cucumber.yml
+│   ├── database.yml
+│   ├── environment.rb
+│   ├── environments
+│   │   ├── development.rb
+│   │   ├── production.rb
+│   │   └── test.rb
+│   ├── importmap.rb
+│   ├── initializers
+│   │   ├── active_record_extensions.rb
+│   │   ├── assets.rb
+│   │   ├── content_security_policy.rb
+│   │   ├── dsfr_form_builder.rb
+│   │   ├── dsfr_view_component.rb
+│   │   ├── environment.rb
+│   │   ├── filter_parameter_logging.rb
+│   │   ├── friendly_id.rb
+│   │   ├── i18n.rb
+│   │   ├── inflections.rb
+│   │   ├── omniauth.rb
+│   │   ├── sentry.rb
+│   │   ├── statesman.rb
+│   │   └── turbo_streams.rb
+│   ├── locales
+│   │   └── fr.yml
+│   ├── puma.rb
+│   ├── queue.yml
+│   ├── recurring.yml
+│   ├── routes.rb
+│   └── storage.yml
+├── config.ru
+├── db
+│   ├── cable_schema.rb
+│   ├── cache_schema.rb
+│   ├── migrate
+│   │   ├── 20250213082348_create_friendly_id_slugs.rb
+│   │   ├── 20250213082907_create_sites.rb
+│   │   ├── 20250213152147_create_audits.rb
+│   │   ├── 20250214134425_create_checks.rb
+│   │   ├── 20250216170226_add_scheduled_to_checks.rb
+│   │   ├── 20250216205241_remove_run_at_from_audits.rb
+│   │   ├── 20250217085742_add_checked_at_to_audits.rb
+│   │   ├── 20250226100820_add_audits_count_to_site.rb
+│   │   ├── 20250306090321_add_priority_to_checks.rb
+│   │   ├── 20250426211016_remove_attempts_from_audits.rb
+│   │   ├── 20250426212105_remove_attempts_from_checks.rb
+│   │   ├── 20250506075409_add_error_columns_to_checks.rb
+│   │   ├── 20250507132936_add_current_to_audits.rb
+│   │   ├── 20250515075515_add_retry_attributes_to_checks.rb
+│   │   ├── 20250516095805_create_users.rb
+│   │   ├── 20250516131537_create_teams.rb
+│   │   ├── 20250519093533_create_sessions.rb
+│   │   ├── 20250521131246_add_team_id_to_sites.rb
+│   │   ├── 20250526082606_add_team_id_to_audit_slug_unique_index.rb
+│   │   ├── 20250527120328_add_scheduled_to_audits.rb
+│   │   ├── 20250527124402_create_tags.rb
+│   │   ├── 20250617133940_add_counters_to_sites_and_tags.rb
+│   │   ├── 20250630145510_change_email_uniqueness_constraint_for_users.rb
+│   │   ├── 20250722095021_schedule_process_audit_jobs.rb
+│   │   ├── 20250722125903_remove_scheduled_from_checks.rb
+│   │   ├── 20250804083656_strip_whitespace_in_language_indication.rb
+│   │   ├── 20250804151227_set_default_run_at_for_checks.rb
+│   │   ├── 20250804152906_remove_scheduled_column_from_audit.rb
+│   │   ├── 20250806105702_remove_unneeded_instructions_in_schema.rb
+│   │   ├── 20250807100904_remove_audit_id_from_sites.rb
+│   │   ├── 20250811081407_create_check_transitions.rb
+│   │   ├── 20250811104400_add_name_to_users.rb
+│   │   ├── 20250811104500_remove_given_name_and_usual_name_from_users.rb
+│   │   ├── 20250811134440_remove_state_attributes_on_checks.rb
+│   │   ├── 20250903135530_remove_retry_count_from_checks.rb
+│   │   ├── 20250904095747_add_unique_constraint_to_checks_audit_id_type.rb
+│   │   ├── 20250918094744_update_failed_transitions_with_metadata_to_errored.rb
+│   │   ├── 20250918170533_allow_null_data_on_checks.rb
+│   │   ├── 20251001142718_remove_status_from_audit.rb
+│   │   ├── 20251120092907_add_pages_to_audits.rb
+│   │   ├── 20251201152348_add_accessibility_page_url_to_audits.rb
+│   │   ├── 20251215140216_add_home_page_url_to_audits.rb
+│   │   └── 20260127092803_rename_checked_at_to_completed_at_in_audits.rb
+│   ├── queue_schema.rb
+│   ├── schema.rb
+│   └── seeds.rb
+├── docker-compose.yml
+├── features
+│   ├── ajout_d_un_site.feature
+│   ├── export_csv.feature
+│   ├── page_d_accueil.feature
+│   ├── page_des_sites.feature
+│   ├── page_des_tags.feature
+│   ├── page_du_site.feature
+│   ├── step_definitions
+│   │   ├── authentification_steps.rb
+│   │   ├── import_steps.rb
+│   │   ├── job_steps.rb
+│   │   ├── site_steps.rb
+│   │   └── web_steps.rb
+│   ├── support
+│   │   ├── env.rb
+│   │   ├── job.rb
+│   │   ├── omniauth.rb
+│   │   ├── steps.rb
+│   │   └── web.rb
+│   ├── verification_de_site.feature
+│   ├── verification_du_plan_d_action.feature
+│   └── verification_du_schema_pluriannuel.feature
+├── lib
+│   └── tasks
+│       ├── .keep
+│       ├── cucumber.rake
+│       └── vendor.rake
+├── log
+│   └── .keep
+├── public
+│   ├── 400.html
+│   ├── 406-unsupported-browser.html
+│   ├── 422.html
+│   ├── favicon.ico
+│   ├── icon.png
+│   ├── icon.svg
+│   └── robots.txt
+├── script
+│   └── .keep
+├── spec
+│   ├── components
+│   │   └── dsfr
+│   │       ├── pagination_spec.rb
+│   │       ├── sidemenu_item_spec.rb
+│   │       ├── sidemenu_spec.rb
+│   │       ├── table_spec.rb
+│   │       └── tooltip_component_spec.rb
+│   ├── export
+│   │   └── site_csv_export_spec.rb
+│   ├── factories
+│   │   ├── audits.rb
+│   │   ├── checks.rb
+│   │   ├── links.rb
+│   │   ├── pages.rb
+│   │   ├── sessions.rb
+│   │   ├── sites.rb
+│   │   ├── tags.rb
+│   │   ├── teams.rb
+│   │   └── users.rb
+│   ├── fixtures
+│   │   └── files
+│   │       ├── declarations
+│   │       │   ├── invalid.html
+│   │       │   ├── valid.html
+│   │       │   └── valid_with_shift.html
+│   │       └── sites.csv
+│   ├── helpers
+│   │   ├── application_helper_spec.rb
+│   │   ├── check_helper_spec.rb
+│   │   ├── dsfr_helper_spec.rb
+│   │   ├── error_helper_spec.rb
+│   │   ├── icon_helper_spec.rb
+│   │   └── page_helper_spec.rb
+│   ├── jobs
+│   │   ├── application_job_spec.rb
+│   │   ├── fetch_resources_job_spec.rb
+│   │   ├── process_audit_job_spec.rb
+│   │   ├── remove_inactive_sessions_job_spec.rb
+│   │   ├── remove_inactive_users_job_spec.rb
+│   │   └── run_check_job_spec.rb
+│   ├── lib
+│   │   └── string_comparison_spec.rb
+│   ├── models
+│   │   ├── audit_spec.rb
+│   │   ├── browser_spec.rb
+│   │   ├── check_spec.rb
+│   │   ├── check_state_machine_spec.rb
+│   │   ├── checks
+│   │   │   ├── accessibility_mention_spec.rb
+│   │   │   ├── accessibility_page_heading_spec.rb
+│   │   │   ├── analyze_accessibility_page_spec.rb
+│   │   │   ├── analyze_plan_spec.rb
+│   │   │   ├── analyze_schema_spec.rb
+│   │   │   ├── find_accessibility_page_spec.rb
+│   │   │   ├── language_indication_spec.rb
+│   │   │   ├── reachable_spec.rb
+│   │   │   └── run_axe_on_homepage_spec.rb
+│   │   ├── crawler_spec.rb
+│   │   ├── link_list_spec.rb
+│   │   ├── link_spec.rb
+│   │   ├── page_spec.rb
+│   │   ├── session_spec.rb
+│   │   ├── site_spec.rb
+│   │   ├── site_upload_spec.rb
+│   │   ├── tag_spec.rb
+│   │   ├── team_spec.rb
+│   │   └── user_spec.rb
+│   ├── queries
+│   │   └── site_query_spec.rb
+│   ├── rails_helper.rb
+│   ├── requests
+│   │   ├── authentication_spec.rb
+│   │   ├── sites_controller_spec.rb
+│   │   ├── tags_controller_spec.rb
+│   │   └── users_controller_spec.rb
+│   ├── services
+│   │   ├── fetch_home_page_service_spec.rb
+│   │   └── find_accessibility_page_service_spec.rb
+│   ├── spec_helper.rb
+│   └── support
+│       ├── auth_helpers.rb
+│       ├── axe_core.rb
+│       ├── capybara.rb
+│       ├── factory_bot.rb
+│       └── shoulda_matcher.rb
+├── storage
+│   └── .keep
+├── tmp
+│   ├── .keep
+│   ├── pids
+│   │   └── .keep
+│   └── storage
+│       └── .keep
+└── vendor
+    ├── .keep
+    └── javascript
+        ├── .keep
+        ├── axe.fr.json
+        ├── axe.min.js
+        └── stealth.min.js
+79 directories, 371 files
