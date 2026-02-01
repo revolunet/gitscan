@@ -1,0 +1,382 @@
+.
+├── .buildpacks
+├── .circleci
+│   └── config.yml
+├── .env.example
+├── .gitignore
+├── .puppeteerrc.cjs
+├── .vscode
+│   └── settings.json
+├── Aptfile
+├── Procfile
+├── README.md
+├── biome.json
+├── docker-compose.yml
+├── jest.config.json
+├── nest-cli.json
+├── package.json
+├── pnpm-lock.yaml
+├── prisma
+│   ├── migrations
+│   │   ├── 0_init
+│   │   │   └── migration.sql
+│   │   ├── 20250702144104_add_epci_groups
+│   │   │   └── migration.sql
+│   │   ├── 20250703093126_add_epci_group_to_simulation
+│   │   │   └── migration.sql
+│   │   ├── 20250708162947_bad_housing_default_settings
+│   │   │   └── migration.sql
+│   │   ├── 20250717164157_add_demographic_evolution_to_scenario
+│   │   │   └── migration.sql
+│   │   ├── 20250721073147_demographic_evolution_custom_relation
+│   │   │   └── migration.sql
+│   │   ├── 20250721093221_add_engaged_ds
+│   │   │   └── migration.sql
+│   │   ├── 20250722131645_add_partial_unique_index_demographic_evolution_omphale_custom
+│   │   │   └── migration.sql
+│   │   ├── 20250723083654_password
+│   │   │   └── migration.sql
+│   │   ├── 20250731152608_add_simulation_exported
+│   │   │   └── migration.sql
+│   │   ├── 20250804150849_add_simulation_results
+│   │   │   └── migration.sql
+│   │   ├── 20250826123442_add_user_whitelist
+│   │   │   └── migration.sql
+│   │   ├── 20250901090140_add_cascade_on_simulation_results
+│   │   │   └── migration.sql
+│   │   ├── 20250901153340_email_validation
+│   │   │   └── migration.sql
+│   │   ├── 20250923131242_user_type
+│   │   │   └── migration.sql
+│   │   ├── 20251022155120_exports
+│   │   │   └── migration.sql
+│   │   ├── 20251027085149_is_privileged_export
+│   │   │   └── migration.sql
+│   │   ├── 20251107135814_sitadel_started_housing_count
+│   │   │   └── migration.sql
+│   │   ├── 20251107150502_fix_exported_simulations_results
+│   │   │   └── migration.sql
+│   │   ├── 20251112194453_household_sizes
+│   │   │   └── migration.sql
+│   │   ├── 20251120205828_forgot_password
+│   │   │   └── migration.sql
+│   │   ├── 20251222151401_soft_delete_simulations
+│   │   │   └── migration.sql
+│   │   ├── 20251222154953_delete_user_cascade
+│   │   │   └── migration.sql
+│   │   ├── 20251223093203_usurpation_mode
+│   │   │   └── migration.sql
+│   │   ├── 20251223095117_delete_user_on_cascade_fix
+│   │   │   └── migration.sql
+│   │   └── migration_lock.toml
+│   └── schema.prisma
+├── prisma.config.ts
+├── public
+│   └── ppt
+│       └── template.pptx
+├── src
+│   ├── accommodation-rates
+│   │   ├── accommodation-rates.controller.spec.ts
+│   │   ├── accommodation-rates.controller.ts
+│   │   ├── accommodation-rates.module.ts
+│   │   ├── accommodation-rates.service.spec.ts
+│   │   └── accommodation-rates.service.ts
+│   ├── admin
+│   │   ├── admin.controller.spec.ts
+│   │   ├── admin.controller.ts
+│   │   ├── admin.module.ts
+│   │   ├── admin.service.spec.ts
+│   │   └── admin.service.ts
+│   ├── auth
+│   │   ├── auth.controller.spec.ts
+│   │   ├── auth.controller.ts
+│   │   ├── auth.module.ts
+│   │   ├── auth.service.spec.ts
+│   │   ├── auth.service.ts
+│   │   ├── impersonation.service.ts
+│   │   └── password-reset.service.ts
+│   ├── bad-quality
+│   │   ├── bad-quality.module.ts
+│   │   ├── bad-quality.service.spec.ts
+│   │   └── bad-quality.service.ts
+│   ├── bassin
+│   │   ├── bassin.module.ts
+│   │   ├── bassin.service.spec.ts
+│   │   └── bassin.service.ts
+│   ├── calculation
+│   │   ├── calculation.module.ts
+│   │   ├── coefficient-calculation
+│   │   │   ├── coefficient-calculation.module.ts
+│   │   │   ├── coefficient-calculation.service.spec.ts
+│   │   │   ├── coefficient-calculation.service.ts
+│   │   │   └── coefficient.config.ts
+│   │   ├── needs-calculation
+│   │   │   ├── base-calculator.spec.ts
+│   │   │   ├── base-calculator.ts
+│   │   │   ├── besoins-flux
+│   │   │   │   ├── evolution-demographique-b21
+│   │   │   │   │   ├── demographic-evolution.service.spec.ts
+│   │   │   │   │   └── demographic-evolution.service.ts
+│   │   │   │   ├── flow-requirement.service.spec.ts
+│   │   │   │   ├── flow-requirement.service.ts
+│   │   │   │   └── occupation-renouvellement-parc-logements-b22
+│   │   │   │       ├── renewal-housing-stock.service.spec.ts
+│   │   │   │       └── renewal-housing-stock.service.ts
+│   │   │   ├── besoins-stock
+│   │   │   │   ├── heberges-b12
+│   │   │   │   │   ├── hosted.service.spec.ts
+│   │   │   │   │   └── hosted.service.ts
+│   │   │   │   ├── hors-logement-b11
+│   │   │   │   │   ├── no-accomodation.service.spec.ts
+│   │   │   │   │   └── no-accomodation.service.ts
+│   │   │   │   ├── inadequation-financiere-b13
+│   │   │   │   │   ├── financial-inadequation.service.spec.ts
+│   │   │   │   │   └── financial-inadequation.service.ts
+│   │   │   │   ├── inadequation-physique-b15
+│   │   │   │   │   ├── physical-inadequation.service.spec.ts
+│   │   │   │   │   └── physical-inadequation.service.ts
+│   │   │   │   └── mauvaise-qualite-b14
+│   │   │   │       ├── bad-quality.service.spec.ts
+│   │   │   │       └── bad-quality.service.ts
+│   │   │   ├── needs-calculation.module.ts
+│   │   │   ├── needs-calculation.service.spec.ts
+│   │   │   ├── needs-calculation.service.ts
+│   │   │   └── sitadel
+│   │   │       ├── sitadel.service.spec.ts
+│   │   │       └── sitadel.service.ts
+│   │   └── ratio-calculation
+│   │       ├── ratio-calculation.module.ts
+│   │       ├── ratio-calculation.service.spec.ts
+│   │       ├── ratio-calculation.service.ts
+│   │       └── ratio.config.ts
+│   ├── cli
+│   │   ├── cli.module.ts
+│   │   ├── cli.ts
+│   │   ├── commands
+│   │   │   └── import-backup.command.ts
+│   │   └── services
+│   │       └── scalingo-backup.service.ts
+│   ├── common
+│   │   ├── decorators
+│   │   │   ├── authenticated-user.ts
+│   │   │   ├── control-access.decorator.ts
+│   │   │   ├── public.decorator.ts
+│   │   │   └── usurpation-user.ts
+│   │   ├── exceptions
+│   │   │   ├── auth.exceptions.ts
+│   │   │   └── email-verification
+│   │   │       ├── email-verification.module.ts
+│   │   │       ├── email-verification.service.spec.ts
+│   │   │       └── email-verification.service.ts
+│   │   ├── guards
+│   │   │   ├── authentication.guard.spec.ts
+│   │   │   ├── authentication.guard.ts
+│   │   │   ├── authorization.guard.spec.ts
+│   │   │   ├── authorization.guard.ts
+│   │   │   ├── refreshtoken.guard.spec.ts
+│   │   │   └── refreshtoken.guard.ts
+│   │   └── utils
+│   │       └── email-anonymizer.ts
+│   ├── config
+│   │   ├── env.validation.ts
+│   │   └── environment.ts
+│   ├── cron
+│   │   ├── cron.controller.spec.ts
+│   │   ├── cron.controller.ts
+│   │   ├── cron.module.ts
+│   │   ├── cron.service.ts
+│   │   └── interfaces
+│   │       └── demarches-simplifiees.interface.ts
+│   ├── data-visualisation
+│   │   ├── data-visualisation.controller.spec.ts
+│   │   ├── data-visualisation.controller.ts
+│   │   ├── data-visualisation.module.ts
+│   │   ├── data-visualisation.service.spec.ts
+│   │   └── data-visualisation.service.ts
+│   ├── db
+│   │   ├── prisma.module.ts
+│   │   └── prisma.service.ts
+│   ├── demographic-evolution
+│   │   ├── demographic-evolution.controller.spec.ts
+│   │   ├── demographic-evolution.controller.ts
+│   │   ├── demographic-evolution.module.ts
+│   │   ├── demographic-evolution.service.spec.ts
+│   │   └── demographic-evolution.service.ts
+│   ├── demographic-evolution-custom
+│   │   ├── demographic-evolution-custom.controller.ts
+│   │   ├── demographic-evolution-custom.module.ts
+│   │   └── demographic-evolution-custom.service.ts
+│   ├── email
+│   │   ├── email.controller.spec.ts
+│   │   ├── email.controller.ts
+│   │   ├── email.module.ts
+│   │   ├── email.service.spec.ts
+│   │   ├── email.service.ts
+│   │   └── interfaces
+│   │       └── email-service.interface.ts
+│   ├── epci-groups
+│   │   ├── epci-groups.controller.ts
+│   │   ├── epci-groups.module.ts
+│   │   └── epci-groups.service.ts
+│   ├── epcis
+│   │   ├── epcis.controller.spec.ts
+│   │   ├── epcis.controller.ts
+│   │   ├── epcis.module.ts
+│   │   ├── epcis.service.spec.ts
+│   │   └── epcis.service.ts
+│   ├── export-excel
+│   │   ├── export-excel.controller.spec.ts
+│   │   ├── export-excel.controller.ts
+│   │   ├── export-excel.module.ts
+│   │   ├── export-excel.service.spec.ts
+│   │   ├── export-excel.service.ts
+│   │   └── helpers
+│   │       └── labels.ts
+│   ├── export-powerpoint
+│   │   ├── chart-generation
+│   │   │   ├── chart-generation.module.ts
+│   │   │   ├── chart-generation.service.spec.ts
+│   │   │   ├── chart-generation.service.ts
+│   │   │   └── colors.ts
+│   │   ├── export-powerpoint.controller.ts
+│   │   ├── export-powerpoint.module.ts
+│   │   ├── export-powerpoint.service.spec.ts
+│   │   ├── export-powerpoint.service.ts
+│   │   ├── placeholder-generation
+│   │   │   ├── placeholder-generation.module.ts
+│   │   │   ├── placeholder-generation.service.spec.ts
+│   │   │   └── placeholder-generation.service.ts
+│   │   └── zip
+│   │       ├── zip.module.ts
+│   │       ├── zip.service.spec.ts
+│   │       └── zip.service.ts
+│   ├── filocom
+│   │   ├── filocom.module.ts
+│   │   ├── filocom.service.spec.ts
+│   │   └── filocom.service.ts
+│   ├── financial-inadequation
+│   │   ├── financial-inadequation.module.ts
+│   │   ├── financial-inadequation.service.spec.ts
+│   │   └── financial-inadequation.service.ts
+│   ├── health
+│   │   ├── health.controller.spec.ts
+│   │   └── health.controller.ts
+│   ├── hosted
+│   │   ├── hosted.module.ts
+│   │   ├── hosted.service.spec.ts
+│   │   └── hosted.service.ts
+│   ├── household-sizes
+│   │   ├── household-sizes.module.ts
+│   │   ├── household-sizes.service.spec.ts
+│   │   └── household-sizes.service.ts
+│   ├── main.module.ts
+│   ├── main.ts
+│   ├── no-accommodation
+│   │   ├── no-accommodation.module.ts
+│   │   ├── no-accommodation.service.spec.ts
+│   │   └── no-accommodation.service.ts
+│   ├── physical-inadequation
+│   │   ├── physical-inadequation.module.ts
+│   │   ├── physical-inadequation.service.spec.ts
+│   │   └── physical-inadequation.service.ts
+│   ├── results
+│   │   ├── results.controller.spec.ts
+│   │   ├── results.controller.ts
+│   │   ├── results.module.ts
+│   │   ├── results.service.spec.ts
+│   │   └── results.service.ts
+│   ├── rp-insee
+│   │   ├── rp-insee.controller.spec.ts
+│   │   ├── rp-insee.module.ts
+│   │   ├── rp-insee.service.spec.ts
+│   │   └── rp-insee.service.ts
+│   ├── scenarios
+│   │   ├── scenarios.controller.spec.ts
+│   │   ├── scenarios.controller.ts
+│   │   ├── scenarios.module.ts
+│   │   ├── scenarios.service.spec.ts
+│   │   └── scenarios.service.ts
+│   ├── schemas
+│   │   ├── auth
+│   │   │   ├── forgot-password.ts
+│   │   │   ├── impersonation-status.ts
+│   │   │   ├── reset-password.ts
+│   │   │   ├── sign-in-callback.ts
+│   │   │   ├── sign-in.ts
+│   │   │   ├── sign-up.ts
+│   │   │   └── verify-email.ts
+│   │   ├── calculator
+│   │   │   └── calculation-result.ts
+│   │   ├── common-date-fields.ts
+│   │   ├── data
+│   │   │   └── data.ts
+│   │   ├── data-visualisation
+│   │   │   └── data-visualisation.ts
+│   │   ├── demographic-evolution
+│   │   │   └── demographic-evolution.ts
+│   │   ├── demographic-evolution-custom
+│   │   │   └── demographic-evolution-custom.ts
+│   │   ├── email
+│   │   │   └── email.ts
+│   │   ├── epci-group.ts
+│   │   ├── epcis
+│   │   │   └── epci.ts
+│   │   ├── export-powerpoint
+│   │   │   └── export-powerpoint.ts
+│   │   ├── json.ts
+│   │   ├── rates
+│   │   │   └── accommodations-rates.ts
+│   │   ├── results
+│   │   │   └── results.ts
+│   │   ├── scenarios
+│   │   │   ├── create-scenario.ts
+│   │   │   └── scenario.ts
+│   │   ├── sessions
+│   │   │   └── session.ts
+│   │   ├── simulations
+│   │   │   ├── create-simulation.ts
+│   │   │   └── simulation.ts
+│   │   └── users
+│   │       ├── create-user.ts
+│   │       ├── update-user.ts
+│   │       └── user.ts
+│   ├── sessions
+│   │   ├── sessions.module.ts
+│   │   ├── sessions.service.spec.ts
+│   │   └── sessions.service.ts
+│   ├── simulations
+│   │   ├── simulations.controller.spec.ts
+│   │   ├── simulations.controller.ts
+│   │   ├── simulations.module.ts
+│   │   ├── simulations.service.spec.ts
+│   │   └── simulations.service.ts
+│   ├── sitadel
+│   │   ├── sitadel.module.ts
+│   │   ├── sitadel.service.spec.ts
+│   │   └── sitadel.service.ts
+│   ├── statistics
+│   │   ├── statistics.controller.ts
+│   │   ├── statistics.module.ts
+│   │   └── statistics.service.ts
+│   ├── stock-requirements
+│   │   ├── stock-requirements.module.ts
+│   │   ├── stock-requirements.service.spec.ts
+│   │   └── stock-requirements.service.ts
+│   ├── types
+│   │   └── prisma-json.ts
+│   ├── users
+│   │   ├── users.controller.spec.ts
+│   │   ├── users.controller.ts
+│   │   ├── users.module.ts
+│   │   ├── users.service.spec.ts
+│   │   └── users.service.ts
+│   └── vacancy
+│       ├── vacancy.module.ts
+│       ├── vacancy.service.spec.ts
+│       └── vacancy.service.ts
+├── test
+│   ├── app.e2e-spec.ts
+│   └── jest-e2e.json
+├── tsconfig.build.json
+└── tsconfig.json
+113 directories, 268 files
