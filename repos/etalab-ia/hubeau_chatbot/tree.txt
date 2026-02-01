@@ -1,0 +1,852 @@
+.
+├── .dockerignore
+├── .gitignore
+├── Dockerfile
+├── Drafts
+│   ├── drafts.ipynb
+│   ├── geolocalization.ipynb
+│   └── location_adj.ipynb
+├── README.md
+├── download_stanza_model.py
+├── heideltime-standalone-2.2.1
+│   ├── heideltime-standalone
+│   │   ├── Manual.pdf
+│   │   ├── cat.txt
+│   │   ├── config.props
+│   │   ├── de.unihd.dbs.heideltime.standalone.jar
+│   │   ├── doc
+│   │   │   ├── allclasses-frame.html
+│   │   │   ├── allclasses-noframe.html
+│   │   │   ├── constant-values.html
+│   │   │   ├── de
+│   │   │   │   └── unihd
+│   │   │   │       └── dbs
+│   │   │   │           ├── heideltime
+│   │   │   │           │   └── standalone
+│   │   │   │           │       ├── CLISwitch.html
+│   │   │   │           │       ├── Config.html
+│   │   │   │           │       ├── DocumentType.html
+│   │   │   │           │       ├── HeidelTimeStandalone.html
+│   │   │   │           │       ├── OutputType.html
+│   │   │   │           │       ├── POSTagger.html
+│   │   │   │           │       ├── class-use
+│   │   │   │           │       │   ├── CLISwitch.html
+│   │   │   │           │       │   ├── Config.html
+│   │   │   │           │       │   ├── DocumentType.html
+│   │   │   │           │       │   ├── HeidelTimeStandalone.html
+│   │   │   │           │       │   ├── OutputType.html
+│   │   │   │           │       │   └── POSTagger.html
+│   │   │   │           │       ├── components
+│   │   │   │           │       │   ├── JCasFactory.html
+│   │   │   │           │       │   ├── PartOfSpeechTagger.html
+│   │   │   │           │       │   ├── ResultFormatter.html
+│   │   │   │           │       │   ├── UIMAAnnotator.html
+│   │   │   │           │       │   ├── class-use
+│   │   │   │           │       │   │   ├── JCasFactory.html
+│   │   │   │           │       │   │   ├── PartOfSpeechTagger.html
+│   │   │   │           │       │   │   ├── ResultFormatter.html
+│   │   │   │           │       │   │   └── UIMAAnnotator.html
+│   │   │   │           │       │   ├── impl
+│   │   │   │           │       │   │   ├── AllLanguagesTokenizerWrapper.html
+│   │   │   │           │       │   │   ├── HunPosTaggerWrapper.html
+│   │   │   │           │       │   │   ├── IntervalTaggerWrapper.html
+│   │   │   │           │       │   │   ├── JCasFactoryImpl.html
+│   │   │   │           │       │   │   ├── JVnTextProWrapper.html
+│   │   │   │           │       │   │   ├── StandaloneConfigContext.html
+│   │   │   │           │       │   │   ├── TimeMLResultFormatter.html
+│   │   │   │           │       │   │   ├── TreeTaggerWrapper.html
+│   │   │   │           │       │   │   ├── UimaContextImpl.html
+│   │   │   │           │       │   │   ├── XMIResultFormatter.html
+│   │   │   │           │       │   │   ├── class-use
+│   │   │   │           │       │   │   │   ├── AllLanguagesTokenizerWrapper.html
+│   │   │   │           │       │   │   │   ├── HunPosTaggerWrapper.html
+│   │   │   │           │       │   │   │   ├── IntervalTaggerWrapper.html
+│   │   │   │           │       │   │   │   ├── JCasFactoryImpl.html
+│   │   │   │           │       │   │   │   ├── JVnTextProWrapper.html
+│   │   │   │           │       │   │   │   ├── StandaloneConfigContext.html
+│   │   │   │           │       │   │   │   ├── TimeMLResultFormatter.html
+│   │   │   │           │       │   │   │   ├── TreeTaggerWrapper.html
+│   │   │   │           │       │   │   │   ├── UimaContextImpl.html
+│   │   │   │           │       │   │   │   └── XMIResultFormatter.html
+│   │   │   │           │       │   │   ├── package-frame.html
+│   │   │   │           │       │   │   ├── package-summary.html
+│   │   │   │           │       │   │   ├── package-tree.html
+│   │   │   │           │       │   │   └── package-use.html
+│   │   │   │           │       │   ├── package-frame.html
+│   │   │   │           │       │   ├── package-summary.html
+│   │   │   │           │       │   ├── package-tree.html
+│   │   │   │           │       │   └── package-use.html
+│   │   │   │           │       ├── exceptions
+│   │   │   │           │       │   ├── DocumentCreationTimeMissingException.html
+│   │   │   │           │       │   ├── class-use
+│   │   │   │           │       │   │   └── DocumentCreationTimeMissingException.html
+│   │   │   │           │       │   ├── package-frame.html
+│   │   │   │           │       │   ├── package-summary.html
+│   │   │   │           │       │   ├── package-tree.html
+│   │   │   │           │       │   └── package-use.html
+│   │   │   │           │       ├── package-frame.html
+│   │   │   │           │       ├── package-summary.html
+│   │   │   │           │       ├── package-tree.html
+│   │   │   │           │       └── package-use.html
+│   │   │   │           └── uima
+│   │   │   │               ├── annotator
+│   │   │   │               │   ├── alllanguagestokenizer
+│   │   │   │               │   │   ├── AllLanguagesTokenizer.html
+│   │   │   │               │   │   ├── class-use
+│   │   │   │               │   │   │   └── AllLanguagesTokenizer.html
+│   │   │   │               │   │   ├── package-frame.html
+│   │   │   │               │   │   ├── package-summary.html
+│   │   │   │               │   │   ├── package-tree.html
+│   │   │   │               │   │   └── package-use.html
+│   │   │   │               │   ├── heideltime
+│   │   │   │               │   │   ├── HeidelTime.html
+│   │   │   │               │   │   ├── HeidelTimeException.html
+│   │   │   │               │   │   ├── ProcessorManager.Priority.html
+│   │   │   │               │   │   ├── ProcessorManager.html
+│   │   │   │               │   │   ├── class-use
+│   │   │   │               │   │   │   ├── HeidelTime.html
+│   │   │   │               │   │   │   ├── HeidelTimeException.html
+│   │   │   │               │   │   │   ├── ProcessorManager.Priority.html
+│   │   │   │               │   │   │   └── ProcessorManager.html
+│   │   │   │               │   │   ├── package-frame.html
+│   │   │   │               │   │   ├── package-summary.html
+│   │   │   │               │   │   ├── package-tree.html
+│   │   │   │               │   │   ├── package-use.html
+│   │   │   │               │   │   ├── processors
+│   │   │   │               │   │   │   ├── DecadeProcessor.html
+│   │   │   │               │   │   │   ├── GenericProcessor.html
+│   │   │   │               │   │   │   ├── HolidayProcessor.html
+│   │   │   │               │   │   │   ├── ProcessorInitializationException.html
+│   │   │   │               │   │   │   ├── ProcessorProcessingException.html
+│   │   │   │               │   │   │   ├── TemponymPostprocessing.html
+│   │   │   │               │   │   │   ├── class-use
+│   │   │   │               │   │   │   │   ├── DecadeProcessor.html
+│   │   │   │               │   │   │   │   ├── GenericProcessor.html
+│   │   │   │               │   │   │   │   ├── HolidayProcessor.html
+│   │   │   │               │   │   │   │   ├── ProcessorInitializationException.html
+│   │   │   │               │   │   │   │   ├── ProcessorProcessingException.html
+│   │   │   │               │   │   │   │   └── TemponymPostprocessing.html
+│   │   │   │               │   │   │   ├── package-frame.html
+│   │   │   │               │   │   │   ├── package-summary.html
+│   │   │   │               │   │   │   ├── package-tree.html
+│   │   │   │               │   │   │   └── package-use.html
+│   │   │   │               │   │   ├── resources
+│   │   │   │               │   │   │   ├── GenericResourceManager.html
+│   │   │   │               │   │   │   ├── Language.html
+│   │   │   │               │   │   │   ├── NormalizationManager.html
+│   │   │   │               │   │   │   ├── RePatternManager.html
+│   │   │   │               │   │   │   ├── RegexHashMap.html
+│   │   │   │               │   │   │   ├── ResourceMap.html
+│   │   │   │               │   │   │   ├── ResourceScanner.html
+│   │   │   │               │   │   │   ├── RuleManager.html
+│   │   │   │               │   │   │   ├── class-use
+│   │   │   │               │   │   │   │   ├── GenericResourceManager.html
+│   │   │   │               │   │   │   │   ├── Language.html
+│   │   │   │               │   │   │   │   ├── NormalizationManager.html
+│   │   │   │               │   │   │   │   ├── RePatternManager.html
+│   │   │   │               │   │   │   │   ├── RegexHashMap.html
+│   │   │   │               │   │   │   │   ├── ResourceMap.html
+│   │   │   │               │   │   │   │   ├── ResourceScanner.html
+│   │   │   │               │   │   │   │   └── RuleManager.html
+│   │   │   │               │   │   │   ├── package-frame.html
+│   │   │   │               │   │   │   ├── package-summary.html
+│   │   │   │               │   │   │   ├── package-tree.html
+│   │   │   │               │   │   │   └── package-use.html
+│   │   │   │               │   │   └── utilities
+│   │   │   │               │   │       ├── ContextAnalyzer.html
+│   │   │   │               │   │       ├── DateCalculator.html
+│   │   │   │               │   │       ├── LocaleException.html
+│   │   │   │               │   │       ├── Logger.html
+│   │   │   │               │   │       ├── Toolbox.html
+│   │   │   │               │   │       ├── class-use
+│   │   │   │               │   │       │   ├── ContextAnalyzer.html
+│   │   │   │               │   │       │   ├── DateCalculator.html
+│   │   │   │               │   │       │   ├── LocaleException.html
+│   │   │   │               │   │       │   ├── Logger.html
+│   │   │   │               │   │       │   └── Toolbox.html
+│   │   │   │               │   │       ├── package-frame.html
+│   │   │   │               │   │       ├── package-summary.html
+│   │   │   │               │   │       ├── package-tree.html
+│   │   │   │               │   │       └── package-use.html
+│   │   │   │               │   ├── intervaltagger
+│   │   │   │               │   │   ├── IntervalTagger.html
+│   │   │   │               │   │   ├── class-use
+│   │   │   │               │   │   │   └── IntervalTagger.html
+│   │   │   │               │   │   ├── package-frame.html
+│   │   │   │               │   │   ├── package-summary.html
+│   │   │   │               │   │   ├── package-tree.html
+│   │   │   │               │   │   └── package-use.html
+│   │   │   │               │   ├── jvntextprowrapper
+│   │   │   │               │   │   ├── JVnTextProWrapper.html
+│   │   │   │               │   │   ├── class-use
+│   │   │   │               │   │   │   └── JVnTextProWrapper.html
+│   │   │   │               │   │   ├── package-frame.html
+│   │   │   │               │   │   ├── package-summary.html
+│   │   │   │               │   │   ├── package-tree.html
+│   │   │   │               │   │   └── package-use.html
+│   │   │   │               │   └── treetagger
+│   │   │   │               │       ├── TreeTaggerProcess.html
+│   │   │   │               │       ├── TreeTaggerProperties.html
+│   │   │   │               │       ├── TreeTaggerReader.html
+│   │   │   │               │       ├── TreeTaggerTokenizer.Flag.html
+│   │   │   │               │       ├── TreeTaggerTokenizer.html
+│   │   │   │               │       ├── TreeTaggerWrapper.html
+│   │   │   │               │       ├── TreeTaggerWriter.html
+│   │   │   │               │       ├── class-use
+│   │   │   │               │       │   ├── TreeTaggerProcess.html
+│   │   │   │               │       │   ├── TreeTaggerProperties.html
+│   │   │   │               │       │   ├── TreeTaggerReader.html
+│   │   │   │               │       │   ├── TreeTaggerTokenizer.Flag.html
+│   │   │   │               │       │   ├── TreeTaggerTokenizer.html
+│   │   │   │               │       │   ├── TreeTaggerWrapper.html
+│   │   │   │               │       │   └── TreeTaggerWriter.html
+│   │   │   │               │       ├── package-frame.html
+│   │   │   │               │       ├── package-summary.html
+│   │   │   │               │       ├── package-tree.html
+│   │   │   │               │       └── package-use.html
+│   │   │   │               ├── consumer
+│   │   │   │               │   ├── aceternwriter
+│   │   │   │               │   │   ├── ACETernWriter.html
+│   │   │   │               │   │   ├── class-use
+│   │   │   │               │   │   │   └── ACETernWriter.html
+│   │   │   │               │   │   ├── package-frame.html
+│   │   │   │               │   │   ├── package-summary.html
+│   │   │   │               │   │   ├── package-tree.html
+│   │   │   │               │   │   └── package-use.html
+│   │   │   │               │   ├── eventi2014writer
+│   │   │   │               │   │   ├── Eventi2014Writer.html
+│   │   │   │               │   │   ├── class-use
+│   │   │   │               │   │   │   └── Eventi2014Writer.html
+│   │   │   │               │   │   ├── package-frame.html
+│   │   │   │               │   │   ├── package-summary.html
+│   │   │   │               │   │   ├── package-tree.html
+│   │   │   │               │   │   └── package-use.html
+│   │   │   │               │   ├── tempeval2writer
+│   │   │   │               │   │   ├── Tempeval2Writer.html
+│   │   │   │               │   │   ├── class-use
+│   │   │   │               │   │   │   └── Tempeval2Writer.html
+│   │   │   │               │   │   ├── package-frame.html
+│   │   │   │               │   │   ├── package-summary.html
+│   │   │   │               │   │   ├── package-tree.html
+│   │   │   │               │   │   └── package-use.html
+│   │   │   │               │   └── tempeval3writer
+│   │   │   │               │       ├── TempEval3Writer.html
+│   │   │   │               │       ├── class-use
+│   │   │   │               │       │   └── TempEval3Writer.html
+│   │   │   │               │       ├── package-frame.html
+│   │   │   │               │       ├── package-summary.html
+│   │   │   │               │       ├── package-tree.html
+│   │   │   │               │       └── package-use.html
+│   │   │   │               ├── reader
+│   │   │   │               │   ├── aceternreader
+│   │   │   │               │   │   ├── ACETernReader.html
+│   │   │   │               │   │   ├── class-use
+│   │   │   │               │   │   │   └── ACETernReader.html
+│   │   │   │               │   │   ├── package-frame.html
+│   │   │   │               │   │   ├── package-summary.html
+│   │   │   │               │   │   ├── package-tree.html
+│   │   │   │               │   │   └── package-use.html
+│   │   │   │               │   ├── eventi2014reader
+│   │   │   │               │   │   ├── Eventi2014Reader.html
+│   │   │   │               │   │   ├── class-use
+│   │   │   │               │   │   │   └── Eventi2014Reader.html
+│   │   │   │               │   │   ├── package-frame.html
+│   │   │   │               │   │   ├── package-summary.html
+│   │   │   │               │   │   ├── package-tree.html
+│   │   │   │               │   │   └── package-use.html
+│   │   │   │               │   ├── tempeval2reader
+│   │   │   │               │   │   ├── Tempeval2Reader.html
+│   │   │   │               │   │   ├── class-use
+│   │   │   │               │   │   │   └── Tempeval2Reader.html
+│   │   │   │               │   │   ├── package-frame.html
+│   │   │   │               │   │   ├── package-summary.html
+│   │   │   │               │   │   ├── package-tree.html
+│   │   │   │               │   │   └── package-use.html
+│   │   │   │               │   └── tempeval3reader
+│   │   │   │               │       ├── Tempeval3Reader.html
+│   │   │   │               │       ├── class-use
+│   │   │   │               │       │   └── Tempeval3Reader.html
+│   │   │   │               │       ├── package-frame.html
+│   │   │   │               │       ├── package-summary.html
+│   │   │   │               │       ├── package-tree.html
+│   │   │   │               │       └── package-use.html
+│   │   │   │               └── types
+│   │   │   │                   └── heideltime
+│   │   │   │                       ├── Dct.html
+│   │   │   │                       ├── Dct_Type.html
+│   │   │   │                       ├── Event.html
+│   │   │   │                       ├── Event_Type.html
+│   │   │   │                       ├── GoldEvent.html
+│   │   │   │                       ├── GoldEvent_Type.html
+│   │   │   │                       ├── IntervalCandidateSentence.html
+│   │   │   │                       ├── IntervalCandidateSentence_Type.html
+│   │   │   │                       ├── Sentence.html
+│   │   │   │                       ├── Sentence_Type.html
+│   │   │   │                       ├── SourceDocInfo.html
+│   │   │   │                       ├── SourceDocInfo_Type.html
+│   │   │   │                       ├── Timex3.html
+│   │   │   │                       ├── Timex3Interval.html
+│   │   │   │                       ├── Timex3Interval_Type.html
+│   │   │   │                       ├── Timex3_Type.html
+│   │   │   │                       ├── Token.html
+│   │   │   │                       ├── Token_Type.html
+│   │   │   │                       ├── class-use
+│   │   │   │                       │   ├── Dct.html
+│   │   │   │                       │   ├── Dct_Type.html
+│   │   │   │                       │   ├── Event.html
+│   │   │   │                       │   ├── Event_Type.html
+│   │   │   │                       │   ├── GoldEvent.html
+│   │   │   │                       │   ├── GoldEvent_Type.html
+│   │   │   │                       │   ├── IntervalCandidateSentence.html
+│   │   │   │                       │   ├── IntervalCandidateSentence_Type.html
+│   │   │   │                       │   ├── Sentence.html
+│   │   │   │                       │   ├── Sentence_Type.html
+│   │   │   │                       │   ├── SourceDocInfo.html
+│   │   │   │                       │   ├── SourceDocInfo_Type.html
+│   │   │   │                       │   ├── Timex3.html
+│   │   │   │                       │   ├── Timex3Interval.html
+│   │   │   │                       │   ├── Timex3Interval_Type.html
+│   │   │   │                       │   ├── Timex3_Type.html
+│   │   │   │                       │   ├── Token.html
+│   │   │   │                       │   └── Token_Type.html
+│   │   │   │                       ├── package-frame.html
+│   │   │   │                       ├── package-summary.html
+│   │   │   │                       ├── package-tree.html
+│   │   │   │                       └── package-use.html
+│   │   │   ├── deprecated-list.html
+│   │   │   ├── help-doc.html
+│   │   │   ├── hr
+│   │   │   │   └── fer
+│   │   │   │       └── zemris
+│   │   │   │           └── takelab
+│   │   │   │               ├── splitter
+│   │   │   │               │   ├── TokenSplitter.html
+│   │   │   │               │   ├── class-use
+│   │   │   │               │   │   └── TokenSplitter.html
+│   │   │   │               │   ├── package-frame.html
+│   │   │   │               │   ├── package-summary.html
+│   │   │   │               │   ├── package-tree.html
+│   │   │   │               │   └── package-use.html
+│   │   │   │               └── uima
+│   │   │   │                   └── annotator
+│   │   │   │                       └── hunpos
+│   │   │   │                           ├── HunPosAnnotationMapping.html
+│   │   │   │                           ├── HunPosAnnotionTranslator.html
+│   │   │   │                           ├── HunPosTaggerWrapper.html
+│   │   │   │                           ├── class-use
+│   │   │   │                           │   ├── HunPosAnnotationMapping.html
+│   │   │   │                           │   ├── HunPosAnnotionTranslator.html
+│   │   │   │                           │   └── HunPosTaggerWrapper.html
+│   │   │   │                           ├── package-frame.html
+│   │   │   │                           ├── package-summary.html
+│   │   │   │                           ├── package-tree.html
+│   │   │   │                           └── package-use.html
+│   │   │   ├── index-all.html
+│   │   │   ├── index.html
+│   │   │   ├── jflexcrf
+│   │   │   │   ├── CountFeatureIdx.html
+│   │   │   │   ├── Dictionary.html
+│   │   │   │   ├── DoubleMatrix.html
+│   │   │   │   ├── DoubleVector.html
+│   │   │   │   ├── Element.html
+│   │   │   │   ├── Feature.html
+│   │   │   │   ├── FeatureGen.html
+│   │   │   │   ├── Labeling.html
+│   │   │   │   ├── Maps.html
+│   │   │   │   ├── Mathlib.html
+│   │   │   │   ├── Model.html
+│   │   │   │   ├── Observation.html
+│   │   │   │   ├── Option.html
+│   │   │   │   ├── Viterbi.PairDblInt.html
+│   │   │   │   ├── Viterbi.html
+│   │   │   │   ├── class-use
+│   │   │   │   │   ├── CountFeatureIdx.html
+│   │   │   │   │   ├── Dictionary.html
+│   │   │   │   │   ├── DoubleMatrix.html
+│   │   │   │   │   ├── DoubleVector.html
+│   │   │   │   │   ├── Element.html
+│   │   │   │   │   ├── Feature.html
+│   │   │   │   │   ├── FeatureGen.html
+│   │   │   │   │   ├── Labeling.html
+│   │   │   │   │   ├── Maps.html
+│   │   │   │   │   ├── Mathlib.html
+│   │   │   │   │   ├── Model.html
+│   │   │   │   │   ├── Observation.html
+│   │   │   │   │   ├── Option.html
+│   │   │   │   │   ├── Viterbi.PairDblInt.html
+│   │   │   │   │   └── Viterbi.html
+│   │   │   │   ├── package-frame.html
+│   │   │   │   ├── package-summary.html
+│   │   │   │   ├── package-tree.html
+│   │   │   │   └── package-use.html
+│   │   │   ├── jmaxent
+│   │   │   │   ├── Classification.html
+│   │   │   │   ├── CountFIdx.html
+│   │   │   │   ├── Data.html
+│   │   │   │   ├── Dictionary.html
+│   │   │   │   ├── Element.html
+│   │   │   │   ├── Evaluation.html
+│   │   │   │   ├── Feature.html
+│   │   │   │   ├── FeatureGen.html
+│   │   │   │   ├── Inference.html
+│   │   │   │   ├── Model.html
+│   │   │   │   ├── Observation.html
+│   │   │   │   ├── Option.html
+│   │   │   │   ├── Train.html
+│   │   │   │   ├── Trainer.html
+│   │   │   │   ├── class-use
+│   │   │   │   │   ├── Classification.html
+│   │   │   │   │   ├── CountFIdx.html
+│   │   │   │   │   ├── Data.html
+│   │   │   │   │   ├── Dictionary.html
+│   │   │   │   │   ├── Element.html
+│   │   │   │   │   ├── Evaluation.html
+│   │   │   │   │   ├── Feature.html
+│   │   │   │   │   ├── FeatureGen.html
+│   │   │   │   │   ├── Inference.html
+│   │   │   │   │   ├── Model.html
+│   │   │   │   │   ├── Observation.html
+│   │   │   │   │   ├── Option.html
+│   │   │   │   │   ├── Train.html
+│   │   │   │   │   └── Trainer.html
+│   │   │   │   ├── package-frame.html
+│   │   │   │   ├── package-summary.html
+│   │   │   │   ├── package-tree.html
+│   │   │   │   └── package-use.html
+│   │   │   ├── jvnpostag
+│   │   │   │   ├── CRFTagger.html
+│   │   │   │   ├── MaxentTagger.html
+│   │   │   │   ├── POSContextGenerator.html
+│   │   │   │   ├── POSDataReader.html
+│   │   │   │   ├── POSDataWriter.html
+│   │   │   │   ├── POSTagger.html
+│   │   │   │   ├── POSTagging.html
+│   │   │   │   ├── POSTrainGenerating.html
+│   │   │   │   ├── class-use
+│   │   │   │   │   ├── CRFTagger.html
+│   │   │   │   │   ├── MaxentTagger.html
+│   │   │   │   │   ├── POSContextGenerator.html
+│   │   │   │   │   ├── POSDataReader.html
+│   │   │   │   │   ├── POSDataWriter.html
+│   │   │   │   │   ├── POSTagger.html
+│   │   │   │   │   ├── POSTagging.html
+│   │   │   │   │   └── POSTrainGenerating.html
+│   │   │   │   ├── package-frame.html
+│   │   │   │   ├── package-summary.html
+│   │   │   │   ├── package-tree.html
+│   │   │   │   └── package-use.html
+│   │   │   ├── jvnsegmenter
+│   │   │   │   ├── BasicContextGenerator.html
+│   │   │   │   ├── CRFSegmenter.html
+│   │   │   │   ├── ConjunctionContextGenerator.html
+│   │   │   │   ├── IOB2DataReader.html
+│   │   │   │   ├── LexiconContextGenerator.html
+│   │   │   │   ├── RegexContextGenerator.html
+│   │   │   │   ├── SyllableContextGenerator.html
+│   │   │   │   ├── VietnameseContextGenerator.html
+│   │   │   │   ├── WordDataReader.html
+│   │   │   │   ├── WordDataWriter.html
+│   │   │   │   ├── WordSegmenting.html
+│   │   │   │   ├── WordTrainGenerating.html
+│   │   │   │   ├── class-use
+│   │   │   │   │   ├── BasicContextGenerator.html
+│   │   │   │   │   ├── CRFSegmenter.html
+│   │   │   │   │   ├── ConjunctionContextGenerator.html
+│   │   │   │   │   ├── IOB2DataReader.html
+│   │   │   │   │   ├── LexiconContextGenerator.html
+│   │   │   │   │   ├── RegexContextGenerator.html
+│   │   │   │   │   ├── SyllableContextGenerator.html
+│   │   │   │   │   ├── VietnameseContextGenerator.html
+│   │   │   │   │   ├── WordDataReader.html
+│   │   │   │   │   ├── WordDataWriter.html
+│   │   │   │   │   ├── WordSegmenting.html
+│   │   │   │   │   └── WordTrainGenerating.html
+│   │   │   │   ├── package-frame.html
+│   │   │   │   ├── package-summary.html
+│   │   │   │   ├── package-tree.html
+│   │   │   │   └── package-use.html
+│   │   │   ├── jvnsensegmenter
+│   │   │   │   ├── FeatureGenerator.html
+│   │   │   │   ├── JVnSenSegmenter.html
+│   │   │   │   ├── class-use
+│   │   │   │   │   ├── FeatureGenerator.html
+│   │   │   │   │   └── JVnSenSegmenter.html
+│   │   │   │   ├── package-frame.html
+│   │   │   │   ├── package-summary.html
+│   │   │   │   ├── package-tree.html
+│   │   │   │   └── package-use.html
+│   │   │   ├── jvntextpro
+│   │   │   │   ├── JVnTextPro.html
+│   │   │   │   ├── JVnTextProTest.html
+│   │   │   │   ├── class-use
+│   │   │   │   │   ├── JVnTextPro.html
+│   │   │   │   │   └── JVnTextProTest.html
+│   │   │   │   ├── conversion
+│   │   │   │   │   ├── CompositeUnicode2Unicode.html
+│   │   │   │   │   ├── class-use
+│   │   │   │   │   │   └── CompositeUnicode2Unicode.html
+│   │   │   │   │   ├── package-frame.html
+│   │   │   │   │   ├── package-summary.html
+│   │   │   │   │   ├── package-tree.html
+│   │   │   │   │   └── package-use.html
+│   │   │   │   ├── data
+│   │   │   │   │   ├── ContextGenerator.html
+│   │   │   │   │   ├── DataReader.html
+│   │   │   │   │   ├── DataWriter.html
+│   │   │   │   │   ├── Sentence.html
+│   │   │   │   │   ├── TWord.html
+│   │   │   │   │   ├── TaggingData.html
+│   │   │   │   │   ├── TrainDataGenerating.html
+│   │   │   │   │   ├── class-use
+│   │   │   │   │   │   ├── ContextGenerator.html
+│   │   │   │   │   │   ├── DataReader.html
+│   │   │   │   │   │   ├── DataWriter.html
+│   │   │   │   │   │   ├── Sentence.html
+│   │   │   │   │   │   ├── TWord.html
+│   │   │   │   │   │   ├── TaggingData.html
+│   │   │   │   │   │   └── TrainDataGenerating.html
+│   │   │   │   │   ├── package-frame.html
+│   │   │   │   │   ├── package-summary.html
+│   │   │   │   │   ├── package-tree.html
+│   │   │   │   │   └── package-use.html
+│   │   │   │   ├── package-frame.html
+│   │   │   │   ├── package-summary.html
+│   │   │   │   ├── package-tree.html
+│   │   │   │   ├── package-use.html
+│   │   │   │   ├── service
+│   │   │   │   │   ├── Session.html
+│   │   │   │   │   ├── TaggingClient.html
+│   │   │   │   │   ├── TaggingService.html
+│   │   │   │   │   ├── class-use
+│   │   │   │   │   │   ├── Session.html
+│   │   │   │   │   │   ├── TaggingClient.html
+│   │   │   │   │   │   └── TaggingService.html
+│   │   │   │   │   ├── package-frame.html
+│   │   │   │   │   ├── package-summary.html
+│   │   │   │   │   ├── package-tree.html
+│   │   │   │   │   └── package-use.html
+│   │   │   │   └── util
+│   │   │   │       ├── StringUtils.html
+│   │   │   │       ├── VnSyllParser.html
+│   │   │   │       ├── class-use
+│   │   │   │       │   ├── StringUtils.html
+│   │   │   │       │   └── VnSyllParser.html
+│   │   │   │       ├── package-frame.html
+│   │   │   │       ├── package-summary.html
+│   │   │   │       ├── package-tree.html
+│   │   │   │       └── package-use.html
+│   │   │   ├── jvntokenizer
+│   │   │   │   ├── JVnTokenizer.html
+│   │   │   │   ├── PennTokenizer.html
+│   │   │   │   ├── class-use
+│   │   │   │   │   ├── JVnTokenizer.html
+│   │   │   │   │   └── PennTokenizer.html
+│   │   │   │   ├── package-frame.html
+│   │   │   │   ├── package-summary.html
+│   │   │   │   ├── package-tree.html
+│   │   │   │   └── package-use.html
+│   │   │   ├── overview-frame.html
+│   │   │   ├── overview-summary.html
+│   │   │   ├── overview-tree.html
+│   │   │   ├── package-list
+│   │   │   ├── script.js
+│   │   │   ├── serialized-form.html
+│   │   │   └── stylesheet.css
+│   │   └── src
+│   │       ├── de
+│   │       │   └── unihd
+│   │       │       └── dbs
+│   │       │           ├── heideltime
+│   │       │           │   └── standalone
+│   │       │           │       ├── CLISwitch.java
+│   │       │           │       ├── Config.java
+│   │       │           │       ├── DocumentType.java
+│   │       │           │       ├── HeidelTimeStandalone.java
+│   │       │           │       ├── OutputType.java
+│   │       │           │       ├── POSTagger.java
+│   │       │           │       ├── components
+│   │       │           │       │   ├── JCasFactory.java
+│   │       │           │       │   ├── PartOfSpeechTagger.java
+│   │       │           │       │   ├── ResultFormatter.java
+│   │       │           │       │   ├── UIMAAnnotator.java
+│   │       │           │       │   └── impl
+│   │       │           │       │       ├── AllLanguagesTokenizerWrapper.java
+│   │       │           │       │       ├── HunPosTaggerWrapper.java
+│   │       │           │       │       ├── IntervalTaggerWrapper.java
+│   │       │           │       │       ├── JCasFactoryImpl.java
+│   │       │           │       │       ├── JVnTextProWrapper.java
+│   │       │           │       │       ├── StandaloneConfigContext.java
+│   │       │           │       │       ├── TimeMLResultFormatter.java
+│   │       │           │       │       ├── TreeTaggerWrapper.java
+│   │       │           │       │       ├── UimaContextImpl.java
+│   │       │           │       │       └── XMIResultFormatter.java
+│   │       │           │       └── exceptions
+│   │       │           │           └── DocumentCreationTimeMissingException.java
+│   │       │           └── uima
+│   │       │               ├── annotator
+│   │       │               │   ├── alllanguagestokenizer
+│   │       │               │   │   └── AllLanguagesTokenizer.java
+│   │       │               │   ├── heideltime
+│   │       │               │   │   ├── HeidelTime.java
+│   │       │               │   │   ├── HeidelTimeException.java
+│   │       │               │   │   ├── ProcessorManager.java
+│   │       │               │   │   ├── processors
+│   │       │               │   │   │   ├── DecadeProcessor.java
+│   │       │               │   │   │   ├── GenericProcessor.java
+│   │       │               │   │   │   ├── HolidayProcessor.java
+│   │       │               │   │   │   ├── ProcessorInitializationException.java
+│   │       │               │   │   │   ├── ProcessorProcessingException.java
+│   │       │               │   │   │   └── TemponymPostprocessing.java
+│   │       │               │   │   ├── resources
+│   │       │               │   │   │   ├── GenericResourceManager.java
+│   │       │               │   │   │   ├── Language.java
+│   │       │               │   │   │   ├── NormalizationManager.java
+│   │       │               │   │   │   ├── RePatternManager.java
+│   │       │               │   │   │   ├── RegexHashMap.java
+│   │       │               │   │   │   ├── ResourceMap.java
+│   │       │               │   │   │   ├── ResourceScanner.java
+│   │       │               │   │   │   └── RuleManager.java
+│   │       │               │   │   └── utilities
+│   │       │               │   │       ├── ContextAnalyzer.java
+│   │       │               │   │       ├── DateCalculator.java
+│   │       │               │   │       ├── LocaleException.java
+│   │       │               │   │       ├── Logger.java
+│   │       │               │   │       └── Toolbox.java
+│   │       │               │   ├── intervaltagger
+│   │       │               │   │   └── IntervalTagger.java
+│   │       │               │   ├── jvntextprowrapper
+│   │       │               │   │   └── JVnTextProWrapper.java
+│   │       │               │   └── treetagger
+│   │       │               │       ├── TreeTaggerProcess.java
+│   │       │               │       ├── TreeTaggerProperties.java
+│   │       │               │       ├── TreeTaggerReader.java
+│   │       │               │       ├── TreeTaggerTokenizer.java
+│   │       │               │       ├── TreeTaggerWrapper.java
+│   │       │               │       └── TreeTaggerWriter.java
+│   │       │               ├── consumer
+│   │       │               │   ├── aceternwriter
+│   │       │               │   │   └── ACETernWriter.java
+│   │       │               │   ├── eventi2014writer
+│   │       │               │   │   └── Eventi2014Writer.java
+│   │       │               │   ├── tempeval2writer
+│   │       │               │   │   └── Tempeval2Writer.java
+│   │       │               │   └── tempeval3writer
+│   │       │               │       └── TempEval3Writer.java
+│   │       │               ├── reader
+│   │       │               │   ├── aceternreader
+│   │       │               │   │   └── ACETernReader.java
+│   │       │               │   ├── eventi2014reader
+│   │       │               │   │   └── Eventi2014Reader.java
+│   │       │               │   ├── tempeval2reader
+│   │       │               │   │   └── Tempeval2Reader.java
+│   │       │               │   └── tempeval3reader
+│   │       │               │       └── Tempeval3Reader.java
+│   │       │               └── types
+│   │       │                   └── heideltime
+│   │       │                       ├── Dct.java
+│   │       │                       ├── Dct_Type.java
+│   │       │                       ├── Event.java
+│   │       │                       ├── Event_Type.java
+│   │       │                       ├── GoldEvent.java
+│   │       │                       ├── GoldEvent_Type.java
+│   │       │                       ├── IntervalCandidateSentence.java
+│   │       │                       ├── IntervalCandidateSentence_Type.java
+│   │       │                       ├── Sentence.java
+│   │       │                       ├── Sentence_Type.java
+│   │       │                       ├── SourceDocInfo.java
+│   │       │                       ├── SourceDocInfo_Type.java
+│   │       │                       ├── Timex3.java
+│   │       │                       ├── Timex3Interval.java
+│   │       │                       ├── Timex3Interval_Type.java
+│   │       │                       ├── Timex3_Type.java
+│   │       │                       ├── Token.java
+│   │       │                       └── Token_Type.java
+│   │       ├── hr
+│   │       │   └── fer
+│   │       │       └── zemris
+│   │       │           └── takelab
+│   │       │               ├── splitter
+│   │       │               │   └── TokenSplitter.java
+│   │       │               └── uima
+│   │       │                   └── annotator
+│   │       │                       └── hunpos
+│   │       │                           ├── HunPosAnnotationMapping.java
+│   │       │                           ├── HunPosAnnotionTranslator.java
+│   │       │                           └── HunPosTaggerWrapper.java
+│   │       ├── jflexcrf
+│   │       │   ├── CountFeatureIdx.java
+│   │       │   ├── Dictionary.java
+│   │       │   ├── DoubleMatrix.java
+│   │       │   ├── DoubleVector.java
+│   │       │   ├── Element.java
+│   │       │   ├── Feature.java
+│   │       │   ├── FeatureGen.java
+│   │       │   ├── Labeling.java
+│   │       │   ├── Maps.java
+│   │       │   ├── Mathlib.java
+│   │       │   ├── Model.java
+│   │       │   ├── Observation.java
+│   │       │   ├── Option.java
+│   │       │   └── Viterbi.java
+│   │       ├── jmaxent
+│   │       │   ├── Classification.java
+│   │       │   ├── CountFIdx.java
+│   │       │   ├── Data.java
+│   │       │   ├── Dictionary.java
+│   │       │   ├── Element.java
+│   │       │   ├── Evaluation.java
+│   │       │   ├── Feature.java
+│   │       │   ├── FeatureGen.java
+│   │       │   ├── Inference.java
+│   │       │   ├── Model.java
+│   │       │   ├── Observation.java
+│   │       │   ├── Option.java
+│   │       │   ├── Train.java
+│   │       │   └── Trainer.java
+│   │       ├── jvnpostag
+│   │       │   ├── CRFTagger.java
+│   │       │   ├── ComputerDict.txt
+│   │       │   ├── Dict-UTF8.txt
+│   │       │   ├── MaxentTagger.java
+│   │       │   ├── POSContextGenerator.java
+│   │       │   ├── POSDataReader.java
+│   │       │   ├── POSDataWriter.java
+│   │       │   ├── POSTagger.java
+│   │       │   ├── POSTagging.java
+│   │       │   └── POSTrainGenerating.java
+│   │       ├── jvnsegmenter
+│   │       │   ├── BasicContextGenerator.java
+│   │       │   ├── CRFSegmenter.java
+│   │       │   ├── ConjunctionContextGenerator.java
+│   │       │   ├── IOB2DataReader.java
+│   │       │   ├── LexiconContextGenerator.java
+│   │       │   ├── RegexContextGenerator.java
+│   │       │   ├── SyllableContextGenerator.java
+│   │       │   ├── VietnameseContextGenerator.java
+│   │       │   ├── WordDataReader.java
+│   │       │   ├── WordDataWriter.java
+│   │       │   ├── WordSegmenting.java
+│   │       │   └── WordTrainGenerating.java
+│   │       ├── jvnsensegmenter
+│   │       │   ├── FeatureGenerator.java
+│   │       │   └── JVnSenSegmenter.java
+│   │       ├── jvntextpro
+│   │       │   ├── JVnTextPro.java
+│   │       │   ├── JVnTextProTest.java
+│   │       │   ├── conversion
+│   │       │   │   ├── Composite2Unicode.txt
+│   │       │   │   └── CompositeUnicode2Unicode.java
+│   │       │   ├── data
+│   │       │   │   ├── ContextGenerator.java
+│   │       │   │   ├── DataReader.java
+│   │       │   │   ├── DataWriter.java
+│   │       │   │   ├── Sentence.java
+│   │       │   │   ├── TWord.java
+│   │       │   │   ├── TaggingData.java
+│   │       │   │   └── TrainDataGenerating.java
+│   │       │   ├── service
+│   │       │   │   ├── Session.java
+│   │       │   │   ├── TaggingClient.java
+│   │       │   │   └── TaggingService.java
+│   │       │   └── util
+│   │       │       ├── StringUtils.java
+│   │       │       └── VnSyllParser.java
+│   │       └── jvntokenizer
+│   │           ├── JVnTokenizer.java
+│   │           └── PennTokenizer.java
+│   └── tree_tagger
+│       ├── COPYRIGHT
+│       ├── FILES
+│       ├── README
+│       ├── README.script
+│       ├── Release-Notes
+│       ├── bin
+│       │   ├── separate-punctuation
+│       │   ├── train-tree-tagger
+│       │   ├── tree-tagger
+│       │   └── tree-tagger-flush
+│       ├── cmd
+│       │   ├── add-korean-sentence-markers.pl
+│       │   ├── chunker-read-lemma.perl
+│       │   ├── chunker-write-lemma.perl
+│       │   ├── filter-chunker-output-french.perl
+│       │   ├── filter-chunker-output-german.perl
+│       │   ├── filter-chunker-output.perl
+│       │   ├── filter-coordinate-output.perl
+│       │   ├── filter-german-tags
+│       │   ├── greek-mwls.pl
+│       │   ├── lookup.perl
+│       │   ├── mwl-lookup.perl
+│       │   ├── portuguese-post-tagging
+│       │   ├── portuguese-splitter.perl
+│       │   ├── reformat-korean-tagger-output.pl
+│       │   ├── split-romanian.perl
+│       │   ├── tagger-chunker-english
+│       │   ├── tagger-chunker-french
+│       │   ├── tagger-chunker-german
+│       │   ├── tagger-chunker-spanish
+│       │   ├── tokenize-korean.pl
+│       │   ├── tree-*  (38 files)
+│       │   └── utf8-tokenize.perl
+│       ├── doc
+│       │   ├── nemlap94.pdf
+│       │   └── sigdat95.pdf
+│       ├── english.par.gz
+│       ├── french.par.gz
+│       ├── install-tagger.sh
+│       ├── lib
+│       │   ├── bulgarian-abbreviations
+│       │   ├── bulgarian-mwls
+│       │   ├── catalan-abbreviations
+│       │   ├── czech-abbreviations
+│       │   ├── danish-abbreviations
+│       │   ├── dutch-abbreviations
+│       │   ├── english-abbreviations
+│       │   ├── english.par
+│       │   ├── estonian-abbreviations
+│       │   ├── estonian-mwls
+│       │   ├── finnish-abbreviations
+│       │   ├── french-abbreviations
+│       │   ├── french.par
+│       │   ├── galician-abbreviations
+│       │   ├── galician-mwls
+│       │   ├── german-abbreviations
+│       │   ├── german-lexicon.txt
+│       │   ├── greek-abbreviations
+│       │   ├── hungarian-abbreviations
+│       │   ├── italian-abbreviations
+│       │   ├── latin-abbreviations
+│       │   ├── latin-mwls
+│       │   ├── lithuanian-abbreviations
+│       │   ├── lithuanian-mwls
+│       │   ├── middle-high-german-abbreviations
+│       │   ├── norwegian-abbreviations
+│       │   ├── old-french-abbreviations
+│       │   ├── polish-abbreviations
+│       │   ├── portuguese-abbreviations
+│       │   ├── romanian-abbreviations
+│       │   ├── romanian-tokens
+│       │   ├── spanish-abbreviations
+│       │   ├── spanish-mwls
+│       │   ├── swahili-abbreviations
+│       │   └── swedish-abbreviations
+│       ├── tagger-scripts.tar.gz
+│       └── tree-tagger-linux-3.2.3.tar.gz
+├── install_packages.py
+├── location_extraction.py
+├── more_details.txt
+├── notebooks
+│   ├── location_extraction.ipynb
+│   ├── predict_flair.py
+│   └── time_extraction.ipynb
+├── pipeline.py
+├── pipeline_st.py
+├── predict_flair.py
+├── python_heideltime
+│   ├── __init__.py
+│   └── python_heideltime.py
+├── queries.txt
+├── requirements.txt
+├── show_results.py
+└── time_extraction.py
+145 directories, 743 files
