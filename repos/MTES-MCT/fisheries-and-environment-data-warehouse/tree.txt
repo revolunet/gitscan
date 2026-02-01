@@ -1,0 +1,291 @@
+.
+├── .ansible_install
+│   ├── datawarehouse
+│   │   ├── files
+│   │   │   ├── datawarehouse.zip
+│   │   │   └── docker-compose.yml
+│   │   ├── tasks
+│   │   │   ├── adduser.yml
+│   │   │   ├── datawarehouse.yml
+│   │   │   ├── main.yml
+│   │   │   └── python.yml
+│   │   ├── templates
+│   │   │   ├── .data-warehouse.j2
+│   │   │   ├── .env.j2
+│   │   │   ├── .prefect-agent.j2
+│   │   │   └── prefectdockeragent.service.j2
+│   │   └── vars
+│   │       └── main.yml
+│   ├── docker
+│   │   ├── files
+│   │   │   ├── daemon.json
+│   │   │   ├── docker.service
+│   │   │   └── http-proxy.conf
+│   │   └── tasks
+│   │       └── main.yml
+│   └── playbook.yml
+├── .github
+│   ├── dependabot.yml
+│   ├── release.yml
+│   └── workflows
+│       ├── cicd-forklift.yml
+│       ├── release.yml
+│       └── trivy.yml
+├── .gitignore
+├── .gitlab-ci
+│   ├── deploiement_image_docker.yml
+│   ├── jobs
+│   │   ├── analyse_trivy.yml
+│   │   ├── construction_image.yml
+│   │   ├── deploiement_image_int.yml
+│   │   └── deploiement_image_prod.yml
+│   ├── roles
+│   │   ├── clean_docker_images
+│   │   │   └── tasks
+│   │   │       └── main.yml
+│   │   ├── install_docker_image
+│   │   │   ├── tasks
+│   │   │   │   └── main.yml
+│   │   │   └── vars
+│   │   │       └── main.yml
+│   │   └── start_docker_containers
+│   │       ├── tasks
+│   │       │   └── main.yml
+│   │       └── vars
+│   │           └── main.yml
+│   └── templates
+│       ├── .data-warehouse.j2
+│       └── .env.j2
+├── .gitlab-ci.yml
+├── .trivyignore
+├── LICENSE
+├── Makefile
+├── README.md
+├── forklift
+│   ├── .env.test
+│   ├── .pre-commit-config.yaml
+│   ├── .python-version
+│   ├── README.md
+│   ├── forklift
+│   │   ├── __init__.py
+│   │   ├── config.py
+│   │   ├── db_engines.py
+│   │   ├── main.py
+│   │   └── pipeline
+│   │       ├── __init__.py
+│   │       ├── entities
+│   │       │   ├── __init__.py
+│   │       │   ├── databases.py
+│   │       │   ├── generic.py
+│   │       │   ├── prefect.py
+│   │       │   └── sacrois.py
+│   │       ├── flow_schedules
+│   │       │   ├── sync_table_from_db_connection.csv
+│   │       │   └── sync_table_with_pandas.csv
+│   │       ├── flows
+│   │       │   ├── __init__.py
+│   │       │   ├── activities.py
+│   │       │   ├── catches.py
+│   │       │   ├── clean_flow_runs.py
+│   │       │   ├── compute_sacrois_segments.py
+│   │       │   ├── cps.py
+│   │       │   ├── discards.py
+│   │       │   ├── drop_table.py
+│   │       │   ├── enrich_monitorfish_catches.py
+│   │       │   ├── extract_rapportnav_analytics.py
+│   │       │   ├── import_sacrois_data.py
+│   │       │   ├── landings.py
+│   │       │   ├── pnos.py
+│   │       │   ├── reset_dictionary.py
+│   │       │   ├── reset_proxy_pg_database.py
+│   │       │   ├── sync_geo_table_to_h3_table.py
+│   │       │   ├── sync_table_from_db_connection.py
+│   │       │   ├── sync_table_with_pandas.py
+│   │       │   └── vms.py
+│   │       ├── flows_config.py
+│   │       ├── helpers
+│   │       │   ├── __init__.py
+│   │       │   ├── dates.py
+│   │       │   ├── generic.py
+│   │       │   └── processing.py
+│   │       ├── queries
+│   │       │   ├── monitorenv_remote
+│   │       │   │   ├── amp_cacem.sql
+│   │       │   │   ├── amp_cacem_tmp.sql
+│   │       │   │   ├── analytics_actions.sql
+│   │       │   │   ├── missions.sql
+│   │       │   │   ├── regulations_cacem.sql
+│   │       │   │   └── regulations_cacem_h3.sql
+│   │       │   ├── monitorfish_proxy
+│   │       │   │   └── vessels.sql
+│   │       │   ├── monitorfish_remote
+│   │       │   │   ├── activities.sql
+│   │       │   │   ├── analytics_controls_full_data.sql
+│   │       │   │   ├── bft_catches.sql
+│   │       │   │   ├── catches.sql
+│   │       │   │   ├── cps.sql
+│   │       │   │   ├── discards.sql
+│   │       │   │   ├── eez_areas.sql
+│   │       │   │   ├── facade_areas_subdivided.sql
+│   │       │   │   ├── fao_areas.sql
+│   │       │   │   ├── landings.sql
+│   │       │   │   ├── manual_pnos.sql
+│   │       │   │   ├── non_overlapping_fao_areas.sql
+│   │       │   │   ├── pnos.sql
+│   │       │   │   ├── ports.sql
+│   │       │   │   ├── rectangles_stat_areas.sql
+│   │       │   │   └── regulations.sql
+│   │       │   └── rapportnav_remote
+│   │       │       └── analytics_missions_full_data.sql
+│   │       ├── shared_tasks
+│   │       │   ├── __init__.py
+│   │       │   ├── control_flow.py
+│   │       │   ├── datagouv.py
+│   │       │   ├── dates.py
+│   │       │   ├── generic.py
+│   │       │   └── infrastructure.py
+│   │       ├── sql_scripts
+│   │       │   ├── data_flows
+│   │       │   │   ├── monitorenv
+│   │       │   │   │   ├── post_process_amp_cacem.sql
+│   │       │   │   │   └── post_process_regulations_cacem.sql
+│   │       │   │   ├── monitorfish
+│   │       │   │   │   ├── compute_catches_positions.sql
+│   │       │   │   │   ├── enrich_catches.sql
+│   │       │   │   │   ├── post_process_eez_areas.sql
+│   │       │   │   │   ├── post_process_facade_areas_subdivided.sql
+│   │       │   │   │   ├── post_process_fao_areas.sql
+│   │       │   │   │   ├── post_process_non_overlapping_fao_areas.sql
+│   │       │   │   │   ├── post_process_rectangles_stat_areas.sql
+│   │       │   │   │   ├── post_process_regulations.sql
+│   │       │   │   │   ├── vms.sql
+│   │       │   │   │   └── vms_h3.sql
+│   │       │   │   └── sacrois
+│   │       │   │       └── compute_fishing_activity_segments.sql
+│   │       │   └── ddl
+│   │       │       ├── monitorenv
+│   │       │       │   ├── create_amp_cacem_h3.sql
+│   │       │       │   ├── create_amp_cacem_tmp.sql
+│   │       │       │   ├── create_analytics_actions.sql
+│   │       │       │   ├── create_regulations_cacem_h3.sql
+│   │       │       │   └── create_regulations_cacem_tmp.sql
+│   │       │       ├── monitorfish
+│   │       │       │   ├── create_activities_if_not_exists.sql
+│   │       │       │   ├── create_analytics_controls_full_data.sql
+│   │       │       │   ├── create_catches_if_not_exists.sql
+│   │       │       │   ├── create_catches_positions_if_not_exists.sql
+│   │       │       │   ├── create_cps_if_not_exists.sql
+│   │       │       │   ├── create_discards_if_not_exists.sql
+│   │       │       │   ├── create_eez_areas_dict.sql
+│   │       │       │   ├── create_eez_areas_tmp.sql
+│   │       │       │   ├── create_enriched_catches_if_not_exists.sql
+│   │       │       │   ├── create_facade_areas_dict.sql
+│   │       │       │   ├── create_facade_areas_subdivided_tmp.sql
+│   │       │       │   ├── create_fao_areas_dict.sql
+│   │       │       │   ├── create_fao_areas_tmp.sql
+│   │       │       │   ├── create_landings_if_not_exists.sql
+│   │       │       │   ├── create_non_overlapping_fao_areas_tmp.sql
+│   │       │       │   ├── create_pnos_if_not_exists.sql
+│   │       │       │   ├── create_ports.sql
+│   │       │       │   ├── create_rectangles_stat_areas_dict.sql
+│   │       │       │   ├── create_rectangles_stat_areas_tmp.sql
+│   │       │       │   ├── create_regulations_h3.sql
+│   │       │       │   ├── create_regulations_tmp.sql
+│   │       │       │   ├── create_vms_h3_if_not_exists.sql
+│   │       │       │   └── create_vms_if_not_exists.sql
+│   │       │       ├── rapportnav
+│   │       │       │   ├── create_aem_if_not_exists.sql
+│   │       │       │   └── create_patrol_if_not_exists.sql
+│   │       │       └── sacrois
+│   │       │           ├── create_fishing_activity_if_not_exists.sql
+│   │       │           ├── create_navires_mois_marees_jour_if_not_exists.sql
+│   │       │           └── create_segmented_fishing_activity_if_not_exists.sql
+│   │       └── utils.py
+│   ├── poetry.lock
+│   ├── pyproject.toml
+│   └── tests
+│       ├── __init__.py
+│       ├── conftest.py
+│       ├── mocks.py
+│       ├── test_data
+│       │   ├── clickhouse_user_files
+│       │   │   ├── monitorfish
+│       │   │   │   ├── catches_for_enrich_monitorfish_catches_test.csv
+│       │   │   │   ├── fleet_segments.parquet
+│       │   │   │   ├── landings_for_enrich_monitorfish_catches_test.csv
+│       │   │   │   └── vms_for_enrich_monitorfish_catches_test.csv
+│       │   │   └── sacrois
+│       │   │       ├── 202401
+│       │   │       │   ├── FISHING_ACTIVITY_202401.parquet
+│       │   │       │   └── NAVIRES_MOIS_MAREES_JOUR_202401.parquet
+│       │   │       ├── 202502
+│       │   │       │   ├── FISHING_ACTIVITY_202502.parquet
+│       │   │       │   └── NAVIRES_MOIS_MAREES_JOUR_202502.parquet
+│       │   │       └── fishing_activity_for_compute_segments_test.csv
+│       │   ├── external
+│       │   │   └── README.md
+│       │   ├── monitorenv
+│       │   │   └── remote_database
+│       │   │       ├── V777.01__dummy_amp_cacem.sql
+│       │   │       └── V777.02__dummy_regulations_cacem.sql
+│       │   ├── monitorfish
+│       │   │   └── remote_database
+│       │   │       ├── V777.01__dummy_rectangles_stat_areas.sql
+│       │   │       ├── V777.02__dummy_logbook_reports.sql
+│       │   │       ├── V777.03__dummy_vessels.sql
+│       │   │       ├── V777.04__dummy_species.sql
+│       │   │       ├── V777.05__dummy_ports.sql
+│       │   │       ├── V777.06__dummy_land_areas_subdivided.sql
+│       │   │       ├── V777.07__dummy_regulations.sql
+│       │   │       ├── V777.08__dummy_producer_organization_memberships.sql
+│       │   │       └── V777.09__dummy_facade_areas_subdivided.sql
+│       │   └── rapportnav
+│       │       └── remote_database
+│       │           ├── V777.05__dummy_mission_actions.sql
+│       │           └── V777.06__dummy_mission_general_info.sql
+│       └── test_pipeline
+│           ├── __init__.py
+│           ├── test_flows
+│           │   ├── __init__.py
+│           │   ├── conftest.py
+│           │   ├── test_activities.py
+│           │   ├── test_catches.py
+│           │   ├── test_compute_sacrois_segments.py
+│           │   ├── test_cps.py
+│           │   ├── test_discards.py
+│           │   ├── test_enrich_monitorfish_catches.py
+│           │   ├── test_import_sacrois_data.py
+│           │   ├── test_landings.py
+│           │   ├── test_pnos.py
+│           │   ├── test_rapportnav.py
+│           │   ├── test_reset_proxy_pg_database.py
+│           │   ├── test_sync_geo_table_to_h3_table.py
+│           │   ├── test_sync_table_from_db_connection.py
+│           │   ├── test_sync_table_with_pandas.py
+│           │   └── test_vms.py
+│           ├── test_flows_config.py
+│           └── test_helpers
+│               ├── __init__.py
+│               ├── test_generic.py
+│               └── test_processing.py
+├── infra
+│   ├── deployment
+│   │   ├── .data-warehouse
+│   │   ├── .env.template
+│   │   ├── Makefile
+│   │   ├── README.md
+│   │   ├── backend.toml
+│   │   ├── docker-compose.yml
+│   │   ├── prefect-agent
+│   │   │   ├── .prefect-agent
+│   │   │   ├── .python-version
+│   │   │   ├── prefectdockeragent.service
+│   │   │   └── prefectdockeragent.sh
+│   │   └── register-flows.sh
+│   ├── docker
+│   │   └── Dockerfile.Forklift
+│   └── testing
+│       ├── docker-compose-dev-metabase.yml
+│       └── docker-compose-test-data.yml
+└── sonar-project.properties
+69 directories, 221 files
