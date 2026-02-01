@@ -1,0 +1,24 @@
+services:
+
+  cpo:
+    build:
+      context: ./src
+      target: demo
+      args:
+        DOCKER_USER: ${DOCKER_USER:-1000}
+    user: ${DOCKER_USER:-1000}
+    image: "ocpi:demo"
+    ports:
+      - "8010:8000"
+    volumes:
+      - ./src:/app
+      - ./env.d/cpo:/app/.env
+
+  emsp:
+    user: ${DOCKER_USER:-1000}
+    image: "ocpi:demo"
+    ports:
+      - "8011:8000"
+    volumes:
+      - ./src:/app
+      - ./env.d/emsp:/app/.env

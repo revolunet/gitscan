@@ -1,0 +1,95 @@
+#
+# OCPI-Playground package
+#
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "ocpi-playground"
+version = "0.0.1"
+description = "A playground for OCPI-related development"
+authors = [
+  "Julien Maupetit <julien.maupetit@beta.gouv.fr>",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+license = "MIT"
+keywords = ["OCPI"]
+homepage = "https://github.com/MTES-MCT/ocpi-playground"
+repository = "https://github.com/MTES-MCT/ocpi-playground/issues"
+packages = [{ include = "playground" }]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+polyfactory= "2.18.1"
+py-ocpi = "0.3.1"
+uvicorn = { version = "0.34.0", extras = ["standard"] }
+
+[tool.poetry.group.dev.dependencies]
+black = "24.10.0"
+mypy = "1.13.0"
+pytest = "8.3.4"
+ruff = "0.8.4"
+
+# Third party packages configuration
+[tool.pytest.ini_options]
+addopts = "-v"
+python_files = [
+    "test_*.py",
+    "tests.py",
+]
+testpaths = [
+    "tests",
+]
+
+[tool.ruff.lint]
+select = [
+    "B",  # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "D",  # pydocstyle
+    "E",  # pycodestyle error
+    "F",  # Pyflakes
+    "I",  # Isort
+    "ISC",  # flake8-implicit-str-concat
+    "PLC",  # Pylint Convention
+    "PLE",  # Pylint Error
+    "PLR",  # Pylint Refactor
+    "PLW",  # Pylint Warning
+    "RUF100",  # Ruff unused-noqa
+    "S",  # flake8-bandit
+    "T20", # flake8-print
+    "W",  # pycodestyle warning
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = [
+    "S101", # use of assert
+]
+
+[tool.ruff.lint.pydocstyle]
+# Use Google-style docstrings.
+convention = "google"
+
+[tool.ruff.lint.flake8-bugbear]
+extend-immutable-calls = ["fastapi.Depends", "fastapi.params.Depends", "fastapi.Query", "fastapi.params.Query"]
+
+[tool.mypy]
+plugins = "pydantic.mypy"
+files = "./**/*.py"
+exclude = ["/tests/"]
+
+[[tool.mypy.overrides]]
+module = [
+    "py_ocpi.*",
+]
+ignore_missing_imports = true
