@@ -1,0 +1,115 @@
+[project]
+name = "recoco-sync"
+version = "0.1.0"
+description = "Recoco-sync est une application qui permet la synchronisation des portails de Recommandations Collaboratives avec des applications tierces."
+authors = [{ name = "Recoco Dev Team" }]
+maintainers = [
+    { name = "Guillaume Libersat", email = "guillaume.libersat@beta.gouv.fr" },
+    { name = "Etchegoyen Matthieu", email = "etchegom@gmail.com" },
+]
+license = {file = "LICENSE"}
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "celery>=5.5.0",
+    "django-celery-results>=2.6.0",
+    "django-environ>=0.12.0",
+    "django-extensions",
+    "django-model-utils>=5.0.0",
+    "django-ninja>=1.4.0",
+    "django>=5.2.8",
+    "httpx>=0.28.1",
+    "psycopg2-binary>=2.9.9",
+    "redis>=5.2.0",
+    "sentry-sdk[celery,django]>=2.25.1",
+    "whitenoise>=6.9.0",
+    "django-browser-reload",
+    "django-debug-toolbar",
+]
+
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.uv]
+dev-dependencies = [
+    "factory-boy>=3.3.1",
+    "ipython>=8.28.0",
+    "pre-commit>=4.3.0",
+    "pytest>=8.3.3",
+    "pytest-django>=4.9.0",
+    "pytest-xdist>=3.6.1",
+    "respx>=0.22.0",
+    "ruff>=0.6.8",
+]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "recoco_sync.settings.testing"
+addopts = ["--reuse-db"]
+python_files = ["test_*.py"]
+
+[tool.ruff]
+line-length = 100
+show-fixes = true
+target-version = "py312"
+exclude = [".venv"]
+
+[tool.ruff.lint]
+select = [
+    "F",   # Pyflakes
+    "E",   # pycodestyle
+    "W",   # pycodestyle
+    "C90", # mccabe
+    "I",   # isort
+    "UP",  # pyupgrade
+    "N",   # pep8-naming
+    "BLE", # flake8-blind-except
+    "FBT", # flake8-boolean-trap
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "ISC", # flake8-implicit-str-concat
+    "T20", # flake8-print
+    "Q",   # flake8-quotes
+    "TID", # flake8-tidy-imports
+    "PGH", # pygrep-hooks
+    "INP", # flake8-no-pep420
+]
+unfixable = ["B"]
+ignore = [
+    "ISC001", # Implicit string concatenation
+]
+
+[tool.ruff.lint.extend-per-file-ignores]
+"__init__.py" = ["F401", "F403"]
+"sandbox/*" = ["T201", "T203"]
+"**/settings/*.py" = ["E402", "F403", "F405"]
+"**/migrations/*.py" = ["E501"]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[tool.ruff.lint.isort]
+case-sensitive = true
+known-third-party = [
+    "django",
+    "environ",
+    "factory",
+    "model_utils",
+    "ninja",
+    "unittest_parametrize",
+]
+split-on-trailing-comma = true
+section-order = [
+    "future",
+    "standard-library",
+    "third-party",
+    "first-party",
+    "local-folder",
+]
+required-imports = ["from __future__ import annotations"]
+
+[tool.ruff.format]
+skip-magic-trailing-comma = false
