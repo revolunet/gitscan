@@ -1,0 +1,61 @@
+{
+  "name": "@gouvfr-lasuite/cunningham-tokens",
+  "private": false,
+  "version": "3.1.0",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "cunningham": "./dist/bin/Main.js"
+  },
+  "main": "./dist/lib/index.js",
+  "types": "./dist/lib/index.d.ts",
+  "exports": {
+    "./default-tokens": "./dist/cunningham-tokens.css",
+    ".": {
+      "require": "./dist/lib/index.js",
+      "import": "./dist/lib/index.js",
+      "types": "./dist/lib/index.d.ts"
+    }
+  },
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "lint": "eslint . 'src/**/*.{ts,tsx}'",
+    "dev": "nodemon --watch 'src/bin' --ext '*' --exec 'yarn build'",
+    "build-bin": "cd src/bin && rm -rf ../../dist/bin && tsc -p tsconfig.build.json && tsc-alias && chmod +x ../../dist/bin/Main.js",
+    "build-lib": "cp src/bin/cunningham.ts src/lib && cp dist/cunningham-tokens.ts src/lib && cd src/lib && tsc -p tsconfig.json",
+    "build": "yarn build-bin && yarn build-default-theme && yarn build-lib && cd ../.. && ln -sf ../../packages/tokens/dist/bin/Main.js node_modules/.bin/cunningham",
+    "build-default-theme": "node ./dist/bin/Main.js -o dist -s html -g scss,css,js,ts --utility-classes",
+    "test": "cross-env FORCE_COLOR=1 jest --runInBand --verbose src",
+    "test-ci": "cross-env FORCE_COLOR=1 jest --runInBand src"
+  },
+  "dependencies": {
+    "chalk": "4.1.2",
+    "commander": "13.1.0",
+    "deepmerge": "4.3.1",
+    "figlet": "1.8.1",
+    "ts-node": "10.9.2"
+  },
+  "devDependencies": {
+    "@types/figlet": "1.7.0",
+    "@types/jest": "29.5.14",
+    "@types/node": "22.15.3",
+    "eslint-config-custom": "*",
+    "jest": "29.7.0",
+    "nodemon": "3.1.10",
+    "prettier": "3.5.3",
+    "ts-jest": "29.3.2",
+    "tsc-alias": "1.8.15",
+    "typescript": "5.8.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "volta": {
+    "node": "20.16.0",
+    "yarn": "1.22.22"
+  }
+}
