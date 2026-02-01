@@ -1,0 +1,382 @@
+.
+├── .dockerignore
+├── .gitattributes
+├── .github
+│   ├── dependabot.yml
+│   └── workflows
+│       ├── ci.yml
+│       └── upgrade-ruby.yml
+├── .gitignore
+├── .ruby-version
+├── CITATION.cff
+├── DEVELOPMENT.md
+├── Dockerfile
+├── Gemfile
+├── Gemfile.lock
+├── LICENSE
+├── Procfile
+├── README.md
+├── Rakefile
+├── app
+│   ├── assets
+│   │   ├── config
+│   │   │   └── manifest.js
+│   │   ├── images
+│   │   │   ├── .keep
+│   │   │   ├── applications.svg
+│   │   │   ├── data.svg
+│   │   │   ├── ecosystems-advisories-logo.svg
+│   │   │   ├── ecosystems-logo-white.svg
+│   │   │   ├── ecosystems-logo.svg
+│   │   │   ├── experiment.svg
+│   │   │   ├── funds-screenshot.png
+│   │   │   ├── indexes.svg
+│   │   │   ├── logo-chan-z.png
+│   │   │   ├── logo-microsoft.png
+│   │   │   ├── logo-osc-white.png
+│   │   │   ├── logo-osc.png
+│   │   │   ├── logo-schmidt-white.svg
+│   │   │   ├── logo-snyk-white.svg
+│   │   │   ├── logo-snyk.svg
+│   │   │   ├── logo-socket-white.png
+│   │   │   ├── logo-socket.png
+│   │   │   ├── social-share.png
+│   │   │   ├── stone-1.svg
+│   │   │   ├── stone-2.svg
+│   │   │   ├── stone-3.svg
+│   │   │   └── tools.svg
+│   │   ├── javascripts
+│   │   │   └── application.js
+│   │   └── stylesheets
+│   │       ├── application.scss
+│   │       └── ecosystems.scss
+│   ├── controllers
+│   │   ├── api
+│   │   │   └── v1
+│   │   │       ├── application_controller.rb
+│   │   │       ├── dependencies_controller.rb
+│   │   │       ├── hosts_controller.rb
+│   │   │       ├── manifests_controller.rb
+│   │   │       ├── owners_controller.rb
+│   │   │       ├── package_names_controller.rb
+│   │   │       ├── releases_controller.rb
+│   │   │       ├── repositories_controller.rb
+│   │   │       ├── tags_controller.rb
+│   │   │       ├── topics_controller.rb
+│   │   │       └── usage_controller.rb
+│   │   ├── application_controller.rb
+│   │   ├── concerns
+│   │   │   └── .keep
+│   │   ├── errors_controller.rb
+│   │   ├── exports_controller.rb
+│   │   ├── home_controller.rb
+│   │   ├── hosts_controller.rb
+│   │   ├── owners_controller.rb
+│   │   ├── repositories_controller.rb
+│   │   ├── topics_controller.rb
+│   │   └── usage_controller.rb
+│   ├── helpers
+│   │   ├── application_helper.rb
+│   │   └── ecosystems_helper.rb
+│   ├── models
+│   │   ├── application_record.rb
+│   │   ├── concerns
+│   │   │   └── .keep
+│   │   ├── dependency.rb
+│   │   ├── export.rb
+│   │   ├── host.rb
+│   │   ├── hosts
+│   │   │   ├── base.rb
+│   │   │   ├── bitbucket.rb
+│   │   │   ├── forgejo.rb
+│   │   │   ├── gitea.rb
+│   │   │   ├── github.rb
+│   │   │   ├── gitlab.rb
+│   │   │   └── sourcehut.rb
+│   │   ├── manifest.rb
+│   │   ├── owner.rb
+│   │   ├── package_usage.rb
+│   │   ├── registry.rb
+│   │   ├── release.rb
+│   │   ├── repository.rb
+│   │   ├── repository_usage.rb
+│   │   └── tag.rb
+│   ├── sidekiq
+│   │   ├── download_tags_worker.rb
+│   │   ├── package_usage_sync_worker.rb
+│   │   ├── parse_dependencies_worker.rb
+│   │   ├── parse_tag_dependencies_worker.rb
+│   │   ├── ping_owner_worker.rb
+│   │   ├── ping_packages_worker.rb
+│   │   ├── ping_worker.rb
+│   │   ├── repository_usage_worker.rb
+│   │   ├── sync_commit_stats_worker.rb
+│   │   ├── sync_extra_details_worker.rb
+│   │   ├── sync_owner_worker.rb
+│   │   ├── sync_repository_worker.rb
+│   │   ├── update_metadata_files_worker.rb
+│   │   └── update_repository_worker.rb
+│   └── views
+│       ├── api
+│       │   └── v1
+│       │       ├── dependencies
+│       │       │   ├── _dependency.json.jbuilder
+│       │       │   └── index.json.jbuilder
+│       │       ├── hosts
+│       │       │   ├── _host.json.jbuilder
+│       │       │   ├── index.json.jbuilder
+│       │       │   └── show.json.jbuilder
+│       │       ├── manifests
+│       │       │   ├── _manifest.json.jbuilder
+│       │       │   ├── index.json.jbuilder
+│       │       │   └── show.json.jbuilder
+│       │       ├── owners
+│       │       │   ├── _owner.json.jbuilder
+│       │       │   ├── index.json.jbuilder
+│       │       │   ├── lookup.json.jbuilder
+│       │       │   └── show.json.jbuilder
+│       │       ├── package_names
+│       │       │   └── docker.json.jbuilder
+│       │       ├── releases
+│       │       │   ├── _release.json.jbuilder
+│       │       │   ├── index.json.jbuilder
+│       │       │   └── show.json.jbuilder
+│       │       ├── repositories
+│       │       │   ├── _repository.json.jbuilder
+│       │       │   ├── index.json.jbuilder
+│       │       │   └── show.json.jbuilder
+│       │       ├── tags
+│       │       │   ├── _tag.json.jbuilder
+│       │       │   ├── index.json.jbuilder
+│       │       │   └── show.json.jbuilder
+│       │       ├── topics
+│       │       │   ├── _topic.json.jbuilder
+│       │       │   ├── index.json.jbuilder
+│       │       │   └── show.json.jbuilder
+│       │       └── usage
+│       │           ├── _ecosystem.json.jbuilder
+│       │           ├── _usage.json.jbuilder
+│       │           ├── dependent_repositories.json.jbuilder
+│       │           ├── ecosystem.json.jbuilder
+│       │           ├── index.json.jbuilder
+│       │           └── show.json.jbuilder
+│       ├── errors
+│       │   ├── internal.html.erb
+│       │   ├── not_found.html.erb
+│       │   └── unprocessable.html.erb
+│       ├── exports
+│       │   ├── _export.html.erb
+│       │   └── index.html.erb
+│       ├── home
+│       │   └── index.html.erb
+│       ├── hosts
+│       │   ├── _host.html.erb
+│       │   ├── _sort.html.erb
+│       │   ├── kind.html.erb
+│       │   ├── show.html.erb
+│       │   ├── topic.html.erb
+│       │   └── topics.html.erb
+│       ├── layouts
+│       │   └── application.html.erb
+│       ├── owners
+│       │   ├── _owner.html.erb
+│       │   ├── _sort.html.erb
+│       │   ├── index.html.erb
+│       │   ├── show.html.erb
+│       │   └── subgroup.html.erb
+│       ├── package_usages
+│       │   └── _package_usage.html.erb
+│       ├── repositories
+│       │   ├── _overview.html.erb
+│       │   ├── _repository.html.erb
+│       │   ├── dependencies.html.erb
+│       │   ├── funding.html.erb
+│       │   ├── readme.html.erb
+│       │   └── show.html.erb
+│       ├── shared
+│       │   ├── _footer.html.erb
+│       │   ├── _header.html.erb
+│       │   └── _menu.html.erb
+│       ├── topics
+│       │   ├── index.html.erb
+│       │   └── show.html.erb
+│       └── usage
+│           ├── ecosystem.html.erb
+│           ├── index.html.erb
+│           └── show.html.erb
+├── app.json
+├── bin
+│   ├── bundle
+│   ├── docker-sidekiq
+│   ├── docker-start
+│   ├── rails
+│   ├── rake
+│   └── setup
+├── config
+│   ├── application.rb
+│   ├── appsignal.yml
+│   ├── boot.rb
+│   ├── database.yml
+│   ├── environment.rb
+│   ├── environments
+│   │   ├── development.rb
+│   │   ├── production.rb
+│   │   └── test.rb
+│   ├── initializers
+│   │   ├── assets.rb
+│   │   ├── content_security_policy.rb
+│   │   ├── cors.rb
+│   │   ├── ecosystems.rb
+│   │   ├── faraday.rb
+│   │   ├── filter_parameter_logging.rb
+│   │   ├── i18n.rb
+│   │   ├── inflections.rb
+│   │   ├── pagy.rb
+│   │   ├── permissions_policy.rb
+│   │   ├── rack_attack.rb
+│   │   ├── redis.rb
+│   │   ├── rswag-ui.rb
+│   │   ├── rswag_api.rb
+│   │   └── sidekiq.rb
+│   ├── locales
+│   │   ├── en.yml
+│   │   └── fr.yml
+│   ├── puma.rb
+│   ├── routes.rb
+│   ├── sidekiq.yml
+│   └── sitemap.rb
+├── config.ru
+├── db
+│   ├── migrate
+│   │   ├── 20220526091827_create_hosts.rb
+│   │   ├── 20220526092220_create_repositories.rb
+│   │   ├── 20220526092348_create_tags.rb
+│   │   ├── 20220526092446_create_manifests.rb
+│   │   ├── 20220526092546_create_dependencies.rb
+│   │   ├── 20220617161530_add_indexes_to_repositories.rb
+│   │   ├── 20220620141849_add_last_synced_at_index_to_repositories.rb
+│   │   ├── 20220621142115_add_dependencies_parsed_at_to_repositories.rb
+│   │   ├── 20220629153932_add_manifest_indexes.rb
+│   │   ├── 20220707120357_add_dependency_job_id_to_repositories.rb
+│   │   ├── 20220801132434_add_org_to_hosts.rb
+│   │   ├── 20220802101219_change_pull_requests_enabled_to_boolean.rb
+│   │   ├── 20220817142125_create_exports.rb
+│   │   ├── 20220823110902_add_tags_last_synced_at_to_repositories.rb
+│   │   ├── 20220823122742_add_repository_index_to_tags.rb
+│   │   ├── 20220928123100_create_package_usages.rb
+│   │   ├── 20220928145718_add_ecosystem_name_index_to_package_usages.rb
+│   │   ├── 20220929151036_add_usage_updated_at_to_repositories.rb
+│   │   ├── 20221004132635_add_package_to_package_usages.rb
+│   │   ├── 20221004133458_create_registries.rb
+│   │   ├── 20221102102904_add_owners_index_to_repositories.rb
+│   │   ├── 20221102112519_create_owners.rb
+│   │   ├── 20221227110656_add_index_to_dependencies.rb
+│   │   ├── 20221229144439_add_timestamps_to_package_usages.rb
+│   │   ├── 20230110152422_add_files_changed_to_repositories.rb
+│   │   ├── 20230214163934_add_owners_count_to_hosts.rb
+│   │   ├── 20230307164037_add_commit_stats_to_repositories.rb
+│   │   ├── 20230310152741_add_last_synced_at_index_to_owners.rb
+│   │   ├── 20230310153335_add_package_last_synced_at_index_to_package_usages.rb
+│   │   ├── 20230310153504_add_dependency_job_id_index_to_repositories.rb
+│   │   ├── 20230403160611_add_topics_index.rb
+│   │   ├── 20230517145212_add_previous_names_to_repositories.rb
+│   │   ├── 20230530094119_add_tags_count_to_repositories.rb
+│   │   ├── 20230530101752_add_tag_id_to_manifests.rb
+│   │   ├── 20230530102932_add_dependency_fields_to_tags.rb
+│   │   ├── 20230626154243_add_swapped_index_to_dependencies.rb
+│   │   ├── 20230628103619_create_repository_usages.rb
+│   │   ├── 20230628113930_add_key_to_package_usages.rb
+│   │   ├── 20230628152350_add_usage_last_calculated_to_repositories.rb
+│   │   ├── 20230717112012_drop_package_usage_fields.rb
+│   │   ├── 20230717131431_add_repository_usages_count_to_package_usages.rb
+│   │   ├── 20230718112755_create_releases.rb
+│   │   ├── 20231202202522_add_version_to_hosts.rb
+│   │   ├── 20231218114137_add_latest_tag_details_to_repositories.rb
+│   │   ├── 20240116161040_add_template_to_repositories.rb
+│   │   ├── 20240301130407_add_total_stars_to_owners.rb
+│   │   └── 20240325152602_add_follower_counts_to_owners.rb
+│   ├── schema.rb
+│   └── seeds.rb
+├── docker-compose.yml
+├── lib
+│   ├── assets
+│   │   └── .keep
+│   └── tasks
+│       ├── .keep
+│       ├── czi.rake
+│       ├── dinum.rake
+│       ├── ecosystems.rake
+│       ├── exports.rake
+│       ├── hosts.rake
+│       ├── import.rake
+│       ├── packages.rake
+│       ├── redis.rake
+│       └── repositories.rake
+├── log
+│   └── .keep
+├── openapi
+│   └── api
+│       └── v1
+│           └── openapi.yaml
+├── public
+│   ├── android-chrome-192x192.png
+│   ├── android-chrome-512x512.png
+│   ├── apple-touch-icon-precomposed.png
+│   ├── apple-touch-icon.png
+│   ├── favicon-16x16.png
+│   ├── favicon-32x32.png
+│   ├── favicon.ico
+│   ├── robots.txt
+│   └── site.webmanifest
+├── test
+│   ├── application_system_test_case.rb
+│   ├── controllers
+│   │   ├── .keep
+│   │   ├── api
+│   │   │   └── v1
+│   │   │       ├── hosts_controller_test.rb
+│   │   │       ├── manifests_controller_test.rb
+│   │   │       ├── owners_controller_test.rb
+│   │   │       ├── package_names_controller_test.rb
+│   │   │       ├── repositories_controller_test.rb
+│   │   │       ├── tags_controller_test.rb
+│   │   │       └── usage_controller_test.rb
+│   │   ├── errors_controller_test.rb
+│   │   ├── exports_controller_test.rb
+│   │   ├── home_controller_test.rb
+│   │   ├── hosts_controller_test.rb
+│   │   ├── owners_controller_test.rb
+│   │   ├── repositories_controller_test.rb
+│   │   └── usage_controller_test.rb
+│   ├── fixtures
+│   │   ├── files
+│   │   │   └── .keep
+│   │   └── releases.yml
+│   ├── helpers
+│   │   └── .keep
+│   ├── integration
+│   │   ├── .keep
+│   │   └── openapi_test.rb
+│   ├── models
+│   │   ├── .keep
+│   │   ├── dependency_test.rb
+│   │   ├── export_test.rb
+│   │   ├── host_test.rb
+│   │   ├── manifest_test.rb
+│   │   ├── owner_test.rb
+│   │   ├── package_usage_test.rb
+│   │   ├── release_test.rb
+│   │   ├── repository_test.rb
+│   │   └── tag_test.rb
+│   ├── system
+│   │   └── .keep
+│   └── test_helper.rb
+├── tmp
+│   ├── .keep
+│   ├── pids
+│   │   └── .keep
+│   └── storage
+│       └── .keep
+└── vendor
+    └── .keep
+71 directories, 310 files
