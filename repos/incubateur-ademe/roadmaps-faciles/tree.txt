@@ -1,0 +1,417 @@
+.
+├── .editorconfig
+├── .env.development
+├── .env.production
+├── .github
+│   ├── CODEOWNERS
+│   └── workflows
+│       ├── build.yml
+│       ├── codeql-analysis.yml
+│       └── lint.yml
+├── .gitignore
+├── .nvmrc
+├── .slugignore
+├── .vscode
+│   ├── extensions.json
+│   └── settings.json
+├── CHANGELOG.md
+├── LICENSE
+├── Procfile
+├── README.md
+├── SECURITY.md
+├── TODO.md
+├── docker-compose.yml
+├── docs
+│   └── adr
+│       ├── 0000-template.md
+│       ├── 0001-architecture-et-stack.md
+│       ├── 0002-auth-nextauth-prisma.md
+│       ├── 0003-multi-tenant-sous-domaines.md
+│       ├── 0004-modelisation-zod-v4.md
+│       ├── 0005-prisma-ids-uuid-et-types-unchecked.md
+│       ├── 0006-prisma-typed-client-views-full-text-search.md
+│       └── 0007-ui-dsfr-mui-tailwind.md
+├── env.d.ts
+├── eslint.config.ts
+├── global.d.ts
+├── next-env.d.ts
+├── next-sitemap.config.js
+├── next.config.ts
+├── package.json
+├── postcss.config.js
+├── prisma
+│   ├── migrations
+│   │   ├── 20250510142341_init
+│   │   │   └── migration.sql
+│   │   ├── 20250517130528_hotness
+│   │   │   └── migration.sql
+│   │   ├── 20250519201302_fts
+│   │   │   └── migration.sql
+│   │   ├── 20250520125012_add_post_tags
+│   │   │   └── migration.sql
+│   │   ├── 20250524112654_activity_feed
+│   │   │   └── migration.sql
+│   │   ├── 20250908093324_is_beta_gouv_member
+│   │   │   └── migration.sql
+│   │   ├── 20250908124018_fts_prisma_compat
+│   │   │   └── migration.sql
+│   │   └── migration_lock.toml
+│   ├── schema.prisma
+│   ├── seed.cts
+│   ├── tsconfig.json
+│   └── views
+│       └── public
+│           ├── Activity.sql
+│           └── PostWithHotness.sql
+├── prisma.config.ts
+├── public
+│   └── img
+│       ├── ademe-incubateur-logo.png
+│       ├── ademe-logo-2022-1.svg
+│       ├── custom
+│       │   └── .gitkeep
+│       ├── hero.svg
+│       ├── placeholder.svg
+│       └── roadmaps-faciles.png
+├── scalingo.json
+├── scripts
+│   ├── call_gpg_refresh_webhook.sh
+│   ├── generateEnvDeclaration.ts
+│   ├── import_gpg.sh
+│   ├── refresh_gpg_passphrase.sh
+│   ├── seedGit.ts
+│   └── tsconfig.json
+├── src
+│   ├── app
+│   │   ├── (default)
+│   │   │   ├── (authenticated)
+│   │   │   │   ├── forbidden.tsx
+│   │   │   │   ├── layout.tsx
+│   │   │   │   ├── tenant
+│   │   │   │   │   ├── [tenantId]
+│   │   │   │   │   │   ├── Form.tsx
+│   │   │   │   │   │   ├── TenantMain.module.scss
+│   │   │   │   │   │   ├── actions.ts
+│   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   ├── new
+│   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   └── page.tsx
+│   │   │   │   └── unauthorized.tsx
+│   │   │   ├── DefaultFooter.tsx
+│   │   │   ├── DefaultHeader.tsx
+│   │   │   ├── Navigation.tsx
+│   │   │   ├── api
+│   │   │   │   ├── auth
+│   │   │   │   │   └── [...nextauth]
+│   │   │   │   │       └── route.ts
+│   │   │   │   └── subdomain
+│   │   │   │       └── check
+│   │   │   │           └── route.ts
+│   │   │   ├── error
+│   │   │   │   └── page.tsx
+│   │   │   ├── healthz
+│   │   │   │   └── page.tsx
+│   │   │   ├── index.module.scss
+│   │   │   ├── layout.tsx
+│   │   │   ├── login
+│   │   │   │   ├── LoginForm.tsx
+│   │   │   │   ├── error
+│   │   │   │   │   └── page.tsx
+│   │   │   │   ├── layout.tsx
+│   │   │   │   ├── login.module.scss
+│   │   │   │   ├── page.tsx
+│   │   │   │   └── verify-request
+│   │   │   │       └── page.tsx
+│   │   │   ├── page.tsx
+│   │   │   ├── profile
+│   │   │   │   └── page.tsx
+│   │   │   └── stats
+│   │   │       ├── content.tsx
+│   │   │       └── page.tsx
+│   │   ├── AuthHeaderItems.tsx
+│   │   ├── SystemMessageDisplay.tsx
+│   │   ├── [domain]
+│   │   │   └── (domain)
+│   │   │       ├── @modal
+│   │   │       │   ├── (.)post
+│   │   │       │   │   └── [postId]
+│   │   │       │   │       ├── PostSimpleModal.tsx
+│   │   │       │   │       └── page.tsx
+│   │   │       │   └── default.tsx
+│   │   │       ├── DomainNavigation.tsx
+│   │   │       ├── DomainPage.tsx
+│   │   │       ├── PublicFooter.tsx
+│   │   │       ├── PublicHeader.tsx
+│   │   │       ├── api
+│   │   │       │   └── auth
+│   │   │       │       └── [...nextauth]
+│   │   │       │           └── route.ts
+│   │   │       ├── board
+│   │   │       │   └── [boardSlug]
+│   │   │       │       ├── Board.module.scss
+│   │   │       │       ├── FilterAndSearch.tsx
+│   │   │       │       ├── PostList.tsx
+│   │   │       │       ├── actions.ts
+│   │   │       │       ├── page.tsx
+│   │   │       │       └── types.ts
+│   │   │       ├── getTenantFromDomainParam.ts
+│   │   │       ├── layout.tsx
+│   │   │       ├── login
+│   │   │       │   └── page.tsx
+│   │   │       ├── page.tsx
+│   │   │       ├── post
+│   │   │       │   └── [postId]
+│   │   │       │       ├── PostPageComponent.module.scss
+│   │   │       │       ├── PostPageHOP.tsx
+│   │   │       │       ├── _timeline
+│   │   │       │       │   ├── AggregateItem.tsx
+│   │   │       │       │   ├── CommentContent.module.scss
+│   │   │       │       │   ├── CommentContent.tsx
+│   │   │       │       │   ├── CommentItem.tsx
+│   │   │       │       │   ├── ItemDate.tsx
+│   │   │       │       │   ├── PostTimeline.tsx
+│   │   │       │       │   ├── StatusChangeItem.tsx
+│   │   │       │       │   ├── actions.ts
+│   │   │       │       │   └── activityHelpers.ts
+│   │   │       │       └── page.tsx
+│   │   │       ├── profile
+│   │   │       │   └── page.tsx
+│   │   │       └── roadmap
+│   │   │           └── page.tsx
+│   │   ├── global-error.tsx
+│   │   ├── globals.scss
+│   │   ├── layout.tsx
+│   │   ├── loading.tsx
+│   │   ├── not-found.tsx
+│   │   ├── robots.ts
+│   │   ├── root.module.scss
+│   │   └── shared-metadata.ts
+│   ├── colors.ts
+│   ├── components
+│   │   ├── Board
+│   │   │   ├── LikeButton.tsx
+│   │   │   ├── Post.module.scss
+│   │   │   ├── Post.tsx
+│   │   │   └── actions.ts
+│   │   ├── Brand.tsx
+│   │   ├── InfiniteScroll.tsx
+│   │   ├── RHF
+│   │   │   └── ReactHookFormDebug.tsx
+│   │   ├── ReactSpinners.tsx
+│   │   ├── Tour
+│   │   │   └── Tour.tsx
+│   │   ├── img
+│   │   │   ├── ImgHero.module.scss
+│   │   │   ├── ImgHero.tsx
+│   │   │   ├── InitialsAvatar.module.scss
+│   │   │   └── InitialsAvatar.tsx
+│   │   └── utils
+│   │       ├── ClientAnimate.tsx
+│   │       ├── ClientBodyPortal.tsx
+│   │       ├── ClientOnly.tsx
+│   │       ├── ClientOnlyPortal.tsx
+│   │       ├── DebugButton.tsx
+│   │       ├── HoverToggler.tsx
+│   │       └── Loader.tsx
+│   ├── config.ts
+│   ├── consentManagement.tsx
+│   ├── dsfr
+│   │   ├── DsfrSvg.tsx
+│   │   ├── artwork
+│   │   │   └── pictograms
+│   │   │       └── digital
+│   │   │           └── in-progress.svg
+│   │   ├── base
+│   │   │   ├── Box.tsx
+│   │   │   ├── CountDisplay.module.css
+│   │   │   ├── CountDisplay.tsx
+│   │   │   ├── FormFieldset.tsx
+│   │   │   ├── Hr.tsx
+│   │   │   ├── Icon.module.scss
+│   │   │   ├── Icon.tsx
+│   │   │   ├── RecapCard.module.css
+│   │   │   ├── RecapCard.tsx
+│   │   │   ├── SingleCheckbox.module.scss
+│   │   │   ├── SingleCheckbox.tsx
+│   │   │   ├── TableCustom.module.css
+│   │   │   ├── TableCustom.tsx
+│   │   │   ├── Typography.tsx
+│   │   │   └── client
+│   │   │       ├── AnchorLink.tsx
+│   │   │       ├── CollapsedSectionDynamicGroup.module.scss
+│   │   │       ├── CollapsedSectionDynamicGroup.tsx
+│   │   │       ├── HighlightedTextarea.module.scss
+│   │   │       ├── HighlightedTextarea.tsx
+│   │   │       ├── IconStyleJsx.tsx
+│   │   │       └── ToggleSwitchGroup.tsx
+│   │   ├── client.ts
+│   │   ├── hooks
+│   │   │   └── useBreakpoints.ts
+│   │   ├── layout
+│   │   │   ├── CenteredContainer.tsx
+│   │   │   ├── Container.tsx
+│   │   │   ├── DsfrPage.tsx
+│   │   │   ├── Grid.tsx
+│   │   │   ├── SimpleModal.module.scss
+│   │   │   ├── SimpleModal.tsx
+│   │   │   └── index.ts
+│   │   ├── server.ts
+│   │   └── utils
+│   │       ├── ScrollTopButton.tsx
+│   │       ├── color-styles.ts
+│   │       └── spacing.ts
+│   ├── dsfr-bootstrap
+│   │   ├── defaultColorScheme.ts
+│   │   ├── index.tsx
+│   │   └── server-only-index.tsx
+│   ├── generated
+│   │   └── .gitattributes
+│   ├── lib
+│   │   ├── db
+│   │   │   ├── prisma.ts
+│   │   │   └── redis
+│   │   │       └── storage.ts
+│   │   ├── matomo.ts
+│   │   ├── model
+│   │   │   ├── ApiKey.ts
+│   │   │   ├── Comment.ts
+│   │   │   ├── Follow.ts
+│   │   │   ├── Like.ts
+│   │   │   ├── Post.ts
+│   │   │   ├── PostStatus.ts
+│   │   │   ├── PostStatusChange.ts
+│   │   │   ├── Tenant.ts
+│   │   │   ├── TenantSetting.ts
+│   │   │   ├── User.ts
+│   │   │   └── UserOnTenant.ts
+│   │   ├── next-auth
+│   │   │   ├── LRUCacheAdapter.ts
+│   │   │   └── auth.ts
+│   │   ├── repo
+│   │   │   ├── IApiKeyRepo.ts
+│   │   │   ├── IBoardRepo.ts
+│   │   │   ├── ICommentRepo.ts
+│   │   │   ├── IFollowRepo.ts
+│   │   │   ├── IInvitationRepo.ts
+│   │   │   ├── ILikeRepo.ts
+│   │   │   ├── IOAuthRepo.ts
+│   │   │   ├── IPostRepo.ts
+│   │   │   ├── IPostStatusChangeRepo.ts
+│   │   │   ├── IPostStatusRepo.ts
+│   │   │   ├── ITenantDefaultOAuthRepo.ts
+│   │   │   ├── ITenantRepo.ts
+│   │   │   ├── ITenantSettingRepo.ts
+│   │   │   ├── IUserOnTenantRepo.ts
+│   │   │   ├── IUserRepo.ts
+│   │   │   ├── IWebhookRepo.ts
+│   │   │   ├── impl
+│   │   │   │   ├── ApiKeyRepoPrisma.ts
+│   │   │   │   ├── BoardRepoPrisma.ts
+│   │   │   │   ├── CommentRepoPrisma.ts
+│   │   │   │   ├── FollowRepoPrisma.ts
+│   │   │   │   ├── InvitationRepoPrisma.ts
+│   │   │   │   ├── LikeRepoPrisma.ts
+│   │   │   │   ├── OAuthRepoPrisma.ts
+│   │   │   │   ├── PostRepoPrisma.ts
+│   │   │   │   ├── PostStatusChangeRepoPrisma.ts
+│   │   │   │   ├── PostStatusRepoPrisma.ts
+│   │   │   │   ├── TenantDefaultOAuthRepoPrisma.ts
+│   │   │   │   ├── TenantRepoPrisma.ts
+│   │   │   │   ├── TenantSettingRepoPrisma.ts
+│   │   │   │   ├── UserOnTenantRepoPrisma.ts
+│   │   │   │   ├── UserRepoPrisma.ts
+│   │   │   │   └── WebhookRepoPrisma.ts
+│   │   │   └── index.ts
+│   │   ├── services
+│   │   │   ├── getInstance.ts
+│   │   │   ├── index.ts
+│   │   │   ├── server
+│   │   │   │   └── CurrentService.ts
+│   │   │   └── types.ts
+│   │   └── utils
+│   │       ├── anonymousId
+│   │       │   ├── config.ts
+│   │       │   ├── getAnonymousId.ts
+│   │       │   └── responseWithAnonymousId.ts
+│   │       ├── auth.ts
+│   │       ├── browser.ts
+│   │       ├── date.ts
+│   │       ├── dirtyDomain
+│   │       │   ├── config.ts
+│   │       │   ├── getDirtyDomain.ts
+│   │       │   └── pathnameDirtyCheck.ts
+│   │       ├── dsfrHexColors.ts
+│   │       ├── dsfrHexDarkColors.ts
+│   │       ├── error.ts
+│   │       ├── function.ts
+│   │       ├── highlight-dsfr.scss
+│   │       ├── highlight.ts
+│   │       ├── i18n.ts
+│   │       ├── network.ts
+│   │       ├── next.ts
+│   │       ├── os.ts
+│   │       ├── react-markdown.tsx
+│   │       ├── react.ts
+│   │       ├── string.ts
+│   │       ├── tenant.ts
+│   │       ├── types.ts
+│   │       ├── zod-schema.ts
+│   │       └── zustand.ts
+│   ├── mdx-components.tsx
+│   ├── middleware.ts
+│   ├── revalidateTags.ts
+│   ├── useCases
+│   │   ├── AbstractCacheUseCase.ts
+│   │   ├── api_keys
+│   │   │   ├── CreateApiKey.ts
+│   │   │   └── DeleteApiKey.ts
+│   │   ├── boards
+│   │   │   └── GetBoardSlug.ts
+│   │   ├── comments
+│   │   │   ├── AddCommentToPost.ts
+│   │   │   ├── DeleteComment.ts
+│   │   │   ├── ListCommentsForPost.ts
+│   │   │   └── UpdateComment.ts
+│   │   ├── follows
+│   │   │   ├── FollowPost.ts
+│   │   │   └── UnfollowPost.ts
+│   │   ├── likes
+│   │   │   ├── LikePost.ts
+│   │   │   └── UnlikePost.ts
+│   │   ├── post_status_changes
+│   │   │   └── ChangePostStatus.ts
+│   │   ├── post_statuses
+│   │   │   └── ListPostStatuses.ts
+│   │   ├── posts
+│   │   │   ├── ArchivePost.ts
+│   │   │   ├── DeletePost.ts
+│   │   │   ├── ListApprovedPostsForBoard.ts
+│   │   │   ├── PinPost.ts
+│   │   │   ├── SubmitPost.ts
+│   │   │   └── UpdatePostContent.ts
+│   │   ├── tenant
+│   │   │   ├── GetTenantForDomain.ts
+│   │   │   ├── GetTenantWithSettings.ts
+│   │   │   ├── ListTenantsForUser.ts
+│   │   │   ├── SaveTenant.ts
+│   │   │   └── SaveTenantWithSettings.ts
+│   │   ├── tenant_settings
+│   │   │   └── GetTenantSettings.ts
+│   │   ├── types.ts
+│   │   ├── user_on_tenant
+│   │   │   ├── ListTenantsForUser.ts
+│   │   │   └── ListUsersForTenant.ts
+│   │   └── users
+│   │       ├── CreateUser.ts
+│   │       ├── GetUserByEmail.ts
+│   │       ├── GetUserById.ts
+│   │       └── UpdateUser.ts
+│   └── workflows
+│       ├── CreateFakePostsWorkflow.ts
+│       ├── CreateFakeUsersWorkflow.ts
+│       ├── CreateWelcomeEntitiesWorkflow.ts
+│       └── IWorkflow.ts
+├── tailwind.config.ts
+├── tsconfig.json
+└── yarn.lock
+99 directories, 317 files
