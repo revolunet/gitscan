@@ -1,0 +1,20 @@
+{
+  "name": "back",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "update": "tsx --tsconfig tsconfig.lib.json prisma/scripts/index.ts",
+    "preintegration-tests": "prisma db push && npm run reindex-all-bsds-bulk",
+    "bulk-create-account": "tsx src/users/bulk-creation/index.ts",
+    "reindex-partial-in-place": "tsx --tsconfig tsconfig.lib.json ./src/scripts/bin/reindexPartialInPlace.ts",
+    "reindex-favorites": "tsx --tsconfig tsconfig.lib.json ./src/scripts/bin/reindexFavorites.ts",
+    "reindex-bsd": "tsx --tsconfig tsconfig.lib.json ./src/scripts/bin/reindexBsd.ts $bsdId",
+    "purge-pdf-token": "tsx --tsconfig tsconfig.lib.json ./src/scripts/bin/purgePdfAccessToken.ts",
+    "storeAllWebhookSettings.ts": "tsx --tsconfig tsconfig.lib.json ./src/webhooks/commands/storeAllWebhookSettings.ts",
+    "generate-bsds-templates": "tsx --tsconfig tsconfig.lib.json ./src/scripts/bin/bsdTemplates/generateBsdTemplates.ts",
+    "reindex-deleted-orphan-appendix1": "tsx --tsconfig tsconfig.lib.json ./src/scripts/bin/reindexDeletedOrphanAppendix1.ts"
+  },
+  "engines": {
+    "node": "^24"
+  }
+}
