@@ -1,0 +1,30 @@
+services:
+  nginx:
+    image: nginx:1.19.6
+    restart: always
+    volumes:
+      - ./nginx:/etc/nginx/templates
+    ports:
+      - 80:80
+    environment:
+      - AUTH_TOKEN=${AUTH_TOKEN}
+
+  gotenberg:
+    image: gotenberg/gotenberg:7
+    restart: always
+  
+  datadog:
+    image: datadog/agent:latest
+    environment:
+     - DD_API_KEY=${DD_API_KEY}
+     - DD_SITE=datadoghq.eu
+     - DD_LOGS_ENABLED=true
+    volumes:
+     - /var/run/docker.sock:/var/run/docker.sock
+     - /proc/:/host/proc/:ro
+     - /sys/fs/cgroup:/host/sys/fs/cgroup:ro
+    labels:
+      com.datadoghq.ad.check_names: '["nginx"]'
+      com.datadoghq.ad.init_configs: '[{}]'
+      com.datadoghq.ad.instances: '[{"nginx_status_url": "http://nginx:81/nginx_status/"}]'
+      com.datadoghq.ad.logs: '[{"source":"nginx","service":"nginx"}]'
