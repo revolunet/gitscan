@@ -1,0 +1,71 @@
+{
+  "name": "@betagouv/les-communs-widget",
+  "version": "0.3.5",
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.umd.js",
+  "module": "./dist/index.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.umd.js"
+    },
+    "./style.css": "./dist/style.css"
+  },
+  "scripts": {
+    "build": "react-dsfr update-icons && tsc -p tsconfig.build.json && vite build",
+    "dev": "react-dsfr update-icons && vite",
+    "test": "vitest",
+    "test:watch": "vitest --watch",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "type-check": "tsc --noEmit -p tsconfig.app.json",
+    "validate": "npm run type-check && npm run lint && npm run format:check",
+    "generate-api-type": "openapi-typescript http://localhost:3000/openapi.json -o lib/generated-types.ts",
+    "update-version": "changeset version",
+    "release": "pnpm build && pnpm validate && pnpm test && npm publish",
+    "preview": "vite preview"
+  },
+  "peerDependencies": {
+    "@codegouvfr/react-dsfr": "^1.14.6",
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@iframe-resizer/react": "^5.4.5",
+    "@tanstack/react-query": "^5.74.4",
+    "classnames": "^2.5.1",
+    "openapi-fetch": "^0.15.0",
+    "tss-react": "^4.9.16"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.29.2",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "jsdom": "^27.2.0",
+    "msw": "^2.7.5",
+    "openapi-typescript": "^7.6.1",
+    "path": "^0.12.7",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "vite-plugin-dts": "^4.5.3",
+    "vite-plugin-lib-inject-css": "^2.2.2",
+    "vitest": "^4.0.14"
+  },
+  "engines": {
+    "npm": "use-pnpm-instead",
+    "yarn": "use-pnpm-instead",
+    "pnpm": "10.x",
+    "node": "22.x"
+  }
+}
