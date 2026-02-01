@@ -1,0 +1,47 @@
+{
+  "name": "impress",
+  "version": "4.5.0",
+  "private": true,
+  "repository": "https://github.com/suitenumerique/docs",
+  "author": "DINUM",
+  "license": "MIT",
+  "workspaces": {
+    "packages": [
+      "apps/*",
+      "packages/*",
+      "servers/*"
+    ]
+  },
+  "scripts": {
+    "APP_IMPRESS": "yarn workspace app-impress",
+    "APP_E2E": "yarn workspace app-e2e",
+    "I18N": "yarn workspace packages-i18n",
+    "COLLABORATION_SERVER": "yarn workspace server-y-provider",
+    "app:dev": "yarn APP_IMPRESS run dev",
+    "app:start": "yarn APP_IMPRESS run start",
+    "app:build": "yarn APP_IMPRESS run build",
+    "app:test": "yarn APP_IMPRESS run test",
+    "ci:build": "yarn APP_IMPRESS run build:ci",
+    "e2e:test": "yarn APP_E2E run test",
+    "lint": "yarn APP_IMPRESS run lint && yarn APP_E2E run lint && yarn workspace eslint-plugin-docs run lint && yarn I18N run lint && yarn COLLABORATION_SERVER run lint",
+    "i18n:extract": "yarn I18N run extract-translation",
+    "i18n:deploy": "yarn I18N run format-deploy && yarn APP_IMPRESS prettier",
+    "i18n:test": "yarn I18N run test",
+    "test": "yarn server:test && yarn app:test",
+    "server:test": "yarn COLLABORATION_SERVER run test"
+  },
+  "resolutions": {
+    "@tiptap/extensions": "3.14.0",
+    "@types/node": "24.10.9",
+    "@types/react": "19.2.8",
+    "@types/react-dom": "19.2.3",
+    "eslint": "9.39.2",
+    "prosemirror-view": "1.41.4",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "typescript": "5.9.3",
+    "wrap-ansi": "9.0.2",
+    "yjs": "13.6.29"
+  },
+  "packageManager": "yarn@1.22.22"
+}
