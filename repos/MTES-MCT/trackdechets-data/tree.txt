@@ -1,0 +1,564 @@
+.
+├── .github
+│   ├── pull_request_template.md
+│   └── workflows
+│       ├── deploy-to-prod.yml
+│       └── deploy-to-sandbox.yml
+├── .gitignore
+├── .pre-commit-config.yaml
+├── .python-version
+├── .vscode
+│   └── launch.json
+├── README.md
+├── airflow
+│   ├── .env.dist
+│   ├── Dockerfile
+│   ├── README.md
+│   ├── dags
+│   │   ├── .dlt
+│   │   │   └── config.toml
+│   │   ├── clickhouse
+│   │   │   └── backup_clickhouse_database.py
+│   │   ├── dags_utils
+│   │   │   ├── __init__.py
+│   │   │   ├── alerting.py
+│   │   │   ├── datawarehouse_connection.py
+│   │   │   └── scalingo.py
+│   │   ├── dbt
+│   │   │   ├── __init__.py
+│   │   │   ├── dbt_dags.py
+│   │   │   └── profile.py
+│   │   ├── dlt_pipelines
+│   │   │   ├── .gitignore
+│   │   │   ├── zammad_pipeline.py
+│   │   │   └── zammad_pipeline_dag.py
+│   │   ├── etl_insee
+│   │   │   ├── __init__.py
+│   │   │   ├── el_base_sirene.py
+│   │   │   ├── el_cog.py
+│   │   │   └── schemas
+│   │   │       ├── __init__.py
+│   │   │       ├── cog.py
+│   │   │       ├── stock_etablissement.py
+│   │   │       └── unite_legale.py
+│   │   ├── geocoding
+│   │   │   ├── __init__.py
+│   │   │   ├── companies_geocoding.py
+│   │   │   └── schema.py
+│   │   ├── jobs_vigiedechets
+│   │   │   ├── __init__.py
+│   │   │   └── retrieve_companies_dag.py
+│   │   ├── observatoires
+│   │   │   ├── __init__.py
+│   │   │   └── el_observatoires.py
+│   │   ├── open_data
+│   │   │   ├── __init__.py
+│   │   │   ├── publish_companies_open_data.py
+│   │   │   └── publish_stats_publiques_open_data.py
+│   │   └── trackdechets_search_sirene
+│   │       ├── __init__.py
+│   │       ├── full_update_search_sirene.py
+│   │       ├── incremental_update_sirene.py
+│   │       └── utils.py
+│   ├── docker-compose.yaml
+│   ├── logs
+│   │   └── .gitkeep
+│   ├── plugins
+│   │   └── mattermost
+│   │       ├── __init__.py
+│   │       ├── hooks
+│   │       │   ├── __init__.py
+│   │       │   └── mattermost_webhook_hook.py
+│   │       └── operators
+│   │           ├── __init__.py
+│   │           └── mattermost_operator.py
+│   └── requirements.txt
+├── clickhouse
+│   ├── .env.dist
+│   ├── README.md
+│   ├── config.d
+│   │   └── .gitkeep
+│   ├── docker-compose.yml
+│   ├── logs
+│   │   └── .gitkeep
+│   └── users.d
+│       └── .gitkeep
+├── dbt
+│   ├── .env.dist
+│   ├── .gitignore
+│   ├── .sqlfluff
+│   ├── .sqlfluffignore
+│   ├── README.md
+│   ├── analyses
+│   │   └── .gitkeep
+│   ├── dbt_project.yml
+│   ├── lint.sh
+│   ├── macros
+│   │   ├── .gitkeep
+│   │   ├── create_bordereaux_counts.sql
+│   │   ├── create_bordereaux_enriched_query.sql
+│   │   ├── create_bsff_counts.sql
+│   │   ├── create_indexes_for_source.sql
+│   │   ├── create_laposte_enriched_statement.sql
+│   │   ├── create_sirene_etabs_enriched_statement.sql
+│   │   ├── dangerous_waste_filter.sql
+│   │   ├── generate_schema_name.sql
+│   │   ├── get_address_column_from_stock_etablissement.sql
+│   │   ├── get_company_name_column_from_stock_etablissement.sql
+│   │   ├── get_non_final_status_bordereaux.sql
+│   │   └── macros.yml
+│   ├── models
+│   │   ├── refined_zone
+│   │   │   ├── analytics
+│   │   │   │   ├── _bordereaux_counts_by_profile.yml
+│   │   │   │   ├── _bordereaux_valeurs_aberrantes.yml
+│   │   │   │   ├── _identification_eco_organismes.yml
+│   │   │   │   ├── _quantite_traitee_par_departement.yml
+│   │   │   │   ├── _quantite_traitee_par_departement_2023.yml
+│   │   │   │   ├── _transporters_without_receipt.yml
+│   │   │   │   ├── ad_hoc
+│   │   │   │   │   ├── _tra_14189.yml
+│   │   │   │   │   ├── _tra_15268.yml
+│   │   │   │   │   ├── tra_14189.sql
+│   │   │   │   │   └── tra_15268.sql
+│   │   │   │   ├── bordereaux_counts_by_profile.sql
+│   │   │   │   ├── bsdd
+│   │   │   │   │   ├── _bsdd_emis_et_recus_par_siret_et_semaine.yml
+│   │   │   │   │   └── bsdd_emis_et_recus_par_siret_et_semaine.sql
+│   │   │   │   ├── etablissements
+│   │   │   │   │   ├── _bordereaux_counts_by_siret.yml
+│   │   │   │   │   ├── _etablisements_avec_bordereaux_valeurs_aberrantes.yml
+│   │   │   │   │   ├── _pnttd_statements_counts_by_siret.yml
+│   │   │   │   │   ├── _processed_bordereaux_counts_by_siret.yml
+│   │   │   │   │   ├── _statements_counts_by_siret.yml
+│   │   │   │   │   ├── _statistics_by_siret.yml
+│   │   │   │   │   ├── _transporters_bordereaux_counts_by_siret.yml
+│   │   │   │   │   ├── bordereaux_counts_by_siret.sql
+│   │   │   │   │   ├── pnttd_statements_counts_by_siret.sql
+│   │   │   │   │   ├── processed_bordereaux_counts_by_siret.sql
+│   │   │   │   │   ├── statements_counts_by_siret.sql
+│   │   │   │   │   ├── statistics_by_siret.sql
+│   │   │   │   │   └── transporters_bordereaux_counts_by_siret.sql
+│   │   │   │   ├── exutoires
+│   │   │   │   │   ├── _liste_exutoires_dechets_dangereux.yml
+│   │   │   │   │   └── liste_exutoires_dechets_dangereux.sql
+│   │   │   │   ├── moulinettes
+│   │   │   │   │   ├── _moulinette_dechetteries.yml
+│   │   │   │   │   └── moulinette_dechetteries.sql
+│   │   │   │   ├── quantite_traitee_par_departement.sql
+│   │   │   │   ├── quantite_traitee_par_departement_2023.sql
+│   │   │   │   └── transporters_without_receipt.sql
+│   │   │   ├── enriched
+│   │   │   │   ├── _bordereaux_enriched.yml
+│   │   │   │   ├── _bsda_enriched.yml
+│   │   │   │   ├── _bsda_transporter_enriched.yml
+│   │   │   │   ├── _bsdasri_enriched.yml
+│   │   │   │   ├── _bsdd_enriched.yml
+│   │   │   │   ├── _bsdd_transporter_enriched.yml
+│   │   │   │   ├── _bsff_enriched.yml
+│   │   │   │   ├── _bsff_transporter_enriched.yml
+│   │   │   │   ├── _bsvhu_enriched.yml
+│   │   │   │   ├── _companies_admins.yml
+│   │   │   │   ├── _company_enriched.yml
+│   │   │   │   ├── _stock_etablissement_enriched.yml
+│   │   │   │   ├── bordereaux_enriched.sql
+│   │   │   │   ├── bsda_enriched.sql
+│   │   │   │   ├── bsda_transporter_enriched.sql
+│   │   │   │   ├── bsdasri_enriched.sql
+│   │   │   │   ├── bsdd_enriched.sql
+│   │   │   │   ├── bsdd_transporter_enriched.sql
+│   │   │   │   ├── bsff_enriched.sql
+│   │   │   │   ├── bsff_transporter_enriched.sql
+│   │   │   │   ├── bsvhu_enriched.sql
+│   │   │   │   ├── companies_admins.sql
+│   │   │   │   ├── company_enriched.sql
+│   │   │   │   └── stock_etablissement_enriched.sql
+│   │   │   ├── gistrid
+│   │   │   │   ├── _notifications_enriched.yml
+│   │   │   │   ├── _operateurs.yml
+│   │   │   │   ├── notifications_enriched.sql
+│   │   │   │   └── operateurs.sql
+│   │   │   ├── icpe
+│   │   │   │   ├── _daily_processed_waste_by_rubrique.yml
+│   │   │   │   ├── _daily_processed_waste_by_rubrique_dangerous_waste.yml
+│   │   │   │   ├── _daily_processed_waste_by_rubrique_non_dangerous_waste.yml
+│   │   │   │   ├── _installations_daily_processed_dangerous_wastes.yml
+│   │   │   │   ├── _installations_daily_processed_non_dangerous_wastes.yml
+│   │   │   │   ├── _installations_daily_processed_wastes.yml
+│   │   │   │   ├── _int_dangerous_installations.yml
+│   │   │   │   ├── _int_dangerous_wastes.yml
+│   │   │   │   ├── _int_non_dangerous_installations.yml
+│   │   │   │   ├── _int_non_dangerous_wastes.yml
+│   │   │   │   ├── _liste_des_installations.yml
+│   │   │   │   ├── daily_processed_waste_by_rubrique.sql
+│   │   │   │   ├── daily_processed_waste_by_rubrique_dangerous_waste.sql
+│   │   │   │   ├── daily_processed_waste_by_rubrique_non_dangerous_waste.sql
+│   │   │   │   ├── installations_daily_processed_dangerous_wastes.sql
+│   │   │   │   ├── installations_daily_processed_non_dangerous_wastes.sql
+│   │   │   │   ├── installations_daily_processed_wastes.sql
+│   │   │   │   ├── int_dangerous_installations.sql
+│   │   │   │   ├── int_dangerous_wastes.sql
+│   │   │   │   ├── int_non_dangerous_installations.sql
+│   │   │   │   ├── int_non_dangerous_wastes.sql
+│   │   │   │   └── liste_des_installations.sql
+│   │   │   ├── observatoires
+│   │   │   │   ├── _bsda_observatoires.yml
+│   │   │   │   ├── _bsdasri_observatoires.yml
+│   │   │   │   ├── _bsdd_observatoires.yml
+│   │   │   │   ├── _bsff_observatoires.yml
+│   │   │   │   ├── _bsvhu_observatoires.yml
+│   │   │   │   ├── _dnd_entrant_observatoires.yml
+│   │   │   │   ├── _dnd_sortant_observatoires.yml
+│   │   │   │   ├── _texs_entrant_observatoires.yml
+│   │   │   │   ├── _texs_sortant_observatoires.yml
+│   │   │   │   ├── bsda_observatoires.sql
+│   │   │   │   ├── bsdasri_observatoires.sql
+│   │   │   │   ├── bsdd_observatoires.sql
+│   │   │   │   ├── bsff_observatoires.sql
+│   │   │   │   ├── bsvhu_observatoires.sql
+│   │   │   │   ├── dnd_entrant_observatoires.sql
+│   │   │   │   ├── dnd_sortant_observatoires.sql
+│   │   │   │   ├── texs_entrant_observatoires.sql
+│   │   │   │   └── texs_sortant_observatoires.sql
+│   │   │   ├── stats_publiques
+│   │   │   │   ├── departementales
+│   │   │   │   │   ├── _annual_quantity_produced_by_departement_and_waste_code.yml
+│   │   │   │   │   ├── _weekly_quantity_processed_flows.yml
+│   │   │   │   │   ├── _weekly_waste_processed_stats_departementales.yml
+│   │   │   │   │   ├── annual_quantity_produced_by_departement_and_waste_code.sql
+│   │   │   │   │   ├── weekly_quantity_processed_flows.sql
+│   │   │   │   │   └── weekly_waste_processed_stats_departementales.sql
+│   │   │   │   ├── stats_annuelles
+│   │   │   │   │   ├── _annual_company_accounts_created_by_naf.yml
+│   │   │   │   │   ├── _annual_number_of_bordereaux_created_by_bordereaux_type.yml
+│   │   │   │   │   ├── _annual_quantity_processed_by_region.yml
+│   │   │   │   │   ├── _annual_waste_produced_by_naf.yml
+│   │   │   │   │   ├── annual_company_accounts_created_by_naf.sql
+│   │   │   │   │   ├── annual_number_of_bordereaux_created_by_bordereaux_type.sql
+│   │   │   │   │   ├── annual_quantity_processed_by_region.sql
+│   │   │   │   │   └── annual_waste_produced_by_naf.sql
+│   │   │   │   └── stats_hebdo
+│   │   │   │       ├── _weekly_waste_processed_stats.yml
+│   │   │   │       ├── bsd_non_dangereux
+│   │   │   │       │   ├── _bsd_non_dangereux_created_by_week.yml
+│   │   │   │       │   ├── _bsd_non_dangereux_emitted_by_week.yml
+│   │   │   │       │   ├── _bsd_non_dangereux_processed_by_week.yml
+│   │   │   │       │   ├── _bsd_non_dangereux_received_by_week.yml
+│   │   │   │       │   ├── _bsd_non_dangereux_sent_by_week.yml
+│   │   │   │       │   ├── _bsd_non_dangereux_statistiques_hebdomadaires.yml
+│   │   │   │       │   ├── bsd_non_dangereux_created_by_week.sql
+│   │   │   │       │   ├── bsd_non_dangereux_emitted_by_week.sql
+│   │   │   │       │   ├── bsd_non_dangereux_processed_by_week.sql
+│   │   │   │       │   ├── bsd_non_dangereux_received_by_week.sql
+│   │   │   │       │   ├── bsd_non_dangereux_sent_by_week.sql
+│   │   │   │       │   └── bsd_non_dangereux_statistiques_hebdomadaires.sql
+│   │   │   │       ├── bsda
+│   │   │   │       │   ├── _bsda_created_by_week.yml
+│   │   │   │       │   ├── _bsda_emitted_by_week.yml
+│   │   │   │       │   ├── _bsda_processed_by_week.yml
+│   │   │   │       │   ├── _bsda_received_by_week.yml
+│   │   │   │       │   ├── _bsda_sent_by_week.yml
+│   │   │   │       │   ├── _bsda_statistiques_hebdomadaires.yml
+│   │   │   │       │   ├── bsda_created_by_week.sql
+│   │   │   │       │   ├── bsda_emitted_by_week.sql
+│   │   │   │       │   ├── bsda_processed_by_week.sql
+│   │   │   │       │   ├── bsda_received_by_week.sql
+│   │   │   │       │   ├── bsda_sent_by_week.sql
+│   │   │   │       │   └── bsda_statistiques_hebdomadaires.sql
+│   │   │   │       ├── bsdasri
+│   │   │   │       │   ├── _bsdasri_created_by_week.yml
+│   │   │   │       │   ├── _bsdasri_emitted_by_week.yml
+│   │   │   │       │   ├── _bsdasri_processed_by_week.yml
+│   │   │   │       │   ├── _bsdasri_received_by_week.yml
+│   │   │   │       │   ├── _bsdasri_sent_by_week.yml
+│   │   │   │       │   ├── _bsdasri_statistiques_hebdomadaires.yml
+│   │   │   │       │   ├── bsdasri_created_by_week.sql
+│   │   │   │       │   ├── bsdasri_emitted_by_week.sql
+│   │   │   │       │   ├── bsdasri_processed_by_week.sql
+│   │   │   │       │   ├── bsdasri_received_by_week.sql
+│   │   │   │       │   ├── bsdasri_sent_by_week.sql
+│   │   │   │       │   └── bsdasri_statistiques_hebdomadaires.sql
+│   │   │   │       ├── bsdd
+│   │   │   │       │   ├── _bsdd_created_by_week.yml
+│   │   │   │       │   ├── _bsdd_emitted_by_week.yml
+│   │   │   │       │   ├── _bsdd_processed_by_week.yml
+│   │   │   │       │   ├── _bsdd_received_by_week.yml
+│   │   │   │       │   ├── _bsdd_sent_by_week.yml
+│   │   │   │       │   ├── _bsdd_statistiques_hebdomadaires.yml
+│   │   │   │       │   ├── bsdd_created_by_week.sql
+│   │   │   │       │   ├── bsdd_emitted_by_week.sql
+│   │   │   │       │   ├── bsdd_processed_by_week.sql
+│   │   │   │       │   ├── bsdd_received_by_week.sql
+│   │   │   │       │   ├── bsdd_sent_by_week.sql
+│   │   │   │       │   └── bsdd_statistiques_hebdomadaires.sql
+│   │   │   │       ├── bsff
+│   │   │   │       │   ├── _bsff_created_by_week.yml
+│   │   │   │       │   ├── _bsff_emitted_by_week.yml
+│   │   │   │       │   ├── _bsff_processed_by_week.yml
+│   │   │   │       │   ├── _bsff_received_by_week.yml
+│   │   │   │       │   ├── _bsff_sent_by_week.yml
+│   │   │   │       │   ├── _bsff_statistiques_hebdomadaires.yml
+│   │   │   │       │   ├── bsff_created_by_week.sql
+│   │   │   │       │   ├── bsff_emitted_by_week.sql
+│   │   │   │       │   ├── bsff_processed_by_week.sql
+│   │   │   │       │   ├── bsff_received_by_week.sql
+│   │   │   │       │   ├── bsff_sent_by_week.sql
+│   │   │   │       │   └── bsff_statistiques_hebdomadaires.sql
+│   │   │   │       ├── bsvhu
+│   │   │   │       │   ├── _bsvhu_created_by_week.yml
+│   │   │   │       │   ├── _bsvhu_emitted_by_week.yml
+│   │   │   │       │   ├── _bsvhu_processed_by_week.yml
+│   │   │   │       │   ├── _bsvhu_received_by_week.yml
+│   │   │   │       │   ├── _bsvhu_sent_by_week.yml
+│   │   │   │       │   ├── _bsvhu_statistiques_hebdomadaires.yml
+│   │   │   │       │   ├── bsvhu_created_by_week.sql
+│   │   │   │       │   ├── bsvhu_emitted_by_week.sql
+│   │   │   │       │   ├── bsvhu_processed_by_week.sql
+│   │   │   │       │   ├── bsvhu_received_by_week.sql
+│   │   │   │       │   ├── bsvhu_sent_by_week.sql
+│   │   │   │       │   └── bsvhu_statistiques_hebdomadaires.sql
+│   │   │   │       ├── comptes
+│   │   │   │       │   ├── _accounts_created_by_week.yml
+│   │   │   │       │   ├── _companies_created_by_week.yml
+│   │   │   │       │   ├── _users_created_by_week.yml
+│   │   │   │       │   ├── accounts_created_by_week.sql
+│   │   │   │       │   ├── companies_created_by_week.sql
+│   │   │   │       │   └── users_created_by_week.sql
+│   │   │   │       ├── dnd
+│   │   │   │       │   ├── _dnd_quantites_traites_hebdo_par_code_traitement.yml
+│   │   │   │       │   ├── _dnd_statistiques_hebdomadaires.yml
+│   │   │   │       │   ├── dnd_quantites_traites_hebdo_par_code_traitement.sql
+│   │   │   │       │   └── dnd_statistiques_hebdomadaires.sql
+│   │   │   │       └── weekly_waste_processed_stats.sql
+│   │   │   └── vigiedechets
+│   │   │       ├── cartographie_etablissements
+│   │   │       │   ├── _cartographie_etablissements.yml
+│   │   │       │   ├── _cartographie_etablissements_geocoded.yml
+│   │   │       │   ├── _cartographie_etablissements_texs_dd.yml
+│   │   │       │   ├── cartographie_etablissements.sql
+│   │   │       │   ├── cartographie_etablissements_geocoded.sql
+│   │   │       │   └── cartographie_etablissements_texs_dd.sql
+│   │   │       ├── cartographie_icpe
+│   │   │       │   ├── _cartographie_icpe_departements_daily_processed_waste.yml
+│   │   │       │   ├── _cartographie_icpe_france_daily_processed_waste.yml
+│   │   │       │   ├── _cartographie_icpe_installations.yml
+│   │   │       │   ├── _cartographie_icpe_installations_daily_processed_waste.yml
+│   │   │       │   ├── _cartographie_icpe_regions_daily_processed_waste.yml
+│   │   │       │   ├── cartographie_icpe_departements_daily_processed_waste.sql
+│   │   │       │   ├── cartographie_icpe_france_daily_processed_waste.sql
+│   │   │       │   ├── cartographie_icpe_installations.sql
+│   │   │       │   ├── cartographie_icpe_installations_daily_processed_waste.sql
+│   │   │       │   └── cartographie_icpe_regions_daily_processed_waste.sql
+│   │   │       └── sentinelle
+│   │   │           ├── _sentinelle_companies_features.yml
+│   │   │           ├── _sentinelle_companies_scores.yml
+│   │   │           ├── _sentinelle_companies_without_account.yml
+│   │   │           ├── _sentinelle_companies_without_activity.yml
+│   │   │           ├── _sentinelle_waste_quantity_produced_by_ape_code.yml
+│   │   │           ├── _sentinelle_waste_quantity_produced_by_ape_code_departement.yml
+│   │   │           ├── _sentinelle_waste_quantity_produced_by_siret.yml
+│   │   │           ├── sentinelle_companies_features.sql
+│   │   │           ├── sentinelle_companies_scores.sql
+│   │   │           ├── sentinelle_companies_without_account.sql
+│   │   │           ├── sentinelle_companies_without_activity.sql
+│   │   │           ├── sentinelle_waste_quantity_produced_by_ape_code.sql
+│   │   │           ├── sentinelle_waste_quantity_produced_by_ape_code_departement.sql
+│   │   │           └── sentinelle_waste_quantity_produced_by_siret.sql
+│   │   ├── sources
+│   │   │   ├── raw_zone_gerep.yml
+│   │   │   ├── raw_zone_gistrid.yml
+│   │   │   ├── raw_zone_icpe.yml
+│   │   │   ├── raw_zone_insee.yml
+│   │   │   ├── raw_zone_referentials.yml
+│   │   │   ├── raw_zone_rndts.yml
+│   │   │   ├── raw_zone_trackdechets.yml
+│   │   │   ├── raw_zone_vigiedechets.yml
+│   │   │   └── raw_zone_zammad.yml
+│   │   └── trusted_zone
+│   │       ├── gerep
+│   │       │   ├── _gerep_producteurs_2021.yml
+│   │       │   ├── _gerep_traiteurs_2021.yml
+│   │       │   ├── gerep_producteurs_2021.sql
+│   │       │   └── gerep_traiteurs_2021.sql
+│   │       ├── gistrid
+│   │       │   ├── _installations_gistrid.yml
+│   │       │   ├── _notifiants.yml
+│   │       │   ├── _notifications.yml
+│   │       │   ├── installations_gistrid.sql
+│   │       │   ├── notifiants.sql
+│   │       │   └── notifications.sql
+│   │       ├── icpe
+│   │       │   ├── _installations.yml
+│   │       │   ├── _installations_rubriques.yml
+│   │       │   ├── _installations_rubriques_2024.yml
+│   │       │   ├── _installations_rubriques_2025.yml
+│   │       │   ├── _installations_rubriques_2026.yml
+│   │       │   ├── _rubriques.yml
+│   │       │   ├── installations.sql
+│   │       │   ├── installations_rubriques.sql
+│   │       │   ├── installations_rubriques_2024.sql
+│   │       │   ├── installations_rubriques_2025.sql
+│   │       │   └── installations_rubriques_2026.sql
+│   │       ├── insee
+│   │       │   ├── _code_geo_arrondissements.yml
+│   │       │   ├── _code_geo_cantons.yml
+│   │       │   ├── _code_geo_communes.yml
+│   │       │   ├── _code_geo_departements.yml
+│   │       │   ├── _code_geo_pays.yml
+│   │       │   ├── _code_geo_regions.yml
+│   │       │   ├── _code_geo_territoires_outre_mer.yml
+│   │       │   ├── _stock_etablissement.yml
+│   │       │   ├── _unites_legales.yml
+│   │       │   ├── code_geo_arrondissements.sql
+│   │       │   ├── code_geo_cantons.sql
+│   │       │   ├── code_geo_communes.sql
+│   │       │   ├── code_geo_departements.sql
+│   │       │   ├── code_geo_regions.sql
+│   │       │   ├── code_geo_territoires_outre_mer.sql
+│   │       │   ├── stock_etablissement.sql
+│   │       │   └── unites_legales.sql
+│   │       ├── referentials
+│   │       │   ├── _base_codes_postaux.yml
+│   │       │   ├── _codes_dechets.yml
+│   │       │   ├── _codes_operations_traitements.yml
+│   │       │   ├── _companies_geocoded_by_ban.yml
+│   │       │   ├── _isdnd_capacites_limites_50pct.yml
+│   │       │   ├── _nomenclature_activites_francaises.yml
+│   │       │   ├── _referentiel_codes_operation_rubriques.yml
+│   │       │   ├── base_codes_postaux.sql
+│   │       │   ├── codes_dechets.sql
+│   │       │   ├── codes_operations_traitements.sql
+│   │       │   ├── companies_geocoded_by_ban.sql
+│   │       │   ├── isdnd_capacites_limites_50pct.sql
+│   │       │   ├── nomenclature_activites_francaises.sql
+│   │       │   └── referentiel_codes_operation_rubriques.sql
+│   │       ├── trackdechets
+│   │       │   ├── .sqlfluff
+│   │       │   ├── _anonymous_company.yml
+│   │       │   ├── _broker_receipt.yml
+│   │       │   ├── _bsda.yml
+│   │       │   ├── _bsda_revision_request.yml
+│   │       │   ├── _bsda_transporter.yml
+│   │       │   ├── _bsdasri.yml
+│   │       │   ├── _bsdasri_revision_request.yml
+│   │       │   ├── _bsdd.yml
+│   │       │   ├── _bsdd_revision_request.yml
+│   │       │   ├── _bsdd_transporter.yml
+│   │       │   ├── _bsff.yml
+│   │       │   ├── _bsff_packaging.yml
+│   │       │   ├── _bsff_transporter.yml
+│   │       │   ├── _bspaoh.yml
+│   │       │   ├── _bspaoh_transporter.yml
+│   │       │   ├── _bsvhu.yml
+│   │       │   ├── _bsvhu_transporter.yml
+│   │       │   ├── _company.yml
+│   │       │   ├── _company_association.yml
+│   │       │   ├── _eco_organisme.yml
+│   │       │   ├── _registry_incoming_texs.yml
+│   │       │   ├── _registry_incoming_waste.yml
+│   │       │   ├── _registry_outgoing_texs.yml
+│   │       │   ├── _registry_outgoing_waste.yml
+│   │       │   ├── _registry_ssd.yml
+│   │       │   ├── _registry_transported.yml
+│   │       │   ├── _trader_receipt.yml
+│   │       │   ├── _transporter_receipt.yml
+│   │       │   ├── _user.yml
+│   │       │   ├── _vhu_agrement.yml
+│   │       │   ├── _worker_certification.yml
+│   │       │   ├── anonymous_company.sql
+│   │       │   ├── broker_receipt.sql
+│   │       │   ├── bsda.sql
+│   │       │   ├── bsda_revision_request.sql
+│   │       │   ├── bsda_transporter.sql
+│   │       │   ├── bsdasri.sql
+│   │       │   ├── bsdasri_revision_request.sql
+│   │       │   ├── bsdd.sql
+│   │       │   ├── bsdd_revision_request.sql
+│   │       │   ├── bsdd_transporter.sql
+│   │       │   ├── bsff.sql
+│   │       │   ├── bsff_packaging.sql
+│   │       │   ├── bsff_transporter.sql
+│   │       │   ├── bspaoh.sql
+│   │       │   ├── bspaoh_transporter.sql
+│   │       │   ├── bsvhu.sql
+│   │       │   ├── bsvhu_transporter.sql
+│   │       │   ├── company.sql
+│   │       │   ├── company_association.sql
+│   │       │   ├── eco_organisme.sql
+│   │       │   ├── registry_*.sql  (6 files)
+│   │       │   ├── trader_receipt.sql
+│   │       │   ├── transporter_receipt.sql
+│   │       │   ├── user.sql
+│   │       │   ├── vhu_agrement.sql
+│   │       │   └── worker_certification.sql
+│   │       ├── vigiedechets
+│   │       │   ├── _fiches_etablissements.yml
+│   │       │   ├── _registres.yml
+│   │       │   ├── fiches_etablissements.sql
+│   │       │   └── registres.sql
+│   │       └── zammad
+│   │           ├── _groups.yml
+│   │           ├── _text_modules.yml
+│   │           ├── _tickets.yml
+│   │           ├── _users.yml
+│   │           ├── groups.sql
+│   │           ├── text_modules.sql
+│   │           ├── tickets.sql
+│   │           └── users.sql
+│   ├── package-lock.yml
+│   ├── packages.yml
+│   ├── profiles
+│   │   ├── .user.yml
+│   │   └── profiles.yml
+│   ├── seeds
+│   │   ├── .gitkeep
+│   │   ├── _schema.yml
+│   │   ├── codes_operations_traitements.csv
+│   │   ├── laposte_hexasmal.csv
+│   │   ├── stg_codes_dechets.csv
+│   │   ├── stg_isdnd_capacites_limites_50pct.csv
+│   │   ├── stg_matching_td_georisques.csv
+│   │   ├── stg_naf_2008.csv
+│   │   └── stg_referentiel_codes_operation_rubriques.csv
+│   ├── snapshots
+│   │   └── .gitkeep
+│   └── tests
+│       └── .gitkeep
+├── metabase
+│   ├── .env.dist
+│   ├── Caddyfile
+│   ├── README.md
+│   ├── docker-compose.yml
+│   └── plugins
+│       └── ch.jar
+├── pyproject.toml
+├── scripts
+│   ├── dbt
+│   │   └── clean_obsolete_relations.py
+│   ├── integration
+│   │   ├── gistrid
+│   │   │   ├── README.md
+│   │   │   ├── __init__.py
+│   │   │   ├── load_gistrid_data_ch.py
+│   │   │   ├── load_gistrid_data_pg.py
+│   │   │   └── schemas
+│   │   │       ├── __init__.py
+│   │   │       └── tables_ddl.py
+│   │   └── gun
+│   │       ├── README.md
+│   │       ├── load_gun_data_ch.py
+│   │       └── load_gun_data_pg.py
+│   ├── sql
+│   │   ├── README.md
+│   │   ├── create_data_eng_views_prod_db.sql
+│   │   ├── create_pg_databases_ch.sql
+│   │   ├── el_gerep_pg_dwh_to_ch.sql
+│   │   ├── el_icpe_pg_dwh_to_ch.sql
+│   │   ├── el_referentials_pg_dwh_to_ch.sql
+│   │   ├── el_rndts_pg_dwh_to_ch.sql
+│   │   └── run_migrations.py
+│   └── ssh
+│       ├── README.md
+│       └── launch_tunnel.sh
+└── uv.lock
+82 directories, 486 files
