@@ -1,0 +1,465 @@
+.
+├── .github
+│   ├── ISSUE_TEMPLATE
+│   │   ├── demande-concernant-une-fonctionnalité.md
+│   │   └── rapport-d-incident.md
+│   ├── pull_request_template.md
+│   └── workflows
+│       ├── chore.yml
+│       ├── chore_create_pr_for_changelog.yml
+│       ├── chore_create_release.yml
+│       ├── chore_require_labels.yml
+│       ├── dev.yml
+│       ├── notebook.yml
+│       └── tycho.yml
+├── .gitignore
+├── .pre-commit-config.yaml
+├── .prettierrc.json
+├── .stylelintrc.json
+├── .vscode
+│   ├── extensions.json
+│   └── settings.json
+├── LICENSE
+├── Makefile
+├── README.md
+├── bin
+│   ├── cz
+│   ├── git-commit-msg-hook
+│   ├── git-pre-commit-hook
+│   ├── manage
+│   └── sass
+├── csplab.code-workspace
+├── dev
+│   ├── .python-version
+│   ├── pyproject.toml
+│   └── uv.lock
+├── docker-compose.yml
+├── docs
+│   ├── direnv_dotenv_usage.md
+│   ├── docker_compose_override.md
+│   ├── sass_configuration.md
+│   ├── scss_linting_and_formatting.md
+│   └── scss_style_guide.md
+├── env.d
+│   ├── notebook-example
+│   ├── postgresql-example
+│   └── tycho-example
+└── src
+    ├── notebook
+    │   ├── .envrc.sample
+    │   ├── .python-version
+    │   ├── cv_analysis.md
+    │   ├── data
+    │   │   └── README.md
+    │   ├── greco.md
+    │   ├── hello_es.md
+    │   ├── ingres.md
+    │   ├── legifrance.md
+    │   ├── matcher.md
+    │   ├── ocr_cv_open_router.md
+    │   ├── pipelines_cv.md
+    │   ├── pyproject.toml
+    │   ├── talentsoft.md
+    │   └── uv.lock
+    └── tycho
+        ├── .envrc.sample
+        ├── .python-version
+        ├── CHANGELOG.md
+        ├── Procfile
+        ├── Procfile.dev
+        ├── README.md
+        ├── application
+        │   ├── __init__.py
+        │   ├── candidate
+        │   │   ├── __init__.py
+        │   │   └── usecases
+        │   │       ├── __init__.py
+        │   │       ├── match_cv_to_opportunities.py
+        │   │       ├── process_uploaded_cv.py
+        │   │       └── retrieve_corps.py
+        │   ├── exceptions.py
+        │   └── ingestion
+        │       ├── __init__.py
+        │       ├── interfaces
+        │       │   ├── __init__.py
+        │       │   ├── load_documents_input.py
+        │       │   └── load_operation_type.py
+        │       └── usecases
+        │           ├── __init__.py
+        │           ├── clean_documents.py
+        │           ├── load_documents.py
+        │           └── vectorize_documents.py
+        ├── cliff.toml
+        ├── config
+        │   ├── __init__.py
+        │   ├── exception_handler.py
+        │   ├── settings.py
+        │   ├── urls.py
+        │   └── wsgi.py
+        ├── domain
+        │   ├── __init__.py
+        │   ├── entities
+        │   │   ├── __init__.py
+        │   │   ├── concours.py
+        │   │   ├── corps.py
+        │   │   ├── cv_metadata.py
+        │   │   ├── document.py
+        │   │   ├── offer.py
+        │   │   └── vectorized_document.py
+        │   ├── exceptions
+        │   │   ├── __init__.py
+        │   │   ├── concours_errors.py
+        │   │   ├── corps_errors.py
+        │   │   ├── cv_errors.py
+        │   │   ├── document_error.py
+        │   │   ├── domain_errors.py
+        │   │   └── offer_errors.py
+        │   ├── interfaces
+        │   │   ├── __init__.py
+        │   │   ├── entity_interface.py
+        │   │   └── usecase_interface.py
+        │   ├── repositories
+        │   │   ├── __init__.py
+        │   │   ├── async_cv_metadata_repository_interface.py
+        │   │   ├── concours_repository_interface.py
+        │   │   ├── corps_repository_interface.py
+        │   │   ├── cv_metadata_repository_interface.py
+        │   │   ├── document_repository_interface.py
+        │   │   ├── offers_repository_interface.py
+        │   │   ├── repository_factory_interface.py
+        │   │   └── vector_repository_interface.py
+        │   ├── services
+        │   │   ├── __init__.py
+        │   │   ├── async_http_client_interface.py
+        │   │   ├── document_cleaner_interface.py
+        │   │   ├── embedding_generator_interface.py
+        │   │   ├── http_client_interface.py
+        │   │   ├── logger_interface.py
+        │   │   ├── pdf_text_extractor_interface.py
+        │   │   ├── query_builder_interface.py
+        │   │   └── text_extractor_interface.py
+        │   ├── types.py
+        │   └── value_objects
+        │       ├── __init__.py
+        │       ├── access_modality.py
+        │       ├── category.py
+        │       ├── contract_type.py
+        │       ├── country.py
+        │       ├── cv_extraction_types.py
+        │       ├── department.py
+        │       ├── diploma.py
+        │       ├── label.py
+        │       ├── limit_date.py
+        │       ├── localisation.py
+        │       ├── ministry.py
+        │       ├── nor.py
+        │       ├── pdf_extractor_type.py
+        │       ├── region.py
+        │       ├── similarity_type.py
+        │       └── verse.py
+        ├── infrastructure
+        │   ├── __init__.py
+        │   ├── di
+        │   │   ├── __init__.py
+        │   │   ├── candidate
+        │   │   │   ├── __init__.py
+        │   │   │   ├── candidate_container.py
+        │   │   │   └── candidate_factory.py
+        │   │   ├── ingestion
+        │   │   │   ├── __init__.py
+        │   │   │   ├── ingestion_container.py
+        │   │   │   └── ingestion_factory.py
+        │   │   └── shared
+        │   │       ├── __init__.py
+        │   │       └── shared_container.py
+        │   ├── django_apps
+        │   │   ├── __init__.py
+        │   │   ├── candidate
+        │   │   │   ├── __init__.py
+        │   │   │   ├── admin.py
+        │   │   │   ├── apps.py
+        │   │   │   ├── management
+        │   │   │   │   ├── __init__.py
+        │   │   │   │   └── commands
+        │   │   │   │       ├── __init__.py
+        │   │   │   │       └── process_cv.py
+        │   │   │   ├── migrations
+        │   │   │   │   ├── 0001_initial.py
+        │   │   │   │   └── __init__.py
+        │   │   │   ├── models
+        │   │   │   │   ├── __init__.py
+        │   │   │   │   └── cv_metadata.py
+        │   │   │   └── templatetags
+        │   │   │       ├── __init__.py
+        │   │   │       └── percentage.py
+        │   │   ├── ingestion
+        │   │   │   ├── __init__.py
+        │   │   │   ├── admin.py
+        │   │   │   ├── apps.py
+        │   │   │   ├── management
+        │   │   │   │   ├── README.md
+        │   │   │   │   ├── __init__.py
+        │   │   │   │   └── commands
+        │   │   │   │       ├── __init__.py
+        │   │   │   │       ├── clean_documents.py
+        │   │   │   │       ├── load_documents.py
+        │   │   │   │       └── vectorize_documents.py
+        │   │   │   ├── migrations
+        │   │   │   │   ├── 0001_initial.py
+        │   │   │   │   ├── 0002_rawcorps_alter_rawexamination_options.py
+        │   │   │   │   ├── 0003_rawdocument_rename_rawexamination_legifranceconcours_and_more.py
+        │   │   │   │   ├── 0004_delete_legifranceconcours.py
+        │   │   │   │   ├── 0005_alter_rawdocument_id.py
+        │   │   │   │   ├── 0006_corpsmodel.py
+        │   │   │   │   ├── 0007_vectorizeddocumentmodel.py
+        │   │   │   │   ├── 0008_alter_corpsmodel_category.py
+        │   │   │   │   ├── 0009_vectorizeddocumentmodel_document_type.py
+        │   │   │   │   ├── 0010_alter_rawdocument_document_type_and_more.py
+        │   │   │   │   ├── 0011_add_external_id_to_rawdocument.py
+        │   │   │   │   ├── 0012_populate_external_id_for_existing_documents.py
+        │   │   │   │   ├── 0013_delete_corpsmodel_delete_vectorizeddocumentmodel.py
+        │   │   │   │   ├── 0014_alter_rawdocument_document_type.py
+        │   │   │   │   ├── 0015_alter_rawdocument_unique_together_and_more.py
+        │   │   │   │   └── __init__.py
+        │   │   │   └── models
+        │   │   │       ├── __init__.py
+        │   │   │       └── raw_document.py
+        │   │   └── shared
+        │   │       ├── __init__.py
+        │   │       ├── apps.py
+        │   │       ├── migrations
+        │   │       │   ├── 0001_initial.py
+        │   │       │   ├── 0002_remove_concoursmodel_concours_corps_i_871a7f_idx_and_more.py
+        │   │       │   ├── 0003_alter_concoursmodel_grade.py
+        │   │       │   ├── 0004_create_offers_table.py
+        │   │       │   ├── 0005_rename_titre_to_title.py
+        │   │       │   ├── 0006_rename_limit_date_offermodel_beginning_date_and_more.py
+        │   │       │   ├── 0007_remove_default_values.py
+        │   │       │   ├── 0008_make_publication_date_required.py
+        │   │       │   ├── 0009_remove_publication_date_default.py
+        │   │       │   └── __init__.py
+        │   │       └── models
+        │   │           ├── __init__.py
+        │   │           ├── concours.py
+        │   │           ├── corps.py
+        │   │           ├── offer.py
+        │   │           └── vectorized_document.py
+        │   ├── exceptions
+        │   │   ├── __init__.py
+        │   │   ├── exceptions.py
+        │   │   └── ingestion_exceptions.py
+        │   ├── external_gateways
+        │   │   ├── __init__.py
+        │   │   ├── albert_pdf_extractor.py
+        │   │   ├── configs
+        │   │   │   ├── __init__.py
+        │   │   │   ├── albert_config.py
+        │   │   │   ├── openai_config.py
+        │   │   │   ├── pdf_extractor_config.py
+        │   │   │   ├── piste_config.py
+        │   │   │   └── talentsoft_config.py
+        │   │   ├── constants
+        │   │   │   ├── __init__.py
+        │   │   │   └── ocr_cv_prompts.py
+        │   │   ├── document_fetcher.py
+        │   │   ├── dtos
+        │   │   │   ├── __init__.py
+        │   │   │   ├── ingres_corps_dtos.py
+        │   │   │   ├── openai_dtos.py
+        │   │   │   └── talentsoft_dtos.py
+        │   │   ├── openai_embedding_generator.py
+        │   │   ├── openai_pdf_extractor.py
+        │   │   ├── piste_client.py
+        │   │   └── talentsoft_client.py
+        │   ├── gateways
+        │   │   ├── __init__.py
+        │   │   ├── candidate
+        │   │   │   ├── __init__.py
+        │   │   │   └── query_builder.py
+        │   │   ├── ingestion
+        │   │   │   ├── __init__.py
+        │   │   │   ├── concours_cleaner.py
+        │   │   │   ├── corps_cleaner.py
+        │   │   │   ├── document_cleaner.py
+        │   │   │   ├── load_documents_strategies.py
+        │   │   │   ├── load_documents_strategy_factory.py
+        │   │   │   ├── pelage_checks.py
+        │   │   │   └── text_extractor.py
+        │   │   └── shared
+        │   │       ├── __init__.py
+        │   │       ├── async_http_client.py
+        │   │       ├── http_client.py
+        │   │       └── logger.py
+        │   └── repositories
+        │       ├── __init__.py
+        │       ├── candidate
+        │       │   ├── __init__.py
+        │       │   ├── async_postgres_cv_metadata_repository.py
+        │       │   └── postgres_cv_metadata_repository.py
+        │       ├── ingestion
+        │       │   ├── __init__.py
+        │       │   └── postgres_document_repository.py
+        │       ├── repository_factory.py
+        │       └── shared
+        │           ├── __init__.py
+        │           ├── pgvector_repository.py
+        │           ├── postgres_concours_repository.py
+        │           ├── postgres_corps_repository.py
+        │           └── postgres_offers_repository.py
+        ├── locale
+        │   └── .keep
+        ├── manage.py
+        ├── postdeploy.sh
+        ├── presentation
+        │   ├── assets
+        │   │   └── styles
+        │   │       ├── abstracts
+        │   │       │   ├── _index.scss
+        │   │       │   ├── mixins
+        │   │       │   │   ├── _index.scss
+        │   │       │   │   └── _responsiveness.scss
+        │   │       │   └── variables
+        │   │       │       ├── _breakpoints.scss
+        │   │       │       ├── _colors.scss
+        │   │       │       ├── _index.scss
+        │   │       │       └── _spacing.scss
+        │   │       ├── components
+        │   │       │   ├── _dropzone.scss
+        │   │       │   ├── _file-card.scss
+        │   │       │   ├── _index.scss
+        │   │       │   ├── _spinner.scss
+        │   │       │   └── _toast.scss
+        │   │       ├── layouts
+        │   │       │   ├── _dsfr-patches.scss
+        │   │       │   └── _index.scss
+        │   │       ├── main.scss
+        │   │       ├── pages
+        │   │       │   ├── _corps-search.scss
+        │   │       │   ├── _cv-processing.scss
+        │   │       │   ├── _cv-upload.scss
+        │   │       │   ├── _home.scss
+        │   │       │   └── _index.scss
+        │   │       ├── utilities
+        │   │       │   ├── _index.scss
+        │   │       │   ├── _text.scss
+        │   │       │   └── _visibility.scss
+        │   │       └── vendors
+        │   │           ├── _dsfr-spacing-utils.scss
+        │   │           └── _index.scss
+        │   ├── candidate
+        │   │   ├── __init__.py
+        │   │   ├── forms
+        │   │   │   ├── __init__.py
+        │   │   │   ├── corps_search.py
+        │   │   │   └── cv_flow.py
+        │   │   ├── mixins.py
+        │   │   ├── urls.py
+        │   │   └── views
+        │   │       ├── corps_search.py
+        │   │       └── cv_flow.py
+        │   ├── ingestion
+        │   │   ├── __init__.py
+        │   │   ├── schemas.py
+        │   │   ├── urls.py
+        │   │   └── views.py
+        │   ├── pages
+        │   │   ├── __init__.py
+        │   │   ├── urls.py
+        │   │   └── views.py
+        │   ├── static
+        │   │   ├── candidate
+        │   │   │   ├── images
+        │   │   │   │   ├── 299.Algorithm.svg
+        │   │   │   │   ├── 333.Inspection 2.svg
+        │   │   │   │   ├── 460.Ai-Assistant.svg
+        │   │   │   │   ├── csplab-vertical-circles.svg
+        │   │   │   │   └── microscope.svg
+        │   │   │   └── js
+        │   │   │       └── cv-upload.js
+        │   │   └── css
+        │   │       └── main.css
+        │   └── templates
+        │       ├── candidate
+        │       │   ├── cv_processing.html
+        │       │   ├── cv_upload.html
+        │       │   └── search.html
+        │       ├── components
+        │       │   ├── cv_upload_actions.html
+        │       │   └── file_upload.html
+        │       ├── layouts
+        │       │   └── base.html
+        │       ├── pages
+        │       │   └── home.html
+        │       └── partials
+        │           ├── footer.html
+        │           └── header.html
+        ├── pyproject.toml
+        ├── start.sh
+        ├── tests
+        │   ├── __init__.py
+        │   ├── candidate
+        │   │   ├── __init__.py
+        │   │   ├── conftest.py
+        │   │   ├── integration
+        │   │   │   ├── __init__.py
+        │   │   │   ├── test_cv_processing_view.py
+        │   │   │   ├── test_cv_upload_view.py
+        │   │   │   ├── test_integration_match_cv_to_opportunities.py
+        │   │   │   ├── test_integration_process_uploaded_cv.py
+        │   │   │   └── test_integration_retrieve_corps.py
+        │   │   └── unit
+        │   │       ├── __init__.py
+        │   │       ├── test_limit_date.py
+        │   │       ├── test_unit_match_cv_to_opportunities.py
+        │   │       ├── test_unit_process_uploaded_cv.py
+        │   │       └── test_unit_retrieve_corps.py
+        │   ├── external_gateways
+        │   │   ├── __init__.py
+        │   │   └── unit
+        │   │       ├── __init__.py
+        │   │       ├── test_talentsoft_client.py
+        │   │       └── test_talentsoft_dtos.py
+        │   ├── factories
+        │   │   └── ingres_factories.py
+        │   ├── fixtures
+        │   │   ├── __init__.py
+        │   │   ├── candidate_fixtures.py
+        │   │   ├── clean_test_factories.py
+        │   │   ├── concours_greco_2025.json
+        │   │   ├── corps_ingres_20251117.json
+        │   │   ├── embedding_fixtures.json
+        │   │   ├── fixture_loader.py
+        │   │   ├── ingestion_fixtures.py
+        │   │   └── vectorize_test_factories.py
+        │   ├── ingestion
+        │   │   ├── __init__.py
+        │   │   ├── conftest.py
+        │   │   ├── integration
+        │   │   │   ├── test_integration_clean_documents.py
+        │   │   │   ├── test_integration_load_documents.py
+        │   │   │   ├── test_integration_vectorize_documents.py
+        │   │   │   └── test_postgres_offers_repository.py
+        │   │   └── unit
+        │   │       ├── test_unit_clean_documents.py
+        │   │       ├── test_unit_load_documents.py
+        │   │       └── test_unit_vectorize_documents.py
+        │   ├── pages
+        │   │   ├── __init__.py
+        │   │   └── integration
+        │   │       ├── __init__.py
+        │   │       └── test_home_view.py
+        │   └── utils
+        │       ├── async_in_memory_cv_metadata_repository.py
+        │       ├── form_test_utils.py
+        │       ├── in_memory_concours_repository.py
+        │       ├── in_memory_corps_repository.py
+        │       ├── in_memory_cv_metadata_repository.py
+        │       ├── in_memory_document_repository.py
+        │       ├── in_memory_offers_repository.py
+        │       ├── in_memory_vector_repository.py
+        │       ├── mock_api_response_factory.py
+        │       ├── mock_embedding_generator.py
+        │       ├── pdf_test_utils.py
+        │       └── test_container_factory.py
+        └── uv.lock
+102 directories, 362 files
