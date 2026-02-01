@@ -1,0 +1,1150 @@
+.
+├── .cursor
+│   └── rules
+│       └── django-python.mdc
+├── .dockerignore
+├── .github
+│   ├── CODEOWNERS
+│   ├── ISSUE_TEMPLATE
+│   │   ├── Bug_report.md
+│   │   ├── Feature_request.md
+│   │   └── Support_question.md
+│   ├── ISSUE_TEMPLATE.md
+│   ├── PULL_REQUEST_TEMPLATE.md
+│   └── workflows
+│       ├── crowdin_download.yml
+│       ├── crowdin_upload.yml
+│       ├── docker-publish.yml
+│       ├── messages-ghcr.yml
+│       └── messages.yml
+├── .gitignore
+├── CHANGELOG.md
+├── CONTRIBUTING.md
+├── LICENSE
+├── Makefile
+├── Procfile
+├── README.md
+├── SECURITY.md
+├── bin
+│   ├── _config.sh
+│   ├── compose
+│   ├── manage
+│   ├── pylint
+│   ├── pytest
+│   ├── release.py
+│   ├── scalingo_postcompile
+│   ├── scalingo_postfrontend
+│   ├── scalingo_run_web
+│   ├── update_app_cacert.sh
+│   └── update_openapi_schema
+├── compose.yaml
+├── crowdin
+│   └── config.yml
+├── docs
+│   ├── architecture.md
+│   ├── assets
+│   │   ├── architecture-high-level.png
+│   │   ├── readme-app.webp
+│   │   └── readme-banner.png
+│   ├── env.md
+│   ├── internationalization.md
+│   ├── model-custom-attributes.md
+│   ├── permissions.md
+│   ├── prometheus.md
+│   ├── self-hosting.md
+│   ├── selfcheck.md
+│   ├── theme-customization.md
+│   └── worker.md
+├── env.d
+│   └── development
+│       ├── backend.defaults
+│       ├── backend.e2e
+│       ├── crowdin.defaults
+│       ├── frontend.defaults
+│       ├── frontend.e2e
+│       ├── keycloak.defaults
+│       ├── keycloak.e2e
+│       ├── mta-in.defaults
+│       ├── mta-in.e2e
+│       ├── mta-out.defaults
+│       ├── postgresql.defaults
+│       └── socks-proxy.defaults
+└── src
+    ├── backend
+    │   ├── .pylintrc
+    │   ├── Dockerfile
+    │   ├── README.md
+    │   ├── __init__.py
+    │   ├── core
+    │   │   ├── __init__.py
+    │   │   ├── admin.py
+    │   │   ├── ai
+    │   │   │   ├── ai_prompts.json
+    │   │   │   ├── call_label.py
+    │   │   │   ├── thread_classifier.py
+    │   │   │   ├── thread_summarizer.py
+    │   │   │   └── utils.py
+    │   │   ├── api
+    │   │   │   ├── __init__.py
+    │   │   │   ├── fields.py
+    │   │   │   ├── filters.py
+    │   │   │   ├── openapi.json
+    │   │   │   ├── permissions.py
+    │   │   │   ├── serializers.py
+    │   │   │   ├── utils.py
+    │   │   │   └── viewsets
+    │   │   │       ├── __init__.py
+    │   │   │       ├── blob.py
+    │   │   │       ├── channel.py
+    │   │   │       ├── config.py
+    │   │   │       ├── contacts.py
+    │   │   │       ├── draft.py
+    │   │   │       ├── drive.py
+    │   │   │       ├── flag.py
+    │   │   │       ├── image_proxy.py
+    │   │   │       ├── import_message.py
+    │   │   │       ├── inbound
+    │   │   │       │   ├── __init__.py
+    │   │   │       │   ├── mta.py
+    │   │   │       │   └── widget.py
+    │   │   │       ├── label.py
+    │   │   │       ├── mailbox.py
+    │   │   │       ├── mailbox_access.py
+    │   │   │       ├── maildomain.py
+    │   │   │       ├── maildomain_access.py
+    │   │   │       ├── message.py
+    │   │   │       ├── message_template.py
+    │   │   │       ├── metrics.py
+    │   │   │       ├── placeholder.py
+    │   │   │       ├── send.py
+    │   │   │       ├── task.py
+    │   │   │       ├── thread.py
+    │   │   │       ├── thread_access.py
+    │   │   │       └── user.py
+    │   │   ├── apps.py
+    │   │   ├── authentication
+    │   │   │   ├── __init__.py
+    │   │   │   ├── backends.py
+    │   │   │   └── urls.py
+    │   │   ├── enums.py
+    │   │   ├── factories.py
+    │   │   ├── forms.py
+    │   │   ├── management
+    │   │   │   └── commands
+    │   │   │       ├── __init__.py
+    │   │   │       ├── bucket_cors.py
+    │   │   │       ├── createsuperuser.py
+    │   │   │       ├── dns_check.py
+    │   │   │       ├── dns_provision.py
+    │   │   │       ├── drop_all_tables.py
+    │   │   │       ├── e2e_demo.py
+    │   │   │       ├── identity.py
+    │   │   │       ├── print_sessions.py
+    │   │   │       ├── run_task.py
+    │   │   │       ├── search_index_create.py
+    │   │   │       ├── search_index_delete.py
+    │   │   │       ├── search_reindex.py
+    │   │   │       ├── selfcheck.py
+    │   │   │       └── send_mail.py
+    │   │   ├── mda
+    │   │   │   ├── __init__.py
+    │   │   │   ├── draft.py
+    │   │   │   ├── inbound.py
+    │   │   │   ├── inbound_create.py
+    │   │   │   ├── inbound_tasks.py
+    │   │   │   ├── outbound.py
+    │   │   │   ├── outbound_direct.py
+    │   │   │   ├── outbound_tasks.py
+    │   │   │   ├── rfc5322
+    │   │   │   │   ├── README.md
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   ├── composer.py
+    │   │   │   │   └── parser.py
+    │   │   │   ├── selfcheck.py
+    │   │   │   ├── signing.py
+    │   │   │   └── smtp.py
+    │   │   ├── metrics.py
+    │   │   ├── middlewares.py
+    │   │   ├── migrations
+    │   │   │   ├── 0001_initial.py
+    │   │   │   ├── 0002_mailbox_is_identity.py
+    │   │   │   ├── 0003_thread_summary.py
+    │   │   │   ├── 0004_alter_maildomain_custom_attributes_and_more.py
+    │   │   │   ├── 0005_label_description_label_is_auto_and_more.py
+    │   │   │   ├── 0006_mailboxaccess_accessed_at_alter_message_draft_blob.py
+    │   │   │   ├── 0007_blob_size_compressed.py
+    │   │   │   ├── 0008_channel_message_channel_channel_channel_has_target.py
+    │   │   │   ├── 0009_messagetemplate_blob_maildomain_alter_blob_mailbox_and_more.py
+    │   │   │   ├── 0010_thread_has_archived_alter_user_language.py
+    │   │   │   ├── 0011_alter_messagetemplate_type.py
+    │   │   │   ├── 0012_maildomain_custom_settings_alter_user_language_and_more.py
+    │   │   │   ├── 0013_thread_is_trashed.py
+    │   │   │   ├── 0014_messagetemplate_is_default_and_more.py
+    │   │   │   ├── 0015_attachment_cid.py
+    │   │   │   └── __init__.py
+    │   │   ├── models.py
+    │   │   ├── services
+    │   │   │   ├── ai_service.py
+    │   │   │   ├── dns
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   ├── check.py
+    │   │   │   │   ├── providers
+    │   │   │   │   │   ├── __init__.py
+    │   │   │   │   │   └── scaleway.py
+    │   │   │   │   ├── provisioning.py
+    │   │   │   │   └── tasks.py
+    │   │   │   ├── identity
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   └── keycloak.py
+    │   │   │   ├── importer
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   ├── imap.py
+    │   │   │   │   ├── labels.py
+    │   │   │   │   ├── service.py
+    │   │   │   │   └── tasks.py
+    │   │   │   └── search
+    │   │   │       ├── __init__.py
+    │   │   │       ├── index.py
+    │   │   │       ├── mapping.py
+    │   │   │       ├── parse.py
+    │   │   │       ├── search.py
+    │   │   │       └── tasks.py
+    │   │   ├── signals.py
+    │   │   ├── tasks.py
+    │   │   ├── templates
+    │   │   │   └── admin
+    │   │   │       └── core
+    │   │   │           ├── maildomain
+    │   │   │           │   └── change_form.html
+    │   │   │           └── message
+    │   │   │               ├── change_form.html
+    │   │   │               ├── change_list.html
+    │   │   │               ├── import_imap.html
+    │   │   │               └── import_messages.html
+    │   │   ├── templatetags
+    │   │   │   ├── __init__.py
+    │   │   │   └── extra_tags.py
+    │   │   ├── tests
+    │   │   │   ├── __init__.py
+    │   │   │   ├── api
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   ├── conftest.py
+    │   │   │   │   ├── test_admin_maildomains_create.py
+    │   │   │   │   ├── test_admin_maildomains_dns_check.py
+    │   │   │   │   ├── test_admin_maildomains_list.py
+    │   │   │   │   ├── test_admin_maildomains_mailbox.py
+    │   │   │   │   ├── test_admin_maildomains_message_template.py
+    │   │   │   │   ├── test_attachments.py
+    │   │   │   │   ├── test_channels.py
+    │   │   │   │   ├── test_config.py
+    │   │   │   │   ├── test_contacts.py
+    │   │   │   │   ├── test_draft_attachments.py
+    │   │   │   │   ├── test_draft_message_signature.py
+    │   │   │   │   ├── test_drive.py
+    │   │   │   │   ├── test_image_proxy.py
+    │   │   │   │   ├── test_import_file_upload.py
+    │   │   │   │   ├── test_inbound_mta.py
+    │   │   │   │   ├── test_inbound_widget.py
+    │   │   │   │   ├── test_labels.py
+    │   │   │   │   ├── test_mailbox_access.py
+    │   │   │   │   ├── test_mailbox_message_template.py
+    │   │   │   │   ├── test_mailboxes.py
+    │   │   │   │   ├── test_maildomain_access.py
+    │   │   │   │   ├── test_maildomain_users_metrics.py
+    │   │   │   │   ├── test_message_template_list.py
+    │   │   │   │   ├── test_message_template_render.py
+    │   │   │   │   ├── test_message_template_retrieve.py
+    │   │   │   │   ├── test_messages_create.py
+    │   │   │   │   ├── test_messages_delete.py
+    │   │   │   │   ├── test_messages_flag.py
+    │   │   │   │   ├── test_messages_import.py
+    │   │   │   │   ├── test_messages_import_labels_en.py
+    │   │   │   │   ├── test_messages_import_labels_fr.py
+    │   │   │   │   ├── test_messages_list.py
+    │   │   │   │   ├── test_messages_retrieve.py
+    │   │   │   │   ├── test_messages_with_signature.py
+    │   │   │   │   ├── test_placeholder.py
+    │   │   │   │   ├── test_prometheus_metrics.py
+    │   │   │   │   ├── test_send_message_signature.py
+    │   │   │   │   ├── test_thread_access.py
+    │   │   │   │   ├── test_thread_filter.py
+    │   │   │   │   ├── test_thread_labels.py
+    │   │   │   │   ├── test_threads_flag.py
+    │   │   │   │   ├── test_threads_list.py
+    │   │   │   │   ├── test_users.py
+    │   │   │   │   └── test_utils_flat_to_nested.py
+    │   │   │   ├── authentication
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   └── test_backends.py
+    │   │   │   ├── conftest.py
+    │   │   │   ├── dns
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   ├── test_check.py
+    │   │   │   │   ├── test_provider_scaleway.py
+    │   │   │   │   └── test_provisioning.py
+    │   │   │   ├── importer
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   ├── test_file_import.py
+    │   │   │   │   ├── test_imap_connection.py
+    │   │   │   │   ├── test_imap_import.py
+    │   │   │   │   └── test_import_service.py
+    │   │   │   ├── mda
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   ├── test_inbound.py
+    │   │   │   │   ├── test_inbound_e2e.py
+    │   │   │   │   ├── test_outbound.py
+    │   │   │   │   ├── test_outbound_e2e.py
+    │   │   │   │   ├── test_retry.py
+    │   │   │   │   ├── test_rfc5322_address_fuzz.py
+    │   │   │   │   ├── test_rfc5322_composer.py
+    │   │   │   │   ├── test_rfc5322_message_fuzz.py
+    │   │   │   │   ├── test_rfc5322_parser.py
+    │   │   │   │   ├── test_rfc5322_parser_structure.py
+    │   │   │   │   ├── test_signing.py
+    │   │   │   │   ├── test_smtp.py
+    │   │   │   │   └── test_spam_processing.py
+    │   │   │   ├── models
+    │   │   │   │   ├── test_blob.py
+    │   │   │   │   ├── test_labels.py
+    │   │   │   │   ├── test_mailbox.py
+    │   │   │   │   ├── test_maildomain.py
+    │   │   │   │   ├── test_maildomainaccess.py
+    │   │   │   │   ├── test_messages.py
+    │   │   │   │   ├── test_user_abilities.py
+    │   │   │   │   └── test_users.py
+    │   │   │   ├── resources
+    │   │   │   │   ├── All mail Including Spam and Trash.mbox
+    │   │   │   │   ├── Tous les messages, y compris ceux du dossier Spam .mbox
+    │   │   │   │   ├── message.eml
+    │   │   │   │   └── messages.mbox
+    │   │   │   ├── search
+    │   │   │   │   ├── test_e2e.py
+    │   │   │   │   ├── test_e2e_modifiers.py
+    │   │   │   │   ├── test_parse_query.py
+    │   │   │   │   ├── test_search.py
+    │   │   │   │   └── test_search_modifiers.py
+    │   │   │   ├── swagger
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   └── test_openapi_schema.py
+    │   │   │   ├── tasks
+    │   │   │   │   ├── test_task_importer.py
+    │   │   │   │   └── test_task_send_message.py
+    │   │   │   ├── test_settings.py
+    │   │   │   └── test_worker.py
+    │   │   ├── urls.py
+    │   │   └── utils.py
+    │   ├── entrypoint
+    │   ├── gunicorn.conf.py
+    │   ├── locale
+    │   │   ├── br_FR
+    │   │   │   └── LC_MESSAGES
+    │   │   │       ├── django.mo
+    │   │   │       └── django.po
+    │   │   ├── de_DE
+    │   │   │   └── LC_MESSAGES
+    │   │   │       ├── django.mo
+    │   │   │       └── django.po
+    │   │   ├── en_US
+    │   │   │   └── LC_MESSAGES
+    │   │   │       ├── django.mo
+    │   │   │       └── django.po
+    │   │   ├── es_ES
+    │   │   │   └── LC_MESSAGES
+    │   │   │       ├── django.mo
+    │   │   │       └── django.po
+    │   │   ├── fr_FR
+    │   │   │   └── LC_MESSAGES
+    │   │   │       ├── django.mo
+    │   │   │       └── django.po
+    │   │   ├── it_IT
+    │   │   │   └── LC_MESSAGES
+    │   │   │       ├── django.mo
+    │   │   │       └── django.po
+    │   │   ├── nl_NL
+    │   │   │   └── LC_MESSAGES
+    │   │   │       ├── django.mo
+    │   │   │       └── django.po
+    │   │   ├── pt_PT
+    │   │   │   └── LC_MESSAGES
+    │   │   │       ├── django.mo
+    │   │   │       └── django.po
+    │   │   ├── ru_RU
+    │   │   │   └── LC_MESSAGES
+    │   │   │       ├── django.mo
+    │   │   │       └── django.po
+    │   │   └── uk_UA
+    │   │       └── LC_MESSAGES
+    │   │           ├── django.mo
+    │   │           └── django.po
+    │   ├── manage.py
+    │   ├── messages
+    │   │   ├── __init__.py
+    │   │   ├── celery_app.py
+    │   │   ├── settings.py
+    │   │   ├── urls.py
+    │   │   └── wsgi.py
+    │   ├── poetry.lock
+    │   ├── pyproject.toml
+    │   └── worker.py
+    ├── e2e
+    │   ├── .dockerignore
+    │   ├── .gitignore
+    │   ├── Dockerfile
+    │   ├── README.md
+    │   ├── bin
+    │   │   └── backend-manage.sh
+    │   ├── compose.yaml
+    │   ├── nginx
+    │   │   ├── e2e.conf.template
+    │   │   └── entrypoint.sh
+    │   ├── package-lock.json
+    │   ├── package.json
+    │   ├── playwright.config.ts
+    │   ├── src
+    │   │   ├── __tests__
+    │   │   │   ├── login.spec.ts
+    │   │   │   ├── message-import.spec.ts
+    │   │   │   ├── message-send.spec.ts
+    │   │   │   └── signatures.spec.ts
+    │   │   ├── constants.ts
+    │   │   ├── fixtures
+    │   │   │   ├── attachment.png
+    │   │   │   ├── old-message.eml
+    │   │   │   └── sample.txt
+    │   │   ├── utils-test.ts
+    │   │   └── utils.ts
+    │   └── tsconfig.json
+    ├── frontend
+    │   ├── .dockerignore
+    │   ├── Dockerfile
+    │   ├── README.md
+    │   ├── cunningham.ts
+    │   ├── eslint.config.mjs
+    │   ├── i18next.config.ts
+    │   ├── instrumentation-client.ts
+    │   ├── next.config.ts
+    │   ├── nginx
+    │   │   └── nginx.conf.template
+    │   ├── orval.config.ts
+    │   ├── package-lock.json
+    │   ├── package.json
+    │   ├── public
+    │   │   ├── browserconfig.xml
+    │   │   ├── images
+    │   │   │   ├── anct
+    │   │   │   │   ├── app-icon-2x.png
+    │   │   │   │   ├── app-icon-dark.svg
+    │   │   │   │   ├── app-icon-light.svg
+    │   │   │   │   ├── app-icon.png
+    │   │   │   │   ├── app-logo-dark.svg
+    │   │   │   │   ├── app-logo-light.svg
+    │   │   │   │   ├── favicon-dark.svg
+    │   │   │   │   └── favicon-light.svg
+    │   │   │   ├── banner.webp
+    │   │   │   ├── files
+    │   │   │   │   └── icons
+    │   │   │   │       ├── mime-archive-mini.svg
+    │   │   │   │       ├── mime-archive.svg
+    │   │   │   │       ├── mime-audio-mini.svg
+    │   │   │   │       ├── mime-audio.svg
+    │   │   │   │       ├── mime-calc-mini.svg
+    │   │   │   │       ├── mime-calc.svg
+    │   │   │   │       ├── mime-doc-mini.svg
+    │   │   │   │       ├── mime-doc.svg
+    │   │   │   │       ├── mime-folder-mini.svg
+    │   │   │   │       ├── mime-image-mini.svg
+    │   │   │   │       ├── mime-image.svg
+    │   │   │   │       ├── mime-other.svg
+    │   │   │   │       ├── mime-pdf-mini.svg
+    │   │   │   │       ├── mime-pdf.svg
+    │   │   │   │       ├── mime-powerpoint-mini.svg
+    │   │   │   │       ├── mime-powerpoint.svg
+    │   │   │   │       ├── mime-video-mini.svg
+    │   │   │   │       └── mime-video.svg
+    │   │   │   ├── pwa
+    │   │   │   │   ├── icons
+    │   │   │   │   │   ├── android
+    │   │   │   │   │   │   ├── android-launchericon-144-144.png
+    │   │   │   │   │   │   ├── android-launchericon-192-192.png
+    │   │   │   │   │   │   ├── android-launchericon-48-48.png
+    │   │   │   │   │   │   ├── android-launchericon-512-512.png
+    │   │   │   │   │   │   ├── android-launchericon-72-72.png
+    │   │   │   │   │   │   └── android-launchericon-96-96.png
+    │   │   │   │   │   └── ios
+    │   │   │   │   │       ├── 100.png
+    │   │   │   │   │       ├── 1024.png
+    │   │   │   │   │       ├── 114.png
+    │   │   │   │   │       ├── 120.png
+    │   │   │   │   │       ├── 128.png
+    │   │   │   │   │       ├── 144.png
+    │   │   │   │   │       ├── 152.png
+    │   │   │   │   │       ├── 16.png
+    │   │   │   │   │       ├── 167.png
+    │   │   │   │   │       ├── 180.png
+    │   │   │   │   │       ├── 192.png
+    │   │   │   │   │       ├── 20.png
+    │   │   │   │   │       ├── 256.png
+    │   │   │   │   │       ├── 29.png
+    │   │   │   │   │       ├── 32.png
+    │   │   │   │   │       ├── 40.png
+    │   │   │   │   │       ├── 50.png
+    │   │   │   │   │       ├── 512.png
+    │   │   │   │   │       ├── 57.png
+    │   │   │   │   │       ├── 58.png
+    │   │   │   │   │       ├── 60.png
+    │   │   │   │   │       ├── 64.png
+    │   │   │   │   │       ├── 72.png
+    │   │   │   │   │       ├── 76.png
+    │   │   │   │   │       ├── 80.png
+    │   │   │   │   │       └── 87.png
+    │   │   │   │   └── splash
+    │   │   │   │       ├── apple-splash-1125-2436.jpg
+    │   │   │   │       ├── apple-splash-1136-640.jpg
+    │   │   │   │       ├── apple-splash-1170-2532.jpg
+    │   │   │   │       ├── apple-splash-1179-2556.jpg
+    │   │   │   │       ├── apple-splash-1206-2622.jpg
+    │   │   │   │       ├── apple-splash-1242-2208.jpg
+    │   │   │   │       ├── apple-splash-1242-2688.jpg
+    │   │   │   │       ├── apple-splash-1284-2778.jpg
+    │   │   │   │       ├── apple-splash-1290-2796.jpg
+    │   │   │   │       ├── apple-splash-1320-2868.jpg
+    │   │   │   │       ├── apple-splash-1334-750.jpg
+    │   │   │   │       ├── apple-splash-1488-2266.jpg
+    │   │   │   │       ├── apple-splash-1536-2048.jpg
+    │   │   │   │       ├── apple-splash-1620-2160.jpg
+    │   │   │   │       ├── apple-splash-1640-2360.jpg
+    │   │   │   │       ├── apple-splash-1668-2224.jpg
+    │   │   │   │       ├── apple-splash-1668-2388.jpg
+    │   │   │   │       ├── apple-splash-1792-828.jpg
+    │   │   │   │       ├── apple-splash-2048-1536.jpg
+    │   │   │   │       ├── apple-splash-2048-2732.jpg
+    │   │   │   │       ├── apple-splash-2160-1620.jpg
+    │   │   │   │       ├── apple-splash-2208-1242.jpg
+    │   │   │   │       ├── apple-splash-2224-1668.jpg
+    │   │   │   │       ├── apple-splash-2266-1488.jpg
+    │   │   │   │       ├── apple-splash-2360-1640.jpg
+    │   │   │   │       ├── apple-splash-2388-1668.jpg
+    │   │   │   │       ├── apple-splash-2436-1125.jpg
+    │   │   │   │       ├── apple-splash-2532-1170.jpg
+    │   │   │   │       ├── apple-splash-2556-1179.jpg
+    │   │   │   │       ├── apple-splash-2622-1206.jpg
+    │   │   │   │       ├── apple-splash-2688-1242.jpg
+    │   │   │   │       ├── apple-splash-2732-2048.jpg
+    │   │   │   │       ├── apple-splash-2778-1284.jpg
+    │   │   │   │       ├── apple-splash-2796-1290.jpg
+    │   │   │   │       ├── apple-splash-2868-1320.jpg
+    │   │   │   │       ├── apple-splash-640-1136.jpg
+    │   │   │   │       ├── apple-splash-750-1334.jpg
+    │   │   │   │       └── apple-splash-828-1792.jpg
+    │   │   │   ├── svg
+    │   │   │   │   └── read-mail.svg
+    │   │   │   ├── welcome.webp
+    │   │   │   └── white-label
+    │   │   │       ├── app-icon-dark.svg
+    │   │   │       ├── app-icon-light.svg
+    │   │   │       ├── app-logo-dark.svg
+    │   │   │       ├── app-logo-light.svg
+    │   │   │       ├── favicon-dark.svg
+    │   │   │       └── favicon-light.svg
+    │   │   ├── locales
+    │   │   │   ├── common
+    │   │   │   │   ├── br-FR.json
+    │   │   │   │   ├── de-DE.json
+    │   │   │   │   ├── en-US.json
+    │   │   │   │   ├── es-ES.json
+    │   │   │   │   ├── fr-FR.json
+    │   │   │   │   ├── it-IT.json
+    │   │   │   │   ├── nl-NL.json
+    │   │   │   │   ├── pt-PT.json
+    │   │   │   │   ├── ru-RU.json
+    │   │   │   │   └── uk-UA.json
+    │   │   │   └── roles
+    │   │   │       ├── br-FR.json
+    │   │   │       ├── de-DE.json
+    │   │   │       ├── en-US.json
+    │   │   │       ├── es-ES.json
+    │   │   │       ├── fr-FR.json
+    │   │   │       ├── it-IT.json
+    │   │   │       ├── nl-NL.json
+    │   │   │       ├── pt-PT.json
+    │   │   │       ├── ru-RU.json
+    │   │   │       └── uk-UA.json
+    │   │   ├── manifest.json
+    │   │   └── sounds
+    │   │       └── mail-sent.ogg
+    │   ├── src
+    │   │   ├── features
+    │   │   │   ├── api
+    │   │   │   │   ├── api-error.ts
+    │   │   │   │   ├── fetch-api.ts
+    │   │   │   │   ├── gen
+    │   │   │   │   │   ├── admin-users-list
+    │   │   │   │   │   │   └── admin-users-list.ts
+    │   │   │   │   │   ├── blob
+    │   │   │   │   │   │   └── blob.ts
+    │   │   │   │   │   ├── channels
+    │   │   │   │   │   │   └── channels.ts
+    │   │   │   │   │   ├── config
+    │   │   │   │   │   │   └── config.ts
+    │   │   │   │   │   ├── contacts
+    │   │   │   │   │   │   └── contacts.ts
+    │   │   │   │   │   ├── flags
+    │   │   │   │   │   │   └── flags.ts
+    │   │   │   │   │   ├── import
+    │   │   │   │   │   │   └── import.ts
+    │   │   │   │   │   ├── index.ts
+    │   │   │   │   │   ├── labels
+    │   │   │   │   │   │   └── labels.ts
+    │   │   │   │   │   ├── mailbox-accesses
+    │   │   │   │   │   │   └── mailbox-accesses.ts
+    │   │   │   │   │   ├── mailboxes
+    │   │   │   │   │   │   └── mailboxes.ts
+    │   │   │   │   │   ├── maildomain-accesses
+    │   │   │   │   │   │   └── maildomain-accesses.ts
+    │   │   │   │   │   ├── maildomains
+    │   │   │   │   │   │   └── maildomains.ts
+    │   │   │   │   │   ├── messages
+    │   │   │   │   │   │   └── messages.ts
+    │   │   │   │   │   ├── models
+    │   │   │   │   │   │   ├── attachment.ts
+    │   │   │   │   │   │   ├── blob_upload_create201.ts
+    │   │   │   │   │   │   ├── blob_upload_create_body.ts
+    │   │   │   │   │   │   ├── change_flag_request_request.ts
+    │   │   │   │   │   │   ├── channel.ts
+    │   │   │   │   │   │   ├── channel_request.ts
+    │   │   │   │   │   │   ├── config_retrieve200.ts
+    │   │   │   │   │   │   ├── config_retrieve200_driv_e.ts
+    │   │   │   │   │   │   ├── config_retrieve200_schemacustomattributesmaildomai_n.ts
+    │   │   │   │   │   │   ├── config_retrieve200_schemacustomattributesuse_r.ts
+    │   │   │   │   │   │   ├── contact.ts
+    │   │   │   │   │   │   ├── contacts_list_params.ts
+    │   │   │   │   │   │   ├── dnscheck_response.ts
+    │   │   │   │   │   │   ├── dnscheck_result.ts
+    │   │   │   │   │   │   ├── dnsrecord_check.ts
+    │   │   │   │   │   │   ├── draft_*.ts  (14 files)
+    │   │   │   │   │   │   ├── drive_upload_attachment_request.ts
+    │   │   │   │   │   │   ├── flag_create200.ts
+    │   │   │   │   │   │   ├── flag_create400.ts
+    │   │   │   │   │   │   ├── flag_create403.ts
+    │   │   │   │   │   │   ├── flag_enum.ts
+    │   │   │   │   │   │   ├── import_file_create202.ts
+    │   │   │   │   │   │   ├── import_file_request.ts
+    │   │   │   │   │   │   ├── import_imap_create202.ts
+    │   │   │   │   │   │   ├── import_imap_request.ts
+    │   │   │   │   │   │   ├── index.ts
+    │   │   │   │   │   │   ├── label.ts
+    │   │   │   │   │   │   ├── label_request.ts
+    │   │   │   │   │   │   ├── labels_add_threads_create_body.ts
+    │   │   │   │   │   │   ├── labels_list_params.ts
+    │   │   │   │   │   │   ├── labels_remove_threads_create_body.ts
+    │   │   │   │   │   │   ├── mail_*.ts  (5 files)
+    │   │   │   │   │   │   ├── mailbox.ts
+    │   │   │   │   │   │   ├── mailbox_*.ts  (12 files)
+    │   │   │   │   │   │   ├── mailboxes_*.ts  (9 files)
+    │   │   │   │   │   │   ├── maildomain_access_read.ts
+    │   │   │   │   │   │   ├── maildomain_access_write.ts
+    │   │   │   │   │   │   ├── maildomain_access_write_request.ts
+    │   │   │   │   │   │   ├── maildomains_list_params.ts
+    │   │   │   │   │   │   ├── maildomains_mailboxes_list_params.ts
+    │   │   │   │   │   │   ├── maildomains_message_templates_list_params.ts
+    │   │   │   │   │   │   ├── maildomains_message_templates_list_type.ts
+    │   │   │   │   │   │   ├── message.ts
+    │   │   │   │   │   │   ├── message_*.ts  (9 files)
+    │   │   │   │   │   │   ├── paginated_*.ts  (6 files)
+    │   │   │   │   │   │   ├── partial_drive_item.ts
+    │   │   │   │   │   │   ├── patched_*.ts  (6 files)
+    │   │   │   │   │   │   ├── placeholders_retrieve200.ts
+    │   │   │   │   │   │   ├── read_only_message_template.ts
+    │   │   │   │   │   │   ├── reset_password_error.ts
+    │   │   │   │   │   │   ├── reset_password_internal_server_error.ts
+    │   │   │   │   │   │   ├── reset_password_not_found.ts
+    │   │   │   │   │   │   ├── reset_password_response.ts
+    │   │   │   │   │   │   ├── send_*.ts  (5 files)
+    │   │   │   │   │   │   ├── status_enum.ts
+    │   │   │   │   │   │   ├── task_status_response.ts
+    │   │   │   │   │   │   ├── task_status_response_result.ts
+    │   │   │   │   │   │   ├── third_party_drive_retrieve_params.ts
+    │   │   │   │   │   │   ├── thread.ts
+    │   │   │   │   │   │   ├── thread_*.ts  (5 files)
+    │   │   │   │   │   │   ├── threads_*.ts  (12 files)
+    │   │   │   │   │   │   ├── tree_label.ts
+    │   │   │   │   │   │   ├── type_enum.ts
+    │   │   │   │   │   │   ├── user_*.ts  (5 files)
+    │   │   │   │   │   │   └── users_list_params.ts
+    │   │   │   │   │   ├── placeholders
+    │   │   │   │   │   │   └── placeholders.ts
+    │   │   │   │   │   ├── tasks
+    │   │   │   │   │   │   └── tasks.ts
+    │   │   │   │   │   ├── third-party-drive
+    │   │   │   │   │   │   └── third-party-drive.ts
+    │   │   │   │   │   ├── thread-access
+    │   │   │   │   │   │   └── thread-access.ts
+    │   │   │   │   │   ├── threads
+    │   │   │   │   │   │   └── threads.ts
+    │   │   │   │   │   └── users
+    │   │   │   │   │       └── users.ts
+    │   │   │   │   └── utils.ts
+    │   │   │   ├── auth
+    │   │   │   │   ├── index.tsx
+    │   │   │   │   └── types.ts
+    │   │   │   ├── blocknote
+    │   │   │   │   ├── blocknote-view-field
+    │   │   │   │   │   ├── _index.scss
+    │   │   │   │   │   └── index.tsx
+    │   │   │   │   ├── inline-template-variable
+    │   │   │   │   │   ├── _index.scss
+    │   │   │   │   │   └── index.tsx
+    │   │   │   │   ├── message-template-block
+    │   │   │   │   │   ├── _index.scss
+    │   │   │   │   │   └── index.tsx
+    │   │   │   │   ├── quoted-message-block
+    │   │   │   │   │   └── index.tsx
+    │   │   │   │   ├── signature-block
+    │   │   │   │   │   ├── _index.scss
+    │   │   │   │   │   └── index.tsx
+    │   │   │   │   └── toolbar.tsx
+    │   │   │   ├── config
+    │   │   │   │   ├── constants.ts
+    │   │   │   │   └── index.ts
+    │   │   │   ├── controlled-modals
+    │   │   │   │   ├── index.ts
+    │   │   │   │   └── message-importer
+    │   │   │   │       ├── _index.scss
+    │   │   │   │       ├── index.tsx
+    │   │   │   │       ├── step-completed.tsx
+    │   │   │   │       ├── step-form.tsx
+    │   │   │   │       ├── step-loader.tsx
+    │   │   │   │       └── use-bucket-upload.tsx
+    │   │   │   ├── errors
+    │   │   │   │   ├── app-error.ts
+    │   │   │   │   └── error-boundary.tsx
+    │   │   │   ├── forms
+    │   │   │   │   └── components
+    │   │   │   │       ├── combobox
+    │   │   │   │       │   ├── _index.scss
+    │   │   │   │       │   ├── chip.tsx
+    │   │   │   │       │   └── index.tsx
+    │   │   │   │       ├── message-composer
+    │   │   │   │       │   └── index.tsx
+    │   │   │   │       ├── message-form
+    │   │   │   │       │   ├── _index.scss
+    │   │   │   │       │   ├── attachment-uploader.tsx
+    │   │   │   │       │   ├── drive-attachment-picker.tsx
+    │   │   │   │       │   ├── drive-icon.tsx
+    │   │   │   │       │   ├── dropzone.tsx
+    │   │   │   │       │   └── index.tsx
+    │   │   │   │       ├── react-hook-form
+    │   │   │   │       │   ├── index.tsx
+    │   │   │   │       │   ├── rhf-checkbox.tsx
+    │   │   │   │       │   ├── rhf-contact-combobox.tsx
+    │   │   │   │       │   ├── rhf-file-uploader.tsx
+    │   │   │   │       │   ├── rhf-input.tsx
+    │   │   │   │       │   ├── rhf-json-schema-field.tsx
+    │   │   │   │       │   ├── rhf-select.tsx
+    │   │   │   │       │   └── rhf-textarea.tsx
+    │   │   │   │       ├── search-filters-form
+    │   │   │   │       │   ├── _index.scss
+    │   │   │   │       │   └── index.tsx
+    │   │   │   │       ├── search-input
+    │   │   │   │       │   ├── _index.scss
+    │   │   │   │       │   └── index.tsx
+    │   │   │   │       └── zod-json-schema-serializer
+    │   │   │   │           └── index.ts
+    │   │   │   ├── i18n
+    │   │   │   │   ├── attachments-detection-map.json
+    │   │   │   │   ├── conf.ts
+    │   │   │   │   ├── initI18n.ts
+    │   │   │   │   ├── search-filters-map.json
+    │   │   │   │   └── utils.ts
+    │   │   │   ├── layouts
+    │   │   │   │   └── components
+    │   │   │   │       ├── admin
+    │   │   │   │       │   ├── admin-layout.tsx
+    │   │   │   │       │   ├── domains-view
+    │   │   │   │       │   │   └── create-domain-action.tsx
+    │   │   │   │       │   ├── mailbox-credentials
+    │   │   │   │       │   │   ├── _index.scss
+    │   │   │   │       │   │   └── index.tsx
+    │   │   │   │       │   ├── mailboxes-view
+    │   │   │   │       │   │   ├── create-mailbox-action.tsx
+    │   │   │   │       │   │   ├── mailbox-data-grid.tsx
+    │   │   │   │       │   │   └── page-content.tsx
+    │   │   │   │       │   ├── modal-compose-signature
+    │   │   │   │       │   │   ├── _index.scss
+    │   │   │   │       │   │   └── index.tsx
+    │   │   │   │       │   ├── modal-create-domain
+    │   │   │   │       │   │   ├── _index.scss
+    │   │   │   │       │   │   └── index.tsx
+    │   │   │   │       │   ├── modal-create-update-mailbox
+    │   │   │   │       │   │   ├── _index.scss
+    │   │   │   │       │   │   ├── index.tsx
+    │   │   │   │       │   │   └── mailbox-creation-success.tsx
+    │   │   │   │       │   ├── modal-mailbox-manage-accesses
+    │   │   │   │       │   │   └── index.tsx
+    │   │   │   │       │   ├── modal-mailbox-reset-password
+    │   │   │   │       │   │   ├── _index.scss
+    │   │   │   │       │   │   └── index.tsx
+    │   │   │   │       │   ├── modal-maildomain-manage-accesses
+    │   │   │   │       │   │   └── index.tsx
+    │   │   │   │       │   ├── page-content.tsx
+    │   │   │   │       │   └── signatures-view
+    │   │   │   │       │       ├── _index.scss
+    │   │   │   │       │       ├── compose-signature-action.tsx
+    │   │   │   │       │       ├── page-content.tsx
+    │   │   │   │       │       └── signature-data-grid.tsx
+    │   │   │   │       ├── mailbox-panel
+    │   │   │   │       │   ├── _index.scss
+    │   │   │   │       │   ├── components
+    │   │   │   │       │   │   ├── mailbox-actions
+    │   │   │   │       │   │   │   ├── _index.scss
+    │   │   │   │       │   │   │   └── index.tsx
+    │   │   │   │       │   │   ├── mailbox-labels
+    │   │   │   │       │   │   │   ├── _index.scss
+    │   │   │   │       │   │   │   ├── components
+    │   │   │   │       │   │   │   │   ├── label-form-modal
+    │   │   │   │       │   │   │   │   │   ├── _index.scss
+    │   │   │   │       │   │   │   │   │   ├── components
+    │   │   │   │       │   │   │   │   │   │   └── color-palette-field
+    │   │   │   │       │   │   │   │   │   │       ├── _index.scss
+    │   │   │   │       │   │   │   │   │   │       └── index.tsx
+    │   │   │   │       │   │   │   │   │   └── index.tsx
+    │   │   │   │       │   │   │   │   └── label-item
+    │   │   │   │       │   │   │   │       ├── _index.scss
+    │   │   │   │       │   │   │   │       └── index.tsx
+    │   │   │   │       │   │   │   └── index.tsx
+    │   │   │   │       │   │   └── mailbox-list
+    │   │   │   │       │   │       ├── _index.scss
+    │   │   │   │       │   │       └── index.tsx
+    │   │   │   │       │   └── index.tsx
+    │   │   │   │       ├── mailbox-settings
+    │   │   │   │       │   ├── integrations-view
+    │   │   │   │       │   │   ├── create-integration-action.tsx
+    │   │   │   │       │   │   ├── integrations-data-grid.tsx
+    │   │   │   │       │   │   └── page-content.tsx
+    │   │   │   │       │   ├── message-templates-view
+    │   │   │   │       │   │   ├── compose-template-action.tsx
+    │   │   │   │       │   │   ├── message-template-data-grid.tsx
+    │   │   │   │       │   │   └── page-content.tsx
+    │   │   │   │       │   ├── modal-compose-integration
+    │   │   │   │       │   │   ├── _index.scss
+    │   │   │   │       │   │   ├── index.tsx
+    │   │   │   │       │   │   ├── tags-selector.tsx
+    │   │   │   │       │   │   └── widget-integration-form.tsx
+    │   │   │   │       │   ├── modal-compose-mailbox-signature
+    │   │   │   │       │   │   └── index.tsx
+    │   │   │   │       │   ├── modal-compose-template
+    │   │   │   │       │   │   ├── _index.scss
+    │   │   │   │       │   │   ├── index.tsx
+    │   │   │   │       │   │   └── template-composer.tsx
+    │   │   │   │       │   └── signatures-view
+    │   │   │   │       │       ├── compose-signature-action.tsx
+    │   │   │   │       │       ├── page-content.tsx
+    │   │   │   │       │       └── signature-data-grid.tsx
+    │   │   │   │       ├── main
+    │   │   │   │       │   ├── _index.scss
+    │   │   │   │       │   ├── authenticated-view.tsx
+    │   │   │   │       │   ├── header
+    │   │   │   │       │   │   ├── _index.scss
+    │   │   │   │       │   │   ├── anonymous.tsx
+    │   │   │   │       │   │   ├── authenticated.tsx
+    │   │   │   │       │   │   └── index.tsx
+    │   │   │   │       │   ├── hooks
+    │   │   │   │       │   │   └── useControllableState.ts
+    │   │   │   │       │   ├── index.tsx
+    │   │   │   │       │   ├── language-picker.tsx
+    │   │   │   │       │   ├── layout
+    │   │   │   │       │   │   ├── _index.scss
+    │   │   │   │       │   │   └── index.tsx
+    │   │   │   │       │   ├── left-panel
+    │   │   │   │       │   │   ├── _index.scss
+    │   │   │   │       │   │   └── index.tsx
+    │   │   │   │       │   └── no-mailbox.tsx
+    │   │   │   │       ├── thread-panel
+    │   │   │   │       │   ├── _index.scss
+    │   │   │   │       │   ├── components
+    │   │   │   │       │   │   ├── thread-item
+    │   │   │   │       │   │   │   ├── _index.scss
+    │   │   │   │       │   │   │   ├── index.tsx
+    │   │   │   │       │   │   │   ├── thread-action-bar
+    │   │   │   │       │   │   │   │   └── index.tsx
+    │   │   │   │       │   │   │   ├── thread-drag-preview.tsx
+    │   │   │   │       │   │   │   └── thread-item-senders.tsx
+    │   │   │   │       │   │   └── thread-panel-header.tsx
+    │   │   │   │       │   ├── hooks
+    │   │   │   │       │   │   └── use-thread-selection.ts
+    │   │   │   │       │   └── index.tsx
+    │   │   │   │       └── thread-view
+    │   │   │   │           ├── _index.scss
+    │   │   │   │           ├── components
+    │   │   │   │           │   ├── calendar-invite
+    │   │   │   │           │   │   ├── _index.scss
+    │   │   │   │           │   │   ├── calendar-helper.tsx
+    │   │   │   │           │   │   ├── ics-samples-check.test.ts
+    │   │   │   │           │   │   ├── index.test.ts
+    │   │   │   │           │   │   └── index.tsx
+    │   │   │   │           │   ├── message-reply-form
+    │   │   │   │           │   │   ├── _index.scss
+    │   │   │   │           │   │   └── index.tsx
+    │   │   │   │           │   ├── thread-accesses-widget
+    │   │   │   │           │   │   ├── _index.scss
+    │   │   │   │           │   │   └── index.tsx
+    │   │   │   │           │   ├── thread-action-bar
+    │   │   │   │           │   │   ├── _index.scss
+    │   │   │   │           │   │   └── index.tsx
+    │   │   │   │           │   ├── thread-attachment-list
+    │   │   │   │           │   │   ├── _index.scss
+    │   │   │   │           │   │   ├── attachment-item.tsx
+    │   │   │   │           │   │   ├── drive-preview-link.tsx
+    │   │   │   │           │   │   ├── drive-upload-button.tsx
+    │   │   │   │           │   │   └── index.tsx
+    │   │   │   │           │   ├── thread-labels-widget
+    │   │   │   │           │   │   ├── _index.scss
+    │   │   │   │           │   │   └── index.tsx
+    │   │   │   │           │   ├── thread-message
+    │   │   │   │           │   │   ├── _index.scss
+    │   │   │   │           │   │   ├── index.tsx
+    │   │   │   │           │   │   ├── renderers
+    │   │   │   │           │   │   │   ├── image.ts
+    │   │   │   │           │   │   │   ├── index.ts
+    │   │   │   │           │   │   │   ├── text_html.ts
+    │   │   │   │           │   │   │   ├── text_plain.ts
+    │   │   │   │           │   │   │   └── utils.ts
+    │   │   │   │           │   │   ├── thread-message-actions.tsx
+    │   │   │   │           │   │   ├── thread-message-body.tsx
+    │   │   │   │           │   │   ├── thread-message-footer.tsx
+    │   │   │   │           │   │   ├── thread-message-header.tsx
+    │   │   │   │           │   │   └── types.ts
+    │   │   │   │           │   ├── thread-summary
+    │   │   │   │           │   │   ├── _index.scss
+    │   │   │   │           │   │   └── index.tsx
+    │   │   │   │           │   └── thread-view-labels-list
+    │   │   │   │           │       └── index.tsx
+    │   │   │   │           ├── index.tsx
+    │   │   │   │           └── provider.tsx
+    │   │   │   ├── message
+    │   │   │   │   ├── use-archive.tsx
+    │   │   │   │   ├── use-flag.tsx
+    │   │   │   │   ├── use-read.tsx
+    │   │   │   │   ├── use-spam.tsx
+    │   │   │   │   └── use-trash.tsx
+    │   │   │   ├── providers
+    │   │   │   │   ├── admin-maildomain.tsx
+    │   │   │   │   ├── config.tsx
+    │   │   │   │   ├── fold.tsx
+    │   │   │   │   ├── mailbox.tsx
+    │   │   │   │   ├── modal-store
+    │   │   │   │   │   ├── controlled-modal.tsx
+    │   │   │   │   │   ├── global-store.ts
+    │   │   │   │   │   └── index.tsx
+    │   │   │   │   ├── sent-box
+    │   │   │   │   │   ├── index.tsx
+    │   │   │   │   │   └── queued-message.tsx
+    │   │   │   │   └── theme.tsx
+    │   │   │   ├── signatures
+    │   │   │   │   └── components
+    │   │   │   │       └── signature-composer
+    │   │   │   │           └── index.tsx
+    │   │   │   ├── ui
+    │   │   │   │   └── components
+    │   │   │   │       ├── badge
+    │   │   │   │       │   ├── _index.scss
+    │   │   │   │       │   └── index.tsx
+    │   │   │   │       ├── banner
+    │   │   │   │       │   ├── _index.scss
+    │   │   │   │       │   └── index.tsx
+    │   │   │   │       ├── breadcrumbs
+    │   │   │   │       │   ├── _index.scss
+    │   │   │   │       │   └── index.tsx
+    │   │   │   │       ├── circular-progress
+    │   │   │   │       │   ├── _index.scss
+    │   │   │   │       │   └── index.tsx
+    │   │   │   │       ├── contact-chip
+    │   │   │   │       │   ├── _index.scss
+    │   │   │   │       │   ├── contact-popover.tsx
+    │   │   │   │       │   └── index.tsx
+    │   │   │   │       ├── copyable-input
+    │   │   │   │       │   ├── _index.scss
+    │   │   │   │       │   └── index.tsx
+    │   │   │   │       ├── dropdown-button
+    │   │   │   │       │   ├── _index.scss
+    │   │   │   │       │   └── index.tsx
+    │   │   │   │       ├── feedback-button
+    │   │   │   │       │   ├── _index.scss
+    │   │   │   │       │   └── index.tsx
+    │   │   │   │       ├── feedback-widget
+    │   │   │   │       │   └── index.tsx
+    │   │   │   │       ├── label-badge
+    │   │   │   │       │   ├── _index.scss
+    │   │   │   │       │   └── index.tsx
+    │   │   │   │       ├── lagaufre
+    │   │   │   │       │   └── index.tsx
+    │   │   │   │       ├── progress-bar
+    │   │   │   │       │   ├── _index.scss
+    │   │   │   │       │   └── index.tsx
+    │   │   │   │       ├── text-loader
+    │   │   │   │       │   ├── _index.scss
+    │   │   │   │       │   └── index.tsx
+    │   │   │   │       └── toaster
+    │   │   │   │           ├── _index.scss
+    │   │   │   │           └── index.tsx
+    │   │   │   └── utils
+    │   │   │       ├── attachment-helper
+    │   │   │       │   ├── constants.ts
+    │   │   │       │   ├── index.test.ts
+    │   │   │       │   └── index.ts
+    │   │   │       ├── color-helper
+    │   │   │       │   ├── index.test.ts
+    │   │   │       │   └── index.tsx
+    │   │   │       ├── composer-helper
+    │   │   │       │   └── index.ts
+    │   │   │       ├── date-helper.test.ts
+    │   │   │       ├── date-helper.ts
+    │   │   │       ├── errors
+    │   │   │       │   └── index.ts
+    │   │   │       ├── mail-helper.test.tsx
+    │   │   │       ├── mail-helper.tsx
+    │   │   │       ├── mailbox-helper
+    │   │   │       │   ├── index.test.tsx
+    │   │   │       │   └── index.ts
+    │   │   │       ├── search-helper
+    │   │   │       │   ├── index.test.ts
+    │   │   │       │   └── index.ts
+    │   │   │       ├── soundbox.ts
+    │   │   │       ├── string-helper
+    │   │   │       │   ├── index.test.ts
+    │   │   │       │   └── index.ts
+    │   │   │       ├── task-import-cache
+    │   │   │       │   ├── index.test.ts
+    │   │   │       │   └── index.ts
+    │   │   │       ├── unquote-message
+    │   │   │       │   ├── constants.ts
+    │   │   │       │   ├── handlers.ts
+    │   │   │       │   ├── index.test.ts
+    │   │   │       │   ├── index.ts
+    │   │   │       │   └── types.ts
+    │   │   │       └── view-helper
+    │   │   │           ├── index.test.ts
+    │   │   │           └── index.ts
+    │   │   ├── hooks
+    │   │   │   ├── use-ability.ts
+    │   │   │   ├── use-debounce-callback.ts
+    │   │   │   ├── use-feature.ts
+    │   │   │   ├── use-import-task.ts
+    │   │   │   └── use-previous.ts
+    │   │   ├── pages
+    │   │   │   ├── _app.tsx
+    │   │   │   ├── _document.tsx
+    │   │   │   ├── _index.scss
+    │   │   │   ├── domain
+    │   │   │   │   ├── [maildomainId]
+    │   │   │   │   │   ├── dns.tsx
+    │   │   │   │   │   ├── index.tsx
+    │   │   │   │   │   └── signatures.tsx
+    │   │   │   │   ├── _index.scss
+    │   │   │   │   └── index.tsx
+    │   │   │   ├── index.tsx
+    │   │   │   └── mailbox
+    │   │   │       ├── [mailboxId]
+    │   │   │       │   ├── index.tsx
+    │   │   │       │   ├── integrations
+    │   │   │       │   │   └── index.tsx
+    │   │   │       │   ├── message-templates
+    │   │   │       │   │   └── index.tsx
+    │   │   │       │   ├── new
+    │   │   │       │   │   ├── _index.scss
+    │   │   │       │   │   └── index.tsx
+    │   │   │       │   ├── signatures
+    │   │   │       │   │   └── index.tsx
+    │   │   │       │   └── thread
+    │   │   │       │       └── [threadId].tsx
+    │   │   │       └── _index.scss
+    │   │   └── styles
+    │   │       ├── cunningham-tokens.css
+    │   │       ├── cunningham-tokens.scss
+    │   │       ├── cunningham-tokens.ts
+    │   │       ├── globals.scss
+    │   │       ├── main.scss
+    │   │       ├── reset.scss
+    │   │       └── utils
+    │   │           ├── _index.scss
+    │   │           └── breakpoints.scss
+    │   ├── tsconfig.json
+    │   └── vitest.config.ts
+    ├── keycloak
+    │   ├── Dockerfile
+    │   ├── Procfile
+    │   ├── buildpack
+    │   │   ├── scalingo_env.sh
+    │   │   └── scalingo_postcompile.sh
+    │   ├── realm.json
+    │   ├── scripts
+    │   │   ├── META-INF
+    │   │   │   └── keycloak-scripts.json
+    │   │   └── map-group-attribute.js
+    │   ├── system.properties
+    │   └── themes
+    │       └── dsfr-2.2.1.jar
+    ├── mpa
+    │   ├── README.md
+    │   ├── rspamd
+    │   │   ├── Dockerfile
+    │   │   ├── base_nginx.conf
+    │   │   ├── rspamd.conf
+    │   │   ├── servers.conf.erb
+    │   │   └── start.sh
+    │   └── tests
+    │       ├── Dockerfile
+    │       ├── conftest.py
+    │       ├── requirements.txt
+    │       └── test_rspamd_api.py
+    ├── mta-in
+    │   ├── Dockerfile
+    │   ├── README.md
+    │   ├── entrypoint.sh
+    │   ├── etc
+    │   │   ├── localmap
+    │   │   ├── main.cf
+    │   │   ├── master.cf
+    │   │   └── openssl.cnf
+    │   ├── poetry.lock
+    │   ├── pyproject.toml
+    │   ├── src
+    │   │   ├── api
+    │   │   │   ├── __init__.py
+    │   │   │   └── mda.py
+    │   │   └── delivery_milter.py
+    │   └── tests
+    │       ├── conftest.py
+    │       ├── test_attachments.py
+    │       ├── test_email_delivery.py
+    │       └── test_smtp_protocol.py
+    ├── mta-out
+    │   ├── Dockerfile
+    │   ├── README.md
+    │   ├── entrypoint.sh
+    │   ├── etc
+    │   │   ├── header_checks
+    │   │   ├── main.cf.j2
+    │   │   ├── master.cf
+    │   │   └── sasl
+    │   │       └── smtpd.conf
+    │   ├── poetry.lock
+    │   ├── pyproject.toml
+    │   └── tests
+    │       ├── conftest.py
+    │       ├── test_attachments.py
+    │       ├── test_email_sending.py
+    │       ├── test_message_integrity.py
+    │       └── test_smtp_auth.py
+    └── socks-proxy
+        ├── Dockerfile
+        ├── README.md
+        ├── entrypoint.sh
+        └── tests
+            ├── Dockerfile
+            ├── __init__.py
+            ├── conftest.py
+            ├── requirements.txt
+            ├── test_smtp.py
+            └── test_socks_proxy.py
+257 directories, 969 files
