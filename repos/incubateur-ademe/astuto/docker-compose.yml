@@ -1,0 +1,24 @@
+services:
+  db:
+    image: postgres:14.5
+    environment: &db-env
+      POSTGRES_USER: astuto
+      POSTGRES_PASSWORD: dbpass
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev
+    environment:
+      <<: *db-env
+      BASE_URL: http://localhost:3000
+      SECRET_KEY_BASE: secretkeybasehere
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+
+volumes:
+  dbdata:

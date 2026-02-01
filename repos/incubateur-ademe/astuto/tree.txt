@@ -1,0 +1,847 @@
+.
+├── .browserslistrc
+├── .buildpacks
+├── .dockerignore
+├── .gitignore
+├── .rspec
+├── .ruby-version
+├── CODE_OF_CONDUCT.md
+├── CONTRIBUTING.md
+├── Dockerfile
+├── Gemfile
+├── Gemfile.lock
+├── LICENSE
+├── Procfile
+├── Procfile.dev
+├── README.md
+├── Rakefile
+├── app
+│   ├── assets
+│   │   ├── builds
+│   │   │   └── .keep
+│   │   ├── config
+│   │   │   └── manifest.js
+│   │   ├── images
+│   │   │   ├── .keep
+│   │   │   ├── blocked-tenant.png
+│   │   │   ├── favicon.png
+│   │   │   ├── feedback-space-created.png
+│   │   │   ├── logo.png
+│   │   │   └── pending-tenant.png
+│   │   └── stylesheets
+│   │       ├── application.sass.scss
+│   │       ├── common
+│   │       │   ├── _custom_texts.scss
+│   │       │   ├── _form.scss
+│   │       │   ├── _header.scss
+│   │       │   ├── _index.scss
+│   │       │   └── _scroll_shadows.scss
+│   │       ├── components
+│   │       │   ├── Billing.scss
+│   │       │   ├── Board.scss
+│   │       │   ├── Comments.scss
+│   │       │   ├── LikeButton.scss
+│   │       │   ├── Moderation
+│   │       │   │   ├── Feedback
+│   │       │   │   │   └── index.scss
+│   │       │   │   └── Users
+│   │       │   │       └── index.scss
+│   │       │   ├── Post.scss
+│   │       │   ├── Roadmap.scss
+│   │       │   ├── SiteSettings
+│   │       │   │   ├── Appearance
+│   │       │   │   │   └── index.scss
+│   │       │   │   ├── Authentication
+│   │       │   │   │   └── index.scss
+│   │       │   │   ├── Boards
+│   │       │   │   │   └── index.scss
+│   │       │   │   ├── General
+│   │       │   │   │   └── index.scss
+│   │       │   │   ├── Invitations
+│   │       │   │   │   └── index.scss
+│   │       │   │   ├── PostStatuses
+│   │       │   │   │   └── index.scss
+│   │       │   │   ├── Roadmap
+│   │       │   │   │   └── index.scss
+│   │       │   │   ├── Webhooks
+│   │       │   │   │   └── index.scss
+│   │       │   │   └── index.scss
+│   │       │   └── TenantSignUp.scss
+│   │       ├── constants
+│   │       │   └── _colors.scss
+│   │       └── vendors
+│   │           └── bootstrap_custom.scss
+│   ├── controllers
+│   │   ├── api
+│   │   │   ├── base_controller.rb
+│   │   │   └── v1
+│   │   │       ├── boards_controller.rb
+│   │   │       ├── comments_controller.rb
+│   │   │       ├── helpers.rb
+│   │   │       ├── likes_controller.rb
+│   │   │       ├── post_statuses_controller.rb
+│   │   │       ├── posts_controller.rb
+│   │   │       ├── serializers.rb
+│   │   │       └── users_controller.rb
+│   │   ├── api_keys_controller.rb
+│   │   ├── application_controller.rb
+│   │   ├── billing_controller.rb
+│   │   ├── boards_controller.rb
+│   │   ├── comments_controller.rb
+│   │   ├── concerns
+│   │   │   └── .keep
+│   │   ├── follows_controller.rb
+│   │   ├── invitations_controller.rb
+│   │   ├── likes_controller.rb
+│   │   ├── moderation_controller.rb
+│   │   ├── o_auths_controller.rb
+│   │   ├── passwords_controller.rb
+│   │   ├── post_status_changes_controller.rb
+│   │   ├── post_statuses_controller.rb
+│   │   ├── posts_controller.rb
+│   │   ├── registrations_controller.rb
+│   │   ├── sessions_controller.rb
+│   │   ├── site_settings_controller.rb
+│   │   ├── static_pages_controller.rb
+│   │   ├── tenant_default_o_auths_controller.rb
+│   │   ├── tenants_controller.rb
+│   │   ├── users_controller.rb
+│   │   └── webhooks_controller.rb
+│   ├── helpers
+│   │   ├── api_keys_helper.rb
+│   │   ├── application_helper.rb
+│   │   ├── boards_helper.rb
+│   │   ├── header_helper.rb
+│   │   └── o_auths_helper.rb
+│   ├── javascript
+│   │   ├── actions
+│   │   │   ├── Board
+│   │   │   │   ├── deleteBoard.ts
+│   │   │   │   ├── requestBoards.ts
+│   │   │   │   ├── submitBoard.ts
+│   │   │   │   ├── updateBoard.ts
+│   │   │   │   └── updateBoardOrder.ts
+│   │   │   ├── Comment
+│   │   │   │   ├── deleteComment.ts
+│   │   │   │   ├── handleCommentReplies.ts
+│   │   │   │   ├── requestComment.ts
+│   │   │   │   ├── requestComments.ts
+│   │   │   │   ├── submitComment.ts
+│   │   │   │   └── updateComment.ts
+│   │   │   ├── Follow
+│   │   │   │   ├── requestFollow.ts
+│   │   │   │   └── submitFollow.ts
+│   │   │   ├── Like
+│   │   │   │   ├── requestLikes.ts
+│   │   │   │   └── submitLike.ts
+│   │   │   ├── OAuth
+│   │   │   │   ├── deleteOAuth.ts
+│   │   │   │   ├── requestOAuths.ts
+│   │   │   │   ├── submitOAuth.ts
+│   │   │   │   ├── updateDefaultOAuth.ts
+│   │   │   │   └── updateOAuth.ts
+│   │   │   ├── Post
+│   │   │   │   ├── changePostEditForm.ts
+│   │   │   │   ├── deletePost.ts
+│   │   │   │   ├── requestPost.ts
+│   │   │   │   ├── requestPosts.ts
+│   │   │   │   ├── togglePostEditMode.ts
+│   │   │   │   └── updatePost.ts
+│   │   │   ├── PostStatus
+│   │   │   │   ├── deletePostStatus.ts
+│   │   │   │   ├── requestPostStatuses.ts
+│   │   │   │   ├── submitPostStatus.ts
+│   │   │   │   ├── updatePostStatus.ts
+│   │   │   │   └── updatePostStatusOrder.ts
+│   │   │   ├── PostStatusChange
+│   │   │   │   ├── requestPostStatusChanges.ts
+│   │   │   │   └── submittedPostStatusChange.ts
+│   │   │   ├── Tenant
+│   │   │   │   ├── requestTenant.ts
+│   │   │   │   ├── submitTenant.ts
+│   │   │   │   └── updateTenant.ts
+│   │   │   ├── User
+│   │   │   │   ├── requestUsers.ts
+│   │   │   │   └── updateUser.ts
+│   │   │   ├── Webhook
+│   │   │   │   ├── deleteWebhook.ts
+│   │   │   │   ├── requestWebhooks.ts
+│   │   │   │   ├── submitWebhook.ts
+│   │   │   │   └── updateWebhook.ts
+│   │   │   └── changeFilters.ts
+│   │   ├── application.js
+│   │   ├── components
+│   │   │   ├── .keep
+│   │   │   ├── Billing
+│   │   │   │   ├── PricingTable.tsx
+│   │   │   │   ├── Return.tsx
+│   │   │   │   └── index.tsx
+│   │   │   ├── Board
+│   │   │   │   ├── BoardP.tsx
+│   │   │   │   ├── DateFilter.tsx
+│   │   │   │   ├── NewPost.tsx
+│   │   │   │   ├── NewPostForm.tsx
+│   │   │   │   ├── PostList.tsx
+│   │   │   │   ├── PostListItem.tsx
+│   │   │   │   ├── PostStatusFilter.tsx
+│   │   │   │   ├── PostStatusListItem.tsx
+│   │   │   │   ├── SearchFilter.tsx
+│   │   │   │   ├── SortByFilter.tsx
+│   │   │   │   └── index.tsx
+│   │   │   ├── Comments
+│   │   │   │   ├── Comment.tsx
+│   │   │   │   ├── CommentEditForm.tsx
+│   │   │   │   ├── CommentFooter.tsx
+│   │   │   │   ├── CommentList.tsx
+│   │   │   │   ├── CommentsP.tsx
+│   │   │   │   ├── NewComment.tsx
+│   │   │   │   └── NewCommentUpdateSection.tsx
+│   │   │   ├── LikeButton
+│   │   │   │   └── LikeButtonP.tsx
+│   │   │   ├── Moderation
+│   │   │   │   ├── Feedback
+│   │   │   │   │   ├── FeedbackListItem.tsx
+│   │   │   │   │   ├── FeedbackModerationList.tsx
+│   │   │   │   │   ├── FeedbackModerationP.tsx
+│   │   │   │   │   └── index.tsx
+│   │   │   │   └── Users
+│   │   │   │       ├── UserEditable.tsx
+│   │   │   │       ├── UserForm.tsx
+│   │   │   │       ├── UsersModerationP.tsx
+│   │   │   │       └── index.tsx
+│   │   │   ├── Post
+│   │   │   │   ├── ActionBox.tsx
+│   │   │   │   ├── LikeList.tsx
+│   │   │   │   ├── PostBoardSelect.tsx
+│   │   │   │   ├── PostEditForm.tsx
+│   │   │   │   ├── PostFooter.tsx
+│   │   │   │   ├── PostP.tsx
+│   │   │   │   ├── PostStatusSelect.tsx
+│   │   │   │   ├── PostUpdateList.tsx
+│   │   │   │   └── index.tsx
+│   │   │   ├── Roadmap
+│   │   │   │   ├── PostList.tsx
+│   │   │   │   ├── PostListByPostStatus.tsx
+│   │   │   │   ├── PostListItem.tsx
+│   │   │   │   └── index.tsx
+│   │   │   ├── SiteSettings
+│   │   │   │   ├── Appearance
+│   │   │   │   │   ├── AppearanceSiteSettingsP.tsx
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── Authentication
+│   │   │   │   │   ├── AuthenticationFormPage.tsx
+│   │   │   │   │   ├── AuthenticationIndexPage.tsx
+│   │   │   │   │   ├── AuthenticationSiteSettingsP.tsx
+│   │   │   │   │   ├── OAuthForm.tsx
+│   │   │   │   │   ├── OAuthProviderItem.tsx
+│   │   │   │   │   ├── OAuthProvidersList.tsx
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── Boards
+│   │   │   │   │   ├── BoardEditable.tsx
+│   │   │   │   │   ├── BoardForm.tsx
+│   │   │   │   │   ├── BoardsSiteSettingsP.tsx
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── General
+│   │   │   │   │   ├── GeneralSiteSettingsP.tsx
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── Invitations
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── PostStatuses
+│   │   │   │   │   ├── PostStatusEditable.tsx
+│   │   │   │   │   ├── PostStatusForm.tsx
+│   │   │   │   │   ├── PostStatusesSiteSettingsP.tsx
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── Roadmap
+│   │   │   │   │   ├── RoadmapEmbedding.tsx
+│   │   │   │   │   ├── RoadmapPostStatus.tsx
+│   │   │   │   │   ├── RoadmapSiteSettingsP.tsx
+│   │   │   │   │   └── index.tsx
+│   │   │   │   └── Webhooks
+│   │   │   │       ├── TemplateVariablesSelector.tsx
+│   │   │   │       ├── WebhookForm.tsx
+│   │   │   │       ├── WebhookFormPage.tsx
+│   │   │   │       ├── WebhookListItem.tsx
+│   │   │   │       ├── WebhookTestPage.tsx
+│   │   │   │       ├── WebhooksIndexPage.tsx
+│   │   │   │       ├── WebhooksList.tsx
+│   │   │   │       ├── WebhooksSiteSettingsP.tsx
+│   │   │   │       └── index.tsx
+│   │   │   ├── TenantSignUp
+│   │   │   │   ├── ConfirmEmailSignUpPage.tsx
+│   │   │   │   ├── ConfirmOAuthSignUpPage.tsx
+│   │   │   │   ├── TenantSignUpForm.tsx
+│   │   │   │   ├── TenantSignUpP.tsx
+│   │   │   │   ├── UserSignUpForm.tsx
+│   │   │   │   └── index.tsx
+│   │   │   ├── Tour
+│   │   │   │   └── Tour.tsx
+│   │   │   ├── UserProfile
+│   │   │   │   ├── GenerateApiKeyDialog.tsx
+│   │   │   │   └── SetPasswordDialog.tsx
+│   │   │   └── common
+│   │   │       ├── ActionLink.tsx
+│   │   │       ├── Badge.tsx
+│   │   │       ├── Box.tsx
+│   │   │       ├── Button.tsx
+│   │   │       ├── CommentsNumber.tsx
+│   │   │       ├── CopyToClipboardButton.tsx
+│   │   │       ├── CustomTexts.tsx
+│   │   │       ├── DragZone.tsx
+│   │   │       ├── Icons.tsx
+│   │   │       ├── MultiSelect.tsx
+│   │   │       ├── OAuthProviderLink.tsx
+│   │   │       ├── PostBoardLabel.tsx
+│   │   │       ├── PostStatusLabel.tsx
+│   │   │       ├── PoweredByLink.tsx
+│   │   │       ├── Separator.tsx
+│   │   │       ├── Sidebar.tsx
+│   │   │       ├── SidebarBox.tsx
+│   │   │       ├── SiteSettingsInfoBox.tsx
+│   │   │       ├── Spinner.tsx
+│   │   │       └── Switch.tsx
+│   │   ├── constants
+│   │   │   ├── http_status.ts
+│   │   │   ├── index.js
+│   │   │   └── regex.ts
+│   │   ├── containers
+│   │   │   ├── AppearanceSiteSettings.tsx
+│   │   │   ├── AuthenticationSiteSettings.tsx
+│   │   │   ├── Board.tsx
+│   │   │   ├── BoardsSiteSettings.tsx
+│   │   │   ├── Comments.tsx
+│   │   │   ├── FeedbackModeration.tsx
+│   │   │   ├── GeneralSiteSettings.tsx
+│   │   │   ├── LikeButton.tsx
+│   │   │   ├── Post.tsx
+│   │   │   ├── PostStatusesSiteSettings.tsx
+│   │   │   ├── RoadmapSiteSettings.tsx
+│   │   │   ├── TenantSignUp.tsx
+│   │   │   ├── UsersModeration.tsx
+│   │   │   └── WebhooksSiteSettings.tsx
+│   │   ├── helpers
+│   │   │   ├── buildRequestHeaders.ts
+│   │   │   ├── createNewOrdering.ts
+│   │   │   ├── createStore.ts
+│   │   │   ├── datetime.ts
+│   │   │   ├── formUtils.ts
+│   │   │   ├── padStart.js
+│   │   │   └── regex.ts
+│   │   ├── interfaces
+│   │   │   ├── IBoard.ts
+│   │   │   ├── IComment.ts
+│   │   │   ├── IInvitation.ts
+│   │   │   ├── ILike.ts
+│   │   │   ├── IOAuth.ts
+│   │   │   ├── IPost.ts
+│   │   │   ├── IPostStatus.ts
+│   │   │   ├── IPostStatusChange.ts
+│   │   │   ├── ITenant.ts
+│   │   │   ├── ITenantBilling.ts
+│   │   │   ├── ITenantSetting.ts
+│   │   │   ├── IUser.ts
+│   │   │   ├── IWebhook.ts
+│   │   │   └── json
+│   │   │       ├── IBoard.ts
+│   │   │       ├── IComment.ts
+│   │   │       ├── IFollow.ts
+│   │   │       ├── ILike.ts
+│   │   │       ├── IPost.ts
+│   │   │       ├── IPostStatus.ts
+│   │   │       ├── IPostStatusChange.ts
+│   │   │       ├── ITenant.ts
+│   │   │       └── IUser.ts
+│   │   ├── reducers
+│   │   │   ├── Moderation
+│   │   │   │   ├── feedbackReducer.ts
+│   │   │   │   └── usersReducer.ts
+│   │   │   ├── SiteSettings
+│   │   │   │   ├── appearanceReducer.ts
+│   │   │   │   ├── authenticationReducer.ts
+│   │   │   │   ├── boardsReducer.ts
+│   │   │   │   ├── generalReducer.ts
+│   │   │   │   ├── postStatusesReducer.ts
+│   │   │   │   ├── roadmapReducer.ts
+│   │   │   │   └── webhooksReducer.ts
+│   │   │   ├── boardsReducer.ts
+│   │   │   ├── commentReducer.ts
+│   │   │   ├── commentsReducer.ts
+│   │   │   ├── currentPostReducer.ts
+│   │   │   ├── filtersReducer.ts
+│   │   │   ├── likesReducer.ts
+│   │   │   ├── moderationReducer.ts
+│   │   │   ├── oAuthsReducer.ts
+│   │   │   ├── postReducer.ts
+│   │   │   ├── postStatusChangesReducer.ts
+│   │   │   ├── postStatusesReducer.ts
+│   │   │   ├── postsReducer.ts
+│   │   │   ├── replyFormReducer.ts
+│   │   │   ├── replyFormsReducer.ts
+│   │   │   ├── rootReducer.ts
+│   │   │   ├── siteSettingsReducer.ts
+│   │   │   ├── tenantSignUpReducer.ts
+│   │   │   ├── usersReducer.ts
+│   │   │   └── webhooksReducer.ts
+│   │   └── translations
+│   │       └── index.js.erb
+│   ├── jobs
+│   │   ├── run_webhook.rb
+│   │   └── send_recap_emails.rb
+│   ├── lib
+│   │   └── custom_liquid_filters.rb
+│   ├── mailers
+│   │   ├── application_mailer.rb
+│   │   ├── invitation_mailer.rb
+│   │   ├── tenant_mailer.rb
+│   │   └── user_mailer.rb
+│   ├── models
+│   │   ├── api_key.rb
+│   │   ├── application_record.rb
+│   │   ├── board.rb
+│   │   ├── comment.rb
+│   │   ├── concerns
+│   │   │   ├── .keep
+│   │   │   ├── Orderable.rb
+│   │   │   └── TenantOwnable.rb
+│   │   ├── current.rb
+│   │   ├── follow.rb
+│   │   ├── invitation.rb
+│   │   ├── like.rb
+│   │   ├── o_auth.rb
+│   │   ├── post.rb
+│   │   ├── post_status.rb
+│   │   ├── post_status_change.rb
+│   │   ├── tenant.rb
+│   │   ├── tenant_billing.rb
+│   │   ├── tenant_default_o_auth.rb
+│   │   ├── tenant_setting.rb
+│   │   ├── user.rb
+│   │   └── webhook.rb
+│   ├── policies
+│   │   ├── api
+│   │   │   ├── base_policy.rb
+│   │   │   ├── board_policy.rb
+│   │   │   ├── comment_policy.rb
+│   │   │   ├── like_policy.rb
+│   │   │   ├── post_policy.rb
+│   │   │   ├── post_status_policy.rb
+│   │   │   └── user_policy.rb
+│   │   ├── api_key_policy.rb
+│   │   ├── application_policy.rb
+│   │   ├── board_policy.rb
+│   │   ├── comment_policy.rb
+│   │   ├── o_auth_policy.rb
+│   │   ├── post_policy.rb
+│   │   ├── post_status_policy.rb
+│   │   ├── tenant_policy.rb
+│   │   ├── tenant_setting_policy.rb
+│   │   ├── user_policy.rb
+│   │   └── webhook_policy.rb
+│   ├── views
+│   │   ├── billing
+│   │   │   ├── index.html.erb
+│   │   │   └── return.html.erb
+│   │   ├── boards
+│   │   │   └── show.html.erb
+│   │   ├── devise
+│   │   │   ├── confirmations
+│   │   │   │   └── new.html.erb
+│   │   │   ├── mailer
+│   │   │   │   ├── confirmation_instructions.html.erb
+│   │   │   │   ├── email_changed.html.erb
+│   │   │   │   ├── password_change.html.erb
+│   │   │   │   ├── reset_password_instructions.html.erb
+│   │   │   │   └── unlock_instructions.html.erb
+│   │   │   ├── passwords
+│   │   │   │   ├── edit.html.erb
+│   │   │   │   └── new.html.erb
+│   │   │   ├── registrations
+│   │   │   │   ├── edit.html.erb
+│   │   │   │   └── new.html.erb
+│   │   │   ├── sessions
+│   │   │   │   └── new.html.erb
+│   │   │   ├── shared
+│   │   │   │   ├── _error_messages.html.erb
+│   │   │   │   ├── _links.html.erb
+│   │   │   │   └── _o_auths.html.erb
+│   │   │   └── unlocks
+│   │   │       └── new.html.erb
+│   │   ├── invitation_mailer
+│   │   │   └── invite.html.erb
+│   │   ├── layouts
+│   │   │   ├── _alerts.html.erb
+│   │   │   ├── _boards_nav_section.html.erb
+│   │   │   ├── _header.html.erb
+│   │   │   ├── _no_active_subscription_banner.html.erb
+│   │   │   ├── _page_title.html.erb
+│   │   │   ├── _promo_banner.html.erb
+│   │   │   ├── _set_js_locale.html.erb
+│   │   │   ├── application.html.erb
+│   │   │   ├── embedded.html.erb
+│   │   │   ├── mailer.html.erb
+│   │   │   ├── mailer.text.erb
+│   │   │   └── mailer_no_style.html.erb
+│   │   ├── moderation
+│   │   │   ├── _menu.html.erb
+│   │   │   ├── feedback.html.erb
+│   │   │   └── users.html.erb
+│   │   ├── o_auths
+│   │   │   └── test.html.erb
+│   │   ├── posts
+│   │   │   └── show.html.erb
+│   │   ├── shared
+│   │   │   └── _sidebar_menu_link.html.erb
+│   │   ├── site_settings
+│   │   │   ├── _menu.html.erb
+│   │   │   ├── appearance.html.erb
+│   │   │   ├── authentication.html.erb
+│   │   │   ├── boards.html.erb
+│   │   │   ├── general.html.erb
+│   │   │   ├── invitations.html.erb
+│   │   │   ├── post_statuses.html.erb
+│   │   │   ├── roadmap.html.erb
+│   │   │   └── webhooks.html.erb
+│   │   ├── static_pages
+│   │   │   ├── blocked_tenant.html.erb
+│   │   │   ├── pending_tenant.html.erb
+│   │   │   └── roadmap.html.erb
+│   │   ├── tenant_mailer
+│   │   │   ├── cancellation_confirmation.html.erb
+│   │   │   ├── renewal_confirmation.html.erb
+│   │   │   ├── subscription_confirmation.html.erb
+│   │   │   ├── trial_end.html.erb
+│   │   │   ├── trial_mid.html.erb
+│   │   │   └── trial_start.html.erb
+│   │   ├── tenants
+│   │   │   └── new.html.erb
+│   │   └── user_mailer
+│   │       ├── _closing.html.erb
+│   │       ├── _opening.html.erb
+│   │       ├── _quoted_text.html.erb
+│   │       ├── _unsubscribe_from_post.html.erb
+│   │       ├── _unsubscribe_from_site.html.erb
+│   │       ├── notify_comment_owner.html.erb
+│   │       ├── notify_follower_of_post_status_change.html.erb
+│   │       ├── notify_follower_of_post_update.html.erb
+│   │       ├── notify_post_owner.html.erb
+│   │       └── recap.html.erb
+│   └── workflows
+│       ├── add_custom_domain_workflow.rb
+│       ├── create_liquid_template_context_workflow.rb
+│       ├── create_stripe_customer.rb
+│       ├── create_welcome_entities_workflow.rb
+│       ├── destroy_api_key_if_needed_workflow.rb
+│       ├── ensure_coherent_ordering_workflow.rb
+│       ├── execute_post_status_change_logic_workflow.rb
+│       ├── o_auth_exchange_auth_code_for_profile_workflow.rb
+│       ├── o_auth_sign_in_user_workflow.rb
+│       ├── reorder_workflow.rb
+│       └── send_notification_for_comment_workflow.rb
+├── bin
+│   ├── bundle
+│   ├── dev
+│   ├── rails
+│   ├── rake
+│   ├── setup
+│   ├── spring
+│   └── yarn
+├── config
+│   ├── application.rb
+│   ├── boot.rb
+│   ├── cable.yml
+│   ├── credentials.yml.enc
+│   ├── database.yml
+│   ├── environment.rb
+│   ├── environments
+│   │   ├── development.rb
+│   │   ├── production.rb
+│   │   └── test.rb
+│   ├── initializers
+│   │   ├── application_controller_renderer.rb
+│   │   ├── assets.rb
+│   │   ├── backtrace_silencers.rb
+│   │   ├── content_security_policy.rb
+│   │   ├── cookies_serializer.rb
+│   │   ├── cors.rb
+│   │   ├── devise.rb
+│   │   ├── filter_parameter_logging.rb
+│   │   ├── friendly_id.rb
+│   │   ├── inflections.rb
+│   │   ├── liquid.rb
+│   │   ├── locale.rb
+│   │   ├── mime_types.rb
+│   │   ├── rack_attack.rb
+│   │   ├── reserved_subdomains.rb
+│   │   ├── rswag_api.rb
+│   │   ├── sidekiq.rb
+│   │   ├── stripe.rb
+│   │   └── wrap_parameters.rb
+│   ├── locales
+│   │   ├── backend
+│   │   │   ├── backend.cs.yml
+│   │   │   ├── backend.de.yml
+│   │   │   ├── backend.el.yml
+│   │   │   ├── backend.en.yml
+│   │   │   ├── backend.es.yml
+│   │   │   ├── backend.fr.yml
+│   │   │   ├── backend.hi.yml
+│   │   │   ├── backend.it.yml
+│   │   │   ├── backend.ja.yml
+│   │   │   ├── backend.ko.yml
+│   │   │   ├── backend.nl.yml
+│   │   │   ├── backend.pl.yml
+│   │   │   ├── backend.pt.yml
+│   │   │   ├── backend.ru.yml
+│   │   │   ├── backend.sr.yml
+│   │   │   ├── backend.sv.yml
+│   │   │   ├── backend.tr.yml
+│   │   │   ├── backend.vi.yml
+│   │   │   └── backend.zh.yml
+│   │   ├── cs.yml
+│   │   ├── de.yml
+│   │   ├── devise
+│   │   │   ├── devise.cs.yml
+│   │   │   ├── devise.de.yml
+│   │   │   ├── devise.el.yml
+│   │   │   ├── devise.en.yml
+│   │   │   ├── devise.es.yml
+│   │   │   ├── devise.fr.yml
+│   │   │   ├── devise.hi.yml
+│   │   │   ├── devise.it.yml
+│   │   │   ├── devise.ja.yml
+│   │   │   ├── devise.ko.yml
+│   │   │   ├── devise.nl.yml
+│   │   │   ├── devise.pl.yml
+│   │   │   ├── devise.pt.yml
+│   │   │   ├── devise.ru.yml
+│   │   │   ├── devise.sr.yml
+│   │   │   ├── devise.sv.yml
+│   │   │   ├── devise.tr.yml
+│   │   │   ├── devise.vi.yml
+│   │   │   └── devise.zh.yml
+│   │   ├── el.yml
+│   │   ├── en.yml
+│   │   ├── es.yml
+│   │   ├── fr.yml
+│   │   ├── hi.yml
+│   │   ├── it.yml
+│   │   ├── ja.yml
+│   │   ├── ko.yml
+│   │   ├── nl.yml
+│   │   ├── pl.yml
+│   │   ├── pt.yml
+│   │   ├── ru.yml
+│   │   ├── sr.yml
+│   │   ├── sv.yml
+│   │   ├── tr.yml
+│   │   ├── vi.yml
+│   │   └── zh.yml
+│   ├── puma.rb
+│   ├── routes.rb
+│   ├── secrets.yml
+│   ├── spring.rb
+│   ├── storage.yml
+│   └── webpack
+│       └── webpack.config.js
+├── config.ru
+├── crowdin.yml
+├── db
+│   ├── migrate
+│   │   ├── 20190818162602_devise_create_users.rb
+│   │   ├── 20190818191513_add_role_to_users.rb
+│   │   ├── 20190819131723_add_fullname_to_users.rb
+│   │   ├── 20190822140423_create_boards.rb
+│   │   ├── 20190822141109_add_unique_to_name_of_boards.rb
+│   │   ├── 20190824093336_create_post_statuses.rb
+│   │   ├── 20190824093755_add_unique_to_name_of_post_statuses.rb
+│   │   ├── 20190824141258_create_posts.rb
+│   │   ├── 20190825093132_add_not_null_constraint_to_boards_name.rb
+│   │   ├── 20190825093234_add_not_null_constraint_to_post_statuses_name_and_color.rb
+│   │   ├── 20190826154118_add_order_and_show_in_roadmap_to_post_statuses.rb
+│   │   ├── 20190916131938_create_comments.rb
+│   │   ├── 20190918150418_add_order_to_boards.rb
+│   │   ├── 20190918151626_remove_default_order_from_boards_and_post_statuses.rb
+│   │   ├── 20190927094233_create_likes.rb
+│   │   ├── 20191001160859_add_is_post_update_to_comments.rb
+│   │   ├── 20210126215831_add_notifications_enabled_field_to_users.rb
+│   │   ├── 20220512184400_create_follows.rb
+│   │   ├── 20220521161950_create_post_status_changes.rb
+│   │   ├── 20220622092039_add_status_to_users.rb
+│   │   ├── 20220701090736_create_tenants.rb
+│   │   ├── 20220701091256_add_tenant_foreign_key_to_models.rb
+│   │   ├── 20220705095817_add_brand_display_setting_to_tenants.rb
+│   │   ├── 20220715092725_add_status_to_tenants.rb
+│   │   ├── 20220727090932_create_o_auths.rb
+│   │   ├── 20220727094200_add_not_null_to_o_auth_is_enabled.rb
+│   │   ├── 20230131194858_create_tenant_settings.rb
+│   │   ├── 20230204145211_add_show_vote_and_button_vote_to_tenant_setting.rb
+│   │   ├── 20230204171748_add_root_board_id_to_tenant_setting.rb
+│   │   ├── 20230207201354_add_show_roadmap_in_header_to_tenant_settings.rb
+│   │   ├── 20230211095500_add_collapse_boards_in_header_to_tenant_settings.rb
+│   │   ├── 20240116124945_remove_not_null_constraint_to_o_auths_tenant.rb
+│   │   ├── 20240117112502_add_oauth_token_to_users.rb
+│   │   ├── 20240123125448_add_custom_css_to_tenant_settings.rb
+│   │   ├── 20240225190006_add_show_powered_by_to_tenant_setting.rb
+│   │   ├── 20240227110058_change_default_tenant_settings.rb
+│   │   ├── 20240303103945_create_tenant_default_o_auths.rb
+│   │   ├── 20240321171022_change_tenant_custom_url_column.rb
+│   │   ├── 20240404141611_add_slug_to_posts.rb
+│   │   ├── 20240404153252_change_slug_post_unique_constraint.rb
+│   │   ├── 20240404153446_add_slug_to_o_auth.rb
+│   │   ├── 20240404161306_add_slug_to_boards.rb
+│   │   ├── 20240419160353_create_tenant_billings.rb
+│   │   ├── 20240420134215_add_customer_id_to_tenant_billing.rb
+│   │   ├── 20240420180415_add_subscription_ends_at_to_tenant_billing.rb
+│   │   ├── 20240427140300_add_slug_and_auth_token_to_tenant_billing.rb
+│   │   ├── 20240514112836_add_has_set_password_to_users.rb
+│   │   ├── 20240521124018_add_devise_trackable_columns_to_users.rb
+│   │   ├── 20240708190830_add_anonymous_feedback_to_tenant_settings.rb
+│   │   ├── 20240708191529_add_approval_status_to_post.rb
+│   │   ├── 20240708191938_remove_not_null_user_id_from_posts.rb
+│   │   ├── 20240821122349_add_is_private_to_tenant_settings.rb
+│   │   ├── 20240821133530_add_email_registration_policy_to_tenant_settings.rb
+│   │   ├── 20240902151945_create_invitations.rb
+│   │   ├── 20240908121603_add_use_browser_locale_to_tenant_settings.rb
+│   │   ├── 20240916140807_add_logo_links_to_to_tenant_settings.rb
+│   │   ├── 20240917140122_add_hide_unused_statuses_in_filter_by_status_to_tenant_settings.rb
+│   │   ├── 20241004170520_create_api_keys.rb
+│   │   ├── 20241118082824_add_recap_notification_frequency_to_users.rb
+│   │   └── 20241130112415_create_webhooks.rb
+│   ├── schema.rb
+│   └── seeds.rb
+├── docker-compose-prod.yml
+├── docker-compose.override.yml
+├── docker-compose.yml
+├── docker-entrypoint-dev.sh
+├── docker-entrypoint-prod.sh
+├── docker-entrypoint.sh
+├── images
+│   ├── hero-image.png
+│   └── logo-and-name.png
+├── lib
+│   └── tasks
+│       ├── healthcheck.rake
+│       └── notify_tenants_trial_period.rake
+├── log
+│   └── .keep
+├── package.json
+├── postcss.config.js
+├── public
+│   ├── 404.html
+│   ├── 422.html
+│   ├── 500.html
+│   ├── apple-touch-icon-precomposed.png
+│   ├── apple-touch-icon.png
+│   ├── favicon.ico
+│   └── robots.txt
+├── script
+│   ├── rspec-compile-assets.sh
+│   └── rspec-no-system-specs.sh
+├── spec
+│   ├── api
+│   │   └── v1
+│   │       ├── boards_spec.rb
+│   │       ├── comments_spec.rb
+│   │       ├── likes_spec.rb
+│   │       ├── post_statuses_spec.rb
+│   │       ├── posts_spec.rb
+│   │       └── users_spec.rb
+│   ├── factories
+│   │   ├── api_keys.rb
+│   │   ├── boards.rb
+│   │   ├── comments.rb
+│   │   ├── follows.rb
+│   │   ├── invitations.rb
+│   │   ├── likes.rb
+│   │   ├── o_auths.rb
+│   │   ├── post_status_changes.rb
+│   │   ├── post_statuses.rb
+│   │   ├── posts.rb
+│   │   ├── tenant_billings.rb
+│   │   ├── tenant_default_o_auths.rb
+│   │   ├── tenant_settings.rb
+│   │   ├── tenants.rb
+│   │   ├── users.rb
+│   │   └── webhooks.rb
+│   ├── helpers
+│   │   └── o_auths_helper_spec.rb
+│   ├── jobs
+│   │   └── send_recap_emails_spec.rb
+│   ├── mailers
+│   │   ├── previews
+│   │   │   ├── invitation_mailer_preview.rb
+│   │   │   ├── tenant_mailer_preview.rb
+│   │   │   └── user_mailer_preview.rb
+│   │   └── user_mailer_spec.rb
+│   ├── models
+│   │   ├── api_key_spec.rb
+│   │   ├── board_spec.rb
+│   │   ├── comment_spec.rb
+│   │   ├── follow_spec.rb
+│   │   ├── invitation_spec.rb
+│   │   ├── like_spec.rb
+│   │   ├── o_auth_spec.rb
+│   │   ├── post_spec.rb
+│   │   ├── post_status_change_spec.rb
+│   │   ├── post_status_spec.rb
+│   │   ├── tenant_billing_spec.rb
+│   │   ├── tenant_default_o_auth_spec.rb
+│   │   ├── tenant_setting_spec.rb
+│   │   ├── tenant_spec.rb
+│   │   ├── user_spec.rb
+│   │   └── webhook_spec.rb
+│   ├── policies
+│   │   ├── board_policy_spec.rb
+│   │   ├── comment_policy_spec.rb
+│   │   ├── o_auth_policy_spec.rb
+│   │   ├── post_policy_spec.rb
+│   │   ├── post_status_policy_spec.rb
+│   │   ├── tenant_policy_spec.rb
+│   │   └── user_policy_spec.rb
+│   ├── rails_helper.rb
+│   ├── requests
+│   │   ├── post_statuses_controller_test.rb
+│   │   └── posts_controller_test.rb
+│   ├── routing
+│   │   ├── boards_routing_spec.rb
+│   │   ├── comments_routing_spec.rb
+│   │   ├── likes_routing_spec.rb
+│   │   ├── moderation_routing_spec.rb
+│   │   ├── post_routing_spec.rb
+│   │   ├── site_settings_routing_spec.rb
+│   │   └── static_pages_routing_spec.rb
+│   ├── spec_helper.rb
+│   ├── support
+│   │   ├── action_mailer.rb
+│   │   ├── capybara.rb
+│   │   ├── devise.rb
+│   │   ├── pundit_matcher.rb
+│   │   ├── select_by_value.rb
+│   │   ├── shared_contexts.rb
+│   │   └── swagger_schemas.rb
+│   ├── swagger_helper.rb
+│   ├── system
+│   │   ├── board_spec.rb
+│   │   ├── comments_spec.rb
+│   │   ├── likes_spec.rb
+│   │   ├── moderation
+│   │   │   └── moderation_users_spec.rb
+│   │   ├── post_spec.rb
+│   │   ├── roadmap_spec.rb
+│   │   ├── site_settings
+│   │   │   ├── site_settings_authentication_spec.rb
+│   │   │   ├── site_settings_boards_spec.rb
+│   │   │   ├── site_settings_general_spec.rb
+│   │   │   ├── site_settings_post_statuses_spec.rb
+│   │   │   └── site_settings_roadmap_spec.rb
+│   │   ├── user_edit_profile_spec.rb
+│   │   ├── user_log_in_spec.rb
+│   │   ├── user_o_auth_sign_up_and_log_in.rb
+│   │   └── user_sign_up_spec.rb
+│   └── workflows
+│       ├── ensure_coherent_ordering_workflow_spec.rb
+│       └── reorder_workflow_spec.rb
+├── tmp
+│   └── .keep
+├── tsconfig.json
+└── yarn.lock
+137 directories, 709 files
