@@ -1,0 +1,1042 @@
+.
+├── .dockerignore
+├── .github
+│   ├── ISSUE_TEMPLATE
+│   │   ├── Bug_report.md
+│   │   ├── Feature_request.md
+│   │   └── Support_question.md
+│   ├── PULL_REQUEST_TEMPLATE.md
+│   └── workflows
+│       ├── crowdin-download.yml
+│       ├── docker-hub.yml
+│       ├── meet.yml
+│       └── release-helm-chart.yaml
+├── .gitignore
+├── .gitlint
+├── .gitmodules
+├── .sops.yaml
+├── CHANGELOG.md
+├── CODE_OF_CONDUCT.md
+├── CONTRIBUTING.md
+├── Dockerfile
+├── LICENSE.md
+├── LICENSES
+│   ├── LICENSE.Etalab-2.0.md
+│   └── LICENSE.MIT.md
+├── Makefile
+├── README.md
+├── SECURITY.md
+├── UPGRADE.md
+├── bin
+│   ├── Tiltfile
+│   ├── _config.sh
+│   ├── compose
+│   ├── install-external-secrets.sh
+│   ├── install-hooks.sh
+│   ├── manage
+│   ├── prepare-release.sh
+│   ├── pytest
+│   ├── start-kind.sh
+│   ├── update-git-submodule.sh
+│   ├── update-keys.sh
+│   ├── update-openapi-schema
+│   └── validate-helm-configuration.sh
+├── compose.yml
+├── crowdin
+│   └── config.yml
+├── docker
+│   ├── auth
+│   │   └── realm.json
+│   ├── dinum-frontend
+│   │   ├── Dockerfile
+│   │   ├── assets
+│   │   │   ├── devise.svg
+│   │   │   ├── gouvernement.svg
+│   │   │   └── marianne.svg
+│   │   ├── dinum-styles.css
+│   │   ├── fonts
+│   │   │   ├── Marianne-Bold-subset.woff2
+│   │   │   ├── Marianne-Bold_Italic-subset.woff2
+│   │   │   ├── Marianne-ExtraBold-subset.woff2
+│   │   │   ├── Marianne-ExtraBold_Italic-subset.woff2
+│   │   │   ├── Marianne-Light-subset.woff2
+│   │   │   ├── Marianne-Light_Italic-subset.woff2
+│   │   │   ├── Marianne-Medium-subset.woff2
+│   │   │   ├── Marianne-Medium_Italic-subset.woff2
+│   │   │   ├── Marianne-Regular-subset.woff2
+│   │   │   ├── Marianne-Regular_Italic-subset.woff2
+│   │   │   ├── Marianne-Thin-subset.woff2
+│   │   │   └── Marianne-Thin_Italic-subset.woff2
+│   │   └── logo.svg
+│   ├── files
+│   │   ├── etc
+│   │   │   └── nginx
+│   │   │       └── conf.d
+│   │   │           └── default.conf
+│   │   ├── production
+│   │   │   └── default.conf.template
+│   │   └── usr
+│   │       └── local
+│   │           ├── bin
+│   │           │   └── entrypoint
+│   │           └── etc
+│   │               └── gunicorn
+│   │                   └── meet.py
+│   ├── livekit
+│   │   ├── Dockerfile
+│   │   ├── config
+│   │   │   ├── livekit-egress.yaml
+│   │   │   └── livekit-server.yaml
+│   │   ├── egress-example
+│   │   │   └── room-composite-file.json
+│   │   └── out
+│   │       └── .gitkeep
+│   └── resource-server
+│       └── compose.yml
+├── docs
+│   ├── assets
+│   │   └── banner-meet-fr.png
+│   ├── developping_locally.md
+│   ├── examples
+│   │   ├── compose
+│   │   │   ├── compose.yaml
+│   │   │   ├── keycloak
+│   │   │   │   ├── README.md
+│   │   │   │   └── compose.yaml
+│   │   │   └── nginx-proxy
+│   │   │       ├── README.md
+│   │   │       └── compose.yaml
+│   │   ├── helm
+│   │   │   ├── keycloak.values.yaml
+│   │   │   ├── livekit.values.yaml
+│   │   │   ├── meet.values.yaml
+│   │   │   ├── postgresql.values.yaml
+│   │   │   └── redis.values.yaml
+│   │   └── livekit
+│   │       └── server.yaml
+│   ├── features
+│   │   ├── authentication.md
+│   │   ├── calendar_integrations.md
+│   │   ├── recording.md
+│   │   ├── signaling.md
+│   │   ├── subtitles.md
+│   │   ├── summarization.md
+│   │   ├── telephony.md
+│   │   └── transcription.md
+│   ├── installation
+│   │   ├── README.md
+│   │   ├── compose.md
+│   │   └── kubernetes.md
+│   ├── openapi.yaml
+│   ├── resource_server.yaml
+│   └── theming.md
+├── env.d
+│   ├── development
+│   │   ├── common.dist
+│   │   ├── common.e2e.dist
+│   │   ├── crowdin.dist
+│   │   ├── kc_postgresql.dist
+│   │   ├── postgresql.dist
+│   │   └── summary.dist
+│   └── production.dist
+│       ├── common
+│       ├── hosts
+│       ├── kc_postgresql
+│       ├── keycloak
+│       └── postgresql
+├── gitlint
+│   └── gitlint_emoji.py
+├── renovate.json
+└── src
+    ├── agents
+    │   ├── Dockerfile
+    │   ├── multi-user-transcriber.py
+    │   └── pyproject.toml
+    ├── backend
+    │   ├── .pylintrc
+    │   ├── MANIFEST.in
+    │   ├── core
+    │   │   ├── __init__.py
+    │   │   ├── admin.py
+    │   │   ├── api
+    │   │   │   ├── __init__.py
+    │   │   │   ├── feature_flag.py
+    │   │   │   ├── permissions.py
+    │   │   │   ├── serializers.py
+    │   │   │   └── viewsets.py
+    │   │   ├── authentication
+    │   │   │   ├── __init__.py
+    │   │   │   ├── backends.py
+    │   │   │   └── livekit.py
+    │   │   ├── enums.py
+    │   │   ├── external_api
+    │   │   │   ├── __init__.py
+    │   │   │   ├── authentication.py
+    │   │   │   ├── permissions.py
+    │   │   │   ├── serializers.py
+    │   │   │   └── viewsets.py
+    │   │   ├── factories.py
+    │   │   ├── fields.py
+    │   │   ├── migrations
+    │   │   │   ├── 0001_initial.py
+    │   │   │   ├── 0002_create_pg_trgm_extension.py
+    │   │   │   ├── 0003_alter_room_configuration.py
+    │   │   │   ├── 0004_alter_user_language.py
+    │   │   │   ├── 0005_recording_recordingaccess_and_more.py
+    │   │   │   ├── 0006_merge_duplicate_users.py
+    │   │   │   ├── 0007_recording_mode.py
+    │   │   │   ├── 0008_user_full_name_user_short_name.py
+    │   │   │   ├── 0009_alter_recording_status.py
+    │   │   │   ├── 0010_alter_resourceaccess_options_alter_user_options.py
+    │   │   │   ├── 0011_remove_resource_is_public_room_access_level.py
+    │   │   │   ├── 0012_alter_room_access_level.py
+    │   │   │   ├── 0013_alter_user_language.py
+    │   │   │   ├── 0014_room_pin_code.py
+    │   │   │   ├── 0015_application_and_more.py
+    │   │   │   ├── 0016_recording_options.py
+    │   │   │   └── __init__.py
+    │   │   ├── models.py
+    │   │   ├── recording
+    │   │   │   ├── __init__.py
+    │   │   │   ├── enums.py
+    │   │   │   ├── event
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   ├── authentication.py
+    │   │   │   │   ├── exceptions.py
+    │   │   │   │   ├── notification.py
+    │   │   │   │   └── parsers.py
+    │   │   │   ├── services
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   └── recording_events.py
+    │   │   │   └── worker
+    │   │   │       ├── __init__.py
+    │   │   │       ├── exceptions.py
+    │   │   │       ├── factories.py
+    │   │   │       ├── mediator.py
+    │   │   │       └── services.py
+    │   │   ├── services
+    │   │   │   ├── __init__.py
+    │   │   │   ├── invitation.py
+    │   │   │   ├── livekit_events.py
+    │   │   │   ├── lobby.py
+    │   │   │   ├── marketing.py
+    │   │   │   ├── participants_management.py
+    │   │   │   ├── room_creation.py
+    │   │   │   ├── subtitle.py
+    │   │   │   └── telephony.py
+    │   │   ├── static
+    │   │   │   └── images
+    │   │   │       ├── logo-suite-numerique.png
+    │   │   │       ├── logo.png
+    │   │   │       └── mail-header-background.png
+    │   │   ├── templatetags
+    │   │   │   ├── __init__.py
+    │   │   │   └── extra_tags.py
+    │   │   ├── tests
+    │   │   │   ├── __init__.py
+    │   │   │   ├── authentication
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   └── test_backends.py
+    │   │   │   ├── conftest.py
+    │   │   │   ├── recording
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   ├── event
+    │   │   │   │   │   ├── __init__.py
+    │   │   │   │   │   ├── test_authentication.py
+    │   │   │   │   │   ├── test_notification.py
+    │   │   │   │   │   └── test_parsers.py
+    │   │   │   │   ├── service
+    │   │   │   │   │   ├── __init__.py
+    │   │   │   │   │   └── test_recording_events.py
+    │   │   │   │   ├── test_api_recordings_delete.py
+    │   │   │   │   ├── test_api_recordings_list.py
+    │   │   │   │   ├── test_api_recordings_media_auth.py
+    │   │   │   │   ├── test_api_recordings_retrieve.py
+    │   │   │   │   ├── test_api_recordings_storage_hook.py
+    │   │   │   │   └── worker
+    │   │   │   │       ├── __init__.py
+    │   │   │   │       ├── test_factories.py
+    │   │   │   │       ├── test_mediator.py
+    │   │   │   │       └── test_services.py
+    │   │   │   ├── rooms
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   ├── test_api_rooms_create.py
+    │   │   │   │   ├── test_api_rooms_creation_callback.py
+    │   │   │   │   ├── test_api_rooms_delete.py
+    │   │   │   │   ├── test_api_rooms_invite.py
+    │   │   │   │   ├── test_api_rooms_list.py
+    │   │   │   │   ├── test_api_rooms_lobby.py
+    │   │   │   │   ├── test_api_rooms_participants_management.py
+    │   │   │   │   ├── test_api_rooms_retrieve.py
+    │   │   │   │   ├── test_api_rooms_start_recording.py
+    │   │   │   │   ├── test_api_rooms_stop_recording.py
+    │   │   │   │   ├── test_api_rooms_subtitle.py
+    │   │   │   │   ├── test_api_rooms_update.py
+    │   │   │   │   └── test_api_rooms_webhook.py
+    │   │   │   ├── services
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   ├── test_livekit_events.py
+    │   │   │   │   ├── test_lobby.py
+    │   │   │   │   ├── test_marketing.py
+    │   │   │   │   ├── test_subtitle.py
+    │   │   │   │   └── test_telephony_service.py
+    │   │   │   ├── swagger
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   └── test_openapi_schema.py
+    │   │   │   ├── test_api_resource_accesses.py
+    │   │   │   ├── test_api_users.py
+    │   │   │   ├── test_external_api_rooms.py
+    │   │   │   ├── test_external_api_token.py
+    │   │   │   ├── test_models_applications.py
+    │   │   │   ├── test_models_recording.py
+    │   │   │   ├── test_models_recording_accesses.py
+    │   │   │   ├── test_models_resource_accesses.py
+    │   │   │   ├── test_models_rooms.py
+    │   │   │   ├── test_models_users.py
+    │   │   │   └── test_utils.py
+    │   │   ├── urls.py
+    │   │   └── utils.py
+    │   ├── demo
+    │   │   ├── __init__.py
+    │   │   ├── data
+    │   │   │   └── template
+    │   │   │       ├── code.txt
+    │   │   │       └── css.txt
+    │   │   ├── defaults.py
+    │   │   ├── management
+    │   │   │   ├── __init__.py
+    │   │   │   └── commands
+    │   │   │       ├── __init__.py
+    │   │   │       ├── create_demo.py
+    │   │   │       └── createsuperuser.py
+    │   │   └── tests
+    │   │       ├── __init__.py
+    │   │       └── test_commands_create_demo.py
+    │   ├── locale
+    │   │   ├── de_DE
+    │   │   │   └── LC_MESSAGES
+    │   │   │       ├── django.mo
+    │   │   │       └── django.po
+    │   │   ├── en_US
+    │   │   │   └── LC_MESSAGES
+    │   │   │       ├── django.mo
+    │   │   │       └── django.po
+    │   │   ├── fr_FR
+    │   │   │   └── LC_MESSAGES
+    │   │   │       ├── django.mo
+    │   │   │       └── django.po
+    │   │   └── nl_NL
+    │   │       └── LC_MESSAGES
+    │   │           ├── django.mo
+    │   │           └── django.po
+    │   ├── manage.py
+    │   ├── meet
+    │   │   ├── __init__.py
+    │   │   ├── celery_app.py
+    │   │   ├── settings.py
+    │   │   ├── urls.py
+    │   │   └── wsgi.py
+    │   └── pyproject.toml
+    ├── frontend
+    │   ├── .env.development
+    │   ├── .env.production
+    │   ├── .eslintrc.cjs
+    │   ├── .gitignore
+    │   ├── .prettierrc
+    │   ├── @types
+    │   │   └── react-query.d.ts
+    │   ├── Dockerfile
+    │   ├── README.md
+    │   ├── default.conf
+    │   ├── i18next-parser.config.json
+    │   ├── index.html
+    │   ├── package-lock.json
+    │   ├── package.json
+    │   ├── panda.config.ts
+    │   ├── postcss.config.cjs
+    │   ├── public
+    │   │   ├── android-chrome-192x192.png
+    │   │   ├── android-chrome-512x512.png
+    │   │   ├── apple-touch-icon.png
+    │   │   ├── assets
+    │   │   │   ├── backgrounds
+    │   │   │   │   ├── 1.jpg
+    │   │   │   │   ├── 2.jpg
+    │   │   │   │   ├── 3.jpg
+    │   │   │   │   ├── 4.jpg
+    │   │   │   │   ├── 5.jpg
+    │   │   │   │   ├── 6.jpg
+    │   │   │   │   ├── 7.jpg
+    │   │   │   │   ├── 8.jpg
+    │   │   │   │   └── thumbnails
+    │   │   │   │       ├── 1.jpg
+    │   │   │   │       ├── 2.jpg
+    │   │   │   │       ├── 3.jpg
+    │   │   │   │       ├── 4.jpg
+    │   │   │   │       ├── 5.jpg
+    │   │   │   │       ├── 6.jpg
+    │   │   │   │       ├── 7.jpg
+    │   │   │   │       └── 8.jpg
+    │   │   │   ├── beret.png
+    │   │   │   ├── camera_mic_permission.svg
+    │   │   │   ├── glasses.png
+    │   │   │   ├── intro-slider
+    │   │   │   │   ├── 1.png
+    │   │   │   │   ├── 2.png
+    │   │   │   │   ├── 3.png
+    │   │   │   │   └── 4.png
+    │   │   │   ├── link-grey.svg
+    │   │   │   ├── logo-suite-numerique.png
+    │   │   │   ├── logo.svg
+    │   │   │   ├── mustache.png
+    │   │   │   └── reactions
+    │   │   │       ├── clapping-hands.png
+    │   │   │       ├── face-with-open-mouth.png
+    │   │   │       ├── face-with-tears-of-joy.png
+    │   │   │       ├── folded-hands.png
+    │   │   │       ├── party-popper.png
+    │   │   │       ├── red-heart.png
+    │   │   │       ├── thumbs-down.png
+    │   │   │       └── thumbs-up.png
+    │   │   ├── favicon-16x16.png
+    │   │   ├── favicon-32x32.png
+    │   │   ├── favicon.ico
+    │   │   ├── icon.png
+    │   │   ├── site.webmanifest
+    │   │   └── sounds
+    │   │       ├── notifications.mp3
+    │   │       └── uprise.mp3
+    │   ├── src
+    │   │   ├── App.tsx
+    │   │   ├── api
+    │   │   │   ├── ApiError.ts
+    │   │   │   ├── apiUrl.ts
+    │   │   │   ├── fetchApi.ts
+    │   │   │   ├── mediaUrl.ts
+    │   │   │   ├── queryClient.ts
+    │   │   │   ├── queryKeys.ts
+    │   │   │   └── useConfig.ts
+    │   │   ├── assets
+    │   │   │   └── CameraIcon.tsx
+    │   │   ├── components
+    │   │   │   ├── AppInitialization.tsx
+    │   │   │   ├── Avatar.tsx
+    │   │   │   ├── BackToHome.tsx
+    │   │   │   ├── DelayedRender.ts
+    │   │   │   ├── ErrorScreen.tsx
+    │   │   │   ├── FeedbackBanner.tsx
+    │   │   │   ├── LoadingScreen.tsx
+    │   │   │   ├── LoginButton.tsx
+    │   │   │   ├── NotFoundScreen.tsx
+    │   │   │   ├── ProConnectButton.tsx
+    │   │   │   ├── QueryAware.tsx
+    │   │   │   ├── SoundTester.tsx
+    │   │   │   └── icons
+    │   │   │       ├── BlurOn.tsx
+    │   │   │       └── BlurOnStrong.tsx
+    │   │   ├── features
+    │   │   │   ├── analytics
+    │   │   │   │   ├── enums.ts
+    │   │   │   │   └── hooks
+    │   │   │   │       ├── useAnalytics.ts
+    │   │   │   │       └── useIsAnalyticsEnabled.ts
+    │   │   │   ├── auth
+    │   │   │   │   ├── api
+    │   │   │   │   │   ├── ApiUser.ts
+    │   │   │   │   │   ├── fetchUser.ts
+    │   │   │   │   │   ├── updateUserPreferences.ts
+    │   │   │   │   │   ├── useSyncUserPreferencesWithBackend.tsx
+    │   │   │   │   │   └── useUser.tsx
+    │   │   │   │   ├── components
+    │   │   │   │   │   └── UserAware.tsx
+    │   │   │   │   ├── index.ts
+    │   │   │   │   └── utils
+    │   │   │   │       ├── authUrl.ts
+    │   │   │   │       ├── logoutUrl.ts
+    │   │   │   │       └── silentLogin.ts
+    │   │   │   ├── home
+    │   │   │   │   ├── components
+    │   │   │   │   │   ├── IntroSlider.tsx
+    │   │   │   │   │   ├── JoinMeetingDialog.tsx
+    │   │   │   │   │   ├── LaterMeetingDialog.tsx
+    │   │   │   │   │   └── MoreLink.tsx
+    │   │   │   │   ├── index.ts
+    │   │   │   │   └── routes
+    │   │   │   │       └── Home.tsx
+    │   │   │   ├── legalsTerms
+    │   │   │   │   ├── Accessibility.tsx
+    │   │   │   │   ├── LegalTermsRoute.tsx
+    │   │   │   │   └── TermsOfService.tsx
+    │   │   │   ├── notifications
+    │   │   │   │   ├── MainNotificationToast.tsx
+    │   │   │   │   ├── NotificationDuration.ts
+    │   │   │   │   ├── NotificationPayload.ts
+    │   │   │   │   ├── NotificationType.ts
+    │   │   │   │   ├── components
+    │   │   │   │   │   ├── Toast.tsx
+    │   │   │   │   │   ├── ToastAnyRecording.tsx
+    │   │   │   │   │   ├── ToastJoined.tsx
+    │   │   │   │   │   ├── ToastLowerHand.tsx
+    │   │   │   │   │   ├── ToastMessageReceived.tsx
+    │   │   │   │   │   ├── ToastMuted.tsx
+    │   │   │   │   │   ├── ToastPermissionsRemoved.tsx
+    │   │   │   │   │   ├── ToastProvider.tsx
+    │   │   │   │   │   ├── ToastRaised.tsx
+    │   │   │   │   │   ├── ToastRecordingRequest.tsx
+    │   │   │   │   │   ├── ToastRecordingSaving.tsx
+    │   │   │   │   │   ├── ToastRegion.tsx
+    │   │   │   │   │   └── WaitingParticipantNotification.tsx
+    │   │   │   │   ├── hooks
+    │   │   │   │   │   ├── useNotifyParticipants.ts
+    │   │   │   │   │   └── useSoundNotification.tsx
+    │   │   │   │   ├── index.ts
+    │   │   │   │   └── utils.ts
+    │   │   │   ├── recording
+    │   │   │   │   ├── api
+    │   │   │   │   │   ├── fetchRecording.ts
+    │   │   │   │   │   ├── startRecording.ts
+    │   │   │   │   │   └── stopRecording.ts
+    │   │   │   │   ├── components
+    │   │   │   │   │   ├── ControlsButton.tsx
+    │   │   │   │   │   ├── ErrorAlertDialog.tsx
+    │   │   │   │   │   ├── LimitReachedAlertDialog.tsx
+    │   │   │   │   │   ├── LoginPrompt.tsx
+    │   │   │   │   │   ├── NoAccessView.tsx
+    │   │   │   │   │   ├── RecordingProvider.tsx
+    │   │   │   │   │   ├── RecordingStateToast.tsx
+    │   │   │   │   │   ├── RecordingStatusIcon.tsx
+    │   │   │   │   │   ├── RequestRecording.tsx
+    │   │   │   │   │   ├── RowWrapper.tsx
+    │   │   │   │   │   ├── ScreenRecordingSidePanel.tsx
+    │   │   │   │   │   └── TranscriptSidePanel.tsx
+    │   │   │   │   ├── hooks
+    │   │   │   │   │   ├── useHasFeatureWithoutAdminRights.ts
+    │   │   │   │   │   ├── useHasRecordingAccess.ts
+    │   │   │   │   │   ├── useHumanizeRecordingMaxDuration.ts
+    │   │   │   │   │   ├── useIsRecordingModeEnabled.ts
+    │   │   │   │   │   ├── useMutateRecording.ts
+    │   │   │   │   │   ├── useRecordingStatuses.ts
+    │   │   │   │   │   └── useRoomMetadata.ts
+    │   │   │   │   ├── index.ts
+    │   │   │   │   ├── routes
+    │   │   │   │   │   └── RecordingDownload.tsx
+    │   │   │   │   └── types.ts
+    │   │   │   ├── rooms
+    │   │   │   │   ├── api
+    │   │   │   │   │   ├── ApiRoom.ts
+    │   │   │   │   │   ├── createRoom.ts
+    │   │   │   │   │   ├── enterRoom.ts
+    │   │   │   │   │   ├── fetchRoom.ts
+    │   │   │   │   │   ├── listWaitingParticipants.ts
+    │   │   │   │   │   ├── lowerHandParticipant.ts
+    │   │   │   │   │   ├── lowerHandParticipants.ts
+    │   │   │   │   │   ├── muteParticipant.ts
+    │   │   │   │   │   ├── muteParticipants.ts
+    │   │   │   │   │   ├── patchRoom.tsx
+    │   │   │   │   │   ├── removeParticipant.ts
+    │   │   │   │   │   ├── requestEntry.ts
+    │   │   │   │   │   ├── updateParticipantPermissions.ts
+    │   │   │   │   │   └── updateParticipantsPermissions.ts
+    │   │   │   │   ├── components
+    │   │   │   │   │   ├── ActiveSpeaker.tsx
+    │   │   │   │   │   ├── Conference.tsx
+    │   │   │   │   │   ├── InviteDialog.tsx
+    │   │   │   │   │   ├── Join.tsx
+    │   │   │   │   │   ├── MediaDeviceErrorAlert.tsx
+    │   │   │   │   │   ├── Permissions.tsx
+    │   │   │   │   │   └── Rating.tsx
+    │   │   │   │   ├── hooks
+    │   │   │   │   │   ├── useLobby.ts
+    │   │   │   │   │   ├── useWaitingParticipants.ts
+    │   │   │   │   │   └── useWatchPermissions.ts
+    │   │   │   │   ├── index.ts
+    │   │   │   │   ├── livekit
+    │   │   │   │   │   ├── components
+    │   │   │   │   │   │   ├── Admin.tsx
+    │   │   │   │   │   │   ├── AdminToggle.tsx
+    │   │   │   │   │   │   ├── FocusLayout.tsx
+    │   │   │   │   │   │   ├── FullScreenShareWarning.tsx
+    │   │   │   │   │   │   ├── Info.tsx
+    │   │   │   │   │   │   ├── IsIdleDisconnectModal.tsx
+    │   │   │   │   │   │   ├── KeyboardShortcutHint.tsx
+    │   │   │   │   │   │   ├── MuteAlertDialog.tsx
+    │   │   │   │   │   │   ├── MutedMicIndicator.tsx
+    │   │   │   │   │   │   ├── ParticipantMenu
+    │   │   │   │   │   │   │   ├── ParticipantMenu.tsx
+    │   │   │   │   │   │   │   ├── ParticipantMenuButton.tsx
+    │   │   │   │   │   │   │   ├── PinMenuItem.tsx
+    │   │   │   │   │   │   │   └── RemoveMenuItem.tsx
+    │   │   │   │   │   │   ├── ParticipantName.tsx
+    │   │   │   │   │   │   ├── ParticipantPlaceholder.tsx
+    │   │   │   │   │   │   ├── ParticipantTile.tsx
+    │   │   │   │   │   │   ├── ParticipantTileFocus.tsx
+    │   │   │   │   │   │   ├── ReactionPortal.tsx
+    │   │   │   │   │   │   ├── ScreenShareErrorModal.tsx
+    │   │   │   │   │   │   ├── SidePanel.tsx
+    │   │   │   │   │   │   ├── Tools.tsx
+    │   │   │   │   │   │   ├── blur
+    │   │   │   │   │   │   │   ├── BackgroundCustomProcessor.ts
+    │   │   │   │   │   │   │   ├── FaceLandmarksProcessor.ts
+    │   │   │   │   │   │   │   ├── TimerWorker.ts
+    │   │   │   │   │   │   │   ├── UnifiedBackgroundTrackProcessor.ts
+    │   │   │   │   │   │   │   └── index.ts
+    │   │   │   │   │   │   ├── chat
+    │   │   │   │   │   │   │   ├── Entry.tsx
+    │   │   │   │   │   │   │   └── Input.tsx
+    │   │   │   │   │   │   ├── controls
+    │   │   │   │   │   │   │   ├── CameraSwitchButton.tsx
+    │   │   │   │   │   │   │   ├── ChatToggle.tsx
+    │   │   │   │   │   │   │   ├── Device
+    │   │   │   │   │   │   │   │   ├── AudioDevicesControl.tsx
+    │   │   │   │   │   │   │   │   ├── PermissionNeededButton.tsx
+    │   │   │   │   │   │   │   │   ├── SelectDevice.tsx
+    │   │   │   │   │   │   │   │   ├── SettingsButton.tsx
+    │   │   │   │   │   │   │   │   ├── ToggleDevice.tsx
+    │   │   │   │   │   │   │   │   └── VideoDeviceControl.tsx
+    │   │   │   │   │   │   │   ├── HandToggle.tsx
+    │   │   │   │   │   │   │   ├── InfoToggle.tsx
+    │   │   │   │   │   │   │   ├── LeaveButton.tsx
+    │   │   │   │   │   │   │   ├── Options
+    │   │   │   │   │   │   │   │   ├── EffectsMenuItem.tsx
+    │   │   │   │   │   │   │   │   ├── FeedbackMenuItem.tsx
+    │   │   │   │   │   │   │   │   ├── FullScreenMenuItem.tsx
+    │   │   │   │   │   │   │   │   ├── OptionsButton.tsx
+    │   │   │   │   │   │   │   │   ├── OptionsMenuItems.tsx
+    │   │   │   │   │   │   │   │   ├── ScreenRecordingMenuItem.tsx
+    │   │   │   │   │   │   │   │   ├── SettingsMenuItem.tsx
+    │   │   │   │   │   │   │   │   ├── SupportMenuItem.tsx
+    │   │   │   │   │   │   │   │   └── TranscriptMenuItem.tsx
+    │   │   │   │   │   │   │   ├── PaginationControl.tsx
+    │   │   │   │   │   │   │   ├── PaginationIndicator.tsx
+    │   │   │   │   │   │   │   ├── Participants
+    │   │   │   │   │   │   │   │   ├── HandRaisedListItem.tsx
+    │   │   │   │   │   │   │   │   ├── LowerAllHandsButton.tsx
+    │   │   │   │   │   │   │   │   ├── MuteEveryoneButton.tsx
+    │   │   │   │   │   │   │   │   ├── ParticipantListItem.tsx
+    │   │   │   │   │   │   │   │   ├── ParticipantsCollapsableList.tsx
+    │   │   │   │   │   │   │   │   ├── ParticipantsList.tsx
+    │   │   │   │   │   │   │   │   ├── ParticipantsToggle.tsx
+    │   │   │   │   │   │   │   │   ├── PinBadge.tsx
+    │   │   │   │   │   │   │   │   └── WaitingParticipantListItem.tsx
+    │   │   │   │   │   │   │   ├── ReactionsToggle.tsx
+    │   │   │   │   │   │   │   ├── ScreenShareToggle.tsx
+    │   │   │   │   │   │   │   ├── StartMediaButton.tsx
+    │   │   │   │   │   │   │   ├── SubtitlesToggle.tsx
+    │   │   │   │   │   │   │   └── ToolsToggle.tsx
+    │   │   │   │   │   │   ├── effects
+    │   │   │   │   │   │   │   ├── Effects.tsx
+    │   │   │   │   │   │   │   ├── EffectsConfiguration.tsx
+    │   │   │   │   │   │   │   └── FunnyEffects.tsx
+    │   │   │   │   │   │   └── layout
+    │   │   │   │   │   │       ├── CarouselLayout.tsx
+    │   │   │   │   │   │       └── GridLayout.tsx
+    │   │   │   │   │   ├── hooks
+    │   │   │   │   │   │   ├── useCanMute.ts
+    │   │   │   │   │   │   ├── useCanPublishTrack.ts
+    │   │   │   │   │   │   ├── useCannotUseDevice.ts
+    │   │   │   │   │   │   ├── useConnectionObserver.ts
+    │   │   │   │   │   │   ├── useCopyRoomToClipboard.ts
+    │   │   │   │   │   │   ├── useDeviceIcons.ts
+    │   │   │   │   │   │   ├── useDeviceShortcut.ts
+    │   │   │   │   │   │   ├── useFocusToggleParticipant.ts
+    │   │   │   │   │   │   ├── useFullScreen.ts
+    │   │   │   │   │   │   ├── useGridLayout.ts
+    │   │   │   │   │   │   ├── useHasFunnyEffectsAccess.ts
+    │   │   │   │   │   │   ├── useIsAdminOrOwner.ts
+    │   │   │   │   │   │   ├── useKonami.ts
+    │   │   │   │   │   │   ├── useMediaQuery.ts
+    │   │   │   │   │   │   ├── useNoiseReduction.ts
+    │   │   │   │   │   │   ├── useNoiseReductionAvailable.ts
+    │   │   │   │   │   │   ├── usePersistentUserChoices.ts
+    │   │   │   │   │   │   ├── usePublishSourcesManager.ts
+    │   │   │   │   │   │   ├── useRaisedHand.ts
+    │   │   │   │   │   │   ├── useResizeObserver.ts
+    │   │   │   │   │   │   ├── useResolveInitiallyDefaultDeviceId.ts
+    │   │   │   │   │   │   ├── useRoomData.ts
+    │   │   │   │   │   │   ├── useRoomId.ts
+    │   │   │   │   │   │   ├── useSidePanel.ts
+    │   │   │   │   │   │   ├── useTelephony.ts
+    │   │   │   │   │   │   └── useVideoResolutionSubscription.ts
+    │   │   │   │   │   ├── prefabs
+    │   │   │   │   │   │   ├── Chat.tsx
+    │   │   │   │   │   │   ├── ControlBar
+    │   │   │   │   │   │   │   ├── ControlBar.tsx
+    │   │   │   │   │   │   │   ├── DesktopControlBar.tsx
+    │   │   │   │   │   │   │   ├── MobileControlBar.tsx
+    │   │   │   │   │   │   │   ├── MoreOptions.tsx
+    │   │   │   │   │   │   │   └── ResponsiveMenu.tsx
+    │   │   │   │   │   │   └── VideoConference.tsx
+    │   │   │   │   │   ├── processors
+    │   │   │   │   │   │   └── RnnNoiseProcessor.ts
+    │   │   │   │   │   └── utils
+    │   │   │   │   │       └── reactionUtils.ts
+    │   │   │   │   ├── routes
+    │   │   │   │   │   ├── Feedback.tsx
+    │   │   │   │   │   └── Room.tsx
+    │   │   │   │   └── utils
+    │   │   │   │       ├── generateRoomId.ts
+    │   │   │   │       ├── getParticipantColor.ts
+    │   │   │   │       ├── getParticipantIsRoomAdmin.ts
+    │   │   │   │       ├── getParticipantName.ts
+    │   │   │   │       ├── isRoomValid.ts
+    │   │   │   │       ├── isSubsetOf.ts
+    │   │   │   │       └── telephony.ts
+    │   │   │   ├── sdk
+    │   │   │   │   ├── api
+    │   │   │   │   │   └── useRoomCreationCallback.ts
+    │   │   │   │   ├── hooks
+    │   │   │   │   │   └── useIsSdkContext.ts
+    │   │   │   │   ├── routes
+    │   │   │   │   │   ├── CreateMeetingButton.tsx
+    │   │   │   │   │   └── CreatePopup.tsx
+    │   │   │   │   └── utils
+    │   │   │   │       ├── CallbackIdHandler.ts
+    │   │   │   │       ├── PopupManager.ts
+    │   │   │   │       ├── PopupWindow.ts
+    │   │   │   │       └── types.ts
+    │   │   │   ├── settings
+    │   │   │   │   ├── components
+    │   │   │   │   │   ├── SettingsButton.tsx
+    │   │   │   │   │   ├── SettingsDialog.tsx
+    │   │   │   │   │   ├── SettingsDialogExtended.tsx
+    │   │   │   │   │   ├── SettingsDialogProvider.tsx
+    │   │   │   │   │   └── tabs
+    │   │   │   │   │       ├── AccessibilityTab.tsx
+    │   │   │   │   │       ├── AccountTab.tsx
+    │   │   │   │   │       ├── AudioTab.tsx
+    │   │   │   │   │       ├── GeneralTab.tsx
+    │   │   │   │   │       ├── NotificationsTab.tsx
+    │   │   │   │   │       ├── TranscriptionTab.tsx
+    │   │   │   │   │       ├── VideoTab.tsx
+    │   │   │   │   │       └── layout
+    │   │   │   │   │           └── RowWrapper.tsx
+    │   │   │   │   ├── hook
+    │   │   │   │   │   ├── useSettingsDialog.ts
+    │   │   │   │   │   └── useTranscriptionLanguage.ts
+    │   │   │   │   ├── index.ts
+    │   │   │   │   └── type.ts
+    │   │   │   ├── shortcuts
+    │   │   │   │   ├── types.ts
+    │   │   │   │   ├── useKeyboardShortcuts.ts
+    │   │   │   │   ├── useLongPress.ts
+    │   │   │   │   ├── useRegisterKeyboardShortcut.ts
+    │   │   │   │   └── utils.ts
+    │   │   │   ├── subtitle
+    │   │   │   │   ├── api
+    │   │   │   │   │   └── startSubtitle.ts
+    │   │   │   │   ├── component
+    │   │   │   │   │   └── Subtitles.tsx
+    │   │   │   │   └── hooks
+    │   │   │   │       ├── useAreSubtitlesAvailable.ts
+    │   │   │   │       └── useSubtitles.tsx
+    │   │   │   └── support
+    │   │   │       └── hooks
+    │   │   │           └── useSupport.tsx
+    │   │   ├── hooks
+    │   │   │   ├── useLoginHint.ts
+    │   │   │   ├── usePrevious.ts
+    │   │   │   ├── useRateLimiter.ts
+    │   │   │   ├── useRestoreFocus.ts
+    │   │   │   ├── useScreenReaderAnnounce.ts
+    │   │   │   └── useSyncAfterDelay.ts
+    │   │   ├── i18n
+    │   │   │   ├── init.ts
+    │   │   │   └── useLanguageLabels.ts
+    │   │   ├── layout
+    │   │   │   ├── Centered.tsx
+    │   │   │   ├── CenteredContent.tsx
+    │   │   │   ├── Footer.tsx
+    │   │   │   ├── Header.tsx
+    │   │   │   ├── Layout.tsx
+    │   │   │   └── Screen.tsx
+    │   │   ├── locales
+    │   │   │   ├── de
+    │   │   │   │   ├── accessibility.json
+    │   │   │   │   ├── global.json
+    │   │   │   │   ├── home.json
+    │   │   │   │   ├── legals.json
+    │   │   │   │   ├── notifications.json
+    │   │   │   │   ├── recording.json
+    │   │   │   │   ├── rooms.json
+    │   │   │   │   ├── sdk.json
+    │   │   │   │   ├── settings.json
+    │   │   │   │   └── termsOfService.json
+    │   │   │   ├── en
+    │   │   │   │   ├── accessibility.json
+    │   │   │   │   ├── global.json
+    │   │   │   │   ├── home.json
+    │   │   │   │   ├── legals.json
+    │   │   │   │   ├── notifications.json
+    │   │   │   │   ├── recording.json
+    │   │   │   │   ├── rooms.json
+    │   │   │   │   ├── sdk.json
+    │   │   │   │   ├── settings.json
+    │   │   │   │   └── termsOfService.json
+    │   │   │   ├── fr
+    │   │   │   │   ├── accessibility.json
+    │   │   │   │   ├── global.json
+    │   │   │   │   ├── home.json
+    │   │   │   │   ├── legals.json
+    │   │   │   │   ├── notifications.json
+    │   │   │   │   ├── recording.json
+    │   │   │   │   ├── rooms.json
+    │   │   │   │   ├── sdk.json
+    │   │   │   │   ├── settings.json
+    │   │   │   │   └── termsOfService.json
+    │   │   │   └── nl
+    │   │   │       ├── accessibility.json
+    │   │   │       ├── global.json
+    │   │   │       ├── home.json
+    │   │   │       ├── legals.json
+    │   │   │       ├── notifications.json
+    │   │   │       ├── recording.json
+    │   │   │       ├── rooms.json
+    │   │   │       ├── sdk.json
+    │   │   │       ├── settings.json
+    │   │   │       └── termsOfService.json
+    │   │   ├── main.tsx
+    │   │   ├── navigation
+    │   │   │   ├── getRouteByName.ts
+    │   │   │   ├── getRoutePath.ts
+    │   │   │   ├── getRouteUrl.ts
+    │   │   │   ├── navigateTo.ts
+    │   │   │   └── useMatchesRoute.ts
+    │   │   ├── primitives
+    │   │   │   ├── A.tsx
+    │   │   │   ├── Badge.tsx
+    │   │   │   ├── Bold.tsx
+    │   │   │   ├── Box.tsx
+    │   │   │   ├── Button.tsx
+    │   │   │   ├── Checkbox.tsx
+    │   │   │   ├── Dialog.tsx
+    │   │   │   ├── Div.tsx
+    │   │   │   ├── Field.tsx
+    │   │   │   ├── FieldDescription.tsx
+    │   │   │   ├── FieldErrors.tsx
+    │   │   │   ├── Form.tsx
+    │   │   │   ├── H.tsx
+    │   │   │   ├── Hr.tsx
+    │   │   │   ├── Icon.tsx
+    │   │   │   ├── Input.tsx
+    │   │   │   ├── Italic.tsx
+    │   │   │   ├── Link.tsx
+    │   │   │   ├── LinkButton.tsx
+    │   │   │   ├── Loader.tsx
+    │   │   │   ├── Menu.tsx
+    │   │   │   ├── MenuList.tsx
+    │   │   │   ├── P.tsx
+    │   │   │   ├── Popover.tsx
+    │   │   │   ├── Radio.tsx
+    │   │   │   ├── ScreenReaderAnnouncer.tsx
+    │   │   │   ├── Select.tsx
+    │   │   │   ├── Separator.tsx
+    │   │   │   ├── Spinner.tsx
+    │   │   │   ├── Switch.tsx
+    │   │   │   ├── Tabs.tsx
+    │   │   │   ├── Text.tsx
+    │   │   │   ├── TextArea.tsx
+    │   │   │   ├── ToggleButton.tsx
+    │   │   │   ├── TooltipWrapper.tsx
+    │   │   │   ├── Ul.tsx
+    │   │   │   ├── VerticallyOffCenter.tsx
+    │   │   │   ├── VisualOnlyTooltip.tsx
+    │   │   │   ├── buttonRecipe.ts
+    │   │   │   ├── index.ts
+    │   │   │   ├── menuRecipe.ts
+    │   │   │   └── useCloseDialog.tsx
+    │   │   ├── routes.ts
+    │   │   ├── stores
+    │   │   │   ├── accessibility.ts
+    │   │   │   ├── chat.ts
+    │   │   │   ├── connectionObserver.ts
+    │   │   │   ├── hints.ts
+    │   │   │   ├── keyboardShortcuts.ts
+    │   │   │   ├── konami.ts
+    │   │   │   ├── layout.ts
+    │   │   │   ├── notifications.ts
+    │   │   │   ├── permissions.ts
+    │   │   │   ├── recording.ts
+    │   │   │   ├── screenReaderAnnouncer.ts
+    │   │   │   ├── screenSharePreferences.ts
+    │   │   │   ├── settings.ts
+    │   │   │   ├── userChoices.ts
+    │   │   │   └── userPreferences.ts
+    │   │   ├── styles
+    │   │   │   ├── a11y.ts
+    │   │   │   ├── index.css
+    │   │   │   └── livekit.css
+    │   │   ├── utils
+    │   │   │   ├── capitalize.ts
+    │   │   │   ├── formatDate.ts
+    │   │   │   ├── languages.ts
+    │   │   │   ├── livekit.ts
+    │   │   │   ├── mergeProps.ts
+    │   │   │   ├── parseLineBreaks.tsx
+    │   │   │   ├── slugify.ts
+    │   │   │   ├── storageKeys.tsx
+    │   │   │   ├── translation.ts
+    │   │   │   ├── useIsMobile.ts
+    │   │   │   └── valtio.ts
+    │   │   └── vite-env.d.ts
+    │   ├── tsconfig.app.json
+    │   ├── tsconfig.json
+    │   ├── tsconfig.node.json
+    │   └── vite.config.ts
+    ├── helm
+    │   ├── env.d
+    │   │   ├── dev
+    │   │   │   ├── values.egress.yaml.gotmpl
+    │   │   │   ├── values.livekit.yaml.gotmpl
+    │   │   │   ├── values.meet.yaml.gotmpl
+    │   │   │   └── values.secrets.yaml
+    │   │   ├── dev-dinum
+    │   │   │   ├── values.egress.yaml.gotmpl
+    │   │   │   ├── values.livekit.yaml.gotmpl
+    │   │   │   ├── values.meet.yaml.gotmpl
+    │   │   │   └── values.secrets.yaml
+    │   │   └── dev-keycloak
+    │   │       ├── values.egress.yaml.gotmpl
+    │   │       ├── values.livekit.yaml.gotmpl
+    │   │       ├── values.meet.yaml.gotmpl
+    │   │       └── values.secrets.yaml
+    │   ├── extra
+    │   │   ├── Chart.yaml
+    │   │   └── templates
+    │   │       ├── clustersecretstore.yaml
+    │   │       ├── external_secret.yaml
+    │   │       ├── external_secret_deployment.yaml
+    │   │       ├── kc-postgresql-sts.yaml
+    │   │       ├── keycloak-sts.yaml
+    │   │       ├── minio.yaml
+    │   │       ├── postgresql-sts.yaml
+    │   │       └── redis.yaml
+    │   ├── helmfile.yaml.gotmpl
+    │   └── meet
+    │       ├── Chart.yaml
+    │       ├── README.md
+    │       ├── generate-readme.sh
+    │       ├── templates
+    │       │   ├── _helpers.tpl
+    │       │   ├── agents_deployment.yaml
+    │       │   ├── backend_deployment.yaml
+    │       │   ├── backend_job_createsuperuser.yaml
+    │       │   ├── backend_job_migrate.yaml
+    │       │   ├── backend_svc.yaml
+    │       │   ├── celery_summarize_deployment.yaml
+    │       │   ├── celery_transcribe_deployment.yaml
+    │       │   ├── extra-objects.yaml
+    │       │   ├── frontend_deployment.yaml
+    │       │   ├── frontend_svc.yaml
+    │       │   ├── ingress.yaml
+    │       │   ├── ingress_admin.yaml
+    │       │   ├── ingress_media.yaml
+    │       │   ├── ingress_posthog.yaml
+    │       │   ├── ingress_posthog_assets.yaml
+    │       │   ├── media_svc.yaml
+    │       │   ├── posthog_assets_svc.yaml
+    │       │   ├── posthog_svc.yaml
+    │       │   ├── summary_deployment.yaml
+    │       │   └── summary_svc.yaml
+    │       └── values.yaml
+    ├── mail
+    │   ├── bin
+    │   │   ├── html-to-plain-text
+    │   │   └── mjml-to-html
+    │   ├── html-to-text.config.json
+    │   ├── mjml
+    │   │   ├── invitation.mjml
+    │   │   ├── partial
+    │   │   │   ├── footer.mjml
+    │   │   │   └── header.mjml
+    │   │   └── screen_recording.mjml
+    │   ├── package-lock.json
+    │   └── package.json
+    ├── sdk
+    │   ├── consumer
+    │   │   ├── .gitignore
+    │   │   ├── .vite
+    │   │   │   └── deps
+    │   │   │       ├── _metadata.json
+    │   │   │       ├── chunk-DEZHIYJM.js
+    │   │   │       ├── chunk-DEZHIYJM.js.map
+    │   │   │       ├── package.json
+    │   │   │       ├── react-dom_client.js
+    │   │   │       ├── react-dom_client.js.map
+    │   │   │       ├── react.js
+    │   │   │       ├── react.js.map
+    │   │   │       ├── react_jsx-dev-runtime.js
+    │   │   │       └── react_jsx-dev-runtime.js.map
+    │   │   ├── README.md
+    │   │   ├── eslint.config.js
+    │   │   ├── index.html
+    │   │   ├── package-lock.json
+    │   │   ├── package.json
+    │   │   ├── public
+    │   │   │   └── vite.svg
+    │   │   ├── src
+    │   │   │   ├── App.css
+    │   │   │   ├── App.tsx
+    │   │   │   ├── index.css
+    │   │   │   ├── main.tsx
+    │   │   │   └── vite-env.d.ts
+    │   │   ├── tsconfig.app.json
+    │   │   ├── tsconfig.json
+    │   │   ├── tsconfig.node.json
+    │   │   └── vite.config.ts
+    │   ├── library
+    │   │   ├── .changeset
+    │   │   │   ├── README.md
+    │   │   │   └── config.json
+    │   │   ├── .env.development
+    │   │   ├── .env.production
+    │   │   ├── .eslintrc.cjs
+    │   │   ├── .gitignore
+    │   │   ├── .prettierrc
+    │   │   ├── CHANGELOG.md
+    │   │   ├── CONTRIBUTING.md
+    │   │   ├── README.md
+    │   │   ├── docs
+    │   │   │   ├── demo.gif
+    │   │   │   └── demo_loggedout.gif
+    │   │   ├── package.json
+    │   │   ├── public
+    │   │   │   └── vite.svg
+    │   │   ├── src
+    │   │   │   ├── Config.ts
+    │   │   │   ├── Types.ts
+    │   │   │   ├── create
+    │   │   │   │   └── VisioCreateButton.tsx
+    │   │   │   ├── index.tsx
+    │   │   │   └── vite-env.d.ts
+    │   │   ├── tsconfig.app.json
+    │   │   ├── tsconfig.json
+    │   │   ├── tsconfig.node.json
+    │   │   └── vite.config.ts
+    │   ├── package-lock.json
+    │   └── package.json
+    └── summary
+        ├── Dockerfile
+        ├── README.md
+        ├── pyproject.toml
+        └── summary
+            ├── __init__.py
+            ├── api
+            │   ├── __init__.py
+            │   ├── health.py
+            │   ├── main.py
+            │   └── route
+            │       ├── __init__.py
+            │       └── tasks.py
+            ├── core
+            │   ├── __init__.py
+            │   ├── analytics.py
+            │   ├── celery_config.py
+            │   ├── celery_worker.py
+            │   ├── config.py
+            │   ├── file_service.py
+            │   ├── llm_service.py
+            │   ├── prompt.py
+            │   ├── security.py
+            │   └── transcript_formatter.py
+            └── main.py
+197 directories, 844 files
