@@ -1,0 +1,69 @@
+{
+	"name": "@publicodes/api",
+	"version": "1.0.0-beta.73",
+	"description": "Publicodes API",
+	"type": "module",
+	"main": "./dist/index.cjs",
+	"module": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"require": "./dist/index.cjs",
+			"import": "./dist/index.js",
+			"types": "./dist/index.d.ts"
+		}
+	},
+	"scripts": {
+		"test": "run validate && run build:openapi && vitest",
+		"test:type": "run build:openapi && run tsc --noEmit",
+		"validate": "swagger-cli validate ./source/openapi.yaml",
+		"start": "run clean && run build:watch & wait-on ./dist/openapi.json && run start:example",
+		"start:example": "NODE_PATH=./ nodemon -d 500ms ./example.ts",
+		"prepack": "yarn workspace publicodes run prepack && run build",
+		"build": "run build:openapi && run build:tsup",
+		"build:watch": "run build:openapi:watch & run wait:openapi && run build:tsup:watch",
+		"build:tsup": "tsup-node --shims",
+		"build:tsup:watch": "run build:tsup --watch",
+		"copy:openapi": "cp ./source/openapi.json ./dist",
+		"wait:openapi": "wait-on ./source/openapi.json",
+		"build:openapi": "swagger-cli bundle ./source/openapi.yaml -o ./source/openapi.json",
+		"build:openapi:watch": "nodemon -d 500ms -w ./source/openapi.yaml -x \"yarn build:openapi\"",
+		"clean": "rm -rf ./dist ./source/openapi.json"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/betagouv/publicodes.git",
+		"directory": "packages/api"
+	},
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/betagouv/publicodes/issues"
+	},
+	"homepage": "https://github.com/betagouv/publicodes#readme",
+	"dependencies": {
+		"@koa/cors": "^3.3.0",
+		"@koa/router": "^10.1.1",
+		"koa": "^2.13.4",
+		"koa-body": "^5.0.0",
+		"openapi-validator-middleware": "^3.2.6"
+	},
+	"peerDependencies": {
+		"publicodes": "^1.0.0-beta.47"
+	},
+	"devDependencies": {
+		"@apidevtools/swagger-cli": "^4.0.4",
+		"@types/koa": "^2.13.4",
+		"@types/koa__cors": "^3.3.0",
+		"@types/koa__router": "^8.0.11",
+		"@types/node": "^18.11.9",
+		"chai-http": "^4.3.0",
+		"nodemon": "^2.0.16",
+		"publicodes": "workspace:^",
+		"ts-node": "^10.9.1",
+		"tsup": "^6.5.0",
+		"typescript": "^4.9.3",
+		"vite": "^4.4.9",
+		"vitest": "^0.23.2",
+		"wait-on": "^6.0.1"
+	}
+}

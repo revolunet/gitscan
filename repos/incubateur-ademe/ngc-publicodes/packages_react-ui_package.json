@@ -1,0 +1,47 @@
+{
+	"name": "publicodes-react",
+	"version": "1.0.0-beta.73",
+	"description": "UI to explore publicodes computations",
+	"license": "MIT",
+	"types": "dist/index.d.ts",
+	"type": "module",
+	"main": "dist/index.cjs",
+	"module": "dist/index.js",
+	"exports": {
+		".": {
+			"require": "./dist/index.cjs",
+			"import": "./dist/index.js",
+			"types": "./dist/index.d.ts"
+		}
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/betagouv/publicodes.git",
+		"directory": "packages/react-ui"
+	},
+	"scripts": {
+		"clean": "rimraf dist node_modules data",
+		"build": "tsup",
+		"prepack": "yarn workspace publicodes run prepack && yarn run build",
+		"start": "run build --watch",
+		"test:type": "run tsc"
+	},
+	"files": [
+		"dist"
+	],
+	"dependencies": {
+		"styled-components": "^6.0.7"
+	},
+	"peerDependencies": {
+		"publicodes": "^1.0.0-beta.71",
+		"react": "^17 || ^18",
+		"react-dom": "^17 || ^18"
+	},
+	"devDependencies": {
+		"@types/react": "^18.0.9",
+		"@types/styled-components": "^5.1.25",
+		"rimraf": "^3.0.2",
+		"tsup": "^6.5.0",
+		"typescript": "^4.9.3"
+	}
+}
