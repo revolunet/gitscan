@@ -1,0 +1,1266 @@
+.
+├── .binder
+│   ├── apt.txt
+│   ├── postBuild
+│   └── requirements.txt
+├── .codecov.yml
+├── .flake8
+├── .github
+│   ├── ISSUE_TEMPLATE
+│   │   ├── bug_report.md
+│   │   └── question.md
+│   └── workflows
+│       ├── benchmarking-files
+│       │   ├── benchmarks
+│       │   │   ├── classification.yaml
+│       │   │   └── regression.yaml
+│       │   ├── config.yaml
+│       │   ├── constraints.yaml
+│       │   ├── frameworks.yaml
+│       │   └── regressions-util.py
+│       ├── dist.yml
+│       ├── docker-publish.yml
+│       ├── docs.yml
+│       ├── generate-baselines.yml
+│       ├── pre-commit.yaml
+│       ├── pytest.yml
+│       ├── regressions.yml
+│       └── stale.yaml
+├── .gitignore
+├── .pre-commit-config.yaml
+├── Dockerfile
+├── LICENSE.txt
+├── MANIFEST.in
+├── Makefile
+├── README.md
+├── autosklearn
+│   ├── __init__.py
+│   ├── __version__.py
+│   ├── automl.py
+│   ├── classification.py
+│   ├── constants.py
+│   ├── data
+│   │   ├── __init__.py
+│   │   ├── abstract_data_manager.py
+│   │   ├── feature_validator.py
+│   │   ├── target_validator.py
+│   │   ├── validation.py
+│   │   └── xy_data_manager.py
+│   ├── ensemble_builder.py
+│   ├── ensembles
+│   │   ├── __init__.py
+│   │   ├── abstract_ensemble.py
+│   │   ├── ensemble_selection.py
+│   │   └── singlebest_ensemble.py
+│   ├── estimators.py
+│   ├── evaluation
+│   │   ├── __init__.py
+│   │   ├── abstract_evaluator.py
+│   │   ├── splitter.py
+│   │   ├── test_evaluator.py
+│   │   ├── train_evaluator.py
+│   │   └── util.py
+│   ├── experimental
+│   │   ├── __init__.py
+│   │   ├── askl2.py
+│   │   ├── balanced_accuracy
+│   │   │   ├── askl2_portfolios
+│   │   │   │   ├── RF_None_10CV_iterative_es_if.json
+│   │   │   │   ├── RF_None_3CV_iterative_es_if.json
+│   │   │   │   ├── RF_None_5CV_iterative_es_if.json
+│   │   │   │   ├── RF_None_holdout_iterative_es_if.json
+│   │   │   │   ├── RF_SH-eta4-i_10CV_iterative_es_if.json
+│   │   │   │   ├── RF_SH-eta4-i_3CV_iterative_es_if.json
+│   │   │   │   ├── RF_SH-eta4-i_5CV_iterative_es_if.json
+│   │   │   │   └── RF_SH-eta4-i_holdout_iterative_es_if.json
+│   │   │   └── askl2_training_data.json
+│   │   ├── log_loss
+│   │   │   ├── askl2_portfolios
+│   │   │   │   ├── RF_None_10CV_iterative_es_if.json
+│   │   │   │   ├── RF_None_3CV_iterative_es_if.json
+│   │   │   │   ├── RF_None_5CV_iterative_es_if.json
+│   │   │   │   ├── RF_None_holdout_iterative_es_if.json
+│   │   │   │   ├── RF_SH-eta4-i_10CV_iterative_es_if.json
+│   │   │   │   ├── RF_SH-eta4-i_3CV_iterative_es_if.json
+│   │   │   │   ├── RF_SH-eta4-i_5CV_iterative_es_if.json
+│   │   │   │   └── RF_SH-eta4-i_holdout_iterative_es_if.json
+│   │   │   └── askl2_training_data.json
+│   │   ├── roc_auc
+│   │   │   ├── askl2_portfolios
+│   │   │   │   ├── RF_None_10CV_iterative_es_if.json
+│   │   │   │   ├── RF_None_3CV_iterative_es_if.json
+│   │   │   │   ├── RF_None_5CV_iterative_es_if.json
+│   │   │   │   ├── RF_None_holdout_iterative_es_if.json
+│   │   │   │   ├── RF_SH-eta4-i_10CV_iterative_es_if.json
+│   │   │   │   ├── RF_SH-eta4-i_3CV_iterative_es_if.json
+│   │   │   │   ├── RF_SH-eta4-i_5CV_iterative_es_if.json
+│   │   │   │   └── RF_SH-eta4-i_holdout_iterative_es_if.json
+│   │   │   └── askl2_training_data.json
+│   │   └── selector.py
+│   ├── metalearning
+│   │   ├── __init__.py
+│   │   ├── files
+│   │   │   ├── accuracy_binary.classification_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── accuracy_binary.classification_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── accuracy_multiclass.classification_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── accuracy_multiclass.classification_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── average_precision_binary.classification_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── average_precision_binary.classification_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── average_precision_multiclass.classification_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── average_precision_multiclass.classification_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── balanced_accuracy_binary.classification_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── balanced_accuracy_binary.classification_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── balanced_accuracy_multiclass.classification_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── balanced_accuracy_multiclass.classification_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── f1_binary.classification_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── f1_binary.classification_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── f1_macro_binary.classification_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── f1_macro_binary.classification_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── f1_macro_multiclass.classification_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── f1_macro_multiclass.classification_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── f1_micro_binary.classification_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── f1_micro_binary.classification_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── f1_micro_multiclass.classification_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── f1_micro_multiclass.classification_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── f1_multiclass.classification_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── f1_multiclass.classification_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── f1_samples_binary.classification_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── f1_samples_binary.classification_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── f1_samples_multiclass.classification_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── f1_samples_multiclass.classification_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── f1_weighted_binary.classification_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── f1_weighted_binary.classification_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── f1_weighted_multiclass.classification_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── f1_weighted_multiclass.classification_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── log_loss_binary.classification_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── log_loss_binary.classification_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── log_loss_multiclass.classification_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── log_loss_multiclass.classification_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── mean_absolute_error_regression_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── mean_absolute_error_regression_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── mean_squared_error_regression_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── mean_squared_error_regression_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── mean_squared_log_error_regression_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── mean_squared_log_error_regression_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── median_absolute_error_regression_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── median_absolute_error_regression_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── precision_binary.classification_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── precision_binary.classification_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── precision_macro_binary.classification_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── precision_macro_binary.classification_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── precision_macro_multiclass.classification_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── precision_macro_multiclass.classification_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── precision_micro_binary.classification_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── precision_micro_binary.classification_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── precision_micro_multiclass.classification_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── precision_micro_multiclass.classification_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── precision_multiclass.classification_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── precision_multiclass.classification_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── precision_samples_binary.classification_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── precision_samples_binary.classification_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── precision_samples_multiclass.classification_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── precision_samples_multiclass.classification_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── precision_weighted_binary.classification_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── precision_weighted_binary.classification_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── precision_weighted_multiclass.classification_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── precision_weighted_multiclass.classification_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── r2_regression_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── r2_regression_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── recall_binary.classification_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── recall_binary.classification_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── recall_macro_binary.classification_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── recall_macro_binary.classification_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── recall_macro_multiclass.classification_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── recall_macro_multiclass.classification_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── recall_micro_binary.classification_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── recall_micro_binary.classification_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── recall_micro_multiclass.classification_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── recall_micro_multiclass.classification_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── recall_multiclass.classification_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── recall_multiclass.classification_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── recall_samples_binary.classification_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── recall_samples_binary.classification_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── recall_samples_multiclass.classification_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── recall_samples_multiclass.classification_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── recall_weighted_binary.classification_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── recall_weighted_binary.classification_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── recall_weighted_multiclass.classification_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── recall_weighted_multiclass.classification_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── roc_auc_binary.classification_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── roc_auc_binary.classification_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── roc_auc_multiclass.classification_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── roc_auc_multiclass.classification_sparse
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── root_mean_squared_error_regression_dense
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   └── root_mean_squared_error_regression_sparse
+│   │   │       ├── algorithm_runs.arff
+│   │   │       ├── configurations.csv
+│   │   │       ├── description.txt
+│   │   │       ├── feature_costs.arff
+│   │   │       ├── feature_runstatus.arff
+│   │   │       ├── feature_values.arff
+│   │   │       └── readme.txt
+│   │   ├── input
+│   │   │   ├── __init__.py
+│   │   │   └── aslib_simple.py
+│   │   ├── metafeatures
+│   │   │   ├── __init__.py
+│   │   │   ├── metafeature.py
+│   │   │   └── metafeatures.py
+│   │   ├── metalearning
+│   │   │   ├── __init__.py
+│   │   │   ├── clustering
+│   │   │   │   ├── __init__.py
+│   │   │   │   └── gmeans.py
+│   │   │   ├── create_datasets.py
+│   │   │   ├── kNearestDatasets
+│   │   │   │   ├── __init__.py
+│   │   │   │   └── kND.py
+│   │   │   ├── meta_base.py
+│   │   │   └── metrics
+│   │   │       ├── __init__.py
+│   │   │       └── misc.py
+│   │   ├── mismbo.py
+│   │   └── optimizers
+│   │       ├── __init__.py
+│   │       ├── metalearn_optimizer
+│   │       │   ├── __init__.py
+│   │       │   ├── metalearn_optimizerDefault.cfg
+│   │       │   ├── metalearn_optimizer_parser.py
+│   │       │   └── metalearner.py
+│   │       └── optimizer_base.py
+│   ├── metrics
+│   │   ├── __init__.py
+│   │   └── util.py
+│   ├── pipeline
+│   │   ├── __init__.py
+│   │   ├── base.py
+│   │   ├── classification.py
+│   │   ├── components
+│   │   │   ├── __init__.py
+│   │   │   ├── base.py
+│   │   │   ├── classification
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── adaboost.py
+│   │   │   │   ├── bernoulli_nb.py
+│   │   │   │   ├── decision_tree.py
+│   │   │   │   ├── extra_trees.py
+│   │   │   │   ├── gaussian_nb.py
+│   │   │   │   ├── gradient_boosting.py
+│   │   │   │   ├── k_nearest_neighbors.py
+│   │   │   │   ├── lda.py
+│   │   │   │   ├── liblinear_svc.py
+│   │   │   │   ├── libsvm_svc.py
+│   │   │   │   ├── mlp.py
+│   │   │   │   ├── multinomial_nb.py
+│   │   │   │   ├── passive_aggressive.py
+│   │   │   │   ├── qda.py
+│   │   │   │   ├── random_forest.py
+│   │   │   │   └── sgd.py
+│   │   │   ├── data_preprocessing
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── balancing
+│   │   │   │   │   ├── __init__.py
+│   │   │   │   │   └── balancing.py
+│   │   │   │   ├── categorical_encoding
+│   │   │   │   │   ├── __init__.py
+│   │   │   │   │   ├── encoding.py
+│   │   │   │   │   ├── no_encoding.py
+│   │   │   │   │   └── one_hot_encoding.py
+│   │   │   │   ├── category_shift
+│   │   │   │   │   ├── __init__.py
+│   │   │   │   │   └── category_shift.py
+│   │   │   │   ├── feature_type.py
+│   │   │   │   ├── feature_type_categorical.py
+│   │   │   │   ├── feature_type_numerical.py
+│   │   │   │   ├── imputation
+│   │   │   │   │   ├── __init__.py
+│   │   │   │   │   ├── categorical_imputation.py
+│   │   │   │   │   └── numerical_imputation.py
+│   │   │   │   ├── minority_coalescense
+│   │   │   │   │   ├── __init__.py
+│   │   │   │   │   ├── minority_coalescer.py
+│   │   │   │   │   └── no_coalescense.py
+│   │   │   │   ├── rescaling
+│   │   │   │   │   ├── __init__.py
+│   │   │   │   │   ├── abstract_rescaling.py
+│   │   │   │   │   ├── minmax.py
+│   │   │   │   │   ├── none.py
+│   │   │   │   │   ├── normalize.py
+│   │   │   │   │   ├── power_transformer.py
+│   │   │   │   │   ├── quantile_transformer.py
+│   │   │   │   │   ├── robust_scaler.py
+│   │   │   │   │   └── standardize.py
+│   │   │   │   └── variance_threshold
+│   │   │   │       ├── __init__.py
+│   │   │   │       └── variance_threshold.py
+│   │   │   ├── feature_preprocessing
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── densifier.py
+│   │   │   │   ├── extra_trees_preproc_for_classification.py
+│   │   │   │   ├── extra_trees_preproc_for_regression.py
+│   │   │   │   ├── fast_ica.py
+│   │   │   │   ├── feature_agglomeration.py
+│   │   │   │   ├── kernel_pca.py
+│   │   │   │   ├── kitchen_sinks.py
+│   │   │   │   ├── liblinear_svc_preprocessor.py
+│   │   │   │   ├── no_preprocessing.py
+│   │   │   │   ├── nystroem_sampler.py
+│   │   │   │   ├── pca.py
+│   │   │   │   ├── polynomial.py
+│   │   │   │   ├── random_trees_embedding.py
+│   │   │   │   ├── select_percentile.py
+│   │   │   │   ├── select_percentile_classification.py
+│   │   │   │   ├── select_percentile_regression.py
+│   │   │   │   ├── select_rates_classification.py
+│   │   │   │   ├── select_rates_regression.py
+│   │   │   │   └── truncatedSVD.py
+│   │   │   └── regression
+│   │   │       ├── __init__.py
+│   │   │       ├── adaboost.py
+│   │   │       ├── ard_regression.py
+│   │   │       ├── decision_tree.py
+│   │   │       ├── extra_trees.py
+│   │   │       ├── gaussian_process.py
+│   │   │       ├── gradient_boosting.py
+│   │   │       ├── k_nearest_neighbors.py
+│   │   │       ├── liblinear_svr.py
+│   │   │       ├── libsvm_svr.py
+│   │   │       ├── mlp.py
+│   │   │       ├── random_forest.py
+│   │   │       └── sgd.py
+│   │   ├── constants.py
+│   │   ├── create_searchspace_util.py
+│   │   ├── implementations
+│   │   │   ├── CategoryShift.py
+│   │   │   ├── MinorityCoalescer.py
+│   │   │   ├── SparseOneHotEncoder.py
+│   │   │   ├── __init__.py
+│   │   │   └── util.py
+│   │   ├── regression.py
+│   │   └── util.py
+│   ├── regression.py
+│   ├── requirements.txt -> ../requirements.txt
+│   ├── smbo.py
+│   └── util
+│       ├── __init__.py
+│       ├── backend.py
+│       ├── common.py
+│       ├── data.py
+│       ├── dependencies.py
+│       ├── logging.yaml
+│       ├── logging_.py
+│       ├── parallel.py
+│       ├── pipeline.py
+│       ├── single_thread_client.py
+│       └── stopwatch.py
+├── doc
+│   ├── Makefile
+│   ├── _templates
+│   │   ├── class.rst
+│   │   ├── class_without_init.rst
+│   │   ├── function.rst
+│   │   └── layout.html
+│   ├── api.rst
+│   ├── conf.py
+│   ├── extending.rst
+│   ├── faq.rst
+│   ├── images
+│   │   └── askl_pipeline.png
+│   ├── index.rst
+│   ├── installation.rst
+│   ├── manual.rst
+│   └── releases.rst
+├── examples
+│   ├── 20_basic
+│   │   ├── README.txt
+│   │   ├── example_classification.py
+│   │   ├── example_multilabel_classification.py
+│   │   ├── example_multioutput_regression.py
+│   │   └── example_regression.py
+│   ├── 40_advanced
+│   │   ├── README.txt
+│   │   ├── __init__.py
+│   │   ├── custom_metrics.py
+│   │   ├── example_calc_multiple_metrics.py
+│   │   ├── example_debug_logging.py
+│   │   ├── example_feature_types.py
+│   │   ├── example_get_pipeline_components.py
+│   │   ├── example_inspect_predictions.py
+│   │   ├── example_interpretable_models.py
+│   │   ├── example_metrics.py
+│   │   ├── example_pandas_train_test.py
+│   │   ├── example_resampling.py
+│   │   └── example_single_configuration.py
+│   ├── 60_search
+│   │   ├── README.txt
+│   │   ├── example_parallel_manual_spawning_cli.py
+│   │   ├── example_parallel_manual_spawning_python.py
+│   │   ├── example_parallel_n_jobs.py
+│   │   ├── example_random_search.py
+│   │   ├── example_sequential.py
+│   │   └── example_successive_halving.py
+│   ├── 80_extending
+│   │   ├── README.txt
+│   │   ├── example_extending_classification.py
+│   │   ├── example_extending_data_preprocessor.py
+│   │   ├── example_extending_preprocessor.py
+│   │   ├── example_extending_regression.py
+│   │   └── example_restrict_number_of_hyperparameters.py
+│   └── README.txt
+├── misc
+│   ├── classifiers.csv
+│   ├── create_hyperparameter_table.py
+│   ├── create_list_of_potential_models.py
+│   ├── regressors.csv
+│   ├── support_for_imbalanced_classes.txt
+│   └── transformers.csv
+├── mypy.ini
+├── pytest.ini
+├── requirements.txt
+├── scripts
+│   ├── 01_create_commands.py
+│   ├── 02_retrieve_metadata.py
+│   ├── 03_calculate_metafeatures.py
+│   ├── 04_create_aslib_files.py
+│   ├── 2015_nips_paper
+│   │   ├── Readme.md
+│   │   ├── plot
+│   │   │   └── plot_ranks.py
+│   │   ├── run
+│   │   │   ├── remove_dataset_from_metadata.py
+│   │   │   ├── run_auto_sklearn.py
+│   │   │   ├── run_commands.sh
+│   │   │   └── score_ensemble.py
+│   │   └── setup
+│   │       ├── create_commands.sh
+│   │       └── get_tasks.py
+│   ├── readme.md
+│   ├── run_auto-sklearn_for_metadata_generation.py
+│   └── update_metadata_util.py
+├── setup.py
+├── test
+│   ├── conftest.py
+│   ├── test_automl
+│   │   ├── __init__.py
+│   │   ├── automl_utils.py
+│   │   ├── test_automl.py
+│   │   └── test_estimators.py
+│   ├── test_data
+│   │   ├── __init__.py
+│   │   ├── test_feature_validator.py
+│   │   ├── test_target_validator.py
+│   │   └── test_validation.py
+│   ├── test_ensemble_builder
+│   │   ├── __init__.py
+│   │   ├── data
+│   │   │   └── .auto-sklearn
+│   │   │       ├── predictions_ensemble_true.npy
+│   │   │       └── runs
+│   │   │           ├── 0_1_0.0
+│   │   │           │   ├── 0.1.0.0.model
+│   │   │           │   ├── predictions_ensemble_0_1_0.0.npy
+│   │   │           │   ├── predictions_test_0_1_0.0.npy
+│   │   │           │   └── predictions_valid_0_1_0.0.npy
+│   │   │           ├── 0_2_0.0
+│   │   │           │   ├── 0.2.0.0.model
+│   │   │           │   ├── predictions_ensemble_0_2_0.0.npy
+│   │   │           │   ├── predictions_test_0_2_0.0.np
+│   │   │           │   ├── predictions_test_0_2_0.0.npy
+│   │   │           │   └── predictions_valid_0_2_0.0.npy
+│   │   │           └── 0_3_100.0
+│   │   │               ├── 0.3.0.0.model
+│   │   │               ├── 0.3.100.0.model
+│   │   │               ├── predictions_ensemble_0_3_100.0.npy
+│   │   │               ├── predictions_test_0_3_100.0.npy
+│   │   │               └── predictions_valid_0_3_100.0.npy
+│   │   ├── ensemble_utils.py
+│   │   ├── test_ensemble.py
+│   │   └── test_ensemble_selection.py
+│   ├── test_evaluation
+│   │   ├── .datasets
+│   │   │   └── abalone
+│   │   │       ├── abalone_feat.type
+│   │   │       ├── abalone_public.info
+│   │   │       ├── abalone_test.data
+│   │   │       ├── abalone_test.solution
+│   │   │       ├── abalone_train.data
+│   │   │       ├── abalone_train.solution
+│   │   │       ├── abalone_valid.data
+│   │   │       └── abalone_valid.solution
+│   │   ├── __init__.py
+│   │   ├── evaluation_util.py
+│   │   ├── test_abstract_evaluator.py
+│   │   ├── test_dummy_pipelines.py
+│   │   ├── test_evaluation.py
+│   │   ├── test_test_evaluator.py
+│   │   └── test_train_evaluator.py
+│   ├── test_metalearning
+│   │   ├── __init__.py
+│   │   ├── pyMetaLearn
+│   │   │   ├── __init__.py
+│   │   │   ├── datasets
+│   │   │   │   └── dataset.arff
+│   │   │   ├── metalearning
+│   │   │   │   ├── test_kND.py
+│   │   │   │   └── test_metrics.py
+│   │   │   ├── test_meta_base.py
+│   │   │   ├── test_meta_base_data
+│   │   │   │   ├── algorithm_runs.arff
+│   │   │   │   ├── configurations.csv
+│   │   │   │   ├── description.txt
+│   │   │   │   ├── feature_costs.arff
+│   │   │   │   ├── feature_runstatus.arff
+│   │   │   │   ├── feature_values.arff
+│   │   │   │   └── readme.txt
+│   │   │   ├── test_meta_features.py
+│   │   │   ├── test_meta_features_sparse.py
+│   │   │   ├── test_metalearner.py
+│   │   │   └── test_optimizer_base.py
+│   │   └── test_metalearning.py
+│   ├── test_metric
+│   │   ├── __init__.py
+│   │   ├── test_metrics.py
+│   │   └── test_util.py
+│   ├── test_optimizer
+│   │   └── test_smbo.py
+│   ├── test_pipeline
+│   │   ├── __init__.py
+│   │   ├── components
+│   │   │   ├── __init__.py
+│   │   │   ├── classification
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── test_adaboost.py
+│   │   │   │   ├── test_base.py
+│   │   │   │   ├── test_bernoulli_nb.py
+│   │   │   │   ├── test_decision_tree.py
+│   │   │   │   ├── test_extra_trees.py
+│   │   │   │   ├── test_gaussian_nb.py
+│   │   │   │   ├── test_gradient_boosting.py
+│   │   │   │   ├── test_k_nearest_neighbor.py
+│   │   │   │   ├── test_lda.py
+│   │   │   │   ├── test_liblinear.py
+│   │   │   │   ├── test_libsvm_svc.py
+│   │   │   │   ├── test_mlp.py
+│   │   │   │   ├── test_multinomial_nb.py
+│   │   │   │   ├── test_passive_aggressive.py
+│   │   │   │   ├── test_qda.py
+│   │   │   │   ├── test_random_forest.py
+│   │   │   │   └── test_sgd.py
+│   │   │   ├── data_preprocessing
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── dataset.pkl
+│   │   │   │   ├── test_balancing.py
+│   │   │   │   ├── test_categorical_imputation.py
+│   │   │   │   ├── test_category_shift.py
+│   │   │   │   ├── test_data_preprocessing.py
+│   │   │   │   ├── test_data_preprocessing_categorical.py
+│   │   │   │   ├── test_data_preprocessing_numerical.py
+│   │   │   │   ├── test_minority_coalescence.py
+│   │   │   │   ├── test_numerical_imputation.py
+│   │   │   │   ├── test_one_hot_encoding.py
+│   │   │   │   ├── test_scaling.py
+│   │   │   │   └── test_variance_threshold.py
+│   │   │   ├── dummy_components
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── dummy_component_1.py
+│   │   │   │   ├── dummy_component_2.py
+│   │   │   │   └── dummy_component_import.py
+│   │   │   ├── feature_preprocessing
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── test_NoPreprocessing.py
+│   │   │   │   ├── test_choice.py
+│   │   │   │   ├── test_densifier.py
+│   │   │   │   ├── test_extra_trees_classification.py
+│   │   │   │   ├── test_extra_trees_regression.py
+│   │   │   │   ├── test_fast_ica.py
+│   │   │   │   ├── test_feature_agglomeration.py
+│   │   │   │   ├── test_kernel_pca.py
+│   │   │   │   ├── test_kitchen_sinks.py
+│   │   │   │   ├── test_liblinear.py
+│   │   │   │   ├── test_nystroem_sampler.py
+│   │   │   │   ├── test_pca.py
+│   │   │   │   ├── test_polynomial.py
+│   │   │   │   ├── test_random_trees_embedding.py
+│   │   │   │   ├── test_select_percentile_classification.py
+│   │   │   │   ├── test_select_percentile_regression.py
+│   │   │   │   ├── test_select_rates_classification.py
+│   │   │   │   ├── test_select_rates_regression.py
+│   │   │   │   └── test_truncatedSVD.py
+│   │   │   ├── regression
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── test_adaboost.py
+│   │   │   │   ├── test_ard_regression.py
+│   │   │   │   ├── test_base.py
+│   │   │   │   ├── test_decision_tree.py
+│   │   │   │   ├── test_extra_trees.py
+│   │   │   │   ├── test_gaussian_process.py
+│   │   │   │   ├── test_gradient_boosting.py
+│   │   │   │   ├── test_k_nearest_neighbors.py
+│   │   │   │   ├── test_liblinear_svr.py
+│   │   │   │   ├── test_mlp.py
+│   │   │   │   ├── test_random_forests.py
+│   │   │   │   ├── test_sgd.py
+│   │   │   │   └── test_support_vector_regression.py
+│   │   │   └── test_base.py
+│   │   ├── implementations
+│   │   │   ├── __init__.py
+│   │   │   ├── test_CategoryShift.py
+│   │   │   ├── test_MinorityCoalescer.py
+│   │   │   ├── test_SparseOneHotEncoder.py
+│   │   │   └── test_util.py
+│   │   ├── test_base.py
+│   │   ├── test_classification.py
+│   │   ├── test_create_searchspace_util_classification.py
+│   │   └── test_regression.py
+│   ├── test_scripts
+│   │   ├── __init__.py
+│   │   └── test_metadata_generation.py
+│   └── test_util
+│       ├── __init__.py
+│       ├── example_config.yaml
+│       ├── test_StopWatch.py
+│       ├── test_backend.py
+│       ├── test_common.py
+│       ├── test_dependencies.py
+│       ├── test_logging.py
+│       ├── test_single_thread_client.py
+│       └── test_trials_callback.py
+└── testcommand.sh
+180 directories, 1085 files
