@@ -1,0 +1,910 @@
+.
+├── .github
+│   ├── dependabot.yml
+│   └── workflows
+│       ├── codeql-analysis.yml
+│       └── partaj-ci.yml
+├── .gitignore
+├── .prettierrc
+├── Dockerfile
+├── LICENCE
+├── Makefile
+├── README.md
+├── bin
+│   ├── _config.sh
+│   └── pytest
+├── docker
+│   ├── files
+│   │   └── usr
+│   │       └── local
+│   │           └── etc
+│   │               └── gunicorn
+│   │                   └── partaj.py
+│   └── images
+│       └── dev
+│           └── Dockerfile
+├── docker-compose.yml
+├── env.d
+│   ├── development.dist
+│   └── test
+├── requirements.py
+└── src
+    ├── backend
+    │   ├── .pylintrc
+    │   ├── Procfile
+    │   ├── bin
+    │   │   └── start-buildpack.sh
+    │   ├── cron.json
+    │   ├── manage.py
+    │   ├── partaj
+    │   │   ├── __init__.py
+    │   │   ├── core
+    │   │   │   ├── __init__.py
+    │   │   │   ├── admin.py
+    │   │   │   ├── api
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   ├── common.py
+    │   │   │   │   ├── featureflag.py
+    │   │   │   │   ├── note.py
+    │   │   │   │   ├── note_lite.py
+    │   │   │   │   ├── permissions.py
+    │   │   │   │   ├── referral.py
+    │   │   │   │   ├── referral_activity.py
+    │   │   │   │   ├── referral_answer.py
+    │   │   │   │   ├── referral_answer_attachment.py
+    │   │   │   │   ├── referral_answer_validation_request.py
+    │   │   │   │   ├── referral_attachment.py
+    │   │   │   │   ├── referral_lite.py
+    │   │   │   │   ├── referral_message.py
+    │   │   │   │   ├── referral_relationship.py
+    │   │   │   │   ├── referral_report.py
+    │   │   │   │   ├── referral_report_appendix.py
+    │   │   │   │   ├── referral_report_version.py
+    │   │   │   │   ├── referral_urgency.py
+    │   │   │   │   ├── report_event.py
+    │   │   │   │   ├── topic.py
+    │   │   │   │   ├── topic_lite.py
+    │   │   │   │   ├── unit.py
+    │   │   │   │   ├── unit_lite.py
+    │   │   │   │   ├── unit_membership.py
+    │   │   │   │   ├── user.py
+    │   │   │   │   └── user_lite.py
+    │   │   │   ├── apps.py
+    │   │   │   ├── context_processors.py
+    │   │   │   ├── elasticsearch.py
+    │   │   │   ├── email.py
+    │   │   │   ├── factories.py
+    │   │   │   ├── fields
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   └── array.py
+    │   │   │   ├── forms.py
+    │   │   │   ├── index_manager.py
+    │   │   │   ├── indexers
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   ├── common.py
+    │   │   │   │   ├── notes.py
+    │   │   │   │   ├── referrals.py
+    │   │   │   │   ├── topics.py
+    │   │   │   │   ├── units.py
+    │   │   │   │   └── users.py
+    │   │   │   ├── management
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   └── commands
+    │   │   │   │       ├── __init__.py
+    │   │   │   │       ├── add_contributors_to_notes.py
+    │   │   │   │       ├── add_fixtures.py
+    │   │   │   │       ├── bootstrap_elasticsearch.py
+    │   │   │   │       ├── delete_referral.py
+    │   │   │   │       ├── es_index_notes.py
+    │   │   │   │       ├── es_index_referrals.py
+    │   │   │   │       ├── es_init_notes.py
+    │   │   │   │       ├── es_init_referrals.py
+    │   │   │   │       ├── fill_referrals_kdb_status.py
+    │   │   │   │       ├── generate_notes.py
+    │   │   │   │       ├── transform_referral_report_to_publishment.py
+    │   │   │   │       ├── update_notes.py
+    │   │   │   │       ├── update_publishment_date.py
+    │   │   │   │       └── update_unexported_notes.py
+    │   │   │   ├── migrations
+    │   │   │   │   ├── 0001_initial.py
+    │   │   │   │   ├── 0002_link_user_and_referral.py
+    │   │   │   │   ├── 0003_make_phone_and_email_optional_on_referral.py
+    │   │   │   │   ├── 0004_add_topics_and_units.py
+    │   │   │   │   ├── 0005_link_referral_to_topic.py
+    │   │   │   │   ├── 0006_add_users_to_unit.py
+    │   │   │   │   ├── 0007_make_unitmemberships_unique.py
+    │   │   │   │   ├── 0008_add_referral_assignments.py
+    │   │   │   │   ├── 0009_add_size_to_referral_attachments.py
+    │   │   │   │   ├── 0010_remove_referral_assignments.py
+    │   │   │   │   ├── 0011_remove_length_limit_on_referral_urgency_explanation.py
+    │   │   │   │   ├── 0012_remove_subject_field_from_referral.py
+    │   │   │   │   ├── 0013_add_assignments_on_referral.py
+    │   │   │   │   ├── 0014_use_django_fsm_for_referral_state.py
+    │   │   │   │   ├── 0015_add_referral_answer.py
+    │   │   │   │   ├── 0016_add_referral_activity.py
+    │   │   │   │   ├── 0017_create_existing_referral_activities.py
+    │   │   │   │   ├── 0018_name_referral_attachments_inverse_relation.py
+    │   │   │   │   ├── 0019_update_models_for_unassign.py
+    │   │   │   │   ├── 0020_remove_legacy_requested_fields_on_referral.py
+    │   │   │   │   ├── 0021_make_referral_user_and_topic_required.py
+    │   │   │   │   ├── 0022_update_table_names_for_activity_and_answer.py
+    │   │   │   │   ├── 0023_add_referral_answer_attachment_with_base_class.py
+    │   │   │   │   ├── 0024_add_urgency_model.py
+    │   │   │   │   ├── 0025_migrate_referrals_to_urgency_model.py
+    │   │   │   │   ├── 0026_add_draft_answer_activity.py
+    │   │   │   │   ├── 0027_add_state_field_to_referralanswer.py
+    │   │   │   │   ├── 0028_link_draft_published_answers.py
+    │   │   │   │   ├── 0029_enable_answer_validations.py
+    │   │   │   │   ├── 0030_add_answer_validation_responses.py
+    │   │   │   │   ├── 0031_add_updated_at_to_referralanswer.py
+    │   │   │   │   ├── 0032_add_attachments_to_answers_manytomany.py
+    │   │   │   │   ├── 0033_move_answer_attachments_to_manytomany.py
+    │   │   │   │   ├── 0034_remove_legacy_referralanswer_attachment_relation.py
+    │   │   │   │   ├── 0035_make_answer_validations_unique_by_validator.py
+    │   │   │   │   ├── 0036_add_object_field_to_referrals.py
+    │   │   │   │   ├── 0037_add_topic_hiearchy.py
+    │   │   │   │   ├── 0038_add_materialized_path_to_topics.py
+    │   │   │   │   ├── 0039_generate_initial_topic_materialzed_paths.py
+    │   │   │   │   ├── 0040_create_manytomany_referrals_units.py
+    │   │   │   │   ├── 0041_create_unit_referral_relations_for_existing_referrals.py
+    │   │   │   │   ├── 0042_add_referralactivity_verbs.py
+    │   │   │   │   ├── 0043_add_referral_message_model.py
+    │   │   │   │   ├── 0044_add_urgencylevel_history.py
+    │   │   │   │   ├── 0045_add_referralactivity_message.py
+    │   │   │   │   ├── 0046_update_existing_referrals_states.py
+    │   │   │   │   ├── 0047_fix_existing_published_answers.py
+    │   │   │   │   ├── 0048_increase_objectfield_referral.py
+    │   │   │   │   ├── 0049_add_manytomany_referral_user.py
+    │   │   │   │   ├── 0050_add_existing_referral_user_to_manytomany.py
+    │   │   │   │   ├── 0051_remove_legacy_referral_requester_field.py
+    │   │   │   │   ├── 0052_add_activity_types_multiple_referral_users.py
+    │   │   │   │   ├── 0053_alter_field_null_referral.py
+    │   │   │   │   ├── 0054_add_sentat_referral.py
+    │   │   │   │   ├── 0055_update_existing_referrals_change_sended_date.py
+    │   │   │   │   ├── 0056_add_index_field_on_referral_urgencies.py
+    │   │   │   │   ├── 0057_set_index_on_existing_referral_urgencies.py
+    │   │   │   │   ├── 0058_remove_is_default_on_referralurgency.py
+    │   │   │   │   ├── 0059_alter_field_state_on_referral.py
+    │   │   │   │   ├── 0060_featureflag.py
+    │   │   │   │   ├── 0061_referralreport.py
+    │   │   │   │   ├── 0062_referral_reposrt_version_and_version_document.py
+    │   │   │   │   ├── 0063_referralreportversion.py
+    │   │   │   │   ├── 0064_add_version_activity.py
+    │   │   │   │   ├── 0065_token.py
+    │   │   │   │   ├── 0066_alter_version_field.py
+    │   │   │   │   ├── 0067_alter_table_name_token.py
+    │   │   │   │   ├── 0068_rename_version_document_table.py
+    │   │   │   │   ├── 0069_referral_report_attachment.py
+    │   │   │   │   ├── 0070_referralreport_comment.py
+    │   │   │   │   ├── 0071_alter_referralreportattachment_field.py
+    │   │   │   │   ├── 0072_reportmessage.py
+    │   │   │   │   ├── 0073_notification.py
+    │   │   │   │   ├── 0074_referralreportversion_createdat.py
+    │   │   │   │   ├── 0075_reportmessage_update_and_requestreportvalidation.py
+    │   │   │   │   ├── 0076_referral_answer_type.py
+    │   │   │   │   ├── 0077_notifications_update.py
+    │   │   │   │   ├── 0078_notifications_newupdate.py
+    │   │   │   │   ├── 0079_referraluserlink_role.py
+    │   │   │   │   ├── 0080_notificationtypes_referraluserlinknotification_referralactivity.py
+    │   │   │   │   ├── 0081_change_referraluserlink_metadata.py
+    │   │   │   │   ├── 0082_referral_status.py
+    │   │   │   │   ├── 0083_referralnote_notedocument.py
+    │   │   │   │   ├── 0084_referral_answer_properties.py
+    │   │   │   │   ├── 0085_unit_kdbaccess_and_kdbexport.py
+    │   │   │   │   ├── 0086_add_title_referral.py
+    │   │   │   │   ├── 0087_add_activity_update_title.py
+    │   │   │   │   ├── 0088_add_activity_update_topic.py
+    │   │   │   │   ├── 0089_referralnote_state.py
+    │   │   │   │   ├── 0090_requester_unit_infos.py
+    │   │   │   │   ├── 0091_rename_reportmessage_to_reportevent.py
+    │   │   │   │   ├── 0092_add_reportevent_version.py
+    │   │   │   │   ├── 0093_report_event_new_fields.py
+    │   │   │   │   ├── 0094_referralreportversion_version_number.py
+    │   │   │   │   ├── 0095_referralnote_contributors.py
+    │   │   │   │   ├── 0096_reportevent_timestamp__eventmetadata_unitname.py
+    │   │   │   │   ├── 0097_reportmessagenotification_types.py
+    │   │   │   │   ├── 0098_add_superadmin_role.py
+    │   │   │   │   ├── 0099_metadata_receiver_unit_name.py
+    │   │   │   │   ├── 0100_obsolete_event_state.py
+    │   │   │   │   ├── 0101_unitmembership_is_validator.py
+    │   │   │   │   ├── 0102_add_scan_properties_to_all_attachments.py
+    │   │   │   │   ├── 0103_nullable_scanid.py
+    │   │   │   │   ├── 0104_increase_referralobject_length.py
+    │   │   │   │   ├── 0105_increase_referraltitle_length.py
+    │   │   │   │   ├── 0106_increase_noteobject_length.py
+    │   │   │   │   ├── 0107_referral_satisfaction_survey.py
+    │   │   │   │   ├── 0108_referral_satisfaction_fields.py
+    │   │   │   │   ├── 0109_referral_has_prior_work.py
+    │   │   │   │   ├── 0110_referral_no_prior_work_justification.py
+    │   │   │   │   ├── 0111_unit_member_role_access.py
+    │   │   │   │   ├── 0112_referralgroup_referralsection.py
+    │   │   │   │   ├── 0113_report_setnull.py
+    │   │   │   │   ├── 0114_referralgroupsection_created_at.py
+    │   │   │   │   ├── 0115_referralgroup_cascade.py
+    │   │   │   │   ├── 0116_subtitle_subquestion_referral_fields.py
+    │   │   │   │   ├── 0117_subreferral_history.py
+    │   │   │   │   ├── 0118_referral_activity_verb_update.py
+    │   │   │   │   ├── 0119_referral_activity_verb_update_v2.py
+    │   │   │   │   ├── 0120_referralreportpublishment.py
+    │   │   │   │   ├── 0121_publishment_update.py
+    │   │   │   │   ├── 0122_referral_report_publishment_version_foreignkey.py
+    │   │   │   │   ├── 0123_reopening_history.py
+    │   │   │   │   ├── 0124_alter_comment_publishment_field.py
+    │   │   │   │   ├── 0125_referral_relationships.py
+    │   │   │   │   ├── 0126_referral_send_to_kdb_states.py
+    │   │   │   │   ├── 0127_referralreportappendix.py
+    │   │   │   │   └── __init__.py
+    │   │   │   ├── models
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   ├── attachment.py
+    │   │   │   │   ├── featureflag.py
+    │   │   │   │   ├── notification.py
+    │   │   │   │   ├── referral.py
+    │   │   │   │   ├── referral_activity.py
+    │   │   │   │   ├── referral_answer.py
+    │   │   │   │   ├── referral_group.py
+    │   │   │   │   ├── referral_message.py
+    │   │   │   │   ├── referral_note.py
+    │   │   │   │   ├── referral_relationship.py
+    │   │   │   │   ├── referral_reopened_history.py
+    │   │   │   │   ├── referral_report.py
+    │   │   │   │   ├── referral_report_appendix.py
+    │   │   │   │   ├── referral_report_publishment.py
+    │   │   │   │   ├── referral_report_version.py
+    │   │   │   │   ├── referral_satisfaction.py
+    │   │   │   │   ├── referral_subquestion_history.py
+    │   │   │   │   ├── referral_subtitle_history.py
+    │   │   │   │   ├── referral_title_history.py
+    │   │   │   │   ├── referral_topic_history.py
+    │   │   │   │   ├── referral_urgency.py
+    │   │   │   │   ├── referral_urgencylevel_history.py
+    │   │   │   │   ├── referral_userlink.py
+    │   │   │   │   ├── report_event.py
+    │   │   │   │   ├── report_event_metadata.py
+    │   │   │   │   ├── subreferral_confirmed_history.py
+    │   │   │   │   ├── subreferral_created_history.py
+    │   │   │   │   ├── token.py
+    │   │   │   │   └── unit.py
+    │   │   │   ├── receivers.py
+    │   │   │   ├── serializers.py
+    │   │   │   ├── services
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   ├── factories
+    │   │   │   │   │   ├── __init__.py
+    │   │   │   │   │   ├── error_response.py
+    │   │   │   │   │   ├── note_document_factory.py
+    │   │   │   │   │   ├── note_factory.py
+    │   │   │   │   │   ├── report_event_factory.py
+    │   │   │   │   │   └── validation_tree_factory.py
+    │   │   │   │   ├── feature_flag.py
+    │   │   │   │   ├── file_handler.py
+    │   │   │   │   ├── files
+    │   │   │   │   │   └── referral_to_docx.py
+    │   │   │   │   ├── mappers.py
+    │   │   │   │   ├── mocks
+    │   │   │   │   │   └── repositories
+    │   │   │   │   │       └── file_scanner.py
+    │   │   │   │   ├── repositories
+    │   │   │   │   │   ├── __init__.py
+    │   │   │   │   │   └── file_scanner.py
+    │   │   │   │   └── service_handler.py
+    │   │   │   ├── signals.py
+    │   │   │   ├── static
+    │   │   │   │   └── core
+    │   │   │   │       ├── fonts
+    │   │   │   │       │   ├── Marianne-*.woff  (12 files)
+    │   │   │   │       │   ├── Marianne-*.woff2  (12 files)
+    │   │   │   │       │   ├── Marianne-Regular.otf
+    │   │   │   │       │   ├── Marianne-Regular_Bold.otf
+    │   │   │   │       │   ├── Marianne-Regular_BoldItalic.otf
+    │   │   │   │       │   ├── Marianne-Regular_Italic.otf
+    │   │   │   │       │   ├── sourcesanspro-*.woff  (12 files)
+    │   │   │   │       │   └── sourcesanspro-*.woff2  (12 files)
+    │   │   │   │       ├── icons.svg
+    │   │   │   │       └── img
+    │   │   │   │           ├── at-line.svg
+    │   │   │   │           ├── check-circle.png
+    │   │   │   │           ├── home
+    │   │   │   │           │   ├── building-websites.svg
+    │   │   │   │           │   ├── experts.svg
+    │   │   │   │           │   ├── fill-form.svg
+    │   │   │   │           │   ├── project-team.svg
+    │   │   │   │           │   ├── server.svg
+    │   │   │   │           │   ├── setup-wizard.svg
+    │   │   │   │           │   └── subscriber.svg
+    │   │   │   │           ├── logo-fabrique-numerique.svg
+    │   │   │   │           ├── logo-marianne.svg
+    │   │   │   │           └── point-beta-gouv-fr.svg
+    │   │   │   ├── storage.py
+    │   │   │   ├── templates
+    │   │   │   │   └── core
+    │   │   │   │       ├── accessibility.html
+    │   │   │   │       ├── app.html
+    │   │   │   │       ├── base.html
+    │   │   │   │       ├── includes
+    │   │   │   │       │   ├── footer.html
+    │   │   │   │       │   └── outer_nav.html
+    │   │   │   │       ├── index.html
+    │   │   │   │       ├── legal_mentions.html
+    │   │   │   │       └── stats.html
+    │   │   │   ├── transform_prosemirror_docx.py
+    │   │   │   ├── transform_prosemirror_pdf.py
+    │   │   │   ├── transform_prosemirror_text.py
+    │   │   │   ├── urls.py
+    │   │   │   └── views
+    │   │   │       ├── __init__.py
+    │   │   │       ├── common.py
+    │   │   │       └── stats.py
+    │   │   ├── locale
+    │   │   │   ├── en
+    │   │   │   │   └── LC_MESSAGES
+    │   │   │   │       └── django.po
+    │   │   │   └── fr
+    │   │   │       └── LC_MESSAGES
+    │   │   │           └── django.po
+    │   │   ├── middleware.py
+    │   │   ├── settings.py
+    │   │   ├── static
+    │   │   │   ├── .gitkeep
+    │   │   │   ├── css
+    │   │   │   │   └── .gitkeep
+    │   │   │   └── js
+    │   │   │       └── .gitkeep
+    │   │   ├── urls.py
+    │   │   ├── users
+    │   │   │   ├── __init__.py
+    │   │   │   ├── admin.py
+    │   │   │   ├── apps.py
+    │   │   │   ├── auth.py
+    │   │   │   ├── middleware.py
+    │   │   │   ├── migrations
+    │   │   │   │   ├── 0001_initial.py
+    │   │   │   │   ├── 0002_createsuperuser.py
+    │   │   │   │   ├── 0003_rename_unit_field_on_user.py
+    │   │   │   │   ├── 0004_user_is_tester.py
+    │   │   │   │   ├── 0005_user_ministry.py
+    │   │   │   │   └── __init__.py
+    │   │   │   ├── models.py
+    │   │   │   ├── serializers.py
+    │   │   │   └── signals.py
+    │   │   └── wsgi.py
+    │   ├── setup.cfg
+    │   ├── setup.py
+    │   └── tests
+    │       └── partaj
+    │           ├── core
+    │           │   ├── test_*.py  (50 files)
+    │           │   └── utils
+    │           │       ├── api_reportevent.py
+    │           │       ├── mail_sender_args.py
+    │           │       └── mock_referral.py
+    │           └── users
+    │               └── test_users.py
+    └── frontend
+        ├── .yarnrc
+        ├── babel.config.js
+        ├── css
+        │   ├── base.css
+        │   ├── components
+        │   │   ├── assignment.css
+        │   │   ├── autosuggest.css
+        │   │   ├── badge.css
+        │   │   ├── buttons.css
+        │   │   ├── checkbox.css
+        │   │   ├── day-picker.css
+        │   │   ├── dropzone.css
+        │   │   ├── dsfr
+        │   │   │   ├── animation.css
+        │   │   │   └── main.css
+        │   │   ├── flag.css
+        │   │   ├── form.css
+        │   │   ├── header.css
+        │   │   ├── icon.css
+        │   │   ├── items.css
+        │   │   ├── list-group.css
+        │   │   ├── modals.css
+        │   │   ├── nav.css
+        │   │   ├── preview-pdf.css
+        │   │   ├── progressbar.css
+        │   │   ├── rich-text-field.css
+        │   │   ├── search.css
+        │   │   ├── select.css
+        │   │   ├── spinner.css
+        │   │   ├── table.css
+        │   │   ├── tabs.css
+        │   │   ├── tag.css
+        │   │   ├── text.css
+        │   │   ├── tooltip.css
+        │   │   └── version.css
+        │   ├── properties
+        │   │   └── shadows.css
+        │   ├── styles.css
+        │   ├── typography.css
+        │   └── utilities.css
+        ├── formatjs-helpers.js
+        ├── jest.config.js
+        ├── jest.setup.js
+        ├── js
+        │   ├── appData.tsx
+        │   ├── components
+        │   │   ├── AnswerAttachmentsListEditor
+        │   │   │   ├── DeleteButton.tsx
+        │   │   │   ├── index.spec.tsx
+        │   │   │   └── index.tsx
+        │   │   ├── Attachment
+        │   │   │   ├── AttachmentItem.tsx
+        │   │   │   ├── ReportAttachment.tsx
+        │   │   │   └── ScanVerified.tsx
+        │   │   ├── AttachmentsFormField
+        │   │   │   └── index.tsx
+        │   │   ├── AttachmentsList.tsx
+        │   │   ├── AttachmentsListEditor
+        │   │   │   ├── AttachmentUploader.tsx
+        │   │   │   ├── DeleteButton.tsx
+        │   │   │   ├── index.spec.tsx
+        │   │   │   └── index.tsx
+        │   │   ├── AutocompleteTopicField
+        │   │   │   └── index.tsx
+        │   │   ├── AutocompleteUnitField
+        │   │   │   └── index.tsx
+        │   │   ├── AutocompleteUnitMembershipsField
+        │   │   │   └── index.tsx
+        │   │   ├── AutocompleteUserField
+        │   │   │   └── index.tsx
+        │   │   ├── AutocompleteUserUnitName
+        │   │   │   └── index.tsx
+        │   │   ├── BreadCrumbs
+        │   │   │   └── index.tsx
+        │   │   ├── CreateReferralButton
+        │   │   │   └── index.tsx
+        │   │   ├── CrispOverlay
+        │   │   │   └── index.tsx
+        │   │   ├── Dashboard.tsx
+        │   │   ├── DashboardIndex
+        │   │   │   ├── UserDashboardIndex.tsx
+        │   │   │   └── index.tsx
+        │   │   ├── DateRangePickerField
+        │   │   │   ├── NotesDayRangePickerField.tsx
+        │   │   │   └── index.tsx
+        │   │   ├── DraftReferrals
+        │   │   │   └── index.tsx
+        │   │   ├── DropdownMenu
+        │   │   │   ├── AssignmentDropdownMenu.tsx
+        │   │   │   └── index.tsx
+        │   │   ├── FileUploader
+        │   │   │   ├── AppendixUpdateButton.tsx
+        │   │   │   ├── AttachmentUploader.tsx
+        │   │   │   ├── DropzoneFileUploader.tsx
+        │   │   │   ├── FileLoadingState.tsx
+        │   │   │   └── VersionUpdateButton.tsx
+        │   │   ├── GenericErrorMessage.tsx
+        │   │   ├── Icons.tsx
+        │   │   ├── Metrics
+        │   │   │   └── index.tsx
+        │   │   ├── Navbar
+        │   │   │   ├── NavbarTitle.tsx
+        │   │   │   ├── UnitNavMenu.tsx
+        │   │   │   ├── UnitNavSubMenu.tsx
+        │   │   │   └── index.tsx
+        │   │   ├── NewDashboard
+        │   │   │   ├── DashboardContext.tsx
+        │   │   │   ├── DashboardFilters.tsx
+        │   │   │   ├── Pagination.tsx
+        │   │   │   ├── ReferralTable.tsx
+        │   │   │   ├── ReferralTabs.tsx
+        │   │   │   ├── UnitTabs.tsx
+        │   │   │   ├── index.tsx
+        │   │   │   └── utils.ts
+        │   │   ├── Notes
+        │   │   │   ├── AssociatedReferralsModalContent.tsx
+        │   │   │   ├── NoteDetailView.tsx
+        │   │   │   ├── NoteItem.tsx
+        │   │   │   ├── NoteListContent.tsx
+        │   │   │   ├── NoteListView.tsx
+        │   │   │   ├── NotePreviewModal.tsx
+        │   │   │   └── UsageGuide.tsx
+        │   │   ├── OldDashboard
+        │   │   │   ├── UserDashboard.tsx
+        │   │   │   └── index.tsx
+        │   │   ├── Overlay
+        │   │   │   ├── FixedOverlay.tsx
+        │   │   │   └── index.tsx
+        │   │   ├── PublishedReport
+        │   │   │   └── PublishedReport.tsx
+        │   │   ├── ReferralActivityIndicator
+        │   │   │   ├── ActivityAnsweredValidations.tsx
+        │   │   │   ├── ActivityAssignedUnit.tsx
+        │   │   │   ├── ActivityCloseReferral.tsx
+        │   │   │   ├── ActivityReopenReferral.tsx
+        │   │   │   ├── ActivityUrgencyLevelChanged.tsx
+        │   │   │   ├── index.spec.tsx
+        │   │   │   └── index.tsx
+        │   │   ├── ReferralAnswerActions
+        │   │   │   ├── SendAnswerModal.tsx
+        │   │   │   └── index.tsx
+        │   │   ├── ReferralAnswerStatusBadge
+        │   │   │   └── index.tsx
+        │   │   ├── ReferralAnswerValidationForm
+        │   │   │   ├── index.spec.tsx
+        │   │   │   └── index.tsx
+        │   │   ├── ReferralAnswerValidationStatusBadge
+        │   │   │   └── index.tsx
+        │   │   ├── ReferralAnswerValidationsList
+        │   │   │   ├── AnswerValidationRequestBtn.tsx
+        │   │   │   ├── index.spec.tsx
+        │   │   │   └── index.tsx
+        │   │   ├── ReferralAppendices
+        │   │   │   ├── Appendix.tsx
+        │   │   │   ├── AppendixDocument.tsx
+        │   │   │   ├── AppendixEventIndicator.tsx
+        │   │   │   ├── AppendixSummary.tsx
+        │   │   │   └── index.tsx
+        │   │   ├── ReferralDetail
+        │   │   │   ├── Content
+        │   │   │   │   ├── AnswerPropertiesField.tsx
+        │   │   │   │   ├── OldReferralTabs.tsx
+        │   │   │   │   ├── ReferralContent.tsx
+        │   │   │   │   ├── ReferralTabs.tsx
+        │   │   │   │   └── Tabs
+        │   │   │   │       ├── TabAnswer.tsx
+        │   │   │   │       ├── TabAppendices.tsx
+        │   │   │   │       ├── TabDraftAnswers.tsx
+        │   │   │   │       ├── TabMessages.tsx
+        │   │   │   │       ├── TabPublishedReport.tsx
+        │   │   │   │       ├── TabReferral.tsx
+        │   │   │   │       ├── TabReport.tsx
+        │   │   │   │       ├── TabTracking.tsx
+        │   │   │   │       └── TabUsers.tsx
+        │   │   │   ├── Header
+        │   │   │   │   ├── AutoSaveReferralHeaderFormField.tsx
+        │   │   │   │   ├── BaseSideModal.tsx
+        │   │   │   │   ├── ChangeTitleModal.tsx
+        │   │   │   │   ├── ChangeUrgencyLevelModal.spec.tsx
+        │   │   │   │   ├── ChangeUrgencyLevelModal.tsx
+        │   │   │   │   ├── CloseReferralModal.spec.tsx
+        │   │   │   │   ├── CloseReferralModal.tsx
+        │   │   │   │   ├── PriorityHeaderField.tsx
+        │   │   │   │   ├── ProgressBar.tsx
+        │   │   │   │   ├── ReferralHeader.tsx
+        │   │   │   │   ├── ReferralHeaderField.tsx
+        │   │   │   │   ├── ReferralHeaderFormField.tsx
+        │   │   │   │   ├── RelatedReferralsField.tsx
+        │   │   │   │   ├── SubQuestionField.tsx
+        │   │   │   │   ├── SubReferral
+        │   │   │   │   │   ├── SubReferralContent.tsx
+        │   │   │   │   │   ├── SubReferralFooter.tsx
+        │   │   │   │   │   └── SubReferralLink.tsx
+        │   │   │   │   ├── SubTitleField.tsx
+        │   │   │   │   ├── TopicField.tsx
+        │   │   │   │   └── UpdateKnowledgeBaseStateModal.tsx
+        │   │   │   └── index.tsx
+        │   │   ├── ReferralDetailAnswerDisplay
+        │   │   │   ├── index.spec.tsx
+        │   │   │   └── index.tsx
+        │   │   ├── ReferralDetailAnswerForm
+        │   │   │   ├── AttachmentUploader.tsx
+        │   │   │   ├── index.spec.tsx
+        │   │   │   └── index.tsx
+        │   │   ├── ReferralDetailAssignment
+        │   │   │   ├── AssignUnitModal.spec.tsx
+        │   │   │   ├── AssignUnitModal.tsx
+        │   │   │   ├── ReferralMemberAssignmentButton.tsx
+        │   │   │   ├── ReferralUnitAssignmentButton.tsx
+        │   │   │   ├── index.spec.tsx
+        │   │   │   └── index.tsx
+        │   │   ├── ReferralDraftAnswer
+        │   │   │   └── index.tsx
+        │   │   ├── ReferralDraftAnswersList
+        │   │   │   └── index.tsx
+        │   │   ├── ReferralForm
+        │   │   │   ├── AttachmentsField.tsx
+        │   │   │   ├── ContextField.tsx
+        │   │   │   ├── ErrorMessage.tsx
+        │   │   │   ├── ErrorModal.tsx
+        │   │   │   ├── NewForm
+        │   │   │   │   ├── AddAttachmentButton.tsx
+        │   │   │   │   ├── ContextSection
+        │   │   │   │   │   └── index.tsx
+        │   │   │   │   ├── DeleteAttachmentButton.tsx
+        │   │   │   │   ├── FormSection.tsx
+        │   │   │   │   ├── ObjectSection
+        │   │   │   │   │   └── index.tsx
+        │   │   │   │   ├── PreliminaryWorkSection
+        │   │   │   │   │   ├── PreliminaryWorkRadioGroup.tsx
+        │   │   │   │   │   ├── ReferralAttachmentsBlock.tsx
+        │   │   │   │   │   ├── ReferralAttachmentsSubSection.tsx
+        │   │   │   │   │   └── index.tsx
+        │   │   │   │   ├── QuestionSection
+        │   │   │   │   │   └── index.tsx
+        │   │   │   │   ├── ReferralSavedAt.tsx
+        │   │   │   │   ├── RequesterUnitSection
+        │   │   │   │   │   ├── RequesterUnitRadioGroup.tsx
+        │   │   │   │   │   └── index.tsx
+        │   │   │   │   ├── SubmitFormButton.tsx
+        │   │   │   │   ├── TopicSection
+        │   │   │   │   │   └── index.tsx
+        │   │   │   │   ├── UrgencyLevelSection
+        │   │   │   │   │   └── index.tsx
+        │   │   │   │   └── index.tsx
+        │   │   │   ├── ObjectField.tsx
+        │   │   │   ├── OldReferralForm.tsx
+        │   │   │   ├── PriorWorkField.tsx
+        │   │   │   ├── QuestionField.tsx
+        │   │   │   ├── ReferralFormRedirection.tsx
+        │   │   │   ├── RequesterUnitContactField.tsx
+        │   │   │   ├── RequesterUnitTypeField.tsx
+        │   │   │   ├── TopicField.tsx
+        │   │   │   ├── UrgencyExplanationField.tsx
+        │   │   │   ├── UrgencyField.tsx
+        │   │   │   ├── index.tsx
+        │   │   │   └── machines.tsx
+        │   │   ├── ReferralReport
+        │   │   │   ├── Conversation
+        │   │   │   │   ├── Attachments.tsx
+        │   │   │   │   ├── Conversation.tsx
+        │   │   │   │   ├── EventMessage.tsx
+        │   │   │   │   ├── Message.tsx
+        │   │   │   │   ├── NotificationList.tsx
+        │   │   │   │   └── ProcessingMessage.tsx
+        │   │   │   ├── SendVersionModal.tsx
+        │   │   │   ├── Version.tsx
+        │   │   │   ├── VersionDocument.tsx
+        │   │   │   ├── VersionEventIndicator.tsx
+        │   │   │   ├── VersionSummary.tsx
+        │   │   │   └── index.tsx
+        │   │   ├── ReferralStatusBadge
+        │   │   │   ├── index.tsx
+        │   │   │   └── styles.ts
+        │   │   ├── ReferralTable
+        │   │   │   ├── EnabledFiltersList.tsx
+        │   │   │   ├── Filters.tsx
+        │   │   │   ├── Input.tsx
+        │   │   │   ├── UserReferralTable.tsx
+        │   │   │   ├── UserReferralTableRow.tsx
+        │   │   │   ├── index.tsx
+        │   │   │   ├── sharedMessages.tsx
+        │   │   │   └── types.tsx
+        │   │   ├── ReferralUsers
+        │   │   │   ├── ReferralUsersBlock.tsx
+        │   │   │   ├── ReferralUsersModal
+        │   │   │   │   ├── ReferralUsersModal.tsx
+        │   │   │   │   ├── UserInvitation.tsx
+        │   │   │   │   ├── UserSearch.tsx
+        │   │   │   │   ├── UserSearchList.tsx
+        │   │   │   │   └── UserSearchListItem.tsx
+        │   │   │   ├── ReferralUsersTable.tsx
+        │   │   │   └── ReferralUsersTableRow.tsx
+        │   │   ├── RelatedReferrals
+        │   │   │   ├── RelatedReferralsSearch.tsx
+        │   │   │   └── index.tsx
+        │   │   ├── RichText
+        │   │   │   ├── example-setup
+        │   │   │   │   ├── index.js
+        │   │   │   │   ├── inputrules.js
+        │   │   │   │   ├── keymap.js
+        │   │   │   │   ├── menu.js
+        │   │   │   │   ├── messages.tsx
+        │   │   │   │   ├── prompt.js
+        │   │   │   │   └── style.css
+        │   │   │   ├── field.tsx
+        │   │   │   ├── schema-basic
+        │   │   │   │   └── index.js
+        │   │   │   ├── types.ts
+        │   │   │   └── view.tsx
+        │   │   ├── Root
+        │   │   │   └── index.tsx
+        │   │   ├── SatisfactionInset
+        │   │   │   ├── SurveyExplanation.tsx
+        │   │   │   └── index.tsx
+        │   │   ├── Search
+        │   │   │   ├── ResultItem.tsx
+        │   │   │   ├── ResultList.tsx
+        │   │   │   └── UnitMembershipSearch.tsx
+        │   │   ├── SentReferral
+        │   │   │   └── index.tsx
+        │   │   ├── SentReferrals
+        │   │   │   └── index.tsx
+        │   │   ├── SentReferralsList
+        │   │   │   └── index.tsx
+        │   │   ├── Spinner
+        │   │   │   └── index.tsx
+        │   │   ├── Tabs.tsx
+        │   │   ├── Tickbox.tsx
+        │   │   ├── Unit
+        │   │   │   ├── ReferralsTab.tsx
+        │   │   │   └── index.tsx
+        │   │   ├── UnitDashboard.tsx
+        │   │   ├── UnitMemberList
+        │   │   │   └── index.tsx
+        │   │   ├── UnitTopicList
+        │   │   │   └── index.tsx
+        │   │   ├── buttons
+        │   │   │   ├── AddRelatedReferralButton.tsx
+        │   │   │   ├── AddUserButton.tsx
+        │   │   │   ├── CancelSplitButton.tsx
+        │   │   │   ├── ChangeTabButton.tsx
+        │   │   │   ├── ConfirmCancelSplitButton.tsx
+        │   │   │   ├── ConfirmSplitButton.tsx
+        │   │   │   ├── CreateAnswerButton.tsx
+        │   │   │   ├── DownloadButton.tsx
+        │   │   │   ├── IconTextButton.tsx
+        │   │   │   ├── InviteUserButton.tsx
+        │   │   │   ├── RadioButton.tsx
+        │   │   │   ├── RemoveRelatedReferralButton.tsx
+        │   │   │   ├── ReopenReferralButton.tsx
+        │   │   │   ├── RoleButton.tsx
+        │   │   │   ├── SearchNoteButton.tsx
+        │   │   │   ├── SplitReferralButton.tsx
+        │   │   │   ├── SubmitButton.tsx
+        │   │   │   ├── SubscribeButton.tsx
+        │   │   │   ├── ToggleAPIButton.tsx
+        │   │   │   └── WrapperButton.tsx
+        │   │   ├── dsfr
+        │   │   │   ├── Badge.tsx
+        │   │   │   ├── Button.tsx
+        │   │   │   ├── Calendar.tsx
+        │   │   │   ├── ClickableBadge.tsx
+        │   │   │   ├── Combobox.tsx
+        │   │   │   ├── Command.tsx
+        │   │   │   ├── DateRangePicker.tsx
+        │   │   │   ├── Dialog.tsx
+        │   │   │   ├── ExternalLink.tsx
+        │   │   │   ├── Input.tsx
+        │   │   │   ├── Pagination.tsx
+        │   │   │   ├── Popover.tsx
+        │   │   │   ├── Select.tsx
+        │   │   │   ├── Switch.tsx
+        │   │   │   ├── Table.tsx
+        │   │   │   └── Tabs.tsx
+        │   │   ├── forms
+        │   │   │   └── InviteForm.tsx
+        │   │   ├── generics
+        │   │   │   └── RemovableItem.tsx
+        │   │   ├── inputs
+        │   │   │   ├── RadioGroup.tsx
+        │   │   │   └── TextArea.tsx
+        │   │   ├── modals
+        │   │   │   ├── APIModal.tsx
+        │   │   │   ├── APIRadioModal.tsx
+        │   │   │   ├── BaseModal.tsx
+        │   │   │   ├── GenericModal.tsx
+        │   │   │   ├── ModalContainer.tsx
+        │   │   │   ├── Modals.tsx
+        │   │   │   ├── ReferralStatusModal.tsx
+        │   │   │   ├── RequestChangeAppendixModal.tsx
+        │   │   │   ├── RequestChangeModal.tsx
+        │   │   │   ├── RoleModal.tsx
+        │   │   │   ├── SubscribeModal.tsx
+        │   │   │   ├── ValidateAppendixModal.tsx
+        │   │   │   ├── ValidateModal.tsx
+        │   │   │   ├── ValidationAppendixModal.tsx
+        │   │   │   ├── ValidationModal.tsx
+        │   │   │   └── WarningModal.tsx
+        │   │   ├── select
+        │   │   │   ├── BaseSelect.tsx
+        │   │   │   ├── DateSelect.tsx
+        │   │   │   ├── SearchMultiSelect.tsx
+        │   │   │   ├── SearchUniqueSelect.tsx
+        │   │   │   ├── SelectButton.tsx
+        │   │   │   ├── SelectModal.tsx
+        │   │   │   ├── SelectableItem.tsx
+        │   │   │   ├── SelectableList.tsx
+        │   │   │   ├── TopicSelect.tsx
+        │   │   │   └── ValidationSelect.tsx
+        │   │   ├── styled
+        │   │   │   └── text
+        │   │   │       └── DescriptionText.tsx
+        │   │   ├── text
+        │   │   │   ├── AutoSaveTextArea.tsx
+        │   │   │   ├── InputText.tsx
+        │   │   │   ├── Text.tsx
+        │   │   │   ├── TextArea.tsx
+        │   │   │   └── Title.tsx
+        │   │   └── translations
+        │   │       └── EnvFormattedMessage.tsx
+        │   ├── const
+        │   │   ├── index.ts
+        │   │   ├── messages
+        │   │   │   └── referralStatus.ts
+        │   │   └── translations.ts
+        │   ├── data
+        │   │   ├── appendices.tsx
+        │   │   ├── createOne.tsx
+        │   │   ├── dashboard.tsx
+        │   │   ├── deleteAction.tsx
+        │   │   ├── detailAction.tsx
+        │   │   ├── fetchList.tsx
+        │   │   ├── fetchOne.tsx
+        │   │   ├── index.tsx
+        │   │   ├── notes.tsx
+        │   │   ├── patchOne.tsx
+        │   │   ├── providers
+        │   │   │   ├── ApiModalProvider
+        │   │   │   │   └── index.tsx
+        │   │   │   ├── AppendixProvider
+        │   │   │   │   └── index.tsx
+        │   │   │   ├── BaseSideModalProvider
+        │   │   │   │   └── index.tsx
+        │   │   │   ├── GenericModalProvider
+        │   │   │   │   └── index.tsx
+        │   │   │   ├── ReferralFormProvider
+        │   │   │   │   └── index.tsx
+        │   │   │   ├── ReferralProvider
+        │   │   │   │   ├── index.spec.tsx
+        │   │   │   │   └── index.tsx
+        │   │   │   ├── ReferralUsersModalProvider
+        │   │   │   │   └── index.tsx
+        │   │   │   ├── ReportEventProvider
+        │   │   │   │   └── index.tsx
+        │   │   │   ├── RoleModalProvider
+        │   │   │   │   └── index.tsx
+        │   │   │   ├── SelectModalProvider
+        │   │   │   │   └── index.tsx
+        │   │   │   ├── SubReferralProvider
+        │   │   │   │   └── index.tsx
+        │   │   │   ├── SubscribeModalProvider
+        │   │   │   │   └── index.tsx
+        │   │   │   └── VersionProvider
+        │   │   │       └── index.tsx
+        │   │   ├── referral.tsx
+        │   │   ├── referralattachment.tsx
+        │   │   ├── reports.tsx
+        │   │   ├── topics.tsx
+        │   │   ├── updateOne.tsx
+        │   │   ├── useCurrentUser
+        │   │   │   ├── index.spec.tsx
+        │   │   │   └── index.tsx
+        │   │   └── versions.tsx
+        │   ├── index.tsx
+        │   ├── translations
+        │   │   ├── en-US.json
+        │   │   ├── en-US.po
+        │   │   ├── fr-FR.json
+        │   │   └── fr-FR.po
+        │   ├── types
+        │   │   ├── AppData.ts
+        │   │   ├── index.ts
+        │   │   ├── libs
+        │   │   │   ├── helpscout__helix
+        │   │   │   │   └── index.d.ts
+        │   │   │   ├── intl-pluralrules
+        │   │   │   │   └── index.d.ts
+        │   │   │   ├── mdn-polyfills
+        │   │   │   │   └── index.d.ts
+        │   │   │   └── whatwg-fetch
+        │   │   │       └── index.d.ts
+        │   │   └── utils.ts
+        │   └── utils
+        │       ├── array.ts
+        │       ├── cn.ts
+        │       ├── date.ts
+        │       ├── errors.ts
+        │       ├── object.ts
+        │       ├── referral.ts
+        │       ├── sendForm.ts
+        │       ├── sharedMessages.tsx
+        │       ├── string.ts
+        │       ├── styles.ts
+        │       ├── test
+        │       │   ├── Deferred.ts
+        │       │   └── factories.ts
+        │       ├── topics.tsx
+        │       ├── unit.spec.ts
+        │       ├── unit.ts
+        │       ├── urls.ts
+        │       ├── useAsyncEffect.ts
+        │       ├── useClickOutside
+        │       │   ├── index.spec.tsx
+        │       │   └── index.tsx
+        │       ├── useTitle.ts
+        │       ├── user.ts
+        │       └── version.ts
+        ├── package-lock.json
+        ├── package.json
+        ├── postcss.config.js
+        ├── public-path.js
+        ├── tailwind.config.js
+        ├── tsconfig.json
+        ├── webpack.config.js
+        └── yarn.lock
+171 directories, 831 files
