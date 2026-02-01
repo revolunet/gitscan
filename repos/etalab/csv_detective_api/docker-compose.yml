@@ -1,0 +1,25 @@
+version: '3'
+services:
+  service:
+    build: ./service
+    expose:
+      - 5000
+    ports:
+      - "5000:5000"
+    # volumes:
+      # - ./service:/usr/src/app
+    environment:
+      - ENVIRONMENT=local
+      - FLASK_APP=api.py
+      - FLASK_DEBUG=1
+  ui:
+    build: ./ui
+    environment:
+      - REACT_APP_API_URL=http://localhost:5000/csv_detective/
+    expose:
+      - 3000
+    ports:
+      - "3000:3000"
+    # volumes:
+      # - ./frontend/src:/usr/src/app
+      
