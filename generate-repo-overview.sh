@@ -46,7 +46,7 @@ echo "Analyzing repository: $ORG_NAME/$REPO_NAME" >&2
 # Token limit configuration
 # Model limit: 40k tokens, minus 8192 completion, minus ~7500 for schema+prompt = ~24k tokens
 # Using conservative 2.5 chars/token for code = ~60k chars max
-MAX_CHARS=${MAX_CHARS:-50000}
+MAX_CHARS=${MAX_CHARS:-40000}
 
 # Truncate content to fit within available chars
 truncate_content() {
