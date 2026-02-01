@@ -1,0 +1,247 @@
+.
+├── .codeclimate.yml
+├── .gitignore
+├── .ignore
+├── .rubocop.yml
+├── .ruby-version
+├── .travis.yml
+├── Gemfile
+├── Gemfile.lock
+├── Guardfile
+├── LICENSE
+├── README.md
+├── Rakefile
+├── app
+│   ├── adapters
+│   │   └── dashboard
+│   │       └── endpoints_availability_adapter.rb
+│   ├── aggregators
+│   │   └── dashboard
+│   │       └── ping_history_aggregator.rb
+│   ├── channels
+│   │   └── application_cable
+│   │       ├── channel.rb
+│   │       └── connection.rb
+│   ├── controllers
+│   │   ├── application_controller.rb
+│   │   ├── concerns
+│   │   │   └── .keep
+│   │   ├── dashboard_controller.rb
+│   │   ├── provider_availabilities_controller.rb
+│   │   └── stats_controller.rb
+│   ├── data
+│   │   ├── endpoints.yml
+│   │   └── queries
+│   │       ├── apis_usage.json.erb
+│   │       ├── availability_history.json
+│   │       ├── availability_history_shortened.json
+│   │       ├── current_status.json
+│   │       ├── homepage_status.json
+│   │       ├── last_api_usage.json.erb
+│   │       ├── last_calls.json.erb
+│   │       └── provider_availability.json.erb
+│   ├── mailers
+│   │   ├── application_mailer.rb
+│   │   └── ping_mailer.rb
+│   ├── models
+│   │   ├── application_record.rb
+│   │   ├── call_result.rb
+│   │   ├── concerns
+│   │   │   └── .keep
+│   │   ├── dashboard
+│   │   │   ├── availability_history.rb
+│   │   │   └── endpoint_availability_history.rb
+│   │   ├── endpoint.rb
+│   │   ├── endpoint_factory.rb
+│   │   ├── ping_report.rb
+│   │   └── stats
+│   │       └── last_calls.rb
+│   ├── services
+│   │   ├── dashboard
+│   │   │   ├── availability_history_service.rb
+│   │   │   ├── current_status_service.rb
+│   │   │   └── homepage_status_service.rb
+│   │   ├── elastic_client.rb
+│   │   └── stats
+│   │       ├── apis_usage_service.rb
+│   │       ├── last_api_usage_service.rb
+│   │       ├── last_calls_service.rb
+│   │       └── taux_dispos_fournisseurs_service.rb
+│   ├── views
+│   │   ├── layouts
+│   │   │   ├── mailer.html.erb
+│   │   │   └── mailer.text.erb
+│   │   └── ping_mailer
+│   │       └── ping.html.erb
+│   └── workers
+│       └── ping_worker.rb
+├── bin
+│   ├── bundle
+│   ├── rails
+│   ├── rake
+│   ├── setup
+│   ├── spring
+│   └── update
+├── config
+│   ├── application.rb
+│   ├── boot.rb
+│   ├── cable.yml
+│   ├── database.travis.yml
+│   ├── database.yml
+│   ├── deploy.rb
+│   ├── eager_load.rb
+│   ├── environment.rb
+│   ├── environments
+│   │   ├── development.rb
+│   │   ├── production.rb
+│   │   ├── sandbox.rb
+│   │   ├── staging.rb
+│   │   └── test.rb
+│   ├── initializers
+│   │   ├── application_controller_renderer.rb
+│   │   ├── backtrace_silencers.rb
+│   │   ├── cors.rb
+│   │   ├── filter_parameter_logging.rb
+│   │   ├── inflections.rb
+│   │   ├── logstasher.rb
+│   │   ├── mime_types.rb
+│   │   ├── sidekiq.rb
+│   │   └── wrap_parameters.rb
+│   ├── locales
+│   │   └── en.yml
+│   ├── puma.rb
+│   ├── routes.rb
+│   ├── schedule.rb
+│   ├── sidekiq.yml
+│   └── spring.rb
+├── config.ru
+├── db
+│   ├── init.sql
+│   ├── migrate
+│   │   ├── 20171210165537_ping_report.rb
+│   │   └── 20171214191136_create_endpoints.rb
+│   ├── schema.rb
+│   └── seeds.rb
+├── lib
+│   ├── tasks
+│   │   ├── .keep
+│   │   ├── local_watch.rake
+│   │   ├── project_init.rake
+│   │   ├── refill_database.rake
+│   │   └── watch.rake
+│   └── tools
+│       ├── api.rb
+│       └── endpoint_database_filler.rb
+├── public
+│   └── robots.txt
+└── spec
+    ├── adapters
+    │   └── dashboard
+    │       └── endpoints_availability_adapter_spec.rb
+    ├── aggregators
+    │   └── dashboard
+    │       └── ping_history_aggregator_spec.rb
+    ├── cassettes
+    │   ├── all_APIs.yml
+    │   ├── apie
+    │   │   └── v2_qualibat.yml
+    │   ├── basic_count_json_query_allowed.yml
+    │   ├── basic_search_json_query_allowed.yml
+    │   ├── dashboard
+    │   │   ├── availability_history_shortened.yml
+    │   │   ├── current_status.yml
+    │   │   └── homepage_status.yml
+    │   ├── invalid_queries.yml
+    │   └── stats
+    │       ├── apis_usage.yml
+    │       ├── jwt_usage.yml
+    │       ├── jwt_usage_empty_token.yml
+    │       ├── last_30_days_usage.yml
+    │       ├── last_calls.yml
+    │       ├── last_year_usage.yml
+    │       ├── provider_availability_invalid_endpoint.yml
+    │       ├── provider_availability_invalid_period.yml
+    │       └── provider_availability_valid_call.yml
+    ├── controllers
+    │   ├── dashboard_controller_spec.rb
+    │   ├── provider_availabilities_controller_spec.rb
+    │   └── stats_controller_spec.rb
+    ├── factories.rb
+    ├── json_api_schemas
+    │   ├── dashboard
+    │   │   ├── availability_history.json
+    │   │   ├── availability_history_model.json
+    │   │   ├── current_status.json
+    │   │   ├── homepage_status.json
+    │   │   └── provider_infos_list.json
+    │   └── stats
+    │       ├── apis_usage.json
+    │       ├── apis_usage_item.json
+    │       ├── jwt_usage.json
+    │       ├── last_calls.json
+    │       └── provider_availabilities.json
+    ├── mailer
+    │   └── ping_mailer_spec.rb
+    ├── models
+    │   ├── call_result_spec.rb
+    │   ├── dashboard
+    │   │   ├── availability_history_spec.rb
+    │   │   └── endpoint_availability_history_spec.rb
+    │   ├── endpoint_factory_spec.rb
+    │   ├── endpoint_spec.rb
+    │   ├── ping_report_spec.rb
+    │   └── stats
+    │       └── last_calls_spec.rb
+    ├── queries
+    │   └── queries_spec.rb
+    ├── rails_helper.rb
+    ├── requests
+    │   └── dashboard_spec.rb
+    ├── routing
+    │   └── routes_spec.rb
+    ├── services
+    │   ├── dashboard
+    │   │   ├── availability_history_service_spec.rb
+    │   │   ├── current_status_service_spec.rb
+    │   │   └── homepage_status_service_spec.rb
+    │   ├── elastic_client_spec.rb
+    │   └── stats
+    │       ├── apis_usage_service_spec.rb
+    │       ├── last_api_usage_service_spec.rb
+    │       ├── last_calls_service_spec.rb
+    │       └── taux_dispos_fournisseurs_service_spec.rb
+    ├── spec_helper.rb
+    ├── support
+    │   ├── api_schema_matcher.rb
+    │   ├── availability_history_matcher.rb
+    │   ├── factory_bot.rb
+    │   ├── helper.rb
+    │   ├── payload_files
+    │   │   ├── elk_sources
+    │   │   │   ├── certificat_rge_ademe_source.json
+    │   │   │   ├── entreprises_elasticsearch_source.json
+    │   │   │   ├── extraits_rcs_infogreffe_source.json
+    │   │   │   ├── liasses_fiscales_elasticsearch_source.json
+    │   │   │   ├── msa_elasticsearch_source.json
+    │   │   │   └── unknown_elasticsearch_source.json
+    │   │   ├── endpoints.yml
+    │   │   ├── stats
+    │   │   │   ├── apis_usage.json
+    │   │   │   ├── last_30_days_usage.json
+    │   │   │   ├── last_calls.json
+    │   │   │   └── provider_availability.json
+    │   │   └── unknown_elasticsearch_raw_data.json
+    │   ├── rake_helper.rb
+    │   ├── remember_through_tests.rb
+    │   └── shared_examples
+    │       └── elk_invalid_query.rb
+    ├── tasks
+    │   ├── refill_database_spec.rb
+    │   └── watch_spec.rb
+    ├── tools
+    │   ├── api_spec.rb
+    │   └── endpoint_database_filler_spec.rb
+    ├── vcr_helper.rb
+    └── workers
+        └── ping_worker_spec.rb
+66 directories, 180 files
