@@ -1,0 +1,337 @@
+.
+├── .gitignore
+├── LICENSE.md
+├── README.md
+├── data-processing
+│   ├── 3_geocoding_by_increasing_size.sh
+│   ├── France2018.tsv
+│   ├── README.md
+│   ├── communes-plus-20140630.csv
+│   ├── geocode.py
+│   ├── histo_depcom.csv
+│   ├── normadresse
+│   │   ├── README.md
+│   │   ├── __pycache__
+│   │   │   ├── normadresse.cpython-37.pyc
+│   │   │   └── normadresse.cpython-39.pyc
+│   │   ├── normadresse.csv
+│   │   ├── normadresse.py
+│   │   ├── normjson.py
+│   │   ├── normstream.py
+│   │   ├── requirements-dev.txt
+│   │   ├── requirements.txt
+│   │   ├── test.csv
+│   │   ├── test.json
+│   │   ├── tests.py
+│   │   └── tests.yml
+│   ├── normadresse.csv
+│   ├── old_1
+│   │   ├── 0_mkdir_folders.sh
+│   │   ├── 1_recuperation_sql.sh
+│   │   ├── 2_extract_sql_to_csv.sh
+│   │   ├── 3_split_departements.py
+│   │   ├── 4_agregation_maille_departement.py
+│   │   ├── 5_drop_unused_fields.py
+│   │   ├── 6a_extract_min_info.py
+│   │   ├── 6b_csv_split_tiny_batch.sh
+│   │   ├── 6c_geocode.py
+│   │   ├── 6d_re_agregation.py
+│   │   ├── 6e_enrich_geocoded_file.py
+│   │   └── 7_generate_kpis.py
+│   ├── old_2
+│   │   ├── 0_exec_workflow.sh
+│   │   ├── 1_extract_min_info.py
+│   │   ├── 2_csv_split_tiny_batch.sh
+│   │   ├── 3_geocode.py
+│   │   ├── 4_reagregation.py
+│   │   ├── 5_regaglobal.py
+│   │   ├── README.md
+│   │   └── header_file
+│   ├── tables-references
+│   │   ├── tr001_modele_dpe.csv
+│   │   ├── tr001_modele_dpe_type.csv
+│   │   ├── tr002_type_batiment.csv
+│   │   ├── tr003_type_installation_chauffage.csv
+│   │   ├── tr004_type_energie.csv
+│   │   ├── tr005_type_installation_ecs.csv
+│   │   ├── tr006_type_usage.csv
+│   │   ├── tr007_type_descriptif.csv
+│   │   ├── tr008_effort_investissement.csv
+│   │   ├── tr009_economie.csv
+│   │   ├── tr010_rapidite_roi.csv
+│   │   ├── tr011_categorie_fiche_technique.csv
+│   │   ├── tr011_sous_categorie_fiche_technique.csv
+│   │   ├── tr012_categorie_erp.csv
+│   │   ├── tr013_type_erp.csv
+│   │   ├── tr013_type_erp_categorie.csv
+│   │   └── tr014_type_parois_opaque.csv
+│   └── tables-valeurs
+│       ├── tv001_coefficient_reduction_deperditions.csv
+│       ├── tv002_local_non_chauffe.csv
+│       ├── tv002_local_non_chauffe_type_batiment.csv
+│       ├── tv003_umur.csv
+│       ├── tv004_umur0.csv
+│       ├── tv004_umur0_materiaux.csv
+│       ├── tv005_upb.csv
+│       ├── tv006_upb0.csv
+│       ├── tv007_uph.csv
+│       ├── tv007_uph_type_toit.csv
+│       ├── tv008_uph0.csv
+│       ├── tv009_coefficient_transmission_thermique_vitrage.csv
+│       ├── tv009_ug_orientation.csv
+│       ├── tv009_ug_remplissage.csv
+│       ├── tv009_ug_traitement_vitrage.csv
+│       ├── tv009_ug_type_vitrage.csv
+│       ├── tv010_coefficient_transmission_thermique_baie.csv
+│       ├── tv010_uw_type_baie.csv
+│       ├── tv010_uw_type_materiaux.csv
+│       ├── tv010_uw_type_menuiserie.csv
+│       ├── tv011_resistance_additionnelle.csv
+│       ├── tv012_coefficient_transmission_thermique_baie_protection_solaire.csv
+│       ├── tv013_valeur_pont_thermique.csv
+│       ├── tv013_valeur_pont_thermique_isolation_mur.csv
+│       ├── tv013_valeur_pont_thermique_isolation_plancher_bas.csv
+│       ├── tv013_valeur_pont_thermique_retour_isolation.csv
+│       ├── tv013_valeur_pont_thermique_type_liaison.csv
+│       ├── tv013_valeur_pont_thermique_type_pose.csv
+│       ├── tv014_permeabilite.csv
+│       ├── tv015_valeur_conventionnelle_renouvellement_air.csv
+│       ├── tv016_departement.csv
+│       ├── tv017_zone_hiver.csv
+│       ├── tv018_zone_ete.csv
+│       ├── tv019_fecs.csv
+│       ├── tv019_fecs_anciennete_installation.csv
+│       ├── tv019_fecs_type_installation.csv
+│       ├── tv020_coefficient_orientation.csv
+│       ├── tv020_coefficient_orientation_inclinaison_paroi.csv
+│       ├── tv020_coefficient_orientation_orientation_paroi.csv
+│       ├── tv021_facteur_solaire.csv
+│       ├── tv021_facteur_solaire_materiaux.csv
+│       ├── tv021_facteur_solaire_type_baie.csv
+│       ├── tv021_facteur_solaire_type_pose.csv
+│       ├── tv021_facteur_solaire_type_vitrage.csv
+│       ├── tv022_coefficient_masques_proches.csv
+│       ├── tv022_coefficient_masques_proches_avance.csv
+│       ├── tv022_coefficient_masques_proches_type_masque.csv
+│       ├── tv023_coefficient_masques_lointains_homogenes.csv
+│       ├── tv023_coefficient_masques_lointains_homogenes_hauteur_alpha.csv
+│       ├── tv024_ombrage_obstacle_lointain.csv
+│       ├── tv024_ombrage_obstacle_lointain_hauteur.csv
+│       ├── tv024_ombrage_obstacle_lointain_secteur.csv
+│       ├── tv025_intermittence.csv
+│       ├── tv025_intermittence_comptage_individuel.csv
+│       ├── tv025_intermittence_equipement_intermittence.csv
+│       ├── tv025_intermittence_inertie.csv
+│       ├── tv025_intermittence_type_batiment.csv
+│       ├── tv025_intermittence_type_chauffage.csv
+│       ├── tv025_intermittence_type_emetteur.csv
+│       ├── tv025_intermittence_type_installation.csv
+│       ├── tv025_intermittence_type_regulation.csv
+│       ├── tv026_classe_inertie.csv
+│       ├── tv026_classe_inertie_type.csv
+│       ├── tv027_pertes_recuperees_ecs.csv
+│       ├── tv027_pertes_recuperees_ecs_type_installation.csv
+│       ├── tv027_pertes_recuperees_ecs_type_production.csv
+│       ├── tv027_pertes_recuperees_ecs_type_systeme.csv
+│       ├── tv028_rendement_emission_systeme_chauffage.csv
+│       ├── tv029_rendement_distribution_systeme_chauffage.csv
+│       ├── tv030_rendement_regulation_systeme_chauffage.csv
+│       ├── tv031_rendement_generation.csv
+│       ├── tv031_rendement_generation_methode_generation.csv
+│       ├── tv032_coefficient_performance.csv
+│       ├── tv033_coefficient_correction_regulation.csv
+│       ├── tv034_temperature_fonctionnement_chaudiere_100.csv
+│       ├── tv035_temperature_fonctionnement_chaudiere_30.csv
+│       ├── tv035_temperature_fonctionnement_chaudiere_type_chaudiere.csv
+│       ├── tv036_puissance_veilleuse.csv
+│       ├── tv036_puissance_veilleuse_type_chaudiere.csv
+│       ├── tv037_puissance_necessaire_production_ecs.csv
+│       ├── tv038_puissance_nominale.csv
+│       ├── tv038_puissance_nominale_type_chaudiere.csv
+│       ├── tv038_puissance_nominale_type_installation.csv
+│       ├── tv039_formule_becs.csv
+│       ├── tv040_rendement_distribution_ecs.csv
+│       ├── tv040_rendement_distribution_ecs_type_generateur.csv
+│       ├── tv040_rendement_distribution_ecs_type_installation.csv
+│       ├── tv041_coefficient_emplacement_fonctionnement.csv
+│       ├── tv041_coefficient_emplacement_fonctionnement_alimentation.csv
+│       ├── tv042_tarif_energie.csv
+│       ├── tv042_tarif_energie_type_energie.csv
+│       ├── tv043_pertes_stockage.csv
+│       ├── tv044_conversion_kwh_energies_relevees.csv
+│       ├── tv044_conversion_kwh_energies_relevees_type_energie.csv
+│       ├── tv044_conversion_kwh_energies_relevees_unite.csv
+│       ├── tv045_conversion_kwh_co2.csv
+│       ├── tv046_evaluation_contenu_co2_reseaux.csv
+│       ├── tv046_evaluation_contenu_co2_reseaux_type_production.csv
+│       ├── tv047_rendement_generation_ecs.csv
+│       ├── tv048_rendement_stockage_ecs.csv
+│       ├── tv049_perte_stockage_ecs.csv
+│       ├── tv0xx_orientation.csv
+│       ├── tv0xx_temperature_distribution.csv
+│       └── tv0xx_type_emetteur.csv
+├── data_processing_cstb
+│   ├── __init__.py
+│   ├── geocoding(old)
+│   │   ├── __init__.py
+│   │   ├── addr_utils.py
+│   │   ├── addr_viz.py
+│   │   ├── app.py
+│   │   ├── ban_utils.py
+│   │   ├── data_viz_main.py
+│   │   ├── dpe_assets.py
+│   │   └── geocoding_main.py
+│   └── traitement_donnees_metier
+│       ├── README.md
+│       ├── __init__.py
+│       ├── assets
+│       │   ├── tr_tables
+│       │   │   ├── tr001_modele_dpe.csv
+│       │   │   ├── tr001_modele_dpe_type.csv
+│       │   │   ├── tr002_type_batiment.csv
+│       │   │   ├── tr003_type_installation_chauffage.csv
+│       │   │   ├── tr004_type_energie.csv
+│       │   │   ├── tr005_type_installation_ecs.csv
+│       │   │   ├── tr006_type_usage.csv
+│       │   │   ├── tr007_type_descriptif.csv
+│       │   │   ├── tr008_effort_investissement.csv
+│       │   │   ├── tr009_economie.csv
+│       │   │   ├── tr010_rapidite_roi.csv
+│       │   │   ├── tr011_categorie_fiche_technique.csv
+│       │   │   ├── tr011_sous_categorie_fiche_technique.csv
+│       │   │   ├── tr012_categorie_erp.csv
+│       │   │   ├── tr013_type_erp.csv
+│       │   │   ├── tr013_type_erp_categorie.csv
+│       │   │   └── tr014_type_parois_opaque.csv
+│       │   └── tv_tables
+│       │       ├── tv001_coefficient_reduction_deperditions.csv
+│       │       ├── tv002_local_non_chauffe.csv
+│       │       ├── tv002_local_non_chauffe_type_batiment.csv
+│       │       ├── tv003_umur.csv
+│       │       ├── tv004_umur0.csv
+│       │       ├── tv004_umur0_materiaux.csv
+│       │       ├── tv005_upb.csv
+│       │       ├── tv006_upb0.csv
+│       │       ├── tv007_uph.csv
+│       │       ├── tv007_uph_type_toit.csv
+│       │       ├── tv008_uph0.csv
+│       │       ├── tv009_coefficient_transmission_thermique_vitrage.csv
+│       │       ├── tv009_ug_orientation.csv
+│       │       ├── tv009_ug_remplissage.csv
+│       │       ├── tv009_ug_traitement_vitrage.csv
+│       │       ├── tv009_ug_type_vitrage.csv
+│       │       ├── tv010_coefficient_transmission_thermique_baie.csv
+│       │       ├── tv010_uw_type_baie.csv
+│       │       ├── tv010_uw_type_materiaux.csv
+│       │       ├── tv010_uw_type_menuiserie.csv
+│       │       ├── tv011_resistance_additionnelle.csv
+│       │       ├── tv012_coefficient_transmission_thermique_baie_protection_solaire.csv
+│       │       ├── tv013_valeur_pont_thermique.csv
+│       │       ├── tv013_valeur_pont_thermique_isolation_mur.csv
+│       │       ├── tv013_valeur_pont_thermique_isolation_plancher_bas.csv
+│       │       ├── tv013_valeur_pont_thermique_retour_isolation.csv
+│       │       ├── tv013_valeur_pont_thermique_type_liaison.csv
+│       │       ├── tv013_valeur_pont_thermique_type_pose.csv
+│       │       ├── tv014_permeabilite.csv
+│       │       ├── tv015_valeur_conventionnelle_renouvellement_air.csv
+│       │       ├── tv016_departement.csv
+│       │       ├── tv017_zone_hiver.csv
+│       │       ├── tv018_zone_ete.csv
+│       │       ├── tv019_fecs.csv
+│       │       ├── tv019_fecs_anciennete_installation.csv
+│       │       ├── tv019_fecs_type_installation.csv
+│       │       ├── tv020_coefficient_orientation.csv
+│       │       ├── tv020_coefficient_orientation_inclinaison_paroi.csv
+│       │       ├── tv020_coefficient_orientation_orientation_paroi.csv
+│       │       ├── tv021_facteur_solaire.csv
+│       │       ├── tv021_facteur_solaire_materiaux.csv
+│       │       ├── tv021_facteur_solaire_type_baie.csv
+│       │       ├── tv021_facteur_solaire_type_pose.csv
+│       │       ├── tv021_facteur_solaire_type_vitrage.csv
+│       │       ├── tv022_coefficient_masques_proches.csv
+│       │       ├── tv022_coefficient_masques_proches_avance.csv
+│       │       ├── tv022_coefficient_masques_proches_type_masque.csv
+│       │       ├── tv023_coefficient_masques_lointains_homogenes.csv
+│       │       ├── tv023_coefficient_masques_lointains_homogenes_hauteur_alpha.csv
+│       │       ├── tv024_ombrage_obstacle_lointain.csv
+│       │       ├── tv024_ombrage_obstacle_lointain_hauteur.csv
+│       │       ├── tv024_ombrage_obstacle_lointain_secteur.csv
+│       │       ├── tv025_intermittence.csv
+│       │       ├── tv025_intermittence_comptage_individuel.csv
+│       │       ├── tv025_intermittence_equipement_intermittence.csv
+│       │       ├── tv025_intermittence_inertie.csv
+│       │       ├── tv025_intermittence_type_batiment.csv
+│       │       ├── tv025_intermittence_type_chauffage.csv
+│       │       ├── tv025_intermittence_type_emetteur.csv
+│       │       ├── tv025_intermittence_type_installation.csv
+│       │       ├── tv025_intermittence_type_regulation.csv
+│       │       ├── tv026_classe_inertie.csv
+│       │       ├── tv026_classe_inertie_type.csv
+│       │       ├── tv027_pertes_recuperees_ecs.csv
+│       │       ├── tv027_pertes_recuperees_ecs_type_installation.csv
+│       │       ├── tv027_pertes_recuperees_ecs_type_production.csv
+│       │       ├── tv027_pertes_recuperees_ecs_type_systeme.csv
+│       │       ├── tv028_rendement_emission_systeme_chauffage.csv
+│       │       ├── tv029_rendement_distribution_systeme_chauffage.csv
+│       │       ├── tv030_rendement_regulation_systeme_chauffage.csv
+│       │       ├── tv031_rendement_generation.csv
+│       │       ├── tv031_rendement_generation_methode_generation.csv
+│       │       ├── tv032_coefficient_performance.csv
+│       │       ├── tv033_coefficient_correction_regulation.csv
+│       │       ├── tv034_temperature_fonctionnement_chaudiere_100.csv
+│       │       ├── tv035_temperature_fonctionnement_chaudiere_30.csv
+│       │       ├── tv035_temperature_fonctionnement_chaudiere_type_chaudiere.csv
+│       │       ├── tv036_puissance_veilleuse.csv
+│       │       ├── tv036_puissance_veilleuse_type_chaudiere.csv
+│       │       ├── tv037_puissance_necessaire_production_ecs.csv
+│       │       ├── tv038_puissance_nominale.csv
+│       │       ├── tv038_puissance_nominale_type_chaudiere.csv
+│       │       ├── tv038_puissance_nominale_type_installation.csv
+│       │       ├── tv039_formule_becs.csv
+│       │       ├── tv040_rendement_distribution_ecs.csv
+│       │       ├── tv040_rendement_distribution_ecs_type_generateur.csv
+│       │       ├── tv040_rendement_distribution_ecs_type_installation.csv
+│       │       ├── tv041_coefficient_emplacement_fonctionnement.csv
+│       │       ├── tv041_coefficient_emplacement_fonctionnement_alimentation.csv
+│       │       ├── tv042_tarif_energie.csv
+│       │       ├── tv042_tarif_energie_type_energie.csv
+│       │       ├── tv043_pertes_stockage.csv
+│       │       ├── tv044_conversion_kwh_energies_relevees.csv
+│       │       ├── tv044_conversion_kwh_energies_relevees_type_energie.csv
+│       │       ├── tv044_conversion_kwh_energies_relevees_unite.csv
+│       │       ├── tv045_conversion_kwh_co2.csv
+│       │       ├── tv046_evaluation_contenu_co2_reseaux.csv
+│       │       ├── tv046_evaluation_contenu_co2_reseaux_type_production.csv
+│       │       ├── tv047_rendement_generation_ecs.csv
+│       │       ├── tv048_rendement_stockage_ecs.csv
+│       │       ├── tv049_perte_stockage_ecs.csv
+│       │       ├── tv0xx_orientation.csv
+│       │       ├── tv0xx_temperature_distribution.csv
+│       │       └── tv0xx_type_emetteur.csv
+│       ├── config.py
+│       ├── doc_annexe.py
+│       ├── main.py
+│       ├── td001_merge.py
+│       ├── td001_processing.py
+│       ├── td005_processing.py
+│       ├── td007_processing.py
+│       ├── td008_processing.py
+│       ├── td011_td012_processing.py
+│       ├── td013_td014_processing.py
+│       ├── trtvtables.py
+│       └── utils.py
+├── external
+│   ├── departements-version-simplifiee.geojson
+│   ├── departements.csv
+│   └── prefectures.csv
+├── notebooks
+│   ├── .gitignore
+│   ├── analyses sur la table td001.ipynb
+│   ├── graph-dpe.ipynb
+│   ├── joujou.ipynb
+│   └── visu-data.ipynb
+├── requirements.txt
+└── screenshots
+    ├── dpe_conso_energie_moyenne_france_departement.png
+    └── dpe_estimation_GES_france_departement.png
+17 directories, 319 files
