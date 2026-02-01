@@ -1,0 +1,89 @@
+{
+  "name": "@socialgouv/cdtn-monolog",
+  "description": "CDTN log management : index logs and generate reports.",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./lib/index.js",
+  "sideEffects": false,
+  "version": "1.22.1",
+  "homepage": "https://github.com/SocialGouv/cdtn-monolog",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SocialGouv/cdtn-monolog.git"
+  },
+  "files": [
+    "lib"
+  ],
+  "license": "Apache-2.0",
+  "scripts": {
+    "dev": "jest --watch",
+    "lint": "eslint src/ --ext .ts --fix",
+    "test": "CDTN_API_URL=https://code-du-travail-numerique-preprod.ovh.fabrique.social.gouv.fr jest",
+    "test-one": "jest analysis --watch",
+    "monolog": "node -r ts-node/register --max-old-space-size=64000 src/bin/index.ts",
+    "build": "yarn run build:bin && yarn run build:lib",
+    "build:bin": "yarn run ncc build src/bin/index.ts -o bin",
+    "build:lib": "yarn tsc -p src/tsconfig.lib.json",
+    "start": "node ./bin/index.js",
+    "check:types": "tsc"
+  },
+  "dependencies": {
+    "@elastic/elasticsearch": "8.13.1",
+    "@socialgouv/cdtn-logger": "^1.10.4",
+    "@socialgouv/cdtn-sources": "^4.55.1",
+    "data-forge": "^1.8.26",
+    "data-forge-fs": "^0.0.9",
+    "date-fns": "^2.25.0",
+    "esm": "^3.2.25",
+    "fp-ts": "^2.11.5",
+    "murmurhash-js": "^1.0.0",
+    "node-fetch": "^2.6.6",
+    "p-queue": "^6.6.2",
+    "stream-json": "^1.9.1",
+    "winston": "^3.3.3",
+    "yargs": "^17.2.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.8",
+    "@babel/preset-env": "^7.14.9",
+    "@socialgouv/eslint-config-recommended": "^1.84.3",
+    "@types/jest": "^27.0.2",
+    "@types/murmurhash-js": "^1.0.3",
+    "@types/node-fetch": "^2.6.11",
+    "@typescript-eslint/eslint-plugin": "^4.28.5",
+    "@typescript-eslint/parser": "^4.28.5",
+    "@vercel/ncc": "0.38.4",
+    "eslint": "^7.32.0",
+    "esm": "^3.2.25",
+    "husky": "^7.0.4",
+    "jest": "^27.0.6",
+    "prettier": "^2.3.2",
+    "ts-jest": "^27.0.7",
+    "ts-node": "^10.1.0",
+    "typescript": "4.3.5"
+  },
+  "jest": {
+    "testTimeout": 30000,
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.test.tsx?$",
+    "moduleFileExtensions": [
+      "js",
+      "ts",
+      "json"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "eslint src/ --ext .ts"
+    }
+  },
+  "volta": {
+    "node": "20.3.1"
+  }
+}
