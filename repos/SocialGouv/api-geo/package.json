@@ -1,0 +1,63 @@
+{
+  "name": "@etalab/api-geo",
+  "version": "2.0.1",
+  "description": "Interroger les référentiels géographiques plus facilement",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/etalab/api-geo.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "lodash": "^4.17.11",
+    "lunr": "1.0.0",
+    "morgan": "^1.9.1",
+    "rbush": "^2.0.1"
+  },
+  "devDependencies": {
+    "@etalab/decoupage-administratif": "^2.0.0",
+    "@turf/area": "^6.0.1",
+    "@turf/point-on-feature": "^6.0.2",
+    "@turf/truncate": "^6.0.1",
+    "benchmark": "^2.1.0",
+    "codecov": "^3.5.0",
+    "debug": "^4.1.1",
+    "expect.js": "^0.3.1",
+    "mocha": "^5.2.0",
+    "nyc": "^13.3.0",
+    "supertest": "^3.4.2",
+    "xo": "^0.24.0"
+  },
+  "scripts": {
+    "bench": "DEBUG=store,bench node bench",
+    "lint": "xo",
+    "start": "node --max_old_space_size=2048 server",
+    "test": "NODE_OPTIONS=--max_old_space_size=2048 nyc mocha --exit --timeout 5000",
+    "download-sources": "./download-sources.sh",
+    "build-only": "node --max_old_space_size=4096 build",
+    "build": "yarn download-sources && yarn build-only"
+  },
+  "xo": {
+    "semicolon": false,
+    "space": 2,
+    "rules": {
+      "no-path-concat": "off",
+      "unicorn/filename-case": "off",
+      "import/order": "off",
+      "no-return-assign": "off",
+      "ava/no-import-test-files": "off"
+    },
+    "ignores": "test/*.js"
+  },
+  "engines": {
+    "node": ">= 10"
+  },
+  "contributors": [
+    "Jérôme Desboeufs <jerome.desboeufs@data.gouv.fr>",
+    "Théophile Merlière <theophile.merliere@data.gouv.fr>"
+  ],
+  "license": "MIT"
+}
