@@ -1,0 +1,858 @@
+.
+├── .cursor
+│   └── rules
+│       └── django-python.mdc
+├── .dockerignore
+├── .github
+│   ├── ISSUE_TEMPLATE
+│   │   ├── Bug_report.md
+│   │   ├── Feature_request.md
+│   │   └── Support_question.md
+│   ├── ISSUE_TEMPLATE.md
+│   ├── PULL_REQUEST_TEMPLATE.md
+│   └── workflows
+│       ├── crowdin_download.yml
+│       ├── crowdin_upload.yml
+│       ├── docker-hub.yml
+│       ├── drive-frontend.yml
+│       ├── drive.yml
+│       ├── front-dependencies-installation.yml
+│       ├── helmfile-linter.yaml
+│       └── release-helm-chart.yaml
+├── .gitignore
+├── .gitlint
+├── CHANGELOG.md
+├── CODE_OF_CONDUCT.md
+├── CONTRIBUTING.md
+├── Dockerfile
+├── LICENSE
+├── Makefile
+├── Procfile
+├── README.md
+├── SECURITY.md
+├── bin
+│   ├── Tiltfile
+│   ├── _config.sh
+│   ├── clear_db_e2e.sql
+│   ├── compose
+│   ├── fernetkey
+│   ├── manage
+│   ├── postgres_e2e
+│   ├── pylint
+│   ├── pytest
+│   ├── scalingo_pgdump.sh
+│   ├── scalingo_postcompile
+│   ├── scalingo_postfrontend
+│   ├── scalingo_run_web
+│   ├── start-kind.sh
+│   ├── update_app_cacert.sh
+│   └── update_openapi_schema
+├── compose.yaml
+├── cron.json
+├── docker
+│   ├── auth
+│   │   └── realm.json
+│   ├── files
+│   │   ├── development
+│   │   │   ├── ds_proxy
+│   │   │   │   ├── PASSWORD
+│   │   │   │   └── keyring.toml
+│   │   │   └── etc
+│   │   │       └── nginx
+│   │   │           └── conf.d
+│   │   │               └── default.conf
+│   │   ├── etc
+│   │   │   └── nginx
+│   │   │       └── conf.d
+│   │   │           └── default.conf
+│   │   ├── production
+│   │   │   └── etc
+│   │   │       └── nginx
+│   │   │           └── conf.d
+│   │   │               └── default.conf
+│   │   └── usr
+│   │       └── local
+│   │           ├── bin
+│   │           │   └── entrypoint
+│   │           └── etc
+│   │               └── gunicorn
+│   │                   └── drive.py
+│   └── onlyoffice
+│       ├── local-development.json
+│       └── log4js
+│           └── production.json
+├── docs
+│   ├── architecture.md
+│   ├── assets
+│   │   ├── banner-drive.png
+│   │   └── drive-UI.png
+│   ├── ds_proxy.md
+│   ├── entitlements.md
+│   ├── env.md
+│   ├── examples
+│   │   └── helm
+│   │       ├── drive.values.yaml
+│   │       ├── keycloak.values.yaml
+│   │       ├── minio.values.yaml
+│   │       ├── postgresql.values.yaml
+│   │       └── redis.values.yaml
+│   ├── installation
+│   │   ├── README.md
+│   │   └── kubernetes.md
+│   ├── metrics.md
+│   ├── release.md
+│   ├── resource_server.md
+│   ├── setup-find.md
+│   └── theming.md
+├── env.d
+│   └── development
+│       ├── common
+│       ├── crowdin
+│       ├── kc_postgresql
+│       ├── postgresql
+│       └── postgresql.e2e
+├── gitlint
+│   └── gitlint_emoji.py
+├── renovate.json
+└── src
+    ├── backend
+    │   ├── .pylintrc
+    │   ├── MANIFEST.in
+    │   ├── __init__.py
+    │   ├── core
+    │   │   ├── __init__.py
+    │   │   ├── admin.py
+    │   │   ├── api
+    │   │   │   ├── __init__.py
+    │   │   │   ├── fields.py
+    │   │   │   ├── filters.py
+    │   │   │   ├── permissions.py
+    │   │   │   ├── serializers.py
+    │   │   │   ├── utils.py
+    │   │   │   └── viewsets.py
+    │   │   ├── apps.py
+    │   │   ├── authentication
+    │   │   │   ├── __init__.py
+    │   │   │   ├── backends.py
+    │   │   │   ├── exceptions.py
+    │   │   │   └── views.py
+    │   │   ├── entitlements
+    │   │   │   ├── __init__.py
+    │   │   │   ├── anct_entitlements_backend.py
+    │   │   │   ├── dummy_entitlements_backend.py
+    │   │   │   └── entitlements_backend.py
+    │   │   ├── enums.py
+    │   │   ├── external_api
+    │   │   │   ├── permissions.py
+    │   │   │   └── viewsets.py
+    │   │   ├── factories.py
+    │   │   ├── malware_detection.py
+    │   │   ├── management
+    │   │   │   └── commands
+    │   │   │       ├── __init__.py
+    │   │   │       ├── bucket_cors.py
+    │   │   │       ├── createsuperuser.py
+    │   │   │       ├── index.py
+    │   │   │       ├── sync_item_numchild.py
+    │   │   │       └── update_suspicious_item_file_hash.py
+    │   │   ├── migrations
+    │   │   │   ├── 00006_create_pg_trgm_extension.py
+    │   │   │   ├── 0001_initial.py
+    │   │   │   ├── 0002_item_mimetype_alter_user_language.py
+    │   │   │   ├── 0003_item_main_workspace_alter_user_language.py
+    │   │   │   ├── 0004_item_size.py
+    │   │   │   ├── 0005_item_description.py
+    │   │   │   ├── 0007_item_hard_deleted_at.py
+    │   │   │   ├── 0008_alter_item_options_and_more.py
+    │   │   │   ├── 0009_alter_user_language.py
+    │   │   │   ├── 0010_alter_item_upload_state.py
+    │   │   │   ├── 0011_update_items_upload_state_value.py
+    │   │   │   ├── 0012_item_malware_detection_info.py
+    │   │   │   ├── 0013_active_unnaccent_postgres_extension.py
+    │   │   │   ├── 0014_alter_user_language.py
+    │   │   │   ├── 0015_user_claims_alter_user_language.py
+    │   │   │   └── __init__.py
+    │   │   ├── models.py
+    │   │   ├── services
+    │   │   │   ├── __init__.py
+    │   │   │   ├── sdk_relay.py
+    │   │   │   └── search_indexers.py
+    │   │   ├── signals.py
+    │   │   ├── storage
+    │   │   │   ├── __init__.py
+    │   │   │   ├── creator_storage_compute_backend.py
+    │   │   │   └── storage_compute_backend.py
+    │   │   ├── tasks
+    │   │   │   ├── item.py
+    │   │   │   └── search.py
+    │   │   ├── templates
+    │   │   │   └── core
+    │   │   │       └── generate_document.html
+    │   │   ├── templatetags
+    │   │   │   ├── __init__.py
+    │   │   │   └── extra_tags.py
+    │   │   ├── tests
+    │   │   │   ├── __init__.py
+    │   │   │   ├── authentication
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   ├── test_backends.py
+    │   │   │   │   └── test_views.py
+    │   │   │   ├── commands
+    │   │   │   │   ├── test_index.py
+    │   │   │   │   ├── test_sync_item_numchild.py
+    │   │   │   │   └── test_update_suspicious_item_file_hash.py
+    │   │   │   ├── conftest.py
+    │   │   │   ├── external_api
+    │   │   │   │   ├── items
+    │   │   │   │   │   ├── __init__.py
+    │   │   │   │   │   ├── test_external_api_items.py
+    │   │   │   │   │   └── test_external_api_users.py
+    │   │   │   │   ├── metrics
+    │   │   │   │   │   └── test_external_api_usage_metrics.py
+    │   │   │   │   └── test_external_api_users.py
+    │   │   │   ├── items
+    │   │   │   │   ├── test_api_item_accesses.py
+    │   │   │   │   ├── test_api_item_accesses_create.py
+    │   │   │   │   ├── test_api_item_invitations.py
+    │   │   │   │   ├── test_api_item_upload_ended.py
+    │   │   │   │   ├── test_api_items_breadcrumb.py
+    │   │   │   │   ├── test_api_items_children_create.py
+    │   │   │   │   ├── test_api_items_children_list.py
+    │   │   │   │   ├── test_api_items_children_ordering.py
+    │   │   │   │   ├── test_api_items_create.py
+    │   │   │   │   ├── test_api_items_delete.py
+    │   │   │   │   ├── test_api_items_favorite.py
+    │   │   │   │   ├── test_api_items_favorite_list.py
+    │   │   │   │   ├── test_api_items_hard_delete.py
+    │   │   │   │   ├── test_api_items_link_configuration.py
+    │   │   │   │   ├── test_api_items_list.py
+    │   │   │   │   ├── test_api_items_list_filters.py
+    │   │   │   │   ├── test_api_items_list_ordering.py
+    │   │   │   │   ├── test_api_items_media_auth.py
+    │   │   │   │   ├── test_api_items_move.py
+    │   │   │   │   ├── test_api_items_restore.py
+    │   │   │   │   ├── test_api_items_retrieve.py
+    │   │   │   │   ├── test_api_items_search.py
+    │   │   │   │   ├── test_api_items_search_fulltext.py
+    │   │   │   │   ├── test_api_items_trashbin.py
+    │   │   │   │   ├── test_api_items_tree.py
+    │   │   │   │   ├── test_api_items_update.py
+    │   │   │   │   └── test_api_items_wopi.py
+    │   │   │   ├── swagger
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   └── test_openapi_schema.py
+    │   │   │   ├── tasks
+    │   │   │   │   └── items
+    │   │   │   │       ├── test_process_deletion.py
+    │   │   │   │       ├── test_rename_file.py
+    │   │   │   │       └── test_update_suspicious_item_file_hash.py
+    │   │   │   ├── test_api_config.py
+    │   │   │   ├── test_api_entitlements.py
+    │   │   │   ├── test_api_entitlements_anct.py
+    │   │   │   ├── test_api_sdk_relay.py
+    │   │   │   ├── test_api_users.py
+    │   │   │   ├── test_api_utils_detect_mimetype.py
+    │   │   │   ├── test_api_utils_filter_root_paths.py
+    │   │   │   ├── test_api_utils_flat_to_nested.py
+    │   │   │   ├── test_api_utils_is_previewable_item.py
+    │   │   │   ├── test_malware_detection.py
+    │   │   │   ├── test_models_invitations.py
+    │   │   │   ├── test_models_item_accesses.py
+    │   │   │   ├── test_models_items.py
+    │   │   │   ├── test_models_items_indexer.py
+    │   │   │   ├── test_models_items_root.py
+    │   │   │   ├── test_models_users.py
+    │   │   │   ├── test_services_search_indexers.py
+    │   │   │   ├── test_settings.py
+    │   │   │   └── utils
+    │   │   │       └── urls.py
+    │   │   ├── urls.py
+    │   │   └── utils
+    │   │       └── item_title.py
+    │   ├── demo
+    │   │   ├── __init__.py
+    │   │   ├── defaults.py
+    │   │   ├── management
+    │   │   │   ├── __init__.py
+    │   │   │   └── commands
+    │   │   │       ├── __init__.py
+    │   │   │       └── create_demo.py
+    │   │   └── tests
+    │   │       ├── __init__.py
+    │   │       └── test_commands_create_demo.py
+    │   ├── drive
+    │   │   ├── __init__.py
+    │   │   ├── celery_app.py
+    │   │   ├── configuration
+    │   │   │   └── theme
+    │   │   │       └── default.json
+    │   │   ├── settings.py
+    │   │   ├── urls.py
+    │   │   └── wsgi.py
+    │   ├── e2e
+    │   │   ├── __init__.py
+    │   │   ├── management
+    │   │   │   └── commands
+    │   │   │       ├── __init__.py
+    │   │   │       └── e2e_fixture_search.py
+    │   │   ├── serializers.py
+    │   │   ├── tests
+    │   │   │   └── test_api_e2e.py
+    │   │   ├── urls.py
+    │   │   ├── utils.py
+    │   │   └── viewsets.py
+    │   ├── locale
+    │   │   ├── de_DE
+    │   │   │   └── LC_MESSAGES
+    │   │   │       └── django.po
+    │   │   ├── en_US
+    │   │   │   └── LC_MESSAGES
+    │   │   │       └── django.po
+    │   │   ├── fr_FR
+    │   │   │   └── LC_MESSAGES
+    │   │   │       └── django.po
+    │   │   └── nl_NL
+    │   │       └── LC_MESSAGES
+    │   │           └── django.po
+    │   ├── manage.py
+    │   ├── pyproject.toml
+    │   ├── uv.lock
+    │   └── wopi
+    │       ├── __init__.py
+    │       ├── apps.py
+    │       ├── authentication.py
+    │       ├── management
+    │       │   └── commands
+    │       │       ├── __init__.py
+    │       │       └── trigger_wopi_configuration.py
+    │       ├── migrations
+    │       │   └── __init__.py
+    │       ├── permissions.py
+    │       ├── routers.py
+    │       ├── services
+    │       │   ├── __init__.py
+    │       │   ├── access.py
+    │       │   └── lock.py
+    │       ├── tasks
+    │       │   ├── __init__.py
+    │       │   └── configure_wopi.py
+    │       ├── tests
+    │       │   ├── __init__.py
+    │       │   ├── conftest.py
+    │       │   ├── management_commands
+    │       │   │   ├── __init__.py
+    │       │   │   └── test_trigger_wopi_configuration.py
+    │       │   ├── services
+    │       │   │   ├── __init__.py
+    │       │   │   ├── test_access.py
+    │       │   │   └── test_lock.py
+    │       │   ├── tasks
+    │       │   │   ├── __init__.py
+    │       │   │   └── test_configure_wopi.py
+    │       │   ├── test_settings.py
+    │       │   ├── test_utils.py
+    │       │   └── viewset
+    │       │       ├── __init__.py
+    │       │       ├── test_check_file_info.py
+    │       │       ├── test_get_file_content.py
+    │       │       ├── test_get_lock.py
+    │       │       ├── test_lock.py
+    │       │       ├── test_put_file_content.py
+    │       │       ├── test_refresh_lock.py
+    │       │       ├── test_rename.py
+    │       │       ├── test_unlock.py
+    │       │       └── test_unlock_and_relock.py
+    │       ├── urls.py
+    │       ├── utils
+    │       │   └── __init__.py
+    │       └── viewsets.py
+    ├── frontend
+    │   ├── Dockerfile
+    │   ├── apps
+    │   │   ├── drive
+    │   │   │   ├── .env
+    │   │   │   ├── .env.development
+    │   │   │   ├── .gitignore
+    │   │   │   ├── README.md
+    │   │   │   ├── __mocks__
+    │   │   │   │   └── fileMock.js
+    │   │   │   ├── conf
+    │   │   │   │   └── default.conf
+    │   │   │   ├── cunningham.ts
+    │   │   │   ├── eslint.config.mjs
+    │   │   │   ├── jest.config.ts
+    │   │   │   ├── next.config.ts
+    │   │   │   ├── package.json
+    │   │   │   ├── public
+    │   │   │   │   ├── assets
+    │   │   │   │   │   ├── 401-background.png
+    │   │   │   │   │   ├── 403-background.png
+    │   │   │   │   │   ├── anct_favicon.png
+    │   │   │   │   │   ├── anct_logo-icon.svg
+    │   │   │   │   │   ├── anct_logo_alpha.svg
+    │   │   │   │   │   ├── anct_logo_beta.svg
+    │   │   │   │   │   ├── favicon.png
+    │   │   │   │   │   ├── logo-icon_alpha.svg
+    │   │   │   │   │   ├── logo-icon_beta.svg
+    │   │   │   │   │   ├── logo-suite-numerique.png
+    │   │   │   │   │   ├── logo_alpha.svg
+    │   │   │   │   │   └── logo_beta.svg
+    │   │   │   │   └── mime-video.svg
+    │   │   │   ├── src
+    │   │   │   │   ├── assets
+    │   │   │   │   │   ├── empty-selection.png
+    │   │   │   │   │   ├── feedback
+    │   │   │   │   │   │   ├── form.svg
+    │   │   │   │   │   │   ├── tchap.svg
+    │   │   │   │   │   │   └── visio.svg
+    │   │   │   │   │   ├── files
+    │   │   │   │   │   │   └── icons
+    │   │   │   │   │   │       ├── mime-archive-mini.svg
+    │   │   │   │   │   │       ├── mime-archive.svg
+    │   │   │   │   │   │       ├── mime-audio-mini.svg
+    │   │   │   │   │   │       ├── mime-audio.svg
+    │   │   │   │   │   │       ├── mime-calc-mini.svg
+    │   │   │   │   │   │       ├── mime-calc.svg
+    │   │   │   │   │   │       ├── mime-doc-mini.svg
+    │   │   │   │   │   │       ├── mime-doc.svg
+    │   │   │   │   │   │       ├── mime-folder-mini.svg
+    │   │   │   │   │   │       ├── mime-grist-mini.svg
+    │   │   │   │   │   │       ├── mime-grist.svg
+    │   │   │   │   │   │       ├── mime-image-mini.svg
+    │   │   │   │   │   │       ├── mime-image.svg
+    │   │   │   │   │   │       ├── mime-other-mini.svg
+    │   │   │   │   │   │       ├── mime-other.svg
+    │   │   │   │   │   │       ├── mime-pdf-mini.svg
+    │   │   │   │   │   │       ├── mime-pdf.svg
+    │   │   │   │   │   │       ├── mime-powerpoint-mini.svg
+    │   │   │   │   │   │       ├── mime-powerpoint.svg
+    │   │   │   │   │   │       ├── mime-sqlite-mini.svg
+    │   │   │   │   │   │       ├── mime-sqlite.svg
+    │   │   │   │   │   │       ├── mime-video-mini.svg
+    │   │   │   │   │   │       ├── mime-video.svg
+    │   │   │   │   │   │       └── suspicious_file.svg
+    │   │   │   │   │   ├── folder
+    │   │   │   │   │   │   ├── folder-tiny-perso.svg
+    │   │   │   │   │   │   ├── folder-tiny-public.svg
+    │   │   │   │   │   │   ├── folder-tiny-shared.svg
+    │   │   │   │   │   │   └── folder.svg
+    │   │   │   │   │   ├── grid_empty.png
+    │   │   │   │   │   ├── grid_empty.svg
+    │   │   │   │   │   ├── home
+    │   │   │   │   │   │   └── banner.png
+    │   │   │   │   │   ├── icons
+    │   │   │   │   │   │   ├── add_folder.svg
+    │   │   │   │   │   │   ├── cancel.svg
+    │   │   │   │   │   │   ├── cancel_blue.svg
+    │   │   │   │   │   │   ├── create_folder.svg
+    │   │   │   │   │   │   ├── create_workspace.svg
+    │   │   │   │   │   │   ├── delete_filled.svg
+    │   │   │   │   │   │   ├── folder-tiny-plus.svg
+    │   │   │   │   │   │   ├── import_icon.svg
+    │   │   │   │   │   │   ├── info.svg
+    │   │   │   │   │   │   ├── settings.svg
+    │   │   │   │   │   │   ├── trash.svg
+    │   │   │   │   │   │   ├── undo.svg
+    │   │   │   │   │   │   ├── undo_blue.svg
+    │   │   │   │   │   │   ├── upload_file.svg
+    │   │   │   │   │   │   └── upload_folder.svg
+    │   │   │   │   │   ├── logo-gouv.svg
+    │   │   │   │   │   ├── logo-icon.svg
+    │   │   │   │   │   ├── logo.svg
+    │   │   │   │   │   ├── mutliple-selection.png
+    │   │   │   │   │   ├── search-dev.png
+    │   │   │   │   │   ├── tree
+    │   │   │   │   │   │   ├── folder.svg
+    │   │   │   │   │   │   ├── main-workspace.svg
+    │   │   │   │   │   │   └── workspace.svg
+    │   │   │   │   │   └── workspace_logo.svg
+    │   │   │   │   ├── features
+    │   │   │   │   │   ├── analytics
+    │   │   │   │   │   │   └── AnalyticsProvider.tsx
+    │   │   │   │   │   ├── api
+    │   │   │   │   │   │   ├── APIError.ts
+    │   │   │   │   │   │   ├── fetchApi.ts
+    │   │   │   │   │   │   └── utils.ts
+    │   │   │   │   │   ├── auth
+    │   │   │   │   │   │   ├── Auth.tsx
+    │   │   │   │   │   │   ├── components
+    │   │   │   │   │   │   │   ├── LoginButton.tsx
+    │   │   │   │   │   │   │   └── LogoutButton.tsx
+    │   │   │   │   │   │   └── types.ts
+    │   │   │   │   │   ├── config
+    │   │   │   │   │   │   ├── Config.ts
+    │   │   │   │   │   │   ├── ConfigProvider.tsx
+    │   │   │   │   │   │   └── useApiConfig.ts
+    │   │   │   │   │   ├── drivers
+    │   │   │   │   │   │   ├── DTOs
+    │   │   │   │   │   │   │   ├── AccessesDTO.ts
+    │   │   │   │   │   │   │   └── InvitationDTO.ts
+    │   │   │   │   │   │   ├── Driver.ts
+    │   │   │   │   │   │   ├── implementations
+    │   │   │   │   │   │   │   ├── DummyDriver.ts
+    │   │   │   │   │   │   │   ├── ResanaDriver.ts
+    │   │   │   │   │   │   │   └── StandardDriver.ts
+    │   │   │   │   │   │   ├── types.ts
+    │   │   │   │   │   │   └── utils.tsx
+    │   │   │   │   │   ├── errors
+    │   │   │   │   │   │   └── AppError.ts
+    │   │   │   │   │   ├── explorer
+    │   │   │   │   │   │   ├── api
+    │   │   │   │   │   │   │   ├── useAccesses.tsx
+    │   │   │   │   │   │   │   └── useMoveItem.tsx
+    │   │   │   │   │   │   ├── components
+    │   │   │   │   │   │   │   ├── Draggable.tsx
+    │   │   │   │   │   │   │   ├── Droppable.tsx
+    │   │   │   │   │   │   │   ├── ExplorerDndProvider.tsx
+    │   │   │   │   │   │   │   ├── GlobalExplorerContext.tsx
+    │   │   │   │   │   │   │   ├── app-view
+    │   │   │   │   │   │   │   │   ├── AppExplorer.scss
+    │   │   │   │   │   │   │   │   ├── AppExplorer.tsx
+    │   │   │   │   │   │   │   │   ├── AppExplorerBreadcrumbs.tsx
+    │   │   │   │   │   │   │   │   ├── AppExplorerGrid.tsx
+    │   │   │   │   │   │   │   │   ├── AppExplorerInner.tsx
+    │   │   │   │   │   │   │   │   ├── ExplorerFilters.scss
+    │   │   │   │   │   │   │   │   ├── ExplorerFilters.tsx
+    │   │   │   │   │   │   │   │   ├── ExplorerSearchButton.tsx
+    │   │   │   │   │   │   │   │   └── ExplorerSelectionBar.tsx
+    │   │   │   │   │   │   │   ├── embedded-explorer
+    │   │   │   │   │   │   │   │   ├── EmbeddedExplorer.scss
+    │   │   │   │   │   │   │   │   ├── EmbeddedExplorer.tsx
+    │   │   │   │   │   │   │   │   ├── EmbeddedExplorerGrid.tsx
+    │   │   │   │   │   │   │   │   ├── EmbeddedExplorerGridActionsCell.tsx
+    │   │   │   │   │   │   │   │   ├── EmbeddedExplorerGridBreadcrumbs.tsx
+    │   │   │   │   │   │   │   │   ├── EmbeddedExplorerGridMobileCell.tsx
+    │   │   │   │   │   │   │   │   ├── EmbeddedExplorerGridNameCell.tsx
+    │   │   │   │   │   │   │   │   ├── EmbeddedExplorerGridUpdatedAtCell.tsx
+    │   │   │   │   │   │   │   │   └── hooks.tsx
+    │   │   │   │   │   │   │   ├── icons
+    │   │   │   │   │   │   │   │   ├── ItemIcon.scss
+    │   │   │   │   │   │   │   │   └── ItemIcon.tsx
+    │   │   │   │   │   │   │   ├── item-actions
+    │   │   │   │   │   │   │   │   ├── ImportDropdown.tsx
+    │   │   │   │   │   │   │   │   └── ItemActionDropdown.tsx
+    │   │   │   │   │   │   │   ├── modals
+    │   │   │   │   │   │   │   │   ├── ExplorerCreateFolderModal.tsx
+    │   │   │   │   │   │   │   │   ├── ExplorerRenameItemModal.tsx
+    │   │   │   │   │   │   │   │   ├── HardDeleteConfirmationModal.tsx
+    │   │   │   │   │   │   │   │   ├── move
+    │   │   │   │   │   │   │   │   │   ├── AddFolderButton.tsx
+    │   │   │   │   │   │   │   │   │   ├── ExplorerMoveFolderModal.scss
+    │   │   │   │   │   │   │   │   │   └── ExplorerMoveFolderModal.tsx
+    │   │   │   │   │   │   │   │   ├── search
+    │   │   │   │   │   │   │   │   │   ├── ExplorerSearchModal.scss
+    │   │   │   │   │   │   │   │   │   └── ExplorerSearchModal.tsx
+    │   │   │   │   │   │   │   │   ├── share
+    │   │   │   │   │   │   │   │   │   ├── FileShareModal.tsx
+    │   │   │   │   │   │   │   │   │   └── WorkspaceShareModal.tsx
+    │   │   │   │   │   │   │   │   └── workspaces
+    │   │   │   │   │   │   │   │       ├── ExplorerCreateWorkspaceModal.tsx
+    │   │   │   │   │   │   │   │       ├── ExplorerEditWorkspaceModal.tsx
+    │   │   │   │   │   │   │   │       └── WorkspaceForm.tsx
+    │   │   │   │   │   │   │   ├── right-panel
+    │   │   │   │   │   │   │   │   ├── ExplorerRightPanel.scss
+    │   │   │   │   │   │   │   │   └── ExplorerRightPanelContent.tsx
+    │   │   │   │   │   │   │   ├── toasts
+    │   │   │   │   │   │   │   │   ├── FileUploadToast.tsx
+    │   │   │   │   │   │   │   │   └── addItemsMovedToast.tsx
+    │   │   │   │   │   │   │   ├── trash
+    │   │   │   │   │   │   │   │   ├── ExplorerGridTrashActionsCell.tsx
+    │   │   │   │   │   │   │   │   └── utils.tsx
+    │   │   │   │   │   │   │   ├── tree
+    │   │   │   │   │   │   │   │   ├── DroppableNodeTree.tsx
+    │   │   │   │   │   │   │   │   ├── ExploreDragOverlay.tsx
+    │   │   │   │   │   │   │   │   ├── ExplorerTree.scss
+    │   │   │   │   │   │   │   │   ├── ExplorerTree.tsx
+    │   │   │   │   │   │   │   │   ├── ExplorerTreeActions.tsx
+    │   │   │   │   │   │   │   │   ├── ExplorerTreeItem.tsx
+    │   │   │   │   │   │   │   │   ├── ExplorerTreeItemActions.tsx
+    │   │   │   │   │   │   │   │   ├── ExplorerTreeMoveConfirmationModal.tsx
+    │   │   │   │   │   │   │   │   ├── hooks
+    │   │   │   │   │   │   │   │   │   ├── useAddTreeNode.tsx
+    │   │   │   │   │   │   │   │   │   └── useDeleteTreeNode.tsx
+    │   │   │   │   │   │   │   │   └── nav
+    │   │   │   │   │   │   │   │       ├── ExplorerTreeNav.tsx
+    │   │   │   │   │   │   │   │       └── ExplorerTreeNavItem.tsx
+    │   │   │   │   │   │   │   └── workspaces-explorer
+    │   │   │   │   │   │   │       └── WorkspacesExplorer.tsx
+    │   │   │   │   │   │   ├── constants.ts
+    │   │   │   │   │   │   ├── hooks
+    │   │   │   │   │   │   │   ├── useBreadcrumb.tsx
+    │   │   │   │   │   │   │   ├── useDeleteItem.tsx
+    │   │   │   │   │   │   │   ├── useInfiniteChildren.ts
+    │   │   │   │   │   │   │   ├── useInfiniteItems.ts
+    │   │   │   │   │   │   │   ├── useMutations.ts
+    │   │   │   │   │   │   │   ├── useQueries.tsx
+    │   │   │   │   │   │   │   ├── useTableKeyboardNavigation.ts
+    │   │   │   │   │   │   │   └── useUpload.tsx
+    │   │   │   │   │   │   └── utils
+    │   │   │   │   │   │       ├── __tests__
+    │   │   │   │   │   │       │   └── mimeTypes.test.ts
+    │   │   │   │   │   │       ├── mimeTypes.ts
+    │   │   │   │   │   │       └── utils.ts
+    │   │   │   │   │   ├── feedback
+    │   │   │   │   │   │   ├── Feedback.scss
+    │   │   │   │   │   │   ├── Feedback.tsx
+    │   │   │   │   │   │   └── useMessagesWidget.tsx
+    │   │   │   │   │   ├── forms
+    │   │   │   │   │   │   └── components
+    │   │   │   │   │   │       └── RhfInput.tsx
+    │   │   │   │   │   ├── i18n
+    │   │   │   │   │   │   ├── conf.ts
+    │   │   │   │   │   │   ├── initI18n.ts
+    │   │   │   │   │   │   ├── translations.json
+    │   │   │   │   │   │   └── utils.ts
+    │   │   │   │   │   ├── items
+    │   │   │   │   │   │   ├── components
+    │   │   │   │   │   │   │   ├── ItemInfo.scss
+    │   │   │   │   │   │   │   └── ItemInfo.tsx
+    │   │   │   │   │   │   ├── hooks
+    │   │   │   │   │   │   │   └── useDownloadItem.tsx
+    │   │   │   │   │   │   └── utils.ts
+    │   │   │   │   │   ├── layouts
+    │   │   │   │   │   │   └── components
+    │   │   │   │   │   │       ├── explorer
+    │   │   │   │   │   │       │   ├── ExplorerLayout.scss
+    │   │   │   │   │   │       │   └── ExplorerLayout.tsx
+    │   │   │   │   │   │       ├── global
+    │   │   │   │   │   │       │   ├── GlobalLayout.scss
+    │   │   │   │   │   │       │   └── GlobalLayout.tsx
+    │   │   │   │   │   │       ├── header
+    │   │   │   │   │   │       │   ├── Header.tsx
+    │   │   │   │   │   │       │   └── index.scss
+    │   │   │   │   │   │       ├── left-panel
+    │   │   │   │   │   │       │   ├── LeftPanelMobile.scss
+    │   │   │   │   │   │       │   └── LeftPanelMobile.tsx
+    │   │   │   │   │   │       ├── sdk
+    │   │   │   │   │   │       │   └── SdkLayout.tsx
+    │   │   │   │   │   │       └── simple
+    │   │   │   │   │   │           └── SimpleLayout.tsx
+    │   │   │   │   │   ├── sdk
+    │   │   │   │   │   │   ├── SdkPickerFooter.tsx
+    │   │   │   │   │   │   └── SdkRelayManager.ts
+    │   │   │   │   │   ├── ui
+    │   │   │   │   │   │   ├── components
+    │   │   │   │   │   │   │   ├── breadcrumbs
+    │   │   │   │   │   │   │   │   ├── Breadcrumbs.tsx
+    │   │   │   │   │   │   │   │   └── index.scss
+    │   │   │   │   │   │   │   ├── circular-progress
+    │   │   │   │   │   │   │   │   └── CircularProgress.tsx
+    │   │   │   │   │   │   │   ├── gaufre
+    │   │   │   │   │   │   │   │   └── Gaufre.tsx
+    │   │   │   │   │   │   │   ├── generic-disclaimer
+    │   │   │   │   │   │   │   │   ├── GenericDisclaimer.scss
+    │   │   │   │   │   │   │   │   └── GenericDisclaimer.tsx
+    │   │   │   │   │   │   │   ├── icon
+    │   │   │   │   │   │   │   │   └── Icon.tsx
+    │   │   │   │   │   │   │   ├── infinite-scroll
+    │   │   │   │   │   │   │   │   ├── InfiniteScroll.scss
+    │   │   │   │   │   │   │   │   ├── InfiniteScroll.tsx
+    │   │   │   │   │   │   │   │   └── index.ts
+    │   │   │   │   │   │   │   ├── info
+    │   │   │   │   │   │   │   │   ├── InfoRow.scss
+    │   │   │   │   │   │   │   │   └── InfoRow.tsx
+    │   │   │   │   │   │   │   ├── responsive
+    │   │   │   │   │   │   │   │   ├── ResponsiveDivs.tsx
+    │   │   │   │   │   │   │   │   └── index.scss
+    │   │   │   │   │   │   │   ├── spinner
+    │   │   │   │   │   │   │   │   ├── SpinnerPage.scss
+    │   │   │   │   │   │   │   │   └── SpinnerPage.tsx
+    │   │   │   │   │   │   │   ├── toaster
+    │   │   │   │   │   │   │   │   ├── Toaster.tsx
+    │   │   │   │   │   │   │   │   └── index.scss
+    │   │   │   │   │   │   │   └── user
+    │   │   │   │   │   │   │       └── UserProfile.tsx
+    │   │   │   │   │   │   ├── cunningham
+    │   │   │   │   │   │   │   └── useCunninghamTheme.ts
+    │   │   │   │   │   │   └── preview
+    │   │   │   │   │   │       ├── audio-player
+    │   │   │   │   │   │       │   ├── AudioPlayer.tsx
+    │   │   │   │   │   │       │   └── audio-player.scss
+    │   │   │   │   │   │       ├── components
+    │   │   │   │   │   │       │   ├── controls
+    │   │   │   │   │   │       │   │   ├── PreviewControls.scss
+    │   │   │   │   │   │       │   │   └── PreviewControls.tsx
+    │   │   │   │   │   │       │   ├── duration-bar
+    │   │   │   │   │   │       │   │   ├── DurationBar.scss
+    │   │   │   │   │   │       │   │   └── DurationBar.tsx
+    │   │   │   │   │   │       │   └── volume-bar
+    │   │   │   │   │   │       │       ├── VolumeBar.scss
+    │   │   │   │   │   │       │       └── VolumeBar.tsx
+    │   │   │   │   │   │       ├── error
+    │   │   │   │   │   │       │   ├── ErrorPreview.scss
+    │   │   │   │   │   │       │   └── ErrorPreview.tsx
+    │   │   │   │   │   │       ├── files-preview
+    │   │   │   │   │   │       │   ├── FilesPreview.tsx
+    │   │   │   │   │   │       │   └── files-preview.scss
+    │   │   │   │   │   │       ├── image-viewer
+    │   │   │   │   │   │       │   ├── ImageViewer.scss
+    │   │   │   │   │   │       │   └── ImageViewer.tsx
+    │   │   │   │   │   │       ├── not-supported
+    │   │   │   │   │   │       │   ├── NotSupportedPreview.scss
+    │   │   │   │   │   │       │   └── NotSupportedPreview.tsx
+    │   │   │   │   │   │       ├── pdf-preview
+    │   │   │   │   │   │       │   ├── PreviewPdf.tsx
+    │   │   │   │   │   │       │   └── pdf-preview.scss
+    │   │   │   │   │   │       ├── preview.scss
+    │   │   │   │   │   │       ├── suspicious
+    │   │   │   │   │   │       │   ├── SuspiciousPreview.scss
+    │   │   │   │   │   │       │   └── SuspiciousPreview.tsx
+    │   │   │   │   │   │       ├── video-player
+    │   │   │   │   │   │       │   ├── VideoPlayer.scss
+    │   │   │   │   │   │       │   └── VideoPlayer.tsx
+    │   │   │   │   │   │       └── wopi
+    │   │   │   │   │   │           ├── WopiEditor.scss
+    │   │   │   │   │   │           └── WopiEditor.tsx
+    │   │   │   │   │   └── users
+    │   │   │   │   │       ├── hooks
+    │   │   │   │   │       │   └── useUserQueries.tsx
+    │   │   │   │   │       └── types.ts
+    │   │   │   │   ├── hooks
+    │   │   │   │   │   ├── useCopyToClipboard.tsx
+    │   │   │   │   │   └── useThemeCustomization.tsx
+    │   │   │   │   ├── pages
+    │   │   │   │   │   ├── 401.tsx
+    │   │   │   │   │   ├── 403.tsx
+    │   │   │   │   │   ├── _app.tsx
+    │   │   │   │   │   ├── _document.tsx
+    │   │   │   │   │   ├── explorer
+    │   │   │   │   │   │   ├── items
+    │   │   │   │   │   │   │   ├── [id].tsx
+    │   │   │   │   │   │   │   ├── files
+    │   │   │   │   │   │   │   │   └── [id].tsx
+    │   │   │   │   │   │   │   ├── public.tsx
+    │   │   │   │   │   │   │   └── shared.tsx
+    │   │   │   │   │   │   └── trash
+    │   │   │   │   │   │       └── index.tsx
+    │   │   │   │   │   ├── index.scss
+    │   │   │   │   │   ├── index.tsx
+    │   │   │   │   │   └── sdk
+    │   │   │   │   │       ├── explorer
+    │   │   │   │   │       │   └── index.tsx
+    │   │   │   │   │       ├── index.scss
+    │   │   │   │   │       └── index.tsx
+    │   │   │   │   ├── styles
+    │   │   │   │   │   ├── cunningham-tokens-sass.scss
+    │   │   │   │   │   ├── cunningham-tokens.css
+    │   │   │   │   │   ├── cunningham-tokens.ts
+    │   │   │   │   │   └── globals.scss
+    │   │   │   │   └── utils
+    │   │   │   │       ├── entitlements.ts
+    │   │   │   │       ├── useLayout.tsx
+    │   │   │   │       └── useQueries.ts
+    │   │   │   ├── svg.d.ts
+    │   │   │   └── tsconfig.json
+    │   │   ├── e2e
+    │   │   │   ├── .gitignore
+    │   │   │   ├── __tests__
+    │   │   │   │   └── app-drive
+    │   │   │   │       ├── assets
+    │   │   │   │       │   ├── pv_cm.pdf
+    │   │   │   │       │   └── test-image.heic
+    │   │   │   │       ├── create-folder.spec.ts
+    │   │   │   │       ├── db.setup.ts
+    │   │   │   │       ├── delete-item-in-tree.spec.ts
+    │   │   │   │       ├── heic-file-preview.spec.ts
+    │   │   │   │       ├── item
+    │   │   │   │       │   └── right-content-info.spec.ts
+    │   │   │   │       ├── login.spec.ts
+    │   │   │   │       ├── search.spec.ts
+    │   │   │   │       ├── url-file-preview.spec.ts
+    │   │   │   │       ├── utils-common.ts
+    │   │   │   │       ├── utils-embedded-grid.ts
+    │   │   │   │       ├── utils-explorer.ts
+    │   │   │   │       ├── utils-item.ts
+    │   │   │   │       └── utils-tree.ts
+    │   │   │   ├── package.json
+    │   │   │   ├── playwright.config.ts
+    │   │   │   └── tsconfig.json
+    │   │   └── sdk-consumer
+    │   │       ├── .gitignore
+    │   │       ├── README.md
+    │   │       ├── eslint.config.js
+    │   │       ├── index.html
+    │   │       ├── package.json
+    │   │       ├── public
+    │   │       │   └── vite.svg
+    │   │       ├── src
+    │   │       │   ├── App.css
+    │   │       │   ├── App.tsx
+    │   │       │   ├── assets
+    │   │       │   │   └── react.svg
+    │   │       │   ├── index.css
+    │   │       │   ├── main.tsx
+    │   │       │   └── vite-env.d.ts
+    │   │       ├── tsconfig.app.json
+    │   │       ├── tsconfig.json
+    │   │       ├── tsconfig.node.json
+    │   │       └── vite.config.ts
+    │   ├── package.json
+    │   ├── packages
+    │   │   └── sdk
+    │   │       ├── .env.development
+    │   │       ├── .env.production
+    │   │       ├── CHANGELOG.md
+    │   │       ├── CONTRIBUTING.md
+    │   │       ├── README.md
+    │   │       ├── package.json
+    │   │       ├── public
+    │   │       │   └── vite.svg
+    │   │       ├── src
+    │   │       │   ├── Config.ts
+    │   │       │   ├── Picker.ts
+    │   │       │   ├── Types.ts
+    │   │       │   ├── index.ts
+    │   │       │   ├── utils.ts
+    │   │       │   └── vite-env.d.ts
+    │   │       ├── tsconfig.app.json
+    │   │       ├── tsconfig.json
+    │   │       ├── tsconfig.node.json
+    │   │       └── vite.config.ts
+    │   └── yarn.lock
+    ├── helm
+    │   ├── drive
+    │   │   ├── Chart.yaml
+    │   │   ├── README.md
+    │   │   ├── generate-readme.sh
+    │   │   ├── templates
+    │   │   │   ├── _helpers.tpl
+    │   │   │   ├── backend_celery_beat.yaml
+    │   │   │   ├── backend_celery_worker.yaml
+    │   │   │   ├── backend_cronjob_list.yaml
+    │   │   │   ├── backend_deployment.yaml
+    │   │   │   ├── backend_job.yml
+    │   │   │   ├── backend_job_configure_wopi.yaml
+    │   │   │   ├── backend_job_createsuperuser.yaml
+    │   │   │   ├── backend_job_migrate.yaml
+    │   │   │   ├── backend_svc.yaml
+    │   │   │   ├── frontend_deployment.yaml
+    │   │   │   ├── frontend_svc.yaml
+    │   │   │   ├── ingress.yaml
+    │   │   │   ├── ingress_admin.yaml
+    │   │   │   ├── ingress_media.yaml
+    │   │   │   ├── ingress_media_preview.yaml
+    │   │   │   ├── ingress_posthog.yaml
+    │   │   │   ├── ingress_posthog_assets.yaml
+    │   │   │   ├── media_svc.yaml
+    │   │   │   ├── posthog_assets_svc.yaml
+    │   │   │   ├── posthog_svc.yaml
+    │   │   │   └── theme_customization_file_cm.yaml
+    │   │   └── values.yaml
+    │   ├── env.d
+    │   │   └── dev
+    │   │       └── values.drive.yaml.gotmpl
+    │   └── helmfile.yaml
+    ├── mail
+    │   ├── bin
+    │   │   ├── html-to-plain-text
+    │   │   └── mjml-to-html
+    │   ├── html-to-text.config.json
+    │   ├── mjml
+    │   │   ├── invitation.mjml
+    │   │   └── partial
+    │   │       └── header.mjml
+    │   ├── package.json
+    │   └── yarn.lock
+    └── nginx
+        └── servers.conf.erb
+224 directories, 633 files
