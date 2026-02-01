@@ -1,0 +1,954 @@
+.
+├── .editorconfig
+├── .github
+│   ├── ISSUE_TEMPLATE
+│   │   ├── anomalie.md
+│   │   └── fonctionnalité.md
+│   ├── dependabot.yml
+│   └── workflows
+│       ├── lint_test.yml
+│       ├── review_app_creation.yml
+│       └── review_app_removal.yml
+├── .gitignore
+├── .mise.toml
+├── .pre-commit-config.yaml
+├── django
+│   ├── .env.example
+│   ├── .python-version
+│   ├── Procfile
+│   ├── bin
+│   │   ├── clock.sh
+│   │   ├── post_compile
+│   │   └── post_deploy
+│   ├── core
+│   │   ├── __init__.py
+│   │   ├── admin.py
+│   │   ├── management
+│   │   │   ├── __init__.py
+│   │   │   └── commands
+│   │   │       ├── __init__.py
+│   │   │       └── collectivites_en_base.py
+│   │   ├── migrations
+│   │   │   ├── 0001_initial.py
+│   │   │   ├── 0002_rename_code_insee_collectivite_code_insee_unique.py
+│   │   │   ├── 0003_vuecollectiviteadhesionsdeep.py
+│   │   │   ├── 0004_viewcommuneadhesionsdeep.py
+│   │   │   ├── 0005_commune_collectivite_nouvelle_null_idx.py
+│   │   │   ├── 0006_delete_viewcollectiviteadhesionsdeep.py
+│   │   │   ├── 0007_alter_event_options.py
+│   │   │   └── __init__.py
+│   │   ├── models.py
+│   │   ├── settings.py
+│   │   ├── templates
+│   │   │   ├── 404.html
+│   │   │   └── collectivite.html
+│   │   ├── urls.py
+│   │   ├── views.py
+│   │   └── wsgi.py
+│   ├── manage.py
+│   ├── pyproject.toml
+│   ├── scalingo.json
+│   ├── scripts
+│   │   ├── activate_extensions.sql
+│   │   ├── backup_database.sh
+│   │   ├── drop_update_triggers.sql
+│   │   ├── grant_usage_and_privileges.sql
+│   │   ├── rclone.conf
+│   │   └── restore_database.sh
+│   ├── tests
+│   │   ├── __init__.py
+│   │   ├── conftest.py
+│   │   ├── core
+│   │   │   ├── __init__.py
+│   │   │   ├── test_models.py
+│   │   │   └── test_views.py
+│   │   ├── factories.py
+│   │   └── users
+│   │       ├── __init__.py
+│   │       ├── factories.py
+│   │       └── test_models.py
+│   ├── users
+│   │   ├── __init__.py
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── enums.py
+│   │   ├── migrations
+│   │   │   ├── 0001_initial.py
+│   │   │   ├── 0002_add_column_departements.py
+│   │   │   └── __init__.py
+│   │   └── models.py
+│   └── uv.lock
+├── nuxt
+│   ├── .editorconfig
+│   ├── .env.example
+│   ├── .eslintrc.js
+│   ├── .gitattributes
+│   ├── .slugignore
+│   ├── README.md
+│   ├── assets
+│   │   ├── README.md
+│   │   ├── data
+│   │   │   ├── DU_events.json
+│   │   │   ├── DataSources.json
+│   │   │   ├── EPCI_no_towns.json
+│   │   │   ├── EPCI_towns.json
+│   │   │   ├── GeoJSON
+│   │   │   │   ├── FRA.json
+│   │   │   │   ├── FRA_country.json
+│   │   │   │   ├── FRA_parsed.json
+│   │   │   │   └── pcaet-topo.json
+│   │   │   ├── GeoRisquesMap.json
+│   │   │   ├── INSEE
+│   │   │   │   └── departements_small.json
+│   │   │   ├── Regions.json
+│   │   │   ├── defaultSectionsOrder.json
+│   │   │   ├── departements-france.json
+│   │   │   └── events
+│   │   │       ├── CC_events.json
+│   │   │       ├── PLU_events.json
+│   │   │       └── SCOT_events.json
+│   │   ├── fonts
+│   │   │   ├── Marianne
+│   │   │   │   ├── fontes_desktop
+│   │   │   │   │   ├── Marianne-Bold.otf
+│   │   │   │   │   ├── Marianne-BoldItalic.otf
+│   │   │   │   │   ├── Marianne-ExtraBold.otf
+│   │   │   │   │   ├── Marianne-ExtraBoldItalic.otf
+│   │   │   │   │   ├── Marianne-Light.otf
+│   │   │   │   │   ├── Marianne-LightItalic.otf
+│   │   │   │   │   ├── Marianne-Medium.otf
+│   │   │   │   │   ├── Marianne-MediumItalic.otf
+│   │   │   │   │   ├── Marianne-Regular.otf
+│   │   │   │   │   ├── Marianne-RegularItalic.otf
+│   │   │   │   │   ├── Marianne-Thin.otf
+│   │   │   │   │   └── Marianne-ThinItalic.otf
+│   │   │   │   ├── fontes_web
+│   │   │   │   │   ├── Marianne-Bold.woff
+│   │   │   │   │   ├── Marianne-Bold.woff2
+│   │   │   │   │   ├── Marianne-Bold_Italic.woff
+│   │   │   │   │   ├── Marianne-Bold_Italic.woff2
+│   │   │   │   │   ├── Marianne-ExtraBold.woff
+│   │   │   │   │   ├── Marianne-ExtraBold.woff2
+│   │   │   │   │   ├── Marianne-ExtraBold_Italic.woff
+│   │   │   │   │   ├── Marianne-ExtraBold_Italic.woff2
+│   │   │   │   │   ├── Marianne-Light.woff
+│   │   │   │   │   ├── Marianne-Light.woff2
+│   │   │   │   │   ├── Marianne-Light_Italic.woff
+│   │   │   │   │   ├── Marianne-Light_Italic.woff2
+│   │   │   │   │   ├── Marianne-Medium.woff
+│   │   │   │   │   ├── Marianne-Medium.woff2
+│   │   │   │   │   ├── Marianne-Medium_Italic.woff
+│   │   │   │   │   ├── Marianne-Medium_Italic.woff2
+│   │   │   │   │   ├── Marianne-Regular.woff
+│   │   │   │   │   ├── Marianne-Regular.woff2
+│   │   │   │   │   ├── Marianne-Regular_Italic.woff
+│   │   │   │   │   ├── Marianne-Regular_Italic.woff2
+│   │   │   │   │   ├── Marianne-Thin.woff
+│   │   │   │   │   ├── Marianne-Thin.woff2
+│   │   │   │   │   ├── Marianne-Thin_Italic.woff
+│   │   │   │   │   └── Marianne-Thin_Italic.woff2
+│   │   │   │   └── pdfs
+│   │   │   │       ├── Marianne 11.01.46.pdf
+│   │   │   │       ├── Marianne Bold 11.01.46.pdf
+│   │   │   │       ├── Marianne Bold Italic 11.01.46.pdf
+│   │   │   │       ├── Marianne ExtraBold 11.01.46.pdf
+│   │   │   │       ├── Marianne ExtraBold Italic 11.01.46.pdf
+│   │   │   │       ├── Marianne Italic 11.01.46.pdf
+│   │   │   │       ├── Marianne Light 11.01.46.pdf
+│   │   │   │       ├── Marianne Light Italic 11.01.46.pdf
+│   │   │   │       ├── Marianne Medium 11.01.46.pdf
+│   │   │   │       ├── Marianne Medium Italic 11.01.46.pdf
+│   │   │   │       ├── Marianne Thin 11.01.46.pdf
+│   │   │   │       └── Marianne Thin Italic 11.01.46.pdf
+│   │   │   └── Spectral
+│   │   │       ├── OFL.txt
+│   │   │       ├── Spectral-Bold.ttf
+│   │   │       ├── Spectral-BoldItalic.ttf
+│   │   │       ├── Spectral-ExtraBold.ttf
+│   │   │       ├── Spectral-ExtraBoldItalic.ttf
+│   │   │       ├── Spectral-ExtraLight.ttf
+│   │   │       ├── Spectral-ExtraLightItalic.ttf
+│   │   │       ├── Spectral-Italic.ttf
+│   │   │       ├── Spectral-Light.ttf
+│   │   │       ├── Spectral-LightItalic.ttf
+│   │   │       ├── Spectral-Medium.ttf
+│   │   │       ├── Spectral-MediumItalic.ttf
+│   │   │       ├── Spectral-Regular.ttf
+│   │   │       ├── Spectral-SemiBold.ttf
+│   │   │       └── Spectral-SemiBoldItalic.ttf
+│   │   ├── friseActors.json
+│   │   ├── images
+│   │   │   ├── Republique_Francaise_RVB.png
+│   │   │   ├── icons
+│   │   │   │   ├── linkedin.svg
+│   │   │   │   └── verbatisme.svg
+│   │   │   ├── republique-francaise-short.svg
+│   │   │   └── republique-francaise.svg
+│   │   ├── picto
+│   │   │   ├── undraw_add_files.svg
+│   │   │   ├── undraw_cloud_files.svg
+│   │   │   ├── undraw_collaboration.svg
+│   │   │   ├── undraw_collaborators.svg
+│   │   │   ├── undraw_data_processing.svg
+│   │   │   ├── undraw_done_checking.svg
+│   │   │   ├── undraw_dropdown_menu.svg
+│   │   │   ├── undraw_file_analysis.svg
+│   │   │   ├── undraw_message_sent.svg
+│   │   │   ├── undraw_profile.svg
+│   │   │   ├── undraw_progress_indicator.svg
+│   │   │   ├── undraw_reviewed_docs.svg
+│   │   │   ├── undraw_search.svg
+│   │   │   └── undraw_wireframing.svg
+│   │   ├── sanitizeSchema.js
+│   │   ├── test
+│   │   │   └── sections.json
+│   │   └── variables.scss
+│   ├── components
+│   │   ├── Admin
+│   │   │   └── DdtRequestDialog.vue
+│   │   ├── Auth
+│   │   │   └── ResetPasswordDialog.vue
+│   │   ├── Charts
+│   │   │   ├── Axis.vue
+│   │   │   ├── Bars.vue
+│   │   │   ├── Circles.vue
+│   │   │   ├── Labels.vue
+│   │   │   ├── Layer.js
+│   │   │   ├── Layout.vue
+│   │   │   ├── Line.vue
+│   │   │   ├── Map.vue
+│   │   │   └── Scales.vue
+│   │   ├── Dashboard
+│   │   │   ├── DUInsertDialog.vue
+│   │   │   ├── DUItem.vue
+│   │   │   ├── DUItemsList.vue
+│   │   │   ├── DUModalPerimetre.vue
+│   │   │   ├── DUProcedureItem.vue
+│   │   │   ├── DUSubProcedureItem.vue
+│   │   │   ├── PerimetreDialog.vue
+│   │   │   ├── SCOTsDepList.vue
+│   │   │   ├── SharePACDialog.vue
+│   │   │   └── collectivites
+│   │   │       └── InnerNav.vue
+│   │   ├── Data
+│   │   │   ├── GeorisquesTable.vue
+│   │   │   ├── GpuDocumentCard.vue
+│   │   │   └── INPNTable.vue
+│   │   ├── DataSourceCard.vue
+│   │   ├── DataSourcesList.vue
+│   │   ├── Ddt
+│   │   │   └── PerimeterCheckInput.vue
+│   │   ├── Frise
+│   │   │   ├── CheckpointsCard.vue
+│   │   │   ├── Dgd
+│   │   │   │   ├── StepForm.vue
+│   │   │   │   ├── VersExpPanel.vue
+│   │   │   │   ├── VersStepPanel.vue
+│   │   │   │   └── VersementForm.vue
+│   │   │   ├── DgdDialog.vue
+│   │   │   ├── DgdItem.vue
+│   │   │   ├── DocEventCard.vue
+│   │   │   ├── DocTimeline.vue
+│   │   │   ├── EventAttachementsCard.vue
+│   │   │   ├── EventCard.vue
+│   │   │   ├── EventForm.vue
+│   │   │   ├── EventSelector.vue
+│   │   │   ├── InfosDialog.vue
+│   │   │   ├── LastUpdatesCard.vue
+│   │   │   ├── RecommendedEventCard.vue
+│   │   │   ├── ShareDialog.vue
+│   │   │   └── VoletQualiDialog.vue
+│   │   ├── GeoBretagneViewer.vue
+│   │   ├── GeoIDECardList.vue
+│   │   ├── Glossaire
+│   │   │   └── WordsList.vue
+│   │   ├── Inputs
+│   │   │   ├── EditableText.vue
+│   │   │   └── PasswordTextField.vue
+│   │   ├── Landing
+│   │   │   ├── Card.vue
+│   │   │   ├── NewsLetterForm.vue
+│   │   │   ├── SearchForm.vue
+│   │   │   ├── SlidingTabs.vue
+│   │   │   └── WordSlider.vue
+│   │   ├── Layouts
+│   │   │   ├── AppBar.vue
+│   │   │   ├── CustomApp.vue
+│   │   │   └── Footer.vue
+│   │   ├── Onboarding
+│   │   │   └── SignupForm.vue
+│   │   ├── PAC
+│   │   │   ├── Editing
+│   │   │   │   ├── AdvicesCard.vue
+│   │   │   │   ├── CancelDialog.vue
+│   │   │   │   ├── DiffCard.vue
+│   │   │   │   ├── GitAddSectionDialog.vue
+│   │   │   │   ├── GitRemoveSectionDialog.vue
+│   │   │   │   ├── ParentDiffDialog.vue
+│   │   │   │   └── ReadOnlyCard.vue
+│   │   │   ├── PDF
+│   │   │   │   ├── GardeTemplate.vue
+│   │   │   │   ├── PagesCounters.vue
+│   │   │   │   ├── PagesTemplate.vue
+│   │   │   │   ├── SectionTemplate.vue
+│   │   │   │   └── TableOfContent.vue
+│   │   │   ├── SectionCard.vue
+│   │   │   ├── Sections
+│   │   │   │   ├── DataAttachmentsCards.vue
+│   │   │   │   ├── DataAttachmentsDialog.vue
+│   │   │   │   ├── FileAttachmentsChips.vue
+│   │   │   │   └── FileAttachmentsDialog.vue
+│   │   │   └── TrameGhostSectionsDialog.vue
+│   │   ├── Prescription
+│   │   │   ├── ItemListRead.vue
+│   │   │   └── YouWantCard.vue
+│   │   ├── Procedures
+│   │   │   ├── InsertForm.vue
+│   │   │   └── InsertTabs.vue
+│   │   ├── README.md
+│   │   ├── RecordCard.vue
+│   │   ├── RecordList.vue
+│   │   ├── Ressources
+│   │   │   └── RessourcesList.vue
+│   │   ├── SignalementProbleme.vue
+│   │   ├── Stats
+│   │   │   ├── BarsCard.vue
+│   │   │   ├── BignumberCard.vue
+│   │   │   ├── DdtDashboard.vue
+│   │   │   ├── DeptsMapCard.vue
+│   │   │   ├── DonutCard.vue
+│   │   │   ├── FdrDashboard.vue
+│   │   │   ├── LineCard.vue
+│   │   │   ├── NpsDashboard.vue
+│   │   │   ├── PacDashboard.vue
+│   │   │   ├── ProceduresDashboard.vue
+│   │   │   ├── SocleDashboard.vue
+│   │   │   ├── SparklineCard.vue
+│   │   │   ├── State
+│   │   │   │   └── CommunesStateMap.vue
+│   │   │   └── TextCard.vue
+│   │   ├── VBigRadio.vue
+│   │   ├── VCollectivitesAutocomplete.vue
+│   │   ├── VConsentSnackbar.vue
+│   │   ├── VDeptAutocomplete.vue
+│   │   ├── VDocumentSelect.vue
+│   │   ├── VEpciAutocomplete.vue
+│   │   ├── VFileDropzone.vue
+│   │   ├── VFloatingShape.vue
+│   │   ├── VGlobalLoader.vue
+│   │   ├── VRegionAutocomplete.vue
+│   │   ├── VTextDatePicker.vue
+│   │   ├── VTiptap.vue
+│   │   ├── VTiptapItems.vue
+│   │   ├── VTiptapTableItems.vue
+│   │   └── VTownAutocomplete.vue
+│   ├── content
+│   │   ├── Dev
+│   │   │   └── API
+│   │   │       ├── communes.md
+│   │   │       ├── gpuMaillages.md
+│   │   │       ├── perimetres.md
+│   │   │       └── scots.md
+│   │   ├── Glossaire-et-acronymes
+│   │   │   ├── ALUR.md
+│   │   │   ├── CDNPS.md
+│   │   │   ├── CU.md
+│   │   │   ├── ELAN.md
+│   │   │   ├── ENE.md
+│   │   │   ├── OAP.md
+│   │   │   ├── PAC.md
+│   │   │   ├── PADD.md
+│   │   │   ├── PLU.md
+│   │   │   ├── PLUi--PLUi-H--PLUi-D--PLUi-HD.md
+│   │   │   ├── POA.md
+│   │   │   ├── SCoT.md
+│   │   │   ├── SRU.md
+│   │   │   └── UTN.md
+│   │   ├── Guide
+│   │   │   ├── Utilisation.md
+│   │   │   └── guide_FRP.md
+│   │   ├── Legal
+│   │   │   ├── mentions_legales.md
+│   │   │   └── pdc.md
+│   │   ├── PAC
+│   │   │   ├── Annexes
+│   │   │   │   └── intro.md
+│   │   │   ├── Cadre-juridique-et-grands-principes-de-la-planification
+│   │   │   │   ├── L'evaluation-environnementale.md
+│   │   │   │   ├── Lois-sur-la-planification
+│   │   │   │   │   ├── ALUR.md
+│   │   │   │   │   ├── Climat-et-Résilience.md
+│   │   │   │   │   ├── ELAN.md
+│   │   │   │   │   ├── ENE.md
+│   │   │   │   │   ├── Loi-littoral.md
+│   │   │   │   │   ├── Lois montagne I et II
+│   │   │   │   │   │   ├── Loi-montagne-I.md
+│   │   │   │   │   │   ├── Loi-montagne-II.md
+│   │   │   │   │   │   └── intro.md
+│   │   │   │   │   ├── SRU.md
+│   │   │   │   │   └── intro.md
+│   │   │   │   ├── Preambule.md
+│   │   │   │   ├── Principe-de-la-hierarchie-des-normes-et-la-mise-en-compatibilite.md
+│   │   │   │   ├── Qu'est-ce-qu'un-PLU
+│   │   │   │   │   ├── Definition-principes-objectifs-et-attendus.md
+│   │   │   │   │   ├── Le-contenu
+│   │   │   │   │   │   ├── Le-PADD-(L151-5-CU).md
+│   │   │   │   │   │   ├── Le-rapport-de-presentation-(L151-4-CU-et-R151-1-a-5-CU).md
+│   │   │   │   │   │   ├── Le-reglement-(L151-8-a-42-CU-et-R151-9-a-50).md
+│   │   │   │   │   │   ├── Les-annexes.md
+│   │   │   │   │   │   ├── Les-orientations-d'amenagement-et-de-programmation-(L151-6-a-7-2-CU-et-R151-6-a-8-1-CU).md
+│   │   │   │   │   │   └── intro.md
+│   │   │   │   │   ├── Les-etapes-de-la-procedure.md
+│   │   │   │   │   ├── Zoom-sur
+│   │   │   │   │   │   ├── L'association-des-personnes-publiques.md
+│   │   │   │   │   │   ├── L'evaluation-du-PLU-au-bout-de-6-ans.md
+│   │   │   │   │   │   ├── La-concertation.md
+│   │   │   │   │   │   ├── La-numerisation-et-publication-du-PLU.md
+│   │   │   │   │   │   └── intro.md
+│   │   │   │   │   └── intro.md
+│   │   │   │   ├── Qu-est-ce-qu-un-PLUi-H-D-HD.md
+│   │   │   │   │   ├── Definition-principes-objectifs-et-attendus.md
+│   │   │   │   │   ├── Le-contenu
+│   │   │   │   │   │   ├── Le-PADD-(L151-5-CU).md
+│   │   │   │   │   │   ├── Le-PAVE.md
+│   │   │   │   │   │   ├── Le-programme-d-orientations-et-d-actions.md
+│   │   │   │   │   │   ├── Le-rapport-de-presentation-(L151-4-CU-et-R151-1-a-5-CU).md
+│   │   │   │   │   │   ├── Le-reglement-(L151-8-a-42-CU-et-R151-9-a-50).md
+│   │   │   │   │   │   ├── Les-annexes.md
+│   │   │   │   │   │   ├── Les-orientations-d'amenagement-et-de-programmation-(L151-6-a-7-2-CU-et-R151-6-a-8-1-CU).md
+│   │   │   │   │   │   └── intro.md
+│   │   │   │   │   ├── Les-etapes-de-la-procedure.md
+│   │   │   │   │   ├── Zoom-sur
+│   │   │   │   │   │   ├── L'association-des-personnes-publiques.md
+│   │   │   │   │   │   ├── L'evaluation-du-PLU-au-bout-de-6-ans.md
+│   │   │   │   │   │   ├── La-concertation.md
+│   │   │   │   │   │   ├── La-numerisation-et-publication-du-PLU.md
+│   │   │   │   │   │   └── intro.md
+│   │   │   │   │   └── intro.md
+│   │   │   │   └── intro.md
+│   │   │   ├── Dispositions-de-documents-supra-territoriaux-et-doctrines
+│   │   │   │   ├── Documents-locaux
+│   │   │   │   │   ├── Le-SCoT.md
+│   │   │   │   │   ├── PCAET.md
+│   │   │   │   │   ├── PDH.md
+│   │   │   │   │   ├── PLH.md
+│   │   │   │   │   └── intro.md
+│   │   │   │   ├── Documents-regionaux
+│   │   │   │   │   ├── Le-SRADDET.md
+│   │   │   │   │   ├── Le-SRC.md
+│   │   │   │   │   ├── PRAD.md
+│   │   │   │   │   ├── SDAGE-PGRI.md
+│   │   │   │   │   └── intro.md
+│   │   │   │   ├── Les-doctrines-régionales
+│   │   │   │   │   └── intro.md
+│   │   │   │   └── intro.md
+│   │   │   ├── Introduction
+│   │   │   │   ├── intro.md
+│   │   │   │   ├── introcution-PAC-valide.md
+│   │   │   │   └── introduction-PAC-sec.md
+│   │   │   └── PP-du-territoire
+│   │   │       ├── Amenagement-numeriqueV2
+│   │   │       │   └── intro.md
+│   │   │       ├── Artificialisation-et-ENAFV2
+│   │   │       │   ├── Cadre-juridique
+│   │   │       │   │   └── intro.md
+│   │   │       │   ├── Dispositions-a-prendre-en-compte-dans-le-PLU
+│   │   │       │   │   ├── Cas-montagne-littoral
+│   │   │       │   │   │   └── intro.md
+│   │   │       │   │   ├── Les-différentes-parties-du-PLU
+│   │   │       │   │   │   └── intro.md
+│   │   │       │   │   ├── Outils-leviers-espaces-urbanises
+│   │   │       │   │   │   └── intro.md
+│   │   │       │   │   ├── Préservation-des-zones-agricoles
+│   │   │       │   │   │   └── intro.md
+│   │   │       │   │   ├── Préservation-des-zones-foretsières
+│   │   │       │   │   │   └── intro.md
+│   │   │       │   │   └── intro.md
+│   │   │       │   └── intro.md
+│   │   │       ├── HabitatV2
+│   │   │       │   ├── Cadre-juridique
+│   │   │       │   │   └── intro.md
+│   │   │       │   ├── Dispositions-a-prendre-en-compte-dans-le-PLU
+│   │   │       │   │   ├── Les-différentes-parties-du-PLU
+│   │   │       │   │   │   └── intro.md
+│   │   │       │   │   ├── Outils-leviers
+│   │   │       │   │   │   └── intro.md
+│   │   │       │   │   └── intro.md
+│   │   │       │   └── intro.md
+│   │   │       ├── MobiliteV2
+│   │   │       │   ├── Cadre-juridique
+│   │   │       │   │   └── intro.md
+│   │   │       │   ├── Dispositions-a-prendre-en-compte-dans-le-PLU
+│   │   │       │   │   ├── Articulation-urbanisme-deplacement
+│   │   │       │   │   │   └── intro.md
+│   │   │       │   │   ├── Les-différentes-parties-du-PLU
+│   │   │       │   │   │   └── intro.md
+│   │   │       │   │   ├── Réseaux-de-transport
+│   │   │       │   │   │   └── intro.md
+│   │   │       │   │   ├── Stationnement
+│   │   │       │   │   │   └── intro.md
+│   │   │       │   │   └── intro.md
+│   │   │       │   └── intro.md
+│   │   │       ├── Patrimoine-paysageV2
+│   │   │       │   ├── Cadre-juridique
+│   │   │       │   │   └── intro.md
+│   │   │       │   ├── Dispositions-a-prendre-en-compte-dans-le-PLU
+│   │   │       │   │   ├── Les-différentes-parties-du-PLU
+│   │   │       │   │   │   └── intro.md
+│   │   │       │   │   ├── Montagne-Littoral
+│   │   │       │   │   │   └── intro.md
+│   │   │       │   │   ├── Outils
+│   │   │       │   │   │   └── intro.md
+│   │   │       │   │   └── intro.md
+│   │   │       │   └── intro.md
+│   │   │       ├── Preserver-l'acces-et-la-qualite-de-la-ressource-en-eau
+│   │   │       │   └── intro.md
+│   │   │       ├── Preserver-les-milieux-naturels-la-biodiversite-et-les-CE
+│   │   │       │   └── intro.md
+│   │   │       ├── Prevenir-les-risques-technologiques
+│   │   │       │   └── intro.md
+│   │   │       ├── Promouvoir-un-urbanisme-favorable-a-la-sante
+│   │   │       │   └── intro.md
+│   │   │       ├── Revitaliser-les-centre-bourgs
+│   │   │       │   └── intro.md
+│   │   │       ├── Risques-naturelsV2
+│   │   │       │   ├── Cadre-juridique
+│   │   │       │   │   └── intro.md
+│   │   │       │   ├── Dispositions-a-prendre-en-compte-dans-le-PLU
+│   │   │       │   │   ├── Les-différentes-parties-du-PLU
+│   │   │       │   │   │   └── intro.md
+│   │   │       │   │   ├── Les-différents-risques
+│   │   │       │   │   │   └── intro.md
+│   │   │       │   │   └── intro.md
+│   │   │       │   └── intro.md
+│   │   │       ├── S'adapter-et-lutter-contre-le-changement-climatique
+│   │   │       │   └── intro.md
+│   │   │       └── intro.md
+│   │   ├── PAC_Advices
+│   │   │   ├── PACtest.md
+│   │   │   ├── SelectionCheckbox.md
+│   │   │   ├── draftmode.md
+│   │   │   ├── editiontrame.md
+│   │   │   ├── preredaction.md
+│   │   │   └── sharingPAC.md
+│   │   └── Ressources
+│   │       ├── Atlas_IGN_anthropocen.md
+│   │       ├── CRHH-AURA.md
+│   │       ├── Climat-air-energie
+│   │       │   ├── ATMO.md
+│   │       │   ├── CRACC.md
+│   │       │   ├── ORCAE.md
+│   │       │   └── intro.md
+│   │       ├── Documents
+│   │       │   └── Exemple_de_cahier_des_charges.md
+│   │       ├── Eau
+│   │       │   ├── Lizmap.md
+│   │       │   ├── SDAGE-PGRI.md
+│   │       │   ├── SDAGE.md
+│   │       │   ├── Turbeau.md
+│   │       │   ├── intro.md
+│   │       │   ├── rivieres.md
+│   │       │   ├── video.md
+│   │       │   └── zones-humides.md
+│   │       ├── Fascicules-ZAN.md
+│   │       ├── Guide-ERC-Seine-Normandie.md
+│   │       ├── Guide-synthetique-ZAN.md
+│   │       ├── Mondiagartif.md
+│   │       ├── Plusfraîchemaville.md
+│   │       ├── SCoT-modernise.md
+│   │       ├── Solutions_delus.md
+│   │       ├── aires_geographiques.md
+│   │       ├── aires_parcellaires.md
+│   │       ├── cerema.md
+│   │       ├── climat-resilience.md
+│   │       ├── evaluation-environementale.md
+│   │       ├── inao.md
+│   │       ├── modernisation.md
+│   │       ├── paysages.md
+│   │       └── urba-info.md
+│   ├── jsconfig.json
+│   ├── layouts
+│   │   ├── README.md
+│   │   ├── app.vue
+│   │   ├── ddt.vue
+│   │   ├── default.vue
+│   │   ├── error.vue
+│   │   └── print.vue
+│   ├── middleware
+│   │   ├── README.md
+│   │   ├── analytics.js
+│   │   ├── matomo.js
+│   │   └── passwordRecovery.js
+│   ├── mixins
+│   │   ├── BaseDUProcedureItem.js
+│   │   ├── FormInput.js
+│   │   ├── orderSections.js
+│   │   ├── pacEditing.js
+│   │   └── unifiedPac.js
+│   ├── nuxt.config.js
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── pages
+│   │   ├── accessibilite.vue
+│   │   ├── bureau-etude-urbanisme.vue
+│   │   ├── collectivites
+│   │   │   ├── _collectiviteId
+│   │   │   │   ├── donnees
+│   │   │   │   │   ├── data.vue
+│   │   │   │   │   ├── geobretagne.vue
+│   │   │   │   │   ├── geoide.vue
+│   │   │   │   │   ├── georisques.vue
+│   │   │   │   │   ├── gpu.vue
+│   │   │   │   │   └── inpn.vue
+│   │   │   │   ├── donnees.vue
+│   │   │   │   ├── glossaire.vue
+│   │   │   │   ├── index.vue
+│   │   │   │   ├── pac.vue
+│   │   │   │   ├── prescriptions
+│   │   │   │   │   ├── add.vue
+│   │   │   │   │   ├── index.vue
+│   │   │   │   │   └── signup.vue
+│   │   │   │   ├── procedures
+│   │   │   │   │   └── add.vue
+│   │   │   │   └── ressources.vue
+│   │   │   └── _collectiviteId.vue
+│   │   ├── collectivites-territoriales.vue
+│   │   ├── confidentialite.vue
+│   │   ├── ddt
+│   │   │   ├── _departement
+│   │   │   │   ├── collectivites
+│   │   │   │   │   ├── _collectiviteId
+│   │   │   │   │   │   ├── commune.vue
+│   │   │   │   │   │   ├── epci.vue
+│   │   │   │   │   │   └── procedure
+│   │   │   │   │   │       └── add.vue
+│   │   │   │   │   └── index.vue
+│   │   │   │   ├── index.vue
+│   │   │   │   ├── pac.vue
+│   │   │   │   └── procedures
+│   │   │   │       ├── choix-collectivite.vue
+│   │   │   │       └── index.vue
+│   │   │   ├── _departement.vue
+│   │   │   └── enquete_overview.vue
+│   │   ├── ddt-ddtm-dreal.vue
+│   │   ├── dev
+│   │   │   └── api.vue
+│   │   ├── documents
+│   │   │   └── _githubRef
+│   │   │       └── pac.vue
+│   │   ├── exports.vue
+│   │   ├── frise
+│   │   │   └── _procedureId
+│   │   │       ├── _eventId.vue
+│   │   │       ├── add.vue
+│   │   │       ├── index.vue
+│   │   │       └── invite.vue
+│   │   ├── guide.vue
+│   │   ├── index.vue
+│   │   ├── login
+│   │   │   ├── collectivites
+│   │   │   │   ├── explain.vue
+│   │   │   │   ├── signin.vue
+│   │   │   │   └── signup.vue
+│   │   │   ├── ddt
+│   │   │   │   ├── explain.vue
+│   │   │   │   ├── signin.vue
+│   │   │   │   └── signup.vue
+│   │   │   └── index.vue
+│   │   ├── loi-climat-et-resilience.vue
+│   │   ├── mentions-legales.vue
+│   │   ├── print
+│   │   │   └── _projectId.vue
+│   │   ├── stats
+│   │   │   ├── index.vue
+│   │   │   ├── state.vue
+│   │   │   └── urba.vue
+│   │   ├── trames
+│   │   │   └── _githubRef.vue
+│   │   └── validation.vue
+│   ├── plugins
+│   │   ├── README.md
+│   │   ├── analytics.js
+│   │   ├── auth.js
+│   │   ├── composition.js
+│   │   ├── daturba.js
+│   │   ├── dayjs.js
+│   │   ├── enquete.js
+│   │   ├── githubRefRoles.js
+│   │   ├── githubRefs.js
+│   │   ├── gtag.js
+│   │   ├── isDev.js
+│   │   ├── matomo.js
+│   │   ├── mdParser.js
+│   │   ├── notifications.js
+│   │   ├── nuxt3api.js
+│   │   ├── pac.js
+│   │   ├── pdfMake.js
+│   │   ├── print.js
+│   │   ├── rules.js
+│   │   ├── sharing.js
+│   │   ├── supabase.js
+│   │   ├── supabaseAdmin.js
+│   │   ├── tally.js
+│   │   ├── tiptap-resizable.js
+│   │   ├── urbanisator.js
+│   │   ├── user.js
+│   │   └── utils.js
+│   ├── scalingo.json
+│   ├── scripts
+│   │   └── 940_updateProceduresColPorteuse.mjs
+│   ├── server-middleware
+│   │   ├── Data
+│   │   │   ├── INSEE
+│   │   │   │   ├── departements.json
+│   │   │   │   └── regions.json
+│   │   │   ├── communes-france.json
+│   │   │   ├── departements-france.json
+│   │   │   ├── geojson
+│   │   │   │   ├── communes-geo.json
+│   │   │   │   ├── departements-geo.json
+│   │   │   │   ├── epci-geo.json
+│   │   │   │   ├── france-topo.json
+│   │   │   │   └── regions-geo.json
+│   │   │   └── referentiels
+│   │   │       ├── communes.json
+│   │   │       ├── communesNouvelles.json
+│   │   │       ├── groupements.json
+│   │   │       └── groupements_2024.json
+│   │   ├── admin.js
+│   │   ├── auth.js
+│   │   ├── communes.js
+│   │   ├── data.js
+│   │   ├── geo.js
+│   │   ├── geoide.js
+│   │   ├── georisques.js
+│   │   ├── modules
+│   │   │   ├── Data
+│   │   │   │   ├── BCSI.json
+│   │   │   │   └── pipedriveFields.json
+│   │   │   ├── admin.js
+│   │   │   ├── csw-filters.js
+│   │   │   ├── csw.js
+│   │   │   ├── exportMaps
+│   │   │   │   ├── prescriptions.js
+│   │   │   │   └── sudocuhCommunes.js
+│   │   │   ├── geo.js
+│   │   │   ├── github
+│   │   │   │   ├── files.js
+│   │   │   │   ├── github-graphql.js
+│   │   │   │   ├── github.js
+│   │   │   │   ├── issues.js
+│   │   │   │   └── tree.js
+│   │   │   ├── pipedrive.js
+│   │   │   ├── procedures.js
+│   │   │   ├── sendgrid.js
+│   │   │   ├── sharing.js
+│   │   │   ├── sibApi.js
+│   │   │   ├── sido.js
+│   │   │   ├── slack.js
+│   │   │   ├── sudocuhCodes.js
+│   │   │   └── supabase.js
+│   │   ├── pdf.js
+│   │   ├── pipedrive.js
+│   │   ├── projects.js
+│   │   ├── redirects.js
+│   │   ├── slack.js
+│   │   ├── stats.js
+│   │   ├── trames.js
+│   │   └── urba.js
+│   ├── sql
+│   │   ├── analyses
+│   │   │   ├── doublons_events.sql
+│   │   │   └── doublons_procedures.sql
+│   │   ├── policies
+│   │   │   ├── check_project_sharing_permission.sql
+│   │   │   ├── is_admin.sql
+│   │   │   ├── project_sharings.delete.sql
+│   │   │   └── project_sharings.insert.sql
+│   │   └── rpc
+│   │       ├── validated_collectivites.sql
+│   │       └── validated_collectivites_by_depts.sql
+│   └── static
+│       ├── Guide_PLU_18_03_20_BD_WEB.pdf
+│       ├── README.md
+│       ├── favicon.ico
+│       ├── favicon.png
+│       ├── fonts
+│       │   ├── Marianne
+│       │   │   ├── fontes_desktop
+│       │   │   │   ├── Marianne-Bold.otf
+│       │   │   │   ├── Marianne-BoldItalic.otf
+│       │   │   │   ├── Marianne-ExtraBold.otf
+│       │   │   │   ├── Marianne-ExtraBoldItalic.otf
+│       │   │   │   ├── Marianne-Light.otf
+│       │   │   │   ├── Marianne-LightItalic.otf
+│       │   │   │   ├── Marianne-Medium.otf
+│       │   │   │   ├── Marianne-MediumItalic.otf
+│       │   │   │   ├── Marianne-Regular.otf
+│       │   │   │   ├── Marianne-RegularItalic.otf
+│       │   │   │   ├── Marianne-Thin.otf
+│       │   │   │   └── Marianne-ThinItalic.otf
+│       │   │   ├── fontes_web
+│       │   │   │   ├── Marianne-Bold.woff
+│       │   │   │   ├── Marianne-Bold.woff2
+│       │   │   │   ├── Marianne-Bold_Italic.woff
+│       │   │   │   ├── Marianne-Bold_Italic.woff2
+│       │   │   │   ├── Marianne-ExtraBold.woff
+│       │   │   │   ├── Marianne-ExtraBold.woff2
+│       │   │   │   ├── Marianne-ExtraBold_Italic.woff
+│       │   │   │   ├── Marianne-ExtraBold_Italic.woff2
+│       │   │   │   ├── Marianne-Light.woff
+│       │   │   │   ├── Marianne-Light.woff2
+│       │   │   │   ├── Marianne-Light_Italic.woff
+│       │   │   │   ├── Marianne-Light_Italic.woff2
+│       │   │   │   ├── Marianne-Medium.woff
+│       │   │   │   ├── Marianne-Medium.woff2
+│       │   │   │   ├── Marianne-Medium_Italic.woff
+│       │   │   │   ├── Marianne-Medium_Italic.woff2
+│       │   │   │   ├── Marianne-Regular.woff
+│       │   │   │   ├── Marianne-Regular.woff2
+│       │   │   │   ├── Marianne-Regular_Italic.woff
+│       │   │   │   ├── Marianne-Regular_Italic.woff2
+│       │   │   │   ├── Marianne-Thin.woff
+│       │   │   │   ├── Marianne-Thin.woff2
+│       │   │   │   ├── Marianne-Thin_Italic.woff
+│       │   │   │   └── Marianne-Thin_Italic.woff2
+│       │   │   └── pdfs
+│       │   │       ├── Marianne 11.01.46.pdf
+│       │   │       ├── Marianne Bold 11.01.46.pdf
+│       │   │       ├── Marianne Bold Italic 11.01.46.pdf
+│       │   │       ├── Marianne ExtraBold 11.01.46.pdf
+│       │   │       ├── Marianne ExtraBold Italic 11.01.46.pdf
+│       │   │       ├── Marianne Italic 11.01.46.pdf
+│       │   │       ├── Marianne Light 11.01.46.pdf
+│       │   │       ├── Marianne Light Italic 11.01.46.pdf
+│       │   │       ├── Marianne Medium 11.01.46.pdf
+│       │   │       ├── Marianne Medium Italic 11.01.46.pdf
+│       │   │       ├── Marianne Thin 11.01.46.pdf
+│       │   │       └── Marianne Thin Italic 11.01.46.pdf
+│       │   └── Spectral
+│       │       ├── OFL.txt
+│       │       ├── Spectral-Bold.ttf
+│       │       ├── Spectral-BoldItalic.ttf
+│       │       ├── Spectral-ExtraBold.ttf
+│       │       ├── Spectral-ExtraBoldItalic.ttf
+│       │       ├── Spectral-ExtraLight.ttf
+│       │       ├── Spectral-ExtraLightItalic.ttf
+│       │       ├── Spectral-Italic.ttf
+│       │       ├── Spectral-Light.ttf
+│       │       ├── Spectral-LightItalic.ttf
+│       │       ├── Spectral-Medium.ttf
+│       │       ├── Spectral-MediumItalic.ttf
+│       │       ├── Spectral-Regular.ttf
+│       │       ├── Spectral-SemiBold.ttf
+│       │       └── Spectral-SemiBoldItalic.ttf
+│       ├── icon.png
+│       ├── images
+│       │   ├── Composition.png
+│       │   ├── EE-decret13102021.png
+│       │   ├── Etat_de_sante_population.jpg
+│       │   ├── Feuille_de_route_1_2.png
+│       │   ├── Feuille_de_route_2_2.png
+│       │   ├── Hierarchie-des-normes.jpg
+│       │   ├── ORT.png
+│       │   ├── Paysage.png
+│       │   ├── Republique_Francaise.jpg
+│       │   ├── ZAN.png
+│       │   ├── errors
+│       │   │   ├── 404.png
+│       │   │   └── maintenance.svg
+│       │   ├── guide
+│       │   │   ├── 0*.png  (9 files)
+│       │   │   ├── 1*.png  (9 files)
+│       │   │   ├── 2*.png  (8 files)
+│       │   │   ├── 30.png
+│       │   │   ├── 31.png
+│       │   │   ├── 33.png
+│       │   │   ├── 34.png
+│       │   │   ├── 4*.png  (8 files)
+│       │   │   ├── AddEvent01.png
+│       │   │   ├── AddEvent02.png
+│       │   │   ├── AddEvent03.png
+│       │   │   ├── AddEvent04.png
+│       │   │   ├── All01.png
+│       │   │   ├── All02.png
+│       │   │   ├── CTBE01.png
+│       │   │   ├── CTBE02.png
+│       │   │   ├── CTBE03.png
+│       │   │   ├── Captura de Pantalla 2023-02-02 a la(s) 14.50.37.png
+│       │   │   ├── CreateAccount01.png
+│       │   │   ├── Depot*.png  (9 files)
+│       │   │   ├── FRP01.png
+│       │   │   ├── FRP02.png
+│       │   │   ├── FRP03.png
+│       │   │   ├── FRP04.png
+│       │   │   ├── GPU01.png
+│       │   │   ├── GPU02.png
+│       │   │   ├── GPU03.png
+│       │   │   ├── GPU04.png
+│       │   │   ├── Inscription01.png
+│       │   │   ├── ModifEvent01.png
+│       │   │   ├── ModifEvent02.png
+│       │   │   ├── ModifEvent03.png
+│       │   │   ├── Tableau01.png
+│       │   │   ├── barre01.png
+│       │   │   ├── faqdepotacte01.png
+│       │   │   ├── faqdepotacte02.png
+│       │   │   ├── faqdepotacte02bis.png
+│       │   │   ├── faqdepotacte02ter.png
+│       │   │   ├── faqdepotacte03.png
+│       │   │   ├── faqformulaire*.png  (5 files)
+│       │   │   ├── faqgpu01.png
+│       │   │   ├── faqgpu02.png
+│       │   │   ├── faqgpu03.png
+│       │   │   └── faqgpu04.png
+│       │   ├── landing
+│       │   │   ├── BE_card_1.png
+│       │   │   ├── BE_card_2.png
+│       │   │   ├── DDT_card_1.png
+│       │   │   ├── DDT_card_2.png
+│       │   │   ├── collectivite_card_1.png
+│       │   │   ├── collectivite_card_2.png
+│       │   │   ├── collectivite_hero.png
+│       │   │   ├── collectivites.png
+│       │   │   ├── loi_climat_card_1.png
+│       │   │   ├── loi_climat_card_2.png
+│       │   │   ├── loi_climat_hero.png
+│       │   │   ├── pac.png
+│       │   │   └── slideshow
+│       │   │       ├── frp.png
+│       │   │       ├── procedures.png
+│       │   │       └── resources.png
+│       │   ├── pac-ghost-section.png
+│       │   └── risques.png
+│       ├── json
+│       │   ├── communes_colors.json
+│       │   └── nb_collectivites_par_departement.json
+│       ├── pdf
+│       │   └── kitdecom
+│       │       ├── BE
+│       │       │   ├── pasapas.pdf
+│       │       │   └── pourquoiutiliserdocurba.pdf
+│       │       ├── CT
+│       │       │   ├── pasapas.pdf
+│       │       │   └── pourquoiutiliserdocurba.pdf
+│       │       └── DDT
+│       │           ├── pasapas.pdf
+│       │           └── pourquoiutiliserdocurba.pdf
+│       ├── ressources
+│       │   ├── CCTP_PLU.docx
+│       │   ├── Commune_PLU_CCTP_GT46_2014_V5.odt
+│       │   ├── Exemple_de_cahier_de_charge_pour_recrutement_BE_a_adapter.odt
+│       │   ├── GUIDE ERC Imperméabilisation des sols - VF.pdf
+│       │   ├── PLU_Cahier_des_charges_Sainte_Croix_DDT_SCoT_CAUE_V3.docx
+│       │   ├── Synthèse - Guide ERC imperméabilisation des sols - VF.pdf
+│       │   └── doc_20210200_ddt_sat_cc_plu.odt
+│       ├── v.png
+│       └── vuetify-logo.svg
+├── supabase
+│   ├── .gitignore
+│   └── config.toml
+└── tests_e2e
+    ├── .gitignore
+    └── test_titre_procedure.py
+185 directories, 810 files
