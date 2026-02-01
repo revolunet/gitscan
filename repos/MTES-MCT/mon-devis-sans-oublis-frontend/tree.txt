@@ -1,0 +1,418 @@
+.
+├── .buildpacks
+├── .dockerignore
+├── .env.example
+├── .eslintrc.json
+├── .github
+│   └── workflows
+│       └── ci.yml
+├── .gitignore
+├── .prettierignore
+├── .prettierrc
+├── .slugignore
+├── AGENTS.md
+├── Dockerfile
+├── README.md
+├── docker-compose.yml
+├── jest.config.ts
+├── jest.setup.ts
+├── next.config.ts
+├── package.json
+├── pnpm-lock.yaml
+├── pnpm-workspace.yaml
+├── postcss.config.mjs
+├── public
+│   ├── dsfr
+│   │   ├── favicon
+│   │   │   ├── android-chrome-192x192.png
+│   │   │   ├── android-chrome-512x512.png
+│   │   │   ├── apple-touch-icon.png
+│   │   │   ├── favicon.ico
+│   │   │   ├── favicon.svg
+│   │   │   └── manifest.webmanifest
+│   │   └── fonts
+│   │       ├── Marianne-Bold.woff
+│   │       ├── Marianne-Bold.woff2
+│   │       ├── Marianne-Bold_Italic.woff
+│   │       ├── Marianne-Bold_Italic.woff2
+│   │       ├── Marianne-Light.woff
+│   │       ├── Marianne-Light.woff2
+│   │       ├── Marianne-Light_Italic.woff
+│   │       ├── Marianne-Light_Italic.woff2
+│   │       ├── Marianne-Medium.woff
+│   │       ├── Marianne-Medium.woff2
+│   │       ├── Marianne-Medium_Italic.woff
+│   │       ├── Marianne-Medium_Italic.woff2
+│   │       ├── Marianne-Regular.woff
+│   │       ├── Marianne-Regular.woff2
+│   │       ├── Marianne-Regular_Italic.woff
+│   │       ├── Marianne-Regular_Italic.woff2
+│   │       ├── Spectral-ExtraBold.woff
+│   │       ├── Spectral-ExtraBold.woff2
+│   │       ├── Spectral-Regular.woff
+│   │       └── Spectral-Regular.woff2
+│   ├── images
+│   │   ├── api_block
+│   │   │   └── api.svg
+│   │   ├── documents
+│   │   │   ├── document-download.svg
+│   │   │   └── document-search.svg
+│   │   ├── examples_energy_retrofit_actions
+│   │   │   ├── eau_chaude_sanitaire.webp
+│   │   │   ├── isolation_exterieur.webp
+│   │   │   ├── isolation_interieur.webp
+│   │   │   ├── menuiserie.webp
+│   │   │   ├── pompe_a_chaleur.webp
+│   │   │   └── vmc.webp
+│   │   ├── homepage.webp
+│   │   ├── last_updates
+│   │   │   ├── card_file_scan.svg
+│   │   │   ├── maj-email.webp
+│   │   │   └── maj-rge.webp
+│   │   ├── ministere_transition_ecologique.webp
+│   │   ├── quotation_results
+│   │   │   ├── quotation_correction_comment.webp
+│   │   │   ├── quotation_correction_details.webp
+│   │   │   ├── quotation_link_edit.webp
+│   │   │   ├── quotation_link_share.webp
+│   │   │   └── quotation_link_upload.webp
+│   │   ├── steps_analyze_quote
+│   │   │   ├── change_quote.webp
+│   │   │   ├── check_qualif.webp
+│   │   │   ├── get_help.webp
+│   │   │   ├── quote_control.webp
+│   │   │   └── three_steps.webp
+│   │   └── who_are_you
+│   │       ├── card_advisor.webp
+│   │       ├── card_agent.webp
+│   │       ├── card_artisan.webp
+│   │       └── card_individual.webp
+│   └── svg
+│       ├── arrows
+│       │   └── arrow-right-circle-fill.svg
+│       ├── buildings
+│       │   └── home-4-fill.svg
+│       ├── business
+│       │   ├── customer-service-fill.svg
+│       │   └── shake-hands-fill.svg
+│       ├── communication
+│       │   └── chat-new-line.svg
+│       ├── design
+│       │   ├── compasses-2-fill.svg
+│       │   ├── edit-circle-line.svg
+│       │   └── tools-fill.svg
+│       ├── device
+│       │   └── restart-line.svg
+│       └── system
+│           ├── search.svg
+│           ├── share-box-line.svg
+│           └── technical-error.svg
+├── sentry.client.config.ts
+├── sentry.edge.config.ts
+├── sentry.server.config.ts
+├── src
+│   ├── actions
+│   │   ├── __tests__
+│   │   │   └── dataChecks.actions.test.ts
+│   │   ├── dataChecks.actions.ts
+│   │   ├── debug
+│   │   │   └── auth.actions.ts
+│   │   ├── feedback.actions.ts
+│   │   ├── quoteCase.actions.ts
+│   │   ├── quoteCase.errorDetails.actions.ts
+│   │   ├── quoteCheck.actions.ts
+│   │   ├── quoteCheck.errorDetails.actions.ts
+│   │   ├── shared
+│   │   │   └── errorDetails.actions.ts
+│   │   └── stats.actions.ts
+│   ├── app
+│   │   ├── [profile]
+│   │   │   ├── devis
+│   │   │   │   └── [quoteCheckId]
+│   │   │   │       └── page.tsx
+│   │   │   ├── dossier
+│   │   │   │   └── [quoteCaseId]
+│   │   │   │       ├── devis
+│   │   │   │       │   └── [quoteCheckId]
+│   │   │   │       │       └── page.tsx
+│   │   │   │       ├── modifier
+│   │   │   │       │   └── page.tsx
+│   │   │   │       └── page.tsx
+│   │   │   ├── televersement
+│   │   │   │   ├── [quoteCheckId]
+│   │   │   │   │   ├── modifier
+│   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   └── page.tsx
+│   │   │   │   ├── page.tsx
+│   │   │   │   ├── renovation-ampleur
+│   │   │   │   │   └── page.tsx
+│   │   │   │   └── renovation-par-gestes
+│   │   │   │       └── page.tsx
+│   │   │   └── type-renovation
+│   │   │       └── page.tsx
+│   │   ├── accessibilite
+│   │   │   └── page.tsx
+│   │   ├── api
+│   │   │   └── health
+│   │   │       └── route.ts
+│   │   ├── bienvenue
+│   │   │   └── page.tsx
+│   │   ├── debug
+│   │   │   ├── crisp
+│   │   │   │   └── page.tsx
+│   │   │   └── page.tsx
+│   │   ├── global-error.tsx
+│   │   ├── layout.tsx
+│   │   ├── mentions-legales
+│   │   │   └── page.tsx
+│   │   ├── not-found.tsx
+│   │   ├── page.tsx
+│   │   ├── rge
+│   │   │   └── page.tsx
+│   │   └── statistiques
+│   │       └── page.tsx
+│   ├── components
+│   │   ├── ActionCard
+│   │   │   └── ActionCard.tsx
+│   │   ├── Alert
+│   │   │   ├── Alert.test.tsx
+│   │   │   └── Alert.tsx
+│   │   ├── Badge
+│   │   │   ├── Badge.test.tsx
+│   │   │   └── Badge.tsx
+│   │   ├── BlockNumber
+│   │   │   ├── BlockNumber.test.tsx
+│   │   │   └── BlockNumber.tsx
+│   │   ├── Breadcrumb
+│   │   │   └── Breadcrumb.tsx
+│   │   ├── Card
+│   │   │   ├── Card.test.tsx
+│   │   │   └── Card.tsx
+│   │   ├── CardImage
+│   │   │   ├── CardImage.test.tsx
+│   │   │   └── CardImage.tsx
+│   │   ├── CardLinkProfile
+│   │   │   ├── CardLinkProfile.test.tsx
+│   │   │   └── CardLinkProfile.tsx
+│   │   ├── CheckboxGroup
+│   │   │   ├── CheckboxGroup.test.tsx
+│   │   │   └── CheckboxGroup.tsx
+│   │   ├── Confetti
+│   │   │   ├── Confetti.test.tsx
+│   │   │   └── Confetti.tsx
+│   │   ├── Crisp
+│   │   │   └── Crisp.tsx
+│   │   ├── DropdownCheckboxList
+│   │   │   ├── DropdownCheckboxList.test.tsx
+│   │   │   └── DropdownCheckboxList.tsx
+│   │   ├── DsfrProvider
+│   │   │   └── DsfrProvider.tsx
+│   │   ├── Footer
+│   │   │   ├── Footer.test.tsx
+│   │   │   └── Footer.tsx
+│   │   ├── GlobalComment
+│   │   │   ├── GlobalComment.tsx
+│   │   │   └── GlobalComment.wording.ts
+│   │   ├── Header
+│   │   │   └── Header.tsx
+│   │   ├── IconBackground
+│   │   │   ├── IconBackground.test.tsx
+│   │   │   └── IconBackground.tsx
+│   │   ├── Link
+│   │   │   ├── Link.test.tsx
+│   │   │   └── Link.tsx
+│   │   ├── LoadingDots
+│   │   │   ├── LoadingDots.test.tsx
+│   │   │   └── LoadingDots.tsx
+│   │   ├── Matomo
+│   │   │   ├── Matomo.test.tsx
+│   │   │   └── Matomo.tsx
+│   │   ├── Modal
+│   │   │   ├── CommentErrorModal
+│   │   │   │   ├── CommentErrorModal.test.tsx
+│   │   │   │   └── CommentErrorModal.tsx
+│   │   │   ├── DeleteErrorModal
+│   │   │   │   ├── DeleteErrorModal.test.tsx
+│   │   │   │   └── DeleteErrorModal.tsx
+│   │   │   ├── ErrorDetailsModal
+│   │   │   │   ├── ErrorDetailsModal.test.tsx
+│   │   │   │   └── ErrorDetailsModal.tsx
+│   │   │   ├── GlobalCommentModal
+│   │   │   │   ├── GlobalCommentModal.test.tsx
+│   │   │   │   └── GlobalCommentModal.tsx
+│   │   │   ├── GlobalErrorFeedbacksModal
+│   │   │   │   ├── GlobalErrorFeedbacksModal.test.tsx
+│   │   │   │   └── GlobalErrorFeedbacksModal.tsx
+│   │   │   ├── Modal.test.tsx
+│   │   │   └── Modal.tsx
+│   │   ├── Notice
+│   │   │   ├── Notice.test.tsx
+│   │   │   └── Notice.tsx
+│   │   ├── QuoteCaseConsistencyError
+│   │   │   ├── QuoteCaseConsistencyErrorRow.tsx
+│   │   │   ├── QuoteCaseConsistencyErrorTable.tsx
+│   │   │   └── index.ts
+│   │   ├── QuoteConformityCard
+│   │   │   ├── ProgressGauge.tsx
+│   │   │   ├── QuoteConformityCard.test.tsx
+│   │   │   ├── QuoteConformityCard.tsx
+│   │   │   └── QuoteConformityCard.wording.ts
+│   │   ├── QuoteErrorLine
+│   │   │   ├── QuoteErrorLine.test.tsx
+│   │   │   └── QuoteErrorLine.tsx
+│   │   ├── QuoteErrorSharingCard
+│   │   │   ├── QuoteErrorSharingCard.modal.content.ts
+│   │   │   ├── QuoteErrorSharingCard.modal.content.wordings.ts
+│   │   │   ├── QuoteErrorSharingCard.modal.tsx
+│   │   │   ├── QuoteErrorSharingCard.modal.utils.tsx
+│   │   │   ├── QuoteErrorSharingCard.modal.wording.tsx
+│   │   │   ├── QuoteErrorSharingCard.test.tsx
+│   │   │   ├── QuoteErrorSharingCard.tsx
+│   │   │   └── QuoteErrorSharingCard.wording.ts
+│   │   ├── QuoteErrorTable
+│   │   │   ├── QuoteErrorTable.test.tsx
+│   │   │   └── QuoteErrorTable.tsx
+│   │   ├── QuoteLaunchAnalysisCard
+│   │   │   └── QuoteLaunchAnalysisCard.tsx
+│   │   ├── QuoteSideMenu
+│   │   │   ├── QuoteSideMenu.tsx
+│   │   │   └── index.tsx
+│   │   ├── RoundCheckboxGroup
+│   │   │   ├── RoundCheckboxGroup.test.tsx
+│   │   │   └── RoundCheckboxGroup.tsx
+│   │   ├── SvgLoader
+│   │   │   ├── SvgLoader.test.tsx
+│   │   │   └── SvgLoader.tsx
+│   │   ├── Tile
+│   │   │   ├── Tile.test.tsx
+│   │   │   └── Tile.tsx
+│   │   ├── Toast
+│   │   │   ├── Toast.test.tsx
+│   │   │   └── Toast.tsx
+│   │   ├── Tooltip
+│   │   │   ├── Tooltip.test.tsx
+│   │   │   └── Tooltip.tsx
+│   │   ├── UpdateCard
+│   │   │   └── UpdateCard.tsx
+│   │   ├── Upload
+│   │   │   ├── Upload.test.tsx
+│   │   │   ├── Upload.tsx
+│   │   │   └── UploadMultiple.tsx
+│   │   ├── debug
+│   │   │   └── ProtectedDebugPage.tsx
+│   │   └── index.ts
+│   ├── hooks
+│   │   ├── __tests__
+│   │   │   ├── index.test.ts
+│   │   │   ├── useIsDesktop.test.ts
+│   │   │   ├── useScrollPosition.test.ts
+│   │   │   └── useUserProfile.test.ts
+│   │   ├── index.ts
+│   │   ├── useCrisp.ts
+│   │   ├── useDeleteErrorReasons.ts
+│   │   ├── useIsDesktop.ts
+│   │   ├── useMatomo.ts
+│   │   ├── useScrollPosition.ts
+│   │   └── useUserProfile.ts
+│   ├── instrumentation.ts
+│   ├── lib
+│   │   ├── api.old.ts
+│   │   ├── client
+│   │   │   └── apiWrapper.ts
+│   │   ├── config
+│   │   │   └── env.config.ts
+│   │   ├── constants
+│   │   │   └── matomoEvents.ts
+│   │   ├── logger.ts
+│   │   ├── server
+│   │   │   └── apiClient.ts
+│   │   └── utils
+│   │       ├── env.utils.ts
+│   │       └── typeRenovationStorage.utils.ts
+│   ├── middleware.ts
+│   ├── page-sections
+│   │   ├── home
+│   │   │   ├── AboutUs.tsx
+│   │   │   ├── ApiBlock.tsx
+│   │   │   ├── HeroSection.tsx
+│   │   │   ├── HowItWorks.tsx
+│   │   │   ├── LastUpdates.tsx
+│   │   │   ├── ProfileCards.tsx
+│   │   │   ├── WhatFor.tsx
+│   │   │   └── WhoAreYou.tsx
+│   │   ├── index.ts
+│   │   ├── result
+│   │   │   ├── quoteCase
+│   │   │   │   ├── InvalidQuoteCase.tsx
+│   │   │   │   ├── ResultAmpleurClient.tsx
+│   │   │   │   └── ValidQuoteCase.tsx
+│   │   │   └── quoteCheck
+│   │   │       ├── InvalidQuoteCheck.tsx
+│   │   │       ├── ResultGestesClient.tsx
+│   │   │       └── ValidQuoteCheck.tsx
+│   │   ├── rge
+│   │   │   ├── RgeForm.tsx
+│   │   │   ├── RgePageClient.tsx
+│   │   │   └── RgeResult.tsx
+│   │   └── upload
+│   │       ├── RenovationTypeSelection.tsx
+│   │       └── UploadClient.tsx
+│   ├── styles
+│   │   ├── fonts.ts
+│   │   └── globals.css
+│   ├── types
+│   │   ├── api.types.ts
+│   │   ├── auth.types.ts
+│   │   ├── crisp.types.ts
+│   │   ├── dataChecks.types.ts
+│   │   ├── dsfr.d.ts
+│   │   ├── errorDetails.types.ts
+│   │   ├── feedback.types.ts
+│   │   ├── gestes.types.ts
+│   │   ├── globals.d.ts
+│   │   ├── index.ts
+│   │   ├── quoteCase.types.ts
+│   │   ├── quoteCheck.types.ts
+│   │   └── statistics.types.ts
+│   ├── utils
+│   │   ├── __tests__
+│   │   │   ├── date.test.ts
+│   │   │   ├── index.test.ts
+│   │   │   └── richTextParser.test.tsx
+│   │   ├── date.ts
+│   │   ├── dsfr.ts
+│   │   ├── fileUtils.ts
+│   │   ├── index.ts
+│   │   ├── mocks
+│   │   │   ├── controlCodes
+│   │   │   │   └── controlCodes.common.mock.ts
+│   │   │   ├── errorDetails
+│   │   │   │   ├── errorDetails.admin.mock.ts
+│   │   │   │   ├── errorDetails.gestes.mock.ts
+│   │   │   │   ├── errorDetails.incoherence.mock.ts
+│   │   │   │   └── index.ts
+│   │   │   ├── gestes
+│   │   │   │   ├── gestes.invalid.mock.ts
+│   │   │   │   ├── gestes.valid.mock.ts
+│   │   │   │   └── index.ts
+│   │   │   ├── mock.config.ts
+│   │   │   ├── mock.data.ts
+│   │   │   ├── quoteCase
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── quoteCase.invalid.mock.ts
+│   │   │   │   └── quoteCase.valid.mock.ts
+│   │   │   ├── quoteCheck
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── quoteCheck.invalid.mock.ts
+│   │   │   │   └── quoteCheck.valid.mock.ts
+│   │   │   └── shared
+│   │   │       └── metadata.mock.ts
+│   │   ├── rge
+│   │   │   └── rge.utils.ts
+│   │   ├── richTextParser.tsx
+│   │   └── url.utils.ts
+│   └── wording
+│       ├── index.ts
+│       └── wording.json
+└── tsconfig.json
+123 directories, 294 files
