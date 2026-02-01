@@ -1,0 +1,3115 @@
+.
+├── .anonymizer
+│   ├── .env.example
+│   ├── .gitignore
+│   ├── .prettierrc.json
+│   ├── anonymize-prod.sh
+│   ├── anonymize.sh
+│   ├── config.yaml
+│   ├── eslint.config.mjs
+│   ├── package.json
+│   ├── ts-transformers
+│   │   ├── common
+│   │   │   ├── data-helpers.ts
+│   │   │   └── lib.ts
+│   │   ├── usager--ayants-droits.ts
+│   │   ├── usager--historique.ts
+│   │   ├── usager--import.ts
+│   │   ├── usager--options.ts
+│   │   ├── usager--rdv.ts
+│   │   ├── usager-notes--all-columns.ts
+│   │   ├── user-structure--email.ts
+│   │   └── user-usager--password.ts
+│   └── tsconfig.json
+├── .codecov.yml
+├── .dockerignore
+├── .editorconfig
+├── .env.dev.example.env
+├── .github
+│   ├── CODEOWNERS
+│   ├── ISSUE_TEMPLATE
+│   │   ├── bug_report.yaml
+│   │   └── feature_request.yaml
+│   ├── renovate.json
+│   └── workflows
+│       ├── codeql.yaml
+│       ├── deactivate.yaml
+│       ├── preproduction.yml
+│       ├── production.yml
+│       ├── release.yml
+│       ├── reload-anonymized-preprod.yaml
+│       ├── reload-anonymous-prod.yaml
+│       ├── review-auto.yaml
+│       ├── review.yml
+│       └── unit-tests.yml
+├── .gitignore
+├── .husky
+│   ├── commit-msg
+│   └── pre-commit
+├── .kontinuous
+│   ├── config.yaml
+│   ├── env
+│   │   ├── dev
+│   │   │   ├── templates
+│   │   │   │   ├── backend.configmap.yaml
+│   │   │   │   └── backend.sealed-secret.yaml
+│   │   │   └── values.yaml
+│   │   ├── preprod
+│   │   │   ├── templates
+│   │   │   │   ├── backend.configmap.yaml
+│   │   │   │   └── backend.sealed-secret.yaml
+│   │   │   └── values.yaml
+│   │   └── prod
+│   │       ├── templates
+│   │       │   ├── backend.configmap.yaml
+│   │       │   └── backend.sealed-secret.yaml
+│   │       └── values.yaml
+│   └── values.yaml
+├── .npmrc
+├── .prettierignore
+├── .releaserc
+├── .sonarcloud.properties
+├── .talismanrc
+├── CHANGELOG.md
+├── LICENSE
+├── README.md
+├── _docs
+│   ├── dev
+│   │   ├── 0.run-local-env.md
+│   │   ├── 1.database-migrations.md
+│   │   ├── 3.databases-dumps.md
+│   │   ├── 4.tests.md
+│   │   ├── 5.versionning.md
+│   │   └── anonymisation.md
+│   └── ops
+│       ├── docker-build.md
+│       ├── k8s.md
+│       └── mep.md
+├── _scripts
+│   ├── db
+│   │   ├── dumps
+│   │   │   ├── .gitignore
+│   │   │   ├── domifa_test.postgres.custom.gz
+│   │   │   ├── domifa_test.postgres.restore-data-only.sql
+│   │   │   ├── domifa_test.postgres.truncate-data.sql
+│   │   │   └── domifa_test.postgres.truncate-restore-data-only.sql
+│   │   ├── generate-ddl.sh
+│   │   ├── generate-trucante-tables.sh
+│   │   ├── make-dump-data-only-docker.sh
+│   │   ├── make-dump-database-docker.sh
+│   │   ├── restore-data-only-docker.sh
+│   │   ├── restore-database-docker.sh
+│   │   ├── restore-postgres.sh
+│   │   └── update_test_dumps.sh
+│   ├── dev
+│   │   └── local-node.dockerfile
+│   └── docker
+│       ├── postgres-restore-dump.docker-entrypoint.sh
+│       └── postgres-restore-test-dump.docker-entrypoint.sh
+├── commitlint.config.js
+├── docker-compose.local.run.sh
+├── docker-compose.local.yml
+├── docker-compose.tests.yml
+├── lerna.json
+├── package.json
+├── packages
+│   ├── backend
+│   │   ├── .env.backend.dev.example.env
+│   │   ├── .env.backend.test.local.example.env
+│   │   ├── .env.preset
+│   │   │   ├── dist-prod.preset.env
+│   │   │   ├── dist.preset.env
+│   │   │   ├── local-dev-docker.preset.env
+│   │   │   ├── local-dev.preset.env
+│   │   │   ├── local-test-docker.preset.env
+│   │   │   └── local-test.preset.env
+│   │   ├── .eslintignore
+│   │   ├── .eslintrc.json
+│   │   ├── .gitignore
+│   │   ├── .prettierignore
+│   │   ├── Dockerfile
+│   │   ├── jest.config.js
+│   │   ├── nest-cli.json
+│   │   ├── nodemon.json
+│   │   ├── package.json
+│   │   ├── scripts
+│   │   │   └── start
+│   │   ├── src
+│   │   │   ├── _common
+│   │   │   │   ├── decorators
+│   │   │   │   │   ├── IsValidPasswordDecorator.ts
+│   │   │   │   │   ├── IsValidPhoneDecorator.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── parse-pipes
+│   │   │   │   │   │   ├── ParseRegion.pipe.ts
+│   │   │   │   │   │   ├── ParseString.pipe.ts
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   ├── parse-hard-reset-token.pipe.ts
+│   │   │   │   │   │   └── parse-token.pipe.ts
+│   │   │   │   │   ├── tests
+│   │   │   │   │   │   ├── IsValidPasswordDecorator.spec.ts
+│   │   │   │   │   │   ├── parse-hard-reset-token-pipe.spec.ts
+│   │   │   │   │   │   └── parse-token-pipe.spec.ts
+│   │   │   │   │   └── transformers
+│   │   │   │   │       ├── LowerCaseDecorator.ts
+│   │   │   │   │       ├── PhoneTransformDecorator.ts
+│   │   │   │   │       ├── StripTagsDecorator.ts
+│   │   │   │   │       ├── TrimDecorator.ts
+│   │   │   │   │       ├── TrimOrNullDecorator.ts
+│   │   │   │   │       ├── UpperCaseDecorator.ts
+│   │   │   │   │       ├── index.ts
+│   │   │   │   │       └── isSiretDecorator.ts
+│   │   │   │   ├── mocks
+│   │   │   │   │   ├── POST_USER_STRUCTURE_BODY.mock.ts
+│   │   │   │   │   ├── POST_USER_STRUCTURE_BODY_WITH_MISSING_ATTRIBUTES.mock.ts
+│   │   │   │   │   ├── STRUCTURE_MOCK.const.ts
+│   │   │   │   │   ├── USER_STRUCTURE_AUTHENTIFICATED.mock.ts
+│   │   │   │   │   ├── USER_SUPERVISOR_AUTHENTIFICATED.mock.ts
+│   │   │   │   │   ├── VERIFIED_USERS_STRUCTURE.const.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   └── usagers
+│   │   │   │   │       ├── POST_USAGER.mock.ts
+│   │   │   │   │       ├── USAGER_REFUS.mock.ts
+│   │   │   │   │       ├── USAGER_VALIDE.mock.ts
+│   │   │   │   │       └── index.ts
+│   │   │   │   └── model
+│   │   │   │       ├── _core
+│   │   │   │       │   ├── AppEntity.type.ts
+│   │   │   │       │   └── index.ts
+│   │   │   │       ├── _portail-admin
+│   │   │   │       │   ├── UserAdminAuthenticated.type.ts
+│   │   │   │       │   └── index.ts
+│   │   │   │       ├── index.ts
+│   │   │   │       ├── interaction
+│   │   │   │       │   ├── INTERACTIONS_OK.const.ts
+│   │   │   │       │   ├── InteractionBaseDirectionalType.type.ts
+│   │   │   │       │   ├── InteractionDirection.type.ts
+│   │   │   │       │   └── index.ts
+│   │   │   │       ├── jwt
+│   │   │   │       │   ├── CURRENT_JWT_PAYLOAD_VERSION.const.ts
+│   │   │   │       │   ├── index.ts
+│   │   │   │       │   ├── user-base-jwt-payload.type.ts
+│   │   │   │       │   ├── user-structure-jwt-payload.interface.ts
+│   │   │   │       │   ├── user-supervisor-jwt-payload.interface.ts
+│   │   │   │       │   └── user-usager-jwt-payload.interface.ts
+│   │   │   │       ├── message-sms
+│   │   │   │       │   ├── MESSAGE_SMS_RESPONSE_ERRORS.const.ts
+│   │   │   │       │   ├── MessageSmsSendResponse.type.ts
+│   │   │   │       │   └── index.ts
+│   │   │   │       ├── structure-doc
+│   │   │   │       │   ├── constants
+│   │   │   │       │   │   ├── CUSTOM_DOCS_LABELS.const.ts
+│   │   │   │       │   │   └── index.ts
+│   │   │   │       │   ├── index.ts
+│   │   │   │       │   └── types
+│   │   │   │       │       ├── StructureCustomDocKeys.type.ts
+│   │   │   │       │       ├── StructureCustomDocMonDomifa.type.ts
+│   │   │   │       │       ├── StructureCustomDocTags.type.ts
+│   │   │   │       │       └── index.ts
+│   │   │   │       ├── usager
+│   │   │   │       │   ├── UsagerLight.type.ts
+│   │   │   │       │   ├── history
+│   │   │   │       │   │   ├── UsagerHistoryImport.type.ts
+│   │   │   │       │   │   ├── UsagerHistoryState.type.ts
+│   │   │   │       │   │   ├── UsagerHistoryStateCreationEvent.type.ts
+│   │   │   │       │   │   ├── UsagerHistoryStates.interface.ts
+│   │   │   │       │   │   └── index.ts
+│   │   │   │       │   └── index.ts
+│   │   │   │       └── users
+│   │   │   │           ├── common-user
+│   │   │   │           │   ├── UserAuthenticated.type.ts
+│   │   │   │           │   ├── UserForEmail.type.ts
+│   │   │   │           │   ├── UserProfile.type.ts
+│   │   │   │           │   └── index.ts
+│   │   │   │           ├── index.ts
+│   │   │   │           ├── user-security
+│   │   │   │           │   ├── UserSecurity.interface.ts
+│   │   │   │           │   ├── UserSecurityEvent.interface.ts
+│   │   │   │           │   ├── UserSecurityEventType.type.ts
+│   │   │   │           │   ├── UserSecurityLogError.interface.ts
+│   │   │   │           │   ├── UserTokenType.type.ts
+│   │   │   │           │   ├── UserTokens.interface.ts
+│   │   │   │           │   └── index.ts
+│   │   │   │           ├── user-structure
+│   │   │   │           │   ├── UserStructureAuthenticated.type.ts
+│   │   │   │           │   ├── UserStructurePublic.type.ts
+│   │   │   │           │   └── index.ts
+│   │   │   │           ├── user-supervisor
+│   │   │   │           │   ├── constants
+│   │   │   │           │   │   ├── USER_SUPERVISOR_ROLES.const.ts
+│   │   │   │           │   │   └── index.ts
+│   │   │   │           │   ├── index.ts
+│   │   │   │           │   └── types
+│   │   │   │           │       ├── UserSupervisorAuthenticated.type.ts
+│   │   │   │           │       ├── UserSupervisorPublic.type.ts
+│   │   │   │           │       └── index.ts
+│   │   │   │           └── user-usager
+│   │   │   │               ├── UserUsagerAuthenticated.type.ts
+│   │   │   │               └── index.ts
+│   │   │   ├── _migrations
+│   │   │   │   ├── 1766362260648-manual-migration.ts
+│   │   │   │   ├── 1766509336146-auto-migration.ts
+│   │   │   │   ├── 1766509465298-auto-migration.ts
+│   │   │   │   └── _init-db
+│   │   │   │       ├── 1603812391580-pr-env-create-database.ts
+│   │   │   │       └── domifa_test_schema.sql
+│   │   │   ├── _static
+│   │   │   │   ├── .gitignore
+│   │   │   │   ├── custom-docs
+│   │   │   │   │   ├── acces_espace_domicilie.template.docx
+│   │   │   │   │   ├── attestation_postale.template.docx
+│   │   │   │   │   ├── cerfa_attestation.template.docx
+│   │   │   │   │   ├── courrier_radiation.template.docx
+│   │   │   │   │   └── test
+│   │   │   │   │       ├── attestation_postale.docx.ref.html
+│   │   │   │   │       └── courrier_radiation.docx.ref.html
+│   │   │   │   ├── static-docs
+│   │   │   │   │   ├── attestation.pdf
+│   │   │   │   │   └── demande.pdf
+│   │   │   │   ├── usager-docs-test
+│   │   │   │   │   └── logo-beta.jpeg
+│   │   │   │   └── usagers-import-test
+│   │   │   │       ├── import_ko_1.xlsx
+│   │   │   │       ├── import_ok_1.xlsx
+│   │   │   │       └── import_ok_2.xlsx
+│   │   │   ├── _tests
+│   │   │   │   ├── API_SECURITY_STRUCTURE_CONTROLLER_TEST_DEFS.const.ts
+│   │   │   │   ├── SECURITY_TESTS_NEST_MODULE.const.ts
+│   │   │   │   ├── _core
+│   │   │   │   │   ├── constants
+│   │   │   │   │   │   ├── TESTS_USERS_ADMIN.mock.ts
+│   │   │   │   │   │   ├── TESTS_USERS_STRUCTURE.mock.ts
+│   │   │   │   │   │   ├── TEST_USER_USAGER.mock.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── expectedResponseStatusBuilder.service.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── securityTestDataBuilder.service.ts
+│   │   │   │   │   └── types
+│   │   │   │   │       ├── AppTestHttpClientSecurityTestDef.type.ts
+│   │   │   │   │       ├── TESTS_USERS_ADMIN.type.ts
+│   │   │   │   │       ├── TESTS_USERS_STRUCTURE.type.ts
+│   │   │   │   │       ├── TESTS_USERS_USAGER.type.ts
+│   │   │   │   │       └── index.ts
+│   │   │   │   ├── app-controllers.anonymous.spec.ts
+│   │   │   │   ├── app-controllers.structure-1-agent.spec.ts
+│   │   │   │   ├── app-controllers.structure-1-facteur.spec.ts
+│   │   │   │   ├── app-controllers.structure-1-responsable.spec.ts
+│   │   │   │   ├── app-controllers.structure-3-admin.spec.ts
+│   │   │   │   ├── app-controllers.structure-3-simple.spec.ts
+│   │   │   │   ├── app-controllers.super-admin-domifa.spec.ts
+│   │   │   │   ├── app-controllers.usager-structure-1.spec.ts
+│   │   │   │   └── index.ts
+│   │   │   ├── app.bootstrap.ts
+│   │   │   ├── app.module.spec.ts
+│   │   │   ├── app.module.ts
+│   │   │   ├── appHolder.ts
+│   │   │   ├── auth
+│   │   │   │   ├── auth.module.ts
+│   │   │   │   ├── decorators
+│   │   │   │   │   ├── AllowUserProfiles.decorator.ts
+│   │   │   │   │   ├── AllowUserStructureRoles.decorator.ts
+│   │   │   │   │   ├── AllowUserSupervisorRoles.decorator.ts
+│   │   │   │   │   ├── current-chosen-user-structure.decorator.ts
+│   │   │   │   │   ├── current-interaction.decorator.ts
+│   │   │   │   │   ├── current-structure-information.decorator.ts
+│   │   │   │   │   ├── current-structure.decorator.ts
+│   │   │   │   │   ├── current-supervisor.decorator.ts
+│   │   │   │   │   ├── current-usager-doc.decorator.ts
+│   │   │   │   │   ├── current-usager-note.decorator.ts
+│   │   │   │   │   ├── current-usager.decorator.ts
+│   │   │   │   │   ├── current-user.decorator.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── guards
+│   │   │   │   │   ├── AppUserGuard.guard.ts
+│   │   │   │   │   ├── CanGetUserStructure.guard.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── interactions.guard.ts
+│   │   │   │   │   ├── structure-access.guard.ts
+│   │   │   │   │   ├── structure-information-access.guard.ts
+│   │   │   │   │   ├── usager-access.guard.ts
+│   │   │   │   │   ├── usager-doc-access.guard.ts
+│   │   │   │   │   └── usager-note-access.guard.ts
+│   │   │   │   ├── jwt
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   └── jwt.strategy.ts
+│   │   │   │   ├── services
+│   │   │   │   │   ├── auth-checker.service.ts
+│   │   │   │   │   ├── auth.checker.spec.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── structures-auth.service.spec.ts
+│   │   │   │   │   └── structures-auth.service.ts
+│   │   │   │   ├── structures-auth.controller.security-tests.ts
+│   │   │   │   ├── structures-auth.controller.spec.ts
+│   │   │   │   └── structures-auth.controller.ts
+│   │   │   ├── config
+│   │   │   │   ├── axios-config.ts
+│   │   │   │   ├── domifaConfig.service.spec.ts
+│   │   │   │   ├── domifaConfig.service.ts
+│   │   │   │   ├── domifaConfigFileLoader.service.spec.ts
+│   │   │   │   ├── domifaConfigFileLoader.service.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── model
+│   │   │   │   │   ├── DomifaConfig.type.ts
+│   │   │   │   │   ├── DomifaConfigPostgres.type.ts
+│   │   │   │   │   ├── DomifaEnv.type.ts
+│   │   │   │   │   ├── DomifaEnvId.type.ts
+│   │   │   │   │   ├── DomifaEnvKey.type.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   └── services
+│   │   │   │       ├── configParser.service.spec.ts
+│   │   │   │       ├── configParser.service.ts
+│   │   │   │       └── isCronEnabled.service.ts
+│   │   │   ├── database
+│   │   │   │   ├── entities
+│   │   │   │   │   ├── _core
+│   │   │   │   │   │   ├── AppTypeormTable.typeorm.ts
+│   │   │   │   │   │   ├── BaseUserSecurityTable.typeorm.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── app-log
+│   │   │   │   │   │   ├── AppLogTable.typeorm.ts
+│   │   │   │   │   │   ├── ExpiredTokenTable.typeorm.ts
+│   │   │   │   │   │   ├── PublicStatsCacheTable.typeorm.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── contact-support
+│   │   │   │   │   │   ├── ContactSupportTable.typeorm.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── interaction
+│   │   │   │   │   │   ├── InteractionsTable.typeorm.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── message-sms
+│   │   │   │   │   │   ├── MessageSmsTable.typeorm.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── monitoring
+│   │   │   │   │   │   ├── MonitoringBatchProcess.type.ts
+│   │   │   │   │   │   ├── MonitoringBatchProcessId.type.ts
+│   │   │   │   │   │   ├── MonitoringBatchProcessStatus.type.ts
+│   │   │   │   │   │   ├── MonitoringBatchProcessTable.typeorm.ts
+│   │   │   │   │   │   ├── MonitoringBatchProcessTrigger.type.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── open-data
+│   │   │   │   │   │   ├── OpenDataCitiesTable.typeorm.ts
+│   │   │   │   │   │   ├── OpenDataPlacesTable.typeorm.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── structure
+│   │   │   │   │   │   ├── StructureInformationTable.typeorm.ts
+│   │   │   │   │   │   ├── StructureStatsReportingQuestionsTable.typeorm.ts
+│   │   │   │   │   │   ├── StructureSubscriber.typeorm.ts
+│   │   │   │   │   │   ├── StructureTable.typeorm.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── structure-doc
+│   │   │   │   │   │   ├── StructureDocTable.typeorm.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── usager
+│   │   │   │   │   │   ├── UsagerDocsTable.typeorm.ts
+│   │   │   │   │   │   ├── UsagerEntretienTable.typeorm.ts
+│   │   │   │   │   │   ├── UsagerHistoryStatesTable.typeorm.ts
+│   │   │   │   │   │   ├── UsagerNotesTable.typeorm.ts
+│   │   │   │   │   │   ├── UsagerOptionsHistoryTable.typeorm.ts
+│   │   │   │   │   │   ├── UsagerSubscriber.typeorm.ts
+│   │   │   │   │   │   ├── UsagerTable.typeorm.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── user-structure
+│   │   │   │   │   │   ├── UserStructureSecurityTable.typeorm.ts
+│   │   │   │   │   │   ├── UserStructureSubscriber.typeorm.ts
+│   │   │   │   │   │   ├── UserStructureTable.typeorm.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── user-supervisor
+│   │   │   │   │   │   ├── UserSupervisorSecurityTable.typeorm.ts
+│   │   │   │   │   │   ├── UserSupervisorSubscriber.typeorm.ts
+│   │   │   │   │   │   ├── UserSupervisorTable.typeorm.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   └── user-usager
+│   │   │   │   │       ├── UserUsagerLoginTable.typeorm.ts
+│   │   │   │   │       ├── UserUsagerSecurityTable.typeorm.ts
+│   │   │   │   │       ├── UserUsagerTable.typeorm.ts
+│   │   │   │   │       └── index.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   └── services
+│   │   │   │       ├── _postgres
+│   │   │   │       │   ├── PG_CONNECT_OPTIONS.const.ts
+│   │   │   │       │   ├── PG_MIGRATION_CONFIG.const.ts
+│   │   │   │       │   ├── appTypeormManager.service.ts
+│   │   │   │       │   ├── index.ts
+│   │   │   │       │   ├── pgRepository.service.ts
+│   │   │   │       │   └── postgresQueryBuilder.service.ts
+│   │   │   │       ├── app-log
+│   │   │   │       │   ├── appLogsRepository.service.ts
+│   │   │   │       │   ├── expiredTokenRepositiory.service.ts
+│   │   │   │       │   ├── index.ts
+│   │   │   │       │   └── publicStatsCache.service.ts
+│   │   │   │       ├── contact
+│   │   │   │       │   ├── contactSupportRepository.service.ts
+│   │   │   │       │   └── index.ts
+│   │   │   │       ├── index.ts
+│   │   │   │       ├── interaction
+│   │   │   │       │   ├── index.ts
+│   │   │   │       │   ├── interactionRepository.service.test.ts
+│   │   │   │       │   └── interactionRepository.service.ts
+│   │   │   │       ├── message-sms
+│   │   │   │       │   ├── index.ts
+│   │   │   │       │   └── messageSmsRepository.service.ts
+│   │   │   │       ├── monitoring
+│   │   │   │       │   ├── AdminBatchsErrorReportModel.type.ts
+│   │   │   │       │   ├── MonitoringCleaner.service.ts
+│   │   │   │       │   ├── index.ts
+│   │   │   │       │   ├── monitoring.module.ts
+│   │   │   │       │   ├── monitoringBatchProcessRepository.service.ts
+│   │   │   │       │   └── simple-count
+│   │   │   │       │       ├── MonitoringBatchProcessSimpleCountDetails.type.ts
+│   │   │   │       │       ├── index.ts
+│   │   │   │       │       └── monitoringBatchProcessSimpleCountRunner.service.ts
+│   │   │   │       ├── open-data
+│   │   │   │       │   ├── index.ts
+│   │   │   │       │   ├── open-data-cities-repository.ts
+│   │   │   │       │   └── open-data-place-repository.ts
+│   │   │   │       ├── structure
+│   │   │   │       │   ├── index.ts
+│   │   │   │       │   ├── structureInformationRepository.service.ts
+│   │   │   │       │   ├── structureRepository.service.test.ts
+│   │   │   │       │   ├── structureRepository.service.ts
+│   │   │   │       │   └── structureStatsReportingQuestionsRepository.service.ts
+│   │   │   │       ├── structure-doc
+│   │   │   │       │   ├── index.ts
+│   │   │   │       │   └── structureDocRepository.service.ts
+│   │   │   │       ├── usager
+│   │   │   │       │   ├── _tests
+│   │   │   │       │   │   └── usagerRepository.service.spec.ts
+│   │   │   │       │   ├── constants
+│   │   │   │       │   │   ├── USAGER_LIGHT_ATTRIBUTES.const.ts
+│   │   │   │       │   │   └── index.ts
+│   │   │   │       │   ├── index.ts
+│   │   │   │       │   ├── usagerDocsRepository.service.ts
+│   │   │   │       │   ├── usagerEntretienRepository.service.ts
+│   │   │   │       │   ├── usagerHistoryStatesRepository.service.ts
+│   │   │   │       │   ├── usagerNotesRepository.service.ts
+│   │   │   │       │   ├── usagerOptionsHistoryRepository.service.ts
+│   │   │   │       │   └── usagerRepository.service.ts
+│   │   │   │       ├── user-structure
+│   │   │   │       │   ├── index.ts
+│   │   │   │       │   ├── userStructureRepository.service.test.ts
+│   │   │   │       │   └── userStructureRepository.service.ts
+│   │   │   │       ├── user-structure-mail
+│   │   │   │       │   ├── cron-mails-repository.service.spec.ts
+│   │   │   │       │   ├── cron-mails-repository.service.ts
+│   │   │   │       │   └── index.ts
+│   │   │   │       ├── user-structure-security
+│   │   │   │       │   ├── index.ts
+│   │   │   │       │   ├── userStructureSecurityRepository.service.test.ts
+│   │   │   │       │   └── userStructureSecurityRepository.service.ts
+│   │   │   │       ├── user-supervisor
+│   │   │   │       │   ├── index.ts
+│   │   │   │       │   ├── userStructureSecurityRepository.service.test.ts
+│   │   │   │       │   ├── userStructureSecurityRepository.service.ts
+│   │   │   │       │   ├── userSupervisorRepository.service.test.ts
+│   │   │   │       │   └── userSupervisorRepository.service.ts
+│   │   │   │       └── user-usager
+│   │   │   │           ├── index.ts
+│   │   │   │           ├── userUsagerLoginRepository.service.test.ts
+│   │   │   │           ├── userUsagerLoginRepository.service.ts
+│   │   │   │           ├── userUsagerRepository.service.test.ts
+│   │   │   │           ├── userUsagerRepository.service.ts
+│   │   │   │           └── userUsagerSecurityRepository.service.ts
+│   │   │   ├── excel
+│   │   │   │   ├── _templates
+│   │   │   │   │   ├── .gitignore
+│   │   │   │   │   ├── export-stats-deploiement.xlsx
+│   │   │   │   │   └── export-structure-stats.xlsx
+│   │   │   │   ├── export-stats-deploiement
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── statsDeploiementExporter.ts
+│   │   │   │   │   └── worksheet-renderer
+│   │   │   │   │       ├── exportListeStructuresWorksheetRenderer.ts
+│   │   │   │   │       ├── exportListeUsersWorksheetRenderer.ts
+│   │   │   │   │       └── index.ts
+│   │   │   │   ├── export-structure-stats
+│   │   │   │   │   ├── StructureStatsExportModel.type.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── structureStatsExporter.ts
+│   │   │   │   │   └── worksheet-renderer
+│   │   │   │   │       ├── exportStructureStatsWorksheetRenderer.ts
+│   │   │   │   │       ├── exportStructureStatsWorksheetSection1Renderer.ts
+│   │   │   │   │       ├── exportStructureStatsWorksheetSection2Renderer.ts
+│   │   │   │   │       ├── exportStructureStatsWorksheetSection3Renderer.ts
+│   │   │   │   │       └── index.ts
+│   │   │   │   └── xlLib
+│   │   │   │       ├── XlRowModel.type.ts
+│   │   │   │       ├── index.ts
+│   │   │   │       ├── xlFormater.ts
+│   │   │   │       └── xlRenderer.ts
+│   │   │   ├── modules
+│   │   │   │   ├── app-logs
+│   │   │   │   │   ├── app-logs.module.ts
+│   │   │   │   │   ├── app-logs.service.ts
+│   │   │   │   │   └── types
+│   │   │   │   │       ├── AppLog.type.ts
+│   │   │   │   │       ├── LogAction.type.ts
+│   │   │   │   │       ├── app-log-context.types.ts
+│   │   │   │   │       └── index.ts
+│   │   │   │   ├── contact-support
+│   │   │   │   │   ├── ContactSupport.type.ts
+│   │   │   │   │   ├── contact-support.controller.spec.ts
+│   │   │   │   │   ├── contact-support.controller.ts
+│   │   │   │   │   ├── contact-support.dto.ts
+│   │   │   │   │   └── contact-support.module.ts
+│   │   │   │   ├── health
+│   │   │   │   │   ├── health.controller.ts
+│   │   │   │   │   ├── health.module.ts
+│   │   │   │   │   └── postgres-health-indicator.service.ts
+│   │   │   │   ├── interactions
+│   │   │   │   │   ├── dto
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   └── interactions.dto.ts
+│   │   │   │   │   ├── interactions.controller.security-tests.ts
+│   │   │   │   │   ├── interactions.controller.spec.ts
+│   │   │   │   │   ├── interactions.controller.ts
+│   │   │   │   │   ├── interactions.module.ts
+│   │   │   │   │   └── services
+│   │   │   │   │       ├── InteractionsDeletor.service.spec.ts
+│   │   │   │   │       ├── InteractionsDeletor.service.ts
+│   │   │   │   │       ├── getLastInteractionDate.service.spec.ts
+│   │   │   │   │       ├── getLastInteractionDate.service.ts
+│   │   │   │   │       ├── index.ts
+│   │   │   │   │       ├── interactions.service.spec.ts
+│   │   │   │   │       ├── interactions.service.ts
+│   │   │   │   │       ├── interactionsCreator.service.spec.ts
+│   │   │   │   │       ├── interactionsCreator.service.ts
+│   │   │   │   │       ├── interactionsTypeManager.service.spec.ts
+│   │   │   │   │       └── interactionsTypeManager.service.ts
+│   │   │   │   ├── mails
+│   │   │   │   │   ├── mails.module.ts
+│   │   │   │   │   ├── services
+│   │   │   │   │   │   ├── brevo-sender
+│   │   │   │   │   │   │   ├── brevo-sender.service.spec.ts
+│   │   │   │   │   │   │   └── brevo-sender.service.ts
+│   │   │   │   │   │   └── brevo-sync-cron.service.ts
+│   │   │   │   │   └── types
+│   │   │   │   │       ├── MessageEmailAttachment.type.ts
+│   │   │   │   │       ├── UserStructureBrevo.type.ts
+│   │   │   │   │       └── index.ts
+│   │   │   │   ├── open-data
+│   │   │   │   │   ├── functions
+│   │   │   │   │   │   ├── getDomicilieSegment.ts
+│   │   │   │   │   │   ├── getStructureType.ts
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   └── tests
+│   │   │   │   │   │       ├── STRUCTURE_NAMES.const.ts
+│   │   │   │   │   │       └── getStructureType.spec.ts
+│   │   │   │   │   ├── interfaces
+│   │   │   │   │   │   ├── OpenDataCity.interface.ts
+│   │   │   │   │   │   ├── OpenDataPlace.interface.ts
+│   │   │   │   │   │   ├── OpenDataSource.type.ts
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   └── providers
+│   │   │   │   │   │       ├── DataInclusionPlace.interface.ts
+│   │   │   │   │   │       ├── MssPlace.interface.ts
+│   │   │   │   │   │       ├── Saturation.type.ts
+│   │   │   │   │   │       ├── SoliguidePlace.interface.ts
+│   │   │   │   │   │       └── index.ts
+│   │   │   │   │   ├── open-data-places.module.ts
+│   │   │   │   │   └── services
+│   │   │   │   │       └── import-data
+│   │   │   │   │           ├── load-data-inclusion.ts
+│   │   │   │   │           ├── load-domifa.ts
+│   │   │   │   │           └── load-soliguide.ts
+│   │   │   │   ├── portail-admin
+│   │   │   │   │   ├── constants
+│   │   │   │   │   │   └── STRUCTURE_LIGHT_ATTRIBUTES.const.ts
+│   │   │   │   │   ├── controllers
+│   │   │   │   │   │   ├── admin-structures
+│   │   │   │   │   │   │   ├── admin-structures.controller.spec.ts
+│   │   │   │   │   │   │   └── admin-structures.controller.ts
+│   │   │   │   │   │   ├── admin-users
+│   │   │   │   │   │   │   ├── admin-users.controller.security-tests.ts
+│   │   │   │   │   │   │   ├── admin-users.controller.spec.ts
+│   │   │   │   │   │   │   └── admin-users.controller.ts
+│   │   │   │   │   │   ├── national-stats
+│   │   │   │   │   │   │   ├── national-stats.controller.spec.ts
+│   │   │   │   │   │   │   └── national-stats.controller.ts
+│   │   │   │   │   │   └── portail-admin-login
+│   │   │   │   │   │       ├── portail-admin-login.controller.spec.ts
+│   │   │   │   │   │       └── portail-admin-login.controller.ts
+│   │   │   │   │   ├── decorators
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   ├── is-social-gouv-email.decorator.ts
+│   │   │   │   │   │   ├── isValidGeographicDecorator.ts
+│   │   │   │   │   │   └── tests
+│   │   │   │   │   │       └── is-social-gouv-email.decorator.spec.ts
+│   │   │   │   │   ├── dto
+│   │   │   │   │   │   ├── MetabaseStats.dto.ts
+│   │   │   │   │   │   ├── elevate-user-role.dto.ts
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   ├── patch-user-supervisor.dto.ts
+│   │   │   │   │   │   ├── register-user-structure-admin.dto.ts
+│   │   │   │   │   │   ├── register-user-supervisor.dto.ts
+│   │   │   │   │   │   ├── tests
+│   │   │   │   │   │   │   └── register-user-supervisor.dto.spec.ts
+│   │   │   │   │   │   └── update-structure-statut.dto.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── portail-admin.module.ts
+│   │   │   │   │   ├── services
+│   │   │   │   │   │   ├── admin-structures.service.ts
+│   │   │   │   │   │   ├── admin-superivor-users
+│   │   │   │   │   │   │   ├── admin-superivor-users.service.spec.ts
+│   │   │   │   │   │   │   └── admin-superivor-users.service.ts
+│   │   │   │   │   │   ├── admins-auth.service.spec.ts
+│   │   │   │   │   │   ├── admins-auth.service.ts
+│   │   │   │   │   │   ├── check-territories.ts
+│   │   │   │   │   │   ├── get-structure-decision-motif.ts
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   ├── portail-admin-profil-builder.service.ts
+│   │   │   │   │   │   ├── structure-decision
+│   │   │   │   │   │   │   ├── structure-decision.service.spec.ts
+│   │   │   │   │   │   │   └── structure-decision.service.ts
+│   │   │   │   │   │   └── structure-decision-email
+│   │   │   │   │   │       ├── structure-decision-email.service.spec.ts
+│   │   │   │   │   │       └── structure-decision-email.service.ts
+│   │   │   │   │   └── types
+│   │   │   │   │       ├── StructureAdminForList.type.ts
+│   │   │   │   │       ├── UserStructureWithSecurity.type.ts
+│   │   │   │   │       ├── UsersForAdminList.interface.ts
+│   │   │   │   │       └── index.ts
+│   │   │   │   ├── portail-usagers
+│   │   │   │   │   ├── constants
+│   │   │   │   │   │   ├── USER_USAGER_ATTRIBUTES.const.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── controllers
+│   │   │   │   │   │   ├── portail-usagers-login
+│   │   │   │   │   │   │   ├── portail-usagers-login.controller.spec.ts
+│   │   │   │   │   │   │   └── portail-usagers-login.controller.ts
+│   │   │   │   │   │   ├── portail-usagers-manager
+│   │   │   │   │   │   │   ├── portail-usagers-manager.controller.spec.ts
+│   │   │   │   │   │   │   └── portail-usagers-manager.controller.ts
+│   │   │   │   │   │   ├── portail-usagers-profile
+│   │   │   │   │   │   │   ├── portail-usagers-profile.controller.spec.ts
+│   │   │   │   │   │   │   └── portail-usagers-profile.controller.ts
+│   │   │   │   │   │   └── structure-information
+│   │   │   │   │   │       ├── structure-information.controller.spec.ts
+│   │   │   │   │   │       └── structure-information.controller.ts
+│   │   │   │   │   ├── dto
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   ├── structure-edit-portail-usager.dto.ts
+│   │   │   │   │   │   ├── structure-information.dto.ts
+│   │   │   │   │   │   └── update-portail-usagers-options.dto.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── portail-usagers.module.ts
+│   │   │   │   │   ├── services
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   ├── usagers-auth.service.spec.ts
+│   │   │   │   │   │   ├── usagers-auth.service.ts
+│   │   │   │   │   │   ├── user-usager-creator.service.ts
+│   │   │   │   │   │   ├── user-usager-login-password-generator.service.spec.ts
+│   │   │   │   │   │   ├── user-usager-login-password-generator.service.ts
+│   │   │   │   │   │   └── user-usager-security
+│   │   │   │   │   │       ├── index.ts
+│   │   │   │   │   │       ├── userUsagerSecurityEventHistoryManager.service.test.ts
+│   │   │   │   │   │       ├── userUsagerSecurityPasswordChecker.service.ts
+│   │   │   │   │   │       └── userUsagerSecurityPasswordUpdater.service.ts
+│   │   │   │   │   └── types
+│   │   │   │   │       ├── PortailUsagerAuthPayload.type.ts
+│   │   │   │   │       ├── PortailUsagerStructure.type.ts
+│   │   │   │   │       ├── PortailUsagerUsager.type.ts
+│   │   │   │   │       └── index.ts
+│   │   │   │   ├── sms
+│   │   │   │   │   ├── services
+│   │   │   │   │   │   ├── generators
+│   │   │   │   │   │   │   ├── generateScheduleSendDate.spec.ts
+│   │   │   │   │   │   │   ├── generateScheduleSendDate.ts
+│   │   │   │   │   │   │   ├── generateSender.service.spec.ts
+│   │   │   │   │   │   │   ├── generateSender.service.ts
+│   │   │   │   │   │   │   ├── generateSmsInteraction.service.spec.ts
+│   │   │   │   │   │   │   ├── generateSmsInteraction.service.ts
+│   │   │   │   │   │   │   ├── getNextClosestDay.spec.ts
+│   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   ├── message-sms-sender.service.ts
+│   │   │   │   │   │   ├── message-sms.service.spec.ts
+│   │   │   │   │   │   ├── message-sms.service.ts
+│   │   │   │   │   │   └── senders
+│   │   │   │   │   │       ├── cron-sms-fetch-end-dom.service.ts
+│   │   │   │   │   │       ├── cron-sms-id-mon-domifa.service.ts
+│   │   │   │   │   │       ├── cron-sms-interaction-sender.service.ts
+│   │   │   │   │   │       └── index.ts
+│   │   │   │   │   ├── sms.controller.security-tests.ts
+│   │   │   │   │   ├── sms.controller.ts
+│   │   │   │   │   ├── sms.module.ts
+│   │   │   │   │   └── types
+│   │   │   │   │       ├── SmsToSend.interface.ts
+│   │   │   │   │       └── index.ts
+│   │   │   │   ├── stats
+│   │   │   │   │   ├── controllers
+│   │   │   │   │   │   ├── stats.private.controller.security-tests.ts
+│   │   │   │   │   │   ├── stats.private.controller.spec.ts
+│   │   │   │   │   │   ├── stats.private.controller.ts
+│   │   │   │   │   │   ├── stats.public.controller.security-tests.ts
+│   │   │   │   │   │   ├── stats.public.controller.spec.ts
+│   │   │   │   │   │   └── stats.public.controller.ts
+│   │   │   │   │   ├── dto
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   ├── stats.dto.ts
+│   │   │   │   │   │   └── structure-stats-reporting.dto.ts
+│   │   │   │   │   ├── services
+│   │   │   │   │   │   ├── generateStatsReportingQuestionsForStructure.ts
+│   │   │   │   │   │   ├── getDateForMonthInterval.ts
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   ├── publicStats.service.ts
+│   │   │   │   │   │   ├── statsQuestionsCoreBuilder.service.ts
+│   │   │   │   │   │   ├── structureStatsInPeriodGenerator.service.ts
+│   │   │   │   │   │   ├── structureStatsQuestionsInPeriodInteractionsRepository.service.ts
+│   │   │   │   │   │   └── tests
+│   │   │   │   │   │       └── structureStatsInPeriodGenerator.service.spec.ts
+│   │   │   │   │   └── stats.module.ts
+│   │   │   │   ├── structures
+│   │   │   │   │   ├── constants
+│   │   │   │   │   │   └── STRUCTURE_DTO_KEYS.const.ts
+│   │   │   │   │   ├── controllers
+│   │   │   │   │   │   ├── structure-doc.controller.security-tests.ts
+│   │   │   │   │   │   ├── structure-doc.controller.ts
+│   │   │   │   │   │   ├── structures.controller.security-tests.ts
+│   │   │   │   │   │   ├── structures.controller.spec.ts
+│   │   │   │   │   │   ├── structures.controller.ts
+│   │   │   │   │   │   ├── structures.public.controller.spec.ts
+│   │   │   │   │   │   └── structures.public.controller.ts
+│   │   │   │   │   ├── dto
+│   │   │   │   │   │   ├── code-postal.dto.ts
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   ├── schedule.dto.ts
+│   │   │   │   │   │   ├── structure-adresse-courrier.dto.ts
+│   │   │   │   │   │   ├── structure-doc.dto.ts
+│   │   │   │   │   │   ├── structure-edit-sms.dto.ts
+│   │   │   │   │   │   ├── structure-options.dto.ts
+│   │   │   │   │   │   ├── structure-registration-data.dto.ts
+│   │   │   │   │   │   ├── structure-responsable.dto.ts
+│   │   │   │   │   │   ├── structure-with-user.dto.ts
+│   │   │   │   │   │   └── structure.dto.ts
+│   │   │   │   │   ├── services
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   ├── location.service.ts
+│   │   │   │   │   │   ├── structureCreator.service.ts
+│   │   │   │   │   │   ├── structureHardReset.service.ts
+│   │   │   │   │   │   └── structures.service.ts
+│   │   │   │   │   ├── structure.module.ts
+│   │   │   │   │   └── structures.creation-full.spec.ts
+│   │   │   │   └── users
+│   │   │   │       ├── controllers
+│   │   │   │       │   ├── users-supervisor.controller.ts
+│   │   │   │       │   ├── users.controller.security-tests.ts
+│   │   │   │       │   ├── users.controller.spec.ts
+│   │   │   │       │   ├── users.controller.ts
+│   │   │   │       │   ├── users.public.controller.spec.ts
+│   │   │   │       │   └── users.public.controller.ts
+│   │   │   │       ├── dto
+│   │   │   │       │   ├── edit-my-password.dto.ts
+│   │   │   │       │   ├── email.dto.ts
+│   │   │   │       │   ├── index.ts
+│   │   │   │       │   ├── new-referrer-id.dto.ts
+│   │   │   │       │   ├── reset-password.dto.ts
+│   │   │   │       │   ├── structure-admin-login.dto.ts
+│   │   │   │       │   ├── structure-login.dto.ts
+│   │   │   │       │   ├── update-role.dto.ts
+│   │   │   │       │   ├── usager-login.dto.ts
+│   │   │   │       │   ├── user-edit.dto.ts
+│   │   │   │       │   └── user.dto.ts
+│   │   │   │       ├── services
+│   │   │   │       │   ├── crons
+│   │   │   │       │   │   └── expired-token-cleaner.service.ts
+│   │   │   │       │   ├── get-user-repository.service.ts
+│   │   │   │       │   ├── index.ts
+│   │   │   │       │   ├── logUserSecurityEvent.service.ts
+│   │   │   │       │   ├── tests
+│   │   │   │       │   │   ├── user-structure-creator.service.spec.ts
+│   │   │   │       │   │   └── userSecurityEventHistoryManager.service.test.ts
+│   │   │   │       │   ├── user-structure-creator.service.ts
+│   │   │   │       │   ├── userSecurityEventHistoryManager.service.ts
+│   │   │   │       │   ├── userSecurityPasswordChecker.service.ts
+│   │   │   │       │   ├── userSecurityPasswordUpdater.service.ts
+│   │   │   │       │   ├── userSecurityResetPasswordInitiator.service.ts
+│   │   │   │       │   ├── userSecurityResetPasswordUpdater.service.ts
+│   │   │   │       │   └── users-deletor.service.ts
+│   │   │   │       └── users.module.ts
+│   │   │   ├── open-telemetry.ts
+│   │   │   ├── run-app.ts
+│   │   │   ├── run-migrate-down-last.ts
+│   │   │   ├── run-migrate-up-redo.ts
+│   │   │   ├── run-migrate-up.ts
+│   │   │   ├── usagers
+│   │   │   │   ├── constants
+│   │   │   │   │   └── cerfa
+│   │   │   │   │       ├── DateCerfa.interface.ts
+│   │   │   │   │       ├── UsagerCerfaFields.interface.ts
+│   │   │   │   │       └── index.ts
+│   │   │   │   ├── controllers
+│   │   │   │   │   ├── agenda.controller.ts
+│   │   │   │   │   ├── export-structure-usagers.controller.ts
+│   │   │   │   │   ├── import
+│   │   │   │   │   │   ├── ImportProcessTracker.type.ts
+│   │   │   │   │   │   ├── import.controller.security-tests.ts
+│   │   │   │   │   │   ├── import.controller.spec.ts
+│   │   │   │   │   │   ├── import.controller.ts
+│   │   │   │   │   │   ├── model
+│   │   │   │   │   │   │   ├── UsagerImportAyantDroitColumn.type.ts
+│   │   │   │   │   │   │   ├── UsagerImportObject.type.ts
+│   │   │   │   │   │   │   ├── UsagersImportError.type.ts
+│   │   │   │   │   │   │   ├── UsagersImportRow.type.ts
+│   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   ├── step1-parse-excel
+│   │   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   │   └── usagersImportExcelParser.service.ts
+│   │   │   │   │   │   ├── step2-validate-row
+│   │   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   │   ├── schema
+│   │   │   │   │   │   │   │   ├── UsagersImportUsagerSchema.yup.dates.test.ts
+│   │   │   │   │   │   │   │   ├── UsagersImportUsagerSchema.yup.invalid.test.ts
+│   │   │   │   │   │   │   │   ├── UsagersImportUsagerSchema.yup.ts
+│   │   │   │   │   │   │   │   ├── UsagersImportUsagerSchema.yup.valid.test.ts
+│   │   │   │   │   │   │   │   ├── UsagersImportUsagerSchemaContext.type.ts
+│   │   │   │   │   │   │   │   ├── core
+│   │   │   │   │   │   │   │   │   ├── ValidationRegexp.data.ts
+│   │   │   │   │   │   │   │   │   ├── booleanOuiNon.yup.test.ts
+│   │   │   │   │   │   │   │   │   ├── booleanOuiNon.yup.ts
+│   │   │   │   │   │   │   │   │   ├── dateUtcSchema.yup.test.ts
+│   │   │   │   │   │   │   │   │   ├── dateUtcSchema.yup.ts
+│   │   │   │   │   │   │   │   │   ├── email.yup.test.ts
+│   │   │   │   │   │   │   │   │   ├── email.yup.ts
+│   │   │   │   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   │   │   │   ├── oneOfString.yup.test.ts
+│   │   │   │   │   │   │   │   │   ├── oneOfString.yup.ts
+│   │   │   │   │   │   │   │   │   ├── phone.yup.test.ts
+│   │   │   │   │   │   │   │   │   ├── phone.yup.ts
+│   │   │   │   │   │   │   │   │   ├── typeDomSchema.yup.test.ts
+│   │   │   │   │   │   │   │   │   └── typeDomSchema.yup.ts
+│   │   │   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   │   │   └── test-data
+│   │   │   │   │   │   │   │       ├── TEST_INVALID_IMPORT_USAGER.mock.ts
+│   │   │   │   │   │   │   │       ├── TEST_VALID_IMPORT_ROW.mock.ts
+│   │   │   │   │   │   │   │       ├── TEST_VALID_IMPORT_USAGER.mock.ts
+│   │   │   │   │   │   │   │       ├── TEST_VALID_IMPORT_USAGER_REFUS.mock.ts
+│   │   │   │   │   │   │   │       └── index.ts
+│   │   │   │   │   │   │   ├── usagersImportErrorBuilder.service.test.ts
+│   │   │   │   │   │   │   ├── usagersImportErrorBuilder.service.ts
+│   │   │   │   │   │   │   ├── usagersImportValidator.service.invalid.test.ts
+│   │   │   │   │   │   │   ├── usagersImportValidator.service.ts
+│   │   │   │   │   │   │   └── usagersImportValidator.service.valid.test.ts
+│   │   │   │   │   │   └── step3-create
+│   │   │   │   │   │       ├── index.ts
+│   │   │   │   │   │       ├── usagersImportBuilder.service.ts
+│   │   │   │   │   │       └── usagersImportCreator.service.ts
+│   │   │   │   │   ├── search-usagers.controller.ts
+│   │   │   │   │   ├── security-tests
+│   │   │   │   │   │   ├── agenda.controller.security-tests.ts
+│   │   │   │   │   │   ├── export-structure-usagers.controller.security-tests.ts
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   ├── search-usagers.controller.security-tests.ts
+│   │   │   │   │   │   ├── usager-docs.controller.security-tests.ts
+│   │   │   │   │   │   ├── usager-structure-docs.controller.security-tests.ts
+│   │   │   │   │   │   ├── usagers-decision.security-tests.ts
+│   │   │   │   │   │   └── usagers.controller.security-tests.ts
+│   │   │   │   │   ├── tests
+│   │   │   │   │   │   ├── agenda.controller.spec.ts
+│   │   │   │   │   │   ├── export-structure-usagers.controller.spec.ts
+│   │   │   │   │   │   ├── search-usagers.controller.spec.ts
+│   │   │   │   │   │   ├── usager-docs.controller.spec.ts
+│   │   │   │   │   │   ├── usager-notes.controller.spec.ts
+│   │   │   │   │   │   ├── usager-options.controller.spec.ts
+│   │   │   │   │   │   ├── usager-structure-docs.controller.spec.ts
+│   │   │   │   │   │   └── usagers.controller.spec.ts
+│   │   │   │   │   ├── usager-docs.controller.ts
+│   │   │   │   │   ├── usager-notes.controller.ts
+│   │   │   │   │   ├── usager-options.controller.ts
+│   │   │   │   │   ├── usager-structure-docs.controller.ts
+│   │   │   │   │   ├── usagers-decision.controller.ts
+│   │   │   │   │   └── usagers.controller.ts
+│   │   │   │   ├── decorators
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   └── validate-search-field.decorator.ts
+│   │   │   │   ├── dto
+│   │   │   │   │   ├── UsagerAyantDroitDto.ts
+│   │   │   │   │   ├── assign-referrers.dto.ts
+│   │   │   │   │   ├── contact-details.dto.ts
+│   │   │   │   │   ├── create-note.dto.ts
+│   │   │   │   │   ├── decision-form
+│   │   │   │   │   │   ├── check-duplicate-usager-ref.dto.ts
+│   │   │   │   │   │   ├── check-duplicate-usager.dto.ts
+│   │   │   │   │   │   ├── create-usager.dto.ts
+│   │   │   │   │   │   ├── decision.dto.ts
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   └── rdv.dto.ts
+│   │   │   │   │   ├── entretien.dto.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── pagination
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   └── page-options.dto.ts
+│   │   │   │   │   ├── procuration.dto.ts
+│   │   │   │   │   ├── search-usager.dto.ts
+│   │   │   │   │   ├── transfert.dto.ts
+│   │   │   │   │   └── usager-doc
+│   │   │   │   │       ├── index.ts
+│   │   │   │   │       ├── patch-usager-doc.dto.ts
+│   │   │   │   │       └── post-usager-doc.dto.ts
+│   │   │   │   ├── guards
+│   │   │   │   │   ├── can-add-decision.spec.ts
+│   │   │   │   │   ├── can-add-decision.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── services
+│   │   │   │   │   ├── appointment-invitation.service.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── tests
+│   │   │   │   │   │   ├── CREATE_USAGER_DTO.const.ts
+│   │   │   │   │   │   ├── usagers-logs.service.spec.ts
+│   │   │   │   │   │   └── usagers.service.spec.ts
+│   │   │   │   │   ├── usagerHistoryState.service.ts
+│   │   │   │   │   ├── usagerHistoryStateManager.service.ts
+│   │   │   │   │   ├── usagerOptionsHistory.service.ts
+│   │   │   │   │   ├── usagerVisibleHistoryManager.service.ts
+│   │   │   │   │   ├── usagers-logs.service.ts
+│   │   │   │   │   ├── usagers.service.ts
+│   │   │   │   │   └── usagersCreator.service.ts
+│   │   │   │   ├── usagers.module.ts
+│   │   │   │   └── utils
+│   │   │   │       ├── cerfa
+│   │   │   │       │   ├── CerfaTypeDom.enum.ts
+│   │   │   │       │   ├── generate-cerfa-data.ts
+│   │   │   │       │   ├── get-address.ts
+│   │   │   │       │   ├── get-ayants-droit.ts
+│   │   │   │       │   ├── get-date-for-cerfa.ts
+│   │   │   │       │   ├── get-decision-date.ts
+│   │   │   │       │   ├── get-usager-ref.ts
+│   │   │   │       │   ├── index.ts
+│   │   │   │       │   └── tests
+│   │   │   │       │       ├── CERFA_MOCKS.mock.ts
+│   │   │   │       │       ├── generateCerfaData.service.spec.ts
+│   │   │   │       │       ├── generateDateForCerfa.spec.ts
+│   │   │   │       │       └── get-date-for-cerfa.spec.ts
+│   │   │   │       ├── custom-docs
+│   │   │   │       │   ├── buildCustomDoc.ts
+│   │   │   │       │   ├── customDocTemplateLoader.ts
+│   │   │   │       │   ├── generateCustomDoc.ts
+│   │   │   │       │   ├── index.ts
+│   │   │   │       │   ├── tests
+│   │   │   │       │   │   ├── buildCustomDoc.service.spec.ts
+│   │   │   │       │   │   ├── customDocTemplateLoader.service.spec.ts
+│   │   │   │       │   │   ├── docx-for-tests
+│   │   │   │       │   │   │   ├── all_keys.docx
+│   │   │   │       │   │   │   ├── unclosed_tag.docx
+│   │   │   │       │   │   │   └── unknown_tag.docx
+│   │   │   │       │   │   ├── generateCustomDoc.service.spec.ts
+│   │   │   │       │   │   ├── index.ts
+│   │   │   │       │   │   ├── mocks
+│   │   │   │       │   │   │   ├── CUSTOM_DOC_ATTESTATION_POSTALE.const.ts
+│   │   │   │       │   │   │   ├── CUSTOM_DOC_COURRIER_REFUS.ts
+│   │   │   │       │   │   │   └── index.ts
+│   │   │   │       │   │   └── validateCustomDoc.spec.ts
+│   │   │   │       │   └── validateCustomDoc.ts
+│   │   │   │       ├── dataCleanerForStats.service.ts
+│   │   │   │       ├── index.ts
+│   │   │   │       ├── validate-search-field.ts
+│   │   │   │       └── xlsx-structure-usagers-renderer
+│   │   │   │           ├── StructureUsagerExport.type.ts
+│   │   │   │           ├── applyDateFormat.ts
+│   │   │   │           ├── index.ts
+│   │   │   │           ├── renderStructureUsagersRows.ts
+│   │   │   │           └── tests
+│   │   │   │               ├── FIRST_SHEET_USAGERS.mock.ts
+│   │   │   │               └── renderStructureUsagersRows.spec.ts
+│   │   │   └── util
+│   │   │       ├── encoding
+│   │   │       │   ├── index.ts
+│   │   │       │   ├── passwordGenerator.service.spec.ts
+│   │   │       │   ├── passwordGenerator.service.ts
+│   │   │       │   ├── tokenGenerator.service.spec.ts
+│   │   │       │   └── tokenGenerator.service.ts
+│   │   │       ├── excel
+│   │   │       │   ├── expressResponseExcelRenderer.service.ts
+│   │   │       │   └── index.ts
+│   │   │       ├── express
+│   │   │       │   ├── ExpressRequest.type.ts
+│   │   │       │   ├── ExpressResponse.type.ts
+│   │   │       │   └── index.ts
+│   │   │       ├── file-manager
+│   │   │       │   ├── FILES_SIZE_LIMIT.const.ts
+│   │   │       │   ├── FileManager.ts
+│   │   │       │   ├── file-manager.service.spec.ts
+│   │   │       │   ├── file-manager.service.ts
+│   │   │       │   └── index.ts
+│   │   │       ├── functions
+│   │   │       │   ├── anonymizeFullName.spec.ts
+│   │   │       │   ├── anonymizeFullName.ts
+│   │   │       │   ├── cleanFormData.ts
+│   │   │       │   ├── getCreatedByUserStructure.ts
+│   │   │       │   ├── getStringFromData.ts
+│   │   │       │   ├── index.ts
+│   │   │       │   └── stringUtils.ts
+│   │   │       ├── index.ts
+│   │   │       ├── logs
+│   │   │       │   ├── AppLogger.service.ts
+│   │   │       │   ├── CustomTypeOrmLogger.ts
+│   │   │       │   ├── index.ts
+│   │   │       │   ├── object-diff.ts
+│   │   │       │   └── traceCaller.ts
+│   │   │       ├── phone
+│   │   │       │   ├── index.ts
+│   │   │       │   ├── phoneUtils.service.spec.ts
+│   │   │       │   └── phoneUtils.service.ts
+│   │   │       ├── sentry
+│   │   │       │   ├── AppSentryInterceptor.service.ts
+│   │   │       │   └── index.ts
+│   │   │       ├── territoires
+│   │   │       │   ├── constants
+│   │   │       │   │   ├── STREET_ABREVIATIONS.const.ts
+│   │   │       │   │   └── index.ts
+│   │   │       │   ├── index.ts
+│   │   │       │   └── utils
+│   │   │       │       ├── clean-address.ts
+│   │   │       │       ├── clean-city.ts
+│   │   │       │       ├── index.ts
+│   │   │       │       ├── remove-accents.ts
+│   │   │       │       └── tests
+│   │   │       │           ├── clean-address.spec.ts
+│   │   │       │           └── clean-city.spec.ts
+│   │   │       └── test
+│   │   │           ├── AppTestAuthProfile.type.ts
+│   │   │           ├── AppTestContext.type.ts
+│   │   │           ├── AppTestHelper.service.ts
+│   │   │           ├── AppTestHttpClient.service.ts
+│   │   │           ├── JEST_FAKE_TIMER.const.ts
+│   │   │           └── index.ts
+│   │   ├── tsconfig.build.json
+│   │   └── tsconfig.json
+│   ├── common
+│   │   ├── .eslintignore
+│   │   ├── .eslintrc.json
+│   │   ├── .gitignore
+│   │   ├── .prettierignore
+│   │   ├── jest.config.ts
+│   │   ├── package.json
+│   │   ├── src
+│   │   │   ├── _core
+│   │   │   │   ├── functions
+│   │   │   │   │   ├── create-date.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── init-loading.ts
+│   │   │   │   │   └── validateMatomoParams.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── interfaces
+│   │   │   │   │   ├── ApiMessage.interface.ts
+│   │   │   │   │   ├── AppEntity.interface.ts
+│   │   │   │   │   ├── CommonDoc.interface.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   └── types
+│   │   │   │       ├── WithLoading.type.ts
+│   │   │   │       └── index.ts
+│   │   │   ├── import
+│   │   │   │   ├── constants
+│   │   │   │   │   ├── USAGERS_IMPORT_COLUMNS.const.ts
+│   │   │   │   │   ├── USAGERS_IMPORT_COLUMNS_AYANT_DROIT.const.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── enums
+│   │   │   │   │   ├── UsagersImportMode.enum.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   └── interfaces
+│   │   │   │       ├── ImportPreviewColumn.interface.ts
+│   │   │   │       ├── ImportPreviewRow.interface.ts
+│   │   │   │       ├── ImportPreviewTable.interface.ts
+│   │   │   │       └── index.ts
+│   │   │   ├── index.ts
+│   │   │   ├── interactions
+│   │   │   │   ├── classes
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   └── interaction.class.ts
+│   │   │   │   ├── constants
+│   │   │   │   │   ├── INTERACTIONS_IN.const.ts
+│   │   │   │   │   ├── INTERACTIONS_LABELS.const.ts
+│   │   │   │   │   ├── INTERACTIONS_OUT.const.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── interfaces
+│   │   │   │   │   ├── CommonInteraction.interface.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   └── types
+│   │   │   │       ├── InteractionIn.type.ts
+│   │   │   │       ├── InteractionOut.type.ts
+│   │   │   │       ├── InteractionType.type.ts
+│   │   │   │       └── index.ts
+│   │   │   ├── message-sms
+│   │   │   │   ├── constants
+│   │   │   │   │   ├── SMS_STATUS_LABELS.const.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── interfaces
+│   │   │   │   │   ├── MessageSms.interface.ts
+│   │   │   │   │   ├── MessageSmsInteractionMetas.interface.ts
+│   │   │   │   │   ├── MessageSmsReminderMetas.interface.ts
+│   │   │   │   │   ├── StructureMessageSmsSchedule.interface.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   └── types
+│   │   │   │       ├── MessageSmsId.type.ts
+│   │   │   │       ├── MessageSmsReminders.type.ts
+│   │   │   │       ├── MessageSmsStatus.type.ts
+│   │   │   │       └── index.ts
+│   │   │   ├── mocks
+│   │   │   │   ├── USAGER_ACTIF.mock.ts
+│   │   │   │   ├── USAGER_REFUS.mock.ts
+│   │   │   │   └── index.ts
+│   │   │   ├── news
+│   │   │   │   ├── index.ts
+│   │   │   │   └── types
+│   │   │   │       ├── NewsItem.type.ts
+│   │   │   │       └── index.ts
+│   │   │   ├── pagination
+│   │   │   │   ├── PageItem.interface.ts
+│   │   │   │   ├── PageMeta.class.ts
+│   │   │   │   ├── PageOptions.class.ts
+│   │   │   │   ├── PageOrder.enum.ts
+│   │   │   │   ├── PageResults.class.ts
+│   │   │   │   └── index.ts
+│   │   │   ├── search
+│   │   │   │   ├── classes
+│   │   │   │   │   ├── Search.class.ts
+│   │   │   │   │   ├── UsagerCountByStatus.class.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── core
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── search.ts
+│   │   │   │   │   ├── searchChunks.spec.ts
+│   │   │   │   │   ├── searchChunks.ts
+│   │   │   │   │   ├── searchCore.spec.ts
+│   │   │   │   │   └── searchCore.ts
+│   │   │   │   ├── functions
+│   │   │   │   │   ├── getUsagerDeadlines.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── normalize-string.ts
+│   │   │   │   │   ├── parseBirthDate.ts
+│   │   │   │   │   └── tests
+│   │   │   │   │       ├── getUsagerDeadlines.spec.ts
+│   │   │   │   │       ├── normalize-string.spec.ts
+│   │   │   │   │       └── parseBirthDate.spec.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── sorter
+│   │   │   │   │   ├── dataSorter.service.spec.ts
+│   │   │   │   │   ├── dataSorter.service.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   └── types
+│   │   │   │       ├── CriteriaSearchField.enum.ts
+│   │   │   │       ├── SortValues.type.ts
+│   │   │   │       ├── Timings.type.ts
+│   │   │   │       ├── UsagersFilterCriteriaEntretien.enum.ts
+│   │   │   │       ├── UsagersFilterCriteriaStatut.enum.ts
+│   │   │   │       └── index.ts
+│   │   │   ├── stats
+│   │   │   │   ├── classes
+│   │   │   │   │   ├── PublicStats.class.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── interfaces
+│   │   │   │   │   ├── AdminStructureStatsData.interface.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   └── types
+│   │   │   │       ├── StatsByLocality.type.ts
+│   │   │   │       ├── StatsByMonth.type.ts
+│   │   │   │       ├── StatsByStructureType.type.ts
+│   │   │   │       └── index.ts
+│   │   │   ├── structure
+│   │   │   │   ├── constants
+│   │   │   │   │   ├── NETWORKS.const.ts
+│   │   │   │   │   ├── STRUCTURE_DECISION_LABELS.const.ts
+│   │   │   │   │   ├── STRUCTURE_MOTIFS.const.ts
+│   │   │   │   │   ├── STRUCTURE_ORGANISME_TYPE_LABELS.const.ts
+│   │   │   │   │   ├── STRUCTURE_REGISTRATION_DATA.const.ts
+│   │   │   │   │   ├── STRUCTURE_TYPE_LABELS.const.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── enums
+│   │   │   │   │   ├── DomiciliesSegment.enum.ts
+│   │   │   │   │   ├── PopulationSegment.enum.ts
+│   │   │   │   │   ├── StructureDecisionMotif.enum.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── functions
+│   │   │   │   │   ├── findNetwork.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── isSiret.ts
+│   │   │   │   │   ├── matchFonctionUtilisateur.ts
+│   │   │   │   │   └── tests
+│   │   │   │   │       ├── isSiret.spec.ts
+│   │   │   │   │       └── matchFonctionUtilisateur.spec.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── interfaces
+│   │   │   │   │   ├── Networks.interface.ts
+│   │   │   │   │   ├── Structure.interface.ts
+│   │   │   │   │   ├── StructureAddresseCourrier.interface.ts
+│   │   │   │   │   ├── StructureDecision.interface.ts
+│   │   │   │   │   ├── StructureOptions.interface.ts
+│   │   │   │   │   ├── StructureOrganismeType.type.ts
+│   │   │   │   │   ├── StructurePortailUsagerParams.interface.ts
+│   │   │   │   │   ├── StructureRegistrationData.interface.ts
+│   │   │   │   │   ├── StructureResponsable.interface.ts
+│   │   │   │   │   ├── StructureSmsParams.interface.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   └── types
+│   │   │   │       ├── StructureAdmin.type.ts
+│   │   │   │       ├── StructureCommon.type.ts
+│   │   │   │       ├── StructureDecisionStatut.type.ts
+│   │   │   │       ├── StructureLight.type.ts
+│   │   │   │       ├── StructureType.type.ts
+│   │   │   │       └── index.ts
+│   │   │   ├── structure-doc
+│   │   │   │   ├── constants
+│   │   │   │   │   ├── CERFA_DOC_TYPES.const.ts
+│   │   │   │   │   ├── DOCUMENT_EXTENSION_LABELS.const.ts
+│   │   │   │   │   ├── STRUCTURE_CUSTOM_DOCS_AVAILABLE.const.ts
+│   │   │   │   │   ├── STRUCTURE_CUSTOM_DOC_LABELS.const.ts
+│   │   │   │   │   ├── SUPPORTED_FILE_EXTENSIONS.const.ts
+│   │   │   │   │   ├── SUPPORTED_MIME_TYPES.const.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── enums
+│   │   │   │   │   ├── CerfaDoc.type.ts
+│   │   │   │   │   ├── StructureDocTypesAvailable.enum.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── interfaces
+│   │   │   │   │   ├── StructureDoc.interface.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   └── types
+│   │   │   │       ├── StructureCustomDocType.type.ts
+│   │   │   │       ├── UploadType.type.ts
+│   │   │   │       └── index.ts
+│   │   │   ├── structure-information
+│   │   │   │   ├── classes
+│   │   │   │   │   ├── StructureInformation.class.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── constants
+│   │   │   │   │   ├── STRUCTURE_INFORMATION_TYPES.const.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   └── types
+│   │   │   │       ├── StructureInformationType.type.ts
+│   │   │   │       └── index.ts
+│   │   │   ├── structure-stats
+│   │   │   │   ├── classes
+│   │   │   │   │   ├── MetabaseParams.class.ts
+│   │   │   │   │   ├── StructureStatsReportingQuestions.interface.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── constants
+│   │   │   │   │   ├── REPORTNG_QUESTIONS_LABELS.const.ts
+│   │   │   │   │   ├── WAITING_TIME_LABELS.const.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── enums
+│   │   │   │   │   ├── StructureWaintingTime.enum.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   └── interfaces
+│   │   │   │       ├── StructureStatsFull.interface.ts
+│   │   │   │       ├── StructureStatsQuestionsAtDateValidUsagers.interface.ts
+│   │   │   │       ├── StructureStatsQuestionsInPeriodDecisions.interface.ts
+│   │   │   │       ├── StructureStatsQuestionsInPeriodInteractions.interface.ts
+│   │   │   │       ├── StructureStatsSexe.interface.ts
+│   │   │   │       ├── StructureStatsTranchesAge.interface.ts
+│   │   │   │       └── index.ts
+│   │   │   ├── telephone
+│   │   │   │   ├── COUNTRY_CODES.const.ts
+│   │   │   │   ├── COUNTRY_CODES_TIMEZONE.const.ts
+│   │   │   │   ├── Telephone.interface.ts
+│   │   │   │   └── index.ts
+│   │   │   ├── territoires
+│   │   │   │   ├── constants
+│   │   │   │   │   ├── COUNTRIES.const.ts
+│   │   │   │   │   ├── EXCEPTIONS_CODE_POSTAL.const.ts
+│   │   │   │   │   ├── REGIONS_DEF.const.ts
+│   │   │   │   │   ├── REGIONS_DEPARTEMENTS_MAP.const.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── functions
+│   │   │   │   │   ├── departement-helper.service.spec.ts
+│   │   │   │   │   ├── departement-helper.service.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── interfaces
+│   │   │   │   │   ├── RegionDef.interface.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   └── types
+│   │   │   │       ├── DepartementInfos.type.ts
+│   │   │   │       ├── RegionsLabels.type.ts
+│   │   │   │       ├── TimeZone.type.ts
+│   │   │   │       └── index.ts
+│   │   │   ├── usager
+│   │   │   │   ├── constants
+│   │   │   │   │   ├── ENTRETIEN_SECTIONS.const.ts
+│   │   │   │   │   ├── ETAPES_DEMANDE.const.ts
+│   │   │   │   │   ├── LIEN_PARENTE_LABELS.const.ts
+│   │   │   │   │   ├── MOTIFS_RADIATION_LABELS.const.ts
+│   │   │   │   │   ├── MOTIFS_REFUS_LABELS.const.ts
+│   │   │   │   │   ├── USAGER_DECISION_STATUT_COLORS.const.ts
+│   │   │   │   │   ├── USAGER_DECISION_STATUT_LABELS.const.ts
+│   │   │   │   │   ├── USAGER_DECISION_STATUT_LABELS_PROFIL.const.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── functions
+│   │   │   │   │   ├── generateMotifLabel.service.ts
+│   │   │   │   │   ├── getEcheanceInfo.ts
+│   │   │   │   │   ├── getPersonFullName.ts
+│   │   │   │   │   ├── getRdvInfo.service.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   └── tests
+│   │   │   │   │       ├── generateMotifLabel.service.spec.ts
+│   │   │   │   │       ├── getEcheanceInfo.spec.ts
+│   │   │   │   │       └── getRdvInfo.service.spec.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── interfaces
+│   │   │   │   │   ├── Usager.interface.ts
+│   │   │   │   │   ├── UsagerAyantDroit.interface.ts
+│   │   │   │   │   ├── UsagerDecision.interface.ts
+│   │   │   │   │   ├── UsagerEcheanceInfo.interface.ts
+│   │   │   │   │   ├── UsagerEntretien.interface.ts
+│   │   │   │   │   ├── UsagerLastInteraction.interface.ts
+│   │   │   │   │   ├── UsagerNote.interface.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   └── rdv
+│   │   │   │   │       ├── UsagerRdv.interface.ts
+│   │   │   │   │       ├── UsagerRdvInfo.interface.ts
+│   │   │   │   │       └── index.ts
+│   │   │   │   └── types
+│   │   │   │       ├── AyantDroitLienParente.type.ts
+│   │   │   │       ├── UsagerImport.type.ts
+│   │   │   │       ├── UsagerPinnedNote.type.ts
+│   │   │   │       ├── UsagerSexe.type.ts
+│   │   │   │       ├── UsagerTypeDom.type.ts
+│   │   │   │       ├── decision
+│   │   │   │       │   ├── UsagerDecisionMotif.type.ts
+│   │   │   │       │   ├── UsagerDecisionOrientation.type.ts
+│   │   │   │       │   ├── UsagerDecisionStatut.type.ts
+│   │   │   │       │   └── index.ts
+│   │   │   │       ├── entretien
+│   │   │   │       │   ├── UsagerEntretienCause.type.ts
+│   │   │   │       │   ├── UsagerEntretienLienCommune.type.ts
+│   │   │   │       │   ├── UsagerEntretienRaisonDemande.type.ts
+│   │   │   │       │   ├── UsagerEntretienResidence.type.ts
+│   │   │   │       │   ├── UsagerEntretienSituationPro.type.ts
+│   │   │   │       │   ├── UsagerEntretienTypeMenage.type.ts
+│   │   │   │       │   └── index.ts
+│   │   │   │       └── index.ts
+│   │   │   ├── usager-doc
+│   │   │   │   ├── UsagerDoc.interface.ts
+│   │   │   │   └── index.ts
+│   │   │   ├── usager-options
+│   │   │   │   ├── classes
+│   │   │   │   │   ├── MailDelegate.class.ts
+│   │   │   │   │   ├── UsagerOptions.class.ts
+│   │   │   │   │   ├── UsagerOptionsProcuration.class.ts
+│   │   │   │   │   ├── UsagerOptionsTransfert.class.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── enums
+│   │   │   │   │   ├── UsagerOptionsHistoryTypeEnum.enum.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   └── interfaces
+│   │   │   │       ├── IMailDelegate.interface.ts
+│   │   │   │       ├── UsagerOptionsHistory.interface.ts
+│   │   │   │       ├── UsagerOptionsHistoryAction.type.ts
+│   │   │   │       ├── UsagerOptionsHistoryType.type.ts
+│   │   │   │       └── index.ts
+│   │   │   └── users
+│   │   │       ├── common-user
+│   │   │       │   ├── index.ts
+│   │   │       │   └── interfaces
+│   │   │       │       ├── common-user.interface.ts
+│   │   │       │       └── index.ts
+│   │   │       ├── index.ts
+│   │   │       ├── user-structure
+│   │   │       │   ├── constants
+│   │   │       │   │   ├── ALL_USER_STRUCTURE_ROLES.const.ts
+│   │   │       │   │   ├── USER_FONCTIONS.const.ts
+│   │   │       │   │   ├── USER_FONCTION_LABELS.const.ts
+│   │   │       │   │   ├── USER_STRUCTURE_ROLES_LABELS.const.ts
+│   │   │       │   │   └── index.ts
+│   │   │       │   ├── index.ts
+│   │   │       │   ├── interfaces
+│   │   │       │   │   ├── UserFonctionMapping.interface.ts
+│   │   │       │   │   ├── UserStructure.interface.ts
+│   │   │       │   │   ├── UserStructureMails.interface.ts
+│   │   │       │   │   ├── UserStructureResume.interface.ts
+│   │   │       │   │   └── index.ts
+│   │   │       │   └── types
+│   │   │       │       ├── TypeConsultationDocument.enum.ts
+│   │   │       │       ├── UserFonction.enum.ts
+│   │   │       │       ├── UserStructureCreatedBy.type.ts
+│   │   │       │       ├── UserStructureProfile.type.ts
+│   │   │       │       ├── UserStructureRole.type.ts
+│   │   │       │       └── index.ts
+│   │   │       ├── user-supervisor
+│   │   │       │   ├── constants
+│   │   │       │   │   ├── USER_SUPERVISOR_ROLES_LABELS.const.ts
+│   │   │       │   │   └── index.ts
+│   │   │       │   ├── index.ts
+│   │   │       │   ├── interfaces
+│   │   │       │   │   ├── UserSupervisor.interface.ts
+│   │   │       │   │   └── index.ts
+│   │   │       │   └── types
+│   │   │       │       ├── PortailAdminAuthApiResponse.type.ts
+│   │   │       │       ├── PortailAdminAuthPayload.type.ts
+│   │   │       │       ├── PortailAdminUser.type.ts
+│   │   │       │       ├── UserSupervisorRole.type.ts
+│   │   │       │       └── index.ts
+│   │   │       └── user-usager
+│   │   │           ├── PasswordType.type.ts
+│   │   │           ├── PortailUsagerAuthApiResponse.interface.ts
+│   │   │           ├── PortailUsagerProfile.interface.ts
+│   │   │           ├── PortailUsagerPublic.interface.ts
+│   │   │           ├── UserUsager.interface.ts
+│   │   │           ├── UserUsagerLogin.interface.ts
+│   │   │           ├── UserUsagerWithUsagerInfo.interface.ts
+│   │   │           └── index.ts
+│   │   ├── tsconfig.build.json
+│   │   ├── tsconfig.json
+│   │   └── tsconfig.spec.json
+│   ├── frontend
+│   │   ├── .browserslistrc
+│   │   ├── .eslintrc.json
+│   │   ├── .gitignore
+│   │   ├── .prettierignore
+│   │   ├── CHANGELOG.md
+│   │   ├── Dockerfile
+│   │   ├── LICENSE
+│   │   ├── angular.json
+│   │   ├── jest-global-mocks.ts
+│   │   ├── jest.config.js
+│   │   ├── package.json
+│   │   ├── setup-jest.ts
+│   │   ├── src
+│   │   │   ├── _common
+│   │   │   │   ├── mocks
+│   │   │   │   │   ├── AuthServiceMock.ts
+│   │   │   │   │   ├── STRUCTURE_MOCK.const.ts
+│   │   │   │   │   ├── USAGER_NOTE.mock.ts
+│   │   │   │   │   ├── USAGER_REFUS.mock.ts
+│   │   │   │   │   ├── USAGER_VALIDE.mock.ts
+│   │   │   │   │   ├── USER_STRUCTURE.mock.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   └── model
+│   │   │   │       ├── _general
+│   │   │   │       │   ├── DEFAULT_MODAL_OPTIONS.const.ts
+│   │   │   │       │   └── index.ts
+│   │   │   │       ├── index.ts
+│   │   │   │       ├── interaction
+│   │   │   │       │   ├── InteractionForApi.interface.ts
+│   │   │   │       │   ├── InteractionForms.type.ts
+│   │   │   │       │   └── index.ts
+│   │   │   │       ├── telephone
+│   │   │   │       │   ├── COUNTRY_CODES.ts
+│   │   │   │       │   ├── PREFERRED_COUNTRIES.const.ts
+│   │   │   │       │   ├── Telephone.type.ts
+│   │   │   │       │   └── index.ts
+│   │   │   │       ├── usager
+│   │   │   │       │   ├── HISTORY_ACTIONS.const.ts
+│   │   │   │       │   ├── UsagerEcheanceInfos.type.ts
+│   │   │   │       │   ├── UsagerLight.type.ts
+│   │   │   │       │   ├── decision
+│   │   │   │       │   │   ├── index.ts
+│   │   │   │       │   │   └── types
+│   │   │   │       │   │       ├── UsagerDecisionRadiationForm.type.ts
+│   │   │   │       │   │       ├── UsagerDecisionRefusForm.type.ts
+│   │   │   │       │   │       ├── UsagerDecisionValideForm.ts
+│   │   │   │       │   │       └── index.ts
+│   │   │   │       │   ├── dossier
+│   │   │   │       │   │   ├── FormAyantDroit.type.ts
+│   │   │   │       │   │   └── index.ts
+│   │   │   │       │   ├── entretien
+│   │   │   │       │   │   ├── ETAPES_DEMANDE_URL.const.ts
+│   │   │   │       │   │   └── index.ts
+│   │   │   │       │   ├── form
+│   │   │   │       │   │   ├── UsagerEtatCivilFormData.type.ts
+│   │   │   │       │   │   └── index.ts
+│   │   │   │       │   └── index.ts
+│   │   │   │       └── user-structure
+│   │   │   │           ├── UserStructureEditProfile.type.ts
+│   │   │   │           └── index.ts
+│   │   │   ├── app
+│   │   │   │   ├── app-routing.module.ts
+│   │   │   │   ├── app-routing.spec.ts
+│   │   │   │   ├── app.component.html
+│   │   │   │   ├── app.component.scss
+│   │   │   │   ├── app.component.spec.ts
+│   │   │   │   ├── app.component.ts
+│   │   │   │   ├── app.module.spec.ts
+│   │   │   │   ├── app.module.ts
+│   │   │   │   ├── guards
+│   │   │   │   │   ├── auth.guard.spec.ts
+│   │   │   │   │   ├── auth.guard.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   └── logged.guard.ts
+│   │   │   │   ├── interceptors
+│   │   │   │   │   ├── jwt.interceptor.ts
+│   │   │   │   │   ├── matomo.interceptor.ts
+│   │   │   │   │   └── server-error.interceptor.ts
+│   │   │   │   ├── modules
+│   │   │   │   │   ├── admin-portail-usagers
+│   │   │   │   │   │   ├── admin-portail-usagers-routing.module.ts
+│   │   │   │   │   │   ├── admin-portail-usagers.module.ts
+│   │   │   │   │   │   ├── components
+│   │   │   │   │   │   │   ├── admin-portail-usagers-menu
+│   │   │   │   │   │   │   │   ├── admin-portail-usagers-menu.component.css
+│   │   │   │   │   │   │   │   ├── admin-portail-usagers-menu.component.html
+│   │   │   │   │   │   │   │   ├── admin-portail-usagers-menu.component.spec.ts
+│   │   │   │   │   │   │   │   └── admin-portail-usagers-menu.component.ts
+│   │   │   │   │   │   │   ├── manage-structure-information
+│   │   │   │   │   │   │   │   ├── manage-structure-information.component.css
+│   │   │   │   │   │   │   │   ├── manage-structure-information.component.html
+│   │   │   │   │   │   │   │   ├── manage-structure-information.component.spec.ts
+│   │   │   │   │   │   │   │   └── manage-structure-information.component.ts
+│   │   │   │   │   │   │   ├── manage-structure-information-form
+│   │   │   │   │   │   │   │   ├── manage-structure-information-form.component.html
+│   │   │   │   │   │   │   │   ├── manage-structure-information-form.component.scss
+│   │   │   │   │   │   │   │   └── manage-structure-information-form.component.ts
+│   │   │   │   │   │   │   ├── manage-user-usager
+│   │   │   │   │   │   │   │   ├── manage-user-usager.component.css
+│   │   │   │   │   │   │   │   ├── manage-user-usager.component.html
+│   │   │   │   │   │   │   │   ├── manage-user-usager.component.spec.ts
+│   │   │   │   │   │   │   │   └── manage-user-usager.component.ts
+│   │   │   │   │   │   │   └── portail-usagers-params
+│   │   │   │   │   │   │       ├── portail-usagers-params.component.css
+│   │   │   │   │   │   │       ├── portail-usagers-params.component.html
+│   │   │   │   │   │   │       ├── portail-usagers-params.component.spec.ts
+│   │   │   │   │   │   │       └── portail-usagers-params.component.ts
+│   │   │   │   │   │   └── services
+│   │   │   │   │   │       ├── manage-portail-usagers.service.spec.ts
+│   │   │   │   │   │       ├── manage-portail-usagers.service.ts
+│   │   │   │   │   │       ├── structure-information.service.spec.ts
+│   │   │   │   │   │       └── structure-information.service.ts
+│   │   │   │   │   ├── general
+│   │   │   │   │   │   ├── components
+│   │   │   │   │   │   │   ├── contact-support
+│   │   │   │   │   │   │   │   ├── contact-support.component.html
+│   │   │   │   │   │   │   │   ├── contact-support.component.scss
+│   │   │   │   │   │   │   │   ├── contact-support.component.spec.ts
+│   │   │   │   │   │   │   │   └── contact-support.component.ts
+│   │   │   │   │   │   │   ├── errors
+│   │   │   │   │   │   │   │   └── not-found
+│   │   │   │   │   │   │   │       ├── not-found.component.css
+│   │   │   │   │   │   │   │       ├── not-found.component.html
+│   │   │   │   │   │   │   │       ├── not-found.component.spec.ts
+│   │   │   │   │   │   │   │       └── not-found.component.ts
+│   │   │   │   │   │   │   ├── faq
+│   │   │   │   │   │   │   │   ├── faq.component.html
+│   │   │   │   │   │   │   │   ├── faq.component.scss
+│   │   │   │   │   │   │   │   ├── faq.component.spec.ts
+│   │   │   │   │   │   │   │   └── faq.component.ts
+│   │   │   │   │   │   │   ├── home
+│   │   │   │   │   │   │   │   ├── home.component.css
+│   │   │   │   │   │   │   │   ├── home.component.html
+│   │   │   │   │   │   │   │   ├── home.component.spec.ts
+│   │   │   │   │   │   │   │   └── home.component.ts
+│   │   │   │   │   │   │   ├── login
+│   │   │   │   │   │   │   │   ├── login.component.css
+│   │   │   │   │   │   │   │   ├── login.component.html
+│   │   │   │   │   │   │   │   ├── login.component.spec.ts
+│   │   │   │   │   │   │   │   └── login.component.ts
+│   │   │   │   │   │   │   ├── navbar
+│   │   │   │   │   │   │   │   ├── navbar.component.css
+│   │   │   │   │   │   │   │   ├── navbar.component.html
+│   │   │   │   │   │   │   │   ├── navbar.component.spec.ts
+│   │   │   │   │   │   │   │   └── navbar.component.ts
+│   │   │   │   │   │   │   ├── news
+│   │   │   │   │   │   │   │   ├── news.component.css
+│   │   │   │   │   │   │   │   ├── news.component.html
+│   │   │   │   │   │   │   │   ├── news.component.spec.ts
+│   │   │   │   │   │   │   │   └── news.component.ts
+│   │   │   │   │   │   │   ├── plan-site
+│   │   │   │   │   │   │   │   ├── LIENS_PARTENAIRES.const.ts
+│   │   │   │   │   │   │   │   ├── plan-site.component.css
+│   │   │   │   │   │   │   │   ├── plan-site.component.html
+│   │   │   │   │   │   │   │   ├── plan-site.component.spec.ts
+│   │   │   │   │   │   │   │   └── plan-site.component.ts
+│   │   │   │   │   │   │   ├── static-modals
+│   │   │   │   │   │   │   │   ├── help-modal
+│   │   │   │   │   │   │   │   │   ├── help-modal.component.css
+│   │   │   │   │   │   │   │   │   ├── help-modal.component.html
+│   │   │   │   │   │   │   │   │   ├── help-modal.component.spec.ts
+│   │   │   │   │   │   │   │   │   └── help-modal.component.ts
+│   │   │   │   │   │   │   │   └── idle-manager
+│   │   │   │   │   │   │   │       ├── idle-manager.component.html
+│   │   │   │   │   │   │   │       ├── idle-manager.component.spec.ts
+│   │   │   │   │   │   │   │       └── idle-manager.component.ts
+│   │   │   │   │   │   │   └── static-pages
+│   │   │   │   │   │   │       ├── cgu
+│   │   │   │   │   │   │       │   ├── cgu.component.html
+│   │   │   │   │   │   │       │   ├── cgu.component.spec.ts
+│   │   │   │   │   │   │       │   └── cgu.component.ts
+│   │   │   │   │   │   │       ├── landing-page-portail
+│   │   │   │   │   │   │       │   ├── landing-page-portail.component.html
+│   │   │   │   │   │   │       │   ├── landing-page-portail.component.scss
+│   │   │   │   │   │   │       │   ├── landing-page-portail.component.spec.ts
+│   │   │   │   │   │   │       │   └── landing-page-portail.component.ts
+│   │   │   │   │   │   │       ├── mentions-legales
+│   │   │   │   │   │   │       │   ├── mentions-legales.component.html
+│   │   │   │   │   │   │       │   ├── mentions-legales.component.spec.ts
+│   │   │   │   │   │   │       │   └── mentions-legales.component.ts
+│   │   │   │   │   │   │       ├── politique
+│   │   │   │   │   │   │       │   ├── politique.component.html
+│   │   │   │   │   │   │       │   ├── politique.component.spec.ts
+│   │   │   │   │   │   │       │   └── politique.component.ts
+│   │   │   │   │   │   │       └── rgaa
+│   │   │   │   │   │   │           ├── rgaa.component.html
+│   │   │   │   │   │   │           ├── rgaa.component.spec.ts
+│   │   │   │   │   │   │           └── rgaa.component.ts
+│   │   │   │   │   │   ├── general.module.spec.ts
+│   │   │   │   │   │   ├── general.module.ts
+│   │   │   │   │   │   └── services
+│   │   │   │   │   │       └── general.service.ts
+│   │   │   │   │   ├── import-usagers
+│   │   │   │   │   │   ├── components
+│   │   │   │   │   │   │   └── import
+│   │   │   │   │   │   │       ├── import.component.css
+│   │   │   │   │   │   │       ├── import.component.html
+│   │   │   │   │   │   │       ├── import.component.spec.ts
+│   │   │   │   │   │   │       └── import.component.ts
+│   │   │   │   │   │   ├── import-usagers-routing.module.ts
+│   │   │   │   │   │   ├── import-usagers.module.ts
+│   │   │   │   │   │   ├── import-usagers.service.spec.ts
+│   │   │   │   │   │   └── import-usagers.service.ts
+│   │   │   │   │   ├── manage-usagers
+│   │   │   │   │   │   ├── classes
+│   │   │   │   │   │   │   ├── UsagersFilterCriteria.ts
+│   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   ├── components
+│   │   │   │   │   │   │   ├── assign-referrers
+│   │   │   │   │   │   │   │   ├── assign-referrers.component.css
+│   │   │   │   │   │   │   │   ├── assign-referrers.component.html
+│   │   │   │   │   │   │   │   ├── assign-referrers.component.spec.ts
+│   │   │   │   │   │   │   │   └── assign-referrers.component.ts
+│   │   │   │   │   │   │   ├── column-informations
+│   │   │   │   │   │   │   │   ├── column-informations.component.html
+│   │   │   │   │   │   │   │   ├── column-informations.component.spec.ts
+│   │   │   │   │   │   │   │   └── column-informations.component.ts
+│   │   │   │   │   │   │   ├── column-interactions
+│   │   │   │   │   │   │   │   ├── column-interactions.component.html
+│   │   │   │   │   │   │   │   ├── column-interactions.component.scss
+│   │   │   │   │   │   │   │   ├── column-interactions.component.spec.ts
+│   │   │   │   │   │   │   │   └── column-interactions.component.ts
+│   │   │   │   │   │   │   ├── manage-download-docs
+│   │   │   │   │   │   │   │   ├── manage-download-docs.component.html
+│   │   │   │   │   │   │   │   ├── manage-download-docs.component.scss
+│   │   │   │   │   │   │   │   ├── manage-download-docs.component.spec.ts
+│   │   │   │   │   │   │   │   └── manage-download-docs.component.ts
+│   │   │   │   │   │   │   ├── manage-filters
+│   │   │   │   │   │   │   │   ├── manage-filters.component.html
+│   │   │   │   │   │   │   │   ├── manage-filters.component.spec.ts
+│   │   │   │   │   │   │   │   └── manage-filters.component.ts
+│   │   │   │   │   │   │   ├── manage-usagers-page
+│   │   │   │   │   │   │   │   ├── manage-usagers-page.component.html
+│   │   │   │   │   │   │   │   ├── manage-usagers-page.component.scss
+│   │   │   │   │   │   │   │   ├── manage-usagers-page.component.spec.ts
+│   │   │   │   │   │   │   │   └── manage-usagers-page.component.ts
+│   │   │   │   │   │   │   ├── manage-usagers-table
+│   │   │   │   │   │   │   │   ├── manage-usagers-table.component.spec.ts
+│   │   │   │   │   │   │   │   ├── manage-usagers-table.component.ts
+│   │   │   │   │   │   │   │   ├── manage-usagers-table.html
+│   │   │   │   │   │   │   │   └── manage-usagers-table.scss
+│   │   │   │   │   │   │   └── usager-filter
+│   │   │   │   │   │   │       └── services
+│   │   │   │   │   │   │           └── usagersFilter.service.ts
+│   │   │   │   │   │   ├── constants
+│   │   │   │   │   │   │   └── USAGER_DEADLINES.const.ts
+│   │   │   │   │   │   ├── directives
+│   │   │   │   │   │   │   ├── date-fr-conditional.directive.ts
+│   │   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   │   └── sticky.directive.ts
+│   │   │   │   │   │   ├── manage-usagers-routing.module.ts
+│   │   │   │   │   │   ├── manage-usagers.module.spec.ts
+│   │   │   │   │   │   ├── manage-usagers.module.ts
+│   │   │   │   │   │   ├── pipes
+│   │   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   │   └── sort-label.pipe.ts
+│   │   │   │   │   │   └── services
+│   │   │   │   │   │       ├── manage-usagers.service.spec.ts
+│   │   │   │   │   │       ├── manage-usagers.service.ts
+│   │   │   │   │   │       └── usager-filter
+│   │   │   │   │   │           ├── calculateUsagersCountByStatus.service.ts
+│   │   │   │   │   │           ├── checkers
+│   │   │   │   │   │           │   ├── index.ts
+│   │   │   │   │   │           │   ├── usagerEcheanceChecker.service.spec.ts
+│   │   │   │   │   │           │   ├── usagerEcheanceChecker.service.ts
+│   │   │   │   │   │           │   ├── usagerInteractionTypeChecker.service.spec.ts
+│   │   │   │   │   │           │   ├── usagerInteractionTypeChecker.service.ts
+│   │   │   │   │   │           │   ├── usagerPassageChecker.service.spec.ts
+│   │   │   │   │   │           │   ├── usagerPassageChecker.service.ts
+│   │   │   │   │   │           │   ├── usagerStatutChecker.service.spec.ts
+│   │   │   │   │   │           │   └── usagerStatutChecker.service.ts
+│   │   │   │   │   │           ├── index.ts
+│   │   │   │   │   │           ├── usagersFilter.service.spec.ts
+│   │   │   │   │   │           ├── usagersFilter.service.ts
+│   │   │   │   │   │           ├── usagersSearchStringFilter.service.ts
+│   │   │   │   │   │           ├── usagersSorter.service.spec.ts
+│   │   │   │   │   │           └── usagersSorter.service.ts
+│   │   │   │   │   ├── manage-users
+│   │   │   │   │   │   ├── components
+│   │   │   │   │   │   │   ├── assign-referrers
+│   │   │   │   │   │   │   │   ├── assign-referrers.component.css
+│   │   │   │   │   │   │   │   ├── assign-referrers.component.html
+│   │   │   │   │   │   │   │   ├── assign-referrers.component.spec.ts
+│   │   │   │   │   │   │   │   └── assign-referrers.component.ts
+│   │   │   │   │   │   │   ├── delete-user
+│   │   │   │   │   │   │   │   ├── delete-user.component.css
+│   │   │   │   │   │   │   │   ├── delete-user.component.html
+│   │   │   │   │   │   │   │   ├── delete-user.component.spec.ts
+│   │   │   │   │   │   │   │   └── delete-user.component.ts
+│   │   │   │   │   │   │   ├── edit-user
+│   │   │   │   │   │   │   │   ├── edit-user.component.html
+│   │   │   │   │   │   │   │   ├── edit-user.component.spec.ts
+│   │   │   │   │   │   │   │   └── edit-user.component.ts
+│   │   │   │   │   │   │   ├── register-user-admin
+│   │   │   │   │   │   │   │   ├── register-user-admin.component.html
+│   │   │   │   │   │   │   │   ├── register-user-admin.component.spec.ts
+│   │   │   │   │   │   │   │   └── register-user-admin.component.ts
+│   │   │   │   │   │   │   └── user-profil
+│   │   │   │   │   │   │       ├── user-profil.component.html
+│   │   │   │   │   │   │       ├── user-profil.component.spec.ts
+│   │   │   │   │   │   │       └── user-profil.component.ts
+│   │   │   │   │   │   ├── manage-users-routing.module.ts
+│   │   │   │   │   │   ├── manage-users.module.ts
+│   │   │   │   │   │   └── services
+│   │   │   │   │   │       ├── manage-users.service.spec.ts
+│   │   │   │   │   │       └── manage-users.service.ts
+│   │   │   │   │   ├── shared
+│   │   │   │   │   │   ├── components
+│   │   │   │   │   │   │   ├── button
+│   │   │   │   │   │   │   │   ├── button.component.css
+│   │   │   │   │   │   │   │   ├── button.component.html
+│   │   │   │   │   │   │   │   ├── button.component.spec.ts
+│   │   │   │   │   │   │   │   └── button.component.ts
+│   │   │   │   │   │   │   ├── custom-toastr
+│   │   │   │   │   │   │   │   ├── custom-toastr.component.css
+│   │   │   │   │   │   │   │   ├── custom-toastr.component.html
+│   │   │   │   │   │   │   │   └── custom-toastr.component.ts
+│   │   │   │   │   │   │   ├── display-table-image
+│   │   │   │   │   │   │   │   ├── display-table-image.component.html
+│   │   │   │   │   │   │   │   ├── display-table-image.component.scss
+│   │   │   │   │   │   │   │   ├── display-table-image.component.spec.ts
+│   │   │   │   │   │   │   │   └── display-table-image.component.ts
+│   │   │   │   │   │   │   ├── fonction-selection
+│   │   │   │   │   │   │   │   ├── fonction-selection.component.html
+│   │   │   │   │   │   │   │   ├── fonction-selection.component.spec.ts
+│   │   │   │   │   │   │   │   └── fonction-selection.component.ts
+│   │   │   │   │   │   │   ├── input-referrer
+│   │   │   │   │   │   │   │   ├── input-referrer.component.css
+│   │   │   │   │   │   │   │   ├── input-referrer.component.html
+│   │   │   │   │   │   │   │   ├── input-referrer.component.spec.ts
+│   │   │   │   │   │   │   │   └── input-referrer.component.ts
+│   │   │   │   │   │   │   ├── loading
+│   │   │   │   │   │   │   │   ├── loading.component.css
+│   │   │   │   │   │   │   │   ├── loading.component.html
+│   │   │   │   │   │   │   │   ├── loading.component.spec.ts
+│   │   │   │   │   │   │   │   └── loading.component.ts
+│   │   │   │   │   │   │   ├── table-head-sort
+│   │   │   │   │   │   │   │   ├── table-head-sort.component.html
+│   │   │   │   │   │   │   │   ├── table-head-sort.component.scss
+│   │   │   │   │   │   │   │   ├── table-head-sort.component.spec.ts
+│   │   │   │   │   │   │   │   └── table-head-sort.component.ts
+│   │   │   │   │   │   │   └── table-head-sort-icon
+│   │   │   │   │   │   │       ├── table-head-sort-icon.component.html
+│   │   │   │   │   │   │       ├── table-head-sort-icon.component.spec.ts
+│   │   │   │   │   │   │       └── table-head-sort-icon.component.ts
+│   │   │   │   │   │   ├── constants
+│   │   │   │   │   │   │   └── FA_ICONS.const.ts
+│   │   │   │   │   │   ├── directives
+│   │   │   │   │   │   │   ├── clean-str.directive.ts
+│   │   │   │   │   │   │   ├── date-fr.directive.spec.ts
+│   │   │   │   │   │   │   ├── date-fr.directive.ts
+│   │   │   │   │   │   │   ├── digit-only.directive.ts
+│   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   ├── pipes
+│   │   │   │   │   │   │   ├── fonction-format.pipe.spec.ts
+│   │   │   │   │   │   │   ├── fonction-format.pipe.ts
+│   │   │   │   │   │   │   ├── full-name.pipe.ts
+│   │   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   │   ├── nl2br.pipe.ts
+│   │   │   │   │   │   │   └── sort-array.pipe.ts
+│   │   │   │   │   │   ├── services
+│   │   │   │   │   │   │   ├── auth.service.spec.ts
+│   │   │   │   │   │   │   ├── auth.service.ts
+│   │   │   │   │   │   │   ├── custom-toast.service.spec.ts
+│   │   │   │   │   │   │   ├── custom-toast.service.ts
+│   │   │   │   │   │   │   ├── date-formatter.service.ts
+│   │   │   │   │   │   │   ├── date-formatter.spec.ts
+│   │   │   │   │   │   │   ├── date-french.service.ts
+│   │   │   │   │   │   │   ├── date-french.spec.ts
+│   │   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   │   ├── loading.service.spec.ts
+│   │   │   │   │   │   │   ├── loading.service.ts
+│   │   │   │   │   │   │   ├── seo.service.spec.ts
+│   │   │   │   │   │   │   ├── seo.service.ts
+│   │   │   │   │   │   │   └── tally.service.ts
+│   │   │   │   │   │   ├── shared.module.ts
+│   │   │   │   │   │   └── types
+│   │   │   │   │   │       ├── CustomToast.type.ts
+│   │   │   │   │   │       ├── CustomToastClass.type.ts
+│   │   │   │   │   │       └── index.ts
+│   │   │   │   │   ├── stats
+│   │   │   │   │   │   ├── components
+│   │   │   │   │   │   │   ├── elements
+│   │   │   │   │   │   │   │   ├── impact-line
+│   │   │   │   │   │   │   │   │   ├── impact-line.component.html
+│   │   │   │   │   │   │   │   │   ├── impact-line.component.scss
+│   │   │   │   │   │   │   │   │   ├── impact-line.component.spec.ts
+│   │   │   │   │   │   │   │   │   └── impact-line.component.ts
+│   │   │   │   │   │   │   │   ├── stats-charts
+│   │   │   │   │   │   │   │   │   ├── stats-charts.component.css
+│   │   │   │   │   │   │   │   │   ├── stats-charts.component.html
+│   │   │   │   │   │   │   │   │   └── stats-charts.component.ts
+│   │   │   │   │   │   │   │   └── stats-map
+│   │   │   │   │   │   │   │       ├── stats-map.component.css
+│   │   │   │   │   │   │   │       ├── stats-map.component.html
+│   │   │   │   │   │   │   │       ├── stats-map.component.spec.ts
+│   │   │   │   │   │   │   │       └── stats-map.component.ts
+│   │   │   │   │   │   │   ├── home-stats
+│   │   │   │   │   │   │   │   ├── home-stats.component.css
+│   │   │   │   │   │   │   │   ├── home-stats.component.html
+│   │   │   │   │   │   │   │   ├── home-stats.component.spec.ts
+│   │   │   │   │   │   │   │   └── home-stats.component.ts
+│   │   │   │   │   │   │   ├── impact
+│   │   │   │   │   │   │   │   ├── impact.component.html
+│   │   │   │   │   │   │   │   ├── impact.component.scss
+│   │   │   │   │   │   │   │   ├── impact.component.spec.ts
+│   │   │   │   │   │   │   │   └── impact.component.ts
+│   │   │   │   │   │   │   └── public-stats
+│   │   │   │   │   │   │       ├── public-stats.component.css
+│   │   │   │   │   │   │       ├── public-stats.component.html
+│   │   │   │   │   │   │       └── public-stats.component.ts
+│   │   │   │   │   │   ├── constants
+│   │   │   │   │   │   │   ├── STATS_REGIONS_FOR_MAP.const.ts
+│   │   │   │   │   │   │   ├── StatsTerritory.type.ts
+│   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   ├── pipes
+│   │   │   │   │   │   │   ├── format-big-number.pipe.spec.ts
+│   │   │   │   │   │   │   ├── format-big-number.pipe.ts
+│   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   ├── services
+│   │   │   │   │   │   │   ├── stats.service.spec.ts
+│   │   │   │   │   │   │   └── stats.service.ts
+│   │   │   │   │   │   ├── stats-routing.module.ts
+│   │   │   │   │   │   └── stats.module.ts
+│   │   │   │   │   ├── structure
+│   │   │   │   │   │   └── components
+│   │   │   │   │   │       └── refus-structure-form
+│   │   │   │   │   │           ├── refus-structure-form.component.css
+│   │   │   │   │   │           ├── refus-structure-form.component.html
+│   │   │   │   │   │           ├── refus-structure-form.component.spec.ts
+│   │   │   │   │   │           └── refus-structure-form.component.ts
+│   │   │   │   │   ├── structure-stats
+│   │   │   │   │   │   ├── components
+│   │   │   │   │   │   │   ├── reporting-form
+│   │   │   │   │   │   │   │   ├── reporting-form.component.css
+│   │   │   │   │   │   │   │   ├── reporting-form.component.html
+│   │   │   │   │   │   │   │   ├── reporting-form.component.spec.ts
+│   │   │   │   │   │   │   │   └── reporting-form.component.ts
+│   │   │   │   │   │   │   └── structure-stats
+│   │   │   │   │   │   │       ├── structure-stats.component.html
+│   │   │   │   │   │   │       ├── structure-stats.component.scss
+│   │   │   │   │   │   │       ├── structure-stats.component.spec.ts
+│   │   │   │   │   │   │       └── structure-stats.component.ts
+│   │   │   │   │   │   ├── services
+│   │   │   │   │   │   │   ├── buildExportStructureStatsFileName.ts
+│   │   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   │   ├── structure-stats.service.spec.ts
+│   │   │   │   │   │   │   └── structure-stats.service.ts
+│   │   │   │   │   │   ├── structure-stats-routing.module.ts
+│   │   │   │   │   │   └── structure-stats.module.ts
+│   │   │   │   │   ├── structures
+│   │   │   │   │   │   ├── classes
+│   │   │   │   │   │   │   ├── StructureCommonWeb.class.ts
+│   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   ├── components
+│   │   │   │   │   │   │   ├── register-user
+│   │   │   │   │   │   │   │   ├── register-user.component.html
+│   │   │   │   │   │   │   │   ├── register-user.component.spec.ts
+│   │   │   │   │   │   │   │   └── register-user.component.ts
+│   │   │   │   │   │   │   ├── structure-edit-form
+│   │   │   │   │   │   │   │   ├── structure-edit-form.component.css
+│   │   │   │   │   │   │   │   ├── structure-edit-form.component.html
+│   │   │   │   │   │   │   │   ├── structure-edit-form.component.spec.ts
+│   │   │   │   │   │   │   │   └── structure-edit-form.component.ts
+│   │   │   │   │   │   │   ├── structures-custom-docs
+│   │   │   │   │   │   │   │   ├── structures-custom-docs.component.html
+│   │   │   │   │   │   │   │   ├── structures-custom-docs.component.spec.ts
+│   │   │   │   │   │   │   │   └── structures-custom-docs.component.ts
+│   │   │   │   │   │   │   ├── structures-custom-docs-table
+│   │   │   │   │   │   │   │   ├── structures-custom-docs-table.component.html
+│   │   │   │   │   │   │   │   ├── structures-custom-docs-table.component.spec.ts
+│   │   │   │   │   │   │   │   └── structures-custom-docs-table.component.ts
+│   │   │   │   │   │   │   ├── structures-edit
+│   │   │   │   │   │   │   │   ├── structures-edit.component.html
+│   │   │   │   │   │   │   │   ├── structures-edit.component.spec.ts
+│   │   │   │   │   │   │   │   └── structures-edit.component.ts
+│   │   │   │   │   │   │   ├── structures-form
+│   │   │   │   │   │   │   │   ├── structures-form.component.css
+│   │   │   │   │   │   │   │   ├── structures-form.component.html
+│   │   │   │   │   │   │   │   ├── structures-form.component.spec.ts
+│   │   │   │   │   │   │   │   └── structures-form.component.ts
+│   │   │   │   │   │   │   ├── structures-search
+│   │   │   │   │   │   │   │   ├── structures-search.component.css
+│   │   │   │   │   │   │   │   ├── structures-search.component.html
+│   │   │   │   │   │   │   │   ├── structures-search.component.spec.ts
+│   │   │   │   │   │   │   │   └── structures-search.component.ts
+│   │   │   │   │   │   │   ├── structures-sms-form
+│   │   │   │   │   │   │   │   ├── structures-sms-form.component.css
+│   │   │   │   │   │   │   │   ├── structures-sms-form.component.html
+│   │   │   │   │   │   │   │   ├── structures-sms-form.component.spec.ts
+│   │   │   │   │   │   │   │   └── structures-sms-form.component.ts
+│   │   │   │   │   │   │   └── structures-upload-docs
+│   │   │   │   │   │   │       ├── structures-upload-docs.component.html
+│   │   │   │   │   │   │       └── structures-upload-docs.component.ts
+│   │   │   │   │   │   ├── constants
+│   │   │   │   │   │   │   └── DOMIFA_CUSTOM_DOCS.const.ts
+│   │   │   │   │   │   ├── services
+│   │   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   │   ├── structure-doc.service.spec.ts
+│   │   │   │   │   │   │   ├── structure-doc.service.ts
+│   │   │   │   │   │   │   ├── structure.service.spec.ts
+│   │   │   │   │   │   │   └── structure.service.ts
+│   │   │   │   │   │   ├── structures-routing.module.ts
+│   │   │   │   │   │   ├── structures.module.spec.ts
+│   │   │   │   │   │   ├── structures.module.ts
+│   │   │   │   │   │   └── utils
+│   │   │   │   │   │       ├── generateSender.service.ts
+│   │   │   │   │   │       ├── generateStructureForm.ts
+│   │   │   │   │   │       ├── index.ts
+│   │   │   │   │   │       └── structure-validators.ts
+│   │   │   │   │   ├── usager-dossier
+│   │   │   │   │   │   ├── components
+│   │   │   │   │   │   │   ├── base-usager-dossier-page
+│   │   │   │   │   │   │   │   ├── base-usager-dossier-page.component.html
+│   │   │   │   │   │   │   │   ├── base-usager-dossier-page.component.spec.ts
+│   │   │   │   │   │   │   │   └── base-usager-dossier-page.component.ts
+│   │   │   │   │   │   │   ├── decision-refus-form
+│   │   │   │   │   │   │   │   ├── decision-refus-form.component.html
+│   │   │   │   │   │   │   │   ├── decision-refus-form.component.spec.ts
+│   │   │   │   │   │   │   │   └── decision-refus-form.component.ts
+│   │   │   │   │   │   │   ├── decision-standby-form
+│   │   │   │   │   │   │   │   ├── decision-standby-form.component.css
+│   │   │   │   │   │   │   │   ├── decision-standby-form.component.html
+│   │   │   │   │   │   │   │   ├── decision-standby-form.component.spec.ts
+│   │   │   │   │   │   │   │   └── decision-standby-form.component.ts
+│   │   │   │   │   │   │   ├── decision-valide-form
+│   │   │   │   │   │   │   │   ├── decision-valide-form.component.html
+│   │   │   │   │   │   │   │   ├── decision-valide-form.component.spec.ts
+│   │   │   │   │   │   │   │   └── decision-valide-form.component.ts
+│   │   │   │   │   │   │   ├── display-contact-details-decision
+│   │   │   │   │   │   │   │   ├── display-contact-details-decision.component.html
+│   │   │   │   │   │   │   │   ├── display-contact-details-decision.component.spec.ts
+│   │   │   │   │   │   │   │   └── display-contact-details-decision.component.ts
+│   │   │   │   │   │   │   ├── display-etat-civil-decision
+│   │   │   │   │   │   │   │   ├── display-etat-civil-decision.component.html
+│   │   │   │   │   │   │   │   ├── display-etat-civil-decision.component.spec.ts
+│   │   │   │   │   │   │   │   └── display-etat-civil-decision.component.ts
+│   │   │   │   │   │   │   ├── step-decision
+│   │   │   │   │   │   │   │   ├── step-decision.component.html
+│   │   │   │   │   │   │   │   ├── step-decision.component.spec.ts
+│   │   │   │   │   │   │   │   └── step-decision.component.ts
+│   │   │   │   │   │   │   ├── step-documents
+│   │   │   │   │   │   │   │   ├── step-documents.component.html
+│   │   │   │   │   │   │   │   ├── step-documents.component.spec.ts
+│   │   │   │   │   │   │   │   └── step-documents.component.ts
+│   │   │   │   │   │   │   ├── step-entretien
+│   │   │   │   │   │   │   │   ├── step-entretien.component.html
+│   │   │   │   │   │   │   │   ├── step-entretien.component.spec.ts
+│   │   │   │   │   │   │   │   └── step-entretien.component.ts
+│   │   │   │   │   │   │   ├── step-etat-civil
+│   │   │   │   │   │   │   │   ├── step-etat-civil.component.css
+│   │   │   │   │   │   │   │   ├── step-etat-civil.component.html
+│   │   │   │   │   │   │   │   ├── step-etat-civil.component.spec.ts
+│   │   │   │   │   │   │   │   └── step-etat-civil.component.ts
+│   │   │   │   │   │   │   ├── step-footer
+│   │   │   │   │   │   │   │   ├── step-footer.component.html
+│   │   │   │   │   │   │   │   ├── step-footer.component.spec.ts
+│   │   │   │   │   │   │   │   └── step-footer.component.ts
+│   │   │   │   │   │   │   ├── step-header
+│   │   │   │   │   │   │   │   ├── step-header.component.css
+│   │   │   │   │   │   │   │   ├── step-header.component.html
+│   │   │   │   │   │   │   │   ├── step-header.component.spec.ts
+│   │   │   │   │   │   │   │   └── step-header.component.ts
+│   │   │   │   │   │   │   └── step-rdv
+│   │   │   │   │   │   │       ├── step-rdv.component.css
+│   │   │   │   │   │   │       ├── step-rdv.component.html
+│   │   │   │   │   │   │       ├── step-rdv.component.spec.ts
+│   │   │   │   │   │   │       └── step-rdv.component.ts
+│   │   │   │   │   │   ├── constants
+│   │   │   │   │   │   │   ├── ETAPES_FORM_DOM.const.ts
+│   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   ├── services
+│   │   │   │   │   │   │   ├── usager-dossier.service.spec.ts
+│   │   │   │   │   │   │   └── usager-dossier.service.ts
+│   │   │   │   │   │   ├── types
+│   │   │   │   │   │   │   ├── RdvForm.interface.ts
+│   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   ├── usager-dossier-routing.module.ts
+│   │   │   │   │   │   └── usager-dossier.module.ts
+│   │   │   │   │   ├── usager-notes
+│   │   │   │   │   │   ├── components
+│   │   │   │   │   │   │   ├── base-usager-notes
+│   │   │   │   │   │   │   │   ├── base-usager-notes.component.html
+│   │   │   │   │   │   │   │   ├── base-usager-notes.component.spec.ts
+│   │   │   │   │   │   │   │   └── base-usager-notes.component.ts
+│   │   │   │   │   │   │   ├── profil-add-note-form
+│   │   │   │   │   │   │   │   ├── profil-add-note-form.component.html
+│   │   │   │   │   │   │   │   ├── profil-add-note-form.component.spec.ts
+│   │   │   │   │   │   │   │   └── profil-add-note-form.component.ts
+│   │   │   │   │   │   │   ├── profil-general-notes
+│   │   │   │   │   │   │   │   ├── profil-general-notes.component.css
+│   │   │   │   │   │   │   │   ├── profil-general-notes.component.html
+│   │   │   │   │   │   │   │   ├── profil-general-notes.component.spec.ts
+│   │   │   │   │   │   │   │   └── profil-general-notes.component.ts
+│   │   │   │   │   │   │   └── usager-notes-actions
+│   │   │   │   │   │   │       ├── usager-notes-actions.component.html
+│   │   │   │   │   │   │       ├── usager-notes-actions.component.spec.ts
+│   │   │   │   │   │   │       └── usager-notes-actions.component.ts
+│   │   │   │   │   │   ├── services
+│   │   │   │   │   │   │   ├── usager-notes.service.spec.ts
+│   │   │   │   │   │   │   └── usager-notes.service.ts
+│   │   │   │   │   │   └── usager-notes.module.ts
+│   │   │   │   │   ├── usager-profil
+│   │   │   │   │   │   ├── components
+│   │   │   │   │   │   │   ├── _courriers
+│   │   │   │   │   │   │   │   ├── profil-edit-portail-usager-preference
+│   │   │   │   │   │   │   │   │   ├── profil-edit-portail-usager-preference.component.html
+│   │   │   │   │   │   │   │   │   ├── profil-edit-portail-usager-preference.component.spec.ts
+│   │   │   │   │   │   │   │   │   └── profil-edit-portail-usager-preference.component.ts
+│   │   │   │   │   │   │   │   ├── profil-procuration-courrier
+│   │   │   │   │   │   │   │   │   ├── profil-procuration-courrier-component.spec.ts
+│   │   │   │   │   │   │   │   │   ├── profil-procuration-courrier-component.ts
+│   │   │   │   │   │   │   │   │   └── profil-procuration-courrier.html
+│   │   │   │   │   │   │   │   └── profil-transfert-courrier
+│   │   │   │   │   │   │   │       ├── profil-transfert-courrier-component.spec.ts
+│   │   │   │   │   │   │   │       ├── profil-transfert-courrier-component.ts
+│   │   │   │   │   │   │   │       └── profil-transfert-courrier.html
+│   │   │   │   │   │   │   ├── _documents
+│   │   │   │   │   │   │   │   └── profil-structure-documents
+│   │   │   │   │   │   │   │       ├── profil-structure-docs.component.html
+│   │   │   │   │   │   │   │       ├── profil-structure-docs.component.spec.ts
+│   │   │   │   │   │   │   │       └── profil-structure-docs.component.ts
+│   │   │   │   │   │   │   ├── _general-section
+│   │   │   │   │   │   │   │   ├── display-contact-details
+│   │   │   │   │   │   │   │   │   ├── display-contact-details.component.css
+│   │   │   │   │   │   │   │   │   ├── display-contact-details.component.html
+│   │   │   │   │   │   │   │   │   ├── display-contact-details.component.spec.ts
+│   │   │   │   │   │   │   │   │   └── display-contact-details.component.ts
+│   │   │   │   │   │   │   │   ├── display-etat-civil
+│   │   │   │   │   │   │   │   │   ├── display-etat-civil.component.html
+│   │   │   │   │   │   │   │   │   ├── display-etat-civil.component.spec.ts
+│   │   │   │   │   │   │   │   │   └── display-etat-civil.component.ts
+│   │   │   │   │   │   │   │   ├── profil-general-historique-courriers
+│   │   │   │   │   │   │   │   │   ├── profil-general-historique-courriers.component.css
+│   │   │   │   │   │   │   │   │   ├── profil-general-historique-courriers.component.html
+│   │   │   │   │   │   │   │   │   ├── profil-general-historique-courriers.component.spec.ts
+│   │   │   │   │   │   │   │   │   └── profil-general-historique-courriers.component.ts
+│   │   │   │   │   │   │   │   └── set-npai
+│   │   │   │   │   │   │   │       ├── set-npai.component.html
+│   │   │   │   │   │   │   │       ├── set-npai.component.spec.ts
+│   │   │   │   │   │   │   │       └── set-npai.component.ts
+│   │   │   │   │   │   │   ├── _historiques
+│   │   │   │   │   │   │   │   ├── historique-table.scss
+│   │   │   │   │   │   │   │   ├── profil-historique-courriers
+│   │   │   │   │   │   │   │   │   ├── profil-historique-courriers.component.html
+│   │   │   │   │   │   │   │   │   ├── profil-historique-courriers.component.spec.ts
+│   │   │   │   │   │   │   │   │   └── profil-historique-courriers.component.ts
+│   │   │   │   │   │   │   │   ├── profil-historique-decisions
+│   │   │   │   │   │   │   │   │   ├── profil-historique-decisions.component.html
+│   │   │   │   │   │   │   │   │   ├── profil-historique-decisions.component.spec.ts
+│   │   │   │   │   │   │   │   │   └── profil-historique-decisions.component.ts
+│   │   │   │   │   │   │   │   ├── profil-historique-login-portail
+│   │   │   │   │   │   │   │   │   ├── profil-historique-login-portail.component.html
+│   │   │   │   │   │   │   │   │   ├── profil-historique-login-portail.component.spec.ts
+│   │   │   │   │   │   │   │   │   └── profil-historique-login-portail.component.ts
+│   │   │   │   │   │   │   │   ├── profil-historique-notes
+│   │   │   │   │   │   │   │   │   ├── profil-historique-notes.component.html
+│   │   │   │   │   │   │   │   │   ├── profil-historique-notes.component.spec.ts
+│   │   │   │   │   │   │   │   │   └── profil-historique-notes.component.ts
+│   │   │   │   │   │   │   │   ├── profil-historique-procurations
+│   │   │   │   │   │   │   │   │   ├── profil-historique-procurations.component.html
+│   │   │   │   │   │   │   │   │   ├── profil-historique-procurations.component.spec.ts
+│   │   │   │   │   │   │   │   │   └── profil-historique-procurations.component.ts
+│   │   │   │   │   │   │   │   ├── profil-historique-sms
+│   │   │   │   │   │   │   │   │   ├── profil-historique-sms.component.html
+│   │   │   │   │   │   │   │   │   ├── profil-historique-sms.component.spec.ts
+│   │   │   │   │   │   │   │   │   └── profil-historique-sms.component.ts
+│   │   │   │   │   │   │   │   └── profil-historique-transferts
+│   │   │   │   │   │   │   │       ├── profil-historique-transferts.component.html
+│   │   │   │   │   │   │   │       ├── profil-historique-transferts.component.spec.ts
+│   │   │   │   │   │   │   │       └── profil-historique-transferts.component.ts
+│   │   │   │   │   │   │   ├── pages
+│   │   │   │   │   │   │   │   ├── base-usager-profil-page
+│   │   │   │   │   │   │   │   │   ├── base-usager-profil-page.component.html
+│   │   │   │   │   │   │   │   │   ├── base-usager-profil-page.component.spec.ts
+│   │   │   │   │   │   │   │   │   └── base-usager-profil-page.component.ts
+│   │   │   │   │   │   │   │   ├── profil-courriers
+│   │   │   │   │   │   │   │   │   ├── profil-courriers.component.html
+│   │   │   │   │   │   │   │   │   ├── profil-courriers.component.spec.ts
+│   │   │   │   │   │   │   │   │   └── profil-courriers.component.ts
+│   │   │   │   │   │   │   │   ├── profil-documents-section
+│   │   │   │   │   │   │   │   │   ├── profil-documents-section.component.html
+│   │   │   │   │   │   │   │   │   ├── profil-documents-section.component.spec.ts
+│   │   │   │   │   │   │   │   │   └── profil-documents-section.component.ts
+│   │   │   │   │   │   │   │   ├── profil-dossier
+│   │   │   │   │   │   │   │   │   ├── profil-dossier.component.html
+│   │   │   │   │   │   │   │   │   ├── profil-dossier.component.spec.ts
+│   │   │   │   │   │   │   │   │   └── profil-dossier.component.ts
+│   │   │   │   │   │   │   │   ├── profil-general-section
+│   │   │   │   │   │   │   │   │   ├── profil-general-section.component.css
+│   │   │   │   │   │   │   │   │   ├── profil-general-section.component.html
+│   │   │   │   │   │   │   │   │   ├── profil-general-section.component.spec.ts
+│   │   │   │   │   │   │   │   │   └── profil-general-section.component.ts
+│   │   │   │   │   │   │   │   ├── profil-historique
+│   │   │   │   │   │   │   │   │   ├── profil-historique.component.html
+│   │   │   │   │   │   │   │   │   ├── profil-historique.component.scss
+│   │   │   │   │   │   │   │   │   ├── profil-historique.component.spec.ts
+│   │   │   │   │   │   │   │   │   └── profil-historique.component.ts
+│   │   │   │   │   │   │   │   └── profil-sms-portail
+│   │   │   │   │   │   │   │       ├── profil-sms-portail.component.css
+│   │   │   │   │   │   │   │       ├── profil-sms-portail.component.html
+│   │   │   │   │   │   │   │       ├── profil-sms-portail.component.spec.ts
+│   │   │   │   │   │   │   │       └── profil-sms-portail.component.ts
+│   │   │   │   │   │   │   └── profil-head
+│   │   │   │   │   │   │       ├── profil-head.component.css
+│   │   │   │   │   │   │       ├── profil-head.component.html
+│   │   │   │   │   │   │       ├── profil-head.component.spec.ts
+│   │   │   │   │   │   │       └── profil-head.component.ts
+│   │   │   │   │   │   ├── constants
+│   │   │   │   │   │   │   ├── SMS_LABELS.const.ts
+│   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   ├── services
+│   │   │   │   │   │   │   ├── portail-usagers.service.spec.ts
+│   │   │   │   │   │   │   ├── portail-usagers.service.ts
+│   │   │   │   │   │   │   ├── usager-options.service.spec.ts
+│   │   │   │   │   │   │   ├── usager-options.service.ts
+│   │   │   │   │   │   │   ├── usager-profil.service.spec.ts
+│   │   │   │   │   │   │   └── usager-profil.service.ts
+│   │   │   │   │   │   ├── usager-profil-routing.module.ts
+│   │   │   │   │   │   └── usager-profil.module.ts
+│   │   │   │   │   ├── usager-shared
+│   │   │   │   │   │   ├── components
+│   │   │   │   │   │   │   ├── decision-radiation-form
+│   │   │   │   │   │   │   │   ├── decision-radiation-form.component.html
+│   │   │   │   │   │   │   │   ├── decision-radiation-form.component.scss
+│   │   │   │   │   │   │   │   ├── decision-radiation-form.component.spec.ts
+│   │   │   │   │   │   │   │   └── decision-radiation-form.component.ts
+│   │   │   │   │   │   │   ├── delete-usager
+│   │   │   │   │   │   │   │   ├── delete-usager.component.css
+│   │   │   │   │   │   │   │   ├── delete-usager.component.html
+│   │   │   │   │   │   │   │   ├── delete-usager.component.spec.ts
+│   │   │   │   │   │   │   │   └── delete-usager.component.ts
+│   │   │   │   │   │   │   ├── delete-usager-menu
+│   │   │   │   │   │   │   │   ├── delete-usager-menu.component.css
+│   │   │   │   │   │   │   │   ├── delete-usager-menu.component.html
+│   │   │   │   │   │   │   │   ├── delete-usager-menu.component.spec.ts
+│   │   │   │   │   │   │   │   └── delete-usager-menu.component.ts
+│   │   │   │   │   │   │   ├── display-ayants-droits
+│   │   │   │   │   │   │   │   ├── display-ayants-droits.component.html
+│   │   │   │   │   │   │   │   ├── display-ayants-droits.component.spec.ts
+│   │   │   │   │   │   │   │   └── display-ayants-droits.component.ts
+│   │   │   │   │   │   │   ├── display-duplicates-usager
+│   │   │   │   │   │   │   │   ├── display-duplicates-usager.component.css
+│   │   │   │   │   │   │   │   ├── display-duplicates-usager.component.html
+│   │   │   │   │   │   │   │   ├── display-duplicates-usager.component.spec.ts
+│   │   │   │   │   │   │   │   └── display-duplicates-usager.component.ts
+│   │   │   │   │   │   │   ├── display-entretien
+│   │   │   │   │   │   │   │   ├── display-entretien.component.html
+│   │   │   │   │   │   │   │   ├── display-entretien.component.spec.ts
+│   │   │   │   │   │   │   │   └── display-entretien.component.ts
+│   │   │   │   │   │   │   ├── display-usager-docs
+│   │   │   │   │   │   │   │   ├── display-usager-docs.component.html
+│   │   │   │   │   │   │   │   ├── display-usager-docs.component.spec.ts
+│   │   │   │   │   │   │   │   └── display-usager-docs.component.ts
+│   │   │   │   │   │   │   ├── edit-usager-doc
+│   │   │   │   │   │   │   │   ├── edit-usager-doc.component.css
+│   │   │   │   │   │   │   │   ├── edit-usager-doc.component.html
+│   │   │   │   │   │   │   │   ├── edit-usager-doc.component.spec.ts
+│   │   │   │   │   │   │   │   └── edit-usager-doc.component.ts
+│   │   │   │   │   │   │   ├── entretien-form
+│   │   │   │   │   │   │   │   ├── entretien-form.component.css
+│   │   │   │   │   │   │   │   ├── entretien-form.component.html
+│   │   │   │   │   │   │   │   ├── entretien-form.component.spec.ts
+│   │   │   │   │   │   │   │   └── entretien-form.component.ts
+│   │   │   │   │   │   │   ├── etat-civil-parent-form
+│   │   │   │   │   │   │   │   ├── etat-civil-parent-form.component.html
+│   │   │   │   │   │   │   │   ├── etat-civil-parent-form.component.spec.ts
+│   │   │   │   │   │   │   │   └── etat-civil-parent-form.component.ts
+│   │   │   │   │   │   │   ├── form-contact-details
+│   │   │   │   │   │   │   │   ├── form-contact-details.component.css
+│   │   │   │   │   │   │   │   ├── form-contact-details.component.html
+│   │   │   │   │   │   │   │   ├── form-contact-details.component.spec.ts
+│   │   │   │   │   │   │   │   └── form-contact-details.component.ts
+│   │   │   │   │   │   │   ├── input-nationality
+│   │   │   │   │   │   │   │   ├── input-nationality.component.css
+│   │   │   │   │   │   │   │   ├── input-nationality.component.html
+│   │   │   │   │   │   │   │   ├── input-nationality.component.spec.ts
+│   │   │   │   │   │   │   │   └── input-nationality.component.ts
+│   │   │   │   │   │   │   ├── interactions
+│   │   │   │   │   │   │   │   ├── interactions.css
+│   │   │   │   │   │   │   │   ├── set-interaction-in-form
+│   │   │   │   │   │   │   │   │   ├── set-interaction-in-form.component.html
+│   │   │   │   │   │   │   │   │   ├── set-interaction-in-form.component.spec.ts
+│   │   │   │   │   │   │   │   │   └── set-interaction-in-form.component.ts
+│   │   │   │   │   │   │   │   └── set-interaction-out-form
+│   │   │   │   │   │   │   │       ├── set-interaction-out-form.component.html
+│   │   │   │   │   │   │   │       ├── set-interaction-out-form.component.spec.ts
+│   │   │   │   │   │   │   │       └── set-interaction-out-form.component.ts
+│   │   │   │   │   │   │   ├── profil-etat-civil-form
+│   │   │   │   │   │   │   │   ├── profil-etat-civil-form.component.html
+│   │   │   │   │   │   │   │   ├── profil-etat-civil-form.component.spec.ts
+│   │   │   │   │   │   │   │   └── profil-etat-civil-form.component.ts
+│   │   │   │   │   │   │   ├── rgpd-warning
+│   │   │   │   │   │   │   │   ├── rgpd-warning.component.html
+│   │   │   │   │   │   │   │   ├── rgpd-warning.component.spec.ts
+│   │   │   │   │   │   │   │   └── rgpd-warning.component.ts
+│   │   │   │   │   │   │   └── upload
+│   │   │   │   │   │   │       ├── upload.component.html
+│   │   │   │   │   │   │       ├── upload.component.spec.ts
+│   │   │   │   │   │   │       └── upload.component.ts
+│   │   │   │   │   │   ├── interfaces
+│   │   │   │   │   │   │   ├── UsagerFormModel.ts
+│   │   │   │   │   │   │   ├── ayant-droit.ts
+│   │   │   │   │   │   │   ├── decision.ts
+│   │   │   │   │   │   │   ├── entretien.ts
+│   │   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   │   ├── rdv.ts
+│   │   │   │   │   │   │   └── usager-interfaces.spec.ts
+│   │   │   │   │   │   ├── pipes
+│   │   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   │   └── referrer-name.pipe.ts
+│   │   │   │   │   │   ├── services
+│   │   │   │   │   │   │   ├── document.service.spec.ts
+│   │   │   │   │   │   │   ├── document.service.ts
+│   │   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   │   ├── interaction.service.spec.ts
+│   │   │   │   │   │   │   ├── interaction.service.ts
+│   │   │   │   │   │   │   ├── usager-decision.service.ts
+│   │   │   │   │   │   │   └── usagers.service.ts
+│   │   │   │   │   │   ├── usager-shared.module.ts
+│   │   │   │   │   │   └── utils
+│   │   │   │   │   │       ├── countStanbyInteractions.service.ts
+│   │   │   │   │   │       ├── getUrlUsagerProfil.service.spec.ts
+│   │   │   │   │   │       ├── getUrlUsagerProfil.service.ts
+│   │   │   │   │   │       ├── index.ts
+│   │   │   │   │   │       └── languages
+│   │   │   │   │   │           ├── AppLanguage.type.ts
+│   │   │   │   │   │           ├── LANGUAGES.const.ts
+│   │   │   │   │   │           ├── index.ts
+│   │   │   │   │   │           ├── languages-autocomplete.util.spec.ts
+│   │   │   │   │   │           └── languages-autocomplete.util.ts
+│   │   │   │   │   └── users
+│   │   │   │   │       ├── PASSWORD_VALIDATOR.const.ts
+│   │   │   │   │       ├── components
+│   │   │   │   │       │   ├── reset-password
+│   │   │   │   │       │   │   ├── reset-password.component.css
+│   │   │   │   │       │   │   ├── reset-password.component.html
+│   │   │   │   │       │   │   ├── reset-password.component.spec.ts
+│   │   │   │   │       │   │   └── reset-password.component.ts
+│   │   │   │   │       │   └── user-structure-password-form
+│   │   │   │   │       │       ├── user-structure-password-form.component.html
+│   │   │   │   │       │       ├── user-structure-password-form.component.spec.ts
+│   │   │   │   │       │       └── user-structure-password-form.component.ts
+│   │   │   │   │       ├── services
+│   │   │   │   │       │   ├── index.ts
+│   │   │   │   │       │   ├── password-validator.service.ts
+│   │   │   │   │       │   ├── userStructureBuilder.service.spec.ts
+│   │   │   │   │       │   ├── userStructureBuilder.service.ts
+│   │   │   │   │       │   ├── users.service.spec.ts
+│   │   │   │   │       │   └── users.service.ts
+│   │   │   │   │       ├── users-routing.module.ts
+│   │   │   │   │       ├── users.module.spec.ts
+│   │   │   │   │       └── users.module.ts
+│   │   │   │   └── shared
+│   │   │   │       ├── animations.ts
+│   │   │   │       ├── bootstrap-util.ts
+│   │   │   │       ├── constants
+│   │   │   │       │   ├── MATOMO_INJECTORS.const.ts
+│   │   │   │       │   └── index.ts
+│   │   │   │       ├── index.ts
+│   │   │   │       ├── phone
+│   │   │   │       │   ├── formatInternationalPhoneNumber.pipe.ts
+│   │   │   │       │   ├── formatInternationalPhoneNumber.spec.ts
+│   │   │   │       │   ├── formatInternationalPhoneNumber.ts
+│   │   │   │       │   ├── index.ts
+│   │   │   │       │   ├── mobilePhone.validator.ts
+│   │   │   │       │   ├── phoneUtils.spec.ts
+│   │   │   │       │   └── phoneUtils.ts
+│   │   │   │       ├── store
+│   │   │   │       │   ├── index.ts
+│   │   │   │       │   ├── setUsagerInformation.ts
+│   │   │   │       │   ├── tests
+│   │   │   │       │   │   ├── NGRX_PROVIDERS_TESTING.const.ts
+│   │   │   │       │   │   ├── index.ts
+│   │   │   │       │   │   ├── ngRxUsagersCache.service.spec.ts
+│   │   │   │       │   │   └── setUsagerInformation.spec.ts
+│   │   │   │       │   ├── usager-actions-reducer.service.ts
+│   │   │   │       │   └── usager-actions.service.ts
+│   │   │   │       ├── string-cleaner.service.spec.ts
+│   │   │   │       ├── string-cleaner.service.ts
+│   │   │   │       └── validators
+│   │   │   │           ├── email.validator.spec.ts
+│   │   │   │           ├── email.validator.ts
+│   │   │   │           ├── endDateAfterBeginDate.validator.ts
+│   │   │   │           ├── in-array.validator.ts
+│   │   │   │           ├── index.ts
+│   │   │   │           ├── no-whitespace.validator.ts
+│   │   │   │           └── upload-validator.ts
+│   │   │   ├── assets
+│   │   │   │   ├── .gitkeep
+│   │   │   │   ├── css
+│   │   │   │   │   ├── bootstrap-custom.css
+│   │   │   │   │   ├── fonts.css
+│   │   │   │   │   ├── forms.scss
+│   │   │   │   │   ├── icons.css
+│   │   │   │   │   ├── main.scss
+│   │   │   │   │   └── print.css
+│   │   │   │   ├── favicon
+│   │   │   │   │   ├── android-chrome-192x192.png
+│   │   │   │   │   ├── android-chrome-512x512.png
+│   │   │   │   │   ├── apple-touch-icon.png
+│   │   │   │   │   ├── browserconfig.xml
+│   │   │   │   │   ├── favicon-16x16.png
+│   │   │   │   │   ├── favicon-32x32.png
+│   │   │   │   │   ├── favicon.ico
+│   │   │   │   │   ├── mstile-150x150.png
+│   │   │   │   │   ├── safari-pinned-tab.svg
+│   │   │   │   │   └── site.webmanifest
+│   │   │   │   ├── files
+│   │   │   │   │   ├── attestation_postale.docx
+│   │   │   │   │   ├── cerfa_attestation.docx
+│   │   │   │   │   ├── courrier_radiation.docx
+│   │   │   │   │   ├── guide_docs_persos_domifa.pdf
+│   │   │   │   │   ├── guide_portail_usagers.pdf
+│   │   │   │   │   ├── guide_utilisateur_domifa.pdf
+│   │   │   │   │   ├── modele_import_domifa.xlsx
+│   │   │   │   │   ├── news.json
+│   │   │   │   │   └── tuto-import.pdf
+│   │   │   │   ├── fonts
+│   │   │   │   │   └── Marianne
+│   │   │   │   │       ├── Marianne-Bold.woff
+│   │   │   │   │       ├── Marianne-Bold.woff2
+│   │   │   │   │       ├── Marianne-Bold_Italic.woff
+│   │   │   │   │       ├── Marianne-Bold_Italic.woff2
+│   │   │   │   │       ├── Marianne-ExtraBold.woff
+│   │   │   │   │       ├── Marianne-ExtraBold.woff2
+│   │   │   │   │       ├── Marianne-ExtraBold_Italic.woff
+│   │   │   │   │       ├── Marianne-ExtraBold_Italic.woff2
+│   │   │   │   │       ├── Marianne-Light.woff
+│   │   │   │   │       ├── Marianne-Light.woff2
+│   │   │   │   │       ├── Marianne-Light_Italic.woff
+│   │   │   │   │       ├── Marianne-Light_Italic.woff2
+│   │   │   │   │       ├── Marianne-Medium.woff
+│   │   │   │   │       ├── Marianne-Medium.woff2
+│   │   │   │   │       ├── Marianne-Medium_Italic.woff
+│   │   │   │   │       ├── Marianne-Medium_Italic.woff2
+│   │   │   │   │       ├── Marianne-Regular.woff
+│   │   │   │   │       ├── Marianne-Regular.woff2
+│   │   │   │   │       ├── Marianne-Regular_Italic.woff
+│   │   │   │   │       ├── Marianne-Regular_Italic.woff2
+│   │   │   │   │       ├── Marianne-Thin.woff
+│   │   │   │   │       ├── Marianne-Thin.woff2
+│   │   │   │   │       ├── Marianne-Thin_Italic.woff
+│   │   │   │   │       └── Marianne-Thin_Italic.woff2
+│   │   │   │   ├── icones
+│   │   │   │   │   ├── avispassage.svg
+│   │   │   │   │   ├── ban-solid.svg
+│   │   │   │   │   ├── calendar.svg
+│   │   │   │   │   ├── colis.svg
+│   │   │   │   │   ├── courrier.svg
+│   │   │   │   │   ├── danger.svg
+│   │   │   │   │   ├── distribution.svg
+│   │   │   │   │   ├── fleche-droite.svg
+│   │   │   │   │   ├── fleche-gauche.svg
+│   │   │   │   │   ├── icon-heart.png
+│   │   │   │   │   ├── link-external.png
+│   │   │   │   │   ├── menu.svg
+│   │   │   │   │   ├── moins.svg
+│   │   │   │   │   ├── note.svg
+│   │   │   │   │   ├── passage.svg
+│   │   │   │   │   ├── phone.svg
+│   │   │   │   │   ├── pinned-note.svg
+│   │   │   │   │   ├── plus.svg
+│   │   │   │   │   ├── reception.svg
+│   │   │   │   │   └── recommande.svg
+│   │   │   │   └── images
+│   │   │   │       ├── faq
+│   │   │   │       │   ├── faq-compte.jpg
+│   │   │   │       │   ├── faq-demande.jpg
+│   │   │   │       │   ├── faq-import.jpg
+│   │   │   │       │   ├── faq-inscription.jpg
+│   │   │   │       │   ├── faq-liste.jpg
+│   │   │   │       │   ├── faq-profil.jpg
+│   │   │   │       │   └── faq-sms.jpg
+│   │   │   │       ├── footer
+│   │   │   │       │   ├── logo-dgcs.svg
+│   │   │   │       │   ├── logo-france-relance.svg
+│   │   │   │       │   ├── logo_anct.webp
+│   │   │   │       │   ├── logo_francerelance.webp
+│   │   │   │       │   ├── partenaire-beta-gouv.png
+│   │   │   │       │   ├── partenaire-dihal.png
+│   │   │   │       │   ├── partenaire-fabrique-numerique.png
+│   │   │   │       │   └── partenaire-unccas.jpg
+│   │   │   │       ├── home
+│   │   │   │       │   ├── avantage-1-suivi-complet.png
+│   │   │   │       │   ├── avantage-2-logiciel-intuitif.png
+│   │   │   │       │   ├── avantage-3-dossiers-securises.png
+│   │   │   │       │   ├── avantage-4-liberez-temps.png
+│   │   │   │       │   ├── avantage-5-protegez-donnees-domicilies.png
+│   │   │   │       │   ├── avantage-6-facilitez-autonomie.png
+│   │   │   │       │   ├── courrier-distribution-main.png
+│   │   │   │       │   ├── courrier-reception-main.png
+│   │   │   │       │   ├── domifa-screenshot-1.png
+│   │   │   │       │   ├── domifa-screenshot-2.png
+│   │   │   │       │   ├── domifa-screenshot-3.png
+│   │   │   │       │   ├── structure-aurore.png
+│   │   │   │       │   ├── structure-ccas-annecy.png
+│   │   │   │       │   ├── structure-ccas-clermont-ferrant.png
+│   │   │   │       │   ├── structure-ccas-le-havre.png
+│   │   │   │       │   ├── structure-paris.jpg
+│   │   │   │       │   └── structure-samu-social-paris.png
+│   │   │   │       ├── impact
+│   │   │   │       │   ├── fond-impact-humain.svg
+│   │   │   │       │   ├── impact-humain.svg
+│   │   │   │       │   ├── impact-organisation.svg
+│   │   │   │       │   ├── impact-social.svg
+│   │   │   │       │   ├── quote.svg
+│   │   │   │       │   └── temoignages.jpg
+│   │   │   │       ├── logo-ministere.jpg
+│   │   │   │       ├── logo-ministere.svg
+│   │   │   │       ├── logo.png
+│   │   │   │       ├── logo.svg
+│   │   │   │       ├── portail
+│   │   │   │       │   ├── courrier.png
+│   │   │   │       │   ├── no-courrier.png
+│   │   │   │       │   ├── notif.png
+│   │   │   │       │   └── warning.png
+│   │   │   │       └── stats
+│   │   │   │           ├── agents.svg
+│   │   │   │           ├── courriers.svg
+│   │   │   │           ├── domicilies.svg
+│   │   │   │           ├── satisfaction.svg
+│   │   │   │           └── structures.svg
+│   │   │   ├── environments
+│   │   │   │   ├── AppEnvironment.type.ts
+│   │   │   │   ├── environment.prod.ts
+│   │   │   │   └── environment.ts
+│   │   │   ├── index.html
+│   │   │   ├── main.ts
+│   │   │   ├── robots.txt
+│   │   │   └── styles.scss
+│   │   ├── tsconfig.app.json
+│   │   ├── tsconfig.json
+│   │   └── tsconfig.spec.json
+│   ├── portail-admins
+│   │   ├── .eslintrc.json
+│   │   ├── .gitignore
+│   │   ├── .prettierignore
+│   │   ├── Dockerfile
+│   │   ├── angular.json
+│   │   ├── jest-global-mocks.ts
+│   │   ├── jest.config.js
+│   │   ├── package.json
+│   │   ├── setup-jest.ts
+│   │   ├── src
+│   │   │   ├── app
+│   │   │   │   ├── app-routing.module.ts
+│   │   │   │   ├── app.component.html
+│   │   │   │   ├── app.component.scss
+│   │   │   │   ├── app.component.spec.ts
+│   │   │   │   ├── app.component.ts
+│   │   │   │   ├── app.module.ts
+│   │   │   │   ├── guards
+│   │   │   │   │   ├── auth-guard.spec.ts
+│   │   │   │   │   ├── auth-guard.ts
+│   │   │   │   │   ├── redirect-guard.spec.ts
+│   │   │   │   │   └── redirect-guard.ts
+│   │   │   │   ├── interceptors
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── jwt.interceptor.ts
+│   │   │   │   │   └── server-error.interceptor.ts
+│   │   │   │   ├── mocks
+│   │   │   │   │   ├── STRUCTURE_MOCK.mock.ts
+│   │   │   │   │   └── USER_SUPERVISOR.mock.ts
+│   │   │   │   ├── modules
+│   │   │   │   │   ├── admin-auth
+│   │   │   │   │   │   ├── admin-auth-routing.module.ts
+│   │   │   │   │   │   ├── admin-auth.module.ts
+│   │   │   │   │   │   ├── components
+│   │   │   │   │   │   │   ├── admin-login-form
+│   │   │   │   │   │   │   │   ├── admin-login.component.html
+│   │   │   │   │   │   │   │   ├── admin-login.component.spec.ts
+│   │   │   │   │   │   │   │   └── admin-login.component.ts
+│   │   │   │   │   │   │   ├── login-container
+│   │   │   │   │   │   │   │   ├── login-container.component.css
+│   │   │   │   │   │   │   │   ├── login-container.component.html
+│   │   │   │   │   │   │   │   ├── login-container.component.spec.ts
+│   │   │   │   │   │   │   │   └── login-container.component.ts
+│   │   │   │   │   │   │   ├── reset-password-form
+│   │   │   │   │   │   │   │   ├── reset-password.component.css
+│   │   │   │   │   │   │   │   ├── reset-password.component.html
+│   │   │   │   │   │   │   │   ├── reset-password.component.spec.ts
+│   │   │   │   │   │   │   │   └── reset-password.component.ts
+│   │   │   │   │   │   │   └── user-structure-password-form
+│   │   │   │   │   │   │       ├── user-supervisor-password-form.component.html
+│   │   │   │   │   │   │       ├── user-supervisor-password-form.component.spec.ts
+│   │   │   │   │   │   │       └── user-supervisor-password-form.component.ts
+│   │   │   │   │   │   ├── services
+│   │   │   │   │   │   │   ├── admin-auth.service.spec.ts
+│   │   │   │   │   │   │   ├── admin-auth.service.ts
+│   │   │   │   │   │   │   ├── password-validator.service.ts
+│   │   │   │   │   │   │   ├── users.service.spec.ts
+│   │   │   │   │   │   │   └── users.service.ts
+│   │   │   │   │   │   └── types
+│   │   │   │   │   │       ├── PASSWORD_VALIDATOR.const.ts
+│   │   │   │   │   │       ├── PortailAdminAuthLoginForm.type.ts
+│   │   │   │   │   │       ├── UserStructureWithSecurity.type.ts
+│   │   │   │   │   │       ├── event-history.ts
+│   │   │   │   │   │       └── index.ts
+│   │   │   │   │   ├── admin-structures
+│   │   │   │   │   │   ├── admin-structures-routing.module.ts
+│   │   │   │   │   │   ├── admin-structures.module.ts
+│   │   │   │   │   │   ├── components
+│   │   │   │   │   │   │   ├── admin-structures-list
+│   │   │   │   │   │   │   │   ├── admin-structures-list.component.html
+│   │   │   │   │   │   │   │   ├── admin-structures-list.component.spec.ts
+│   │   │   │   │   │   │   │   └── admin-structures-list.component.ts
+│   │   │   │   │   │   │   ├── admin-structures-table
+│   │   │   │   │   │   │   │   ├── admin-structures-table.component.html
+│   │   │   │   │   │   │   │   ├── admin-structures-table.component.spec.ts
+│   │   │   │   │   │   │   │   └── admin-structures-table.component.ts
+│   │   │   │   │   │   │   ├── structure-confirm
+│   │   │   │   │   │   │   │   ├── structure-confirm.component.html
+│   │   │   │   │   │   │   │   ├── structure-confirm.component.spec.ts
+│   │   │   │   │   │   │   │   └── structure-confirm.component.ts
+│   │   │   │   │   │   │   ├── structure-filters
+│   │   │   │   │   │   │   │   ├── structure-filters.component.html
+│   │   │   │   │   │   │   │   ├── structure-filters.component.spec.ts
+│   │   │   │   │   │   │   │   └── structure-filters.component.ts
+│   │   │   │   │   │   │   ├── structure-form-delete
+│   │   │   │   │   │   │   │   ├── structure-form-delete.component.html
+│   │   │   │   │   │   │   │   ├── structure-form-delete.component.spec.ts
+│   │   │   │   │   │   │   │   └── structure-form-delete.component.ts
+│   │   │   │   │   │   │   └── structure-form-refuse
+│   │   │   │   │   │   │       ├── structure-form-refuse.component.html
+│   │   │   │   │   │   │       ├── structure-form-refuse.component.spec.ts
+│   │   │   │   │   │   │       └── structure-form-refuse.component.ts
+│   │   │   │   │   │   ├── resolvers
+│   │   │   │   │   │   │   ├── structure.resolver.spec.ts
+│   │   │   │   │   │   │   ├── structure.resolver.ts
+│   │   │   │   │   │   │   ├── structures-list.resolver.spec.ts
+│   │   │   │   │   │   │   └── structures-list.resolver.ts
+│   │   │   │   │   │   ├── types
+│   │   │   │   │   │   │   ├── UserNewAdmin.type.ts
+│   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   └── utils
+│   │   │   │   │   │       ├── index.ts
+│   │   │   │   │   │       ├── structure-filter-criteria.ts
+│   │   │   │   │   │       ├── structuresFilter.ts
+│   │   │   │   │   │       ├── structuresListModelBuilder.ts
+│   │   │   │   │   │       ├── structuresSearchStringFilter.ts
+│   │   │   │   │   │       └── structuresSorter.ts
+│   │   │   │   │   ├── general
+│   │   │   │   │   │   ├── components
+│   │   │   │   │   │   │   ├── not-found
+│   │   │   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   │   │   ├── not-found.component.css
+│   │   │   │   │   │   │   │   ├── not-found.component.html
+│   │   │   │   │   │   │   │   ├── not-found.component.spec.ts
+│   │   │   │   │   │   │   │   └── not-found.component.ts
+│   │   │   │   │   │   │   └── static-pages
+│   │   │   │   │   │   │       ├── cgu
+│   │   │   │   │   │   │       │   ├── cgu.component.html
+│   │   │   │   │   │   │       │   ├── cgu.component.spec.ts
+│   │   │   │   │   │   │       │   └── cgu.component.ts
+│   │   │   │   │   │   │       ├── mentions-legales
+│   │   │   │   │   │   │       │   ├── mentions-legales.component.html
+│   │   │   │   │   │   │       │   ├── mentions-legales.component.spec.ts
+│   │   │   │   │   │   │       │   └── mentions-legales.component.ts
+│   │   │   │   │   │   │       ├── plan-site
+│   │   │   │   │   │   │       │   ├── LIENS_PARTENAIRES.const.ts
+│   │   │   │   │   │   │       │   ├── plan-site.component.css
+│   │   │   │   │   │   │       │   ├── plan-site.component.html
+│   │   │   │   │   │   │       │   ├── plan-site.component.spec.ts
+│   │   │   │   │   │   │       │   └── plan-site.component.ts
+│   │   │   │   │   │   │       └── politique
+│   │   │   │   │   │   │           ├── politique.component.html
+│   │   │   │   │   │   │           ├── politique.component.spec.ts
+│   │   │   │   │   │   │           └── politique.component.ts
+│   │   │   │   │   │   ├── general.module.spec.ts
+│   │   │   │   │   │   ├── general.module.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── manage-users
+│   │   │   │   │   │   ├── components
+│   │   │   │   │   │   │   ├── delete-user
+│   │   │   │   │   │   │   │   ├── delete-user.component.css
+│   │   │   │   │   │   │   │   ├── delete-user.component.html
+│   │   │   │   │   │   │   │   ├── delete-user.component.spec.ts
+│   │   │   │   │   │   │   │   └── delete-user.component.ts
+│   │   │   │   │   │   │   ├── register-user-supervisor
+│   │   │   │   │   │   │   │   ├── register-user-supervisor.component.html
+│   │   │   │   │   │   │   │   ├── register-user-supervisor.component.spec.ts
+│   │   │   │   │   │   │   │   └── register-user-supervisor.component.ts
+│   │   │   │   │   │   │   └── user-supervisor-list
+│   │   │   │   │   │   │       ├── supervisor-list.component.html
+│   │   │   │   │   │   │       ├── supervisor-list.component.spec.ts
+│   │   │   │   │   │   │       └── supervisor-list.component.ts
+│   │   │   │   │   │   ├── manage-users-routing.module.ts
+│   │   │   │   │   │   ├── manage-users.module.ts
+│   │   │   │   │   │   └── services
+│   │   │   │   │   │       ├── manage-users.service.spec.ts
+│   │   │   │   │   │       └── manage-users.service.ts
+│   │   │   │   │   ├── shared
+│   │   │   │   │   │   ├── components
+│   │   │   │   │   │   │   ├── admin-structures-export
+│   │   │   │   │   │   │   │   ├── admin-structures-export.component.html
+│   │   │   │   │   │   │   │   ├── admin-structures-export.component.spec.ts
+│   │   │   │   │   │   │   │   ├── admin-structures-export.component.ts
+│   │   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   │   ├── custom-toastr
+│   │   │   │   │   │   │   │   ├── custom-toastr.component.html
+│   │   │   │   │   │   │   │   ├── custom-toastr.component.scss
+│   │   │   │   │   │   │   │   └── custom-toastr.component.ts
+│   │   │   │   │   │   │   ├── display-last-login
+│   │   │   │   │   │   │   │   ├── display-last-login.component.css
+│   │   │   │   │   │   │   │   ├── display-last-login.component.html
+│   │   │   │   │   │   │   │   ├── display-last-login.component.spec.ts
+│   │   │   │   │   │   │   │   └── display-last-login.component.ts
+│   │   │   │   │   │   │   ├── fonction-selection
+│   │   │   │   │   │   │   │   ├── fonction-selection.component.html
+│   │   │   │   │   │   │   │   ├── fonction-selection.component.spec.ts
+│   │   │   │   │   │   │   │   └── fonction-selection.component.ts
+│   │   │   │   │   │   │   ├── table-head-sort
+│   │   │   │   │   │   │   │   ├── table-head-sort.component.html
+│   │   │   │   │   │   │   │   ├── table-head-sort.component.scss
+│   │   │   │   │   │   │   │   ├── table-head-sort.component.spec.ts
+│   │   │   │   │   │   │   │   └── table-head-sort.component.ts
+│   │   │   │   │   │   │   └── table-head-sort-icon
+│   │   │   │   │   │   │       ├── table-head-sort-icon.component.html
+│   │   │   │   │   │   │       ├── table-head-sort-icon.component.spec.ts
+│   │   │   │   │   │   │       └── table-head-sort-icon.component.ts
+│   │   │   │   │   │   ├── constants
+│   │   │   │   │   │   │   ├── FA_ICONS.const.ts
+│   │   │   │   │   │   │   ├── animations.ts
+│   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   ├── pipes
+│   │   │   │   │   │   │   ├── fonction-format.pipe.ts
+│   │   │   │   │   │   │   ├── format-big-number.pipe.spec.ts
+│   │   │   │   │   │   │   ├── format-big-number.pipe.ts
+│   │   │   │   │   │   │   ├── format-phone-number.pipe.spec.ts
+│   │   │   │   │   │   │   ├── format-phone-number.pipe.ts
+│   │   │   │   │   │   │   ├── full-name.pipe.ts
+│   │   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   │   ├── nl2br.pipe.ts
+│   │   │   │   │   │   │   ├── sort-array.pipe.ts
+│   │   │   │   │   │   │   ├── uc-first.pipe.spec.ts
+│   │   │   │   │   │   │   └── uc-first.pipe.ts
+│   │   │   │   │   │   ├── services
+│   │   │   │   │   │   │   ├── api
+│   │   │   │   │   │   │   │   ├── admin-structures-api-client.service.ts
+│   │   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   │   ├── custom-toast.service.spec.ts
+│   │   │   │   │   │   │   ├── custom-toast.service.ts
+│   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   ├── shared.module.ts
+│   │   │   │   │   │   ├── store
+│   │   │   │   │   │   │   ├── AppStoreAction.type.ts
+│   │   │   │   │   │   │   ├── AppStoreModel.type.ts
+│   │   │   │   │   │   │   ├── appStore.service.ts
+│   │   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   │   └── structuresCache.service.ts
+│   │   │   │   │   │   └── types
+│   │   │   │   │   │       ├── CustomToast.type.ts
+│   │   │   │   │   │       ├── CustomToastClass.type.ts
+│   │   │   │   │   │       ├── UserSecurityEvent.type.ts
+│   │   │   │   │   │       └── index.ts
+│   │   │   │   │   ├── stats
+│   │   │   │   │   │   ├── components
+│   │   │   │   │   │   │   └── national-stats
+│   │   │   │   │   │   │       ├── national-stats.component.css
+│   │   │   │   │   │   │       ├── national-stats.component.html
+│   │   │   │   │   │   │       ├── national-stats.component.spec.ts
+│   │   │   │   │   │   │       └── national-stats.component.ts
+│   │   │   │   │   │   ├── services
+│   │   │   │   │   │   │   ├── stats.service.spec.ts
+│   │   │   │   │   │   │   └── stats.service.ts
+│   │   │   │   │   │   ├── stats-routing.module.ts
+│   │   │   │   │   │   ├── stats.module.ts
+│   │   │   │   │   │   └── types
+│   │   │   │   │   │       ├── StructureListForStats.type.ts
+│   │   │   │   │   │       └── index.ts
+│   │   │   │   │   └── structure
+│   │   │   │   │       ├── components
+│   │   │   │   │       │   ├── admin-structure-container
+│   │   │   │   │       │   │   ├── admin-structure-container.component.css
+│   │   │   │   │       │   │   ├── admin-structure-container.component.html
+│   │   │   │   │       │   │   ├── admin-structure-container.component.spec.ts
+│   │   │   │   │       │   │   └── admin-structure-container.component.ts
+│   │   │   │   │       │   ├── register-user
+│   │   │   │   │       │   │   ├── register-user.component.html
+│   │   │   │   │       │   │   ├── register-user.component.spec.ts
+│   │   │   │   │       │   │   └── register-user.component.ts
+│   │   │   │   │       │   ├── structure-info
+│   │   │   │   │       │   │   ├── structure-info.component.css
+│   │   │   │   │       │   │   ├── structure-info.component.html
+│   │   │   │   │       │   │   ├── structure-info.component.spec.ts
+│   │   │   │   │       │   │   └── structure-info.component.ts
+│   │   │   │   │       │   ├── structure-stats
+│   │   │   │   │       │   │   ├── structure-stats.component.css
+│   │   │   │   │       │   │   ├── structure-stats.component.html
+│   │   │   │   │       │   │   ├── structure-stats.component.spec.ts
+│   │   │   │   │       │   │   └── structure-stats.component.ts
+│   │   │   │   │       │   └── users
+│   │   │   │   │       │       ├── users.component.css
+│   │   │   │   │       │       ├── users.component.html
+│   │   │   │   │       │       ├── users.component.spec.ts
+│   │   │   │   │       │       └── users.component.ts
+│   │   │   │   │       ├── services
+│   │   │   │   │       │   ├── structure.service.spec.ts
+│   │   │   │   │       │   └── structure.service.ts
+│   │   │   │   │       ├── structure-routing.module.ts
+│   │   │   │   │       └── structure.module.ts
+│   │   │   │   └── shared
+│   │   │   │       ├── constants
+│   │   │   │       │   ├── MATOMO_INJECTORS.const.ts
+│   │   │   │       │   ├── animations.ts
+│   │   │   │       │   └── index.ts
+│   │   │   │       ├── index.ts
+│   │   │   │       ├── utils
+│   │   │   │       │   ├── formatInternationalPhoneNumber.pipe.ts
+│   │   │   │       │   ├── index.ts
+│   │   │   │       │   └── validators.ts
+│   │   │   │       └── validators
+│   │   │   │           ├── email.validator.spec.ts
+│   │   │   │           ├── email.validator.ts
+│   │   │   │           ├── index.ts
+│   │   │   │           └── no-whitespace.validator.ts
+│   │   │   ├── assets
+│   │   │   │   ├── .gitkeep
+│   │   │   │   ├── css
+│   │   │   │   │   ├── bootstrap-custom.scss
+│   │   │   │   │   ├── dsfr-custom.scss
+│   │   │   │   │   ├── fonts.scss
+│   │   │   │   │   ├── forms.scss
+│   │   │   │   │   ├── main.scss
+│   │   │   │   │   └── print.css
+│   │   │   │   ├── favicon
+│   │   │   │   │   ├── android-chrome-192x192.png
+│   │   │   │   │   ├── android-chrome-512x512.png
+│   │   │   │   │   ├── apple-touch-icon.png
+│   │   │   │   │   ├── browserconfig.xml
+│   │   │   │   │   ├── favicon-16x16.png
+│   │   │   │   │   ├── favicon-32x32.png
+│   │   │   │   │   ├── favicon.ico
+│   │   │   │   │   ├── mstile-150x150.png
+│   │   │   │   │   ├── safari-pinned-tab.svg
+│   │   │   │   │   └── site.webmanifest
+│   │   │   │   ├── files
+│   │   │   │   │   └── domifa_declaration-d-accessibilite.pdf
+│   │   │   │   ├── fonts
+│   │   │   │   │   └── Marianne
+│   │   │   │   │       ├── Marianne-Bold.woff
+│   │   │   │   │       ├── Marianne-Bold.woff2
+│   │   │   │   │       ├── Marianne-Bold_Italic.woff
+│   │   │   │   │       ├── Marianne-Bold_Italic.woff2
+│   │   │   │   │       ├── Marianne-ExtraBold.woff
+│   │   │   │   │       ├── Marianne-ExtraBold.woff2
+│   │   │   │   │       ├── Marianne-ExtraBold_Italic.woff
+│   │   │   │   │       ├── Marianne-ExtraBold_Italic.woff2
+│   │   │   │   │       ├── Marianne-Light.woff
+│   │   │   │   │       ├── Marianne-Light.woff2
+│   │   │   │   │       ├── Marianne-Light_Italic.woff
+│   │   │   │   │       ├── Marianne-Light_Italic.woff2
+│   │   │   │   │       ├── Marianne-Medium.woff
+│   │   │   │   │       ├── Marianne-Medium.woff2
+│   │   │   │   │       ├── Marianne-Medium_Italic.woff
+│   │   │   │   │       ├── Marianne-Medium_Italic.woff2
+│   │   │   │   │       ├── Marianne-Regular.woff
+│   │   │   │   │       ├── Marianne-Regular.woff2
+│   │   │   │   │       ├── Marianne-Regular_Italic.woff
+│   │   │   │   │       ├── Marianne-Regular_Italic.woff2
+│   │   │   │   │       ├── Marianne-Thin.woff
+│   │   │   │   │       ├── Marianne-Thin.woff2
+│   │   │   │   │       ├── Marianne-Thin_Italic.woff
+│   │   │   │   │       └── Marianne-Thin_Italic.woff2
+│   │   │   │   ├── icones
+│   │   │   │   │   └── link-external.png
+│   │   │   │   └── images
+│   │   │   │       ├── contact.svg
+│   │   │   │       ├── footer
+│   │   │   │       │   ├── logo-dgcs.png
+│   │   │   │       │   ├── logo-france-relance.svg
+│   │   │   │       │   ├── logo_anct.webp
+│   │   │   │       │   ├── logo_francerelance.webp
+│   │   │   │       │   ├── partenaire-beta-gouv.png
+│   │   │   │       │   ├── partenaire-dihal.png
+│   │   │   │       │   ├── partenaire-fabrique-numerique.png
+│   │   │   │       │   └── partenaire-unccas.jpg
+│   │   │   │       ├── login
+│   │   │   │       │   └── main-container.svg
+│   │   │   │       ├── logo-dsfr.svg
+│   │   │   │       ├── logo-mini.svg
+│   │   │   │       ├── logo-ministere.jpg
+│   │   │   │       └── logo.svg
+│   │   │   ├── environments
+│   │   │   │   ├── AppEnvironment.type.ts
+│   │   │   │   ├── environment.prod.ts
+│   │   │   │   └── environment.ts
+│   │   │   ├── index.html
+│   │   │   ├── main.ts
+│   │   │   ├── robots.txt
+│   │   │   └── styles.scss
+│   │   ├── tsconfig.app.json
+│   │   ├── tsconfig.json
+│   │   └── tsconfig.spec.json
+│   └── portail-usagers
+│       ├── .eslintrc.json
+│       ├── .gitignore
+│       ├── .prettierignore
+│       ├── Dockerfile
+│       ├── angular.json
+│       ├── jest-global-mocks.ts
+│       ├── jest.config.js
+│       ├── package.json
+│       ├── setup-jest.ts
+│       ├── src
+│       │   ├── _common
+│       │   │   ├── _portail-usager
+│       │   │   │   ├── PortailUsagerAuthLoginForm.interface.ts
+│       │   │   │   └── index.ts
+│       │   │   ├── index.ts
+│       │   │   └── mocks
+│       │   │       ├── DEFAULT_USAGER.const.ts
+│       │   │       ├── MATOMO_INJECTOR_FOR_TESTS.const.ts
+│       │   │       ├── USAGER_REFUS.mock.ts
+│       │   │       └── index.ts
+│       │   ├── _tests
+│       │   │   └── mocks
+│       │   │       ├── INTERACTION_USAGER_MOCK.ts
+│       │   │       ├── PORTAIL_USAGER_PROFILE_MOCK.ts
+│       │   │       └── STRUCTURE_INFORMATION_MOCK.ts
+│       │   ├── app
+│       │   │   ├── app-routing.module.ts
+│       │   │   ├── app.component.html
+│       │   │   ├── app.component.spec.ts
+│       │   │   ├── app.component.ts
+│       │   │   ├── app.module.ts
+│       │   │   ├── guards
+│       │   │   │   ├── auth-guard.spec.ts
+│       │   │   │   ├── auth-guard.ts
+│       │   │   │   └── logged-guard.ts
+│       │   │   ├── interceptors
+│       │   │   │   ├── index.ts
+│       │   │   │   └── jwt.interceptor.ts
+│       │   │   ├── modules
+│       │   │   │   ├── general
+│       │   │   │   │   ├── components
+│       │   │   │   │   │   ├── _static
+│       │   │   │   │   │   │   ├── cgu
+│       │   │   │   │   │   │   │   ├── cgu.component.html
+│       │   │   │   │   │   │   │   ├── cgu.component.spec.ts
+│       │   │   │   │   │   │   │   └── cgu.component.ts
+│       │   │   │   │   │   │   ├── faq
+│       │   │   │   │   │   │   │   ├── faq-routing.module.ts
+│       │   │   │   │   │   │   │   ├── faq.component.css
+│       │   │   │   │   │   │   │   ├── faq.component.html
+│       │   │   │   │   │   │   │   ├── faq.component.spec.ts
+│       │   │   │   │   │   │   │   ├── faq.component.ts
+│       │   │   │   │   │   │   │   └── fragments
+│       │   │   │   │   │   │   │       ├── faq-access
+│       │   │   │   │   │   │   │       │   ├── faq-access.component.css
+│       │   │   │   │   │   │   │       │   ├── faq-access.component.html
+│       │   │   │   │   │   │   │       │   ├── faq-access.component.spec.ts
+│       │   │   │   │   │   │   │       │   └── faq-access.component.ts
+│       │   │   │   │   │   │   │       ├── faq-features
+│       │   │   │   │   │   │   │       │   ├── faq-features.component.css
+│       │   │   │   │   │   │   │       │   ├── faq-features.component.html
+│       │   │   │   │   │   │   │       │   ├── faq-features.component.spec.ts
+│       │   │   │   │   │   │   │       │   └── faq-features.component.ts
+│       │   │   │   │   │   │   │       ├── faq-general
+│       │   │   │   │   │   │   │       │   ├── faq-general.component.css
+│       │   │   │   │   │   │   │       │   ├── faq-general.component.html
+│       │   │   │   │   │   │   │       │   ├── faq-general.component.spec.ts
+│       │   │   │   │   │   │   │       │   └── faq-general.component.ts
+│       │   │   │   │   │   │   │       ├── faq-security
+│       │   │   │   │   │   │   │       │   ├── faq-security.component.css
+│       │   │   │   │   │   │   │       │   ├── faq-security.component.html
+│       │   │   │   │   │   │   │       │   ├── faq-security.component.spec.ts
+│       │   │   │   │   │   │   │       │   └── faq-security.component.ts
+│       │   │   │   │   │   │   │       └── faq-support
+│       │   │   │   │   │   │   │           ├── faq-support.component.css
+│       │   │   │   │   │   │   │           ├── faq-support.component.html
+│       │   │   │   │   │   │   │           ├── faq-support.component.spec.ts
+│       │   │   │   │   │   │   │           └── faq-support.component.ts
+│       │   │   │   │   │   │   ├── mentions-legales
+│       │   │   │   │   │   │   │   ├── mentions-legales.component.html
+│       │   │   │   │   │   │   │   ├── mentions-legales.component.spec.ts
+│       │   │   │   │   │   │   │   └── mentions-legales.component.ts
+│       │   │   │   │   │   │   ├── news
+│       │   │   │   │   │   │   │   ├── news.component.css
+│       │   │   │   │   │   │   │   ├── news.component.html
+│       │   │   │   │   │   │   │   ├── news.component.spec.ts
+│       │   │   │   │   │   │   │   └── news.component.ts
+│       │   │   │   │   │   │   ├── plan-site
+│       │   │   │   │   │   │   │   ├── LIENS_PARTENAIRES.const.ts
+│       │   │   │   │   │   │   │   ├── plan-site.component.html
+│       │   │   │   │   │   │   │   ├── plan-site.component.spec.ts
+│       │   │   │   │   │   │   │   └── plan-site.component.ts
+│       │   │   │   │   │   │   ├── politique
+│       │   │   │   │   │   │   │   ├── politique.component.html
+│       │   │   │   │   │   │   │   ├── politique.component.spec.ts
+│       │   │   │   │   │   │   │   └── politique.component.ts
+│       │   │   │   │   │   │   └── rgaa
+│       │   │   │   │   │   │       ├── rgaa.component.html
+│       │   │   │   │   │   │       ├── rgaa.component.spec.ts
+│       │   │   │   │   │   │       └── rgaa.component.ts
+│       │   │   │   │   │   ├── idle-manager
+│       │   │   │   │   │   │   ├── idle-manager.component.html
+│       │   │   │   │   │   │   ├── idle-manager.component.spec.ts
+│       │   │   │   │   │   │   └── idle-manager.component.ts
+│       │   │   │   │   │   ├── not-found
+│       │   │   │   │   │   │   ├── not-found.component.css
+│       │   │   │   │   │   │   ├── not-found.component.html
+│       │   │   │   │   │   │   ├── not-found.component.spec.ts
+│       │   │   │   │   │   │   └── not-found.component.ts
+│       │   │   │   │   │   └── redirect.component.ts
+│       │   │   │   │   ├── general.module.spec.ts
+│       │   │   │   │   └── general.module.ts
+│       │   │   │   ├── shared
+│       │   │   │   │   ├── components
+│       │   │   │   │   │   ├── faq
+│       │   │   │   │   │   │   ├── faq.component.html
+│       │   │   │   │   │   │   ├── faq.component.spec.ts
+│       │   │   │   │   │   │   └── faq.component.ts
+│       │   │   │   │   │   └── news-content
+│       │   │   │   │   │       ├── news-content.component.html
+│       │   │   │   │   │       ├── news-content.component.spec.ts
+│       │   │   │   │   │       └── news-content.component.ts
+│       │   │   │   │   ├── directives
+│       │   │   │   │   │   └── uppercase.directive.ts
+│       │   │   │   │   ├── pipes
+│       │   │   │   │   │   └── nl2br.pipe.ts
+│       │   │   │   │   ├── services
+│       │   │   │   │   │   ├── custom-toast.service.spec.ts
+│       │   │   │   │   │   ├── custom-toast.service.ts
+│       │   │   │   │   │   ├── seo.service.spec.ts
+│       │   │   │   │   │   └── seo.service.ts
+│       │   │   │   │   ├── shared.module.ts
+│       │   │   │   │   └── types
+│       │   │   │   │       ├── CustomToast.type.ts
+│       │   │   │   │       ├── CustomToastClass.type.ts
+│       │   │   │   │       ├── MetaTag.type.ts
+│       │   │   │   │       └── index.ts
+│       │   │   │   ├── usager-account
+│       │   │   │   │   ├── components
+│       │   │   │   │   │   ├── historique-courriers
+│       │   │   │   │   │   │   ├── historique-courriers.component.html
+│       │   │   │   │   │   │   ├── historique-courriers.component.spec.ts
+│       │   │   │   │   │   │   └── historique-courriers.component.ts
+│       │   │   │   │   │   ├── home-usager
+│       │   │   │   │   │   │   ├── home-usager.component.html
+│       │   │   │   │   │   │   ├── home-usager.component.spec.ts
+│       │   │   │   │   │   │   ├── home-usager.component.ts
+│       │   │   │   │   │   │   └── sections
+│       │   │   │   │   │   │       ├── section-courriers
+│       │   │   │   │   │   │       │   ├── section-courriers.component.html
+│       │   │   │   │   │   │       │   ├── section-courriers.component.spec.ts
+│       │   │   │   │   │   │       │   └── section-courriers.component.ts
+│       │   │   │   │   │   │       ├── section-docs
+│       │   │   │   │   │   │       │   ├── section-docs.component.html
+│       │   │   │   │   │   │       │   ├── section-docs.component.spec.ts
+│       │   │   │   │   │   │       │   └── section-docs.component.ts
+│       │   │   │   │   │   │       ├── section-infos
+│       │   │   │   │   │   │       │   ├── section-infos.component.html
+│       │   │   │   │   │   │       │   ├── section-infos.component.scss
+│       │   │   │   │   │   │       │   ├── section-infos.component.spec.ts
+│       │   │   │   │   │   │       │   └── section-infos.component.ts
+│       │   │   │   │   │   │       ├── section-links
+│       │   │   │   │   │   │       │   ├── section-links.component.html
+│       │   │   │   │   │   │       │   ├── section-links.component.scss
+│       │   │   │   │   │   │       │   ├── section-links.component.spec.ts
+│       │   │   │   │   │   │       │   └── section-links.component.ts
+│       │   │   │   │   │   │       ├── section-options
+│       │   │   │   │   │   │       │   ├── section-options.component.html
+│       │   │   │   │   │   │       │   ├── section-options.component.spec.ts
+│       │   │   │   │   │   │       │   └── section-options.component.ts
+│       │   │   │   │   │   │       └── structure-information
+│       │   │   │   │   │   │           ├── structure-information.component.html
+│       │   │   │   │   │   │           ├── structure-information.component.spec.ts
+│       │   │   │   │   │   │           └── structure-information.component.ts
+│       │   │   │   │   │   └── usager-accept-cgu
+│       │   │   │   │   │       ├── usager-accept-cgu.component.css
+│       │   │   │   │   │       ├── usager-accept-cgu.component.html
+│       │   │   │   │   │       ├── usager-accept-cgu.component.spec.ts
+│       │   │   │   │   │       └── usager-accept-cgu.component.ts
+│       │   │   │   │   ├── pipes
+│       │   │   │   │   │   ├── formatInternationalPhoneNumber.pipe.ts
+│       │   │   │   │   │   └── index.ts
+│       │   │   │   │   ├── services
+│       │   │   │   │   │   ├── interaction.service.spec.ts
+│       │   │   │   │   │   ├── interaction.service.ts
+│       │   │   │   │   │   ├── structure-information.service.spec.ts
+│       │   │   │   │   │   ├── structure-information.service.ts
+│       │   │   │   │   │   ├── usager-doc.service.spec.ts
+│       │   │   │   │   │   └── usager-doc.service.ts
+│       │   │   │   │   ├── types
+│       │   │   │   │   │   └── usager-interactions.ts
+│       │   │   │   │   ├── usager-account-routing.module.ts
+│       │   │   │   │   └── usager-account.module.ts
+│       │   │   │   └── usager-auth
+│       │   │   │       ├── services
+│       │   │   │       │   ├── usager-auth.service.spec.ts
+│       │   │   │       │   └── usager-auth.service.ts
+│       │   │   │       ├── usager-auth-routing.module.ts
+│       │   │   │       ├── usager-auth.module.ts
+│       │   │   │       └── usager-login
+│       │   │   │           ├── password-validator.service.ts
+│       │   │   │           ├── usager-login.component.html
+│       │   │   │           ├── usager-login.component.scss
+│       │   │   │           ├── usager-login.component.spec.ts
+│       │   │   │           └── usager-login.component.ts
+│       │   │   └── shared
+│       │   │       ├── MATOMO_INJECTORS.const.ts
+│       │   │       ├── animations.ts
+│       │   │       └── index.ts
+│       │   ├── assets
+│       │   │   ├── .gitkeep
+│       │   │   ├── css
+│       │   │   │   ├── forms.css
+│       │   │   │   ├── icons.css
+│       │   │   │   ├── main.scss
+│       │   │   │   └── print.css
+│       │   │   ├── favicon
+│       │   │   │   ├── android-chrome-192x192.png
+│       │   │   │   ├── android-chrome-512x512.png
+│       │   │   │   ├── apple-touch-icon.png
+│       │   │   │   ├── browserconfig.xml
+│       │   │   │   ├── favicon-16x16.png
+│       │   │   │   ├── favicon-32x32.png
+│       │   │   │   ├── favicon.ico
+│       │   │   │   ├── mstile-150x150.png
+│       │   │   │   ├── safari-pinned-tab.svg
+│       │   │   │   └── site.webmanifest
+│       │   │   ├── files
+│       │   │   │   └── news.json
+│       │   │   ├── icones
+│       │   │   │   └── person-mail.svg
+│       │   │   └── images
+│       │   │       ├── home.svg
+│       │   │       ├── login
+│       │   │       │   ├── contact.svg
+│       │   │       │   └── main-container.svg
+│       │   │       ├── logo-dsfr.svg
+│       │   │       ├── logo-mini.svg
+│       │   │       ├── news.svg
+│       │   │       └── partenaires
+│       │   │           ├── 1jeune1solution.png
+│       │   │           ├── mes-droits-sociaux.png
+│       │   │           └── soliguide.png
+│       │   ├── environments
+│       │   │   ├── AppEnvironment.type.ts
+│       │   │   ├── environment.prod.ts
+│       │   │   └── environment.ts
+│       │   ├── index.html
+│       │   ├── main.ts
+│       │   ├── robots.txt
+│       │   └── styles.scss
+│       ├── tsconfig.app.json
+│       ├── tsconfig.json
+│       └── tsconfig.spec.json
+├── pnpm-lock.yaml
+├── pnpm-workspace.yaml
+├── sonar-project.properties
+└── tech.yaml
+697 directories, 2417 files
