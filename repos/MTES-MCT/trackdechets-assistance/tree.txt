@@ -1,0 +1,835 @@
+.
+├── .flake8
+├── .github
+│   ├── pull_request_template.md
+│   └── workflows
+│       └── main.yml
+├── .gitignore
+├── .python-version
+├── LICENSE
+├── Procfile
+├── Readme.md
+├── changelog.md
+├── cron.json
+├── pyproject.toml
+├── pytest.ini
+├── readme_medias
+│   ├── assistance.png
+│   └── website.png
+├── src
+│   ├── .env.dist
+│   ├── accounts
+│   │   ├── __init__.py
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── forms.py
+│   │   ├── managers.py
+│   │   ├── migrations
+│   │   │   ├── 0001_initial.py
+│   │   │   └── __init__.py
+│   │   └── models.py
+│   ├── bin
+│   │   ├── post_compile
+│   │   └── post_deploy
+│   ├── config
+│   │   ├── __init__.py
+│   │   ├── dashboard.py
+│   │   ├── hosts.py
+│   │   ├── middleware.py
+│   │   ├── settings
+│   │   │   ├── __init__.py
+│   │   │   ├── base.py
+│   │   │   ├── dev.py
+│   │   │   ├── production.py
+│   │   │   └── tests.py
+│   │   └── wsgi.py
+│   ├── conftest.py
+│   ├── content
+│   │   ├── __init__.py
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── assistance_urls.py
+│   │   ├── factories.py
+│   │   ├── fields.py
+│   │   ├── forms.py
+│   │   ├── migrations
+│   │   │   ├── 0001_initial.py
+│   │   │   ├── 0002_page_level_page_lft_page_parent_page_rght_and_more.py
+│   │   │   ├── 0003_alter_page_options_remove_page_position.py
+│   │   │   ├── 0004_alter_link_options_link_position.py
+│   │   │   ├── 0005_rename_link_link_target.py
+│   │   │   ├── 0006_alter_page_text.py
+│   │   │   ├── 0007_page_display_contact_form.py
+│   │   │   ├── 0008_page_link_anchor.py
+│   │   │   ├── 0009_delete_link.py
+│   │   │   ├── 0010_message.py
+│   │   │   ├── 0011_message_bsds.py
+│   │   │   └── __init__.py
+│   │   ├── models.py
+│   │   ├── templatetags
+│   │   │   ├── __init__.py
+│   │   │   └── form_utils.py
+│   │   ├── tests
+│   │   │   ├── __init__.py
+│   │   │   ├── test_factories.py
+│   │   │   └── test_views.py
+│   │   └── views.py
+│   ├── lint.sh
+│   ├── manage.py
+│   ├── static
+│   │   ├── css
+│   │   │   ├── dsfr.css
+│   │   │   ├── dsfr.min.css
+│   │   │   ├── fonts
+│   │   │   │   ├── Marianne-Bold.woff
+│   │   │   │   ├── Marianne-Bold.woff2
+│   │   │   │   ├── Marianne-Bold_Italic.woff
+│   │   │   │   ├── Marianne-Bold_Italic.woff2
+│   │   │   │   ├── Marianne-Light.woff
+│   │   │   │   ├── Marianne-Light.woff2
+│   │   │   │   ├── Marianne-Light_Italic.woff
+│   │   │   │   ├── Marianne-Light_Italic.woff2
+│   │   │   │   ├── Marianne-Medium.woff
+│   │   │   │   ├── Marianne-Medium.woff2
+│   │   │   │   ├── Marianne-Medium_Italic.woff
+│   │   │   │   ├── Marianne-Medium_Italic.woff2
+│   │   │   │   ├── Marianne-Regular.woff
+│   │   │   │   ├── Marianne-Regular.woff2
+│   │   │   │   ├── Marianne-Regular_Italic.woff
+│   │   │   │   ├── Marianne-Regular_Italic.woff2
+│   │   │   │   ├── Spectral-ExtraBold.woff
+│   │   │   │   ├── Spectral-ExtraBold.woff2
+│   │   │   │   ├── Spectral-Regular.woff
+│   │   │   │   └── Spectral-Regular.woff2
+│   │   │   ├── icons
+│   │   │   │   ├── buildings
+│   │   │   │   │   ├── ancient-gate-fill.svg
+│   │   │   │   │   ├── ancient-gate-line.svg
+│   │   │   │   │   ├── ancient-pavilion-fill.svg
+│   │   │   │   │   ├── ancient-pavilion-line.svg
+│   │   │   │   │   ├── bank-fill.svg
+│   │   │   │   │   ├── bank-line.svg
+│   │   │   │   │   ├── building-fill.svg
+│   │   │   │   │   ├── building-line.svg
+│   │   │   │   │   ├── community-fill.svg
+│   │   │   │   │   ├── community-line.svg
+│   │   │   │   │   ├── government-fill.svg
+│   │   │   │   │   ├── government-line.svg
+│   │   │   │   │   ├── home-4-fill.svg
+│   │   │   │   │   ├── home-4-line.svg
+│   │   │   │   │   ├── hospital-fill.svg
+│   │   │   │   │   ├── hospital-line.svg
+│   │   │   │   │   ├── hotel-fill.svg
+│   │   │   │   │   ├── hotel-line.svg
+│   │   │   │   │   ├── store-fill.svg
+│   │   │   │   │   └── store-line.svg
+│   │   │   │   ├── business
+│   │   │   │   │   ├── archive-fill.svg
+│   │   │   │   │   ├── archive-line.svg
+│   │   │   │   │   ├── attachment-fill.svg
+│   │   │   │   │   ├── attachment-line.svg
+│   │   │   │   │   ├── award-fill.svg
+│   │   │   │   │   ├── award-line.svg
+│   │   │   │   │   ├── bar-chart-box-fill.svg
+│   │   │   │   │   ├── bar-chart-box-line.svg
+│   │   │   │   │   ├── bookmark-fill.svg
+│   │   │   │   │   ├── bookmark-line.svg
+│   │   │   │   │   ├── briefcase-fill.svg
+│   │   │   │   │   ├── briefcase-line.svg
+│   │   │   │   │   ├── calendar-*.svg  (6 files)
+│   │   │   │   │   ├── cloud-fill.svg
+│   │   │   │   │   ├── cloud-line.svg
+│   │   │   │   │   ├── copyright-fill.svg
+│   │   │   │   │   ├── copyright-line.svg
+│   │   │   │   │   ├── customer-service-fill.svg
+│   │   │   │   │   ├── customer-service-line.svg
+│   │   │   │   │   ├── flag-fill.svg
+│   │   │   │   │   ├── flag-line.svg
+│   │   │   │   │   ├── global-fill.svg
+│   │   │   │   │   ├── global-line.svg
+│   │   │   │   │   ├── line-chart-fill.svg
+│   │   │   │   │   ├── line-chart-line.svg
+│   │   │   │   │   ├── links-fill.svg
+│   │   │   │   │   ├── links-line.svg
+│   │   │   │   │   ├── mail-fill.svg
+│   │   │   │   │   ├── mail-line.svg
+│   │   │   │   │   ├── mail-open-fill.svg
+│   │   │   │   │   ├── mail-open-line.svg
+│   │   │   │   │   ├── medal-fill.svg
+│   │   │   │   │   ├── medal-line.svg
+│   │   │   │   │   ├── pie-chart-2-fill.svg
+│   │   │   │   │   ├── pie-chart-2-line.svg
+│   │   │   │   │   ├── pie-chart-box-fill.svg
+│   │   │   │   │   ├── pie-chart-box-line.svg
+│   │   │   │   │   ├── printer-fill.svg
+│   │   │   │   │   ├── printer-line.svg
+│   │   │   │   │   ├── profil-fill.svg
+│   │   │   │   │   ├── profil-line.svg
+│   │   │   │   │   ├── projector-2-fill.svg
+│   │   │   │   │   ├── projector-2-line.svg
+│   │   │   │   │   ├── send-plane-fill.svg
+│   │   │   │   │   ├── send-plane-line.svg
+│   │   │   │   │   ├── slideshow-fill.svg
+│   │   │   │   │   ├── slideshow-line.svg
+│   │   │   │   │   ├── window-fill.svg
+│   │   │   │   │   └── window-line.svg
+│   │   │   │   ├── communication
+│   │   │   │   │   ├── chat-2-fill.svg
+│   │   │   │   │   ├── chat-2-line.svg
+│   │   │   │   │   ├── chat-3-fill.svg
+│   │   │   │   │   ├── chat-3-line.svg
+│   │   │   │   │   ├── chat-check-fill.svg
+│   │   │   │   │   ├── chat-check-line.svg
+│   │   │   │   │   ├── chat-delete-fill.svg
+│   │   │   │   │   ├── chat-delete-line.svg
+│   │   │   │   │   ├── chat-poll-fill.svg
+│   │   │   │   │   ├── chat-poll-line.svg
+│   │   │   │   │   ├── discuss-fill.svg
+│   │   │   │   │   ├── discuss-line.svg
+│   │   │   │   │   ├── feedback-fill.svg
+│   │   │   │   │   ├── feedback-line.svg
+│   │   │   │   │   ├── message-2-fill.svg
+│   │   │   │   │   ├── message-2-line.svg
+│   │   │   │   │   ├── question-answer-fill.svg
+│   │   │   │   │   ├── question-answer-line.svg
+│   │   │   │   │   ├── questionnaire-fill.svg
+│   │   │   │   │   ├── questionnaire-line.svg
+│   │   │   │   │   ├── video-chat-fill.svg
+│   │   │   │   │   └── video-chat-line.svg
+│   │   │   │   ├── design
+│   │   │   │   │   ├── ball-pen-fill.svg
+│   │   │   │   │   ├── ball-pen-line.svg
+│   │   │   │   │   ├── brush-3-fill.svg
+│   │   │   │   │   ├── brush-3-line.svg
+│   │   │   │   │   ├── brush-fill.svg
+│   │   │   │   │   ├── brush-line.svg
+│   │   │   │   │   ├── contrast-fill.svg
+│   │   │   │   │   ├── contrast-line.svg
+│   │   │   │   │   ├── crop-fill.svg
+│   │   │   │   │   ├── crop-line.svg
+│   │   │   │   │   ├── drag-move-2-fill.svg
+│   │   │   │   │   ├── drag-move-2-line.svg
+│   │   │   │   │   ├── drop-fill.svg
+│   │   │   │   │   ├── drop-line.svg
+│   │   │   │   │   ├── edit-box-fill.svg
+│   │   │   │   │   ├── edit-box-line.svg
+│   │   │   │   │   ├── edit-fill.svg
+│   │   │   │   │   ├── edit-line.svg
+│   │   │   │   │   ├── ink-bottle-fill.svg
+│   │   │   │   │   ├── ink-bottle-line.svg
+│   │   │   │   │   ├── layout-grid-fill.svg
+│   │   │   │   │   ├── layout-grid-line.svg
+│   │   │   │   │   ├── mark-pen-fill.svg
+│   │   │   │   │   ├── mark-pen-line.svg
+│   │   │   │   │   ├── paint-brush-fill.svg
+│   │   │   │   │   ├── paint-brush-line.svg
+│   │   │   │   │   ├── paint-fill.svg
+│   │   │   │   │   ├── paint-line.svg
+│   │   │   │   │   ├── palette-fill.svg
+│   │   │   │   │   ├── palette-line.svg
+│   │   │   │   │   ├── pantone-fill.svg
+│   │   │   │   │   ├── pantone-line.svg
+│   │   │   │   │   ├── pen-nib-fill.svg
+│   │   │   │   │   ├── pen-nib-line.svg
+│   │   │   │   │   ├── pencil-fill.svg
+│   │   │   │   │   ├── pencil-line.svg
+│   │   │   │   │   ├── pencil-ruler-fill.svg
+│   │   │   │   │   ├── pencil-ruler-line.svg
+│   │   │   │   │   ├── sip-fill.svg
+│   │   │   │   │   ├── sip-line.svg
+│   │   │   │   │   ├── table-fill.svg
+│   │   │   │   │   └── table-line.svg
+│   │   │   │   ├── development
+│   │   │   │   │   ├── bug-fill.svg
+│   │   │   │   │   ├── bug-line.svg
+│   │   │   │   │   ├── code-box-fill.svg
+│   │   │   │   │   ├── code-box-line.svg
+│   │   │   │   │   ├── code-s-slash-line.svg
+│   │   │   │   │   ├── cursor-fill.svg
+│   │   │   │   │   ├── cursor-line.svg
+│   │   │   │   │   ├── git-branch-fill.svg
+│   │   │   │   │   ├── git-branch-line.svg
+│   │   │   │   │   ├── git-commit-fill.svg
+│   │   │   │   │   ├── git-commit-line.svg
+│   │   │   │   │   ├── git-merge-fill.svg
+│   │   │   │   │   ├── git-merge-line.svg
+│   │   │   │   │   ├── git-pull-request-fill.svg
+│   │   │   │   │   ├── git-pull-request-line.svg
+│   │   │   │   │   ├── git-repository-commits-fill.svg
+│   │   │   │   │   ├── git-repository-commits-line.svg
+│   │   │   │   │   ├── git-repository-fill.svg
+│   │   │   │   │   ├── git-repository-line.svg
+│   │   │   │   │   ├── git-repository-private-fill.svg
+│   │   │   │   │   ├── git-repository-private-line.svg
+│   │   │   │   │   ├── terminal-box-fill.svg
+│   │   │   │   │   ├── terminal-box-line.svg
+│   │   │   │   │   ├── terminal-line.svg
+│   │   │   │   │   ├── terminal-window-fill.svg
+│   │   │   │   │   └── terminal-window-line.svg
+│   │   │   │   ├── device
+│   │   │   │   │   ├── bluetooth-fill.svg
+│   │   │   │   │   ├── bluetooth-line.svg
+│   │   │   │   │   ├── computer-fill.svg
+│   │   │   │   │   ├── computer-line.svg
+│   │   │   │   │   ├── dashboard-3-fill.svg
+│   │   │   │   │   ├── dashboard-3-line.svg
+│   │   │   │   │   ├── database-fill.svg
+│   │   │   │   │   ├── database-line.svg
+│   │   │   │   │   ├── device-fill.svg
+│   │   │   │   │   ├── device-line.svg
+│   │   │   │   │   ├── hard-drive-2-fill.svg
+│   │   │   │   │   ├── hard-drive-2-line.svg
+│   │   │   │   │   ├── mac-fill.svg
+│   │   │   │   │   ├── mac-line.svg
+│   │   │   │   │   ├── phone-fill.svg
+│   │   │   │   │   ├── phone-line.svg
+│   │   │   │   │   ├── qr-code-fill.svg
+│   │   │   │   │   ├── qr-code-line.svg
+│   │   │   │   │   ├── rss-fill.svg
+│   │   │   │   │   ├── rss-line.svg
+│   │   │   │   │   ├── save-3-fill.svg
+│   │   │   │   │   ├── save-3-line.svg
+│   │   │   │   │   ├── save-fill.svg
+│   │   │   │   │   ├── save-line.svg
+│   │   │   │   │   ├── server-fill.svg
+│   │   │   │   │   ├── server-line.svg
+│   │   │   │   │   ├── smartphone-fill.svg
+│   │   │   │   │   ├── smartphone-line.svg
+│   │   │   │   │   ├── tablet-fill.svg
+│   │   │   │   │   ├── tablet-line.svg
+│   │   │   │   │   ├── tv-fill.svg
+│   │   │   │   │   ├── tv-line.svg
+│   │   │   │   │   ├── wifi-fill.svg
+│   │   │   │   │   └── wifi-line.svg
+│   │   │   │   ├── document
+│   │   │   │   │   ├── article-fill.svg
+│   │   │   │   │   ├── article-line.svg
+│   │   │   │   │   ├── book-2-fill.svg
+│   │   │   │   │   ├── book-2-line.svg
+│   │   │   │   │   ├── booklet-fill.svg
+│   │   │   │   │   ├── booklet-line.svg
+│   │   │   │   │   ├── clipboard-fill.svg
+│   │   │   │   │   ├── clipboard-line.svg
+│   │   │   │   │   ├── draft-fill.svg
+│   │   │   │   │   ├── draft-line.svg
+│   │   │   │   │   ├── file-add-fill.svg
+│   │   │   │   │   ├── file-add-line.svg
+│   │   │   │   │   ├── file-download-fill.svg
+│   │   │   │   │   ├── file-download-line.svg
+│   │   │   │   │   ├── file-fill.svg
+│   │   │   │   │   ├── file-line.svg
+│   │   │   │   │   ├── file-pdf-fill.svg
+│   │   │   │   │   ├── file-pdf-line.svg
+│   │   │   │   │   ├── file-text-fill.svg
+│   │   │   │   │   ├── file-text-line.svg
+│   │   │   │   │   ├── folder-2-fill.svg
+│   │   │   │   │   ├── folder-2-line.svg
+│   │   │   │   │   ├── newspaper-fill.svg
+│   │   │   │   │   ├── newspaper-line.svg
+│   │   │   │   │   ├── survey-fill.svg
+│   │   │   │   │   ├── survey-line.svg
+│   │   │   │   │   ├── todo-fill.svg
+│   │   │   │   │   └── todo-line.svg
+│   │   │   │   ├── editor
+│   │   │   │   │   ├── code-view.svg
+│   │   │   │   │   ├── font-size.svg
+│   │   │   │   │   ├── fr--bold.svg
+│   │   │   │   │   ├── fr--highlight.svg
+│   │   │   │   │   ├── fr--quote-fill.svg
+│   │   │   │   │   ├── fr--quote-line.svg
+│   │   │   │   │   ├── h-1.svg
+│   │   │   │   │   ├── h-2.svg
+│   │   │   │   │   ├── h-3.svg
+│   │   │   │   │   ├── h-4.svg
+│   │   │   │   │   ├── h-5.svg
+│   │   │   │   │   ├── h-6.svg
+│   │   │   │   │   ├── hashtag.svg
+│   │   │   │   │   ├── italic.svg
+│   │   │   │   │   ├── link-unlink.svg
+│   │   │   │   │   ├── link.svg
+│   │   │   │   │   ├── list-ordered.svg
+│   │   │   │   │   ├── list-unordered.svg
+│   │   │   │   │   ├── question-mark.svg
+│   │   │   │   │   ├── separator.svg
+│   │   │   │   │   ├── space.svg
+│   │   │   │   │   ├── subscript.svg
+│   │   │   │   │   ├── superscript.svg
+│   │   │   │   │   ├── table-2.svg
+│   │   │   │   │   └── translate-2.svg
+│   │   │   │   ├── finance
+│   │   │   │   │   ├── bank-card-fill.svg
+│   │   │   │   │   ├── bank-card-line.svg
+│   │   │   │   │   ├── coin-fill.svg
+│   │   │   │   │   ├── gift-fill.svg
+│   │   │   │   │   ├── gift-line.svg
+│   │   │   │   │   ├── money-euro-box-fill.svg
+│   │   │   │   │   ├── money-euro-box-line.svg
+│   │   │   │   │   ├── money-euro-circle-fill.svg
+│   │   │   │   │   ├── money-euro-circle-line.svg
+│   │   │   │   │   ├── secure-payment-fill.svg
+│   │   │   │   │   ├── secure-payment-line.svg
+│   │   │   │   │   ├── shopping-bag-fill.svg
+│   │   │   │   │   ├── shopping-bag-line.svg
+│   │   │   │   │   ├── shopping-cart-2-fill.svg
+│   │   │   │   │   ├── shopping-cart-2-line.svg
+│   │   │   │   │   ├── trophy-fill.svg
+│   │   │   │   │   └── trophy-line.svg
+│   │   │   │   ├── health
+│   │   │   │   │   ├── capsule-fill.svg
+│   │   │   │   │   ├── capsule-line.svg
+│   │   │   │   │   ├── dislike-fill.svg
+│   │   │   │   │   ├── dislike-line.svg
+│   │   │   │   │   ├── dossier-fill.svg
+│   │   │   │   │   ├── dossier-line.svg
+│   │   │   │   │   ├── first-aid-kit-fill.svg
+│   │   │   │   │   ├── first-aid-kit-line.svg
+│   │   │   │   │   ├── hand-sanitizer-fill.svg
+│   │   │   │   │   ├── hand-sanitizer-line.svg
+│   │   │   │   │   ├── health-book-fill.svg
+│   │   │   │   │   ├── health-book-line.svg
+│   │   │   │   │   ├── heart-fill.svg
+│   │   │   │   │   ├── heart-line.svg
+│   │   │   │   │   ├── heart-pulse-fill.svg
+│   │   │   │   │   ├── heart-pulse-line.svg
+│   │   │   │   │   ├── lungs-fill.svg
+│   │   │   │   │   ├── lungs-line.svg
+│   │   │   │   │   ├── medicine-bottle-fill.svg
+│   │   │   │   │   ├── medicine-bottle-line.svg
+│   │   │   │   │   ├── mental-health-fill.svg
+│   │   │   │   │   ├── mental-health-line.svg
+│   │   │   │   │   ├── microscope-fill.svg
+│   │   │   │   │   ├── microscope-line.svg
+│   │   │   │   │   ├── psychotherapy-fill.svg
+│   │   │   │   │   ├── psychotherapy-line.svg
+│   │   │   │   │   ├── pulse-line.svg
+│   │   │   │   │   ├── stethoscope-fill.svg
+│   │   │   │   │   ├── stethoscope-line.svg
+│   │   │   │   │   ├── surgical-mask-fill.svg
+│   │   │   │   │   ├── surgical-mask-line.svg
+│   │   │   │   │   ├── syringe-fill.svg
+│   │   │   │   │   ├── syringe-line.svg
+│   │   │   │   │   ├── test-tube-fill.svg
+│   │   │   │   │   ├── test-tube-line.svg
+│   │   │   │   │   ├── thermometer-fill.svg
+│   │   │   │   │   ├── thermometer-line.svg
+│   │   │   │   │   ├── virus-fill.svg
+│   │   │   │   │   └── virus-line.svg
+│   │   │   │   ├── logo
+│   │   │   │   │   ├── chrome-fill.svg
+│   │   │   │   │   ├── chrome-line.svg
+│   │   │   │   │   ├── edge-fill.svg
+│   │   │   │   │   ├── edge-line.svg
+│   │   │   │   │   ├── facebook-circle-fill.svg
+│   │   │   │   │   ├── facebook-circle-line.svg
+│   │   │   │   │   ├── firefox-fill.svg
+│   │   │   │   │   ├── firefox-line.svg
+│   │   │   │   │   ├── fr--dailymotion-fill.svg
+│   │   │   │   │   ├── fr--dailymotion-line.svg
+│   │   │   │   │   ├── fr--tiktok-fill.svg
+│   │   │   │   │   ├── fr--tiktok-line.svg
+│   │   │   │   │   ├── github-fill.svg
+│   │   │   │   │   ├── github-line.svg
+│   │   │   │   │   ├── google-fill.svg
+│   │   │   │   │   ├── google-line.svg
+│   │   │   │   │   ├── ie-fill.svg
+│   │   │   │   │   ├── ie-line.svg
+│   │   │   │   │   ├── instagram-fill.svg
+│   │   │   │   │   ├── instagram-line.svg
+│   │   │   │   │   ├── linkedin-box-fill.svg
+│   │   │   │   │   ├── linkedin-box-line.svg
+│   │   │   │   │   ├── mastodon-fill.svg
+│   │   │   │   │   ├── mastodon-line.svg
+│   │   │   │   │   ├── npmjs-fill.svg
+│   │   │   │   │   ├── npmjs-line.svg
+│   │   │   │   │   ├── remixicon-fill.svg
+│   │   │   │   │   ├── remixicon-line.svg
+│   │   │   │   │   ├── safari-fill.svg
+│   │   │   │   │   ├── safari-line.svg
+│   │   │   │   │   ├── slack-fill.svg
+│   │   │   │   │   ├── slack-line.svg
+│   │   │   │   │   ├── snapchat-fill.svg
+│   │   │   │   │   ├── snapchat-line.svg
+│   │   │   │   │   ├── telegram-fill.svg
+│   │   │   │   │   ├── telegram-line.svg
+│   │   │   │   │   ├── threads-fill.svg
+│   │   │   │   │   ├── threads-line.svg
+│   │   │   │   │   ├── twitch-fill.svg
+│   │   │   │   │   ├── twitch-line.svg
+│   │   │   │   │   ├── twitter-fill.svg
+│   │   │   │   │   ├── twitter-line.svg
+│   │   │   │   │   ├── twitter-x-fill.svg
+│   │   │   │   │   ├── twitter-x-line.svg
+│   │   │   │   │   ├── vimeo-fill.svg
+│   │   │   │   │   ├── vimeo-line.svg
+│   │   │   │   │   ├── vuejs-fill.svg
+│   │   │   │   │   ├── vuejs-line.svg
+│   │   │   │   │   ├── youtube-fill.svg
+│   │   │   │   │   └── youtube-line.svg
+│   │   │   │   ├── map
+│   │   │   │   │   ├── anchor-fill.svg
+│   │   │   │   │   ├── anchor-line.svg
+│   │   │   │   │   ├── bike-fill.svg
+│   │   │   │   │   ├── bike-line.svg
+│   │   │   │   │   ├── bus-fill.svg
+│   │   │   │   │   ├── bus-line.svg
+│   │   │   │   │   ├── car-fill.svg
+│   │   │   │   │   ├── car-line.svg
+│   │   │   │   │   ├── caravan-fill.svg
+│   │   │   │   │   ├── caravan-line.svg
+│   │   │   │   │   ├── charging-pile-2-fill.svg
+│   │   │   │   │   ├── charging-pile-2-line.svg
+│   │   │   │   │   ├── compass-3-fill.svg
+│   │   │   │   │   ├── compass-3-line.svg
+│   │   │   │   │   ├── cup-fill.svg
+│   │   │   │   │   ├── cup-line.svg
+│   │   │   │   │   ├── earth-fill.svg
+│   │   │   │   │   ├── earth-line.svg
+│   │   │   │   │   ├── france-fill.svg
+│   │   │   │   │   ├── france-line.svg
+│   │   │   │   │   ├── gas-station-fill.svg
+│   │   │   │   │   ├── gas-station-line.svg
+│   │   │   │   │   ├── goblet-fill.svg
+│   │   │   │   │   ├── goblet-line.svg
+│   │   │   │   │   ├── map-pin-2-fill.svg
+│   │   │   │   │   ├── map-pin-2-line.svg
+│   │   │   │   │   ├── map-pin-user-fill.svg
+│   │   │   │   │   ├── map-pin-user-line.svg
+│   │   │   │   │   ├── motorbike-fill.svg
+│   │   │   │   │   ├── motorbike-line.svg
+│   │   │   │   │   ├── passport-fill.svg
+│   │   │   │   │   ├── passport-line.svg
+│   │   │   │   │   ├── restaurant-fill.svg
+│   │   │   │   │   ├── restaurant-line.svg
+│   │   │   │   │   ├── road-map-fill.svg
+│   │   │   │   │   ├── road-map-line.svg
+│   │   │   │   │   ├── sailboat-fill.svg
+│   │   │   │   │   ├── sailboat-line.svg
+│   │   │   │   │   ├── ship-2-fill.svg
+│   │   │   │   │   ├── ship-2-line.svg
+│   │   │   │   │   ├── signal-tower-fill.svg
+│   │   │   │   │   ├── signal-tower-line.svg
+│   │   │   │   │   ├── suitcase-2-fill.svg
+│   │   │   │   │   ├── suitcase-2-line.svg
+│   │   │   │   │   ├── taxi-fill.svg
+│   │   │   │   │   ├── taxi-line.svg
+│   │   │   │   │   ├── train-fill.svg
+│   │   │   │   │   └── train-line.svg
+│   │   │   │   ├── media
+│   │   │   │   │   ├── align-left.svg
+│   │   │   │   │   ├── camera-fill.svg
+│   │   │   │   │   ├── camera-line.svg
+│   │   │   │   │   ├── clapperboard-fill.svg
+│   │   │   │   │   ├── clapperboard-line.svg
+│   │   │   │   │   ├── equalizer-fill.svg
+│   │   │   │   │   ├── equalizer-line.svg
+│   │   │   │   │   ├── film-fill.svg
+│   │   │   │   │   ├── film-line.svg
+│   │   │   │   │   ├── fullscreen-line.svg
+│   │   │   │   │   ├── gallery-fill.svg
+│   │   │   │   │   ├── gallery-line.svg
+│   │   │   │   │   ├── headphone-fill.svg
+│   │   │   │   │   ├── headphone-line.svg
+│   │   │   │   │   ├── image-add-fill.svg
+│   │   │   │   │   ├── image-add-line.svg
+│   │   │   │   │   ├── image-edit-fill.svg
+│   │   │   │   │   ├── image-edit-line.svg
+│   │   │   │   │   ├── image-fill.svg
+│   │   │   │   │   ├── image-line.svg
+│   │   │   │   │   ├── live-fill.svg
+│   │   │   │   │   ├── live-line.svg
+│   │   │   │   │   ├── mic-fill.svg
+│   │   │   │   │   ├── mic-line.svg
+│   │   │   │   │   ├── music-2-fill.svg
+│   │   │   │   │   ├── music-2-line.svg
+│   │   │   │   │   ├── notification-3-fill.svg
+│   │   │   │   │   ├── notification-3-line.svg
+│   │   │   │   │   ├── pause-circle-fill.svg
+│   │   │   │   │   ├── pause-circle-line.svg
+│   │   │   │   │   ├── play-circle-fill.svg
+│   │   │   │   │   ├── play-circle-line.svg
+│   │   │   │   │   ├── stop-circle-fill.svg
+│   │   │   │   │   ├── stop-circle-line.svg
+│   │   │   │   │   ├── volume-down-fill.svg
+│   │   │   │   │   ├── volume-down-line.svg
+│   │   │   │   │   ├── volume-mute-fill.svg
+│   │   │   │   │   ├── volume-mute-line.svg
+│   │   │   │   │   ├── volume-up-fill.svg
+│   │   │   │   │   └── volume-up-line.svg
+│   │   │   │   ├── others
+│   │   │   │   │   ├── leaf-fill.svg
+│   │   │   │   │   ├── leaf-line.svg
+│   │   │   │   │   ├── lightbulb-fill.svg
+│   │   │   │   │   ├── lightbulb-line.svg
+│   │   │   │   │   ├── plant-fill.svg
+│   │   │   │   │   ├── plant-line.svg
+│   │   │   │   │   ├── recycle-fill.svg
+│   │   │   │   │   ├── recycle-line.svg
+│   │   │   │   │   ├── scales-3-fill.svg
+│   │   │   │   │   ├── scales-3-line.svg
+│   │   │   │   │   ├── seedling-fill.svg
+│   │   │   │   │   ├── seedling-line.svg
+│   │   │   │   │   ├── umbrella-fill.svg
+│   │   │   │   │   └── umbrella-line.svg
+│   │   │   │   ├── system
+│   │   │   │   │   ├── add-circle-fill.svg
+│   │   │   │   │   ├── add-circle-line.svg
+│   │   │   │   │   ├── add-line.svg
+│   │   │   │   │   ├── alarm-warning-fill.svg
+│   │   │   │   │   ├── alarm-warning-line.svg
+│   │   │   │   │   ├── alert-fill.svg
+│   │   │   │   │   ├── alert-line.svg
+│   │   │   │   │   ├── arrow-*.svg  (21 files)
+│   │   │   │   │   ├── check-line.svg
+│   │   │   │   │   ├── checkbox-circle-fill.svg
+│   │   │   │   │   ├── checkbox-circle-line.svg
+│   │   │   │   │   ├── checkbox-fill.svg
+│   │   │   │   │   ├── checkbox-line.svg
+│   │   │   │   │   ├── close-circle-fill.svg
+│   │   │   │   │   ├── close-circle-line.svg
+│   │   │   │   │   ├── close-line.svg
+│   │   │   │   │   ├── delete-bin-fill.svg
+│   │   │   │   │   ├── delete-bin-line.svg
+│   │   │   │   │   ├── download-fill.svg
+│   │   │   │   │   ├── download-line.svg
+│   │   │   │   │   ├── error-warning-fill.svg
+│   │   │   │   │   ├── error-warning-line.svg
+│   │   │   │   │   ├── external-link-fill.svg
+│   │   │   │   │   ├── external-link-line.svg
+│   │   │   │   │   ├── eye-fill.svg
+│   │   │   │   │   ├── eye-line.svg
+│   │   │   │   │   ├── eye-off-fill.svg
+│   │   │   │   │   ├── eye-off-line.svg
+│   │   │   │   │   ├── filter-fill.svg
+│   │   │   │   │   ├── filter-line.svg
+│   │   │   │   │   ├── fr-*.svg  (17 files)
+│   │   │   │   │   ├── information-fill.svg
+│   │   │   │   │   ├── information-line.svg
+│   │   │   │   │   ├── lock-fill.svg
+│   │   │   │   │   ├── lock-line.svg
+│   │   │   │   │   ├── lock-unlock-fill.svg
+│   │   │   │   │   ├── lock-unlock-line.svg
+│   │   │   │   │   ├── logout-box-r-fill.svg
+│   │   │   │   │   ├── logout-box-r-line.svg
+│   │   │   │   │   ├── menu-2-fill.svg
+│   │   │   │   │   ├── menu-fill.svg
+│   │   │   │   │   ├── more-fill.svg
+│   │   │   │   │   ├── more-line.svg
+│   │   │   │   │   ├── notification-badge-fill.svg
+│   │   │   │   │   ├── notification-badge-line.svg
+│   │   │   │   │   ├── question-fill.svg
+│   │   │   │   │   ├── question-line.svg
+│   │   │   │   │   ├── refresh-fill.svg
+│   │   │   │   │   ├── refresh-line.svg
+│   │   │   │   │   ├── search-fill.svg
+│   │   │   │   │   ├── search-line.svg
+│   │   │   │   │   ├── settings-5-fill.svg
+│   │   │   │   │   ├── settings-5-line.svg
+│   │   │   │   │   ├── shield-fill.svg
+│   │   │   │   │   ├── shield-line.svg
+│   │   │   │   │   ├── star-fill.svg
+│   │   │   │   │   ├── star-line.svg
+│   │   │   │   │   ├── star-s-fill.svg
+│   │   │   │   │   ├── star-s-line.svg
+│   │   │   │   │   ├── subtract-line.svg
+│   │   │   │   │   ├── thumb-down-fill.svg
+│   │   │   │   │   ├── thumb-down-line.svg
+│   │   │   │   │   ├── thumb-up-fill.svg
+│   │   │   │   │   ├── thumb-up-line.svg
+│   │   │   │   │   ├── time-fill.svg
+│   │   │   │   │   ├── time-line.svg
+│   │   │   │   │   ├── timer-fill.svg
+│   │   │   │   │   ├── timer-line.svg
+│   │   │   │   │   ├── upload-2-fill.svg
+│   │   │   │   │   ├── upload-2-line.svg
+│   │   │   │   │   ├── upload-fill.svg
+│   │   │   │   │   ├── upload-line.svg
+│   │   │   │   │   ├── zoom-in-fill.svg
+│   │   │   │   │   ├── zoom-in-line.svg
+│   │   │   │   │   ├── zoom-out-fill.svg
+│   │   │   │   │   └── zoom-out-line.svg
+│   │   │   │   ├── user
+│   │   │   │   │   ├── account-circle-fill.svg
+│   │   │   │   │   ├── account-circle-line.svg
+│   │   │   │   │   ├── account-pin-circle-fill.svg
+│   │   │   │   │   ├── account-pin-circle-line.svg
+│   │   │   │   │   ├── admin-fill.svg
+│   │   │   │   │   ├── admin-line.svg
+│   │   │   │   │   ├── group-fill.svg
+│   │   │   │   │   ├── group-line.svg
+│   │   │   │   │   ├── parent-fill.svg
+│   │   │   │   │   ├── parent-line.svg
+│   │   │   │   │   ├── team-fill.svg
+│   │   │   │   │   ├── team-line.svg
+│   │   │   │   │   ├── user-add-fill.svg
+│   │   │   │   │   ├── user-add-line.svg
+│   │   │   │   │   ├── user-fill.svg
+│   │   │   │   │   ├── user-heart-fill.svg
+│   │   │   │   │   ├── user-heart-line.svg
+│   │   │   │   │   ├── user-line.svg
+│   │   │   │   │   ├── user-search-fill.svg
+│   │   │   │   │   ├── user-search-line.svg
+│   │   │   │   │   ├── user-setting-fill.svg
+│   │   │   │   │   ├── user-setting-line.svg
+│   │   │   │   │   ├── user-star-fill.svg
+│   │   │   │   │   └── user-star-line.svg
+│   │   │   │   └── weather
+│   │   │   │       ├── cloudy-2-fill.svg
+│   │   │   │       ├── cloudy-2-line.svg
+│   │   │   │       ├── flashlight-fill.svg
+│   │   │   │       ├── flashlight-line.svg
+│   │   │   │       ├── moon-fill.svg
+│   │   │   │       ├── moon-line.svg
+│   │   │   │       ├── sun-fill.svg
+│   │   │   │       └── sun-line.svg
+│   │   │   ├── normalize.css
+│   │   │   ├── style.css
+│   │   │   ├── td-icons
+│   │   │   │   ├── icon-bsda.svg
+│   │   │   │   ├── icon-bsdasri.svg
+│   │   │   │   ├── icon-bsdd.svg
+│   │   │   │   ├── icon-bsff.svg
+│   │   │   │   ├── icon-bspaoh.svg
+│   │   │   │   └── icon-bsvhu.svg
+│   │   │   ├── trackdechets.css
+│   │   │   └── utility
+│   │   │       └── utility.min.css
+│   │   ├── img
+│   │   │   ├── android-chrome-96x96.png
+│   │   │   ├── apple-touch-icon.png
+│   │   │   ├── brgm.svg
+│   │   │   ├── favicon-16x16.png
+│   │   │   ├── favicon-32x32.png
+│   │   │   ├── favicon.ico
+│   │   │   ├── marianne_mte.svg
+│   │   │   ├── safari-pinned-tab.svg
+│   │   │   ├── site.webmanifest
+│   │   │   └── trackdechets.png
+│   │   ├── js
+│   │   │   ├── dsfr.module.min.js
+│   │   │   ├── dsfr.nomodule.min.js
+│   │   │   └── htmx.js
+│   │   ├── medias
+│   │   │   ├── illustrationCollector.svg
+│   │   │   ├── illustrationProducer.svg
+│   │   │   └── partners
+│   │   │       ├── others
+│   │   │       │   ├── alataroad.png
+│   │   │       │   ├── alme.png
+│   │   │       │   ├── arc-en-ciel-recyclage.png
+│   │   │       │   ├── chimirec.png
+│   │   │       │   ├── clickeco.jpg
+│   │   │       │   ├── colleco.png
+│   │   │       │   ├── elo-energie.png
+│   │   │       │   ├── federec.png
+│   │   │       │   ├── g2d2.png
+│   │   │       │   ├── hensel.png
+│   │   │       │   ├── isd.jpeg
+│   │   │       │   ├── logo-veolia.png
+│   │   │       │   ├── martin.png
+│   │   │       │   ├── new-way.png
+│   │   │       │   ├── norauto.png
+│   │   │       │   ├── praxy.jpg
+│   │   │       │   ├── proserve.png
+│   │   │       │   ├── rebattery.png
+│   │   │       │   ├── recynov.png
+│   │   │       │   ├── recytech.png
+│   │   │       │   ├── safetykleen.png
+│   │   │       │   ├── sarp-veolia.png
+│   │   │       │   ├── sarpi-veolia.png
+│   │   │       │   ├── sclavo.png
+│   │   │       │   ├── seche-environnement.png
+│   │   │       │   ├── take-a-waste.png
+│   │   │       │   ├── valdelia.png
+│   │   │       │   ├── victoria-group.png
+│   │   │       │   └── waste-marketplace.jpg
+│   │   │       └── saas
+│   │   │           ├── caktus.png
+│   │   │           ├── cfluide.png
+│   │   │           ├── dashdoc.png
+│   │   │           ├── databilan.png
+│   │   │           ├── divaltoweavy.png
+│   │   │           ├── eteko.png
+│   │   │           ├── fi-360.png
+│   │   │           ├── fleap.png
+│   │   │           ├── grizoo.png
+│   │   │           ├── hubency.png
+│   │   │           ├── infiny.png
+│   │   │           ├── interfast.png
+│   │   │           ├── kerlog.png
+│   │   │           ├── kisio.png
+│   │   │           ├── kizeo.png
+│   │   │           ├── organice.png
+│   │   │           ├── praxedo.png
+│   │   │           ├── revoco.png
+│   │   │           ├── sogelink.png
+│   │   │           ├── tennaxia.png
+│   │   │           └── trinov.png
+│   │   ├── mptt
+│   │   │   └── draggable-admin.css
+│   │   ├── pdf
+│   │   │   ├── homologation-trackdechets-version-courte.pdf
+│   │   │   ├── mentions-legales.pdf
+│   │   │   └── politique-de-confidentialite.pdf
+│   │   └── site.webmanifest
+│   ├── templates
+│   │   ├── _form_snippet.html
+│   │   ├── _loader.html
+│   │   ├── base.html
+│   │   ├── captcha
+│   │   │   └── captcha.html
+│   │   ├── content
+│   │   │   ├── contact.html
+│   │   │   ├── message_sent.html
+│   │   │   ├── page.html
+│   │   │   └── wrapper.html
+│   │   ├── webinars
+│   │   │   ├── _webinar.html
+│   │   │   ├── detail.html
+│   │   │   └── list.html
+│   │   └── website
+│   │       ├── _signup_form.html
+│   │       ├── accessibility.html
+│   │       ├── base_website.html
+│   │       ├── home.html
+│   │       ├── partners.html
+│   │       ├── stats.html
+│   │       └── tos.html
+│   ├── webinars
+│   │   ├── __init__.py
+│   │   ├── admin.py
+│   │   ├── api.py
+│   │   ├── apps.py
+│   │   ├── migrations
+│   │   │   ├── 0001_initial.py
+│   │   │   └── __init__.py
+│   │   ├── models.py
+│   │   ├── views.py
+│   │   └── webinars_urls.py
+│   └── website
+│       ├── __init__.py
+│       ├── admin.py
+│       ├── apps.py
+│       ├── forms.py
+│       ├── management
+│       │   ├── __init__.py
+│       │   └── commands
+│       │       ├── __init__.py
+│       │       └── retrieve_stats.py
+│       ├── migrations
+│       │   ├── 0001_initial.py
+│       │   ├── 0002_alter_faqcardlink_label_alter_faqcardlink_url.py
+│       │   ├── 0003_alter_faqcard_options_faqcard_position_and_more.py
+│       │   ├── 0004_auto_20240123_1554.py
+│       │   ├── 0005_alter_faqcard_position.py
+│       │   ├── 0006_alter_faqcard_position_alter_faqcardlink_icon_type_and_more.py
+│       │   ├── 0007_alter_faqcard_content.py
+│       │   ├── 0008_bannerconfiguration_alter_statsdigest_options.py
+│       │   └── __init__.py
+│       ├── models.py
+│       ├── tests
+│       │   ├── __init__.py
+│       │   └── test_views.py
+│       ├── urls.py
+│       └── views.py
+└── uv.lock
+57 directories, 818 files
