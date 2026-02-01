@@ -1,0 +1,35 @@
+
+version: '3.0'
+
+services:
+  chroma:
+    image: ghcr.io/socialgouv/docker/chroma:0.3.21
+    ports: 
+      - 8000:8000
+    volumes:
+      - index_data:/index_data
+    healthcheck:
+      test: "curl http://127.0.0.1:8000/api/v1"
+      interval: 30s
+      timeout: 10s
+      retries: 5
+  api:
+    depends_on:
+      chroma:
+        condition: service_healthy
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      N_THREADS: ${N_THREADS}
+      CHROMA_URL: ${CHROMA_URL}
+      LLAMA_MODEL: ${LLAMA_MODEL}
+      DIRECTORY_PATH: ${DIRECTORY_PATH}
+      DEFAULT_COLLECTION: ${DEFAULT_COLLECTION}
+    volumes:
+      - ../goinfre:/goinfre
+    ports:
+      - 3000:3000
+
+volumes:
+  index_data:
