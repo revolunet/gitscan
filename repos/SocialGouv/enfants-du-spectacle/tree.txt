@@ -1,0 +1,1057 @@
+.
+├── .dockerignore
+├── .env.example
+├── .eslintrc.json
+├── .github
+│   ├── CODEOWNERS
+│   ├── ISSUE_TEMPLATE
+│   │   ├── bug_report.md
+│   │   └── new-feature.md
+│   └── workflows
+│       ├── deactivate.yaml
+│       ├── preproduction.yaml
+│       ├── production.yaml
+│       ├── release.yaml
+│       ├── review-auto.yaml
+│       ├── review.yaml
+│       └── tests.yml
+├── .gitignore
+├── .husky
+│   ├── .gitignore
+│   └── pre-commit
+├── .kontinuous
+│   ├── config.yaml
+│   ├── env
+│   │   ├── dev
+│   │   │   ├── templates
+│   │   │   │   ├── app.configmap.yaml
+│   │   │   │   ├── app.sealed-secret.yaml
+│   │   │   │   └── scheduler.cronjob.yaml
+│   │   │   └── values.yaml
+│   │   ├── preprod
+│   │   │   ├── templates
+│   │   │   │   ├── app.configmap.yaml
+│   │   │   │   ├── app.sealed-secret.yaml
+│   │   │   │   └── scheduler.cronjob.yaml
+│   │   │   └── values.yaml
+│   │   └── prod
+│   │       ├── templates
+│   │       │   ├── app.configmap.yaml
+│   │       │   ├── app.sealed-secret.yaml
+│   │       │   ├── metabase.configmap.yaml
+│   │       │   ├── metabase.sealed-secret.yaml
+│   │       │   ├── oauth2-proxy.configmap.yml
+│   │       │   ├── oauth2-proxy.sealed-secret.yml
+│   │       │   └── scheduler.cronjob.yaml
+│   │       └── values.yaml
+│   └── values.yaml
+├── CHANGELOG.md
+├── Dockerfile
+├── Dockerfile.scheduler
+├── LICENSE
+├── Procfile.dev
+├── README.md
+├── docker-compose.yml
+├── formulaire
+│   ├── .dockerignore
+│   ├── .env.example
+│   ├── .eslintrc.json
+│   ├── .gitignore
+│   ├── Dockerfile
+│   ├── Procfile.dev
+│   ├── README.md
+│   ├── middleware.ts
+│   ├── next.config.js
+│   ├── package.json
+│   ├── pages
+│   │   ├── _app.tsx
+│   │   ├── accessibilite
+│   │   │   └── index.tsx
+│   │   ├── api
+│   │   │   ├── admin
+│   │   │   │   └── documents.ts
+│   │   │   ├── auth
+│   │   │   │   ├── [...nextauth].ts
+│   │   │   │   └── prepare-login.ts
+│   │   │   ├── calendrier
+│   │   │   │   └── [categorie].ts
+│   │   │   ├── comments
+│   │   │   │   └── index.tsx
+│   │   │   ├── demandeur
+│   │   │   │   ├── [id].tsx
+│   │   │   │   └── index.tsx
+│   │   │   ├── docs
+│   │   │   │   └── [id].tsx
+│   │   │   ├── documents-publics.ts
+│   │   │   ├── dossier
+│   │   │   │   ├── [id].tsx
+│   │   │   │   ├── complete.tsx
+│   │   │   │   ├── duplicate
+│   │   │   │   │   └── [id].tsx
+│   │   │   │   └── index.tsx
+│   │   │   ├── download
+│   │   │   │   └── [type]
+│   │   │   │       └── [id].ts
+│   │   │   ├── enfants
+│   │   │   │   ├── [id].tsx
+│   │   │   │   ├── dossier
+│   │   │   │   │   └── [id].tsx
+│   │   │   │   ├── import
+│   │   │   │   │   └── index.tsx
+│   │   │   │   └── index.tsx
+│   │   │   ├── healthz
+│   │   │   │   └── index.ts
+│   │   │   ├── mail
+│   │   │   │   └── index.ts
+│   │   │   ├── piece
+│   │   │   │   ├── dossier
+│   │   │   │   │   ├── [id].tsx
+│   │   │   │   │   └── index.tsx
+│   │   │   │   └── enfant
+│   │   │   │       ├── [id].tsx
+│   │   │   │       └── index.tsx
+│   │   │   ├── remunerations
+│   │   │   │   ├── [id].tsx
+│   │   │   │   └── index.tsx
+│   │   │   ├── sirene
+│   │   │   │   └── index.tsx
+│   │   │   ├── societe
+│   │   │   │   └── index.tsx
+│   │   │   ├── sync
+│   │   │   │   ├── inc
+│   │   │   │   │   ├── commentaires
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   └── notifications
+│   │   │   │   │   │       └── index.tsx
+│   │   │   │   │   ├── docs
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── dossiers
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── enfants
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── pieces
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── remunerations
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── upload
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   └── upload-decision
+│   │   │   │   │       └── index.tsx
+│   │   │   │   └── out
+│   │   │   │       └── dossiers
+│   │   │   │           ├── [id].tsx
+│   │   │   │           └── index.tsx
+│   │   │   └── users
+│   │   │       ├── [email].tsx
+│   │   │       └── index.tsx
+│   │   ├── conditions-generales
+│   │   │   └── index.tsx
+│   │   ├── docs.tsx
+│   │   ├── documents-publics.tsx
+│   │   ├── dossier
+│   │   │   └── [id].tsx
+│   │   ├── faq
+│   │   │   └── index.tsx
+│   │   ├── index.tsx
+│   │   ├── login.tsx
+│   │   ├── mentions
+│   │   │   └── index.tsx
+│   │   ├── politique
+│   │   │   └── index.tsx
+│   │   ├── stats
+│   │   │   └── index.tsx
+│   │   └── verifyRequest.tsx
+│   ├── pnpm-lock.yaml
+│   ├── pnpm-workspace.yaml
+│   ├── prisma
+│   │   ├── migrations
+│   │   │   ├── 20221201121555_add_prisma_sessions_tables
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20221201171946_change_model_user
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20221202070419_add_models_form
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20221202102528_add_tel_to_user
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20221202105938_add_fonction_to_user
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20221209081349_modify_enfant_model
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20221214111852_add_status_brouillon
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20221214114050_change_default_status_dossier
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20221216061501_add_demandeur
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20221216071748_add_fields_to_dossier
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20221216073308_add_fields_to_enfant
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20221220154047_adapt_pieces_justificatives
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20221220173846_modify_piece_dossier_enfant
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20221220174200_remove_dossier_id_from_piecedossierenfant
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20221221105359_add_date_modif_on_enfant
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20221221150612_fix_convention_collective_code
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20230104145434_remove_convention_collective_from_societe
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20230104155118_change_relation_to_siret
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20230104165551_add_user_on_enfant
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20230118173647_demandeur_no_unique_email
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20230125170612_change_relation_field_societe_to_demandeur
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20230126202737_add_statut_piece
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20230215141655_add_schema_comments
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20230215142934_modify_model_comments
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20230215143345_comment_parent_id_may_be_null
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20230215145811_add_date_comment
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20230227150530_add_choriste_to_roles
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20230227150606_add_circassien_to_roles
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20230227150628_add_musicien_to_roles
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20230227163503_delete_cascade_on_comments
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20230228110420_
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20230310155827_add_seen_input
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20230317110910_add_type_consult
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20230323144218_add_enum_type_consult
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20230324133100_add_collaborators
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20230328125320_add_infos_representants_enfant
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20230330232247_add_bon_prise_en_charge_justif_enum
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20230330232329_add_autorisation_prise_en_charge_justif_enum
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20230331091204_add_travail_nuit_enfant
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20230406145240_add_commission_date
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20230412083400_add_date_creation_dossier
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20230412084027_add_commission_infos_dossier
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20230412160137_add_documentaire_fictionnel
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20230413132728_add_other_convention_collective
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20230504083345_add_date_consultation_medecin_enfant
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20230530130012_add_new_remunerations_info
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20231030203956_add_comment_sender_name
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20250515111458_update_user_relations
+│   │   │   │   └── migration.sql
+│   │   │   └── migration_lock.toml
+│   │   ├── schema.prisma
+│   │   └── zod
+│   │       ├── account.ts
+│   │       ├── demandeur.ts
+│   │       ├── dossier.ts
+│   │       ├── enfant.ts
+│   │       ├── index.ts
+│   │       ├── piecedossier.ts
+│   │       ├── piecedossierenfant.ts
+│   │       ├── session.ts
+│   │       ├── societeproduction.ts
+│   │       ├── user.ts
+│   │       └── verificationtoken.ts
+│   ├── public
+│   │   ├── calendar_commission
+│   │   │   ├── Calendrier_commission_2025 H92-.pdf
+│   │   │   ├── calendrier_commission_2025.pdf
+│   │   │   └── calendrier_commission_2025_92.pdf
+│   │   ├── favicon.ico
+│   │   ├── fonts
+│   │   │   ├── Marianne-Bold.woff
+│   │   │   ├── Marianne-Bold.woff2
+│   │   │   ├── Marianne-Bold_Italic.woff
+│   │   │   ├── Marianne-Bold_Italic.woff2
+│   │   │   ├── Marianne-ExtraBold.woff
+│   │   │   ├── Marianne-ExtraBold.woff2
+│   │   │   ├── Marianne-ExtraBold_Italic.woff
+│   │   │   ├── Marianne-ExtraBold_Italic.woff2
+│   │   │   ├── Marianne-Light.woff
+│   │   │   ├── Marianne-Light.woff2
+│   │   │   ├── Marianne-Light_Italic.woff
+│   │   │   ├── Marianne-Light_Italic.woff2
+│   │   │   ├── Marianne-Medium.woff
+│   │   │   ├── Marianne-Medium.woff2
+│   │   │   ├── Marianne-Medium_Italic.woff
+│   │   │   ├── Marianne-Medium_Italic.woff2
+│   │   │   ├── Marianne-Regular.woff
+│   │   │   ├── Marianne-Regular.woff2
+│   │   │   ├── Marianne-Regular_Italic.woff
+│   │   │   ├── Marianne-Regular_Italic.woff2
+│   │   │   ├── Marianne-Thin.woff
+│   │   │   ├── Marianne-Thin.woff2
+│   │   │   ├── Marianne-Thin_Italic.woff
+│   │   │   ├── Marianne-Thin_Italic.woff2
+│   │   │   ├── OFL.txt
+│   │   │   ├── Spectral-Bold.ttf
+│   │   │   ├── Spectral-BoldItalic.ttf
+│   │   │   ├── Spectral-ExtraBold.ttf
+│   │   │   ├── Spectral-ExtraBoldItalic.ttf
+│   │   │   ├── Spectral-ExtraLight.ttf
+│   │   │   ├── Spectral-ExtraLightItalic.ttf
+│   │   │   ├── Spectral-Italic.ttf
+│   │   │   ├── Spectral-Light.ttf
+│   │   │   ├── Spectral-LightItalic.ttf
+│   │   │   ├── Spectral-Medium.ttf
+│   │   │   ├── Spectral-MediumItalic.ttf
+│   │   │   ├── Spectral-Regular.ttf
+│   │   │   ├── Spectral-SemiBold.ttf
+│   │   │   └── Spectral-SemiBoldItalic.ttf
+│   │   ├── images
+│   │   │   ├── Icône.svg
+│   │   │   ├── add_enfant.png
+│   │   │   ├── arrow-down.svg
+│   │   │   ├── arrow-left.svg
+│   │   │   ├── arrow-up.svg
+│   │   │   ├── create_dossier.png
+│   │   │   ├── delete_enfant.png
+│   │   │   ├── demandeurs.svg
+│   │   │   ├── dossier_comment.png
+│   │   │   ├── déposer.png
+│   │   │   ├── info-demandeur.png
+│   │   │   ├── info.svg
+│   │   │   ├── projet.svg
+│   │   │   ├── refused.svg
+│   │   │   ├── sticky_up.png
+│   │   │   ├── template_enfant.png
+│   │   │   └── trash.svg
+│   │   ├── logo-beta-gouv.png
+│   │   ├── template
+│   │   │   └── template-enfants.xlsx
+│   │   └── vercel.svg
+│   ├── sentry.client.config.ts
+│   ├── sentry.server.config.ts
+│   ├── src
+│   │   ├── components
+│   │   │   ├── Accordion.module.scss
+│   │   │   ├── Accordion.tsx
+│   │   │   ├── Card.module.scss
+│   │   │   ├── Card.tsx
+│   │   │   ├── ConnexionForm.module.scss
+│   │   │   ├── ConnexionForm.tsx
+│   │   │   ├── CountPieces.module.scss
+│   │   │   ├── CountPieces.tsx
+│   │   │   ├── Dossier
+│   │   │   │   ├── CollaboratorsList.module.scss
+│   │   │   │   ├── CollaboratorsList.tsx
+│   │   │   │   ├── DemandeurForm.module.scss
+│   │   │   │   ├── DemandeurForm.tsx
+│   │   │   │   ├── DossierForm.module.scss
+│   │   │   │   ├── DossierForm.tsx
+│   │   │   │   ├── EnfantFormBis.tsx
+│   │   │   │   ├── EnfantList.module.scss
+│   │   │   │   ├── EnfantList.tsx
+│   │   │   │   ├── EnfantListBis.tsx
+│   │   │   │   ├── HeadingDossier.module.scss
+│   │   │   │   ├── HeadingDossier.tsx
+│   │   │   │   ├── MenuDossier.module.scss
+│   │   │   │   ├── MenuDossier.tsx
+│   │   │   │   ├── ProjectForm.tsx
+│   │   │   │   ├── ShareDossierModal.module.scss
+│   │   │   │   ├── ShareDossierModal.tsx
+│   │   │   │   ├── SocieteProd.module.scss
+│   │   │   │   └── SocieteProd.tsx
+│   │   │   ├── FoldableItem.module.scss
+│   │   │   ├── FoldableItem.tsx
+│   │   │   ├── Footer.module.scss
+│   │   │   ├── Footer.tsx
+│   │   │   ├── Header.module.scss
+│   │   │   ├── Header.tsx
+│   │   │   ├── IconLoader.module.scss
+│   │   │   ├── IconLoader.tsx
+│   │   │   ├── LabelStatus.module.scss
+│   │   │   ├── LabelStatus.tsx
+│   │   │   ├── Layout.module.scss
+│   │   │   ├── Layout.tsx
+│   │   │   ├── ListComments.module.scss
+│   │   │   ├── ListComments.tsx
+│   │   │   ├── Politique.module.scss
+│   │   │   ├── ProgressBar.module.scss
+│   │   │   ├── ProgressBar.tsx
+│   │   │   ├── TableCard.module.scss
+│   │   │   ├── TableCard.tsx
+│   │   │   ├── UseDidMount.tsx
+│   │   │   ├── home
+│   │   │   │   ├── ActionBar.module.scss
+│   │   │   │   ├── ActionBar.tsx
+│   │   │   │   ├── OrderableItem.module.scss
+│   │   │   │   ├── OrderableItem.tsx
+│   │   │   │   ├── SearchBar.module.scss
+│   │   │   │   ├── SearhBar.tsx
+│   │   │   │   ├── TableDossiers.module.scss
+│   │   │   │   └── TableDossiers.tsx
+│   │   │   └── uiComponents
+│   │   │       ├── InputAutocomplete.module.scss
+│   │   │       ├── InputAutocomplete.tsx
+│   │   │       ├── InputComments.module.scss
+│   │   │       ├── InputFile.module.scss
+│   │   │       ├── InputFile.tsx
+│   │   │       ├── InputText.tsx
+│   │   │       └── inputComments.tsx
+│   │   ├── context
+│   │   │   ├── StateContext.tsx
+│   │   │   └── StateReducer.tsx
+│   │   ├── fetching
+│   │   │   ├── commentaires.tsx
+│   │   │   ├── demandeur.tsx
+│   │   │   ├── docs.tsx
+│   │   │   ├── dossiers.tsx
+│   │   │   ├── email.tsx
+│   │   │   ├── enfant.tsx
+│   │   │   ├── instructeur.tsx
+│   │   │   ├── pieceEnfant.tsx
+│   │   │   ├── pieces.tsx
+│   │   │   ├── remuneration.tsx
+│   │   │   ├── sirene.tsx
+│   │   │   ├── societeProduction.tsx
+│   │   │   ├── sync.tsx
+│   │   │   └── users.tsx
+│   │   ├── images
+│   │   │   └── logo.png
+│   │   ├── lib
+│   │   │   ├── emailAuth.ts
+│   │   │   ├── helpers.ts
+│   │   │   ├── prismaClient.ts
+│   │   │   ├── s3Client.ts
+│   │   │   ├── statutDossierStateMachine.ts
+│   │   │   ├── types.ts
+│   │   │   └── utils.tsx
+│   │   ├── mails
+│   │   │   ├── mailgeneric.html
+│   │   │   ├── mailgeneric.mjml
+│   │   │   ├── signin.html
+│   │   │   └── signin.mjml
+│   │   ├── styles
+│   │   │   └── global.scss
+│   │   ├── types
+│   │   │   └── next-auth.d.ts
+│   │   └── uiComponents
+│   │       └── button
+│   │           ├── buttonLink.tsx
+│   │           ├── buttonStyle.module.scss
+│   │           └── index.tsx
+│   ├── styles
+│   │   ├── Home.module.css
+│   │   └── globals.css
+│   └── tsconfig.json
+├── next-env.d.ts
+├── next.config.js
+├── package.json
+├── pnpm-lock.yaml
+├── prisma
+│   ├── migrations
+│   │   ├── 20211117142011_init
+│   │   │   └── migration.sql
+│   │   ├── 20211129123619_demandeur_fonction
+│   │   │   └── migration.sql
+│   │   ├── 20211129135817_societe_infos
+│   │   │   └── migration.sql
+│   │   ├── 20211129162216_societe_ccn
+│   │   │   └── migration.sql
+│   │   ├── 20211201101152_dossiers_dates_presentation_scenes_sensibles
+│   │   │   └── migration.sql
+│   │   ├── 20211201111602_societe_adresse_not_null
+│   │   │   └── migration.sql
+│   │   ├── 20220201015556_enfants_add_nombre_lignes
+│   │   │   └── migration.sql
+│   │   ├── 20220202132121_add_commentaire_model
+│   │   │   └── migration.sql
+│   │   ├── 20220202135845_modify_commentaire_model
+│   │   │   └── migration.sql
+│   │   ├── 20220203160959_adapt_commentaires_model
+│   │   │   └── migration.sql
+│   │   ├── 20220203162728_test
+│   │   │   └── migration.sql
+│   │   ├── 20220203163149_abort_test
+│   │   │   └── migration.sql
+│   │   ├── 20220208150802_add_external_id_to_dossier
+│   │   │   └── migration.sql
+│   │   ├── 20220208162718_adapt_external_id_type
+│   │   │   └── migration.sql
+│   │   ├── 20220208235312_remove_champ_numero_ds
+│   │   │   └── migration.sql
+│   │   ├── 20220209120652_re_add_numero_ds_on_dossier
+│   │   │   └── migration.sql
+│   │   ├── 20220211161024_add_pieces_dossier_modele
+│   │   │   └── migration.sql
+│   │   ├── 20220214141438_allow_delete_cascade_on_piece_enfant
+│   │   │   └── migration.sql
+│   │   ├── 20220214155914_add_piece_dossier_on_dossier_modele
+│   │   │   └── migration.sql
+│   │   ├── 20220216145717_add_convention_collective_to_dossier
+│   │   │   └── migration.sql
+│   │   ├── 20220216150344_add_delete_cascade_on_comments
+│   │   │   └── migration.sql
+│   │   ├── 20220217032557_add_delete_cascade_on_dossier
+│   │   │   └── migration.sql
+│   │   ├── 20220217032805_add_delete_cascade_on_enfant
+│   │   │   └── migration.sql
+│   │   ├── 20220223115221_add_get_find_dossier_champs_label_titre_du_projet_string_value
+│   │   │   └── migration.sql
+│   │   ├── 20220225143419_add_property_role_on_user
+│   │   │   └── migration.sql
+│   │   ├── 20220301111234_add_cdc_to_enfant
+│   │   │   └── migration.sql
+│   │   ├── 20220303124756_add_number_dossier
+│   │   │   └── migration.sql
+│   │   ├── 20220304113155_add_dossier_id_on_piece_dossierenfant
+│   │   │   └── migration.sql
+│   │   ├── 20220304160735_add_external_id_on_pieces_dossier
+│   │   │   └── migration.sql
+│   │   ├── 20220314143002_add_cdc_to_dossier
+│   │   │   └── migration.sql
+│   │   ├── 20220415095214_add_champs_adresses_to_enfant
+│   │   │   └── migration.sql
+│   │   ├── 20220503130820_add_date_last_sent_commission
+│   │   │   └── migration.sql
+│   │   ├── 20220503130820_add_default_nombre_cachets
+│   │   │   └── migration.sql
+│   │   ├── 20220503130820_add_departement_on_user
+│   │   │   └── migration.sql
+│   │   ├── 20220503130820_add_member_to_type_role
+│   │   │   └── migration.sql
+│   │   ├── 20220509170642_add_date_depot_dossier
+│   │   │   └── migration.sql
+│   │   ├── 20220512141616_add_departements_on_users
+│   │   │   └── migration.sql
+│   │   ├── 20220512141829_make_departements_array_on_users
+│   │   │   └── migration.sql
+│   │   ├── 20220531085713_add_send_list_feature
+│   │   │   └── migration.sql
+│   │   ├── 20220602122605_add_delete_cascade_on_sendlist
+│   │   │   └── migration.sql
+│   │   ├── 20230117124647_add_status_notification
+│   │   │   └── migration.sql
+│   │   ├── 20230123125547_add_source_to_dossier
+│   │   │   └── migration.sql
+│   │   ├── 20230123141942_demandeur_phone_may_be_null
+│   │   │   └── migration.sql
+│   │   ├── 20230125225847_add_external_id_to_enfants
+│   │   │   └── migration.sql
+│   │   ├── 20230126203156_add_statut_piece
+│   │   │   └── migration.sql
+│   │   ├── 20230227150837_add_choriste_to_roles
+│   │   │   └── migration.sql
+│   │   ├── 20230227150902_add_circassien_to_roles
+│   │   │   └── migration.sql
+│   │   ├── 20230227150928_add_musicien_to_roles
+│   │   │   └── migration.sql
+│   │   ├── 20230228110345_
+│   │   │   └── migration.sql
+│   │   ├── 20230307144501_add_comment_notif
+│   │   │   └── migration.sql
+│   │   ├── 20230317095020_add_seen_comments
+│   │   │   └── migration.sql
+│   │   ├── 20230317113328_add_role_medecin
+│   │   │   └── migration.sql
+│   │   ├── 20230317114853_add_typeconsult_enfants
+│   │   │   └── migration.sql
+│   │   ├── 20230323144204_add_enum_type_consult
+│   │   │   └── migration.sql
+│   │   ├── 20230328130837_add_infos_representants_enfant
+│   │   │   └── migration.sql
+│   │   ├── 20230329135031_add_medecin_relation_on_dossier
+│   │   │   └── migration.sql
+│   │   ├── 20230329151222_add_type_consultation_medecin_on_enfants
+│   │   │   └── migration.sql
+│   │   ├── 20230330123127_add_date_consultation_enfant
+│   │   │   └── migration.sql
+│   │   ├── 20230330123235_add_enum_bon_prise_en_charge_justif_enfant
+│   │   │   └── migration.sql
+│   │   ├── 20230330123346_add_enum_autorisation_prise_en_charge_justif_enfant
+│   │   │   └── migration.sql
+│   │   ├── 20230331091202_add_travail_nuit_enfant
+│   │   │   └── migration.sql
+│   │   ├── 20230412160241_add_documentaire_fictionnel
+│   │   │   └── migration.sql
+│   │   ├── 20230413144958_add_other_convention_collective
+│   │   │   └── migration.sql
+│   │   ├── 20230420130435_add_other_convention_collective_societe
+│   │   │   └── migration.sql
+│   │   ├── 20230530130155_add_new_remuneration_info
+│   │   │   └── migration.sql
+│   │   ├── 20230606125251_delete_new_remunerations
+│   │   │   └── migration.sql
+│   │   ├── 20240425140149_add_archived_on_commission
+│   │   │   └── migration.sql
+│   │   ├── 20250516084348_db_consolidation
+│   │   │   ├── README.md
+│   │   │   └── migration.sql
+│   │   ├── 20250516162718_fix_production_issues
+│   │   │   └── migration.sql
+│   │   ├── 20250517082200_fix_missing_columns
+│   │   │   └── migration.sql
+│   │   ├── 20250520151259_last_migration
+│   │   │   └── migration.sql
+│   │   ├── 20250520151744_add_brouillon
+│   │   │   └── migration.sql
+│   │   ├── 20250520151919_apply_default_brouillon
+│   │   │   └── migration.sql
+│   │   ├── 20250610125235_add_new_pieces_enum
+│   │   │   └── migration.sql
+│   │   ├── 20250610132842_add_avis_medical_thalie
+│   │   │   └── migration.sql
+│   │   ├── 20250610141151_add_fields_updated_at_created_at
+│   │   │   └── migration.sql
+│   │   ├── 20250613130128_add_name_id_enfant
+│   │   │   └── migration.sql
+│   │   ├── 20250616183306_add_document_public
+│   │   │   └── migration.sql
+│   │   ├── 20250625135028_add_status_canceled
+│   │   │   └── migration.sql
+│   │   ├── 20250627073416_add_numero_sequence
+│   │   │   └── migration.sql
+│   │   ├── 20250723163054_add_user_logs
+│   │   │   └── migration.sql
+│   │   ├── 20250826122728_add_decision_s3_link
+│   │   │   └── migration.sql
+│   │   ├── 20250902130025_add_archived_to_dossier
+│   │   │   └── migration.sql
+│   │   ├── 20250903095231_add_default_archived_boolean
+│   │   │   └── migration.sql
+│   │   ├── 20250904145347_add_decision_link_enfant
+│   │   │   └── migration.sql
+│   │   ├── 20250910093022_add_types_docs
+│   │   │   └── migration.sql
+│   │   ├── 20250911122908_add_numeros_sequence
+│   │   │   └── migration.sql
+│   │   ├── 20250911174017_update_enum_access_type
+│   │   │   └── migration.sql
+│   │   ├── 20250911215937_add_date_conflict_fields_to_enfant
+│   │   │   └── migration.sql
+│   │   └── migration_lock.toml
+│   ├── schema.prisma
+│   ├── seed.ts
+│   ├── seeds
+│   │   ├── commissions-2021.csv
+│   │   ├── commissions-2022.csv
+│   │   ├── dossiers.csv
+│   │   ├── dump.pg_dump
+│   │   ├── presentations.txt
+│   │   ├── societes.csv
+│   │   └── users.csv
+│   └── zod
+│       ├── account.ts
+│       ├── commentaire.ts
+│       ├── commission.ts
+│       ├── demandeur.ts
+│       ├── dossier.ts
+│       ├── enfant.ts
+│       ├── index.ts
+│       ├── piecedossier.ts
+│       ├── piecedossierenfant.ts
+│       ├── sendlist.ts
+│       ├── session.ts
+│       ├── societeproduction.ts
+│       ├── user.ts
+│       └── verificationtoken.ts
+├── public
+│   ├── autorisation_parentale.docx
+│   ├── avis_DASEN.docx
+│   ├── avis_chef_etablissement_1er_degre.doc
+│   ├── avis_inspecteur_academique_2nd_degre.doc
+│   ├── avis_pedagogique_1D.pdf
+│   ├── avis_pedagogique_2D.pdf
+│   ├── calendar_commission
+│   │   └── calendrier_commission_2025_2026.pdf
+│   ├── favicon.ico
+│   ├── fonts
+│   │   ├── Marianne-Bold.woff
+│   │   ├── Marianne-Bold.woff2
+│   │   ├── Marianne-Bold_Italic.woff
+│   │   ├── Marianne-Bold_Italic.woff2
+│   │   ├── Marianne-ExtraBold.woff
+│   │   ├── Marianne-ExtraBold.woff2
+│   │   ├── Marianne-ExtraBold_Italic.woff
+│   │   ├── Marianne-ExtraBold_Italic.woff2
+│   │   ├── Marianne-Light.woff
+│   │   ├── Marianne-Light.woff2
+│   │   ├── Marianne-Light_Italic.woff
+│   │   ├── Marianne-Light_Italic.woff2
+│   │   ├── Marianne-Medium.woff
+│   │   ├── Marianne-Medium.woff2
+│   │   ├── Marianne-Medium_Italic.woff
+│   │   ├── Marianne-Medium_Italic.woff2
+│   │   ├── Marianne-Regular.woff
+│   │   ├── Marianne-Regular.woff2
+│   │   ├── Marianne-Regular_Italic.woff
+│   │   ├── Marianne-Regular_Italic.woff2
+│   │   ├── Marianne-Thin.woff
+│   │   ├── Marianne-Thin.woff2
+│   │   ├── Marianne-Thin_Italic.woff
+│   │   ├── Marianne-Thin_Italic.woff2
+│   │   ├── OFL.txt
+│   │   ├── Spectral-Bold.ttf
+│   │   ├── Spectral-BoldItalic.ttf
+│   │   ├── Spectral-ExtraBold.ttf
+│   │   ├── Spectral-ExtraBoldItalic.ttf
+│   │   ├── Spectral-ExtraLight.ttf
+│   │   ├── Spectral-ExtraLightItalic.ttf
+│   │   ├── Spectral-Italic.ttf
+│   │   ├── Spectral-Light.ttf
+│   │   ├── Spectral-LightItalic.ttf
+│   │   ├── Spectral-Medium.ttf
+│   │   ├── Spectral-MediumItalic.ttf
+│   │   ├── Spectral-Regular.ttf
+│   │   ├── Spectral-SemiBold.ttf
+│   │   └── Spectral-SemiBoldItalic.ttf
+│   ├── images
+│   │   ├── add_enfant.png
+│   │   ├── create_dossier.png
+│   │   ├── delete_enfant.png
+│   │   ├── dossier_comment.png
+│   │   ├── déposer.png
+│   │   ├── info-demandeur.png
+│   │   ├── logo_prefet.png
+│   │   ├── sticky_up.png
+│   │   └── template_enfant.png
+│   ├── logo-beta-gouv.png
+│   ├── modele-piece.pdf
+│   └── modele-scenario.pdf
+├── renovate.json
+├── scheduler.sh
+├── scripts
+│   └── sendTestMail.js
+├── sentry.client.config.ts
+├── sentry.server.config.ts
+├── src
+│   ├── components
+│   │   ├── Accordion.module.scss
+│   │   ├── Accordion.tsx
+│   │   ├── AddComment.module.scss
+│   │   ├── AddComment.tsx
+│   │   ├── AddCommission.module.scss
+│   │   ├── AddCommission.tsx
+│   │   ├── AddUserModal.module.scss
+│   │   ├── AddUserModal.tsx
+│   │   ├── AddUtilisateur.module.scss
+│   │   ├── AddUtilisateur.tsx
+│   │   ├── AssignCommissionSelect.tsx
+│   │   ├── AssignedAgent.module.scss
+│   │   ├── AssignedAgent.tsx
+│   │   ├── AssignedAgentSelect.module.scss
+│   │   ├── AssignedAgentSelect.tsx
+│   │   ├── ButtonList.module.scss
+│   │   ├── ButtonList.tsx
+│   │   ├── CategorieDossierTag.module.scss
+│   │   ├── CategorieDossierTag.tsx
+│   │   ├── ChangeStatutDossierButton.module.scss
+│   │   ├── ChangeStatutDossierButton.tsx
+│   │   ├── Comment.module.scss
+│   │   ├── Comment.tsx
+│   │   ├── Commentaires.module.scss
+│   │   ├── Commentaires.tsx
+│   │   ├── CommentairesActionBar.module.scss
+│   │   ├── CommentairesActionBar.tsx
+│   │   ├── Commission.module.scss
+│   │   ├── Commission.tsx
+│   │   ├── CommissionsCreate.tsx
+│   │   ├── ConnexionForm.module.scss
+│   │   ├── ConnexionForm.tsx
+│   │   ├── CountPieces.module.scss
+│   │   ├── CountPieces.tsx
+│   │   ├── Dossier.module.scss
+│   │   ├── Dossier.tsx
+│   │   ├── DossierActionBar.module.scss
+│   │   ├── DossierActionBar.tsx
+│   │   ├── DossierJustificatifs.module.scss
+│   │   ├── DossierJustificatifs.tsx
+│   │   ├── Enfant.module.scss
+│   │   ├── Enfant.tsx
+│   │   ├── EnfantCdc.module.scss
+│   │   ├── EnfantCdc.tsx
+│   │   ├── FilterBar.module.scss
+│   │   ├── FilterBar.tsx
+│   │   ├── FilterBarText.module.scss
+│   │   ├── FilterBarText.tsx
+│   │   ├── Foldable.module.scss
+│   │   ├── Foldable.tsx
+│   │   ├── Footer.module.css
+│   │   ├── Footer.tsx
+│   │   ├── Header.module.scss
+│   │   ├── Header.tsx
+│   │   ├── IconLoader.module.scss
+│   │   ├── IconLoader.tsx
+│   │   ├── Info.module.scss
+│   │   ├── Info.tsx
+│   │   ├── InfoSociete.tsx
+│   │   ├── InputComments.module.scss
+│   │   ├── Justificatifs.module.scss
+│   │   ├── Justificatifs.tsx
+│   │   ├── Layout.module.css
+│   │   ├── Layout.tsx
+│   │   ├── LayoutHome.module.css
+│   │   ├── LayoutHome.tsx
+│   │   ├── ListComments.module.scss
+│   │   ├── ListComments.tsx
+│   │   ├── NotificationDossierTag.tsx
+│   │   ├── Politique.module.scss
+│   │   ├── SearchBar.module.scss
+│   │   ├── SearchBar.tsx
+│   │   ├── SearchResults.module.scss
+│   │   ├── SearchResults.tsx
+│   │   ├── SendLinks.module.scss
+│   │   ├── SendLinks.tsx
+│   │   ├── ShareDossierModal.module.scss
+│   │   ├── ShareDossierModal.tsx
+│   │   ├── StatutDossierTag.tsx
+│   │   ├── Table.module.scss
+│   │   ├── Table.tsx
+│   │   ├── Tag.module.scss
+│   │   ├── Utilisateurs.tsx
+│   │   ├── ValidationJustificatifs.tsx
+│   │   ├── home
+│   │   │   ├── About.module.scss
+│   │   │   ├── About.tsx
+│   │   │   ├── Calendar.module.scss
+│   │   │   ├── Calendar.tsx
+│   │   │   ├── Intro.module.scss
+│   │   │   ├── Intro.tsx
+│   │   │   ├── Questions.module.scss
+│   │   │   ├── Questions.tsx
+│   │   │   ├── Steps.module.scss
+│   │   │   └── Steps.tsx
+│   │   ├── index.tsx
+│   │   ├── inputComments.tsx
+│   │   └── uiComponents
+│   │       ├── InputFile.module.scss
+│   │       ├── InputFile.tsx
+│   │       └── button
+│   │           ├── buttonLink.tsx
+│   │           ├── buttonStyle.module.scss
+│   │           └── index.tsx
+│   ├── images
+│   │   ├── Vector1.png
+│   │   ├── accepted.svg
+│   │   ├── arrow-up.svg
+│   │   ├── arrow_down.png
+│   │   ├── calendar.png
+│   │   ├── check.png
+│   │   ├── logo.png
+│   │   ├── logo_prefet.png
+│   │   ├── refused.svg
+│   │   ├── vector_bottom_1.png
+│   │   ├── vector_bottom_2.png
+│   │   ├── vector_top_1.png
+│   │   └── vector_top_2.png
+│   ├── lib
+│   │   ├── api.ts
+│   │   ├── authMiddleware.ts
+│   │   ├── categories.ts
+│   │   ├── contenuPdf.ts
+│   │   ├── conventionsCollectives.ts
+│   │   ├── customPrismaAdapter.ts
+│   │   ├── emailAuth.ts
+│   │   ├── emailSendLink.ts
+│   │   ├── fetching
+│   │   │   ├── comments.tsx
+│   │   │   ├── commissions.tsx
+│   │   │   ├── docs.tsx
+│   │   │   ├── ds.ts
+│   │   │   ├── enfants.tsx
+│   │   │   ├── remunerations.tsx
+│   │   │   ├── sendlist.ts
+│   │   │   └── users.tsx
+│   │   ├── generateZip.ts
+│   │   ├── helpers.ts
+│   │   ├── notifications.ts
+│   │   ├── pdf
+│   │   │   ├── pdfGenerateAndUploadDA.ts
+│   │   │   ├── pdfGenerateDA.ts
+│   │   │   ├── pdfGenerateFE.ts
+│   │   │   ├── pdfGenerateOdj.ts
+│   │   │   └── pdfGeneratePV.ts
+│   │   ├── pdfLoader.ts
+│   │   ├── prismaClient.ts
+│   │   ├── queries.ts
+│   │   ├── s3Client.ts
+│   │   ├── statutDossierStateMachine.ts
+│   │   ├── trpc.ts
+│   │   ├── types.ts
+│   │   └── utils.ts
+│   ├── mails
+│   │   ├── mailgeneric.html
+│   │   ├── mailgeneric.mjml
+│   │   ├── signin.html
+│   │   └── signin.mjml
+│   ├── middleware.ts
+│   ├── pages
+│   │   ├── _app.tsx
+│   │   ├── accessibilite
+│   │   │   └── index.tsx
+│   │   ├── admin
+│   │   │   ├── contenus-pdf.tsx
+│   │   │   └── documents.tsx
+│   │   ├── api
+│   │   │   ├── admin
+│   │   │   │   ├── contenus-pdf.ts
+│   │   │   │   └── documents.ts
+│   │   │   ├── auth
+│   │   │   │   └── [...nextauth].ts
+│   │   │   ├── calendrier
+│   │   │   │   └── [categorie].ts
+│   │   │   ├── commentaires
+│   │   │   │   └── index.ts
+│   │   │   ├── commissions
+│   │   │   │   ├── [id].ts
+│   │   │   │   ├── date
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   └── upcoming
+│   │   │   │       └── index.tsx
+│   │   │   ├── contenus-pdf
+│   │   │   │   └── [departement].ts
+│   │   │   ├── decision
+│   │   │   │   └── generate-and-upload
+│   │   │   │       └── [id].ts
+│   │   │   ├── diagnostic
+│   │   │   │   └── societe-production.ts
+│   │   │   ├── docs
+│   │   │   │   └── index.ts
+│   │   │   ├── dossier-comments
+│   │   │   │   └── [id].ts
+│   │   │   ├── dossiers
+│   │   │   │   ├── [id]
+│   │   │   │   │   ├── update-decision-link.ts
+│   │   │   │   │   └── users-emails.ts
+│   │   │   │   ├── [id].ts
+│   │   │   │   └── remuneration.ts
+│   │   │   ├── download
+│   │   │   │   └── [type]
+│   │   │   │       └── [id].ts
+│   │   │   ├── ds
+│   │   │   │   └── index.ts
+│   │   │   ├── dslinks
+│   │   │   │   └── index.tsx
+│   │   │   ├── edslinks
+│   │   │   │   └── index.tsx
+│   │   │   ├── enfant
+│   │   │   │   └── [id].ts
+│   │   │   ├── enfants
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── other-films.ts
+│   │   │   │   └── update-decision-link.ts
+│   │   │   ├── healthz
+│   │   │   │   ├── error.ts
+│   │   │   │   └── index.ts
+│   │   │   ├── internal
+│   │   │   │   ├── session.ts
+│   │   │   │   └── user-logs.ts
+│   │   │   ├── mail
+│   │   │   │   ├── index.ts
+│   │   │   │   └── scheduler.ts
+│   │   │   ├── notifications
+│   │   │   │   └── commission
+│   │   │   │       └── [id].ts
+│   │   │   ├── pdf
+│   │   │   │   └── generate.ts
+│   │   │   ├── remunerations
+│   │   │   │   └── index.ts
+│   │   │   ├── scheduler
+│   │   │   │   └── index.ts
+│   │   │   ├── search.json.ts
+│   │   │   ├── sendlist
+│   │   │   │   └── index.ts
+│   │   │   ├── societe-production
+│   │   │   │   └── [id].ts
+│   │   │   ├── sync
+│   │   │   │   ├── inc
+│   │   │   │   │   ├── dossiers
+│   │   │   │   │   │   └── [id].tsx
+│   │   │   │   │   └── enfant
+│   │   │   │   │       └── [id].tsx
+│   │   │   │   └── out
+│   │   │   │       ├── commentaires
+│   │   │   │       │   ├── index.tsx
+│   │   │   │       │   └── notifications
+│   │   │   │       │       └── index.tsx
+│   │   │   │       ├── docs
+│   │   │   │       │   └── index.tsx
+│   │   │   │       ├── enfants
+│   │   │   │       │   └── index.tsx
+│   │   │   │       ├── pieces
+│   │   │   │       │   └── index.tsx
+│   │   │   │       └── remunerations
+│   │   │   │           └── index.tsx
+│   │   │   ├── trpc
+│   │   │   │   └── [trpc].ts
+│   │   │   └── users
+│   │   │       ├── [email].ts
+│   │   │       ├── id
+│   │   │       │   └── index.ts
+│   │   │       ├── index.ts
+│   │   │       └── search
+│   │   │           └── index.ts
+│   │   ├── commissions
+│   │   │   ├── [id].tsx
+│   │   │   ├── create
+│   │   │   │   └── index.tsx
+│   │   │   └── index.tsx
+│   │   ├── conditions-generales
+│   │   │   └── index.tsx
+│   │   ├── dossiers
+│   │   │   ├── [id].tsx
+│   │   │   ├── cdc
+│   │   │   │   └── [id].tsx
+│   │   │   ├── commentaires
+│   │   │   │   └── [id].tsx
+│   │   │   └── index.tsx
+│   │   ├── download.tsx
+│   │   ├── faq
+│   │   │   └── index.tsx
+│   │   ├── healthz
+│   │   │   └── index.tsx
+│   │   ├── index.tsx
+│   │   ├── login.tsx
+│   │   ├── logout.tsx
+│   │   ├── mentions
+│   │   │   └── index.tsx
+│   │   ├── politique
+│   │   │   └── index.tsx
+│   │   ├── stats
+│   │   │   └── index.tsx
+│   │   ├── utilisateurs
+│   │   │   └── index.tsx
+│   │   └── verifyRequest.tsx
+│   ├── scripts
+│   │   ├── dump_seeds.sh
+│   │   ├── restore_seeds.sh
+│   │   └── tsvectors.sql
+│   ├── server
+│   │   ├── index.ts
+│   │   ├── routers
+│   │   │   └── users.ts
+│   │   └── trpc.ts
+│   ├── styles
+│   │   ├── commissions.module.scss
+│   │   └── globals.scss
+│   └── types
+│       ├── auth.ts
+│       ├── dataesr-react-dsfr.d.ts
+│       └── next-auth.d.ts
+└── tsconfig.json
+305 directories, 751 files
