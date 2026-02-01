@@ -1,0 +1,57 @@
+version: '3.5'
+services:
+  app:
+    platform: linux/amd64
+    build: .
+    ports:
+      - '8000:8000'
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+      - /app/.venv
+    restart: unless-stopped
+    depends_on:
+      - database
+      - redis
+  database:
+    container_name: access4all_postgresql
+    image: postgis/postgis:16-master
+    platform: linux/amd64
+    environment:
+      POSTGRES_DB: access4all
+      POSTGRES_USER: access4all
+      POSTGRES_PASSWORD: access4all
+    ports:
+      - 5432:5432
+    restart: unless-stopped
+    volumes:
+      - ./data_psql:/data_psql
+      # Comment this line if you don't want database data on your hosted volume
+      - pgdata:/var/lib/postgresql/data
+    ## uncomment to limit database resources
+    # deploy:
+    #     resources:
+    #         limits:
+    #           cpus: 0.05
+    #           memory: 8G
+  adminer:
+    image: adminer
+    depends_on:
+      - database
+    ports:
+      - 8080:8080
+    restart: unless-stopped
+  redis:
+    image: redis:7.0.7-alpine
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning --requirepass access4allpwd
+    volumes:
+      - redis:/data
+volumes:
+  redis:
+    driver: local
+  # Comment this line if you don't want database data on your hosted volume
+  pgdata:
