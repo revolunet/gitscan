@@ -1,0 +1,69 @@
+{
+  "name": "@betagouv/publicodes-voiture",
+  "version": "0.3.8",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/betagouv/publicodes-voiture.git"
+  },
+  "homepage": "https://github.com/betagouv/publicodes-voiture#readme",
+  "description": "Modèle de calcul de l'impact environnemental et du coût de la voiture",
+  "authors": [
+    "Emile Rolley <emile.rolley@tuta.io>"
+  ],
+  "bugs": {
+    "url": "https://github.com/betagouv/publicodes-voiture/issues"
+  },
+  "license": "Apache-2.0",
+  "type": "module",
+  "types": "./dist/src/index.d.ts",
+  "main": "./dist/src/index.cjs",
+  "module": "./dist/src/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "require": "./dist/src/index.cjs",
+      "import": "./dist/src/index.js"
+    },
+    "./rules": {
+      "types": "./dist/publicodes-build/index.d.ts",
+      "require": "./dist/publicodes-build/index.cjs",
+      "import": "./dist/publicodes-build/index.js"
+    },
+    "./personas": {
+      "types": "./dist/src/personas/index.d.ts",
+      "require": "./dist/src/personas/index.cjs",
+      "import": "./dist/src/personas/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "publicodes-build"
+  ],
+  "scripts": {
+    "precompile:rules": "node scripts/precompile.js",
+    "compile:rules": "publicodes compile src/rules",
+    "compile": "yarn compile:rules && tsup",
+    "test": "yarn compile:rules && vitest run",
+    "dev": "publicodes dev",
+    "doc": "yarn run compile && cd online-doc && yarn run dev",
+    "doc:build": "yarn run compile && cd online-doc && yarn run build"
+  },
+  "devDependencies": {
+    "@incubateur-ademe/nosgestesclimat": "^3.5.4",
+    "@incubateur-ademe/publicodes-commun": "^1.1.5",
+    "@publicodes/tools": "^1.5.4",
+    "csv-parser": "^3.0.0",
+    "terser": "^5.36.0",
+    "tsup": "^8.3.5",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.8",
+    "yaml": "^2.6.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "publicodes": "^1.8.0"
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+}
