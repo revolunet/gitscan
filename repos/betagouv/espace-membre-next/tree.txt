@@ -1,0 +1,896 @@
+.
+├── .dockerignore
+├── .env.development
+├── .env.test
+├── .eslintrc.json
+├── .github
+│   ├── dependabot.yml
+│   └── workflows
+│       ├── codeql-analysis.yml
+│       ├── nodejs.yml
+│       ├── onboarding-checklist-validation.yml
+│       ├── playwright.yml
+│       └── utils
+│           └── validateFile.ts
+├── .gitignore
+├── .gitmodules
+├── .husky
+│   └── pre-commit
+├── .nvmrc
+├── .prettierrc
+├── .slugignore
+├── .talismanrc
+├── CRON.md
+├── Dockerfile
+├── EMAIL.md
+├── LICENCE.md
+├── Makefile
+├── Procfile
+├── README.md
+├── __tests__
+│   ├── env-setup.ts
+│   ├── htmlbuilder.spec.ts
+│   ├── seed
+│   │   └── fake_data.ts
+│   ├── startups.json
+│   ├── test-account.ts
+│   ├── test-admin.ts
+│   ├── test-api-info-update.ts
+│   ├── test-create-member-send-email.ts
+│   ├── test-create-member-validation.ts
+│   ├── test-create-member.ts
+│   ├── test-email.ts
+│   ├── test-event.ts
+│   ├── test-github.ts
+│   ├── test-lib-github.ts
+│   ├── test-mattermost.ts
+│   ├── test-newsletter.ts
+│   ├── test-service-account.ts
+│   ├── test-setup.ts
+│   ├── test-startups.ts
+│   ├── test-unblock-email.ts
+│   ├── test-user-contract-ending.ts
+│   ├── test-worker.ts
+│   ├── users.json
+│   └── utils
+│       ├── fakeData.ts
+│       ├── index.ts
+│       ├── users-data.ts
+│       └── utils.ts
+├── cron.json
+├── database.md
+├── docker-compose.yml
+├── docker-entrypoint.sh
+├── e2e
+│   ├── account.spec.ts
+│   ├── api.spec.ts
+│   ├── auth.valid.member.setup.ts
+│   ├── community.spec.ts
+│   ├── incubator.spec.ts
+│   ├── login.spec.ts
+│   ├── member.edit.secu.spec.ts
+│   ├── member.edit.spec.ts
+│   ├── organization.spec.ts
+│   ├── startups.spec.ts
+│   └── team.spec.ts
+├── generate-cron-md.ts
+├── generate-email-md.ts
+├── knexfile.js
+├── migrations
+│   ├── 20200811181439_initial.js
+│   ├── 20201009195100_marrainage.js
+│   ├── 20201121095408_users.js
+│   ├── 20210204084215_visit.js
+│   ├── 20210218111152_newsletters.js
+│   ├── 20210420155550_change_newsletter_primary.js
+│   ├── 20210422071821_add_id_primary_key.js
+│   ├── 20210830093835_events.ts
+│   ├── 20210927111224_add_action_metadata.ts
+│   ├── 20211110105155_add_primary_email.ts
+│   ├── 20211124153737_populate_primary_email.ts
+│   ├── 20220112153656_add_primary_email_status.ts
+│   ├── 20220418082512_new_user_field.ts
+│   ├── 20220418142016_alter_legal_status.ts
+│   ├── 20220602144257_add_domaine_to_user.ts
+│   ├── 20220613120826_add_missions_to_users.ts
+│   ├── 20220613135052_add_missions_table.ts
+│   ├── 20220614150846_community_chart_data.ts
+│   ├── 20220615081828_change_chart_name.ts
+│   ├── 20220617123852_add_community_table.ts
+│   ├── 20220619122922_data_migration.ts
+│   ├── 20220704140902_add_startup_table.ts
+│   ├── 20220705075310_add_field_startups_in_users.ts
+│   ├── 20220705083653_add_field_domaine_to_user_details.ts
+│   ├── 20220705091429_add_users_startups_table.ts
+│   ├── 20220712092918_add_communication_email_to_users.ts
+│   ├── 20220718144115_add_osm_city_field_in_user.ts
+│   ├── 20220815154932_add_marrainage_group.ts
+│   ├── 20220830090457_add_average_nb_of_days_to_users.ts
+│   ├── 20220830091135_add_average_nb_of_days_to_user_details.ts
+│   ├── 20220830141113_delete_missions_table.ts
+│   ├── 20220830144944_add_new_missions_table.ts
+│   ├── 20220831150340_add_mattermost_stats_table.ts
+│   ├── 20220901140511_change_column_name_in_mattermost_user_infos.ts
+│   ├── 20221115153248_add_should_create_marrainage_to_users_table.ts
+│   ├── 20221128140158_add_mailing_list_to_startup.ts
+│   ├── 20221129151806_add_pr_table.ts
+│   ├── 20221129170136_add_info_column_to_pull_requests_table.ts
+│   ├── 20221221150411_pull_requests_add_type.ts
+│   ├── 20230112172917_add_startup_to_pull_request_table.ts
+│   ├── 20230215083456_add_tasks_table.ts
+│   ├── 20230228140359_add_current_phase_date_to_startup_table.ts
+│   ├── 20230308120436_badge_requests.ts
+│   ├── 20230322084710_add_fields_to_badge_request.ts
+│   ├── 20230517132444_add_email_is_redirection_to_user_table.ts
+│   ├── 20230614125947_add_formation_table.ts
+│   ├── 20230614131607_add_users_formations_table.ts
+│   ├── 20230615150727_add_has_intra_and_has_coach_to_startup_column.ts
+│   ├── 20230621083621_add_formation_type_to_formation.ts
+│   ├── 20230621134830_add_nb_members_to_startups.ts
+│   ├── 20230622135904_add_nb_days_at_beta.ts
+│   ├── 20230622151104_add_nb_days_at_beta_to_users_details.ts
+│   ├── 20230921083410_add_is_embarquement_to_formations.ts
+│   ├── 20240326175801_add_nextauth_table.ts
+│   ├── 20240326175802_add_column_uuid_to_startups.ts
+│   ├── 20240326175803_add_column_uuid_to_missions.ts
+│   ├── 20240417083828_add_missions_startups_table.ts
+│   ├── 20240417083830_add_column_uuid_to_users.ts
+│   ├── 20240417085512_add_columns_to_users.ts
+│   ├── 20240417094853_add_table_organizations.ts
+│   ├── 20240417095400_add_columns_to_startups.ts
+│   ├── 20240417095401_add_table_startups_sponsors.ts
+│   ├── 20240418081201_add_table_incubator.ts
+│   ├── 20240418131455_add_column_incubator_id_to_startups.ts
+│   ├── 20240422092552_add_column_user_id_to_missions_table.ts
+│   ├── 20240422131742_add_unique_to_id_in_startups.ts
+│   ├── 20240504203525_mission-start-not-null.ts
+│   ├── 20240504203526_mission-start-date.ts
+│   ├── 20240504203527_mission-status-enum.ts
+│   ├── 20240504203528_user-role-not-null.ts
+│   ├── 20240504203529_user-fullname-not-null.ts
+│   ├── 20240504203530-user-domaine-not-null.ts
+│   ├── 20240504203531_user-domaine-enum.ts
+│   ├── 20240504203532_startup_id_notnull.ts
+│   ├── 20240504203532_startup_name_notnull.ts
+│   ├── 20240504203533_missions_dates_check.ts
+│   ├── 20240504203534_missions_cleanup.ts
+│   ├── 20240521124054_add_phases_table.ts
+│   ├── 20240521130849_alter_table_startups.ts
+│   ├── 20240521151735_add_table_events.ts
+│   ├── 20240521155337_alter_table_users.ts
+│   ├── 20240612101110_misc_change_to_users_members_incubators_tables.ts
+│   ├── 20240613144547_add_budget_url_to_startups_table.ts
+│   ├── 20240619085550_change_default_value_for_email_primary_status.ts
+│   ├── 20240619085551_add_startup_created_at.ts
+│   ├── 20240724095840_add_team_table.ts
+│   ├── 20240724100153_add_users_teams_table.ts
+│   ├── 20240731072026_add_trigger_update.ts
+│   ├── 20240731072027_add_startup_files.ts
+│   ├── 20240909125722_add_highlighted_startups_to_incubators.ts
+│   ├── 20240917131255_add_action_on_identifier_to_events.ts
+│   ├── 20241009165214_add_services_account.ts
+│   ├── 20241023153024_add_startups_aggregated_stats.ts
+│   ├── 20241028142619_add_brevo_url_column_to_newsletter_table.ts
+│   ├── 20241028170333_add_publish_at_column_to_newsletters.ts
+│   ├── 20241112162859_add_new_enum_value_to_domaine.ts
+│   ├── 20241119092134_add_column_status_to_service_accounts.ts
+│   ├── 20241120171235_add_sentry_teams_table.ts
+│   ├── 20241209110850_add_matomo_sites_table.ts
+│   ├── 20241219092134_add_columns_to_startups.ts
+│   ├── 20241219102134_clean_tables.ts
+│   ├── 20250101010101_add_table_dinum_emails.ts
+│   ├── 20250102092134_add_columns_to_startups.ts
+│   ├── 20250130143104_add_slug_to_sentry_teams.ts
+│   ├── 20250303092134_add_roadmap_url_to_startups.ts
+│   ├── 20250314092134_add_impact_url_to_startups.ts
+│   ├── 20250407133555_add_user_events.ts
+│   └── 20251220131112_add_dinum_emails_columns.ts
+├── next.config.js
+├── package-lock.json
+├── package.json
+├── playwright.config.ts
+├── public
+│   ├── onboarding
+│   │   └── checklist.yml
+│   ├── robots.txt
+│   └── static
+│       ├── css
+│       │   └── main.css
+│       ├── favicon
+│       │   ├── android-chrome-192x192.png
+│       │   ├── apple-touch-icon.png
+│       │   ├── favicon-16x16.png
+│       │   ├── favicon-32x32.png
+│       │   ├── favicon.ico
+│       │   └── site.webmanifest
+│       └── images
+│           ├── ada.jpg
+│           ├── betagouv.png
+│           ├── default_pin.svg
+│           ├── home-illustration.png
+│           ├── layers-2x.png
+│           ├── layers.png
+│           ├── logo-betagouv.jpg
+│           ├── marker-icon-2x.png
+│           ├── marker-icon.png
+│           ├── marker-shadow.png
+│           ├── matomo.png
+│           └── sentry.png
+├── scalingo-dev-seed.sh
+├── scalingo.json
+├── sonar-project.properties
+├── src
+│   ├── @types
+│   │   ├── db.d.ts
+│   │   ├── global.d.ts
+│   │   ├── next-auth.d.ts
+│   │   └── serverAction.d.ts
+│   ├── app
+│   │   ├── (private)
+│   │   │   └── (dashboard)
+│   │   │       ├── PrivateLayout.tsx
+│   │   │       ├── account
+│   │   │       │   ├── base-info
+│   │   │       │   │   └── page.tsx
+│   │   │       │   └── page.tsx
+│   │   │       ├── admin
+│   │   │       │   ├── mattermost
+│   │   │       │   │   ├── AdminMattermostClientPage.tsx
+│   │   │       │   │   └── page.tsx
+│   │   │       │   ├── newsletters
+│   │   │       │   │   ├── [id]
+│   │   │       │   │   │   └── page.tsx
+│   │   │       │   │   └── page.tsx
+│   │   │       │   └── page.tsx
+│   │   │       ├── community
+│   │   │       │   ├── [id]
+│   │   │       │   │   ├── admin-update
+│   │   │       │   │   │   └── page.tsx
+│   │   │       │   │   ├── page.tsx
+│   │   │       │   │   ├── update
+│   │   │       │   │   │   └── page.tsx
+│   │   │       │   │   └── validate
+│   │   │       │   │       └── page.tsx
+│   │   │       │   ├── communes.json
+│   │   │       │   ├── create
+│   │   │       │   │   ├── CommunityCreateMemberPage.tsx
+│   │   │       │   │   └── page.tsx
+│   │   │       │   └── page.tsx
+│   │   │       ├── dashboard
+│   │   │       │   └── page.tsx
+│   │   │       ├── events
+│   │   │       │   └── page.tsx
+│   │   │       ├── formations
+│   │   │       │   ├── [id]
+│   │   │       │   │   └── page.tsx
+│   │   │       │   └── page.tsx
+│   │   │       ├── incubators
+│   │   │       │   ├── [id]
+│   │   │       │   │   ├── info-form
+│   │   │       │   │   │   └── page.tsx
+│   │   │       │   │   └── page.tsx
+│   │   │       │   ├── create-form
+│   │   │       │   │   └── page.tsx
+│   │   │       │   └── page.tsx
+│   │   │       ├── layout.tsx
+│   │   │       ├── metabase
+│   │   │       │   └── page.tsx
+│   │   │       ├── newsletters
+│   │   │       │   └── page.tsx
+│   │   │       ├── organizations
+│   │   │       │   ├── [id]
+│   │   │       │   │   ├── info-form
+│   │   │       │   │   │   └── page.tsx
+│   │   │       │   │   └── page.tsx
+│   │   │       │   ├── create-form
+│   │   │       │   │   └── page.tsx
+│   │   │       │   └── page.tsx
+│   │   │       ├── services
+│   │   │       │   ├── matomo
+│   │   │       │   │   ├── page.tsx
+│   │   │       │   │   └── request
+│   │   │       │   │       ├── new
+│   │   │       │   │       │   └── page.tsx
+│   │   │       │   │       └── page.tsx
+│   │   │       │   ├── page.tsx
+│   │   │       │   └── sentry
+│   │   │       │       ├── page.tsx
+│   │   │       │       └── request
+│   │   │       │           ├── new
+│   │   │       │           │   └── page.tsx
+│   │   │       │           └── page.tsx
+│   │   │       ├── startups
+│   │   │       │   ├── SearchFiles.tsx
+│   │   │       │   ├── [id]
+│   │   │       │   │   ├── info-form
+│   │   │       │   │   │   └── page.tsx
+│   │   │       │   │   └── page.tsx
+│   │   │       │   ├── create-form
+│   │   │       │   │   └── page.tsx
+│   │   │       │   └── page.tsx
+│   │   │       ├── teams
+│   │   │       │   ├── [id]
+│   │   │       │   │   ├── info-form
+│   │   │       │   │   │   └── page.tsx
+│   │   │       │   │   └── page.tsx
+│   │   │       │   ├── create-form
+│   │   │       │   │   └── page.tsx
+│   │   │       │   └── page.tsx
+│   │   │       └── verify
+│   │   │           ├── AccountVerifyClientPage.tsx
+│   │   │           └── page.tsx
+│   │   ├── (public)
+│   │   │   ├── accessibilite
+│   │   │   │   └── page.tsx
+│   │   │   ├── components
+│   │   │   │   └── page.tsx
+│   │   │   ├── keskispasse
+│   │   │   │   └── page.tsx
+│   │   │   ├── layout.tsx
+│   │   │   ├── login
+│   │   │   │   └── page.tsx
+│   │   │   └── signin
+│   │   │       ├── SiginClientPage.tsx
+│   │   │       └── page.tsx
+│   │   ├── BreadCrumbProvider.tsx
+│   │   ├── Matomo.tsx
+│   │   ├── MuiDsfrThemeProvider.tsx
+│   │   ├── api
+│   │   │   ├── admin
+│   │   │   │   └── actions
+│   │   │   │       ├── getMattermostAdmin.ts
+│   │   │   │       ├── getMattermostUsersInfo.ts
+│   │   │   │       ├── index.ts
+│   │   │   │       └── sendMattermostMessage.ts
+│   │   │   ├── auth
+│   │   │   │   └── [...nextauth]
+│   │   │   │       └── route.ts
+│   │   │   ├── hook
+│   │   │   │   └── [id]
+│   │   │   │       └── route.ts
+│   │   │   ├── image
+│   │   │   │   ├── route.ts
+│   │   │   │   └── utils.ts
+│   │   │   ├── incubators
+│   │   │   │   └── actions
+│   │   │   │       ├── createIncubator.ts
+│   │   │   │       └── updateIncubator.ts
+│   │   │   ├── member
+│   │   │   │   ├── [username]
+│   │   │   │   │   ├── (brevo)
+│   │   │   │   │   │   ├── brevo-emails-info
+│   │   │   │   │   │   │   └── route.ts
+│   │   │   │   │   │   └── brevo-events
+│   │   │   │   │   │       └── route.ts
+│   │   │   │   │   ├── events
+│   │   │   │   │   │   └── route.ts
+│   │   │   │   │   ├── image
+│   │   │   │   │   │   └── route.ts
+│   │   │   │   │   └── info-update
+│   │   │   │   │       └── route.ts
+│   │   │   │   ├── actions
+│   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   └── validateNewMember.test.ts
+│   │   │   │   │   ├── create-dimail.ts
+│   │   │   │   │   ├── get-dimail-email.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── managePrimaryEmailForUser.ts
+│   │   │   │   │   ├── updatePasswordForUser.ts
+│   │   │   │   │   ├── updateUserEvent.spec.ts
+│   │   │   │   │   ├── updateUserEvent.ts
+│   │   │   │   │   ├── validateNewMember.ts
+│   │   │   │   │   └── verifyNewMember.ts
+│   │   │   │   ├── getInfo.ts
+│   │   │   │   ├── route.ts
+│   │   │   │   └── updateMember.ts
+│   │   │   ├── members
+│   │   │   │   └── route.ts
+│   │   │   ├── newsletters
+│   │   │   │   └── actions.ts
+│   │   │   ├── organizations
+│   │   │   │   └── actions
+│   │   │   │       ├── createOrganization.ts
+│   │   │   │       └── updateOrganization.ts
+│   │   │   ├── protected
+│   │   │   │   ├── incubator
+│   │   │   │   │   └── route.ts
+│   │   │   │   ├── member
+│   │   │   │   │   └── [username]
+│   │   │   │   │       └── route.ts
+│   │   │   │   └── startup
+│   │   │   │       ├── [startupId]
+│   │   │   │       │   └── route.ts
+│   │   │   │       └── route.ts
+│   │   │   ├── services
+│   │   │   │   └── actions.ts
+│   │   │   ├── startups
+│   │   │   │   ├── actions.ts
+│   │   │   │   └── files
+│   │   │   │       ├── delete.ts
+│   │   │   │       ├── download
+│   │   │   │       │   └── [id]
+│   │   │   │       │       └── route.ts
+│   │   │   │       ├── list.ts
+│   │   │   │       └── upload.ts
+│   │   │   └── teams
+│   │   │       └── actions
+│   │   │           ├── createTeam.ts
+│   │   │           └── updateTeam.ts
+│   │   ├── context
+│   │   │   └── ClientContextProvider.tsx
+│   │   ├── error.tsx
+│   │   ├── favicon.ico
+│   │   ├── global-error.tsx
+│   │   ├── globals.css
+│   │   ├── layout.tsx
+│   │   └── not-found.tsx
+│   ├── components
+│   │   ├── AdminMattermostPage
+│   │   │   ├── AdminMattermost.tsx
+│   │   │   ├── AdminMattermostUser.tsx
+│   │   │   └── index.ts
+│   │   ├── AutoComplete.tsx
+│   │   ├── BadgeEmailPlan.tsx
+│   │   ├── BaseInfoUpdatePage
+│   │   │   ├── BaseInfoUpdate.tsx
+│   │   │   ├── CompetencesEditor.tsx
+│   │   │   ├── MissionsEditor.tsx
+│   │   │   └── index.ts
+│   │   ├── Checklist.tsx
+│   │   ├── CitySelect.tsx
+│   │   ├── ClientOnly.tsx
+│   │   ├── CommunityPage
+│   │   │   ├── Community.tsx
+│   │   │   ├── Footer.tsx
+│   │   │   ├── communes.json
+│   │   │   ├── exportToCsv.ts
+│   │   │   ├── index.ts
+│   │   │   └── utils.ts
+│   │   ├── Dashboard
+│   │   │   └── DashboardPage.tsx
+│   │   ├── DimailEmailCreationInvite.tsx
+│   │   ├── EventsList
+│   │   │   ├── EventsList.css
+│   │   │   └── EventsList.tsx
+│   │   ├── FicheHeader.tsx
+│   │   ├── FichePicture.tsx
+│   │   ├── Footer.tsx
+│   │   ├── Formation
+│   │   │   ├── FormationCard.tsx
+│   │   │   └── FormationList.tsx
+│   │   ├── GenderSelect.tsx
+│   │   ├── Header.tsx
+│   │   ├── IncubatorCreatePage
+│   │   │   ├── IncubatorCreate.tsx
+│   │   │   ├── index.ts
+│   │   │   └── page.tsx
+│   │   ├── IncubatorForm
+│   │   │   ├── IncubatorForm.tsx
+│   │   │   └── index.ts
+│   │   ├── IncubatorListPage
+│   │   │   ├── IncubatorList.tsx
+│   │   │   └── index.ts
+│   │   ├── IncubatorPage
+│   │   │   └── IncubatorPage.tsx
+│   │   ├── IncubatorUpdatePage
+│   │   │   ├── IncubatorUpdate.tsx
+│   │   │   └── index.ts
+│   │   ├── LastChange.tsx
+│   │   ├── LoginPage
+│   │   │   ├── Login.tsx
+│   │   │   └── index.ts
+│   │   ├── Map
+│   │   │   ├── Clusterizer.tsx
+│   │   │   ├── MapEventHandler.ts
+│   │   │   ├── MapZoomHandler.tsx
+│   │   │   ├── index.tsx
+│   │   │   ├── styles-marker-cluster.css
+│   │   │   ├── styles.module.css
+│   │   │   └── useLeafletAccessibility.ts
+│   │   ├── MatomoSiteSelect.tsx
+│   │   ├── MemberPage
+│   │   │   ├── AdminPanel.tsx
+│   │   │   ├── Email
+│   │   │   │   ├── BlocChangerMotDePasse.tsx
+│   │   │   │   ├── BlocConfigurerCommunicationEmail.tsx
+│   │   │   │   ├── BlocConfigurerEmailPrincipal.tsx
+│   │   │   │   ├── BlocConfigurerEmailSecondaire.tsx
+│   │   │   │   ├── BlocEmailResponder.tsx
+│   │   │   │   ├── ChangeSecondaryEmail.tsx
+│   │   │   │   ├── EmailContainer.tsx
+│   │   │   │   └── WebMailButtons.tsx
+│   │   │   ├── MemberBrevoEventList.tsx
+│   │   │   ├── MemberCard.tsx
+│   │   │   ├── MemberContact.tsx
+│   │   │   ├── MemberEmailServiceInfo.tsx
+│   │   │   ├── MemberEventList.tsx
+│   │   │   ├── MemberExpirationNotice.tsx
+│   │   │   ├── MemberMissions.tsx
+│   │   │   ├── MemberPage.css
+│   │   │   ├── MemberPage.tsx
+│   │   │   ├── MemberStatus.tsx
+│   │   │   ├── MemberWaitingEmailVerificationNotice.tsx
+│   │   │   ├── MemberWaitingValidationNotice.tsx
+│   │   │   └── OnboardingTabPanel.tsx
+│   │   ├── MemberSelect.tsx
+│   │   ├── MemberUpdate
+│   │   │   └── MemberUpdate.tsx
+│   │   ├── NewsletterForm
+│   │   │   └── NewsletterForm.tsx
+│   │   ├── NewsletterPage
+│   │   │   └── NewsletterPage.tsx
+│   │   ├── ProgressBar.tsx
+│   │   ├── SEIncubateurSelect.tsx
+│   │   ├── SESelect.tsx
+│   │   ├── SESponsorSelect.tsx
+│   │   ├── SelectAccessibilityStatus.tsx
+│   │   ├── Service
+│   │   │   ├── AccountDetails.tsx
+│   │   │   ├── CreateMatomoServiceForm.tsx
+│   │   │   ├── CreateSentryServiceForm.tsx
+│   │   │   ├── MatomoServiceForm.tsx
+│   │   │   └── SentryServiceForm.tsx
+│   │   ├── Skiplinks.tsx
+│   │   ├── SponsorForm
+│   │   │   ├── SponsorDomainSelect.tsx
+│   │   │   ├── SponsorForm.tsx
+│   │   │   └── SponsorTypeSelect.tsx
+│   │   ├── StartupFiles
+│   │   │   ├── FileForm.tsx
+│   │   │   ├── FileList.css
+│   │   │   ├── FileList.tsx
+│   │   │   ├── FormDoc.tsx
+│   │   │   └── index.tsx
+│   │   ├── StartupForm
+│   │   │   ├── EventsEditor.tsx
+│   │   │   ├── MdEditorCustomHeaderPlugin.tsx
+│   │   │   ├── PhasesEditor.tsx
+│   │   │   ├── SponsorBlock.tsx
+│   │   │   ├── StartupForm.tsx
+│   │   │   ├── TechnoEditor.tsx
+│   │   │   ├── ThematiquesEditor.tsx
+│   │   │   ├── UsertypesEditor.tsx
+│   │   │   └── events-table.css
+│   │   ├── StartupInfoCreatePage
+│   │   │   ├── StartupInfoCreate.tsx
+│   │   │   └── index.ts
+│   │   ├── StartupInfoUpdatePage
+│   │   │   ├── StartupInfoUpdate.tsx
+│   │   │   └── index.ts
+│   │   ├── StartupListPage
+│   │   │   ├── StartupList.tsx
+│   │   │   └── index.ts
+│   │   ├── StartupPage
+│   │   │   ├── BadgePhase.tsx
+│   │   │   ├── StartupDescription.tsx
+│   │   │   ├── StartupHeader.tsx
+│   │   │   ├── StartupHistory.tsx
+│   │   │   ├── StartupMembers.tsx
+│   │   │   ├── StartupPage.tsx
+│   │   │   ├── StartupTools.tsx
+│   │   │   ├── standards.css
+│   │   │   └── timeline.css
+│   │   ├── SurveyBox.tsx
+│   │   ├── TeamSelect.tsx
+│   │   ├── Tooltip.tsx
+│   │   ├── UploadForm
+│   │   │   └── UploadForm.tsx
+│   │   ├── emails
+│   │   │   └── layouts
+│   │   │       └── StandardEmail.tsx
+│   │   ├── index.ts
+│   │   ├── live-chat
+│   │   │   ├── LiveChatContext.tsx
+│   │   │   ├── LiveChatProvider.tsx
+│   │   │   └── useLiveChat.tsx
+│   │   ├── organization
+│   │   │   ├── OrganizationCreatePage
+│   │   │   │   ├── OrganizationCreate.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── OrganizationForm
+│   │   │   │   └── OrganizationForm.tsx
+│   │   │   ├── OrganizationListPage
+│   │   │   │   ├── OrganizationList.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── OrganizationPage
+│   │   │   │   ├── Organization.tsx
+│   │   │   │   └── index.ts
+│   │   │   └── OrganizationUpdatePage
+│   │   │       ├── OrganizationUpdate.tsx
+│   │   │       └── index.ts
+│   │   └── team
+│   │       ├── TeamCreatePage
+│   │       │   ├── TeamCreate.tsx
+│   │       │   └── index.ts
+│   │       ├── TeamForm
+│   │       │   ├── TeamForm.tsx
+│   │       │   └── index.ts
+│   │       ├── TeamListPage
+│   │       │   ├── TeamList.tsx
+│   │       │   └── index.ts
+│   │       ├── TeamPage
+│   │       │   ├── Team.tsx
+│   │       │   └── index.ts
+│   │       └── TeamUpdatePage
+│   │           ├── TeamUpdate.tsx
+│   │           └── index.ts
+│   ├── dsfr-bootstrap
+│   │   ├── defaultColorScheme.ts
+│   │   ├── index.tsx
+│   │   └── server-only-index.tsx
+│   ├── frontConfig
+│   │   └── index.ts
+│   ├── instrumentation-client.ts
+│   ├── instrumentation.ts
+│   ├── lib
+│   │   ├── airtable.ts
+│   │   ├── dimail
+│   │   │   ├── client.spec.ts
+│   │   │   ├── client.ts
+│   │   │   ├── utils.spec.ts
+│   │   │   └── utils.ts
+│   │   ├── ds.ts
+│   │   ├── env.ts
+│   │   ├── events.ts
+│   │   ├── file.ts
+│   │   ├── flat.ts
+│   │   ├── github.ts
+│   │   ├── hstore.ts
+│   │   ├── icalhelper.ts
+│   │   ├── kysely
+│   │   │   ├── index.ts
+│   │   │   ├── queries
+│   │   │   │   ├── dimail.ts
+│   │   │   │   ├── incubators.ts
+│   │   │   │   ├── missions.ts
+│   │   │   │   ├── organizations.ts
+│   │   │   │   ├── search.ts
+│   │   │   │   ├── services.ts
+│   │   │   │   ├── startups.ts
+│   │   │   │   ├── teams.ts
+│   │   │   │   ├── userEvents.ts
+│   │   │   │   └── users.ts
+│   │   │   └── queries.ts
+│   │   ├── matomo.ts
+│   │   ├── mattermost
+│   │   │   ├── activeUsers.ts
+│   │   │   ├── deactiveUsers.ts
+│   │   │   ├── getActiveMattermostUsers.ts
+│   │   │   ├── getAllChannels.ts
+│   │   │   ├── getMattermostUsersStatus.ts
+│   │   │   ├── getTeam.ts
+│   │   │   └── index.ts
+│   │   ├── mdtohtml.ts
+│   │   ├── s3.ts
+│   │   ├── searchCommune.ts
+│   │   └── sentry.ts
+│   ├── middleware.ts
+│   ├── models
+│   │   ├── actionEvent
+│   │   │   ├── actionEvent.ts
+│   │   │   ├── index.ts
+│   │   │   └── serviceActionEvent.ts
+│   │   ├── actions
+│   │   │   ├── image.ts
+│   │   │   ├── incubator.ts
+│   │   │   ├── member.ts
+│   │   │   ├── newsletter.ts
+│   │   │   ├── organization.ts
+│   │   │   ├── ovh.ts
+│   │   │   ├── service.ts
+│   │   │   ├── startup.ts
+│   │   │   └── team.ts
+│   │   ├── brevoEvent.ts
+│   │   ├── brevoInfo.ts
+│   │   ├── common.ts
+│   │   ├── competences.ts
+│   │   ├── formation.ts
+│   │   ├── incubator.ts
+│   │   ├── job.ts
+│   │   ├── jobs
+│   │   │   ├── maintenance.ts
+│   │   │   ├── member.ts
+│   │   │   └── services.ts
+│   │   ├── mapper
+│   │   │   ├── index.ts
+│   │   │   ├── matomoMapper.ts
+│   │   │   ├── newsletterMapper.ts
+│   │   │   ├── sentryMapper.ts
+│   │   │   ├── startupMapper.ts
+│   │   │   └── userEventMapper.ts
+│   │   ├── matomo.ts
+│   │   ├── matomoSite.ts
+│   │   ├── mattermost.ts
+│   │   ├── mattermostMemberInfo.ts
+│   │   ├── member.ts
+│   │   ├── memberChange.ts
+│   │   ├── misc.ts
+│   │   ├── mission.ts
+│   │   ├── newsletter.ts
+│   │   ├── onboardingChecklist.ts
+│   │   ├── ovh.ts
+│   │   ├── sentry.ts
+│   │   ├── sentryTeam.ts
+│   │   ├── services.ts
+│   │   ├── sponsor.ts
+│   │   ├── startup.ts
+│   │   ├── startupChange.ts
+│   │   ├── startupFiles.ts
+│   │   ├── team.ts
+│   │   ├── technos.ts
+│   │   ├── thematiques.ts
+│   │   ├── userEvent.ts
+│   │   ├── user_formation.ts
+│   │   └── usertypes.ts
+│   ├── routes
+│   │   └── routes.ts
+│   ├── scripts
+│   │   ├── export-to-www.sh
+│   │   ├── fix-missions.ts
+│   │   ├── github-schemas.ts
+│   │   ├── import-from-www.ts
+│   │   ├── import-teams-from-www.ts
+│   │   ├── sync-dimail.ts
+│   │   ├── update-local-files.ts
+│   │   └── utils.ts
+│   ├── server
+│   │   ├── betagouv.ts
+│   │   ├── config
+│   │   │   ├── admin.config.ts
+│   │   │   ├── ds
+│   │   │   │   └── ds.config.ts
+│   │   │   ├── email.config.ts
+│   │   │   ├── index.ts
+│   │   │   ├── matomo.config.ts
+│   │   │   ├── mattermost
+│   │   │   │   ├── mattermost.config.ts
+│   │   │   │   └── mattermostDomainExceptions.json
+│   │   │   └── sentry.config.ts
+│   │   ├── controllers
+│   │   │   ├── adminController
+│   │   │   │   ├── index.ts
+│   │   │   │   └── sendMattermostMessage.ts
+│   │   │   ├── utils.spec.ts
+│   │   │   └── utils.ts
+│   │   ├── db
+│   │   │   └── index.ts
+│   │   ├── helpers
+│   │   │   └── session.ts
+│   │   ├── infra
+│   │   │   ├── chat
+│   │   │   │   ├── index.ts
+│   │   │   │   └── mattermost.ts
+│   │   │   └── email
+│   │   │       ├── fakeMailer.ts
+│   │   │       ├── index.ts
+│   │   │       ├── nodeMailer.ts
+│   │   │       └── sendInBlue.ts
+│   │   ├── modules
+│   │   │   ├── email
+│   │   │   │   ├── email.ts
+│   │   │   │   └── index.ts
+│   │   │   └── htmlbuilder
+│   │   │       └── htmlbuilder.ts
+│   │   ├── queueing
+│   │   │   ├── client.ts
+│   │   │   ├── schedule.ts
+│   │   │   └── workers
+│   │   │       ├── create-dimail-mailbox.spec.ts
+│   │   │       ├── create-dimail-mailbox.ts
+│   │   │       ├── create-sentry-account.ts
+│   │   │       ├── create-sentry-team.ts
+│   │   │       ├── create-update-matomo-account.ts
+│   │   │       ├── send-email-to-incubator.spec.ts
+│   │   │       ├── send-email-to-incubator.ts
+│   │   │       ├── send-email-to-team-when-new-member.spec.ts
+│   │   │       ├── send-email-to-team-when-new-member.ts
+│   │   │       ├── send-email-to-teams-to-check-on-team-composition.spec.ts
+│   │   │       ├── send-email-to-teams-to-check-on-team-composition.ts
+│   │   │       ├── send-validation-email.ts
+│   │   │       ├── send-verification-email.ts
+│   │   │       ├── sync-dinum-emails.spec.ts
+│   │   │       ├── sync-dinum-emails.ts
+│   │   │       ├── update-sentry-account.ts
+│   │   │       └── utils.ts
+│   │   ├── schedulers
+│   │   │   ├── calendarScheduler.ts
+│   │   │   ├── cron.ts
+│   │   │   ├── emailScheduler.ts
+│   │   │   ├── githubScheduler.ts
+│   │   │   ├── mattermostScheduler
+│   │   │   │   ├── addUsersNotInCommunityToCommunityTeam.ts
+│   │   │   │   ├── createUsersByEmail.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── inviteUserToTeamByEmail.ts
+│   │   │   │   ├── mattermostScheduler.ts
+│   │   │   │   ├── moveUsersToAlumniTeam.ts
+│   │   │   │   ├── reactivateUsers.ts
+│   │   │   │   ├── removeBetaAndParnersUsersFromCommunityTeam.ts
+│   │   │   │   ├── removeUsersFromCommunityTeam.ts
+│   │   │   │   ├── sendGroupeDeSoutienReminder.ts
+│   │   │   │   ├── syncMattermostUserStatusWithMattermostMemberInfosTable.ts
+│   │   │   │   └── syncMattermostUserWithMattermostMemberInfosTable.ts
+│   │   │   ├── newsletterScheduler.ts
+│   │   │   ├── recreateEmailIfUserActive.spec.ts
+│   │   │   ├── recreateEmailIfUserActive.ts
+│   │   │   ├── scheduleCronJobs.ts
+│   │   │   ├── schedulePgBossJobs.ts
+│   │   │   ├── serviceScheduler
+│   │   │   │   ├── syncMatomoAccounts.ts
+│   │   │   │   ├── syncMatomoSites.ts
+│   │   │   │   ├── syncSentryAccounts.ts
+│   │   │   │   └── syncSentryTeams.ts
+│   │   │   ├── startups
+│   │   │   │   ├── createMailingListForStartups.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── sendEmailToStartupToUpdatePhase.ts
+│   │   │   │   └── syncBetagouvStartupAPI.ts
+│   │   │   ├── unblockEmailsThatAreActive.ts
+│   │   │   ├── updateProfileScheduler.ts
+│   │   │   └── userContractEndingScheduler.ts
+│   │   ├── types
+│   │   │   └── request.d.ts
+│   │   └── views
+│   │       ├── templates
+│   │       │   └── emails
+│   │       │       ├── DepartureReminderInXDaysEmail
+│   │       │       │   └── DepartureReminderInXDaysEmail.tsx
+│   │       │       ├── EmailCreatedDimail
+│   │       │       │   └── EmailCreatedDimail.tsx
+│   │       │       ├── EmailCreatedEmail
+│   │       │       │   └── EmailCreatedEmail.tsx
+│   │       │       ├── LoginEmail
+│   │       │       │   └── LoginEmail.tsx
+│   │       │       ├── MatomoAccountCreatedEmail
+│   │       │       │   └── MatomoAccountCreatedEmail.tsx
+│   │       │       ├── MatomoAccountUpdatedEmail
+│   │       │       │   └── MatomoAccountUpdatedEmail.tsx
+│   │       │       ├── MattermostAccountCreatedEmail
+│   │       │       │   └── MattermostAccountCreatedEmail.tsx
+│   │       │       ├── NoMoreContractEmail
+│   │       │       │   └── NoMoreContractXDaysEmail.tsx
+│   │       │       ├── StartupNewMemberArrivalEmail
+│   │       │       │   └── StartupNewMemberArrivalEmail.tsx
+│   │       │       ├── VerificationWaitingEmail
+│   │       │       │   └── VerificationWaitingEmail.tsx
+│   │       │       ├── eventMessage.ejs
+│   │       │       ├── forumBetaMessage.ejs
+│   │       │       ├── memberValidationEmail
+│   │       │       │   └── memberValidationEmail.tsx
+│   │       │       ├── startupEnterAccelerationPhase.ejs
+│   │       │       ├── startupEnterConstructionPhase.ejs
+│   │       │       ├── startupMembersDidNotChangeInXMonthsEmail
+│   │       │       │   └── startupMembersDidNotChangeInXMonthsEmail.tsx
+│   │       │       ├── teamCompositionEmail
+│   │       │       │   └── teamCompositionEmail.tsx
+│   │       │       ├── updateSecondaryEmail.ejs
+│   │       │       └── updateUserInfoEmail.ejs
+│   │       ├── test.yml
+│   │       └── utils
+│   │           └── email.ts
+│   └── utils
+│       ├── airtable.ts
+│       ├── auth
+│       │   └── hashToken.ts
+│       ├── authoptions.ts
+│       ├── date.ts
+│       ├── error.ts
+│       ├── file.ts
+│       ├── gracefulExit.ts
+│       ├── member.ts
+│       ├── onboarding
+│       │   ├── computeOnboardingProgress.ts
+│       │   ├── getChecklistObject.ts
+│       │   └── shouldShowOnboardingPanel.ts
+│       ├── pgAdpter.ts
+│       ├── platform.ts
+│       ├── routes
+│       │   ├── registry.ts
+│       │   ├── routeTitles.ts
+│       │   └── routes.ts
+│       ├── startup.ts
+│       └── url.ts
+├── storybook
+├── tsconfig.json
+└── tsconfig.server.json
+207 directories, 688 files
