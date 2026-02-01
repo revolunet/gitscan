@@ -1,0 +1,32 @@
+{
+  "devDependencies": {
+    "@shared/eslint-config": "workspace:^",
+    "husky": "^7.0.2",
+    "lerna": "9.0.3",
+    "nps": "^5.10.0",
+    "nps-utils": "^1.7.0",
+    "prettier": "^3.6.2"
+  },
+  "private": true,
+  "scripts": {
+    "build": "nps build",
+    "build:watch": "lerna run --stream build:watch",
+    "dev": "nps dev",
+    "lint": "nps lint",
+    "start": "nps",
+    "test": "nps test",
+    "k8s": "yarn --silent --cwd .k8s",
+    "prepare": "test -n \"$CI\" || husky install",
+    "clean": "lerna clean",
+    "type-check": "nps type-check",
+    "format": "nps format",
+    "format:check": "nps format.check",
+    "precommit": "lerna run --exclude-dependents --parallel 1 --since HEAD --stream"
+  },
+  "workspaces": [
+    "shared/*",
+    "targets/*"
+  ],
+  "name": "cdtn-admin",
+  "packageManager": "yarn@3.6.4"
+}
