@@ -1,0 +1,332 @@
+.
+├── .github
+│   └── workflows
+│       ├── build_backend_image.yml
+│       └── build_frontend_image.yml
+├── CHANGELOG.md
+├── CONTRIBUTING.md
+├── README.md
+├── confiture-rest-api
+│   ├── .dockerignore
+│   ├── .eslintrc.js
+│   ├── .gitignore
+│   ├── .prettierrc
+│   ├── Dockerfile
+│   ├── Procfile
+│   ├── README.md
+│   ├── backward.sql
+│   ├── nest-cli.json
+│   ├── package.json
+│   ├── prisma
+│   │   ├── migrations
+│   │   │   ├── 20221109144325_initial_migration_v1
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20221114094201_remove_page_url_unique_constraint
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20221209154746_update_tool_model
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20221212230747_add_audit_creation_date_field
+│   │   │   │   └── migration.sql
+│   │   │   └── migration_lock.toml
+│   │   └── schema.prisma
+│   ├── src
+│   │   ├── app.module.ts
+│   │   ├── audits
+│   │   │   ├── audit-report.dto.ts
+│   │   │   ├── audit.service.ts
+│   │   │   ├── audits.controller.ts
+│   │   │   ├── audits.module.ts
+│   │   │   ├── create-audit.dto.ts
+│   │   │   ├── criteria.ts
+│   │   │   ├── reports.controller.ts
+│   │   │   ├── update-audit.dto.ts
+│   │   │   └── update-results.dto.ts
+│   │   ├── feedback
+│   │   │   ├── feedback.controller.ts
+│   │   │   ├── feedback.module.ts
+│   │   │   ├── feedback.service.ts
+│   │   │   └── new-feedback.dto.ts
+│   │   ├── health-check.controller.ts
+│   │   ├── mailer.service.ts
+│   │   ├── main.ts
+│   │   ├── prisma.service.ts
+│   │   └── rgaa.json
+│   ├── test
+│   │   ├── app.e2e-spec.ts
+│   │   └── jest-e2e.json
+│   ├── tsconfig.build.json
+│   ├── tsconfig.json
+│   └── yarn.lock
+└── confiture-web-app
+    ├── .dockerignore
+    ├── .eslintignore
+    ├── .eslintrc
+    ├── .gitignore
+    ├── .vscode
+    │   └── extensions.json
+    ├── Dockerfile
+    ├── README.md
+    ├── config
+    │   ├── config_nginx
+    │   │   ├── boilerplate
+    │   │   │   ├── disable
+    │   │   │   │   ├── logging.conf
+    │   │   │   │   ├── php.conf
+    │   │   │   │   └── uploads.conf
+    │   │   │   ├── enable
+    │   │   │   │   ├── gzip.conf
+    │   │   │   │   ├── php.conf
+    │   │   │   │   ├── php_cache.conf
+    │   │   │   │   ├── ssl.conf
+    │   │   │   │   └── uploads.conf
+    │   │   │   ├── fastcgi_params
+    │   │   │   ├── limits
+    │   │   │   │   ├── access.conf
+    │   │   │   │   ├── hashes.conf
+    │   │   │   │   ├── methods.conf
+    │   │   │   │   ├── open_files_cache.conf
+    │   │   │   │   └── timeouts.conf
+    │   │   │   ├── locations
+    │   │   │   │   ├── errors.conf
+    │   │   │   │   ├── main.conf
+    │   │   │   │   ├── nophp.conf
+    │   │   │   │   ├── static.conf
+    │   │   │   │   └── system.conf
+    │   │   │   ├── logs
+    │   │   │   │   ├── error.conf
+    │   │   │   │   └── formats.conf
+    │   │   │   ├── maps
+    │   │   │   │   ├── access_log_name.conf
+    │   │   │   │   ├── bot_req.conf
+    │   │   │   │   └── bot_ua.conf
+    │   │   │   ├── mime.types
+    │   │   │   ├── system
+    │   │   │   │   ├── connections.conf
+    │   │   │   │   ├── http.conf
+    │   │   │   │   ├── os.conf
+    │   │   │   │   ├── processes.conf
+    │   │   │   │   └── security.conf
+    │   │   │   ├── upstreams
+    │   │   │   │   └── nginx.boilerplate.conf.org
+    │   │   │   └── zones
+    │   │   │       ├── cpip.conf
+    │   │   │       ├── php_cache.conf
+    │   │   │       ├── rps1.conf
+    │   │   │       ├── rps10.conf
+    │   │   │       └── rps20.conf
+    │   │   ├── dpl
+    │   │   │   ├── disable
+    │   │   │   │   └── php.conf
+    │   │   │   ├── enable
+    │   │   │   │   ├── gzip.conf
+    │   │   │   │   └── real_ip.conf
+    │   │   │   ├── limits
+    │   │   │   │   └── methods_REST_confiture.conf
+    │   │   │   ├── locations
+    │   │   │   │   ├── default_dpl.conf
+    │   │   │   │   ├── default_dpl.conf.ref
+    │   │   │   │   ├── default_dpl_with_php.conf
+    │   │   │   │   ├── errors.conf
+    │   │   │   │   └── expires.conf
+    │   │   │   ├── logs
+    │   │   │   │   └── access.conf
+    │   │   │   ├── maps
+    │   │   │   │   ├── dpl_405.conf
+    │   │   │   │   └── dpl_lang.conf
+    │   │   │   ├── mime.conf
+    │   │   │   ├── sites-enabled
+    │   │   │   │   └── frontend.conf
+    │   │   │   ├── system
+    │   │   │   │   ├── http.conf
+    │   │   │   │   ├── pid.conf
+    │   │   │   │   └── security.conf
+    │   │   │   ├── upstreams_dyn
+    │   │   │   │   └── backend.conf
+    │   │   │   └── zones
+    │   │   │       ├── cpip.conf
+    │   │   │       ├── php_cache.conf
+    │   │   │       ├── rps1.conf
+    │   │   │       ├── rps10.conf
+    │   │   │       ├── rps100.conf
+    │   │   │       ├── rps20.conf
+    │   │   │       ├── rps5.conf
+    │   │   │       └── rps50.conf
+    │   │   ├── h5bp
+    │   │   │   ├── README.md
+    │   │   │   ├── basic.conf
+    │   │   │   ├── directive-only
+    │   │   │   │   ├── cache-file-descriptors.conf
+    │   │   │   │   ├── cross-domain-insecure.conf
+    │   │   │   │   ├── extra-security.conf
+    │   │   │   │   ├── no-transform.conf
+    │   │   │   │   ├── spdy.conf
+    │   │   │   │   ├── ssl-stapling.conf
+    │   │   │   │   ├── ssl.conf
+    │   │   │   │   └── x-ua-compatible.conf
+    │   │   │   └── location
+    │   │   │       ├── cache-busting.conf
+    │   │   │       ├── cross-domain-fonts.conf
+    │   │   │       ├── expires.conf
+    │   │   │       ├── expires.conf.org
+    │   │   │       └── protect-system-files.conf
+    │   │   ├── mime.types
+    │   │   └── nginx.conf
+    │   └── config_nginx_user
+    │       └── dpl
+    │           └── htpasswd
+    │               ├── .placeholder
+    │               └── dinum.htpasswd
+    ├── index.html
+    ├── package.json
+    ├── public
+    │   ├── _redirects
+    │   ├── apple-touch-icon.png
+    │   ├── favicon.ico
+    │   ├── favicon.svg
+    │   └── robots.txt
+    ├── scripts
+    │   └── build-rgaa-files.js
+    ├── src
+    │   ├── App.vue
+    │   ├── api
+    │   │   ├── createFeedback.ts
+    │   │   └── index.ts
+    │   ├── assets
+    │   │   ├── Transcription-Accessibilite-18novembre2021.docx
+    │   │   ├── Transcription-Bienfairedunumerique-19mai2022.docx
+    │   │   └── images
+    │   │       ├── audit-illustration.svg
+    │   │       ├── audit-not-found.svg
+    │   │       ├── benoit-dequick.png
+    │   │       ├── emoji-medium.svg
+    │   │       ├── emoji-no.svg
+    │   │       ├── emoji-yes.svg
+    │   │       ├── erwan-legall.png
+    │   │       ├── fiphfp.png
+    │   │       ├── green-check.svg
+    │   │       ├── marine-boudeau.png
+    │   │       ├── onboarding-hammer.svg
+    │   │       ├── onboarding-hands.svg
+    │   │       ├── onboarding-magnifier.svg
+    │   │       ├── onboarding-upload.svg
+    │   │       ├── server-error.svg
+    │   │       └── ugo-dessertine.png
+    │   ├── components
+    │   │   ├── AuditEnvironmentCheckbox.vue
+    │   │   ├── AuditGeneralInformationsForm.vue
+    │   │   ├── AuditGenerationCriterium.vue
+    │   │   ├── AuditGenerationFilters.vue
+    │   │   ├── AuditGenerationHeader.vue
+    │   │   ├── AuditGenerationPageCriteria.vue
+    │   │   ├── AuditTypeRadio.vue
+    │   │   ├── Breadcrumb.vue
+    │   │   ├── ChartLegend.vue
+    │   │   ├── CopyBlock.vue
+    │   │   ├── CriteriumCompliantAccordion.vue
+    │   │   ├── CriteriumNotApplicableAccordion.vue
+    │   │   ├── CriteriumNotCompliantAccordion.vue
+    │   │   ├── CriteriumRecommendationAccordion.vue
+    │   │   ├── CriteriumTestsAccordion.vue
+    │   │   ├── DeleteModal.vue
+    │   │   ├── Dropdown.vue
+    │   │   ├── FaqAccordionsContent
+    │   │   │   ├── AfterCorrection.vue
+    │   │   │   ├── AfterReport.vue
+    │   │   │   ├── FullyAccessible.vue
+    │   │   │   ├── LegalRequirements.vue
+    │   │   │   ├── Prioritize.vue
+    │   │   │   ├── QuickWin.vue
+    │   │   │   ├── SelfAuditing.vue
+    │   │   │   ├── TeamTraining.vue
+    │   │   │   └── Test.vue
+    │   │   ├── LazyAccordion.vue
+    │   │   ├── LeaveModal.vue
+    │   │   ├── MarkdownRenderer.vue
+    │   │   ├── NotApplicableSwitch.vue
+    │   │   ├── OnboardingModal.vue
+    │   │   ├── PageMeta.ts
+    │   │   ├── PieChart.vue
+    │   │   ├── Radio.vue
+    │   │   ├── RadioGroup.vue
+    │   │   ├── ReportA11yStatement.vue
+    │   │   ├── ReportErrors.vue
+    │   │   ├── ReportResults.vue
+    │   │   ├── ResultDetailsCard.vue
+    │   │   ├── SiteFooter.vue
+    │   │   ├── SiteHeader.vue
+    │   │   ├── StackBarChart.vue
+    │   │   ├── StatDonut.vue
+    │   │   ├── SummaryCard.vue
+    │   │   ├── TestEnvironmentSelection
+    │   │   │   ├── TestEnvironmentSelection.vue
+    │   │   │   └── combinations.ts
+    │   │   ├── ToastNotification.vue
+    │   │   └── TopLink.vue
+    │   ├── composables
+    │   │   ├── useAuditStats.ts
+    │   │   ├── useChartColorsUpdate.ts
+    │   │   ├── useDevMode.ts
+    │   │   ├── useNotifications.ts
+    │   │   ├── usePreviousRoute.ts
+    │   │   ├── useUniqueId.ts
+    │   │   └── useWrappedFetch.ts
+    │   ├── criteria.ts
+    │   ├── enums.ts
+    │   ├── env.d.ts
+    │   ├── globals.d.ts
+    │   ├── main.ts
+    │   ├── pages
+    │   │   ├── FeedbackPage.vue
+    │   │   ├── HomePage.vue
+    │   │   ├── consult
+    │   │   │   ├── ContextPage.vue
+    │   │   │   └── ReportPage.vue
+    │   │   ├── edit
+    │   │   │   ├── EditAuditDeclarationPage.vue
+    │   │   │   ├── EditAuditStepFourPage.vue
+    │   │   │   ├── EditAuditStepOnePage.vue
+    │   │   │   ├── EditAuditStepThreePage.vue
+    │   │   │   └── NewAuditStepOnePage.vue
+    │   │   ├── error
+    │   │   │   └── ErrorPage.vue
+    │   │   ├── help
+    │   │   │   ├── AccessibilityPlanPage.vue
+    │   │   │   ├── AccessibilityStatementPage.vue
+    │   │   │   ├── HelpPage.vue
+    │   │   │   ├── LegalRequirementsPage.vue
+    │   │   │   └── RGAAPage.vue
+    │   │   ├── misc
+    │   │   │   ├── AccessibilityPage.vue
+    │   │   │   ├── ContactPage.vue
+    │   │   │   ├── LegalPage.vue
+    │   │   │   ├── PersonalDataPage.vue
+    │   │   │   └── SiteMapPage.vue
+    │   │   └── resources
+    │   │       ├── A11yIntroTrainingPage.vue
+    │   │       ├── AccessibilityTrainingPage.vue
+    │   │       ├── GlossaryPage.vue
+    │   │       ├── MakeA11yAuditPage.vue
+    │   │       ├── PublicDigitalTrainingPage.vue
+    │   │       ├── ResourcesPage.vue
+    │   │       └── ToolsPage.vue
+    │   ├── router.ts
+    │   ├── setupTests.ts
+    │   ├── store
+    │   │   ├── audit.ts
+    │   │   ├── filters.ts
+    │   │   ├── index.ts
+    │   │   ├── notification.ts
+    │   │   ├── report.ts
+    │   │   └── results.ts
+    │   ├── styles
+    │   │   └── main.css
+    │   ├── types
+    │   │   ├── index.ts
+    │   │   ├── report.ts
+    │   │   └── types.ts
+    │   └── utils.ts
+    ├── tsconfig.json
+    ├── tsconfig.node.json
+    ├── vite.config.ts
+    └── yarn.lock
+65 directories, 266 files
