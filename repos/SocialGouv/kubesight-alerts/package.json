@@ -1,0 +1,58 @@
+{
+  "name": "kubesight",
+  "version": "0.1.8",
+  "private": true,
+  "engines": {
+    "node": "20"
+  },
+  "homepage": "https://github.com/SocialGouv/kubesight",
+  "repository": "git@github.com:SocialGouv/kubesight.git",
+  "author": "Incubateur des Ministères Sociaux <dsi-incubateur@sg.social.gouv.fr> (https://incubateur.social.gouv.fr)",
+  "bugs": "https://github.com/SocialGouv/kubesight/issues",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc && tsc-alias",
+    "dev": "FORCE_COLOR=true tsx watch --env-file=.env src/**/*.ts | pino-pretty",
+    "lint": "eslint src/**/*.ts && prettier --check src/**/*.ts",
+    "format": "prettier --write src/**/*.ts",
+    "postinstall": "is-ci || husky install",
+    "release": "commit-and-tag-version"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.596.0",
+    "@kubernetes/client-node": "^0.21.0",
+    "@opentelemetry/exporter-trace-otlp-http": "^0.52.0",
+    "@opentelemetry/resources": "^1.25.0",
+    "@opentelemetry/sdk-node": "^0.52.0",
+    "@opentelemetry/sdk-trace-node": "^1.25.0",
+    "@opentelemetry/semantic-conventions": "^1.25.0",
+    "@sentry/opentelemetry-node": "7.117.0",
+    "dayjs": "^1.11.11",
+    "lodash": "^4.17.21",
+    "lru-cache": "^10.2.2",
+    "node-cron": "^3.0.3",
+    "p-map": "^7.0.2",
+    "pino": "^9.2.0",
+    "pino-http": "^10.1.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/is-ci": "^3.0.4",
+    "@types/lodash": "^4.17.5",
+    "@types/node": "^20.14.2",
+    "@types/node-cron": "^3.0.11",
+    "commit-and-tag-version": "^12.4.1",
+    "eslint": "^9.4.0",
+    "husky": "^9.0.11",
+    "is-ci": "^3.0.1",
+    "node-talisman": "^1.29.11",
+    "pino-pretty": "^11.2.1",
+    "prettier": "^3.3.2",
+    "ts-node": "^10.9.2",
+    "tsc-alias": "^1.8.10",
+    "tsx": "^4.15.4",
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^7.13.0"
+  },
+  "packageManager": "yarn@4.0.2"
+}
