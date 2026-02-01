@@ -1,0 +1,3586 @@
+.
+├── .coderabbit.yaml
+├── .editorconfig
+├── .env.dev.defaults
+├── .env.infra.example
+├── .env.test.defaults
+├── .github
+│   ├── PULL_REQUEST_TEMPLATE.md
+│   ├── dependabot.yml
+│   ├── release.yml
+│   └── workflows
+│       ├── cicd-app.yml
+│       ├── cicd-database.yml
+│       ├── cicd-datapipeline-prefect3.yml
+│       ├── cicd-datapipeline.yml
+│       ├── codeql.yml
+│       ├── publish-package.yml
+│       └── trivy.yml
+├── .gitignore
+├── CONTRIBUTING.md
+├── LICENSE
+├── Makefile
+├── README.md
+├── adrs
+│   ├── 0001-server-sent-events-for-mission-form-sync.md
+│   ├── 0002-mission-form-sync-e2e-tests.md
+│   ├── 0003-backend-fetch-strategy.md
+│   └── 0004-backend-override-jpql-limitation-array-intersect.md
+├── backend
+│   ├── .editorconfig
+│   ├── .gitattributes
+│   ├── .gitignore
+│   ├── build.gradle.kts
+│   ├── gradle
+│   │   └── wrapper
+│   │       ├── gradle-wrapper.jar
+│   │       └── gradle-wrapper.properties
+│   ├── gradlew
+│   ├── gradlew.bat
+│   ├── settings.gradle.kts
+│   ├── src
+│   │   ├── main
+│   │   │   ├── kotlin
+│   │   │   │   └── fr
+│   │   │   │       └── gouv
+│   │   │   │           └── cacem
+│   │   │   │               └── monitorenv
+│   │   │   │                   ├── MonitorEnvApplication.kt
+│   │   │   │                   ├── config
+│   │   │   │                   │   ├── AJPConfig.kt
+│   │   │   │                   │   ├── AJPProperties.kt
+│   │   │   │                   │   ├── ApiClient.kt
+│   │   │   │                   │   ├── ClockConfiguration.kt
+│   │   │   │                   │   ├── EditableBriefProperties.kt
+│   │   │   │                   │   ├── HostProperties.kt
+│   │   │   │                   │   ├── JpaConfig.kt
+│   │   │   │                   │   ├── KafkaAISConsumerConfig.kt
+│   │   │   │                   │   ├── KafkaAISProducerConfig.kt
+│   │   │   │                   │   ├── KafkaAISProperties.kt
+│   │   │   │                   │   ├── LegicemProperties.kt
+│   │   │   │                   │   ├── LoggingConfig.kt
+│   │   │   │                   │   ├── MapperConfiguration.kt
+│   │   │   │                   │   ├── MonitorExtProperties.kt
+│   │   │   │                   │   ├── MonitorfishProperties.kt
+│   │   │   │                   │   ├── OIDCClientConfig.kt
+│   │   │   │                   │   ├── OIDCProperties.kt
+│   │   │   │                   │   ├── ProtectedPathsAPIProperties.kt
+│   │   │   │                   │   ├── RapportnavProperties.kt
+│   │   │   │                   │   ├── RequestLoggingConfig.kt
+│   │   │   │                   │   ├── RestTemplateConfig.kt
+│   │   │   │                   │   ├── SchedulingConfig.kt
+│   │   │   │                   │   ├── SecurityConfig.kt
+│   │   │   │                   │   ├── SentryConfig.kt
+│   │   │   │                   │   ├── SuperUserAPIProperties.kt
+│   │   │   │                   │   ├── SwaggerConfig.kt
+│   │   │   │                   │   └── UseCase.kt
+│   │   │   │                   ├── domain
+│   │   │   │                   │   ├── entities
+│   │   │   │                   │   │   ├── Patchable.kt
+│   │   │   │                   │   │   ├── VehicleTypeEnum.kt
+│   │   │   │                   │   │   ├── VesselTypeEnum.kt
+│   │   │   │                   │   │   ├── administration
+│   │   │   │                   │   │   │   └── AdministrationEntity.kt
+│   │   │   │                   │   │   ├── amp
+│   │   │   │                   │   │   │   └── AMPEntity.kt
+│   │   │   │                   │   │   ├── authorization
+│   │   │   │                   │   │   │   ├── AuthorizedUser.kt
+│   │   │   │                   │   │   │   └── UserAuthorization.kt
+│   │   │   │                   │   │   ├── controlPlan
+│   │   │   │                   │   │   │   ├── ControlPlanSubThemeEntity.kt
+│   │   │   │                   │   │   │   ├── ControlPlanTagEntity.kt
+│   │   │   │                   │   │   │   └── ControlPlanThemeEntity.kt
+│   │   │   │                   │   │   ├── controlUnit
+│   │   │   │                   │   │   │   ├── ControlUnitContactEntity.kt
+│   │   │   │                   │   │   │   ├── ControlUnitEntity.kt
+│   │   │   │                   │   │   │   ├── ControlUnitResourceEntity.kt
+│   │   │   │                   │   │   │   ├── ControlUnitResourceType.kt
+│   │   │   │                   │   │   │   ├── LegacyControlUnitEntity.kt
+│   │   │   │                   │   │   │   └── LegacyControlUnitResourceEntity.kt
+│   │   │   │                   │   │   ├── dashboard
+│   │   │   │                   │   │   │   ├── BriefEntity.kt
+│   │   │   │                   │   │   │   ├── BriefFileEntity.kt
+│   │   │   │                   │   │   │   ├── CustomizableCell.kt
+│   │   │   │                   │   │   │   ├── DashboardEntity.kt
+│   │   │   │                   │   │   │   ├── DetailRenderable.kt
+│   │   │   │                   │   │   │   ├── DetailWithImagesRenderable.kt
+│   │   │   │                   │   │   │   ├── EditableBriefAmpEntity.kt
+│   │   │   │                   │   │   │   ├── EditableBriefNearbyUnitEntity.kt
+│   │   │   │                   │   │   │   ├── EditableBriefRecentActivityEntity.kt
+│   │   │   │                   │   │   │   ├── EditableBriefRecentControlActivityEntity.kt
+│   │   │   │                   │   │   │   ├── EditableBriefRecentPerUnitActivityEntity.kt
+│   │   │   │                   │   │   │   ├── EditableBriefRegulatoryAreaEntity.kt
+│   │   │   │                   │   │   │   ├── EditableBriefReportingEntity.kt
+│   │   │   │                   │   │   │   ├── EditableBriefTargetDetailsEntity.kt
+│   │   │   │                   │   │   │   ├── EditableBriefVigilanceAreaEntity.kt
+│   │   │   │                   │   │   │   ├── EditableBriefVigilanceAreaPeriodEntity.kt
+│   │   │   │                   │   │   │   ├── ExtractedAreaEntity.kt
+│   │   │   │                   │   │   │   ├── ImageEntity.kt
+│   │   │   │                   │   │   │   ├── LinkEntity.kt
+│   │   │   │                   │   │   │   └── NearbyUnitMissionStatus.kt
+│   │   │   │                   │   │   ├── departmentArea
+│   │   │   │                   │   │   │   └── DepartmentAreaEntity.kt
+│   │   │   │                   │   │   ├── health
+│   │   │   │                   │   │   │   └── Health.kt
+│   │   │   │                   │   │   ├── localizedArea
+│   │   │   │                   │   │   │   └── LocalizedAreaEntity.kt
+│   │   │   │                   │   │   ├── mission
+│   │   │   │                   │   │   │   ├── ActionCompletionEnum.kt
+│   │   │   │                   │   │   │   ├── CanDeleteMissionResponse.kt
+│   │   │   │                   │   │   │   ├── MissionEntity.kt
+│   │   │   │                   │   │   │   ├── MissionSourceEnum.kt
+│   │   │   │                   │   │   │   ├── MissionTypeEnum.kt
+│   │   │   │                   │   │   │   ├── PatchableMissionEntity.kt
+│   │   │   │                   │   │   │   ├── envAction
+│   │   │   │                   │   │   │   │   ├── ActionTypeEnum.kt
+│   │   │   │                   │   │   │   │   ├── EnvActionControlPlanEntity.kt
+│   │   │   │                   │   │   │   │   ├── EnvActionEntity.kt
+│   │   │   │                   │   │   │   │   ├── EnvActionNoteEntity.kt
+│   │   │   │                   │   │   │   │   ├── EnvActionNoteProperties.kt
+│   │   │   │                   │   │   │   │   ├── PatchableEnvActionEntity.kt
+│   │   │   │                   │   │   │   │   ├── envActionControl
+│   │   │   │                   │   │   │   │   │   ├── ActionTargetTypeEnum.kt
+│   │   │   │                   │   │   │   │   │   ├── EnvActionControlEntity.kt
+│   │   │   │                   │   │   │   │   │   ├── EnvActionControlProperties.kt
+│   │   │   │                   │   │   │   │   │   ├── EnvActionControlWithInfractionsEntity.kt
+│   │   │   │                   │   │   │   │   │   └── infraction
+│   │   │   │                   │   │   │   │   │       ├── AdministrativeResponseEnum.kt
+│   │   │   │                   │   │   │   │   │       ├── FormalNoticeEnum.kt
+│   │   │   │                   │   │   │   │   │       ├── InfractionEntity.kt
+│   │   │   │                   │   │   │   │   │       ├── InfractionTypeEnum.kt
+│   │   │   │                   │   │   │   │   │       └── SeizureTypeEnum.kt
+│   │   │   │                   │   │   │   │   └── envActionSurveillance
+│   │   │   │                   │   │   │   │       ├── AwarenessDetailsEntity.kt
+│   │   │   │                   │   │   │   │       ├── AwarenessEntity.kt
+│   │   │   │                   │   │   │   │       ├── EnvActionSurveillanceEntity.kt
+│   │   │   │                   │   │   │   │       └── EnvActionSurveillanceProperties.kt
+│   │   │   │                   │   │   │   ├── monitorfish
+│   │   │   │                   │   │   │   │   ├── MonitorFishActionTypeEnum.kt
+│   │   │   │                   │   │   │   │   └── MonitorFishMissionActionEntity.kt
+│   │   │   │                   │   │   │   └── rapportnav
+│   │   │   │                   │   │   │       └── RapportNavMissionActionEntity.kt
+│   │   │   │                   │   │   ├── natinf
+│   │   │   │                   │   │   │   └── NatinfEntity.kt
+│   │   │   │                   │   │   ├── recentActivity
+│   │   │   │                   │   │   │   ├── InfractionEnum.kt
+│   │   │   │                   │   │   │   └── RecentControlActivityProperties.kt
+│   │   │   │                   │   │   ├── regulatoryArea
+│   │   │   │                   │   │   │   └── RegulatoryAreaEntity.kt
+│   │   │   │                   │   │   ├── reporting
+│   │   │   │                   │   │   │   ├── ControlStatusEnum.kt
+│   │   │   │                   │   │   │   ├── ReportingEntity.kt
+│   │   │   │                   │   │   │   ├── ReportingSourceEntity.kt
+│   │   │   │                   │   │   │   ├── ReportingTypeEnum.kt
+│   │   │   │                   │   │   │   ├── SourceTypeEnum.kt
+│   │   │   │                   │   │   │   ├── SuspicionOfInfractions.kt
+│   │   │   │                   │   │   │   ├── TargetDetailsEntity.kt
+│   │   │   │                   │   │   │   └── TargetTypeEnum.kt
+│   │   │   │                   │   │   ├── semaphore
+│   │   │   │                   │   │   │   └── SemaphoreEntity.kt
+│   │   │   │                   │   │   ├── station
+│   │   │   │                   │   │   │   └── StationEntity.kt
+│   │   │   │                   │   │   ├── tags
+│   │   │   │                   │   │   │   └── TagEntity.kt
+│   │   │   │                   │   │   ├── themes
+│   │   │   │                   │   │   │   └── ThemeEntity.kt
+│   │   │   │                   │   │   ├── vessels
+│   │   │   │                   │   │   │   └── Vessel.kt
+│   │   │   │                   │   │   └── vigilanceArea
+│   │   │   │                   │   │       ├── EndingConditionEnum.kt
+│   │   │   │                   │   │       ├── FrequencyEnum.kt
+│   │   │   │                   │   │       ├── ImageEntity.kt
+│   │   │   │                   │   │       ├── LinkEntity.kt
+│   │   │   │                   │   │       ├── SourceTypeEnum.kt
+│   │   │   │                   │   │       ├── VigilanceAreaEntity.kt
+│   │   │   │                   │   │       ├── VigilanceAreaPeriodEntity.kt
+│   │   │   │                   │   │       ├── VigilanceAreaSourceEntity.kt
+│   │   │   │                   │   │       └── VisibilityEnum.kt
+│   │   │   │                   │   ├── exceptions
+│   │   │   │                   │   │   ├── BackendUsageErrorCode.kt
+│   │   │   │                   │   │   └── BackendUsageException.kt
+│   │   │   │                   │   ├── file
+│   │   │   │                   │   │   └── dashboard
+│   │   │   │                   │   │       └── IDashboardFile.kt
+│   │   │   │                   │   ├── mappers
+│   │   │   │                   │   │   ├── EnvActionMapper.kt
+│   │   │   │                   │   │   └── PatchEntity.kt
+│   │   │   │                   │   ├── repositories
+│   │   │   │                   │   │   ├── IAMPRepository.kt
+│   │   │   │                   │   │   ├── IAdministrationRepository.kt
+│   │   │   │                   │   │   ├── IControlPlanSubThemeRepository.kt
+│   │   │   │                   │   │   ├── IControlPlanTagRepository.kt
+│   │   │   │                   │   │   ├── IControlPlanThemeRepository.kt
+│   │   │   │                   │   │   ├── IControlUnitContactRepository.kt
+│   │   │   │                   │   │   ├── IControlUnitRepository.kt
+│   │   │   │                   │   │   ├── IControlUnitResourceRepository.kt
+│   │   │   │                   │   │   ├── IDashboardRepository.kt
+│   │   │   │                   │   │   ├── IDepartmentAreaRepository.kt
+│   │   │   │                   │   │   ├── IEnvActionRepository.kt
+│   │   │   │                   │   │   ├── IFacadeAreasRepository.kt
+│   │   │   │                   │   │   ├── ILocalizedAreasRepository.kt
+│   │   │   │                   │   │   ├── IMissionRepository.kt
+│   │   │   │                   │   │   ├── IMonitorFishMissionActionsRepository.kt
+│   │   │   │                   │   │   ├── INatinfRepository.kt
+│   │   │   │                   │   │   ├── IPostgisFunctionRepository.kt
+│   │   │   │                   │   │   ├── IRapportNavMissionActionsRepository.kt
+│   │   │   │                   │   │   ├── IRegulatoryAreaRepository.kt
+│   │   │   │                   │   │   ├── IReportingRepository.kt
+│   │   │   │                   │   │   ├── IReportingSourceRepository.kt
+│   │   │   │                   │   │   ├── ISemaphoreRepository.kt
+│   │   │   │                   │   │   ├── IStationRepository.kt
+│   │   │   │                   │   │   ├── ITagRepository.kt
+│   │   │   │                   │   │   ├── IThemeRepository.kt
+│   │   │   │                   │   │   ├── IUserAuthorizationRepository.kt
+│   │   │   │                   │   │   ├── IVesselRepository.kt
+│   │   │   │                   │   │   ├── IVigilanceAreaImageRepository.kt
+│   │   │   │                   │   │   └── IVigilanceAreaRepository.kt
+│   │   │   │                   │   ├── use_cases
+│   │   │   │                   │   │   ├── actions
+│   │   │   │                   │   │   │   ├── GetEnvActionsByMmsi.kt
+│   │   │   │                   │   │   │   └── PatchEnvAction.kt
+│   │   │   │                   │   │   ├── administration
+│   │   │   │                   │   │   │   ├── ArchiveAdministration.kt
+│   │   │   │                   │   │   │   ├── CanArchiveAdministration.kt
+│   │   │   │                   │   │   │   ├── CanDeleteAdministration.kt
+│   │   │   │                   │   │   │   ├── CreateOrUpdateAdministration.kt
+│   │   │   │                   │   │   │   ├── DeleteAdministration.kt
+│   │   │   │                   │   │   │   ├── GetAdministrationById.kt
+│   │   │   │                   │   │   │   ├── GetAdministrations.kt
+│   │   │   │                   │   │   │   └── dtos
+│   │   │   │                   │   │   │       └── FullAdministrationDTO.kt
+│   │   │   │                   │   │   ├── amps
+│   │   │   │                   │   │   │   └── GetAllAMPs.kt
+│   │   │   │                   │   │   ├── authorization
+│   │   │   │                   │   │   │   ├── DeleteUser.kt
+│   │   │   │                   │   │   │   ├── GetAuthorizedUser.kt
+│   │   │   │                   │   │   │   ├── GetIsAuthorizedUser.kt
+│   │   │   │                   │   │   │   └── SaveUser.kt
+│   │   │   │                   │   │   ├── controlPlan
+│   │   │   │                   │   │   │   ├── GetControlPlans.kt
+│   │   │   │                   │   │   │   └── GetControlPlansByYear.kt
+│   │   │   │                   │   │   ├── controlUnit
+│   │   │   │                   │   │   │   ├── ArchiveControlUnit.kt
+│   │   │   │                   │   │   │   ├── ArchiveControlUnitResource.kt
+│   │   │   │                   │   │   │   ├── CanDeleteControlUnit.kt
+│   │   │   │                   │   │   │   ├── CanDeleteControlUnitResource.kt
+│   │   │   │                   │   │   │   ├── CreateOrUpdateControlUnit.kt
+│   │   │   │                   │   │   │   ├── CreateOrUpdateControlUnitContact.kt
+│   │   │   │                   │   │   │   ├── CreateOrUpdateControlUnitResource.kt
+│   │   │   │                   │   │   │   ├── DeleteControlUnit.kt
+│   │   │   │                   │   │   │   ├── DeleteControlUnitContact.kt
+│   │   │   │                   │   │   │   ├── DeleteControlUnitResource.kt
+│   │   │   │                   │   │   │   ├── GetControlUnitById.kt
+│   │   │   │                   │   │   │   ├── GetControlUnitContactById.kt
+│   │   │   │                   │   │   │   ├── GetControlUnitContacts.kt
+│   │   │   │                   │   │   │   ├── GetControlUnitResourceById.kt
+│   │   │   │                   │   │   │   ├── GetControlUnitResources.kt
+│   │   │   │                   │   │   │   ├── GetControlUnits.kt
+│   │   │   │                   │   │   │   ├── GetLegacyControlUnits.kt
+│   │   │   │                   │   │   │   ├── GetNearbyUnits.kt
+│   │   │   │                   │   │   │   └── dtos
+│   │   │   │                   │   │   │       ├── FullControlUnitContactDTO.kt
+│   │   │   │                   │   │   │       ├── FullControlUnitDTO.kt
+│   │   │   │                   │   │   │       ├── FullControlUnitResourceDTO.kt
+│   │   │   │                   │   │   │       └── NearbyUnit.kt
+│   │   │   │                   │   │   ├── dashboard
+│   │   │   │                   │   │   │   ├── CreateBrief.kt
+│   │   │   │                   │   │   │   ├── DeleteDashboard.kt
+│   │   │   │                   │   │   │   ├── ExtractArea.kt
+│   │   │   │                   │   │   │   ├── GetDashboard.kt
+│   │   │   │                   │   │   │   ├── GetDashboards.kt
+│   │   │   │                   │   │   │   └── SaveDashboard.kt
+│   │   │   │                   │   │   ├── departmentArea
+│   │   │   │                   │   │   │   ├── GetDepartmentAreaByInseeCode.kt
+│   │   │   │                   │   │   │   └── GetDepartmentAreas.kt
+│   │   │   │                   │   │   ├── healthcheck
+│   │   │   │                   │   │   │   └── GetHealthcheck.kt
+│   │   │   │                   │   │   ├── localizedArea
+│   │   │   │                   │   │   │   └── GetAllLocalizedAreas.kt
+│   │   │   │                   │   │   ├── missions
+│   │   │   │                   │   │   │   ├── BypassActionCheckAndDeleteMission.kt
+│   │   │   │                   │   │   │   ├── CanDeleteMission.kt
+│   │   │   │                   │   │   │   ├── CreateOrUpdateEnvActions.kt
+│   │   │   │                   │   │   │   ├── CreateOrUpdateMission.kt
+│   │   │   │                   │   │   │   ├── CreateOrUpdateMissionWithActionsAndAttachedReporting.kt
+│   │   │   │                   │   │   │   ├── DeleteMission.kt
+│   │   │   │                   │   │   │   ├── GetEngagedControlUnits.kt
+│   │   │   │                   │   │   │   ├── GetFullMission.kt
+│   │   │   │                   │   │   │   ├── GetFullMissionWithFishAndRapportNavActions.kt
+│   │   │   │                   │   │   │   ├── GetFullMissions.kt
+│   │   │   │                   │   │   │   ├── GetMission.kt
+│   │   │   │                   │   │   │   ├── GetMissionAndSourceAction.kt
+│   │   │   │                   │   │   │   ├── GetMissionWithRapportNavActions.kt
+│   │   │   │                   │   │   │   ├── GetMissions.kt
+│   │   │   │                   │   │   │   ├── GetMissionsByIds.kt
+│   │   │   │                   │   │   │   ├── PatchMission.kt
+│   │   │   │                   │   │   │   ├── dtos
+│   │   │   │                   │   │   │   │   ├── ControlUnitToMissionSources.kt
+│   │   │   │                   │   │   │   │   ├── MissionDetailsDTO.kt
+│   │   │   │                   │   │   │   │   └── MissionListDTO.kt
+│   │   │   │                   │   │   │   └── events
+│   │   │   │                   │   │   │       ├── UpdateFullMissionEvent.kt
+│   │   │   │                   │   │   │       └── UpdateMissionEvent.kt
+│   │   │   │                   │   │   ├── natinfs
+│   │   │   │                   │   │   │   └── GetAllNatinfs.kt
+│   │   │   │                   │   │   ├── recentActivity
+│   │   │   │                   │   │   │   ├── GetRecentControlsActivity.kt
+│   │   │   │                   │   │   │   └── dtos
+│   │   │   │                   │   │   │       └── RecentControlsActivityListDTO.kt
+│   │   │   │                   │   │   ├── regulatoryAreas
+│   │   │   │                   │   │   │   ├── GetAllRegulatoryAreas.kt
+│   │   │   │                   │   │   │   └── GetRegulatoryAreaById.kt
+│   │   │   │                   │   │   ├── reportings
+│   │   │   │                   │   │   │   ├── ArchiveOutdatedReportings.kt
+│   │   │   │                   │   │   │   ├── ArchiveReportings.kt
+│   │   │   │                   │   │   │   ├── CreateOrUpdateReporting.kt
+│   │   │   │                   │   │   │   ├── DeleteReporting.kt
+│   │   │   │                   │   │   │   ├── DeleteReportings.kt
+│   │   │   │                   │   │   │   ├── GetReportingById.kt
+│   │   │   │                   │   │   │   ├── GetReportings.kt
+│   │   │   │                   │   │   │   ├── GetReportingsByIds.kt
+│   │   │   │                   │   │   │   ├── GetSuspicionOfInfractionsByMmsi.kt
+│   │   │   │                   │   │   │   ├── dtos
+│   │   │   │                   │   │   │   │   ├── ReportingDetailsDTO.kt
+│   │   │   │                   │   │   │   │   ├── ReportingListDTO.kt
+│   │   │   │                   │   │   │   │   ├── ReportingSourceDTO.kt
+│   │   │   │                   │   │   │   │   └── Utils.kt
+│   │   │   │                   │   │   │   └── events
+│   │   │   │                   │   │   │       └── UpdateReportingEvent.kt
+│   │   │   │                   │   │   ├── semaphores
+│   │   │   │                   │   │   │   ├── GetAllSemaphores.kt
+│   │   │   │                   │   │   │   └── GetSemaphoreById.kt
+│   │   │   │                   │   │   ├── station
+│   │   │   │                   │   │   │   ├── CanDeleteStation.kt
+│   │   │   │                   │   │   │   ├── CreateOrUpdateStation.kt
+│   │   │   │                   │   │   │   ├── DeleteStation.kt
+│   │   │   │                   │   │   │   ├── GetStationById.kt
+│   │   │   │                   │   │   │   ├── GetStations.kt
+│   │   │   │                   │   │   │   └── dtos
+│   │   │   │                   │   │   │       └── FullStationDTO.kt
+│   │   │   │                   │   │   ├── tags
+│   │   │   │                   │   │   │   ├── GetTags.kt
+│   │   │   │                   │   │   │   └── GetTagsByRegulatoryAreas.kt
+│   │   │   │                   │   │   ├── themes
+│   │   │   │                   │   │   │   ├── GetThemes.kt
+│   │   │   │                   │   │   │   └── GetThemesByRegulatoryAreas.kt
+│   │   │   │                   │   │   ├── vessels
+│   │   │   │                   │   │   │   ├── GetVesselById.kt
+│   │   │   │                   │   │   │   └── SearchVessels.kt
+│   │   │   │                   │   │   └── vigilanceArea
+│   │   │   │                   │   │       ├── CreateOrUpdateVigilanceArea.kt
+│   │   │   │                   │   │       ├── DeleteVigilanceArea.kt
+│   │   │   │                   │   │       ├── GetTrigrams.kt
+│   │   │   │                   │   │       ├── GetVigilanceAreaById.kt
+│   │   │   │                   │   │       ├── GetVigilanceAreas.kt
+│   │   │   │                   │   │       └── GetVigilanceAreasByIds.kt
+│   │   │   │                   │   ├── utils.kt
+│   │   │   │                   │   └── validators
+│   │   │   │                   │       ├── UseCaseValidation.kt
+│   │   │   │                   │       ├── UseCaseValidationAspect.kt
+│   │   │   │                   │       ├── Validator.kt
+│   │   │   │                   │       ├── mission
+│   │   │   │                   │       │   ├── MissionValidator.kt
+│   │   │   │                   │       │   └── MissionWithEnvActionsValidator.kt
+│   │   │   │                   │       ├── reporting
+│   │   │   │                   │       │   └── ReportingValidator.kt
+│   │   │   │                   │       └── vigilance_area
+│   │   │   │                   │           └── VigilanceAreaValidator.kt
+│   │   │   │                   ├── infrastructure
+│   │   │   │                   │   ├── api
+│   │   │   │                   │   │   ├── adapters
+│   │   │   │                   │   │   │   ├── PatchableDataInput.kt
+│   │   │   │                   │   │   │   ├── bff
+│   │   │   │                   │   │   │   │   ├── inputs
+│   │   │   │                   │   │   │   │   │   ├── actions
+│   │   │   │                   │   │   │   │   │   │   ├── AwarenessDataInput.kt
+│   │   │   │                   │   │   │   │   │   │   ├── AwarenessDetailsInput.kt
+│   │   │   │                   │   │   │   │   │   │   └── EnvActionDataInput.kt
+│   │   │   │                   │   │   │   │   │   ├── dashboards
+│   │   │   │                   │   │   │   │   │   │   ├── BriefInput.kt
+│   │   │   │                   │   │   │   │   │   │   ├── DashboardDataInput.kt
+│   │   │   │                   │   │   │   │   │   │   └── ImageDataInput.kt
+│   │   │   │                   │   │   │   │   │   ├── missions
+│   │   │   │                   │   │   │   │   │   │   ├── CreateOrUpdateMissionDataInput.kt
+│   │   │   │                   │   │   │   │   │   │   ├── MissionEnvActionControlInfractionDataInput.kt
+│   │   │   │                   │   │   │   │   │   │   └── MissionEnvActionControlPlanDataInput.kt
+│   │   │   │                   │   │   │   │   │   ├── recentActivity
+│   │   │   │                   │   │   │   │   │   │   └── RecentControlsActivityDataInput.kt
+│   │   │   │                   │   │   │   │   │   ├── reportings
+│   │   │   │                   │   │   │   │   │   │   ├── CreateOrUpdateReportingDataInput.kt
+│   │   │   │                   │   │   │   │   │   │   └── ReportingSourceDataInput.kt
+│   │   │   │                   │   │   │   │   │   ├── tags
+│   │   │   │                   │   │   │   │   │   │   └── TagInput.kt
+│   │   │   │                   │   │   │   │   │   ├── themes
+│   │   │   │                   │   │   │   │   │   │   └── ThemeInput.kt
+│   │   │   │                   │   │   │   │   │   └── vigilanceArea
+│   │   │   │                   │   │   │   │   │       ├── ImageDataInput.kt
+│   │   │   │                   │   │   │   │   │       ├── VigilanceAreaDataInput.kt
+│   │   │   │                   │   │   │   │   │       ├── VigilanceAreaDataPeriodInput.kt
+│   │   │   │                   │   │   │   │   │       └── VigilanceAreaSourceInput.kt
+│   │   │   │                   │   │   │   │   └── outputs
+│   │   │   │                   │   │   │   │       ├── AMPDataOutput.kt
+│   │   │   │                   │   │   │   │       ├── ApiError.kt
+│   │   │   │                   │   │   │   │       ├── AttachedReportingDataOutput.kt
+│   │   │   │                   │   │   │   │       ├── BackendUsageErrorDataOutput.kt
+│   │   │   │                   │   │   │   │       ├── DepartmentAreaDataOutput.kt
+│   │   │   │                   │   │   │   │       ├── HealthcheckDataOutput.kt
+│   │   │   │                   │   │   │   │       ├── LegacyControlUnitAndMissionSourcesDataOutput.kt
+│   │   │   │                   │   │   │   │       ├── LegacyControlUnitDataOutput.kt
+│   │   │   │                   │   │   │   │       ├── LegacyControlUnitResourceDataOutput.kt
+│   │   │   │                   │   │   │   │       ├── LocalizedAreasDataOutput.kt
+│   │   │   │                   │   │   │   │       ├── MissingParameterApiError.kt
+│   │   │   │                   │   │   │   │       ├── NatinfDataOutput.kt
+│   │   │   │                   │   │   │   │       ├── RegulatoryAreaWithMetadataDataOutput.kt
+│   │   │   │                   │   │   │   │       ├── SemaphoreDataOutput.kt
+│   │   │   │                   │   │   │   │       ├── UserAuthorizationDataOutput.kt
+│   │   │   │                   │   │   │   │       ├── actions
+│   │   │   │                   │   │   │   │       │   ├── AwarenessDataOuput.kt
+│   │   │   │                   │   │   │   │       │   ├── AwarenessDetailsDataOutput.kt
+│   │   │   │                   │   │   │   │       │   ├── EnvActionControlDataOutput.kt
+│   │   │   │                   │   │   │   │       │   ├── EnvActionControlWithInfractionsDataOutput.kt
+│   │   │   │                   │   │   │   │       │   ├── EnvActionDataOutput.kt
+│   │   │   │                   │   │   │   │       │   ├── EnvActionNoteDataOutput.kt
+│   │   │   │                   │   │   │   │       │   └── EnvActionSurveillanceDataOutput.kt
+│   │   │   │                   │   │   │   │       ├── controlUnits
+│   │   │   │                   │   │   │   │       │   └── NearbyUnitOutput.kt
+│   │   │   │                   │   │   │   │       ├── dashboards
+│   │   │   │                   │   │   │   │       │   ├── DashboardDataOutput.kt
+│   │   │   │                   │   │   │   │       │   ├── DashboardImageDataOutput.kt
+│   │   │   │                   │   │   │   │       │   ├── DashboardsDataOutput.kt
+│   │   │   │                   │   │   │   │       │   └── ExtractedAreaDataOutput.kt
+│   │   │   │                   │   │   │   │       ├── missions
+│   │   │   │                   │   │   │   │       │   ├── MissionAttachedReportingDataOutput.kt
+│   │   │   │                   │   │   │   │       │   ├── MissionDataOutput.kt
+│   │   │   │                   │   │   │   │       │   ├── MissionDetachedReportingDataOutput.kt
+│   │   │   │                   │   │   │   │       │   ├── MissionEnvActionControlPlanDataOutput.kt
+│   │   │   │                   │   │   │   │       │   └── MissionsDataOutput.kt
+│   │   │   │                   │   │   │   │       ├── recentActivity
+│   │   │   │                   │   │   │   │       │   └── RecentControlsActivityDataOutput.kt
+│   │   │   │                   │   │   │   │       ├── reportings
+│   │   │   │                   │   │   │   │       │   ├── ReportingDataOutput.kt
+│   │   │   │                   │   │   │   │       │   ├── ReportingHistoryOfInfractionDataOutput.kt
+│   │   │   │                   │   │   │   │       │   ├── ReportingMissionDataOutput.kt
+│   │   │   │                   │   │   │   │       │   ├── ReportingSourceDataOutput.kt
+│   │   │   │                   │   │   │   │       │   └── ReportingsDataOutput.kt
+│   │   │   │                   │   │   │   │       ├── tags
+│   │   │   │                   │   │   │   │       │   └── TagOutput.kt
+│   │   │   │                   │   │   │   │       ├── themes
+│   │   │   │                   │   │   │   │       │   └── ThemeOutput.kt
+│   │   │   │                   │   │   │   │       ├── vessels
+│   │   │   │                   │   │   │   │       │   ├── VesselDataOutput.kt
+│   │   │   │                   │   │   │   │       │   └── VesselIdentityDataOutput.kt
+│   │   │   │                   │   │   │   │       └── vigilanceArea
+│   │   │   │                   │   │   │   │           ├── VigilanceAreaDataOutput.kt
+│   │   │   │                   │   │   │   │           ├── VigilanceAreaImageDataOutput.kt
+│   │   │   │                   │   │   │   │           ├── VigilanceAreaPeriodDataOutput.kt
+│   │   │   │                   │   │   │   │           ├── VigilanceAreaSourceOutput.kt
+│   │   │   │                   │   │   │   │           └── VigilanceAreasDataOutput.kt
+│   │   │   │                   │   │   │   └── publicapi
+│   │   │   │                   │   │   │       ├── inputs
+│   │   │   │                   │   │   │       │   ├── AddUserDataInput.kt
+│   │   │   │                   │   │   │       │   ├── CreateControlUnitContactDataInputV1.kt
+│   │   │   │                   │   │   │       │   ├── CreateOrUpdateAdministrationDataInput.kt
+│   │   │   │                   │   │   │       │   ├── CreateOrUpdateControlUnitContactDataInputV2.kt
+│   │   │   │                   │   │   │       │   ├── CreateOrUpdateControlUnitDataInput.kt
+│   │   │   │                   │   │   │       │   ├── CreateOrUpdateControlUnitResourceDataInput.kt
+│   │   │   │                   │   │   │       │   ├── CreateOrUpdateMissionDataInput.kt
+│   │   │   │                   │   │   │       │   ├── CreateOrUpdateStationDataInput.kt
+│   │   │   │                   │   │   │       │   ├── PatchableEnvActionDataInput.kt
+│   │   │   │                   │   │   │       │   └── PatchableMissionDataInput.kt
+│   │   │   │                   │   │   │       └── outputs
+│   │   │   │                   │   │   │           ├── AdministrationDataOutput.kt
+│   │   │   │                   │   │   │           ├── BooleanDataOutput.kt
+│   │   │   │                   │   │   │           ├── ControlUnitContactDataOutput.kt
+│   │   │   │                   │   │   │           ├── ControlUnitDataOutput.kt
+│   │   │   │                   │   │   │           ├── ControlUnitResourceDataOutput.kt
+│   │   │   │                   │   │   │           ├── FullAdministrationDataOutput.kt
+│   │   │   │                   │   │   │           ├── FullControlUnitContactDataOutput.kt
+│   │   │   │                   │   │   │           ├── FullControlUnitDataOutput.kt
+│   │   │   │                   │   │   │           ├── FullControlUnitResourceDataOutput.kt
+│   │   │   │                   │   │   │           ├── FullStationDataOutput.kt
+│   │   │   │                   │   │   │           ├── LegacyControlUnitAndMissionSourcesDataOutput.kt
+│   │   │   │                   │   │   │           ├── MissionDataOutput.kt
+│   │   │   │                   │   │   │           ├── MissionEnvActionControlDataOutput.kt
+│   │   │   │                   │   │   │           ├── MissionEnvActionControlPlanDataOutput.kt
+│   │   │   │                   │   │   │           ├── MissionEnvActionDataOutput.kt
+│   │   │   │                   │   │   │           ├── MissionEnvActionNoteDataOutput.kt
+│   │   │   │                   │   │   │           ├── MissionEnvActionSurveillanceDataOutput.kt
+│   │   │   │                   │   │   │           ├── MissionOutput.kt
+│   │   │   │                   │   │   │           ├── MissionWithFishAndRapportNavActionsDataOutput.kt
+│   │   │   │                   │   │   │           ├── MissionWithRapportNavActionsDataOutput.kt
+│   │   │   │                   │   │   │           ├── StationDataOutput.kt
+│   │   │   │                   │   │   │           ├── controlPlans
+│   │   │   │                   │   │   │           │   ├── ControlPlanDataOutput.kt
+│   │   │   │                   │   │   │           │   ├── ControlPlanSubThemeDataOutput.kt
+│   │   │   │                   │   │   │           │   ├── ControlPlanTagDataOutput.kt
+│   │   │   │                   │   │   │           │   └── ControlPlanThemeDataOutput.kt
+│   │   │   │                   │   │   │           ├── tags
+│   │   │   │                   │   │   │           │   └── TagOutput.kt
+│   │   │   │                   │   │   │           └── themes
+│   │   │   │                   │   │   │               └── ThemeOutput.kt
+│   │   │   │                   │   │   ├── development
+│   │   │   │                   │   │   │   ├── KeycloakProxy.kt
+│   │   │   │                   │   │   │   └── README.md
+│   │   │   │                   │   │   ├── endpoints
+│   │   │   │                   │   │   │   ├── AsyncConfig.kt
+│   │   │   │                   │   │   │   ├── ControllersExceptionHandler.kt
+│   │   │   │                   │   │   │   ├── FilterPrecedences.kt
+│   │   │   │                   │   │   │   ├── README.md
+│   │   │   │                   │   │   │   ├── bff
+│   │   │   │                   │   │   │   │   ├── UserAuthorization.kt
+│   │   │   │                   │   │   │   │   └── v1
+│   │   │   │                   │   │   │   │       ├── Amps.kt
+│   │   │   │                   │   │   │   │       ├── ControlUnits.kt
+│   │   │   │                   │   │   │   │       ├── Dashboards.kt
+│   │   │   │                   │   │   │   │       ├── DepartmentAreas.kt
+│   │   │   │                   │   │   │   │       ├── Infractions.kt
+│   │   │   │                   │   │   │   │       ├── LocalizedAreas.kt
+│   │   │   │                   │   │   │   │       ├── Missions.kt
+│   │   │   │                   │   │   │   │       ├── Natinfs.kt
+│   │   │   │                   │   │   │   │       ├── RecentActivity.kt
+│   │   │   │                   │   │   │   │       ├── RegulatoryAreas.kt
+│   │   │   │                   │   │   │   │       ├── Semaphores.kt
+│   │   │   │                   │   │   │   │       ├── Tags.kt
+│   │   │   │                   │   │   │   │       ├── Vessels.kt
+│   │   │   │                   │   │   │   │       ├── VigilanceAreas.kt
+│   │   │   │                   │   │   │   │       └── reportings
+│   │   │   │                   │   │   │   │           ├── Reportings.kt
+│   │   │   │                   │   │   │   │           └── SSEReporting.kt
+│   │   │   │                   │   │   │   ├── log
+│   │   │   │                   │   │   │   │   ├── CorrelationInterceptor.kt
+│   │   │   │                   │   │   │   │   ├── CustomAuthenticationEntryPoint.kt
+│   │   │   │                   │   │   │   │   ├── LogGETRequests.kt
+│   │   │   │                   │   │   │   │   ├── LogRequestsWithBody.kt
+│   │   │   │                   │   │   │   │   ├── LogResponseWithBody.kt
+│   │   │   │                   │   │   │   │   └── LoggingFormatter.kt
+│   │   │   │                   │   │   │   ├── publicapi
+│   │   │   │                   │   │   │   │   ├── ControlUnitContacts.kt
+│   │   │   │                   │   │   │   │   ├── SentryTest.kt
+│   │   │   │                   │   │   │   │   ├── Spa.kt
+│   │   │   │                   │   │   │   │   ├── Version.kt
+│   │   │   │                   │   │   │   │   ├── actions
+│   │   │   │                   │   │   │   │   │   └── EnvAction.kt
+│   │   │   │                   │   │   │   │   ├── v1
+│   │   │   │                   │   │   │   │   │   ├── Administrations.kt
+│   │   │   │                   │   │   │   │   │   ├── ControlPlans.kt
+│   │   │   │                   │   │   │   │   │   ├── ControlUnitResources.kt
+│   │   │   │                   │   │   │   │   │   ├── Healthcheck.kt
+│   │   │   │                   │   │   │   │   │   ├── LegacyControlUnits.kt
+│   │   │   │                   │   │   │   │   │   ├── Stations.kt
+│   │   │   │                   │   │   │   │   │   ├── Themes.kt
+│   │   │   │                   │   │   │   │   │   ├── UserManagementController.kt
+│   │   │   │                   │   │   │   │   │   └── missions
+│   │   │   │                   │   │   │   │   │       ├── LegacyMissions.kt
+│   │   │   │                   │   │   │   │   │       └── SSEMission.kt
+│   │   │   │                   │   │   │   │   └── v2
+│   │   │   │                   │   │   │   │       ├── ControlUnits.kt
+│   │   │   │                   │   │   │   │       └── Missions.kt
+│   │   │   │                   │   │   │   └── security
+│   │   │   │                   │   │   │       ├── ApiKeyCheckFilter.kt
+│   │   │   │                   │   │   │       ├── BffFilterConfig.kt
+│   │   │   │                   │   │   │       ├── LoggedMessage.kt
+│   │   │   │                   │   │   │       ├── UserAuthorizationCheckFilter.kt
+│   │   │   │                   │   │   │       └── input
+│   │   │   │                   │   │   │           └── UserInfo.kt
+│   │   │   │                   │   │   └── utils
+│   │   │   │                   │   │       └── validateId.kt
+│   │   │   │                   │   ├── cache
+│   │   │   │                   │   │   └── CaffeineConfiguration.kt
+│   │   │   │                   │   ├── database
+│   │   │   │                   │   │   ├── model
+│   │   │   │                   │   │   │   ├── AISPositionModel.kt
+│   │   │   │                   │   │   │   ├── AMPModel.kt
+│   │   │   │                   │   │   │   ├── AdministrationModel.kt
+│   │   │   │                   │   │   │   ├── ControlPlanSubThemeModel.kt
+│   │   │   │                   │   │   │   ├── ControlPlanTagModel.kt
+│   │   │   │                   │   │   │   ├── ControlPlanThemeModel.kt
+│   │   │   │                   │   │   │   ├── ControlUnitContactModel.kt
+│   │   │   │                   │   │   │   ├── ControlUnitModel.kt
+│   │   │   │                   │   │   │   ├── ControlUnitResourceModel.kt
+│   │   │   │                   │   │   │   ├── DashboardDatasModel.kt
+│   │   │   │                   │   │   │   ├── DashboardImageModel.kt
+│   │   │   │                   │   │   │   ├── DashboardModel.kt
+│   │   │   │                   │   │   │   ├── DepartmentAreaModel.kt
+│   │   │   │                   │   │   │   ├── EnvActionModel.kt
+│   │   │   │                   │   │   │   ├── FacadeAreasModel.kt
+│   │   │   │                   │   │   │   ├── LegalStatusModel.kt
+│   │   │   │                   │   │   │   ├── LocalizedAreaModel.kt
+│   │   │   │                   │   │   │   ├── MissionControlResourceModel.kt
+│   │   │   │                   │   │   │   ├── MissionControlUnitModel.kt
+│   │   │   │                   │   │   │   ├── MissionModel.kt
+│   │   │   │                   │   │   │   ├── NaflModel.kt
+│   │   │   │                   │   │   │   ├── NatinfModel.kt
+│   │   │   │                   │   │   │   ├── RegulatoryAreaModel.kt
+│   │   │   │                   │   │   │   ├── ReportingModel.kt
+│   │   │   │                   │   │   │   ├── ReportingSourceModel.kt
+│   │   │   │                   │   │   │   ├── ReportingsControlPlanSubThemeModel.kt
+│   │   │   │                   │   │   │   ├── SemaphoreModel.kt
+│   │   │   │                   │   │   │   ├── StationModel.kt
+│   │   │   │                   │   │   │   ├── TagEnvActionModel.kt
+│   │   │   │                   │   │   │   ├── TagModel.kt
+│   │   │   │                   │   │   │   ├── TagRegulatoryAreaModel.kt
+│   │   │   │                   │   │   │   ├── TagReportingModel.kt
+│   │   │   │                   │   │   │   ├── TagVigilanceAreaModel.kt
+│   │   │   │                   │   │   │   ├── ThemeEnvActionModel.kt
+│   │   │   │                   │   │   │   ├── ThemeModel.kt
+│   │   │   │                   │   │   │   ├── ThemeRegulatoryAreaModel.kt
+│   │   │   │                   │   │   │   ├── ThemeReportingModel.kt
+│   │   │   │                   │   │   │   ├── ThemeVigilanceAreaModel.kt
+│   │   │   │                   │   │   │   ├── UserAuthorizationModel.kt
+│   │   │   │                   │   │   │   ├── VesselModel.kt
+│   │   │   │                   │   │   │   ├── VigilanceAreaImageModel.kt
+│   │   │   │                   │   │   │   ├── VigilanceAreaModel.kt
+│   │   │   │                   │   │   │   ├── VigilanceAreaPeriodModel.kt
+│   │   │   │                   │   │   │   └── VigilanceAreaSourceModel.kt
+│   │   │   │                   │   │   └── repositories
+│   │   │   │                   │   │       ├── JpaAISPositionRepository.kt
+│   │   │   │                   │   │       ├── JpaAMPRepository.kt
+│   │   │   │                   │   │       ├── JpaAdministrationRepository.kt
+│   │   │   │                   │   │       ├── JpaControlPlanSubThemeRepository.kt
+│   │   │   │                   │   │       ├── JpaControlPlanTagRepository.kt
+│   │   │   │                   │   │       ├── JpaControlPlanThemeRepository.kt
+│   │   │   │                   │   │       ├── JpaControlUnitContactRepository.kt
+│   │   │   │                   │   │       ├── JpaControlUnitRepository.kt
+│   │   │   │                   │   │       ├── JpaControlUnitResourceRepository.kt
+│   │   │   │                   │   │       ├── JpaDashboardRepository.kt
+│   │   │   │                   │   │       ├── JpaDepartmentAreaRepository.kt
+│   │   │   │                   │   │       ├── JpaEnvActionRepository.kt
+│   │   │   │                   │   │       ├── JpaFacadeAreasRepository.kt
+│   │   │   │                   │   │       ├── JpaLocalizedAreaRepository.kt
+│   │   │   │                   │   │       ├── JpaMissionRepository.kt
+│   │   │   │                   │   │       ├── JpaNatinfRepository.kt
+│   │   │   │                   │   │       ├── JpaPostgisFunctionRepository.kt
+│   │   │   │                   │   │       ├── JpaRegulatoryAreaRepository.kt
+│   │   │   │                   │   │       ├── JpaReportingRepository.kt
+│   │   │   │                   │   │       ├── JpaReportingSourceRepository.kt
+│   │   │   │                   │   │       ├── JpaSemaphoreRepository.kt
+│   │   │   │                   │   │       ├── JpaStationRepository.kt
+│   │   │   │                   │   │       ├── JpaTagRepository.kt
+│   │   │   │                   │   │       ├── JpaThemeRepository.kt
+│   │   │   │                   │   │       ├── JpaUserAuthorizationRepository.kt
+│   │   │   │                   │   │       ├── JpaVesselRepository.kt
+│   │   │   │                   │   │       ├── JpaVigilanceAreaRepository.kt
+│   │   │   │                   │   │       ├── interfaces
+│   │   │   │                   │   │       │   ├── IDBAISPositionRepository.kt
+│   │   │   │                   │   │       │   ├── IDBAMPRepository.kt
+│   │   │   │                   │   │       │   ├── IDBAdministrationRepository.kt
+│   │   │   │                   │   │       │   ├── IDBControlPlanSubThemeRepository.kt
+│   │   │   │                   │   │       │   ├── IDBControlPlanTagRepository.kt
+│   │   │   │                   │   │       │   ├── IDBControlPlanThemeRepository.kt
+│   │   │   │                   │   │       │   ├── IDBControlUnitContactRepository.kt
+│   │   │   │                   │   │       │   ├── IDBControlUnitRepository.kt
+│   │   │   │                   │   │       │   ├── IDBControlUnitResourceRepository.kt
+│   │   │   │                   │   │       │   ├── IDBDashboardDatasRepository.kt
+│   │   │   │                   │   │       │   ├── IDBDashboardImageRepository.kt
+│   │   │   │                   │   │       │   ├── IDBDashboardRepository.kt
+│   │   │   │                   │   │       │   ├── IDBDepartmentAreaRepository.kt
+│   │   │   │                   │   │       │   ├── IDBEnvActionRepository.kt
+│   │   │   │                   │   │       │   ├── IDBFacadeAreasRepository.kt
+│   │   │   │                   │   │       │   ├── IDBLegalStatusRepository.kt
+│   │   │   │                   │   │       │   ├── IDBLocalizedAreaRepository.kt
+│   │   │   │                   │   │       │   ├── IDBMissionControlResourceRepository.kt
+│   │   │   │                   │   │       │   ├── IDBMissionControlUnitRepository.kt
+│   │   │   │                   │   │       │   ├── IDBMissionRepository.kt
+│   │   │   │                   │   │       │   ├── IDBNafRepository.kt
+│   │   │   │                   │   │       │   ├── IDBNatinfRepository.kt
+│   │   │   │                   │   │       │   ├── IDBRegulatoryAreaRepository.kt
+│   │   │   │                   │   │       │   ├── IDBReportingRepository.kt
+│   │   │   │                   │   │       │   ├── IDBReportingSourceRepository.kt
+│   │   │   │                   │   │       │   ├── IDBSemaphoreRepository.kt
+│   │   │   │                   │   │       │   ├── IDBStationRepository.kt
+│   │   │   │                   │   │       │   ├── IDBTagEnvActionRepository.kt
+│   │   │   │                   │   │       │   ├── IDBTagReportingRepository.kt
+│   │   │   │                   │   │       │   ├── IDBTagRepository.kt
+│   │   │   │                   │   │       │   ├── IDBTagVigilanceAreaRepository.kt
+│   │   │   │                   │   │       │   ├── IDBThemeEnvActionRepository.kt
+│   │   │   │                   │   │       │   ├── IDBThemeReportingRepository.kt
+│   │   │   │                   │   │       │   ├── IDBThemeRepository.kt
+│   │   │   │                   │   │       │   ├── IDBThemeVigilanceAreaRepository.kt
+│   │   │   │                   │   │       │   ├── IDBUserAuthorizationRepository.kt
+│   │   │   │                   │   │       │   ├── IDBVesselRepository.kt
+│   │   │   │                   │   │       │   ├── IDBVigilanceAreaImageRepository.kt
+│   │   │   │                   │   │       │   ├── IDBVigilanceAreaPeriodRepository.kt
+│   │   │   │                   │   │       │   ├── IDBVigilanceAreaRepository.kt
+│   │   │   │                   │   │       │   └── IDBVigilanceAreaSourceRepository.kt
+│   │   │   │                   │   │       └── projections
+│   │   │   │                   │   │           └── EnvActionControlWithInfractions.kt
+│   │   │   │                   │   ├── file
+│   │   │   │                   │   │   ├── dashboard
+│   │   │   │                   │   │   │   ├── AmpFile.kt
+│   │   │   │                   │   │   │   ├── AttachmentFile.kt
+│   │   │   │                   │   │   │   ├── BriefFileWriter.kt
+│   │   │   │                   │   │   │   ├── DashboardFile.kt
+│   │   │   │                   │   │   │   ├── IBriefFileWriter.kt
+│   │   │   │                   │   │   │   ├── NearbyUnitFile.kt
+│   │   │   │                   │   │   │   ├── RecentActivityFile.kt
+│   │   │   │                   │   │   │   ├── RegulatoryAreaFile.kt
+│   │   │   │                   │   │   │   ├── ReportingFile.kt
+│   │   │   │                   │   │   │   ├── SummaryFile.kt
+│   │   │   │                   │   │   │   └── VigilanceAreaFile.kt
+│   │   │   │                   │   │   └── reporting
+│   │   │   │                   │   │       └── ReportingFlags.kt
+│   │   │   │                   │   ├── kafka
+│   │   │   │                   │   │   ├── AISListener.kt
+│   │   │   │                   │   │   ├── AISProducer.kt
+│   │   │   │                   │   │   └── adapters
+│   │   │   │                   │   │       └── AISPayload.kt
+│   │   │   │                   │   ├── monitorfish
+│   │   │   │                   │   │   ├── APIFishMissionActionsRepository.kt
+│   │   │   │                   │   │   └── adapters
+│   │   │   │                   │   │       ├── MonitorFishMissionActionDataInput.kt
+│   │   │   │                   │   │       └── MonitorFishMissionActionDataOutput.kt
+│   │   │   │                   │   └── rapportnav
+│   │   │   │                   │       ├── APIRapportNavMissionActionsRepository.kt
+│   │   │   │                   │       └── adapters
+│   │   │   │                   │           └── RapportNavMissionActionDataOutput.kt
+│   │   │   │                   └── utils
+│   │   │   │                       ├── Base64Converter.kt
+│   │   │   │                       ├── ByteArrayConverter.kt
+│   │   │   │                       ├── OfficeConverter.kt
+│   │   │   │                       └── WordUtils.kt
+│   │   │   └── resources
+│   │   │       ├── application.yml
+│   │   │       ├── db
+│   │   │       │   ├── migration
+│   │   │       │   │   ├── internal
+│   │   │       │   │   │   ├── V0.034__Create_missions_table.sql
+│   │   │       │   │   │   ├── V0.035__create_regulations_cacem.sql
+│   │   │       │   │   │   ├── V0.036__create_control_topics.sql
+│   │   │       │   │   │   ├── V0.037__insert_control_topics_data.sql
+│   │   │       │   │   │   ├── V0.038__create_control_resources.sql
+│   │   │       │   │   │   ├── V0.040__add_resources_to_missions_table.sql
+│   │   │       │   │   │   ├── V0.041__create_infractions.sql
+│   │   │       │   │   │   ├── V0.042__insert_infractions_data.sql
+│   │   │       │   │   │   ├── V0.043__add_geom_to_missions_table.sql
+│   │   │       │   │   │   ├── V0.044__add_closed_by_to_missions_table.sql
+│   │   │       │   │   │   ├── V0.045__rename_infractions_to_natinfs.sql
+│   │   │       │   │   │   ├── V0.046__update_columns_in_missions_table.sql
+│   │   │       │   │   │   ├── V0.047__update_control_topics_data.sql
+│   │   │       │   │   │   ├── V0.048__fix_control_themes.sql
+│   │   │       │   │   │   ├── V0.049__constraints_on_control_resources.sql
+│   │   │       │   │   │   ├── V0.051__alter_envactions_table.sql
+│   │   │       │   │   │   ├── V0.052__add_uniq_on_natinfs.sql
+│   │   │       │   │   │   ├── V0.053__add_deleted_to_missions.sql
+│   │   │       │   │   │   ├── V0.054__add_observations_cnsp_mission_source_to_missions.sql
+│   │   │       │   │   │   ├── V0.055__add_closed_to_missions.sql
+│   │   │       │   │   │   ├── V0.056__alter_geom_env_actions.sql
+│   │   │       │   │   │   ├── V0.057__add_list_to_array_function.sql
+│   │   │       │   │   │   ├── V0.059__add_row_hash_on_regulations_cacem.sql
+│   │   │       │   │   │   ├── V0.060__create_administrations.sql
+│   │   │       │   │   │   ├── V0.061__create_control_units.sql
+│   │   │       │   │   │   ├── V0.062__update_control_resources.sql
+│   │   │       │   │   │   ├── V0.063__create_join_mission_controllers_tables.sql
+│   │   │       │   │   │   ├── V0.064.1__make_mission_source_enum.sql
+│   │   │       │   │   │   ├── V0.065__rename_missions_datetime_columns.sql
+│   │   │       │   │   │   ├── V0.066__upgrade_postgis_extension.sql
+│   │   │       │   │   │   ├── V0.067__add_control_map_view.sql
+│   │   │       │   │   │   ├── V0.068__add_mission_order_column_to_missions_table.sql
+│   │   │       │   │   │   ├── V0.069__add_analytics_surveillance_density_map_view.sql
+│   │   │       │   │   │   ├── V0.070__add_control_objectives_table.sql
+│   │   │       │   │   │   ├── V0.071.1__multiple_themes_for_actions.sql
+│   │   │       │   │   │   ├── V0.072__missionTypes_as_enums.sql
+│   │   │       │   │   │   ├── V0.073__alter_missions_table.sql
+│   │   │       │   │   │   ├── V0.074__fix_multiple_themes_for_actions.sql
+│   │   │       │   │   │   ├── V0.075__remove_unused_fields_from_env_actions.sql
+│   │   │       │   │   │   ├── V0.076__create_analytics_actions_mview.sql
+│   │   │       │   │   │   ├── V0.077__update_natinf_table.sql
+│   │   │       │   │   │   ├── V0.078__delete_missions_nature.sql
+│   │   │       │   │   │   ├── V0.079__drop_list_to_array_functions.sql
+│   │   │       │   │   │   ├── V0.080__add_semaphores_table.sql
+│   │   │       │   │   │   ├── V0.081__add_amp_table.sql
+│   │   │       │   │   │   ├── V0.083__add_facade_and_department_to_env_actions_table.sql
+│   │   │       │   │   │   ├── V0.084__alter_envactions_table.sql
+│   │   │       │   │   │   ├── V0.085__update_analytics_actions_mview.sql
+│   │   │       │   │   │   ├── V0.086__delete_cnsp_test_missions.sql
+│   │   │       │   │   │   ├── V0.087__add_mpa_type_to_amp_cacem.sql
+│   │   │       │   │   │   ├── V0.088__update_missions_table.sql
+│   │   │       │   │   │   ├── V0.089__update_analytics_actions_mview.sql
+│   │   │       │   │   │   ├── V0.090__create_reportings.sql
+│   │   │       │   │   │   ├── V0.091__update_analytics_surveillance_density_map_view.sql
+│   │   │       │   │   │   ├── V0.092__update_analytics_actions_mview.sql
+│   │   │       │   │   │   ├── V0.093__remove_duration_from_envactions_table.sql
+│   │   │       │   │   │   ├── V0.094__update_reportings_target_types.sql
+│   │   │       │   │   │   ├── V0.095__update_reportings_table.sql
+│   │   │       │   │   │   ├── V0.096__update_control_units_and_create_related_tables.sql
+│   │   │       │   │   │   ├── V0.097__alter_control_unit_resources_table.sql
+│   │   │       │   │   │   ├── V0.098__reference_mission_in_reporting.sql
+│   │   │       │   │   │   ├── V0.099__add_other_control_types_rapportnav.sql
+│   │   │       │   │   │   ├── V0.0__add_postgis_extension.sql
+│   │   │       │   │   │   ├── V0.100__add_is_archived_to_control_unit_resources.sql
+│   │   │       │   │   │   ├── V0.101__reconnect_mission_resources_to_control_unit_resources.sql
+│   │   │       │   │   │   ├── V0.102__fix_mission_control_resources_id_sequence.sql
+│   │   │       │   │   │   ├── V0.103__create_action_theme.sql
+│   │   │       │   │   │   ├── V0.104__update_materialized_view_themes.sql
+│   │   │       │   │   │   ├── V0.105__add_control_plan_2024.sql
+│   │   │       │   │   │   ├── V0.106.1__add_created_updated_columns_in_missions.sql
+│   │   │       │   │   │   ├── V0.107__update_reportings_sequence.sql
+│   │   │       │   │   │   ├── V0.108__update_public_schema_privileges.sql
+│   │   │       │   │   │   ├── V0.109__remove_deprecated_control_themes_table.sql
+│   │   │       │   │   │   ├── V0.110__create_reportings_fts_dictionnary.sql
+│   │   │       │   │   │   ├── V0.111__add_serial_on_many_to_many_tables.sql
+│   │   │       │   │   │   ├── V0.112__update_analytics_views_with_new_themes.sql
+│   │   │       │   │   │   ├── V0.113__update_control_locations_view.sql
+│   │   │       │   │   │   ├── V0.115__add_with_vhf_answer_to_reportings.sql
+│   │   │       │   │   │   ├── V0.116__update_infraction_vessel_size_type.sql
+│   │   │       │   │   │   ├── V0.117__update_analytics_views_with_new_themes.sql
+│   │   │       │   │   │   ├── V0.119__update_surveillances-zone-with-mission-zone.sql
+│   │   │       │   │   │   ├── V0.120__update_analytics_surveillance_density_map_view.sql
+│   │   │       │   │   │   ├── V0.121__fix_geometries.sql
+│   │   │       │   │   │   ├── V0.122__add_mpa_type_cacem_url_legicem_to_amp_cacem.sql
+│   │   │       │   │   │   ├── V0.123__update_env_actions_table.sql
+│   │   │       │   │   │   ├── V0.124__delete_closed_column_missions_table.sql
+│   │   │       │   │   │   ├── V0.125__create_reporting_actions_view.sql
+│   │   │       │   │   │   ├── V0.126__add_updated_column_in_reportings.sql
+│   │   │       │   │   │   ├── V0.127__create_emails_sent_to_control_units_table.sql
+│   │   │       │   │   │   ├── V0.128__update_control_unit_contacts_table.sql
+│   │   │       │   │   │   ├── V0.129__add_plan_column_in_analytics_actions_table.sql
+│   │   │       │   │   │   ├── V0.130__create_reporting_actions_view.sql
+│   │   │       │   │   │   ├── V0.131__update_reportings_table.sql
+│   │   │       │   │   │   ├── V0.132__add_infractions_in_analytics_actions_table.sql
+│   │   │       │   │   │   ├── V0.133__update_envaction_value_themes_duration_protectedspecies.sql
+│   │   │       │   │   │   ├── V0.134__add_observations_by_unit_to_env_actions.sql
+│   │   │       │   │   │   ├── V0.135__add_observations_by_unit_to_missions.sql
+│   │   │       │   │   │   ├── V0.136__update_contact_phone_remove_spaces.sql
+│   │   │       │   │   │   ├── V0.137__create_vigilance_areas_table.sql
+│   │   │       │   │   │   ├── V0.138__metabase_upload_schema.sql
+│   │   │       │   │   │   ├── V0.139__update_reporting_actions_view.sql
+│   │   │       │   │   │   ├── V0.140__update_vigilance_areas_table.sql
+│   │   │       │   │   │   ├── V0.141__create_user_authorisations_table.sql
+│   │   │       │   │   │   ├── V0.142__add_infraction_nbtarget_to_value.sql
+│   │   │       │   │   │   ├── V0.144__create_and_migrate_reporting_source.sql
+│   │   │       │   │   │   ├── V0.145__update_vigilance_area_table.sql
+│   │   │       │   │   │   ├── V0.146__update_vigilance_area_table_add_is_archived.sql
+│   │   │       │   │   │   ├── V0.149__update_infraction_id_to_be_unique.sql
+│   │   │       │   │   │   ├── V0.150__update_note_completion_status.sql
+│   │   │       │   │   │   ├── V0.151__update_reporting_table.sql
+│   │   │       │   │   │   ├── V0.152__migration_poseidon_infraction.sql
+│   │   │       │   │   │   ├── V0.153__create_vigilance_area_documents_table.sql
+│   │   │       │   │   │   ├── V0.154__create_dashboard_table.sql
+│   │   │       │   │   │   ├── V0.155__add_column_facade_to_dashboard.sql
+│   │   │       │   │   │   ├── V0.156__add_column_sea_front_to_vigilance_area.sql
+│   │   │       │   │   │   ├── V0.157__add_column_deleted_to_dashboard.sql
+│   │   │       │   │   │   ├── V0.158__drop_infractions_in_analytics_actions_table.sql
+│   │   │       │   │   │   ├── V0.159__fix_reportings_sources_emptied.sql
+│   │   │       │   │   │   ├── V0.160__alter_column_comments_to_text.sql
+│   │   │       │   │   │   ├── V0.161__delete_columns_in_regulations.sql
+│   │   │       │   │   │   ├── V0.162__add_columns_created_at_updated_at_is_at_all_times_to_vigilance_area.sql
+│   │   │       │   │   │   ├── V0.163__delete_revelant_court_field_from_env_actions.sql
+│   │   │       │   │   │   ├── V0.164__update_infractions_with_seizure.sql
+│   │   │       │   │   │   ├── V0.165__add_2025_sub_themes_and_tags.sql
+│   │   │       │   │   │   ├── V0.166__update_default_seizure_in_infractions.sql
+│   │   │       │   │   │   ├── V0.167__update_vigilance_areas_on_complete_year.sql
+│   │   │       │   │   │   ├── V0.168__alter_mission_source_type_RAPPORT_NAV.sql
+│   │   │       │   │   │   ├── V0.169__update_reporting_actions_view.sql
+│   │   │       │   │   │   ├── V0.170__exclude_actions_without_unit_from_analytic_actions.sql
+│   │   │       │   │   │   ├── V0.172__add_updated_at_in_analytic_actions.sql
+│   │   │       │   │   │   ├── V0.173__create_dashboard_images_table_and_add_link.sql
+│   │   │       │   │   │   ├── V0.174__add_default_value_to_dashboard_link.sql
+│   │   │       │   │   │   ├── V0.175__update_analytics_actions_view.sql
+│   │   │       │   │   │   ├── V0.176__update_reporting_actions_view.sql
+│   │   │       │   │   │   ├── V0.177__create_tags_table.sql
+│   │   │       │   │   │   ├── V0.178__create_themes_table.sql
+│   │   │       │   │   │   ├── V0.179__migrate_theme_and_tags.sql
+│   │   │       │   │   │   ├── V0.180__update_analytics_actions_view.sql
+│   │   │       │   │   │   ├── V0.181__update_reporting_actions_view.sql
+│   │   │       │   │   │   ├── V0.182__update_analytics_controls_locations_views.sql
+│   │   │       │   │   │   ├── V0.183__create_localized_areas_table.sql
+│   │   │       │   │   │   ├── V0.184__drop_regulatory_areas_constraints.sql
+│   │   │       │   │   │   ├── V0.185__add_column_vigilance_area_validate_at.sql
+│   │   │       │   │   │   ├── V0.186__truncate_env_actions_themes_subthemes_tags.sql
+│   │   │       │   │   │   ├── V0.187__create_and_migrate_vigilance_area_source.sql
+│   │   │       │   │   │   ├── V0.188__create_beaches_table.sql
+│   │   │       │   │   │   ├── V0.189__update_vigilance_area_source.sql
+│   │   │       │   │   │   ├── V0.190__update_awareness.sql
+│   │   │       │   │   │   ├── V0.191__create_vessel_table.sql
+│   │   │       │   │   │   ├── V0.192__create_naf_table.sql
+│   │   │       │   │   │   ├── V0.193__insert_naf.sql
+│   │   │       │   │   │   ├── V0.194__create_legal_status_table.sql
+│   │   │       │   │   │   ├── V0.195__insert_legal_status.sql
+│   │   │       │   │   │   ├── V0.196__insert_search_vessel_indexes.sql
+│   │   │       │   │   │   ├── V0.197__create_latest_vessel_materialized_view.sql
+│   │   │       │   │   │   ├── V0.198__add_column_callsign_vessels.sql
+│   │   │       │   │   │   ├── V0.200__create_vigilance_area_period.sql
+│   │   │       │   │   │   ├── V0.201__add_column_control_plan_regulatory_areas.sql
+│   │   │       │   │   │   ├── V0.202__create_table_ais_positions.sql
+│   │   │       │   │   │   ├── V0.203__create_last_position_table.sql
+│   │   │       │   │   │   ├── V0.204__create_ref_natinfs_table.sql
+│   │   │       │   │   │   ├── V0.205__add_unaccent_extension.sql
+│   │   │       │   │   │   ├── V0.206__create_beach_search_view.sql
+│   │   │       │   │   │   └── V0.207__update_regulations_row_hash.sql
+│   │   │       │   │   └── layers
+│   │   │       │   │       ├── V0.001__create_fao_areas.sql
+│   │   │       │   │       ├── V0.002__create_eez_areas.sql
+│   │   │       │   │       ├── V0.003__create_3_miles_areas.sql
+│   │   │       │   │       ├── V0.004__create_6_miles_areas.sql
+│   │   │       │   │       ├── V0.005__create_12_miles_areas.sql
+│   │   │       │   │       ├── V0.006__create_1241_eaux_occidentales_australes_areas.sql
+│   │   │       │   │       ├── V0.007__create_1241_eaux_occidentales_septentrionales.sql
+│   │   │       │   │       ├── V0.008__create_1241_eaux_union_dans_oi_et_atl_ouest_areas.sql
+│   │   │       │   │       ├── V0.009__create_1241_mer_baltique.sql
+│   │   │       │   │       ├── V0.010__create_1241_mer_du_nord.sql
+│   │   │       │   │       ├── V0.011__create_1241_mer_mediterranee.sql
+│   │   │       │   │       ├── V0.012__create_1241_mer_noire.sql
+│   │   │       │   │       ├── V0.013__create_cormoran_areas.sql
+│   │   │       │   │       ├── V0.014__create_aem_areas.sql
+│   │   │       │   │       ├── V0.015__create_fao_CCAMLR_areas.sql
+│   │   │       │   │       ├── V0.016__create_fao_ICCAT_areas.sql
+│   │   │       │   │       ├── V0.017__create_fao_IOTC_areas.sql
+│   │   │       │   │       ├── V0.018__create_fao_NEAFC_areas.sql
+│   │   │       │   │       ├── V0.019__create_fao_SIOFA_areas.sql
+│   │   │       │   │       ├── V0.020__create_rectangles_stat_areas.sql
+│   │   │       │   │       ├── V0.021__create_brexit_areas.sql
+│   │   │       │   │       ├── V0.022__create_situ_atlant_areas.sql
+│   │   │       │   │       ├── V0.023__create_situ_med_areas.sql
+│   │   │       │   │       ├── V0.024__create_situ_memn_areas.sql
+│   │   │       │   │       ├── V0.025__create_situ_outre_mer_areas.sql
+│   │   │       │   │       ├── V0.026__create_situs_areas.sql
+│   │   │       │   │       ├── V0.027__create_navigation_category_areas_tables.sql
+│   │   │       │   │       ├── V0.028__create_facade_areas_subdivided.sql
+│   │   │       │   │       ├── V0.029__create_neafc_regulatory_area.sql
+│   │   │       │   │       ├── V0.030__create_effort_zones_areas.sql
+│   │   │       │   │       ├── V0.031__create_cgpm_areas.sql
+│   │   │       │   │       ├── V0.032__create_nafo_regulatory_area.sql
+│   │   │       │   │       ├── V0.033__create_cgpm_statistical_rectangles_areas.sql
+│   │   │       │   │       ├── V0.050__add_id_to_facade_areas_subdivided.sql
+│   │   │       │   │       ├── V0.058__drop_unused_administrative_areas_tables.sql
+│   │   │       │   │       ├── V0.082__create_departments_areas.sql
+│   │   │       │   │       ├── V0.114__add_administrative_layers.sql
+│   │   │       │   │       ├── V0.118__facade_areas_unextended.sql
+│   │   │       │   │       ├── V0.143__create_marpol.sql
+│   │   │       │   │       ├── V0.147__create_competence_cross_areas.sql
+│   │   │       │   │       ├── V0.148__alter_competence_cross_areas.sql
+│   │   │       │   │       └── V0.171__create_three_hundred_meters_areas.sql
+│   │   │       │   └── testdata
+│   │   │       │       ├── V0.064.0__add_dummy_mission_for_0.064_migration.sql
+│   │   │       │       ├── V0.071.0__dummy_mission_for_migration.sql
+│   │   │       │       ├── V0.106.0__insert_dummy_missions_for_migration.sql
+│   │   │       │       ├── V666.01__insert_facade_areas.sql
+│   │   │       │       ├── V666.02__dummy_amp_cacem.sql
+│   │   │       │       ├── V666.03__insert_dummy_regulations_cacem.sql
+│   │   │       │       ├── V666.04__insert_dummy_department_areas.sql
+│   │   │       │       ├── V666.05__insert_dummy_bases.sql
+│   │   │       │       ├── V666.06__insert_dummy_administrations.sql
+│   │   │       │       ├── V666.07__insert_dummy_control_units.sql
+│   │   │       │       ├── V666.08__insert_dummy_tags.sql
+│   │   │       │       ├── V666.09__insert_dummy_themes.sql
+│   │   │       │       ├── V666.10__insert_dummy_missions.sql
+│   │   │       │       ├── V666.11__insert_dummy_env_actions.sql
+│   │   │       │       ├── V666.12__insert_dummy_semaphores.sql
+│   │   │       │       ├── V666.13__insert_dummy_reportings.sql
+│   │   │       │       ├── V666.14__update_envaction_value_themes_duration_protectedspecies.sql
+│   │   │       │       ├── V666.15__update_contact_phone_remove_spaces.sql
+│   │   │       │       ├── V666.16__insert_dummy_vigilance_area.sql
+│   │   │       │       ├── V666.17__Insert_dummy_user_authorizations.sql
+│   │   │       │       ├── V666.18__add_infraction_nbtarget_to_value.sql
+│   │   │       │       ├── V666.19__insert_dummy_dashboards.sql
+│   │   │       │       ├── V666.20__add_column_sea_front_to_vigilance_area.sql
+│   │   │       │       ├── V666.21__migrate_theme_and_tags.sql
+│   │   │       │       ├── V666.22__insert_localized_areas.sql
+│   │   │       │       ├── V666.23__insert_beaches.sql
+│   │   │       │       ├── V666.24__update_awareness.sql
+│   │   │       │       └── V666.25__insert_vessels.sql
+│   │   │       ├── log4j2-spring.xml
+│   │   │       └── template_export_brief.docx
+│   │   └── test
+│   │       ├── kotlin
+│   │       │   └── fr
+│   │       │       └── gouv
+│   │       │           └── cacem
+│   │       │               └── monitorenv
+│   │       │                   ├── config
+│   │       │                   │   ├── CustomQueryCountListener.kt
+│   │       │                   │   ├── DataSourceProxyBeanPostProcessor.kt
+│   │       │                   │   └── DataSourceProxyTestConfig.kt
+│   │       │                   ├── domain
+│   │       │                   │   ├── mappers
+│   │       │                   │   │   ├── EnvActionMapperUTest.kt
+│   │       │                   │   │   ├── PatchEnvActionEntityUTest.kt
+│   │       │                   │   │   └── PatchMissionEntityUTest.kt
+│   │       │                   │   ├── use_cases
+│   │       │                   │   │   ├── actions
+│   │       │                   │   │   │   ├── GetEnvActionsByMmsiUTest.kt
+│   │       │                   │   │   │   ├── PatchEnvActionUTest.kt
+│   │       │                   │   │   │   └── fixtures
+│   │       │                   │   │   │       └── EnvActionFixture.kt
+│   │       │                   │   │   ├── administration
+│   │       │                   │   │   │   ├── ArchiveAdministrationUTests.kt
+│   │       │                   │   │   │   ├── CanArchiveAdministrationUTests.kt
+│   │       │                   │   │   │   ├── CanDeleteAdministrationUTests.kt
+│   │       │                   │   │   │   ├── CreateOrUpdateAdministrationUTests.kt
+│   │       │                   │   │   │   ├── DeleteAdministrationUTests.kt
+│   │       │                   │   │   │   ├── GetAdministrationByIdUTests.kt
+│   │       │                   │   │   │   └── GetAdministrationsUTests.kt
+│   │       │                   │   │   ├── amp
+│   │       │                   │   │   │   └── fixtures
+│   │       │                   │   │   │       └── AmpFixture.kt
+│   │       │                   │   │   ├── amps
+│   │       │                   │   │   │   └── GetAllAMPsUTest.kt
+│   │       │                   │   │   ├── authorization
+│   │       │                   │   │   │   ├── DeleteUserUTest.kt
+│   │       │                   │   │   │   ├── GetAuthorizedUserUTest.kt
+│   │       │                   │   │   │   ├── GetIsAuthorizedUserUTests.kt
+│   │       │                   │   │   │   └── SaveUserUTest.kt
+│   │       │                   │   │   ├── controlPlan
+│   │       │                   │   │   │   ├── GetControlPlansByYearUTest.kt
+│   │       │                   │   │   │   └── GetControlPlansUTest.kt
+│   │       │                   │   │   ├── controlUnit
+│   │       │                   │   │   │   ├── ArchiveControlUnitResourceUTests.kt
+│   │       │                   │   │   │   ├── ArchiveControlUnitUTests.kt
+│   │       │                   │   │   │   ├── CanDeleteControlUnitResourceUTests.kt
+│   │       │                   │   │   │   ├── CanDeleteControlUnitUTests.kt
+│   │       │                   │   │   │   ├── CreateOrUpdateControlUnitContactUTests.kt
+│   │       │                   │   │   │   ├── CreateOrUpdateControlUnitResourceUTests.kt
+│   │       │                   │   │   │   ├── CreateOrUpdateControlUnitUTests.kt
+│   │       │                   │   │   │   ├── DeleteControlUnitContactUTests.kt
+│   │       │                   │   │   │   ├── DeleteControlUnitResourceUTests.kt
+│   │       │                   │   │   │   ├── DeleteControlUnitUTests.kt
+│   │       │                   │   │   │   ├── GetControlUnitByIdUTests.kt
+│   │       │                   │   │   │   ├── GetControlUnitContactByIdUTests.kt
+│   │       │                   │   │   │   ├── GetControlUnitContactsUTests.kt
+│   │       │                   │   │   │   ├── GetControlUnitResourceByIdUTests.kt
+│   │       │                   │   │   │   ├── GetControlUnitResourcesUTests.kt
+│   │       │                   │   │   │   ├── GetControlUnitsUTests.kt
+│   │       │                   │   │   │   ├── GetLegacyControlUnitsUTest.kt
+│   │       │                   │   │   │   ├── GetNearbyUnitsUTest.kt
+│   │       │                   │   │   │   └── fixtures
+│   │       │                   │   │   │       └── ControlUnitFixture.kt
+│   │       │                   │   │   ├── dashboard
+│   │       │                   │   │   │   ├── CreateBriefUTest.kt
+│   │       │                   │   │   │   ├── DeleteDashboardUTest.kt
+│   │       │                   │   │   │   ├── ExtractAreaUTest.kt
+│   │       │                   │   │   │   ├── GetDashboardUTest.kt
+│   │       │                   │   │   │   ├── GetDashboardsUTest.kt
+│   │       │                   │   │   │   ├── SaveDashboardUTest.kt
+│   │       │                   │   │   │   └── fixtures
+│   │       │                   │   │   │       └── DashboardFixture.kt
+│   │       │                   │   │   ├── departmentArea
+│   │       │                   │   │   │   ├── GetDepartmentAreaByInseeCodeUTests.kt
+│   │       │                   │   │   │   └── GetDepartmentAreasUTests.kt
+│   │       │                   │   │   ├── localizedArea
+│   │       │                   │   │   │   └── GetAllLocalizedAreasUTests.kt
+│   │       │                   │   │   ├── missions
+│   │       │                   │   │   │   ├── BypassActionCheckAndDeleteMissionUTest.kt
+│   │       │                   │   │   │   ├── CanDeleteMissionUTests.kt
+│   │       │                   │   │   │   ├── CreateOrUpdateEnvActionsUTests.kt
+│   │       │                   │   │   │   ├── CreateOrUpdateMissionUTests.kt
+│   │       │                   │   │   │   ├── CreateOrUpdateMissionWithActionsAndAttachedReportingUTests.kt
+│   │       │                   │   │   │   ├── DeleteMissionUTests.kt
+│   │       │                   │   │   │   ├── GetEngagedControlUnitsUTests.kt
+│   │       │                   │   │   │   ├── GetFullMissionUTest.kt
+│   │       │                   │   │   │   ├── GetFullMissionWithFishAndRapportNavActionsUTest.kt
+│   │       │                   │   │   │   ├── GetMissionAndSourceActionUTest.kt
+│   │       │                   │   │   │   ├── GetMissionUTest.kt
+│   │       │                   │   │   │   ├── GetMissionWithRapportNavActionsUTests.kt
+│   │       │                   │   │   │   ├── GetMissionsByIdsUTest.kt
+│   │       │                   │   │   │   ├── GetMissionsUTest.kt
+│   │       │                   │   │   │   ├── PatchMissionUTest.kt
+│   │       │                   │   │   │   ├── TestUtils.kt
+│   │       │                   │   │   │   └── fixtures
+│   │       │                   │   │   │       └── MissionFixture.kt
+│   │       │                   │   │   ├── natinfs
+│   │       │                   │   │   │   └── GetAllNatinfsUTest.kt
+│   │       │                   │   │   ├── recentActivity
+│   │       │                   │   │   │   ├── GetRecentControlsActivityUTest.kt
+│   │       │                   │   │   │   └── RecentControlsActivityListDTOFixture.kt
+│   │       │                   │   │   ├── regulatoryArea
+│   │       │                   │   │   │   └── fixtures
+│   │       │                   │   │   │       └── RegulatoryAreaFixture.kt
+│   │       │                   │   │   ├── regulatoryAreas
+│   │       │                   │   │   │   ├── GetAllRegulatoryAreasUTest.kt
+│   │       │                   │   │   │   └── GetRegulatoryAreaByIdUTest.kt
+│   │       │                   │   │   ├── reportings
+│   │       │                   │   │   │   ├── ArchiveOutdatedReportingsUTest.kt
+│   │       │                   │   │   │   ├── ArchiveReportingsUTest.kt
+│   │       │                   │   │   │   ├── CreateOrUpdateReportingUTests.kt
+│   │       │                   │   │   │   ├── DeleteReportingUTest.kt
+│   │       │                   │   │   │   ├── DeleteReportingsUTest.kt
+│   │       │                   │   │   │   ├── GetReportingByIdUTest.kt
+│   │       │                   │   │   │   ├── GetReportingsByIdsUTest.kt
+│   │       │                   │   │   │   ├── GetReportingsUTest.kt
+│   │       │                   │   │   │   ├── GetSuspicionOfInfractionsByMmsiUTest.kt
+│   │       │                   │   │   │   └── fixtures
+│   │       │                   │   │   │       └── ReportingFixture.kt
+│   │       │                   │   │   ├── semaphores
+│   │       │                   │   │   │   ├── GetAllSemaphoresUTest.kt
+│   │       │                   │   │   │   ├── GetSemaphoreByIdUTest.kt
+│   │       │                   │   │   │   └── fixtures
+│   │       │                   │   │   │       └── SemaphoreFixture.kt
+│   │       │                   │   │   ├── station
+│   │       │                   │   │   │   ├── CanDeleteStationUTests.kt
+│   │       │                   │   │   │   ├── CreateOrUpdateStationUTests.kt
+│   │       │                   │   │   │   ├── DeleteStationUTests.kt
+│   │       │                   │   │   │   ├── GetStationByIdUTests.kt
+│   │       │                   │   │   │   └── GetStationsUTests.kt
+│   │       │                   │   │   ├── tags
+│   │       │                   │   │   │   ├── GetTagsByRegulatoryAreasUTest.kt
+│   │       │                   │   │   │   ├── GetTagsUTest.kt
+│   │       │                   │   │   │   └── fixtures
+│   │       │                   │   │   │       └── TagFixture.kt
+│   │       │                   │   │   ├── themes
+│   │       │                   │   │   │   ├── GetThemesByRegulatoryAreasUTest.kt
+│   │       │                   │   │   │   ├── GetThemesUTest.kt
+│   │       │                   │   │   │   └── fixtures
+│   │       │                   │   │   │       └── ThemeFixture.kt
+│   │       │                   │   │   ├── vessels
+│   │       │                   │   │   │   ├── GetVesselByIdUTest.kt
+│   │       │                   │   │   │   ├── SearchVesselsUTest.kt
+│   │       │                   │   │   │   └── fixtures
+│   │       │                   │   │   │       └── VesselFixture.kt
+│   │       │                   │   │   └── vigilanceArea
+│   │       │                   │   │       ├── CreateOrUpdateVigilanceAreaUTests.kt
+│   │       │                   │   │       ├── DeleteVigilanceAreaUTests.kt
+│   │       │                   │   │       ├── GetTrigramsUTests.kt
+│   │       │                   │   │       ├── GetVigilanceAreaByIdUTests.kt
+│   │       │                   │   │       ├── GetVigilanceAreasByIdsUTest.kt
+│   │       │                   │   │       ├── GetVigilanceAreasUTests.kt
+│   │       │                   │   │       └── fixtures
+│   │       │                   │   │           ├── VigilanceAreaFixture.kt
+│   │       │                   │   │           ├── VigilanceAreaPeriodFixture.kt
+│   │       │                   │   │           └── VigilanceAreaSourceFixture.kt
+│   │       │                   │   └── validators
+│   │       │                   │       ├── mission
+│   │       │                   │       │   ├── MissionValidatorUTest.kt
+│   │       │                   │       │   └── MissionValidatorWithEnvActionsUTest.kt
+│   │       │                   │       ├── reporting
+│   │       │                   │       │   └── ReportingValidatorUTest.kt
+│   │       │                   │       └── vigilance_area
+│   │       │                   │           └── VigilanceAreaValidatorUTest.kt
+│   │       │                   └── infrastructure
+│   │       │                       ├── api
+│   │       │                       │   ├── adapters
+│   │       │                       │   │   ├── PatchableDataInputUTests.kt
+│   │       │                       │   │   └── missions
+│   │       │                       │   │       ├── CreateOrUpdateMissionDataInputUTests.kt
+│   │       │                       │   │       └── EnvActionDataInputUTests.kt
+│   │       │                       │   └── endpoints
+│   │       │                       │       ├── bff
+│   │       │                       │       │   └── v1
+│   │       │                       │       │       ├── AmpsITests.kt
+│   │       │                       │       │       ├── ControlUnitsITests.kt
+│   │       │                       │       │       ├── DashboardsITests.kt
+│   │       │                       │       │       ├── DepartmentAreaITests.kt
+│   │       │                       │       │       ├── InfractionsITest.kt
+│   │       │                       │       │       ├── LocalizedAreasITests.kt
+│   │       │                       │       │       ├── MissionsITests.kt
+│   │       │                       │       │       ├── NatinfsITests.kt
+│   │       │                       │       │       ├── RecentActivityITests.kt
+│   │       │                       │       │       ├── RegulatoryAreasITests.kt
+│   │       │                       │       │       ├── ReportingsITests.kt
+│   │       │                       │       │       ├── SemaphoresITests.kt
+│   │       │                       │       │       ├── TagsITest.kt
+│   │       │                       │       │       ├── TestUtils.kt
+│   │       │                       │       │       ├── VesselsITest.kt
+│   │       │                       │       │       └── VigilanceAreasITests.kt
+│   │       │                       │       ├── publicapi
+│   │       │                       │       │   ├── AdministrationsITests.kt
+│   │       │                       │       │   ├── ApiHealthcheckITests.kt
+│   │       │                       │       │   ├── ApiStationsITests.kt
+│   │       │                       │       │   ├── ControlPlansITests.kt
+│   │       │                       │       │   ├── ControlUnitContactsITests.kt
+│   │       │                       │       │   ├── ControlUnitResourcesITests.kt
+│   │       │                       │       │   ├── ControlUnitsITests.kt
+│   │       │                       │       │   ├── LegacyControlUnitsITests.kt
+│   │       │                       │       │   ├── SpaControllerUTest.kt
+│   │       │                       │       │   ├── ThemesITest.kt
+│   │       │                       │       │   ├── actions
+│   │       │                       │       │   │   └── EnvActionITest.kt
+│   │       │                       │       │   ├── v1
+│   │       │                       │       │   │   └── missions
+│   │       │                       │       │   │       ├── LegacyMissionsITests.kt
+│   │       │                       │       │   │       └── SSEMissionUTests.kt
+│   │       │                       │       │   └── v2
+│   │       │                       │       │       └── MissionsITests.kt
+│   │       │                       │       └── utils
+│   │       │                       │           └── ValidateIdUTests.kt
+│   │       │                       ├── database
+│   │       │                       │   └── repositories
+│   │       │                       │       ├── AbstractDBTests.kt
+│   │       │                       │       ├── AbstractKafkaTests.kt
+│   │       │                       │       ├── JPALocalizedAreaRepositoryITests.kt
+│   │       │                       │       ├── JpaAMPRepositoryTests.kt
+│   │       │                       │       ├── JpaAdministrationRepositoryITests.kt
+│   │       │                       │       ├── JpaControlPlanSubThemeRepositoryITests.kt
+│   │       │                       │       ├── JpaControlPlanTagRepositoryITests.kt
+│   │       │                       │       ├── JpaControlPlanThemeRepositoryITests.kt
+│   │       │                       │       ├── JpaControlUnitContactRepositoryITests.kt
+│   │       │                       │       ├── JpaControlUnitRepositoryITests.kt
+│   │       │                       │       ├── JpaControlUnitResourceRepositoryITests.kt
+│   │       │                       │       ├── JpaDashboardRepositoryITests.kt
+│   │       │                       │       ├── JpaDepartmentAreasRepositoryTests.kt
+│   │       │                       │       ├── JpaEnvActionRepositoryITests.kt
+│   │       │                       │       ├── JpaFacadeAreasRepositoryTests.kt
+│   │       │                       │       ├── JpaMissionRepositoryITests.kt
+│   │       │                       │       ├── JpaNatinfRepositoryITests.kt
+│   │       │                       │       ├── JpaPostgisFunctionRepositoryITests.kt
+│   │       │                       │       ├── JpaRegulatoryAreaRepositoryITests.kt
+│   │       │                       │       ├── JpaReportingRepositoryITests.kt
+│   │       │                       │       ├── JpaReportingSourceRepositoryITest.kt
+│   │       │                       │       ├── JpaSemaphoreRepositoryITests.kt
+│   │       │                       │       ├── JpaStationRepositoryITests.kt
+│   │       │                       │       ├── JpaTagRepositoryITest.kt
+│   │       │                       │       ├── JpaThemeRepositoryITest.kt
+│   │       │                       │       ├── JpaVesselRepositoryITest.kt
+│   │       │                       │       └── JpaVigilanceAreaRepositoryITests.kt
+│   │       │                       ├── kafka
+│   │       │                       │   └── AISListenerITests.kt
+│   │       │                       ├── monitorfish
+│   │       │                       │   ├── APIFishMissionActionsRepositoryITests.kt
+│   │       │                       │   └── TestUtils.kt
+│   │       │                       └── rapportnav
+│   │       │                           └── APIRapportNavActionsRepositoryITests.kt
+│   │       └── resources
+│   │           ├── application.yml
+│   │           └── log4j2-test.xml
+│   └── tools
+│       └── check-clean-architecture.sh
+├── datascience
+│   ├── .env.template
+│   ├── .env.test
+│   ├── .pre-commit-config.yaml
+│   ├── .python-version
+│   ├── __init__.py
+│   ├── config.py
+│   ├── main.py
+│   ├── poetry.lock
+│   ├── pyproject.toml
+│   ├── requirements-dev.txt
+│   ├── requirements.txt
+│   ├── scripts
+│   │   └── run_flows.py
+│   ├── setup.py
+│   ├── src
+│   │   ├── __init__.py
+│   │   ├── db_config.py
+│   │   ├── pipeline
+│   │   │   ├── __init__.py
+│   │   │   ├── data
+│   │   │   │   ├── .gitkeep
+│   │   │   │   └── dummy_control_objectives.csv
+│   │   │   ├── emails
+│   │   │   │   ├── stylesheets
+│   │   │   │   │   ├── email_to_control_units.css
+│   │   │   │   │   └── splendid.css
+│   │   │   │   └── templates
+│   │   │   │       └── email_actions_to_units.jinja
+│   │   │   ├── entities
+│   │   │   │   ├── __init__.py
+│   │   │   │   └── actions_emailing.py
+│   │   │   ├── flows
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── admin_areas.py
+│   │   │   │   ├── amp_cacem.py
+│   │   │   │   ├── amp_ofb.py
+│   │   │   │   ├── beaches.py
+│   │   │   │   ├── competence_cross_areas.py
+│   │   │   │   ├── control_objectives.py
+│   │   │   │   ├── email_actions_to_units.py
+│   │   │   │   ├── facade_areas.py
+│   │   │   │   ├── facade_areas_unextended.py
+│   │   │   │   ├── fao_areas.py
+│   │   │   │   ├── historic_control_units.py
+│   │   │   │   ├── historic_controls.py
+│   │   │   │   ├── infractions.py
+│   │   │   │   ├── localized_areas.py
+│   │   │   │   ├── marpol.py
+│   │   │   │   ├── refresh_materialized_view.py
+│   │   │   │   ├── regulations.py
+│   │   │   │   ├── regulatory_areas_open_data.py
+│   │   │   │   ├── remove_broken_missions_resources_links.py
+│   │   │   │   ├── semaphores.py
+│   │   │   │   ├── themes_and_tags.py
+│   │   │   │   ├── three_hundred_meters_areas.py
+│   │   │   │   ├── update_departments_and_facades.py
+│   │   │   │   └── vessel_repository.py
+│   │   │   ├── flows_config.py
+│   │   │   ├── generic_tasks.py
+│   │   │   ├── helpers
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── dates.py
+│   │   │   │   ├── emails.py
+│   │   │   │   ├── fao_areas.py
+│   │   │   │   ├── spatial.py
+│   │   │   │   └── strings.py
+│   │   │   ├── processing.py
+│   │   │   ├── queries
+│   │   │   │   ├── cross
+│   │   │   │   │   ├── cacem
+│   │   │   │   │   │   ├── amp.sql
+│   │   │   │   │   │   ├── amp_hashes.sql
+│   │   │   │   │   │   ├── beaches.sql
+│   │   │   │   │   │   ├── competence_cross_areas.sql
+│   │   │   │   │   │   ├── localized_areas.sql
+│   │   │   │   │   │   ├── low_water_line.sql
+│   │   │   │   │   │   ├── marpol.sql
+│   │   │   │   │   │   ├── regulations.sql
+│   │   │   │   │   │   ├── regulations_hashes.sql
+│   │   │   │   │   │   ├── regulations_open_data.sql
+│   │   │   │   │   │   ├── semaphore.sql
+│   │   │   │   │   │   ├── straight_baseline.sql
+│   │   │   │   │   │   ├── tags.sql
+│   │   │   │   │   │   ├── tags_hashes.sql
+│   │   │   │   │   │   ├── tags_regulatory_areas.sql
+│   │   │   │   │   │   ├── territorial_seas.sql
+│   │   │   │   │   │   ├── themes.sql
+│   │   │   │   │   │   ├── themes_hashes.sql
+│   │   │   │   │   │   ├── themes_regulatory_areas.sql
+│   │   │   │   │   │   └── three_hundred_meters_areas.sql
+│   │   │   │   │   └── cnsp
+│   │   │   │   │       ├── 12_miles_areas.sql
+│   │   │   │   │       ├── 3_miles_areas.sql
+│   │   │   │   │       ├── 6_miles_areas.sql
+│   │   │   │   │       ├── aem_areas.sql
+│   │   │   │   │       ├── departments_areas.sql
+│   │   │   │   │       ├── eez_areas.sql
+│   │   │   │   │       ├── facade_areas.sql
+│   │   │   │   │       ├── facade_areas_unextended.sql
+│   │   │   │   │       ├── saltwater_limit_areas.sql
+│   │   │   │   │       └── transversal_sea_limit_areas.sql
+│   │   │   │   ├── fmc
+│   │   │   │   │   ├── control_units.sql
+│   │   │   │   │   ├── historic_controls.sql
+│   │   │   │   │   ├── historic_missions.sql
+│   │   │   │   │   ├── historic_missions_units.sql
+│   │   │   │   │   └── natinf.sql
+│   │   │   │   ├── monitorenv
+│   │   │   │   │   ├── all_control_units.sql
+│   │   │   │   │   ├── amp_hashes.sql
+│   │   │   │   │   ├── control_units.sql
+│   │   │   │   │   ├── env_actions_to_email.sql
+│   │   │   │   │   ├── regulations_hashes.sql
+│   │   │   │   │   ├── remove_broken_missions_resources_links.sql
+│   │   │   │   │   ├── tags_hashes.sql
+│   │   │   │   │   ├── themes_hashes.sql
+│   │   │   │   │   ├── update_actions_departments.sql
+│   │   │   │   │   ├── update_actions_facades.sql
+│   │   │   │   │   └── update_missions_facades.sql
+│   │   │   │   └── monitorfish
+│   │   │   │       └── fao_areas.sql
+│   │   │   ├── shared_tasks
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── control_flow.py
+│   │   │   │   ├── datagouv.py
+│   │   │   │   ├── dates.py
+│   │   │   │   ├── etl.py
+│   │   │   │   ├── infrastructure.py
+│   │   │   │   └── update_queries.py
+│   │   │   └── utils.py
+│   │   ├── read_query.py
+│   │   └── utils
+│   │       ├── __init__.py
+│   │       ├── database.py
+│   │       └── graphs.py
+│   └── tests
+│       ├── __init__.py
+│       ├── conftest.py
+│       ├── mocks.py
+│       ├── test_analytics_views
+│       │   └── test_analytics_controls_locations_view.py
+│       ├── test_data
+│       │   ├── cacem_database
+│       │   │   ├── V666.500__amp.sql
+│       │   │   ├── V666.501__marpol.sql
+│       │   │   ├── V666.502__competence_cross_areas.sql
+│       │   │   ├── V666.503__threee_hundred_meters_areas.sql
+│       │   │   ├── V666.504__regulatory_areas_themes_and_tags.sql
+│       │   │   ├── V666.505__localized_areas.sql
+│       │   │   └── V666.506__beaches.sql
+│       │   ├── emails
+│       │   │   ├── expected_rendered_email.html
+│       │   │   └── expected_rendered_email_without_actions.html
+│       │   ├── remote_database
+│       │   │   ├── V666.0__Reset_themes_and_tags.sql
+│       │   │   ├── V666.17__Reset_test_eez_areas.sql
+│       │   │   ├── V666.1__Reset_test_controllers.sql
+│       │   │   ├── V666.26__Reset_test_infractions.sql
+│       │   │   ├── V666.27__Reset_test_amps.sql
+│       │   │   ├── V666.28__Reset_test_regulatory_areas.sql
+│       │   │   ├── V666.2__Reset_test_missions.sql
+│       │   │   ├── V666.30__Reset_test_localized_areas.sql
+│       │   │   ├── V666.3__insert_dummy_env_actions.sql
+│       │   │   ├── V666.4__Reset_dummy_departments_areas.sql
+│       │   │   ├── V666.5__Reset_dummy_facade_areas_subdivided.sql
+│       │   │   ├── V666.6__Reset_dummy_emails_sent_to_control_units.sql
+│       │   │   └── V666.999__Refresh_materialized_views.sql
+│       │   ├── vessel_xml
+│       │   │   ├── vessel_repository.xml
+│       │   │   └── vessel_repository.xsd
+│       │   └── zip_files
+│       │       └── amp_areas.zip
+│       ├── test_db_config.py
+│       └── test_pipeline
+│           ├── __init__.py
+│           ├── test_flows
+│           │   ├── __init__.py
+│           │   ├── test_amp_cacem.py
+│           │   ├── test_amp_ofb.py
+│           │   ├── test_beaches.py
+│           │   ├── test_competence_cross_areas.py
+│           │   ├── test_control_objectives.py
+│           │   ├── test_email_actions_to_units.py
+│           │   ├── test_historic_control_units.py
+│           │   ├── test_historic_controls.py
+│           │   ├── test_infractions.py
+│           │   ├── test_insert_historical_controls_data.py
+│           │   ├── test_localized_areas.py
+│           │   ├── test_marpol.py
+│           │   ├── test_refresh_materialized_views.py
+│           │   ├── test_regulations.py
+│           │   ├── test_regulations_open_data.py
+│           │   ├── test_themes_and_tags.py
+│           │   ├── test_three_hundred_meters_areas.py
+│           │   ├── test_update_departments_and_facades.py
+│           │   └── test_vessel_repository.py
+│           ├── test_flows_config.py
+│           ├── test_helpers
+│           │   ├── __init__.py
+│           │   └── test_dates.py
+│           ├── test_processing.py
+│           ├── test_shared_tasks
+│           │   ├── __init__.py
+│           │   ├── test_datagouv.py
+│           │   ├── test_dates.py
+│           │   ├── test_geometries.py
+│           │   └── test_update_queries.py
+│           └── test_utils.py
+├── docker-compose-test.yml
+├── docker-compose.yml
+├── frontend
+│   ├── .env.frontend.example
+│   ├── .eslintrc.cjs
+│   ├── .gitignore
+│   ├── .prettierignore
+│   ├── .prettierrc
+│   ├── config
+│   │   ├── cypress.config.ts
+│   │   ├── fileTransformer.js
+│   │   ├── husky
+│   │   │   └── pre-commit
+│   │   ├── jest.config.js
+│   │   ├── jest.global.js
+│   │   └── multi-windows
+│   │       └── jest.config.js
+│   ├── cypress
+│   │   ├── e2e
+│   │   │   ├── back_office
+│   │   │   │   ├── administration_form.spec.ts
+│   │   │   │   ├── administration_table
+│   │   │   │   │   ├── filters.spec.ts
+│   │   │   │   │   └── row_actions.spec.ts
+│   │   │   │   ├── control_unit_form.spec.ts
+│   │   │   │   ├── control_unit_table
+│   │   │   │   │   ├── filters.spec.ts
+│   │   │   │   │   └── row_actions.spec.ts
+│   │   │   │   ├── station_form.spec.ts
+│   │   │   │   └── station_table
+│   │   │   │       ├── filters.spec.ts
+│   │   │   │       └── row_actions.spec.ts
+│   │   │   ├── constants.ts
+│   │   │   ├── main_window
+│   │   │   │   ├── control_unit_dialog
+│   │   │   │   │   ├── contact_list.spec.ts
+│   │   │   │   │   ├── form.spec.ts
+│   │   │   │   │   ├── resource_list.spec.ts
+│   │   │   │   │   └── utils.ts
+│   │   │   │   ├── control_unit_list_dialog
+│   │   │   │   │   └── filters.spec.ts
+│   │   │   │   ├── dashboard
+│   │   │   │   │   └── dashboard.spec.ts
+│   │   │   │   ├── interest_point.spec.ts
+│   │   │   │   ├── layerTree
+│   │   │   │   │   ├── amp_layers.spec.ts
+│   │   │   │   │   ├── regulatory_layers.spec.ts
+│   │   │   │   │   ├── search_zone.spec.ts
+│   │   │   │   │   └── vigilance_area_layers.spec.ts
+│   │   │   │   ├── measurements_tools.spec.ts
+│   │   │   │   ├── mission
+│   │   │   │   │   └── filter.spec.ts
+│   │   │   │   ├── monitor-ext.spec.ts
+│   │   │   │   ├── recentActivity
+│   │   │   │   │   └── filters.spec.ts
+│   │   │   │   ├── reporting
+│   │   │   │   │   ├── create_reporting.spec.ts
+│   │   │   │   │   └── filter.spec.ts
+│   │   │   │   ├── search_places.spec.ts
+│   │   │   │   ├── station_overlay.spec.ts
+│   │   │   │   ├── utils.ts
+│   │   │   │   ├── vessel
+│   │   │   │   │   └── vessel-search.spec.ts
+│   │   │   │   └── vigilance_area
+│   │   │   │       ├── create_vigilance_area.spec.ts
+│   │   │   │       ├── delete_vigilance_area.spec.ts
+│   │   │   │       └── edit_vigilance_area.spec.ts
+│   │   │   ├── rgaa.spec.ts
+│   │   │   ├── side_window
+│   │   │   │   ├── dashboard
+│   │   │   │   │   └── edit_dashboard.spec.ts
+│   │   │   │   ├── dashboard_list
+│   │   │   │   │   └── filters.spec.ts
+│   │   │   │   ├── mission_form
+│   │   │   │   │   ├── attach_actions_to_reportings_in_mission.spec.ts
+│   │   │   │   │   ├── create_dashboard.spec.ts
+│   │   │   │   │   ├── delete_mission.spec.ts
+│   │   │   │   │   ├── main_form.spec.ts
+│   │   │   │   │   ├── mission_actions.spec.ts
+│   │   │   │   │   ├── mission_dates_validation.spec.ts
+│   │   │   │   │   └── mission_zone.spec.ts
+│   │   │   │   ├── mission_list
+│   │   │   │   │   ├── filters.spec.ts
+│   │   │   │   │   ├── missions.spec.ts
+│   │   │   │   │   └── missions_navigation.spec.ts
+│   │   │   │   ├── reporting
+│   │   │   │   │   ├── create_reporting.spec.ts
+│   │   │   │   │   ├── filters.spec.ts
+│   │   │   │   │   └── reportings.spec.ts
+│   │   │   │   └── vigilance_areas_list
+│   │   │   │       └── filters.spec.ts
+│   │   │   └── utils
+│   │   │       ├── createMissionWithAttachedReportingAndAttachedAction.ts
+│   │   │       ├── createPendingMission.ts
+│   │   │       ├── createReporting.ts
+│   │   │       ├── createReportingOnSideWindow.ts
+│   │   │       ├── customDayjs.ts
+│   │   │       ├── dates.test.ts
+│   │   │       ├── dates.ts
+│   │   │       ├── expectPathToBe.ts
+│   │   │       ├── getFutureDate.ts
+│   │   │       ├── getLastIdFromCollection.ts
+│   │   │       ├── getUtcDateInMultipleFormats.ts
+│   │   │       └── visitSideWindow.ts
+│   │   ├── fixtures
+│   │   │   └── image.png
+│   │   ├── mappings
+│   │   │   ├── geoserver
+│   │   │   │   ├── administrative-zone.json
+│   │   │   │   ├── beaches-search.json
+│   │   │   │   ├── regulatory-metadata.json
+│   │   │   │   ├── regulatory-search-bbox.json
+│   │   │   │   └── regulatory-search.json
+│   │   │   ├── monitorfish
+│   │   │   │   ├── get-mission_actions.53.json
+│   │   │   │   ├── get-mission_actions.failed.json
+│   │   │   │   └── get-mission_actions.json
+│   │   │   └── rapportnav
+│   │   │       ├── get-mission_actions.53.json
+│   │   │       └── get-missions_actions.json
+│   │   └── support
+│   │       ├── commands
+│   │       │   ├── dragTo.ts
+│   │       │   ├── getFeaturesFromLayer.ts
+│   │       │   └── loadPath.ts
+│   │       ├── commands.ts
+│   │       └── e2e.ts
+│   ├── index.html
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── public
+│   │   ├── Close.svg
+│   │   ├── Control.svg
+│   │   ├── Control_filled.svg
+│   │   ├── Cursor_border.svg
+│   │   ├── Observation.svg
+│   │   ├── Pointeur_selection_zone.svg
+│   │   ├── archived_reporting.svg
+│   │   ├── archived_reporting_infraction.svg
+│   │   ├── archived_reporting_observation.svg
+│   │   ├── archived_reporting_with_mission_attached.svg
+│   │   ├── favicon-32.ico
+│   │   ├── flags
+│   │   │   ├── ad.png
+│   │   │   ├── ad.svg
+│   │   │   ├── ae.png
+│   │   │   ├── ae.svg
+│   │   │   ├── af.png
+│   │   │   ├── af.svg
+│   │   │   ├── ag.png
+│   │   │   ├── ag.svg
+│   │   │   ├── ai.png
+│   │   │   ├── ai.svg
+│   │   │   ├── al.png
+│   │   │   ├── al.svg
+│   │   │   ├── am.png
+│   │   │   ├── am.svg
+│   │   │   ├── an.png
+│   │   │   ├── ao.png
+│   │   │   ├── ao.svg
+│   │   │   ├── aq.png
+│   │   │   ├── ar.png
+│   │   │   ├── ar.svg
+│   │   │   ├── as.png
+│   │   │   ├── as.svg
+│   │   │   ├── at.png
+│   │   │   ├── at.svg
+│   │   │   ├── au.png
+│   │   │   ├── au.svg
+│   │   │   ├── aw.png
+│   │   │   ├── aw.svg
+│   │   │   ├── ax.png
+│   │   │   ├── ax.svg
+│   │   │   ├── az.png
+│   │   │   ├── az.svg
+│   │   │   ├── ba.png
+│   │   │   ├── ba.svg
+│   │   │   ├── bb.png
+│   │   │   ├── bb.svg
+│   │   │   ├── bd.png
+│   │   │   ├── bd.svg
+│   │   │   ├── be.png
+│   │   │   ├── be.svg
+│   │   │   ├── bf.png
+│   │   │   ├── bf.svg
+│   │   │   ├── bg.png
+│   │   │   ├── bg.svg
+│   │   │   ├── bh.png
+│   │   │   ├── bh.svg
+│   │   │   ├── bi.png
+│   │   │   ├── bi.svg
+│   │   │   ├── bj.png
+│   │   │   ├── bj.svg
+│   │   │   ├── bl.png
+│   │   │   ├── bl.svg
+│   │   │   ├── bm.png
+│   │   │   ├── bm.svg
+│   │   │   ├── bn.png
+│   │   │   ├── bn.svg
+│   │   │   ├── bo.png
+│   │   │   ├── bo.svg
+│   │   │   ├── bq.png
+│   │   │   ├── bq.svg
+│   │   │   ├── br.png
+│   │   │   ├── br.svg
+│   │   │   ├── bs.png
+│   │   │   ├── bs.svg
+│   │   │   ├── bt.png
+│   │   │   ├── bt.svg
+│   │   │   ├── bv.png
+│   │   │   ├── bw.png
+│   │   │   ├── bw.svg
+│   │   │   ├── by.png
+│   │   │   ├── by.svg
+│   │   │   ├── bz.png
+│   │   │   ├── bz.svg
+│   │   │   ├── ca.png
+│   │   │   ├── ca.svg
+│   │   │   ├── cc.png
+│   │   │   ├── cc.svg
+│   │   │   ├── cd.png
+│   │   │   ├── cd.svg
+│   │   │   ├── cf.png
+│   │   │   ├── cf.svg
+│   │   │   ├── cg.png
+│   │   │   ├── cg.svg
+│   │   │   ├── ch.png
+│   │   │   ├── ch.svg
+│   │   │   ├── ci.png
+│   │   │   ├── ci.svg
+│   │   │   ├── ck.png
+│   │   │   ├── ck.svg
+│   │   │   ├── cl.png
+│   │   │   ├── cl.svg
+│   │   │   ├── cm.png
+│   │   │   ├── cm.svg
+│   │   │   ├── cn.png
+│   │   │   ├── cn.svg
+│   │   │   ├── co.png
+│   │   │   ├── co.svg
+│   │   │   ├── cr.png
+│   │   │   ├── cr.svg
+│   │   │   ├── cu.png
+│   │   │   ├── cu.svg
+│   │   │   ├── cv.png
+│   │   │   ├── cv.svg
+│   │   │   ├── cw.png
+│   │   │   ├── cw.svg
+│   │   │   ├── cx.png
+│   │   │   ├── cx.svg
+│   │   │   ├── cy.png
+│   │   │   ├── cy.svg
+│   │   │   ├── cz.png
+│   │   │   ├── cz.svg
+│   │   │   ├── de.png
+│   │   │   ├── de.svg
+│   │   │   ├── dj.png
+│   │   │   ├── dj.svg
+│   │   │   ├── dk.png
+│   │   │   ├── dk.svg
+│   │   │   ├── dm.png
+│   │   │   ├── dm.svg
+│   │   │   ├── do.png
+│   │   │   ├── do.svg
+│   │   │   ├── dz.png
+│   │   │   ├── dz.svg
+│   │   │   ├── ec.png
+│   │   │   ├── ec.svg
+│   │   │   ├── ee.png
+│   │   │   ├── ee.svg
+│   │   │   ├── eg.png
+│   │   │   ├── eg.svg
+│   │   │   ├── eh.png
+│   │   │   ├── eh.svg
+│   │   │   ├── er.png
+│   │   │   ├── er.svg
+│   │   │   ├── es.png
+│   │   │   ├── es.svg
+│   │   │   ├── et.png
+│   │   │   ├── et.svg
+│   │   │   ├── eu.png
+│   │   │   ├── fi.png
+│   │   │   ├── fi.svg
+│   │   │   ├── fj.png
+│   │   │   ├── fj.svg
+│   │   │   ├── fk.png
+│   │   │   ├── fk.svg
+│   │   │   ├── fm.png
+│   │   │   ├── fm.svg
+│   │   │   ├── fo.png
+│   │   │   ├── fo.svg
+│   │   │   ├── fr.png
+│   │   │   ├── fr.svg
+│   │   │   ├── ga.png
+│   │   │   ├── ga.svg
+│   │   │   ├── gb-eng.png
+│   │   │   ├── gb-nir.png
+│   │   │   ├── gb-sct.png
+│   │   │   ├── gb-wls.png
+│   │   │   ├── gb.png
+│   │   │   ├── gb.svg
+│   │   │   ├── gd.png
+│   │   │   ├── gd.svg
+│   │   │   ├── ge.png
+│   │   │   ├── ge.svg
+│   │   │   ├── gf.png
+│   │   │   ├── gf.svg
+│   │   │   ├── gg.png
+│   │   │   ├── gg.svg
+│   │   │   ├── gh.png
+│   │   │   ├── gh.svg
+│   │   │   ├── gi.png
+│   │   │   ├── gi.svg
+│   │   │   ├── gl.png
+│   │   │   ├── gl.svg
+│   │   │   ├── gm.png
+│   │   │   ├── gm.svg
+│   │   │   ├── gn.png
+│   │   │   ├── gn.svg
+│   │   │   ├── gp.png
+│   │   │   ├── gp.svg
+│   │   │   ├── gq.png
+│   │   │   ├── gq.svg
+│   │   │   ├── gr.png
+│   │   │   ├── gr.svg
+│   │   │   ├── gs.png
+│   │   │   ├── gs.svg
+│   │   │   ├── gt.png
+│   │   │   ├── gt.svg
+│   │   │   ├── gu.png
+│   │   │   ├── gu.svg
+│   │   │   ├── gw.png
+│   │   │   ├── gw.svg
+│   │   │   ├── gy.png
+│   │   │   ├── gy.svg
+│   │   │   ├── hk.png
+│   │   │   ├── hk.svg
+│   │   │   ├── hm.png
+│   │   │   ├── hm.svg
+│   │   │   ├── hn.png
+│   │   │   ├── hn.svg
+│   │   │   ├── hr.png
+│   │   │   ├── hr.svg
+│   │   │   ├── ht.png
+│   │   │   ├── ht.svg
+│   │   │   ├── hu.png
+│   │   │   ├── hu.svg
+│   │   │   ├── id.png
+│   │   │   ├── id.svg
+│   │   │   ├── ie.png
+│   │   │   ├── ie.svg
+│   │   │   ├── il.png
+│   │   │   ├── il.svg
+│   │   │   ├── im.png
+│   │   │   ├── im.svg
+│   │   │   ├── in.png
+│   │   │   ├── in.svg
+│   │   │   ├── io.png
+│   │   │   ├── io.svg
+│   │   │   ├── iq.png
+│   │   │   ├── iq.svg
+│   │   │   ├── ir.png
+│   │   │   ├── ir.svg
+│   │   │   ├── is.png
+│   │   │   ├── is.svg
+│   │   │   ├── it.png
+│   │   │   ├── it.svg
+│   │   │   ├── je.png
+│   │   │   ├── je.svg
+│   │   │   ├── jm.png
+│   │   │   ├── jm.svg
+│   │   │   ├── jo.png
+│   │   │   ├── jo.svg
+│   │   │   ├── jp.png
+│   │   │   ├── jp.svg
+│   │   │   ├── ke.png
+│   │   │   ├── ke.svg
+│   │   │   ├── kg.png
+│   │   │   ├── kg.svg
+│   │   │   ├── kh.png
+│   │   │   ├── kh.svg
+│   │   │   ├── ki.png
+│   │   │   ├── ki.svg
+│   │   │   ├── km.png
+│   │   │   ├── km.svg
+│   │   │   ├── kn.png
+│   │   │   ├── kn.svg
+│   │   │   ├── kp.png
+│   │   │   ├── kp.svg
+│   │   │   ├── kr.png
+│   │   │   ├── kr.svg
+│   │   │   ├── kw.png
+│   │   │   ├── kw.svg
+│   │   │   ├── ky.png
+│   │   │   ├── ky.svg
+│   │   │   ├── kz.png
+│   │   │   ├── kz.svg
+│   │   │   ├── la.png
+│   │   │   ├── la.svg
+│   │   │   ├── lb.png
+│   │   │   ├── lb.svg
+│   │   │   ├── lc.png
+│   │   │   ├── lc.svg
+│   │   │   ├── li.png
+│   │   │   ├── li.svg
+│   │   │   ├── lk.png
+│   │   │   ├── lk.svg
+│   │   │   ├── lr.png
+│   │   │   ├── lr.svg
+│   │   │   ├── ls.png
+│   │   │   ├── ls.svg
+│   │   │   ├── lt.png
+│   │   │   ├── lt.svg
+│   │   │   ├── lu.png
+│   │   │   ├── lu.svg
+│   │   │   ├── lv.png
+│   │   │   ├── lv.svg
+│   │   │   ├── ly.png
+│   │   │   ├── ly.svg
+│   │   │   ├── ma.png
+│   │   │   ├── ma.svg
+│   │   │   ├── mc.png
+│   │   │   ├── mc.svg
+│   │   │   ├── md.png
+│   │   │   ├── md.svg
+│   │   │   ├── me.png
+│   │   │   ├── me.svg
+│   │   │   ├── mf.png
+│   │   │   ├── mf.svg
+│   │   │   ├── mg.png
+│   │   │   ├── mg.svg
+│   │   │   ├── mh.png
+│   │   │   ├── mh.svg
+│   │   │   ├── mk.png
+│   │   │   ├── mk.svg
+│   │   │   ├── ml.png
+│   │   │   ├── ml.svg
+│   │   │   ├── mm.png
+│   │   │   ├── mm.svg
+│   │   │   ├── mn.png
+│   │   │   ├── mn.svg
+│   │   │   ├── mo.png
+│   │   │   ├── mo.svg
+│   │   │   ├── mp.png
+│   │   │   ├── mp.svg
+│   │   │   ├── mq.png
+│   │   │   ├── mq.svg
+│   │   │   ├── mr.png
+│   │   │   ├── mr.svg
+│   │   │   ├── ms.png
+│   │   │   ├── ms.svg
+│   │   │   ├── mt.png
+│   │   │   ├── mt.svg
+│   │   │   ├── mu.png
+│   │   │   ├── mu.svg
+│   │   │   ├── mv.png
+│   │   │   ├── mv.svg
+│   │   │   ├── mw.png
+│   │   │   ├── mw.svg
+│   │   │   ├── mx.png
+│   │   │   ├── mx.svg
+│   │   │   ├── my.png
+│   │   │   ├── my.svg
+│   │   │   ├── mz.png
+│   │   │   ├── mz.svg
+│   │   │   ├── na.png
+│   │   │   ├── na.svg
+│   │   │   ├── nc.png
+│   │   │   ├── nc.svg
+│   │   │   ├── ne.png
+│   │   │   ├── ne.svg
+│   │   │   ├── nf.png
+│   │   │   ├── nf.svg
+│   │   │   ├── ng.png
+│   │   │   ├── ng.svg
+│   │   │   ├── ni.png
+│   │   │   ├── ni.svg
+│   │   │   ├── nl.png
+│   │   │   ├── nl.svg
+│   │   │   ├── no.png
+│   │   │   ├── no.svg
+│   │   │   ├── np.png
+│   │   │   ├── np.svg
+│   │   │   ├── nr.png
+│   │   │   ├── nr.svg
+│   │   │   ├── nu.png
+│   │   │   ├── nu.svg
+│   │   │   ├── nz.png
+│   │   │   ├── nz.svg
+│   │   │   ├── om.png
+│   │   │   ├── om.svg
+│   │   │   ├── pa.png
+│   │   │   ├── pa.svg
+│   │   │   ├── pe.png
+│   │   │   ├── pe.svg
+│   │   │   ├── pf.png
+│   │   │   ├── pf.svg
+│   │   │   ├── pg.png
+│   │   │   ├── pg.svg
+│   │   │   ├── ph.png
+│   │   │   ├── ph.svg
+│   │   │   ├── pk.png
+│   │   │   ├── pk.svg
+│   │   │   ├── pl.png
+│   │   │   ├── pl.svg
+│   │   │   ├── pm.png
+│   │   │   ├── pm.svg
+│   │   │   ├── pn.png
+│   │   │   ├── pr.png
+│   │   │   ├── pr.svg
+│   │   │   ├── ps.png
+│   │   │   ├── ps.svg
+│   │   │   ├── pt.png
+│   │   │   ├── pt.svg
+│   │   │   ├── pw.png
+│   │   │   ├── pw.svg
+│   │   │   ├── py.png
+│   │   │   ├── py.svg
+│   │   │   ├── qa.png
+│   │   │   ├── qa.svg
+│   │   │   ├── re.png
+│   │   │   ├── re.svg
+│   │   │   ├── ro.png
+│   │   │   ├── ro.svg
+│   │   │   ├── rs.png
+│   │   │   ├── rs.svg
+│   │   │   ├── ru.png
+│   │   │   ├── ru.svg
+│   │   │   ├── rw.png
+│   │   │   ├── rw.svg
+│   │   │   ├── sa.png
+│   │   │   ├── sa.svg
+│   │   │   ├── sb.png
+│   │   │   ├── sb.svg
+│   │   │   ├── sc.png
+│   │   │   ├── sc.svg
+│   │   │   ├── sd.png
+│   │   │   ├── sd.svg
+│   │   │   ├── se.png
+│   │   │   ├── se.svg
+│   │   │   ├── sg.png
+│   │   │   ├── sg.svg
+│   │   │   ├── sh.png
+│   │   │   ├── sh.svg
+│   │   │   ├── si.png
+│   │   │   ├── si.svg
+│   │   │   ├── sj.png
+│   │   │   ├── sj.svg
+│   │   │   ├── sk.png
+│   │   │   ├── sk.svg
+│   │   │   ├── sl.png
+│   │   │   ├── sl.svg
+│   │   │   ├── sm.png
+│   │   │   ├── sm.svg
+│   │   │   ├── sn.png
+│   │   │   ├── sn.svg
+│   │   │   ├── so.png
+│   │   │   ├── so.svg
+│   │   │   ├── sr.png
+│   │   │   ├── sr.svg
+│   │   │   ├── ss.png
+│   │   │   ├── ss.svg
+│   │   │   ├── st.png
+│   │   │   ├── st.svg
+│   │   │   ├── sv.png
+│   │   │   ├── sv.svg
+│   │   │   ├── sx.png
+│   │   │   ├── sx.svg
+│   │   │   ├── sy.png
+│   │   │   ├── sy.svg
+│   │   │   ├── sz.png
+│   │   │   ├── sz.svg
+│   │   │   ├── tc.png
+│   │   │   ├── tc.svg
+│   │   │   ├── td.png
+│   │   │   ├── td.svg
+│   │   │   ├── tf.png
+│   │   │   ├── tg.png
+│   │   │   ├── tg.svg
+│   │   │   ├── th.png
+│   │   │   ├── th.svg
+│   │   │   ├── tj.png
+│   │   │   ├── tj.svg
+│   │   │   ├── tk.png
+│   │   │   ├── tk.svg
+│   │   │   ├── tl.png
+│   │   │   ├── tl.svg
+│   │   │   ├── tm.png
+│   │   │   ├── tm.svg
+│   │   │   ├── tn.png
+│   │   │   ├── tn.svg
+│   │   │   ├── to.png
+│   │   │   ├── to.svg
+│   │   │   ├── tr.png
+│   │   │   ├── tr.svg
+│   │   │   ├── tt.png
+│   │   │   ├── tt.svg
+│   │   │   ├── tv.png
+│   │   │   ├── tv.svg
+│   │   │   ├── tw.png
+│   │   │   ├── tw.svg
+│   │   │   ├── tz.png
+│   │   │   ├── tz.svg
+│   │   │   ├── ua.png
+│   │   │   ├── ua.svg
+│   │   │   ├── ug.png
+│   │   │   ├── ug.svg
+│   │   │   ├── um.png
+│   │   │   ├── unknown.png
+│   │   │   ├── us.png
+│   │   │   ├── us.svg
+│   │   │   ├── uy.png
+│   │   │   ├── uy.svg
+│   │   │   ├── uz.png
+│   │   │   ├── uz.svg
+│   │   │   ├── va.png
+│   │   │   ├── va.svg
+│   │   │   ├── vc.png
+│   │   │   ├── vc.svg
+│   │   │   ├── ve.png
+│   │   │   ├── ve.svg
+│   │   │   ├── vg.png
+│   │   │   ├── vg.svg
+│   │   │   ├── vi.png
+│   │   │   ├── vi.svg
+│   │   │   ├── vn.png
+│   │   │   ├── vn.svg
+│   │   │   ├── vu.png
+│   │   │   ├── vu.svg
+│   │   │   ├── wf.png
+│   │   │   ├── wf.svg
+│   │   │   ├── ws.png
+│   │   │   ├── ws.svg
+│   │   │   ├── xk.png
+│   │   │   ├── ye.png
+│   │   │   ├── ye.svg
+│   │   │   ├── yt.png
+│   │   │   ├── yt.svg
+│   │   │   ├── za.png
+│   │   │   ├── za.svg
+│   │   │   ├── zm.png
+│   │   │   ├── zm.svg
+│   │   │   ├── zw.png
+│   │   │   └── zw.svg
+│   │   ├── icons
+│   │   │   ├── CircleFilled.svg
+│   │   │   ├── bullseye_border.svg
+│   │   │   ├── dot.svg
+│   │   │   ├── semaphore_border.svg
+│   │   │   ├── semaphore_border_highlighted.svg
+│   │   │   ├── station_border.svg
+│   │   │   └── station_border_highlighted.svg
+│   │   ├── interest_point.svg
+│   │   ├── landing_background.png
+│   │   ├── logo-CACEM.jpeg
+│   │   ├── marker-flag.svg
+│   │   ├── mission
+│   │   │   ├── CLOSED_AIR.png
+│   │   │   ├── CLOSED_LAND.png
+│   │   │   ├── CLOSED_MULTI.png
+│   │   │   ├── CLOSED_SEA.png
+│   │   │   ├── ENDED_AIR.png
+│   │   │   ├── ENDED_LAND.png
+│   │   │   ├── ENDED_MULTI.png
+│   │   │   ├── ENDED_SEA.png
+│   │   │   ├── PENDING_AIR.png
+│   │   │   ├── PENDING_LAND.png
+│   │   │   ├── PENDING_MULTI.png
+│   │   │   ├── PENDING_SEA.png
+│   │   │   ├── UPCOMING_AIR.png
+│   │   │   ├── UPCOMING_LAND.png
+│   │   │   ├── UPCOMING_MULTI.png
+│   │   │   └── UPCOMING_SEA.png
+│   │   ├── monitorfish.png
+│   │   ├── report.svg
+│   │   └── robots.txt
+│   ├── puppeteer
+│   │   ├── e2e
+│   │   │   ├── missions.spec.ts
+│   │   │   ├── reportings.spec.ts
+│   │   │   └── utils.ts
+│   │   ├── puppeteer_environment.ts
+│   │   ├── setup.ts
+│   │   └── teardown.ts
+│   ├── src
+│   │   ├── App.tsx
+│   │   ├── api
+│   │   │   ├── administrationsAPI.ts
+│   │   │   ├── administrativeLayersAPI.ts
+│   │   │   ├── ampsAPI.ts
+│   │   │   ├── api.ts
+│   │   │   ├── authorizationAPI.ts
+│   │   │   ├── beachesAPI.ts
+│   │   │   ├── constants.ts
+│   │   │   ├── controlThemesAPI.ts
+│   │   │   ├── controlUnitContactsAPI.ts
+│   │   │   ├── controlUnitResourcesAPI.ts
+│   │   │   ├── controlUnitsAPI.ts
+│   │   │   ├── dashboardsAPI.ts
+│   │   │   ├── departmentAreasAPI.ts
+│   │   │   ├── googlePlacesAPI
+│   │   │   │   ├── googlePlacesAPI.ts
+│   │   │   │   └── utils.ts
+│   │   │   ├── infractionsAPI.ts
+│   │   │   ├── legacyControlUnitsAPI.ts
+│   │   │   ├── localizedAreasAPI.ts
+│   │   │   ├── missionsAPI.ts
+│   │   │   ├── natinfsAPI.ts
+│   │   │   ├── nearbyUnitsAPI.ts
+│   │   │   ├── nominatimAPI.ts
+│   │   │   ├── photonAPI.ts
+│   │   │   ├── recentActivity.ts
+│   │   │   ├── regulatoryLayersAPI.ts
+│   │   │   ├── reportingsAPI.ts
+│   │   │   ├── semaphoresAPI.ts
+│   │   │   ├── stationsAPI.ts
+│   │   │   ├── tagsAPI.ts
+│   │   │   ├── themesAPI.ts
+│   │   │   ├── types.ts
+│   │   │   ├── vesselApi.ts
+│   │   │   └── vigilanceAreasAPI.ts
+│   │   ├── components
+│   │   │   ├── AlertUnsupportedBrowser.tsx
+│   │   │   ├── BannerStack
+│   │   │   │   ├── EnvBannerStack.ts
+│   │   │   │   └── item.tsx
+│   │   │   ├── CenteredFingerprintLoader.ts
+│   │   │   ├── ConfirmationModal.tsx
+│   │   │   ├── CustomGlobalStyle.ts
+│   │   │   ├── Dialog.tsx
+│   │   │   ├── DrawModalInMenu.tsx
+│   │   │   ├── ErrorBoundary.tsx
+│   │   │   ├── Form
+│   │   │   │   ├── Images
+│   │   │   │   │   ├── ImageUploader.tsx
+│   │   │   │   │   ├── ImageViewer.tsx
+│   │   │   │   │   ├── hook
+│   │   │   │   │   │   └── useImageConverter.ts
+│   │   │   │   │   └── utils.ts
+│   │   │   │   ├── Links
+│   │   │   │   │   └── Links.tsx
+│   │   │   │   └── types.ts
+│   │   │   ├── Menu.tsx
+│   │   │   ├── NavBar.tsx
+│   │   │   ├── OverlayCard.tsx
+│   │   │   ├── RegulatoryTagsFilter.tsx
+│   │   │   ├── RegulatoryThemesFilter.tsx
+│   │   │   ├── RequireAuth.tsx
+│   │   │   ├── Table
+│   │   │   │   ├── DateCell.tsx
+│   │   │   │   ├── LocalizeCell.tsx
+│   │   │   │   ├── PaddingForVirtualizeTable.tsx
+│   │   │   │   ├── TableWithSelectableRows
+│   │   │   │   │   └── Header.tsx
+│   │   │   │   ├── index.tsx
+│   │   │   │   └── style.ts
+│   │   │   ├── Tooltip.tsx
+│   │   │   ├── ZonePicker
+│   │   │   │   ├── DrawedPolygonWithCenterButton.tsx
+│   │   │   │   └── index.tsx
+│   │   │   └── style.ts
+│   │   ├── constants.ts
+│   │   ├── context
+│   │   │   ├── mission
+│   │   │   │   ├── MissionEventContext.tsx
+│   │   │   │   └── useMissionEventContext.ts
+│   │   │   └── reporting
+│   │   │       ├── ReportingEventContext.tsx
+│   │   │       └── useReportingEventContext.ts
+│   │   ├── domain
+│   │   │   ├── actions.ts
+│   │   │   ├── entities
+│   │   │   │   ├── AMPs.ts
+│   │   │   │   ├── __tests__
+│   │   │   │   │   └── getMissionStatus.test.ts
+│   │   │   │   ├── administration.ts
+│   │   │   │   ├── administrativeLayers.ts
+│   │   │   │   ├── authorization
+│   │   │   │   │   └── types.ts
+│   │   │   │   ├── controlThemes.ts
+│   │   │   │   ├── dateRange.ts
+│   │   │   │   ├── departmentArea.ts
+│   │   │   │   ├── errors.ts
+│   │   │   │   ├── interestPointLine.ts
+│   │   │   │   ├── interestPoints.ts
+│   │   │   │   ├── layers
+│   │   │   │   │   ├── BaseLayer.ts
+│   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   ├── index.test.ts
+│   │   │   │   │   │   └── mocks
+│   │   │   │   │   │       └── index.ts
+│   │   │   │   │   ├── constants.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   └── utils.ts
+│   │   │   │   ├── legacyControlUnit.ts
+│   │   │   │   ├── map
+│   │   │   │   │   └── constants.ts
+│   │   │   │   ├── missions.ts
+│   │   │   │   ├── natinfs.ts
+│   │   │   │   ├── regulatory.ts
+│   │   │   │   ├── reporting.ts
+│   │   │   │   ├── seaFrontType.ts
+│   │   │   │   ├── semaphore.ts
+│   │   │   │   ├── sideWindow.ts
+│   │   │   │   ├── station.ts
+│   │   │   │   ├── tags.ts
+│   │   │   │   ├── targetType.ts
+│   │   │   │   ├── themes.ts
+│   │   │   │   ├── vehicleType.ts
+│   │   │   │   └── vesselType.ts
+│   │   │   ├── shared_slices
+│   │   │   │   ├── Administrative.ts
+│   │   │   │   ├── Amp.ts
+│   │   │   │   ├── Draw.ts
+│   │   │   │   ├── Global.ts
+│   │   │   │   ├── LayerSidebar.ts
+│   │   │   │   ├── Map.ts
+│   │   │   │   ├── Measurement.ts
+│   │   │   │   ├── MissionFilters.ts
+│   │   │   │   ├── Regulatory.ts
+│   │   │   │   └── SemaphoresSlice.ts
+│   │   │   ├── types
+│   │   │   │   ├── GeoJSON.ts
+│   │   │   │   ├── geoserver.ts
+│   │   │   │   ├── layer.ts
+│   │   │   │   └── map.ts
+│   │   │   └── use_cases
+│   │   │       ├── administrative
+│   │   │       │   └── showAdministrativeLayer.ts
+│   │   │       ├── draw
+│   │   │       │   ├── addFeatureToDrawedFeature.ts
+│   │   │       │   ├── drawFeature.ts
+│   │   │       │   ├── drawGeometry.ts
+│   │   │       │   ├── eraseDrawedGeometries.ts
+│   │   │       │   └── setGeometry.ts
+│   │   │       ├── map
+│   │   │       │   ├── centerOnMap.ts
+│   │   │       │   ├── closeAllOverlays.ts
+│   │   │       │   ├── closeAreaOverlay.ts
+│   │   │       │   ├── setOpenedOverlay.ts
+│   │   │       │   └── updateMapInteractionListeners.ts
+│   │   │       └── measurement
+│   │   │           └── saveMeasurement.ts
+│   │   ├── env.d.ts
+│   │   ├── features
+│   │   │   ├── Account
+│   │   │   │   ├── components
+│   │   │   │   │   └── Account.tsx
+│   │   │   │   └── slice.ts
+│   │   │   ├── Administration
+│   │   │   │   └── components
+│   │   │   │       ├── AdministrationForm
+│   │   │   │       │   ├── constants.tsx
+│   │   │   │       │   ├── index.tsx
+│   │   │   │       │   └── types.ts
+│   │   │   │       └── AdministrationTable
+│   │   │   │           ├── FilterBar.tsx
+│   │   │   │           ├── TabMenu.tsx
+│   │   │   │           ├── constants.tsx
+│   │   │   │           ├── index.tsx
+│   │   │   │           ├── slice.ts
+│   │   │   │           ├── types.ts
+│   │   │   │           └── utils.tsx
+│   │   │   ├── BackOffice
+│   │   │   │   ├── components
+│   │   │   │   │   ├── BackOfficeTabBar
+│   │   │   │   │   │   ├── Tab.tsx
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── BackofficeMenu
+│   │   │   │   │   │   ├── constants.ts
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   └── BannerStack
+│   │   │   │   │       └── index.tsx
+│   │   │   │   ├── slice.ts
+│   │   │   │   └── useCases
+│   │   │   │       └── addBackOfficeBanner.ts
+│   │   │   ├── ControlUnit
+│   │   │   │   ├── components
+│   │   │   │   │   ├── ControlUnitDialog
+│   │   │   │   │   │   ├── AreaNote.tsx
+│   │   │   │   │   │   ├── ControlUnitContactList
+│   │   │   │   │   │   │   ├── Form
+│   │   │   │   │   │   │   │   ├── FieldWithButton.tsx
+│   │   │   │   │   │   │   │   ├── FormikEmailField.tsx
+│   │   │   │   │   │   │   │   ├── FormikNameSelect.tsx
+│   │   │   │   │   │   │   │   ├── FormikPhoneField.tsx
+│   │   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   │   ├── Item.tsx
+│   │   │   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   │   │   └── formatPhoneNumber.test.ts
+│   │   │   │   │   │   │   ├── constants.ts
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   ├── types.ts
+│   │   │   │   │   │   │   └── utils.ts
+│   │   │   │   │   │   ├── ControlUnitResourceList
+│   │   │   │   │   │   │   ├── Form.tsx
+│   │   │   │   │   │   │   ├── Item.tsx
+│   │   │   │   │   │   │   ├── Placeholder.tsx
+│   │   │   │   │   │   │   ├── constants.ts
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   ├── types.ts
+│   │   │   │   │   │   │   └── utils.tsx
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   ├── shared
+│   │   │   │   │   │   │   ├── Section.tsx
+│   │   │   │   │   │   │   └── TextareaForm.tsx
+│   │   │   │   │   │   └── slice.ts
+│   │   │   │   │   ├── ControlUnitForm
+│   │   │   │   │   │   ├── constants.tsx
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   └── types.ts
+│   │   │   │   │   ├── ControlUnitListButton.tsx
+│   │   │   │   │   ├── ControlUnitListDialog
+│   │   │   │   │   │   ├── FilterBar.tsx
+│   │   │   │   │   │   ├── Item.tsx
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   ├── slice.ts
+│   │   │   │   │   │   └── types.ts
+│   │   │   │   │   └── ControlUnitTable
+│   │   │   │   │       ├── FilterBar.tsx
+│   │   │   │   │       ├── TabMenu.tsx
+│   │   │   │   │       ├── constants.tsx
+│   │   │   │   │       ├── index.tsx
+│   │   │   │   │       ├── slice.ts
+│   │   │   │   │       ├── types.ts
+│   │   │   │   │       └── utils.tsx
+│   │   │   │   ├── useCases
+│   │   │   │   │   ├── centerOnStation.ts
+│   │   │   │   │   ├── createOrUpdateControlUnitContact.ts
+│   │   │   │   │   └── getFilteredControlUnits.ts
+│   │   │   │   └── utils.ts
+│   │   │   ├── Dashboard
+│   │   │   │   ├── components
+│   │   │   │   │   ├── DashboardForm
+│   │   │   │   │   │   ├── Accordion.tsx
+│   │   │   │   │   │   ├── Amps
+│   │   │   │   │   │   │   ├── Layer.tsx
+│   │   │   │   │   │   │   ├── ListLayerGroup.tsx
+│   │   │   │   │   │   │   ├── Panel.tsx
+│   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   ├── Attachments
+│   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   ├── BackgroundMap
+│   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   ├── Bookmark
+│   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   ├── Columns
+│   │   │   │   │   │   │   ├── FirstColumn.tsx
+│   │   │   │   │   │   │   ├── SecondColumn.tsx
+│   │   │   │   │   │   │   ├── ThirdColumn.tsx
+│   │   │   │   │   │   │   ├── style.tsx
+│   │   │   │   │   │   │   └── utils.ts
+│   │   │   │   │   │   ├── Comments
+│   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   ├── ControlUnits
+│   │   │   │   │   │   │   ├── Item.tsx
+│   │   │   │   │   │   │   ├── SelectedControlUnits
+│   │   │   │   │   │   │   │   ├── ContactDetails.tsx
+│   │   │   │   │   │   │   │   ├── ControlUnitAccordion.tsx
+│   │   │   │   │   │   │   │   ├── Details.tsx
+│   │   │   │   │   │   │   │   ├── InterventionAreaDetails.tsx
+│   │   │   │   │   │   │   │   ├── ResourcesDetails.tsx
+│   │   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   │   └── style.ts
+│   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   ├── DashboardForm.tsx
+│   │   │   │   │   │   ├── DashboardRecentActivity
+│   │   │   │   │   │   │   ├── Filters.tsx
+│   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   ├── Footer
+│   │   │   │   │   │   │   ├── CreateMailButton.tsx
+│   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   ├── NearbyUnits
+│   │   │   │   │   │   │   ├── Filters.tsx
+│   │   │   │   │   │   │   ├── Item.tsx
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   ├── types.ts
+│   │   │   │   │   │   │   ├── utils.test.ts
+│   │   │   │   │   │   │   └── utils.ts
+│   │   │   │   │   │   ├── RegulatoryAreas
+│   │   │   │   │   │   │   ├── Layer.tsx
+│   │   │   │   │   │   │   ├── ListLayerGroup.tsx
+│   │   │   │   │   │   │   ├── Panel.tsx
+│   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   ├── Reportings
+│   │   │   │   │   │   │   ├── Filters.tsx
+│   │   │   │   │   │   │   ├── Layer.tsx
+│   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   ├── SelectedAccordion.tsx
+│   │   │   │   │   │   ├── TerritorialPressure
+│   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   ├── ToggleSelectAll
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   ├── style.ts
+│   │   │   │   │   │   │   └── utils.tsx
+│   │   │   │   │   │   ├── Toolbar
+│   │   │   │   │   │   │   ├── EditArea
+│   │   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   │   ├── Filters
+│   │   │   │   │   │   │   │   ├── FiltersTags.tsx
+│   │   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   ├── VigilanceAreas
+│   │   │   │   │   │   │   ├── Filters.tsx
+│   │   │   │   │   │   │   ├── Layer.tsx
+│   │   │   │   │   │   │   ├── Panel
+│   │   │   │   │   │   │   │   ├── Amps.tsx
+│   │   │   │   │   │   │   │   ├── RegulatoryAreas.tsx
+│   │   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   │   └── style.ts
+│   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   ├── Weather
+│   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   ├── components
+│   │   │   │   │   │   │   ├── AmpsPanel.tsx
+│   │   │   │   │   │   │   └── RegulatoryAreasPanel.tsx
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   ├── slice.ts
+│   │   │   │   │   │   └── style.ts
+│   │   │   │   │   ├── DashboardTab.tsx
+│   │   │   │   │   ├── DashboardsList
+│   │   │   │   │   │   ├── Cells
+│   │   │   │   │   │   │   ├── ControlUnitsCell.tsx
+│   │   │   │   │   │   │   ├── EditDashboardCell.tsx
+│   │   │   │   │   │   │   ├── RegulatoryAreasTagsCell.tsx
+│   │   │   │   │   │   │   └── TotalSelectedItemsCell.tsx
+│   │   │   │   │   │   ├── Columns
+│   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   ├── DashboardsTable.tsx
+│   │   │   │   │   │   ├── Filters.tsx
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── DashboardsNavBar.tsx
+│   │   │   │   │   ├── DrawDashboard.tsx
+│   │   │   │   │   ├── EditTabName.tsx
+│   │   │   │   │   ├── Layers
+│   │   │   │   │   │   ├── ActiveDashboardLayer.tsx
+│   │   │   │   │   │   ├── DashboardRecentActivityLayer.tsx
+│   │   │   │   │   │   ├── DashboardsLayer.tsx
+│   │   │   │   │   │   ├── DrawDashboardLayer.tsx
+│   │   │   │   │   │   ├── PreviewDashboardLayer.tsx
+│   │   │   │   │   │   ├── ReportingOverlay.tsx
+│   │   │   │   │   │   ├── SelectedDashboardLayer.tsx
+│   │   │   │   │   │   └── style.ts
+│   │   │   │   │   ├── MapFocusForDashboardBanner.tsx
+│   │   │   │   │   ├── MenuButton.tsx
+│   │   │   │   │   ├── Overlays
+│   │   │   │   │   │   ├── DashboardCard.tsx
+│   │   │   │   │   │   └── DashboardOverlay.tsx
+│   │   │   │   │   └── Pdf
+│   │   │   │   │       ├── Amps
+│   │   │   │   │       │   └── index.tsx
+│   │   │   │   │       ├── Attachments
+│   │   │   │   │       │   ├── ImagesAttachments.tsx
+│   │   │   │   │       │   └── LinksAttachments.tsx
+│   │   │   │   │       ├── Brief.tsx
+│   │   │   │   │       ├── Layout
+│   │   │   │   │       │   ├── AreaImage.tsx
+│   │   │   │   │       │   ├── AreaLink.tsx
+│   │   │   │   │       │   ├── Cover.tsx
+│   │   │   │   │       │   └── Headings.tsx
+│   │   │   │   │       ├── NearbyUnits
+│   │   │   │   │       │   ├── UnitCard.tsx
+│   │   │   │   │       │   └── index.tsx
+│   │   │   │   │       ├── RecentActivity
+│   │   │   │   │       │   ├── ControlUnitDetailsView.tsx
+│   │   │   │   │       │   ├── GlobalView.tsx
+│   │   │   │   │       │   ├── Legend.tsx
+│   │   │   │   │       │   ├── RecentActivitySummary.tsx
+│   │   │   │   │       │   ├── index.tsx
+│   │   │   │   │       │   └── style.ts
+│   │   │   │   │       ├── RegulatoryAreas
+│   │   │   │   │       │   └── index.tsx
+│   │   │   │   │       ├── Reportings
+│   │   │   │   │       │   └── index.tsx
+│   │   │   │   │       ├── Table
+│   │   │   │   │       │   └── index.tsx
+│   │   │   │   │       ├── VigilanceAreas
+│   │   │   │   │       │   └── index.tsx
+│   │   │   │   │       ├── icons
+│   │   │   │   │       │   ├── ArrowRight.tsx
+│   │   │   │   │       │   ├── Check.tsx
+│   │   │   │   │       │   ├── Clock.tsx
+│   │   │   │   │       │   ├── Dot.tsx
+│   │   │   │   │       │   └── ExternalLink.tsx
+│   │   │   │   │       ├── renderPdf.ts
+│   │   │   │   │       ├── style.ts
+│   │   │   │   │       └── utils.ts
+│   │   │   │   ├── hooks
+│   │   │   │   │   ├── useExportImages.tsx
+│   │   │   │   │   ├── useGenerateBrief.ts
+│   │   │   │   │   ├── useGenerateEditableBrief.ts
+│   │   │   │   │   ├── useGetFilteredDashboardsQuery.ts
+│   │   │   │   │   ├── useGetFiltersOptions.ts
+│   │   │   │   │   └── useObserverAccordion.tsx
+│   │   │   │   ├── slice.ts
+│   │   │   │   ├── types.ts
+│   │   │   │   ├── useCases
+│   │   │   │   │   ├── closeDrawDashboard.ts
+│   │   │   │   │   ├── closeTab.ts
+│   │   │   │   │   ├── createDashboard.ts
+│   │   │   │   │   ├── deleteDashboard.ts
+│   │   │   │   │   ├── editDashboard.ts
+│   │   │   │   │   ├── editDashboardArea.ts
+│   │   │   │   │   ├── exportBrief.ts
+│   │   │   │   │   ├── filters
+│   │   │   │   │   │   ├── filterByRegulatoryTags.ts
+│   │   │   │   │   │   ├── filterBySeaFronts.ts
+│   │   │   │   │   │   ├── filterByUnits.ts
+│   │   │   │   │   │   ├── filterByUpdatedAt.ts
+│   │   │   │   │   │   ├── filterReportings.test.ts
+│   │   │   │   │   │   └── filterReportings.ts
+│   │   │   │   │   ├── hideLayersAndSidebar.ts
+│   │   │   │   │   ├── resetDrawing.ts
+│   │   │   │   │   ├── saveDashboard.ts
+│   │   │   │   │   └── selectDashboardOnMap.ts
+│   │   │   │   └── utils.tsx
+│   │   │   ├── InterestPoint
+│   │   │   │   ├── components
+│   │   │   │   │   ├── EditInterestPoint.tsx
+│   │   │   │   │   ├── InterestPointLayer.tsx
+│   │   │   │   │   ├── InterestPointMapButton.tsx
+│   │   │   │   │   └── InterestPointOverlay.tsx
+│   │   │   │   ├── slice.ts
+│   │   │   │   ├── types.ts
+│   │   │   │   └── useCases
+│   │   │   │       ├── layer
+│   │   │   │       │   ├── modifyFeatureWhenCoordinatesAreModified.ts
+│   │   │   │       │   └── startDrawing.ts
+│   │   │   │       ├── saveInterestPointFeature.ts
+│   │   │   │       ├── updateCoordinates.ts
+│   │   │   │       ├── updateName.ts
+│   │   │   │       └── updateObservations.ts
+│   │   │   ├── LocalizedArea
+│   │   │   │   ├── components
+│   │   │   │   │   ├── Layers
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   └── style.ts
+│   │   │   │   │   ├── LocalizedAreaPanel
+│   │   │   │   │   │   ├── LinkedAMPs.tsx
+│   │   │   │   │   │   ├── LinkedControlUnits.tsx
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   └── style.ts
+│   │   │   │   │   └── LocalizedAreasItem.tsx
+│   │   │   │   ├── constants.ts
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── slice.ts
+│   │   │   │   ├── types.ts
+│   │   │   │   └── utils.ts
+│   │   │   ├── LocateOnMap
+│   │   │   │   ├── Layer.tsx
+│   │   │   │   ├── SearchLocation.tsx
+│   │   │   │   ├── SearchSwitcher.tsx
+│   │   │   │   ├── hook
+│   │   │   │   │   └── useBeaches.ts
+│   │   │   │   └── index.tsx
+│   │   │   ├── MainWindow
+│   │   │   │   ├── components
+│   │   │   │   │   └── BannerStack
+│   │   │   │   │       └── index.tsx
+│   │   │   │   ├── slice.ts
+│   │   │   │   ├── types.ts
+│   │   │   │   └── useCases
+│   │   │   │       └── addMainWindowBanner.ts
+│   │   │   ├── Mission
+│   │   │   │   ├── Missions.helpers.ts
+│   │   │   │   ├── MissionsNavBar.tsx
+│   │   │   │   ├── MissionsSearch.tsx
+│   │   │   │   ├── components
+│   │   │   │   │   ├── CompletionStatusLabel.tsx
+│   │   │   │   │   ├── CompletionStatusTag.tsx
+│   │   │   │   │   ├── ControlInfractionsTags.tsx
+│   │   │   │   │   ├── Filters
+│   │   │   │   │   │   ├── Map
+│   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   ├── Table
+│   │   │   │   │   │   │   ├── FilterTags.tsx
+│   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── Layers
+│   │   │   │   │   │   ├── EditingMissionLayer.ts
+│   │   │   │   │   │   ├── HoveredMissionLayer.ts
+│   │   │   │   │   │   ├── ReportingToAttach
+│   │   │   │   │   │   │   ├── HoveredReportingToAttachLayer.tsx
+│   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   ├── SelectedMissionLayer.ts
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   ├── missionGeometryHelpers.ts
+│   │   │   │   │   │   └── missions.style.ts
+│   │   │   │   │   ├── MissionForm
+│   │   │   │   │   │   ├── ActionForm
+│   │   │   │   │   │   │   ├── ControlForm
+│   │   │   │   │   │   │   │   ├── InfractionCard.tsx
+│   │   │   │   │   │   │   │   ├── InfractionForm
+│   │   │   │   │   │   │   │   │   ├── InfractionForm.tsx
+│   │   │   │   │   │   │   │   │   ├── InfractionFormHeaderCompany.tsx
+│   │   │   │   │   │   │   │   │   ├── InfractionFormHeaderIndividual.tsx
+│   │   │   │   │   │   │   │   │   ├── InfractionFormHeaderVehicle.tsx
+│   │   │   │   │   │   │   │   │   └── NatinfSelector.tsx
+│   │   │   │   │   │   │   │   ├── InfractionsForm.tsx
+│   │   │   │   │   │   │   │   ├── MultiPointPicker.tsx
+│   │   │   │   │   │   │   │   ├── OtherControlTypesForm.tsx
+│   │   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   │   ├── MissingFieldsText.tsx
+│   │   │   │   │   │   │   ├── NoteForm.tsx
+│   │   │   │   │   │   │   ├── ReportingForm
+│   │   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   │   ├── SurveillanceForm
+│   │   │   │   │   │   │   │   ├── Awareness.tsx
+│   │   │   │   │   │   │   │   ├── SurveillanceZonePicker.tsx
+│   │   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   │   ├── Tags
+│   │   │   │   │   │   │   │   └── ActionTags.tsx
+│   │   │   │   │   │   │   ├── Themes
+│   │   │   │   │   │   │   │   └── ActionThemes.tsx
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   └── style.ts
+│   │   │   │   │   │   ├── ActionsTimeLine
+│   │   │   │   │   │   │   ├── ActionCard
+│   │   │   │   │   │   │   │   ├── EnvActions
+│   │   │   │   │   │   │   │   │   ├── AddControlToReportingButton.tsx
+│   │   │   │   │   │   │   │   │   ├── ControlCard.tsx
+│   │   │   │   │   │   │   │   │   ├── NoteCard.tsx
+│   │   │   │   │   │   │   │   │   ├── ReportingCard.tsx
+│   │   │   │   │   │   │   │   │   ├── ReportingHistory.tsx
+│   │   │   │   │   │   │   │   │   ├── SurveillanceCard.tsx
+│   │   │   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   │   │   ├── FishActions
+│   │   │   │   │   │   │   │   │   ├── AirControlCard.tsx
+│   │   │   │   │   │   │   │   │   ├── AirSurveillanceCard.tsx
+│   │   │   │   │   │   │   │   │   ├── LandControlCard.tsx
+│   │   │   │   │   │   │   │   │   ├── ObservationsCard.tsx
+│   │   │   │   │   │   │   │   │   ├── SeaControlCard.tsx
+│   │   │   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   │   └── style.ts
+│   │   │   │   │   │   │   ├── CompletionStatusIcon.tsx
+│   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   ├── AttachReporting
+│   │   │   │   │   │   │   ├── AttachReportingToMissionModal.tsx
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   └── slice.ts
+│   │   │   │   │   │   ├── CancelEditModal.tsx
+│   │   │   │   │   │   ├── ControlUnitsForm
+│   │   │   │   │   │   │   ├── ControlUnitSelector.tsx
+│   │   │   │   │   │   │   ├── ControlUnitWarningMessage.tsx
+│   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   ├── CreateDashboardModal.tsx
+│   │   │   │   │   │   ├── DeleteModal.tsx
+│   │   │   │   │   │   ├── ExternalActionsModal.tsx
+│   │   │   │   │   │   ├── FormikSyncMissionFields.tsx
+│   │   │   │   │   │   ├── GeneralInformationsForm.tsx
+│   │   │   │   │   │   ├── MissionForm.tsx
+│   │   │   │   │   │   ├── MissionFormBottomBar.tsx
+│   │   │   │   │   │   ├── MissionZonePicker.tsx
+│   │   │   │   │   │   ├── Schemas
+│   │   │   │   │   │   │   ├── ActionDates.ts
+│   │   │   │   │   │   │   ├── Control.ts
+│   │   │   │   │   │   │   ├── Infraction.ts
+│   │   │   │   │   │   │   ├── Surveillance.ts
+│   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   ├── constants.ts
+│   │   │   │   │   │   ├── hooks
+│   │   │   │   │   │   │   ├── useListenMissionEventUpdates.ts
+│   │   │   │   │   │   │   ├── useMissionAndActionsCompletion.ts
+│   │   │   │   │   │   │   ├── useSyncFormValuesWithRedux.ts
+│   │   │   │   │   │   │   ├── useUpdateMissionZone.ts
+│   │   │   │   │   │   │   ├── useUpdateOtherControlTypes.ts
+│   │   │   │   │   │   │   └── useUpdateSurveillance.ts
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   ├── slice.ts
+│   │   │   │   │   │   ├── sse.ts
+│   │   │   │   │   │   ├── style.ts
+│   │   │   │   │   │   └── utils.ts
+│   │   │   │   │   ├── MissionStatusLabel.tsx
+│   │   │   │   │   ├── MissionStatusTag.tsx
+│   │   │   │   │   ├── MissionsButton
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── MissionsList
+│   │   │   │   │   │   ├── Cells
+│   │   │   │   │   │   │   ├── CellActionTags.tsx
+│   │   │   │   │   │   │   ├── CellActionThemes.tsx
+│   │   │   │   │   │   │   ├── CellCompletionStatus.tsx
+│   │   │   │   │   │   │   ├── CellEditMission.tsx
+│   │   │   │   │   │   │   ├── CellStatus.tsx
+│   │   │   │   │   │   │   ├── getMissionTypeCell.tsx
+│   │   │   │   │   │   │   ├── getNumberOfControlsCell.tsx
+│   │   │   │   │   │   │   └── getResourcesCell.tsx
+│   │   │   │   │   │   ├── Columns
+│   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   ├── MissionsTable.tsx
+│   │   │   │   │   │   ├── MissionsTableSort.ts
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   ├── type.ts
+│   │   │   │   │   │   └── utils.ts
+│   │   │   │   │   └── Overlays
+│   │   │   │   │       ├── MissionCard.tsx
+│   │   │   │   │       ├── ReportingToAttach
+│   │   │   │   │       │   └── index.tsx
+│   │   │   │   │       └── index.tsx
+│   │   │   │   ├── fishActions.types.ts
+│   │   │   │   ├── hooks
+│   │   │   │   │   └── useGetFilteredMissionsQuery.ts
+│   │   │   │   ├── rapportNavActions.types.ts
+│   │   │   │   ├── slice.ts
+│   │   │   │   ├── useCases
+│   │   │   │   │   ├── addMission.ts
+│   │   │   │   │   ├── attachReportingFromMap.ts
+│   │   │   │   │   ├── cancelCreateAndRedirectToFilteredList.ts
+│   │   │   │   │   ├── deleteMission.ts
+│   │   │   │   │   ├── deleteTab.ts
+│   │   │   │   │   ├── editMissionInLocalStore.ts
+│   │   │   │   │   ├── filters
+│   │   │   │   │   │   ├── isMissionPartOfSelectedAdministrationNames.ts
+│   │   │   │   │   │   ├── isMissionPartOfSelectedCompletionStatus.tsx
+│   │   │   │   │   │   ├── isMissionPartOfSelectedControlUnitIds.ts
+│   │   │   │   │   │   ├── isMissionPartOfSelectedTags.ts
+│   │   │   │   │   │   ├── isMissionPartOfSelectedTheme.ts
+│   │   │   │   │   │   └── isMissionPartOfSelectedWithEnvActions.tsx
+│   │   │   │   │   ├── saveMission.ts
+│   │   │   │   │   └── switchTab.ts
+│   │   │   │   ├── utils.test.ts
+│   │   │   │   └── utils.ts
+│   │   │   ├── RecentActivity
+│   │   │   │   ├── components
+│   │   │   │   │   ├── Layers
+│   │   │   │   │   │   ├── DrawRecentActivityLayer.tsx
+│   │   │   │   │   │   ├── RecentActivityLayerEvents.tsx
+│   │   │   │   │   │   ├── RecentControlsActivityLayer.tsx
+│   │   │   │   │   │   ├── recentControlActivityGeometryHelper.ts
+│   │   │   │   │   │   └── style.ts
+│   │   │   │   │   ├── Overlays
+│   │   │   │   │   │   ├── HoveredOverlay.tsx
+│   │   │   │   │   │   ├── OverlayContent.tsx
+│   │   │   │   │   │   ├── RecentActivityControlCard.tsx
+│   │   │   │   │   │   ├── SelectedOverlay.tsx
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── RecentActivityLegend.tsx
+│   │   │   │   │   └── RecentActivityMenuButton
+│   │   │   │   │       ├── DrawZone.tsx
+│   │   │   │   │       ├── RecentActivityFilters.tsx
+│   │   │   │   │       └── index.tsx
+│   │   │   │   ├── constants.ts
+│   │   │   │   ├── hooks
+│   │   │   │   │   └── useRecentActivityLayer.ts
+│   │   │   │   ├── slice.ts
+│   │   │   │   ├── types.ts
+│   │   │   │   ├── useCases
+│   │   │   │   │   ├── resetDrawingZone.ts
+│   │   │   │   │   ├── selectFeaturesList.ts
+│   │   │   │   │   └── updateSelectedControlId.ts
+│   │   │   │   └── utils.ts
+│   │   │   ├── Reportings
+│   │   │   │   ├── Filters
+│   │   │   │   │   ├── Map
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── ReportingSearch.tsx
+│   │   │   │   │   ├── Table
+│   │   │   │   │   │   ├── FilterTags.tsx
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── slice.ts
+│   │   │   │   │   └── style.ts
+│   │   │   │   ├── components
+│   │   │   │   │   ├── LinkToMissionTag.tsx
+│   │   │   │   │   ├── ReportingForm
+│   │   │   │   │   │   ├── AttachMission
+│   │   │   │   │   │   │   ├── AttachMissionToReportingModal.tsx
+│   │   │   │   │   │   │   ├── AttachedMissionCard.tsx
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   └── slice.ts
+│   │   │   │   │   │   ├── FormComponents
+│   │   │   │   │   │   │   ├── Dialog
+│   │   │   │   │   │   │   │   └── CancelEditDialog.tsx
+│   │   │   │   │   │   │   ├── Footer.tsx
+│   │   │   │   │   │   │   ├── Position
+│   │   │   │   │   │   │   │   ├── PointPicker.tsx
+│   │   │   │   │   │   │   │   ├── ZonePicker.tsx
+│   │   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   │   ├── Source.tsx
+│   │   │   │   │   │   │   ├── Target
+│   │   │   │   │   │   │   │   ├── HistoryOfInfractions.tsx
+│   │   │   │   │   │   │   │   ├── TargetDetails.tsx
+│   │   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   │   ├── Title.tsx
+│   │   │   │   │   │   │   └── Validity.tsx
+│   │   │   │   │   │   ├── FormContent.tsx
+│   │   │   │   │   │   ├── FormikSyncReportingFields.tsx
+│   │   │   │   │   │   ├── Header.tsx
+│   │   │   │   │   │   ├── Schema
+│   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   ├── constants.ts
+│   │   │   │   │   │   ├── hooks
+│   │   │   │   │   │   │   ├── useGetHistoryOfInfractions.ts
+│   │   │   │   │   │   │   └── useListenReportingEventUpdates.ts
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   ├── sse.ts
+│   │   │   │   │   │   └── utils.ts
+│   │   │   │   │   ├── ReportingLayer
+│   │   │   │   │   │   ├── MissionToAttach
+│   │   │   │   │   │   │   ├── HoveredMissionToAttachLayer.tsx
+│   │   │   │   │   │   │   ├── SelectedMissionToAttachLayer.tsx
+│   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   └── Reporting
+│   │   │   │   │   │       ├── EditingReportingLayer.tsx
+│   │   │   │   │   │       ├── HoveredReportingLayer.tsx
+│   │   │   │   │   │       ├── SelectedReporting.tsx
+│   │   │   │   │   │       ├── index.tsx
+│   │   │   │   │   │       ├── reportingsGeometryHelpers.ts
+│   │   │   │   │   │       └── style.ts
+│   │   │   │   │   ├── ReportingOverlay
+│   │   │   │   │   │   ├── MissionToAttach
+│   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   └── Reporting
+│   │   │   │   │   │       ├── ReportingCard.tsx
+│   │   │   │   │   │       └── index.tsx
+│   │   │   │   │   ├── ReportingReadOnly
+│   │   │   │   │   │   ├── FormContent.tsx
+│   │   │   │   │   │   ├── Location.tsx
+│   │   │   │   │   │   ├── TargetDetails.tsx
+│   │   │   │   │   │   ├── Validity.tsx
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── ReportingsButton
+│   │   │   │   │   │   ├── SearchReportings.tsx
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── ReportingsList
+│   │   │   │   │   │   ├── Cells
+│   │   │   │   │   │   │   ├── ButtonsRowGroup.tsx
+│   │   │   │   │   │   │   ├── CellActionStatus.tsx
+│   │   │   │   │   │   │   ├── CellActionThemes.tsx
+│   │   │   │   │   │   │   ├── CellAttachedToMission.tsx
+│   │   │   │   │   │   │   ├── CellStatus.tsx
+│   │   │   │   │   │   │   ├── CellTarget.tsx
+│   │   │   │   │   │   │   ├── CellValidityTime.tsx
+│   │   │   │   │   │   │   └── getReportType.tsx
+│   │   │   │   │   │   ├── Columns
+│   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   ├── GroupActions.tsx
+│   │   │   │   │   │   ├── ReportingsTable.tsx
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   └── StatusActionTag.tsx
+│   │   │   │   ├── hooks
+│   │   │   │   │   ├── useGetFilteredReportingsQuery.ts
+│   │   │   │   │   └── useSyncFormValuesWithRedux.ts
+│   │   │   │   ├── icons
+│   │   │   │   │   ├── archived_reporting.svg
+│   │   │   │   │   ├── archived_reporting_infraction.svg
+│   │   │   │   │   ├── archived_reporting_observation.svg
+│   │   │   │   │   └── archived_reporting_with_mission_attached.svg
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── slice.ts
+│   │   │   │   ├── style.ts
+│   │   │   │   ├── useCases
+│   │   │   │   │   ├── addReporting.ts
+│   │   │   │   │   ├── archiveReporting.ts
+│   │   │   │   │   ├── archiveReportings.ts
+│   │   │   │   │   ├── attachMission.ts
+│   │   │   │   │   ├── closeReporting.ts
+│   │   │   │   │   ├── createMissionFromReporting.ts
+│   │   │   │   │   ├── deleteReporting.ts
+│   │   │   │   │   ├── deleteReportings.ts
+│   │   │   │   │   ├── duplicateReporting.ts
+│   │   │   │   │   ├── editReportingInLocalStore.ts
+│   │   │   │   │   ├── filters
+│   │   │   │   │   │   ├── isReportingPartOfSource.ts
+│   │   │   │   │   │   ├── isReportingPartOfTag.ts
+│   │   │   │   │   │   └── isReportingPartOfTheme.ts
+│   │   │   │   │   ├── reduceOrCollapseReportingForm.ts
+│   │   │   │   │   ├── reduceReportingFormOnMap.ts
+│   │   │   │   │   ├── reopenReporting.ts
+│   │   │   │   │   ├── saveReporting.ts
+│   │   │   │   │   └── switchReporting.ts
+│   │   │   │   ├── utils.test.ts
+│   │   │   │   └── utils.ts
+│   │   │   ├── Semaphore
+│   │   │   │   └── components
+│   │   │   │       ├── Layer
+│   │   │   │       │   ├── HoveredSemaphoreLayer.ts
+│   │   │   │       │   ├── SelectedSemaphoreLayer.tsx
+│   │   │   │       │   ├── index.ts
+│   │   │   │       │   ├── semaphoresGeometryHelpers.ts
+│   │   │   │       │   ├── style.ts
+│   │   │   │       │   └── utils.ts
+│   │   │   │       ├── Overlay
+│   │   │   │       │   ├── SemaphoreCard.tsx
+│   │   │   │       │   └── index.tsx
+│   │   │   │       └── SearchSemaphoreButton
+│   │   │   │           ├── SearchSemaphores.tsx
+│   │   │   │           └── index.tsx
+│   │   │   ├── SideWindow
+│   │   │   │   ├── Route.ts
+│   │   │   │   ├── SideWindowLauncher.tsx
+│   │   │   │   ├── components
+│   │   │   │   │   └── BannerStack
+│   │   │   │   │       ├── Item.tsx
+│   │   │   │   │       └── index.tsx
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── slice.ts
+│   │   │   │   ├── style.ts
+│   │   │   │   └── useCases
+│   │   │   │       └── addSideWindowBanner.ts
+│   │   │   ├── Station
+│   │   │   │   ├── components
+│   │   │   │   │   ├── StationForm
+│   │   │   │   │   │   ├── constants.ts
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   ├── types.ts
+│   │   │   │   │   │   └── utils.ts
+│   │   │   │   │   ├── StationLayer
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   └── utils.ts
+│   │   │   │   │   ├── StationOverlay
+│   │   │   │   │   │   ├── StationCard
+│   │   │   │   │   │   │   ├── Item.tsx
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   └── utils.tsx
+│   │   │   │   │   │   ├── constants.ts
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   └── StationTable
+│   │   │   │   │       ├── FilterBar.tsx
+│   │   │   │   │       ├── constants.tsx
+│   │   │   │   │       ├── index.tsx
+│   │   │   │   │       ├── slice.ts
+│   │   │   │   │       ├── types.ts
+│   │   │   │   │       └── utils.tsx
+│   │   │   │   └── slice.ts
+│   │   │   ├── Vessel
+│   │   │   │   ├── SearchVessels.tsx
+│   │   │   │   ├── VesselForm.tsx
+│   │   │   │   ├── VesselResume.tsx
+│   │   │   │   ├── VesselSearchDescription.tsx
+│   │   │   │   ├── VesselSearchForm.tsx
+│   │   │   │   ├── VesselSearchItem.tsx
+│   │   │   │   ├── hooks
+│   │   │   │   │   └── useVessels.ts
+│   │   │   │   ├── slice.ts
+│   │   │   │   ├── types.ts
+│   │   │   │   └── utils.ts
+│   │   │   ├── VigilanceArea
+│   │   │   │   ├── components
+│   │   │   │   │   ├── PeriodFilter.tsx
+│   │   │   │   │   ├── SpecificPeriodFilter.tsx
+│   │   │   │   │   ├── VigilanceAreaForm
+│   │   │   │   │   │   ├── AddAMPs
+│   │   │   │   │   │   │   ├── AMPItem.tsx
+│   │   │   │   │   │   │   ├── AMPList.tsx
+│   │   │   │   │   │   │   ├── SelectAMPs.tsx
+│   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   ├── AddRegulatoryAreas
+│   │   │   │   │   │   │   ├── RegulatoryAreaItem.tsx
+│   │   │   │   │   │   │   ├── RegulatoryAreas.tsx
+│   │   │   │   │   │   │   ├── SelectRegulatoryAreas.tsx
+│   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   ├── DrawVigilanceArea.tsx
+│   │   │   │   │   │   ├── Footer.tsx
+│   │   │   │   │   │   ├── Form.tsx
+│   │   │   │   │   │   ├── Links.tsx
+│   │   │   │   │   │   ├── Panel
+│   │   │   │   │   │   │   ├── PanelComments.tsx
+│   │   │   │   │   │   │   ├── PanelDates.tsx
+│   │   │   │   │   │   │   ├── PanelImages.tsx
+│   │   │   │   │   │   │   ├── PanelInternalCACEMSection.tsx
+│   │   │   │   │   │   │   ├── PanelLinks.tsx
+│   │   │   │   │   │   │   ├── PanelSource.tsx
+│   │   │   │   │   │   │   ├── PanelThemesAndTags.tsx
+│   │   │   │   │   │   │   ├── ValidateAt.tsx
+│   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   ├── Periods
+│   │   │   │   │   │   │   ├── Period.tsx
+│   │   │   │   │   │   │   └── Periods.tsx
+│   │   │   │   │   │   ├── PhotoUploader.tsx
+│   │   │   │   │   │   ├── Planning
+│   │   │   │   │   │   │   ├── MonthBox.tsx
+│   │   │   │   │   │   │   ├── PlanningBody.tsx
+│   │   │   │   │   │   │   ├── PlanningForm.tsx
+│   │   │   │   │   │   │   ├── PlanningPanel.tsx
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   ├── utils.test.ts
+│   │   │   │   │   │   │   └── utils.ts
+│   │   │   │   │   │   ├── Schema.ts
+│   │   │   │   │   │   ├── Sources
+│   │   │   │   │   │   │   ├── ControlUnitContactSource.tsx
+│   │   │   │   │   │   │   ├── OtherOrInternalSource.tsx
+│   │   │   │   │   │   │   ├── Source.tsx
+│   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   ├── style.ts
+│   │   │   │   │   │   └── utils.ts
+│   │   │   │   │   ├── VigilanceAreaLayer
+│   │   │   │   │   │   ├── DrawVigilanceAreaLayer.tsx
+│   │   │   │   │   │   ├── EditingVigilanceAreaLayer.tsx
+│   │   │   │   │   │   ├── PreviewVigilanceAreasLayer.tsx
+│   │   │   │   │   │   ├── SelectedVigilanceAreaLayer.tsx
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   ├── style.ts
+│   │   │   │   │   │   └── vigilanceAreaGeometryHelper.ts
+│   │   │   │   │   ├── VigilanceAreaTypeFilter.tsx
+│   │   │   │   │   └── VigilanceAreasList
+│   │   │   │   │       ├── Cells
+│   │   │   │   │       │   ├── EditCell.tsx
+│   │   │   │   │       │   ├── FrequencyCell.tsx
+│   │   │   │   │       │   ├── HighlightCell.tsx
+│   │   │   │   │       │   ├── LocalizeCell.tsx
+│   │   │   │   │       │   ├── PeriodCell.tsx
+│   │   │   │   │       │   ├── PeriodsCell.tsx
+│   │   │   │   │       │   ├── StatusCell.tsx
+│   │   │   │   │       │   ├── TagsCell.tsx
+│   │   │   │   │       │   ├── ValidationDateCell.tsx
+│   │   │   │   │       │   └── VisibilityCell.tsx
+│   │   │   │   │       ├── Columns
+│   │   │   │   │       │   └── index.tsx
+│   │   │   │   │       ├── Filters
+│   │   │   │   │       │   ├── FiltersTag.tsx
+│   │   │   │   │       │   ├── SearchFilter.tsx
+│   │   │   │   │       │   ├── index.tsx
+│   │   │   │   │       │   └── slice.ts
+│   │   │   │   │       ├── VigilanceAreasTable.tsx
+│   │   │   │   │       └── index.tsx
+│   │   │   │   ├── constants.ts
+│   │   │   │   ├── hooks
+│   │   │   │   │   └── useGetFilteredVigilanceAreasQuery.ts
+│   │   │   │   ├── slice.ts
+│   │   │   │   ├── types.ts
+│   │   │   │   ├── useCases
+│   │   │   │   │   ├── addFeatureToDrawedFeature.ts
+│   │   │   │   │   ├── deleteVigilanceArea.ts
+│   │   │   │   │   ├── filters
+│   │   │   │   │   │   ├── isVigilanceAreaPartOfCreatedBy.ts
+│   │   │   │   │   │   ├── isVigilanceAreaPartOfSeaFront.ts
+│   │   │   │   │   │   ├── isVigilanceAreaPartOfStatus.ts
+│   │   │   │   │   │   ├── isVigilanceAreaPartOfTag.ts
+│   │   │   │   │   │   ├── isVigilanceAreaPartOfTheme.ts
+│   │   │   │   │   │   ├── isVigilanceAreaPartOfType.ts
+│   │   │   │   │   │   └── isVigilanceAreaPartOfVisibility.ts
+│   │   │   │   │   ├── hideLayers.ts
+│   │   │   │   │   ├── publish.ts
+│   │   │   │   │   ├── saveVigilanceArea.ts
+│   │   │   │   │   └── unpublish.ts
+│   │   │   │   └── utils.ts
+│   │   │   ├── commonComponents
+│   │   │   │   ├── AutoSaveTag.tsx
+│   │   │   │   ├── ControlCard
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── Modals
+│   │   │   │   │   ├── Archive.tsx
+│   │   │   │   │   ├── CancelEditModal.tsx
+│   │   │   │   │   ├── Delete.tsx
+│   │   │   │   │   └── MapInteraction.tsx
+│   │   │   │   ├── ReinitializeFiltersButton.tsx
+│   │   │   │   ├── Skeleton
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── TargetSelector
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── VehicleTypeSelector
+│   │   │   │   │   └── index.tsx
+│   │   │   │   └── VesselTypeSelector
+│   │   │   │       └── index.tsx
+│   │   │   ├── commonStyles
+│   │   │   │   ├── MapComponent.style.ts
+│   │   │   │   ├── Text.style.ts
+│   │   │   │   ├── icons
+│   │   │   │   │   └── ChevronIconButton.tsx
+│   │   │   │   └── map
+│   │   │   │       └── MenuWithCloseButton.tsx
+│   │   │   ├── healthcheck
+│   │   │   │   └── Healthcheck.tsx
+│   │   │   ├── layersSelector
+│   │   │   │   ├── administrative
+│   │   │   │   │   ├── AdministrativeLayer.tsx
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── base
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── metadataPanel
+│   │   │   │   │   ├── MetadataPanel.style.ts
+│   │   │   │   │   ├── RegulatorySummary.tsx
+│   │   │   │   │   ├── ampMetadata
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── regulatoryMetadata
+│   │   │   │   │   │   ├── Identification.tsx
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   └── slice.ts
+│   │   │   │   ├── myAmps
+│   │   │   │   │   ├── MyAMPLayerGroup.tsx
+│   │   │   │   │   ├── MyAMPLayerZone.tsx
+│   │   │   │   │   ├── MyAMPLayersList.tsx
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── myRegulatoryLayers
+│   │   │   │   │   ├── MyRegulatoryLayerGroup.tsx
+│   │   │   │   │   ├── MyRegulatoryLayerZone.tsx
+│   │   │   │   │   ├── MyRegulatoryLayersList.tsx
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── myVigilanceAreas
+│   │   │   │   │   ├── MyVigilanceAreaLayerZone.tsx
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── overlays
+│   │   │   │   │   ├── HoveredOverlay.tsx
+│   │   │   │   │   ├── LayerEvents.tsx
+│   │   │   │   │   ├── OverlayContent.tsx
+│   │   │   │   │   ├── PinnedOverlay.tsx
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── style.ts
+│   │   │   │   │   └── useClickOutsideWithNoMove.ts
+│   │   │   │   ├── search
+│   │   │   │   │   ├── LayerFilters.tsx
+│   │   │   │   │   ├── ResultsList
+│   │   │   │   │   │   ├── AMPLayerGroup
+│   │   │   │   │   │   │   ├── AMPLayer.tsx
+│   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   ├── RegulatoryLayerGroup
+│   │   │   │   │   │   │   ├── RegulatoryLayer.tsx
+│   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   ├── ResultListLayerGroup.tsx
+│   │   │   │   │   │   ├── VigilanceAreaLayer
+│   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── SearchInput.tsx
+│   │   │   │   │   ├── SearchOnExtentExtraButtons.tsx
+│   │   │   │   │   ├── hooks
+│   │   │   │   │   │   ├── useSearchLayers.ts
+│   │   │   │   │   │   └── utils.ts
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── slice.ts
+│   │   │   │   └── utils
+│   │   │   │       ├── LayerLegend.style.tsx
+│   │   │   │       ├── LayerSelector.style.ts
+│   │   │   │       ├── MyLayerGroup.tsx
+│   │   │   │       ├── MyLayerZone.tsx
+│   │   │   │       ├── getExtentOfLayersGroup.ts
+│   │   │   │       ├── getFilteredVigilanceAreasPerPeriod.test.ts
+│   │   │   │       ├── getFilteredVigilanceAreasPerPeriod.ts
+│   │   │   │       └── getIntersectingLayerIds.ts
+│   │   │   └── map
+│   │   │       ├── BaseMap.tsx
+│   │   │       ├── MapExtentController.ts
+│   │   │       ├── MapHistory.ts
+│   │   │       ├── ZoomListener.tsx
+│   │   │       ├── controls
+│   │   │       │   ├── MapAttributionsBox.tsx
+│   │   │       │   └── MapCoordinatesBox.tsx
+│   │   │       ├── draw
+│   │   │       │   └── DrawModal.tsx
+│   │   │       ├── index.tsx
+│   │   │       ├── layers
+│   │   │       │   ├── AMP
+│   │   │       │   │   ├── AMPGeometryHelpers.ts
+│   │   │       │   │   ├── AMPLayers.style.ts
+│   │   │       │   │   ├── AMPPreviewLayer.ts
+│   │   │       │   │   └── index.ts
+│   │   │       │   ├── AdministrativeLayers.ts
+│   │   │       │   ├── DrawLayer.ts
+│   │   │       │   ├── MapLayer.tsx
+│   │   │       │   ├── MeasurementLayer.tsx
+│   │   │       │   ├── Regulatory
+│   │   │       │   │   ├── RegulatoryPreviewLayer.ts
+│   │   │       │   │   ├── index.ts
+│   │   │       │   │   └── regulatoryGeometryHelpers.ts
+│   │   │       │   ├── SearchExtentLayer.tsx
+│   │   │       │   ├── measurement.tsx
+│   │   │       │   ├── styles
+│   │   │       │   │   ├── administrativeAndRegulatoryLayers.style.ts
+│   │   │       │   │   ├── dottedLayer.style.ts
+│   │   │       │   │   ├── draw.style.ts
+│   │   │       │   │   ├── interestPoint.style.ts
+│   │   │       │   │   └── measurement.style.ts
+│   │   │       │   ├── utils.test.ts
+│   │   │       │   └── utils.ts
+│   │   │       ├── overlays
+│   │   │       │   ├── MeasurementOverlay.tsx
+│   │   │       │   ├── OverlayPositionOnCentroid.tsx
+│   │   │       │   ├── OverlayPositionOnCoordinate.tsx
+│   │   │       │   ├── actions
+│   │   │       │   │   ├── MissionControlCard.tsx
+│   │   │       │   │   ├── SurveillanceCard.tsx
+│   │   │       │   │   └── index.tsx
+│   │   │       │   ├── position.ts
+│   │   │       │   └── style.ts
+│   │   │       ├── shared
+│   │   │       │   ├── RightMenuOnHoverArea.tsx
+│   │   │       │   └── style.ts
+│   │   │       ├── tools
+│   │   │       │   ├── MapToolBox.tsx
+│   │   │       │   ├── MapToolButton.tsx
+│   │   │       │   └── measurements
+│   │   │       │       ├── CustomCircleRange.tsx
+│   │   │       │       └── MeasurementMapButton.tsx
+│   │   │       └── utils.ts
+│   │   ├── hooks
+│   │   │   ├── useAppDispatch.ts
+│   │   │   ├── useAppSelector.ts
+│   │   │   ├── useClickOutside.ts
+│   │   │   ├── useClickOutsideWhenOpened.ts
+│   │   │   ├── useDrawLayer.ts
+│   │   │   ├── useEscapeKey.ts
+│   │   │   ├── useGetCurrentUserAuthorizationQueryOverride.ts
+│   │   │   ├── useHasMapInteraction.ts
+│   │   │   ├── useListenForDrawing.ts
+│   │   │   ├── useMatomo.ts
+│   │   │   ├── useMountTransition.ts
+│   │   │   ├── useMoveOverlayWhenDragging.ts
+│   │   │   ├── useTable.ts
+│   │   │   ├── useTableVirtualizer.ts
+│   │   │   └── useTracking.ts
+│   │   ├── index.tsx
+│   │   ├── libs
+│   │   │   ├── CreateUserErrorFactory.ts
+│   │   │   ├── FrontendApiError.ts
+│   │   │   ├── FrontendError.ts
+│   │   │   └── error.ts
+│   │   ├── matomo.d.ts
+│   │   ├── pages
+│   │   │   ├── BackOfficePage.tsx
+│   │   │   ├── HomePage.tsx
+│   │   │   ├── Login.tsx
+│   │   │   └── Register.tsx
+│   │   ├── paths.ts
+│   │   ├── store
+│   │   │   ├── index.ts
+│   │   │   ├── migrations
+│   │   │   │   ├── controlUnitsFilters.ts
+│   │   │   │   ├── dashboardsFilters.ts
+│   │   │   │   ├── missionsFilters.ts
+│   │   │   │   ├── recentActivitiesFilters.ts
+│   │   │   │   ├── reportingsFilters.ts
+│   │   │   │   └── vigilanceAreasFilters.ts
+│   │   │   └── reducers.ts
+│   │   ├── types.ts
+│   │   ├── typings
+│   │   │   ├── index.d.ts
+│   │   │   ├── puppeteer.d.ts
+│   │   │   └── styled-components.d.ts
+│   │   ├── ui
+│   │   │   ├── LoadingSpinnerWall.tsx
+│   │   │   ├── NavButton.tsx
+│   │   │   ├── NavIconButton.tsx
+│   │   │   └── ReportingStatusTag.tsx
+│   │   ├── uiMonitor
+│   │   │   └── ol-override.css
+│   │   └── utils
+│   │       ├── __tests__
+│   │       │   ├── getDatesFromFilters.test.ts
+│   │       │   ├── getNbMonths.test.ts
+│   │       │   ├── isPuppeteer.test.ts
+│   │       │   └── sortCollectionByLocalizedProps.test.ts
+│   │       ├── coordinates.ts
+│   │       ├── dateDifferenceInHours.ts
+│   │       ├── deleteTagTag.ts
+│   │       ├── deleteThemeTag.ts
+│   │       ├── drawFunctions.ts
+│   │       ├── findMapFeatureById.ts
+│   │       ├── geojsonToWKT.test.ts
+│   │       ├── geojsonToWKT.ts
+│   │       ├── geometryValidation.test.ts
+│   │       ├── geometryValidation.ts
+│   │       ├── getAmpsAsOptions.ts
+│   │       ├── getDateAsLocalizedString.tsx
+│   │       ├── getDatesFromFilters.tsx
+│   │       ├── getFeature.ts
+│   │       ├── getNbMonths.ts
+│   │       ├── getQueryStringFormatted.ts
+│   │       ├── getRegulatoryAreaTitle.ts
+│   │       ├── getTagsAsOptions.ts
+│   │       ├── getThemesAsOptions.ts
+│   │       ├── isArray.ts
+│   │       ├── isBrowserSupported.ts
+│   │       ├── isCypress.ts
+│   │       ├── isEmptyish.ts
+│   │       ├── isLegacyFirefox.ts
+│   │       ├── isNotArchived.ts
+│   │       ├── isNumeric.ts
+│   │       ├── isObject.ts
+│   │       ├── isPartOfTags.ts
+│   │       ├── isPartOfThemes.ts
+│   │       ├── isPuppeteer.ts
+│   │       ├── normalizeRtkBaseQuery.ts
+│   │       ├── routes.ts
+│   │       ├── sha256.ts
+│   │       ├── sortCollectionByLocalizedProps.ts
+│   │       ├── styleHelpers.ts
+│   │       ├── undefinedize.ts
+│   │       └── utils.ts
+│   ├── tsconfig.json
+│   └── vite.config.ts
+├── infra
+│   ├── backup
+│   │   ├── crontab.txt
+│   │   ├── pg_backup.config.template
+│   │   └── pg_backup_rotated.sh
+│   ├── cacem
+│   │   ├── alter_table_amp.sql
+│   │   └── contraintes_table_reglementation.sql
+│   ├── configurations
+│   │   ├── keycloack
+│   │   │   └── realm-monitor-dev.json
+│   │   └── prefect-agent
+│   │       └── backend.toml
+│   ├── data-pipeline
+│   │   ├── .prefect-agent.template
+│   │   ├── prefectdockeragent.service
+│   │   ├── prefectdockeragent.sh
+│   │   ├── register-flows.sh
+│   │   └── run-container-bash.sh
+│   ├── data-pipeline-prefect3
+│   │   ├── .prefect-worker.template
+│   │   ├── deploy-flows.sh
+│   │   ├── prefectworker.service
+│   │   └── prefectworker.sh
+│   ├── database_upgrade
+│   │   ├── check_extensions_versions.sh
+│   │   ├── print_pg_conf_files.sh
+│   │   └── update_postgis.sh
+│   ├── db
+│   │   └── db_users_metabase.sql
+│   ├── docker
+│   │   ├── app
+│   │   │   ├── Dockerfile
+│   │   │   └── env.sh
+│   │   ├── database
+│   │   │   ├── database.Dockerfile
+│   │   │   ├── docker-entrypoint-initdb.d
+│   │   │   │   ├── 000_install_timescaledb.sh
+│   │   │   │   └── 001_timescaledb_tune.sh
+│   │   │   ├── docker-upgrade
+│   │   │   ├── ts_postgis.Dockerfile
+│   │   │   └── upgrade_pg.Dockerfile
+│   │   └── datapipeline
+│   │       ├── Dockerfile
+│   │       └── prefect3.Dockerfile
+│   ├── init
+│   │   ├── geoserver_init_layers.sh
+│   │   ├── init_env.sh
+│   │   ├── postgis_insert_layers.sh
+│   │   └── production_postgis_insert_layers.sh
+│   ├── kafka
+│   │   ├── certs
+│   │   │   └── monitorenv
+│   │   │       └── .gitkeep
+│   │   └── scripts
+│   │       └── create_certificate.sh
+│   └── scripts
+│       ├── backup_dev_db.sh
+│       └── restore_dev_db.sh
+├── pipeline
+│   ├── .env.template
+│   ├── .env.test
+│   ├── .monitorenv.template
+│   ├── .pre-commit-config.yaml
+│   ├── .python-version
+│   ├── README.md
+│   ├── __init__.py
+│   ├── config.py
+│   ├── main.py
+│   ├── poetry.lock
+│   ├── pyproject.toml
+│   ├── src
+│   │   ├── __init__.py
+│   │   ├── db_config.py
+│   │   ├── deployments.py
+│   │   ├── emails
+│   │   │   ├── stylesheets
+│   │   │   │   ├── email_to_control_units.css
+│   │   │   │   └── splendid.css
+│   │   │   └── templates
+│   │   │       └── email_actions_to_units.jinja
+│   │   ├── entities
+│   │   │   ├── __init__.py
+│   │   │   └── actions_emailing.py
+│   │   ├── flows
+│   │   │   ├── __init__.py
+│   │   │   ├── admin_areas.py
+│   │   │   ├── amp_cacem.py
+│   │   │   ├── amp_ofb.py
+│   │   │   ├── beaches.py
+│   │   │   ├── competence_cross_areas.py
+│   │   │   ├── email_actions_to_units.py
+│   │   │   ├── facade_areas.py
+│   │   │   ├── facade_areas_unextended.py
+│   │   │   ├── fao_areas.py
+│   │   │   ├── historic_control_units.py
+│   │   │   ├── historic_controls.py
+│   │   │   ├── infractions.py
+│   │   │   ├── last_positions.py
+│   │   │   ├── localized_areas.py
+│   │   │   ├── marpol.py
+│   │   │   ├── ref_natinfs.py
+│   │   │   ├── refresh_materialized_view.py
+│   │   │   ├── regulations.py
+│   │   │   ├── regulations_open_data.py
+│   │   │   ├── remove_broken_missions_resources_links.py
+│   │   │   ├── semaphores.py
+│   │   │   ├── themes_and_tags.py
+│   │   │   ├── three_hundred_meters_areas.py
+│   │   │   ├── update_departments_and_facades.py
+│   │   │   └── vessel_repository.py
+│   │   ├── generic_tasks.py
+│   │   ├── helpers
+│   │   │   ├── __init__.py
+│   │   │   ├── dates.py
+│   │   │   ├── emails.py
+│   │   │   ├── spatial.py
+│   │   │   └── strings.py
+│   │   ├── processing.py
+│   │   ├── queries
+│   │   │   ├── cross
+│   │   │   │   ├── cacem
+│   │   │   │   │   ├── amp.sql
+│   │   │   │   │   ├── amp_hashes.sql
+│   │   │   │   │   ├── beaches.sql
+│   │   │   │   │   ├── competence_cross_areas.sql
+│   │   │   │   │   ├── localized_areas.sql
+│   │   │   │   │   ├── low_water_line.sql
+│   │   │   │   │   ├── marpol.sql
+│   │   │   │   │   ├── regulations.sql
+│   │   │   │   │   ├── regulations_hashes.sql
+│   │   │   │   │   ├── regulations_open_data.sql
+│   │   │   │   │   ├── semaphore.sql
+│   │   │   │   │   ├── straight_baseline.sql
+│   │   │   │   │   ├── tags.sql
+│   │   │   │   │   ├── tags_hashes.sql
+│   │   │   │   │   ├── tags_regulatory_areas.sql
+│   │   │   │   │   ├── territorial_seas.sql
+│   │   │   │   │   ├── themes.sql
+│   │   │   │   │   ├── themes_hashes.sql
+│   │   │   │   │   ├── themes_regulatory_areas.sql
+│   │   │   │   │   └── three_hundred_meters_areas.sql
+│   │   │   │   └── cnsp
+│   │   │   │       ├── 12_miles_areas.sql
+│   │   │   │       ├── 3_miles_areas.sql
+│   │   │   │       ├── 6_miles_areas.sql
+│   │   │   │       ├── aem_areas.sql
+│   │   │   │       ├── departments_areas.sql
+│   │   │   │       ├── eez_areas.sql
+│   │   │   │       ├── facade_areas.sql
+│   │   │   │       ├── facade_areas_unextended.sql
+│   │   │   │       ├── saltwater_limit_areas.sql
+│   │   │   │       └── transversal_sea_limit_areas.sql
+│   │   │   ├── fmc
+│   │   │   │   ├── control_units.sql
+│   │   │   │   ├── historic_controls.sql
+│   │   │   │   ├── historic_missions.sql
+│   │   │   │   ├── historic_missions_units.sql
+│   │   │   │   └── natinf.sql
+│   │   │   ├── monitorenv
+│   │   │   │   ├── all_control_units.sql
+│   │   │   │   ├── amp_hashes.sql
+│   │   │   │   ├── compute_last_positions.sql
+│   │   │   │   ├── control_units.sql
+│   │   │   │   ├── env_actions_to_email.sql
+│   │   │   │   ├── previous_last_positions.sql
+│   │   │   │   ├── regulations_hashes.sql
+│   │   │   │   ├── remove_broken_missions_resources_links.sql
+│   │   │   │   ├── tags_hashes.sql
+│   │   │   │   ├── themes_hashes.sql
+│   │   │   │   ├── update_actions_departments.sql
+│   │   │   │   ├── update_actions_facades.sql
+│   │   │   │   └── update_missions_facades.sql
+│   │   │   └── monitorfish
+│   │   │       └── fao_areas.sql
+│   │   ├── read_query.py
+│   │   ├── shared_tasks
+│   │   │   ├── __init__.py
+│   │   │   ├── control_flow.py
+│   │   │   ├── datagouv.py
+│   │   │   ├── dates.py
+│   │   │   ├── etl.py
+│   │   │   ├── infrastructure.py
+│   │   │   └── update_queries.py
+│   │   └── utils.py
+│   └── tests
+│       ├── __init__.py
+│       ├── conftest.py
+│       ├── mocks.py
+│       ├── test_data
+│       │   ├── cacem_database
+│       │   │   ├── V666.500__amp.sql
+│       │   │   ├── V666.501__marpol.sql
+│       │   │   ├── V666.502__competence_cross_areas.sql
+│       │   │   ├── V666.503__threee_hundred_meters_areas.sql
+│       │   │   ├── V666.504__regulatory_areas_themes_and_tags.sql
+│       │   │   ├── V666.505__localized_areas.sql
+│       │   │   └── V666.506__beaches.sql
+│       │   ├── emails
+│       │   │   ├── expected_rendered_email.html
+│       │   │   └── expected_rendered_email_without_actions.html
+│       │   ├── ref_natinfs_csv
+│       │   │   └── ref_natinfs.csv
+│       │   ├── remote_database
+│       │   │   ├── V666.0__Reset_themes_and_tags.sql
+│       │   │   ├── V666.17__Reset_test_eez_areas.sql
+│       │   │   ├── V666.1__Reset_test_controllers.sql
+│       │   │   ├── V666.26__Reset_test_infractions.sql
+│       │   │   ├── V666.27__Reset_test_amps.sql
+│       │   │   ├── V666.28__Reset_test_regulatory_areas.sql
+│       │   │   ├── V666.2__Reset_test_missions.sql
+│       │   │   ├── V666.30__Reset_test_localized_areas.sql
+│       │   │   ├── V666.31__vessels.sql
+│       │   │   ├── V666.32__ais_positions.sql
+│       │   │   ├── V666.33__last_positions.sql
+│       │   │   ├── V666.3__insert_dummy_env_actions.sql
+│       │   │   ├── V666.4__Reset_dummy_departments_areas.sql
+│       │   │   ├── V666.5__Reset_dummy_facade_areas_subdivided.sql
+│       │   │   ├── V666.6__Reset_dummy_emails_sent_to_control_units.sql
+│       │   │   └── V666.999__Refresh_materialized_views.sql
+│       │   ├── vessel_xml
+│       │   │   ├── vessel_repository.xml
+│       │   │   └── vessel_repository.xsd
+│       │   └── zip_files
+│       │       └── amp_areas.zip
+│       ├── test_deployments.py
+│       ├── test_flows
+│       │   ├── __init__.py
+│       │   ├── test_amp_cacem.py
+│       │   ├── test_amp_ofb.py
+│       │   ├── test_beaches.py
+│       │   ├── test_competence_cross_areas.py
+│       │   ├── test_email_actions_to_units.py
+│       │   ├── test_historic_control_units.py
+│       │   ├── test_historic_controls.py
+│       │   ├── test_infractions.py
+│       │   ├── test_last_positions.py
+│       │   ├── test_localized_areas.py
+│       │   ├── test_marpol.py
+│       │   ├── test_ref_natinfs.py
+│       │   ├── test_refresh_materialized_views.py
+│       │   ├── test_regulations.py
+│       │   ├── test_regulations_open_data.py
+│       │   ├── test_themes_and_tags.py
+│       │   ├── test_three_hundred_meters_areas.py
+│       │   ├── test_update_departments_and_facades.py
+│       │   └── test_vessel_repository.py
+│       ├── test_helpers
+│       │   ├── __init__.py
+│       │   └── test_dates.py
+│       ├── test_processing.py
+│       ├── test_shared_tasks
+│       │   ├── test_control_flow.py
+│       │   ├── test_datagouv.py
+│       │   ├── test_dates.py
+│       │   ├── test_geometries.py
+│       │   └── test_update_queries.py
+│       └── test_utils.py
+└── sonar-project.properties
+602 directories, 2983 files
