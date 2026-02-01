@@ -1,0 +1,405 @@
+.
+├── .dockerignore
+├── .env.example
+├── .github
+│   └── workflows
+│       ├── deactivate.yaml
+│       ├── preproduction.yaml
+│       ├── production.yaml
+│       ├── quality.yml
+│       ├── release.yaml
+│       ├── review-auto.yaml
+│       └── review-manual.yaml
+├── .gitignore
+├── .kontinuous
+│   ├── config.yaml
+│   ├── env
+│   │   ├── dev
+│   │   │   ├── templates
+│   │   │   │   ├── app.sealed-secret.yaml
+│   │   │   │   └── graal.configmap.yaml
+│   │   │   └── values.yaml
+│   │   ├── preprod
+│   │   │   ├── templates
+│   │   │   │   ├── app.sealed-secret.yaml
+│   │   │   │   └── graal.configmap.yaml
+│   │   │   └── values.yaml
+│   │   └── prod
+│   │       ├── templates
+│   │       │   ├── app.sealed-secret.yaml
+│   │       │   └── graal.configmap.yaml
+│   │       └── values.yaml
+│   └── values.yaml
+├── .npmrc
+├── .pre-commit-config.yaml
+├── .revu.yml
+├── .rules
+│   ├── architecture-features.md
+│   ├── authentication-authorization.md
+│   ├── backend-fastapi.md
+│   ├── backend-python.md
+│   ├── configuration.md
+│   ├── data-processing.md
+│   ├── frontend-dsfr.md
+│   ├── frontend-react.md
+│   ├── llm-integration.md
+│   ├── performance.md
+│   ├── storage-s3.md
+│   └── testing-standards.md
+├── .secrets.baseline
+├── AGENTS.md
+├── CHANGELOG.md
+├── Dockerfile
+├── LICENSE
+├── README.md
+├── alembic
+│   ├── env.py
+│   ├── script.py.mako
+│   └── versions
+│       ├── 20251120_1400_001_initial_schema.py
+│       ├── 20251204_2300_f96ecfde67e6_add_input_files_to_similarity_db_.py
+│       ├── 20251209_0003_dfb8a3c40e7f_remove_s3_config_file_path_from_user_.py
+│       ├── 20251211_1735_add_amendment_database_permissions_table.py
+│       ├── 20251217_1700_add_email_trigram_index.py
+│       └── 20260128_1511_509f4958dc7d_add_oauth_auth_requests_table.py
+├── alembic.ini
+├── config
+│   ├── db_amendments
+│   │   └── projects.yml
+│   └── default.yml
+├── data
+│   ├── PLFSS_2024.json
+│   └── exports_lectures
+│       └── PLFSS 2023
+│           ├── lecture-an-16-1682-PO791932 (2).json
+│           ├── lecture-an-16-274-PO420120.json
+│           ├── lecture-an-16-274-PO791932.json
+│           ├── lecture-an-16-480-PO791932.json
+│           └── lecture-senat-2022-2023-96-PO78718.json
+├── docker
+│   └── pgadmin-servers.json
+├── docker-compose.yml
+├── docs
+│   ├── allotment.md
+│   ├── api_documentation.md
+│   ├── attribution.md
+│   ├── auto-type-generation-guide.md
+│   ├── database_setup.md
+│   ├── db_permission_system_plan.md
+│   ├── similarities_within_lectures.md
+│   ├── similarity_search.md
+│   └── summary_generation.md
+├── frontend
+│   ├── .dockerignore
+│   ├── .husky
+│   │   └── pre-commit
+│   ├── Dockerfile
+│   ├── docs
+│   │   └── auto_type_generation_from_backend.md
+│   ├── eslint.config.mjs
+│   ├── index.html
+│   ├── package.json
+│   ├── public
+│   │   └── vite.svg
+│   ├── src
+│   │   ├── .prettierrc
+│   │   ├── App.css
+│   │   ├── App.tsx
+│   │   ├── assets
+│   │   │   └── react.svg
+│   │   ├── components
+│   │   │   ├── Admin
+│   │   │   │   ├── Admin.test.tsx
+│   │   │   │   ├── Admin.tsx
+│   │   │   │   ├── S3FileBrowser
+│   │   │   │   │   ├── AdminDatabaseTable.tsx
+│   │   │   │   │   ├── DeleteConfirmModal.tsx
+│   │   │   │   │   ├── FileListTable.tsx
+│   │   │   │   │   ├── InputPoolFileDetailsModal.tsx
+│   │   │   │   │   ├── S3FileBrowser.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   └── index.ts
+│   │   │   ├── Auth
+│   │   │   │   ├── LoginButton.tsx
+│   │   │   │   └── LogoutButton.tsx
+│   │   │   ├── Combobox
+│   │   │   │   ├── Combobox.module.css
+│   │   │   │   ├── Combobox.tsx
+│   │   │   │   ├── MultiCombobox.module.css
+│   │   │   │   ├── MultiCombobox.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── ConfigFileSelector
+│   │   │   │   ├── ConfigFileSelector.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── ConfigurationManager
+│   │   │   │   ├── ConfigurationManager.tsx
+│   │   │   │   └── ConfigurationModals.tsx
+│   │   │   ├── DatabaseBuilder
+│   │   │   │   ├── DatabaseBuilder.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── DatabasePermissions
+│   │   │   │   └── DatabasePermissions.tsx
+│   │   │   ├── DownloadButton
+│   │   │   │   └── DownloadButton.tsx
+│   │   │   ├── FeatureConfig
+│   │   │   │   ├── ColumnSimilarityConfig.tsx
+│   │   │   │   ├── ColumnsToCopyConfig.tsx
+│   │   │   │   ├── DatabaseSelectorConfig.tsx
+│   │   │   │   ├── FeatureConfigSection.tsx
+│   │   │   │   ├── ProjectSelectionConfig.tsx
+│   │   │   │   ├── SimpleToggleConfig.tsx
+│   │   │   │   ├── SummaryGenerationConfig.tsx
+│   │   │   │   ├── ThresholdSliderConfig.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── FileUpload
+│   │   │   │   ├── FileUpload.module.css
+│   │   │   │   ├── FileUpload.test.tsx
+│   │   │   │   └── FileUpload.tsx
+│   │   │   ├── Jobs
+│   │   │   │   ├── JobsPoller.tsx
+│   │   │   │   └── ToastCenter.tsx
+│   │   │   ├── ManageDatabases
+│   │   │   │   └── ManageDatabases.tsx
+│   │   │   ├── ProcessingConfig
+│   │   │   │   ├── ProcessingConfig.tsx
+│   │   │   │   ├── constants
+│   │   │   │   │   └── options.ts
+│   │   │   │   └── hooks
+│   │   │   │       └── useProcessingConfigHandlers.ts
+│   │   │   ├── ProcessingStatus
+│   │   │   │   └── ProcessingStatus.tsx
+│   │   │   ├── ProtectedRoute
+│   │   │   │   ├── ProtectedRoute.test.tsx
+│   │   │   │   ├── ProtectedRoute.tsx
+│   │   │   │   └── index.ts
+│   │   │   └── ResultsTable
+│   │   │       └── ResultsTable.tsx
+│   │   ├── config
+│   │   │   └── featureFlags.ts
+│   │   ├── hooks
+│   │   │   ├── useAdminDatabases.ts
+│   │   │   ├── useApi.ts
+│   │   │   ├── useAuth.ts
+│   │   │   ├── useS3Files.ts
+│   │   │   └── useValidation.ts
+│   │   ├── index.css
+│   │   ├── main.tsx
+│   │   ├── pages
+│   │   │   ├── AdminPage.tsx
+│   │   │   ├── DatabasePage.tsx
+│   │   │   ├── Home.tsx
+│   │   │   ├── ProcessingPage.test.tsx
+│   │   │   └── ProcessingPage.tsx
+│   │   ├── providers
+│   │   │   └── QueryProvider.tsx
+│   │   ├── services
+│   │   │   └── api.ts
+│   │   ├── stores
+│   │   │   ├── authStore.ts
+│   │   │   ├── jobsStore.ts
+│   │   │   └── processingStore.ts
+│   │   ├── test
+│   │   │   └── setup.ts
+│   │   ├── tsconfig.build.json
+│   │   ├── types
+│   │   │   ├── api-generated.ts
+│   │   │   ├── api.ts
+│   │   │   └── common.ts
+│   │   └── vite-env.d.ts
+│   ├── tsconfig.build.json
+│   ├── tsconfig.json
+│   ├── vite-plugins
+│   │   └── auto-type-generation.ts
+│   ├── vite.config.ts
+│   └── vitest.config.ts
+├── graal
+│   ├── allotment
+│   │   └── allotment_handler.py
+│   ├── api
+│   │   ├── dependencies
+│   │   │   └── auth.py
+│   │   ├── main.py
+│   │   ├── models
+│   │   │   ├── requests.py
+│   │   │   └── responses.py
+│   │   ├── routes
+│   │   │   ├── authorization.py
+│   │   │   ├── database_builder.py
+│   │   │   ├── db_permissions.py
+│   │   │   ├── health.py
+│   │   │   ├── processing.py
+│   │   │   ├── proconnect.py
+│   │   │   ├── s3_files.py
+│   │   │   ├── similarity_db_manifests.py
+│   │   │   ├── user_configurations.py
+│   │   │   └── users.py
+│   │   └── services
+│   │       ├── authorization_service.py
+│   │       ├── database_builder_service.py
+│   │       ├── database_permission_service.py
+│   │       ├── job_registry.py
+│   │       ├── migration_service.py
+│   │       ├── oauth_state_service.py
+│   │       ├── proconnect_service.py
+│   │       ├── session_service.py
+│   │       ├── similarity_db_manifest_service.py
+│   │       ├── user_configuration_service.py
+│   │       └── web_processing_service.py
+│   ├── attribution
+│   │   ├── attribution_data_loader.py
+│   │   ├── attribution_handler.py
+│   │   ├── matchers
+│   │   │   ├── base_matcher.py
+│   │   │   ├── credit_table_matcher.py
+│   │   │   ├── keyword_matcher.py
+│   │   │   ├── legal_document_matcher.py
+│   │   │   └── redactional_amendment_matcher.py
+│   │   └── project_configurations.py
+│   ├── clustering
+│   │   ├── cluster_finder.py
+│   │   ├── clustering_service.py
+│   │   └── similarity_finder.py
+│   ├── core
+│   │   ├── feature_interface.py
+│   │   ├── pipeline_orchestrator.py
+│   │   ├── processing_pipeline.py
+│   │   └── text_normalizers.py
+│   ├── custom_types.py
+│   ├── database
+│   │   ├── base.py
+│   │   ├── enums.py
+│   │   ├── models.py
+│   │   └── schemas.py
+│   ├── features
+│   │   ├── allotment_feature.py
+│   │   ├── attribution_feature.py
+│   │   ├── opinion_feature.py
+│   │   ├── similarities_within_lecture_feature.py
+│   │   ├── similarity_search_feature.py
+│   │   └── summary_feature.py
+│   ├── full_pipeline.py
+│   ├── opinion
+│   │   └── opinion_handler.py
+│   ├── similarities
+│   │   ├── similarity_search_handler.py
+│   │   └── within_lecture_similarity_handler.py
+│   ├── summary
+│   │   ├── amendment_summarizer.py
+│   │   ├── blind_eval_project.py
+│   │   ├── llm_clients.py
+│   │   ├── llm_factory.py
+│   │   ├── summary_generation_load_balancer.py
+│   │   ├── summary_handler.py
+│   │   └── summary_prompt_builder.py
+│   └── utils
+│       ├── amendment_file_handlers.py
+│       ├── amendment_pre_processor.py
+│       ├── config
+│       │   ├── base_config.py
+│       │   ├── config_preprocessor.py
+│       │   └── project_config_manager.py
+│       ├── executors.py
+│       ├── expertise_helpers.py
+│       ├── file_hash_service.py
+│       ├── json_utils.py
+│       ├── merge_amdt_df_into_another.py
+│       ├── merge_json_lectures.py
+│       ├── rate_limiter.py
+│       ├── s3
+│       │   ├── config_s3_service.py
+│       │   ├── database_s3_service.py
+│       │   ├── input_pool_s3_service.py
+│       │   └── s3_service.py
+│       ├── sheet_data_loader.py
+│       ├── similarity_db_builder_service.py
+│       ├── similarity_db_loader.py
+│       └── text_utils.py
+├── logging.conf
+├── makefile
+├── package.json
+├── pnpm-lock.yaml
+├── pnpm-workspace.yaml
+├── poetry.lock
+├── pyproject.toml
+├── renovate.json
+├── scripts
+│   ├── check_coverage.py
+│   ├── healthcheck_vllm_instance.sh
+│   ├── init_db.py
+│   ├── init_db.sql
+│   ├── optimize_summary_prompts.py
+│   ├── run_migrations.py
+│   ├── s3_upload.py
+│   └── send_prompt_to_vllm_instance.sh
+├── start_web_server.py
+├── tests
+│   ├── integration
+│   │   ├── allotments_test.py
+│   │   ├── attribution_test.py
+│   │   ├── commentaires_concatenation_test.py
+│   │   ├── similarity_test.py
+│   │   └── test_data
+│   │       ├── Fichier de configuration GRAAL - Test integrations.xlsx
+│   │       ├── acronym_mapping.xlsx
+│   │       ├── test_allotments.xlsx
+│   │       ├── test_attribution.xlsx
+│   │       ├── test_similarities_body.xlsx
+│   │       └── test_similarities_expose.xlsx
+│   └── unit
+│       ├── allotment
+│       │   └── allotment_handler_test.py
+│       ├── api
+│       │   ├── routes
+│       │   │   ├── database_builder_permissions_test.py
+│       │   │   ├── database_builder_test.py
+│       │   │   ├── s3_files_test.py
+│       │   │   └── similarity_db_manifests_test.py
+│       │   └── services
+│       │       ├── oauth_state_service_test.py
+│       │       ├── similarity_db_manifest_service_test.py
+│       │       └── web_processing_service_test.py
+│       ├── attribution
+│       │   ├── attribution_data_loader_test.py
+│       │   ├── attribution_handler_test.py
+│       │   └── matchers
+│       │       ├── credit_table_matcher_test.py
+│       │       ├── keyword_matcher_test.py
+│       │       ├── legal_document_matcher_test.py
+│       │       └── redactional_amendment_matcher_test.py
+│       ├── clustering
+│       │   ├── cluster_finder_test.py
+│       │   ├── clustering_service_test.py
+│       │   ├── similarity_finder_test.py
+│       │   └── within_lecture_similarity_handler_test.py
+│       ├── core
+│       │   └── pipeline_orchestrator_test.py
+│       ├── features
+│       │   ├── attribution_feature_test.py
+│       │   └── similarity_search_feature_test.py
+│       ├── opinion
+│       │   ├── opinion_populator_test.py
+│       │   └── opinion_should_overwrite_test.py
+│       ├── similarities
+│       │   └── similarity_search_handler_test.py
+│       ├── summary
+│       │   ├── amendment_summarizer_test.py
+│       │   ├── llm_clients_test.py
+│       │   ├── llm_factory_test.py
+│       │   ├── should_overwrite_test.py
+│       │   ├── summary_generation_load_balancer_test.py
+│       │   └── summary_prompt_builder_test.py
+│       └── utils
+│           ├── amendment_file_handlers_test.py
+│           ├── amendment_pre_processor_test.py
+│           ├── config_preprocessor_test.py
+│           ├── file_hash_service_test.py
+│           ├── json_utils_test.py
+│           ├── s3
+│           │   ├── config_s3_service_test.py
+│           │   ├── database_s3_service_test.py
+│           │   └── input_pool_s3_service_test.py
+│           ├── similarity_db_builder_service_test.py
+│           ├── similarity_db_loader_test.py
+│           └── text_utils_test.py
+└── tsconfig.json
+94 directories, 310 files
