@@ -1,0 +1,433 @@
+.
+├── .github
+│   ├── dependabot.yml
+│   └── workflows
+│       ├── ci.yml
+│       └── vendor-js-deps.yml
+├── .gitignore
+├── .lighthouserc.json
+├── .python-version
+├── .slugignore
+├── LICENSE
+├── Procfile
+├── README.md
+├── apps
+│   ├── .gitkeep
+│   ├── admin_concurrency
+│   │   ├── __init__.py
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── migrations
+│   │   │   ├── 0001_initial.py
+│   │   │   └── __init__.py
+│   │   ├── models.py
+│   │   ├── static
+│   │   │   └── admin
+│   │   │       └── admin_concurrency
+│   │   │           └── concurrency.js
+│   │   ├── templates
+│   │   │   └── admin
+│   │   │       └── admin_concurrency
+│   │   │           └── _blocks
+│   │   │               └── concurrency.html
+│   │   └── tests
+│   │       ├── __init__.py
+│   │       ├── conftest.py
+│   │       └── test_admin.py
+│   ├── agri
+│   │   ├── README.md
+│   │   ├── __init__.py
+│   │   ├── apps.py
+│   │   ├── data
+│   │   │   ├── README.md
+│   │   │   ├── mapping_codes_naf.csv
+│   │   │   └── mapping_tranche_effectif_salarie.csv
+│   │   ├── importmaps.py
+│   │   ├── siret.py
+│   │   ├── sitemap.py
+│   │   ├── static
+│   │   │   └── agri
+│   │   │       ├── base.css
+│   │   │       ├── home.css
+│   │   │       ├── images
+│   │   │       │   ├── bg-summary-mobile-button.svg
+│   │   │       │   ├── home
+│   │   │       │   │   ├── background.webp
+│   │   │       │   │   ├── orientation.svg
+│   │   │       │   │   └── selection.svg
+│   │   │       │   └── placeholder.1x1.svg
+│   │   │       ├── results.css
+│   │   │       ├── step-2.css
+│   │   │       ├── steps.js
+│   │   │       └── summary-mobile.js
+│   │   ├── tasks.py
+│   │   ├── templates
+│   │   │   └── agri
+│   │   │       ├── _base.html
+│   │   │       ├── _form.html
+│   │   │       ├── _partials
+│   │   │       │   ├── search_etablissement.html
+│   │   │       │   └── send-results-by-mail-ok.html
+│   │   │       ├── blocks
+│   │   │       │   ├── modal_feedback_themes_sujets.html
+│   │   │       │   └── search_etablissement
+│   │   │       │       └── etablissement.html
+│   │   │       ├── home.html
+│   │   │       ├── mail
+│   │   │       │   └── results.mjml
+│   │   │       ├── results.html
+│   │   │       ├── step-2.html
+│   │   │       ├── step-3.html
+│   │   │       ├── step-4.html
+│   │   │       └── step-5.html
+│   │   ├── tests
+│   │   │   ├── __init__.py
+│   │   │   ├── common.py
+│   │   │   ├── conftest.py
+│   │   │   ├── data
+│   │   │   │   ├── mapping_codes_naf.csv
+│   │   │   │   └── mapping_tranche_effectif_salarie.csv
+│   │   │   ├── test_siret.py
+│   │   │   ├── test_tasks.py
+│   │   │   └── test_views.py
+│   │   ├── urls.py
+│   │   └── views.py
+│   ├── aides
+│   │   ├── README.md
+│   │   ├── __init__.py
+│   │   ├── admin
+│   │   │   ├── __init__.py
+│   │   │   ├── _common.py
+│   │   │   ├── aide.py
+│   │   │   └── other_models.py
+│   │   ├── apps.py
+│   │   ├── interop.py
+│   │   ├── management
+│   │   │   ├── __init__.py
+│   │   │   └── commands
+│   │   │       ├── __init__.py
+│   │   │       ├── aides_load_zones_geographiques.py
+│   │   │       ├── aides_organismes_logos_files_from_db.py
+│   │   │       ├── aides_send_daily_admin_notifications.py
+│   │   │       └── aides_unpublish_aides_having_invalid_link.py
+│   │   ├── migrations
+│   │   │   ├── 0001_initial.py
+│   │   │   ├── 0002_alter_aide_nom_alter_operateur_nom_alter_sujet_nom_and_more.py
+│   │   │   ├── 0003_sujet_nom_court_theme_description_theme_nom_court_and_more.py
+│   │   │   ├── 0004_type_remove_aide_types_aide_types.py
+│   │   │   ├── 0005_organisme_alter_aide_operateur_and_more.py
+│   │   │   ├── 0006_remove_aide_themes.py
+│   │   │   ├── 0007_alter_theme_options_theme_urgence.py
+│   │   │   ├── 0008_alter_sujet_options_alter_theme_options_and_more.py
+│   │   │   ├── 0009_rename_description_courte_aide_description_and_more.py
+│   │   │   ├── 0010_filiere_groupementproducteurs_programme_aide_aap_ami_and_more.py
+│   │   │   ├── 0011_filiere_groupementproducteurs_sousfiliere_production.py
+│   │   │   ├── 0012_organisme_logo_organisme_logo_filename.py
+│   │   │   ├── 0013_alter_organisme_logo_filename.py
+│   │   │   ├── 0014_alter_aide_slug.py
+│   │   │   ├── 0015_rename_effectif_max_aide_eligibilite_effectif_max_and_more.py
+│   │   │   ├── 0016_sujet_published_theme_published.py
+│   │   │   ├── 0017_aide_published.py
+│   │   │   ├── 0018_type_icon_name.py
+│   │   │   ├── 0019_type_urgence.py
+│   │   │   ├── 0020_alter_type_options_aide_eligibilite_cumulable.py
+│   │   │   ├── 0021_aide_last_published_at.py
+│   │   │   ├── 0022_no_more_grist.py
+│   │   │   ├── 0023_remove_zonegeographique_numero_zonegeographique_code.py
+│   │   │   ├── 0024_alter_zonegeographique_type.py
+│   │   │   ├── 0025_auto_20250625_1652.py
+│   │   │   ├── 0026_alter_production_options_alter_sousfiliere_options.py
+│   │   │   ├── 0027_alter_organisme_zones_geographiques.py
+│   │   │   ├── 0028_alter_groupementproducteurs_options_and_more.py
+│   │   │   ├── 0029_remove_aide_published_aide_status.py
+│   │   │   ├── 0030_alter_aide_beneficiaires_and_more.py
+│   │   │   ├── 0031_filiere_published_organisme_courriel_and_more.py
+│   │   │   ├── 0032_alter_aide_conditions_alter_aide_contact_and_more.py
+│   │   │   ├── 0033_alter_aide_conditions_alter_aide_contact_and_more.py
+│   │   │   ├── 0034_alter_aide_unique_together.py
+│   │   │   ├── 0035_alter_aide_beneficiaires_alter_aide_conditions_and_more.py
+│   │   │   ├── 0036_aide_date_created_aide_date_modified_and_more_squashed_0042_alter_aide_date_created_alter_aide_date_modified_and_more.py
+│   │   │   ├── 0043_alter_aide_conditions_alter_aide_contact_and_more.py
+│   │   │   ├── 0044_aide_assigned_to_aide_priority.py
+│   │   │   ├── 0045_aide_date_target_publication.py
+│   │   │   ├── 0046_alter_aide_status.py
+│   │   │   ├── 0047_aide_cc_to.py
+│   │   │   ├── 0048_alter_aide_status.py
+│   │   │   ├── 0049_alter_aide_status.py
+│   │   │   ├── 0050_aide_is_derivable.py
+│   │   │   ├── 0051_is_derivable_data_migration.py
+│   │   │   ├── 0052_aide_compute_priority.py
+│   │   │   ├── 0053_aide_compute_priority_data_migration.py
+│   │   │   ├── 0054_aide_is_territoire_en_deploiement.py
+│   │   │   ├── 0055_aide_first_published_at_alter_aide_last_published_at.py
+│   │   │   ├── 0056_aide_bureau_valideur.py
+│   │   │   ├── 0057_aide_base_juridique.py
+│   │   │   ├── 0058_alter_aide_status.py
+│   │   │   ├── 0059_remove_filiere_code_naf_filiere_codes_naf.py
+│   │   │   ├── 0060_remove_sousfiliere_filiere_delete_production_and_more.py
+│   │   │   ├── 0061_remove_aide_beneficiaires_and_more.py
+│   │   │   ├── 0062_rename_groupementproducteurs_to_beneficiaires_and_more.py
+│   │   │   ├── 0063_aide_is_published_alter_aide_status.py
+│   │   │   └── __init__.py
+│   │   ├── models.py
+│   │   ├── signals
+│   │   │   ├── __init__.py
+│   │   │   └── handlers.py
+│   │   ├── sitemap.py
+│   │   ├── static
+│   │   │   ├── admin
+│   │   │   │   └── aides
+│   │   │   │       └── aide
+│   │   │   │           ├── dashboard.css
+│   │   │   │           ├── dashboard.js
+│   │   │   │           ├── form.css
+│   │   │   │           └── init_easymde.js
+│   │   │   └── aides
+│   │   │       ├── aide_detail.css
+│   │   │       ├── icons
+│   │   │       │   └── etapes.svg
+│   │   │       └── parent_aide_detail.css
+│   │   ├── templates
+│   │   │   ├── admin
+│   │   │   │   ├── aides
+│   │   │   │   │   ├── aide
+│   │   │   │   │   │   ├── change_form_object_tools.html
+│   │   │   │   │   │   └── submit_line.html
+│   │   │   │   │   └── organisme
+│   │   │   │   │       └── change_form.html
+│   │   │   │   ├── dashboard.html
+│   │   │   │   └── derive_for_departements.html
+│   │   │   └── aides
+│   │   │       ├── aide_detail.html
+│   │   │       ├── blocks
+│   │   │       │   └── parent_aide_detail__children.html
+│   │   │       └── parent_aide_detail.html
+│   │   ├── templatetags
+│   │   │   ├── __init__.py
+│   │   │   └── aides_tags.py
+│   │   ├── tests
+│   │   │   ├── __init__.py
+│   │   │   ├── conftest.py
+│   │   │   ├── factories.py
+│   │   │   ├── test_admin.py
+│   │   │   ├── test_commands.py
+│   │   │   ├── test_interop.py
+│   │   │   ├── test_models.py
+│   │   │   └── test_views.py
+│   │   ├── urls.py
+│   │   └── views.py
+│   ├── aides_feedback
+│   │   ├── __init__.py
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── forms.py
+│   │   ├── management
+│   │   │   └── commands
+│   │   │       ├── __init__.py
+│   │   │       └── aides_feedback_reporting.py
+│   │   ├── migrations
+│   │   │   ├── 0001_initial.py
+│   │   │   └── __init__.py
+│   │   ├── models.py
+│   │   ├── signals
+│   │   │   ├── __init__.py
+│   │   │   └── handlers.py
+│   │   ├── static
+│   │   │   └── aides_feedback
+│   │   │       └── base.css
+│   │   ├── templates
+│   │   │   └── aides_feedback
+│   │   │       ├── _partials
+│   │   │       │   ├── create_feedback_aides_ok.html
+│   │   │       │   ├── feedback_themes_sujets_ok.html
+│   │   │       │   ├── update_feedback_on_aides_form.html
+│   │   │       │   └── update_feedback_on_aides_ok.html
+│   │   │       └── blocks
+│   │   │           └── create_feedback_on_aides.html
+│   │   ├── urls.py
+│   │   └── views.py
+│   ├── pac
+│   │   ├── __init__.py
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── management
+│   │   │   └── commands
+│   │   │       ├── __init__.py
+│   │   │       └── pac_load_from_csv.py
+│   │   ├── migrations
+│   │   │   ├── 0001_initial.py
+│   │   │   ├── 0002_indicateurresultat_denominateur_and_more.py
+│   │   │   ├── 0003_alter_intervention_secteur.py
+│   │   │   ├── 0004_alter_intervention_type_and_more.py
+│   │   │   └── __init__.py
+│   │   └── models.py
+│   ├── product
+│   │   ├── __init__.py
+│   │   ├── apps.py
+│   │   ├── content
+│   │   │   ├── cgu.md
+│   │   │   ├── declaration-accessibilite.md
+│   │   │   ├── donnees-personnelles.md
+│   │   │   ├── mentions-legales.md
+│   │   │   └── urgence-dnc.md
+│   │   ├── signals
+│   │   │   ├── __init__.py
+│   │   │   └── handlers.py
+│   │   ├── templates
+│   │   │   └── product
+│   │   │       └── static_page.html
+│   │   ├── tests
+│   │   │   ├── __init__.py
+│   │   │   └── test_views.py
+│   │   ├── urls.py
+│   │   └── views.py
+│   └── ui
+│       ├── __init__.py
+│       ├── context_processors.py
+│       ├── importmaps.py
+│       ├── middlewares.py
+│       ├── static
+│       │   ├── dsfr
+│       │   │   └── dist
+│       │   │       └── core
+│       │   │           └── style
+│       │   │               └── typography
+│       │   │                   └── standalone
+│       │   │                       └── font-face.css
+│       │   └── ui
+│       │       ├── base.css
+│       │       ├── components
+│       │       │   ├── checkbox-group-field.css
+│       │       │   ├── checkbox-group-field.js
+│       │       │   ├── select-rich.css
+│       │       │   └── select-rich.js
+│       │       ├── controllers
+│       │       │   ├── alert.js
+│       │       │   ├── dsfr_form.js
+│       │       │   └── matomo.js
+│       │       ├── icons
+│       │       │   ├── percent-fill.svg
+│       │       │   ├── search-eye-fill.svg
+│       │       │   └── service-fill.svg
+│       │       └── logos
+│       │           ├── aides-agri.svg
+│       │           └── mail
+│       │               └── masa.png
+│       ├── templates
+│       │   ├── 404.html
+│       │   ├── 500.html
+│       │   └── ui
+│       │       ├── _error.html
+│       │       ├── base.html
+│       │       ├── blocks
+│       │       │   ├── demo_site_modal.html
+│       │       │   ├── header.html
+│       │       │   ├── matomo.html
+│       │       │   └── sentry.html
+│       │       ├── components
+│       │       │   ├── blocks
+│       │       │   │   ├── select_rich_option.html
+│       │       │   │   └── select_rich_options.html
+│       │       │   ├── checkbox_group_field.html
+│       │       │   └── select_rich.html
+│       │       ├── components.html
+│       │       └── select_rich.html
+│       ├── templatetags
+│       │   ├── __init__.py
+│       │   └── ui_tags.py
+│       ├── tests
+│       │   ├── __init__.py
+│       │   └── test_context_processors.py
+│       ├── urls.py
+│       └── views.py
+├── conf
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── asgi.py
+│   ├── fixtures
+│   │   └── dsfr_config.json
+│   ├── settings
+│   │   ├── __init__.py
+│   │   ├── apps
+│   │   │   ├── __init__.py
+│   │   │   ├── agri.py
+│   │   │   ├── aides.py
+│   │   │   ├── anymail.py
+│   │   │   ├── csp.py
+│   │   │   ├── dsfr.py
+│   │   │   ├── matomo.py
+│   │   │   ├── sentry.py
+│   │   │   └── ui.py
+│   │   ├── base.py
+│   │   ├── default.py
+│   │   ├── devel.py
+│   │   ├── scalingo.py
+│   │   └── testing.py
+│   ├── tests
+│   │   ├── __init__.py
+│   │   └── test_admin.py
+│   ├── urls.py
+│   └── wsgi.py
+├── cron.json
+├── cypress
+│   ├── e2e
+│   │   ├── fixtures
+│   │   │   ├── aides_01_sujets.json
+│   │   │   ├── aides_02_filieres.json
+│   │   │   └── aides_03_zones_geographiques.json
+│   │   └── home.cy.js
+│   └── support
+│       ├── commands.js
+│       └── e2e.js
+├── cypress.config.js
+├── deployment
+│   └── scalingo
+│       └── bin
+│           └── start-web.sh
+├── docker-compose.yml
+├── justfile
+├── manage.py
+├── package-lock.json
+├── package.json
+├── pyproject.toml
+├── scripts
+│   ├── chefs-sea
+│   │   ├── .gitignore
+│   │   └── extract.py
+│   ├── pac
+│   │   └── .gitignore
+│   ├── pdf-to-structured-data
+│   │   ├── .gitignore
+│   │   ├── md-to-csv.py
+│   │   └── pyproject.toml
+│   ├── rebase-all-upgrade-branches.sh
+│   └── upgrade-python-deps.sh
+├── static
+│   └── vendor
+│       ├── README.md
+│       ├── easymde.min.css
+│       ├── easymde.min.js
+│       ├── htmx.esm.js
+│       ├── sentry.js
+│       └── stimulus.js
+├── templates
+│   ├── admin
+│   │   ├── change_form_object_tools.html
+│   │   └── includes
+│   │       └── fieldset.html
+│   ├── two_factor
+│   │   └── _base.html
+│   └── ui
+│       └── blocks
+│           └── footer.html
+├── uv.lock
+├── vendor.txt
+└── webroot
+    ├── aides
+    │   └── organismes-logos
+    │       └── .gitignore
+    ├── favicon.ico
+    ├── robots-non-prod.txt
+    └── robots-prod.txt
+118 directories, 314 files
