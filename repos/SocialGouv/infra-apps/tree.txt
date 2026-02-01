@@ -1,0 +1,702 @@
+.
+├── .gitattributes
+├── .github
+│   └── CODEOWNERS
+├── README.md
+├── applications
+│   ├── appset-rancher-projects.yaml
+│   ├── arc-runners.yaml
+│   ├── arc-system.yaml
+│   ├── buildkit-services.yaml
+│   ├── charon.yaml
+│   ├── clamav.yaml
+│   ├── cnpg.yaml
+│   ├── eck-operator.yaml
+│   ├── kubesight.yaml
+│   ├── no-package-malware.yaml
+│   ├── oblik.yaml
+│   ├── openebs-nfs.yaml
+│   ├── resources.yaml
+│   ├── secretgen.yaml
+│   ├── secrets-policies.yaml
+│   ├── startups-apps.yaml
+│   ├── startups-raw.yaml
+│   ├── token-bureau.yaml
+│   └── vaultwarden.yaml
+├── appset-rancher-projects-plugin
+│   ├── Chart.yaml
+│   ├── templates
+│   │   ├── argocd.applicationset-ci-rancher-projects-plugin.configmap.yaml
+│   │   ├── argocd.appset-ci-rancher-projects-plugin.sealedsecret.yaml
+│   │   ├── plugin.api-token.sealedsecret.yaml
+│   │   ├── plugin.deployment.yaml
+│   │   ├── plugin.rancher-token.sealedsecret.yaml
+│   │   └── plugin.service.yaml
+│   └── values.yaml
+├── arc-runners
+│   ├── Chart.yaml
+│   ├── templates
+│   │   ├── github-token.sealed-secret.yaml
+│   │   └── rbac.yaml
+│   └── values.yaml
+├── arc-systems
+│   ├── Chart.yaml
+│   └── values.yaml
+├── buildkit-service
+│   ├── .gitignore
+│   ├── Chart.lock
+│   ├── Chart.yaml
+│   ├── charts
+│   │   ├── 3s-0.1.0.tgz
+│   │   └── buildkit-service-1.30.7.tgz
+│   ├── templates
+│   │   └── lb.svc.yaml
+│   ├── values.ovh.yaml
+│   └── values.yaml
+├── charon
+│   ├── charon.yaml
+│   └── projects
+│       ├── charon-carnets
+│       │   ├── config-map.yaml
+│       │   ├── ingress.yaml
+│       │   └── sealed-secret.yaml
+│       ├── charon-egapro
+│       │   ├── config-map.yaml
+│       │   ├── ingress.yaml
+│       │   └── sealed-secret.yaml
+│       ├── charon-secretariat
+│       │   ├── config-map.yaml
+│       │   ├── ingress.yaml
+│       │   └── sealed-secret.yaml
+│       └── charon-srdt
+│           ├── config-map.yaml
+│           ├── ingress.yaml
+│           └── sealed-secret.yaml
+├── charts
+│   ├── common
+│   │   ├── Chart.yaml
+│   │   └── templates
+│   │       └── _helpers.tpl
+│   ├── final-appset
+│   │   ├── Chart.yaml
+│   │   ├── templates
+│   │   │   ├── _appset-env.yaml
+│   │   │   └── namespace.yaml
+│   │   └── values.yaml
+│   ├── metabase
+│   │   ├── Chart.lock
+│   │   ├── Chart.yaml
+│   │   ├── charts
+│   │   │   ├── cnpg-cluster-1.30.6.tgz
+│   │   │   └── common -> ../../common
+│   │   ├── templates
+│   │   │   ├── configmap.yaml
+│   │   │   ├── deployment.yaml
+│   │   │   ├── ingress.yaml
+│   │   │   └── service.yaml
+│   │   └── values.yaml
+│   ├── metabase-matomo-sync
+│   │   ├── Chart.lock
+│   │   ├── Chart.yaml
+│   │   ├── charts
+│   │   │   ├── cnpg-cluster-1.30.6.tgz
+│   │   │   └── common -> ../../common
+│   │   ├── templates
+│   │   │   └── matomo-sync.cronjob.yaml
+│   │   └── values.yaml
+│   ├── oauth2-proxy
+│   │   ├── Chart.yaml
+│   │   ├── templates
+│   │   │   ├── deployment.yaml
+│   │   │   ├── ingress.yaml
+│   │   │   └── service.yaml
+│   │   └── values.yaml
+│   ├── resources-policies
+│   │   ├── Chart.yaml
+│   │   ├── templates
+│   │   │   └── kyverno.policies.yaml
+│   │   └── values.yaml
+│   ├── secretgen
+│   │   ├── Chart.yaml
+│   │   ├── README.md
+│   │   └── templates
+│   │       └── release.yaml
+│   ├── sftp
+│   │   ├── .gitignore
+│   │   ├── Chart.yaml
+│   │   ├── charts
+│   │   │   ├── cnpg-cluster-1.23.0.tgz
+│   │   │   └── sftpgo-0.22.0.tgz
+│   │   ├── templates
+│   │   │   └── data.pvc.yaml
+│   │   └── values.yaml
+│   └── sites-faciles
+│       ├── Chart.yaml
+│       ├── charts
+│       │   ├── cnpg-cluster-1.30.1.tgz
+│       │   └── common -> ../../common
+│       ├── templates
+│       │   ├── deployment.yaml
+│       │   ├── ingress.yaml
+│       │   └── service.yaml
+│       └── values.yaml
+├── clamav
+│   ├── Chart.yaml
+│   ├── templates
+│   │   └── netpol.yaml
+│   └── values.yaml
+├── cnpg
+│   ├── Chart.yaml
+│   ├── README.md
+│   ├── patches
+│   │   ├── cluster-crd.patch.yaml
+│   │   └── webhook.patch.yaml
+│   ├── templates
+│   │   └── namespace.yaml
+│   ├── values.ovh-dev.yaml
+│   ├── values.ovh-prod.yaml
+│   └── values.yaml
+├── gha-runners
+│   ├── Chart.yaml
+│   ├── templates
+│   │   ├── controller-manager-secret.yaml
+│   │   ├── github-webhook-server-secret.yaml
+│   │   └── runner-deployment.yaml
+│   └── values.yaml
+├── kubesight
+│   ├── Chart.yaml
+│   ├── azure-prod
+│   │   ├── kubesight.configmap.yaml
+│   │   └── oauth2-proxy.sealed-secret.yaml
+│   ├── charts
+│   │   ├── contrib-helpers
+│   │   │   ├── Chart.yaml
+│   │   │   └── templates
+│   │   │       ├── _anti-affinity.yaml
+│   │   │       ├── _ingress-host.yaml
+│   │   │       ├── _ingress-secret.yaml
+│   │   │       ├── _job.yaml
+│   │   │       ├── _jobs.yaml
+│   │   │       ├── _probes.yaml
+│   │   │       └── init-containers
+│   │   │           └── _wait-for-postgres.yaml
+│   │   ├── kubesight
+│   │   │   ├── .helmignore
+│   │   │   ├── Chart.yaml
+│   │   │   ├── templates
+│   │   │   │   ├── NOTES.txt
+│   │   │   │   ├── _helpers.tpl
+│   │   │   │   ├── cluster-role-binding.yaml
+│   │   │   │   ├── cluster-role.yaml
+│   │   │   │   ├── deployment.yaml
+│   │   │   │   ├── service-account.yaml
+│   │   │   │   ├── service.yaml
+│   │   │   │   └── tests
+│   │   │   │       └── test-connection.yaml
+│   │   │   └── values.yaml
+│   │   └── oauth2-proxy
+│   │       ├── Chart.yaml
+│   │       ├── templates
+│   │       │   ├── deployment.yaml
+│   │       │   ├── ingress.yaml
+│   │       │   └── service.yaml
+│   │       ├── values.schema.json
+│   │       └── values.yaml
+│   ├── ovh-prod
+│   │   ├── kubesight.configmap.yaml
+│   │   └── oauth2-proxy.sealed-secret.yaml
+│   ├── templates
+│   │   ├── kubesight.configmap.yaml
+│   │   ├── network-policy.yaml
+│   │   ├── oauth2-proxy.configmap.yaml
+│   │   └── oauth2-proxy.sealed-secret.yaml
+│   └── values.yaml
+├── no-package-malware
+│   ├── .gitignore
+│   ├── Chart.lock
+│   ├── Chart.yaml
+│   ├── charts
+│   │   └── no-package-malware-0.1.0.tgz
+│   ├── templates
+│   │   ├── networkpolicy.internal-only.yaml
+│   │   ├── no-package-malware-admin.sealedsecret.yaml
+│   │   ├── no-package-malware-mongodb-auth.sealedsecret.yaml
+│   │   ├── no-package-malware-mongodb-key.sealedsecret.yaml
+│   │   └── no-package-malware-openai.sealedsecret.yaml
+│   ├── values.prod.yaml
+│   └── values.yaml
+├── oblik
+│   ├── Chart.lock
+│   ├── Chart.yaml
+│   ├── charts
+│   │   ├── final-appset -> ../../charts/final-appset
+│   │   ├── final-appset-0.0.0.tgz
+│   │   └── oblik-0.1.0.tgz
+│   ├── envs
+│   │   ├── dev
+│   │   │   ├── config.yaml
+│   │   │   ├── templates
+│   │   │   │   └── env.sealedsecret.yaml
+│   │   │   └── values.yaml
+│   │   └── prod
+│   │       ├── config.yaml
+│   │       ├── templates
+│   │       │   └── env.sealedsecret.yaml
+│   │       └── values.yaml
+│   ├── templates
+│   │   └── appset-env.yaml
+│   └── values.yaml
+├── openebs
+│   ├── .gitignore
+│   ├── jiva
+│   │   ├── Chart.lock
+│   │   ├── Chart.yaml
+│   │   ├── charts
+│   │   │   └── jiva-3.6.0.tgz
+│   │   └── values.yaml
+│   └── nfs
+│       ├── Chart.lock
+│       ├── Chart.yaml
+│       ├── charts
+│       │   └── nfs-provisioner-0.11.0.tgz
+│       ├── templates
+│       │   └── openebs-nfs-hspeed.storageclass.yaml
+│       └── values.yaml
+├── renovate.json
+├── resources
+│   ├── Chart.yaml
+│   ├── charts
+│   │   └── vpa
+│   │       ├── Chart.yaml
+│   │       ├── README.md
+│   │       ├── gencerts.sh
+│   │       ├── templates
+│   │       │   ├── admission-controller-deployment.yaml
+│   │       │   ├── recommender-deployment.yaml
+│   │       │   ├── updater-deployment.yaml
+│   │       │   ├── vpa-rbac.yaml
+│   │       │   └── vpa-v1-crd-gen.yaml
+│   │       └── values.yaml
+│   ├── templates
+│   │   ├── cnpg-scale.clusterpolicy.yaml
+│   │   └── rbac.yaml
+│   ├── values.ovh-dev.yaml
+│   ├── values.ovh-prod.yaml
+│   └── values.yaml
+├── secrets-policies
+│   ├── Chart.yaml
+│   ├── README.md
+│   ├── copy_secret_script.sh
+│   ├── templates
+│   │   └── clusterpolicies
+│   │       ├── sync-secrets-common-to-ci-ns.yaml
+│   │       ├── sync-secrets-from-ci-ns.yaml
+│   │       ├── sync-sre-secret-to-startups.yaml
+│   │       ├── sync-sre-secrets-from-startups.yaml
+│   │       ├── sync-sre-secrets.yaml
+│   │       └── sync-wildcard-crt.yaml
+│   ├── trigger-namespaces
+│   └── values.yaml
+├── startups
+│   ├── 1j1s
+│   │   └── apps
+│   │       └── metabase
+│   │           ├── Chart.yaml
+│   │           ├── charts
+│   │           │   ├── final-appset -> ../../../../../charts/final-appset/
+│   │           │   ├── metabase -> ../../../../../charts/metabase
+│   │           │   └── metabase-matomo-sync -> ../../../../../charts/metabase-matomo-sync/
+│   │           ├── envs
+│   │           │   └── prod
+│   │           │       ├── config.yaml
+│   │           │       ├── templates
+│   │           │       │   └── metabase.sealedsecret.yaml
+│   │           │       └── values.yaml
+│   │           ├── templates
+│   │           │   └── appset-env.yaml
+│   │           └── values.yaml
+│   ├── archifiltre
+│   │   └── apps
+│   │       └── sites-faciles
+│   │           ├── Chart.yaml
+│   │           ├── charts
+│   │           │   ├── final-appset -> ../../../../../charts/final-appset
+│   │           │   └── sites-faciles -> ../../../../../charts/sites-faciles
+│   │           ├── envs
+│   │           │   └── prod
+│   │           │       ├── config.yaml
+│   │           │       ├── templates
+│   │           │       │   ├── secret-key.sealed-secret.yaml
+│   │           │       │   └── tipimail.sealed-secret.yaml
+│   │           │       └── values.yaml
+│   │           ├── templates
+│   │           │   └── appset-env.yaml
+│   │           └── values.yaml
+│   ├── cdtn
+│   │   └── apps
+│   │       ├── elasticsearch
+│   │       │   ├── Chart.yaml
+│   │       │   ├── charts
+│   │       │   │   └── final-appset
+│   │       │   │       ├── Chart.yaml
+│   │       │   │       ├── templates
+│   │       │   │       │   ├── _appset-env.yaml
+│   │       │   │       │   └── namespace.yaml
+│   │       │   │       └── values.yaml
+│   │       │   ├── envs
+│   │       │   │   └── prod
+│   │       │   │       ├── config.yaml
+│   │       │   │       └── values.yaml
+│   │       │   ├── templates
+│   │       │   │   ├── elasticsearch.yaml
+│   │       │   │   └── netpol.yaml
+│   │       │   └── values.yaml
+│   │       ├── metabase
+│   │       │   ├── Chart.yaml
+│   │       │   ├── charts
+│   │       │   │   ├── final-appset -> ../../../../../charts/final-appset/
+│   │       │   │   ├── metabase -> ../../../../../charts/metabase
+│   │       │   │   └── metabase-matomo-sync -> ../../../../../charts/metabase-matomo-sync/
+│   │       │   ├── envs
+│   │       │   │   └── prod
+│   │       │   │       ├── config.yaml
+│   │       │   │       ├── templates
+│   │       │   │       │   ├── metabase.sealedsecret.yaml
+│   │       │   │       │   ├── ovh-database.sealedsecret.yaml
+│   │       │   │       │   └── refresh-views.cronjob.yaml
+│   │       │   │       └── values.yaml
+│   │       │   ├── templates
+│   │       │   │   └── appset-env.yaml
+│   │       │   └── values.yaml
+│   │       └── superset
+│   │           ├── Chart.lock
+│   │           ├── Chart.yaml
+│   │           ├── README.md
+│   │           ├── charts
+│   │           │   ├── final-appset -> ../../../../../charts/final-appset/
+│   │           │   └── superset-0.15.0.tgz
+│   │           ├── envs
+│   │           │   └── prod
+│   │           │       ├── config.yaml
+│   │           │       ├── templates
+│   │           │       │   ├── superset-postgresql.sealedsecret.yaml
+│   │           │       │   ├── superset-redis.sealedsecret.yaml
+│   │           │       │   └── superset.sealedsecret.yaml
+│   │           │       └── values.yaml
+│   │           ├── templates
+│   │           │   ├── _superset_override.yaml
+│   │           │   └── appset-env.yaml
+│   │           └── values.yaml
+│   ├── domifa
+│   │   ├── apps
+│   │   │   └── metabase
+│   │   │       ├── Chart.yaml
+│   │   │       ├── charts
+│   │   │       │   ├── final-appset -> ../../../../../charts/final-appset/
+│   │   │       │   └── metabase -> ../../../../../charts/metabase
+│   │   │       ├── envs
+│   │   │       │   └── prod
+│   │   │       │       ├── config.yaml
+│   │   │       │       ├── templates
+│   │   │       │       │   └── metabase.sealedsecret.yaml
+│   │   │       │       └── values.yaml
+│   │   │       ├── templates
+│   │   │       │   └── appset-env.yaml
+│   │   │       └── values.yaml
+│   │   └── raw
+│   │       └── clusters
+│   │           ├── ovh-dev
+│   │           │   ├── allow-ns-metabase-access.netpol.yaml
+│   │           │   ├── bastion.yaml
+│   │           │   └── pg-app-preprod.sealed-secret.yaml
+│   │           └── ovh-prod
+│   │               ├── anonymizer-dump.cronjob.yaml
+│   │               ├── anonymizer-restore.cronjob.yaml
+│   │               ├── bastion.yaml
+│   │               ├── domifa-dev-backups-access-key.sealed-secret.yaml
+│   │               ├── pg-app.sealed-secret.yaml
+│   │               └── psql.yaml
+│   ├── enfants-du-spectacle
+│   │   ├── apps
+│   │   │   └── metabase
+│   │   │       ├── Chart.yaml
+│   │   │       ├── charts
+│   │   │       │   ├── final-appset -> ../../../../../charts/final-appset
+│   │   │       │   ├── metabase -> ../../../../../charts/metabase
+│   │   │       │   └── oauth2-proxy -> ../../../../../charts/oauth2-proxy
+│   │   │       ├── envs
+│   │   │       │   └── prod
+│   │   │       │       ├── config.yaml
+│   │   │       │       ├── templates
+│   │   │       │       │   ├── metabase.sealedsecret.yaml
+│   │   │       │       │   ├── oauth2-proxy.configmap.yml
+│   │   │       │       │   └── oauth2-proxy.sealed-secret.yaml
+│   │   │       │       └── values.yaml
+│   │   │       ├── templates
+│   │   │       │   └── appset-env.yaml
+│   │   │       └── values.yaml
+│   │   └── raw
+│   │       └── clusters
+│   │           ├── ovh-dev
+│   │           │   ├── docs-form.pvc.yaml
+│   │           │   └── docs.pvc.yaml
+│   │           └── ovh-prod
+│   │               └── allow-namespace-metabase-access.netpol.yaml
+│   ├── fabrique
+│   │   └── apps
+│   │       └── sites-faciles
+│   │           ├── Chart.yaml
+│   │           ├── charts
+│   │           │   ├── final-appset -> ../../../../../charts/final-appset
+│   │           │   └── sites-faciles -> ../../../../../charts/sites-faciles
+│   │           ├── envs
+│   │           │   └── prod
+│   │           │       ├── config.yaml
+│   │           │       ├── templates
+│   │           │       │   ├── secret-key.sealed-secret.yaml
+│   │           │       │   └── tipimail.sealed-secret.yaml
+│   │           │       └── values.yaml
+│   │           ├── templates
+│   │           │   └── appset-env.yaml
+│   │           └── values.yaml
+│   ├── fce
+│   │   └── raw
+│   │       └── clusters
+│   │           ├── ovh-dev
+│   │           │   ├── allow-review.netpol.yaml
+│   │           │   └── uploads.pvc.yaml
+│   │           └── ovh-prod
+│   │               └── uploads.pvc.yaml
+│   ├── jardinmental
+│   │   └── apps
+│   │       └── metabase
+│   │           ├── Chart.yaml
+│   │           ├── charts
+│   │           │   ├── final-appset -> ../../../../../charts/final-appset/
+│   │           │   ├── metabase -> ../../../../../charts/metabase
+│   │           │   └── metabase-matomo-sync -> ../../../../../charts/metabase-matomo-sync/
+│   │           ├── envs
+│   │           │   └── prod
+│   │           │       ├── config.yaml
+│   │           │       ├── templates
+│   │           │       │   ├── metabase.sealedsecret.yaml
+│   │           │       │   └── refresh-views.cronjob.yaml
+│   │           │       └── values.yaml
+│   │           ├── templates
+│   │           │   └── appset-env.yaml
+│   │           └── values.yaml
+│   ├── les1000jours
+│   │   ├── apps
+│   │   │   └── metabase
+│   │   │       ├── Chart.yaml
+│   │   │       ├── charts
+│   │   │       │   ├── final-appset -> ../../../../../charts/final-appset/
+│   │   │       │   ├── metabase -> ../../../../../charts/metabase
+│   │   │       │   ├── metabase-matomo-sync -> ../../../../../charts/metabase-matomo-sync/
+│   │   │       │   └── pastek-mirror
+│   │   │       │       ├── Chart.yaml
+│   │   │       │       ├── charts
+│   │   │       │       │   └── cnpg-cluster-1.18.0.tgz
+│   │   │       │       ├── templates
+│   │   │       │       │   ├── create-view.configmap.yml
+│   │   │       │       │   └── refresh-view.cronjob.yml
+│   │   │       │       └── values.yaml
+│   │   │       ├── envs
+│   │   │       │   └── prod
+│   │   │       │       ├── config.yaml
+│   │   │       │       ├── templates
+│   │   │       │       │   ├── metabase.sealedsecret.yaml
+│   │   │       │       │   └── psql-init.sealedsecret.yaml
+│   │   │       │       └── values.yaml
+│   │   │       ├── templates
+│   │   │       │   └── appset-env.yaml
+│   │   │       └── values.yaml
+│   │   └── raw
+│   │       └── clusters
+│   │           ├── ovh-dev
+│   │           │   └── uploads.pvc.yaml
+│   │           └── ovh-prod
+│   │               ├── allow-namespace-metabase-access.netpol.yaml
+│   │               ├── backup-uploads.policy.yaml
+│   │               └── uploads.pvc.yaml
+│   ├── ozensemble
+│   │   ├── apps
+│   │   │   └── metabase
+│   │   │       ├── Chart.yaml
+│   │   │       ├── charts
+│   │   │       │   ├── final-appset -> ../../../../../charts/final-appset/
+│   │   │       │   └── metabase -> ../../../../../charts/metabase
+│   │   │       ├── envs
+│   │   │       │   └── prod
+│   │   │       │       ├── config.yaml
+│   │   │       │       ├── templates
+│   │   │       │       │   ├── managed-db-metabase.sealed-secret.yaml
+│   │   │       │       │   ├── metabase-matomo-sync.cronjob.yaml
+│   │   │       │       │   ├── metabase.sealedsecret.yaml
+│   │   │       │       │   └── refresh-view.cronjob.yaml
+│   │   │       │       └── values.yaml
+│   │   │       ├── templates
+│   │   │       │   └── appset-env.yaml
+│   │   │       └── values.yaml
+│   │   └── raw
+│   │       └── clusters
+│   │           ├── ovh-dev
+│   │           │   └── uploads.pvc.yaml
+│   │           └── ovh-prod
+│   │               ├── allow-namespace-metabase-access.netpol.yaml
+│   │               └── uploads.pvc.yaml
+│   ├── recosante
+│   │   ├── apps
+│   │   │   └── metabase
+│   │   │       ├── Chart.yaml
+│   │   │       ├── charts
+│   │   │       │   ├── final-appset -> ../../../../../charts/final-appset
+│   │   │       │   ├── metabase -> ../../../../../charts/metabase
+│   │   │       │   ├── metabase-matomo-sync -> ../../../../../charts/metabase-matomo-sync
+│   │   │       │   └── oauth2-proxy -> ../../../../../charts/oauth2-proxy
+│   │   │       ├── envs
+│   │   │       │   └── prod
+│   │   │       │       ├── config.yaml
+│   │   │       │       ├── templates
+│   │   │       │       │   ├── metabase.sealedsecret.yaml
+│   │   │       │       │   ├── oauth2-proxy.configmap.yml
+│   │   │       │       │   └── oauth2-proxy.sealed-secret.yaml
+│   │   │       │       └── values.yaml
+│   │   │       ├── templates
+│   │   │       │   └── appset-env.yaml
+│   │   │       └── values.yaml
+│   │   └── raw
+│   │       └── clusters
+│   │           └── ovh-prod
+│   │               ├── recosante.netpol.yaml
+│   │               └── redis.pvc.yaml
+│   ├── srdt
+│   │   └── apps
+│   │       ├── elasticsearch
+│   │       │   ├── Chart.yaml
+│   │       │   ├── charts
+│   │       │   │   └── final-appset -> ../../../../../charts/final-appset/
+│   │       │   ├── envs
+│   │       │   │   ├── preprod
+│   │       │   │   │   ├── config.yaml
+│   │       │   │   │   ├── templates
+│   │       │   │   │   │   └── netpol.yaml
+│   │       │   │   │   └── values.yaml
+│   │       │   │   └── prod
+│   │       │   │       ├── config.yaml
+│   │       │   │       ├── templates
+│   │       │   │       │   └── netpol.yaml
+│   │       │   │       └── values.yaml
+│   │       │   ├── templates
+│   │       │   │   ├── appset-env.yaml
+│   │       │   │   └── elasticsearch.yaml
+│   │       │   └── values.yaml
+│   │       └── metabase
+│   │           ├── Chart.yaml
+│   │           ├── charts
+│   │           │   ├── final-appset -> ../../../../../charts/final-appset/
+│   │           │   ├── metabase -> ../../../../../charts/metabase
+│   │           │   └── metabase-matomo-sync -> ../../../../../charts/metabase-matomo-sync
+│   │           ├── envs
+│   │           │   └── prod
+│   │           │       ├── config.yaml
+│   │           │       ├── templates
+│   │           │       │   ├── allow-ns-metabase-access.netpol.yaml
+│   │           │       │   └── metabase.sealedsecret.yaml
+│   │           │       └── values.yaml
+│   │           ├── templates
+│   │           │   └── appset-env.yaml
+│   │           └── values.yaml
+│   ├── sre
+│   │   ├── apps
+│   │   │   └── sftp
+│   │   │       ├── Chart.yaml
+│   │   │       ├── charts
+│   │   │       │   ├── final-appset -> ../../../../../charts/final-appset
+│   │   │       │   └── sftp -> ../../../../../charts/sftp
+│   │   │       ├── envs
+│   │   │       │   └── prod
+│   │   │       │       ├── config.yaml
+│   │   │       │       └── values.yaml
+│   │   │       ├── templates
+│   │   │       │   └── appset-env.yaml
+│   │   │       └── values.yaml
+│   │   └── raw
+│   │       └── clusters
+│   │           ├── ovh-dev
+│   │           │   ├── buildkit-service
+│   │           │   │   └── buildkit-client-certs.sealedsecret.yaml
+│   │           │   ├── cnpg
+│   │           │   │   └── prorityclass-cnpg-3.yml
+│   │           │   ├── enforced-labels
+│   │           │   │   └── rancher.cpol.yaml
+│   │           │   └── github-backup
+│   │           │       ├── cronjob-secret.yaml
+│   │           │       ├── cronjob.yaml
+│   │           │       ├── filebrowser.yml
+│   │           │       ├── github-backup.pvc.yaml
+│   │           │       └── github-ssh.sealed-secret.yaml
+│   │           └── ovh-prod
+│   │               ├── buildkit-service
+│   │               │   ├── buildkit-client-certs.sealedsecret.yaml
+│   │               │   └── buildkit-daemon-certs.sealedsecret.yaml
+│   │               ├── cnpg
+│   │               │   └── prorityclass-cnpg-3.yml
+│   │               └── sre-secrets
+│   │                   ├── matomo-key.sealsecrets.yaml
+│   │                   └── sre-secrets.namespace.yaml
+│   └── vao
+│       ├── apps
+│       │   └── metabase
+│       │       ├── Chart.yaml
+│       │       ├── charts
+│       │       │   ├── final-appset -> ../../../../../charts/final-appset/
+│       │       │   ├── metabase -> ../../../../../charts/metabase
+│       │       │   └── metabase-matomo-sync -> ../../../../../charts/metabase-matomo-sync/
+│       │       ├── envs
+│       │       │   └── prod
+│       │       │       ├── config.yaml
+│       │       │       ├── templates
+│       │       │       │   ├── allow-ns-metabase-access.netpol.yaml
+│       │       │       │   └── metabase.sealedsecret.yaml
+│       │       │       └── values.yaml
+│       │       ├── templates
+│       │       │   └── appset-env.yaml
+│       │       └── values.yaml
+│       └── raw
+│           └── clusters
+│               └── ovh-prod
+│                   └── anonymizer.cronjob.yaml
+├── token-bureau
+│   ├── Chart.yaml
+│   ├── charts
+│   │   └── token-bureau
+│   │       ├── Chart.yaml
+│   │       ├── templates
+│   │       │   ├── NOTES.txt
+│   │       │   ├── _helpers.tpl
+│   │       │   ├── _validate.tpl
+│   │       │   ├── configmap.yaml
+│   │       │   ├── deployment.yaml
+│   │       │   ├── hpa.yaml
+│   │       │   ├── ingress.yaml
+│   │       │   ├── service.yaml
+│   │       │   └── serviceaccount.yaml
+│   │       └── values.yaml
+│   ├── templates
+│   │   └── sealedsecret.yaml
+│   └── values.yaml
+└── vaultwarden
+    ├── Chart.lock
+    ├── Chart.yaml
+    ├── charts
+    │   ├── cnpg-cluster-1.30.5.tgz
+    │   └── vaultwarden-0.31.6.tgz
+    ├── templates
+    │   ├── admin-creds.sealedsecret.yaml
+    │   ├── netpol.yaml
+    │   ├── redirect.ingress.yaml
+    │   ├── s3-creds.sealedsecret.yaml
+    │   └── smtp-creds.sealedsecret.yaml
+    └── values.yaml
+300 directories, 401 files
