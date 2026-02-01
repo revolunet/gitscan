@@ -1,0 +1,355 @@
+.
+├── .buildpacks
+├── .env.development
+├── .github
+│   └── workflows
+│       └── pull-request.yml
+├── .gitignore
+├── .husky
+│   └── pre-commit
+├── .prettierignore
+├── .prettierrc.json
+├── .vscode
+│   ├── extensions.json
+│   └── settings.json
+├── .yarnrc.yaml
+├── ENQUETE.md
+├── LICENSE
+├── Procfile
+├── README.md
+├── cron.json
+├── docker-compose.yml
+├── env.d.ts
+├── eslint.config.mjs
+├── package.json
+├── pnpm-lock.yaml
+├── pnpm-workspace.yaml
+├── prisma
+│   ├── docs
+│   │   └── generate-doc.sh
+│   ├── index.ts
+│   ├── migrations
+│   │   ├── 20251028120716_ngc_schema
+│   │   │   └── migration.sql
+│   │   ├── 20251110102425_simulation_verified_users
+│   │   │   └── migration.sql
+│   │   └── migration_lock.toml
+│   ├── schema.prisma
+│   └── scripts
+│       ├── add-integrations-api-scopes.ts
+│       ├── add-integrations-email-whitelist.ts
+│       ├── geolocation-countries.ts
+│       ├── geolocation-sorted-ips.ts
+│       └── grant-roles.ts
+├── scalingo.json
+├── scripts
+│   ├── NGC-1784-20250331.ts
+│   ├── NGC-1961-20250602.ts
+│   ├── NGC-2329-20250909.ts
+│   └── NGC-2408-20250922.ts
+├── src
+│   ├── adapters
+│   │   ├── 2tonnes
+│   │   │   ├── __tests__
+│   │   │   │   └── fixtures
+│   │   │   │       └── server.fixture.ts
+│   │   │   └── client.ts
+│   │   ├── agir
+│   │   │   ├── __tests__
+│   │   │   │   └── fixtures
+│   │   │   │       └── server.fixture.ts
+│   │   │   └── client.ts
+│   │   ├── brevo
+│   │   │   ├── __tests__
+│   │   │   │   └── fixtures
+│   │   │   │       ├── formatBrevoDate.ts
+│   │   │   │       └── server.fixture.ts
+│   │   │   ├── client.ts
+│   │   │   └── constant.ts
+│   │   ├── connect
+│   │   │   ├── __tests__
+│   │   │   │   └── fixtures
+│   │   │   │       └── server.fixture.ts
+│   │   │   └── client.ts
+│   │   ├── matomo
+│   │   │   ├── client.ts
+│   │   │   └── index.ts
+│   │   ├── prisma
+│   │   │   ├── client.ts
+│   │   │   ├── constant.ts
+│   │   │   ├── selection.ts
+│   │   │   └── transaction.ts
+│   │   ├── redis
+│   │   │   ├── client.ts
+│   │   │   └── constant.ts
+│   │   └── scaleway
+│   │       └── client.ts
+│   ├── app.ts
+│   ├── config.ts
+│   ├── core
+│   │   ├── __tests__
+│   │   │   └── fixtures
+│   │   │       └── server.fixture.ts
+│   │   ├── batch-find-many.ts
+│   │   ├── deep-merge.ts
+│   │   ├── errors
+│   │   │   ├── ConflictException.ts
+│   │   │   ├── EntityNotFoundException.ts
+│   │   │   ├── ForbiddenException.ts
+│   │   │   └── UnauthorizedException.ts
+│   │   ├── event-bus
+│   │   │   ├── __tests__
+│   │   │   │   └── event-bus.spec.ts
+│   │   │   ├── error.ts
+│   │   │   ├── event-bus.ts
+│   │   │   ├── event.ts
+│   │   │   └── handler.ts
+│   │   ├── i18n
+│   │   │   ├── constant.ts
+│   │   │   └── lang.validator.ts
+│   │   ├── middlewares
+│   │   │   └── asyncValidateRequestBody.ts
+│   │   ├── pagination.ts
+│   │   ├── publish-api-event.ts
+│   │   ├── ts-rest.ts
+│   │   └── typeguards
+│   │       ├── isAuthenticated.ts
+│   │       ├── isPrismaError.ts
+│   │       ├── isPromiseAllSettled.ts
+│   │       ├── isRetryableAxiosError.ts
+│   │       └── isScalewayError.ts
+│   ├── features
+│   │   ├── authentication
+│   │   │   ├── __tests__
+│   │   │   │   ├── create-verification-codes.spec.ts
+│   │   │   │   ├── fixtures
+│   │   │   │   │   ├── login.fixture.ts
+│   │   │   │   │   └── verification-codes.fixture.ts
+│   │   │   │   ├── login.spec.ts
+│   │   │   │   ├── logout.spec.ts
+│   │   │   │   └── multi-device-sync.spec.ts
+│   │   │   ├── authentication.controller.ts
+│   │   │   ├── authentication.service.ts
+│   │   │   ├── authentication.validator.ts
+│   │   │   ├── events
+│   │   │   │   ├── AccountCreated.event.ts
+│   │   │   │   ├── Login.event.ts
+│   │   │   │   └── VerificationCodeCreated.event.ts
+│   │   │   ├── handlers
+│   │   │   │   ├── send-verification-code.ts
+│   │   │   │   ├── send-welcome-email.ts
+│   │   │   │   ├── sync-user-data-after-account-created.ts
+│   │   │   │   └── update-brevo-contact.ts
+│   │   │   ├── verification-codes.controller.ts
+│   │   │   ├── verification-codes.repository.ts
+│   │   │   ├── verification-codes.service.ts
+│   │   │   └── verification-codes.validator.ts
+│   │   ├── groups
+│   │   │   ├── __tests__
+│   │   │   │   ├── create-group-participant.spec.ts
+│   │   │   │   ├── create-group.spec.ts
+│   │   │   │   ├── delete-group-participant.spec.ts
+│   │   │   │   ├── delete-user-group.spec.ts
+│   │   │   │   ├── fetch-user-group.spec.ts
+│   │   │   │   ├── fetch-user-groups.spec.ts
+│   │   │   │   ├── fixtures
+│   │   │   │   │   └── groups.fixture.ts
+│   │   │   │   └── update-user-group.spec.ts
+│   │   │   ├── events
+│   │   │   │   ├── GroupCreated.event.ts
+│   │   │   │   ├── GroupDeleted.event.ts
+│   │   │   │   └── GroupUpdated.event.ts
+│   │   │   ├── groups.controller.ts
+│   │   │   ├── groups.repository.ts
+│   │   │   ├── groups.service.ts
+│   │   │   ├── groups.validator.ts
+│   │   │   └── handlers
+│   │   │       └── add-or-update-brevo-contact.ts
+│   │   ├── integrations
+│   │   │   ├── __tests__
+│   │   │   │   ├── export-situation.spec.ts
+│   │   │   │   └── fetch-external-service.spec.ts
+│   │   │   ├── api
+│   │   │   │   ├── api.contract.ts
+│   │   │   │   ├── api.controller.ts
+│   │   │   │   ├── authentication
+│   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   ├── fixtures
+│   │   │   │   │   │   │   └── authentication.fixtures.ts
+│   │   │   │   │   │   ├── generate-api-token.spec.ts
+│   │   │   │   │   │   ├── recover-api-token.spec.ts
+│   │   │   │   │   │   └── refresh-api-token.spec.ts
+│   │   │   │   │   ├── authentication.contract.ts
+│   │   │   │   │   ├── authentication.controller.ts
+│   │   │   │   │   └── authentication.service.ts
+│   │   │   │   ├── email-whitelist
+│   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   ├── create-email-whitelist.spec.ts
+│   │   │   │   │   │   ├── delete-email-whitelist.spec.ts
+│   │   │   │   │   │   ├── fetch-email-whitelists.spec.ts
+│   │   │   │   │   │   ├── fixtures
+│   │   │   │   │   │   │   └── email-whitelist.fixture.ts
+│   │   │   │   │   │   └── update-email-whitelist.spec.ts
+│   │   │   │   │   ├── email-whitelist.contract.ts
+│   │   │   │   │   ├── email-whitelist.controller.ts
+│   │   │   │   │   ├── email-whitelist.repository.ts
+│   │   │   │   │   └── email-whitelist.service.ts
+│   │   │   │   ├── mapping-file
+│   │   │   │   │   ├── __tests__
+│   │   │   │   │   │   ├── delete-mapping-file.spec.ts
+│   │   │   │   │   │   ├── fetch-mapping-file.spec.ts
+│   │   │   │   │   │   ├── fixtures
+│   │   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   │   ├── invalid.png
+│   │   │   │   │   │   │   ├── invalid.yml
+│   │   │   │   │   │   │   └── valid.yml
+│   │   │   │   │   │   └── upload-mapping-file.spec.ts
+│   │   │   │   │   ├── mapping-file.contract.ts
+│   │   │   │   │   ├── mapping-file.controller.ts
+│   │   │   │   │   └── mapping-file.service.ts
+│   │   │   │   └── mapping-situation
+│   │   │   │       ├── __tests__
+│   │   │   │       │   ├── fixtures
+│   │   │   │       │   │   └── 2-tonnes
+│   │   │   │       │   │       ├── absent.yml
+│   │   │   │       │   │       ├── conversion.yml
+│   │   │   │       │   │       ├── default.yml
+│   │   │   │       │   │       └── values.yml
+│   │   │   │       │   └── map-situation.spec.ts
+│   │   │   │       ├── mapping-situation.constant.ts
+│   │   │   │       ├── mapping-situation.contract.ts
+│   │   │   │       ├── mapping-situation.controller.ts
+│   │   │   │       └── mapping-situation.service.ts
+│   │   │   ├── integrations.controller.ts
+│   │   │   ├── integrations.service.ts
+│   │   │   └── integrations.validator.ts
+│   │   ├── jobs
+│   │   │   ├── events
+│   │   │   │   └── JobCreated.event.ts
+│   │   │   ├── handlers
+│   │   │   │   ├── dispatch-job.ts
+│   │   │   │   └── publish-redis-event.ts
+│   │   │   ├── jobs.repository.ts
+│   │   │   └── jobs.service.ts
+│   │   ├── modele
+│   │   │   ├── __tests__
+│   │   │   │   └── fetch-modele-geolocation.spec.ts
+│   │   │   ├── geolocation.repository.ts
+│   │   │   ├── geolocation.service.ts
+│   │   │   ├── modele.controller.ts
+│   │   │   └── modele.validator.ts
+│   │   ├── newsletter
+│   │   │   ├── __tests__
+│   │   │   │   ├── confirm-newsletter.spec.ts
+│   │   │   │   └── inscription-newsletter.spec.ts
+│   │   │   ├── newsletter.controller.ts
+│   │   │   ├── newsletter.service.ts
+│   │   │   └── newsletter.validator.ts
+│   │   ├── organisations
+│   │   │   ├── __tests__
+│   │   │   │   ├── create-organisation-poll.spec.ts
+│   │   │   │   ├── create-organisation.spec.ts
+│   │   │   │   ├── delete-organisation-poll.spec.ts
+│   │   │   │   ├── download-organisation-poll-simulations-result.spec.ts
+│   │   │   │   ├── fetch-organisation-poll.spec.ts
+│   │   │   │   ├── fetch-organisation-polls.spec.ts
+│   │   │   │   ├── fetch-organisation-public-poll-simulations.spec.ts
+│   │   │   │   ├── fetch-organisation-public-poll.spec.ts
+│   │   │   │   ├── fetch-organisation.spec.ts
+│   │   │   │   ├── fetch-organisations.spec.ts
+│   │   │   │   ├── fixtures
+│   │   │   │   │   └── organisations.fixture.ts
+│   │   │   │   ├── update-organisation-poll.spec.ts
+│   │   │   │   └── update-organisation.spec.ts
+│   │   │   ├── events
+│   │   │   │   ├── OrganisationCreated.event.ts
+│   │   │   │   ├── OrganisationUpdated.event.ts
+│   │   │   │   ├── PollCreated.event.ts
+│   │   │   │   ├── PollDeletedEvent.ts
+│   │   │   │   ├── PollUpdated.event.ts
+│   │   │   │   └── event.mapper.ts
+│   │   │   ├── handlers
+│   │   │   │   ├── add-or-update-brevo-contact.ts
+│   │   │   │   ├── add-or-update-connect-contact.ts
+│   │   │   │   ├── send-organisation-created.ts
+│   │   │   │   └── send-poll-created.ts
+│   │   │   ├── organisations.controller.ts
+│   │   │   ├── organisations.repository.ts
+│   │   │   ├── organisations.service.ts
+│   │   │   └── organisations.validator.ts
+│   │   ├── simulations
+│   │   │   ├── __tests__
+│   │   │   │   ├── compute-poll-stats.spec.ts
+│   │   │   │   ├── create-poll-simulation.spec.ts
+│   │   │   │   ├── create-simulation.spec.ts
+│   │   │   │   ├── fetch-user-simulation.spec.ts
+│   │   │   │   ├── fetch-user-simulations.spec.ts
+│   │   │   │   └── fixtures
+│   │   │   │       └── simulations.fixtures.ts
+│   │   │   ├── events
+│   │   │   │   └── SimulationUpserted.event.ts
+│   │   │   ├── handlers
+│   │   │   │   ├── compute-poll-stats.ts
+│   │   │   │   ├── publish-redis-event.ts
+│   │   │   │   ├── send-simulation-upserted.ts
+│   │   │   │   ├── sync-user-data-after-simulation-upserted.ts
+│   │   │   │   └── update-brevo-contact.ts
+│   │   │   ├── simulation.constant.ts
+│   │   │   ├── simulations.controller.ts
+│   │   │   ├── simulations.repository.ts
+│   │   │   ├── simulations.service.ts
+│   │   │   ├── simulations.validator.ts
+│   │   │   └── situation
+│   │   │       ├── __tests__
+│   │   │       │   └── situation.service.spec.ts
+│   │   │       └── situation.service.ts
+│   │   ├── stats
+│   │   │   ├── __tests__
+│   │   │   │   ├── fetch-northstar-stats.spec.ts
+│   │   │   │   └── recover-newsletter-stats.spec.ts
+│   │   │   ├── stats.constant.ts
+│   │   │   ├── stats.controller.ts
+│   │   │   ├── stats.repository.ts
+│   │   │   ├── stats.service.ts
+│   │   │   └── stats.validator.ts
+│   │   └── users
+│   │       ├── __tests__
+│   │       │   ├── fetch-me.spec.ts
+│   │       │   ├── fetch-user-brevo-contact.spec.ts
+│   │       │   ├── fixtures
+│   │       │   │   └── users.fixture.ts
+│   │       │   └── update-user.spec.ts
+│   │       ├── events
+│   │       │   └── UserUpdated.event.ts
+│   │       ├── handlers
+│   │       │   ├── add-or-update-brevo-contact.ts
+│   │       │   └── remove-previous-brevo-contact.ts
+│   │       ├── users.controller.ts
+│   │       ├── users.repository.ts
+│   │       ├── users.service.ts
+│   │       └── users.validator.ts
+│   ├── index.ts
+│   ├── jobs
+│   │   ├── compute-poll-stats.ts
+│   │   ├── recover-matomo-stats.ts
+│   │   └── recover-newsletter-stats.ts
+│   ├── logger.ts
+│   ├── middlewares
+│   │   ├── __tests__
+│   │   │   ├── authentificationMiddleware.spec.ts
+│   │   │   └── rateLimitSameRequestMiddleware.spec.ts
+│   │   ├── authentificationMiddleware.ts
+│   │   ├── rateLimitSameRequestMiddleware.ts
+│   │   ├── redisCacheMiddleware.ts
+│   │   └── validateRequest.ts
+│   ├── public
+│   │   └── .gitkeep
+│   ├── types
+│   │   └── types.d.ts
+│   └── worker.ts
+├── tsconfig.build.json
+├── tsconfig.json
+├── vite.config.ts
+├── vite.env.ts
+└── vite.setup.ts
+97 directories, 257 files
