@@ -1,0 +1,1359 @@
+.
+├── .dockerignore
+├── .env-example
+├── .erb-lint.yml
+├── .github
+│   ├── ISSUE_TEMPLATE
+│   │   └── bug_report.md
+│   ├── PULL_REQUEST_TEMPLATE.md
+│   ├── run_erblint.sh
+│   ├── upload_coverage.sh
+│   └── workflows
+│       └── ci_cd.yml
+├── .gitignore
+├── .node-version
+├── .overloads
+├── .rubocop.yml
+├── .rubocop_rails.yml
+├── .rubocop_ruby.yml
+├── .ruby-version
+├── .tool-versions
+├── Dockerfile
+├── Gemfile
+├── Gemfile.lock
+├── Makefile
+├── OVERLOADS.md
+├── Procfile
+├── README.md
+├── Rakefile
+├── app
+│   ├── cells
+│   │   └── decidim
+│   │       ├── profile
+│   │       │   └── show.erb
+│   │       └── profile_cell.rb
+│   ├── controllers
+│   │   ├── application_controller.rb
+│   │   ├── concerns
+│   │   │   └── .keep
+│   │   ├── decidim
+│   │   │   └── proposals
+│   │   │       └── proposals_controller.rb
+│   │   └── decidim_controller.rb
+│   ├── helpers
+│   │   ├── application_helper.rb
+│   │   └── decidim
+│   │       ├── backup_helper.rb
+│   │       └── menu_helper.rb
+│   ├── jobs
+│   │   ├── application_job.rb
+│   │   ├── backup_job.rb
+│   │   ├── calculate_all_metrics_job.rb
+│   │   └── preload_open_data_job.rb
+│   ├── mailers
+│   │   └── application_mailer.rb
+│   ├── models
+│   │   ├── application_record.rb
+│   │   └── concerns
+│   │       └── .keep
+│   ├── packs
+│   │   ├── entrypoints
+│   │   │   └── application.js
+│   │   ├── fonts
+│   │   │   └── decidim
+│   │   │       └── Marianne
+│   │   │           ├── Marianne-Bold.eot
+│   │   │           ├── Marianne-Bold.svg
+│   │   │           ├── Marianne-Bold.ttf
+│   │   │           ├── Marianne-Bold.woff
+│   │   │           ├── Marianne-Bold.woff2
+│   │   │           ├── Marianne-ExtraBold.eot
+│   │   │           ├── Marianne-ExtraBold.svg
+│   │   │           ├── Marianne-ExtraBold.ttf
+│   │   │           ├── Marianne-ExtraBold.woff
+│   │   │           ├── Marianne-ExtraBold.woff2
+│   │   │           ├── Marianne-Light.eot
+│   │   │           ├── Marianne-Light.svg
+│   │   │           ├── Marianne-Light.ttf
+│   │   │           ├── Marianne-Light.woff
+│   │   │           ├── Marianne-Light.woff2
+│   │   │           ├── Marianne-Medium.eot
+│   │   │           ├── Marianne-Medium.svg
+│   │   │           ├── Marianne-Medium.ttf
+│   │   │           ├── Marianne-Medium.woff
+│   │   │           ├── Marianne-Medium.woff2
+│   │   │           ├── Marianne-Regular.eot
+│   │   │           ├── Marianne-Regular.svg
+│   │   │           ├── Marianne-Regular.ttf
+│   │   │           ├── Marianne-Regular.woff
+│   │   │           ├── Marianne-Regular.woff2
+│   │   │           ├── Marianne-RegularItalic.eot
+│   │   │           ├── Marianne-RegularItalic.svg
+│   │   │           ├── Marianne-RegularItalic.ttf
+│   │   │           ├── Marianne-RegularItalic.woff
+│   │   │           ├── Marianne-RegularItalic.woff2
+│   │   │           ├── Marianne-Thin.eot
+│   │   │           ├── Marianne-Thin.svg
+│   │   │           ├── Marianne-Thin.ttf
+│   │   │           ├── Marianne-Thin.woff
+│   │   │           └── Marianne-Thin.woff2
+│   │   ├── images
+│   │   │   ├── .keep
+│   │   │   └── decidim
+│   │   │       ├── cc-by-sa--inv.svg
+│   │   │       ├── cc-by-sa.svg
+│   │   │       ├── decidim-logo-mobile--inv.svg
+│   │   │       ├── decidim-logo-mobile.svg
+│   │   │       └── decidim-logo.svg
+│   │   ├── src
+│   │   │   └── decidim
+│   │   │       ├── .keep
+│   │   │       └── decidim_application.js
+│   │   └── stylesheets
+│   │       └── decidim
+│   │           ├── .keep
+│   │           ├── _decidim-settings.scss
+│   │           ├── _fontface.css
+│   │           ├── _footer.css
+│   │           ├── _header.css
+│   │           ├── _icons.css
+│   │           ├── _socials.css
+│   │           ├── decidim
+│   │           │   ├── _email-custom.scss
+│   │           │   ├── email.scss.erb
+│   │           │   └── vizzs
+│   │           │       └── _areachart.scss
+│   │           └── decidim_application.scss
+│   ├── services
+│   │   ├── another_dummy_authorization_handler.rb
+│   │   ├── decidim
+│   │   │   ├── action_log_service.rb
+│   │   │   ├── backup_service.rb
+│   │   │   ├── database_service.rb
+│   │   │   ├── notification_service.rb
+│   │   │   ├── osp_authorization_handler.rb
+│   │   │   ├── repair_nickname_service.rb
+│   │   │   ├── s3_retention_service.rb
+│   │   │   ├── s3_sync_service.rb
+│   │   │   └── surveys_service.rb
+│   │   └── dummy_authorization_handler.rb
+│   └── views
+│       ├── analytics
+│       │   └── _hotjar.html.erb
+│       ├── decidim
+│       │   ├── application
+│       │   │   ├── _document.erb
+│       │   │   └── _documents.erb
+│       │   ├── pages
+│       │   │   ├── _standalone.html.erb
+│       │   │   └── _tabbed.html.erb
+│       │   └── scopes
+│       │       └── picker.html.erb
+│       ├── layouts
+│       │   └── decidim
+│       │       ├── _head.html.erb
+│       │       ├── _head_extra.html.erb
+│       │       ├── _main_footer.html.erb
+│       │       ├── _social_media_links.html.erb
+│       │       ├── _topbar_search.html.erb
+│       │       ├── _user_menu.html.erb
+│       │       ├── _wrapper.html.erb
+│       │       ├── admin
+│       │       │   └── _template_bottom.html.erb
+│       │       └── assembly.html.erb
+│       └── support
+│           ├── _beacon.html.erb
+│           └── _helpscout.html.erb
+├── app.json
+├── babel.config.json
+├── bin
+│   ├── bundle
+│   ├── overloads
+│   ├── rails
+│   ├── rake
+│   ├── setup
+│   ├── update
+│   ├── webpack
+│   └── webpack-dev-server
+├── config
+│   ├── application.rb
+│   ├── backup.yml
+│   ├── boot.rb
+│   ├── cable.yml
+│   ├── database.yml
+│   ├── environment.rb
+│   ├── environments
+│   │   ├── development.rb
+│   │   ├── production.rb
+│   │   └── test.rb
+│   ├── i18n-tasks.yml
+│   ├── initializers
+│   │   ├── application_controller_renderer.rb
+│   │   ├── backtrace_silencers.rb
+│   │   ├── carrierwave.rb
+│   │   ├── content_security_policy.rb
+│   │   ├── cookies_serializer.rb
+│   │   ├── decidim.rb
+│   │   ├── decidim_proposals.rb
+│   │   ├── decidim_verifications.rb
+│   │   ├── devise.rb
+│   │   ├── filter_parameter_logging.rb
+│   │   ├── health_check.rb
+│   │   ├── inflections.rb
+│   │   ├── mime_types.rb
+│   │   ├── new_framework_defaults_5_2.rb
+│   │   ├── omniauth_publik.rb
+│   │   ├── rack_attack.rb
+│   │   ├── sentry.rb
+│   │   ├── sidekiq_alive.rb
+│   │   ├── social_share_button.rb
+│   │   └── wrap_parameters.rb
+│   ├── locales
+│   │   ├── decidim-awesome
+│   │   │   └── fr.yml
+│   │   ├── decidim-comparative-stats
+│   │   │   └── fr.yml
+│   │   ├── decidim-direct-verifications
+│   │   │   └── fr.yml
+│   │   ├── decidim-navigation-maps
+│   │   │   └── fr.yml
+│   │   ├── en.yml
+│   │   └── fr.yml
+│   ├── newrelic.yml
+│   ├── puma.rb
+│   ├── routes.rb
+│   ├── secrets.yml
+│   ├── sidekiq.yml
+│   ├── spring.rb
+│   ├── storage.yml
+│   ├── webpack
+│   │   ├── .modernizrrc
+│   │   ├── base.js
+│   │   ├── custom.js
+│   │   ├── development.js
+│   │   ├── production.js
+│   │   └── test.js
+│   └── webpacker.yml
+├── config.ru
+├── db
+│   ├── migrate
+│   │   ├── 20180611124757_devise_create_decidim_users.decidim.rb
+│   │   ├── 20180611124758_create_decidim_organizations.decidim.rb
+│   │   ├── 20180611124759_devise_invitable_add_to_decidim_users.decidim.rb
+│   │   ├── 20180611124760_user_belongs_to_organization.decidim.rb
+│   │   ├── 20180611124761_user_has_roles.decidim.rb
+│   │   ├── 20180611124762_add_description_to_organizations.decidim.rb
+│   │   ├── 20180611124763_add_confirmable_to_devise.decidim.rb
+│   │   ├── 20180611124764_add_name_to_users.decidim.rb
+│   │   ├── 20180611124765_add_locale_to_users.decidim.rb
+│   │   ├── 20180611124766_create_decidim_authorizations.decidim.rb
+│   │   ├── 20180611124767_create_decidim_static_pages.decidim.rb
+│   │   ├── 20180611124768_create_decidim_features.decidim.rb
+│   │   ├── 20180611124769_add_categories.decidim.rb
+│   │   ├── 20180611124770_create_decidim_scopes.decidim.rb
+│   │   ├── 20180611124771_make_organization_description_optional.decidim.rb
+│   │   ├── 20180611124772_add_avatar_to_users.decidim.rb
+│   │   ├── 20180611124773_add_logo_to_organizations.decidim.rb
+│   │   ├── 20180611124774_add_configuration_to_features.decidim.rb
+│   │   ├── 20180611124775_add_handler_to_organization.decidim.rb
+│   │   ├── 20180611124776_create_resource_links.decidim.rb
+│   │   ├── 20180611124777_create_identities.decidim.rb
+│   │   ├── 20180611124778_add_uniqueness_field_to_authorizations.decidim.rb
+│   │   ├── 20180611124779_create_user_groups.decidim.rb
+│   │   ├── 20180611124780_create_user_group_memberships.decidim.rb
+│   │   ├── 20180611124781_add_show_statistics_to_organization.decidim.rb
+│   │   ├── 20180611124782_add_user_groups_verified.decidim.rb
+│   │   ├── 20180611124783_add_avatar_to_user_groups.decidim.rb
+│   │   ├── 20180611124784_add_weight_to_features.decidim.rb
+│   │   ├── 20180611124785_add_timestamps_to_identities.decidim.rb
+│   │   ├── 20180611124786_add_favicon_to_decidim_organizations.decidim.rb
+│   │   ├── 20180611124787_add_action_permissions_to_decidim_features.decidim.rb
+│   │   ├── 20180611124788_add_comments_and_replies_notifications_to_users.decidim.rb
+│   │   ├── 20180611124789_add_newsletter_notifications_to_users.decidim.rb
+│   │   ├── 20180611124790_add_published_at_to_decidim_features.decidim.rb
+│   │   ├── 20180611124791_add_social_media_handlers_to_organization.decidim.rb
+│   │   ├── 20180611124792_add_organization_logo_and_url.decidim.rb
+│   │   ├── 20180611124793_create_decidim_newsletters.decidim.rb
+│   │   ├── 20180611124794_add_organization_custom_reference.decidim.rb
+│   │   ├── 20180611124795_add_secondary_hosts_to_organizations.decidim.rb
+│   │   ├── 20180611124796_create_reports.decidim.rb
+│   │   ├── 20180611124797_create_moderations.decidim.rb
+│   │   ├── 20180611124798_add_available_authorizations_to_organization.decidim.rb
+│   │   ├── 20180611124799_change_decidim_user_email_index_uniqueness.decidim.rb
+│   │   ├── 20180611124800_add_organization_to_identities.decidim.rb
+│   │   ├── 20180611124801_change_decidim_identities_provider_uid_index_uniqueness.decidim.rb
+│   │   ├── 20180611124802_add_rejected_at_to_user_groups.decidim.rb
+│   │   ├── 20180611124803_add_deleted_fields_to_users.decidim.rb
+│   │   ├── 20180611124804_add_hierarchy_to_scopes.decidim.rb
+│   │   ├── 20180611124805_set_email_unique_in_organization_conditional.decidim.rb
+│   │   ├── 20180611124806_add_organization_to_user_groups.decidim.rb
+│   │   ├── 20180611124807_add_uniqueness_to_name_and_document_number_to_user_groups.decidim.rb
+│   │   ├── 20180611124808_create_decidim_categorizations.decidim.rb
+│   │   ├── 20180611124809_add_admin_to_users.decidim.rb
+│   │   ├── 20180611124810_migrate_user_roles_to_participatory_process_roles.decidim.rb
+│   │   ├── 20180611124811_make_moderations_polymorphic.decidim.rb
+│   │   ├── 20180611124812_add_managed_to_users.decidim.rb
+│   │   ├── 20180611124813_set_email_unique_in_organization_condition_for_managed_users.decidim.rb
+│   │   ├── 20180611124814_create_impersonation_logs.decidim.rb
+│   │   ├── 20180611124815_make_categories_polymorphic.decidim.rb
+│   │   ├── 20180611124816_add_roles_to_users.decidim.rb
+│   │   ├── 20180611124817_create_decidim_follows.decidim.rb
+│   │   ├── 20180611124818_create_decidim_notifications.decidim.rb
+│   │   ├── 20180611124819_add_extra_to_notifications.decidim.rb
+│   │   ├── 20180611124820_add_emails_on_notifications_flag_to_user.decidim.rb
+│   │   ├── 20180611124821_add_header_snippets_to_organizations.decidim.rb
+│   │   ├── 20180611124822_remove_followable_index_from_follows.decidim.rb
+│   │   ├── 20180611124823_remove_comment_and_replies_notifications_from_users.decidim.rb
+│   │   ├── 20180611124824_add_status_to_authorizations.decidim.rb
+│   │   ├── 20180611124825_add_verification_metadata_to_authorizations.decidim.rb
+│   │   ├── 20180611124826_add_verification_attachment_to_authorizations.decidim.rb
+│   │   ├── 20180611124827_add_cta_button_url_and_text_to_organization.decidim.rb
+│   │   ├── 20180611124828_create_decidim_messaging.decidim.rb
+│   │   ├── 20180611124829_create_versions.decidim.rb
+│   │   ├── 20180611124830_add_object_changes_to_versions.decidim.rb
+│   │   ├── 20180611124831_create_decidim_receipts.decidim.rb
+│   │   ├── 20180611124832_create_decidim_attachment_collections.decidim.rb
+│   │   ├── 20180611124833_create_unique_nicknames.decidim.rb
+│   │   ├── 20180611124834_extend_user_profile.decidim.rb
+│   │   ├── 20180611124835_add_enable_omnipresent_banner_to_decidim_organizations.decidim.rb
+│   │   ├── 20180611124836_add_omnipresent_banner_title_to_decidim_organizations.decidim.rb
+│   │   ├── 20180611124837_add_omnipresent_banner_short_description_to_decidim_organizations.decidim.rb
+│   │   ├── 20180611124838_add_omnipresent_banner_url_to_decidim_organizations.decidim.rb
+│   │   ├── 20180611124839_add_highlighted_content_banner_to_decidim_organizations.decidim.rb
+│   │   ├── 20180611124840_add_action_log.decidim.rb
+│   │   ├── 20180611124842_create_participatory_space_private_users.decidim.rb
+│   │   ├── 20180611124843_create_decidim_searchable_resource.decidim.rb
+│   │   ├── 20180611124844_create_decidim_area_types.decidim.rb
+│   │   ├── 20180611124845_create_decidim_areas.decidim.rb
+│   │   ├── 20180611124846_fix_nickname_index.decidim.rb
+│   │   ├── 20180611124847_add_version_to_action_logs.decidim.rb
+│   │   ├── 20180611124848_create_participatory_space_links.decidim.rb
+│   │   ├── 20180611124849_rename_features_to_components.decidim.rb
+│   │   ├── 20180611124850_doorkeeper_models.decidim.rb
+│   │   ├── 20180611124851_rename_maximum_votes_per_proposal_to_threshold_per_proposal.decidim.rb
+│   │   ├── 20180611124852_change_event_name_and_class_to_rename_to_publish_proposal_event.decidim.rb
+│   │   ├── 20180611124853_add_tos_version_to_organization.decidim.rb
+│   │   ├── 20180611124854_add_accepted_tos_version_field_to_users.decidim.rb
+│   │   ├── 20180611124855_devise_create_decidim_admins.decidim_system.rb
+│   │   ├── 20180611124856_add_admin_participatory_process_user_roles.decidim_admin.rb
+│   │   ├── 20180611124857_change_user_groups_verified_to_timestamp.decidim_admin.rb
+│   │   ├── 20180611124858_rename_participatory_process_user_roles_table.decidim_admin.rb
+│   │   ├── 20180611124859_add_officialization_to_users.decidim_admin.rb
+│   │   ├── 20180611124860_add_reason_to_decidim_impersonation_logs.decidim_admin.rb
+│   │   ├── 20180611124861_move_authorizations_to_new_api.decidim_verifications.rb
+│   │   ├── 20180611124862_add_participatory_processes.decidim_participatory_processes.rb
+│   │   ├── 20180611124863_translate_processes.decidim_participatory_processes.rb
+│   │   ├── 20180611124864_add_hero_image_to_processes.decidim_participatory_processes.rb
+│   │   ├── 20180611124865_add_banner_image_to_processes.decidim_participatory_processes.rb
+│   │   ├── 20180611124866_add_promoted_flag_to_processes.decidim_participatory_processes.rb
+│   │   ├── 20180611124867_add_participatory_process_steps.decidim_participatory_processes.rb
+│   │   ├── 20180611124868_add_active_flag_to_step.decidim_participatory_processes.rb
+│   │   ├── 20180611124869_add_position_to_steps.decidim_participatory_processes.rb
+│   │   ├── 20180611124870_add_published_at_to_processes.decidim_participatory_processes.rb
+│   │   ├── 20180611124871_remove_not_null_on_step_position.decidim_participatory_processes.rb
+│   │   ├── 20180611124872_add_index_for_process_slug_organization.decidim_participatory_processes.rb
+│   │   ├── 20180611124873_create_attachments.decidim_participatory_processes.rb
+│   │   ├── 20180611124874_loosen_step_requirements.decidim_participatory_processes.rb
+│   │   ├── 20180611124875_make_attachments_polymorphic.decidim_participatory_processes.rb
+│   │   ├── 20180611124876_rename_attachable_to_attached_to.decidim_participatory_processes.rb
+│   │   ├── 20180611124877_add_extra_info_to_processes.decidim_participatory_processes.rb
+│   │   ├── 20180611124878_rename_extra_info_on_processes.decidim_participatory_processes.rb
+│   │   ├── 20180611124879_remove_steps_short_description.decidim_participatory_processes.rb
+│   │   ├── 20180611124880_add_scopes_to_processes.decidim_participatory_processes.rb
+│   │   ├── 20180611124881_add_participatory_process_groups.decidim_participatory_processes.rb
+│   │   ├── 20180611124882_change_steps_end_and_start_date_to_date.decidim_participatory_processes.rb
+│   │   ├── 20180611124883_make_features_polymorphic.decidim_participatory_processes.rb
+│   │   ├── 20180611124884_add_show_statistics_to_participatory_processes.decidim_participatory_processes.rb
+│   │   ├── 20180611124885_attachment_description_nullable.decidim_participatory_processes.rb
+│   │   ├── 20180611124886_add_announcement_to_participatory_processes.decidim_participatory_processes.rb
+│   │   ├── 20180611124887_add_scopes_enabled_to_participatory_processes.decidim_participatory_processes.rb
+│   │   ├── 20180611124888_add_start_date_to_processes.decidim_participatory_processes.rb
+│   │   ├── 20180611124889_add_weight_to_attachments.decidim_participatory_processes.rb
+│   │   ├── 20180611124890_add_attachment_collection_to_attachments.decidim_participatory_processes.rb
+│   │   ├── 20180611124891_add_private_to_participatory_processes.decidim_participatory_processes.rb
+│   │   ├── 20180611124892_add_reference_to_processes.decidim_participatory_processes.rb
+│   │   ├── 20180611124893_add_assemblies.decidim_assemblies.rb
+│   │   ├── 20180611124894_add_scopes_enabled_to_assemblies.decidim_assemblies.rb
+│   │   ├── 20180611124895_add_assembly_user_roles.decidim_assemblies.rb
+│   │   ├── 20180611124896_add_private_to_assemblies.decidim_assemblies.rb
+│   │   ├── 20180611124897_add_reference_to_assemblies.decidim_assemblies.rb
+│   │   ├── 20180611124898_add_area_to_assemblies.decidim_assemblies.rb
+│   │   ├── 20180611124899_add_parent_child_relation_to_assemblies.decidim_assemblies.rb
+│   │   ├── 20180611124900_add_fields_to_assemblies.decidim_assemblies.rb
+│   │   ├── 20180611124901_add_assembly_members.decidim_assemblies.rb
+│   │   ├── 20180611124902_assembly_member_belongs_to_user.decidim_assemblies.rb
+│   │   ├── 20180611124903_update_assembly_members_index.decidim_assemblies.rb
+│   │   ├── 20180611124904_create_decidim_pages.decidim_pages.rb
+│   │   ├── 20180611124905_add_commentable_to_pages.decidim_pages.rb
+│   │   ├── 20180611124906_remove_commentable_flag_from_pages.decidim_pages.rb
+│   │   ├── 20180611124907_remove_page_feature_titles.decidim_pages.rb
+│   │   ├── 20180611124908_rename_features_to_components_at_pages.decidim_pages.rb
+│   │   ├── 20180611124909_create_comments.decidim_comments.rb
+│   │   ├── 20180611124910_add_depth_to_comments.decidim_comments.rb
+│   │   ├── 20180611124911_add_alignment_to_comments.decidim_comments.rb
+│   │   ├── 20180611124912_create_comment_votes.decidim_comments.rb
+│   │   ├── 20180611124913_add_user_group_id_to_comments.decidim_comments.rb
+│   │   ├── 20180611124914_add_root_commentable_to_comments.decidim_comments.rb
+│   │   ├── 20180611124915_update_root_commentable_for_comments.decidim_comments.rb
+│   │   ├── 20180611124916_set_root_commentable_null_constraints.decidim_comments.rb
+│   │   ├── 20180611124917_create_meetings.decidim_meetings.rb
+│   │   ├── 20180611124918_close_a_meeting.decidim_meetings.rb
+│   │   ├── 20180611124919_add_latitude_and_longitude_to_meetings.decidim_meetings.rb
+│   │   ├── 20180611124920_remove_short_description_from_meetings.decidim_meetings.rb
+│   │   ├── 20180611124921_add_reference_to_meetings.decidim_meetings.rb
+│   │   ├── 20180611124922_remove_not_null_reference_meetings.decidim_meetings.rb
+│   │   ├── 20180611124923_migrate_meetings_category.decidim_meetings.rb
+│   │   ├── 20180611124924_add_registration_attributes_to_meetings.decidim_meetings.rb
+│   │   ├── 20180611124925_create_registrations.decidim_meetings.rb
+│   │   ├── 20180611124926_rename_features_to_components_at_meetings.decidim_meetings.rb
+│   │   ├── 20180611124927_add_fields_for_registrations.decidim_meetings.rb
+│   │   ├── 20180611124928_add_meeting_types.decidim_meetings.rb
+│   │   ├── 20180611124929_add_organizer_to_meetings.decidim_meetings.rb
+│   │   ├── 20180611124930_create_meetings_minutes.decidim_meetings.rb
+│   │   ├── 20180611124931_add_services_to_meetings.decidim_meetings.rb
+│   │   ├── 20180611124932_create_decidim_agendas.decidim_meetings.rb
+│   │   ├── 20180611124933_create_decidim_agenda_items.decidim_meetings.rb
+│   │   ├── 20180611124934_create_decidim_proposals.decidim_proposals.rb
+│   │   ├── 20180611124935_create_proposal_votes.decidim_proposals.rb
+│   │   ├── 20180611124936_add_text_search_indexes.decidim_proposals.rb
+│   │   ├── 20180611124937_add_counter_cache_votes_to_proposals.decidim_proposals.rb
+│   │   ├── 20180611124938_add_user_group_id_to_proposals.decidim_proposals.rb
+│   │   ├── 20180611124939_add_answers_to_proposals.decidim_proposals.rb
+│   │   ├── 20180611124940_add_index_to_decidim_proposals_proposals_proposal_votes_count.decidim_proposals.rb
+│   │   ├── 20180611124941_create_proposal_reports.decidim_proposals.rb
+│   │   ├── 20180611124942_add_report_count_to_proposals.decidim_proposals.rb
+│   │   ├── 20180611124943_add_reference_to_proposals.decidim_proposals.rb
+│   │   ├── 20180611124944_add_hidden_at_to_proposals.decidim_proposals.rb
+│   │   ├── 20180611124945_add_geolocalization_fields_to_proposals.decidim_proposals.rb
+│   │   ├── 20180611124946_migrate_proposal_reports_data_to_reports.decidim_proposals.rb
+│   │   ├── 20180611124947_remove_not_null_reference_proposals.decidim_proposals.rb
+│   │   ├── 20180611124948_migrate_proposals_category.decidim_proposals.rb
+│   │   ├── 20180611124949_create_proposal_endorsements.decidim_proposals.rb
+│   │   ├── 20180611124950_add_counter_cache_endorsements_to_proposals.decidim_proposals.rb
+│   │   ├── 20180611124951_enable_pg_trgm_extension_for_proposals.decidim_proposals.rb
+│   │   ├── 20180611124952_add_published_at_to_proposals.decidim_proposals.rb
+│   │   ├── 20180611124953_create_decidim_proposal_notes.decidim_proposals.rb
+│   │   ├── 20180611124954_add_index_created_at_proposal_notes.decidim_proposals.rb
+│   │   ├── 20180611124955_rename_features_to_components_at_proposals.decidim_proposals.rb
+│   │   ├── 20180611124956_fix_nil_threshold_per_proposal.decidim_proposals.rb
+│   │   ├── 20180611124957_create_projects.decidim_budgets.rb
+│   │   ├── 20180611124958_create_orders.decidim_budgets.rb
+│   │   ├── 20180611124959_create_line_items.decidim_budgets.rb
+│   │   ├── 20180611124960_remove_short_description_from_decidim_projects.decidim_budgets.rb
+│   │   ├── 20180611124961_add_reference_to_projects.decidim_budgets.rb
+│   │   ├── 20180611124962_remove_not_null_reference_budgets.decidim_budgets.rb
+│   │   ├── 20180611124963_migrate_projects_category.decidim_budgets.rb
+│   │   ├── 20180611124964_rename_features_to_components_at_budgets.decidim_budgets.rb
+│   │   ├── 20180611124965_create_decidim_surveys.decidim_surveys.rb
+│   │   ├── 20180611124966_create_decidim_survey_questions.decidim_surveys.rb
+│   │   ├── 20180611124967_create_decidim_survey_answers.decidim_surveys.rb
+│   │   ├── 20180611124968_add_position_to_surveys_questions.decidim_surveys.rb
+│   │   ├── 20180611124969_add_mandatory_to_surveys_questions.decidim_surveys.rb
+│   │   ├── 20180611124970_add_question_type_to_surveys_questions.decidim_surveys.rb
+│   │   ├── 20180611124971_add_answer_options_to_surveys_questions.decidim_surveys.rb
+│   │   ├── 20180611124972_rename_features_to_components_at_surveys.decidim_surveys.rb
+│   │   ├── 20180611124973_add_max_choices_to_survey_questions.decidim_surveys.rb
+│   │   ├── 20180611124974_add_description_to_decidim_survey_questions.decidim_surveys.rb
+│   │   ├── 20180611124975_add_choices_to_decidim_survey_answers.decidim_surveys.rb
+│   │   ├── 20180611124976_create_decidim_survey_answer_options.decidim_surveys.rb
+│   │   ├── 20180611124977_create_decidim_survey_answer_choices.decidim_surveys.rb
+│   │   ├── 20180611124978_add_free_text_to_survey_answer_options.decidim_surveys.rb
+│   │   ├── 20180611124979_add_custom_body_to_survey_answer_choices.decidim_surveys.rb
+│   │   ├── 20180611124980_add_position_to_decidim_survey_answer_choices.decidim_surveys.rb
+│   │   ├── 20180611124981_create_accountability_statuses.decidim_accountability.rb
+│   │   ├── 20180611124982_create_accountability_results.decidim_accountability.rb
+│   │   ├── 20180611124983_add_description_and_progress_to_statuses.decidim_accountability.rb
+│   │   ├── 20180611124984_create_accountability_timeline_entries.decidim_accountability.rb
+│   │   ├── 20180611124985_migrate_accountability_results_category.decidim_accountability.rb
+│   │   ├── 20180611124986_add_children_counter_cache_to_results.decidim_accountability.rb
+│   │   ├── 20180611124987_migrate_old_results.decidim_accountability.rb
+│   │   ├── 20180611124988_rename_features_to_components_at_accountability.decidim_accountability.rb
+│   │   ├── 20180611124989_add_weight_to_results.decidim_accountability.rb
+│   │   ├── 20180611124990_add_external_id_to_results.decidim_accountability.rb
+│   │   ├── 20180611124991_create_debates.decidim_debates.rb
+│   │   ├── 20180611124992_add_debate_information_updates.decidim_debates.rb
+│   │   ├── 20180611124993_add_author_to_debates.decidim_debates.rb
+│   │   ├── 20180611124994_add_reference_to_debates.decidim_debates.rb
+│   │   ├── 20180611124995_add_user_group_author_to_debates.decidim_debates.rb
+│   │   ├── 20180611124996_drop_category_id_column.decidim_debates.rb
+│   │   ├── 20180611124997_rename_features_to_components_at_debates.decidim_debates.rb
+│   │   ├── 20180611124998_create_decidim_module_sortitions_sortitions.decidim_sortitions.rb
+│   │   ├── 20180611124999_add_witnesses_to_sortitions.decidim_sortitions.rb
+│   │   ├── 20180611125000_add_additional_info_to_sortitions.decidim_sortitions.rb
+│   │   ├── 20180611125001_add_author_to_sortitions.decidim_sortitions.rb
+│   │   ├── 20180611125002_add_reference_to_sortitions.decidim_sortitions.rb
+│   │   ├── 20180611125003_add_title_to_sortition.decidim_sortitions.rb
+│   │   ├── 20180611125004_drop_decidim_category_id_from_sortitions.decidim_sortitions.rb
+│   │   ├── 20180611125005_add_cancel_data_to_sortition.decidim_sortitions.rb
+│   │   ├── 20180611125006_make_sortition_reference_nullable.decidim_sortitions.rb
+│   │   ├── 20180611125007_add_candidate_proposals_to_sortitions.decidim_sortitions.rb
+│   │   ├── 20180611125008_rename_sortitions_table.decidim_sortitions.rb
+│   │   ├── 20180611125009_fix_sortitions_feature.decidim_sortitions.rb
+│   │   ├── 20180611125010_fix_sortitions_proposal_feature.decidim_sortitions.rb
+│   │   ├── 20180611125011_create_decidim_blogs_posts.decidim_blogs.rb
+│   │   ├── 20180611125012_add_author_to_decidim_blogs_posts.decidim_blogs.rb
+│   │   ├── 20180611126841_fix_reference_for_all_resources.decidim.rb
+│   │   ├── 20180611142713_create_decidim_navbar_links_table.decidim.rb
+│   │   ├── 20180611142714_add_upstream_moderation.decidim.rb
+│   │   ├── 20180611142715_add_target_to_navbar_link.decidim.rb
+│   │   ├── 20180611142716_add_weight_to_navbar_link.decidim.rb
+│   │   ├── 20180611142717_remove_upstream_moderation.decidim.rb
+│   │   ├── 20180611142718_add_weight_on_proposals_votes.decidim_proposals.rb
+│   │   ├── 20180709170619_rename_missing_features_to_components.decidim.rb
+│   │   ├── 20181012230414_create_coauthorships.decidim.rb
+│   │   ├── 20181012230415_change_newsletter_notification_type_value.decidim.rb
+│   │   ├── 20181012230416_create_decidim_resource_permissions.decidim.rb
+│   │   ├── 20181012230417_create_decidim_metrics.decidim.rb
+│   │   ├── 20181012230418_add_nickname_to_managed_users.decidim.rb
+│   │   ├── 20181012230419_fix_result_follows.decidim.rb
+│   │   ├── 20181012230420_add_content_blocks.decidim.rb
+│   │   ├── 20181012230421_create_decidim_hashtags.decidim.rb
+│   │   ├── 20181012230422_add_core_content_blocks.decidim.rb
+│   │   ├── 20181012230423_rename_content_block_options_to_settings.decidim.rb
+│   │   ├── 20181012230424_add_badge_scores.decidim.rb
+│   │   ├── 20181012230425_add_images_to_content_blocks.decidim.rb
+│   │   ├── 20181012230426_move_organization_fields_to_hero_content_block.decidim.rb
+│   │   ├── 20181012230427_add_visibility_to_action_logs.decidim.rb
+│   │   ├── 20181012230428_move_users_groups_to_users_table.decidim.rb
+│   │   ├── 20181012230429_add_badge_switch_to_organizations.decidim.rb
+│   │   ├── 20181012230430_create_decidim_continuity_badge_statuses.decidim.rb
+│   │   ├── 20181012230431_add_roles_to_memberships.decidim.rb
+│   │   ├── 20181012230432_add_cta_url_and_text_to_steps.decidim_participatory_processes.rb
+│   │   ├── 20181012230433_fix_user_groups_ids_in_comments.decidim_comments.rb
+│   │   ├── 20181012230434_create_decidim_meetings_invites.decidim_meetings.rb
+│   │   ├── 20181012230435_add_code_to_decidim_meetings_registrations.decidim_meetings.rb
+│   │   ├── 20181012230436_add_validated_at_to_decidim_meetings_registrations.decidim_meetings.rb
+│   │   ├── 20181012230437_add_upcoming_events_as_content_block.decidim_meetings.rb
+│   │   ├── 20181012230438_create_decidim_proposals_collaborative_drafts.decidim_proposals.rb
+│   │   ├── 20181012230439_add_counter_cache_coauthorships_to_proposals.decidim_proposals.rb
+│   │   ├── 20181012230440_move_authorships_to_coauthorships.decidim_proposals.rb
+│   │   ├── 20181012230441_remove_authorships_from_proposals.decidim_proposals.rb
+│   │   ├── 20181012230442_create_collaborative_draft_collaborator_requests.decidim_proposals.rb
+│   │   ├── 20181012230443_add_counter_cache_coauthorships_to_collaborative_drafts.decidim_proposals.rb
+│   │   ├── 20181012230444_remove_index_counter_cache_coauthorships_to_proposals.decidim_proposals.rb
+│   │   ├── 20181012230445_fix_user_groups_ids_in_proposals_endorsements.decidim_proposals.rb
+│   │   ├── 20181012230446_fix_user_groups_ids_on_debates.decidim_debates.rb
+│   │   ├── 20181220220344_create_decidim_amendments.decidim.rb
+│   │   ├── 20181220220345_make_authors_polymorphic.decidim.rb
+│   │   ├── 20181220220346_add_columns_to_pages.decidim.rb
+│   │   ├── 20181220220347_add_static_page_topics.decidim.rb
+│   │   ├── 20181220220348_add_timestamps_to_components.decidim.rb
+│   │   ├── 20181220220349_fix_user_follows.decidim.rb
+│   │   ├── 20181220220350_add_welcome_notification.decidim.rb
+│   │   ├── 20181220220351_destroy_deleted_users_follows.decidim.rb
+│   │   ├── 20181220220352_add_users_registration_mode_to_organizations.decidim.rb
+│   │   ├── 20181220220353_create_decidim_contextual_help_sections.decidim.rb
+│   │   ├── 20181220220354_add_following_and_followers_counters_to_users.decidim.rb
+│   │   ├── 20181220220355_add_columns_to_static_page_topic.decidim.rb
+│   │   ├── 20181220220356_add_id_documents_fields_to_org.decidim.rb
+│   │   ├── 20181220220357_remove_following_users_count_from_users.decidim.rb
+│   │   ├── 20181220220358_add_scope_to_action_logs.decidim.rb
+│   │   ├── 20181220220359_add_area_to_action_logs.decidim.rb
+│   │   ├── 20181220220360_add_notification_types_to_users.decidim.rb
+│   │   ├── 20181220220413_make_blogposts_authors_polymorphics.decidim_blogs.rb
+│   │   ├── 20181220220420_use_big_ints_for_budgets.decidim_budgets.rb
+│   │   ├── 20181220220427_make_authors_polymorphic_for_comments.decidim_comments.rb
+│   │   ├── 20181220220428_make_author_polymorphic_for_comment_votes.decidim_comments.rb
+│   │   ├── 20181220220434_add_organization_as_author_to_debates.decidim_debates.rb
+│   │   ├── 20181220220441_create_decidim_forms_questionnaires.decidim_forms.rb
+│   │   ├── 20181220220442_create_decidim_forms_questions.decidim_forms.rb
+│   │   ├── 20181220220443_create_decidim_forms_answers.decidim_forms.rb
+│   │   ├── 20181220220444_create_decidim_forms_answer_options.decidim_forms.rb
+│   │   ├── 20181220220445_create_decidim_forms_answer_choices.decidim_forms.rb
+│   │   ├── 20181220220448_add_registration_form_enabled_to_decidim_meetings.decidim_meetings.rb
+│   │   ├── 20181220220449_add_questionnaire_to_existing_meetings.decidim_meetings.rb
+│   │   ├── 20181220220509_create_participatory_texts.decidim_proposals.rb
+│   │   ├── 20181220220510_add_position_to_proposals.decidim_proposals.rb
+│   │   ├── 20181220220511_add_participatory_text_level_to_proposals.decidim_proposals.rb
+│   │   ├── 20181220220512_add_temporary_votes.decidim_proposals.rb
+│   │   ├── 20181220220513_add_organization_as_author.decidim_proposals.rb
+│   │   ├── 20181220220514_make_author_polymorhpic_for_proposal_endorsements.decidim_proposals.rb
+│   │   ├── 20181220220515_add_created_in_meeting.decidim_proposals.rb
+│   │   ├── 20181220220516_make_sortitions_authors_polymorphic.decidim_sortitions.rb
+│   │   ├── 20190201194852_add_user_groups_switch_to_organizations.decidim.rb
+│   │   ├── 20190304203102_reset_negative_children_count_counters.decidim_assemblies.rb
+│   │   ├── 20190304203114_add_adress_to_projects.decidim_budgets.rb
+│   │   ├── 20190304203149_use_md5_indexes.decidim_proposals.rb
+│   │   ├── 20190419230330_add_colors_to_decidim_organization.decidim.rb
+│   │   ├── 20190502162611_add_collaborative_draft_origin_to_proposal.decidim_proposals.rb
+│   │   ├── 20190603100903_add_smtp_settings_to_decidim_organizations.decidim.rb
+│   │   ├── 20190603100904_add_deepl_translator_to_organization.decidim.rb
+│   │   ├── 20190717132651_add_extended_data_to_newsletters.decidim.rb
+│   │   ├── 20190717132652_add_missing_indexes.decidim.rb
+│   │   ├── 20190717132653_fix_user_names.decidim.rb
+│   │   ├── 20190717132654_add_force_users_to_authenticate_before_access_organization.decidim.rb
+│   │   ├── 20190717132655_add_confidential_to_doorkeeper_application.decidim.rb
+│   │   ├── 20190717132743_add_user_group_to_meetings_registrations.decidim_meetings.rb
+│   │   ├── 20190717132756_add_area_to_participatory_processes.decidim_participatory_processes.rb
+│   │   ├── 20190717132828_create_decidim_verifications_csv_data.decidim_verifications.rb
+│   │   ├── 20191115143832_add_comments_max_length_to_decidim_organization.decidim.rb
+│   │   ├── 20191115143833_add_session_token_to_decidim_forms_answers.decidim_forms.rb
+│   │   ├── 20191115143834_add_ip_hash_to_decidim_form_answers.decidim_forms.rb
+│   │   ├── 20200128153643_add_omniauth_settings_to_decidim_organization.decidim.rb
+│   │   ├── 20200718151626_add_uniq_index_to_decidim_metrics.decidim.rb
+│   │   ├── 20200718151627_add_lockable_to_users.decidim.rb
+│   │   ├── 20200718151628_add_rich_text_editor_in_public_views_to_organizations.decidim.rb
+│   │   ├── 20200718151629_add_weight_to_categories.decidim.rb
+│   │   ├── 20200718151630_add_admin_terms_of_use_body_field_to_organization.decidim.rb
+│   │   ├── 20200718151631_remove_continuity_badges.decidim.rb
+│   │   ├── 20200718151632_add_organization_timezone.decidim.rb
+│   │   ├── 20200718151634_add_accepted_admin_terms_at_field_to_users.decidim_admin.rb
+│   │   ├── 20200718151638_create_decidim_assembly_types.decidim_assemblies.rb
+│   │   ├── 20200718151639_migrate_decidim_assembly_types.decidim_assemblies.rb
+│   │   ├── 20200718151641_add_user_group_author_to_blogs.decidim_blogs.rb
+│   │   ├── 20200718151704_add_scope_type_to_participatory_processes.decidim_participatory_processes.rb
+│   │   ├── 20200718151705_add_show_metrics_to_participatory_processes.decidim_participatory_processes.rb
+│   │   ├── 20200718151708_add_proposal_valuation_assignments.decidim_proposals.rb
+│   │   ├── 20200718151709_add_costs_to_proposals.decidim_proposals.rb
+│   │   ├── 20200718151710_sync_proposals_state_with_amendments_state.decidim_proposals.rb
+│   │   ├── 20200718151711_add_state_published_at_to_proposals.decidim_proposals.rb
+│   │   ├── 20200718151712_publish_existing_proposals_state.decidim_proposals.rb
+│   │   ├── 20200718153635_create_decidim_calendar_external_events.decidim_calendar.rb
+│   │   ├── 20200718153638_create_decidim_awesome_config.decidim_decidim_awesome.rb
+│   │   ├── 20200718153639_create_awesome_editor_images.decidim_decidim_awesome.rb
+│   │   ├── 20200718153640_create_decidim_awesome_config_constraints.decidim_decidim_awesome.rb
+│   │   ├── 20200718153642_create_decidim_comparative_stats_endpoints.decidim_comparative_stats.rb
+│   │   ├── 20200718153643_add_name_version_to_comparative_stats_endpoints.decidim_comparative_stats.rb
+│   │   ├── 20200718153644_rename_version_field_in_comparative_stats_endpoints.decidim_comparative_stats.rb
+│   │   ├── 20200718153739_create_decidim_term_customizer_translation_sets.decidim_term_customizer.rb
+│   │   ├── 20200718153740_create_decidim_term_customizer_translations.decidim_term_customizer.rb
+│   │   ├── 20200718153741_create_decidim_term_customizer_constraints.decidim_term_customizer.rb
+│   │   ├── 20200720153424_create_decidim_navbar_links_navbar_links.decidim_navbar_links.rb
+│   │   ├── 20200923121723_create_decidim_endorsements.decidim.rb
+│   │   ├── 20200923121724_add_session_token_to_users.decidim.rb
+│   │   ├── 20200923121725_add_direct_message_types_to_users.decidim.rb
+│   │   ├── 20200923121726_index_foreign_keys_in_decidim_action_logs.decidim.rb
+│   │   ├── 20200923121727_index_foreign_keys_in_decidim_amendments.decidim.rb
+│   │   ├── 20200923121728_index_foreign_keys_in_decidim_authorizations.decidim.rb
+│   │   ├── 20200923121729_index_foreign_keys_in_decidim_contextual_help_sections.decidim.rb
+│   │   ├── 20200923121730_index_foreign_keys_in_decidim_endorsements.decidim.rb
+│   │   ├── 20200923121731_index_foreign_keys_in_decidim_notifications.decidim.rb
+│   │   ├── 20200923121732_index_foreign_keys_in_oauth_access_grants.decidim.rb
+│   │   ├── 20200923121733_add_id_to_content_blocks_scope.decidim.rb
+│   │   ├── 20200923121734_rename_scope_column.decidim.rb
+│   │   ├── 20200923121735_migrate_newsletters_to_templates.decidim.rb
+│   │   ├── 20200923121736_remove_newsletter_body.decidim.rb
+│   │   ├── 20200923121737_add_index_on_content_block_scope_id.decidim.rb
+│   │   ├── 20200923121738_create_decidim_forms_question_matrix_rows.decidim_forms.rb
+│   │   ├── 20200923121739_add_matrix_row_id_to_decidim_forms_answer_choices.decidim_forms.rb
+│   │   ├── 20200923121740_index_foreign_keys_in_decidim_attachments.decidim_participatory_processes.rb
+│   │   ├── 20200923121741_index_foreign_keys_in_decidim_participatory_process_user_roles.decidim_participatory_processes.rb
+│   │   ├── 20200923121742_index_foreign_keys_in_decidim_participatory_processes.decidim_participatory_processes.rb
+│   │   ├── 20200923121743_index_foreign_keys_in_decidim_assemblies.decidim_assemblies.rb
+│   │   ├── 20200923121744_index_foreign_keys_in_decidim_assembly_user_roles.decidim_assemblies.rb
+│   │   ├── 20200923121745_remove_legacy_decidim_assembly_type.decidim_assemblies.rb
+│   │   ├── 20200923121746_create_decidim_assemblies_settings.decidim_assemblies.rb
+│   │   ├── 20200923121747_index_foreign_keys_in_decidim_comments_comments.decidim_comments.rb
+│   │   ├── 20200923121748_index_foreign_keys_in_decidim_meetings_registrations.decidim_meetings.rb
+│   │   ├── 20200923121749_add_endorsements_counter_cache_to_proposals.decidim_proposals.rb
+│   │   ├── 20200923121750_move_proposal_endorsements_to_core_endorsements.decidim_proposals.rb
+│   │   ├── 20200923121751_move_proposal_endorsed_event_notifications_to_resource_endorsed_event.decidim_proposals.rb
+│   │   ├── 20200923121752_check_legacy_tables.decidim_surveys.rb
+│   │   ├── 20200923121753_remove_survey_answer_choices.decidim_surveys.rb
+│   │   ├── 20200923121754_remove_survey_answer_options.decidim_surveys.rb
+│   │   ├── 20200923121755_remove_survey_answers.decidim_surveys.rb
+│   │   ├── 20200923121756_remove_survey_questions.decidim_surveys.rb
+│   │   ├── 20200923121757_remove_survey_columns.decidim_surveys.rb
+│   │   ├── 20200923121758_index_foreign_keys_in_decidim_accountability_results.decidim_accountability.rb
+│   │   ├── 20200923121759_index_foreign_keys_in_decidim_debates_debates.decidim_debates.rb
+│   │   ├── 20200923121760_index_foreign_keys_in_decidim_sortitions_sortitions.decidim_sortitions.rb
+│   │   ├── 20200923121761_add_endorsements_counter_cache_to_blogs.decidim_blogs.rb
+│   │   ├── 20200923121762_index_foreign_keys_in_decidim_blogs_posts.decidim_blogs.rb
+│   │   ├── 20201126165601_add_enable_machine_translation_to_decidim_organizations.decidim.rb
+│   │   ├── 20201126165602_create_decidim_share_tokens.decidim.rb
+│   │   ├── 20201126165603_add_file_upload_settings_to_decidim_organizations.decidim.rb
+│   │   ├── 20201126165604_add_machine_translation_display_priority_to_organizations.decidim.rb
+│   │   ├── 20201126165605_remove_notifications_with_continuity_badge.decidim.rb
+│   │   ├── 20201126165606_add_commentable_counter_cache_to_results.decidim_accountability.rb
+│   │   ├── 20201126165615_add_commentable_counter_cache_to_posts.decidim_blogs.rb
+│   │   ├── 20201126165618_create_decidim_budgets.decidim_budgets.rb
+│   │   ├── 20201126165619_rename_budget_to_budget_ammount.decidim_budgets.rb
+│   │   ├── 20201126165620_add_budget_reference_to_project.decidim_budgets.rb
+│   │   ├── 20201126165621_add_budget_reference_to_order.decidim_budgets.rb
+│   │   ├── 20201126165622_move_budgets_to_own_model.decidim_budgets.rb
+│   │   ├── 20201126165623_add_scope_to_budgets.decidim_budgets.rb
+│   │   ├── 20201126165624_add_selected_at_to_project.decidim_budgets.rb
+│   │   ├── 20201126165625_votes_enabled_to_votes_choices.decidim_budgets.rb
+│   │   ├── 20201126165626_add_commentable_counter_cache_to_projects.decidim_budgets.rb
+│   │   ├── 20201126165627_make_comments_handle_i18n.decidim_comments.rb
+│   │   ├── 20201126165628_add_commentable_counter_cache_to_comments.decidim_comments.rb
+│   │   ├── 20201126165629_close_debates.decidim_debates.rb
+│   │   ├── 20201126165630_fix_debates_i18n_fields.decidim_debates.rb
+│   │   ├── 20201126165631_add_endorsable_to_debates.decidim_debates.rb
+│   │   ├── 20201126165632_add_commentable_counter_cache_to_debates.decidim_debates.rb
+│   │   ├── 20201126165633_add_cached_comment_metadata_to_debates.decidim_debates.rb
+│   │   ├── 20201126165634_add_author_to_meetings.decidim_meetings.rb
+│   │   ├── 20201126165635_create_meeting_services_table.decidim_meetings.rb
+│   │   ├── 20201126165636_move_meeting_services_to_own_model.decidim_meetings.rb
+│   │   ├── 20201126165637_add_commentable_counter_cache_to_meetings.decidim_meetings.rb
+│   │   ├── 20201126165638_fix_meetings_registration_terms.decidim_meetings.rb
+│   │   ├── 20201126165639_fix_attachments_titles.decidim_participatory_processes.rb
+│   │   ├── 20201126165640_drop_proposal_endorsements.decidim_proposals.rb
+│   │   ├── 20201126165641_move_proposals_fields_to_i18n.decidim_proposals.rb
+│   │   ├── 20201126165642_add_commentable_counter_cache_to_proposals.decidim_proposals.rb
+│   │   ├── 20201126165643_fix_proposals_data_to_ensure_title_and_body_are_hashes.decidim_proposals.rb
+│   │   ├── 20201126165644_fix_proposals_data.decidim_proposals.rb
+│   │   ├── 20201126165645_add_commentable_counter_cache_to_sortitions.decidim_sortitions.rb
+│   │   ├── 20201126165657_create_decidim_forms_display_conditions.decidim_forms.rb
+│   │   ├── 20210510225638_invalidate_all_sessions_for_deleted_users.decidim.rb
+│   │   ├── 20210510225639_add_salt_to_decidim_forms_questionnaires.decidim_forms.rb
+│   │   ├── 20210510225640_add_salt_to_decidim_meetings.decidim_meetings.rb
+│   │   ├── 20210510225641_fix_answered_proposals_after_copy.decidim_proposals.rb
+│   │   ├── 20210510225642_fix_counters_for_copied_proposals.decidim_proposals.rb
+│   │   ├── 20210521003324_remove_show_statistics_from_organizations.decidim.rb
+│   │   ├── 20210521003325_create_decidim_user_moderations.decidim.rb
+│   │   ├── 20210521003326_create_decidim_user_reports.decidim.rb
+│   │   ├── 20210521003327_add_suspension_fields_to_decidim_users.decidim.rb
+│   │   ├── 20210521003328_create_decidim_user_suspensions.decidim.rb
+│   │   ├── 20210521003329_add_current_suspension_id_to_decidim_users.decidim.rb
+│   │   ├── 20210521003330_add_reported_content_to_moderations.decidim.rb
+│   │   ├── 20210521003331_add_locale_to_moderation_reports.decidim.rb
+│   │   ├── 20210521003332_encrypt_authorization_metadatas.decidim.rb
+│   │   ├── 20210521003333_add_allow_public_access_to_static_pages.decidim.rb
+│   │   ├── 20210521003334_update_table_block_user_functionality.decidim.rb
+│   │   ├── 20210521003335_rename_decidim_user_fields_for_block_functionality.decidim.rb
+│   │   ├── 20210521003336_add_email_on_moderations_to_users.decidim.rb
+│   │   ├── 20210521003337_add_followable_counter_cache_to_users.decidim.rb
+│   │   ├── 20210521003338_add_max_characters_to_decidim_forms_questions.decidim_forms.rb
+│   │   ├── 20210521003339_create_decidim_verifications_conflicts.decidim_verifications.rb
+│   │   ├── 20210521003340_add_hashtag_to_participatory_process_groups.decidim_participatory_processes.rb
+│   │   ├── 20210521003341_add_metadata_columns_to_participatory_process_groups.decidim_participatory_processes.rb
+│   │   ├── 20210521003342_rename_name_column_to_title_in_decidim_participatory_process_groups.decidim_participatory_processes.rb
+│   │   ├── 20210521003343_add_promoted_flag_to_decidim_participatory_process_groups.decidim_participatory_processes.rb
+│   │   ├── 20210521003344_add_weight_field_to_participatory_processes.decidim_participatory_processes.rb
+│   │   ├── 20210521003345_add_followable_counter_cache_to_participatory_processes.decidim_participatory_processes.rb
+│   │   ├── 20210521003346_add_weight_field_to_assembly.decidim_assemblies.rb
+│   │   ├── 20210521003347_add_followable_counter_cache_to_assemblies.decidim_assemblies.rb
+│   │   ├── 20210521003348_add_online_meeting_url.decidim_meetings.rb
+│   │   ├── 20210521003349_add_type_of_meeting.decidim_meetings.rb
+│   │   ├── 20210521003350_add_registration_type_and_url_to_meetings.decidim_meetings.rb
+│   │   ├── 20210521003351_add_followable_counter_cache_to_meetings.decidim_meetings.rb
+│   │   ├── 20210521003352_add_followable_counter_cache_to_proposals.decidim_proposals.rb
+│   │   ├── 20210521003353_add_followable_counter_cache_to_collaborative_drafts.decidim_proposals.rb
+│   │   ├── 20210521003354_add_followable_counter_cache_to_budgets.decidim_budgets.rb
+│   │   ├── 20210521003355_add_scope_to_debates_debate.decidim_debates.rb
+│   │   ├── 20210521003356_archive_debates.decidim_debates.rb
+│   │   ├── 20210521003357_revert_archive_debates.decidim_debates.rb
+│   │   ├── 20210521003358_add_followable_counter_cache_to_debates.decidim_debates.rb
+│   │   ├── 20210521003359_add_followable_counter_cache_to_blogs.decidim_blogs.rb
+│   │   ├── 20210726155447_remove_navbar_links.rb
+│   │   ├── 20210810114258_create_redirect_rules.redirector_engine.rb
+│   │   ├── 20210810114259_create_request_environment_rules.redirector_engine.rb
+│   │   ├── 20210810114301_add_organization_to_redirect_rules.decidim_url_aliases.rb
+│   │   ├── 20210928081036_fix_blocked_user_names_in_action_log.decidim.rb
+│   │   ├── 20210928081037_set_position_to_question_matrix_rows.decidim_forms.rb
+│   │   ├── 20211018123426_remove_redirect_rules_from_organization.rb
+│   │   ├── 20220128174338_fix_i18n_proposal_content.rb
+│   │   ├── 20220128181438_fix_i18n_comment_body.rb
+│   │   ├── 20220131105053_fix_i18n_attachment_title.rb
+│   │   ├── 20220221135307_add_geo_json_to_scopes.decidim_homepage_interactive_map.rb
+│   │   ├── 20220221135308_add_geolocation_to_participatory_processes.decidim_homepage_interactive_map.rb
+│   │   ├── 20220221135309_add_display_linked_assemblies_to_participatory_processes.decidim_homepage_interactive_map.rb
+│   │   ├── 20230414112232_change_awesome_config_var_type.decidim_decidim_awesome.rb
+│   │   ├── 20230414113313_create_active_storage_tables.active_storage.rb
+│   │   ├── 20230414113314_add_external_domain_whitelist_to_organization.decidim.rb
+│   │   ├── 20230414113315_allow_null_organization_logo_column_in_oauth_applications_table.decidim.rb
+│   │   ├── 20230414113316_add_enable_participatory_space_filters_to_organization.decidim.rb
+│   │   ├── 20230414113317_create_decidim_content_block_attachments.decidim.rb
+│   │   ├── 20230414113318_create_decidim_editor_images.decidim.rb
+│   │   ├── 20230414113319_add_timestamps_to_content_blocks.decidim.rb
+│   │   ├── 20230414113320_allow_null_file_column_in_decidim_attachments_table.decidim_participatory_processes.rb
+│   │   ├── 20230414113321_add_announcement_to_assemblies.decidim_assemblies.rb
+│   │   ├── 20230414113322_remove_designation_mode_from_assembly_members.decidim_assemblies.rb
+│   │   ├── 20230414113323_add_participatory_process_to_comments.decidim_comments.rb
+│   │   ├── 20230414113324_add_deleted_at_column_to_comments.decidim_comments.rb
+│   │   ├── 20230414113325_add_registration_custom_content_to_meetings.decidim_meetings.rb
+│   │   ├── 20230414113326_add_published_at_to_meetings.decidim_meetings.rb
+│   │   ├── 20230414113327_update_published_at_to_existing_meetings.decidim_meetings.rb
+│   │   ├── 20230414113328_add_public_participation_to_decidim_meetings_registrations.decidim_meetings.rb
+│   │   ├── 20230414113329_merge_meetings_minutes_into_meetings_table.decidim_meetings.rb
+│   │   ├── 20230414113330_create_decidim_meetings_polls.decidim_meetings.rb
+│   │   ├── 20230414113331_drop_decidim_meetings_minutes_table.decidim_meetings.rb
+│   │   ├── 20230414113332_merge_minutes_with_closing_report_in_meetings_table.decidim_meetings.rb
+│   │   ├── 20230414113333_add_comments_availability_columns_to_meetings_table.decidim_meetings.rb
+│   │   ├── 20230414113334_create_decidim_meetings_questionnaires.decidim_meetings.rb
+│   │   ├── 20230414113335_create_decidim_meetings_questions.decidim_meetings.rb
+│   │   ├── 20230414113336_create_decidim_meetings_answers.decidim_meetings.rb
+│   │   ├── 20230414113337_create_decidim_meetings_answer_options.decidim_meetings.rb
+│   │   ├── 20230414113338_create_decidim_meetings_answer_choices.decidim_meetings.rb
+│   │   ├── 20230414113339_add_status_to_meetings_questions.decidim_meetings.rb
+│   │   ├── 20230414113340_add_setting_embed_iframe_to_meetings.decidim_meetings.rb
+│   │   ├── 20230414113341_add_state_field_to_meeting.decidim_meetings.rb
+│   │   ├── 20230414113342_add_iframe_access_level_to_decidim_meetings.decidim_meetings.rb
+│   │   ├── 20230414113343_transform_show_embedded_iframe_column.decidim_meetings.rb
+│   │   ├── 20230414113344_rename_upcoming_events_content_block_to_upcoming_meetings.decidim_meetings.rb
+│   │   └── 20230414113345_add_comments_availability_columns_to_debates_table.decidim_debates.rb
+│   ├── schema.rb
+│   └── seeds.rb
+├── deploy
+│   └── providers
+│       ├── aws
+│       │   ├── main.tf
+│       │   └── variables-example.tf
+│       ├── digitalocean
+│       │   └── n-tier
+│       │       ├── main.tf
+│       │       └── variables-example.tf
+│       └── scaleway
+│           ├── main.tf
+│           └── variables.tf
+├── docker-compose.yml
+├── entrypoint.sh
+├── lib
+│   ├── active_storage
+│   │   ├── downloadable.rb
+│   │   └── migrator.rb
+│   ├── assets
+│   │   └── .keep
+│   ├── decidim
+│   │   ├── assets_hash.rb
+│   │   └── rspec_runner.rb
+│   ├── decidim_app
+│   │   ├── config.rb
+│   │   ├── k8s
+│   │   │   ├── commands
+│   │   │   │   ├── admin.rb
+│   │   │   │   ├── organization.rb
+│   │   │   │   └── system_admin.rb
+│   │   │   ├── configuration.rb
+│   │   │   ├── configuration_exporter.rb
+│   │   │   ├── manager.rb
+│   │   │   ├── organization_exporter.rb
+│   │   │   └── secondary_hosts_checker.rb
+│   │   ├── rack_attack
+│   │   │   ├── fail2ban.rb
+│   │   │   └── throttling.rb
+│   │   ├── rack_attack.rb
+│   │   └── sentry_setup.rb
+│   ├── extends
+│   │   └── commands
+│   │       └── decidim
+│   │           └── admin
+│   │               ├── create_participatory_space_private_user_extends.rb
+│   │               └── impersonate_user_extends.rb
+│   ├── logger_with_stdout.rb
+│   └── tasks
+│       ├── .keep
+│       ├── backup.rake
+│       ├── db.rake
+│       ├── decidim_app.rake
+│       ├── heroku.rake
+│       ├── import.rake
+│       ├── migrate.rake
+│       ├── repair_data.rake
+│       ├── restore_dump.rake
+│       ├── scaleway.rake
+│       └── test.rake
+├── log
+│   └── .keep
+├── package-lock.json
+├── package.json
+├── packages
+│   ├── browserslist-config
+│   │   ├── index.js
+│   │   └── package.json
+│   ├── core
+│   │   ├── node_modules
+│   │   │   ├── .bin
+│   │   │   │   └── uuid -> ../uuid/bin/uuid
+│   │   │   ├── leaflet
+│   │   │   │   ├── CHANGELOG.md
+│   │   │   │   ├── LICENSE
+│   │   │   │   ├── README.md
+│   │   │   │   ├── dist
+│   │   │   │   │   ├── images
+│   │   │   │   │   │   ├── layers-2x.png
+│   │   │   │   │   │   ├── layers.png
+│   │   │   │   │   │   ├── marker-icon-2x.png
+│   │   │   │   │   │   ├── marker-icon.png
+│   │   │   │   │   │   └── marker-shadow.png
+│   │   │   │   │   ├── leaflet-src.js
+│   │   │   │   │   ├── leaflet-src.js.map
+│   │   │   │   │   ├── leaflet.css
+│   │   │   │   │   ├── leaflet.js
+│   │   │   │   │   └── leaflet.js.map
+│   │   │   │   ├── package.json
+│   │   │   │   └── src
+│   │   │   │       ├── Leaflet.js
+│   │   │   │       ├── control
+│   │   │   │       │   ├── Control.Attribution.js
+│   │   │   │       │   ├── Control.Layers.js
+│   │   │   │       │   ├── Control.Scale.js
+│   │   │   │       │   ├── Control.Zoom.js
+│   │   │   │       │   ├── Control.js
+│   │   │   │       │   └── index.js
+│   │   │   │       ├── core
+│   │   │   │       │   ├── Browser.js
+│   │   │   │       │   ├── Class.js
+│   │   │   │       │   ├── Class.leafdoc
+│   │   │   │       │   ├── Events.js
+│   │   │   │       │   ├── Events.leafdoc
+│   │   │   │       │   ├── Handler.js
+│   │   │   │       │   ├── Util.js
+│   │   │   │       │   └── index.js
+│   │   │   │       ├── dom
+│   │   │   │       │   ├── DomEvent.DoubleTap.js
+│   │   │   │       │   ├── DomEvent.Pointer.js
+│   │   │   │       │   ├── DomEvent.js
+│   │   │   │       │   ├── DomUtil.js
+│   │   │   │       │   ├── Draggable.js
+│   │   │   │       │   ├── PosAnimation.js
+│   │   │   │       │   └── index.js
+│   │   │   │       ├── geo
+│   │   │   │       │   ├── LatLng.js
+│   │   │   │       │   ├── LatLngBounds.js
+│   │   │   │       │   ├── crs
+│   │   │   │       │   │   ├── CRS.EPSG3395.js
+│   │   │   │       │   │   ├── CRS.EPSG3857.js
+│   │   │   │       │   │   ├── CRS.EPSG4326.js
+│   │   │   │       │   │   ├── CRS.Earth.js
+│   │   │   │       │   │   ├── CRS.Simple.js
+│   │   │   │       │   │   ├── CRS.js
+│   │   │   │       │   │   └── index.js
+│   │   │   │       │   ├── index.js
+│   │   │   │       │   └── projection
+│   │   │   │       │       ├── Projection.LonLat.js
+│   │   │   │       │       ├── Projection.Mercator.js
+│   │   │   │       │       ├── Projection.SphericalMercator.js
+│   │   │   │       │       └── index.js
+│   │   │   │       ├── geometry
+│   │   │   │       │   ├── Bounds.js
+│   │   │   │       │   ├── LineUtil.js
+│   │   │   │       │   ├── Point.js
+│   │   │   │       │   ├── PolyUtil.js
+│   │   │   │       │   ├── Transformation.js
+│   │   │   │       │   └── index.js
+│   │   │   │       ├── images
+│   │   │   │       │   ├── layers.svg
+│   │   │   │       │   ├── logo.svg
+│   │   │   │       │   └── marker.svg
+│   │   │   │       ├── layer
+│   │   │   │       │   ├── DivOverlay.js
+│   │   │   │       │   ├── FeatureGroup.js
+│   │   │   │       │   ├── GeoJSON.js
+│   │   │   │       │   ├── ImageOverlay.js
+│   │   │   │       │   ├── Layer.Interactive.leafdoc
+│   │   │   │       │   ├── Layer.js
+│   │   │   │       │   ├── LayerGroup.js
+│   │   │   │       │   ├── Popup.js
+│   │   │   │       │   ├── Tooltip.js
+│   │   │   │       │   ├── VideoOverlay.js
+│   │   │   │       │   ├── index.js
+│   │   │   │       │   ├── marker
+│   │   │   │       │   │   ├── DivIcon.js
+│   │   │   │       │   │   ├── Icon.Default.js
+│   │   │   │       │   │   ├── Icon.js
+│   │   │   │       │   │   ├── Marker.Drag.js
+│   │   │   │       │   │   ├── Marker.js
+│   │   │   │       │   │   └── index.js
+│   │   │   │       │   ├── tile
+│   │   │   │       │   │   ├── GridLayer.js
+│   │   │   │       │   │   ├── TileLayer.WMS.js
+│   │   │   │       │   │   ├── TileLayer.js
+│   │   │   │       │   │   └── index.js
+│   │   │   │       │   └── vector
+│   │   │   │       │       ├── Canvas.js
+│   │   │   │       │       ├── Circle.js
+│   │   │   │       │       ├── CircleMarker.js
+│   │   │   │       │       ├── Path.js
+│   │   │   │       │       ├── Polygon.js
+│   │   │   │       │       ├── Polyline.js
+│   │   │   │       │       ├── Rectangle.js
+│   │   │   │       │       ├── Renderer.getRenderer.js
+│   │   │   │       │       ├── Renderer.js
+│   │   │   │       │       ├── SVG.Util.js
+│   │   │   │       │       ├── SVG.VML.js
+│   │   │   │       │       ├── SVG.js
+│   │   │   │       │       └── index.js
+│   │   │   │       └── map
+│   │   │   │           ├── Map.js
+│   │   │   │           ├── Map.methodOptions.leafdoc
+│   │   │   │           ├── handler
+│   │   │   │           │   ├── Map.BoxZoom.js
+│   │   │   │           │   ├── Map.DoubleClickZoom.js
+│   │   │   │           │   ├── Map.Drag.js
+│   │   │   │           │   ├── Map.Keyboard.js
+│   │   │   │           │   ├── Map.ScrollWheelZoom.js
+│   │   │   │           │   ├── Map.Tap.js
+│   │   │   │           │   └── Map.TouchZoom.js
+│   │   │   │           └── index.js
+│   │   │   ├── leaflet.markercluster
+│   │   │   │   ├── .travis.yml
+│   │   │   │   ├── CHANGELOG.md
+│   │   │   │   ├── CONTRIBUTING.md
+│   │   │   │   ├── ISSUE_TEMPLATE.md
+│   │   │   │   ├── Jakefile.js
+│   │   │   │   ├── MIT-LICENCE.txt
+│   │   │   │   ├── README.md
+│   │   │   │   ├── bower.json
+│   │   │   │   ├── build
+│   │   │   │   │   ├── hintrc.js
+│   │   │   │   │   └── rollup-config.js
+│   │   │   │   ├── dist
+│   │   │   │   │   ├── MarkerCluster.Default.css
+│   │   │   │   │   ├── MarkerCluster.css
+│   │   │   │   │   ├── WhereAreTheJavascriptFiles.txt
+│   │   │   │   │   ├── leaflet.markercluster-src.js
+│   │   │   │   │   ├── leaflet.markercluster-src.js.map
+│   │   │   │   │   ├── leaflet.markercluster.js
+│   │   │   │   │   └── leaflet.markercluster.js.map
+│   │   │   │   ├── example
+│   │   │   │   │   ├── geojson-sample.js
+│   │   │   │   │   ├── geojson.html
+│   │   │   │   │   ├── map.png
+│   │   │   │   │   ├── marker-clustering-convexhull.html
+│   │   │   │   │   ├── marker-clustering-custom.html
+│   │   │   │   │   ├── marker-clustering-dragging.html
+│   │   │   │   │   ├── marker-clustering-everything.html
+│   │   │   │   │   ├── marker-clustering-geojson.html
+│   │   │   │   │   ├── marker-clustering-pane.html
+│   │   │   │   │   ├── marker-clustering-realworld-maxzoom.388.html
+│   │   │   │   │   ├── marker-clustering-realworld-mobile.388.html
+│   │   │   │   │   ├── marker-clustering-realworld.10000.html
+│   │   │   │   │   ├── marker-clustering-realworld.388.html
+│   │   │   │   │   ├── marker-clustering-realworld.50000.html
+│   │   │   │   │   ├── marker-clustering-singlemarkermode.html
+│   │   │   │   │   ├── marker-clustering-spiderfier.html
+│   │   │   │   │   ├── marker-clustering-zoomtobounds.html
+│   │   │   │   │   ├── marker-clustering-zoomtoshowlayer.html
+│   │   │   │   │   ├── marker-clustering.html
+│   │   │   │   │   ├── mobile.css
+│   │   │   │   │   ├── old-bugs
+│   │   │   │   │   │   ├── add-1000-after.html
+│   │   │   │   │   │   ├── add-markers-offscreen.html
+│   │   │   │   │   │   ├── add-remove-before-addtomap.html
+│   │   │   │   │   │   ├── animationless-zoom.html
+│   │   │   │   │   │   ├── click-cluster-at-screen-edge.html
+│   │   │   │   │   │   ├── disappearing-marker-from-spider.html
+│   │   │   │   │   │   ├── doesnt-update-cluster-on-bottom-level.html
+│   │   │   │   │   │   ├── drag-with-spiderfying.html
+│   │   │   │   │   │   ├── remove-add-clustering.html
+│   │   │   │   │   │   ├── remove-when-spiderfied.html
+│   │   │   │   │   │   ├── removelayer-after-remove-from-map.html
+│   │   │   │   │   │   ├── setView-doesnt-remove.html
+│   │   │   │   │   │   ├── zoomtoshowlayer-doesnt-need-to-zoom.html
+│   │   │   │   │   │   └── zoomtoshowlayer-doesnt-zoom-if-centered-on.html
+│   │   │   │   │   ├── realworld.10000.js
+│   │   │   │   │   ├── realworld.388.js
+│   │   │   │   │   ├── realworld.50000.1.js
+│   │   │   │   │   ├── realworld.50000.2.js
+│   │   │   │   │   ├── remove-geoJSON-when-spiderfied.html
+│   │   │   │   │   └── screen.css
+│   │   │   │   ├── package.json
+│   │   │   │   ├── spec
+│   │   │   │   │   ├── after.js
+│   │   │   │   │   ├── expect.js
+│   │   │   │   │   ├── index.html
+│   │   │   │   │   ├── karma.conf.js
+│   │   │   │   │   ├── sinon.js
+│   │   │   │   │   └── suites
+│   │   │   │   │       ├── AddLayer.MultipleSpec.js
+│   │   │   │   │       ├── AddLayer.SingleSpec.js
+│   │   │   │   │       ├── AddLayersSpec.js
+│   │   │   │   │       ├── ChildChangingIconSupportSpec.js
+│   │   │   │   │       ├── CircleMarkerSupportSpec.js
+│   │   │   │   │       ├── CircleSupportSpec.js
+│   │   │   │   │       ├── DistanceGridSpec.js
+│   │   │   │   │       ├── LeafletSpec.js
+│   │   │   │   │       ├── NonPointSpec.js
+│   │   │   │   │       ├── PaneSpec.js
+│   │   │   │   │       ├── QuickHullSpec.js
+│   │   │   │   │       ├── RefreshSpec.js
+│   │   │   │   │       ├── RememberOpacity.js
+│   │   │   │   │       ├── RemoveLayerSpec.js
+│   │   │   │   │       ├── SpecHelper.js
+│   │   │   │   │       ├── animateOptionSpec.js
+│   │   │   │   │       ├── clearLayersSpec.js
+│   │   │   │   │       ├── disableClusteringAtZoomSpec.js
+│   │   │   │   │       ├── eachLayerSpec.js
+│   │   │   │   │       ├── eventsSpec.js
+│   │   │   │   │       ├── getBoundsSpec.js
+│   │   │   │   │       ├── getLayersSpec.js
+│   │   │   │   │       ├── getVisibleParentSpec.js
+│   │   │   │   │       ├── markerMoveSupportSpec.js
+│   │   │   │   │       ├── nonIntegerZoomSpec.js
+│   │   │   │   │       ├── onAddSpec.js
+│   │   │   │   │       ├── onRemoveSpec.js
+│   │   │   │   │       ├── removeLayersSpec.js
+│   │   │   │   │       ├── removeOutsideVisibleBoundsSpec.js
+│   │   │   │   │       ├── singleMarkerModeSpec.js
+│   │   │   │   │       ├── spiderfySpec.js
+│   │   │   │   │       ├── supportNegativeZoomSpec.js
+│   │   │   │   │       ├── unspiderfySpec.js
+│   │   │   │   │       └── zoomAnimationSpec.js
+│   │   │   │   └── src
+│   │   │   │       ├── DistanceGrid.js
+│   │   │   │       ├── MarkerCluster.QuickHull.js
+│   │   │   │       ├── MarkerCluster.Spiderfier.js
+│   │   │   │       ├── MarkerCluster.js
+│   │   │   │       ├── MarkerClusterGroup.Refresh.js
+│   │   │   │       ├── MarkerClusterGroup.js
+│   │   │   │       ├── MarkerOpacity.js
+│   │   │   │       └── index.js
+│   │   │   └── uuid
+│   │   │       ├── AUTHORS
+│   │   │       ├── CHANGELOG.md
+│   │   │       ├── LICENSE.md
+│   │   │       ├── README.md
+│   │   │       ├── bin
+│   │   │       │   └── uuid
+│   │   │       ├── index.js
+│   │   │       ├── lib
+│   │   │       │   ├── bytesToUuid.js
+│   │   │       │   ├── md5-browser.js
+│   │   │       │   ├── md5.js
+│   │   │       │   ├── rng-browser.js
+│   │   │       │   ├── rng.js
+│   │   │       │   ├── sha1-browser.js
+│   │   │       │   ├── sha1.js
+│   │   │       │   └── v35.js
+│   │   │       ├── package.json
+│   │   │       ├── v1.js
+│   │   │       ├── v3.js
+│   │   │       ├── v4.js
+│   │   │       └── v5.js
+│   │   └── package.json
+│   ├── dev
+│   │   └── package.json
+│   ├── elections
+│   │   └── package.json
+│   ├── eslint-config
+│   │   ├── index.js
+│   │   └── package.json
+│   ├── stylelint-config
+│   │   ├── index.js
+│   │   └── package.json
+│   └── webpacker
+│       ├── index.js
+│       ├── node_modules
+│       │   ├── .bin
+│       │   │   └── webpack-cli -> ../webpack-cli/bin/cli.js
+│       │   ├── @rails
+│       │   │   └── webpacker
+│       │   │       ├── README.md
+│       │   │       ├── lib
+│       │   │       │   └── install
+│       │   │       │       └── config
+│       │   │       │           └── webpacker.yml
+│       │   │       ├── package
+│       │   │       │   ├── __tests__
+│       │   │       │   │   ├── config.js
+│       │   │       │   │   ├── dev_server.js
+│       │   │       │   │   ├── development.js
+│       │   │       │   │   ├── env.js
+│       │   │       │   │   ├── index.js
+│       │   │       │   │   ├── production.js
+│       │   │       │   │   ├── staging.js
+│       │   │       │   │   └── test.js
+│       │   │       │   ├── babel
+│       │   │       │   │   └── preset.js
+│       │   │       │   ├── config.js
+│       │   │       │   ├── configPath.js
+│       │   │       │   ├── dev_server.js
+│       │   │       │   ├── env.js
+│       │   │       │   ├── environments
+│       │   │       │   │   ├── __tests__
+│       │   │       │   │   │   └── base.js
+│       │   │       │   │   ├── base.js
+│       │   │       │   │   ├── development.js
+│       │   │       │   │   ├── production.js
+│       │   │       │   │   └── test.js
+│       │   │       │   ├── index.js
+│       │   │       │   ├── inliningCss.js
+│       │   │       │   ├── rules
+│       │   │       │   │   ├── babel.js
+│       │   │       │   │   ├── coffee.js
+│       │   │       │   │   ├── css.js
+│       │   │       │   │   ├── erb.js
+│       │   │       │   │   ├── file.js
+│       │   │       │   │   ├── index.js
+│       │   │       │   │   ├── less.js
+│       │   │       │   │   ├── raw.js
+│       │   │       │   │   ├── sass.js
+│       │   │       │   │   └── stylus.js
+│       │   │       │   └── utils
+│       │   │       │       ├── get_style_rule.js
+│       │   │       │       └── helpers.js
+│       │   │       └── package.json
+│       │   ├── @webpack-cli
+│       │   │   ├── configtest
+│       │   │   │   ├── LICENSE
+│       │   │   │   ├── README.md
+│       │   │   │   ├── lib
+│       │   │   │   │   ├── index.d.ts
+│       │   │   │   │   └── index.js
+│       │   │   │   └── package.json
+│       │   │   ├── info
+│       │   │   │   ├── LICENSE
+│       │   │   │   ├── README.md
+│       │   │   │   ├── lib
+│       │   │   │   │   ├── index.d.ts
+│       │   │   │   │   └── index.js
+│       │   │   │   └── package.json
+│       │   │   └── serve
+│       │   │       ├── LICENSE
+│       │   │       ├── README.md
+│       │   │       ├── lib
+│       │   │       │   ├── index.d.ts
+│       │   │       │   └── index.js
+│       │   │       └── package.json
+│       │   ├── commander
+│       │   │   ├── CHANGELOG.md
+│       │   │   ├── LICENSE
+│       │   │   ├── Readme.md
+│       │   │   ├── esm.mjs
+│       │   │   ├── index.js
+│       │   │   ├── package-support.json
+│       │   │   ├── package.json
+│       │   │   └── typings
+│       │   │       └── index.d.ts
+│       │   ├── compression-webpack-plugin
+│       │   │   ├── LICENSE
+│       │   │   ├── README.md
+│       │   │   ├── dist
+│       │   │   │   ├── cjs.js
+│       │   │   │   ├── index.js
+│       │   │   │   └── options.json
+│       │   │   └── package.json
+│       │   ├── interpret
+│       │   │   ├── CHANGELOG
+│       │   │   ├── LICENSE
+│       │   │   ├── README.md
+│       │   │   ├── index.js
+│       │   │   ├── mjs-stub.js
+│       │   │   └── package.json
+│       │   ├── rechoir
+│       │   │   ├── LICENSE
+│       │   │   ├── README.md
+│       │   │   ├── index.js
+│       │   │   ├── lib
+│       │   │   │   ├── extension.js
+│       │   │   │   ├── normalize.js
+│       │   │   │   └── register.js
+│       │   │   └── package.json
+│       │   ├── schema-utils
+│       │   │   ├── LICENSE
+│       │   │   ├── README.md
+│       │   │   ├── declarations
+│       │   │   │   ├── ValidationError.d.ts
+│       │   │   │   ├── index.d.ts
+│       │   │   │   ├── keywords
+│       │   │   │   │   └── absolutePath.d.ts
+│       │   │   │   ├── util
+│       │   │   │   │   ├── Range.d.ts
+│       │   │   │   │   └── hints.d.ts
+│       │   │   │   └── validate.d.ts
+│       │   │   ├── dist
+│       │   │   │   ├── ValidationError.js
+│       │   │   │   ├── index.js
+│       │   │   │   ├── keywords
+│       │   │   │   │   └── absolutePath.js
+│       │   │   │   ├── util
+│       │   │   │   │   ├── Range.js
+│       │   │   │   │   └── hints.js
+│       │   │   │   └── validate.js
+│       │   │   └── package.json
+│       │   └── webpack-cli
+│       │       ├── LICENSE
+│       │       ├── README.md
+│       │       ├── bin
+│       │       │   └── cli.js
+│       │       ├── lib
+│       │       │   ├── bootstrap.d.ts
+│       │       │   ├── bootstrap.js
+│       │       │   ├── index.d.ts
+│       │       │   ├── index.js
+│       │       │   ├── plugins
+│       │       │   │   ├── CLIPlugin.d.ts
+│       │       │   │   └── CLIPlugin.js
+│       │       │   ├── types.d.ts
+│       │       │   ├── types.js
+│       │       │   ├── utils
+│       │       │   │   ├── dynamic-import-loader.d.ts
+│       │       │   │   └── dynamic-import-loader.js
+│       │       │   ├── webpack-cli.d.ts
+│       │       │   └── webpack-cli.js
+│       │       └── package.json
+│       ├── package.json
+│       └── src
+│           └── override-config.js
+├── postcss.config.js
+├── public
+│   ├── 422.html
+│   ├── apple-touch-icon-precomposed.png
+│   ├── apple-touch-icon.png
+│   ├── favicon.ico
+│   └── robots.txt
+├── spec
+│   ├── controllers
+│   │   └── decidim
+│   │       └── proposals
+│   │           └── proposals_controller_spec.rb
+│   ├── factories.rb
+│   ├── factory_bot_spec.rb
+│   ├── fixtures
+│   │   └── k8s_configuration_example.yml
+│   ├── i18n_spec.rb
+│   ├── jobs
+│   │   ├── calculate_all_metrics_job_spec.rb
+│   │   └── preload_open_data_job_spec.rb
+│   ├── lib
+│   │   ├── active_storage
+│   │   │   └── migrator_spec.rb
+│   │   ├── assets_hash_spec.rb
+│   │   ├── decidim_app
+│   │   │   ├── k8s
+│   │   │   │   ├── commands
+│   │   │   │   │   ├── admin_spec.rb
+│   │   │   │   │   ├── organization_spec.rb
+│   │   │   │   │   └── system_admin_spec.rb
+│   │   │   │   ├── configuration_exporter_spec.rb
+│   │   │   │   ├── configuration_spec.rb
+│   │   │   │   ├── manager_spec.rb
+│   │   │   │   ├── organization_exporter_spec.rb
+│   │   │   │   └── secondary_hosts_checker_spec.rb
+│   │   │   ├── rack_attack
+│   │   │   │   ├── fail2ban_spec.rb
+│   │   │   │   └── throttling_spec.rb
+│   │   │   ├── rack_attack_spec.rb
+│   │   │   └── sentry_setup_spec.rb
+│   │   ├── rspec_runner_spec.rb
+│   │   └── tasks
+│   │       ├── decidim_app
+│   │       │   └── k8s
+│   │       │       ├── dump_db_tasks_spec.rb
+│   │       │       ├── export_configuration_tasks_spec.rb
+│   │       │       ├── external_install_or_reload_task_spec.rb
+│   │       │       └── upgrade_task_spec.rb
+│   │       └── scaleway
+│   │           └── storage
+│   │               └── migrate_from_local_task_spec.rb
+│   ├── services
+│   │   └── decidim
+│   │       ├── action_log_service_spec.rb
+│   │       ├── database_service_spec.rb
+│   │       ├── notification_service_spec.rb
+│   │       └── repair_nickname_service_spec.rb
+│   ├── spec_helper.rb
+│   ├── support
+│   │   ├── environment_variables_helper.rb
+│   │   └── reverse_change_matcher.rb
+│   ├── system
+│   │   ├── account_spec.rb
+│   │   ├── authentication_spec.rb
+│   │   ├── awesome_custom_styles_spec.rb
+│   │   ├── breadcrumb_assemblies_spec.rb
+│   │   ├── breadcrumb_static_pages_spec.rb
+│   │   ├── breadcrumb_user_profile_spec.rb
+│   │   ├── homepage_spec.rb
+│   │   ├── sso
+│   │   │   └── omniauth_publik_spec.rb
+│   │   └── user_tos_acceptance_spec.rb
+│   └── test_assets
+│       └── logo_asset.png
+├── tmp
+│   └── .keep
+├── vendor
+│   └── .keep
+└── yarn.lock
+181 directories, 1177 files
