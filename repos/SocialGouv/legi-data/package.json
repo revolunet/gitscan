@@ -1,0 +1,61 @@
+{
+  "name": "@socialgouv/legi-data",
+  "version": "2.494.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://github.com/SocialGouv/legi-data",
+  "repository": "https://github.com/SocialGouv/legi-data.git",
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "license": "Apache-2.0",
+  "files": [
+    "data",
+    "src"
+  ],
+  "scripts": {
+    "data:fetch": "node -r dotenv/config -r esm ./scripts/fetch.js dotenv_config_path=./.env",
+    "data:list": "node -r esm ./scripts/list.js",
+    "data:match": "node -r esm ./scripts/match.js",
+    "data:update": "yarn data:fetch && yarn data:match && yarn data:list",
+    "lint:all": "eslint .",
+    "lint": "eslint src/**/*.js",
+    "setup": "node -r esm ./scripts/setup.js",
+    "test:watch": "yarn test --watch",
+    "test": "jest",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "unist-util-find": "^1.0.2",
+    "unist-util-parents": "^1.0.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.4",
+    "@socialgouv/dila-api-client": "^1.2.4",
+    "@socialgouv/eslint-config-strict": "^0.35.0",
+    "@types/jest": "^27.0.3",
+    "@types/node": "^16.11.12",
+    "babel-eslint": "^10.1.0",
+    "debug": "^4.3.3",
+    "dotenv": "^10.0.0",
+    "eslint": "^8.3.0",
+    "eslint-plugin-sort-requires": "^2.1.0",
+    "esm": "^3.2.25",
+    "husky": "^7.0.4",
+    "jest": "^27.3.1",
+    "npmlog": "^6.0.0",
+    "p-pipe": "3",
+    "p-queue": "^6.6.2",
+    "p-retry": "^4.6.1",
+    "prettier": "^2.4.1",
+    "prompt": "^1.2.0",
+    "typescript": "^4.5.3",
+    "unist-util-flat-filter": "^1.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "yarn lint:all && yarn typecheck && yarn test"
+    }
+  }
+}
