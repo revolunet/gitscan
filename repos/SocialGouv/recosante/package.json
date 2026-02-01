@@ -1,0 +1,47 @@
+{
+  "name": "recosante",
+  "version": "1.49.0",
+  "license": "Apache-2.0",
+  "private": true,
+  "author": "Fabrique des ministères sociaux",
+  "repository": "git@github.com:SocialGouv/recosante.git",
+  "workspaces": [
+    "api-node",
+    "frontend-next",
+    "mail"
+  ],
+  "scripts": {
+    "down": "docker-compose down",
+    "start": "docker-compose up -d --remove-orphans",
+    "stop": "docker-compose stop",
+    "test": "yarn workspaces foreach -A run test",
+    "up": "docker-compose up -d --remove-orphans db dbtest flower pgadmin redis",
+    "prepare": "[ ! -d \"/node_modules/husky/\" ] || husky install",
+    "lint": "eslint  --fix \"./api-node/src/**/*.ts*\" ",
+    "lint-check": "eslint \"./api-node/src/**/*.ts*\" --no-fix --max-warnings 0",
+    "format": "prettier  --write . --ignore-unknown",
+    "format-check": "prettier --check ."
+  },
+  "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@socialgouv/releaserc": "^1.1.1",
+    "@typescript-eslint/eslint-plugin": "^6.18.1",
+    "@typescript-eslint/parser": "^6.18.1",
+    "eslint": "^8.56.0",
+    "eslint-config-standard-with-typescript": "^43.0.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-n": "^16.6.2",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-react": "^7.33.2",
+    "husky": "^8.0.0",
+    "prettier": "^3.1.1",
+    "prettier-plugin-prisma": "^5.0.0",
+    "semantic-release": "^21.0.2",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "npm": "please-use-yarn"
+  },
+  "packageManager": "yarn@4.1.0"
+}

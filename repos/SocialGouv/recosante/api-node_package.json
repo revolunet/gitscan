@@ -1,0 +1,84 @@
+{
+  "name": "api_node",
+  "version": "1.0.0",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "pre:dev": "npm run prisma-setup && cross-env NODE_ENV=development npx prisma db push && npm run format && npm run ts:check",
+    "dev": "npm run pre:dev && tsx watch ./src/index.ts",
+    "dev-cronjobs": "npm run pre:dev && cross-env NODE_ENV=development tsx ./src/cronjobs/index.ts",
+    "start": "cross-env NODE_ENV=production npm run prisma-setup && npm run prisma-deploy && tsx ./src/index.ts",
+    "start-cronjobs": "cross-env NODE_ENV=production npm run prisma-setup && npm run prisma-deploy && tsx ./src/cronjobs/index.ts",
+    "prisma-setup": "prisma generate && prisma migrate deploy",
+    "prisma-setup-test": "cp .env.test .env.temp && DATABASE_URL=$(grep DATABASE_URL .env.test | cut -d '=' -f2- | tr -d '\"') prisma generate && DATABASE_URL=$(grep DATABASE_URL .env.test | cut -d '=' -f2- | tr -d '\"') prisma migrate deploy && rm .env.temp",
+    "prisma-create-migration": "cross-env NODE_ENV=development npx prisma migrate dev --name",
+    "prisma-deploy": "NODE_ENV=production npx prisma migrate deploy",
+    "prisma-reset-db": "rm -rf prisma/migrations && npx prisma migrate reset --force && npm run prisma-setup",
+    "prisma-reset-test-db": "rm -rf prisma/migrations && cp .env.test .env.temp && DATABASE_URL=$(grep DATABASE_URL .env.test | cut -d '=' -f2- | tr -d '\"') npx prisma migrate reset --force && npm run prisma-setup-test && rm -f .env.temp",
+    "fill-municipalities-in-db": "cross-env NODE_ENV=development npm run pre:dev && tsx ./src/scripts/fill-municipalities.ts",
+    "ts:check": "tsc",
+    "format": "prettier --write . --ignore-unknown",
+    "test-notifications-texts": "cross-env NODE_ENV=development && tsx watch ./src/tests/notifications.ts",
+    "test:unit": "jest --config=jest.unit.config.cjs --coverage --verbose",
+    "test:unit:watch": "jest --config=jest.unit.config.cjs --coverage --verbose --watch ",
+    "test:integration": "npm run check-env && cp .env.test .env.temp && DATABASE_URL=$(grep DATABASE_URL .env.test | cut -d '=' -f2- | tr -d '\"') npx prisma db push && DATABASE_URL=$(grep DATABASE_URL .env.test | cut -d '=' -f2- | tr -d '\"') jest --config=jest.integration.config.cjs --detectOpenHandles && rm -f .env.temp",
+    "check-env": "tsx ./check-env.js"
+  },
+  "dependencies": {
+    "@prisma/client": "5.6.0",
+    "@sentry/node": "^7.84.0",
+    "@sentry/tracing": "^7.84.0",
+    "basic-ftp": "^5.0.4",
+    "bcryptjs": "^2.4.3",
+    "cheerio": "^1.0.0-rc.12",
+    "cors": "^2.8.5",
+    "cron": "^3.1.6",
+    "cross-env": "^7.0.3",
+    "csvjson-csv2json": "^5.0.6",
+    "date-fns": "^2.30.0",
+    "date-fns-tz": "^2.0.0",
+    "dayjs": "^1.11.10",
+    "dotenv": "^16.3.1",
+    "expo-server-sdk": "^3.7.0",
+    "express": "^4.18.2",
+    "fetch-retry": "^5.0.6",
+    "helmet": "^7.1.0",
+    "morgan": "^1.10.0",
+    "node-html-parser": "^6.1.12",
+    "node-pushnotifications": "^2.1.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/eslint": "^8",
+    "@types/express": "4.17.21",
+    "@types/jest": "^29.5.14",
+    "@types/morgan": "^1.9.9",
+    "@types/node": "20.10.3",
+    "jest": "^29.7.0",
+    "prettier": "2",
+    "prettier-plugin-prisma": "^5.0.0",
+    "prisma": "5.6.0",
+    "ts-jest": "^29.3.2",
+    "ts-node": "10.9.1",
+    "tsx": "^4.7.0",
+    "typescript": "5.3.2"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all",
+    "semi": true,
+    "printWidth": 80,
+    "tabWidth": 2
+  },
+  "resolutions": {
+    "prettier": "2"
+  },
+  "engines": {
+    "npm": "please-use-yarn"
+  },
+  "pre-commit": [
+    "format",
+    "ts:check"
+  ]
+}

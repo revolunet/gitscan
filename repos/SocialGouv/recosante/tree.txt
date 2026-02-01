@@ -1,0 +1,725 @@
+.
+├── .dockerignore
+├── .eslintignore
+├── .eslintrc.json
+├── .github
+│   ├── CODEOWNERS
+│   ├── bin
+│   │   └── git
+│   ├── renovate.json
+│   └── workflows
+│       ├── codeql.yaml
+│       ├── deactivate.yaml
+│       ├── lint.yaml
+│       ├── preproduction.yml
+│       ├── production.yml
+│       ├── release.yml
+│       ├── review-auto.yaml
+│       ├── review.yaml
+│       └── test.yaml
+├── .gitignore
+├── .husky
+│   └── pre-commit
+├── .kontinuous
+│   ├── config.yaml
+│   ├── env
+│   │   ├── dev
+│   │   │   ├── templates
+│   │   │   │   ├── api-node.sealed-secret.yaml -> ../../preprod/templates/api-node.sealed-secret.yaml
+│   │   │   │   ├── api.configmap.yaml
+│   │   │   │   └── ftp-clever.sealed-secret.yaml
+│   │   │   └── values.yaml
+│   │   ├── preprod
+│   │   │   ├── templates
+│   │   │   │   ├── api-node.sealed-secret.yaml
+│   │   │   │   ├── api.configmap.yaml
+│   │   │   │   ├── ftp-clever.sealed-secret.yaml
+│   │   │   │   └── recosante-dev-backups-access-key.sealed-secret.yaml
+│   │   │   └── values.yaml
+│   │   └── prod
+│   │       ├── templates
+│   │       │   ├── api-node.sealed-secret.yaml
+│   │       │   ├── api.configmap.yaml
+│   │       │   └── ftp-clever.sealed-secret.yaml
+│   │       └── values.yaml
+│   └── values.yaml
+├── .nvmrc
+├── .prettierignore
+├── .prettierrc.js
+├── .pylintrc
+├── .releaserc.js
+├── .vscode
+│   └── settings.json
+├── .yarn
+│   ├── plugins
+│   │   └── @yarnpkg
+│   │       └── plugin-fetch.cjs
+│   └── releases
+│       └── yarn-4.1.0.cjs
+├── .yarnrc.yml
+├── CHANGELOG.md
+├── LICENSE
+├── README.md
+├── TODO.md
+├── api-node
+│   ├── .gitignore
+│   ├── .npmrc
+│   ├── .prettierignore
+│   ├── .yarn
+│   │   ├── install-state.gz
+│   │   ├── plugins
+│   │   │   └── @yarnpkg
+│   │   │       └── plugin-fetch.cjs
+│   │   └── releases
+│   │       └── yarn-4.0.2.cjs
+│   ├── .yarnrc.yml
+│   ├── Dockerfile
+│   ├── check-env.js
+│   ├── data
+│   │   ├── README.md
+│   │   ├── about
+│   │   │   ├── baignades.md
+│   │   │   ├── drinking_water.md
+│   │   │   ├── eau-potable.md
+│   │   │   ├── indice_atmo.md
+│   │   │   ├── indice_uv.md
+│   │   │   ├── pollens.md
+│   │   │   └── vigilance_meteo.md
+│   │   ├── epci.json
+│   │   ├── missing-data-for-municipalities.json
+│   │   ├── municipalities-consolidated.json
+│   │   ├── municipalities.json
+│   │   ├── municipalitiesINSEECodeByEPCIObject.json
+│   │   └── udi
+│   │       └── README.md
+│   ├── jest.integration.config.cjs
+│   ├── jest.integration.setup.js
+│   ├── jest.setup.js
+│   ├── jest.unit.config.cjs
+│   ├── package.json
+│   ├── prisma
+│   │   ├── migrations
+│   │   │   ├── 20240205101016_init
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20240213145346_notification_logs
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20240220142930_ask_for_review
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20240311073515_delete_pollution_table
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20240311202644_udis_table
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20240314104940_remove_unused_pollution_enums
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20240314105019_drinking_water_enable
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20240320115502_clean
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20240328145103_drinking_water_table
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20240329105432_drinking_water_index
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20240402104417_expo_id
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20240408183137_notification_index_by_user_id
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20240409092955_add_helpful_in_feedback
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20240411080216_add_granularity_in_user
+│   │   │   │   └── migration.sql
+│   │   │   ├── 20240411080418_add_granularity_in_user2
+│   │   │   │   └── migration.sql
+│   │   │   └── migration_lock.toml
+│   │   └── schema.prisma
+│   ├── src
+│   │   ├── aggregators
+│   │   │   ├── __tests__
+│   │   │   │   └── unit
+│   │   │   │       └── indice_atmo.test.ts
+│   │   │   ├── bathing_water.ts
+│   │   │   ├── drinking_water.ts
+│   │   │   ├── indice_atmo.ts
+│   │   │   ├── indice_uv.ts
+│   │   │   ├── pollens
+│   │   │   │   ├── __tests__
+│   │   │   │   │   ├── integration
+│   │   │   │   │   │   └── database.test.ts
+│   │   │   │   │   └── unit
+│   │   │   │   │       └── processing.test.ts
+│   │   │   │   ├── api.ts
+│   │   │   │   ├── database.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── main.ts
+│   │   │   │   ├── processing.ts
+│   │   │   │   ├── utils.ts
+│   │   │   │   └── validation.ts
+│   │   │   └── weather_alert.ts
+│   │   ├── config
+│   │   │   └── api.ts
+│   │   ├── config.ts
+│   │   ├── controllers
+│   │   │   ├── __tests__
+│   │   │   │   └── user.integration.test.ts
+│   │   │   ├── call-to-action.ts
+│   │   │   ├── environment.ts
+│   │   │   ├── event.ts
+│   │   │   ├── feedback-indicator.ts
+│   │   │   ├── feedback.ts
+│   │   │   ├── hubeau-prelevement.ts
+│   │   │   ├── indicators.ts
+│   │   │   ├── indocator-feedback.ts
+│   │   │   ├── mail.ts
+│   │   │   ├── mocks
+│   │   │   │   └── indicators.ts
+│   │   │   ├── notification.ts
+│   │   │   ├── udi.ts
+│   │   │   └── user.ts
+│   │   ├── cronjobs
+│   │   │   ├── aggregators.ts
+│   │   │   ├── cleaning.ts
+│   │   │   ├── index.ts
+│   │   │   ├── municipalities.ts
+│   │   │   ├── notifications.ts
+│   │   │   ├── recommandations.ts
+│   │   │   └── utils.ts
+│   │   ├── getters
+│   │   │   ├── __tests__
+│   │   │   │   └── unit
+│   │   │   │       ├── appOpenHandler.test.ts
+│   │   │   │       ├── bathing_water.test.ts
+│   │   │   │       ├── firstTimeLaunchHandler.test.ts
+│   │   │   │       └── storeReviewHandler.test.ts
+│   │   │   ├── bathing_water.ts
+│   │   │   ├── drinking_water.ts
+│   │   │   ├── eventHandlers
+│   │   │   │   ├── appOpenHandler.ts
+│   │   │   │   ├── firstTimeLaunchHandler.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   └── storeReviewHandler.ts
+│   │   │   ├── indicators_list.ts
+│   │   │   ├── indice_atmo.ts
+│   │   │   ├── indice_uv.ts
+│   │   │   ├── pollens.ts
+│   │   │   └── weather_alert.ts
+│   │   ├── index.ts
+│   │   ├── middlewares
+│   │   │   ├── auth.ts
+│   │   │   ├── errors.ts
+│   │   │   ├── validation.ts
+│   │   │   └── version-check.ts
+│   │   ├── prisma.ts
+│   │   ├── schemas
+│   │   │   ├── __tests__
+│   │   │   │   └── unit
+│   │   │   │       └── user.schema.test.ts
+│   │   │   └── user.schema.ts
+│   │   ├── scripts
+│   │   │   ├── fill-municipalities.ts
+│   │   │   ├── test-notif.js
+│   │   │   └── test-scrap-bathing-water.js
+│   │   ├── service
+│   │   │   ├── __tests__
+│   │   │   │   └── unit
+│   │   │   │       └── local-recommandations.test.ts
+│   │   │   ├── expo-notifications.ts
+│   │   │   ├── local-recommandations.ts
+│   │   │   ├── recommandation.json
+│   │   │   └── udi.ts
+│   │   ├── services
+│   │   │   ├── __tests__
+│   │   │   │   └── unit
+│   │   │   │       ├── eventService.test.ts
+│   │   │   │       └── user.service.test.ts
+│   │   │   ├── eventService.ts
+│   │   │   └── user.service.ts
+│   │   ├── templates
+│   │   │   ├── drinking-water-403-no-code-provided.html
+│   │   │   └── drinking-water-test-result.html
+│   │   ├── tests
+│   │   │   └── notifications.ts
+│   │   ├── third-parties
+│   │   │   ├── matomo.ts
+│   │   │   └── sentry.ts
+│   │   ├── types
+│   │   │   ├── api
+│   │   │   │   ├── bathing_water.ts
+│   │   │   │   ├── drinking_water.ts
+│   │   │   │   ├── indicator.ts
+│   │   │   │   ├── indice_atmo.ts
+│   │   │   │   ├── indice_uv.ts
+│   │   │   │   ├── pollens.ts
+│   │   │   │   └── weather_alert.ts
+│   │   │   ├── error.ts
+│   │   │   ├── matomo-event.ts
+│   │   │   ├── notifications.ts
+│   │   │   └── request.ts
+│   │   └── utils
+│   │       ├── alert_status.ts
+│   │       ├── bathing_water
+│   │       │   ├── bathing_water.ts
+│   │       │   └── scrapping.ts
+│   │       ├── departments.ts
+│   │       ├── drinking_water.ts
+│   │       ├── epci.ts
+│   │       ├── indicators
+│   │       │   └── pollen.ts
+│   │       ├── indice_atmo.ts
+│   │       ├── indice_uv.ts
+│   │       ├── log.ts
+│   │       ├── municipalities.ts
+│   │       ├── notifications
+│   │       │   ├── __tests__
+│   │       │   │   ├── pollen-formatter.test.ts
+│   │       │   │   └── unit
+│   │       │   │       └── pollen-formatter.test.ts
+│   │       │   ├── alert.ts
+│   │       │   ├── evening.ts
+│   │       │   ├── morning.ts
+│   │       │   └── pollen-formatter.ts
+│   │       ├── pollens.ts
+│   │       ├── recommandations.ts
+│   │       ├── user.ts
+│   │       ├── weather_alert.ts
+│   │       └── webhook.ts
+│   ├── tsconfig.json
+│   └── yarn.lock
+├── docker-compose.yml
+├── frontend-next
+│   ├── .eslintrc.js
+│   ├── .nvmrc
+│   ├── .prettierignore
+│   ├── .prettierrc.js
+│   ├── .vercel
+│   │   ├── README.txt
+│   │   └── project.json
+│   ├── Dockerfile
+│   ├── LICENSE.md
+│   ├── README.md
+│   ├── next.config.js
+│   ├── package.json
+│   ├── postcss.config.js
+│   ├── prettier.config.js
+│   ├── public
+│   │   ├── android-chrome-192x192.png
+│   │   ├── android-chrome-512x512.png
+│   │   ├── apple-touch-icon.png
+│   │   ├── favicon-16x16.png
+│   │   ├── favicon-32x32.png
+│   │   ├── favicon.ico
+│   │   ├── images
+│   │   │   └── articles
+│   │   │       ├── a-quelle-periode-de-l-annee-y-a-t-il-le-plus-de-pollen-dans-l-air.jpg
+│   │   │       ├── a-velo-comment-reduire-son-exposition-a-la-pollution.jpg
+│   │   │       ├── chauffage-au-bois-comment-bien-l-utiliser.jpg
+│   │   │       ├── comment-*.jpg  (27 files)
+│   │   │       ├── covid-19-quels-gestes-adopter-pour-proteger-sa-sante-et-son-environnement.jpg
+│   │   │       ├── cueillette-de-champignons-comment-prevenir-les-intoxications.jpg
+│   │   │       ├── cuisiner-en-protegeant-sa-sante-quels-gestes-adopter.jpg
+│   │   │       ├── inondations-quels-sont-les-bons-reflexes.jpg
+│   │   │       ├── l-air-interieur-des-logements-est-il-pollue.jpg
+│   │   │       ├── les-*.jpg  (7 files)
+│   │   │       ├── pictogrammes-de-danger.png
+│   │   │       ├── pollution-de-l-air-en-voiture-comment-la-limiter.jpg
+│   │   │       ├── pollution-de-l-air-et-sante-quels-liens.jpg
+│   │   │       ├── pollution-des-sols-liee-a-l-activite-humaine-quels-effets-sur-la-sante.jpg
+│   │   │       ├── pourquoi-faut-il-lutter-contre-l-ambroisie.jpg
+│   │   │       ├── qu-est-ce-que-la-vigilance-meteorologique.jpg
+│   │   │       ├── que-faire-en-cas-de-vigilance-meteo-neige-et-verglas.jpg
+│   │   │       ├── que-faire-en-presence-de-radon-dans-son-logement.jpg
+│   │   │       ├── que-signifient-les-pictogrammes-de-danger-sur-les-produits-chimiques.jpg
+│   │   │       ├── quel-est-le-role-des-transports-dans-la-pollution-atmospherique.jpg
+│   │   │       ├── quels-*.jpg  (6 files)
+│   │   │       └── rayons-uv-lies-au-soleil-quels-risques-pour-les-yeux.jpg
+│   │   ├── og-image-x2.jpg
+│   │   └── og-image.jpg
+│   ├── redirects-config.js
+│   ├── sentry.config.ts
+│   ├── sentry.edge.config.ts
+│   ├── sentry.server.config.ts
+│   ├── src
+│   │   ├── app
+│   │   │   ├── (main)
+│   │   │   │   ├── layout.tsx
+│   │   │   │   └── page.tsx
+│   │   │   ├── accessibilite
+│   │   │   │   └── page.tsx
+│   │   │   ├── api
+│   │   │   │   └── articles
+│   │   │   │       ├── [slug]
+│   │   │   │       │   └── route.ts
+│   │   │   │       └── route.ts
+│   │   │   ├── articles
+│   │   │   │   ├── [slug]
+│   │   │   │   │   └── page.tsx
+│   │   │   │   └── page.tsx
+│   │   │   ├── baignades
+│   │   │   │   └── page.tsx
+│   │   │   ├── cookies
+│   │   │   │   └── page.tsx
+│   │   │   ├── donnees-personnelles
+│   │   │   │   ├── layout.tsx
+│   │   │   │   └── page.tsx
+│   │   │   ├── donnees-restreintes
+│   │   │   │   └── page.tsx
+│   │   │   ├── donnees-statiques
+│   │   │   │   └── page.tsx
+│   │   │   ├── global-error.tsx
+│   │   │   ├── healthz
+│   │   │   │   └── page.tsx
+│   │   │   ├── iframe
+│   │   │   │   └── page.tsx
+│   │   │   ├── indice-atmo
+│   │   │   │   └── page.tsx
+│   │   │   ├── indice-uv
+│   │   │   │   └── page.tsx
+│   │   │   ├── landing
+│   │   │   │   └── [city]
+│   │   │   │       └── [indicator]
+│   │   │   │           ├── layout.tsx
+│   │   │   │           ├── page.tsx
+│   │   │   │           └── sitemap.ts
+│   │   │   ├── layout.tsx
+│   │   │   ├── mentions-legales
+│   │   │   │   └── page.tsx
+│   │   │   ├── not-found.tsx
+│   │   │   ├── partenaires
+│   │   │   │   └── page.tsx
+│   │   │   ├── place
+│   │   │   │   ├── [code]
+│   │   │   │   │   └── [nom]
+│   │   │   │   │       ├── layout.tsx
+│   │   │   │   │       └── page.tsx
+│   │   │   │   └── layout.tsx
+│   │   │   ├── population-vulnerable-sensible
+│   │   │   │   └── page.tsx
+│   │   │   ├── potentiel-radon
+│   │   │   │   └── page.tsx
+│   │   │   ├── providers
+│   │   │   │   └── ModalProvider.tsx
+│   │   │   ├── raep
+│   │   │   │   └── page.tsx
+│   │   │   ├── recommandations
+│   │   │   │   └── page.tsx
+│   │   │   ├── sitemap.ts
+│   │   │   ├── stats
+│   │   │   │   └── page.tsx
+│   │   │   ├── test-place
+│   │   │   │   └── page.tsx
+│   │   │   ├── vigilance-meteo
+│   │   │   │   └── page.tsx
+│   │   │   └── web-version
+│   │   │       └── page.tsx
+│   │   ├── assets
+│   │   │   └── fonts
+│   │   │       ├── Marianne-Bold.otf
+│   │   │       ├── Marianne-Bold.woff
+│   │   │       ├── Marianne-Bold.woff2
+│   │   │       ├── Marianne-BoldItalic.otf
+│   │   │       ├── Marianne-BoldItalic.woff
+│   │   │       ├── Marianne-BoldItalic.woff2
+│   │   │       ├── Marianne-ExtraBold.otf
+│   │   │       ├── Marianne-ExtraBold.woff
+│   │   │       ├── Marianne-ExtraBold.woff2
+│   │   │       ├── Marianne-ExtraBoldItalic.otf
+│   │   │       ├── Marianne-ExtraBoldItalic.woff
+│   │   │       ├── Marianne-ExtraBoldItalic.woff2
+│   │   │       ├── Marianne-Light.otf
+│   │   │       ├── Marianne-Light.woff
+│   │   │       ├── Marianne-Light.woff2
+│   │   │       ├── Marianne-LightItalic.otf
+│   │   │       ├── Marianne-LightItalic.woff
+│   │   │       ├── Marianne-LightItalic.woff2
+│   │   │       ├── Marianne-Medium.otf
+│   │   │       ├── Marianne-Medium.woff
+│   │   │       ├── Marianne-Medium.woff2
+│   │   │       ├── Marianne-MediumItalic.otf
+│   │   │       ├── Marianne-MediumItalic.woff
+│   │   │       ├── Marianne-MediumItalic.woff2
+│   │   │       ├── Marianne-Regular.otf
+│   │   │       ├── Marianne-Regular.woff
+│   │   │       ├── Marianne-Regular.woff2
+│   │   │       ├── Marianne-RegularItalic.otf
+│   │   │       ├── Marianne-RegularItalic.woff
+│   │   │       ├── Marianne-RegularItalic.woff2
+│   │   │       ├── Marianne-Thin.otf
+│   │   │       ├── Marianne-Thin.woff
+│   │   │       ├── Marianne-Thin.woff2
+│   │   │       ├── Marianne-ThinItalic.otf
+│   │   │       ├── Marianne-ThinItalic.woff
+│   │   │       ├── Marianne-ThinItalic.woff2
+│   │   │       └── index.ts
+│   │   ├── components
+│   │   │   ├── AppScreen.tsx
+│   │   │   ├── AppStoreLink.tsx
+│   │   │   ├── AuthLayout.tsx
+│   │   │   ├── Button.tsx
+│   │   │   ├── CallToAction.tsx
+│   │   │   ├── CircleBackground.tsx
+│   │   │   ├── CirclesBackground.tsx
+│   │   │   ├── Container.tsx
+│   │   │   ├── Faqs.tsx
+│   │   │   ├── FavoriteStar.tsx
+│   │   │   ├── FavoritesInfo.tsx
+│   │   │   ├── Fields.tsx
+│   │   │   ├── Footer.tsx
+│   │   │   ├── GoogleStoreLink.tsx
+│   │   │   ├── Header.tsx
+│   │   │   ├── Indicators.tsx
+│   │   │   ├── IndiceAtmo.tsx
+│   │   │   ├── LandingHeader.tsx
+│   │   │   ├── Layout.tsx
+│   │   │   ├── Logo.tsx
+│   │   │   ├── NavLinks.tsx
+│   │   │   ├── PhoneFrame.tsx
+│   │   │   ├── Pricing.tsx
+│   │   │   ├── Reviews.tsx
+│   │   │   ├── SafeHtml.tsx
+│   │   │   ├── Search.tsx
+│   │   │   ├── SecondaryFeatures.tsx
+│   │   │   ├── SimpleHeader.tsx
+│   │   │   ├── StarIcon.tsx
+│   │   │   ├── StockLogos.tsx
+│   │   │   ├── SubscribeButton.tsx
+│   │   │   ├── app-demo.tsx
+│   │   │   ├── baignades
+│   │   │   │   ├── Baignades.tsx
+│   │   │   │   └── Chart.tsx
+│   │   │   ├── banner.tsx
+│   │   │   ├── base
+│   │   │   │   └── MagicLink.tsx
+│   │   │   ├── blog-preview.tsx
+│   │   │   ├── carousel.tsx
+│   │   │   ├── cookie-banner
+│   │   │   │   ├── cookie-banner.tsx
+│   │   │   │   └── utils.ts
+│   │   │   ├── download-page
+│   │   │   │   └── hero-banner.tsx
+│   │   │   ├── hero-banner.tsx
+│   │   │   ├── hero-city.tsx
+│   │   │   ├── incentive.tsx
+│   │   │   ├── indiceAtmo
+│   │   │   │   ├── Chart.tsx
+│   │   │   │   └── chart
+│   │   │   │       ├── Circle.tsx
+│   │   │   │       ├── Degrade.tsx
+│   │   │   │       ├── ExtremementMauvais.tsx
+│   │   │   │       ├── Good.tsx
+│   │   │   │       ├── Mauvais.tsx
+│   │   │   │       ├── Moyen.tsx
+│   │   │   │       └── TresMauvais.tsx
+│   │   │   ├── indiceUv
+│   │   │   │   ├── Chart.tsx
+│   │   │   │   └── IndiceUv.tsx
+│   │   │   ├── infinite-moving-cards.tsx
+│   │   │   ├── landing
+│   │   │   │   └── Header.tsx
+│   │   │   ├── layout
+│   │   │   │   └── footer
+│   │   │   │       └── Links.tsx
+│   │   │   ├── matomo.tsx
+│   │   │   ├── meta.tsx
+│   │   │   ├── notifications.tsx
+│   │   │   ├── potentielRadon
+│   │   │   │   ├── Chart.tsx
+│   │   │   │   └── PotentielRadon.tsx
+│   │   │   ├── primary-features.tsx
+│   │   │   ├── raep
+│   │   │   │   ├── Chart.tsx
+│   │   │   │   └── Raep.tsx
+│   │   │   ├── toast.tsx
+│   │   │   └── vigilanceMeteo
+│   │   │       ├── Chart.tsx
+│   │   │       └── VigilanceMeteo.tsx
+│   │   ├── content
+│   │   │   └── articles
+│   │   │       ├── a-quelle-periode-de-l-annee-y-a-t-il-le-plus-de-pollen-dans-l-air.md
+│   │   │       ├── a-velo-comment-reduire-son-exposition-a-la-pollution.md
+│   │   │       ├── chauffage-au-bois-comment-bien-l-utiliser.md
+│   │   │       ├── comment-*.md  (27 files)
+│   │   │       ├── covid-19-quels-gestes-adopter-pour-proteger-sa-sante-et-son-environnement.md
+│   │   │       ├── cueillette-de-champignons-comment-prevenir-les-intoxications.md
+│   │   │       ├── cuisiner-en-protegeant-sa-sante-quels-gestes-adopter.md
+│   │   │       ├── inondations-quels-sont-les-bons-reflexes.md
+│   │   │       ├── l-air-interieur-des-logements-est-il-pollue.md
+│   │   │       ├── les-*.md  (7 files)
+│   │   │       ├── pollution-de-l-air-en-voiture-comment-la-limiter.md
+│   │   │       ├── pollution-de-l-air-et-sante-quels-liens.md
+│   │   │       ├── pollution-des-sols-liee-a-l-activite-humaine-quels-effets-sur-la-sante.md
+│   │   │       ├── pourquoi-faut-il-lutter-contre-l-ambroisie.md
+│   │   │       ├── qu-est-ce-que-la-vigilance-meteorologique.md
+│   │   │       ├── que-faire-en-cas-de-vigilance-meteo-neige-et-verglas.md
+│   │   │       ├── que-faire-en-presence-de-radon-dans-son-logement.md
+│   │   │       ├── que-signifient-les-pictogrammes-de-danger-sur-les-produits-chimiques.md
+│   │   │       ├── quel-est-le-role-des-transports-dans-la-pollution-atmospherique.md
+│   │   │       ├── quels-*.md  (6 files)
+│   │   │       └── rayons-uv-lies-au-soleil-quels-risques-pour-les-yeux.md
+│   │   ├── data
+│   │   │   └── municipalities.json
+│   │   ├── hooks
+│   │   │   ├── useCityFavorites.ts
+│   │   │   ├── useCookieConsent.ts
+│   │   │   ├── useFavorites.ts
+│   │   │   ├── useFavoritesInfo.ts
+│   │   │   ├── useIframe.ts
+│   │   │   ├── useIndicators.ts
+│   │   │   ├── useMunicipalitySearch.ts
+│   │   │   ├── useScreenSize.ts
+│   │   │   └── useSentryWithConsent.ts
+│   │   ├── images
+│   │   │   ├── articles
+│   │   │   │   ├── a-quelle-periode-de-l-annee-y-a-t-il-le-plus-de-pollen-dans-l-air.jpg
+│   │   │   │   ├── a-velo-comment-reduire-son-exposition-a-la-pollution.jpg
+│   │   │   │   ├── chauffage-au-bois-comment-bien-l-utiliser.jpg
+│   │   │   │   ├── comment-*.jpg  (27 files)
+│   │   │   │   ├── covid-19-quels-gestes-adopter-pour-proteger-sa-sante-et-son-environnement.jpg
+│   │   │   │   ├── cueillette-de-champignons-comment-prevenir-les-intoxications.jpg
+│   │   │   │   ├── cuisiner-en-protegeant-sa-sante-quels-gestes-adopter.jpg
+│   │   │   │   ├── inondations-quels-sont-les-bons-reflexes.jpg
+│   │   │   │   ├── l-air-interieur-des-logements-est-il-pollue.jpg
+│   │   │   │   ├── les-*.jpg  (7 files)
+│   │   │   │   ├── pictogrammes-de-danger.png
+│   │   │   │   ├── pollution-de-l-air-en-voiture-comment-la-limiter.jpg
+│   │   │   │   ├── pollution-de-l-air-et-sante-quels-liens.jpg
+│   │   │   │   ├── pollution-des-sols-liee-a-l-activite-humaine-quels-effets-sur-la-sante.jpg
+│   │   │   │   ├── pourquoi-faut-il-lutter-contre-l-ambroisie.jpg
+│   │   │   │   ├── qu-est-ce-que-la-vigilance-meteorologique.jpg
+│   │   │   │   ├── que-faire-en-cas-de-vigilance-meteo-neige-et-verglas.jpg
+│   │   │   │   ├── que-faire-en-presence-de-radon-dans-son-logement.jpg
+│   │   │   │   ├── que-signifient-les-pictogrammes-de-danger-sur-les-produits-chimiques.jpg
+│   │   │   │   ├── quel-est-le-role-des-transports-dans-la-pollution-atmospherique.jpg
+│   │   │   │   ├── quels-*.jpg  (6 files)
+│   │   │   │   └── rayons-uv-lies-au-soleil-quels-risques-pour-les-yeux.jpg
+│   │   │   ├── blog
+│   │   │   │   ├── article-1.webp
+│   │   │   │   ├── article-2.webp
+│   │   │   │   └── article-3.webp
+│   │   │   ├── logos
+│   │   │   │   ├── air.tsx
+│   │   │   │   ├── atmo.png
+│   │   │   │   ├── favicon_notif.jpg
+│   │   │   │   ├── gouv.svg
+│   │   │   │   ├── gouv.tsx
+│   │   │   │   ├── irsn.png
+│   │   │   │   ├── meteo.png
+│   │   │   │   ├── pollen.tsx
+│   │   │   │   ├── rnsa.png
+│   │   │   │   ├── techcrunch.svg
+│   │   │   │   ├── uv.tsx
+│   │   │   │   ├── water.tsx
+│   │   │   │   ├── weather.tsx
+│   │   │   │   └── wired.svg
+│   │   │   ├── mockup.jpg
+│   │   │   ├── phone-frame.webp
+│   │   │   ├── qr-code-iframe.svg
+│   │   │   ├── qr-code-iframeOld.svg
+│   │   │   ├── qr-code.png
+│   │   │   ├── qr-code.svg
+│   │   │   ├── qr-codeOld.svg
+│   │   │   └── screenshot
+│   │   │       ├── air.webp
+│   │   │       ├── hp.webp
+│   │   │       ├── pollen.webp
+│   │   │       ├── uv.webp
+│   │   │       ├── water.webp
+│   │   │       └── weather.webp
+│   │   ├── instrumentation-client.ts
+│   │   ├── instrumentation.ts
+│   │   ├── lib
+│   │   │   └── registry.tsx
+│   │   ├── services
+│   │   │   ├── indicator.ts
+│   │   │   ├── matomo.ts
+│   │   │   ├── metadatas.ts
+│   │   │   ├── municipality.ts
+│   │   │   └── page-builder.ts
+│   │   ├── styles
+│   │   │   └── tailwind.css
+│   │   ├── types
+│   │   │   ├── indicator.ts
+│   │   │   └── municipality.ts
+│   │   └── utils
+│   │       ├── articles.ts
+│   │       ├── cn.ts
+│   │       ├── formatPlaceUrl.ts
+│   │       ├── santeFrRedirects.ts
+│   │       └── slugify.ts
+│   ├── tailwind.config.ts
+│   └── tsconfig.json
+├── mail
+│   ├── .babelrc
+│   ├── .stylelintrc
+│   ├── README.md
+│   ├── gulpfile.babel.js
+│   ├── package.json
+│   └── src
+│       ├── assets
+│       │   ├── img
+│       │   │   ├── .gitkeep
+│       │   │   ├── Frame 21.jpg
+│       │   │   ├── atmo-*.png  (6 files)
+│       │   │   ├── atmo.jpg
+│       │   │   ├── avalanche_jaune.png
+│       │   │   ├── avalanche_orange.png
+│       │   │   ├── avalanche_rouge.png
+│       │   │   ├── background-blue.jpg
+│       │   │   ├── background-blue.png
+│       │   │   ├── background.jpg
+│       │   │   ├── background.png
+│       │   │   ├── canicule_jaune.png
+│       │   │   ├── canicule_orange.png
+│       │   │   ├── canicule_rouge.png
+│       │   │   ├── crues_jaune.png
+│       │   │   ├── crues_orange.png
+│       │   │   ├── crues_rouge.png
+│       │   │   ├── eleve.png
+│       │   │   ├── faible.png
+│       │   │   ├── footer.jpg
+│       │   │   ├── froid_jaune.png
+│       │   │   ├── froid_orange.png
+│       │   │   ├── froid_rouge.png
+│       │   │   ├── logo-small.gif
+│       │   │   ├── logo.gif
+│       │   │   ├── logo.jpg
+│       │   │   ├── logos.jpg
+│       │   │   ├── mail.png
+│       │   │   ├── messenger.png
+│       │   │   ├── moyen.png
+│       │   │   ├── neige_jaune.png
+│       │   │   ├── neige_orange.png
+│       │   │   ├── neige_rouge.png
+│       │   │   ├── orages_jaune.png
+│       │   │   ├── orages_orange.png
+│       │   │   ├── orages_rouge.png
+│       │   │   ├── pluie_jaune.png
+│       │   │   ├── pluie_orange.png
+│       │   │   ├── pluie_rouge.png
+│       │   │   ├── polluant-*.png  (6 files)
+│       │   │   ├── repufrancaise.jpg
+│       │   │   ├── rnsa.jpg
+│       │   │   ├── tres-eleve.png
+│       │   │   ├── tres-faible.png
+│       │   │   ├── vagues_jaune.png
+│       │   │   ├── vagues_orange.png
+│       │   │   ├── vagues_rouge.png
+│       │   │   ├── vent_jaune.png
+│       │   │   ├── vent_orange.png
+│       │   │   ├── vent_rouge.png
+│       │   │   └── whatsapp.png
+│       │   └── scss
+│       │       ├── _settings.scss
+│       │       ├── app.scss
+│       │       └── template
+│       │           └── _template.scss
+│       ├── helpers
+│       │   └── raw.js
+│       ├── layouts
+│       │   ├── default.html
+│       │   └── index-layout.html
+│       └── pages
+│           └── indicateurs.html
+├── package-lock.json
+├── package.json
+├── pyrightconfig.json
+├── seeds.sql
+└── yarn.lock
+161 directories, 684 files
