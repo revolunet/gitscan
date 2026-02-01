@@ -1,0 +1,680 @@
+.
+├── .circleci
+│   └── config.yml
+├── .env.example
+├── .gitignore
+├── .pre-commit-config.yaml
+├── .psqlrc
+├── .python-version
+├── .pythonrc
+├── .sonarcloud.properties
+├── .vscode
+│   ├── launch.json
+│   └── settings.json
+├── LICENSE.txt
+├── Pipfile
+├── Pipfile.lock
+├── Procfile
+├── README.md
+├── app
+│   ├── README_init_regulation_alerts.md
+│   ├── README_s3.md
+│   ├── __init__.py
+│   ├── commands.py
+│   ├── controllers
+│   │   ├── __init__.py
+│   │   ├── activity.py
+│   │   ├── authentication.py
+│   │   ├── certificate.py
+│   │   ├── comment.py
+│   │   ├── company.py
+│   │   ├── contacts.py
+│   │   ├── control.py
+│   │   ├── control_bulletin.py
+│   │   ├── control_location.py
+│   │   ├── controller.py
+│   │   ├── employment.py
+│   │   ├── expenditure.py
+│   │   ├── holiday.py
+│   │   ├── location_entry.py
+│   │   ├── misc.py
+│   │   ├── mission.py
+│   │   ├── notification.py
+│   │   ├── oauth_client.py
+│   │   ├── oauth_token.py
+│   │   ├── team.py
+│   │   ├── third_party_company.py
+│   │   ├── third_party_employment.py
+│   │   ├── user.py
+│   │   ├── user_read.py
+│   │   ├── user_survey_actions.py
+│   │   ├── utils.py
+│   │   └── vehicle.py
+│   ├── data_access
+│   │   ├── __init__.py
+│   │   ├── activity.py
+│   │   ├── business.py
+│   │   ├── certificate.py
+│   │   ├── company.py
+│   │   ├── company_certification.py
+│   │   ├── control_bulletin.py
+│   │   ├── control_data.py
+│   │   ├── controller_user.py
+│   │   ├── employment.py
+│   │   ├── mission.py
+│   │   ├── notification.py
+│   │   ├── regulation_check.py
+│   │   ├── regulation_computation.py
+│   │   ├── regulatory_alert.py
+│   │   ├── regulatory_alerts_summary.py
+│   │   ├── team.py
+│   │   ├── user.py
+│   │   ├── user_agreement.py
+│   │   └── work_day.py
+│   ├── domain
+│   │   ├── __init__.py
+│   │   ├── business.py
+│   │   ├── certificate.py
+│   │   ├── certificate_criteria.py
+│   │   ├── company.py
+│   │   ├── control_bulletin.py
+│   │   ├── control_data.py
+│   │   ├── control_location.py
+│   │   ├── controller.py
+│   │   ├── controller_control.py
+│   │   ├── email.py
+│   │   ├── employment.py
+│   │   ├── expenditure.py
+│   │   ├── gender.py
+│   │   ├── history.py
+│   │   ├── holidays.py
+│   │   ├── log_activities.py
+│   │   ├── mission.py
+│   │   ├── mission_auto_validation.py
+│   │   ├── notification_data_schemas.py
+│   │   ├── notifications.py
+│   │   ├── oauth_token.py
+│   │   ├── permissions.py
+│   │   ├── regulation_computations.py
+│   │   ├── regulations.py
+│   │   ├── regulations_helper.py
+│   │   ├── regulations_per_day.py
+│   │   ├── regulations_per_week.py
+│   │   ├── regulatory_alerts_summary.py
+│   │   ├── scenario_testing.py
+│   │   ├── team.py
+│   │   ├── third_party_employment.py
+│   │   ├── user.py
+│   │   ├── user_survey_actions.py
+│   │   ├── validation.py
+│   │   ├── vehicle.py
+│   │   └── work_days.py
+│   ├── helpers
+│   │   ├── __init__.py
+│   │   ├── admin.py
+│   │   ├── agent_connect.py
+│   │   ├── api_key_authentication.py
+│   │   ├── authentication.py
+│   │   ├── authentication_controller.py
+│   │   ├── authorization.py
+│   │   ├── brevo.py
+│   │   ├── cache.py
+│   │   ├── celery
+│   │   │   └── __init__.py
+│   │   ├── controller_endpoint_utils.py
+│   │   ├── dataloaders.py
+│   │   ├── db.py
+│   │   ├── debug.py
+│   │   ├── debug_queries.py
+│   │   ├── employment.py
+│   │   ├── errors.py
+│   │   ├── france_connect.py
+│   │   ├── frozen_version_utils.py
+│   │   ├── graphene_types.py
+│   │   ├── graphql.py
+│   │   ├── insee_tranche_effectifs.py
+│   │   ├── livestorm.py
+│   │   ├── log_sql_queries_file.py
+│   │   ├── logging.py
+│   │   ├── mail.py
+│   │   ├── mail_type.py
+│   │   ├── mattermost.py
+│   │   ├── notification_type.py
+│   │   ├── oauth
+│   │   │   ├── __init__.py
+│   │   │   └── models.py
+│   │   ├── pagination.py
+│   │   ├── password_policy.py
+│   │   ├── pdf
+│   │   │   ├── __init__.py
+│   │   │   ├── control_bulletin.py
+│   │   │   ├── mission_details.py
+│   │   │   └── work_days.py
+│   │   ├── profiler.py
+│   │   ├── regulations_utils.py
+│   │   ├── request_parser.py
+│   │   ├── s3.py
+│   │   ├── siren.py
+│   │   ├── submitter_type.py
+│   │   ├── tachograph
+│   │   │   ├── __init__.py
+│   │   │   ├── rsa_keys.py
+│   │   │   └── signature.py
+│   │   ├── time.py
+│   │   ├── validation.py
+│   │   ├── xls
+│   │   │   ├── __init__.py
+│   │   │   ├── columns.py
+│   │   │   ├── common.py
+│   │   │   ├── companies
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── headers.py
+│   │   │   │   ├── legend.py
+│   │   │   │   ├── tab_activities.py
+│   │   │   │   └── tab_details.py
+│   │   │   ├── controllers
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── header.py
+│   │   │   │   ├── legend.py
+│   │   │   │   ├── tab_details_single_control.py
+│   │   │   │   └── tab_main_single_control.py
+│   │   │   ├── errors.py
+│   │   │   ├── legends.py
+│   │   │   └── signature.py
+│   │   └── xml
+│   │       ├── __init__.py
+│   │       └── greco.py
+│   ├── jobs
+│   │   ├── __init__.py
+│   │   ├── auto_validations.py
+│   │   └── emails
+│   │       ├── bizdev
+│   │       │   ├── __init__.py
+│   │       │   ├── send_companies_with_employees_but_without_activities_emails.py
+│   │       │   ├── send_companies_with_pending_invitation_emails.py
+│   │       │   ├── send_companies_without_any_employee_invitation_emails.py
+│   │       │   ├── send_invitation_emails.py
+│   │       │   ├── send_onboarding_emails.py
+│   │       │   └── send_reminder_no_invitation_emails.py
+│   │       ├── certificate
+│   │       │   ├── __init__.py
+│   │       │   └── send_about_to_lose_certificate_emails.py
+│   │       ├── cgu
+│   │       │   ├── __init__.py
+│   │       │   ├── send_email_to_last_company_suspended_admins.py
+│   │       │   └── send_expiry_warning_email.py
+│   │       └── send_anonymization_warnings.py
+│   ├── models
+│   │   ├── __init__.py
+│   │   ├── activity.py
+│   │   ├── activity_version.py
+│   │   ├── address.py
+│   │   ├── anonymized
+│   │   │   ├── __init__.py
+│   │   │   ├── activity.py
+│   │   │   ├── activity_version.py
+│   │   │   ├── base.py
+│   │   │   ├── company.py
+│   │   │   ├── company_certification.py
+│   │   │   ├── company_known_address.py
+│   │   │   ├── company_stats.py
+│   │   │   ├── controller_control.py
+│   │   │   ├── controller_user.py
+│   │   │   ├── email.py
+│   │   │   ├── employment.py
+│   │   │   ├── id_mapping.py
+│   │   │   ├── location_entry.py
+│   │   │   ├── mission.py
+│   │   │   ├── mission_end.py
+│   │   │   ├── mission_validation.py
+│   │   │   ├── regulation_computation.py
+│   │   │   ├── regulatory_alert.py
+│   │   │   ├── team_and_association_tables.py
+│   │   │   ├── user_agreement.py
+│   │   │   └── vehicle.py
+│   │   ├── base.py
+│   │   ├── business.py
+│   │   ├── comment.py
+│   │   ├── company.py
+│   │   ├── company_certification.py
+│   │   ├── company_known_address.py
+│   │   ├── company_stats.py
+│   │   ├── control_location.py
+│   │   ├── controller_control.py
+│   │   ├── controller_refresh_token.py
+│   │   ├── controller_user.py
+│   │   ├── email.py
+│   │   ├── employment.py
+│   │   ├── event.py
+│   │   ├── expenditure.py
+│   │   ├── export.py
+│   │   ├── location_entry.py
+│   │   ├── mission.py
+│   │   ├── mission_auto_validation.py
+│   │   ├── mission_end.py
+│   │   ├── mission_validation.py
+│   │   ├── mixins
+│   │   │   ├── __init__.py
+│   │   │   ├── has_business.py
+│   │   │   └── user_resolver.py
+│   │   ├── naf_code.py
+│   │   ├── notification.py
+│   │   ├── queries.py
+│   │   ├── refresh_token.py
+│   │   ├── regulation_check.py
+│   │   ├── regulation_computation.py
+│   │   ├── regulatory_alert.py
+│   │   ├── scenario_testing.py
+│   │   ├── team.py
+│   │   ├── team_association_tables.py
+│   │   ├── user.py
+│   │   ├── user_agreement.py
+│   │   ├── user_read_token.py
+│   │   ├── user_survey_actions.py
+│   │   ├── utils.py
+│   │   └── vehicle.py
+│   ├── seed
+│   │   ├── __init__.py
+│   │   ├── factories.py
+│   │   ├── helpers.py
+│   │   └── scenarios
+│   │       ├── __init__.py
+│   │       ├── breach_rules.py
+│   │       ├── busy_admin.py
+│   │       ├── certificated_company.py
+│   │       ├── controls.py
+│   │       ├── export_excel.py
+│   │       ├── invitations.py
+│   │       ├── load_missions.py
+│   │       ├── lot_of_missions.py
+│   │       ├── multi_businesses.py
+│   │       ├── run_certificate.py
+│   │       ├── team_mode.py
+│   │       ├── temps_de_liaison.py
+│   │       └── third_party.py
+│   ├── services
+│   │   ├── anonymization
+│   │   │   ├── __init__.py
+│   │   │   ├── common.py
+│   │   │   ├── id_mapping_service.py
+│   │   │   ├── standalone
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── anonymization_executor.py
+│   │   │   │   ├── data_anonymization_manager.py
+│   │   │   │   └── data_finder.py
+│   │   │   ├── user_related
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── classifier.py
+│   │   │   │   ├── main.py
+│   │   │   │   └── user_anonymizer.py
+│   │   │   └── utilities
+│   │   │       └── clean_anon_tables.py
+│   │   ├── brevo
+│   │   │   ├── __init__.py
+│   │   │   ├── _config.py
+│   │   │   ├── acquisition_data_finder.py
+│   │   │   ├── activation_data_finder.py
+│   │   │   ├── display.py
+│   │   │   ├── orchestrator.py
+│   │   │   ├── testing.py
+│   │   │   └── utils.py
+│   │   ├── exports.py
+│   │   ├── get_businesses.py
+│   │   ├── get_regulation_checks.py
+│   │   ├── import_naf_codes.py
+│   │   ├── init_user_agreement.py
+│   │   ├── load_company_stats.py
+│   │   └── send_certificate_compute_end_notification.py
+│   ├── static
+│   │   └── images
+│   │       ├── certificate
+│   │       │   ├── badge-bronze.png
+│   │       │   ├── badge-diamond.png
+│   │       │   ├── badge-gold.png
+│   │       │   └── badge-silver.png
+│   │       ├── invite_employees.gif
+│   │       ├── invite_employees_v2.gif
+│   │       ├── step1_account_creation.jpg
+│   │       ├── step2_account_creation.jpg
+│   │       └── tutorial_to_create_mission.gif
+│   ├── templates
+│   │   ├── account_activation_email.html
+│   │   ├── account_blocked_email.html
+│   │   ├── anonymization_warning_employee.html
+│   │   ├── anonymization_warning_manager.html
+│   │   ├── button.html
+│   │   ├── cgu_employee_rejected.html
+│   │   ├── cgu_suspended_company.html
+│   │   ├── cgu_warning_suspension.html
+│   │   ├── companies_about_to_lose_certificate.html
+│   │   ├── companies_creation_email.html
+│   │   ├── company_creation_email.html
+│   │   ├── company_pending_invitation_by_employees.html
+│   │   ├── company_reminder_no_invitation.html
+│   │   ├── company_with_employees_but_with_no_activity.html
+│   │   ├── company_without_any_invitation.html
+│   │   ├── control_bulletin.html
+│   │   ├── control_bulletin_email.html
+│   │   ├── discover_mobilic.html
+│   │   ├── employment_validation_email.html
+│   │   ├── filters.py
+│   │   ├── holiday_changes_warning_email.html
+│   │   ├── holiday_logging_email.html
+│   │   ├── invitation_email.html
+│   │   ├── mission_changes_warning_email.html
+│   │   ├── mission_details_pdf.html
+│   │   ├── new_mission_information_email.html
+│   │   ├── pdf_landscape_base.html
+│   │   ├── pdf_portrait_base.html
+│   │   ├── reset_password_email.html
+│   │   ├── scheduled_invitation_email.html
+│   │   ├── team_colleague_affectation.html
+│   │   ├── team_update_affectation.html
+│   │   ├── third_party_software_account_creation.html
+│   │   ├── third_party_software_employment.html
+│   │   ├── transactional_base.html
+│   │   └── work_days_pdf.html
+│   └── tests
+│       ├── __init__.py
+│       ├── auto_validations
+│       │   ├── __init__.py
+│       │   └── test_auto_validation.py
+│       ├── bizdev
+│       │   ├── __init__.py
+│       │   └── test_companies_about_to_lose_certificate.py
+│       ├── certificate
+│       │   ├── __init__.py
+│       │   ├── test_certificate_admin_changes.py
+│       │   ├── test_certificate_api.py
+│       │   ├── test_certificate_be_compliant.py
+│       │   ├── test_certificate_company_api.py
+│       │   ├── test_certificate_criteria.py
+│       │   ├── test_certificate_medals.py
+│       │   └── test_certificate_real_time.py
+│       ├── controls
+│       │   ├── __init__.py
+│       │   ├── test_business_type_in_control.py
+│       │   ├── test_control_frozen_data.py
+│       │   ├── test_create_mobilic_control.py
+│       │   ├── test_get_controller_user_info.py
+│       │   ├── test_read_control_data.py
+│       │   ├── test_read_control_data_no_mobilic.py
+│       │   ├── test_report_infractions.py
+│       │   └── test_send_control_bulletin_email.py
+│       ├── helpers.py
+│       ├── regulations
+│       │   ├── __init__.py
+│       │   ├── test_common.py
+│       │   ├── test_daily_rest.py
+│       │   ├── test_deleting_mission_triggers_computation.py
+│       │   ├── test_different_periods.py
+│       │   ├── test_different_versions.py
+│       │   ├── test_end_of_week.py
+│       │   ├── test_enough_breaks.py
+│       │   ├── test_long_break_detection.py
+│       │   ├── test_maximum_work_calendar_week.py
+│       │   ├── test_maximum_work_day_time.py
+│       │   ├── test_misc.py
+│       │   ├── test_multi_mission_alert_bug.py
+│       │   ├── test_report_infractions.py
+│       │   ├── test_uninterrupted_work_time.py
+│       │   ├── test_utils.py
+│       │   ├── test_weekly_rules.py
+│       │   └── test_work_day_break.py
+│       ├── test_account.py
+│       ├── test_activity_overlaps.py
+│       ├── test_anonymization_references.py
+│       ├── test_anonymization_warnings.py
+│       ├── test_api_admin_queries.py
+│       ├── test_api_employee_queries.py
+│       ├── test_api_employment_token.py
+│       ├── test_api_software_registration.py
+│       ├── test_api_sync_employment.py
+│       ├── test_authentication.py
+│       ├── test_authorization.py
+│       ├── test_base_anonymization.py
+│       ├── test_cancel_mission.py
+│       ├── test_cgu.py
+│       ├── test_company_get_admins.py
+│       ├── test_company_has_no_activity.py
+│       ├── test_create_mission.py
+│       ├── test_deleted_missions.py
+│       ├── test_deletion_target.py
+│       ├── test_edit_activities.py
+│       ├── test_employment.py
+│       ├── test_france_connect.py
+│       ├── test_helpers.py
+│       ├── test_holidays.py
+│       ├── test_idor_vulnerabilities.py
+│       ├── test_invitations.py
+│       ├── test_livestorm.py
+│       ├── test_load_company_stats.py
+│       ├── test_log_activities.py
+│       ├── test_log_location.py
+│       ├── test_notifications.py
+│       ├── test_permission_activities.py
+│       ├── test_permission_missions.py
+│       ├── test_queries.py
+│       ├── test_read_activities.py
+│       ├── test_regulatory_alerts_summary.py
+│       ├── test_team.py
+│       ├── test_transfers.py
+│       ├── test_validation.py
+│       └── test_vehicle_deduplication.py
+├── config.py
+├── cron.json
+├── data
+│   ├── cerbere-reg-geojson.json
+│   └── naf_rev2_codes.tsv
+├── docker-compose.yml
+├── dockerfile
+├── fonts
+│   └── Marianne-Bold.ttf
+├── migrations
+│   ├── README
+│   ├── alembic.ini
+│   ├── env.py
+│   ├── script.py.mako
+│   └── versions
+│       ├── 020c5cbf1354_add_mission_validation.py
+│       ├── 022d979043d0_certificate_rework_model.py
+│       ├── 02b1e89f1165_add_max_worked_hours_in_calendar_week_.py
+│       ├── 06188fcde16b_add_day_page_filled_in_control.py
+│       ├── 061ed7650780_regulation_check_description_in_.py
+│       ├── 0722a03fd71e_add_mailing_method_to_employment.py
+│       ├── 07b7dba42f71_rename_known_address_column_in_.py
+│       ├── 096862334173_backfills_observed_infractions_for_no_.py
+│       ├── 09e6a83c8272_first_models.py
+│       ├── 0a99a53e565e_add_extra_column_for_controls.py
+│       ├── 0b6d2cef18e8_add_location_system.py
+│       ├── 0c30fa118051_fix_regulatory_alert_extra_column.py
+│       ├── 0d842a23583f_.py
+│       ├── 0f0d912567c0_add_cancellation_time_to_expenditure.py
+│       ├── 112cfb414cb6_add_comments.py
+│       ├── 119d8d9a324c_emails.py
+│       ├── 12406d0bbd1b_add_third_party_client_company_table.py
+│       ├── 13912f58d6e8_add_activity_id_to_overlapping_.py
+│       ├── 1517112ecb4d_add_dismiss_reception_time.py
+│       ├── 15bacad268d4_remove_seconds_from_start_and_end_times.py
+│       ├── 15fc3b5f23c4_company_cease_activity.py
+│       ├── 1648f72277eb_revamp_mission_model.py
+│       ├── 16ff1e79bfad_simplify_and_rename_api.py
+│       ├── 17a9939344be_add_france_connect_info.py
+│       ├── 19efd09533ca_team_enrollment_check_constraints.py
+│       ├── 1a89721126f7_only_one_validation_per_mission_user_.py
+│       ├── 1b0149fade1a_add_control_time.py
+│       ├── 1b4a586db7d2_add_team_address_primary_key_constraint.py
+│       ├── 1c6085670a9f_add_acr_and_amr_columns_for_authlib_1_6_.py
+│       ├── 1e07913658d1_add_naf_codes.py
+│       ├── 1f0751145e58_start_time_before_event_time_for_.py
+│       ├── 1f0d730d08b8_refresh_token_nonce.py
+│       ├── 1fe02d4c1330_avoid_duplicate_expenditures.py
+│       ├── 209c1d0a5cf9_update_regulation_check_variables_based_.py
+│       ├── 20b56cbd2d05_merge_multiple_heads_after_revert_.py
+│       ├── 2179a955a24d_employment_share_email_option.py
+│       ├── 22a0e898310e_add_user_timezone_name.py
+│       ├── 2403c7f1843d_fusion_des_branches_auto_validation_et_.py
+│       ├── 27655467d715_add_company_stats.py
+│       ├── 299d7faa48b1_add_vehicle_model.py
+│       ├── 2b39e364997a_refactor_control_bulletin_model.py
+│       ├── 2b887f9b571b_remove_external_id_column.py
+│       ├── 2c97929c18d0_add_regulation_tables.py
+│       ├── 2e6b59be046b_oauth.py
+│       ├── 2fc4745e5ad8_create_team_mates_on_the_fly.py
+│       ├── 3030266fdd01_remove_team_from_activity_model.py
+│       ├── 30cee055a36e_.py
+│       ├── 320dbbdd0b27_add_last_kilometer_for_vehicle.py
+│       ├── 324e6a66c249_add_activity_model.py
+│       ├── 32ba9730e22c_create_control_bulletin_table.py
+│       ├── 349352e8308d_remove_certification_communication_.py
+│       ├── 373e565a327a_trv_max_work_time_based_on_amplitude.py
+│       ├── 376542d9939a_email_activation.py
+│       ├── 3b122f77fff0_non_zero_activity_durations.py
+│       ├── 3edf5de0351f_add_signing_keys.py
+│       ├── 41e74d769002_keep_all_refresh_tokens.py
+│       ├── 420dbfec0b28_deffer_overlapping_activities_constraint.py
+│       ├── 446e9197cf78_migrate_old_control_to_new_data_model.py
+│       ├── 44bebfc43b10_update_description_natinf_25666.py
+│       ├── 456e9c17c509_add_company_name_field_to_user_model.py
+│       ├── 460f372be359_add_anonymized_table_and_mapping_id.py
+│       ├── 46be945ea269_set_foreign_key_on_revisee_to_allow_.py
+│       ├── 473d9846344d_add_reception_time_to_activity_log.py
+│       ├── 475ecb05cb24_change_base_validation_status_enum.py
+│       ├── 4af1a795b88b_add_bdc_s_download_time.py
+│       ├── 4bea3bfdd457_allow_manual_addresses.py
+│       ├── 4d83f466b18c_update_mission_validation_auto_.py
+│       ├── 4daee978090a_add_nb_bad_password_tries_et_status_in_.py
+│       ├── 4e97be9e4efd_add_vehicle_termination.py
+│       ├── 4ebd50b0ef82_add_notification_table.py
+│       ├── 52434978c99e_fix_duplicate_addresses.py
+│       ├── 55e1f2f5d706_auto_validate_early_missions.py
+│       ├── 575d1a347d04_backfills_observed_infractions_for_.py
+│       ├── 59d3ad8f0527_.py
+│       ├── 5b7ea22cbae2_clean_activity_model.py
+│       ├── 5b8a4d0e2cf4_add_snack_expenditure.py
+│       ├── 5bad2b03c508_nullable_employment_is_primary.py
+│       ├── 5c98ea186ad7_no_lic_regulation_check_description.py
+│       ├── 5f353286ae5b_add_vehicle_booking_model.py
+│       ├── 60d7e99b85f3_add_number_of_workers_field_in_company.py
+│       ├── 60f5c0616731_add_regulation_check_work_day_break.py
+│       ├── 63b3392e68a8_add_admin_flag_to_user.py
+│       ├── 65ce09d89bca_fix_activity_update_time_constraint.py
+│       ├── 660b542c1ed2_add_way_heard_of_mobilic_column.py
+│       ├── 68ed4db9ae15_company_settings_other_task.py
+│       ├── 6bfdb39b721f_remove_primary_secondary_distinction_on_.py
+│       ├── 6d33809b0e9b_add_kilometer_reading.py
+│       ├── 6e70207979a9_link_comment_to_mission.py
+│       ├── 6e8011db8c1f_add_company_team_tables.py
+│       ├── 6f02aa230fcc_add_delivered_by_hand_and_send_to_admin_.py
+│       ├── 6ff0c4124a0c_add_regulation_computation_table.py
+│       ├── 72fba41df82f_remove_unicity_constraint_for_greco_id.py
+│       ├── 749ceabbea95_employment_model.py
+│       ├── 74b82d635596_update_validation_status.py
+│       ├── 75b8081a1c9c_add_mission_end_id_to_existing_mission_.py
+│       ├── 76530c01c430_make_context_a_set_field.py
+│       ├── 76a8e05f8fee_add_vehicle_id_relation_on_mission.py
+│       ├── 771c404ddbc2_persist_invite_tokens.py
+│       ├── 7ad58d6c287d_refactor_start_and_action_times.py
+│       ├── 7e8f71c49544_add_gender_to_user.py
+│       ├── 7f8c48727acf_add_user_read.py
+│       ├── 80dfc91bbd27_third_party_client_employment_.py
+│       ├── 82e99cb72552_controller_user_add_greco_id.py
+│       ├── 8306696143fd_add_observation_column_for_bulletin_.py
+│       ├── 83a221435ceb_add_business_in_regulatory_alert.py
+│       ├── 83a7fd4629f0_user_agreement_table.py
+│       ├── 83ea61a446f8_scenario_testing_certificate_info.py
+│       ├── 83f49fddbcb6_revert_revision_foreign_key.py
+│       ├── 88948031a878_add_no_lic_regulation_check.py
+│       ├── 890469f396e6_admin_over_validation_justification.py
+│       ├── 8bc3c981ee6a_auto_validations_table.py
+│       ├── 8fde055f9d29_add_driver_switch_activity_status.py
+│       ├── 8fe63e4276dc_add_driver_index_field_on_activity.py
+│       ├── 9027a1881082_unique_sirets.py
+│       ├── 90acbc440024_add_certification_communication_boolean.py
+│       ├── 915e0942f14f_ajout_champ_last_submitter_id_dans_.py
+│       ├── 91a93a56a303_reported_infractions.py
+│       ├── 92c1622e406a_add_company_admin_flag.py
+│       ├── 92f5f520f6fe_store_refresh_tokens.py
+│       ├── 930314f0ed57_add_relevant_regulation_alert_index.py
+│       ├── 961bdce1e519_add_control_bulletin_step_1_fields.py
+│       ├── 96ec09166d4a_update_regulation_check_variables_with_.py
+│       ├── 99c325b1b8c1_update_regulation_check_descriptions.py
+│       ├── 9d607a1d2b0a_new_email.py
+│       ├── 9e2eb44e464d_activity_last_submitter_id_fkey_.py
+│       ├── a0c708394373_make_team_enrollment_revisable.py
+│       ├── a10c18f27735_merge_control_time_and_bulletin_email_.py
+│       ├── a1b289f48774_fix_activity_different_successive_types_.py
+│       ├── a318018bd9fb_replace_context_with_dismiss_prop_and_.py
+│       ├── a482261c5eb9_add_team_id_in_employment_table.py
+│       ├── a4be56f6b1a8_non_nullable_mailing_lists.py
+│       ├── a89502b9c0f3_mandatory_user_email.py
+│       ├── aa1096a64d0f_create_business_table.py
+│       ├── aa3c6ff8cdb7_add_surveys_table.py
+│       ├── aac0206e8581_dismiss_and_revision_comments.py
+│       ├── aba5d96052ab_add_expenditure_spending_date.py
+│       ├── ad95e00a66ba_remove_event_reception_time.py
+│       ├── ad96684d50e1_add_activity_start_time_old_event_time.py
+│       ├── adca0746dd7d_creation_comment.py
+│       ├── af395b68485a_oauth_token.py
+│       ├── af5f8595458a_rename_sanction_in_control_history.py
+│       ├── b00eb3b480ac_fix_control_bulletin_column.py
+│       ├── b05231a3afda_add_expenditure_setting.py
+│       ├── b29f8f5e455b_create_controller_tables.py
+│       ├── b448927b940a_team_enrollment_model.py
+│       ├── b5afcd504879_add_third_party_client_employment_table.py
+│       ├── b6d1707c5ba1_add_nb_controlled_days_in_control.py
+│       ├── b7270c163b14_update_controller_control_table.py
+│       ├── b93eeb578bdd_clean_scenario_testing.py
+│       ├── bad3fdae2730_add_phone_number_to_user.py
+│       ├── bbacbf6d536b_remove_company_id_from_events.py
+│       ├── bc7abe3eb83c_ajout_des_temps_de_liaison_en_tant_que_.py
+│       ├── bd0cdf9f16bd_remove_regulation_rule_not_null_.py
+│       ├── bd643a8d5269_add_taxi_businesses.py
+│       ├── bde869cbd775_add_company_certificate_badge_request_.py
+│       ├── c00e60380604_add_password_update_time_in_user.py
+│       ├── c1e0cfacea5a_add_exports_table.py
+│       ├── c452a761d31a_add_phone_number_to_company.py
+│       ├── c5192b34d875_activation_email_token.py
+│       ├── c737e645f457_dismissable_employment.py
+│       ├── c98854a361af_add_company_certification_table.py
+│       ├── cc9bc7a3b096_add_mission_model.py
+│       ├── d20f73ecb9fc_add_late_registration_justification_in_.py
+│       ├── d2da23a44a8b_change_siren_to_string.py
+│       ├── d342aeb2a88f_add_note_to_control.py
+│       ├── d4f359418780_non_nullable_user_info.py
+│       ├── d510490daadf_non_nullable_expenditure_type.py
+│       ├── d81487be0922_add_control_bulletin_step_2_fields.py
+│       ├── dab7465f3667_add_activity_type_off.py
+│       ├── dbfe3ea99885_rename_column.py
+│       ├── dc0d42d537a6_add_column_is_vehicle_immobilized_to_.py
+│       ├── de90912093ef_api_updates.py
+│       ├── ded990280e06_add_first_and_last_names_to_user.py
+│       ├── e0608dcf0866_add_subscribed_mailing_lists.py
+│       ├── e0834912bc9c_remove_email_type_constraint.py
+│       ├── e688d06e7d2d_add_company_settings.py
+│       ├── e7e59e36d8f6_expenditures_vehicle_number_and_mission.py
+│       ├── e920e737ca5a_add_activity_range_constraints.py
+│       ├── e9e9adb7e801_add_parameter_to_enable_disable_support_.py
+│       ├── eb2980d5acfe_update_employment_constraint.py
+│       ├── ec4e193da96a_adding_vehicle_and_company_columns_in_.py
+│       ├── ecc1e9f03ce8_fix_natinf_for_maximumworkeddaysinweek_.py
+│       ├── ed79627ad659_unique_siren_on_company.py
+│       ├── eeed3eeec7de_nb_worker_info_snooze_date.py
+│       ├── f02e61a44fa3_add_exclude_constraint_for_simultaneous_.py
+│       ├── f08bc938b26b_add_controller_control_table.py
+│       ├── f204eb2cdb49_make_activity_revisable_and_remove_.py
+│       ├── f2128b73734b_update_mission_validation.py
+│       ├── f2e6fb409232_activity_start_time_before_event_time.py
+│       ├── f61f00cde16f_remove_expenditure_and_team_enrollment.py
+│       ├── f62872528474_remove_no_successive_types_constraint.py
+│       ├── f628bed57b6c_add_control_location_table.py
+│       ├── f690b917edae_no_lic_nb_controlled_days.py
+│       ├── fa96dfc8237d_add_disabled_warnings.py
+│       ├── fc7fb77ff350_add_performance_indexes_for_invitations.py
+│       ├── fceb6686c112_revert_refresh_token_handling.py
+│       ├── fe1e80dc69fe_add_negative_user_id_sequence_and_deletion_target.py
+│       ├── fedbcc50bf6f_ajout_du_paramètre_du_nom_de_mission.py
+│       ├── ff7b6a11d3e8_fix_log_ahead_margin.py
+│       └── ff7bf9a10e57_add_comments_table.py
+└── pyproject.toml
+46 directories, 633 files

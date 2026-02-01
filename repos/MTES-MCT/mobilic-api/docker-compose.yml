@@ -1,0 +1,71 @@
+services:
+  mobilic-api:
+    container_name: mobilic-flask
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports: 
+      - "5000:5000"
+    environment:
+      FLASK_APP: app:app
+      FLASK_DEBUG: "1"
+      FLASK_SKIP_DOTENV: "1"
+      DOTENV_FILE: ".env/.env.local"
+      CELERY_BROKER_URL: redis://redis:6379/0
+    working_dir: /app
+    volumes:
+      - .:/app
+    depends_on:
+      - mobilic-db
+      - redis
+
+  # celery-worker:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   environment:
+  #     FLASK_APP: app:app
+  #     FLASK_DEBUG: "1"
+  #     FLASK_SKIP_DOTENV: "1"
+  #     DOTENV_FILE: ".env/.env.local"
+  #     CELERY_BROKER_URL: redis://redis:6379/0
+  #   working_dir: /app
+  #   volumes:
+  #     - .:/app
+  #   depends_on:
+  #     - mobilic-db
+  #     - redis
+  #   command: celery --app=app.celery worker --loglevel=info
+
+  mobilic-db:
+    image: postgres:14.18-alpine
+    container_name: mobilic-db
+    # restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: mobilic
+      POSTGRES_USER: mobilic
+      POSTGRES_PASSWORD: mobilic
+    volumes:
+      - mobilic-postgresql-data:/var/lib/postgresql
+
+  mobilic-db-test:
+    image: postgres:14.18-alpine
+    container_name: mobilic-db-test
+    ports:
+      - "5433:5432"
+    environment: 
+      POSTGRES_DB: mobilic-test
+      POSTGRES_USER: mobilic-test
+      POSTGRES_PASSWORD: mobilic-test
+
+  redis:
+    image: redis:alpine
+    container_name: mobilic-redis
+    ports:
+      - "6379:6379"
+
+
+volumes:
+  mobilic-postgresql-data:
