@@ -1,0 +1,2925 @@
+.
+├── .cursor
+│   └── rules
+│       └── CLAUDE.md
+├── .dockerignore
+├── .env.docker
+├── .env.example
+├── .gitattributes
+├── .github
+│   ├── dependabot.yml
+│   └── workflows
+│       ├── https-deploy-production.yaml
+│       ├── https-deploy-sandbox.yaml
+│       ├── https-deploy-staging.yaml
+│       ├── reusable-integration-tests.yaml
+│       ├── test.env
+│       └── test.yaml
+├── .gitignore
+├── .rspec
+├── .rubocop.yml
+├── .ruby-version
+├── .simplecov
+├── CLAUDE.md
+├── Dockerfile
+├── Gemfile
+├── Gemfile.lock
+├── Guardfile
+├── Makefile
+├── Procfile.local
+├── README.md
+├── Rakefile
+├── app
+│   ├── assets
+│   │   ├── fonts
+│   │   │   ├── Marianne-Bold.woff
+│   │   │   ├── Marianne-Bold.woff2
+│   │   │   ├── Marianne-Bold_Italic.woff
+│   │   │   ├── Marianne-Bold_Italic.woff2
+│   │   │   ├── Marianne-Light.woff
+│   │   │   ├── Marianne-Light.woff2
+│   │   │   ├── Marianne-Light_Italic.woff
+│   │   │   ├── Marianne-Light_Italic.woff2
+│   │   │   ├── Marianne-Medium.woff
+│   │   │   ├── Marianne-Medium.woff2
+│   │   │   ├── Marianne-Medium_Italic.woff
+│   │   │   ├── Marianne-Medium_Italic.woff2
+│   │   │   ├── Marianne-Regular.woff
+│   │   │   ├── Marianne-Regular.woff2
+│   │   │   ├── Marianne-Regular_Italic.woff
+│   │   │   ├── Marianne-Regular_Italic.woff2
+│   │   │   ├── Spectral-ExtraBold.woff
+│   │   │   ├── Spectral-ExtraBold.woff2
+│   │   │   ├── Spectral-Regular.woff
+│   │   │   └── Spectral-Regular.woff2
+│   │   ├── images
+│   │   │   ├── .keep
+│   │   │   ├── artwork
+│   │   │   │   ├── .DS_Store
+│   │   │   │   ├── background
+│   │   │   │   │   └── ovoid.svg
+│   │   │   │   ├── dark.svg
+│   │   │   │   ├── light.svg
+│   │   │   │   ├── pictograms
+│   │   │   │   │   ├── .DS_Store
+│   │   │   │   │   ├── buildings
+│   │   │   │   │   │   ├── city-hall.svg
+│   │   │   │   │   │   ├── factory.svg
+│   │   │   │   │   │   ├── house.svg
+│   │   │   │   │   │   ├── nuclear-plant.svg
+│   │   │   │   │   │   └── school.svg
+│   │   │   │   │   ├── digital
+│   │   │   │   │   │   ├── application.svg
+│   │   │   │   │   │   ├── avatar.svg
+│   │   │   │   │   │   ├── calendar.svg
+│   │   │   │   │   │   ├── coding.svg
+│   │   │   │   │   │   ├── data-visualization.svg
+│   │   │   │   │   │   ├── in-progress.svg
+│   │   │   │   │   │   ├── information.svg
+│   │   │   │   │   │   ├── internet.svg
+│   │   │   │   │   │   ├── mail-send.svg
+│   │   │   │   │   │   └── search.svg
+│   │   │   │   │   ├── document
+│   │   │   │   │   │   ├── contract.svg
+│   │   │   │   │   │   ├── document-add.svg
+│   │   │   │   │   │   ├── document-download.svg
+│   │   │   │   │   │   ├── document-signature.svg
+│   │   │   │   │   │   ├── document.svg
+│   │   │   │   │   │   ├── driving-licence.svg
+│   │   │   │   │   │   ├── national-identity-card.svg
+│   │   │   │   │   │   ├── passport.svg
+│   │   │   │   │   │   ├── presse-card.svg
+│   │   │   │   │   │   ├── tax-stamp.svg
+│   │   │   │   │   │   └── vehicle-registration.svg
+│   │   │   │   │   ├── environment
+│   │   │   │   │   │   ├── environment.svg
+│   │   │   │   │   │   ├── food.svg
+│   │   │   │   │   │   ├── grocery.svg
+│   │   │   │   │   │   ├── human-cooperation.svg
+│   │   │   │   │   │   ├── leaf.svg
+│   │   │   │   │   │   ├── moon.svg
+│   │   │   │   │   │   ├── mountain.svg
+│   │   │   │   │   │   ├── sun.svg
+│   │   │   │   │   │   └── tree.svg
+│   │   │   │   │   ├── health
+│   │   │   │   │   │   ├── health.svg
+│   │   │   │   │   │   ├── hospital.svg
+│   │   │   │   │   │   ├── vaccine.svg
+│   │   │   │   │   │   └── virus.svg
+│   │   │   │   │   ├── institutions
+│   │   │   │   │   │   ├── firefighter.svg
+│   │   │   │   │   │   ├── gendarmerie.svg
+│   │   │   │   │   │   ├── justice.svg
+│   │   │   │   │   │   ├── money.svg
+│   │   │   │   │   │   └── police.svg
+│   │   │   │   │   ├── leisure
+│   │   │   │   │   │   ├── book.svg
+│   │   │   │   │   │   ├── community.svg
+│   │   │   │   │   │   ├── culture.svg
+│   │   │   │   │   │   ├── digital-art.svg
+│   │   │   │   │   │   └── paint.svg
+│   │   │   │   │   ├── map
+│   │   │   │   │   │   ├── airport.svg
+│   │   │   │   │   │   ├── location-france.svg
+│   │   │   │   │   │   ├── luggage.svg
+│   │   │   │   │   │   └── map.svg
+│   │   │   │   │   └── system
+│   │   │   │   │       ├── connection-lost.svg
+│   │   │   │   │       ├── error.svg
+│   │   │   │   │       ├── information.svg
+│   │   │   │   │       ├── notification.svg
+│   │   │   │   │       ├── padlock.svg
+│   │   │   │   │       ├── success.svg
+│   │   │   │   │       ├── system.svg
+│   │   │   │   │       ├── technical-error.svg
+│   │   │   │   │       └── warning.svg
+│   │   │   │   └── system.svg
+│   │   │   ├── authorization_requests
+│   │   │   │   ├── changes_requested-icon.svg
+│   │   │   │   ├── draft-icon.svg
+│   │   │   │   ├── pending-icon.svg
+│   │   │   │   ├── survey.svg
+│   │   │   │   └── validated_or_refused-icon.svg
+│   │   │   ├── data_providers
+│   │   │   │   ├── aife.jpeg
+│   │   │   │   ├── cisirh.png
+│   │   │   │   ├── cnam.jpg
+│   │   │   │   ├── dge.png
+│   │   │   │   ├── dgfip.jpeg
+│   │   │   │   ├── dila_premier_ministre.jpg
+│   │   │   │   ├── dinum.png
+│   │   │   │   ├── hubee.png
+│   │   │   │   ├── logo-ans.png
+│   │   │   │   ├── menj.png
+│   │   │   │   ├── minarm.jpg
+│   │   │   │   ├── ministere_sante.jpg
+│   │   │   │   ├── mtes.jpg
+│   │   │   │   └── urssaf.jpg
+│   │   │   ├── denied.svg
+│   │   │   ├── eligibility
+│   │   │   │   ├── blob.svg
+│   │   │   │   ├── forme.svg
+│   │   │   │   └── trame.svg
+│   │   │   ├── favicons
+│   │   │   │   ├── android-chrome-192x192.png
+│   │   │   │   ├── android-chrome-512x512.png
+│   │   │   │   ├── apple-touch-icon.png
+│   │   │   │   ├── favicon.ico
+│   │   │   │   ├── favicon.svg
+│   │   │   │   └── manifest.webmanifest
+│   │   │   ├── icons
+│   │   │   │   ├── buildings
+│   │   │   │   │   ├── ancient-gate-fill.svg
+│   │   │   │   │   ├── ancient-gate-line.svg
+│   │   │   │   │   ├── ancient-pavilion-fill.svg
+│   │   │   │   │   ├── ancient-pavilion-line.svg
+│   │   │   │   │   ├── bank-fill.svg
+│   │   │   │   │   ├── bank-line.svg
+│   │   │   │   │   ├── building-fill.svg
+│   │   │   │   │   ├── building-line.svg
+│   │   │   │   │   ├── community-fill.svg
+│   │   │   │   │   ├── community-line.svg
+│   │   │   │   │   ├── government-fill.svg
+│   │   │   │   │   ├── government-line.svg
+│   │   │   │   │   ├── home-4-fill.svg
+│   │   │   │   │   ├── home-4-line.svg
+│   │   │   │   │   ├── hospital-fill.svg
+│   │   │   │   │   ├── hospital-line.svg
+│   │   │   │   │   ├── hotel-fill.svg
+│   │   │   │   │   ├── hotel-line.svg
+│   │   │   │   │   ├── store-fill.svg
+│   │   │   │   │   └── store-line.svg
+│   │   │   │   ├── business
+│   │   │   │   │   ├── archive-fill.svg
+│   │   │   │   │   ├── archive-line.svg
+│   │   │   │   │   ├── attachment-fill.svg
+│   │   │   │   │   ├── attachment-line.svg
+│   │   │   │   │   ├── award-fill.svg
+│   │   │   │   │   ├── award-line.svg
+│   │   │   │   │   ├── bar-chart-box-fill.svg
+│   │   │   │   │   ├── bar-chart-box-line.svg
+│   │   │   │   │   ├── bookmark-fill.svg
+│   │   │   │   │   ├── bookmark-line.svg
+│   │   │   │   │   ├── briefcase-fill.svg
+│   │   │   │   │   ├── briefcase-line.svg
+│   │   │   │   │   ├── calendar-*.svg  (6 files)
+│   │   │   │   │   ├── cloud-fill.svg
+│   │   │   │   │   ├── cloud-line.svg
+│   │   │   │   │   ├── copyright-fill.svg
+│   │   │   │   │   ├── copyright-line.svg
+│   │   │   │   │   ├── customer-service-fill.svg
+│   │   │   │   │   ├── customer-service-line.svg
+│   │   │   │   │   ├── flag-fill.svg
+│   │   │   │   │   ├── flag-line.svg
+│   │   │   │   │   ├── global-fill.svg
+│   │   │   │   │   ├── global-line.svg
+│   │   │   │   │   ├── line-chart-fill.svg
+│   │   │   │   │   ├── line-chart-line.svg
+│   │   │   │   │   ├── links-fill.svg
+│   │   │   │   │   ├── links-line.svg
+│   │   │   │   │   ├── mail-fill.svg
+│   │   │   │   │   ├── mail-line.svg
+│   │   │   │   │   ├── mail-open-fill.svg
+│   │   │   │   │   ├── mail-open-line.svg
+│   │   │   │   │   ├── medal-fill.svg
+│   │   │   │   │   ├── medal-line.svg
+│   │   │   │   │   ├── pie-chart-2-fill.svg
+│   │   │   │   │   ├── pie-chart-2-line.svg
+│   │   │   │   │   ├── pie-chart-box-fill.svg
+│   │   │   │   │   ├── pie-chart-box-line.svg
+│   │   │   │   │   ├── printer-fill.svg
+│   │   │   │   │   ├── printer-line.svg
+│   │   │   │   │   ├── profil-fill.svg
+│   │   │   │   │   ├── profil-line.svg
+│   │   │   │   │   ├── projector-2-fill.svg
+│   │   │   │   │   ├── projector-2-line.svg
+│   │   │   │   │   ├── send-plane-fill.svg
+│   │   │   │   │   ├── send-plane-line.svg
+│   │   │   │   │   ├── slideshow-fill.svg
+│   │   │   │   │   ├── slideshow-line.svg
+│   │   │   │   │   ├── window-fill.svg
+│   │   │   │   │   └── window-line.svg
+│   │   │   │   ├── communication
+│   │   │   │   │   ├── chat-2-fill.svg
+│   │   │   │   │   ├── chat-2-line.svg
+│   │   │   │   │   ├── chat-3-fill.svg
+│   │   │   │   │   ├── chat-3-line.svg
+│   │   │   │   │   ├── chat-check-fill.svg
+│   │   │   │   │   ├── chat-check-line.svg
+│   │   │   │   │   ├── chat-delete-fill.svg
+│   │   │   │   │   ├── chat-delete-line.svg
+│   │   │   │   │   ├── chat-poll-fill.svg
+│   │   │   │   │   ├── chat-poll-line.svg
+│   │   │   │   │   ├── discuss-fill.svg
+│   │   │   │   │   ├── discuss-line.svg
+│   │   │   │   │   ├── feedback-fill.svg
+│   │   │   │   │   ├── feedback-line.svg
+│   │   │   │   │   ├── message-2-fill.svg
+│   │   │   │   │   ├── message-2-line.svg
+│   │   │   │   │   ├── question-answer-fill.svg
+│   │   │   │   │   ├── question-answer-line.svg
+│   │   │   │   │   ├── questionnaire-fill.svg
+│   │   │   │   │   ├── questionnaire-line.svg
+│   │   │   │   │   ├── video-chat-fill.svg
+│   │   │   │   │   └── video-chat-line.svg
+│   │   │   │   ├── design
+│   │   │   │   │   ├── ball-pen-fill.svg
+│   │   │   │   │   ├── ball-pen-line.svg
+│   │   │   │   │   ├── brush-3-fill.svg
+│   │   │   │   │   ├── brush-3-line.svg
+│   │   │   │   │   ├── brush-fill.svg
+│   │   │   │   │   ├── brush-line.svg
+│   │   │   │   │   ├── contrast-fill.svg
+│   │   │   │   │   ├── contrast-line.svg
+│   │   │   │   │   ├── crop-fill.svg
+│   │   │   │   │   ├── crop-line.svg
+│   │   │   │   │   ├── drag-move-2-fill.svg
+│   │   │   │   │   ├── drag-move-2-line.svg
+│   │   │   │   │   ├── drop-fill.svg
+│   │   │   │   │   ├── drop-line.svg
+│   │   │   │   │   ├── edit-box-fill.svg
+│   │   │   │   │   ├── edit-box-line.svg
+│   │   │   │   │   ├── edit-fill.svg
+│   │   │   │   │   ├── edit-line.svg
+│   │   │   │   │   ├── ink-bottle-fill.svg
+│   │   │   │   │   ├── ink-bottle-line.svg
+│   │   │   │   │   ├── layout-grid-fill.svg
+│   │   │   │   │   ├── layout-grid-line.svg
+│   │   │   │   │   ├── mark-pen-fill.svg
+│   │   │   │   │   ├── mark-pen-line.svg
+│   │   │   │   │   ├── paint-brush-fill.svg
+│   │   │   │   │   ├── paint-brush-line.svg
+│   │   │   │   │   ├── paint-fill.svg
+│   │   │   │   │   ├── paint-line.svg
+│   │   │   │   │   ├── palette-fill.svg
+│   │   │   │   │   ├── palette-line.svg
+│   │   │   │   │   ├── pantone-fill.svg
+│   │   │   │   │   ├── pantone-line.svg
+│   │   │   │   │   ├── pen-nib-fill.svg
+│   │   │   │   │   ├── pen-nib-line.svg
+│   │   │   │   │   ├── pencil-fill.svg
+│   │   │   │   │   ├── pencil-line.svg
+│   │   │   │   │   ├── pencil-ruler-fill.svg
+│   │   │   │   │   ├── pencil-ruler-line.svg
+│   │   │   │   │   ├── shapes-fill.svg
+│   │   │   │   │   ├── shapes-line.svg
+│   │   │   │   │   ├── sip-fill.svg
+│   │   │   │   │   ├── sip-line.svg
+│   │   │   │   │   ├── table-fill.svg
+│   │   │   │   │   └── table-line.svg
+│   │   │   │   ├── development
+│   │   │   │   │   ├── bug-fill.svg
+│   │   │   │   │   ├── bug-line.svg
+│   │   │   │   │   ├── code-box-fill.svg
+│   │   │   │   │   ├── code-box-line.svg
+│   │   │   │   │   ├── code-s-slash-line.svg
+│   │   │   │   │   ├── cursor-fill.svg
+│   │   │   │   │   ├── cursor-line.svg
+│   │   │   │   │   ├── git-branch-fill.svg
+│   │   │   │   │   ├── git-branch-line.svg
+│   │   │   │   │   ├── git-commit-fill.svg
+│   │   │   │   │   ├── git-commit-line.svg
+│   │   │   │   │   ├── git-merge-fill.svg
+│   │   │   │   │   ├── git-merge-line.svg
+│   │   │   │   │   ├── git-pull-request-fill.svg
+│   │   │   │   │   ├── git-pull-request-line.svg
+│   │   │   │   │   ├── git-repository-commits-fill.svg
+│   │   │   │   │   ├── git-repository-commits-line.svg
+│   │   │   │   │   ├── git-repository-fill.svg
+│   │   │   │   │   ├── git-repository-line.svg
+│   │   │   │   │   ├── git-repository-private-fill.svg
+│   │   │   │   │   ├── git-repository-private-line.svg
+│   │   │   │   │   ├── terminal-box-fill.svg
+│   │   │   │   │   ├── terminal-box-line.svg
+│   │   │   │   │   ├── terminal-line.svg
+│   │   │   │   │   ├── terminal-window-fill.svg
+│   │   │   │   │   └── terminal-window-line.svg
+│   │   │   │   ├── device
+│   │   │   │   │   ├── bluetooth-fill.svg
+│   │   │   │   │   ├── bluetooth-line.svg
+│   │   │   │   │   ├── computer-fill.svg
+│   │   │   │   │   ├── computer-line.svg
+│   │   │   │   │   ├── dashboard-3-fill.svg
+│   │   │   │   │   ├── dashboard-3-line.svg
+│   │   │   │   │   ├── database-fill.svg
+│   │   │   │   │   ├── database-line.svg
+│   │   │   │   │   ├── device-fill.svg
+│   │   │   │   │   ├── device-line.svg
+│   │   │   │   │   ├── hard-drive-2-fill.svg
+│   │   │   │   │   ├── hard-drive-2-line.svg
+│   │   │   │   │   ├── mac-fill.svg
+│   │   │   │   │   ├── mac-line.svg
+│   │   │   │   │   ├── phone-fill.svg
+│   │   │   │   │   ├── phone-line.svg
+│   │   │   │   │   ├── qr-code-fill.svg
+│   │   │   │   │   ├── qr-code-line.svg
+│   │   │   │   │   ├── rss-fill.svg
+│   │   │   │   │   ├── rss-line.svg
+│   │   │   │   │   ├── save-3-fill.svg
+│   │   │   │   │   ├── save-3-line.svg
+│   │   │   │   │   ├── save-fill.svg
+│   │   │   │   │   ├── save-line.svg
+│   │   │   │   │   ├── server-fill.svg
+│   │   │   │   │   ├── server-line.svg
+│   │   │   │   │   ├── smartphone-fill.svg
+│   │   │   │   │   ├── smartphone-line.svg
+│   │   │   │   │   ├── tablet-fill.svg
+│   │   │   │   │   ├── tablet-line.svg
+│   │   │   │   │   ├── tv-fill.svg
+│   │   │   │   │   ├── tv-line.svg
+│   │   │   │   │   ├── wifi-fill.svg
+│   │   │   │   │   └── wifi-line.svg
+│   │   │   │   ├── document
+│   │   │   │   │   ├── article-fill.svg
+│   │   │   │   │   ├── article-line.svg
+│   │   │   │   │   ├── book-2-fill.svg
+│   │   │   │   │   ├── book-2-line.svg
+│   │   │   │   │   ├── booklet-fill.svg
+│   │   │   │   │   ├── booklet-line.svg
+│   │   │   │   │   ├── clipboard-fill.svg
+│   │   │   │   │   ├── clipboard-line.svg
+│   │   │   │   │   ├── draft-fill.svg
+│   │   │   │   │   ├── draft-line.svg
+│   │   │   │   │   ├── file-add-fill.svg
+│   │   │   │   │   ├── file-add-line.svg
+│   │   │   │   │   ├── file-download-fill.svg
+│   │   │   │   │   ├── file-download-line.svg
+│   │   │   │   │   ├── file-fill.svg
+│   │   │   │   │   ├── file-line.svg
+│   │   │   │   │   ├── file-pdf-fill.svg
+│   │   │   │   │   ├── file-pdf-line.svg
+│   │   │   │   │   ├── file-text-fill.svg
+│   │   │   │   │   ├── file-text-line.svg
+│   │   │   │   │   ├── folder-2-fill.svg
+│   │   │   │   │   ├── folder-2-line.svg
+│   │   │   │   │   ├── newspaper-fill.svg
+│   │   │   │   │   ├── newspaper-line.svg
+│   │   │   │   │   ├── survey-fill.svg
+│   │   │   │   │   ├── survey-line.svg
+│   │   │   │   │   ├── todo-fill.svg
+│   │   │   │   │   └── todo-line.svg
+│   │   │   │   ├── editor
+│   │   │   │   │   ├── code-view.svg
+│   │   │   │   │   ├── font-size.svg
+│   │   │   │   │   ├── fr--bold.svg
+│   │   │   │   │   ├── fr--highlight.svg
+│   │   │   │   │   ├── fr--quote-fill.svg
+│   │   │   │   │   ├── fr--quote-line.svg
+│   │   │   │   │   ├── h-1.svg
+│   │   │   │   │   ├── h-2.svg
+│   │   │   │   │   ├── h-3.svg
+│   │   │   │   │   ├── h-4.svg
+│   │   │   │   │   ├── h-5.svg
+│   │   │   │   │   ├── h-6.svg
+│   │   │   │   │   ├── hashtag.svg
+│   │   │   │   │   ├── italic.svg
+│   │   │   │   │   ├── link-unlink.svg
+│   │   │   │   │   ├── link.svg
+│   │   │   │   │   ├── list-ordered.svg
+│   │   │   │   │   ├── list-unordered.svg
+│   │   │   │   │   ├── question-mark.svg
+│   │   │   │   │   ├── separator.svg
+│   │   │   │   │   ├── space.svg
+│   │   │   │   │   ├── subscript.svg
+│   │   │   │   │   ├── superscript.svg
+│   │   │   │   │   ├── table-2.svg
+│   │   │   │   │   └── translate-2.svg
+│   │   │   │   ├── finance
+│   │   │   │   │   ├── bank-card-fill.svg
+│   │   │   │   │   ├── bank-card-line.svg
+│   │   │   │   │   ├── coin-fill.svg
+│   │   │   │   │   ├── gift-fill.svg
+│   │   │   │   │   ├── gift-line.svg
+│   │   │   │   │   ├── money-euro-box-fill.svg
+│   │   │   │   │   ├── money-euro-box-line.svg
+│   │   │   │   │   ├── money-euro-circle-fill.svg
+│   │   │   │   │   ├── money-euro-circle-line.svg
+│   │   │   │   │   ├── secure-payment-fill.svg
+│   │   │   │   │   ├── secure-payment-line.svg
+│   │   │   │   │   ├── shopping-bag-fill.svg
+│   │   │   │   │   ├── shopping-bag-line.svg
+│   │   │   │   │   ├── shopping-cart-2-fill.svg
+│   │   │   │   │   ├── shopping-cart-2-line.svg
+│   │   │   │   │   ├── trophy-fill.svg
+│   │   │   │   │   └── trophy-line.svg
+│   │   │   │   ├── health
+│   │   │   │   │   ├── capsule-fill.svg
+│   │   │   │   │   ├── capsule-line.svg
+│   │   │   │   │   ├── dislike-fill.svg
+│   │   │   │   │   ├── dislike-line.svg
+│   │   │   │   │   ├── dossier-fill.svg
+│   │   │   │   │   ├── dossier-line.svg
+│   │   │   │   │   ├── first-aid-kit-fill.svg
+│   │   │   │   │   ├── first-aid-kit-line.svg
+│   │   │   │   │   ├── hand-sanitizer-fill.svg
+│   │   │   │   │   ├── hand-sanitizer-line.svg
+│   │   │   │   │   ├── health-book-fill.svg
+│   │   │   │   │   ├── health-book-line.svg
+│   │   │   │   │   ├── heart-fill.svg
+│   │   │   │   │   ├── heart-line.svg
+│   │   │   │   │   ├── heart-pulse-fill.svg
+│   │   │   │   │   ├── heart-pulse-line.svg
+│   │   │   │   │   ├── lungs-fill.svg
+│   │   │   │   │   ├── lungs-line.svg
+│   │   │   │   │   ├── medicine-bottle-fill.svg
+│   │   │   │   │   ├── medicine-bottle-line.svg
+│   │   │   │   │   ├── mental-health-fill.svg
+│   │   │   │   │   ├── mental-health-line.svg
+│   │   │   │   │   ├── microscope-fill.svg
+│   │   │   │   │   ├── microscope-line.svg
+│   │   │   │   │   ├── psychotherapy-fill.svg
+│   │   │   │   │   ├── psychotherapy-line.svg
+│   │   │   │   │   ├── pulse-line.svg
+│   │   │   │   │   ├── stethoscope-fill.svg
+│   │   │   │   │   ├── stethoscope-line.svg
+│   │   │   │   │   ├── surgical-mask-fill.svg
+│   │   │   │   │   ├── surgical-mask-line.svg
+│   │   │   │   │   ├── syringe-fill.svg
+│   │   │   │   │   ├── syringe-line.svg
+│   │   │   │   │   ├── test-tube-fill.svg
+│   │   │   │   │   ├── test-tube-line.svg
+│   │   │   │   │   ├── thermometer-fill.svg
+│   │   │   │   │   ├── thermometer-line.svg
+│   │   │   │   │   ├── virus-fill.svg
+│   │   │   │   │   └── virus-line.svg
+│   │   │   │   ├── logo
+│   │   │   │   │   ├── chrome-fill.svg
+│   │   │   │   │   ├── chrome-line.svg
+│   │   │   │   │   ├── edge-fill.svg
+│   │   │   │   │   ├── edge-line.svg
+│   │   │   │   │   ├── facebook-circle-fill.svg
+│   │   │   │   │   ├── facebook-circle-line.svg
+│   │   │   │   │   ├── firefox-fill.svg
+│   │   │   │   │   ├── firefox-line.svg
+│   │   │   │   │   ├── fr--dailymotion-fill.svg
+│   │   │   │   │   ├── fr--dailymotion-line.svg
+│   │   │   │   │   ├── fr--tiktok-fill.svg
+│   │   │   │   │   ├── fr--tiktok-line.svg
+│   │   │   │   │   ├── github-fill.svg
+│   │   │   │   │   ├── github-line.svg
+│   │   │   │   │   ├── google-fill.svg
+│   │   │   │   │   ├── google-line.svg
+│   │   │   │   │   ├── ie-fill.svg
+│   │   │   │   │   ├── ie-line.svg
+│   │   │   │   │   ├── instagram-fill.svg
+│   │   │   │   │   ├── instagram-line.svg
+│   │   │   │   │   ├── linkedin-box-fill.svg
+│   │   │   │   │   ├── linkedin-box-line.svg
+│   │   │   │   │   ├── mastodon-fill.svg
+│   │   │   │   │   ├── mastodon-line.svg
+│   │   │   │   │   ├── npmjs-fill.svg
+│   │   │   │   │   ├── npmjs-line.svg
+│   │   │   │   │   ├── remixicon-fill.svg
+│   │   │   │   │   ├── remixicon-line.svg
+│   │   │   │   │   ├── safari-fill.svg
+│   │   │   │   │   ├── safari-line.svg
+│   │   │   │   │   ├── slack-fill.svg
+│   │   │   │   │   ├── slack-line.svg
+│   │   │   │   │   ├── snapchat-fill.svg
+│   │   │   │   │   ├── snapchat-line.svg
+│   │   │   │   │   ├── telegram-fill.svg
+│   │   │   │   │   ├── telegram-line.svg
+│   │   │   │   │   ├── threads-fill.svg
+│   │   │   │   │   ├── threads-line.svg
+│   │   │   │   │   ├── twitch-fill.svg
+│   │   │   │   │   ├── twitch-line.svg
+│   │   │   │   │   ├── twitter-fill.svg
+│   │   │   │   │   ├── twitter-line.svg
+│   │   │   │   │   ├── twitter-x-fill.svg
+│   │   │   │   │   ├── twitter-x-line.svg
+│   │   │   │   │   ├── vimeo-fill.svg
+│   │   │   │   │   ├── vimeo-line.svg
+│   │   │   │   │   ├── vuejs-fill.svg
+│   │   │   │   │   ├── vuejs-line.svg
+│   │   │   │   │   ├── whatsapp-fill.svg
+│   │   │   │   │   ├── whatsapp-line.svg
+│   │   │   │   │   ├── youtube-fill.svg
+│   │   │   │   │   └── youtube-line.svg
+│   │   │   │   ├── map
+│   │   │   │   │   ├── anchor-fill.svg
+│   │   │   │   │   ├── anchor-line.svg
+│   │   │   │   │   ├── bike-fill.svg
+│   │   │   │   │   ├── bike-line.svg
+│   │   │   │   │   ├── bus-fill.svg
+│   │   │   │   │   ├── bus-line.svg
+│   │   │   │   │   ├── car-fill.svg
+│   │   │   │   │   ├── car-line.svg
+│   │   │   │   │   ├── caravan-fill.svg
+│   │   │   │   │   ├── caravan-line.svg
+│   │   │   │   │   ├── charging-pile-2-fill.svg
+│   │   │   │   │   ├── charging-pile-2-line.svg
+│   │   │   │   │   ├── compass-3-fill.svg
+│   │   │   │   │   ├── compass-3-line.svg
+│   │   │   │   │   ├── cup-fill.svg
+│   │   │   │   │   ├── cup-line.svg
+│   │   │   │   │   ├── earth-fill.svg
+│   │   │   │   │   ├── earth-line.svg
+│   │   │   │   │   ├── france-fill.svg
+│   │   │   │   │   ├── france-line.svg
+│   │   │   │   │   ├── gas-station-fill.svg
+│   │   │   │   │   ├── gas-station-line.svg
+│   │   │   │   │   ├── goblet-fill.svg
+│   │   │   │   │   ├── goblet-line.svg
+│   │   │   │   │   ├── map-pin-2-fill.svg
+│   │   │   │   │   ├── map-pin-2-line.svg
+│   │   │   │   │   ├── map-pin-user-fill.svg
+│   │   │   │   │   ├── map-pin-user-line.svg
+│   │   │   │   │   ├── motorbike-fill.svg
+│   │   │   │   │   ├── motorbike-line.svg
+│   │   │   │   │   ├── passport-fill.svg
+│   │   │   │   │   ├── passport-line.svg
+│   │   │   │   │   ├── restaurant-fill.svg
+│   │   │   │   │   ├── restaurant-line.svg
+│   │   │   │   │   ├── road-map-fill.svg
+│   │   │   │   │   ├── road-map-line.svg
+│   │   │   │   │   ├── sailboat-fill.svg
+│   │   │   │   │   ├── sailboat-line.svg
+│   │   │   │   │   ├── ship-2-fill.svg
+│   │   │   │   │   ├── ship-2-line.svg
+│   │   │   │   │   ├── signal-tower-fill.svg
+│   │   │   │   │   ├── signal-tower-line.svg
+│   │   │   │   │   ├── suitcase-2-fill.svg
+│   │   │   │   │   ├── suitcase-2-line.svg
+│   │   │   │   │   ├── taxi-fill.svg
+│   │   │   │   │   ├── taxi-line.svg
+│   │   │   │   │   ├── train-fill.svg
+│   │   │   │   │   └── train-line.svg
+│   │   │   │   ├── media
+│   │   │   │   │   ├── align-left.svg
+│   │   │   │   │   ├── camera-fill.svg
+│   │   │   │   │   ├── camera-line.svg
+│   │   │   │   │   ├── clapperboard-fill.svg
+│   │   │   │   │   ├── clapperboard-line.svg
+│   │   │   │   │   ├── equalizer-fill.svg
+│   │   │   │   │   ├── equalizer-line.svg
+│   │   │   │   │   ├── film-fill.svg
+│   │   │   │   │   ├── film-line.svg
+│   │   │   │   │   ├── fullscreen-line.svg
+│   │   │   │   │   ├── gallery-fill.svg
+│   │   │   │   │   ├── gallery-line.svg
+│   │   │   │   │   ├── headphone-fill.svg
+│   │   │   │   │   ├── headphone-line.svg
+│   │   │   │   │   ├── image-add-fill.svg
+│   │   │   │   │   ├── image-add-line.svg
+│   │   │   │   │   ├── image-edit-fill.svg
+│   │   │   │   │   ├── image-edit-line.svg
+│   │   │   │   │   ├── image-fill.svg
+│   │   │   │   │   ├── image-line.svg
+│   │   │   │   │   ├── live-fill.svg
+│   │   │   │   │   ├── live-line.svg
+│   │   │   │   │   ├── mic-fill.svg
+│   │   │   │   │   ├── mic-line.svg
+│   │   │   │   │   ├── music-2-fill.svg
+│   │   │   │   │   ├── music-2-line.svg
+│   │   │   │   │   ├── notification-3-fill.svg
+│   │   │   │   │   ├── notification-3-line.svg
+│   │   │   │   │   ├── pause-circle-fill.svg
+│   │   │   │   │   ├── pause-circle-line.svg
+│   │   │   │   │   ├── play-circle-fill.svg
+│   │   │   │   │   ├── play-circle-line.svg
+│   │   │   │   │   ├── stop-circle-fill.svg
+│   │   │   │   │   ├── stop-circle-line.svg
+│   │   │   │   │   ├── volume-down-fill.svg
+│   │   │   │   │   ├── volume-down-line.svg
+│   │   │   │   │   ├── volume-mute-fill.svg
+│   │   │   │   │   ├── volume-mute-line.svg
+│   │   │   │   │   ├── volume-up-fill.svg
+│   │   │   │   │   └── volume-up-line.svg
+│   │   │   │   ├── others
+│   │   │   │   │   ├── fr--accessibility-fill.svg
+│   │   │   │   │   ├── fr--accessibility-line.svg
+│   │   │   │   │   ├── fr--ear-off-fill.svg
+│   │   │   │   │   ├── fr--ear-off-line.svg
+│   │   │   │   │   ├── fr--mental-disabilities-fill.svg
+│   │   │   │   │   ├── fr--mental-disabilities-line.svg
+│   │   │   │   │   ├── fr--sign-language-fill.svg
+│   │   │   │   │   ├── fr--sign-language-line.svg
+│   │   │   │   │   ├── leaf-fill.svg
+│   │   │   │   │   ├── leaf-line.svg
+│   │   │   │   │   ├── lightbulb-fill.svg
+│   │   │   │   │   ├── lightbulb-line.svg
+│   │   │   │   │   ├── plant-fill.svg
+│   │   │   │   │   ├── plant-line.svg
+│   │   │   │   │   ├── recycle-fill.svg
+│   │   │   │   │   ├── recycle-line.svg
+│   │   │   │   │   ├── scales-3-fill.svg
+│   │   │   │   │   ├── scales-3-line.svg
+│   │   │   │   │   ├── seedling-fill.svg
+│   │   │   │   │   ├── seedling-line.svg
+│   │   │   │   │   ├── umbrella-fill.svg
+│   │   │   │   │   ├── umbrella-line.svg
+│   │   │   │   │   ├── wheelchair-fill.svg
+│   │   │   │   │   └── wheelchair-line.svg
+│   │   │   │   ├── system
+│   │   │   │   │   ├── add-circle-fill.svg
+│   │   │   │   │   ├── add-circle-line.svg
+│   │   │   │   │   ├── add-line.svg
+│   │   │   │   │   ├── alarm-warning-fill.svg
+│   │   │   │   │   ├── alarm-warning-line.svg
+│   │   │   │   │   ├── alert-fill.svg
+│   │   │   │   │   ├── alert-line.svg
+│   │   │   │   │   ├── arrow-*.svg  (22 files)
+│   │   │   │   │   ├── check-line.svg
+│   │   │   │   │   ├── checkbox-circle-fill.svg
+│   │   │   │   │   ├── checkbox-circle-line.svg
+│   │   │   │   │   ├── checkbox-fill.svg
+│   │   │   │   │   ├── checkbox-line.svg
+│   │   │   │   │   ├── close-circle-fill.svg
+│   │   │   │   │   ├── close-circle-line.svg
+│   │   │   │   │   ├── close-line.svg
+│   │   │   │   │   ├── delete-bin-fill.svg
+│   │   │   │   │   ├── delete-bin-line.svg
+│   │   │   │   │   ├── download-fill.svg
+│   │   │   │   │   ├── download-line.svg
+│   │   │   │   │   ├── error-warning-fill.svg
+│   │   │   │   │   ├── error-warning-line.svg
+│   │   │   │   │   ├── external-link-fill.svg
+│   │   │   │   │   ├── external-link-line.svg
+│   │   │   │   │   ├── eye-fill.svg
+│   │   │   │   │   ├── eye-line.svg
+│   │   │   │   │   ├── eye-off-fill.svg
+│   │   │   │   │   ├── eye-off-line.svg
+│   │   │   │   │   ├── filter-fill.svg
+│   │   │   │   │   ├── filter-line.svg
+│   │   │   │   │   ├── fr-*.svg  (19 files)
+│   │   │   │   │   ├── information-fill.svg
+│   │   │   │   │   ├── information-line.svg
+│   │   │   │   │   ├── lock-fill.svg
+│   │   │   │   │   ├── lock-line.svg
+│   │   │   │   │   ├── lock-unlock-fill.svg
+│   │   │   │   │   ├── lock-unlock-line.svg
+│   │   │   │   │   ├── logout-box-r-fill.svg
+│   │   │   │   │   ├── logout-box-r-line.svg
+│   │   │   │   │   ├── menu-2-fill.svg
+│   │   │   │   │   ├── menu-fill.svg
+│   │   │   │   │   ├── more-fill.svg
+│   │   │   │   │   ├── more-line.svg
+│   │   │   │   │   ├── notification-badge-fill.svg
+│   │   │   │   │   ├── notification-badge-line.svg
+│   │   │   │   │   ├── question-fill.svg
+│   │   │   │   │   ├── question-line.svg
+│   │   │   │   │   ├── refresh-fill.svg
+│   │   │   │   │   ├── refresh-line.svg
+│   │   │   │   │   ├── search-fill.svg
+│   │   │   │   │   ├── search-line.svg
+│   │   │   │   │   ├── settings-5-fill.svg
+│   │   │   │   │   ├── settings-5-line.svg
+│   │   │   │   │   ├── shield-fill.svg
+│   │   │   │   │   ├── shield-line.svg
+│   │   │   │   │   ├── star-fill.svg
+│   │   │   │   │   ├── star-line.svg
+│   │   │   │   │   ├── star-s-fill.svg
+│   │   │   │   │   ├── star-s-line.svg
+│   │   │   │   │   ├── subtract-line.svg
+│   │   │   │   │   ├── thumb-down-fill.svg
+│   │   │   │   │   ├── thumb-down-line.svg
+│   │   │   │   │   ├── thumb-up-fill.svg
+│   │   │   │   │   ├── thumb-up-line.svg
+│   │   │   │   │   ├── time-fill.svg
+│   │   │   │   │   ├── time-line.svg
+│   │   │   │   │   ├── timer-fill.svg
+│   │   │   │   │   ├── timer-line.svg
+│   │   │   │   │   ├── upload-2-fill.svg
+│   │   │   │   │   ├── upload-2-line.svg
+│   │   │   │   │   ├── upload-fill.svg
+│   │   │   │   │   ├── upload-line.svg
+│   │   │   │   │   ├── zoom-in-fill.svg
+│   │   │   │   │   ├── zoom-in-line.svg
+│   │   │   │   │   ├── zoom-out-fill.svg
+│   │   │   │   │   └── zoom-out-line.svg
+│   │   │   │   ├── user
+│   │   │   │   │   ├── account-circle-fill.svg
+│   │   │   │   │   ├── account-circle-line.svg
+│   │   │   │   │   ├── account-pin-circle-fill.svg
+│   │   │   │   │   ├── account-pin-circle-line.svg
+│   │   │   │   │   ├── admin-fill.svg
+│   │   │   │   │   ├── admin-line.svg
+│   │   │   │   │   ├── group-fill.svg
+│   │   │   │   │   ├── group-line.svg
+│   │   │   │   │   ├── parent-fill.svg
+│   │   │   │   │   ├── parent-line.svg
+│   │   │   │   │   ├── team-fill.svg
+│   │   │   │   │   ├── team-line.svg
+│   │   │   │   │   ├── user-add-fill.svg
+│   │   │   │   │   ├── user-add-line.svg
+│   │   │   │   │   ├── user-fill.svg
+│   │   │   │   │   ├── user-heart-fill.svg
+│   │   │   │   │   ├── user-heart-line.svg
+│   │   │   │   │   ├── user-line.svg
+│   │   │   │   │   ├── user-search-fill.svg
+│   │   │   │   │   ├── user-search-line.svg
+│   │   │   │   │   ├── user-setting-fill.svg
+│   │   │   │   │   ├── user-setting-line.svg
+│   │   │   │   │   ├── user-star-fill.svg
+│   │   │   │   │   └── user-star-line.svg
+│   │   │   │   └── weather
+│   │   │   │       ├── cloudy-2-fill.svg
+│   │   │   │       ├── cloudy-2-line.svg
+│   │   │   │       ├── fire-fill.svg
+│   │   │   │       ├── fire-line.svg
+│   │   │   │       ├── flashlight-fill.svg
+│   │   │   │       ├── flashlight-line.svg
+│   │   │   │       ├── flood-fill.svg
+│   │   │   │       ├── flood-line.svg
+│   │   │   │       ├── fr--avalanches-fill.svg
+│   │   │   │       ├── fr--submersion-fill.svg
+│   │   │   │       ├── heavy-showers-fill.svg
+│   │   │   │       ├── heavy-showers-line.svg
+│   │   │   │       ├── moon-fill.svg
+│   │   │   │       ├── moon-line.svg
+│   │   │   │       ├── snowy-fill.svg
+│   │   │   │       ├── snowy-line.svg
+│   │   │   │       ├── sparkling-2-fill.svg
+│   │   │   │       ├── sparkling-2-line.svg
+│   │   │   │       ├── sun-fill.svg
+│   │   │   │       ├── sun-line.svg
+│   │   │   │       ├── temp-cold-fill.svg
+│   │   │   │       ├── temp-cold-line.svg
+│   │   │   │       ├── thunderstorms-fill.svg
+│   │   │   │       ├── thunderstorms-line.svg
+│   │   │   │       ├── tornado-fill.svg
+│   │   │   │       ├── tornado-line.svg
+│   │   │   │       ├── typhoon-fill.svg
+│   │   │   │       ├── typhoon-line.svg
+│   │   │   │       ├── windy-fill.svg
+│   │   │   │       └── windy-line.svg
+│   │   │   ├── loading.gif
+│   │   │   ├── logo-welcome-page.svg
+│   │   │   ├── organization-selection.svg
+│   │   │   ├── pictograms
+│   │   │   │   ├── .DS_Store
+│   │   │   │   ├── authorization_requests
+│   │   │   │   │   ├── activites_periscolaires.svg
+│   │   │   │   │   ├── aides_publiques.svg
+│   │   │   │   │   ├── cantine_scolaire.svg
+│   │   │   │   │   ├── carte_transport.svg
+│   │   │   │   │   ├── detection_fraude.svg
+│   │   │   │   │   ├── marches_publics.svg
+│   │   │   │   │   ├── place_creche.svg
+│   │   │   │   │   ├── portail_gru_instruction.svg
+│   │   │   │   │   ├── portail_gru_preremplissage.svg
+│   │   │   │   │   ├── specific_editeurs.svg
+│   │   │   │   │   ├── stationnement_residentiel.svg
+│   │   │   │   │   └── subventions_associations.svg
+│   │   │   │   └── homepage
+│   │   │   │       ├── demande.svg
+│   │   │   │       ├── habilitation.svg
+│   │   │   │       ├── identification.svg
+│   │   │   │       └── token.svg
+│   │   │   └── sign-document.svg
+│   │   ├── javascript
+│   │   │   └── dsfr.module.js
+│   │   └── stylesheets
+│   │       ├── application.css
+│   │       ├── components
+│   │       │   ├── authorization-request-events.css
+│   │       │   ├── authorization-requests-legal.css
+│   │       │   ├── authorization-requests-scopes.css
+│   │       │   ├── authorization_header.css
+│   │       │   ├── authorization_request_form.css
+│   │       │   ├── authorization_row.css
+│   │       │   ├── basic_card.css
+│   │       │   ├── blockquote.css
+│   │       │   ├── btn-authorization-header-actions.css
+│   │       │   ├── cards.css
+│   │       │   ├── clickable_rows.css
+│   │       │   ├── contact_card.css
+│   │       │   ├── dashboard_empty_state.css
+│   │       │   ├── dsfr_multi_select.css
+│   │       │   ├── intro_stepper.css
+│   │       │   ├── loader.css
+│   │       │   ├── malware_badge.css
+│   │       │   ├── messages-bubble.css
+│   │       │   ├── messages.css
+│   │       │   ├── messages_templates.css
+│   │       │   ├── prefilled_banner.css
+│   │       │   ├── pro_connect.css
+│   │       │   ├── red_callout.css
+│   │       │   ├── reopen_authorizations.css
+│   │       │   ├── scopes_documentation_accordion.css
+│   │       │   ├── scroll_to_top.css
+│   │       │   ├── search_results.css
+│   │       │   ├── simple_action_page_wrapper.css
+│   │       │   ├── sticky_bar.css
+│   │       │   ├── summary_block.css
+│   │       │   ├── timeline_steps.css
+│   │       │   └── unread-messages-dot.css
+│   │       ├── dsfr-extensions.css
+│   │       ├── dsfr-fonts.css
+│   │       ├── dsfr-utility.css
+│   │       ├── dsfr.css
+│   │       └── pages
+│   │           ├── authorization-request-form-new.css
+│   │           ├── authorization-request-forms-api-entreprise-index.css
+│   │           ├── formulaires-index.css
+│   │           ├── instruction-habilitations-index.css
+│   │           ├── instruction-habilitations-show.css
+│   │           └── profile.css
+│   ├── bridges
+│   │   ├── api_captchetat_bridge.rb
+│   │   ├── application_bridge.rb
+│   │   ├── hubee_base_bridge.rb
+│   │   ├── hubee_cert_dc_bridge.rb
+│   │   └── hubee_dila_bridge.rb
+│   ├── channels
+│   │   └── application_cable
+│   │       ├── channel.rb
+│   │       └── connection.rb
+│   ├── components
+│   │   ├── applicant
+│   │   │   └── demande_alerts_component.rb
+│   │   ├── application_component.rb
+│   │   ├── authorization_header_component.html.erb
+│   │   ├── authorization_header_component.rb
+│   │   ├── dashboard
+│   │   │   ├── blank_state_component.html.erb
+│   │   │   └── blank_state_component.rb
+│   │   ├── dsfr
+│   │   │   ├── multi_select_component.html.erb
+│   │   │   └── multi_select_component.rb
+│   │   ├── flash_alert_component.rb
+│   │   ├── habilitation
+│   │   │   └── user_alerts_component.rb
+│   │   ├── historical_authorization_request_event_component.html.erb
+│   │   ├── historical_authorization_request_event_component.rb
+│   │   ├── historical_authorization_request_event_icon_component.rb
+│   │   ├── icon_component.rb
+│   │   ├── instructor_menu_component.html.erb
+│   │   ├── instructor_menu_component.rb
+│   │   ├── link_component.rb
+│   │   └── molecules
+│   │       ├── instructor_banner_notice_component.rb
+│   │       └── update_in_progress_notice_component.rb
+│   ├── controllers
+│   │   ├── admin
+│   │   │   ├── impersonate_controller.rb
+│   │   │   ├── mark_user_organization_as_verified_controller.rb
+│   │   │   ├── transfer_authorization_requests_controller.rb
+│   │   │   ├── unmark_user_organization_as_verified_controller.rb
+│   │   │   ├── user_organization_verifications_controller.rb
+│   │   │   ├── users_with_roles_controller.rb
+│   │   │   └── whitelisted_verified_emails_controller.rb
+│   │   ├── admin_controller.rb
+│   │   ├── api
+│   │   │   ├── frontal_controller.rb
+│   │   │   ├── v1
+│   │   │   │   ├── authorization_definitions_controller.rb
+│   │   │   │   ├── authorization_request_events_controller.rb
+│   │   │   │   ├── authorization_request_forms_controller.rb
+│   │   │   │   ├── authorization_requests_controller.rb
+│   │   │   │   ├── authorizations_controller.rb
+│   │   │   │   ├── credentials_controller.rb
+│   │   │   │   └── webhook_attempts_controller.rb
+│   │   │   └── v1_controller.rb
+│   │   ├── api_controller.rb
+│   │   ├── application_controller.rb
+│   │   ├── archive_authorization_requests_controller.rb
+│   │   ├── authenticated_user_controller.rb
+│   │   ├── authorization_definitions_controller.rb
+│   │   ├── authorization_request_events_controller.rb
+│   │   ├── authorization_request_forms
+│   │   │   └── build_controller.rb
+│   │   ├── authorization_request_forms_controller.rb
+│   │   ├── authorization_request_stats_controller.rb
+│   │   ├── authorization_requests
+│   │   │   └── blocks_controller.rb
+│   │   ├── authorization_requests_controller.rb
+│   │   ├── authorizations_controller.rb
+│   │   ├── cancel_authorization_reopenings_controller.rb
+│   │   ├── cancel_next_authorization_request_stage_controller.rb
+│   │   ├── claim_instructor_draft_requests_controller.rb
+│   │   ├── concerns
+│   │   │   ├── .keep
+│   │   │   ├── access_authorization.rb
+│   │   │   ├── api_pagination.rb
+│   │   │   ├── authentication.rb
+│   │   │   ├── authorization_or_request_context.rb
+│   │   │   ├── authorization_requests_flashes.rb
+│   │   │   ├── impersonation_tracking_management.rb
+│   │   │   └── instruction
+│   │   │       └── message_templates_loader.rb
+│   │   ├── dashboard_controller.rb
+│   │   ├── developers
+│   │   │   ├── oauth_applications_controller.rb
+│   │   │   ├── open_api_controller.rb
+│   │   │   ├── webhook_attempts_controller.rb
+│   │   │   └── webhooks_controller.rb
+│   │   ├── developers_controller.rb
+│   │   ├── dgfip
+│   │   │   └── export_controller.rb
+│   │   ├── errors_controller.rb
+│   │   ├── external_reopen_authorization_requests_controller.rb
+│   │   ├── france_connected_authorizations_controller.rb
+│   │   ├── instruction
+│   │   │   ├── abstract_authorization_requests_controller.rb
+│   │   │   ├── approve_authorization_requests_controller.rb
+│   │   │   ├── archive_authorization_requests_controller.rb
+│   │   │   ├── authorization_request_events_controller.rb
+│   │   │   ├── authorization_requests_controller.rb
+│   │   │   ├── authorizations_controller.rb
+│   │   │   ├── cancel_authorization_reopenings_controller.rb
+│   │   │   ├── dashboard_controller.rb
+│   │   │   ├── france_connected_authorizations_controller.rb
+│   │   │   ├── instructor_draft_requests
+│   │   │   │   └── invite_controller.rb
+│   │   │   ├── instructor_draft_requests_controller.rb
+│   │   │   ├── message_templates_controller.rb
+│   │   │   ├── messages_controller.rb
+│   │   │   ├── refuse_authorization_requests_controller.rb
+│   │   │   ├── request_changes_on_authorization_requests_controller.rb
+│   │   │   ├── revoke_authorization_requests_controller.rb
+│   │   │   └── transfer_authorization_requests_controller.rb
+│   │   ├── instruction_controller.rb
+│   │   ├── manual_transfer_authorization_requests_controller.rb
+│   │   ├── messages_controller.rb
+│   │   ├── next_authorization_request_stage_controller.rb
+│   │   ├── notifications_settings_controller.rb
+│   │   ├── organizations_controller.rb
+│   │   ├── pages_controller.rb
+│   │   ├── profile_controller.rb
+│   │   ├── public
+│   │   │   └── authorization_requests_controller.rb
+│   │   ├── public_controller.rb
+│   │   ├── redirect_from_v1_controller.rb
+│   │   ├── reopen_authorizations_controller.rb
+│   │   ├── sessions_controller.rb
+│   │   ├── stats_controller.rb
+│   │   ├── transfer_authorization_requests_controller.rb
+│   │   └── user
+│   │       └── organizations_controller.rb
+│   ├── decorators
+│   │   ├── application_decorator.rb
+│   │   ├── authorization_decorator.rb
+│   │   ├── authorization_request_decorator.rb
+│   │   ├── authorization_request_form_decorator.rb
+│   │   ├── eligibility_option_decorator.rb
+│   │   ├── eligibility_rule_decorator.rb
+│   │   ├── instructor_draft_request_decorator.rb
+│   │   ├── message_template_decorator.rb
+│   │   ├── organization_decorator.rb
+│   │   └── service_provider_decorator.rb
+│   ├── facades
+│   │   ├── abstract_dashboard_facade.rb
+│   │   ├── dashboard_demandes_facade.rb
+│   │   ├── dashboard_habilitations_facade.rb
+│   │   ├── instruction
+│   │   │   ├── dashboard_demandes_facade.rb
+│   │   │   ├── dashboard_facade.rb
+│   │   │   ├── dashboard_habilitations_facade.rb
+│   │   │   └── search
+│   │   │       ├── dashboard_demandes_search.rb
+│   │   │       ├── dashboard_habilitations_search.rb
+│   │   │       └── dashboard_search.rb
+│   │   ├── new_authorization_request
+│   │   │   ├── api_entreprise_facade.rb
+│   │   │   ├── api_ficoba_facade.rb
+│   │   │   ├── api_impot_particulier_facade.rb
+│   │   │   ├── api_infinoe_facade.rb
+│   │   │   ├── api_r2p_facade.rb
+│   │   │   ├── api_sfip_facade.rb
+│   │   │   ├── api_sfip_r2p_facade.rb
+│   │   │   ├── base.rb
+│   │   │   └── default_facade.rb
+│   │   └── new_authorization_request.rb
+│   ├── form_builders
+│   │   ├── authorization_request_form_builder.rb
+│   │   ├── authorization_request_form_from_instructor_builder.rb
+│   │   ├── disabled_authorization_request_form_builder.rb
+│   │   └── dsfr_form_builder.rb
+│   ├── helpers
+│   │   ├── active_links.rb
+│   │   ├── application_helper.rb
+│   │   ├── authorization_request_forms_helper.rb
+│   │   ├── authorization_requests_helpers.rb
+│   │   ├── concerns
+│   │   │   └── skip_links.rb
+│   │   ├── demandes_habilitations
+│   │   │   └── common_helper.rb
+│   │   ├── dsfr
+│   │   │   ├── accordion.rb
+│   │   │   ├── modal.rb
+│   │   │   ├── pictogram.rb
+│   │   │   └── stepper.rb
+│   │   ├── page_title_helper.rb
+│   │   ├── subdomains_helper.rb
+│   │   ├── tabs_helper.rb
+│   │   └── webhooks_helper.rb
+│   ├── interactors
+│   │   ├── add_user_to_organization.rb
+│   │   ├── admin
+│   │   │   ├── create_impersonation.rb
+│   │   │   ├── find_user_for_impersonation.rb
+│   │   │   ├── finish_impersonation_record.rb
+│   │   │   ├── notify_admins_for_roles_update.rb
+│   │   │   ├── track_event.rb
+│   │   │   ├── track_impersonation_stop.rb
+│   │   │   ├── track_organization_user_verification_event.rb
+│   │   │   ├── update_organization_user_verification.rb
+│   │   │   └── update_user_roles_attribute.rb
+│   │   ├── affect_default_reason_to_instruction_modification_request.rb
+│   │   ├── application_interactor.rb
+│   │   ├── assign_default_data_to_authorization_request.rb
+│   │   ├── assign_documents_to_instructor_draft_request.rb
+│   │   ├── assign_latest_production_data_in_authorization_request.rb
+│   │   ├── assign_params_to_authorization_request.rb
+│   │   ├── build_instructor_draft_request_models.rb
+│   │   ├── change_user_current_organization.rb
+│   │   ├── check_applicant_belongs_to_organization.rb
+│   │   ├── concerns
+│   │   │   ├── documents_affector.rb
+│   │   │   ├── mon_compte_pro_payloads.rb
+│   │   │   └── pro_connect_payloads.rb
+│   │   ├── copy_documents_from_instructor_draft.rb
+│   │   ├── create_authorization.rb
+│   │   ├── create_authorization_request_changelog.rb
+│   │   ├── create_authorization_request_event_model.rb
+│   │   ├── create_authorization_request_from_instructor_draft.rb
+│   │   ├── create_authorization_request_model.rb
+│   │   ├── create_authorization_request_reopening_cancellation.rb
+│   │   ├── create_authorization_request_transfer_model.rb
+│   │   ├── create_denial_of_authorization_model.rb
+│   │   ├── create_instructor_modification_request_model.rb
+│   │   ├── create_message_model.rb
+│   │   ├── create_revocation_of_authorization_model.rb
+│   │   ├── deliver_authorization_request_notification.rb
+│   │   ├── deliver_gdpr_contacts_mails.rb
+│   │   ├── deliver_message_mail.rb
+│   │   ├── deprecate_previous_authorizations.rb
+│   │   ├── developer
+│   │   │   ├── create_webhook_model.rb
+│   │   │   ├── disable_webhook.rb
+│   │   │   ├── enable_webhook.rb
+│   │   │   ├── mark_webhook_as_validated.rb
+│   │   │   ├── regenerate_webhook_secret.rb
+│   │   │   ├── replay_webhook_attempt.rb
+│   │   │   ├── save_webhook_attempt.rb
+│   │   │   ├── test_webhook.rb
+│   │   │   ├── test_webhook_if_url_changed.rb
+│   │   │   └── update_webhook_model.rb
+│   │   ├── ensure_instructor_draft_not_claimed.rb
+│   │   ├── ensure_user_is_organization_member.rb
+│   │   ├── execute_authorization_request_bridge.rb
+│   │   ├── find_applicant.rb
+│   │   ├── find_authorization_request.rb
+│   │   ├── find_or_create_organization_model.rb
+│   │   ├── find_or_create_organization_through_mon_compte_pro.rb
+│   │   ├── find_or_create_organization_through_pro_connect.rb
+│   │   ├── find_or_create_user_by_email.rb
+│   │   ├── find_or_create_user_through_mon_compte_pro.rb
+│   │   ├── find_or_create_user_through_pro_connect.rb
+│   │   ├── find_organization.rb
+│   │   ├── increment_authorization_request_unread_counter.rb
+│   │   ├── mark_authorizations_as_revoked.rb
+│   │   ├── mark_instructor_draft_as_claimed.rb
+│   │   ├── regenerate_instructor_draft_request_public_id.rb
+│   │   ├── restore_authorization_request_to_authorization.rb
+│   │   ├── restore_authorization_request_to_latest_authorization.rb
+│   │   ├── run_malware_scan_on_documents.rb
+│   │   ├── save_instructor_draft_request.rb
+│   │   ├── send_authorization_request_transfer_email_to_users.rb
+│   │   ├── send_invitation_email_instructor_draft_request.rb
+│   │   ├── transition_authorization_request_to_stage_of_authorization.rb
+│   │   ├── trigger_authorization_request_event.rb
+│   │   ├── update_applicant_on_authorization_request.rb
+│   │   ├── update_instructor_draft_request_with_user_and_organization.rb
+│   │   ├── update_organization_insee_payload.rb
+│   │   ├── update_organization_on_authorization_request.rb
+│   │   └── verify_contacts_emails_asynchronously.rb
+│   ├── javascript
+│   │   ├── application.js
+│   │   └── controllers
+│   │       ├── application.js
+│   │       ├── auto_height_controller.js
+│   │       ├── choose_authorization_request_form_controller.js
+│   │       ├── choose_authorization_request_form_with_or_without_editors_controller.js
+│   │       ├── choose_france_connect_controller.js
+│   │       ├── choose_modalite_with_france_connect_controller.js
+│   │       ├── choose_stage_controller.js
+│   │       ├── clickable_rows_controller.js
+│   │       ├── clipboard_controller.js
+│   │       ├── dsfr_multi_select_controller.js
+│   │       ├── dynamic_modal_controller.js
+│   │       ├── fill_contact_data_with_applicant_data_controller.js
+│   │       ├── filter_controller.js
+│   │       ├── form_selector_controller.js
+│   │       ├── index.js
+│   │       ├── individual_email_checker_controller.js
+│   │       ├── justification_controller.js
+│   │       ├── message_template_selector_controller.js
+│   │       ├── modified_form_controller.js
+│   │       ├── remove_attached_file_controller.js
+│   │       ├── scroll_to_controller.js
+│   │       ├── scroll_to_top_controller.js
+│   │       ├── show_and_hide_controller.js
+│   │       ├── sticky_bar_controller.js
+│   │       ├── toggle_element_display_based_on_checkbox_controller.js
+│   │       └── toggle_element_display_based_on_select_options_controller.js
+│   ├── jobs
+│   │   ├── application_job.rb
+│   │   ├── backfill_malware_scan_sha256_job.rb
+│   │   ├── concerns
+│   │   │   ├── keep_track_of_job_attempts.rb
+│   │   │   └── malware_scan_helper.rb
+│   │   ├── deliver_authorization_request_webhook_job.rb
+│   │   ├── email_verifier_job.rb
+│   │   ├── enqueue_backfill_malware_scan_sha256_jobs.rb
+│   │   ├── healthcheck_job.rb
+│   │   ├── malware_scan_job.rb
+│   │   ├── malware_scan_retrieve_state_job.rb
+│   │   ├── register_organization_with_contacts_on_crm_job.rb
+│   │   └── update_organization_insee_payload_job.rb
+│   ├── lib
+│   │   ├── seeds
+│   │   │   └── message_templates.rb
+│   │   └── seeds.rb
+│   ├── mailers
+│   │   ├── abstract_instruction_mailer.rb
+│   │   ├── admin_mailer.rb
+│   │   ├── application_mailer.rb
+│   │   ├── authorization_request_mailer.rb
+│   │   ├── authorization_request_transfer_mailer.rb
+│   │   ├── dgfip
+│   │   │   └── apim_mailer.rb
+│   │   ├── france_connect_mailer.rb
+│   │   ├── gdpr_contact_mailer.rb
+│   │   ├── hubee_mailer.rb
+│   │   ├── instruction
+│   │   │   └── authorization_request_mailer.rb
+│   │   ├── instructor_draft_request_mailer.rb
+│   │   ├── message_mailer.rb
+│   │   └── webhook_mailer.rb
+│   ├── migration
+│   │   ├── README.md
+│   │   ├── alter_sequence_ids.sh
+│   │   ├── build_instructor_migration.rb.do_not_run
+│   │   ├── clear_bucket.rb
+│   │   ├── concerns
+│   │   │   ├── import_utils.rb
+│   │   │   ├── local_database_utils.rb
+│   │   │   └── user_legacy_utils.rb
+│   │   ├── copied_authorization_requests_exporter.rb
+│   │   ├── create_authorization_from_snapshot.rb
+│   │   ├── create_diff_from_event.rb
+│   │   ├── create_sandbox_oauth_app.rb
+│   │   ├── deploy.sh
+│   │   ├── deploy_single_import.sh
+│   │   ├── dumps
+│   │   │   └── .gitkeep
+│   │   ├── export_hubee.sh
+│   │   ├── export_v1.sh
+│   │   ├── export_v2.sh
+│   │   ├── hubee_import.rb
+│   │   ├── import
+│   │   │   ├── authorization_request_events.rb
+│   │   │   ├── authorization_requests
+│   │   │   │   ├── api_*.rb  (44 files)
+│   │   │   │   ├── base.rb
+│   │   │   │   ├── dgfip_production.rb
+│   │   │   │   ├── dgfip_production_attributes.rb
+│   │   │   │   ├── dgfip_sandbox_attributes.rb
+│   │   │   │   ├── france_connect_attributes.rb
+│   │   │   │   ├── hubee_cert_dc_attributes.rb
+│   │   │   │   ├── hubee_dila_attributes.rb
+│   │   │   │   ├── le_taxi_attributes.rb
+│   │   │   │   ├── pro_connect_identity_provider_attributes.rb
+│   │   │   │   └── pro_connect_service_provider_attributes.rb
+│   │   │   ├── authorization_requests.rb
+│   │   │   ├── base.rb
+│   │   │   ├── organizations.rb
+│   │   │   └── users.rb
+│   │   ├── import_data_in_local_db.rb
+│   │   ├── local_reset.sh
+│   │   ├── local_run.sh
+│   │   ├── main_import.rb
+│   │   ├── maintenance.html
+│   │   ├── merge_all_dgfip_authorization_requests.rb
+│   │   ├── merge_authorization_requests.rb
+│   │   ├── post_migration_inspector.rb
+│   │   ├── post_run.sh
+│   │   ├── run.sh
+│   │   └── v1_copied_enrollments_exporter.rb
+│   ├── models
+│   │   ├── admin_event.rb
+│   │   ├── application_record.rb
+│   │   ├── authorization.rb
+│   │   ├── authorization_definition
+│   │   │   ├── scope.rb
+│   │   │   └── stage.rb
+│   │   ├── authorization_definition.rb
+│   │   ├── authorization_document.rb
+│   │   ├── authorization_request
+│   │   │   ├── aides_etat.rb
+│   │   │   ├── annuaire_des_entreprises.rb
+│   │   │   ├── api_*.rb  (50 files)
+│   │   │   ├── formulaire_qf.rb
+│   │   │   ├── france_connect.rb
+│   │   │   ├── hubee_cert_dc.rb
+│   │   │   ├── hubee_dila.rb
+│   │   │   ├── le_taxi.rb
+│   │   │   ├── pro_connect_identity_provider.rb
+│   │   │   ├── pro_connect_service_provider.rb
+│   │   │   └── services_cisirh.rb
+│   │   ├── authorization_request.rb
+│   │   ├── authorization_request_changelog.rb
+│   │   ├── authorization_request_event.rb
+│   │   ├── authorization_request_form
+│   │   │   └── stage.rb
+│   │   ├── authorization_request_form.rb
+│   │   ├── authorization_request_reopening_cancellation.rb
+│   │   ├── authorization_request_transfer.rb
+│   │   ├── bulk_authorization_request_update.rb
+│   │   ├── bulk_authorization_request_update_notification_read.rb
+│   │   ├── categorie_juridique.rb
+│   │   ├── code_naf.rb
+│   │   ├── concerns
+│   │   │   ├── .keep
+│   │   │   ├── authorization_core
+│   │   │   │   ├── attributes.rb
+│   │   │   │   ├── checkboxes.rb
+│   │   │   │   ├── contacts.rb
+│   │   │   │   ├── documents.rb
+│   │   │   │   └── scopes.rb
+│   │   │   ├── authorization_extensions
+│   │   │   │   ├── basic_infos.rb
+│   │   │   │   ├── cadre_juridique.rb
+│   │   │   │   ├── france_connect.rb
+│   │   │   │   ├── france_connect_eidas.rb
+│   │   │   │   ├── france_connect_embedded_fields.rb
+│   │   │   │   ├── gdpr_contacts.rb
+│   │   │   │   ├── modalities.rb
+│   │   │   │   ├── operational_acceptance.rb
+│   │   │   │   ├── personal_data.rb
+│   │   │   │   ├── safety_certification.rb
+│   │   │   │   ├── technical_team.rb
+│   │   │   │   └── volumetrie.rb
+│   │   │   ├── common_instruction_model.rb
+│   │   │   ├── demandes_habilitations_searchable.rb
+│   │   │   ├── dgfip_extensions
+│   │   │   │   ├── api_impot_particulier_modalities.rb
+│   │   │   │   ├── api_impot_particulier_scopes.rb
+│   │   │   │   └── extra_contacts_infos.rb
+│   │   │   └── notifications_settings.rb
+│   │   ├── contact.rb
+│   │   ├── contact_definition.rb
+│   │   ├── data_provider.rb
+│   │   ├── denial_of_authorization.rb
+│   │   ├── eligibility_option.rb
+│   │   ├── eligibility_rule.rb
+│   │   ├── identity_provider.rb
+│   │   ├── impersonation.rb
+│   │   ├── impersonation_action.rb
+│   │   ├── instructor_draft_request.rb
+│   │   ├── instructor_draft_request_document.rb
+│   │   ├── instructor_modification_request.rb
+│   │   ├── malware_scan.rb
+│   │   ├── message.rb
+│   │   ├── message_template.rb
+│   │   ├── organization.rb
+│   │   ├── organizations_user.rb
+│   │   ├── revocation_of_authorization.rb
+│   │   ├── service_provider.rb
+│   │   ├── static_application_record.rb
+│   │   ├── subdomain.rb
+│   │   ├── user.rb
+│   │   ├── verified_email.rb
+│   │   ├── webhook.rb
+│   │   └── webhook_attempt.rb
+│   ├── notifiers
+│   │   ├── api_entreculier_notifier.rb
+│   │   ├── api_entreprise_notifier.rb
+│   │   ├── api_particulier_notifier.rb
+│   │   ├── application_notifier.rb
+│   │   ├── base_notifier.rb
+│   │   ├── hubee_cert_dc_notifier.rb
+│   │   ├── hubee_dila_notifier.rb
+│   │   └── hubee_notifier.rb
+│   ├── organizers
+│   │   ├── admin
+│   │   │   ├── mark_user_organization_as_verified.rb
+│   │   │   ├── start_impersonation.rb
+│   │   │   ├── stop_impersonation.rb
+│   │   │   ├── transfer_authorization_request.rb
+│   │   │   └── update_user_roles.rb
+│   │   ├── application_organizer.rb
+│   │   ├── approve_authorization_request.rb
+│   │   ├── archive_authorization_request.rb
+│   │   ├── authenticate_user_through_mon_compte_pro.rb
+│   │   ├── authenticate_user_through_pro_connect.rb
+│   │   ├── build_authorization_request.rb
+│   │   ├── cancel_authorization_reopening.rb
+│   │   ├── cancel_next_authorization_request_stage.rb
+│   │   ├── change_current_organization_through_mon_compte_pro.rb
+│   │   ├── change_current_organization_through_pro_connect.rb
+│   │   ├── claim_instructor_draft_request.rb
+│   │   ├── create_authorization_request.rb
+│   │   ├── create_instructor_draft_request.rb
+│   │   ├── developer
+│   │   │   ├── create_webhook.rb
+│   │   │   └── update_webhook.rb
+│   │   ├── execute_authorization_request_transition_with_callbacks.rb
+│   │   ├── find_or_create_organization.rb
+│   │   ├── invite_applicant_to_claim_instructor_draft_request.rb
+│   │   ├── refuse_authorization_request.rb
+│   │   ├── reopen_authorization.rb
+│   │   ├── request_changes_on_authorization_request.rb
+│   │   ├── review_authorization_request.rb
+│   │   ├── revoke_authorization_request.rb
+│   │   ├── send_message_to_applicant.rb
+│   │   ├── send_message_to_instructors.rb
+│   │   ├── start_next_authorization_request_stage.rb
+│   │   ├── submit_authorization_request.rb
+│   │   ├── transfer_authorization_request_to_new_applicant.rb
+│   │   ├── transfer_authorization_request_to_new_organization.rb
+│   │   ├── update_authorization_request.rb
+│   │   └── update_instructor_draft_request.rb
+│   ├── policies
+│   │   ├── application_policy.rb
+│   │   ├── authorization_definition_policy.rb
+│   │   ├── authorization_policy.rb
+│   │   ├── authorization_request_form_policy.rb
+│   │   ├── authorization_request_policy.rb
+│   │   ├── concerns
+│   │   │   ├── common_authorization_models_policies.rb
+│   │   │   └── developer_scoping.rb
+│   │   ├── developer
+│   │   │   ├── webhook_attempt_policy.rb
+│   │   │   └── webhook_policy.rb
+│   │   ├── instruction
+│   │   │   ├── authorization_policy.rb
+│   │   │   ├── authorization_request_policy.rb
+│   │   │   ├── instructor_draft_request_policy.rb
+│   │   │   └── message_template_policy.rb
+│   │   └── organization_policy.rb
+│   ├── queries
+│   │   ├── authorization_request_events_query.rb
+│   │   ├── authorization_requests_mentions_query.rb
+│   │   ├── authorizations_mentions_query.rb
+│   │   ├── demandes_habilitations_viewable_by_user.rb
+│   │   └── processing_time_query.rb
+│   ├── serializers
+│   │   ├── api
+│   │   │   └── v1
+│   │   │       ├── authorization_definition_serializer.rb
+│   │   │       ├── authorization_detailed_serializer.rb
+│   │   │       ├── authorization_request_event_serializer.rb
+│   │   │       ├── authorization_request_form_serializer.rb
+│   │   │       ├── authorization_request_serializer.rb
+│   │   │       ├── authorization_serializer.rb
+│   │   │       ├── organization_serializer.rb
+│   │   │       ├── scope_serializer.rb
+│   │   │       ├── user_serializer.rb
+│   │   │       └── webhook_attempt_serializer.rb
+│   │   ├── application_serializer.rb
+│   │   ├── webhook_authorization_request_serializer.rb
+│   │   ├── webhook_authorization_serializer.rb
+│   │   ├── webhook_organization_serializer.rb
+│   │   ├── webhook_serializer.rb
+│   │   ├── webhook_service_provider_serializer.rb
+│   │   └── webhook_user_serializer.rb
+│   ├── services
+│   │   ├── abstract_insee_api_client.rb
+│   │   ├── abstract_search_engine_builder.rb
+│   │   ├── abstract_yaml_configuration.rb
+│   │   ├── authorization_definition_configurations.rb
+│   │   ├── authorization_request_changelog_presenter.rb
+│   │   ├── authorization_request_form_configurations.rb
+│   │   ├── authorization_requests_search_engine_builder.rb
+│   │   ├── authorizations_search_engine_builder.rb
+│   │   ├── bulk_authorization_request_update_notification_extractor.rb
+│   │   ├── dgfip_spreadsheet_generator.rb
+│   │   ├── email_preview_renderer.rb
+│   │   ├── email_verifier_api.rb
+│   │   ├── hubee_api_client.rb
+│   │   ├── hubspot_api.rb
+│   │   ├── insee_api_authentication.rb
+│   │   ├── insee_sirene_api_client.rb
+│   │   ├── je_clique_ou_pas_api_client.rb
+│   │   ├── message_template_interpolator.rb
+│   │   ├── message_template_preview_renderer.rb
+│   │   ├── piste_api_client.rb
+│   │   ├── skip_links_implemented_checker.rb
+│   │   ├── user_context.rb
+│   │   └── webhook_http_service.rb
+│   ├── validators
+│   │   ├── email_recently_verified_validator.rb
+│   │   ├── french_phone_number_validator.rb
+│   │   └── siret_validator.rb
+│   └── views
+│       ├── admin
+│       │   ├── impersonate
+│       │   │   └── new.html.erb
+│       │   ├── index.html.erb
+│       │   ├── mark_user_organization_as_verified
+│       │   │   ├── edit.html.erb
+│       │   │   └── new.html.erb
+│       │   ├── transfer_authorization_requests
+│       │   │   └── new.html.erb
+│       │   ├── user_organization_verifications
+│       │   │   └── index.html.erb
+│       │   ├── users_with_roles
+│       │   │   ├── index.html.erb
+│       │   │   └── new.html.erb
+│       │   └── whitelisted_verified_emails
+│       │       ├── index.html.erb
+│       │       └── new.html.erb
+│       ├── admin_mailer
+│       │   └── notify_user_roles_change.text.erb
+│       ├── archive_authorization_requests
+│       │   └── new.html.erb
+│       ├── authorization_definitions
+│       │   └── index.html.erb
+│       ├── authorization_request_events
+│       │   └── index.html.erb
+│       ├── authorization_request_forms
+│       │   ├── _authorization_request_form_card.html.erb
+│       │   ├── _form.html.erb
+│       │   ├── _unicity_callout.html.erb
+│       │   ├── annuaire_des_entreprises.html.erb
+│       │   ├── api_captchetat.html.erb
+│       │   ├── api_entreprise_through_editor.html.erb
+│       │   ├── api_particulier_through_editor.html.erb
+│       │   ├── api_particulier_through_editor_without_contact_technique.html.erb
+│       │   ├── blocks
+│       │   │   ├── api_cpr_pro_adelie
+│       │   │   │   ├── _contact.html.erb
+│       │   │   │   └── _contacts.html.erb
+│       │   │   ├── api_cpr_pro_adelie_sandbox
+│       │   │   │   ├── _contact.html.erb
+│       │   │   │   └── _contacts.html.erb
+│       │   │   ├── api_e_contacts
+│       │   │   │   ├── _contact.html.erb
+│       │   │   │   └── _contacts.html.erb
+│       │   │   ├── api_e_contacts_sandbox
+│       │   │   │   ├── _contact.html.erb
+│       │   │   │   └── _contacts.html.erb
+│       │   │   ├── api_e_pro
+│       │   │   │   ├── _contact.html.erb
+│       │   │   │   └── _contacts.html.erb
+│       │   │   ├── api_e_pro_sandbox
+│       │   │   │   ├── _contact.html.erb
+│       │   │   │   └── _contacts.html.erb
+│       │   │   ├── api_ensu_documents
+│       │   │   │   ├── _contact.html.erb
+│       │   │   │   └── _contacts.html.erb
+│       │   │   ├── api_ensu_documents_sandbox
+│       │   │   │   ├── _contact.html.erb
+│       │   │   │   └── _contacts.html.erb
+│       │   │   ├── api_ficoba
+│       │   │   │   ├── _contact.html.erb
+│       │   │   │   └── _contacts.html.erb
+│       │   │   ├── api_ficoba_sandbox
+│       │   │   │   ├── _contact.html.erb
+│       │   │   │   └── _contacts.html.erb
+│       │   │   ├── api_hermes
+│       │   │   │   ├── _contact.html.erb
+│       │   │   │   └── _contacts.html.erb
+│       │   │   ├── api_hermes_sandbox
+│       │   │   │   ├── _contact.html.erb
+│       │   │   │   └── _contacts.html.erb
+│       │   │   ├── api_impot_particulier
+│       │   │   │   ├── _contact.html.erb
+│       │   │   │   ├── _contacts.html.erb
+│       │   │   │   └── _modalities.html.erb -> ../default/_modalities_with_france_connect.html.erb
+│       │   │   ├── api_impot_particulier_sandbox
+│       │   │   │   ├── _contact.html.erb
+│       │   │   │   ├── _contacts.html.erb
+│       │   │   │   └── _modalities.html.erb -> ../default/_modalities_with_france_connect.html.erb
+│       │   │   ├── api_imprimfip
+│       │   │   │   ├── _contact.html.erb
+│       │   │   │   └── _contacts.html.erb
+│       │   │   ├── api_imprimfip_sandbox
+│       │   │   │   ├── _contact.html.erb
+│       │   │   │   └── _contacts.html.erb
+│       │   │   ├── api_infinoe
+│       │   │   │   ├── _contact.html.erb
+│       │   │   │   └── _contacts.html.erb
+│       │   │   ├── api_infinoe_sandbox
+│       │   │   │   ├── _contact.html.erb
+│       │   │   │   └── _contacts.html.erb
+│       │   │   ├── api_mire
+│       │   │   │   ├── _contact.html.erb
+│       │   │   │   └── _contacts.html.erb
+│       │   │   ├── api_mire_sandbox
+│       │   │   │   ├── _contact.html.erb
+│       │   │   │   └── _contacts.html.erb
+│       │   │   ├── api_mobilic
+│       │   │   │   └── _basic_infos.html.erb
+│       │   │   ├── api_ocfi
+│       │   │   │   ├── _contact.html.erb
+│       │   │   │   └── _contacts.html.erb
+│       │   │   ├── api_ocfi_sandbox
+│       │   │   │   ├── _contact.html.erb
+│       │   │   │   └── _contacts.html.erb
+│       │   │   ├── api_opale
+│       │   │   │   ├── _contact.html.erb
+│       │   │   │   └── _contacts.html.erb
+│       │   │   ├── api_opale_sandbox
+│       │   │   │   ├── _contact.html.erb
+│       │   │   │   └── _contacts.html.erb
+│       │   │   ├── api_particulier
+│       │   │   │   └── _modalities.html.erb
+│       │   │   ├── api_r2p
+│       │   │   │   ├── _contact.html.erb
+│       │   │   │   └── _contacts.html.erb
+│       │   │   ├── api_r2p_sandbox
+│       │   │   │   ├── _contact.html.erb
+│       │   │   │   └── _contacts.html.erb
+│       │   │   ├── api_rial
+│       │   │   │   ├── _contact.html.erb
+│       │   │   │   └── _contacts.html.erb
+│       │   │   ├── api_rial_sandbox
+│       │   │   │   ├── _contact.html.erb
+│       │   │   │   └── _contacts.html.erb
+│       │   │   ├── api_robf
+│       │   │   │   ├── _contact.html.erb
+│       │   │   │   └── _contacts.html.erb
+│       │   │   ├── api_robf_sandbox
+│       │   │   │   ├── _contact.html.erb
+│       │   │   │   └── _contacts.html.erb
+│       │   │   ├── api_satelit
+│       │   │   │   ├── _contact.html.erb
+│       │   │   │   └── _contacts.html.erb
+│       │   │   ├── api_satelit_sandbox
+│       │   │   │   ├── _contact.html.erb
+│       │   │   │   └── _contacts.html.erb
+│       │   │   ├── api_sfip
+│       │   │   │   ├── _contact.html.erb
+│       │   │   │   └── _contacts.html.erb
+│       │   │   ├── api_sfip_r2p
+│       │   │   │   ├── _contact.html.erb
+│       │   │   │   └── _contacts.html.erb
+│       │   │   ├── api_sfip_r2p_sandbox
+│       │   │   │   ├── _contact.html.erb
+│       │   │   │   └── _contacts.html.erb
+│       │   │   ├── api_sfip_sandbox
+│       │   │   │   ├── _contact.html.erb
+│       │   │   │   └── _contacts.html.erb
+│       │   │   ├── default
+│       │   │   │   ├── _basic_infos.html.erb
+│       │   │   │   ├── _contacts.html.erb
+│       │   │   │   ├── _france_connect.html.erb
+│       │   │   │   ├── _france_connect_eidas.html.erb
+│       │   │   │   ├── _legal.html.erb
+│       │   │   │   ├── _modalities.html.erb
+│       │   │   │   ├── _modalities_with_france_connect.html.erb
+│       │   │   │   ├── _operational_acceptance.html.erb
+│       │   │   │   ├── _personal_data.html.erb
+│       │   │   │   ├── _safety_certification.html.erb
+│       │   │   │   ├── _scopes.html.erb
+│       │   │   │   ├── _supporting_documents.html.erb
+│       │   │   │   ├── _technical_team.html.erb
+│       │   │   │   └── _volumetrie.html.erb
+│       │   │   └── dgfip
+│       │   │       ├── _contact.html.erb
+│       │   │       └── _contacts.html.erb
+│       │   ├── build
+│       │   │   ├── _header.html.erb
+│       │   │   ├── _wizard_buttons.html.erb
+│       │   │   ├── basic_infos.html.erb
+│       │   │   ├── contacts.html.erb
+│       │   │   ├── france_connect.html.erb
+│       │   │   ├── france_connect_eidas.html.erb
+│       │   │   ├── legal.html.erb
+│       │   │   ├── modalities.html.erb
+│       │   │   ├── operational_acceptance.html.erb
+│       │   │   ├── personal_data.html.erb
+│       │   │   ├── safety_certification.html.erb
+│       │   │   ├── scopes.html.erb
+│       │   │   ├── supporting_documents.html.erb
+│       │   │   ├── technical_team.html.erb
+│       │   │   └── volumetrie.html.erb
+│       │   ├── hubee_cert_dc.html.erb
+│       │   ├── hubee_dila.html.erb
+│       │   ├── new.html.erb
+│       │   ├── shared
+│       │   │   ├── _block_titles.html.erb
+│       │   │   ├── _contact.html.erb
+│       │   │   ├── _header_badge.erb
+│       │   │   ├── _hidden_params.html.erb
+│       │   │   ├── _organization.html.erb
+│       │   │   ├── _prefilled_banner.html.erb
+│       │   │   ├── _prefilled_banner_for_single_page_form.html.erb
+│       │   │   ├── _scopes_group_documentation_accordion.html.erb
+│       │   │   ├── _specific_requirements.html.erb
+│       │   │   ├── _submit_buttons.html.erb
+│       │   │   └── _tos_checkboxes.html.erb
+│       │   └── summary.html.erb
+│       ├── authorization_request_mailer
+│       │   ├── annuaire_des_entreprises
+│       │   │   ├── approve.html.erb
+│       │   │   └── approve.text.erb
+│       │   ├── api_cpr_pro_adelie_sandbox
+│       │   │   ├── approve.text.erb
+│       │   │   └── reopening_approve.text.erb
+│       │   ├── api_e_contacts_sandbox
+│       │   │   ├── approve.text.erb
+│       │   │   └── reopening_approve.text.erb
+│       │   ├── api_e_pro_sandbox
+│       │   │   ├── approve.text.erb
+│       │   │   └── reopening_approve.text.erb
+│       │   ├── api_ensu_documents_sandbox
+│       │   │   ├── approve.text.erb
+│       │   │   └── reopening_approve.text.erb
+│       │   ├── api_ficoba_sandbox
+│       │   │   ├── approve.text.erb
+│       │   │   └── reopening_approve.text.erb
+│       │   ├── api_hermes_sandbox
+│       │   │   ├── approve.text.erb
+│       │   │   └── reopening_approve.text.erb
+│       │   ├── api_impot_particulier_sandbox
+│       │   │   ├── approve.text.erb
+│       │   │   └── reopening_approve.text.erb
+│       │   ├── api_imprimfip_sandbox
+│       │   │   ├── approve.text.erb
+│       │   │   └── reopening_approve.text.erb
+│       │   ├── api_infinoe_sandbox
+│       │   │   ├── approve.text.erb
+│       │   │   └── reopening_approve.text.erb
+│       │   ├── api_ingres
+│       │   │   ├── approve.text.erb
+│       │   │   └── reopening_approve.text.erb
+│       │   ├── api_mire_sandbox
+│       │   │   ├── approve.text.erb
+│       │   │   └── reopening_approve.text.erb
+│       │   ├── api_ocfi_sandbox
+│       │   │   ├── approve.text.erb
+│       │   │   └── reopening_approve.text.erb
+│       │   ├── api_opale_sandbox
+│       │   │   ├── approve.text.erb
+│       │   │   └── reopening_approve.text.erb
+│       │   ├── api_pro_sante_connect
+│       │   │   └── approve.text.erb
+│       │   ├── api_r2p_sandbox
+│       │   │   ├── approve.text.erb
+│       │   │   └── reopening_approve.text.erb
+│       │   ├── api_rial_sandbox
+│       │   │   ├── approve.text.erb
+│       │   │   └── reopening_approve.text.erb
+│       │   ├── api_robf_sandbox
+│       │   │   ├── approve.text.erb
+│       │   │   └── reopening_approve.text.erb
+│       │   ├── api_satelit_sandbox
+│       │   │   ├── approve.text.erb
+│       │   │   └── reopening_approve.text.erb
+│       │   ├── api_sfip_sandbox
+│       │   │   ├── approve.text.erb
+│       │   │   └── reopening_approve.text.erb
+│       │   ├── approve.text.erb
+│       │   ├── france_connect
+│       │   │   ├── approve.text.erb
+│       │   │   └── reopening_approve.text.erb
+│       │   ├── hubee_cert_dc
+│       │   │   ├── approve.text.erb
+│       │   │   └── reopening_approve.text.erb
+│       │   ├── hubee_dila
+│       │   │   ├── approve.text.erb
+│       │   │   └── reopening_approve.text.erb
+│       │   ├── pro_connect_identity_provider
+│       │   │   ├── approve.text.erb
+│       │   │   └── reopening_approve.text.erb
+│       │   ├── pro_connect_service_provider
+│       │   │   ├── approve.text.erb
+│       │   │   └── reopening_approve.text.erb
+│       │   ├── refuse.text.erb
+│       │   ├── reopening_approve.text.erb
+│       │   ├── reopening_refuse.text.erb
+│       │   ├── reopening_request_changes.text.erb
+│       │   ├── request_changes.text.erb
+│       │   ├── revoke.text.erb
+│       │   └── shared
+│       │       └── dgfip_sandbox
+│       │           ├── approve.text.erb
+│       │           └── reopening_approve.text.erb
+│       ├── authorization_request_transfer_mailer
+│       │   └── success.text.erb
+│       ├── authorization_requests
+│       │   ├── _bulk_update_modal.html.erb
+│       │   ├── _card.html.erb
+│       │   ├── _eligibility_decision_tree.html.erb
+│       │   ├── blocks
+│       │   │   ├── api_impot_particulier
+│       │   │   │   └── _contacts.html.erb
+│       │   │   ├── api_impot_particulier_sandbox
+│       │   │   │   └── _contacts.html.erb
+│       │   │   ├── api_mobilic
+│       │   │   │   └── _basic_infos.html.erb
+│       │   │   ├── api_sfip
+│       │   │   │   └── _contacts.html.erb
+│       │   │   ├── api_sfip_sandbox
+│       │   │   │   └── _contacts.html.erb
+│       │   │   ├── default
+│       │   │   │   ├── _basic_infos.html.erb
+│       │   │   │   ├── _contacts.html.erb
+│       │   │   │   ├── _france_connect.html.erb
+│       │   │   │   ├── _france_connect_eidas.html.erb
+│       │   │   │   ├── _legal.html.erb
+│       │   │   │   ├── _modalities.html.erb
+│       │   │   │   ├── _operational_acceptance.html.erb
+│       │   │   │   ├── _personal_data.html.erb
+│       │   │   │   ├── _safety_certification.html.erb
+│       │   │   │   ├── _scopes.html.erb
+│       │   │   │   ├── _supporting_documents.html.erb
+│       │   │   │   ├── _technical_team.html.erb
+│       │   │   │   └── _volumetrie.html.erb
+│       │   │   └── edit.html.erb
+│       │   ├── closed_organization.html.erb
+│       │   ├── eligibility_check.html.erb
+│       │   ├── new
+│       │   │   ├── _editors_index.html.erb
+│       │   │   ├── api_droits_cnam.html.erb
+│       │   │   ├── api_entreprise.html.erb
+│       │   │   ├── api_ficoba.html.erb
+│       │   │   ├── api_impot_particulier.html.erb
+│       │   │   ├── api_indemnites_journalieres_cnam.html.erb -> api_droits_cnam.html.erb
+│       │   │   ├── api_infinoe.html.erb
+│       │   │   ├── api_particulier.html.erb
+│       │   │   ├── api_r2p.html.erb
+│       │   │   ├── api_sfip.html.erb
+│       │   │   ├── default.html.erb
+│       │   │   └── shared
+│       │   │       ├── _show_and_hide_radios_for_use_case.html.erb
+│       │   │       └── _with_or_without_editor_options_use_case.html.erb
+│       │   ├── shared
+│       │   │   ├── _service_provider.html.erb
+│       │   │   ├── _subtitle.html.erb
+│       │   │   ├── _title.html.erb
+│       │   │   ├── blocks
+│       │   │   │   ├── _specific_requirements.html.erb
+│       │   │   │   └── _summary_block.html.erb
+│       │   │   └── unauthenticated_pages
+│       │   │       └── _timeline_steps.html.erb
+│       │   └── unauthenticated_start.html.erb
+│       ├── authorizations
+│       │   ├── _alerts.html.erb
+│       │   ├── _authorization_badges.html.erb
+│       │   ├── _blocks.html.erb
+│       │   ├── _card.html.erb
+│       │   ├── _instruction_header_info.html.erb
+│       │   ├── _sandbox_production_badge.html.erb
+│       │   ├── _state_badge.html.erb
+│       │   ├── index.html.erb
+│       │   └── show.html.erb
+│       ├── cancel_authorization_reopenings
+│       │   └── new.html.erb
+│       ├── cancel_next_authorization_request_stage
+│       │   └── new.html.erb
+│       ├── claim_instructor_draft_requests
+│       │   ├── denied.html.erb
+│       │   ├── show.html.erb
+│       │   └── unauthenticated_show.html.erb
+│       ├── dashboard
+│       │   ├── _blank_state.html.erb
+│       │   ├── _highlighted_list.html.erb
+│       │   ├── _list.html.erb
+│       │   ├── _search_form.html.erb
+│       │   ├── card
+│       │   │   ├── _card_badge.html.erb
+│       │   │   ├── _card_reopening_footer.html.erb
+│       │   │   └── _stage_footer.html.erb
+│       │   └── show.html.erb
+│       ├── demandes_habilitations
+│       │   ├── _accepted_tos_checkboxes.html.erb
+│       │   └── _organization_and_applicant.html.erb
+│       ├── developers
+│       │   ├── index.html.erb
+│       │   ├── oauth_applications
+│       │   │   └── index.html.erb
+│       │   ├── open_api
+│       │   │   └── show.html.erb
+│       │   ├── webhook_attempts
+│       │   │   ├── index.html.erb
+│       │   │   └── show.html.erb
+│       │   └── webhooks
+│       │       ├── _form.html.erb
+│       │       ├── edit.html.erb
+│       │       ├── index.html.erb
+│       │       ├── new.html.erb
+│       │       └── show_secret.html.erb
+│       ├── dgfip
+│       │   └── api_m_mailer
+│       │       └── approve.text.erb
+│       ├── errors
+│       │   └── show.html.erb
+│       ├── france_connect_mailer
+│       │   └── new_scopes.text.erb
+│       ├── france_connected_authorizations
+│       │   └── index.html.erb
+│       ├── gdpr_contact_mailer
+│       │   ├── delegue_protection_donnees.text.erb
+│       │   └── responsable_traitement.text.erb
+│       ├── hubee_mailer
+│       │   ├── administrateur_metier_cert_dc.text.erb
+│       │   └── administrateur_metier_dila.text.erb
+│       ├── instruction
+│       │   ├── approve_authorization_requests
+│       │   │   └── new.html.erb
+│       │   ├── authorization_request_events
+│       │   │   └── index.html.erb
+│       │   ├── authorization_request_mailer
+│       │   │   ├── reopening_submit.text.erb
+│       │   │   └── submit.text.erb
+│       │   ├── authorization_requests
+│       │   │   ├── _moderation_buttons.html.erb
+│       │   │   └── show.html.erb
+│       │   ├── authorizations
+│       │   │   └── index.html.erb
+│       │   ├── cancel_authorization_reopenings
+│       │   │   └── new.html.erb
+│       │   ├── dashboard
+│       │   │   ├── _authorization_requests.html.erb
+│       │   │   ├── _authorizations.html.erb
+│       │   │   └── show.html.erb
+│       │   ├── france_connected_authorizations
+│       │   │   └── index.html.erb
+│       │   ├── instructor_draft_requests
+│       │   │   ├── _form_selector.html.erb
+│       │   │   ├── edit.html.erb
+│       │   │   ├── index.html.erb
+│       │   │   ├── invite
+│       │   │   │   └── new.html.erb
+│       │   │   └── new.html.erb
+│       │   ├── message_templates
+│       │   │   ├── _form.html.erb
+│       │   │   ├── edit.html.erb
+│       │   │   ├── index.html.erb
+│       │   │   └── new.html.erb
+│       │   ├── messages
+│       │   │   └── index.html.erb
+│       │   ├── refuse_authorization_requests
+│       │   │   └── new.html.erb
+│       │   ├── request_changes_on_authorization_requests
+│       │   │   └── new.html.erb
+│       │   ├── revoke_authorization_requests
+│       │   │   └── new.html.erb
+│       │   ├── shared
+│       │   │   ├── _email_preview_accordion.html.erb
+│       │   │   └── _message_templates_section.html.erb
+│       │   └── transfer_authorization_requests
+│       │       └── new.html.erb
+│       ├── instructor_draft_request_mailer
+│       │   └── invite_applicant.text.erb
+│       ├── kaminari
+│       │   ├── _first_page.html.erb
+│       │   ├── _gap.html.erb
+│       │   ├── _last_page.html.erb
+│       │   ├── _next_page.html.erb
+│       │   ├── _page.html.erb
+│       │   ├── _paginator.html.erb
+│       │   └── _prev_page.html.erb
+│       ├── layouts
+│       │   ├── _footer.html.erb
+│       │   ├── _header.html.erb
+│       │   ├── admin.html.erb
+│       │   ├── application.html.erb
+│       │   ├── authorization_request.html.erb
+│       │   ├── authorization_request_with_tabs.html.erb
+│       │   ├── authorization_with_tabs.html.erb
+│       │   ├── claim_instructor_draft_request.html.erb
+│       │   ├── component_preview.html.erb
+│       │   ├── container.html.erb
+│       │   ├── form_introduction.html.erb
+│       │   ├── header
+│       │   │   ├── _menu.html.erb
+│       │   │   └── _tools.html.erb
+│       │   ├── instruction
+│       │   │   └── authorization_request.html.erb
+│       │   ├── mailer.html.erb
+│       │   └── mailer.text.erb
+│       ├── mailer
+│       │   └── shared
+│       │       └── applicant
+│       │           ├── _footer.html.erb
+│       │           ├── _footer.text.erb
+│       │           ├── _header.html.erb
+│       │           └── _header.text.erb
+│       ├── manual_transfer_authorization_requests
+│       │   └── new.html.erb
+│       ├── message_mailer
+│       │   ├── reopening_to_applicant.text.erb
+│       │   ├── reopening_to_instructors.text.erb
+│       │   ├── to_applicant.text.erb
+│       │   └── to_instructors.text.erb
+│       ├── messages
+│       │   ├── _form.html.erb
+│       │   ├── _index.html.erb
+│       │   ├── _message.html.erb
+│       │   ├── create.turbo_stream.erb
+│       │   └── index.html.erb
+│       ├── organizations
+│       │   ├── new.html.erb
+│       │   └── show.html.erb
+│       ├── pages
+│       │   ├── faq.html.erb
+│       │   ├── home.html.erb
+│       │   └── shared
+│       │       └── unauthenticated_pages
+│       │           ├── _api_gouv.html.erb
+│       │           ├── _eligibility_illustration.html.erb
+│       │           ├── _pro_connect.html.erb
+│       │           └── _welcome_logo.html.erb
+│       ├── profile
+│       │   ├── _authorization_notifications.html.erb
+│       │   └── edit.html.erb
+│       ├── reopen_authorizations
+│       │   └── new.html.erb
+│       ├── shared
+│       │   ├── _alerts.html.erb
+│       │   ├── _dashboard_skip_links.html.erb
+│       │   ├── _display_document.html.erb
+│       │   ├── _display_documents.html.erb
+│       │   ├── _favicons.html.erb
+│       │   ├── _impersonation_warning.html.erb
+│       │   ├── _loader.html.erb
+│       │   ├── _matomo.html.erb
+│       │   ├── _modal.html.erb
+│       │   └── _skip_links.html.erb
+│       ├── static_pages
+│       │   ├── accessibilite.html.erb
+│       │   ├── cgu_api_impot_particulier_bas.html.erb
+│       │   └── cgu_api_impot_particulier_prod.html.erb
+│       ├── stats
+│       │   └── index.html.erb
+│       ├── transfer_authorization_requests
+│       │   ├── new_to_another.html.erb
+│       │   └── new_to_me.html.erb
+│       ├── user
+│       │   └── organizations
+│       │       └── index.html.erb
+│       └── webhook_mailer
+│           └── fail.text.erb
+├── bin
+│   ├── brakeman
+│   ├── bundle
+│   ├── check
+│   ├── cucumber
+│   ├── deploy
+│   ├── docker-entrypoint
+│   ├── explore-remote-logs
+│   ├── importmap
+│   ├── lint-yaml
+│   ├── local_run.sh
+│   ├── rails
+│   ├── rake
+│   ├── remote-console
+│   ├── render-build.sh
+│   ├── setup
+│   ├── stream-remote-logs
+│   ├── sync_identity_providers.rb
+│   └── worktree-build
+├── config
+│   ├── application.rb
+│   ├── authorization_definitions
+│   │   ├── aides_etat.yml
+│   │   ├── api_entreprise.yml
+│   │   ├── api_indicateurs_sociaux.yml
+│   │   ├── api_ingres.yml
+│   │   ├── api_mobilic.yml
+│   │   ├── api_particulier.yml
+│   │   ├── cnam.yml
+│   │   ├── dgfip.yml
+│   │   ├── france_connect.yml
+│   │   ├── hubee.yml
+│   │   ├── le_taxi.yml
+│   │   ├── men.yml
+│   │   ├── others.yml
+│   │   ├── pro_connect.yml
+│   │   ├── services_cisirh.yml
+│   │   └── urssaf.yml
+│   ├── authorization_request_forms
+│   │   ├── aides_etat.yml
+│   │   ├── annuaire_des_entreprises.yml
+│   │   ├── api_cpr_pro_adelie.yml
+│   │   ├── api_droits_cnam.yml
+│   │   ├── api_e_contacts.yml
+│   │   ├── api_e_pro.yml
+│   │   ├── api_ensu_documents.yml
+│   │   ├── api_entreprise.yml
+│   │   ├── api_ficoba.yml
+│   │   ├── api_gfe_echange_collectivites.yml
+│   │   ├── api_gfe_echange_editeurs_restauration.yml
+│   │   ├── api_hermes.yml
+│   │   ├── api_impot_particulier.yml
+│   │   ├── api_imprimfip.yml
+│   │   ├── api_indemnites_journalieres_cnam.yml
+│   │   ├── api_indicateurs_sociaux.yml
+│   │   ├── api_infinoe.yml
+│   │   ├── api_ingres.yml
+│   │   ├── api_mire.yml
+│   │   ├── api_mobilic.yml
+│   │   ├── api_ocfi.yml
+│   │   ├── api_opale.yml
+│   │   ├── api_particulier.yml
+│   │   ├── api_r2p.yml
+│   │   ├── api_rial.yml
+│   │   ├── api_robf.yml
+│   │   ├── api_satelit.yml
+│   │   ├── api_scolarite.yml
+│   │   ├── api_sfip.yml
+│   │   ├── formulaire_qf.yml
+│   │   ├── france_connect.yml
+│   │   ├── le_taxi.yml
+│   │   ├── others.yml
+│   │   ├── pro_connect.yml
+│   │   ├── services_cisirh.yml
+│   │   └── urssaf.yml
+│   ├── boot.rb
+│   ├── brakeman.ignore
+│   ├── cable.yml
+│   ├── categories_juridiques.yml
+│   ├── codes_naf.yml
+│   ├── credentials
+│   │   ├── development.key
+│   │   ├── development.yml.enc
+│   │   ├── production.yml.enc
+│   │   ├── sandbox.yml.enc
+│   │   ├── staging.yml.enc
+│   │   ├── test.key -> development.key
+│   │   └── test.yml.enc -> development.yml.enc
+│   ├── credentials.key -> credentials/production.key
+│   ├── credentials.yml.enc -> credentials/production.yml.enc
+│   ├── cucumber.yml
+│   ├── database.yml
+│   ├── environment.rb
+│   ├── environments
+│   │   ├── development.rb
+│   │   ├── production.rb
+│   │   ├── sandbox.rb
+│   │   ├── staging.rb
+│   │   └── test.rb
+│   ├── i18n-tasks.yml
+│   ├── identity_providers.yml
+│   ├── importmap.rb
+│   ├── initializers
+│   │   ├── active_storage_attachment_extension.rb
+│   │   ├── assets.rb
+│   │   ├── content_security_policy.rb
+│   │   ├── doorkeeper.rb
+│   │   ├── emailable.rb
+│   │   ├── filter_parameter_logging.rb
+│   │   ├── friendly_id.rb
+│   │   ├── frontal.rb
+│   │   ├── frontal_mailer.rb
+│   │   ├── gaffe.rb
+│   │   ├── good_job.rb
+│   │   ├── inflections.rb
+│   │   ├── mailjet.rb
+│   │   ├── omniauth.rb
+│   │   ├── permissions_policy.rb
+│   │   ├── pretender.rb
+│   │   ├── ransack.rb
+│   │   └── sentry.rb
+│   ├── instruction_default_modification_request_texts
+│   │   ├── hubee_cert_dc.text
+│   │   └── hubee_dila.text
+│   ├── locales
+│   │   ├── activerecord.fr.yml
+│   │   ├── admin.fr.yml
+│   │   ├── authorization_request_forms.fr.yml
+│   │   ├── components.fr.yml
+│   │   ├── developers.fr.yml
+│   │   ├── dsfr.fr.yml
+│   │   ├── errors.fr.yml
+│   │   ├── fr.yml
+│   │   ├── instruction.fr.yml
+│   │   ├── instruction_message_templates.fr.yml
+│   │   ├── mailer.fr.yml
+│   │   ├── page_titles.fr.yml
+│   │   └── pagination.fr.yml
+│   ├── openapi
+│   │   └── v1.yaml
+│   ├── puma.rb
+│   ├── redis
+│   │   └── shared.yml
+│   ├── routes.rb
+│   ├── schedule.yml
+│   ├── service_providers.yml
+│   ├── storage.yml
+│   └── subdomains.yml
+├── config.ru
+├── cucumber.yml
+├── db
+│   ├── data
+│   │   └── eligibility_rules.yml
+│   ├── development.sqlite3
+│   ├── migrate
+│   │   ├── 20231202175818_create_users.rb
+│   │   ├── 20231202181614_create_organizations.rb
+│   │   ├── 20231204153525_create_authorization_requests.rb
+│   │   ├── 20231206063222_create_active_storage_tables.active_storage.rb
+│   │   ├── 20231207164704_add_current_organization_id_to_users.rb
+│   │   ├── 20231212115018_remove_null_constraint_on_data_authorization_requests.rb
+│   │   ├── 20231214164030_add_phone_to_users.rb
+│   │   ├── 20231215110539_add_roles_to_users.rb
+│   │   ├── 20231227163514_add_form_uid_to_authorization_requests.rb
+│   │   ├── 20240105173258_create_denial_of_authorizations.rb
+│   │   ├── 20240106165759_create_instructor_modification_requests.rb
+│   │   ├── 20240109101531_create_authorization_request_events.rb
+│   │   ├── 20240130155005_create_authorizations.rb
+│   │   ├── 20240221133308_add_more_constraint_to_authorization_request_events.rb
+│   │   ├── 20240222161240_change_authorization_request_id_on_authorizations.rb
+│   │   ├── 20240223231856_create_authorization_request_changelogs.rb
+│   │   ├── 20240223235741_change_constraints_to_authorization_request_events.rb
+│   │   ├── 20240226154321_add_reopened_at_to_authorization_requests.rb
+│   │   ├── 20240226180827_create_good_jobs.rb
+│   │   ├── 20240226183239_create_verified_emails.rb
+│   │   ├── 20240226214947_create_authorization_documents.rb
+│   │   ├── 20240228081648_add_settings_to_users.rb
+│   │   ├── 20240301140544_add_insee_payload_to_organizations.rb
+│   │   ├── 20240301181603_create_messages.rb
+│   │   ├── 20240301210849_more_constraints_to_authorization_request_events.rb
+│   │   ├── 20240311140518_add_linked_token_manager_id_to_authorization_request.rb
+│   │   ├── 20240326144413_add_revoke_constraints_to_events.rb
+│   │   ├── 20240329103410_create_revocation_of_authorizations.rb
+│   │   ├── 20240424133631_add_next_request_copied_on_authorization_requests.rb
+│   │   ├── 20240514094958_more_and_more_constraints_to_authorization_request_events.rb
+│   │   ├── 20240520092629_create_good_job_settings.rb
+│   │   ├── 20240520092630_create_index_good_jobs_jobs_on_priority_created_at_when_unfinished.rb
+│   │   ├── 20240520092631_create_good_job_batches.rb
+│   │   ├── 20240520092632_create_good_job_executions.rb
+│   │   ├── 20240520092633_create_good_jobs_error_event.rb
+│   │   ├── 20240520092634_recreate_good_job_cron_indexes_with_conditional.rb
+│   │   ├── 20240520092635_create_good_job_labels.rb
+│   │   ├── 20240520092636_create_good_job_labels_index.rb
+│   │   ├── 20240520092637_remove_good_job_active_id_index.rb
+│   │   ├── 20240520092638_create_index_good_job_jobs_for_candidate_lookup.rb
+│   │   ├── 20240520092639_create_good_job_execution_error_backtrace.rb
+│   │   ├── 20240606140028_create_authorization_request_transfers.rb
+│   │   ├── 20240606144601_more_and_more_and_more_constraints_to_authorization_request_events.rb
+│   │   ├── 20240626133625_add_types_to_authorization_request_transfers.rb
+│   │   ├── 20240722142901_add_last_submitted_at_to_authorization_requests.rb
+│   │   ├── 20240801212117_create_authorization_request_reopening_cancellations.rb
+│   │   ├── 20240801212118_more_and_more_and_more_and_more_constraints_to_authorization_request_events.rb
+│   │   ├── 20240806172522_add_slugs_to_authorizations.rb
+│   │   ├── 20240812151829_migrate_responsable_traitement_to_contact_metier_for_api_particulier.rb
+│   │   ├── 20240813083722_add_hubee_cert_dc_unicity_index_to_authorization_requests.rb
+│   │   ├── 20240817105727_add_legacy_to_authorization_request_changelogs.rb
+│   │   ├── 20240827075419_create_good_job_process_lock_ids.rb
+│   │   ├── 20240827075420_create_good_job_process_lock_indexes.rb
+│   │   ├── 20240827075421_create_good_job_execution_duration.rb
+│   │   ├── 20240905100122_rename_linked_token_manager_id_to_external_provider_id_to_authorization_requests.rb
+│   │   ├── 20240906081749_add_public_id_to_authorization_requests.rb
+│   │   ├── 20240906134316_create_bulk_authorization_request_updates.rb
+│   │   ├── 20240906154735_more_and_more_and_more_and_more_and_more_constraints_to_authorization_request_events.rb
+│   │   ├── 20240906162647_create_bulk_update_for_api_particulier_on_contact_metier.rb
+│   │   ├── 20240919163302_create_bulk_authorization_request_update_notification_reads.rb
+│   │   ├── 20240921104426_create_doorkeeper_tables.rb
+│   │   ├── 20240921121249_add_owner_to_application.rb
+│   │   ├── 20241002161642_add_index_to_organizations_on_denomination_unite_legale.rb
+│   │   ├── 20241003093735_create_malware_scan.rb
+│   │   ├── 20241029104935_remove_uuid_unicity_from_malware_scans.rb
+│   │   ├── 20241102114221_add_authorization_request_class_to_authorizations.rb
+│   │   ├── 20241102115614_add_reopening_boolean_to_authorization_requests.rb
+│   │   ├── 20241113093824_add_foreign_key_to_authorization_requests_applicant_id.rb
+│   │   ├── 20241125105131_add_revoke_boolean_to_authorizations.rb
+│   │   ├── 20241206144515_add_raw_attributes_from_v1_to_authorization_requests.rb
+│   │   ├── 20241217054845_create_instructor_draft_requests.rb
+│   │   ├── 20250131124408_create_admin_events.rb
+│   │   ├── 20250204083243_add_form_uid_to_authorization.rb
+│   │   ├── 20250204090100_fill_form_uid_in_authorizations.rb
+│   │   ├── 20250317160817_update_authorizations_slugs.rb
+│   │   ├── 20250319100316_add_state_to_authorizations.rb
+│   │   ├── 20250325114012_api_particulier_scopes_migration_to_v3.rb
+│   │   ├── 20250401140609_fill_authorizations_state.rb
+│   │   ├── 20250408104945_fix_fill_authorizations_state.rb
+│   │   ├── 20250410130724_remove_non_null_constraint_for_redirect_uri_on_oauth_applications.rb
+│   │   ├── 20250410132531_add_dirty_from_v1_to_authorization_requests.rb
+│   │   ├── 20250421084542_remove_form_uid_on_authorizations.rb
+│   │   ├── 20250425130021_migrate_to_multi_countries_attributes_on_organizations.rb
+│   │   ├── 20250516130557_add_authorization_request_id_to_authorization_request_events.rb
+│   │   ├── 20250517112759_invert_copied_from_logic_for_authorization_requests.rb
+│   │   ├── 20250521112216_add_index_on_france_connect_authorization_id_authorizations.rb
+│   │   ├── 20250528165734_add_identity_provider_uid_to_organizations_users.rb
+│   │   ├── 20250528170152_add_unique_index_to_organizations_users.rb
+│   │   ├── 20250528171646_add_current_to_organizations_users.rb
+│   │   ├── 20250529085547_add_proconnect_payload_to_organizations.rb
+│   │   ├── 20250529085553_make_mon_compte_pro_fields_optional_in_organizations.rb
+│   │   ├── 20250603115323_add_sha256_to_malware_scans.rb
+│   │   ├── 20250605114241_remove_uuid_from_malware_scans.rb
+│   │   ├── 20250605130931_add_identity_federator_to_organizations_users.rb
+│   │   ├── 20250611121249_create_impersonations.rb
+│   │   ├── 20250618144833_downcase_trim_verified_emails.rb
+│   │   ├── 20250623080456_trim_and_downcase_emails_in_hstore.rb
+│   │   ├── 20250724215035_add_verified_to_organizations_users.rb
+│   │   ├── 20250730172514_add_manual_to_organizations_users.rb
+│   │   ├── 20250812145450_create_instructor_draft_request_documents.rb
+│   │   ├── 20250812154952_add_identity_provider_uid_check_constraint_to_organizations_users.rb
+│   │   ├── 20250812162113_add_claimed_to_instructor_draft_requests.rb
+│   │   ├── 20251008090804_add_claim_constraint_to_authorization_request_events.rb
+│   │   ├── 20251009082820_create_message_templates.rb
+│   │   ├── 20251023095758_create_data_providers.rb
+│   │   ├── 20251023100124_populate_data_providers.rb
+│   │   ├── 20251024141046_remove_foreign_key_on_malware_scans.rb
+│   │   ├── 20251028163429_create_webhooks.rb
+│   │   ├── 20251028163458_create_webhook_calls.rb
+│   │   ├── 20251028163518_migrate_webhooks_from_credentials.rb
+│   │   ├── 20251128171225_rename_webhook_calls_to_webhook_attempts.rb
+│   │   ├── 20251205121107_fix_double_encoded_webhook_attempts_payloads.rb
+│   │   ├── 20251223095156_add_message_to_authorizations.rb
+│   │   └── 20260106171655_fix_verified_reason_default.rb
+│   ├── schema.rb
+│   ├── seeds
+│   │   └── data_providers.yml
+│   └── seeds.rb
+├── disabled
+├── docker-compose.yml
+├── docs
+│   ├── README.md
+│   ├── ajout_evenement.md
+│   ├── ajout_nouveau_bloc_de_formulaire.md
+│   ├── ajout_nouveau_form_non_tech.md
+│   ├── ajout_nouveau_provider.md
+│   ├── api.md
+│   ├── api_particulier
+│   │   └── france_connect
+│   │       └── editeurs_certifies.md
+│   ├── conception.md
+│   ├── dashboard-comportement-utilisateur.md
+│   ├── design.md
+│   ├── lifecycle_documentation.md
+│   ├── lifecycle_documentation_with_stages.md
+│   ├── modification_scopes.md
+│   ├── nouveau_type_d_habilitation.md
+│   ├── scopes_config.md
+│   ├── technique
+│   │   └── modal.md
+│   ├── templates_messages.md
+│   └── webhooks.md
+├── features
+│   ├── acces_espaces_en_fonction_des_roles.feature
+│   ├── accessibilite.feature
+│   ├── admin
+│   │   ├── emails_verifies.feature
+│   │   ├── impersonation.feature
+│   │   ├── transfer_authorization_request.feature
+│   │   ├── utilisateurs_avec_roles.feature
+│   │   └── verifications_organisations.feature
+│   ├── archiver_habilitation.feature
+│   ├── brouillons_demandes_instructeurs.feature
+│   ├── changement_organisation.feature
+│   ├── connexion.feature
+│   ├── connexion_proconnect_nouvelle_organisation.feature
+│   ├── connexion_proconnect_selection_organisation.feature
+│   ├── consultation_demande.feature
+│   ├── consultation_demande_et_habilitations_organisation_non_verifie.feature
+│   ├── consultation_habilitation.feature
+│   ├── consultation_habilitation_en_tant_que_reporter.feature
+│   ├── consultation_habilitation_non_integre.feature
+│   ├── dashboard_empty_states.feature
+│   ├── developpeurs
+│   │   ├── applications.feature
+│   │   ├── documentation.feature
+│   │   └── webhooks.feature
+│   ├── eligibility_check.feature
+│   ├── gestion_des_documents.feature
+│   ├── habilitation_avec_des_cases_a_cocher_supplementaires.feature
+│   ├── habilitation_changelogs.feature
+│   ├── habilitation_en_plusieurs_etapes.feature
+│   ├── habilitation_en_plusieurs_paliers.feature
+│   ├── habilitation_sur_une_page.feature
+│   ├── habilitations
+│   │   ├── api_droits_cnam_sans_habilitation_france_connect.feature
+│   │   ├── api_entreprise
+│   │   │   └── choix_formulaire.feature
+│   │   ├── api_indemnites_journalieres_cnam_sans_habilitation_france_connect.feature
+│   │   ├── api_indicateurs_sociaux.feature
+│   │   ├── api_particulier
+│   │   │   ├── choix_formulaire.feature
+│   │   │   ├── soumission_avec_modalites.feature
+│   │   │   ├── soumission_multiples_etapes.feature
+│   │   │   └── soumission_single_page.feature
+│   │   ├── consultation_habilitation_avec_jeton.feature
+│   │   ├── dgfip
+│   │   │   ├── api_ficoba.feature
+│   │   │   ├── api_ficoba_choix_formulaire.feature
+│   │   │   ├── api_impot_particulier
+│   │   │   │   ├── choix_formulaire.feature
+│   │   │   │   ├── editeur.feature
+│   │   │   │   ├── editeur_modalites.feature
+│   │   │   │   ├── gestion_des_scopes.feature
+│   │   │   │   ├── sandbox_gestion_des_scopes.feature
+│   │   │   │   └── sandbox_puis_production.feature
+│   │   │   ├── api_impots_particuliers_editeur_extra_contacts.feature
+│   │   │   ├── api_infinoe_choix_formulaire.feature
+│   │   │   ├── api_r2p_deprecie.feature
+│   │   │   └── api_sfip_choix_formulaire.feature
+│   │   ├── france_connect_test_france_connect_eidas_block.feature
+│   │   ├── le_taxi_test_technical_team_block.feature
+│   │   ├── page_unique
+│   │   │   ├── portail_hubee_demarche_certdc.feature
+│   │   │   └── portail_hubee_demarches_dila.feature
+│   │   ├── services_cisirh.feature
+│   │   └── urssaf_test_supporting_documents_block.feature
+│   ├── habilitations_avec_des_options_sur_les_scopes.feature
+│   ├── instructeurs
+│   │   ├── affichage_messages_historique.feature
+│   │   ├── annuler_une_réouverture.feature
+│   │   ├── brouillons_demandes_instructeurs
+│   │   │   ├── gestion.feature
+│   │   │   └── invitation_demandeur.feature
+│   │   ├── consultation_demande_lien_organisation.feature
+│   │   ├── consultation_habilitation.feature
+│   │   ├── habilitations_france_connectees.feature
+│   │   ├── historique_habilitation.feature
+│   │   ├── liste_des_demandes.feature
+│   │   ├── liste_des_habilitations.feature
+│   │   ├── malware_scan.feature
+│   │   ├── messages.feature
+│   │   ├── modérer_une_habilitation.feature
+│   │   ├── notifications.feature
+│   │   ├── révocation_habilitation.feature
+│   │   ├── templates_messages.feature
+│   │   └── transfert_habilitation.feature
+│   ├── liste_des_habilitations.feature
+│   ├── messagerie.feature
+│   ├── mise_a_jour_global_habilitation.feature
+│   ├── modification_depuis_resume_habilitation.feature
+│   ├── module_processing_time.feature
+│   ├── organisation_fermee.feature
+│   ├── page_faq.feature
+│   ├── page_publique_habilitation.feature
+│   ├── page_stats.feature
+│   ├── redirections.feature
+│   ├── reouverture_habilitation.feature
+│   ├── reporters
+│   │   ├── consultation_habilitation.feature
+│   │   ├── liste_des_habilitations.feature
+│   │   └── notifications.feature
+│   ├── soumission_demande_scan_antivirus.feature
+│   ├── sous-domaine_nouvelle_habilitation.feature
+│   ├── sous-domaine_tableau_de_bord.feature
+│   ├── step_definitions
+│   │   ├── .keep
+│   │   ├── accessibility_steps.rb
+│   │   ├── admin_steps.rb
+│   │   ├── applicant_authorization_requests_steps.rb
+│   │   ├── authorization_requests_steps.rb
+│   │   ├── authorization_steps.rb
+│   │   ├── date_steps.rb
+│   │   ├── debug_steps.rb
+│   │   ├── email_steps.rb
+│   │   ├── france_connect_authorizations_steps.rb
+│   │   ├── impersonation_steps.rb
+│   │   ├── instructions_steps.rb
+│   │   ├── instructor_draft_requests_steps.rb
+│   │   ├── integrity_stepts.rb
+│   │   ├── login_steps.rb
+│   │   ├── message_templates_steps.rb
+│   │   ├── messages_steps.rb
+│   │   ├── modal_steps.rb
+│   │   ├── organizations_steps.rb
+│   │   ├── query_steps.rb
+│   │   ├── settings.rb
+│   │   ├── summary_authorization_requests_steps.rb
+│   │   ├── tabs_steps.rb
+│   │   ├── user_steps.rb
+│   │   ├── users_roles_steps.rb
+│   │   ├── web_steps.rb
+│   │   ├── webhook_steps.rb
+│   │   └── whitelisted_verified_emails_steps.rb
+│   ├── support
+│   │   ├── active_job.rb
+│   │   ├── applicant_authorization_request_helpers.rb
+│   │   ├── authorization_request_helpers.rb
+│   │   ├── bullet.rb
+│   │   ├── data_providers.rb
+│   │   ├── env.rb
+│   │   ├── insee.rb
+│   │   ├── javascript.rb
+│   │   ├── organizations.rb
+│   │   ├── pending.rb
+│   │   ├── record_identifier_helpers.rb
+│   │   ├── sessions.rb
+│   │   ├── webhooks.rb
+│   │   └── webmock.rb
+│   ├── tableau_de_bord.feature
+│   ├── titre_page
+│   │   ├── admin.feature
+│   │   ├── dashboard.feature
+│   │   ├── demandes_habilitations.feature
+│   │   ├── formulaires.feature
+│   │   ├── instruction.feature
+│   │   ├── profile_and_organizations.feature
+│   │   ├── public_pages.feature
+│   │   └── selection_formulaire.feature
+│   └── transfert_habilitation.feature
+├── fetch_pr_comments.sh
+├── lib
+│   ├── adhoc
+│   │   └── fill_authorization_states.rb
+│   ├── assets
+│   │   └── .keep
+│   ├── generators
+│   │   ├── definition
+│   │   │   ├── USAGE
+│   │   │   ├── definition_generator.rb
+│   │   │   └── templates
+│   │   │       ├── authorization_request.rb.erb
+│   │   │       ├── definition.yml.erb
+│   │   │       ├── forms.yml.erb
+│   │   │       └── scenario.feature.erb
+│   │   └── multi_stages_definition
+│   │       ├── USAGE
+│   │       ├── multi_stages_definition_generator.rb
+│   │       └── templates
+│   │           ├── authorization_request_production.rb.erb
+│   │           ├── authorization_request_sandbox.rb.erb
+│   │           ├── definition.yml.erb
+│   │           ├── forms.yml.erb
+│   │           └── scenario.feature.erb
+│   └── tasks
+│       ├── .keep
+│       └── db_seed.rake
+├── log
+│   └── .keep
+├── public
+│   ├── 404.html
+│   ├── 422.html
+│   ├── 500.html
+│   ├── apple-touch-icon-precomposed.png
+│   ├── apple-touch-icon.png
+│   ├── cgus
+│   │   ├── 20210212_dinum_hubee_cgu_v2_1_0_version_site.pdf
+│   │   ├── API_Droits_CNAM_CGU_20181210.pdf
+│   │   ├── cgu_agentconnect_fi.pdf
+│   │   ├── cgu_agentconnect_fs.pdf
+│   │   ├── cgu_api_captchetat_v_1_2.pdf
+│   │   ├── cgu_api_declaration_cesu_v1.pdf
+│   │   ├── cgu_api_ingres.pdf
+│   │   ├── cgu_api_scolarite.pdf
+│   │   ├── cgu_datapass.pdf
+│   │   └── dgfip
+│   │       ├── cgu_api_ficoba_bas_2025.pdf
+│   │       ├── cgu_api_ficoba_prod_2025.pdf
+│   │       ├── cgu_api_impot_particulier_bac_a_sable_connexion_fc_septembre2020_v2.6.pdf
+│   │       ├── cgu_api_impot_particulier_bac_a_sable_connexion_hors_fc_septembre2020_v2.6.pdf
+│   │       ├── cgu_api_impot_particulier_production_connexion_fc_septembre2020_v5.5.pdf
+│   │       ├── cgu_api_impot_particulier_production_hors_connexion_fc_decembre2022_v4.0.pdf
+│   │       ├── cgu_api_r2p_bac_a_sable_septembre2020_v2.6.pdf
+│   │       ├── cgu_api_r2p_production_septembre2020_v2.5.pdf
+│   │       ├── cgu_api_sfip_r2p_bac_a_sable_2025_v3.0.pdf
+│   │       ├── cgu_api_sfip_r2p_production_2025_V4.0.pdf
+│   │       ├── cgu_bas_api_rial_v2024-11.pdf
+│   │       ├── cgu_bas_hermes_v.2023_11.pdf
+│   │       ├── cgu_bas_imprimfip_v.2023_09.pdf
+│   │       ├── cgu_infinoe_bac_a_sable_v_2023_10.pdf
+│   │       ├── cgu_infinoe_production_v_2023_10.pdf
+│   │       ├── cgu_prod_api_rial_v2024-11.pdf
+│   │       ├── cgu_prod_hermes_v.2023_11.pdf
+│   │       ├── cgu_prod_imprimfip_v.2023_09.pdf
+│   │       ├── pcr_v1
+│   │       │   ├── cgu_bas_cpr_pro_v.2023_11.pdf
+│   │       │   ├── cgu_bas_e_contacts_v.2023_11.pdf
+│   │       │   ├── cgu_bas_e_pro_v.2023_11.pdf
+│   │       │   ├── cgu_bas_ensu_doc_v.2023_11.pdf
+│   │       │   ├── cgu_bas_mire_v.2023_11.pdf
+│   │       │   ├── cgu_bas_ocfi_v.2023_11.pdf
+│   │       │   ├── cgu_bas_opale_v.2023_11.pdf
+│   │       │   ├── cgu_bas_robf_v.2023_11.pdf
+│   │       │   ├── cgu_bas_satelit_v.2022_v1.pdf
+│   │       │   ├── cgu_prod_cpr_pro_v.2023_11.pdf
+│   │       │   ├── cgu_prod_e_contacts_v.2023_11.pdf
+│   │       │   ├── cgu_prod_e_pro_v.2023_11.pdf
+│   │       │   ├── cgu_prod_ensu_doc_v.2023_11.pdf
+│   │       │   ├── cgu_prod_mire_v.2023_11.pdf
+│   │       │   ├── cgu_prod_ocfi_v.2023_11.pdf
+│   │       │   ├── cgu_prod_opale_v.2023_11.pdf
+│   │       │   ├── cgu_prod_robf_v.2023_11.pdf
+│   │       │   └── cgu_prod_satelit_v.2022_v1.pdf
+│   │       └── presentation_de_l_api_impot_particulier_v2.9.pdf
+│   ├── doc
+│   │   ├── ProtocoleTechniqueFicoba3_v11.pdf
+│   │   └── documentation_api_rial_v2025_07.pdf
+│   ├── favicon.ico
+│   ├── robots.txt
+│   └── schema_pluriannuel.html
+├── spec
+│   ├── acceptance
+│   │   ├── administrative_operations_on_legacy_requests_spec.rb
+│   │   ├── authorization_request_forms_flows_valid_spec.rb
+│   │   ├── authorizations_configs_spec.rb
+│   │   ├── track_impersonation_action_spec.rb
+│   │   └── zeitwerk_spec.rb
+│   ├── bridges
+│   │   ├── api_captchetat_bridge_spec.rb
+│   │   ├── application_bridge_spec.rb
+│   │   ├── hubee_cert_dc_bridge_spec.rb
+│   │   └── hubee_dila_bridge_spec.rb
+│   ├── components
+│   │   ├── applicant
+│   │   │   └── demande_alerts_component_spec.rb
+│   │   ├── authorization_header_component_spec.rb
+│   │   ├── dashboard
+│   │   │   └── blank_state_component_spec.rb
+│   │   ├── dsfr
+│   │   │   └── multi_select_component_spec.rb
+│   │   ├── habilitation
+│   │   │   └── user_alerts_component_spec.rb
+│   │   ├── historical_authorization_request_event_component_spec.rb
+│   │   ├── historical_authorization_request_event_icon_component_spec.rb
+│   │   ├── icon_component_spec.rb
+│   │   ├── instructor_menu_component_spec.rb
+│   │   ├── link_component_spec.rb
+│   │   └── previews
+│   │       ├── applicant
+│   │       │   └── demande_alerts_component_preview.rb
+│   │       ├── application_preview.rb
+│   │       ├── authorization_header_component_preview.rb
+│   │       ├── dashboard
+│   │       │   └── blank_state_component_preview.rb
+│   │       ├── flash_alert_component_preview.rb
+│   │       ├── habilitation
+│   │       │   └── user_alerts_component_preview.rb
+│   │       ├── historical_authorization_request_event_icon_component_preview.rb
+│   │       └── molecules
+│   │           ├── instructor_banner_notice_component_preview.rb
+│   │           └── update_in_progress_notice_component_preview.rb
+│   ├── controllers
+│   │   ├── api
+│   │   │   └── frontal_controller_spec.rb
+│   │   ├── authenticated_user_controller_spec.rb
+│   │   ├── authorization_request_forms_controller_spec.rb
+│   │   ├── authorization_request_stats_controller_spec.rb
+│   │   ├── authorization_requests_controller_spec.rb
+│   │   ├── concerns
+│   │   │   └── authentication_spec.rb
+│   │   ├── dgfip
+│   │   │   └── export_controller_spec.rb
+│   │   ├── external_reopen_authorization_requests_controller_spec.rb
+│   │   ├── pages_controller_spec.rb
+│   │   ├── redirect_from_v1_controller_spec.rb
+│   │   └── reopen_authorizations_controller_spec.rb
+│   ├── decorators
+│   │   ├── authorization_request_decorator_spec.rb
+│   │   ├── authorization_request_form_decorator_spec.rb
+│   │   ├── eligibility_option_decorator_spec.rb
+│   │   ├── eligibility_rule_decorator_spec.rb
+│   │   ├── organization_decorator_spec.rb
+│   │   └── service_provider_decorator_spec.rb
+│   ├── facades
+│   │   ├── abstract_dashboard_facade_spec.rb
+│   │   ├── dashboard_demandes_facade_spec.rb
+│   │   ├── dashboard_habilitations_facade_spec.rb
+│   │   ├── instruction
+│   │   │   ├── dashboard_habilitations_facade_spec.rb
+│   │   │   └── search
+│   │   │       ├── dashboard_demandes_search_spec.rb
+│   │   │       ├── dashboard_habilitations_search_spec.rb
+│   │   │       └── dashboard_search_spec.rb
+│   │   ├── new_authorization_request
+│   │   │   ├── api_entreprise_facade_spec.rb
+│   │   │   ├── api_impot_particulier_facade_spec.rb
+│   │   │   └── default_facade_spec.rb
+│   │   └── new_authorization_request_spec.rb
+│   ├── factories
+│   │   ├── active_storage_attachment.rb
+│   │   ├── active_storage_blob.rb
+│   │   ├── admin_events.rb
+│   │   ├── authorization_documents.rb
+│   │   ├── authorization_request_changelogs.rb
+│   │   ├── authorization_request_events.rb
+│   │   ├── authorization_request_reopening_cancellations.rb
+│   │   ├── authorization_request_transfers.rb
+│   │   ├── authorization_requests.rb
+│   │   ├── authorizations.rb
+│   │   ├── bulk_authorization_request_update_notification_reads.rb
+│   │   ├── bulk_authorization_request_updates.rb
+│   │   ├── data_providers.rb
+│   │   ├── denial_of_authorizations.rb
+│   │   ├── hubee_payloads.rb
+│   │   ├── impersonation_actions.rb
+│   │   ├── impersonations.rb
+│   │   ├── instructor_draft_request_documents.rb
+│   │   ├── instructor_draft_requests.rb
+│   │   ├── instructor_modification_requests.rb
+│   │   ├── malware_scan.rb
+│   │   ├── message_templates.rb
+│   │   ├── messages.rb
+│   │   ├── mon_compte_pro_payloads.rb
+│   │   ├── oauth.rb
+│   │   ├── organizations.rb
+│   │   ├── organizations_users.rb
+│   │   ├── proconnect_payloads.rb
+│   │   ├── revocation_of_authorizations.rb
+│   │   ├── users.rb
+│   │   ├── verified_emails.rb
+│   │   ├── webhook_attempts.rb
+│   │   └── webhooks.rb
+│   ├── features
+│   │   ├── authorization_requests
+│   │   │   ├── create_spec.rb
+│   │   │   ├── multiple_steps_spec.rb
+│   │   │   └── scopes_spec.rb
+│   │   ├── authorizations
+│   │   │   └── legacy_scopes_spec.rb
+│   │   ├── errors_spec.rb
+│   │   ├── instruction
+│   │   │   ├── events_spec.rb
+│   │   │   ├── search_demandes_spec.rb
+│   │   │   └── search_habilitations_spec.rb
+│   │   ├── javascript_errors_spec.rb
+│   │   └── page_titles_coverage_spec.rb
+│   ├── fixtures
+│   │   ├── another_dummy.pdf
+│   │   ├── api_impot_particulier_v1_attributes.json
+│   │   ├── dummy.pdf
+│   │   ├── dummy.xlsx
+│   │   ├── files
+│   │   │   └── dinum.png
+│   │   └── insee
+│   │       ├── 13002526500013.json
+│   │       ├── 21920023500014.json
+│   │       └── 21920023500022.json
+│   ├── generator
+│   │   ├── definition_generator_spec.rb
+│   │   └── multi_stages_definition_generator_spec.rb
+│   ├── helpers
+│   │   ├── concerns
+│   │   │   └── skip_links_spec.rb
+│   │   ├── page_title_helper_spec.rb
+│   │   └── tabs_helper_spec.rb
+│   ├── i18n_spec.rb
+│   ├── interactors
+│   │   ├── .gitkeep
+│   │   ├── affect_default_reason_to_instruction_modification_request_spec.rb
+│   │   ├── create_authorization_request_changelog_spec.rb
+│   │   ├── create_authorization_spec.rb
+│   │   ├── deliver_gdpr_contacts_mails_spec.rb
+│   │   ├── deprecate_previous_authorizations_spec.rb
+│   │   ├── developer
+│   │   │   ├── create_webhook_model_spec.rb
+│   │   │   ├── enable_webhook_spec.rb
+│   │   │   ├── regenerate_webhook_secret_spec.rb
+│   │   │   ├── replay_webhook_attempt_spec.rb
+│   │   │   ├── save_webhook_attempt_spec.rb
+│   │   │   └── test_webhook_spec.rb
+│   │   ├── find_or_create_organization_through_mon_compte_pro_spec.rb
+│   │   ├── find_or_create_organization_through_pro_connect_spec.rb
+│   │   ├── find_or_create_user_through_mon_compte_pro_spec.rb
+│   │   ├── find_or_create_user_through_pro_connect_spec.rb
+│   │   ├── restore_authorization_request_to_latest_authorization_spec.rb
+│   │   └── run_malware_scan_on_documents_spec.rb
+│   ├── jobs
+│   │   ├── backfill_malware_scan_sha256_job_spec.rb
+│   │   ├── deliver_authorization_request_webhook_job_spec.rb
+│   │   ├── email_verifier_job_spec.rb
+│   │   ├── enqueue_backfill_malware_scan_sha256_jobs_spec.rb
+│   │   ├── healthcheck_job_spec.rb
+│   │   ├── malware_scan_job_spec.rb
+│   │   ├── malware_scan_retrieve_state_job_spec.rb
+│   │   ├── register_organization_with_contacts_on_crm_job_spec.rb
+│   │   └── update_organization_insee_payload_job_spec.rb
+│   ├── lib
+│   │   └── seeds_spec.rb
+│   ├── mailers
+│   │   ├── admin_mailer_spec.rb
+│   │   ├── authorization_request_mailer_spec.rb
+│   │   ├── authorization_request_transfer_mailer_spec.rb
+│   │   ├── dgfip_apim_mailer_spec.rb
+│   │   ├── france_connect_mailer_spec.rb
+│   │   ├── hubee_mailer_spec.rb
+│   │   ├── instruction
+│   │   │   └── authorization_request_mailer_spec.rb
+│   │   ├── instructor_draft_request_mailer_spec.rb
+│   │   ├── message_mailer_spec.rb
+│   │   ├── previews
+│   │   │   ├── admin_mailer_preview.rb
+│   │   │   ├── authorization_request_preview.rb
+│   │   │   ├── authorization_request_transfer_preview.rb
+│   │   │   ├── france_connect_mailer_preview.rb
+│   │   │   ├── gdpr_contact_mailer_preview.rb
+│   │   │   ├── hubee_mailer_preview.rb
+│   │   │   ├── instructor_draft_request_mailer_preview.rb
+│   │   │   └── message_mailer_preview.rb
+│   │   └── webhook_mailer_spec.rb
+│   ├── models
+│   │   ├── admin_event_spec.rb
+│   │   ├── authorization_definition
+│   │   │   └── scope_spec.rb
+│   │   ├── authorization_definition_spec.rb
+│   │   ├── authorization_document_spec.rb
+│   │   ├── authorization_request
+│   │   │   ├── api_impot_particulier_spec.rb
+│   │   │   ├── api_particulier_spec.rb
+│   │   │   ├── api_particulier_with_france_connect_embedded_fields_spec.rb
+│   │   │   ├── api_sfip_spec.rb
+│   │   │   ├── france_connect_spec.rb
+│   │   │   ├── hubee_cert_dc_spec.rb
+│   │   │   └── hubee_dila_spec.rb
+│   │   ├── authorization_request_changelog_spec.rb
+│   │   ├── authorization_request_event_spec.rb
+│   │   ├── authorization_request_form_spec.rb
+│   │   ├── authorization_request_reopening_cancellation_spec.rb
+│   │   ├── authorization_request_spec.rb
+│   │   ├── authorization_request_transfer_spec.rb
+│   │   ├── authorization_spec.rb
+│   │   ├── bulk_authorization_request_update_notification_read_spec.rb
+│   │   ├── bulk_authorization_request_update_spec.rb
+│   │   ├── categorie_juridique_spec.rb
+│   │   ├── code_naf_spec.rb
+│   │   ├── contact_definition_spec.rb
+│   │   ├── contact_spec.rb
+│   │   ├── data_provider_spec.rb
+│   │   ├── denial_of_authorization_spec.rb
+│   │   ├── eligibility_rule_spec.rb
+│   │   ├── identity_provider_spec.rb
+│   │   ├── impersonation_action_spec.rb
+│   │   ├── impersonation_spec.rb
+│   │   ├── instructor_draft_request_document_spec.rb
+│   │   ├── instructor_draft_request_spec.rb
+│   │   ├── instructor_modification_request_spec.rb
+│   │   ├── malware_scan_spec.rb
+│   │   ├── message_spec.rb
+│   │   ├── message_template_spec.rb
+│   │   ├── organization_spec.rb
+│   │   ├── organizations_user_spec.rb
+│   │   ├── service_provider_spec.rb
+│   │   ├── subdomain_spec.rb
+│   │   ├── user_spec.rb
+│   │   ├── verified_email_spec.rb
+│   │   ├── webhook_attempt_spec.rb
+│   │   └── webhook_spec.rb
+│   ├── notifiers
+│   │   ├── .gitkeep
+│   │   ├── api_particulier_notifier_spec.rb
+│   │   ├── base_notifier_spec.rb
+│   │   └── hubee_notifier_spec.rb
+│   ├── organizers
+│   │   ├── .gitkeep
+│   │   ├── admin
+│   │   │   ├── mark_user_organization_as_verified_spec.rb
+│   │   │   ├── start_impersonation_spec.rb
+│   │   │   ├── stop_impersonation_spec.rb
+│   │   │   ├── transfer_authorization_request_spec.rb
+│   │   │   └── update_user_roles_spec.rb
+│   │   ├── approve_authorization_request_spec.rb
+│   │   ├── archive_authorization_request_spec.rb
+│   │   ├── authenticate_user_through_mon_compte_pro_spec.rb
+│   │   ├── authenticate_user_through_pro_connect_spec.rb
+│   │   ├── cancel_authorization_reopening_spec.rb
+│   │   ├── cancel_next_authorization_request_stage_spec.rb
+│   │   ├── claim_instructor_draft_request_spec.rb
+│   │   ├── create_authorization_request_spec.rb
+│   │   ├── create_instructor_draft_request_spec.rb
+│   │   ├── developer
+│   │   │   ├── create_webhook_spec.rb
+│   │   │   └── update_webhook_spec.rb
+│   │   ├── find_or_create_organization_spec.rb
+│   │   ├── invite_applicant_to_claim_instructor_draft_request_spec.rb
+│   │   ├── refuse_authorization_request_spec.rb
+│   │   ├── reopen_authorization_spec.rb
+│   │   ├── request_changes_on_authorization_request_spec.rb
+│   │   ├── review_authorization_request_spec.rb
+│   │   ├── revoke_authorization_request_spec.rb
+│   │   ├── send_message_to_applicant_spec.rb
+│   │   ├── send_message_to_instructors_spec.rb
+│   │   ├── start_next_authorization_request_stage_spec.rb
+│   │   ├── submit_authorization_request_spec.rb
+│   │   ├── transfer_authorization_request_to_new_applicant_spec.rb
+│   │   ├── transfer_authorization_request_to_new_organization_spec.rb
+│   │   ├── update_authorization_request_spec.rb
+│   │   └── update_instructor_draft_request_spec.rb
+│   ├── policies
+│   │   ├── authorization_request_form_policy_spec.rb
+│   │   └── authorization_request_policy_spec.rb
+│   ├── queries
+│   │   ├── authorization_request_events_query_spec.rb
+│   │   ├── authorization_requests_mentions_query_spec.rb
+│   │   ├── authorizations_mentions_query_spec.rb
+│   │   ├── demandes_habilitations_viewable_by_user_spec.rb
+│   │   └── processing_time_query_spec.rb
+│   ├── rails_helper.rb
+│   ├── requests
+│   │   ├── api
+│   │   │   ├── oauth_token_spec.rb
+│   │   │   ├── open_api_spec.rb
+│   │   │   └── v1
+│   │   │       ├── authorization_definitions_controller_spec.rb
+│   │   │       ├── authorization_request_events_controller_spec.rb
+│   │   │       ├── authorization_request_forms_controller_spec.rb
+│   │   │       ├── authorization_requests_controller_spec.rb
+│   │   │       ├── authorizations_controller_spec.rb
+│   │   │       ├── credentials_controller_spec.rb
+│   │   │       └── webhook_attempts_controller_spec.rb
+│   │   ├── authorization_requests_access_spec.rb
+│   │   ├── dashboard_spec.rb
+│   │   ├── instruction
+│   │   │   └── authorization_requests_spec.rb
+│   │   └── instruction_access_spec.rb
+│   ├── serializers
+│   │   ├── api
+│   │   │   └── v1
+│   │   │       ├── authorization_request_event_serializer_spec.rb
+│   │   │       ├── authorization_request_serializer_spec.rb
+│   │   │       ├── authorization_serializer_spec.rb
+│   │   │       └── organization_serializer_spec.rb
+│   │   ├── webhook_authorization_request_serializer_spec.rb
+│   │   ├── webhook_authorization_serializer_spec.rb
+│   │   └── webhook_serializer_spec.rb
+│   ├── services
+│   │   ├── authorization_request_changelog_presenter_spec.rb
+│   │   ├── authorization_requests_search_engine_builder_spec.rb
+│   │   ├── authorizations_search_engine_builder_spec.rb
+│   │   ├── dgfip_spreadsheet_generator_spec.rb
+│   │   ├── email_preview_renderer_spec.rb
+│   │   ├── hubee_api_client_spec.rb
+│   │   ├── insee_sirene_api_client_spec.rb
+│   │   ├── je_clique_ou_pas_api_client_spec.rb
+│   │   ├── message_template_interpolator_spec.rb
+│   │   ├── message_template_preview_renderer_spec.rb
+│   │   ├── skip_links_implemented_spec.rb
+│   │   └── webhook_http_service_spec.rb
+│   ├── spec_helper.rb
+│   ├── support
+│   │   ├── configure_javascript_driver.rb
+│   │   ├── controllers_helpers.rb
+│   │   ├── events_helpers.rb
+│   │   ├── feature_helpers.rb
+│   │   ├── fixtures_helpers.rb
+│   │   ├── generator_helpers.rb
+│   │   ├── hubee_api_client_mocks.rb
+│   │   ├── hubee_helpers.rb
+│   │   ├── insee_sirene_api_mocks.rb
+│   │   ├── matchers
+│   │   │   └── have_valid_syntax.rb
+│   │   ├── openapi_validation.rb
+│   │   ├── requests_helpers.rb
+│   │   ├── sessions_helpers.rb
+│   │   └── shared_examples
+│   │       ├── generators.rb
+│   │       └── new_authorization_request_facade.rb
+│   ├── tmp
+│   │   ├── generator_specs
+│   │   │   └── app
+│   │   │       └── models
+│   │   │           └── authorization_request
+│   │   │               └── france_generateur.rb
+│   │   └── tmp
+│   │       └── app
+│   │           └── models
+│   │               └── authorization_request
+│   │                   └── france_generateur.rb
+│   └── validators
+│       ├── email_recently_verified_validator_spec.rb
+│       ├── french_phone_number_validator_spec.rb
+│       └── siret_validator_spec.rb
+├── storage
+│   └── .keep
+├── test
+│   ├── controllers
+│   │   └── concerns
+│   │       └── api_pagination_test.rb
+│   └── requests
+│       └── api
+│           └── v1
+│               └── authorization_requests_controller_test.rb
+├── tmp
+│   ├── .keep
+│   ├── pids
+│   │   └── .keep
+│   └── storage
+│       └── .keep
+└── vendor
+    ├── .keep
+    └── javascript
+        └── .keep
+413 directories, 2647 files
