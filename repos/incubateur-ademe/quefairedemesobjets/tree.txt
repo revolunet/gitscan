@@ -1,0 +1,1700 @@
+.
+├── .buildpacks
+├── .env.template
+├── .eslintrc.js
+├── .git-blame-ignore-revs
+├── .github
+│   ├── CODEOWNERS
+│   ├── actions
+│   │   ├── install-gis
+│   │   │   └── action.yml
+│   │   ├── prepare-django-db
+│   │   │   └── action.yml
+│   │   ├── restore-django-db
+│   │   │   └── action.yml
+│   │   ├── setup-backend
+│   │   │   └── action.yml
+│   │   ├── setup-frontend
+│   │   │   └── action.yml
+│   │   └── setup-playwright
+│   │       └── action.yml
+│   ├── dependabot.yml
+│   ├── pull_request_template.md
+│   ├── release-config.yml
+│   └── workflows
+│       ├── _airflow-build-and-push-docker.yml
+│       ├── _deploy-airflow.yml
+│       ├── _deploy-on-scalingo.yml
+│       ├── _deploy-webapp.yml
+│       ├── _scaleway-container-deploy.yml
+│       ├── cd.yml
+│       ├── ci.yml
+│       ├── deploy.yml
+│       ├── publish-docs.yml
+│       ├── review.yml
+│       ├── scaleway_container_registry_delete_old_tags.yml
+│       └── sync_databases.yml
+├── .gitignore
+├── .npmrc
+├── .parcelrc
+├── .postcssrc
+├── .pre-commit-config.yaml
+├── .python-version
+├── .secrets.baseline
+├── .slugignore
+├── .tool-versions
+├── .vscode
+│   ├── extensions.json
+│   └── settings.json
+├── AGENTS.md
+├── APPLICATION.md
+├── Aptfile
+├── LICENSE
+├── Makefile
+├── Procfile
+├── Procfile.all.dev
+├── Procfile.django.dev
+├── README.md
+├── SECURITY.md
+├── airflow-scheduler.Dockerfile
+├── airflow-webserver.Dockerfile
+├── api.AGENTS.md
+├── api.postman_collection.json
+├── bin
+│   ├── post_compile
+│   ├── post_deploy
+│   └── start
+├── config
+│   └── .gitkeep
+├── core
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── airflow_settings.py
+│   ├── api.py
+│   ├── asgi.py
+│   ├── constants.py
+│   ├── context_processors.py
+│   ├── exceptions.py
+│   ├── logging.py
+│   ├── models
+│   │   ├── mixin.py
+│   │   └── tools.py
+│   ├── notion.py
+│   ├── settings.py
+│   ├── templatetags
+│   │   ├── __init__.py
+│   │   ├── acteur_tags.py
+│   │   ├── admin_data_tags.py
+│   │   ├── admin_suggestion_tags.py
+│   │   ├── analytics_tags.py
+│   │   ├── carte_tags.py
+│   │   ├── custom_dsfr_tags.py
+│   │   ├── dict_tags.py
+│   │   ├── modal_tags.py
+│   │   ├── script_tags.py
+│   │   ├── share_tags.py
+│   │   └── turbo_tags.py
+│   ├── test_routers.py
+│   ├── test_settings.py
+│   ├── urls.py
+│   ├── utils.py
+│   ├── validators.py
+│   ├── views.py
+│   └── wsgi.py
+├── dags
+│   ├── .airflowignore
+│   ├── .env.template
+│   ├── __init__.py
+│   ├── acteurs
+│   │   ├── dags
+│   │   │   ├── compute_acteur.py
+│   │   │   ├── compute_sample_acteur.py
+│   │   │   └── export_opendata.py
+│   │   └── tasks
+│   │       ├── airflow_logic
+│   │       │   ├── check_model_table_consistency_task.py
+│   │       │   ├── check_not_prod_env.py
+│   │       │   ├── config_management.py
+│   │       │   ├── copy_db_data_task.py
+│   │       │   ├── copy_db_schema_task.py
+│   │       │   ├── copy_displayed_data_from_warehouse_task.py
+│   │       │   ├── export_opendata_csv_to_s3_task.py
+│   │       │   ├── remove_old_s3_opendata_csv_task.py
+│   │       │   └── replace_acteur_table_task.py
+│   │       └── business_logic
+│   │           ├── check_model_table_consistency.py
+│   │           ├── copy_db_data.py
+│   │           ├── copy_db_schema.py
+│   │           ├── copy_displayed_data_from_warehouse_task.py
+│   │           ├── copy_utils.py
+│   │           ├── export_opendata_csv_to_s3.py
+│   │           ├── remove_old_s3_opendata_csv.py
+│   │           └── replace_acteur_table.py
+│   ├── airflow_local_settings.py
+│   ├── clone
+│   │   ├── config
+│   │   │   ├── __init__.py
+│   │   │   ├── model.py
+│   │   │   ├── sql
+│   │   │   │   ├── creation
+│   │   │   │   │   ├── tables
+│   │   │   │   │   │   ├── create_table_ae_etablissement.sql
+│   │   │   │   │   │   ├── create_table_ae_unite_legale.sql
+│   │   │   │   │   │   ├── create_table_ban_adresses.sql
+│   │   │   │   │   │   ├── create_table_ban_lieux_dits.sql
+│   │   │   │   │   │   ├── create_table_ca_commune.sql
+│   │   │   │   │   │   ├── create_table_ca_commune_associee_deleguee.sql
+│   │   │   │   │   │   ├── create_table_ca_departement.sql
+│   │   │   │   │   │   ├── create_table_ca_epci.sql
+│   │   │   │   │   │   ├── create_table_ca_region.sql
+│   │   │   │   │   │   ├── create_table_insee_commune.sql
+│   │   │   │   │   │   ├── create_table_koumoul_epci.sql
+│   │   │   │   │   │   └── create_table_laposte_code_postal.sql
+│   │   │   │   │   └── views
+│   │   │   │   │       ├── create_view_ae_etablissement_in_use.sql
+│   │   │   │   │       ├── create_view_ae_unite_legale_in_use.sql
+│   │   │   │   │       ├── create_view_ban_adresses_in_use.sql
+│   │   │   │   │       ├── create_view_ban_lieux_dits_in_use.sql
+│   │   │   │   │       ├── create_view_ca_commune_associee_deleguee_in_use.sql
+│   │   │   │   │       ├── create_view_ca_commune_in_use.sql
+│   │   │   │   │       ├── create_view_ca_departement_in_use.sql
+│   │   │   │   │       ├── create_view_ca_epci_in_use.sql
+│   │   │   │   │       ├── create_view_ca_region_in_use.sql
+│   │   │   │   │       ├── create_view_insee_commune_in_use.sql
+│   │   │   │   │       ├── create_view_koumoul_epci_in_use.sql
+│   │   │   │   │       └── create_view_laposte_code_postal_in_use.sql
+│   │   │   │   └── validation
+│   │   │   │       ├── ae_etablissement
+│   │   │   │       │   ├── validate_join_acteurs_count_siret.sql
+│   │   │   │       │   └── validate_rows_count.sql
+│   │   │   │       ├── ae_unite_legale
+│   │   │   │       │   ├── validate_join_acteurs_count_siren.sql
+│   │   │   │       │   └── validate_rows_count.sql
+│   │   │   │       ├── ban_adresses
+│   │   │   │       │   └── validate_rows_count.sql
+│   │   │   │       └── ban_lieux_dits
+│   │   │   │           └── validate_rows_count.sql
+│   │   │   ├── tasks.py
+│   │   │   └── xcoms.py
+│   │   ├── dags
+│   │   │   ├── clone_ae_etablissement.py
+│   │   │   ├── clone_ae_unite_legale.py
+│   │   │   ├── clone_ban_adresses.py
+│   │   │   ├── clone_ban_lieux_dits.py
+│   │   │   ├── clone_ca_commune.py
+│   │   │   ├── clone_ca_commune_associee_deleguee.py
+│   │   │   ├── clone_ca_departement.py
+│   │   │   ├── clone_ca_epci.py
+│   │   │   ├── clone_ca_region.py
+│   │   │   ├── clone_insee_commune.py
+│   │   │   ├── clone_koumoul_epci.py
+│   │   │   ├── clone_laposte_code_postal.py
+│   │   │   └── refresh_geo_models.py
+│   │   └── tasks
+│   │       ├── airflow_logic
+│   │       │   ├── chain_tasks.py
+│   │       │   ├── clone_config_create_task.py
+│   │       │   ├── clone_old_tables_remove_task.py
+│   │       │   ├── clone_table_create_task.py
+│   │       │   ├── clone_table_validate_task.py
+│   │       │   └── clone_view_in_use_switch_task.py
+│   │       └── business_logic
+│   │           ├── clone_config_create.py
+│   │           ├── clone_old_tables_remove.py
+│   │           ├── clone_table_create.py
+│   │           ├── clone_table_validate.py
+│   │           └── clone_view_in_use_switch.py
+│   ├── cluster
+│   │   ├── config
+│   │   │   ├── __init__.py
+│   │   │   ├── constants.py
+│   │   │   ├── metadata.py
+│   │   │   ├── model.py
+│   │   │   ├── tasks.py
+│   │   │   └── xcoms.py
+│   │   ├── dags
+│   │   │   └── cluster_acteur_suggestions.py
+│   │   ├── tasks
+│   │   │   ├── __init__.py
+│   │   │   ├── airflow_logic
+│   │   │   │   ├── chain_tasks.py
+│   │   │   │   ├── cluster_acteurs_clusters_prepare_task.py
+│   │   │   │   ├── cluster_acteurs_clusters_validate_task.py
+│   │   │   │   ├── cluster_acteurs_config_create_task.py
+│   │   │   │   ├── cluster_acteurs_normalize_task.py
+│   │   │   │   ├── cluster_acteurs_parents_choose_data_task.py
+│   │   │   │   ├── cluster_acteurs_parents_choose_new_task.py
+│   │   │   │   ├── cluster_acteurs_read_task.py
+│   │   │   │   ├── cluster_acteurs_suggestions_failing_task.py
+│   │   │   │   ├── cluster_acteurs_suggestions_prepare_task.py
+│   │   │   │   └── cluster_acteurs_suggestions_to_db_task.py
+│   │   │   └── business_logic
+│   │   │       ├── __init__.py
+│   │   │       ├── cluster_acteurs_clusters.py
+│   │   │       ├── cluster_acteurs_clusters_prepare.py
+│   │   │       ├── cluster_acteurs_clusters_validate.py
+│   │   │       ├── cluster_acteurs_config_create.py
+│   │   │       ├── cluster_acteurs_normalize.py
+│   │   │       ├── cluster_acteurs_parents_choose_data.py
+│   │   │       ├── cluster_acteurs_parents_choose_new.py
+│   │   │       ├── cluster_acteurs_read
+│   │   │       │   ├── children.py
+│   │   │       │   └── for_clustering.py
+│   │   │       ├── cluster_acteurs_suggestions
+│   │   │       │   ├── context.py
+│   │   │       │   ├── prepare.py
+│   │   │       │   └── to_db.py
+│   │   │       └── misc
+│   │   │           ├── cluster_exclude_intra_source.py
+│   │   │           ├── df_metadata_get.py
+│   │   │           └── df_sort.py
+│   │   └── ui
+│   │       └── params_separators.py
+│   ├── crawl
+│   │   ├── config
+│   │   │   ├── cohorts.py
+│   │   │   ├── columns.py
+│   │   │   ├── constants.py
+│   │   │   ├── tasks.py
+│   │   │   └── xcoms.py
+│   │   ├── dags
+│   │   │   └── crawl_urls.py
+│   │   └── tasks
+│   │       ├── airflow_logic
+│   │       │   ├── crawl_urls_check_crawl_task.py
+│   │       │   ├── crawl_urls_check_dns_task.py
+│   │       │   ├── crawl_urls_check_syntax_task.py
+│   │       │   ├── crawl_urls_read_urls_from_db_task.py
+│   │       │   ├── crawl_urls_suggest_crawl_diff_other_task.py
+│   │       │   ├── crawl_urls_suggest_crawl_diff_standard_task.py
+│   │       │   ├── crawl_urls_suggest_dns_fail_task.py
+│   │       │   └── crawl_urls_suggest_syntax_fail_task.py
+│   │       └── business_logic
+│   │           ├── crawl_urls_check_crawl.py
+│   │           ├── crawl_urls_check_dns.py
+│   │           ├── crawl_urls_check_syntax.py
+│   │           ├── crawl_urls_read_urls_from_db.py
+│   │           └── crawl_urls_suggest.py
+│   ├── e2e_tests
+│   │   ├── e2e_utils.py
+│   │   ├── test_e2e_dag_cluster_acteurs_airflow.py
+│   │   └── test_e2e_dag_template_read_db.py
+│   ├── enrich
+│   │   ├── config
+│   │   │   ├── cohorts.py
+│   │   │   ├── columns.py
+│   │   │   ├── dbt.py
+│   │   │   ├── models.py
+│   │   │   ├── tasks.py
+│   │   │   └── xcoms.py
+│   │   ├── dags
+│   │   │   ├── enrich_acteurs_closed.py
+│   │   │   ├── enrich_acteurs_normalize_codepostal.py
+│   │   │   ├── enrich_acteurs_rgpd.py
+│   │   │   ├── enrich_acteurs_villes.py
+│   │   │   └── enrich_dbt_models_refresh.py
+│   │   └── tasks
+│   │       ├── airflow_logic
+│   │       │   ├── db_read_acteur_cp_task.py
+│   │       │   ├── db_write_cp_suggestions_task.py
+│   │       │   ├── enrich_config_create_task.py
+│   │       │   ├── enrich_dbt_model_suggest_task.py
+│   │       │   ├── enrich_dbt_models_refresh_task.py
+│   │       │   └── normalize_acteur_cp_task.py
+│   │       └── business_logic
+│   │           ├── db_read_acteur_cp.py
+│   │           ├── db_write_cp_suggestions.py
+│   │           ├── enrich_dbt_model_read.py
+│   │           ├── enrich_dbt_model_row_to_suggest_data.py
+│   │           ├── enrich_dbt_model_suggest.py
+│   │           ├── enrich_dbt_model_to_suggestions.py
+│   │           └── normalize_acteur_cp.py
+│   ├── shared
+│   │   ├── config
+│   │   │   ├── __init__.py
+│   │   │   ├── airflow.py
+│   │   │   ├── dag_names.py
+│   │   │   ├── dbt_commands.py
+│   │   │   ├── models.py
+│   │   │   ├── schedules.py
+│   │   │   ├── start_dates.py
+│   │   │   └── tags.py
+│   │   └── tasks
+│   │       ├── airflow_logic
+│   │       │   └── trigger_dag_task.py
+│   │       ├── business_logic
+│   │       │   └── normalize.py
+│   │       └── database_logic
+│   │           ├── db_manager.py
+│   │           └── db_tasks.py
+│   ├── sources
+│   │   ├── config
+│   │   │   ├── __init__.py
+│   │   │   ├── airflow_params.py
+│   │   │   ├── db_mapping.json
+│   │   │   └── shared_constants.py
+│   │   ├── dags
+│   │   │   ├── source_aliapur.py
+│   │   │   ├── source_batribox.py
+│   │   │   ├── source_citeo.py
+│   │   │   ├── source_cma.py
+│   │   │   ├── source_corepile.py
+│   │   │   ├── source_cyclevia.py
+│   │   │   ├── source_ecodds.py
+│   │   │   ├── source_ecologic.py
+│   │   │   ├── source_ecomaison.py
+│   │   │   ├── source_ecopae.py
+│   │   │   ├── source_ecosystem.py
+│   │   │   ├── source_ocab.py
+│   │   │   ├── source_ocad3e.py
+│   │   │   ├── source_pharmacies.py
+│   │   │   ├── source_pyreo.py
+│   │   │   ├── source_refashion.py
+│   │   │   ├── source_s3.py
+│   │   │   ├── source_sinoe.py
+│   │   │   ├── source_soren.py
+│   │   │   └── source_valdelia.py
+│   │   └── tasks
+│   │       ├── airflow_logic
+│   │       │   ├── __init__.py
+│   │       │   ├── config_management.py
+│   │       │   ├── db_data_prepare_task.py
+│   │       │   ├── db_write_type_action_suggestions_task.py
+│   │       │   ├── keep_acteur_changed_task.py
+│   │       │   ├── operators.py
+│   │       │   ├── source_config_validate_task.py
+│   │       │   ├── source_data_download_task.py
+│   │       │   ├── source_data_normalize_task.py
+│   │       │   └── source_data_validate_task.py
+│   │       ├── business_logic
+│   │       │   ├── __init__.py
+│   │       │   ├── db_data_prepare.py
+│   │       │   ├── db_read_acteur.py
+│   │       │   ├── db_write_type_action_suggestions.py
+│   │       │   ├── keep_acteur_changed.py
+│   │       │   ├── source_config_validate.py
+│   │       │   ├── source_data_download.py
+│   │       │   ├── source_data_normalize.py
+│   │       │   └── source_data_validate.py
+│   │       └── transform
+│   │           ├── __init__.py
+│   │           ├── exceptions.py
+│   │           ├── formatter.py
+│   │           ├── opening_hours.py
+│   │           ├── read_mapping_from_postgres.py
+│   │           ├── transform_column.py
+│   │           └── transform_df.py
+│   ├── suggestions
+│   │   ├── dags
+│   │   │   ├── apply_suggestions.py
+│   │   │   └── apply_suggestions_groupe.py
+│   │   └── tasks
+│   │       ├── airflow_logic
+│   │       │   ├── __init__.py
+│   │       │   ├── db_apply_suggestion_task.py
+│   │       │   └── db_check_suggestion_to_process_task.py
+│   │       └── business_logic
+│   │           ├── db_apply_suggestion.py
+│   │           └── db_check_suggestion_to_process.py
+│   ├── tests
+│   │   ├── acteurs
+│   │   │   └── tasks
+│   │   │       └── business_logic
+│   │   │           ├── test_copy_db_data.py
+│   │   │           ├── test_copy_db_schema.py
+│   │   │           └── test_copy_displayed_data_from_warehouse.py
+│   │   ├── clone
+│   │   │   ├── tasks
+│   │   │   │   └── business_logic
+│   │   │   │       ├── test_clone_table_create.py
+│   │   │   │       └── test_clone_view_in_use_switch.py
+│   │   │   └── test_config_model.py
+│   │   ├── cluster
+│   │   │   ├── config
+│   │   │   │   └── test_model.py
+│   │   │   ├── helpers
+│   │   │   │   ├── configs.py
+│   │   │   │   └── shorthands
+│   │   │   │       ├── change_model_name.py
+│   │   │   │       ├── change_order.py
+│   │   │   │       └── change_reason.py
+│   │   │   └── tasks
+│   │   │       └── business_logic
+│   │   │           ├── test_cluster_acteurs_clusters.py
+│   │   │           ├── test_cluster_acteurs_clusters_prepare.py
+│   │   │           ├── test_cluster_acteurs_clusters_validate.py
+│   │   │           ├── test_cluster_acteurs_df_sort.py
+│   │   │           ├── test_cluster_acteurs_exclude_intra_source.py
+│   │   │           ├── test_cluster_acteurs_metadata.py
+│   │   │           ├── test_cluster_acteurs_normalize.py
+│   │   │           ├── test_cluster_acteurs_parents_choose_data.py
+│   │   │           ├── test_cluster_acteurs_parents_choose_new.py
+│   │   │           ├── test_cluster_acteurs_read_children.py
+│   │   │           ├── test_cluster_acteurs_read_orphans.py
+│   │   │           ├── test_cluster_acteurs_read_parents.py
+│   │   │           ├── test_cluster_acteurs_suggestions_contexte_generate.py
+│   │   │           ├── test_cluster_acteurs_suggestions_prepare.py
+│   │   │           └── test_cluster_acteurs_suggestions_to_db_and_apply.py
+│   │   ├── conftest.py
+│   │   ├── crawl
+│   │   │   ├── fixtures.py
+│   │   │   └── tasks
+│   │   │       └── business_logic
+│   │   │           ├── test_crawl_urls_check_crawl.py
+│   │   │           ├── test_crawl_urls_check_dns.py
+│   │   │           ├── test_crawl_urls_check_syntax.py
+│   │   │           ├── test_crawl_urls_read_from_db.py
+│   │   │           ├── test_crawl_urls_suggest.py
+│   │   │           ├── test_crawl_urls_suggest_metadata.py
+│   │   │           └── test_crawl_urls_suggest_prepare.py
+│   │   ├── enrich
+│   │   │   ├── config
+│   │   │   │   └── test_enrich_acteurs_closed_config.py
+│   │   │   └── tasks
+│   │   │       ├── test_db_read_acteur_cp.py
+│   │   │       ├── test_enrich_dbt_model_row_to_data.py
+│   │   │       ├── test_enrich_suggestions_cities.py
+│   │   │       ├── test_enrich_suggestions_closed.py
+│   │   │       ├── test_enrich_suggestions_rgpd.py
+│   │   │       └── test_normalize_acteur_cp.py
+│   │   ├── shared
+│   │   │   ├── config
+│   │   │   │   └── test_shared_config_models.py
+│   │   │   └── tasks
+│   │   │       ├── airflow_logic
+│   │   │       │   └── test_packages_compatibility.py
+│   │   │       └── business_logic
+│   │   │           └── test_normalize.py
+│   │   ├── sources
+│   │   │   └── tasks
+│   │   │       ├── airflow_logic
+│   │   │       │   └── test_config_management.py
+│   │   │       ├── business_logic
+│   │   │       │   ├── test_db_data_prepare.py
+│   │   │       │   ├── test_db_read_acteur.py
+│   │   │       │   ├── test_keep_acteur_changed.py
+│   │   │       │   ├── test_source_config_validate.py
+│   │   │       │   └── test_source_data_normalize.py
+│   │   │       └── transform
+│   │   │           ├── test_transform_column.py
+│   │   │           └── test_transform_df.py
+│   │   └── utils
+│   │       ├── test_airflow_params_dropdown.py
+│   │       ├── test_cmd.py
+│   │       ├── test_data_serialize_reconstruct.py
+│   │       ├── test_dataframes.py
+│   │       └── test_django.py
+│   ├── tools
+│   │   └── dags
+│   │       ├── airflow_cleanup_db.py
+│   │       ├── airflow_logs.py
+│   │       └── purge_log_db.py
+│   └── utils
+│       ├── __init__.py
+│       ├── airflow_params.py
+│       ├── cmd.py
+│       ├── data_serialize_reconstruct.py
+│       ├── dataframes.py
+│       ├── db_tmp_tables.py
+│       ├── django.py
+│       └── logging_utils.py
+├── data
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── forms.py
+│   ├── migrations
+│   │   ├── 0001_bancache.py
+│   │   ├── 0002_tables_suggestion.py
+│   │   ├── 0003_rename_context_suggestion_contexte.py
+│   │   ├── 0004_alter_suggestion_options_and_more.py
+│   │   ├── 0005_alter_suggestion_options.py
+│   │   ├── 0006_alter_suggestion_options_and_more.py
+│   │   ├── 0007_suggestion_metadata.py
+│   │   ├── 0008_alter_suggestioncohorte_type_action.py
+│   │   ├── 0009_alter_suggestioncohorte_type_action.py
+│   │   ├── 0010_alter_suggestioncohorte_type_action.py
+│   │   ├── 0011_alter_suggestioncohorte_type_action.py
+│   │   ├── 0012_alter_suggestioncohorte_type_action.py
+│   │   ├── 0013_alter_suggestioncohorte_type_action.py
+│   │   ├── 0014_alter_suggestioncohorte_type_action.py
+│   │   ├── 0015_alter_suggestion_management.py
+│   │   ├── 0016_alter_suggestionunitaire_parametres.py
+│   │   ├── 0017_alter_bancache_modifie_le_alter_suggestion_statut_and_more.py
+│   │   ├── 0018_alter_suggestion_statut_and_more.py
+│   │   ├── 0019_alter_suggestionunitaire_parametres.py
+│   │   ├── 0020_alter_suggestiongroupe_acteur_and_more.py
+│   │   └── __init__.py
+│   ├── models
+│   │   ├── __init__.py
+│   │   ├── apply_models
+│   │   │   ├── abstract_apply_model.py
+│   │   │   └── source_apply_model.py
+│   │   ├── change.py
+│   │   ├── changes
+│   │   │   ├── __init__.py
+│   │   │   ├── acteur_abstract.py
+│   │   │   ├── acteur_change_nothing_in_base.py
+│   │   │   ├── acteur_create_as_parent.py
+│   │   │   ├── acteur_delete_as_parent.py
+│   │   │   ├── acteur_keep_as_parent.py
+│   │   │   ├── acteur_rgpd_anonymize.py
+│   │   │   ├── acteur_update.py
+│   │   │   ├── acteur_update_parent_id.py
+│   │   │   ├── acteur_update_revision.py
+│   │   │   ├── acteur_verify_in_revision.py
+│   │   │   ├── sample_model_do_nothing.py
+│   │   │   └── utils.py
+│   │   ├── suggestion.py
+│   │   ├── suggestions
+│   │   │   └── source.py
+│   │   └── utils.py
+│   ├── urls.py
+│   └── views.py
+├── dbt
+│   ├── .gitignore
+│   ├── README.md
+│   ├── analyses
+│   │   └── .gitkeep
+│   ├── dbt_project.yml
+│   ├── logs
+│   │   └── .gitkeep
+│   ├── macros
+│   │   ├── constants
+│   │   │   ├── public_accueilli_exclus.sql
+│   │   │   └── value_unavailable.sql
+│   │   ├── field
+│   │   │   ├── acteur_status_is_active.sql
+│   │   │   ├── coalesce_empty.sql
+│   │   │   ├── field_empty.sql
+│   │   │   └── sscat_from_action.sql
+│   │   ├── table
+│   │   │   ├── macro_acteur.sql
+│   │   │   ├── macro_acteur_acteur_services.sql
+│   │   │   ├── macro_acteur_epci.sql
+│   │   │   ├── macro_acteur_labels.sql
+│   │   │   ├── macro_acteur_sources.sql
+│   │   │   ├── macro_filtered_parentpropositionservice.sql
+│   │   │   ├── macro_filtered_propositionservice.sql
+│   │   │   ├── macro_perimetreadomicile.sql
+│   │   │   ├── macro_propositionservice.sql
+│   │   │   └── macro_propositionservice_sous_categories.sql
+│   │   └── udf
+│   │       ├── udf_ae_string_cleanup.sql
+│   │       ├── udf_columns_concat_unique_non_empty.sql
+│   │       ├── udf_columns_words_in_common_count.sql
+│   │       ├── udf_encode_base57.sql
+│   │       ├── udf_normalize_string_alpha_for_match.sql
+│   │       ├── udf_safe_divmod.sql
+│   │       └── udf_uuid_to_int.sql
+│   ├── models
+│   │   ├── base
+│   │   │   ├── acteurs
+│   │   │   │   ├── base_acteur.sql
+│   │   │   │   ├── base_acteur_acteur_services.sql
+│   │   │   │   ├── base_acteur_labels.sql
+│   │   │   │   ├── base_acteur_type.sql
+│   │   │   │   ├── base_perimetreadomicile.sql
+│   │   │   │   ├── base_propositionservice.sql
+│   │   │   │   ├── base_propositionservice_sous_categories.sql
+│   │   │   │   ├── base_revisionacteur.sql
+│   │   │   │   ├── base_revisionacteur_acteur_services.sql
+│   │   │   │   ├── base_revisionacteur_labels.sql
+│   │   │   │   ├── base_revisionperimetreadomicile.sql
+│   │   │   │   ├── base_revisionpropositionservice.sql
+│   │   │   │   ├── base_revisionpropositionservice_sous_categories.sql
+│   │   │   │   ├── base_source.sql
+│   │   │   │   └── schema.yml
+│   │   │   ├── ae_annuaire_entreprises
+│   │   │   │   ├── base_ae_etablissement.sql
+│   │   │   │   ├── base_ae_unite_legale.sql
+│   │   │   │   └── schema.yml
+│   │   │   └── ban
+│   │   │       ├── base_ban_adresses.sql
+│   │   │       ├── base_ban_lieux_dits.sql
+│   │   │       └── schema.yml
+│   │   ├── exposure
+│   │   │   ├── acteurs
+│   │   │   │   ├── carte
+│   │   │   │   │   ├── exposure_carte_acteur.sql
+│   │   │   │   │   ├── exposure_carte_acteur_acteur_services.sql
+│   │   │   │   │   ├── exposure_carte_acteur_labels.sql
+│   │   │   │   │   ├── exposure_carte_acteur_sources.sql
+│   │   │   │   │   ├── exposure_carte_perimetreadomicile.sql
+│   │   │   │   │   ├── exposure_carte_propositionservice.sql
+│   │   │   │   │   ├── exposure_carte_propositionservice_sous_categories.sql
+│   │   │   │   │   └── schema.yml
+│   │   │   │   ├── exhaustive
+│   │   │   │   │   ├── exposure_exhaustive_acteur.sql
+│   │   │   │   │   ├── exposure_exhaustive_acteur_acteur_services.sql
+│   │   │   │   │   ├── exposure_exhaustive_acteur_labels.sql
+│   │   │   │   │   ├── exposure_exhaustive_acteur_sources.sql
+│   │   │   │   │   ├── exposure_exhaustive_perimetreadomicile.sql
+│   │   │   │   │   ├── exposure_exhaustive_propositionservice.sql
+│   │   │   │   │   ├── exposure_exhaustive_propositionservice_sous_categories.sql
+│   │   │   │   │   └── schema.yml
+│   │   │   │   ├── opendata
+│   │   │   │   │   ├── exposure_opendata_acteur.sql
+│   │   │   │   │   └── schema.yml
+│   │   │   │   └── sample
+│   │   │   │       ├── exposure_sample_displayedacteur.sql
+│   │   │   │       ├── exposure_sample_displayedacteur_acteur_services.sql
+│   │   │   │       ├── exposure_sample_displayedacteur_labels.sql
+│   │   │   │       ├── exposure_sample_displayedacteur_sources.sql
+│   │   │   │       ├── exposure_sample_displayedperimetreadomicile.sql
+│   │   │   │       ├── exposure_sample_displayedpropositionservice.sql
+│   │   │   │       ├── exposure_sample_displayedpropositionservice_sous_categories.sql
+│   │   │   │       └── schema.yml
+│   │   │   └── geo
+│   │   │       ├── exposure_epci.sql
+│   │   │       └── schema.yml
+│   │   ├── intermediate
+│   │   │   ├── acteurs
+│   │   │   │   ├── int_acteur.sql
+│   │   │   │   ├── int_acteur_acteur_services.sql
+│   │   │   │   ├── int_acteur_labels.sql
+│   │   │   │   ├── int_perimetreadomicile.sql
+│   │   │   │   ├── int_propositionservice.sql
+│   │   │   │   ├── int_propositionservice_sous_categories.sql
+│   │   │   │   └── schema.yml
+│   │   │   ├── ae_annuaire_entreprises
+│   │   │   │   ├── int_ae_etablissement.sql
+│   │   │   │   ├── int_ae_unite_legale.sql
+│   │   │   │   └── schema.yml
+│   │   │   ├── ban
+│   │   │   │   ├── int_ban_adresses.sql
+│   │   │   │   └── int_ban_villes.sql
+│   │   │   └── geo
+│   │   │       ├── int_epci.sql
+│   │   │       └── schema.yml
+│   │   ├── marts
+│   │   │   ├── acteurs
+│   │   │   │   ├── carte
+│   │   │   │   │   ├── marts_carte_acteur.sql
+│   │   │   │   │   ├── marts_carte_acteur_acteur_services.sql
+│   │   │   │   │   ├── marts_carte_acteur_epci.sql
+│   │   │   │   │   ├── marts_carte_acteur_labels.sql
+│   │   │   │   │   ├── marts_carte_acteur_sources.sql
+│   │   │   │   │   ├── marts_carte_filtered_acteur.sql
+│   │   │   │   │   ├── marts_carte_filtered_parentpropositionservice.sql
+│   │   │   │   │   ├── marts_carte_filtered_propositionservice.sql
+│   │   │   │   │   ├── marts_carte_perimetreadomicile.sql
+│   │   │   │   │   ├── marts_carte_propositionservice.sql
+│   │   │   │   │   ├── marts_carte_propositionservice_sous_categories.sql
+│   │   │   │   │   └── schema.yml
+│   │   │   │   ├── exhaustive
+│   │   │   │   │   ├── marts_exhaustive_acteur.sql
+│   │   │   │   │   ├── marts_exhaustive_acteur_acteur_services.sql
+│   │   │   │   │   ├── marts_exhaustive_acteur_epci.sql
+│   │   │   │   │   ├── marts_exhaustive_acteur_labels.sql
+│   │   │   │   │   ├── marts_exhaustive_acteur_sources.sql
+│   │   │   │   │   ├── marts_exhaustive_perimetreadomicile.sql
+│   │   │   │   │   ├── marts_exhaustive_propositionservice.sql
+│   │   │   │   │   ├── marts_exhaustive_propositionservice_sous_categories.sql
+│   │   │   │   │   └── schema.yml
+│   │   │   │   ├── opendata
+│   │   │   │   │   ├── marts_opendata_acteur.sql
+│   │   │   │   │   ├── marts_opendata_acteur_acteur_services.sql
+│   │   │   │   │   ├── marts_opendata_acteur_epci.sql
+│   │   │   │   │   ├── marts_opendata_acteur_labels.sql
+│   │   │   │   │   ├── marts_opendata_acteur_sources.sql
+│   │   │   │   │   ├── marts_opendata_filtered_acteur.sql
+│   │   │   │   │   ├── marts_opendata_filtered_parentpropositionservice.sql
+│   │   │   │   │   ├── marts_opendata_filtered_propositionservice.sql
+│   │   │   │   │   ├── marts_opendata_perimetreadomicile.sql
+│   │   │   │   │   ├── marts_opendata_propositionservice.sql
+│   │   │   │   │   ├── marts_opendata_propositionservice_sous_categories.sql
+│   │   │   │   │   └── schema.yml
+│   │   │   │   └── sample
+│   │   │   │       ├── marts_sample_displayedacteur.sql
+│   │   │   │       ├── marts_sample_displayedacteur_acteur_services.sql
+│   │   │   │       ├── marts_sample_displayedacteur_labels.sql
+│   │   │   │       ├── marts_sample_displayedacteur_sources.sql
+│   │   │   │       ├── marts_sample_displayedperimetreadomicile.sql
+│   │   │   │       ├── marts_sample_displayedpropositionservice.sql
+│   │   │   │       ├── marts_sample_displayedpropositionservice_sous_categories.sql
+│   │   │   │       └── schema.yml
+│   │   │   └── enrich
+│   │   │       ├── marts_enrich_acteurs_closed_candidates.sql
+│   │   │       ├── marts_enrich_acteurs_closed_replaced.sql
+│   │   │       ├── marts_enrich_acteurs_closed_suggest_not_replaced_etablissement.sql
+│   │   │       ├── marts_enrich_acteurs_closed_suggest_not_replaced_unite.sql
+│   │   │       ├── marts_enrich_acteurs_closed_suggest_replaced_other_siren.sql
+│   │   │       ├── marts_enrich_acteurs_closed_suggest_replaced_same_siren.sql
+│   │   │       ├── marts_enrich_acteurs_rgpd_suggest.sql
+│   │   │       ├── marts_enrich_acteurs_villes_candidates.sql
+│   │   │       ├── marts_enrich_acteurs_villes_suggest_new.sql
+│   │   │       ├── marts_enrich_acteurs_villes_suggest_typo.sql
+│   │   │       └── schema.yml
+│   │   └── source
+│   │       ├── source_acteur.yml
+│   │       ├── source_ae_annuaire_entreprises.yml
+│   │       ├── source_ban_base_adresse_nationale.yml
+│   │       └── source_enrich.yml
+│   ├── package-lock.yml
+│   ├── packages.yml
+│   ├── profiles.yml
+│   ├── seeds
+│   │   └── .gitkeep
+│   ├── snapshots
+│   │   └── .gitkeep
+│   └── tests
+│       ├── .gitkeep
+│       └── generic
+│           └── test_not_empty_string.sql
+├── docker-compose.yml
+├── docs
+│   ├── README.md
+│   ├── SOUVENIR.md
+│   ├── comment-faire
+│   │   ├── README.md
+│   │   ├── _medias
+│   │   │   └── troubleshooting-1.png
+│   │   ├── administration
+│   │   │   ├── README.md
+│   │   │   ├── admin_command.md
+│   │   │   └── update-ext-id.md
+│   │   ├── deployment
+│   │   │   ├── README.md
+│   │   │   └── deployment.md
+│   │   ├── development
+│   │   │   ├── README.md
+│   │   │   ├── create_webapp_sample_db.md
+│   │   │   ├── dependencies.md
+│   │   │   ├── fixture_generation.md
+│   │   │   ├── installation.md
+│   │   │   ├── test_iframe_referrer.md
+│   │   │   ├── tests_e2e.md
+│   │   │   └── useful_command.md
+│   │   ├── infrastructure
+│   │   │   ├── README.md
+│   │   │   ├── create_db.md
+│   │   │   └── monitoring.md
+│   │   └── troubleshooting.md
+│   ├── conf.py
+│   ├── explications
+│   │   ├── README.md
+│   │   ├── data
+│   │   │   ├── README.md
+│   │   │   ├── flux-dbt.md
+│   │   │   ├── flux-enrich.md
+│   │   │   └── ingestion-de-source.md
+│   │   ├── db
+│   │   │   ├── README.md
+│   │   │   └── prestation-delivery.md
+│   │   ├── frontend
+│   │   │   ├── README.md
+│   │   │   ├── historique.md
+│   │   │   └── routing-nginx-cache.md
+│   │   └── iframe
+│   │       └── README.md
+│   ├── make.bat
+│   ├── reference
+│   │   ├── README.md
+│   │   ├── apis
+│   │   │   ├── README.md
+│   │   │   ├── qfdmo.md
+│   │   │   └── stats.md
+│   │   ├── coding
+│   │   │   ├── README.md
+│   │   │   ├── coding-guidelines.md
+│   │   │   └── francais-vs-anglais.md
+│   │   ├── data
+│   │   │   ├── README.md
+│   │   │   ├── clustering-deduplication.md
+│   │   │   ├── gestion-des-identifiants.md
+│   │   │   ├── organisation-des-fichiers.md
+│   │   │   └── systeme-de-suggestions.md
+│   │   ├── db
+│   │   │   ├── README.md
+│   │   │   ├── architecture.md
+│   │   │   ├── contraintes.md
+│   │   │   ├── db_organisation.md
+│   │   │   ├── prerequis.md
+│   │   │   └── valeurs-defaut.md
+│   │   ├── documentation
+│   │   │   ├── README.md
+│   │   │   ├── documentation-technique.md
+│   │   │   └── security.md
+│   │   ├── frontend
+│   │   │   ├── README.md
+│   │   │   ├── parcel.md
+│   │   │   ├── tailwind.md
+│   │   │   └── templates.md
+│   │   ├── iframe
+│   │   │   ├── README.md
+│   │   │   └── iframe.md
+│   │   ├── infrastructure
+│   │   │   ├── README.md
+│   │   │   ├── ci-cd.md
+│   │   │   ├── provisioning.md
+│   │   │   └── scaleway.md
+│   │   └── opendata
+│   │       ├── README.md
+│   │       ├── changelog.md
+│   │       ├── exposure-opendata-acteur.md
+│   │       ├── politique-de-version-du-jeu-de-donnees-open-data-interne.md
+│   │       └── politique-de-version-du-jeu-de-donnees-open-data.md
+│   └── toctree.py
+├── dsfr_hacks
+│   ├── __init__.py
+│   ├── colors.js
+│   ├── colors.py
+│   ├── extract_dsfr_colors.py
+│   ├── extract_used_colors.py
+│   ├── extract_used_icons.py
+│   ├── forms.py
+│   ├── icons.js
+│   ├── urls.py
+│   ├── used_colors.js
+│   ├── used_icons.js
+│   └── views.py
+├── e2e_tests
+│   ├── accessibility.spec.ts
+│   ├── acteur.spec.ts
+│   ├── analytics.spec.ts
+│   ├── assistant.spec.ts
+│   ├── browser_version.spec.ts
+│   ├── carte.spec.ts
+│   ├── carte_config.spec.ts
+│   ├── copy_controller.spec.ts
+│   ├── embed_scripts.spec.ts
+│   ├── formulaire.spec.ts
+│   ├── helpers.ts
+│   ├── iframe.spec.ts
+│   └── iframe_navigation.spec.ts
+├── iframe.html
+├── iframe_without_js.html
+├── img
+│   ├── airflow-db-connection-configuration.png
+│   └── airflow-s3-connection-configuration.png
+├── infotri
+│   ├── __init__.py
+│   ├── apps.py
+│   ├── constants.py
+│   ├── forms.py
+│   ├── urls.py
+│   └── views.py
+├── infrastructure
+│   ├── .gitignore
+│   ├── environments
+│   │   ├── preprod
+│   │   │   ├── container
+│   │   │   │   ├── .terraform.lock.hcl
+│   │   │   │   ├── terraform.tfvars.example
+│   │   │   │   └── terragrunt.hcl
+│   │   │   ├── database
+│   │   │   │   ├── .terraform.lock.hcl
+│   │   │   │   ├── terraform.tfvars.example
+│   │   │   │   └── terragrunt.hcl
+│   │   │   ├── database_sample
+│   │   │   │   ├── .terraform.lock.hcl
+│   │   │   │   ├── terraform.tfvars.example
+│   │   │   │   └── terragrunt.hcl
+│   │   │   └── object_storage
+│   │   │       ├── .terraform.lock.hcl
+│   │   │       ├── terraform.tfvars.example
+│   │   │       └── terragrunt.hcl
+│   │   ├── preview
+│   │   │   └── database
+│   │   │       ├── .terraform.lock.hcl
+│   │   │       ├── terraform.tfvars.example
+│   │   │       └── terragrunt.hcl
+│   │   ├── prod
+│   │   │   ├── container
+│   │   │   │   ├── .terraform.lock.hcl
+│   │   │   │   ├── terraform.tfvars.example
+│   │   │   │   └── terragrunt.hcl
+│   │   │   ├── container_registry
+│   │   │   │   ├── .terraform.lock.hcl
+│   │   │   │   └── terragrunt.hcl
+│   │   │   ├── database
+│   │   │   │   ├── .terraform.lock.hcl
+│   │   │   │   ├── terraform.tfvars.example
+│   │   │   │   └── terragrunt.hcl
+│   │   │   └── object_storage
+│   │   │       ├── .terraform.lock.hcl
+│   │   │       ├── terraform.tfvars.example
+│   │   │       └── terragrunt.hcl
+│   │   ├── root.hcl
+│   │   └── variables.tf
+│   └── modules
+│       ├── container
+│       │   ├── airflow-scheduler.tf
+│       │   ├── airflow-webserver.tf
+│       │   ├── namespace.tf
+│       │   └── variables.tf
+│       ├── container_registry
+│       │   ├── main.tf
+│       │   └── terraform.tfvars.example
+│       ├── database
+│       │   ├── main.tf
+│       │   ├── outputs.tf
+│       │   └── variables.tf
+│       ├── database_sample
+│       │   ├── main.tf
+│       │   └── variables.tf
+│       └── object_storage
+│           ├── airflow.tf
+│           └── variables.tf
+├── integration_tests
+│   ├── assistant
+│   │   ├── test_home.py
+│   │   ├── test_seo_meta_tags.py
+│   │   └── test_synonyme_detail.py
+│   ├── carte
+│   │   ├── test_acteur_detail.py
+│   │   ├── test_adresses_view.py
+│   │   ├── test_carte_config_bonus_reparation.py
+│   │   ├── test_qfdmo_api.py
+│   │   ├── test_reemploi_solution.py
+│   │   ├── test_search_form.py
+│   │   └── test_use_carte_config.py
+│   ├── core
+│   │   ├── test_backlink_views.py
+│   │   ├── test_display_as_iframe.py
+│   │   ├── test_redirects.py
+│   │   └── test_sharer.py
+│   ├── formulaire
+│   │   └── test_routes.py
+│   └── stats
+│       └── test_stats_api.py
+├── jest.config.ts
+├── manage.py
+├── nginx-local-only
+│   ├── cache.conf
+│   ├── certs
+│   │   └── .gitkeep
+│   ├── nginx.conf
+│   └── servers.conf.template
+├── notebooks
+│   ├── 20241031_acteurs_inactifs_reparation_lvao_ancien_cma.ipynb
+│   ├── __init__.py
+│   └── depuplicate_from_xlsx.ipynb
+├── package-lock.json
+├── package.json
+├── parcel-transformers
+│   ├── dsfr.ts
+│   └── remove-ie-hack.ts
+├── playwright.config.ts
+├── plugins
+│   └── .gitkeep
+├── previews
+│   └── template_preview.py
+├── pyproject.toml
+├── qfdmd
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── blocks.py
+│   ├── fixtures
+│   │   ├── produits.json
+│   │   └── synonymes.json
+│   ├── forms.py
+│   ├── management
+│   │   ├── __init__.py
+│   │   └── commands
+│   │       ├── __init__.py
+│   │       ├── create_assistant_permissions.py
+│   │       ├── create_wagtail_pages.py
+│   │       ├── import_data_ademe.py
+│   │       ├── import_infos_tris.py
+│   │       ├── merge_reusable_content.py
+│   │       └── migrate_familypage_to_produitpage.py
+│   ├── middleware.py
+│   ├── migrations
+│   │   ├── 0001_initial_squashed_0036_delete_cmspage_alter_produit_id.py
+│   │   ├── 0037_produitpage_produitindexpage_reusablecontent_and_more.py
+│   │   ├── 0038_produitpage_infotri_alter_produitpage_body.py
+│   │   ├── 0039_alter_produit_id.py
+│   │   ├── 0039_rename_gender_produitpage_genre_and_more.py
+│   │   ├── 0040_alter_produit_id.py
+│   │   ├── 0040_produitpage_commentaire.py
+│   │   ├── 0041_alter_produit_id.py
+│   │   ├── 0042_merge_20250703_2207.py
+│   │   ├── 0043_alter_produitpage_body.py
+│   │   ├── 0044_produitpage_titre_phrase.py
+│   │   ├── 0045_auto_20250717_1317.py
+│   │   ├── 0046_alter_produitpage_body.py
+│   │   ├── 0047_alter_produitpage_body.py
+│   │   ├── 0048_alter_produitpage_body.py
+│   │   ├── 0049_alter_produitpage_body.py
+│   │   ├── 0050_bonus_produitpage_disable_bonus_inheritance_and_more.py
+│   │   ├── 0051_alter_reusablecontent_title.py
+│   │   ├── 0052_remove_produitpagemarquetag_content_object_and_more.py
+│   │   ├── 0053_produitpage_sous_categorie_objet_and_more.py
+│   │   ├── 0054_alter_produitpage_sous_categorie_objet.py
+│   │   ├── 0055_remove_reusablecontent_content_and_more.py
+│   │   ├── 0056_alter_produitpage_body.py
+│   │   ├── 0057_embedsettings.py
+│   │   ├── 0058_alter_produitpage_body.py
+│   │   ├── 0059_alter_produitpage_body.py
+│   │   ├── 0060_alter_produit_options_alter_synonyme_options_and_more.py
+│   │   ├── 0061_legacyintermediateproduitpage.py
+│   │   ├── 0062_formpagevalidationsettings.py
+│   │   ├── 0063_alter_produit_id.py
+│   │   ├── 0064_alter_produitindexpage_body_alter_produitpage_body.py
+│   │   ├── 0065_alter_legacyintermediateproduitpage_produit_and_more.py
+│   │   ├── 0066_remove_temporarysynonymemodel_page_and_more.py
+│   │   ├── 0067_remove_produitpage_legacy_synonyme_and_more.py
+│   │   ├── 0068_alter_legacyintermediateproduitpagesynonymeexclusion_page_and_more.py
+│   │   ├── 0069_delete_suggestion.py
+│   │   ├── 0070_produitpage_est_famille.py
+│   │   └── __init__.py
+│   ├── models.py
+│   ├── signals.py
+│   ├── templatetags
+│   │   ├── qfdmd_tags.py
+│   │   └── suggestions_tags.py
+│   ├── urls.py
+│   ├── views.py
+│   └── wagtail_hooks.py
+├── qfdmo
+│   ├── __init__.py
+│   ├── admin
+│   │   ├── __init__.py
+│   │   ├── acteur.py
+│   │   ├── action.py
+│   │   ├── categorie_objet.py
+│   │   ├── config.py
+│   │   ├── geo.py
+│   │   └── widgets.py
+│   ├── api.py
+│   ├── apps.py
+│   ├── constants.py
+│   ├── fields.py
+│   ├── fixtures
+│   │   ├── acteur_services.json
+│   │   ├── acteur_types.json
+│   │   ├── acteurs.json
+│   │   ├── actions.json
+│   │   ├── carte_configs.json
+│   │   ├── categories.json
+│   │   ├── labels.json
+│   │   ├── objets.json
+│   │   ├── propositions_services.json
+│   │   └── sources.json
+│   ├── forms.py
+│   ├── geo_api.py
+│   ├── management
+│   │   ├── __init__.py
+│   │   └── commands
+│   │       ├── __init__.py
+│   │       ├── compare_model_table.py
+│   │       ├── copy_acteur_objects_to_revisionacteur.py
+│   │       ├── copy_acteur_services_to_acteur.py
+│   │       ├── correction_acteur_field.py
+│   │       ├── create_remote_db_server.py
+│   │       ├── create_webapp_sample_db.py
+│   │       ├── delete_parents_without_children.py
+│   │       ├── dumpdata_acteurs.py
+│   │       ├── enrich_revisionpropositionservice.py
+│   │       ├── export_displayedacteur.py
+│   │       ├── fill_consignes_dacces.py
+│   │       ├── fix_tel_9_char.py
+│   │       ├── format_acteur_name.py
+│   │       ├── import_product_from_qfdmod.py
+│   │       ├── loaddata_with_computed_fields.py
+│   │       ├── mode_liste_post_deploy.py
+│   │       ├── populate_propositionservice.py
+│   │       ├── populate_sous_cat.py
+│   │       ├── reinitialize_suggestions.py
+│   │       ├── source_code_modification.py
+│   │       ├── type_souscategorieobjets.py
+│   │       └── update_external_ids.py
+│   ├── map_utils.py
+│   ├── migrations
+│   │   ├── 0001_initial_squashed_0158_alter_carteconfig_slug.py
+│   │   ├── 0159_connect_public_to_warehouse.py
+│   │   ├── 0160_action_rapporter.py
+│   │   ├── 0161_carteconfig_acteur_type_carteconfig_label.py
+│   │   ├── 0162_acteur_consignes_dacces.py
+│   │   ├── 0163_remove_displayedacteurtemp_acteur_services_and_more.py
+│   │   ├── 0164_rebuild_remote_server.py
+│   │   ├── 0165_code_for_objets_and_categories.py
+│   │   ├── 0166_update_objets_code.py
+│   │   ├── 0167_serviceadomicile.py
+│   │   ├── 0168_alter_serviceadomicile.py
+│   │   ├── 0169_rename_hide_legend_carteconfig_cacher_legende_and_more.py
+│   │   ├── 0170_update_perimetre_adomicile.py
+│   │   ├── 0171_alter_carteconfig_options.py
+│   │   ├── 0172_vueacteur_enfants_liste_vueacteur_enfants_nombre_and_more.py
+│   │   ├── 0173_alter_acteur_lieu_prestation_and_more.py
+│   │   ├── 0174_souscategorieobjet_reemploi_possible.py
+│   │   ├── 0175_alter_objet_options.py
+│   │   ├── 0175_carteconfig_direction.py
+│   │   ├── 0176_merge_20250924_1802.py
+│   │   ├── 0177_carteconfig_solution_temporaire_a_supprimer_des_que_possible_parametres_url.py
+│   │   ├── 0178_epci_displayedacteur_code_commune_insee_and_more.py
+│   │   ├── 0179_remove_carteconfig_label_carteconfig_action_and_more.py
+│   │   ├── 0180_displayedacteur_da_statut_type_idx_and_more.py
+│   │   ├── 0181_alter_acteur_location_alter_displayedacteur_location_and_more.py
+│   │   ├── 0182_rename_labelqualite_logo_to_logo_filtre.py
+│   │   ├── 0183_alter_labelqualite_options_labelqualite_order_and_more.py
+│   │   ├── 0184_add_bounding_box_to_carte_config.py
+│   │   ├── 0184_rename_enfants_liste_vueacteur_liste_enfants_and_more.py
+│   │   ├── 0185_add_bonus_reparation_to_carte_config.py
+│   │   ├── 0185_vueacteur_sources.py
+│   │   ├── 0186_merge_20251219_1026.py
+│   │   ├── 0187_alter_acteur_identifiant_unique_and_more.py
+│   │   ├── 0188_carteconfig_cacher_filtre_objet_carteconfig_test.py
+│   │   ├── __init__.py
+│   │   └── fixtures
+│   │       ├── categorieobjets.json
+│   │       ├── objets.json
+│   │       └── souscategorieobjets.json
+│   ├── mixins
+│   │   ├── __init__.py
+│   │   ├── auto_submit_mixin.py
+│   │   ├── carte_config_form_mixin.py
+│   │   └── get_form_mixin.py
+│   ├── models
+│   │   ├── __init__.py
+│   │   ├── acteur.py
+│   │   ├── action.py
+│   │   ├── categorie_objet.py
+│   │   ├── config.py
+│   │   ├── geo.py
+│   │   └── utils.py
+│   ├── thread
+│   │   └── materialized_view.py
+│   ├── urls.py
+│   ├── validators.py
+│   ├── views
+│   │   ├── __init__.py
+│   │   ├── adresses.py
+│   │   ├── carte.py
+│   │   ├── configurator.py
+│   │   └── formulaire.py
+│   └── widgets.py
+├── script.js
+├── scripts
+│   ├── db_schema_create_from_csv.py
+│   ├── dbt
+│   │   ├── conf
+│   │   │   ├── columns.py
+│   │   │   └── schemas.py
+│   │   ├── schemas_generate_validate.py
+│   │   └── tests
+│   │       └── test_schemas.py
+│   ├── infrastructure
+│   │   ├── backup-db.sh
+│   │   ├── delete_old_images.py
+│   │   └── purge_db_logs.sh
+│   ├── restore_prod_locally.sh
+│   ├── restore_prod_to_preprod.sh
+│   └── sql
+│       ├── create_databases.sql
+│       ├── create_extensions.sql
+│       ├── create_schema.sql
+│       ├── create_webapp_sample_db.sql
+│       └── drop_all_tables.sql
+├── servers.conf.erb
+├── static
+│   ├── documentation_files
+│   │   └── qdfmo-db.png
+│   ├── to_collect
+│   │   ├── assistant
+│   │   │   └── og-image.jpg
+│   │   ├── favicon
+│   │   │   ├── apple-touch-icon.png
+│   │   │   ├── favicon-96x96.png
+│   │   │   ├── favicon.ico
+│   │   │   ├── favicon.svg
+│   │   │   ├── site.webmanifest
+│   │   │   ├── web-app-manifest-192x192.png
+│   │   │   └── web-app-manifest-512x512.png
+│   │   ├── favicon-16x16.png
+│   │   ├── france_map.svg
+│   │   ├── lvao-homepage.jpg
+│   │   ├── lvao-homepage1.jpg
+│   │   ├── lvao-homepage2.jpg
+│   │   ├── map-background-desktop.png
+│   │   ├── map-background-mobile.png
+│   │   ├── reparacteurs.png
+│   │   └── reparacteurs_32x32.png
+│   └── to_compile
+│       ├── admin-categorie-widget.ts
+│       ├── admin-map-widget.ts
+│       ├── admin.ts
+│       ├── controllers
+│       │   ├── admin
+│       │   │   ├── categorie_widget_controller.ts
+│       │   │   └── suggestion_groupe_row_controller.ts
+│       │   ├── assistant
+│       │   │   ├── blink.ts
+│       │   │   ├── search.ts
+│       │   │   └── state.ts
+│       │   ├── carte
+│       │   │   ├── acteur_details.ts
+│       │   │   ├── address_autocomplete_controller.ts
+│       │   │   ├── autocomplete_controller.ts
+│       │   │   ├── map_controller.ts
+│       │   │   ├── pinpoint_controller.ts
+│       │   │   ├── responsive_controller.ts
+│       │   │   ├── search_solution_form_controller.ts
+│       │   │   └── ss_cat_object_autocomplete_controller.ts
+│       │   └── shared
+│       │       ├── analytics.ts
+│       │       ├── copy_controller.ts
+│       │       ├── generic_autocomplete_controller.ts
+│       │       ├── next_autocomplete_controller.ts
+│       │       └── scroll_controller.ts
+│       ├── embed
+│       │   ├── assistant.ts
+│       │   ├── carte.ts
+│       │   ├── formulaire.ts
+│       │   ├── helpers.ts
+│       │   ├── infotri-configurator.ts
+│       │   └── infotri.ts
+│       ├── infotri-child.ts
+│       ├── js
+│       │   ├── browser_check.ts
+│       │   ├── carte.ts
+│       │   ├── helpers.ts
+│       │   ├── iframe_functions.ts
+│       │   ├── parcel.d.ts
+│       │   ├── solution_map.ts
+│       │   ├── types.ts
+│       │   └── url_utils.ts
+│       ├── qfdmd.ts
+│       ├── qfdmo.ts
+│       ├── styles
+│       │   ├── admin.css
+│       │   ├── carte.css
+│       │   ├── dsfr-overrides.css
+│       │   ├── dsfr.css
+│       │   ├── maplibre-overrides.css
+│       │   ├── qfdmd.css
+│       │   └── qfdmo.css
+│       ├── svg
+│       │   ├── acheter.svg
+│       │   ├── bonus-reparation.svg
+│       │   ├── donner.svg
+│       │   ├── echanger.svg
+│       │   ├── emprunter.svg
+│       │   ├── epingle-plus.svg
+│       │   ├── hand-heart.svg
+│       │   ├── louer.svg
+│       │   ├── mettreenlocation.svg
+│       │   ├── money-euro-box-line.svg
+│       │   ├── money-euro-circle-line.svg
+│       │   ├── preter.svg
+│       │   ├── reparer.svg
+│       │   ├── share-line.svg
+│       │   ├── shield-check-line.svg
+│       │   ├── tools-fill.svg
+│       │   └── vendre.svg
+│       └── tests
+│           ├── choose_action_controller.test.ts
+│           ├── iframe_functions.test.ts
+│           └── url_utils.test.ts
+├── stats
+│   ├── __init__.py
+│   ├── api.py
+│   ├── query.py
+│   ├── schemas.py
+│   └── utils.py
+├── tailwind.config.js
+├── templates
+│   ├── admin
+│   │   ├── acteur
+│   │   │   └── change_form.html
+│   │   ├── base.html
+│   │   ├── custom-openlayers-with-search.html
+│   │   ├── custom-openlayers.html
+│   │   ├── input_filter.html
+│   │   ├── nav_sidebar.html
+│   │   ├── qfdmd
+│   │   │   └── produit
+│   │   │       └── change_form.html
+│   │   ├── qfdmo
+│   │   │   └── suggestion
+│   │   │       └── change_list.html
+│   │   └── revision_acteur
+│   │       └── change_form.html
+│   ├── base.html
+│   ├── data
+│   │   └── _partials
+│   │       ├── ajout_suggestion_details.html
+│   │       ├── contexte_details.html
+│   │       ├── display_diff_value.html
+│   │       ├── extra_links.html
+│   │       ├── modification_suggestion_details.html
+│   │       ├── suggestion_details.html
+│   │       ├── suggestion_details_changes.html
+│   │       ├── suggestion_groupe.html
+│   │       ├── suggestion_groupe_details.html
+│   │       ├── suggestion_groupe_refresh_stream.html
+│   │       ├── suppression_suggestion_details.html
+│   │       └── value_details.html
+│   ├── django
+│   │   └── forms
+│   │       ├── label.html
+│   │       └── widgets
+│   │           └── inline_input.html
+│   ├── django_lookbook
+│   │   └── preview.html
+│   ├── dsfr
+│   │   ├── global_css.html
+│   │   ├── global_js.html
+│   │   └── pagination.html
+│   ├── robots.txt
+│   ├── sites_faciles_content_manager
+│   │   └── blocks
+│   │       ├── breadcrumbs.html
+│   │       └── tabs.html
+│   ├── templatetags
+│   │   ├── acteur_pinpoint.html
+│   │   ├── acteur_pinpoint.md
+│   │   ├── canonical_url.html
+│   │   ├── carte.html
+│   │   └── favicon.html
+│   └── ui
+│       ├── analytics
+│       │   ├── matomo.html
+│       │   └── posthog_data_attributes.html
+│       ├── blocks
+│       │   ├── bonus.html
+│       │   ├── carte.html
+│       │   ├── liens.html
+│       │   └── reusable.html
+│       ├── components
+│       │   ├── README.md
+│       │   ├── accessibilite
+│       │   │   ├── P01_10_2.md
+│       │   │   ├── P01_10_7.md
+│       │   │   ├── P01_13_8.md
+│       │   │   ├── P01_3_3.md
+│       │   │   ├── P01_7_3.md
+│       │   │   └── P02_7_1__P02_7_3.md
+│       │   ├── acteur
+│       │   │   ├── _action.html
+│       │   │   ├── _action_mailto.html
+│       │   │   ├── _action_share.html
+│       │   │   ├── _action_tel.html
+│       │   │   ├── _actions.html
+│       │   │   ├── _label.html
+│       │   │   ├── _tabs.html
+│       │   │   ├── acteur_detail.html
+│       │   │   ├── acteur_lien.html
+│       │   │   ├── acteur_services.html
+│       │   │   ├── acteur_table.html
+│       │   │   ├── acteur_table_name.html
+│       │   │   └── tabs
+│       │   │       ├── _panel.html
+│       │   │       ├── _section.html
+│       │   │       ├── _separator.html
+│       │   │       ├── _service_tag.html
+│       │   │       ├── _tab.html
+│       │   │       ├── about_panel.html
+│       │   │       ├── labels_panel.html
+│       │   │       ├── sections
+│       │   │       │   ├── adresse.html
+│       │   │       │   ├── bonus.html
+│       │   │       │   ├── consignes_dacces.html
+│       │   │       │   ├── description.html
+│       │   │       │   ├── exclusivite_de_reprisereparation.html
+│       │   │       │   ├── horaires.html
+│       │   │       │   ├── meta.html
+│       │   │       │   ├── services_disponibles.html
+│       │   │       │   ├── telephone.html
+│       │   │       │   └── type_enseigne.html
+│       │   │       └── sources_panel.html
+│       │   ├── button.html
+│       │   ├── button.md
+│       │   ├── carte
+│       │   │   ├── _declaration_accessibilite.html
+│       │   │   ├── _digital_results.html
+│       │   │   ├── adresse_input_form.html
+│       │   │   ├── buttons
+│       │   │   │   ├── ajouter_un_lieu.html
+│       │   │   │   ├── ajouter_un_lieu.md
+│       │   │   │   ├── ajouter_un_lieu_mode_liste.html
+│       │   │   │   └── ajouter_un_lieu_mode_liste.md
+│       │   │   ├── footer.html
+│       │   │   ├── header.html
+│       │   │   ├── legend.html
+│       │   │   ├── legend.md
+│       │   │   ├── mode_carte.html
+│       │   │   ├── mode_liste.html
+│       │   │   ├── mode_liste.md
+│       │   │   ├── partials
+│       │   │   │   ├── action_list_by_direction.html
+│       │   │   │   ├── featureflip_inputs.html
+│       │   │   │   └── label_reparacteur_icon.html
+│       │   │   ├── pinpoints
+│       │   │   │   ├── home.html
+│       │   │   │   └── svg
+│       │   │   │       ├── bonus-icon.svg
+│       │   │   │       ├── hand-pinpoint.html
+│       │   │   │       ├── pin-background-fill.html
+│       │   │   │       └── pin-background.html
+│       │   │   ├── results.html
+│       │   │   └── shared
+│       │   │       ├── _search_in_zone.html
+│       │   │       └── disclaimers
+│       │   │           ├── adresse_missing.html
+│       │   │           ├── loading_solutions.html
+│       │   │           └── no_local_solution.html
+│       │   ├── code
+│       │   │   ├── code.html
+│       │   │   └── code.md
+│       │   ├── footer
+│       │   │   ├── _dsfr_footer.html
+│       │   │   ├── base.html
+│       │   │   ├── base.iframe.html
+│       │   │   ├── combined_logos.html
+│       │   │   ├── combined_logos.md
+│       │   │   ├── footer-menu.html
+│       │   │   ├── footer-top-menu.html
+│       │   │   └── footer.html
+│       │   ├── formulaire
+│       │   │   ├── acteur_detail.html
+│       │   │   ├── digital_acteur_actions.html
+│       │   │   ├── filtres
+│       │   │   │   ├── _label.html
+│       │   │   │   ├── _labels_filters.html
+│       │   │   │   ├── _labels_filters_field.html
+│       │   │   │   ├── _modal.html
+│       │   │   │   ├── _object_filter.html
+│       │   │   │   ├── _panel_filters_field.html
+│       │   │   │   ├── bonus
+│       │   │   │   │   ├── label.html
+│       │   │   │   │   └── label.md
+│       │   │   │   ├── ess
+│       │   │   │   │   ├── label.html
+│       │   │   │   │   └── label.md
+│       │   │   │   └── reparacteurs
+│       │   │   │       ├── label.html
+│       │   │   │       └── label.md
+│       │   │   ├── filtres.html
+│       │   │   ├── footer.html
+│       │   │   ├── header.html
+│       │   │   ├── iframe_footer_links.html
+│       │   │   ├── main.html
+│       │   │   ├── modals
+│       │   │   │   └── advanced_filters.html
+│       │   │   ├── results.html
+│       │   │   ├── search_form.html
+│       │   │   └── update_search.html
+│       │   ├── formulaires
+│       │   │   ├── mode_carte_liste.md
+│       │   │   └── plusieurs_formulaires.md
+│       │   ├── header
+│       │   │   ├── _picto_patchwork.html
+│       │   │   ├── base.html
+│       │   │   ├── base.iframe.html
+│       │   │   ├── bloc-marque.html
+│       │   │   ├── combined_logos.html
+│       │   │   ├── combined_logos.md
+│       │   │   ├── header.html
+│       │   │   ├── header.md
+│       │   │   └── header_menu.html
+│       │   ├── icons
+│       │   │   ├── bonus.html
+│       │   │   ├── bonus.md
+│       │   │   ├── ess.html
+│       │   │   ├── ess.md
+│       │   │   ├── reparacteurs.html
+│       │   │   └── reparacteurs.md
+│       │   ├── infotri
+│       │   │   ├── infotri.html
+│       │   │   └── svg
+│       │   │       ├── backlink.html
+│       │   │       ├── cartouche-fr.html
+│       │   │       ├── chaussures.html
+│       │   │       ├── consigne-1.html
+│       │   │       ├── consigne-2.html
+│       │   │       ├── consigne-3.html
+│       │   │       ├── phrase-1.html
+│       │   │       ├── phrase-2.html
+│       │   │       ├── phrase-3.html
+│       │   │       ├── tissu.html
+│       │   │       ├── tous.html
+│       │   │       ├── triman.html
+│       │   │       ├── vetement.html
+│       │   │       └── website.html
+│       │   ├── label_qualite
+│       │   │   ├── dsfr_label.html
+│       │   │   ├── filtre_bonus.html
+│       │   │   └── label_qualite.html
+│       │   ├── lien
+│       │   │   └── lien.html
+│       │   ├── logo
+│       │   │   ├── ademe.html
+│       │   │   ├── combined_logos.html
+│       │   │   ├── combined_logos.md
+│       │   │   ├── republique_francaise.html
+│       │   │   ├── site_logo_large.html
+│       │   │   ├── site_logo_large.md
+│       │   │   ├── site_logo_mini.html
+│       │   │   └── site_logo_mini.md
+│       │   ├── mini_carte
+│       │   │   ├── mini_carte.html
+│       │   │   └── mini_carte.md
+│       │   ├── modals
+│       │   │   ├── _modal_button.html
+│       │   │   ├── base.html
+│       │   │   ├── embed.html
+│       │   │   ├── filtres.html
+│       │   │   ├── infos.html
+│       │   │   ├── infos_avec_toggle.md
+│       │   │   ├── integration.md
+│       │   │   └── share.html
+│       │   ├── patchwork
+│       │   │   ├── _item.html
+│       │   │   └── patchwork.html
+│       │   ├── produit
+│       │   │   ├── _detail.html
+│       │   │   ├── _en_savoir_plus.html
+│       │   │   ├── _infotri.html
+│       │   │   ├── heading.html
+│       │   │   ├── heading.md
+│       │   │   ├── heading_family.html
+│       │   │   ├── heading_family.md
+│       │   │   └── produit.html
+│       │   ├── search
+│       │   │   ├── _search_result.html
+│       │   │   ├── _search_result_beta.html
+│       │   │   ├── view.html
+│       │   │   └── widget.html
+│       │   ├── service
+│       │   │   └── service_tag.html
+│       │   ├── spinner.html
+│       │   └── spinner.md
+│       ├── forms
+│       │   └── widgets
+│       │       ├── _spinner.html
+│       │       ├── autocomplete
+│       │       │   ├── input.html
+│       │       │   ├── results.html
+│       │       │   ├── results_item.html
+│       │       │   └── synonyme.html
+│       │       ├── autocomplete.html
+│       │       ├── dsfr_checkbox_option.html
+│       │       ├── dsfr_checkbox_select.html
+│       │       ├── epci_codes_additionnal_info.html
+│       │       ├── generic_autocomplete.html
+│       │       ├── groupe_action_label.html
+│       │       ├── label_qualite_label.html
+│       │       ├── plain_text.html
+│       │       ├── range_input.html
+│       │       ├── segmented_control.html
+│       │       └── segmented_control_option.html
+│       ├── layout
+│       │   ├── _partials
+│       │   │   └── header_logos.html
+│       │   ├── assistant.html
+│       │   ├── base.html
+│       │   ├── error.html
+│       │   └── turbo.html
+│       ├── pages
+│       │   ├── 404.html
+│       │   ├── 500.html
+│       │   ├── acteur.html
+│       │   ├── carte.html
+│       │   ├── configurateur
+│       │   │   ├── _iframe.html
+│       │   │   ├── avance.html
+│       │   │   └── base.html
+│       │   ├── dsfr_hacks
+│       │   │   └── colors.html
+│       │   ├── family_page.html
+│       │   ├── formulaire.html
+│       │   ├── home.html
+│       │   ├── infotri.html
+│       │   ├── infotri_embed.html
+│       │   ├── produit.html
+│       │   ├── produit_index_page.html
+│       │   └── produit_page.html
+│       ├── snippets
+│       │   ├── share_and_embed.html
+│       │   └── share_and_embed_produit.html
+│       └── tests
+│           ├── carte_config_bounding_box.html
+│           ├── carte_mode_liste_switch.html
+│           ├── copy_controller.html
+│           ├── ess_label_display.html
+│           ├── iframe_navigation_persistence.html
+│           ├── legend_filters_persistence.html
+│           ├── search_in_zone_button.html
+│           ├── t_10_bonus_legacy_parameter_script.html
+│           ├── t_11_cacher_filtre_objet.html
+│           ├── t_12_default_filtre_objet.html
+│           ├── t_13_itineraire_button_carte_sur_mesure.html
+│           ├── t_1_referrer_assistant.html
+│           ├── t_1_referrer_carte.html
+│           ├── t_2_carte_mode_liste_switch.html
+│           ├── t_3_ess_label_display.html
+│           ├── t_4_legend_filters_persistence.html
+│           ├── t_5_rechercher_dans_zone.html
+│           ├── t_6_carte_config_bounding_box.html
+│           ├── t_7_copy_controller.html
+│           └── t_9_bonus_legacy_parameter_iframe.html
+├── tsconfig.json
+├── unit_tests
+│   ├── conftest.py
+│   ├── core
+│   │   ├── templatetags
+│   │   │   └── test_qfdmo_tags.py
+│   │   └── test_utils.py
+│   ├── data
+│   │   ├── models
+│   │   │   ├── apply_models
+│   │   │   │   ├── __init__.py
+│   │   │   │   └── test_source_apply_model.py
+│   │   │   ├── changes
+│   │   │   │   ├── test_acteur_create_as_parent.py
+│   │   │   │   ├── test_acteur_delete_as_parent.py
+│   │   │   │   ├── test_acteur_keep_as_parent.py
+│   │   │   │   ├── test_acteur_revision_change_nothing.py
+│   │   │   │   ├── test_acteur_rgpd_anonymize.py
+│   │   │   │   ├── test_acteur_update.py
+│   │   │   │   ├── test_acteur_update_parent_id.py
+│   │   │   │   └── test_acteur_update_revision.py
+│   │   │   ├── suggestion_factory.py
+│   │   │   ├── test_change.py
+│   │   │   └── test_suggestion.py
+│   │   ├── test_admin_actions.py
+│   │   ├── test_suggestion_models.py
+│   │   └── test_suggestion_views.py
+│   ├── qfdmd
+│   │   ├── qfdmod_factory.py
+│   │   ├── test_genre_nombre_model.py
+│   │   ├── test_legacy_synonyme_redirection.py
+│   │   ├── test_lien.py
+│   │   ├── test_middleware.py
+│   │   ├── test_produit.py
+│   │   └── test_synonyme.py
+│   ├── qfdmo
+│   │   ├── acteur_factory.py
+│   │   ├── action_factory.py
+│   │   ├── carte_config_factory.py
+│   │   ├── sscatobj_factory.py
+│   │   ├── test_acteur.py
+│   │   ├── test_acteur_methods.py
+│   │   ├── test_acteur_properties.py
+│   │   ├── test_acteur_service.py
+│   │   ├── test_acteur_type.py
+│   │   ├── test_action.py
+│   │   ├── test_addresses_view.py
+│   │   ├── test_adresse_get_object_list.py
+│   │   ├── test_auto_submit_mixin.py
+│   │   ├── test_carte_config.py
+│   │   ├── test_categorie.py
+│   │   ├── test_get_form_mixin.py
+│   │   ├── test_label_qualite.py
+│   │   ├── test_map_form.py
+│   │   ├── test_natural_key.py
+│   │   ├── test_open_source_displayedacteur_ressource.py
+│   │   ├── test_proposition_service.py
+│   │   ├── test_source.py
+│   │   ├── test_sous_categorie.py
+│   │   ├── test_views.py
+│   │   └── views
+│   │       └── test_carte_icon_display.py
+│   └── stats
+│       └── test_stats_utils.py
+└── uv.lock
+328 directories, 1371 files
