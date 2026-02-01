@@ -1,0 +1,45 @@
+services:
+  web: &server
+    build:
+      context: .
+    image: pompidou
+    ports:
+      - "3000:3000"
+    env_file:
+      - ".env.local"
+    volumes:
+      - "./:/app"
+      - "/app/node_modules"
+    depends_on:
+      - espace-membre-db
+      - primary-db
+  jobs:
+    <<: *server
+    command: "bin/jobs"
+    entrypoint: ''
+    ports: []
+    depends_on:
+      - web
+  primary-db:
+    image: postgres:16
+    volumes:
+      - "./tmp/audit-db:/var/lib/postgresql/data"
+    environment:
+      POSTGRES_PASSWORD: "dummy"
+      PGPORT: 5434
+  espace-membre-db:
+    image: postgres:16
+    volumes:
+      - "./tmp/espace-membre-db:/var/lib/postgresql/data"
+    environment:
+      POSTGRES_PASSWORD: "dummy"
+      PGPORT: 5433
+  grist:
+    image: gristlabs/grist
+    ports:
+      - "8484:8484"
+    volumes:
+      - gristpersist:/persist
+
+volumes:
+  gristpersist:
