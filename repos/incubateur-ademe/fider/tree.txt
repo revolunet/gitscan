@@ -1,0 +1,950 @@
+.
+├── .babelrc
+├── .buildpacks
+├── .dockerignore
+├── .eslintignore
+├── .eslintrc.js
+├── .example.env
+├── .gitignore
+├── .nvmrc
+├── .prettierrc
+├── .test.env
+├── CODE_OF_CONDUCT.md
+├── CONTRIBUTING.md
+├── Dockerfile
+├── GUIDELINES.md
+├── LICENSE
+├── Makefile
+├── Procfile
+├── README.md
+├── air.conf
+├── app
+│   ├── actions
+│   │   ├── actions.go
+│   │   ├── actions_test.go
+│   │   ├── billing.go
+│   │   ├── invite.go
+│   │   ├── invite_test.go
+│   │   ├── messages.go
+│   │   ├── oauth.go
+│   │   ├── oauth_test.go
+│   │   ├── post.go
+│   │   ├── post_test.go
+│   │   ├── settings.go
+│   │   ├── settings_test.go
+│   │   ├── signin.go
+│   │   ├── signin_test.go
+│   │   ├── tag.go
+│   │   ├── tag_test.go
+│   │   ├── tenant.go
+│   │   ├── tenant_test.go
+│   │   ├── user.go
+│   │   ├── user_test.go
+│   │   └── webhook.go
+│   ├── cmd
+│   │   ├── migrate.go
+│   │   ├── ping.go
+│   │   ├── routes.go
+│   │   ├── routes_test.go
+│   │   ├── server.go
+│   │   ├── signals_unix.go
+│   │   └── signals_windows.go
+│   ├── const.go
+│   ├── handlers
+│   │   ├── admin.go
+│   │   ├── admin_test.go
+│   │   ├── apiv1
+│   │   │   ├── invite.go
+│   │   │   ├── post.go
+│   │   │   ├── post_test.go
+│   │   │   ├── tag.go
+│   │   │   ├── tag_test.go
+│   │   │   ├── user.go
+│   │   │   └── user_test.go
+│   │   ├── backup.go
+│   │   ├── billing.go
+│   │   ├── billing_test.go
+│   │   ├── common.go
+│   │   ├── common_test.go
+│   │   ├── images.go
+│   │   ├── images_test.go
+│   │   ├── notification.go
+│   │   ├── notification_test.go
+│   │   ├── oauth.go
+│   │   ├── oauth_test.go
+│   │   ├── post.go
+│   │   ├── post_test.go
+│   │   ├── settings.go
+│   │   ├── settings_test.go
+│   │   ├── signin.go
+│   │   ├── signin_test.go
+│   │   ├── signup.go
+│   │   ├── signup_test.go
+│   │   ├── tag.go
+│   │   ├── user.go
+│   │   ├── webhook.go
+│   │   └── webhooks
+│   │       └── paddle.go
+│   ├── jobs
+│   │   ├── email_supression_job.go
+│   │   ├── email_supression_job_test.go
+│   │   ├── job.go
+│   │   ├── job_settings.go
+│   │   ├── job_test.go
+│   │   ├── lock_expired_tenants_job.go
+│   │   ├── lock_expired_tenants_job_test.go
+│   │   ├── purge_notifications_job.go
+│   │   ├── purge_notifications_job_test.go
+│   │   ├── trial_reminder_job.go
+│   │   └── trial_reminder_job_test.go
+│   ├── metrics
+│   │   ├── metrics_fider.go
+│   │   └── metrics_http.go
+│   ├── middlewares
+│   │   ├── auth.go
+│   │   ├── auth_test.go
+│   │   ├── cache.go
+│   │   ├── cache_test.go
+│   │   ├── chain.go
+│   │   ├── chain_test.go
+│   │   ├── compress.go
+│   │   ├── compress_test.go
+│   │   ├── cors.go
+│   │   ├── cors_test.go
+│   │   ├── instrumentation.go
+│   │   ├── instrumentation_test.go
+│   │   ├── locale.go
+│   │   ├── maintenance.go
+│   │   ├── maintenance_test.go
+│   │   ├── panic.go
+│   │   ├── panic_test.go
+│   │   ├── security.go
+│   │   ├── security_test.go
+│   │   ├── session.go
+│   │   ├── session_test.go
+│   │   ├── setup.go
+│   │   ├── setup_test.go
+│   │   ├── tenant.go
+│   │   ├── tenant_test.go
+│   │   ├── user.go
+│   │   └── user_test.go
+│   ├── models
+│   │   ├── cmd
+│   │   │   ├── attachment.go
+│   │   │   ├── billing.go
+│   │   │   ├── blob.go
+│   │   │   ├── comment.go
+│   │   │   ├── email.go
+│   │   │   ├── event.go
+│   │   │   ├── http.go
+│   │   │   ├── log.go
+│   │   │   ├── notification.go
+│   │   │   ├── oauth.go
+│   │   │   ├── post.go
+│   │   │   ├── reaction.go
+│   │   │   ├── system.go
+│   │   │   ├── tag.go
+│   │   │   ├── tenant.go
+│   │   │   ├── user.go
+│   │   │   ├── userlist.go
+│   │   │   ├── vote.go
+│   │   │   └── webhook.go
+│   │   ├── dto
+│   │   │   ├── billing.go
+│   │   │   ├── blob.go
+│   │   │   ├── email.go
+│   │   │   ├── http.go
+│   │   │   ├── oauth.go
+│   │   │   ├── props.go
+│   │   │   ├── props_test.go
+│   │   │   ├── upload.go
+│   │   │   ├── userlist.go
+│   │   │   └── webhook.go
+│   │   ├── entity
+│   │   │   ├── billing.go
+│   │   │   ├── comment.go
+│   │   │   ├── email_verification.go
+│   │   │   ├── notification.go
+│   │   │   ├── oauth.go
+│   │   │   ├── post.go
+│   │   │   ├── reaction.go
+│   │   │   ├── tag.go
+│   │   │   ├── tenant.go
+│   │   │   ├── user.go
+│   │   │   ├── user_test.go
+│   │   │   ├── vote.go
+│   │   │   └── webhook.go
+│   │   ├── enum
+│   │   │   ├── avatar.go
+│   │   │   ├── billing.go
+│   │   │   ├── email_kind.go
+│   │   │   ├── notification.go
+│   │   │   ├── oauth.go
+│   │   │   ├── post_status.go
+│   │   │   ├── subscriber.go
+│   │   │   ├── tenant_status.go
+│   │   │   ├── user_role.go
+│   │   │   ├── user_status.go
+│   │   │   ├── webhook_status.go
+│   │   │   └── webhook_type.go
+│   │   └── query
+│   │       ├── attachment.go
+│   │       ├── billing.go
+│   │       ├── blob.go
+│   │       ├── comment.go
+│   │       ├── email.go
+│   │       ├── notification.go
+│   │       ├── oauth.go
+│   │       ├── post.go
+│   │       ├── system.go
+│   │       ├── tag.go
+│   │       ├── tenant.go
+│   │       ├── user.go
+│   │       ├── vote.go
+│   │       └── webhook.go
+│   ├── pkg
+│   │   ├── assert
+│   │   │   ├── assert.go
+│   │   │   ├── assert_test.go
+│   │   │   └── bus_assert.go
+│   │   ├── backup
+│   │   │   ├── backup.go
+│   │   │   └── export.go
+│   │   ├── bus
+│   │   │   ├── bus.go
+│   │   │   ├── bus_test.go
+│   │   │   └── greeter_test.go
+│   │   ├── color
+│   │   │   └── color.go
+│   │   ├── crypto
+│   │   │   ├── md5.go
+│   │   │   ├── md5_test.go
+│   │   │   ├── sha512.go
+│   │   │   └── sha512_test.go
+│   │   ├── csv
+│   │   │   ├── csv.go
+│   │   │   ├── csv_test.go
+│   │   │   └── testdata
+│   │   │       ├── empty.csv
+│   │   │       ├── more-posts.csv
+│   │   │       └── one-post.csv
+│   │   ├── dbx
+│   │   │   ├── dbx.go
+│   │   │   ├── dbx_test.go
+│   │   │   ├── lock.go
+│   │   │   ├── lock_test.go
+│   │   │   ├── mapping.go
+│   │   │   ├── mapping_test.go
+│   │   │   ├── migrate.go
+│   │   │   ├── migrate_test.go
+│   │   │   ├── setup.sql
+│   │   │   ├── testdata
+│   │   │   │   ├── migration_failure
+│   │   │   │   │   ├── 210001010000_create_err.sql
+│   │   │   │   │   └── 210001010001_create_ok.sql
+│   │   │   │   └── migration_success
+│   │   │   │       ├── 210001010000_create.sql
+│   │   │   │       └── 210001010001_delete.sql
+│   │   │   └── types.go
+│   │   ├── env
+│   │   │   ├── env.go
+│   │   │   └── env_test.go
+│   │   ├── errors
+│   │   │   ├── errors.go
+│   │   │   ├── errors_test.go
+│   │   │   └── path.go
+│   │   ├── i18n
+│   │   │   ├── i18n.go
+│   │   │   └── i18n_test.go
+│   │   ├── jsonq
+│   │   │   ├── jsonq.go
+│   │   │   └── jsonq_test.go
+│   │   ├── jwt
+│   │   │   ├── jwt.go
+│   │   │   └── jwt_test.go
+│   │   ├── log
+│   │   │   ├── level.go
+│   │   │   ├── log.go
+│   │   │   ├── log_test.go
+│   │   │   ├── parse.go
+│   │   │   └── props.go
+│   │   ├── markdown
+│   │   │   ├── markdown.go
+│   │   │   ├── markdown_test.go
+│   │   │   └── text.go
+│   │   ├── mock
+│   │   │   ├── server.go
+│   │   │   ├── setup.go
+│   │   │   └── worker.go
+│   │   ├── rand
+│   │   │   ├── random.go
+│   │   │   └── random_test.go
+│   │   ├── tpl
+│   │   │   ├── funcs.go
+│   │   │   ├── template.go
+│   │   │   ├── template_test.go
+│   │   │   ├── testdata
+│   │   │   │   ├── base.html
+│   │   │   │   └── echo.html
+│   │   │   └── text.go
+│   │   ├── validate
+│   │   │   ├── general.go
+│   │   │   ├── general_test.go
+│   │   │   ├── subdomain.go
+│   │   │   ├── subdomain_test.go
+│   │   │   ├── upload.go
+│   │   │   ├── upload_test.go
+│   │   │   ├── validation.go
+│   │   │   └── validation_test.go
+│   │   ├── web
+│   │   │   ├── autocert.go
+│   │   │   ├── binder.go
+│   │   │   ├── binder_test.go
+│   │   │   ├── context.go
+│   │   │   ├── context_test.go
+│   │   │   ├── engine.go
+│   │   │   ├── engine_test.go
+│   │   │   ├── metrics.go
+│   │   │   ├── react.go
+│   │   │   ├── react_test.go
+│   │   │   ├── renderer.go
+│   │   │   ├── renderer_test.go
+│   │   │   ├── request.go
+│   │   │   ├── request_test.go
+│   │   │   ├── response.go
+│   │   │   ├── ssl.go
+│   │   │   ├── ssl_test.go
+│   │   │   ├── testdata
+│   │   │   │   ├── all-test-fider-io.crt
+│   │   │   │   ├── all-test-fider-io.key
+│   │   │   │   ├── assets.json
+│   │   │   │   ├── basic.html
+│   │   │   │   ├── canonical.html
+│   │   │   │   ├── chunk.html
+│   │   │   │   ├── empty.js
+│   │   │   │   ├── favicon.ico
+│   │   │   │   ├── home.html
+│   │   │   │   ├── home_ssr.html
+│   │   │   │   ├── logo1.png
+│   │   │   │   ├── logo2.jpg
+│   │   │   │   ├── logo3-200w.gif
+│   │   │   │   ├── logo3.gif
+│   │   │   │   ├── logo4.png
+│   │   │   │   ├── logo5.png
+│   │   │   │   ├── oauth.html
+│   │   │   │   ├── tenant.html
+│   │   │   │   ├── test-fider-io.crt
+│   │   │   │   ├── test-fider-io.key
+│   │   │   │   └── user.html
+│   │   │   └── util
+│   │   │       └── webutil.go
+│   │   ├── webhook
+│   │   │   └── props.go
+│   │   └── worker
+│   │       ├── context.go
+│   │       ├── worker.go
+│   │       └── worker_test.go
+│   ├── services
+│   │   ├── billing
+│   │   │   └── paddle
+│   │   │       ├── paddle.go
+│   │   │       └── response.go
+│   │   ├── blob
+│   │   │   ├── blob.go
+│   │   │   ├── blob_test.go
+│   │   │   ├── fs
+│   │   │   │   └── fs.go
+│   │   │   ├── s3
+│   │   │   │   └── s3.go
+│   │   │   ├── sql
+│   │   │   │   └── sql.go
+│   │   │   └── testdata
+│   │   │       ├── file.txt
+│   │   │       ├── file2.png
+│   │   │       └── file3.txt
+│   │   ├── email
+│   │   │   ├── awsses
+│   │   │   │   └── awsses.go
+│   │   │   ├── email.go
+│   │   │   ├── email_test.go
+│   │   │   ├── emailmock
+│   │   │   │   └── emailmock.go
+│   │   │   ├── mailgun
+│   │   │   │   ├── sendmail.go
+│   │   │   │   ├── sendmail_test.go
+│   │   │   │   ├── service.go
+│   │   │   │   └── supression.go
+│   │   │   ├── message.go
+│   │   │   └── smtp
+│   │   │       ├── auth.go
+│   │   │       ├── auth_login.go
+│   │   │       ├── auth_test.go
+│   │   │       ├── smtp.go
+│   │   │       └── smtp_test.go
+│   │   ├── httpclient
+│   │   │   ├── httpclient.go
+│   │   │   └── httpclientmock
+│   │   │       └── httpclientmock.go
+│   │   ├── log
+│   │   │   ├── console
+│   │   │   │   └── console.go
+│   │   │   ├── file
+│   │   │   │   └── file.go
+│   │   │   └── sql
+│   │   │       └── sql.go
+│   │   ├── oauth
+│   │   │   ├── custom.go
+│   │   │   ├── oauth.go
+│   │   │   └── oauth_test.go
+│   │   ├── sqlstore
+│   │   │   └── postgres
+│   │   │       ├── attachment.go
+│   │   │       ├── attachment_test.go
+│   │   │       ├── billing.go
+│   │   │       ├── billing_test.go
+│   │   │       ├── comment.go
+│   │   │       ├── common.go
+│   │   │       ├── common_test.go
+│   │   │       ├── event.go
+│   │   │       ├── event_test.go
+│   │   │       ├── notification.go
+│   │   │       ├── notifications_test.go
+│   │   │       ├── oauth.go
+│   │   │       ├── post.go
+│   │   │       ├── post_test.go
+│   │   │       ├── postgres.go
+│   │   │       ├── setup_test.go
+│   │   │       ├── subscription_test.go
+│   │   │       ├── system.go
+│   │   │       ├── tag.go
+│   │   │       ├── tag_test.go
+│   │   │       ├── tenant.go
+│   │   │       ├── tenant_test.go
+│   │   │       ├── user.go
+│   │   │       ├── user_test.go
+│   │   │       ├── vote.go
+│   │   │       └── webhook.go
+│   │   ├── userlist
+│   │   │   ├── mocks
+│   │   │   │   └── mockUserQueryService.go
+│   │   │   ├── userlist.go
+│   │   │   └── userlist_test.go
+│   │   └── webhook
+│   │       ├── dummy_props.go
+│   │       └── webhook.go
+│   └── tasks
+│       ├── change_email.go
+│       ├── change_email_test.go
+│       ├── delete_post.go
+│       ├── delete_post_test.go
+│       ├── invites.go
+│       ├── invites_test.go
+│       ├── new_comment.go
+│       ├── new_comment_test.go
+│       ├── new_post.go
+│       ├── new_post_test.go
+│       ├── signin.go
+│       ├── signin_test.go
+│       ├── signup.go
+│       ├── signup_test.go
+│       ├── status_change.go
+│       ├── status_change_test.go
+│       ├── tasks.go
+│       └── userlist.go
+├── docker-compose.yml
+├── e2e
+│   ├── _init_.ts
+│   ├── features
+│   │   ├── server
+│   │   │   ├── http.feature
+│   │   │   ├── prometheus.feature
+│   │   │   └── ssr.feature
+│   │   └── ui
+│   │       └── post.feature
+│   ├── setup.ts
+│   ├── step_definitions
+│   │   ├── fns.ts
+│   │   ├── home.steps.ts
+│   │   ├── http.steps.ts
+│   │   ├── show_post.steps.ts
+│   │   └── user.steps.ts
+│   └── world.ts
+├── esbuild-shim.js
+├── esbuild.config.js
+├── etc
+│   ├── browserstack.png
+│   ├── dev-fider-io.crt
+│   ├── dev-fider-io.key
+│   ├── homepage.png
+│   ├── logo-small.png
+│   ├── logo.png
+│   ├── privacy.md
+│   └── terms.md
+├── favicon.png
+├── go.mod
+├── go.sum
+├── index.d.ts
+├── locale
+│   ├── README.md
+│   ├── ar
+│   │   ├── client.json
+│   │   └── server.json
+│   ├── de
+│   │   ├── client.json
+│   │   └── server.json
+│   ├── el
+│   │   ├── client.json
+│   │   └── server.json
+│   ├── en
+│   │   ├── client.json
+│   │   └── server.json
+│   ├── es-ES
+│   │   ├── client.json
+│   │   └── server.json
+│   ├── fr
+│   │   ├── client.json
+│   │   └── server.json
+│   ├── it
+│   │   ├── client.json
+│   │   └── server.json
+│   ├── locales.ts
+│   ├── nl
+│   │   ├── client.json
+│   │   └── server.json
+│   ├── pl
+│   │   ├── client.json
+│   │   └── server.json
+│   ├── pt-BR
+│   │   ├── client.json
+│   │   └── server.json
+│   ├── ru
+│   │   ├── client.json
+│   │   └── server.json
+│   ├── sk
+│   │   ├── client.json
+│   │   └── server.json
+│   ├── sv-SE
+│   │   ├── client.json
+│   │   └── server.json
+│   ├── tr
+│   │   ├── client.json
+│   │   └── server.json
+│   └── zh-CN
+│       ├── client.json
+│       └── server.json
+├── main.go
+├── migrations
+│   ├── 201701261850_create_tenants.up.sql
+│   ├── 201701281131_rename_domain.up.sql
+│   ├── 201702072040_create_ideas.up.sql
+│   ├── 201702251213_create_users.up.sql
+│   ├── 201702251620_add_tenant_cname.up.sql
+│   ├── 201703172030_add_ideas_userid.up.sql
+│   ├── 201703172115_remove_col_defaults.up.sql
+│   ├── 201703240709_remove_col_tenants.up.sql
+│   ├── 201703240710_create_comments.up.sql
+│   ├── 201703310824_remove_col_user_providers.up.sql
+│   ├── 201703310857_add_tenant_to_users.up.sql
+│   ├── 201704101854_add_ideas_number.up.sql
+│   ├── 201704112003_add_role_users.up.sql
+│   ├── 201704181821_add_supporters.up.sql
+│   ├── 201705132054_add_idea_status.up.sql
+│   ├── 201705191854_add_idea_slug.up.sql
+│   ├── 201705202300_add_idea_response.up.sql
+│   ├── 201707081055_set_cname_null.up.sql
+│   ├── 201707261949_set_cname_empty.up.sql
+│   ├── 201707271826_new_tenant_settings.up.sql
+│   ├── 201709081837_create_email_verifications.up.sql
+│   ├── 201709091228_create_email_verification_key_index.up.sql
+│   ├── 201709141944_rename_email_verification.up.sql
+│   ├── 201709241236_add_tenant_status.up.sql
+│   ├── 201709241254_add_signin_request_name_expires_on.up.sql
+│   ├── 201711152138_create_tags.up.sql
+│   ├── 201711181740_create_uniq_indexes.up.sql
+│   ├── 201712061924_unique_email.up.sql
+│   ├── 201712131842_unique_slug.up.sql
+│   ├── 201801031643_original_id.up.sql
+│   ├── 201801152006_rename_signin_requests.up.sql
+│   ├── 201801152017_add_kind_email_verification.up.sql
+│   ├── 201802061858_create_notification_tables.up.sql
+│   ├── 201802071816_seed_subscribers_table.up.sql
+│   ├── 201802231910_add_pg_trgm.up.sql
+│   ├── 201802241348_create_webnotification_tables.up.sql
+│   ├── 201803011831_add_tenant_id_everywhere.up.sql
+│   ├── 201803110836_edit_comment_columns.up.sql
+│   ├── 201804091842_add_is_private.up.sql
+│   ├── 201805061319_create_uploads.up.sql
+│   ├── 201805070759_add_logo_id.up.sql
+│   ├── 201805162034_add_custom_css.up.sql
+│   ├── 201805230000_drop_supporters_column.up.sql
+│   ├── 201805261834_add_user_status.up.sql
+│   ├── 201806191904_create_logs.sql
+│   ├── 201807122132_create_oauth_providers.sql
+│   ├── 201808152020_rename_idea_post.sql
+│   ├── 201808181931_add_api_key_users.sql
+│   ├── 201808192103_increase_key_size.sql
+│   ├── 201808291958_rename_support_vote.sql
+│   ├── 201809262108_rename_datetime_fields.sql
+│   ├── 201810022329_add_events.sql
+│   ├── 201810152035_add_comment_deleted.sql
+│   ├── 201811071547_increase_link_size.sql
+│   ├── 201812102208_create_blob_table.sql
+│   ├── 201812171813_migrate_to_blobs.sql
+│   ├── 201812201644_migrate_autocert_to_blobs.sql
+│   ├── 201812230904_user_avatar_type.sql
+│   ├── 201901042021_create_tenants_billing.sql
+│   ├── 201901072106_recreate_post_slug_index.sql
+│   ├── 201901130830_attachments.sql
+│   ├── 201904022134_lowercase_emails.sql
+│   ├── 201904091921_fix_api_users_role.sql
+│   ├── 202105161823_create_indexes.sql
+│   ├── 202107031320_add_locale_field.sql
+│   ├── 202107211126_added_allowing_email_auth.sql
+│   ├── 202108092243_create_webhooks.sql
+│   ├── 202109052023_email_supressed_at.sql
+│   ├── 202109072130_paddle_fields.sql
+│   ├── 202109272130_system_settings.sql
+│   ├── 202205082055_trusted_provider.sql
+│   ├── 202406111146_add_posts_user_id_index.sql
+│   └── 202410122105_create_reactions_up.sql
+├── package-lock.json
+├── package.json
+├── public
+│   ├── AsyncPages.tsx
+│   ├── assets
+│   │   ├── images
+│   │   │   ├── cc-amex.svg
+│   │   │   ├── cc-diners.svg
+│   │   │   ├── cc-discover.svg
+│   │   │   ├── cc-generic.svg
+│   │   │   ├── cc-jcb.svg
+│   │   │   ├── cc-maestro.svg
+│   │   │   ├── cc-mastercard.svg
+│   │   │   ├── cc-unionpay.svg
+│   │   │   ├── cc-visa.svg
+│   │   │   ├── fa-caretup.svg
+│   │   │   ├── heroicons-bell.svg
+│   │   │   ├── heroicons-chat-alt-2.svg
+│   │   │   ├── heroicons-check-circle.svg
+│   │   │   ├── heroicons-check.svg
+│   │   │   ├── heroicons-cog.svg
+│   │   │   ├── heroicons-dots-horizontal.svg
+│   │   │   ├── heroicons-download.svg
+│   │   │   ├── heroicons-exclamation-circle.svg
+│   │   │   ├── heroicons-exclamation.svg
+│   │   │   ├── heroicons-eye.svg
+│   │   │   ├── heroicons-information-circle.svg
+│   │   │   ├── heroicons-light-bulb.svg
+│   │   │   ├── heroicons-menu.svg
+│   │   │   ├── heroicons-pencil-alt.svg
+│   │   │   ├── heroicons-photograph.svg
+│   │   │   ├── heroicons-play.svg
+│   │   │   ├── heroicons-search.svg
+│   │   │   ├── heroicons-selector.svg
+│   │   │   ├── heroicons-speakerphone.svg
+│   │   │   ├── heroicons-volume-off.svg
+│   │   │   ├── heroicons-volume-on.svg
+│   │   │   ├── heroicons-x-circle.svg
+│   │   │   ├── heroicons-x.svg
+│   │   │   ├── reaction-add.svg
+│   │   │   ├── undraw-empty.svg
+│   │   │   ├── undraw-no-data.svg
+│   │   │   ├── undraw-post.svg
+│   │   │   └── undraw-public-discussion.svg
+│   │   └── styles
+│   │       ├── index.scss
+│   │       ├── reset.scss
+│   │       ├── tooltip.scss
+│   │       ├── utility
+│   │       │   ├── colors.scss
+│   │       │   ├── display.scss
+│   │       │   ├── grid.scss
+│   │       │   ├── outline.scss
+│   │       │   ├── page.scss
+│   │       │   ├── sizing.scss
+│   │       │   ├── spacing.scss
+│   │       │   └── text.scss
+│   │       ├── utility.scss
+│   │       ├── variables
+│   │       │   ├── _colors.scss
+│   │       │   ├── _functions.scss
+│   │       │   ├── _sizing.scss
+│   │       │   ├── _spacing.scss
+│   │       │   └── _text.scss
+│   │       └── variables.scss
+│   ├── components
+│   │   ├── ErrorBoundary.spec.tsx
+│   │   ├── ErrorBoundary.tsx
+│   │   ├── Header.tsx
+│   │   ├── NotificationIndicator.scss
+│   │   ├── NotificationIndicator.tsx
+│   │   ├── Reactions.scss
+│   │   ├── Reactions.tsx
+│   │   ├── ReadOnlyNotice.tsx
+│   │   ├── ShowPostResponse.tsx
+│   │   ├── ShowPostStatus.scss
+│   │   ├── ShowPostStatus.tsx
+│   │   ├── ShowTag.scss
+│   │   ├── ShowTag.tsx
+│   │   ├── SignInModal.tsx
+│   │   ├── UserMenu.tsx
+│   │   ├── VoteCounter.scss
+│   │   ├── VoteCounter.spec.tsx
+│   │   ├── VoteCounter.tsx
+│   │   ├── common
+│   │   │   ├── Avatar.scss
+│   │   │   ├── Avatar.tsx
+│   │   │   ├── AvatarStack.scss
+│   │   │   ├── AvatarStack.tsx
+│   │   │   ├── Button.scss
+│   │   │   ├── Button.tsx
+│   │   │   ├── DevBanner.scss
+│   │   │   ├── DevBanner.tsx
+│   │   │   ├── Dropdown.scss
+│   │   │   ├── Dropdown.tsx
+│   │   │   ├── Hint.scss
+│   │   │   ├── Hint.tsx
+│   │   │   ├── HoverInfo.scss
+│   │   │   ├── HoverInfo.tsx
+│   │   │   ├── Icon.tsx
+│   │   │   ├── Legal.tsx
+│   │   │   ├── Loader.scss
+│   │   │   ├── Loader.tsx
+│   │   │   ├── Logo.tsx
+│   │   │   ├── Markdown.scss
+│   │   │   ├── Markdown.tsx
+│   │   │   ├── Message.scss
+│   │   │   ├── Message.tsx
+│   │   │   ├── Modal.scss
+│   │   │   ├── Modal.tsx
+│   │   │   ├── Moment.tsx
+│   │   │   ├── Money.tsx
+│   │   │   ├── PageTitle.tsx
+│   │   │   ├── PoweredByFider.scss
+│   │   │   ├── PoweredByFider.tsx
+│   │   │   ├── SignInControl.scss
+│   │   │   ├── SignInControl.tsx
+│   │   │   ├── SocialSignInButton.tsx
+│   │   │   ├── Toggle.scss
+│   │   │   ├── Toggle.tsx
+│   │   │   ├── UserName.scss
+│   │   │   ├── UserName.tsx
+│   │   │   ├── form
+│   │   │   │   ├── Checkbox.scss
+│   │   │   │   ├── Checkbox.tsx
+│   │   │   │   ├── DisplayError.scss
+│   │   │   │   ├── DisplayError.spec.tsx
+│   │   │   │   ├── DisplayError.tsx
+│   │   │   │   ├── Field.tsx
+│   │   │   │   ├── Form.scss
+│   │   │   │   ├── Form.tsx
+│   │   │   │   ├── ImageUploader.scss
+│   │   │   │   ├── ImageUploader.tsx
+│   │   │   │   ├── ImageViewer.scss
+│   │   │   │   ├── ImageViewer.tsx
+│   │   │   │   ├── Input.scss
+│   │   │   │   ├── Input.tsx
+│   │   │   │   ├── MultiImageUploader.scss
+│   │   │   │   ├── MultiImageUploader.tsx
+│   │   │   │   ├── RadioButton.scss
+│   │   │   │   ├── RadioButton.tsx
+│   │   │   │   ├── Select.scss
+│   │   │   │   ├── Select.tsx
+│   │   │   │   ├── Select2.scss
+│   │   │   │   ├── Select2.tsx
+│   │   │   │   ├── TextArea.scss
+│   │   │   │   └── TextArea.tsx
+│   │   │   └── index.tsx
+│   │   ├── index.tsx
+│   │   └── layout
+│   │       ├── Divider.scss
+│   │       ├── Divider.tsx
+│   │       ├── Stack.tsx
+│   │       └── index.tsx
+│   ├── hooks
+│   │   ├── index.ts
+│   │   ├── use-cache.ts
+│   │   ├── use-fider.ts
+│   │   ├── use-script.ts
+│   │   └── use-timeout.ts
+│   ├── index.tsx
+│   ├── jest.assets.ts
+│   ├── jest.setup.tsx
+│   ├── models
+│   │   ├── billing.ts
+│   │   ├── identity.ts
+│   │   ├── index.ts
+│   │   ├── notification.ts
+│   │   ├── post.ts
+│   │   ├── settings.ts
+│   │   └── webhook.ts
+│   ├── pages
+│   │   ├── Administration
+│   │   │   ├── components
+│   │   │   │   ├── AdminBasePage.scss
+│   │   │   │   ├── AdminBasePage.tsx
+│   │   │   │   ├── OAuthForm.tsx
+│   │   │   │   ├── SideMenu.scss
+│   │   │   │   ├── SideMenu.tsx
+│   │   │   │   ├── TagForm.tsx
+│   │   │   │   ├── TagListItem.tsx
+│   │   │   │   ├── billing
+│   │   │   │   │   └── CardDetails.tsx
+│   │   │   │   └── webhook
+│   │   │   │       ├── WebhookFailInfo.scss
+│   │   │   │       ├── WebhookFailInfo.tsx
+│   │   │   │       ├── WebhookForm.scss
+│   │   │   │       ├── WebhookForm.tsx
+│   │   │   │       ├── WebhookListItem.scss
+│   │   │   │       ├── WebhookListItem.tsx
+│   │   │   │       ├── WebhookProperties.scss
+│   │   │   │       ├── WebhookProperties.tsx
+│   │   │   │       ├── WebhookTemplateInfoModal.scss
+│   │   │   │       └── WebhookTemplateInfoModal.tsx
+│   │   │   ├── hooks
+│   │   │   │   └── use-paddle.ts
+│   │   │   └── pages
+│   │   │       ├── AdvancedSettings.page.tsx
+│   │   │       ├── Export.page.tsx
+│   │   │       ├── GeneralSettings.page.tsx
+│   │   │       ├── Invitations.page.tsx
+│   │   │       ├── ManageAuthentication.page.tsx
+│   │   │       ├── ManageBilling.page.tsx
+│   │   │       ├── ManageMembers.page.tsx
+│   │   │       ├── ManageTags.page.tsx
+│   │   │       ├── ManageWebhooks.page.tsx
+│   │   │       └── PrivacySettings.page.tsx
+│   │   ├── DesignSystem
+│   │   │   ├── DesignSystem.page.scss
+│   │   │   ├── DesignSystem.page.tsx
+│   │   │   └── index.ts
+│   │   ├── Error
+│   │   │   ├── Error.page.spec.tsx
+│   │   │   ├── Error.page.tsx
+│   │   │   ├── Error401.page.tsx
+│   │   │   ├── Error403.page.tsx
+│   │   │   ├── Error404.page.tsx
+│   │   │   ├── Error410.page.tsx
+│   │   │   ├── Error500.page.tsx
+│   │   │   ├── Maintenance.page.tsx
+│   │   │   ├── NotInvited.page.tsx
+│   │   │   ├── components
+│   │   │   │   └── ErrorPageWrapper.tsx
+│   │   │   └── index.ts
+│   │   ├── Home
+│   │   │   ├── Home.page.scss
+│   │   │   ├── Home.page.tsx
+│   │   │   ├── components
+│   │   │   │   ├── ListPosts.tsx
+│   │   │   │   ├── PostFilter.tsx
+│   │   │   │   ├── PostInput.tsx
+│   │   │   │   ├── PostsContainer.scss
+│   │   │   │   ├── PostsContainer.tsx
+│   │   │   │   ├── SimilarPosts.tsx
+│   │   │   │   └── TagsFilter.tsx
+│   │   │   └── index.ts
+│   │   ├── Legal
+│   │   │   ├── Legal.page.scss
+│   │   │   ├── Legal.page.tsx
+│   │   │   └── index.ts
+│   │   ├── MyNotifications
+│   │   │   ├── MyNotifications.page.tsx
+│   │   │   └── index.ts
+│   │   ├── MySettings
+│   │   │   ├── MySettings.page.tsx
+│   │   │   ├── components
+│   │   │   │   ├── APIKeyForm.tsx
+│   │   │   │   ├── DangerZone.tsx
+│   │   │   │   └── NotificationSettings.tsx
+│   │   │   └── index.ts
+│   │   ├── OAuthEcho
+│   │   │   ├── OAuthEcho.page.tsx
+│   │   │   └── index.ts
+│   │   ├── ShowPost
+│   │   │   ├── ShowPost.page.scss
+│   │   │   ├── ShowPost.page.tsx
+│   │   │   ├── components
+│   │   │   │   ├── CommentInput.tsx
+│   │   │   │   ├── DiscussionPanel.tsx
+│   │   │   │   ├── ModerationPanel.tsx
+│   │   │   │   ├── NotificationsPanel.tsx
+│   │   │   │   ├── PostSearch.tsx
+│   │   │   │   ├── ResponseForm.tsx
+│   │   │   │   ├── ShowComment.tsx
+│   │   │   │   ├── TagListItem.tsx
+│   │   │   │   ├── TagsPanel.tsx
+│   │   │   │   ├── VotesModal.tsx
+│   │   │   │   └── VotesPanel.tsx
+│   │   │   └── index.ts
+│   │   ├── SignIn
+│   │   │   ├── CompleteSignInProfile.page.scss
+│   │   │   ├── CompleteSignInProfile.page.tsx
+│   │   │   ├── SignIn.page.tsx
+│   │   │   └── index.ts
+│   │   └── SignUp
+│   │       ├── PendingActivation.page.tsx
+│   │       ├── SignUp.page.tsx
+│   │       └── index.ts
+│   ├── services
+│   │   ├── actions
+│   │   │   ├── billing.ts
+│   │   │   ├── index.ts
+│   │   │   ├── infra.ts
+│   │   │   ├── invite.ts
+│   │   │   ├── notification.ts
+│   │   │   ├── post.ts
+│   │   │   ├── tag.ts
+│   │   │   ├── tenant.ts
+│   │   │   ├── user.ts
+│   │   │   └── webhook.ts
+│   │   ├── analytics.ts
+│   │   ├── cache.spec.ts
+│   │   ├── cache.ts
+│   │   ├── device.ts
+│   │   ├── fider.ts
+│   │   ├── http.ts
+│   │   ├── i18n.ts
+│   │   ├── index.ts
+│   │   ├── jwt.spec.ts
+│   │   ├── jwt.ts
+│   │   ├── markdown.spec.ts
+│   │   ├── markdown.ts
+│   │   ├── navigator.ts
+│   │   ├── notify.ts
+│   │   ├── querystring.spec.ts
+│   │   ├── querystring.ts
+│   │   ├── testing
+│   │   │   ├── fider.ts
+│   │   │   ├── http.ts
+│   │   │   ├── index.ts
+│   │   │   └── modal.ts
+│   │   ├── toastify.tsx
+│   │   ├── utils.spec.ts
+│   │   └── utils.ts
+│   └── ssr.tsx
+├── robots.txt
+├── scripts
+│   ├── git-prune-local.sh
+│   └── kill-dev.sh
+├── tools.go
+├── tsconfig.json
+├── views
+│   ├── base.html
+│   ├── email
+│   │   ├── base_email.html
+│   │   ├── change_emailaddress_email.html
+│   │   ├── change_status.html
+│   │   ├── delete_post.html
+│   │   ├── echo_test.html
+│   │   ├── invite_email.html
+│   │   ├── new_comment.html
+│   │   ├── new_post.html
+│   │   ├── signin_email.html
+│   │   ├── signup_email.html
+│   │   ├── trial_1day.html
+│   │   ├── trial_7days.html
+│   │   └── welcome_email.html
+│   ├── index.html
+│   └── ssr.html
+└── webpack.config.js
+133 directories, 816 files
