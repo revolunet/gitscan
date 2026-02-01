@@ -1,0 +1,2603 @@
+.
+├── .claude
+│   ├── context
+│   │   └── api
+│   │       ├── 00-overview.md
+│   │       ├── 01-usecase-pattern.md
+│   │       ├── 02-controller-pattern.md
+│   │       ├── 03-repository-pattern.md
+│   │       ├── 04-query-pattern.md
+│   │       ├── 05-unit-testing-pattern.md
+│   │       ├── 06-integration-testing-pattern.md
+│   │       ├── 07-database-patterns.md
+│   │       ├── 08-dependency-injection.md
+│   │       ├── 09-naming-conventions.md
+│   │       ├── 10-domain-events-pattern.md
+│   │       └── 11-shared-services.md
+│   ├── settings.local.json
+│   └── skills
+│       ├── create-database-migration
+│       │   └── SKILL.md
+│       ├── create-e2e-test
+│       │   └── SKILL.md
+│       ├── implement-plan
+│       │   └── SKILL.md
+│       ├── plan-feature
+│       │   └── SKILL.md
+│       └── worktree
+│           └── SKILL.md
+├── .dockerignore
+├── .env.e2e
+├── .github
+│   └── workflows
+│       ├── build-and-upload-api-artifact.yml
+│       ├── build-and-upload-web-artifact.yml
+│       ├── continuous-delivery.yml
+│       ├── deploy-production.yml
+│       ├── deploy-staging.yml
+│       ├── deploy-to-scalingo.yml
+│       ├── e2e-tests.yml
+│       └── integration-checks.yml
+├── .gitignore
+├── .husky
+│   └── pre-commit
+├── .tooling
+│   ├── prettierrc.js
+│   └── tsconfig.base.json
+├── CLAUDE.md
+├── Dockerfile.dev
+├── LICENSE
+├── README.md
+├── SECURITY.md
+├── apps
+│   ├── api
+│   │   ├── .env.example
+│   │   ├── .env.test
+│   │   ├── .gitignore
+│   │   ├── .lintstagedrc
+│   │   ├── .oxlintrc.json
+│   │   ├── .prettierrc.mjs
+│   │   ├── CLAUDE.md
+│   │   ├── Dockerfile
+│   │   ├── README.md
+│   │   ├── data
+│   │   │   ├── aldo
+│   │   │   │   ├── README.md
+│   │   │   │   ├── carbonStorage.csv
+│   │   │   │   └── cities.csv
+│   │   │   └── dvf
+│   │   │       ├── .gitignore
+│   │   │       ├── README.md
+│   │   │       ├── build-city-stats.ts
+│   │   │       └── cityStats.csv
+│   │   ├── docker-entrypoint.sh
+│   │   ├── docs
+│   │   │   ├── calculs-impacts
+│   │   │   │   └── Actualisation.md
+│   │   │   └── db-schema
+│   │   │       ├── DATABASE.md
+│   │   │       ├── OTHERS.md
+│   │   │       ├── README.md
+│   │   │       ├── RECONVERSION_PROJECTS.md
+│   │   │       └── SITES.md
+│   │   ├── nest-cli.json
+│   │   ├── package.json
+│   │   ├── scalingo
+│   │   │   ├── .buildpacks
+│   │   │   └── Procfile
+│   │   ├── scripts
+│   │   │   └── build-for-scalingo.sh
+│   │   ├── src
+│   │   │   ├── app.module.ts
+│   │   │   ├── auth
+│   │   │   │   ├── adapters
+│   │   │   │   │   ├── JwtAuthGuard.ts
+│   │   │   │   │   ├── access-token
+│   │   │   │   │   │   ├── AccessTokenService.ts
+│   │   │   │   │   │   └── accessTokenCookie.ts
+│   │   │   │   │   ├── auth-link-mailer
+│   │   │   │   │   │   ├── FakeAuthLinkMailer.ts
+│   │   │   │   │   │   └── SmtpAuthLinkMailer.ts
+│   │   │   │   │   ├── auth-token-repository
+│   │   │   │   │   │   ├── InMemoryTokenAuthenticationAttemptRepository.ts
+│   │   │   │   │   │   └── SqlTokenAuthenticationAttemptRepository.ts
+│   │   │   │   │   ├── auth.controller.integration-spec.ts
+│   │   │   │   │   ├── auth.controller.ts
+│   │   │   │   │   ├── auth.module.ts
+│   │   │   │   │   ├── external-user-identities-repository
+│   │   │   │   │   │   ├── ExternalUserIdentitiesRepository.ts
+│   │   │   │   │   │   └── SqlExternalUserIdentitiesRepository.ts
+│   │   │   │   │   ├── pro-connect
+│   │   │   │   │   │   ├── FakeProConnectClient.ts
+│   │   │   │   │   │   ├── HttpProConnectClient.ts
+│   │   │   │   │   │   └── ProConnectClient.ts
+│   │   │   │   │   ├── token-generator
+│   │   │   │   │   │   ├── DeterministicTokenGenerator.ts
+│   │   │   │   │   │   └── RandomTokenGenerator.ts
+│   │   │   │   │   ├── user-repository
+│   │   │   │   │   │   ├── InMemoryAuthUserRepository.ts
+│   │   │   │   │   │   ├── SqlUserRepository.integration-spec.ts
+│   │   │   │   │   │   └── SqlUsersRepository.ts
+│   │   │   │   │   └── verified-email-repository
+│   │   │   │   │       ├── SqlVerifiedEmailRepository.ts
+│   │   │   │   │       └── VerifiedEmailRepository.ts
+│   │   │   │   └── core
+│   │   │   │       ├── authenticateWithToken.usecase.spec.ts
+│   │   │   │       ├── authenticateWithToken.usecase.ts
+│   │   │   │       ├── createUser.usecase.spec.ts
+│   │   │   │       ├── createUser.usecase.ts
+│   │   │   │       ├── events
+│   │   │   │       │   ├── authLinkSendFailed.event.ts
+│   │   │   │       │   ├── loginAttempted.event.ts
+│   │   │   │       │   ├── loginSucceeded.event.ts
+│   │   │   │       │   └── userAccountCreated.event.ts
+│   │   │   │       ├── gateways
+│   │   │   │       │   ├── TokenAuthenticationAttemptRepository.ts
+│   │   │   │       │   └── UsersRepository.ts
+│   │   │   │       ├── sendAuthLink.usecase.spec.ts
+│   │   │   │       ├── sendAuthLink.usecase.ts
+│   │   │   │       ├── tokenAuthenticationAttempt.ts
+│   │   │   │       └── user.ts
+│   │   │   ├── carbon-storage
+│   │   │   │   ├── adapters
+│   │   │   │   │   ├── primary
+│   │   │   │   │   │   ├── carbonStorage.controller.integration-spec.ts
+│   │   │   │   │   │   ├── carbonStorage.controller.ts
+│   │   │   │   │   │   └── carbonStorage.module.ts
+│   │   │   │   │   └── secondary
+│   │   │   │   │       └── carbon-storage-query
+│   │   │   │   │           ├── LocalCarbonStorageQuery.mock.ts
+│   │   │   │   │           ├── SqlCarbonStorageQuery.integration-spec.ts
+│   │   │   │   │           └── SqlCarbonStorageQuery.ts
+│   │   │   │   └── core
+│   │   │   │       ├── gateways
+│   │   │   │       │   └── CarbonStorageQuery.ts
+│   │   │   │       ├── models
+│   │   │   │       │   ├── carbonStorage.ts
+│   │   │   │       │   ├── city.ts
+│   │   │   │       │   └── soilCategory.ts
+│   │   │   │       ├── services
+│   │   │   │       │   ├── getCarbonStorageFromSoilDistribution.spec.ts
+│   │   │   │       │   └── getCarbonStorageFromSoilDistribution.ts
+│   │   │   │       └── usecases
+│   │   │   │           ├── getCityCarbonStoragePerSoilsCategory.spec.ts
+│   │   │   │           └── getCityCarbonStoragePerSoilsCategory.ts
+│   │   │   ├── healthcheck
+│   │   │   │   ├── healthcheck.controller.integration-spec.ts
+│   │   │   │   ├── healthcheck.controller.ts
+│   │   │   │   └── healthcheck.module.ts
+│   │   │   ├── httpServer.ts
+│   │   │   ├── main.ts
+│   │   │   ├── marketing
+│   │   │   │   ├── adapters
+│   │   │   │   │   ├── primary
+│   │   │   │   │   │   ├── loginSucceeded.handler.integration-spec.ts
+│   │   │   │   │   │   ├── loginSucceeded.handler.ts
+│   │   │   │   │   │   ├── marketing.module.ts
+│   │   │   │   │   │   ├── userAccountCreated.handler.integration-spec.ts
+│   │   │   │   │   │   └── userAccountCreated.handler.ts
+│   │   │   │   │   └── secondary
+│   │   │   │   │       ├── ConnectCrm.ts
+│   │   │   │   │       └── FakeCrm.ts
+│   │   │   │   └── core
+│   │   │   │       └── CRMGateway.ts
+│   │   │   ├── photovoltaic-performance
+│   │   │   │   ├── adapters
+│   │   │   │   │   ├── primary
+│   │   │   │   │   │   ├── photovoltaicPerformance.controller.integration-spec.ts
+│   │   │   │   │   │   ├── photovoltaicPerformance.controller.ts
+│   │   │   │   │   │   └── photovoltaicPerformance.module.ts
+│   │   │   │   │   └── secondary
+│   │   │   │   │       └── photovoltaic-data-provider
+│   │   │   │   │           ├── PhotovoltaicGeoInfoSystemApi.mock.ts
+│   │   │   │   │           └── PhotovoltaicGeoInfoSystemApi.ts
+│   │   │   │   └── core
+│   │   │   │       ├── gateways
+│   │   │   │       │   └── PhotovoltaicDataProvider.ts
+│   │   │   │       └── usecases
+│   │   │   │           ├── getPhotovoltaicExpectedPerformanceUseCase.ts
+│   │   │   │           └── getPhotovoltaicExpectedPerformanceUseCase.usecase.spec.ts
+│   │   │   ├── reconversion-compatibility
+│   │   │   │   ├── adapters
+│   │   │   │   │   ├── primary
+│   │   │   │   │   │   ├── reconversionCompatibility.controller.integration-spec.ts
+│   │   │   │   │   │   ├── reconversionCompatibility.controller.ts
+│   │   │   │   │   │   └── reconversionCompatibility.module.ts
+│   │   │   │   │   └── secondary
+│   │   │   │   │       └── reconversion-compatibility-evaluation
+│   │   │   │   │           ├── InMemoryReconversionCompatibilityEvaluationRepository.ts
+│   │   │   │   │           └── SqlReconversionCompatibilityEvaluationRepository.ts
+│   │   │   │   └── core
+│   │   │   │       ├── events
+│   │   │   │       │   ├── reconversionCompatibilityEvaluationCompleted.event.ts
+│   │   │   │       │   ├── reconversionCompatibilityEvaluationStarted.event.ts
+│   │   │   │       │   └── siteCreatedFromEvaluation.event.ts
+│   │   │   │       ├── gateways
+│   │   │   │       │   └── ReconversionCompatibilityEvaluationRepository.ts
+│   │   │   │       ├── reconversionCompatibilityEvaluation.ts
+│   │   │   │       └── usecases
+│   │   │   │           ├── addRelatedSiteToReconversionCompatibilityEvaluation.usecase.spec.ts
+│   │   │   │           ├── addRelatedSiteToReconversionCompatibilityEvaluation.usecase.ts
+│   │   │   │           ├── completeReconversionCompatibilityEvaluation.usecase.spec.ts
+│   │   │   │           ├── completeReconversionCompatibilityEvaluation.usecase.ts
+│   │   │   │           ├── startReconversionCompatibilityEvaluation.usecase.spec.ts
+│   │   │   │           └── startReconversionCompatibilityEvaluation.usecase.ts
+│   │   │   ├── reconversion-projects
+│   │   │   │   ├── adapters
+│   │   │   │   │   ├── primary
+│   │   │   │   │   │   ├── reconversionProjects.controller.integration-spec.ts
+│   │   │   │   │   │   ├── reconversionProjects.controller.ts
+│   │   │   │   │   │   └── reconversionProjects.module.ts
+│   │   │   │   │   └── secondary
+│   │   │   │   │       ├── queries
+│   │   │   │   │       │   ├── city-stats
+│   │   │   │   │       │   │   ├── InMemoryCityStatsQuery.ts
+│   │   │   │   │       │   │   ├── SqlCityStatsQuery.integration-spec.ts
+│   │   │   │   │       │   │   └── SqlCityStatsQuery.ts
+│   │   │   │   │       │   ├── reconversion-project-features
+│   │   │   │   │       │   │   ├── SqlReconversionProjectQuery.integration-spec.ts
+│   │   │   │   │       │   │   └── SqlReconversionProjectQuery.ts
+│   │   │   │   │       │   ├── reconversion-project-impacts
+│   │   │   │   │       │   │   ├── InMemoryReconversionProjectImpactsQuery.ts
+│   │   │   │   │       │   │   ├── SqlReconversionProjectImpactsQuery.integration-spec.ts
+│   │   │   │   │       │   │   └── SqlReconversionProjectImpactsQuery.ts
+│   │   │   │   │       │   ├── reconversion-project-list
+│   │   │   │   │       │   │   ├── InMemoryReconversionProjectsListQuery.ts
+│   │   │   │   │       │   │   ├── SqlReconversionProjectsListQuery.integration-spec.ts
+│   │   │   │   │       │   │   └── SqlReconversionProjectsListQuery.ts
+│   │   │   │   │       │   └── site-impacts
+│   │   │   │   │       │       ├── InMemorySiteImpactsQuery.ts
+│   │   │   │   │       │       ├── SqlSiteImpactsQuery.integration-spec.ts
+│   │   │   │   │       │       └── SqlSiteImpactsQuery.ts
+│   │   │   │   │       └── repositories
+│   │   │   │   │           └── reconversion-project
+│   │   │   │   │               ├── InMemoryReconversionProjectRepository.ts
+│   │   │   │   │               ├── SqlReconversionProjectRepository.integration-spec.ts
+│   │   │   │   │               └── SqlReconversionProjectRepository.ts
+│   │   │   │   └── core
+│   │   │   │       ├── events
+│   │   │   │       │   ├── reconversionProjectCreated.event.ts
+│   │   │   │       │   └── reconversionProjectDuplicated.event.ts
+│   │   │   │       ├── gateways
+│   │   │   │       │   ├── CityStatsProvider.ts
+│   │   │   │       │   ├── FakeGetSoilsCarbonStorageService.ts
+│   │   │   │       │   ├── ReconversionProjectRepository.ts
+│   │   │   │       │   └── SoilsCarbonStorageService.ts
+│   │   │   │       ├── model
+│   │   │   │       │   ├── formatProjectInputToFeatures.ts
+│   │   │   │       │   ├── project-impacts
+│   │   │   │       │   │   ├── PhotovoltaicProjectImpactsService.spec.ts
+│   │   │   │       │   │   ├── PhotovoltaicProjectImpactsService.ts
+│   │   │   │       │   │   ├── ReconversionProjectImpactsService.spec.ts
+│   │   │   │       │   │   ├── ReconversionProjectImpactsService.ts
+│   │   │   │       │   │   ├── ReconversionProjectImpactsServiceInterface.ts
+│   │   │   │       │   │   ├── UrbanProjectImpactsService.spec.ts
+│   │   │   │       │   │   ├── UrbanProjectImpactsService.ts
+│   │   │   │       │   │   ├── economic-balance
+│   │   │   │       │   │   │   ├── economicBalanceImpact.spec.ts
+│   │   │   │       │   │   │   └── economicBalanceImpact.ts
+│   │   │   │       │   │   ├── full-time-jobs
+│   │   │   │       │   │   │   ├── fullTimeJobsImpactService.spec.ts
+│   │   │   │       │   │   │   └── fullTimeJobsImpactService.ts
+│   │   │   │       │   │   ├── impact.ts
+│   │   │   │       │   │   ├── impactsEvaluationPeriod.ts
+│   │   │   │       │   │   ├── influence-area-service
+│   │   │   │       │   │   │   ├── InfluenceAreaService.spec.ts
+│   │   │   │       │   │   │   └── InfluenceAreaService.ts
+│   │   │   │       │   │   ├── nature-conservation
+│   │   │   │       │   │   │   ├── NatureConservationImpactsService.spec.ts
+│   │   │   │       │   │   │   ├── NatureConservationImpactsService.ts
+│   │   │   │       │   │   │   ├── natureConservationYearlyMonetaryValue.spec.ts
+│   │   │   │       │   │   │   ├── natureConservationYearlyMonetaryValue.ts
+│   │   │   │       │   │   │   ├── nonContaminatedSurfaceImpact.spec.ts
+│   │   │   │       │   │   │   ├── nonContaminatedSurfaceImpact.ts
+│   │   │   │       │   │   │   ├── permeableSurfaceAreaImpact.spec.ts
+│   │   │   │       │   │   │   └── permeableSurfaceAreaImpact.ts
+│   │   │   │       │   │   ├── property-value
+│   │   │   │       │   │   │   ├── propertyValueImpact.spec.ts
+│   │   │   │       │   │   │   └── propertyValueImpact.ts
+│   │   │   │       │   │   ├── renewable-energy
+│   │   │   │       │   │   │   ├── avoided-CO2-with-energy-production
+│   │   │   │       │   │   │   │   ├── avoidedCO2WithEnergyProductionImpact.spec.ts
+│   │   │   │       │   │   │   │   └── avoidedCO2WithEnergyProductionImpact.ts
+│   │   │   │       │   │   │   └── households-powered-by-renewable-energy
+│   │   │   │       │   │   │       ├── householdsPoweredByRenewableEnergyImpact.spec.ts
+│   │   │   │       │   │   │       └── householdsPoweredByRenewableEnergyImpact.ts
+│   │   │   │       │   │   ├── roads-and-utilities-expenses
+│   │   │   │       │   │   │   ├── roadsAndUtilitiesExpensesImpact.spec.ts
+│   │   │   │       │   │   │   └── roadsAndUtilitiesExpensesImpact.ts
+│   │   │   │       │   │   ├── soils-co2eq-storage
+│   │   │   │       │   │   │   ├── soilsCo2eqStorage.spec.ts
+│   │   │   │       │   │   │   └── soilsCo2eqStorage.ts
+│   │   │   │       │   │   ├── travel-related-impacts-service
+│   │   │   │       │   │   │   ├── TravelRelatedImpactsService.spec.ts
+│   │   │   │       │   │   │   ├── TravelRelatedImpactsService.ts
+│   │   │   │       │   │   │   ├── YearlyTravelRelatedImpacts.spec.ts
+│   │   │   │       │   │   │   └── YearlyTravelRelatedImpacts.ts
+│   │   │   │       │   │   └── urban-freshness-related-impacts-service
+│   │   │   │       │   │       ├── UrbanFreshnessRelatedImpactsService.spec.ts
+│   │   │   │       │   │       ├── UrbanFreshnessRelatedImpactsService.ts
+│   │   │   │       │   │       ├── YearlyUrbanFreshnessRelatedImpacts.spec.ts
+│   │   │   │       │   │       └── YearlyUrbanFreshnessRelatedImpacts.ts
+│   │   │   │       │   ├── reconversionProject.mock.ts
+│   │   │   │       │   ├── reconversionProject.ts
+│   │   │   │       │   ├── site-statu-quo-impacts
+│   │   │   │       │   │   └── SiteStatuQuoImpactsService.ts
+│   │   │   │       │   ├── sum-on-evolution-period
+│   │   │   │       │   │   ├── SumOnEvolutionPeriodService.spec.ts
+│   │   │   │       │   │   └── SumOnEvolutionPeriodService.ts
+│   │   │   │       │   ├── urban-sprawl-impacts-comparison
+│   │   │   │       │   │   ├── roadAndUtilitiesMaintenance.ts
+│   │   │   │       │   │   └── roadsAndUtilitiesContruction.ts
+│   │   │   │       │   └── urbanProjects.ts
+│   │   │   │       └── usecases
+│   │   │   │           ├── computeProjectUrbanSprawlImpactsComparison.usecase.spec.ts
+│   │   │   │           ├── computeProjectUrbanSprawlImpactsComparison.usecase.ts
+│   │   │   │           ├── computeReconversionProjectImpacts.usecase.spec.ts
+│   │   │   │           ├── computeReconversionProjectImpacts.usecase.ts
+│   │   │   │           ├── createReconversionProject.usecase.spec.ts
+│   │   │   │           ├── createReconversionProject.usecase.ts
+│   │   │   │           ├── duplicateReconversionProject.usecase.spec.ts
+│   │   │   │           ├── duplicateReconversionProject.usecase.ts
+│   │   │   │           ├── generateAndSaveReconversionProjectFromTemplate.usecase.spec.ts
+│   │   │   │           ├── generateAndSaveReconversionProjectFromTemplate.usecase.ts
+│   │   │   │           ├── generateReconversionProjectFromTemplate.usecase.spec.ts
+│   │   │   │           ├── generateReconversionProjectFromTemplate.usecase.ts
+│   │   │   │           ├── getReconversionProject.usecase.ts
+│   │   │   │           ├── getReconversionProjectFeatures.usecase.ts
+│   │   │   │           ├── getUserReconversionProjectsBySite.usecase.spec.ts
+│   │   │   │           ├── getUserReconversionProjectsBySite.usecase.ts
+│   │   │   │           ├── quickComputeUrbanProjectImpactsOnFricheUseCase.usecase.ts
+│   │   │   │           ├── updateReconversionProject.usecase.spec.ts
+│   │   │   │           └── updateReconversionProject.usecase.ts
+│   │   │   ├── shared-kernel
+│   │   │   │   ├── adapters
+│   │   │   │   │   ├── date
+│   │   │   │   │   │   ├── DeterministicDateProvider.ts
+│   │   │   │   │   │   ├── IDateProvider.ts
+│   │   │   │   │   │   └── RealDateProvider.ts
+│   │   │   │   │   ├── events
+│   │   │   │   │   │   ├── publisher
+│   │   │   │   │   │   │   ├── InMemoryEventPublisher.ts
+│   │   │   │   │   │   │   └── RealEventPublisher.ts
+│   │   │   │   │   │   └── repository
+│   │   │   │   │   │       ├── DomainEventsRepository.ts
+│   │   │   │   │   │       └── SqlDomainEventsRepository.ts
+│   │   │   │   │   ├── id-generator
+│   │   │   │   │   │   ├── DeterministicIdGenerator.ts
+│   │   │   │   │   │   ├── RandomUuidGenerator.ts
+│   │   │   │   │   │   └── UidGenerator.ts
+│   │   │   │   │   └── sql-knex
+│   │   │   │   │       ├── knexConfig.ts
+│   │   │   │   │       ├── knexfile.ts
+│   │   │   │   │       ├── migrations
+│   │   │   │   │       │   ├── 20230816145922_create-table-users.ts
+│   │   │   │   │       │   ├── 20231010094902_create-table-cities.ts
+│   │   │   │   │       │   ├── 20231011064742_create-table-carbon-storage.ts
+│   │   │   │   │       │   ├── 20240109110326_create-table-sites.ts
+│   │   │   │   │       │   ├── 20240109134717_create-table-addresses.ts
+│   │   │   │   │       │   ├── 20240109155659_create-table-site-expenses-and-incomes.ts
+│   │   │   │   │       │   ├── 20240110093558_create-table-site-soils-distribution.ts
+│   │   │   │   │       │   ├── 20240206161844_create-table-reconversion_projects.ts
+│   │   │   │   │       │   ├── 20240206172543_create-table-reconversion_projects_soils_distributions.ts
+│   │   │   │   │       │   ├── 20240207104843_create-table-reconversion_projects_development_plans.ts
+│   │   │   │   │       │   ├── 20240207143007_create-table-reconversion_projects_yearly_expenses_and_revenues.ts
+│   │   │   │   │       │   ├── 20240209161405_rename-site-expenses-and-incomes-type-columns.ts
+│   │   │   │   │       │   ├── 20240209164240_rename-site-expenses-category-column.ts
+│   │   │   │   │       │   ├── 20240220145542_add-schedule-data-to-reconversion-projects.ts
+│   │   │   │   │       │   ├── 20240221143314_add-created_by-column-to-sites-table.ts
+│   │   │   │   │       │   ├── 20240221172558_add-created_by-column-to-reconversion_projects-table.ts
+│   │   │   │   │       │   ├── 20240222095300_add-real-estate-transaction-data-to-reconversion-projects.ts
+│   │   │   │   │       │   ├── 20240321161340_split-reconversion-project-transaction-cost.ts
+│   │   │   │   │       │   ├── 20240328153524_update-users-table.ts
+│   │   │   │   │       │   ├── 20240402162956_add-structure-activity-to-users-table.ts
+│   │   │   │   │       │   ├── 20240405132116_add-project-phase-to-reconversion-projects-table.ts
+│   │   │   │   │       │   ├── 20240429161246_add-developer-to-reconversion-project-development-plans-table.ts
+│   │   │   │   │       │   ├── 20240530132340_extract-reconversion-project-reinstatement-costs-to-table.ts
+│   │   │   │   │       │   ├── 20240606142119_rename-reconversion-project-reinstatement-financial-assistance-column.ts
+│   │   │   │   │       │   ├── 20240606145733_extract-reconversion-project-financial-assistance-revenues-to-table.ts
+│   │   │   │   │       │   ├── 20240610145503_create-development-plan-costs-table.ts
+│   │   │   │   │       │   ├── 20240620084823_alter-site-description-to-allow-text-longer-than-255-chars.ts
+│   │   │   │   │       │   ├── 20240620085239_alter-reconversion-projects-description-to-allow-text-longer-than-255-chars.ts
+│   │   │   │   │       │   ├── 20240704095929_add_site_resale_numbers_to_reconversion_project_table.ts
+│   │   │   │   │       │   ├── 20240704160852_rename_site_resale_numbers_in_reconversion_project_table.ts
+│   │   │   │   │       │   ├── 20240709094239_add_creation_mode_column_to_reconversion_project_table.ts
+│   │   │   │   │       │   ├── 20240729121401_add-creation-mode-column-to-site-table.ts
+│   │   │   │   │       │   ├── 20240820153519_update_friche_activity_values_in_sites.ts
+│   │   │   │   │       │   ├── 20240829162444_drop_project_phase_details_column_in_reconversion_projects_table.ts
+│   │   │   │   │       │   ├── 20240904122407_add-decontaminated-soil-surface-column-to-reconversion_projects-table.ts
+│   │   │   │   │       │   ├── 20241021070817_rename-mixed-use-neighbourhood-to-urban-project-in-reconversion-projects-development-plans.ts
+│   │   │   │   │       │   ├── 20241118090852_add-field-created-from-to-users.ts
+│   │   │   │   │       │   ├── 20241127133623_remove-full-time-jobs-from-sites.ts
+│   │   │   │   │       │   ├── 20241127133640_remove-full-time-jobs-from-reconversion-projects.ts
+│   │   │   │   │       │   ├── 20241209133953_drop_site_expenses_purpose_category_column.ts
+│   │   │   │   │       │   ├── 20250211105813_create-table-users-features-alerts.ts
+│   │   │   │   │       │   ├── 20250217154216_add_buildings_resale_amounts_to_reconversion_project_table.ts
+│   │   │   │   │       │   ├── 20250219103533_rename-buildings-use-in-reconversion-project-development-plans-table.ts
+│   │   │   │   │       │   ├── 20250225095318_update-friche-activity-values-in-sites-table.ts
+│   │   │   │   │       │   ├── 20250306091253_add-site-nature-column-in-sites-table.ts
+│   │   │   │   │       │   ├── 20250307154016_rename-agricultural-nature-in-sites-table.ts
+│   │   │   │   │       │   ├── 20250519160344_update-urban-spaces-distribution-values.ts
+│   │   │   │   │       │   ├── 20250521150653_add-columns-agricultural-operation-activity-and-natural-area-type-to-sites-table.ts
+│   │   │   │   │       │   ├── 20250527084149_add-column-is-operated-to-sites-table.ts
+│   │   │   │   │       │   ├── 20250613111514_drop-is_friche-column-from-sites-table.ts
+│   │   │   │   │       │   ├── 20250615122529_create-auth-external-user-identities.ts
+│   │   │   │   │       │   ├── 20250626094240_create_verified_emails_table.ts
+│   │   │   │   │       │   ├── 20250715154745_create_auth_tokens_table.ts
+│   │   │   │   │       │   ├── 20250723100435_create-table-city-stats.ts
+│   │   │   │   │       │   ├── 20250729103458_drop_created_from_column_in_users_table.ts
+│   │   │   │   │       │   ├── 20250729160857_rename-insee-to-city_code-in-cities-table.ts
+│   │   │   │   │       │   ├── 20250915091313_add_newsletter_subscription_to_users_table.ts
+│   │   │   │   │       │   ├── 20250916102456_create_domain_events_table.ts
+│   │   │   │   │       │   ├── 20251002102808_hash_authentication_attempts_token.ts
+│   │   │   │   │       │   ├── 20251006095240_create_reconversion_compatibility_evaluation_table.ts
+│   │   │   │   │       │   ├── 20251009094447_add-column-space-category-in-project-soils-distribution-table.ts
+│   │   │   │   │       │   ├── 20251024150751_make_addresses_column_ban_id_optional.ts
+│   │   │   │   │       │   ├── 20251030133904_add-column-updated_at_to_reconversion_projects_table.ts
+│   │   │   │   │       │   ├── 20251104103347_update-reconversion_project_soils_distribution-with-computed-space-category.ts
+│   │   │   │   │       │   ├── 20251113151050_add-column-related-site-id-to-reconversion_compatibility_evaluations.ts
+│   │   │   │   │       │   ├── 20251125115145_create-table-site-actions.ts
+│   │   │   │   │       │   ├── 20251126094945_replace-space-distribution-by-soils-distribution-space-category-for-urban-reconversion-project.ts
+│   │   │   │   │       │   ├── 20251126101548_rename-space-distribution-to-legacy-in-reconversion_project_development_plans.ts
+│   │   │   │   │       │   └── 20260130160303_rename-other-and-cultural-place-in-buildings-use.ts
+│   │   │   │   │       ├── scripts
+│   │   │   │   │       │   ├── README.md
+│   │   │   │   │       │   ├── initialize-or-update-city-stats.ts
+│   │   │   │   │       │   ├── initialize-site-actions.ts
+│   │   │   │   │       │   ├── merge-users-by-email.ts
+│   │   │   │   │       │   └── read-city-stats-csv.ts
+│   │   │   │   │       ├── seeds
+│   │   │   │   │       │   ├── carbonStorage.ts
+│   │   │   │   │       │   ├── cities.ts
+│   │   │   │   │       │   └── cityStats.ts
+│   │   │   │   │       ├── sqlConnection.module.ts
+│   │   │   │   │       └── tableTypes.d.ts
+│   │   │   │   ├── domainEvent.ts
+│   │   │   │   ├── domainEventPublisher.ts
+│   │   │   │   ├── result.spec.ts
+│   │   │   │   ├── result.ts
+│   │   │   │   ├── usecase.spec.ts
+│   │   │   │   └── usecase.ts
+│   │   │   ├── site-actions
+│   │   │   │   ├── adapters
+│   │   │   │   │   ├── primary
+│   │   │   │   │   │   ├── ReconversionProjectCreatedHandler.integration-spec.ts
+│   │   │   │   │   │   ├── ReconversionProjectCreatedHandler.ts
+│   │   │   │   │   │   ├── SiteCreatedFromEvaluationHandler.integration-spec.ts
+│   │   │   │   │   │   ├── SiteCreatedFromEvaluationHandler.ts
+│   │   │   │   │   │   ├── SiteCreatedHandler.ts
+│   │   │   │   │   │   ├── siteActions.controller.integration-spec.ts
+│   │   │   │   │   │   ├── siteActions.controller.ts
+│   │   │   │   │   │   └── siteActions.module.ts
+│   │   │   │   │   └── secondary
+│   │   │   │   │       ├── site-actions-query
+│   │   │   │   │       │   ├── InMemorySiteActionsQuery.ts
+│   │   │   │   │       │   ├── SqlSiteActionsQuery.integration-spec.ts
+│   │   │   │   │       │   └── SqlSiteActionsQuery.ts
+│   │   │   │   │       └── site-actions-repository
+│   │   │   │   │           ├── InMemorySiteActionsRepository.ts
+│   │   │   │   │           ├── SqlSiteActionsRepository.integration-spec.ts
+│   │   │   │   │           └── SqlSiteActionsRepository.ts
+│   │   │   │   └── core
+│   │   │   │       ├── gateways
+│   │   │   │       │   ├── SiteActionsQuery.ts
+│   │   │   │       │   └── SiteActionsRepository.ts
+│   │   │   │       ├── models
+│   │   │   │       │   └── siteAction.ts
+│   │   │   │       └── usecases
+│   │   │   │           ├── initializeSiteActions.usecase.spec.ts
+│   │   │   │           ├── initializeSiteActions.usecase.ts
+│   │   │   │           ├── updateSiteActionStatus.usecase.spec.ts
+│   │   │   │           └── updateSiteActionStatus.usecase.ts
+│   │   │   ├── site-evaluations
+│   │   │   │   ├── adapters
+│   │   │   │   │   ├── primary
+│   │   │   │   │   │   ├── siteEvaluations.controller.integration-spec.ts
+│   │   │   │   │   │   ├── siteEvaluations.controller.ts
+│   │   │   │   │   │   └── siteEvaluations.module.ts
+│   │   │   │   │   └── secondary
+│   │   │   │   │       └── queries
+│   │   │   │   │           ├── InMemoryMutabilityEvaluationQuery.ts
+│   │   │   │   │           ├── InMemorySiteEvaluationQuery.ts
+│   │   │   │   │           ├── MutafrichesEvaluationQuery.ts
+│   │   │   │   │           ├── SqlSiteEvaluationQuery.integration-spec.ts
+│   │   │   │   │           └── SqlSiteEvaluationQuery.ts
+│   │   │   │   └── core
+│   │   │   │       ├── gateways
+│   │   │   │       │   ├── MutabilityEvaluationQuery.ts
+│   │   │   │       │   └── SiteEvaluationQuery.ts
+│   │   │   │       └── usecases
+│   │   │   │           ├── getUserSiteEvaluations.usecase.spec.ts
+│   │   │   │           └── getUserSiteEvaluations.usecase.ts
+│   │   │   ├── sites
+│   │   │   │   ├── adapters
+│   │   │   │   │   ├── primary
+│   │   │   │   │   │   ├── sites.controller.integration-spec.ts
+│   │   │   │   │   │   ├── sites.controller.ts
+│   │   │   │   │   │   └── sites.module.ts
+│   │   │   │   │   └── secondary
+│   │   │   │   │       ├── site-query
+│   │   │   │   │       │   ├── InMemorySitesQuery.ts
+│   │   │   │   │       │   ├── SqlSitesQuery.integration-spec.ts
+│   │   │   │   │       │   └── SqlSitesQuery.ts
+│   │   │   │   │       └── site-repository
+│   │   │   │   │           ├── InMemorySiteRepository.ts
+│   │   │   │   │           ├── SqlSiteRepository.integration-spec.ts
+│   │   │   │   │           └── SqlSiteRepository.ts
+│   │   │   │   └── core
+│   │   │   │       ├── events
+│   │   │   │       │   └── siteCreated.event.ts
+│   │   │   │       ├── gateways
+│   │   │   │       │   ├── SitesQuery.ts
+│   │   │   │       │   └── SitesRepository.ts
+│   │   │   │       ├── models
+│   │   │   │       │   ├── site.mock.ts
+│   │   │   │       │   ├── siteEntity.ts
+│   │   │   │       │   └── views.ts
+│   │   │   │       └── usecases
+│   │   │   │           ├── createNewExpressSite.usecase.spec.ts
+│   │   │   │           ├── createNewExpressSite.usecase.ts
+│   │   │   │           ├── createNewSite.usecase.spec.ts
+│   │   │   │           ├── createNewSite.usecase.ts
+│   │   │   │           ├── getSiteById.usecase.spec.ts
+│   │   │   │           ├── getSiteById.usecase.ts
+│   │   │   │           ├── getSiteRealEstateValuation.usecase.spec.ts
+│   │   │   │           ├── getSiteRealEstateValuation.usecase.ts
+│   │   │   │           ├── getSiteViewById.usecase.spec.ts
+│   │   │   │           └── getSiteViewById.usecase.ts
+│   │   │   └── users
+│   │   │       ├── adapters
+│   │   │       │   ├── primary
+│   │   │       │   │   ├── users.controller.integration-spec.ts
+│   │   │       │   │   ├── users.controller.ts
+│   │   │       │   │   └── users.module.ts
+│   │   │       │   └── secondary
+│   │   │       │       ├── user-feature-alert-repository
+│   │   │       │       │   ├── InMemoryUserFeatureAlertRepository.ts
+│   │   │       │       │   ├── SqlUserFeatureAlertRepository.integration-spec.ts
+│   │   │       │       │   └── SqlUserFeatureAlertRepository.ts
+│   │   │       │       └── user-query
+│   │   │       │           ├── InMemoryUserQuery.ts
+│   │   │       │           ├── SqlUserQuery.integration-spec.ts
+│   │   │       │           └── SqlUserQuery.ts
+│   │   │       └── core
+│   │   │           ├── gateways
+│   │   │           │   └── UserQuery.ts
+│   │   │           ├── model
+│   │   │           │   └── user.mock.ts
+│   │   │           └── usecases
+│   │   │               ├── createUserFeatureAlert.usecase.spec.ts
+│   │   │               └── createUserFeatureAlert.usecase.ts
+│   │   ├── test
+│   │   │   ├── integration-tests-global-hooks.ts
+│   │   │   ├── integration-tests-setup.ts
+│   │   │   ├── testApp.ts
+│   │   │   ├── vitest.config.ts
+│   │   │   └── vitest.integration.config.ts
+│   │   ├── tsconfig.build.json
+│   │   └── tsconfig.json
+│   ├── e2e-tests
+│   │   ├── .gitignore
+│   │   ├── .oxlintrc.json
+│   │   ├── .prettierignore
+│   │   ├── .prettierrc.mjs
+│   │   ├── CLAUDE.md
+│   │   ├── fixtures
+│   │   │   ├── auth.fixtures.ts
+│   │   │   └── helpers
+│   │   │       ├── api-client.ts
+│   │   │       ├── cookie.helpers.ts
+│   │   │       └── site-creation.helpers.ts
+│   │   ├── package.json
+│   │   ├── pages
+│   │   │   ├── AccessBenefrichesPage.ts
+│   │   │   ├── HomePage.ts
+│   │   │   ├── LoginPage.ts
+│   │   │   ├── MyEvaluationsPage.ts
+│   │   │   ├── SignupPage.ts
+│   │   │   ├── SiteCreationPage.ts
+│   │   │   ├── UrbanProjectCreationPage.ts
+│   │   │   └── urbanProjectCategoryLabels.ts
+│   │   ├── playwright.config.ts
+│   │   ├── tests
+│   │   │   ├── homepage
+│   │   │   │   └── homepage.spec.ts
+│   │   │   ├── login
+│   │   │   │   ├── login.fixtures.ts
+│   │   │   │   ├── login.spec.ts
+│   │   │   │   └── mail-catcher.ts
+│   │   │   ├── my-evaluations
+│   │   │   │   ├── my-evaluations.fixtures.ts
+│   │   │   │   └── my-evaluations.spec.ts
+│   │   │   ├── onboarding
+│   │   │   │   ├── onboarding.fixtures.ts
+│   │   │   │   └── onboarding.spec.ts
+│   │   │   ├── site-creation
+│   │   │   │   ├── site-creation.fixtures.ts
+│   │   │   │   └── site-creation.spec.ts
+│   │   │   └── urban-project-creation
+│   │   │       ├── urban-project-creation.fixtures.ts
+│   │   │       └── urban-project-creation.spec.ts
+│   │   └── tsconfig.json
+│   ├── stashed
+│   │   └── src
+│   │       └── friche.spec.ts
+│   └── web
+│       ├── .env.example
+│       ├── .gitignore
+│       ├── .lintstagedrc
+│       ├── .oxlintrc.json
+│       ├── .prettierignore
+│       ├── .prettierrc.mjs
+│       ├── CLAUDE.md
+│       ├── Dockerfile
+│       ├── docker-entrypoint.sh
+│       ├── embed.html
+│       ├── index.html
+│       ├── knip.json
+│       ├── nginx.conf
+│       ├── package.json
+│       ├── public
+│       │   ├── favicon
+│       │   │   ├── favicon-128.png
+│       │   │   ├── favicon-180.png
+│       │   │   ├── favicon-192.png
+│       │   │   ├── favicon-32.png
+│       │   │   └── manifest.webmanifest
+│       │   ├── img
+│       │   │   ├── homepage-hero.svg
+│       │   │   ├── logos
+│       │   │   │   ├── logo-ademe-and-benefriches.png
+│       │   │   │   ├── logo-ademe.png
+│       │   │   │   ├── logo-ademe.svg
+│       │   │   │   ├── logo-aldo.svg
+│       │   │   │   ├── logo-benefriches-simple.svg
+│       │   │   │   ├── logo-benefriches.png
+│       │   │   │   ├── logo-benefriches.svg
+│       │   │   │   ├── logo-brgm.svg
+│       │   │   │   ├── logo-france-strategie.svg
+│       │   │   │   ├── logo-insee.svg
+│       │   │   │   ├── logo-proconnect.svg
+│       │   │   │   ├── logo-shift-project.svg
+│       │   │   │   └── users
+│       │   │   │       ├── user-1.jpg
+│       │   │   │       ├── user-10.jpg
+│       │   │   │       ├── user-11.jpg
+│       │   │   │       ├── user-12.jpg
+│       │   │   │       ├── user-13.jpg
+│       │   │   │       ├── user-14.jpg
+│       │   │   │       ├── user-15.jpg
+│       │   │   │       ├── user-16.jpg
+│       │   │   │       ├── user-17.jpg
+│       │   │   │       ├── user-18.jpg
+│       │   │   │       ├── user-19.jpg
+│       │   │   │       ├── user-2.jpg
+│       │   │   │       ├── user-20.jpg
+│       │   │   │       ├── user-21.jpg
+│       │   │   │       ├── user-22.jpg
+│       │   │   │       ├── user-23.jpg
+│       │   │   │       ├── user-24.jpg
+│       │   │   │       ├── user-25.jpg
+│       │   │   │       ├── user-26.jpg
+│       │   │   │       ├── user-27.jpg
+│       │   │   │       ├── user-28.jpg
+│       │   │   │       ├── user-3.jpg
+│       │   │   │       ├── user-4.jpg
+│       │   │   │       ├── user-5.jpg
+│       │   │   │       ├── user-6.jpg
+│       │   │   │       ├── user-7.jpg
+│       │   │   │       ├── user-8.jpg
+│       │   │   │       └── user-9.jpg
+│       │   │   ├── modals
+│       │   │   │   ├── services-ecosystemiques.png
+│       │   │   │   └── valeurs-usage-services-ecosystemiques.png
+│       │   │   ├── mutabilite-hero.svg
+│       │   │   ├── pictograms
+│       │   │   │   ├── all-professions.svg
+│       │   │   │   ├── all-project-phases.svg
+│       │   │   │   ├── all-projects.svg
+│       │   │   │   ├── buildings-uses
+│       │   │   │   │   ├── cultural-place.svg
+│       │   │   │   │   ├── economic-activity
+│       │   │   │   │   │   ├── industrial-and-artisanal-and-shipping-premises.svg
+│       │   │   │   │   │   ├── local-services.svg
+│       │   │   │   │   │   ├── local-store.svg
+│       │   │   │   │   │   └── offices.svg
+│       │   │   │   │   ├── multi-story-parking.svg
+│       │   │   │   │   ├── other.svg
+│       │   │   │   │   ├── public-buildings.svg
+│       │   │   │   │   ├── residential.svg
+│       │   │   │   │   └── sports-facilities.svg
+│       │   │   │   ├── creation-mode
+│       │   │   │   │   ├── custom-creation.svg
+│       │   │   │   │   └── express-creation.svg
+│       │   │   │   ├── development-plans
+│       │   │   │   │   ├── commercial-activity-area.svg
+│       │   │   │   │   ├── natural-urban-space.svg
+│       │   │   │   │   ├── renewable-energy-production.svg
+│       │   │   │   │   ├── urban-agriculture.svg
+│       │   │   │   │   └── urban-project.svg
+│       │   │   │   ├── evaluate-action.svg
+│       │   │   │   ├── evaluations
+│       │   │   │   │   ├── impacts.svg
+│       │   │   │   │   └── mutability.svg
+│       │   │   │   ├── express-urban-categories
+│       │   │   │   │   ├── equipement-public.svg
+│       │   │   │   │   ├── nouvelle-centralite.svg
+│       │   │   │   │   ├── residentiel-secteur-detendu.svg
+│       │   │   │   │   └── residentiel-secteur-tendu.svg
+│       │   │   │   ├── further-actions.svg
+│       │   │   │   ├── mutability-usages
+│       │   │   │   │   ├── culture-and-tourism.svg
+│       │   │   │   │   ├── industry.svg
+│       │   │   │   │   ├── offices.svg
+│       │   │   │   │   ├── photovoltaic.svg
+│       │   │   │   │   ├── public-facilities.svg
+│       │   │   │   │   ├── renaturation.svg
+│       │   │   │   │   └── residential.svg
+│       │   │   │   ├── natural-area-types
+│       │   │   │   │   ├── forest.svg
+│       │   │   │   │   ├── mixed.svg
+│       │   │   │   │   ├── prairie.svg
+│       │   │   │   │   └── wet-land.svg
+│       │   │   │   ├── newsletter.svg
+│       │   │   │   ├── project-impacts-onboarding
+│       │   │   │   │   ├── step3-arrows.svg
+│       │   │   │   │   ├── step3-indicateur.svg
+│       │   │   │   │   ├── step3-popin.png
+│       │   │   │   │   └── step4-my-projects.svg
+│       │   │   │   ├── project-phase
+│       │   │   │   │   ├── completed-phase.svg
+│       │   │   │   │   ├── construction-phase.svg
+│       │   │   │   │   ├── design-phase.svg
+│       │   │   │   │   ├── planning-phase.svg
+│       │   │   │   │   └── setup-phase.svg
+│       │   │   │   ├── renewable-energy
+│       │   │   │   │   ├── agrivoltaic.svg
+│       │   │   │   │   ├── biomass.svg
+│       │   │   │   │   ├── geothermal.svg
+│       │   │   │   │   └── photovoltaic.svg
+│       │   │   │   ├── site-nature
+│       │   │   │   │   ├── agricultural-operation.svg
+│       │   │   │   │   ├── friche.svg
+│       │   │   │   │   ├── natural-area.svg
+│       │   │   │   │   └── urban-zone.svg
+│       │   │   │   ├── soil-types
+│       │   │   │   │   ├── artificial-grass-or-bushes-filled.svg
+│       │   │   │   │   ├── artificial-tree-filled.svg
+│       │   │   │   │   ├── buildings.svg
+│       │   │   │   │   ├── cultivation.svg
+│       │   │   │   │   ├── forest-conifer.svg
+│       │   │   │   │   ├── forest-deciduous.svg
+│       │   │   │   │   ├── forest-mixed.svg
+│       │   │   │   │   ├── forest-poplar.svg
+│       │   │   │   │   ├── impermeable.svg
+│       │   │   │   │   ├── mineral.svg
+│       │   │   │   │   ├── orchard.svg
+│       │   │   │   │   ├── prairie-bushes.svg
+│       │   │   │   │   ├── prairie-grass.svg
+│       │   │   │   │   ├── prairie-trees.svg
+│       │   │   │   │   ├── vineyard.svg
+│       │   │   │   │   ├── water.svg
+│       │   │   │   │   └── wet-land.svg
+│       │   │   │   ├── soils-transformation
+│       │   │   │   │   ├── custom-distribution.svg
+│       │   │   │   │   ├── renaturation.svg
+│       │   │   │   │   └── soils-conservation.svg
+│       │   │   │   ├── urban-planning-professions
+│       │   │   │   │   ├── industry.svg
+│       │   │   │   │   ├── local-authority.svg
+│       │   │   │   │   ├── photovoltaic-developer.svg
+│       │   │   │   │   ├── real-estate-developer.svg
+│       │   │   │   │   ├── social-landlord.svg
+│       │   │   │   │   └── urban-planner.svg
+│       │   │   │   └── urban-project-spaces
+│       │   │   │       ├── green-spaces.svg
+│       │   │   │       ├── living-and-activity-spaces.svg
+│       │   │   │       ├── public-spaces.svg
+│       │   │   │       ├── renewable-energy-production-plant.svg
+│       │   │   │       ├── urban-farm.svg
+│       │   │   │       └── urban-pond-or-lake.svg
+│       │   │   ├── project-illustration.svg
+│       │   │   └── testimonies
+│       │   │       ├── balaruc.svg
+│       │   │       ├── coop-habitat-bourgogne.svg
+│       │   │       ├── grand-paris-sudest.svg
+│       │   │       └── melun-val-de-seine.svg
+│       │   └── js
+│       │       └── .gitkeep
+│       ├── scalingo
+│       │   ├── .buildpacks
+│       │   ├── Procfile
+│       │   └── nginx.conf.erb
+│       ├── scripts
+│       │   └── generateEnvVarsJsFile.sh
+│       ├── src
+│       │   ├── embed.tsx
+│       │   ├── features
+│       │   │   ├── FeaturesApp.tsx
+│       │   │   ├── app-settings
+│       │   │   │   ├── core
+│       │   │   │   │   ├── AppSettingsGateway.ts
+│       │   │   │   │   ├── appSettings.spec.ts
+│       │   │   │   │   ├── appSettings.ts
+│       │   │   │   │   └── appSettingsListeners.ts
+│       │   │   │   └── infrastructure
+│       │   │   │       ├── InMemoryAppSettings.ts
+│       │   │   │       └── LocalStorageAppSettings.ts
+│       │   │   ├── create-project
+│       │   │   │   ├── core
+│       │   │   │   │   ├── __tests__
+│       │   │   │   │   │   ├── projectInitiated.spec.ts
+│       │   │   │   │   │   ├── projectSiteLocalAuthorities.reducer.spec.ts
+│       │   │   │   │   │   ├── projectsSuggestionsCompleted.spec.ts
+│       │   │   │   │   │   ├── siteData.mock.ts
+│       │   │   │   │   │   └── testUtils.ts
+│       │   │   │   │   ├── actions
+│       │   │   │   │   │   ├── actionsUtils.ts
+│       │   │   │   │   │   ├── expressProjectSavedGateway.ts
+│       │   │   │   │   │   ├── getSiteLocalAuthorities.action.ts
+│       │   │   │   │   │   ├── introductionStep.actions.ts
+│       │   │   │   │   │   ├── projectSuggestionCompleted.action.ts
+│       │   │   │   │   │   ├── reconversionProjectCreationInitiated.action.ts
+│       │   │   │   │   │   ├── saveReconversionProject.action.ts
+│       │   │   │   │   │   └── surfaceAreaInputModeUpdated.action.ts
+│       │   │   │   │   ├── createProject.reducer.ts
+│       │   │   │   │   ├── createProject.selectors.ts
+│       │   │   │   │   ├── listeners
+│       │   │   │   │   │   └── projectCreationListeners.ts
+│       │   │   │   │   ├── project.types.ts
+│       │   │   │   │   ├── renewable-energy
+│       │   │   │   │   │   ├── __tests__
+│       │   │   │   │   │   │   ├── expectedPhotovoltaicPerformance.spec.ts
+│       │   │   │   │   │   │   ├── projectData.mock.ts
+│       │   │   │   │   │   │   ├── renewableEnergy.reducer.spec.ts
+│       │   │   │   │   │   │   └── stakeholders.selector.spec.ts
+│       │   │   │   │   │   ├── actions
+│       │   │   │   │   │   │   ├── customProjectSaved.action.ts
+│       │   │   │   │   │   │   ├── expressProjectSaved.action.ts
+│       │   │   │   │   │   │   ├── getPhotovoltaicExpectedPerformance.action.ts
+│       │   │   │   │   │   │   ├── renewableEnergy.actions.ts
+│       │   │   │   │   │   │   └── soilsCarbonStorage.actions.ts
+│       │   │   │   │   │   ├── creationSteps.ts
+│       │   │   │   │   │   ├── renewableEnergy.reducer.ts
+│       │   │   │   │   │   └── selectors
+│       │   │   │   │   │       ├── expenses.selectors.ts
+│       │   │   │   │   │       ├── photovoltaicPowerStation.selectors.ts
+│       │   │   │   │   │       ├── renewableEnergy.selector.ts
+│       │   │   │   │   │       ├── revenues.selectors.ts
+│       │   │   │   │   │       ├── soilsTransformation.selectors.ts
+│       │   │   │   │   │       └── stakeholders.selectors.ts
+│       │   │   │   │   └── urban-project
+│       │   │   │   │       ├── __tests__
+│       │   │   │   │       │   ├── _siteData.mock.ts
+│       │   │   │   │       │   ├── _testStoreHelpers.ts
+│       │   │   │   │       │   ├── cancelStepCompletion.reducer.spec.ts
+│       │   │   │   │       │   ├── confirmStepCompletion.reducer.spec.ts
+│       │   │   │   │       │   ├── navigateToPrevious.action.spec.ts
+│       │   │   │   │       │   ├── navigateToStep.action.spec.ts
+│       │   │   │   │       │   ├── requestStepCompletion.action.spec.ts
+│       │   │   │   │       │   ├── steps
+│       │   │   │   │       │   │   ├── buildings
+│       │   │   │   │       │   │   │   ├── buildingsUseIntroduction.step.spec.ts
+│       │   │   │   │       │   │   │   └── buildingsUseSelection.step.spec.ts
+│       │   │   │   │       │   │   ├── creation-mode
+│       │   │   │   │       │   │   │   └── creationMode.step.spec.ts
+│       │   │   │   │       │   │   ├── decontamination
+│       │   │   │   │       │   │   │   └── decontaminationPlanSelection.step.spec.ts
+│       │   │   │   │       │   │   ├── expenses
+│       │   │   │   │       │   │   │   ├── expensesInstallation.handler.spec.ts
+│       │   │   │   │       │   │   │   ├── expensesIntroduction.handler.spec.ts
+│       │   │   │   │       │   │   │   ├── expensesProjectedBuildingsOperatingExpenses.handler.spec.ts
+│       │   │   │   │       │   │   │   ├── expensesReinstatement.handler.spec.ts
+│       │   │   │   │       │   │   │   └── expensesSitePurchaseAmounts.handler.spec.ts
+│       │   │   │   │       │   │   ├── revenues
+│       │   │   │   │       │   │   │   ├── revenueBuildingsOperationsYearlyRevenues.handler.spec.ts
+│       │   │   │   │       │   │   │   ├── revenueBuildingsResale.handler.spec.ts
+│       │   │   │   │       │   │   │   ├── revenueExpectedSiteResale.handler.spec.ts
+│       │   │   │   │       │   │   │   ├── revenueFinancialAssistance.handler.spec.ts
+│       │   │   │   │       │   │   │   └── revenueIntroduction.handler.spec.ts
+│       │   │   │   │       │   │   ├── site-resale
+│       │   │   │   │       │   │   │   ├── buildingsResaleSelection.step.spec.ts
+│       │   │   │   │       │   │   │   └── siteResaleSelection.step.spec.ts
+│       │   │   │   │       │   │   ├── spaces
+│       │   │   │   │       │   │   │   ├── spacesIntroduction.step.spec.ts
+│       │   │   │   │       │   │   │   ├── spacesSelection.step.spec.ts
+│       │   │   │   │       │   │   │   └── spacesSurfaceArea.step.spec.ts
+│       │   │   │   │       │   │   └── uses
+│       │   │   │   │       │   │       ├── usesFloorSurfaceArea.step.spec.ts
+│       │   │   │   │       │   │       ├── usesFootprintSurfaceArea.step.spec.ts
+│       │   │   │   │       │   │       └── usesSelection.step.spec.ts
+│       │   │   │   │       │   └── urbanProject.selectors.spec.ts
+│       │   │   │   │       ├── fetchEstimatedSiteResalePrice.action.ts
+│       │   │   │   │       ├── mock.ts
+│       │   │   │   │       ├── urbanProject.actions.ts
+│       │   │   │   │       ├── urbanProject.reducer.ts
+│       │   │   │   │       ├── urbanProject.selectors.ts
+│       │   │   │   │       ├── urbanProject.ts
+│       │   │   │   │       ├── urbanProjectCustomSaved.action.ts
+│       │   │   │   │       └── urbanProjectExpressSaved.action.ts
+│       │   │   │   ├── infrastructure
+│       │   │   │   │   ├── create-express-project-service
+│       │   │   │   │   │   ├── HttpCreateExpressReconversionProjectService.ts
+│       │   │   │   │   │   ├── InMemoryCreateExpressReconversionProjectService.ts
+│       │   │   │   │   │   └── mocks.ts
+│       │   │   │   │   ├── photovoltaic-performance-service
+│       │   │   │   │   │   ├── photovoltaicPerformanceApi.ts
+│       │   │   │   │   │   └── photovoltaicPerformanceMock.ts
+│       │   │   │   │   ├── save-project-service
+│       │   │   │   │   │   ├── HttpSaveReconversionProjectService.ts
+│       │   │   │   │   │   └── InMemorySaveReconversionProjectService.ts
+│       │   │   │   │   └── sites-service
+│       │   │   │   │       ├── HttpSiteService.ts
+│       │   │   │   │       └── InMemorySitesService.ts
+│       │   │   │   └── views
+│       │   │   │       ├── ProjectCreationWizard.tsx
+│       │   │   │       ├── Stepper.tsx
+│       │   │   │       ├── common-views
+│       │   │   │       │   ├── create-mode-selection
+│       │   │   │       │   │   └── CreateModeSelectionForm.tsx
+│       │   │   │       │   └── result
+│       │   │   │       │       ├── ProjectCreationResult.spec.tsx
+│       │   │   │       │       ├── ProjectCreationResult.tsx
+│       │   │   │       │       └── index.tsx
+│       │   │   │       ├── introduction
+│       │   │   │       │   ├── CreateProjetIntroductionPage.tsx
+│       │   │   │       │   └── index.tsx
+│       │   │   │       ├── mainHtmlTitle.ts
+│       │   │   │       ├── onboarding-from-compatibility-evaluation
+│       │   │   │       │   └── ProjectCreationFromCompatibilityEvaluationOnboarding.tsx
+│       │   │   │       ├── photovoltaic-power-station
+│       │   │   │       │   ├── PhotovoltaicPowerStationCreationWizard.tsx
+│       │   │   │       │   ├── PhotovoltaicPowerStationStepper.tsx
+│       │   │   │       │   ├── create-mode-selection
+│       │   │   │       │   │   └── index.tsx
+│       │   │   │       │   ├── custom-form
+│       │   │   │       │   │   ├── PhotovoltaicPowerStationStepper.tsx
+│       │   │   │       │   │   ├── creationStepQueryStringMap.ts
+│       │   │   │       │   │   ├── expenses
+│       │   │   │       │   │   │   ├── installation
+│       │   │   │       │   │   │   │   └── index.tsx
+│       │   │   │       │   │   │   ├── introduction
+│       │   │   │       │   │   │   │   ├── ProjectExpensesIntroduction.tsx
+│       │   │   │       │   │   │   │   └── index.tsx
+│       │   │   │       │   │   │   ├── reinstatement
+│       │   │   │       │   │   │   │   └── index.tsx
+│       │   │   │       │   │   │   ├── site-purchase-amounts
+│       │   │   │       │   │   │   │   └── index.tsx
+│       │   │   │       │   │   │   └── yearly-projected-costs
+│       │   │   │       │   │   │       └── index.tsx
+│       │   │   │       │   │   ├── index.tsx
+│       │   │   │       │   │   ├── name-and-description
+│       │   │   │       │   │   │   └── index.tsx
+│       │   │   │       │   │   ├── photovoltaic
+│       │   │   │       │   │   │   ├── contract-duration
+│       │   │   │       │   │   │   │   ├── ContractDurationForm.tsx
+│       │   │   │       │   │   │   │   └── index.tsx
+│       │   │   │       │   │   │   ├── expected-annual-production
+│       │   │   │       │   │   │   │   ├── ExpectedAnnualProductionForm.tsx
+│       │   │   │       │   │   │   │   ├── ExpectedAnnualProductionHint.tsx
+│       │   │   │       │   │   │   │   └── index.tsx
+│       │   │   │       │   │   │   ├── key-parameter
+│       │   │   │       │   │   │   │   ├── KeyParameterForm.tsx
+│       │   │   │       │   │   │   │   └── index.tsx
+│       │   │   │       │   │   │   ├── power
+│       │   │   │       │   │   │   │   ├── PowerForm.tsx
+│       │   │   │       │   │   │   │   ├── PowerFromSurfaceForm.tsx
+│       │   │   │       │   │   │   │   └── index.tsx
+│       │   │   │       │   │   │   └── surface
+│       │   │   │       │   │   │       ├── SurfaceForm.tsx
+│       │   │   │       │   │   │       ├── SurfaceFromPowerForm.tsx
+│       │   │   │       │   │   │       └── index.tsx
+│       │   │   │       │   │   ├── project-phase
+│       │   │   │       │   │   │   └── index.tsx
+│       │   │   │       │   │   ├── result
+│       │   │   │       │   │   │   └── index.tsx
+│       │   │   │       │   │   ├── revenue
+│       │   │   │       │   │   │   ├── financial-assistance
+│       │   │   │       │   │   │   │   └── index.tsx
+│       │   │   │       │   │   │   ├── introduction
+│       │   │   │       │   │   │   │   ├── ProjectRevenueIntroduction.tsx
+│       │   │   │       │   │   │   │   └── index.tsx
+│       │   │   │       │   │   │   └── yearly-projected-revenue
+│       │   │   │       │   │   │       └── index.tsx
+│       │   │   │       │   │   ├── schedule
+│       │   │   │       │   │   │   └── projection
+│       │   │   │       │   │   │       └── index.tsx
+│       │   │   │       │   │   ├── soils
+│       │   │   │       │   │   │   ├── soils-carbon-storage
+│       │   │   │       │   │   │   │   └── index.tsx
+│       │   │   │       │   │   │   ├── soils-summary
+│       │   │   │       │   │   │   │   ├── ProjectSoilsSummary.tsx
+│       │   │   │       │   │   │   │   └── index.tsx
+│       │   │   │       │   │   │   └── soils-transformation
+│       │   │   │       │   │   │       ├── climate-and-biodiversity-impact-notice
+│       │   │   │       │   │   │       │   ├── ClimateAndBiodiversityImpactNotice.tsx
+│       │   │   │       │   │   │       │   ├── index.tsx
+│       │   │   │       │   │   │       │   └── modal
+│       │   │   │       │   │   │       │       ├── ClimateAndBiodiversityInformationModal.tsx
+│       │   │   │       │   │   │       │       └── index.tsx
+│       │   │   │       │   │   │       ├── future-soils-selection
+│       │   │   │       │   │   │       │   ├── FutureSoilsSelectionForm.tsx
+│       │   │   │       │   │   │       │   └── index.tsx
+│       │   │   │       │   │   │       ├── future-soils-surface-area
+│       │   │   │       │   │   │       │   ├── AllocatedSurfaceAreaControlInput.tsx
+│       │   │   │       │   │   │       │   ├── FutureSoilsSurfaceAreaForm.tsx
+│       │   │   │       │   │   │       │   ├── FutureSoilsSurfaceAreaInstructions.tsx
+│       │   │   │       │   │   │       │   ├── SuitableSurfaceAreaControlInput.tsx
+│       │   │   │       │   │   │       │   └── index.tsx
+│       │   │   │       │   │   │       ├── introduction
+│       │   │   │       │   │   │       │   ├── SoilsTransformationIntroduction.tsx
+│       │   │   │       │   │   │       │   └── index.tsx
+│       │   │   │       │   │   │       ├── non-suitable-soils-notice
+│       │   │   │       │   │   │       │   ├── NonSuitableSoilsNotice.tsx
+│       │   │   │       │   │   │       │   └── index.tsx
+│       │   │   │       │   │   │       ├── non-suitable-soils-selection
+│       │   │   │       │   │   │       │   ├── NonSuitableSoilsSelection.tsx
+│       │   │   │       │   │   │       │   └── index.tsx
+│       │   │   │       │   │   │       ├── non-suitable-soils-surface-to-transform
+│       │   │   │       │   │   │       │   ├── NonSuitableSoilsSurfaceToTransformForm.tsx
+│       │   │   │       │   │   │       │   └── index.tsx
+│       │   │   │       │   │   │       └── transformation-project-selection
+│       │   │   │       │   │   │           ├── SoilsTransformationProjectForm.tsx
+│       │   │   │       │   │   │           └── index.tsx
+│       │   │   │       │   │   ├── soils-decontamination
+│       │   │   │       │   │   │   ├── introduction
+│       │   │   │       │   │   │   │   └── index.tsx
+│       │   │   │       │   │   │   ├── selection
+│       │   │   │       │   │   │   │   └── index.tsx
+│       │   │   │       │   │   │   └── surface-area
+│       │   │   │       │   │   │       └── index.tsx
+│       │   │   │       │   │   ├── stakeholders
+│       │   │   │       │   │   │   ├── developer
+│       │   │   │       │   │   │   │   └── index.tsx
+│       │   │   │       │   │   │   ├── future-site-owner
+│       │   │   │       │   │   │   │   └── index.tsx
+│       │   │   │       │   │   │   ├── introduction
+│       │   │   │       │   │   │   │   └── index.tsx
+│       │   │   │       │   │   │   ├── operator
+│       │   │   │       │   │   │   │   ├── FutureOperatorForm.tsx
+│       │   │   │       │   │   │   │   └── index.tsx
+│       │   │   │       │   │   │   ├── reinstatement-contract-owner
+│       │   │   │       │   │   │   │   └── index.tsx
+│       │   │   │       │   │   │   └── site-purchased
+│       │   │   │       │   │   │       ├── SitePurchasedForm.tsx
+│       │   │   │       │   │   │       └── index.tsx
+│       │   │   │       │   │   └── summary
+│       │   │   │       │   │       ├── ProjectCreationDataSummary.tsx
+│       │   │   │       │   │       └── index.tsx
+│       │   │   │       │   └── express-form
+│       │   │   │       │       ├── PhotovoltaicExpressCreationResult.tsx
+│       │   │   │       │       └── PhotovoltaicExpressSummary.tsx
+│       │   │   │       ├── project-suggestions
+│       │   │   │       │   ├── ProjectSuggestionsForm.tsx
+│       │   │   │       │   └── index.tsx
+│       │   │   │       ├── project-types
+│       │   │   │       │   ├── DevelopmentPlanCategoryTile.tsx
+│       │   │   │       │   ├── ProjectTypesForm.tsx
+│       │   │   │       │   └── index.tsx
+│       │   │   │       ├── projectTypeLabelMapping.ts
+│       │   │   │       ├── renewable-energy-types
+│       │   │   │       │   ├── RenewableEnergyTile.tsx
+│       │   │   │       │   ├── RenewableEnergyTypeForm.tsx
+│       │   │   │       │   └── index.tsx
+│       │   │   │       ├── urban-project
+│       │   │   │       │   ├── UrbanProjectCreationStepper.tsx
+│       │   │   │       │   ├── UrbanProjectCreationWizard.tsx
+│       │   │   │       │   ├── create-mode-selection
+│       │   │   │       │   │   └── index.tsx
+│       │   │   │       │   ├── creationStepQueryStringMap.ts
+│       │   │   │       │   ├── custom-forms
+│       │   │   │       │   │   └── creation-result
+│       │   │   │       │   │       └── index.tsx
+│       │   │   │       │   └── express-forms
+│       │   │   │       │       ├── creation-result
+│       │   │   │       │       │   └── index.tsx
+│       │   │   │       │       ├── express-template-selection
+│       │   │   │       │       │   ├── UrbanProjectExpressTemplate.tsx
+│       │   │   │       │       │   └── index.tsx
+│       │   │   │       │       ├── summary
+│       │   │   │       │       │   └── index.tsx
+│       │   │   │       │       └── useStepBack.tsx
+│       │   │   │       ├── useSurfaceAreaInputMode.ts
+│       │   │   │       └── useSyncCreationStepWithRouteQuery.ts
+│       │   │   ├── create-site
+│       │   │   │   ├── core
+│       │   │   │   │   ├── __tests__
+│       │   │   │   │   │   ├── creation-steps
+│       │   │   │   │   │   │   ├── introductionSteps.spec.ts
+│       │   │   │   │   │   │   ├── namingSteps.spec.ts
+│       │   │   │   │   │   │   ├── saveSite.spec.ts
+│       │   │   │   │   │   │   ├── siteManagementSteps.spec.ts
+│       │   │   │   │   │   │   ├── soilsContaminationAndAccidentsSteps.spec.ts
+│       │   │   │   │   │   │   ├── spacesSteps.spec.ts
+│       │   │   │   │   │   │   └── testUtils.ts
+│       │   │   │   │   │   ├── expenses.functions.spec.ts
+│       │   │   │   │   │   ├── site.functions.spec.ts
+│       │   │   │   │   │   ├── siteMunicipalityData.reducer.spec.ts
+│       │   │   │   │   │   └── siteSoilsCarbonStorage.reducer.spec.ts
+│       │   │   │   │   ├── actions
+│       │   │   │   │   │   ├── actionsUtils.ts
+│       │   │   │   │   │   ├── finalStep.actions.ts
+│       │   │   │   │   │   ├── introduction.actions.ts
+│       │   │   │   │   │   ├── naming.actions.ts
+│       │   │   │   │   │   ├── revert.action.ts
+│       │   │   │   │   │   ├── siteManagement.actions.ts
+│       │   │   │   │   │   ├── siteMunicipalityData.actions.ts
+│       │   │   │   │   │   ├── siteSoilsCarbonStorage.actions.ts
+│       │   │   │   │   │   ├── soilsContaminationAndAccidents.actions.ts
+│       │   │   │   │   │   └── spaces.actions.ts
+│       │   │   │   │   ├── createSite.reducer.ts
+│       │   │   │   │   ├── expenses.functions.ts
+│       │   │   │   │   ├── incomes.functions.ts
+│       │   │   │   │   ├── selectors
+│       │   │   │   │   │   ├── createSite.selectors.ts
+│       │   │   │   │   │   ├── expenses.selectors.ts
+│       │   │   │   │   │   ├── incomes.selectors.ts
+│       │   │   │   │   │   └── spaces.selectors.ts
+│       │   │   │   │   ├── site.functions.ts
+│       │   │   │   │   ├── siteData.mock.ts
+│       │   │   │   │   ├── siteFoncier.types.ts
+│       │   │   │   │   ├── siteMunicipalityData.reducer.ts
+│       │   │   │   │   └── siteSoilsCarbonStorage.reducer.ts
+│       │   │   │   ├── infrastructure
+│       │   │   │   │   ├── address-service
+│       │   │   │   │   │   └── nationalAddressBaseApi.ts
+│       │   │   │   │   └── create-site-service
+│       │   │   │   │       ├── HttpCreateSiteApi.ts
+│       │   │   │   │       └── inMemoryCreateSiteApi.ts
+│       │   │   │   └── views
+│       │   │   │       ├── SiteCreationWizard.tsx
+│       │   │   │       ├── common-views
+│       │   │   │       │   ├── SiteSurfaceAreaForm.tsx
+│       │   │   │       │   ├── agricultural-operation-activity
+│       │   │   │       │   │   ├── AgriculturalOperationActivityForm.tsx
+│       │   │   │       │   │   └── index.tsx
+│       │   │   │       │   └── natural-area-type
+│       │   │   │       │       ├── NaturalAreaTypeForm.tsx
+│       │   │   │       │       └── index.tsx
+│       │   │   │       ├── create-mode-selection
+│       │   │   │       │   ├── CreateModeSelectionForm.tsx
+│       │   │   │       │   └── index.tsx
+│       │   │   │       ├── custom
+│       │   │   │       │   ├── StepContent.tsx
+│       │   │   │       │   ├── Stepper.tsx
+│       │   │   │       │   ├── accidents
+│       │   │   │       │   │   ├── accidents-count
+│       │   │   │       │   │   │   ├── FricheAccidentsForm.tsx
+│       │   │   │       │   │   │   └── index.tsx
+│       │   │   │       │   │   └── introduction
+│       │   │   │       │   │       ├── FricheAccidentsIntroduction.tsx
+│       │   │   │       │   │       └── index.tsx
+│       │   │   │       │   ├── address
+│       │   │   │       │   │   ├── AddressForm.tsx
+│       │   │   │       │   │   └── index.tsx
+│       │   │   │       │   ├── friche-activity
+│       │   │   │       │   │   ├── FricheActivityForm.tsx
+│       │   │   │       │   │   └── index.tsx
+│       │   │   │       │   ├── naming
+│       │   │   │       │   │   ├── SiteNameAndDescription.tsx
+│       │   │   │       │   │   ├── index.tsx
+│       │   │   │       │   │   └── introduction
+│       │   │   │       │   │       ├── SiteNamingIntroduction.tsx
+│       │   │   │       │   │       └── index.tsx
+│       │   │   │       │   ├── result
+│       │   │   │       │   │   ├── SiteCreationResult.tsx
+│       │   │   │       │   │   └── index.tsx
+│       │   │   │       │   ├── site-management
+│       │   │   │       │   │   ├── expenses-and-income
+│       │   │   │       │   │   │   ├── expenses-income-summary
+│       │   │   │       │   │   │   │   ├── ExpensesIncomeBarChart.tsx
+│       │   │   │       │   │   │   │   ├── SiteExpensesIncomeSummary.tsx
+│       │   │   │       │   │   │   │   └── index.tsx
+│       │   │   │       │   │   │   ├── introduction
+│       │   │   │       │   │   │   │   ├── SiteExpensesAndIncomeIntroduction.tsx
+│       │   │   │       │   │   │   │   └── index.tsx
+│       │   │   │       │   │   │   ├── yearly-expenses
+│       │   │   │       │   │   │   │   ├── SiteYearlyExpensesForm.tsx
+│       │   │   │       │   │   │   │   ├── SiteYearlyExpensesFormInstructions.tsx
+│       │   │   │       │   │   │   │   ├── index.tsx
+│       │   │   │       │   │   │   │   ├── mappers.spec.ts
+│       │   │   │       │   │   │   │   └── mappers.ts
+│       │   │   │       │   │   │   └── yearly-income
+│       │   │   │       │   │   │       ├── SiteYearlyIncomeForm.tsx
+│       │   │   │       │   │   │       ├── index.tsx
+│       │   │   │       │   │   │       ├── mappers.spec.ts
+│       │   │   │       │   │   │       └── mappers.ts
+│       │   │   │       │   │   ├── introduction
+│       │   │   │       │   │   │   ├── SiteManagementIntroduction.tsx
+│       │   │   │       │   │   │   └── index.tsx
+│       │   │   │       │   │   └── stakeholders
+│       │   │   │       │   │       ├── is-friche-leased
+│       │   │   │       │   │       │   ├── IsFricheLeasedForm.tsx
+│       │   │   │       │   │       │   └── index.tsx
+│       │   │   │       │   │       ├── is-site-operated
+│       │   │   │       │   │       │   ├── IsSiteOperatedForm.tsx
+│       │   │   │       │   │       │   └── index.tsx
+│       │   │   │       │   │       ├── owner
+│       │   │   │       │   │       │   ├── SiteOwnerForm.tsx
+│       │   │   │       │   │       │   └── index.tsx
+│       │   │   │       │   │       ├── site-operator
+│       │   │   │       │   │       │   ├── SiteOperatorForm.tsx
+│       │   │   │       │   │       │   └── index.tsx
+│       │   │   │       │   │       └── tenant
+│       │   │   │       │   │           ├── SiteTenantForm.tsx
+│       │   │   │       │   │           └── index.tsx
+│       │   │   │       │   ├── soil-contamination
+│       │   │   │       │   │   ├── SoilContaminationForm.tsx
+│       │   │   │       │   │   ├── index.tsx
+│       │   │   │       │   │   └── introduction
+│       │   │   │       │   │       ├── SoilContaminationIntroduction.tsx
+│       │   │   │       │   │       └── index.tsx
+│       │   │   │       │   ├── spaces-and-soils
+│       │   │   │       │   │   ├── soils-carbon-storage
+│       │   │   │       │   │   │   ├── SiteSoilsCarbonStorage.tsx
+│       │   │   │       │   │   │   └── index.tsx
+│       │   │   │       │   │   ├── soils-summary
+│       │   │   │       │   │   │   ├── SiteSoilsSummary.tsx
+│       │   │   │       │   │   │   └── index.tsx
+│       │   │   │       │   │   ├── spaces-distribution
+│       │   │   │       │   │   │   ├── distribution
+│       │   │   │       │   │   │   │   ├── SiteSpacesDistributionForm.tsx
+│       │   │   │       │   │   │   │   └── index.tsx
+│       │   │   │       │   │   │   └── spaces-distribution-knowledge
+│       │   │   │       │   │   │       ├── SiteSpacesDistributionKnowledgeForm.tsx
+│       │   │   │       │   │   │       └── index.tsx
+│       │   │   │       │   │   ├── spaces-introduction
+│       │   │   │       │   │   │   ├── SpacesIntroduction.tsx
+│       │   │   │       │   │   │   └── index.tsx
+│       │   │   │       │   │   ├── spaces-knowledge
+│       │   │   │       │   │   │   ├── SpacesKnowledgeForm.tsx
+│       │   │   │       │   │   │   └── index.tsx
+│       │   │   │       │   │   ├── spaces-selection
+│       │   │   │       │   │   │   ├── SpacesSelectionForm.tsx
+│       │   │   │       │   │   │   └── index.tsx
+│       │   │   │       │   │   └── surface-area
+│       │   │   │       │   │       └── index.tsx
+│       │   │   │       │   └── summary
+│       │   │   │       │       ├── SiteDataSummary.tsx
+│       │   │   │       │       └── index.tsx
+│       │   │   │       ├── express
+│       │   │   │       │   ├── StepContent.tsx
+│       │   │   │       │   ├── Stepper.tsx
+│       │   │   │       │   ├── address
+│       │   │   │       │   │   ├── AddressForm.tsx
+│       │   │   │       │   │   └── index.tsx
+│       │   │   │       │   ├── result
+│       │   │   │       │   │   ├── SiteCreationResult.tsx
+│       │   │   │       │   │   ├── SiteFeaturesContainer.tsx
+│       │   │   │       │   │   └── index.tsx
+│       │   │   │       │   └── surface-area
+│       │   │   │       │       └── index.tsx
+│       │   │   │       ├── introduction
+│       │   │   │       │   ├── SiteCreationIntroduction.tsx
+│       │   │   │       │   └── index.tsx
+│       │   │   │       ├── is-friche
+│       │   │   │       │   ├── IsFricheForm.tsx
+│       │   │   │       │   └── index.tsx
+│       │   │   │       ├── routes.ts
+│       │   │   │       ├── site-nature
+│       │   │   │       │   ├── SiteNatureForm.tsx
+│       │   │   │       │   └── index.tsx
+│       │   │   │       ├── use-mutability
+│       │   │   │       │   ├── UseMutabilityForm.tsx
+│       │   │   │       │   └── index.tsx
+│       │   │   │       ├── useSurfaceAreaInputMode.ts
+│       │   │   │       └── useSyncCreationStepWithRouteQuery.ts
+│       │   │   ├── my-evaluations
+│       │   │   │   ├── application
+│       │   │   │   │   ├── evaluationsList.actions.ts
+│       │   │   │   │   └── evaluationsList.reducer.ts
+│       │   │   │   ├── domain
+│       │   │   │   │   └── types.ts
+│       │   │   │   ├── infrastructure
+│       │   │   │   │   └── projects-list-service
+│       │   │   │   │       ├── HttpSiteEvaluationApi.ts
+│       │   │   │   │       └── InMemorySiteEvaluationsService.ts
+│       │   │   │   └── views
+│       │   │   │       └── my-evaluations-page
+│       │   │   │           ├── MyEvaluationItem.tsx
+│       │   │   │           ├── MyEvaluationsPage.tsx
+│       │   │   │           ├── MyEvaluationsPageHeader.tsx
+│       │   │   │           ├── MyEvaluationsProjectLinkTile.tsx
+│       │   │   │           └── index.tsx
+│       │   │   ├── onboarding
+│       │   │   │   ├── core
+│       │   │   │   │   ├── AuthenticationGateway.ts
+│       │   │   │   │   ├── auth.reducer.ts
+│       │   │   │   │   ├── authLinkRequestReset.action.ts
+│       │   │   │   │   ├── authLinkRequested.action.ts
+│       │   │   │   │   ├── authenticateWithToken.action.ts
+│       │   │   │   │   ├── createUser.action.ts
+│       │   │   │   │   ├── initCurrentUser.action.ts
+│       │   │   │   │   ├── user.mock.ts
+│       │   │   │   │   ├── user.reducer.ts
+│       │   │   │   │   └── user.ts
+│       │   │   │   ├── infrastructure
+│       │   │   │   │   ├── auth-service
+│       │   │   │   │   │   ├── FakeAuthService.ts
+│       │   │   │   │   │   └── HttpAuthService.ts
+│       │   │   │   │   ├── create-user-service
+│       │   │   │   │   │   ├── HttpCreateUserService.ts
+│       │   │   │   │   │   └── inMemoryCreateUserService.ts
+│       │   │   │   │   └── current-user-service
+│       │   │   │   │       ├── HttpCurrentUserService.ts
+│       │   │   │   │       ├── LocalStorageCurrentUserService.ts
+│       │   │   │   │       └── inMemoryCurrentUserService.ts
+│       │   │   │   └── views
+│       │   │   │       └── pages
+│       │   │   │           ├── access-benefriches
+│       │   │   │           │   ├── AuthLinkModal.tsx
+│       │   │   │           │   ├── AuthLinkRequestError.tsx
+│       │   │   │           │   ├── createAuthLinkModal.ts
+│       │   │   │           │   └── index.tsx
+│       │   │   │           ├── auth-with-token
+│       │   │   │           │   └── AuthWithToken.tsx
+│       │   │   │           ├── how-it-works
+│       │   │   │           │   ├── HowItWorksPage.tsx
+│       │   │   │           │   └── HowItWorksStep.tsx
+│       │   │   │           ├── identity
+│       │   │   │           │   ├── CreateUserForm
+│       │   │   │           │   │   ├── CreateUserErrorMessage.tsx
+│       │   │   │           │   │   ├── CreateUserForm.tsx
+│       │   │   │           │   │   ├── CreateUserStructureForm.tsx
+│       │   │   │           │   │   └── index.tsx
+│       │   │   │           │   └── OnBoardingIdentityPage.tsx
+│       │   │   │           ├── when-not-to-use
+│       │   │   │           │   └── OnboardingWhenNotToUsePage.tsx
+│       │   │   │           └── when-to-use
+│       │   │   │               ├── OnboardingWhenToUsePage.tsx
+│       │   │   │               ├── UseCaseList.tsx
+│       │   │   │               └── UseItem.tsx
+│       │   │   ├── projects
+│       │   │   │   ├── application
+│       │   │   │   │   ├── project-features
+│       │   │   │   │   │   ├── projectFeatures.actions.ts
+│       │   │   │   │   │   └── projectFeatures.reducer.ts
+│       │   │   │   │   ├── project-impacts
+│       │   │   │   │   │   ├── __tests__
+│       │   │   │   │   │   │   ├── impactsOnboardingSkip.spec.ts
+│       │   │   │   │   │   │   ├── index.ts
+│       │   │   │   │   │   │   └── projectImpactsFetching.spec.ts
+│       │   │   │   │   │   ├── actions
+│       │   │   │   │   │   │   └── index.ts
+│       │   │   │   │   │   ├── exportImpacts.selectors.ts
+│       │   │   │   │   │   ├── fetchQuickImpactsForUrbanProjectOnFriche.action.ts
+│       │   │   │   │   │   ├── impactsOnboardingSkip.actions.ts
+│       │   │   │   │   │   ├── impactsOnboardingSkip.selectors.ts
+│       │   │   │   │   │   ├── impactsOnboardingSkip.ts
+│       │   │   │   │   │   ├── projectImpacts.mock.ts
+│       │   │   │   │   │   ├── projectImpacts.reducer.ts
+│       │   │   │   │   │   ├── projectImpactsAreaChartsData.ts
+│       │   │   │   │   │   ├── projectImpactsEconomicBalance.selectors.spec.ts
+│       │   │   │   │   │   ├── projectImpactsEconomicBalance.selectors.ts
+│       │   │   │   │   │   ├── projectImpactsEnvironmental.selectors.spec.ts
+│       │   │   │   │   │   ├── projectImpactsEnvironmental.selectors.ts
+│       │   │   │   │   │   ├── projectImpactsSocial.selectors.spec.ts
+│       │   │   │   │   │   ├── projectImpactsSocial.selectors.ts
+│       │   │   │   │   │   ├── projectImpactsSocioEconomic.selectors.spec.ts
+│       │   │   │   │   │   ├── projectImpactsSocioEconomic.selectors.ts
+│       │   │   │   │   │   └── projectKeyImpactIndicators.selectors.ts
+│       │   │   │   │   └── project-impacts-urban-sprawl-comparison
+│       │   │   │   │       ├── fetchUrbanSprawlImpactsComparison.action.ts
+│       │   │   │   │       ├── summary.selectors.ts
+│       │   │   │   │       ├── urbanSprawlComparison.reducer.ts
+│       │   │   │   │       ├── urbanSprawlComparisonOnboardingSkip.action.ts
+│       │   │   │   │       └── urbanSprawlComparisonOnboardingSkip.selector.ts
+│       │   │   │   ├── core
+│       │   │   │   │   ├── __tests__
+│       │   │   │   │   │   └── projectImpacts.selectors.spec.ts
+│       │   │   │   │   └── projectImpacts.selectors.ts
+│       │   │   │   ├── domain
+│       │   │   │   │   ├── projectImpactsAreaChartsData.ts
+│       │   │   │   │   ├── projectImpactsEconomicBalance.ts
+│       │   │   │   │   ├── projectImpactsEnvironmental.ts
+│       │   │   │   │   ├── projectImpactsSocial.ts
+│       │   │   │   │   ├── projectImpactsSocioEconomic.ts
+│       │   │   │   │   ├── projectKeyImpactIndicators.ts
+│       │   │   │   │   └── projects.types.ts
+│       │   │   │   ├── infrastructure
+│       │   │   │   │   ├── duplicate-project-service
+│       │   │   │   │   │   └── HttpDuplicateProjectService.ts
+│       │   │   │   │   ├── project-features-service
+│       │   │   │   │   │   ├── HttpProjectFeaturesService.ts
+│       │   │   │   │   │   └── MockProjectFeaturesService.ts
+│       │   │   │   │   ├── quick-urban-project-impacts-service
+│       │   │   │   │   │   ├── HttpQuickUrbanProjectImpactsService.ts
+│       │   │   │   │   │   └── MockQuickUrbanProjectImpactsService.ts
+│       │   │   │   │   ├── reconversion-project-impacts-service
+│       │   │   │   │   │   ├── HttpReconversionProjectImpactsService.ts
+│       │   │   │   │   │   └── MockReconversionProjectImpactsService.ts
+│       │   │   │   │   └── urban-sprawl-impacts-comparison-service
+│       │   │   │   │       ├── HttpUrbanSprawlImpactsComparisonService.ts
+│       │   │   │   │       └── MockUrbanSprawlImpactsComparisonService.ts
+│       │   │   │   └── views
+│       │   │   │       ├── project-impacts-onboarding
+│       │   │   │       │   ├── MonetizedImpactInfoModal.tsx
+│       │   │   │       │   ├── ProjectImpactsOnboardingPage.tsx
+│       │   │   │       │   ├── Step1.tsx
+│       │   │   │       │   ├── Step2.tsx
+│       │   │   │       │   ├── Step3.tsx
+│       │   │   │       │   ├── Step4.tsx
+│       │   │   │       │   ├── StepView.tsx
+│       │   │   │       │   ├── index.tsx
+│       │   │   │       │   └── steps.ts
+│       │   │   │       ├── project-impacts-urban-sprawl-comparison
+│       │   │   │       │   ├── ImpactComparisonSelect.tsx
+│       │   │   │       │   ├── ImpactsComparisonResult.tsx
+│       │   │   │       │   ├── ImpactsComparisonView.tsx
+│       │   │   │       │   ├── description-modals
+│       │   │   │       │   │   └── ImpactComparisonModalDescription.tsx
+│       │   │   │       │   ├── formatSiteData.ts
+│       │   │   │       │   ├── index.tsx
+│       │   │   │       │   ├── introduction
+│       │   │   │       │   │   ├── IntroModal.tsx
+│       │   │   │       │   │   ├── IntroModalAccordion.tsx
+│       │   │   │       │   │   ├── IntroModalFirstStepContent.tsx
+│       │   │   │       │   │   ├── IntroModalSecondStepContent.css
+│       │   │   │       │   │   └── IntroModalSecondStepContent.tsx
+│       │   │   │       │   ├── list-view
+│       │   │   │       │   │   ├── ImpactsComparisonListView.tsx
+│       │   │   │       │   │   ├── layout
+│       │   │   │       │   │   │   ├── TableAccordionRows.tsx
+│       │   │   │       │   │   │   ├── TableHeaderRow.tsx
+│       │   │   │       │   │   │   ├── TableRow.tsx
+│       │   │   │       │   │   │   ├── TableSectionRow.tsx
+│       │   │   │       │   │   │   └── TableSeparatorRow.tsx
+│       │   │   │       │   │   └── sections
+│       │   │   │       │   │       ├── EconomicBalanceSection.tsx
+│       │   │   │       │   │       ├── EnvironmentalSection.tsx
+│       │   │   │       │   │       ├── SocialSection.tsx
+│       │   │   │       │   │       └── SocioEconomicSection.tsx
+│       │   │   │       │   └── summary-view
+│       │   │   │       │       ├── ImpactSummaryView.tsx
+│       │   │   │       │       └── index.tsx
+│       │   │   │       ├── project-page
+│       │   │   │       │   ├── ProjectPage.tsx
+│       │   │   │       │   ├── export-impacts
+│       │   │   │       │   │   ├── ExportFormatSelector.tsx
+│       │   │   │       │   │   ├── ExportModal.spec.tsx
+│       │   │   │       │   │   ├── ExportModal.tsx
+│       │   │   │       │   │   ├── createExportModal.ts
+│       │   │   │       │   │   ├── exportModal.types.ts
+│       │   │   │       │   │   └── pdf-export
+│       │   │   │       │   │       ├── PdfExportForm.tsx
+│       │   │   │       │   │       ├── PdfExportStep.tsx
+│       │   │   │       │   │       ├── index.tsx
+│       │   │   │       │   │       └── pdfExportSections.ts
+│       │   │   │       │   ├── features
+│       │   │   │       │   │   ├── DevelopmentPlanFeatures.tsx
+│       │   │   │       │   │   ├── DevelopmentPlanInstallationExpenses.tsx
+│       │   │   │       │   │   ├── ExpensesAndRevenues.tsx
+│       │   │   │       │   │   ├── ProjectFeaturesView.tsx
+│       │   │   │       │   │   ├── SoilsDistribution.tsx
+│       │   │   │       │   │   ├── UrbanProjectBuildingsSection.tsx
+│       │   │   │       │   │   └── index.tsx
+│       │   │   │       │   ├── footer
+│       │   │   │       │   │   └── ProjectImpactFooter.tsx
+│       │   │   │       │   ├── header
+│       │   │   │       │   │   ├── ProjectPageHeader.tsx
+│       │   │   │       │   │   ├── ProjectPageTabs.tsx
+│       │   │   │       │   │   └── index.tsx
+│       │   │   │       │   ├── impacts
+│       │   │   │       │   │   ├── ProjectImpactsView.tsx
+│       │   │   │       │   │   ├── about-impacts-modal
+│       │   │   │       │   │   │   └── AboutImpactsModalButton.tsx
+│       │   │   │       │   │   ├── charts-view
+│       │   │   │       │   │   │   ├── ImpactChartCard
+│       │   │   │       │   │   │   │   ├── ImpactAreaChartCard.tsx
+│       │   │   │       │   │   │   │   ├── ImpactChartCard.tsx
+│       │   │   │       │   │   │   │   └── ImpactColumnChartCard.tsx
+│       │   │   │       │   │   │   ├── ImpactsChartsView.tsx
+│       │   │   │       │   │   │   ├── impacts
+│       │   │   │       │   │   │   │   ├── cost-benefit-analysis
+│       │   │   │       │   │   │   │   │   └── CostBenefitAnalysisChartCard.tsx
+│       │   │   │       │   │   │   │   ├── economic-balance
+│       │   │   │       │   │   │   │   │   └── EconomicBalanceChartCard.tsx
+│       │   │   │       │   │   │   │   ├── social-and-environment
+│       │   │   │       │   │   │   │   │   └── ImpactAreaChartsSection.tsx
+│       │   │   │       │   │   │   │   └── socio-economic
+│       │   │   │       │   │   │   │       └── SocioEconomicImpactsChartCard.tsx
+│       │   │   │       │   │   │   └── index.tsx
+│       │   │   │       │   │   ├── getImpactColor.ts
+│       │   │   │       │   │   ├── getImpactLabel.ts
+│       │   │   │       │   │   ├── impact-description-modals
+│       │   │   │       │   │   │   ├── ImpactModalDescription.tsx
+│       │   │   │       │   │   │   ├── cost-benefit-analysis
+│       │   │   │       │   │   │   │   └── CostBenefitAnalysisDescription.tsx
+│       │   │   │       │   │   │   ├── economic-balance
+│       │   │   │       │   │   │   │   ├── EconomicBalanceDescription.tsx
+│       │   │   │       │   │   │   │   ├── EconomicBalanceModalWizard.tsx
+│       │   │   │       │   │   │   │   ├── breadcrumbSection.ts
+│       │   │   │       │   │   │   │   ├── real-estate-acquisition
+│       │   │   │       │   │   │   │   │   └── RealEstateAcquisition.tsx
+│       │   │   │       │   │   │   │   └── site-reinstatement
+│       │   │   │       │   │   │   │       └── SiteReinstatementDescription.tsx
+│       │   │   │       │   │   │   ├── environmental
+│       │   │   │       │   │   │   │   ├── Co2SubSectionDescription.tsx
+│       │   │   │       │   │   │   │   ├── EnvironmentalMainDescription.tsx
+│       │   │   │       │   │   │   │   ├── EnvironmentalModalWizard.tsx
+│       │   │   │       │   │   │   │   ├── SoilsSubSectionDescription.tsx
+│       │   │   │       │   │   │   │   ├── breadcrumbSections.ts
+│       │   │   │       │   │   │   │   ├── impact-co2
+│       │   │   │       │   │   │   │   │   ├── AirConditionningRelatedCo2Description.tsx
+│       │   │   │       │   │   │   │   │   ├── Co2EqEmissionsDescription.tsx
+│       │   │   │       │   │   │   │   │   ├── RenewableEnergyRelatedCo2Description.tsx
+│       │   │   │       │   │   │   │   │   ├── SoilsStorageRelatedCo2Description.tsx
+│       │   │   │       │   │   │   │   │   ├── TravelRelatedCo2Description.tsx
+│       │   │   │       │   │   │   │   │   └── breadcrumbSegments.ts
+│       │   │   │       │   │   │   │   ├── non-contaminated-surface
+│       │   │   │       │   │   │   │   │   └── NonContaminatedSurface.tsx
+│       │   │   │       │   │   │   │   └── permeable-surface
+│       │   │   │       │   │   │   │       ├── PermeableGreenSurface.tsx
+│       │   │   │       │   │   │   │       ├── PermeableMineraleSurface.tsx
+│       │   │   │       │   │   │   │       ├── PermeableSurface.tsx
+│       │   │   │       │   │   │   │       └── breadcrumbSegments.ts
+│       │   │   │       │   │   │   ├── shared
+│       │   │   │       │   │   │   │   ├── ModalTable.css
+│       │   │   │       │   │   │   │   ├── ModalTable.tsx
+│       │   │   │       │   │   │   │   ├── avoided-kilometers-social-impact-link
+│       │   │   │       │   │   │   │   │   └── AvoidedKilometersSocialImpactLink.tsx
+│       │   │   │       │   │   │   │   ├── avoided-traffic-accidents
+│       │   │   │       │   │   │   │   │   ├── AvoidedTrafficAccidentsContent.tsx
+│       │   │   │       │   │   │   │   │   ├── AvoidedTrafficAccidentsDeathsContent.tsx
+│       │   │   │       │   │   │   │   │   ├── AvoidedTrafficAccidentsMinorInjuriesContent.tsx
+│       │   │   │       │   │   │   │   │   └── AvoidedTrafficAccidentsSevereInjuriesContent.tsx
+│       │   │   │       │   │   │   │   ├── co2-emissions
+│       │   │   │       │   │   │   │   │   ├── AirConditionningRelatedCo2Content.tsx
+│       │   │   │       │   │   │   │   │   ├── RenewableEnergyRelatedCo2Content.tsx
+│       │   │   │       │   │   │   │   │   ├── SoilsStorageRelatedCo2Content.tsx
+│       │   │   │       │   │   │   │   │   └── TravelRelatedCo2Content.tsx
+│       │   │   │       │   │   │   │   ├── modal-charts
+│       │   │   │       │   │   │   │   │   ├── ModalAreaChart.tsx
+│       │   │   │       │   │   │   │   │   ├── ModalColumnChartTooltip.css
+│       │   │   │       │   │   │   │   │   ├── ModalColumnChartTooltip.tsx
+│       │   │   │       │   │   │   │   │   ├── ModalColumnPointChart.tsx
+│       │   │   │       │   │   │   │   │   ├── ModalColumnSeriesChart.tsx
+│       │   │   │       │   │   │   │   │   ├── modalBarChartOptions.ts
+│       │   │   │       │   │   │   │   │   ├── modalBarChartValueFormat.ts
+│       │   │   │       │   │   │   │   │   └── useBarChartCustomTooltip.tsx
+│       │   │   │       │   │   │   │   └── travel-related-impacts-introduction
+│       │   │   │       │   │   │   │       └── TravelRelatedImpactsIntroduction.tsx
+│       │   │   │       │   │   │   ├── social
+│       │   │   │       │   │   │   │   ├── JobsSubSectionDescription.tsx
+│       │   │   │       │   │   │   │   ├── SocialMainDescription.tsx
+│       │   │   │       │   │   │   │   ├── SocialModalWizard.tsx
+│       │   │   │       │   │   │   │   ├── avoided-traffic-accidents
+│       │   │   │       │   │   │   │   │   ├── AvoidedTrafficAccidentsDeathsDescription.tsx
+│       │   │   │       │   │   │   │   │   ├── AvoidedTrafficAccidentsDescription.tsx
+│       │   │   │       │   │   │   │   │   ├── AvoidedTrafficAccidentsMinorInjuries.tsx
+│       │   │   │       │   │   │   │   │   ├── AvoidedTrafficAccidentsSevereInjuriesDescription.tsx
+│       │   │   │       │   │   │   │   │   └── breadcrumbSegments.ts
+│       │   │   │       │   │   │   │   ├── avoided-vehicule-kilometers
+│       │   │   │       │   │   │   │   │   └── AvoidedVehiculeKilometersDescription.tsx
+│       │   │   │       │   │   │   │   ├── breadcrumbSections.ts
+│       │   │   │       │   │   │   │   ├── full-time-jobs
+│       │   │   │       │   │   │   │   │   ├── FullTimeJobsDescription.tsx
+│       │   │   │       │   │   │   │   │   ├── PhotovoltaicOperationFullTimeJobsDescription.tsx
+│       │   │   │       │   │   │   │   │   ├── ReconversionFullTimeJobsDescription.tsx
+│       │   │   │       │   │   │   │   │   ├── UrbanProjectOperationFullTimeJobsDescription.tsx
+│       │   │   │       │   │   │   │   │   └── breadcrumbSegments.ts
+│       │   │   │       │   │   │   │   ├── householdsPoweredByEnR
+│       │   │   │       │   │   │   │   │   └── householdsPoweredByEnR.tsx
+│       │   │   │       │   │   │   │   └── time-travel-saved
+│       │   │   │       │   │   │   │       └── TimeTravelSavedDescription.tsx
+│       │   │   │       │   │   │   ├── socio-economic
+│       │   │   │       │   │   │   │   ├── EconomicDirectDescription.tsx
+│       │   │   │       │   │   │   │   ├── EconomicIndirectDescription.tsx
+│       │   │   │       │   │   │   │   ├── EnvironmentalMonetaryDescription.tsx
+│       │   │   │       │   │   │   │   ├── SocialMonetaryDescription.tsx
+│       │   │   │       │   │   │   │   ├── SocioEconomicDescription.tsx
+│       │   │   │       │   │   │   │   ├── SocioEconomicModalWizard.tsx
+│       │   │   │       │   │   │   │   ├── SocioEconomicSubSectionDescription.tsx
+│       │   │   │       │   │   │   │   ├── avoided-air-conditionning-expenses
+│       │   │   │       │   │   │   │   │   └── AvoidedAirConditionningExpensesDescription.tsx
+│       │   │   │       │   │   │   │   ├── avoided-air-pollution
+│       │   │   │       │   │   │   │   │   └── AvoidedAirPollutionDescription.tsx
+│       │   │   │       │   │   │   │   ├── avoided-car-related-expenses
+│       │   │   │       │   │   │   │   │   └── AvoidedCarRelatedExpensesDescription.tsx
+│       │   │   │       │   │   │   │   ├── avoided-co2-monetary-value
+│       │   │   │       │   │   │   │   │   ├── AirConditionningRelatedCo2MonetaryValueDescription.tsx
+│       │   │   │       │   │   │   │   │   ├── AvoidedCo2MonetaryValueDescription.tsx
+│       │   │   │       │   │   │   │   │   ├── RenewableEnergyRelatedCo2MonetaryValueDescription.tsx
+│       │   │   │       │   │   │   │   │   ├── TravelRelatedCo2MonetaryValueDescription.tsx
+│       │   │   │       │   │   │   │   │   └── breadcrumbSegments.ts
+│       │   │   │       │   │   │   │   ├── avoided-friche-costs
+│       │   │   │       │   │   │   │   │   ├── AvoidedFricheCostsDescription.tsx
+│       │   │   │       │   │   │   │   │   ├── AvoidedIllegalDumpingCostsDescription.tsx
+│       │   │   │       │   │   │   │   │   ├── AvoidedOtherSecuringCostsDescription.tsx
+│       │   │   │       │   │   │   │   │   ├── AvoidedSecurityCostsDescription.tsx
+│       │   │   │       │   │   │   │   │   └── breadcrumbSegments.ts
+│       │   │   │       │   │   │   │   ├── avoided-property-damages-expenses
+│       │   │   │       │   │   │   │   │   └── AvoidedPropertyDamagesExpenses.tsx
+│       │   │   │       │   │   │   │   ├── avoided-traffic-accidents-monetary-value
+│       │   │   │       │   │   │   │   │   ├── AvoidedTrafficAccidentsDeathsDescription.tsx
+│       │   │   │       │   │   │   │   │   ├── AvoidedTrafficAccidentsDescription.tsx
+│       │   │   │       │   │   │   │   │   ├── AvoidedTrafficAccidentsMinorInjuries.tsx
+│       │   │   │       │   │   │   │   │   ├── AvoidedTrafficAccidentsSevereInjuriesDescription.tsx
+│       │   │   │       │   │   │   │   │   └── breadcrumbSegments.ts
+│       │   │   │       │   │   │   │   ├── breadcrumbSections.ts
+│       │   │   │       │   │   │   │   ├── ecosystem-services
+│       │   │   │       │   │   │   │   │   ├── EcosystemServicesDescription.tsx
+│       │   │   │       │   │   │   │   │   ├── ForestRelatedProductDescription.tsx
+│       │   │   │       │   │   │   │   │   ├── InvasiveSpeciesRegulationDescription.tsx
+│       │   │   │       │   │   │   │   │   ├── NatureRelatedWellnessAndLeisureDescription.tsx
+│       │   │   │       │   │   │   │   │   ├── NitrogenCycleDescription.tsx
+│       │   │   │       │   │   │   │   │   ├── PollinationDescription.tsx
+│       │   │   │       │   │   │   │   │   ├── SoilErosionDescription.tsx
+│       │   │   │       │   │   │   │   │   ├── SoilsStorageRelatedCo2MonetaryValueDescription.tsx
+│       │   │   │       │   │   │   │   │   ├── WaterCycle.tsx
+│       │   │   │       │   │   │   │   │   └── breadcrumbSegments.ts
+│       │   │   │       │   │   │   │   ├── property-value-increase
+│       │   │   │       │   │   │   │   │   ├── PropertyTransferDutiesIncreaseDescription.tsx
+│       │   │   │       │   │   │   │   │   └── PropertyValueIncreaseDescription.tsx
+│       │   │   │       │   │   │   │   ├── rental-income
+│       │   │   │       │   │   │   │   │   └── RentalIncomeDescription.tsx
+│       │   │   │       │   │   │   │   ├── roads-and-utilities-maintenance-expenses
+│       │   │   │       │   │   │   │   │   └── RoadsAndUtilitiesMaintenanceExpenses.tsx
+│       │   │   │       │   │   │   │   ├── taxes-income
+│       │   │   │       │   │   │   │   │   └── TaxesIncomeDescription.tsx
+│       │   │   │       │   │   │   │   ├── time-travel-saved
+│       │   │   │       │   │   │   │   │   └── TimeTravelSavedMonetaryValueDescription.tsx
+│       │   │   │       │   │   │   │   └── water-regulation
+│       │   │   │       │   │   │   │       └── WaterRegulationDescription.tsx
+│       │   │   │       │   │   │   └── soils-carbon-storage
+│       │   │   │       │   │   │       └── SoilsCarbonStorageDescription.tsx
+│       │   │   │       │   │   ├── index.tsx
+│       │   │   │       │   │   ├── list-view
+│       │   │   │       │   │   │   ├── ImpactActorsItem.tsx
+│       │   │   │       │   │   │   ├── ImpactItemDetails.tsx
+│       │   │   │       │   │   │   ├── ImpactItemGroup.tsx
+│       │   │   │       │   │   │   ├── ImpactRowValue.tsx
+│       │   │   │       │   │   │   ├── ImpactSection.tsx
+│       │   │   │       │   │   │   ├── ImpactsListView.tsx
+│       │   │   │       │   │   │   ├── dialogControlBtnProps.ts
+│       │   │   │       │   │   │   ├── index.tsx
+│       │   │   │       │   │   │   └── sections
+│       │   │   │       │   │   │       ├── EconomicBalance.tsx
+│       │   │   │       │   │   │       ├── EnvironmentalListSection.tsx
+│       │   │   │       │   │   │       ├── SocialListSection.tsx
+│       │   │   │       │   │   │       ├── SocioEconomicImpactSection.tsx
+│       │   │   │       │   │   │       └── SocioEconomicListSection.tsx
+│       │   │   │       │   │   └── summary-view
+│       │   │   │       │   │       ├── ImpactSummaryView.tsx
+│       │   │   │       │   │       ├── KeyImpactIndicatorCard.tsx
+│       │   │   │       │   │       └── index.tsx
+│       │   │   │       │   ├── impacts-accuracy-disclaimer
+│       │   │   │       │   │   └── ImpactsAccuracyDisclaimer.tsx
+│       │   │   │       │   ├── index.tsx
+│       │   │   │       │   ├── pdf-export
+│       │   │   │       │   │   ├── about-benefriches
+│       │   │   │       │   │   │   └── AboutBenefrichesPdfPage.tsx
+│       │   │   │       │   │   ├── buildTableOfContents.spec.ts
+│       │   │   │       │   │   ├── buildTableOfContents.ts
+│       │   │   │       │   │   ├── components
+│       │   │   │       │   │   │   ├── CoverPage.tsx
+│       │   │   │       │   │   │   ├── DataLine.tsx
+│       │   │   │       │   │   │   ├── FeaturesSection.tsx
+│       │   │   │       │   │   │   ├── ImpactItemDetails.tsx
+│       │   │   │       │   │   │   ├── ImpactItemGroup.tsx
+│       │   │   │       │   │   │   ├── ImpactRowValue.tsx
+│       │   │   │       │   │   │   ├── ImpactsGroupByActor.tsx
+│       │   │   │       │   │   │   ├── ImpactsSection.tsx
+│       │   │   │       │   │   │   ├── ListItem.tsx
+│       │   │   │       │   │   │   ├── PdfPage.tsx
+│       │   │   │       │   │   │   ├── PdfPageHeader.tsx
+│       │   │   │       │   │   │   ├── PdfPageSubtitle.tsx
+│       │   │   │       │   │   │   └── PdfPageTitle.tsx
+│       │   │   │       │   │   ├── context.ts
+│       │   │   │       │   │   ├── format.ts
+│       │   │   │       │   │   ├── impacts
+│       │   │   │       │   │   │   ├── EconomicBalancePages.tsx
+│       │   │   │       │   │   │   ├── ProjectImpactsPdfPage.tsx
+│       │   │   │       │   │   │   ├── environmental-impacts
+│       │   │   │       │   │   │   │   └── index.tsx
+│       │   │   │       │   │   │   ├── social-impacts
+│       │   │   │       │   │   │   │   └── index.tsx
+│       │   │   │       │   │   │   └── socio-economic-impacts
+│       │   │   │       │   │   │       ├── Introduction.tsx
+│       │   │   │       │   │   │       ├── SocioEconomicImpactsSection.tsx
+│       │   │   │       │   │   │       └── index.tsx
+│       │   │   │       │   │   ├── index.tsx
+│       │   │   │       │   │   ├── pageIds.ts
+│       │   │   │       │   │   ├── project-features
+│       │   │   │       │   │   │   ├── ProjectFeaturesPdfPage.tsx
+│       │   │   │       │   │   │   ├── development-plan
+│       │   │   │       │   │   │   │   ├── DevelopmentPlanFeaturesPdf.tsx
+│       │   │   │       │   │   │   │   └── SoilsDistributionPdf.tsx
+│       │   │   │       │   │   │   ├── expenses-and-incomes
+│       │   │   │       │   │   │   │   ├── DevelopmentExpenses.tsx
+│       │   │   │       │   │   │   │   └── ProjectExpensesAndIncomesPdf.tsx
+│       │   │   │       │   │   │   ├── schedule
+│       │   │   │       │   │   │   │   └── ProjectSchedulePdf.tsx
+│       │   │   │       │   │   │   └── stakeholders
+│       │   │   │       │   │   │       └── ProjectStakeholdersPdf.tsx
+│       │   │   │       │   │   ├── site-features
+│       │   │   │       │   │   │   └── SiteFeaturesPdfPage.tsx
+│       │   │   │       │   │   └── styles.ts
+│       │   │   │       │   └── useDuplicateProject.ts
+│       │   │   │       ├── quick-impacts-embed-view
+│       │   │   │       │   ├── Callout.tsx
+│       │   │   │       │   ├── EmbedImpactsView.tsx
+│       │   │   │       │   ├── Title.tsx
+│       │   │   │       │   └── index.tsx
+│       │   │   │       └── shared
+│       │   │   │           ├── actions
+│       │   │   │           │   ├── ActionBar.tsx
+│       │   │   │           │   ├── ImpactEvaluationPeriodSelect.tsx
+│       │   │   │           │   ├── ProjectImpactsActionBar.tsx
+│       │   │   │           │   └── StickyActionBar.tsx
+│       │   │   │           ├── charts
+│       │   │   │           │   └── useImpactAreaChartProps.tsx
+│       │   │   │           ├── emoji-li-item
+│       │   │   │           │   └── StepEmojiListItem.tsx
+│       │   │   │           ├── formatImpactValue.spec.ts
+│       │   │   │           ├── formatImpactValue.ts
+│       │   │   │           ├── impacts
+│       │   │   │           │   ├── AboutImpactsContent.tsx
+│       │   │   │           │   ├── aboutBenefrichesContent.ts
+│       │   │   │           │   ├── modals
+│       │   │   │           │   │   ├── ImpactInProgressDescriptionModal.tsx
+│       │   │   │           │   │   ├── ImpactModalDescriptionContext.tsx
+│       │   │   │           │   │   ├── ModalBody.tsx
+│       │   │   │           │   │   ├── ModalBreadcrumb.tsx
+│       │   │   │           │   │   ├── ModalContent.tsx
+│       │   │   │           │   │   ├── ModalData.tsx
+│       │   │   │           │   │   ├── ModalGrid.tsx
+│       │   │   │           │   │   ├── ModalHeader.tsx
+│       │   │   │           │   │   ├── ModalTitleThree.tsx
+│       │   │   │           │   │   ├── ModalTitleTwo.tsx
+│       │   │   │           │   │   └── summary
+│       │   │   │           │   │       ├── AvoidedCo2eqEmissions.tsx
+│       │   │   │           │   │       ├── AvoidedFricheCostsForLocalAuthority.tsx
+│       │   │   │           │   │       ├── AvoidedMaintenanceCostsForLocalAuthority.tsx
+│       │   │   │           │   │       ├── FullTimeJobs.tsx
+│       │   │   │           │   │       ├── HouseholdsPoweredByRenewableEnergy.tsx
+│       │   │   │           │   │       ├── LocalPropertyValueIncrease.tsx
+│       │   │   │           │   │       ├── NonContaminatedSurfaceArea.tsx
+│       │   │   │           │   │       ├── PermeableSurfaceArea.tsx
+│       │   │   │           │   │       ├── ProjectBalance.tsx
+│       │   │   │           │   │       ├── SummaryModalWizard.tsx
+│       │   │   │           │   │       ├── TaxesIncome.tsx
+│       │   │   │           │   │       └── ZanCompliance.tsx
+│       │   │   │           │   └── summary.ts
+│       │   │   │           ├── project-badge
+│       │   │   │           │   └── ExpressProjectBadge.tsx
+│       │   │   │           ├── scenarioType.ts
+│       │   │   │           ├── socioEconomicLabels.ts
+│       │   │   │           └── urbanProjectCategory.ts
+│       │   │   ├── public-pages
+│       │   │   │   ├── PublicApp.tsx
+│       │   │   │   ├── accesibilite
+│       │   │   │   │   └── AccessibilitePage.tsx
+│       │   │   │   ├── budget
+│       │   │   │   │   └── BudgetPage.tsx
+│       │   │   │   ├── highlightContent.ts
+│       │   │   │   ├── landings
+│       │   │   │   │   ├── BenefrichesLandingPage.tsx
+│       │   │   │   │   ├── HomePage.tsx
+│       │   │   │   │   ├── MutabiliteLandingPage.tsx
+│       │   │   │   │   └── sections
+│       │   │   │   │       ├── DataSourcesSection.tsx
+│       │   │   │   │       ├── FaqSection.tsx
+│       │   │   │   │       ├── NewsletterSection.tsx
+│       │   │   │   │       ├── PreserveSoilsSection.tsx
+│       │   │   │   │       ├── SectionTitle.tsx
+│       │   │   │   │       ├── TestimoniesSection.tsx
+│       │   │   │   │       ├── UrbanPlanningProfessionsSection.tsx
+│       │   │   │   │       ├── UsersLogosSection.tsx
+│       │   │   │   │       ├── cta-section
+│       │   │   │   │       │   ├── AccessBenefrichesButton.tsx
+│       │   │   │   │       │   ├── AccessMutafrichesButton.tsx
+│       │   │   │   │       │   └── SituationSection.tsx
+│       │   │   │   │       ├── hero-section
+│       │   │   │   │       │   ├── BenefrichesLandingHeroSection.tsx
+│       │   │   │   │       │   ├── HeroSection.tsx
+│       │   │   │   │       │   ├── HomeHeroSection.tsx
+│       │   │   │   │       │   ├── MutafrichesLandingHeroSection.tsx
+│       │   │   │   │       │   └── buttonClassNames.ts
+│       │   │   │   │       └── how-it-works-section
+│       │   │   │   │           ├── HasOnlySiteSteps.tsx
+│       │   │   │   │           ├── HasSiteAndProjectSteps.tsx
+│       │   │   │   │           ├── HomeHowItWorksSection.tsx
+│       │   │   │   │           ├── HowItWorksSectionWrapper.tsx
+│       │   │   │   │           └── HowItWorksStep.tsx
+│       │   │   │   ├── mentions-legales
+│       │   │   │   │   └── MentionsLegalesPage.tsx
+│       │   │   │   ├── politique-confidentialite
+│       │   │   │   │   └── PolitiqueConfidentialitePage.tsx
+│       │   │   │   └── stats
+│       │   │   │       └── StatsPage.tsx
+│       │   │   ├── reconversion-compatibility
+│       │   │   │   ├── core
+│       │   │   │   │   ├── __tests__
+│       │   │   │   │   │   ├── compatibilityEvaluationCompleted.spec.ts
+│       │   │   │   │   │   ├── compatibilityEvaluationResultsRequested.spec.ts
+│       │   │   │   │   │   ├── compatibilityEvaluationStarted.spec.ts
+│       │   │   │   │   │   ├── fricheSavedFromCompatibilityEvaluation.spec.ts
+│       │   │   │   │   │   └── testUtils.ts
+│       │   │   │   │   ├── actions
+│       │   │   │   │   │   ├── compatibilityEvaluationCompleted.actions.ts
+│       │   │   │   │   │   ├── compatibilityEvaluationReset.actions.ts
+│       │   │   │   │   │   ├── compatibilityEvaluationResultsRequested.actions.ts
+│       │   │   │   │   │   ├── compatibilityEvaluationStarted.actions.ts
+│       │   │   │   │   │   ├── fricheSavedFromCompatibilityEvaluation.actions.ts
+│       │   │   │   │   │   ├── index.ts
+│       │   │   │   │   │   └── reconversionCompatibilityEvaluationGateway.ts
+│       │   │   │   │   ├── reconversionCompatibilityEvaluation.reducer.ts
+│       │   │   │   │   ├── reconversionCompatibilityEvaluation.selectors.ts
+│       │   │   │   │   └── score.ts
+│       │   │   │   ├── infra
+│       │   │   │   │   └── reconversion-compatibility-evaluation
+│       │   │   │   │       ├── HttpReconversionCompatibilityEvaluation.ts
+│       │   │   │   │       └── InMemoryReconversionCompatibilityEvaluation.ts
+│       │   │   │   └── views
+│       │   │   │       ├── evaluation
+│       │   │   │       │   └── EvaluateReconversionCompatibilityPage.tsx
+│       │   │   │       ├── mutafriches.types.ts
+│       │   │   │       ├── results
+│       │   │   │       │   ├── CompatibilityCard.tsx
+│       │   │   │       │   ├── ReconversionCompatibilityResultsPage.tsx
+│       │   │   │       │   └── index.tsx
+│       │   │   │       └── shared
+│       │   │   │           ├── CompatibilityScoreBadge.tsx
+│       │   │   │           ├── RankBadge.tsx
+│       │   │   │           └── getUsagePictogramSrc.ts
+│       │   │   ├── sites
+│       │   │   │   ├── core
+│       │   │   │   │   ├── __tests__
+│       │   │   │   │   │   └── siteView.reducer.spec.ts
+│       │   │   │   │   ├── fetchSiteFeatures.action.ts
+│       │   │   │   │   ├── fetchSiteView.action.ts
+│       │   │   │   │   ├── site.types.ts
+│       │   │   │   │   ├── siteFeatures.reducer.ts
+│       │   │   │   │   └── siteView.reducer.ts
+│       │   │   │   ├── infra
+│       │   │   │   │   └── site-service
+│       │   │   │   │       ├── HttpSiteService.ts
+│       │   │   │   │       └── InMemorySiteService.ts
+│       │   │   │   └── views
+│       │   │   │       ├── CompatibilityEvaluation.tsx
+│       │   │   │       ├── CompatibilityResultRow.tsx
+│       │   │   │       ├── SiteCreationConfirmationModal.tsx
+│       │   │   │       ├── SitePage.tsx
+│       │   │   │       ├── SitePageError.tsx
+│       │   │   │       ├── SitePageHeader.tsx
+│       │   │   │       ├── actions-list
+│       │   │   │       │   ├── ActionItem.tsx
+│       │   │   │       │   └── SiteActionsList.tsx
+│       │   │   │       ├── creationConfirmationModal.ts
+│       │   │   │       ├── evaluated-projects
+│       │   │   │       │   ├── EvaluatedProjectsList.tsx
+│       │   │   │       │   ├── NewProjectTile.tsx
+│       │   │   │       │   └── ProjectTile.tsx
+│       │   │   │       ├── features
+│       │   │   │       │   ├── ExpressSiteDisclaimer.tsx
+│       │   │   │       │   ├── SiteFeaturesList.tsx
+│       │   │   │       │   └── SiteFeaturesManagementSection.tsx
+│       │   │   │       └── index.tsx
+│       │   │   ├── update-project
+│       │   │   │   ├── core
+│       │   │   │   │   ├── helpers
+│       │   │   │   │   │   └── convertProjectDataToSteps.ts
+│       │   │   │   │   ├── updateProject.actions.ts
+│       │   │   │   │   ├── updateProject.reducer.ts
+│       │   │   │   │   ├── updateProject.selectors.ts
+│       │   │   │   │   └── updateProject.types.ts
+│       │   │   │   ├── infrastructure
+│       │   │   │   │   └── update-project-service
+│       │   │   │   │       ├── HttpUpdateReconversionProjectService.ts
+│       │   │   │   │       └── InMemoryUpdateReconversionProjectService.ts
+│       │   │   │   └── views
+│       │   │   │       ├── NavigationBlockerDialog.tsx
+│       │   │   │       ├── UnavailableFeatureView.tsx
+│       │   │   │       ├── UpdateFormStepperStep.tsx
+│       │   │   │       ├── UrbanProjectUpdateStepper.tsx
+│       │   │   │       ├── UrbanProjectUpdateView.tsx
+│       │   │   │       ├── index.tsx
+│       │   │   │       ├── useSidebarActions.ts
+│       │   │   │       └── useSyncUpdateStepWithRouteQuery.ts
+│       │   │   └── user-feature-alerts
+│       │   │       ├── core
+│       │   │       │   ├── CreateFeatureAlertGateway.ts
+│       │   │       │   ├── createFeatureAlert.action.ts
+│       │   │       │   ├── loadFeatureAlerts.action.ts
+│       │   │       │   ├── userFeatureAlert.reducer.ts
+│       │   │       │   └── userFeatureAlert.ts
+│       │   │       └── infrastructure
+│       │   │           └── create-feature-alert-service
+│       │   │               ├── CreateFeatureAlertService.ts
+│       │   │               └── InMemoryCreateFeatureAlertService.ts
+│       │   ├── main.css
+│       │   ├── main.tsx
+│       │   ├── shared
+│       │   │   ├── core
+│       │   │   │   ├── carbonEmissions.ts
+│       │   │   │   ├── dates
+│       │   │   │   │   └── index.ts
+│       │   │   │   ├── format-number
+│       │   │   │   │   ├── formatCarbonStorage.ts
+│       │   │   │   │   ├── formatNumber.spec.ts
+│       │   │   │   │   └── formatNumber.ts
+│       │   │   │   ├── gateways
+│       │   │   │   │   └── RealEstateValuationGateway.ts
+│       │   │   │   ├── isObjectsEqual
+│       │   │   │   │   ├── isObjectsEqual.spec.ts
+│       │   │   │   │   └── isObjectsEqual.ts
+│       │   │   │   ├── label-mapping
+│       │   │   │   │   └── soilTypeLabelMapping.ts
+│       │   │   │   ├── number-conversion
+│       │   │   │   │   ├── numberConversion.spec.ts
+│       │   │   │   │   └── numberConversion.ts
+│       │   │   │   ├── object-query-parameters
+│       │   │   │   │   ├── objectToQueryParameters.spec.ts
+│       │   │   │   │   └── objectToQueryParameters.ts
+│       │   │   │   ├── percentage
+│       │   │   │   │   ├── percentage.spec.ts
+│       │   │   │   │   └── percentage.ts
+│       │   │   │   ├── projectPhase.ts
+│       │   │   │   ├── reconversionCompatibility.ts
+│       │   │   │   ├── reconversionProject.ts
+│       │   │   │   ├── reducers
+│       │   │   │   │   └── project-form
+│       │   │   │   │       ├── helpers
+│       │   │   │   │       │   ├── projectName.spec.ts
+│       │   │   │   │       │   ├── projectName.ts
+│       │   │   │   │       │   └── stakeholders.ts
+│       │   │   │   │       ├── projectForm.actions.ts
+│       │   │   │   │       ├── projectForm.reducer.ts
+│       │   │   │   │       ├── projectForm.selectors.ts
+│       │   │   │   │       ├── projectForm.types.ts
+│       │   │   │   │       ├── soilsCarbonStorage.action.ts
+│       │   │   │   │       └── urban-project
+│       │   │   │   │           ├── helpers
+│       │   │   │   │           │   ├── completeStep.ts
+│       │   │   │   │           │   ├── mutateState.spec.ts
+│       │   │   │   │           │   ├── mutateState.ts
+│       │   │   │   │           │   ├── navigateToStep.ts
+│       │   │   │   │           │   ├── projectSummary.ts
+│       │   │   │   │           │   ├── readState.spec.ts
+│       │   │   │   │           │   ├── readState.ts
+│       │   │   │   │           │   ├── stakeholders.ts
+│       │   │   │   │           │   ├── stepsSequence.ts
+│       │   │   │   │           │   └── surfaceAreaDistribution.ts
+│       │   │   │   │           ├── step-handlers
+│       │   │   │   │           │   ├── buildings
+│       │   │   │   │           │   │   ├── buildingsFloorSurfaceArea.handler.ts
+│       │   │   │   │           │   │   ├── buildingsIntroduction.handler.ts
+│       │   │   │   │           │   │   ├── buildingsUseIntroduction.handler.ts
+│       │   │   │   │           │   │   ├── buildingsUseSelection.handler.ts
+│       │   │   │   │           │   │   └── buildingsUseSurfaceAreaDistribution.handler.ts
+│       │   │   │   │           │   ├── creation-mode
+│       │   │   │   │           │   │   └── creationMode.handler.ts
+│       │   │   │   │           │   ├── expenses
+│       │   │   │   │           │   │   ├── expensesInstallation.handler.ts
+│       │   │   │   │           │   │   ├── expensesIntroduction.handler.ts
+│       │   │   │   │           │   │   ├── expensesProjectedBuildingsOperatingExpenses.handler.ts
+│       │   │   │   │           │   │   ├── expensesReinstatement.handler.ts
+│       │   │   │   │           │   │   └── expensesSitePurchaseAmounts.handler.ts
+│       │   │   │   │           │   ├── express
+│       │   │   │   │           │   │   ├── creationResult.handler.ts
+│       │   │   │   │           │   │   ├── expressSummary.handler.ts
+│       │   │   │   │           │   │   └── expressTemplateSelection.handler.ts
+│       │   │   │   │           │   ├── naming
+│       │   │   │   │           │   │   └── naming.handler.ts
+│       │   │   │   │           │   ├── project-phase
+│       │   │   │   │           │   │   └── projectPhase.handler.ts
+│       │   │   │   │           │   ├── result
+│       │   │   │   │           │   │   └── creationResult.handler.ts
+│       │   │   │   │           │   ├── revenues
+│       │   │   │   │           │   │   ├── revenueBuildingsOperationsYearlyRevenues.handler.ts
+│       │   │   │   │           │   │   ├── revenueBuildingsResale.handler.ts
+│       │   │   │   │           │   │   ├── revenueExpectedSiteResale.handler.ts
+│       │   │   │   │           │   │   ├── revenueFinancialAssistance.handler.ts
+│       │   │   │   │           │   │   └── revenueIntroduction.handler.ts
+│       │   │   │   │           │   ├── schedule
+│       │   │   │   │           │   │   └── scheduleProjection.handler.ts
+│       │   │   │   │           │   ├── site-and-buildings-resale
+│       │   │   │   │           │   │   ├── buildingsResaleSelection.handler.ts
+│       │   │   │   │           │   │   ├── siteResaleIntroduction.handler.ts
+│       │   │   │   │           │   │   └── siteResaleSelection.handler.ts
+│       │   │   │   │           │   ├── soils
+│       │   │   │   │           │   │   ├── soilsCarbonSummary.handler.ts
+│       │   │   │   │           │   │   ├── soilsDecontaminationIntroduction.handler.ts
+│       │   │   │   │           │   │   ├── soilsDecontaminationSelection.handler.ts
+│       │   │   │   │           │   │   ├── soilsDecontaminationSurfaceArea.handler.ts
+│       │   │   │   │           │   │   └── soilsSummary.handler.ts
+│       │   │   │   │           │   ├── spaces
+│       │   │   │   │           │   │   ├── getCommonRules.ts
+│       │   │   │   │           │   │   ├── greenSpacesIntroduction.handler.ts
+│       │   │   │   │           │   │   ├── greenSpacesSurfaceAreaDistribution.handler.ts
+│       │   │   │   │           │   │   ├── publicSpacesDistribution.handler.ts
+│       │   │   │   │           │   │   ├── publicSpacesIntroduction.handler.ts
+│       │   │   │   │           │   │   ├── residentialActivitySpacesDistribution.handler.ts
+│       │   │   │   │           │   │   ├── residentialActivitySpacesIntroduction.handler.ts
+│       │   │   │   │           │   │   ├── spaceDevelopmentPlanIntroduction.handler.ts
+│       │   │   │   │           │   │   ├── spacesCategoriesIntroduction.handler.ts
+│       │   │   │   │           │   │   ├── spacesCategoriesSelection.handler.ts
+│       │   │   │   │           │   │   ├── spacesCategoriesSurfaceArea.handler.ts
+│       │   │   │   │           │   │   ├── spacesIntroduction.handler.ts
+│       │   │   │   │           │   │   ├── spacesSelection.handler.ts
+│       │   │   │   │           │   │   └── spacesSurfaceArea.handler.ts
+│       │   │   │   │           │   ├── stakeholders
+│       │   │   │   │           │   │   ├── stakeholdersIntroduction.handler.ts
+│       │   │   │   │           │   │   ├── stakeholdersProjectDeveloper.handler.ts
+│       │   │   │   │           │   │   └── stakeholdersReinstatementContractOwner.handler.ts
+│       │   │   │   │           │   ├── stepHandler.type.ts
+│       │   │   │   │           │   ├── stepHandlerRegistry.ts
+│       │   │   │   │           │   ├── summary
+│       │   │   │   │           │   │   └── finalSummary.handler.ts
+│       │   │   │   │           │   └── uses
+│       │   │   │   │           │       ├── usesFloorSurfaceArea.handler.ts
+│       │   │   │   │           │       ├── usesFootprintSurfaceArea.handler.ts
+│       │   │   │   │           │       ├── usesIntroduction.handler.ts
+│       │   │   │   │           │       └── usesSelection.handler.ts
+│       │   │   │   │           ├── urbanProject.actions.ts
+│       │   │   │   │           ├── urbanProject.reducer.ts
+│       │   │   │   │           ├── urbanProject.selectors.ts
+│       │   │   │   │           └── urbanProjectSteps.ts
+│       │   │   │   ├── soils.ts
+│       │   │   │   ├── split-number
+│       │   │   │   │   └── splitNumber.ts
+│       │   │   │   ├── stakeholder.ts
+│       │   │   │   ├── store-config
+│       │   │   │   │   ├── appAsyncThunk.ts
+│       │   │   │   │   ├── appDependencies.ts
+│       │   │   │   │   ├── listenerMiddleware.ts
+│       │   │   │   │   ├── rootReducer.ts
+│       │   │   │   │   └── store.ts
+│       │   │   │   └── urbanProject.ts
+│       │   │   ├── infrastructure
+│       │   │   │   ├── administrative-division-service
+│       │   │   │   │   ├── administrativeDivisionGeoApi.ts
+│       │   │   │   │   └── administrativeDivisionMock.ts
+│       │   │   │   ├── real-estate-valuation-service
+│       │   │   │   │   ├── HttpRealEstateValuationService.ts
+│       │   │   │   │   ├── InMemoryRealEstateValuationService.ts
+│       │   │   │   │   └── MockRealEstateValuationService.ts
+│       │   │   │   └── soils-carbon-storage-service
+│       │   │   │       ├── soilsCarbonStorageApi.ts
+│       │   │   │       └── soilsCarbonStorageMock.ts
+│       │   │   └── views
+│       │   │       ├── App.tsx
+│       │   │       ├── MatomoContainer.tsx
+│       │   │       ├── analytics.ts
+│       │   │       ├── charts
+│       │   │       │   ├── index.ts
+│       │   │       │   ├── useChartCustomColors.tsx
+│       │   │       │   └── useExportConfig.ts
+│       │   │       ├── classes
+│       │   │       │   └── positiveNegativeTextClasses.ts
+│       │   │       ├── clsx
+│       │   │       │   └── index.ts
+│       │   │       ├── components
+│       │   │       │   ├── Accordion
+│       │   │       │   │   └── Accordion.tsx
+│       │   │       │   ├── Autocomplete
+│       │   │       │   │   └── Autocomplete.tsx
+│       │   │       │   ├── BackNextButtons
+│       │   │       │   │   └── BackNextButtons.tsx
+│       │   │       │   ├── Badge
+│       │   │       │   │   ├── Badge.tsx
+│       │   │       │   │   ├── ButtonBadge.tsx
+│       │   │       │   │   └── classes.ts
+│       │   │       │   ├── Charts
+│       │   │       │   │   ├── ExportChartMenuItems.tsx
+│       │   │       │   │   ├── ExportableChart.tsx
+│       │   │       │   │   ├── SoilsCarbonStorageChart.tsx
+│       │   │       │   │   └── SurfaceAreaPieChart.tsx
+│       │   │       │   ├── CheckableTile
+│       │   │       │   │   ├── CheckableTile.tsx
+│       │   │       │   │   └── HorizontalCheckableTile.tsx
+│       │   │       │   ├── CheckboxCard
+│       │   │       │   │   ├── CheckboxCard.tsx
+│       │   │       │   │   └── styles.ts
+│       │   │       │   ├── Dialog
+│       │   │       │   │   ├── DsfrA11yDialog.tsx
+│       │   │       │   │   ├── DsfrDialogContent.tsx
+│       │   │       │   │   ├── DsfrDialogContext.tsx
+│       │   │       │   │   ├── DsfrDialogFooter.tsx
+│       │   │       │   │   ├── DsfrDialogHeader.tsx
+│       │   │       │   │   ├── DsfrDialogTitle.tsx
+│       │   │       │   │   └── DsfrDialogWrapper.tsx
+│       │   │       │   ├── Disclaimer
+│       │   │       │   │   ├── Disclaimer.spec.tsx
+│       │   │       │   │   └── Disclaimer.tsx
+│       │   │       │   ├── ExternalLink
+│       │   │       │   │   └── ExternalLink.tsx
+│       │   │       │   ├── FeaturesList
+│       │   │       │   │   ├── FeaturesListDataLine.tsx
+│       │   │       │   │   ├── FeaturesListScheduleDates.tsx
+│       │   │       │   │   ├── FeaturesListSection.tsx
+│       │   │       │   │   └── FeaturesListSoilTypeLabel.tsx
+│       │   │       │   ├── HighlightsList
+│       │   │       │   │   └── HighlightsList.tsx
+│       │   │       │   ├── HtmlTitle
+│       │   │       │   │   └── HtmlTitle.tsx
+│       │   │       │   ├── InfoTooltip
+│       │   │       │   │   └── InfoTooltip.tsx
+│       │   │       │   ├── Menu
+│       │   │       │   │   ├── MenuItemButton.tsx
+│       │   │       │   │   └── classes.ts
+│       │   │       │   ├── NotFound
+│       │   │       │   │   └── NotFound.tsx
+│       │   │       │   ├── PolitiqueConfidentialiteContent
+│       │   │       │   │   └── PolitiqueConfidentialiteContent.tsx
+│       │   │       │   ├── RadioButtons
+│       │   │       │   │   └── RadioButtons.tsx
+│       │   │       │   ├── RequireAuthenticatedUser
+│       │   │       │   │   └── RequireAuthenticatedUser.tsx
+│       │   │       │   ├── Spinner
+│       │   │       │   │   └── LoadingSpinner.tsx
+│       │   │       │   ├── StickyBottomBar
+│       │   │       │   │   └── StickyBottomBar.tsx
+│       │   │       │   ├── TabItem
+│       │   │       │   │   └── TabItem.tsx
+│       │   │       │   └── form
+│       │   │       │       ├── Address
+│       │   │       │       │   ├── SearchAddressAutocompleteContainer.tsx
+│       │   │       │       │   └── SearchAddressAutocompleteInput.tsx
+│       │   │       │       ├── Fieldset
+│       │   │       │       │   └── Fieldset.tsx
+│       │   │       │       ├── NumericInput
+│       │   │       │       │   ├── RowDecimalsNumericInput.tsx
+│       │   │       │       │   ├── RowNumericInput.tsx
+│       │   │       │       │   └── registerOptions.ts
+│       │   │       │       ├── RadioButton
+│       │   │       │       │   └── RadioButton.tsx
+│       │   │       │       ├── RequiredLabel
+│       │   │       │       │   └── RequiredLabel.tsx
+│       │   │       │       └── SurfaceAreaDistributionForm
+│       │   │       │           ├── InputModeSelect.tsx
+│       │   │       │           ├── SurfaceAreaDistributionForm.spec.tsx
+│       │   │       │           ├── SurfaceAreaDistributionForm.tsx
+│       │   │       │           └── SurfaceAreaPieChart.tsx
+│       │   │       ├── envVars.ts
+│       │   │       ├── hooks
+│       │   │       │   ├── store.hooks.ts
+│       │   │       │   ├── useHeaderHeight.ts
+│       │   │       │   ├── useIsSmallScreen.ts
+│       │   │       │   └── useNavigationBlocker.ts
+│       │   │       ├── layout
+│       │   │       │   ├── EditorialPageLayout
+│       │   │       │   │   ├── EditorialPageButtonsSection.tsx
+│       │   │       │   │   ├── EditorialPageIcon.tsx
+│       │   │       │   │   ├── EditorialPageLayout.tsx
+│       │   │       │   │   ├── EditorialPageText.tsx
+│       │   │       │   │   ├── EditorialPageTitle.tsx
+│       │   │       │   │   └── index.tsx
+│       │   │       │   ├── HeaderFooterLayout
+│       │   │       │   │   ├── BenefrichesFooter.tsx
+│       │   │       │   │   ├── BenefrichesHeader.css
+│       │   │       │   │   ├── BenefrichesHeader.tsx
+│       │   │       │   │   └── HeaderFooterLayout.tsx
+│       │   │       │   ├── OnboardingPageLayout
+│       │   │       │   │   └── OnboardingPageLayout.tsx
+│       │   │       │   ├── SidebarLayout
+│       │   │       │   │   ├── Sidebar.tsx
+│       │   │       │   │   ├── SidebarContainerLayout.tsx
+│       │   │       │   │   ├── SidebarLayout.css
+│       │   │       │   │   ├── SidebarLayout.tsx
+│       │   │       │   │   ├── SidebarLayoutContext.ts
+│       │   │       │   │   └── SidebarLayoutFooter.tsx
+│       │   │       │   ├── TileFormWrapper
+│       │   │       │   │   ├── TileFormFieldWrapper.tsx
+│       │   │       │   │   ├── TileFormFieldsWrapper.tsx
+│       │   │       │   │   └── TileFormFooterWrapper.tsx
+│       │   │       │   └── WizardFormLayout
+│       │   │       │       ├── FormBaseStepperStep.tsx
+│       │   │       │       ├── FormDefinition.tsx
+│       │   │       │       ├── FormError.tsx
+│       │   │       │       ├── FormInfo.tsx
+│       │   │       │       ├── FormStepper.tsx
+│       │   │       │       ├── FormStepperStep.tsx
+│       │   │       │       ├── FormStepperWrapper.tsx
+│       │   │       │       ├── FormWarning.tsx
+│       │   │       │       └── WizardFormLayout.tsx
+│       │   │       ├── project-form
+│       │   │       │   ├── AnswerCascadingUpdateDialog.tsx
+│       │   │       │   ├── ProjectFormContext.tsx
+│       │   │       │   ├── ProjectFormProvider.tsx
+│       │   │       │   ├── common
+│       │   │       │   │   ├── expenses
+│       │   │       │   │   │   ├── installation-expenses
+│       │   │       │   │   │   │   └── InstallationExpensesForm.tsx
+│       │   │       │   │   │   ├── reinstatement
+│       │   │       │   │   │   │   ├── ReinstatementExpensesForm.tsx
+│       │   │       │   │   │   │   ├── SustainableSoilsReinstatementInfoButton.tsx
+│       │   │       │   │   │   │   ├── index.tsx
+│       │   │       │   │   │   │   ├── mappers.spec.ts
+│       │   │       │   │   │   │   └── mappers.ts
+│       │   │       │   │   │   ├── site-purchase-amounts
+│       │   │       │   │   │   │   └── SitePurchaseAmountsForm.tsx
+│       │   │       │   │   │   └── yearly-projected-expenses
+│       │   │       │   │   │       ├── YearlyProjectedExpensesForm.tsx
+│       │   │       │   │   │       └── index.tsx
+│       │   │       │   │   ├── name-and-description
+│       │   │       │   │   │   └── ProjectNameAndDescriptionForm.tsx
+│       │   │       │   │   ├── project-phase
+│       │   │       │   │   │   └── ProjectPhaseForm.tsx
+│       │   │       │   │   ├── revenues
+│       │   │       │   │   │   ├── financial-assistance
+│       │   │       │   │   │   │   ├── ProjectFinancialAssistanceRevenueForm.tsx
+│       │   │       │   │   │   │   └── index.tsx
+│       │   │       │   │   │   └── yearly-projected-revenue
+│       │   │       │   │   │       └── ProjectYearlyRevenueForm.tsx
+│       │   │       │   │   ├── schedule
+│       │   │       │   │   │   └── projection
+│       │   │       │   │   │       ├── ScheduleField.tsx
+│       │   │       │   │   │       └── ScheduleProjectionForm.tsx
+│       │   │       │   │   ├── soils-carbon-storage-comparison
+│       │   │       │   │   │   ├── CarbonStorageDifferenceSection.tsx
+│       │   │       │   │   │   ├── SoilsCarbonStorageComparison.tsx
+│       │   │       │   │   │   └── index.tsx
+│       │   │       │   │   ├── soils-decontamination
+│       │   │       │   │   │   ├── introduction
+│       │   │       │   │   │   │   └── SoilsDecontaminationIntroduction.tsx
+│       │   │       │   │   │   ├── selection
+│       │   │       │   │   │   │   └── SoilsDecontaminationSelection.tsx
+│       │   │       │   │   │   └── surface-area
+│       │   │       │   │   │       ├── SoilsDecontaminationSurfaceArea.spec.tsx
+│       │   │       │   │   │       └── SoilsDecontaminationSurfaceArea.tsx
+│       │   │       │   │   ├── stakeholder-form
+│       │   │       │   │   │   ├── StakeholderForm.tsx
+│       │   │       │   │   │   └── index.tsx
+│       │   │       │   │   ├── stakeholder-introduction
+│       │   │       │   │   │   └── StakeholdersIntroduction.tsx
+│       │   │       │   │   └── summary
+│       │   │       │   │       └── ExpressSummary.tsx
+│       │   │       │   ├── stepper
+│       │   │       │   │   ├── StepperItem.tsx
+│       │   │       │   │   ├── stepperConfig.ts
+│       │   │       │   │   └── useBuildStepperNavigationItems.tsx
+│       │   │       │   ├── urban-project
+│       │   │       │   │   ├── buildings
+│       │   │       │   │   │   ├── floor-surface-area
+│       │   │       │   │   │   │   ├── BuildingsFloorSurfaceArea.tsx
+│       │   │       │   │   │   │   └── index.tsx
+│       │   │       │   │   │   ├── introduction
+│       │   │       │   │   │   │   ├── BuildingsIntroduction.tsx
+│       │   │       │   │   │   │   └── index.tsx
+│       │   │       │   │   │   ├── use-introduction
+│       │   │       │   │   │   │   ├── BuildingsUseIntroduction.tsx
+│       │   │       │   │   │   │   └── index.tsx
+│       │   │       │   │   │   ├── use-selection
+│       │   │       │   │   │   │   ├── BuildingsUseSelection.tsx
+│       │   │       │   │   │   │   └── index.tsx
+│       │   │       │   │   │   └── use-surface-areas
+│       │   │       │   │   │       ├── BuildingsUseSurfaceAreas.tsx
+│       │   │       │   │   │       └── index.tsx
+│       │   │       │   │   ├── expenses
+│       │   │       │   │   │   ├── installation
+│       │   │       │   │   │   │   ├── index.tsx
+│       │   │       │   │   │   │   ├── mappers.spec.ts
+│       │   │       │   │   │   │   └── mappers.ts
+│       │   │       │   │   │   ├── introduction
+│       │   │       │   │   │   │   ├── ProjectExpensesIntroduction.tsx
+│       │   │       │   │   │   │   └── index.tsx
+│       │   │       │   │   │   ├── reinstatement
+│       │   │       │   │   │   │   └── index.tsx
+│       │   │       │   │   │   ├── site-purchase-amounts
+│       │   │       │   │   │   │   └── index.tsx
+│       │   │       │   │   │   └── yearly-projected-costs
+│       │   │       │   │   │       ├── BuildingsOperationsExpensesForm.tsx
+│       │   │       │   │   │       └── index.tsx
+│       │   │       │   │   ├── name-and-description
+│       │   │       │   │   │   └── index.tsx
+│       │   │       │   │   ├── project-phase
+│       │   │       │   │   │   └── index.tsx
+│       │   │       │   │   ├── revenues
+│       │   │       │   │   │   ├── buildings-resale
+│       │   │       │   │   │   │   ├── BuildingsResaleRevenueForm.tsx
+│       │   │       │   │   │   │   └── index.tsx
+│       │   │       │   │   │   ├── financial-assistance
+│       │   │       │   │   │   │   └── index.tsx
+│       │   │       │   │   │   ├── introduction
+│       │   │       │   │   │   │   ├── ProjectRevenueIntroduction.tsx
+│       │   │       │   │   │   │   └── index.tsx
+│       │   │       │   │   │   ├── site-resale
+│       │   │       │   │   │   │   ├── SiteResaleRevenueForm.tsx
+│       │   │       │   │   │   │   └── index.tsx
+│       │   │       │   │   │   └── yearly-buildings-operations-revenues
+│       │   │       │   │   │       └── index.tsx
+│       │   │       │   │   ├── schedule
+│       │   │       │   │   │   └── projection
+│       │   │       │   │   │       └── index.tsx
+│       │   │       │   │   ├── site-resale
+│       │   │       │   │   │   ├── buildings-resale
+│       │   │       │   │   │   │   ├── BuildingsResaleForm.tsx
+│       │   │       │   │   │   │   └── index.tsx
+│       │   │       │   │   │   ├── introduction
+│       │   │       │   │   │   │   ├── SiteResaleIntroduction.tsx
+│       │   │       │   │   │   │   └── index.tsx
+│       │   │       │   │   │   └── selection
+│       │   │       │   │   │       ├── SiteResaleForm.tsx
+│       │   │       │   │   │       └── index.tsx
+│       │   │       │   │   ├── soils-decontamination
+│       │   │       │   │   │   ├── intro
+│       │   │       │   │   │   │   └── index.tsx
+│       │   │       │   │   │   ├── selection
+│       │   │       │   │   │   │   └── index.tsx
+│       │   │       │   │   │   └── surface-area
+│       │   │       │   │   │       └── index.tsx
+│       │   │       │   │   ├── spaces
+│       │   │       │   │   │   ├── development-plan-introduction
+│       │   │       │   │   │   │   ├── UrbanSpacesDevelopmentPlanIntroduction.tsx
+│       │   │       │   │   │   │   └── index.tsx
+│       │   │       │   │   │   ├── green-spaces
+│       │   │       │   │   │   │   ├── introduction
+│       │   │       │   │   │   │   │   ├── UrbanGreenSpacesIntroduction.tsx
+│       │   │       │   │   │   │   │   └── index.tsx
+│       │   │       │   │   │   │   └── surface-area-distribution
+│       │   │       │   │   │   │       ├── UrbanGreenSpacesDistribution.tsx
+│       │   │       │   │   │   │       └── index.tsx
+│       │   │       │   │   │   ├── introduction
+│       │   │       │   │   │   │   ├── SpacesIntroduction.tsx
+│       │   │       │   │   │   │   └── index.tsx
+│       │   │       │   │   │   ├── living-and-activity-spaces
+│       │   │       │   │   │   │   ├── introduction
+│       │   │       │   │   │   │   │   ├── LivingAndActivitySpacesIntroduction.tsx
+│       │   │       │   │   │   │   │   └── index.tsx
+│       │   │       │   │   │   │   └── surface-area-distribution
+│       │   │       │   │   │   │       ├── LivingAndActivitySpacesDistribution.tsx
+│       │   │       │   │   │   │       └── index.tsx
+│       │   │       │   │   │   ├── new-introduction
+│       │   │       │   │   │   │   ├── SpacesIntroduction.tsx
+│       │   │       │   │   │   │   └── index.tsx
+│       │   │       │   │   │   ├── new-selection
+│       │   │       │   │   │   │   ├── SpacesSelectionForm.tsx
+│       │   │       │   │   │   │   └── index.tsx
+│       │   │       │   │   │   ├── new-surface-area
+│       │   │       │   │   │   │   ├── SpacesSurfaceAreaForm.tsx
+│       │   │       │   │   │   │   └── index.tsx
+│       │   │       │   │   │   ├── public-spaces
+│       │   │       │   │   │   │   ├── introduction
+│       │   │       │   │   │   │   │   ├── PublicSpacesIntroduction.tsx
+│       │   │       │   │   │   │   │   └── index.tsx
+│       │   │       │   │   │   │   └── surface-area-distribution
+│       │   │       │   │   │   │       ├── PublicSpacesDistribution.tsx
+│       │   │       │   │   │   │       └── index.tsx
+│       │   │       │   │   │   ├── selection
+│       │   │       │   │   │   │   ├── SpacesCategoriesSelection.tsx
+│       │   │       │   │   │   │   └── index.tsx
+│       │   │       │   │   │   ├── soils-carbon-storage
+│       │   │       │   │   │   │   └── index.tsx
+│       │   │       │   │   │   ├── soils-summary
+│       │   │       │   │   │   │   ├── UrbanProjectSoilsSummary.tsx
+│       │   │       │   │   │   │   └── index.tsx
+│       │   │       │   │   │   └── surface-area
+│       │   │       │   │   │       ├── SpacesCategoriesSurfaceAreaDistributionForm.tsx
+│       │   │       │   │   │       └── index.tsx
+│       │   │       │   │   ├── stakeholders
+│       │   │       │   │   │   ├── developer
+│       │   │       │   │   │   │   └── index.tsx
+│       │   │       │   │   │   ├── introduction
+│       │   │       │   │   │   │   └── index.tsx
+│       │   │       │   │   │   └── reinstatement-contract-owner
+│       │   │       │   │   │       └── index.tsx
+│       │   │       │   │   ├── summary
+│       │   │       │   │   │   ├── UrbanProjectExpensesAndRevenuesSummary.tsx
+│       │   │       │   │   │   ├── UrbanProjectFormSummary.tsx
+│       │   │       │   │   │   └── index.tsx
+│       │   │       │   │   └── uses
+│       │   │       │   │       ├── floor-surface-area
+│       │   │       │   │       │   ├── UsesFloorSurfaceArea.tsx
+│       │   │       │   │       │   └── index.tsx
+│       │   │       │   │       ├── footprint-surface-area
+│       │   │       │   │       │   ├── UsesFootprintSurfaceArea.tsx
+│       │   │       │   │       │   └── index.tsx
+│       │   │       │   │       ├── introduction
+│       │   │       │   │       │   ├── UsesIntroduction.tsx
+│       │   │       │   │       │   └── index.tsx
+│       │   │       │   │       └── selection
+│       │   │       │   │           ├── UsesSelection.tsx
+│       │   │       │   │           └── index.tsx
+│       │   │       │   └── useProjectForm.tsx
+│       │   │       ├── router.ts
+│       │   │       └── siteNature.ts
+│       │   ├── test
+│       │   │   ├── setupTestEnv.ts
+│       │   │   └── testAppDependencies.ts
+│       │   └── vite-env.d.ts
+│       ├── tsconfig.json
+│       ├── tsconfig.node.json
+│       └── vite.config.ts
+├── docker-compose.db.yml
+├── docker-compose.e2e.yml
+├── docs
+│   └── feature-example.md
+├── package.json
+├── packages
+│   └── shared
+│       ├── .gitignore
+│       ├── .lintstagedrc
+│       ├── .oxlintrc.json
+│       ├── .prettierignore
+│       ├── .prettierrc.mjs
+│       ├── CLAUDE.md
+│       ├── package.json
+│       ├── src
+│       │   ├── adapters
+│       │   │   └── IDateProvider.ts
+│       │   ├── api-dtos
+│       │   │   ├── auth
+│       │   │   │   ├── getCurrentUser.dto.ts
+│       │   │   │   ├── index.ts
+│       │   │   │   └── register.dto.ts
+│       │   │   ├── index.ts
+│       │   │   ├── site-actions
+│       │   │   │   ├── index.ts
+│       │   │   │   └── updateSiteActionStatus.dto.ts
+│       │   │   ├── sites
+│       │   │   │   ├── createCustomSite.dto.ts
+│       │   │   │   ├── createExpressSite.dto.ts
+│       │   │   │   ├── getSiteFeatures.dto.ts
+│       │   │   │   ├── getSiteRealEstateValuation.dto.ts
+│       │   │   │   ├── getSiteView.dto.ts
+│       │   │   │   └── index.ts
+│       │   │   └── urban-sprawl-impacts-comparison
+│       │   │       ├── getUrbanSprawlImpactsComparison.dto.ts
+│       │   │       └── index.ts
+│       │   ├── co2eq
+│       │   │   ├── convertCarbonToCO2eq.ts
+│       │   │   └── index.ts
+│       │   ├── financial
+│       │   │   ├── index.ts
+│       │   │   ├── propertyTaxes.ts
+│       │   │   └── propertyTransferDuties.ts
+│       │   ├── index.ts
+│       │   ├── local-authority
+│       │   │   ├── formatCityWithPlacePreposition.spec.ts
+│       │   │   ├── formatCityWithPlacePreposition.ts
+│       │   │   ├── formatLocalAuthorityName.spec.ts
+│       │   │   ├── formatLocalAuthorityName.ts
+│       │   │   └── index.ts
+│       │   ├── object-entries
+│       │   │   └── index.ts
+│       │   ├── object-keys
+│       │   │   └── index.ts
+│       │   ├── reconversion-project-impacts
+│       │   │   ├── index.ts
+│       │   │   ├── projectImpactsDataView.types.ts
+│       │   │   ├── siteImpactsDataView.types.ts
+│       │   │   ├── socioEconomic.types.ts
+│       │   │   └── types.ts
+│       │   ├── reconversion-projects
+│       │   │   ├── _common
+│       │   │   │   ├── creationMode.ts
+│       │   │   │   ├── developmentPlan.ts
+│       │   │   │   ├── financialAssistanceRevenue.ts
+│       │   │   │   ├── index.ts
+│       │   │   │   ├── project-generator
+│       │   │   │   │   ├── DateProvider.mock.ts
+│       │   │   │   │   ├── DefaultProjectGenerator.ts
+│       │   │   │   │   ├── projectGenerationTemplates.ts
+│       │   │   │   │   └── types.ts
+│       │   │   │   ├── reinstatement
+│       │   │   │   │   ├── index.ts
+│       │   │   │   │   ├── reinstatementExpenses.ts
+│       │   │   │   │   └── reinstatementFullTimeJobs.ts
+│       │   │   │   ├── schedule
+│       │   │   │   │   ├── operationFirstYear.ts
+│       │   │   │   │   └── worksSchedule.ts
+│       │   │   │   └── sitePurchase.ts
+│       │   │   ├── index.ts
+│       │   │   ├── mutability.ts
+│       │   │   ├── reconversionProjectSchemas.ts
+│       │   │   ├── renewable-energy
+│       │   │   │   ├── index.ts
+│       │   │   │   ├── installationExpenses.ts
+│       │   │   │   ├── photovoltaicFullTimeJobs.ts
+│       │   │   │   ├── project-generator
+│       │   │   │   │   ├── PhotovoltaicPerformanceService.mock.ts
+│       │   │   │   │   ├── PhotovoltaicPowerPlantProjectGenerator.spec.ts
+│       │   │   │   │   ├── PhotovoltaicPowerPlantProjectGenerator.ts
+│       │   │   │   │   └── index.ts
+│       │   │   │   ├── projectPhase.ts
+│       │   │   │   ├── recurringExpenses.ts
+│       │   │   │   ├── recurringRevenue.ts
+│       │   │   │   ├── soilsTransformation.spec.ts
+│       │   │   │   ├── soilsTransformation.ts
+│       │   │   │   └── surfaceAreas.ts
+│       │   │   └── urban-project
+│       │   │       ├── category.ts
+│       │   │       ├── expectedPostDevelopmentResale.ts
+│       │   │       ├── fullTimeJobs.ts
+│       │   │       ├── index.ts
+│       │   │       ├── installationExpenses.ts
+│       │   │       ├── operationsExpenses.ts
+│       │   │       ├── project-generator
+│       │   │       │   ├── ManufacturingProjectGenerator.ts
+│       │   │       │   ├── NewUrbanCenterProjectGenerator.ts
+│       │   │       │   ├── OfficesProjectGenerator.ts
+│       │   │       │   ├── PublicFacilitiesProjectGenerator.ts
+│       │   │       │   ├── RenaturationProjectGenerator.ts
+│       │   │       │   ├── ResidentialProjectGenerator.ts
+│       │   │       │   ├── ResidentialTenseAreaProjectGenerator.ts
+│       │   │       │   ├── TourismAndCultureProjectGenerator.ts
+│       │   │       │   ├── UrbanProjectGenerator.ts
+│       │   │       │   ├── index.ts
+│       │   │       │   └── templates.ts
+│       │   │       ├── projectPhase.ts
+│       │   │       ├── revenues.ts
+│       │   │       ├── spaces
+│       │   │       │   ├── green-spaces
+│       │   │       │   │   └── urbanGreenSpaces.ts
+│       │   │       │   ├── living-and-activity-spaces
+│       │   │       │   │   ├── buildingsUse.ts
+│       │   │       │   │   └── urbanLivingAndActivitySpaces.ts
+│       │   │       │   ├── public-spaces
+│       │   │       │   │   └── urbanPublicSpaces.ts
+│       │   │       │   └── spaceCategories.ts
+│       │   │       └── uses
+│       │   │           └── urbanProjectUse.ts
+│       │   ├── services
+│       │   │   ├── index.ts
+│       │   │   ├── objects
+│       │   │   │   ├── filterObject.spec.ts
+│       │   │   │   └── filterObject.ts
+│       │   │   ├── round-numbers
+│       │   │   │   └── roundNumbers.ts
+│       │   │   ├── strings
+│       │   │   │   ├── capitalize.ts
+│       │   │   │   ├── startsByVowel.spec.ts
+│       │   │   │   └── startsByVowel.ts
+│       │   │   └── sum
+│       │   │       ├── sum.spec.ts
+│       │   │       ├── sum.ts
+│       │   │       └── sumIfNotNil.ts
+│       │   ├── site
+│       │   │   ├── agricultural-operation
+│       │   │   │   ├── agriculturalOperationGenerator.ts
+│       │   │   │   ├── fullTimeJobs.spec.ts
+│       │   │   │   ├── fullTimeJobs.ts
+│       │   │   │   ├── index.ts
+│       │   │   │   ├── operationActivity.ts
+│       │   │   │   ├── yearlyExpenses.ts
+│       │   │   │   ├── yearlyIncomes.ts
+│       │   │   │   └── yearlyIncomesAndExpenses.spec.ts
+│       │   │   ├── friche
+│       │   │   │   ├── fricheActivity.ts
+│       │   │   │   ├── fricheGenerator.ts
+│       │   │   │   ├── index.ts
+│       │   │   │   ├── spaces.spec.ts
+│       │   │   │   └── spaces.ts
+│       │   │   ├── index.ts
+│       │   │   ├── name.spec.ts
+│       │   │   ├── name.ts
+│       │   │   ├── natural-area
+│       │   │   │   ├── index.ts
+│       │   │   │   ├── naturalAreaGenerator.ts
+│       │   │   │   └── naturalAreaType.ts
+│       │   │   ├── site-generation
+│       │   │   │   └── index.ts
+│       │   │   ├── site.spec.ts
+│       │   │   ├── site.ts
+│       │   │   ├── statu-quo-impacts
+│       │   │   │   └── impacts.types.ts
+│       │   │   ├── yearlyExpenses.ts
+│       │   │   └── yearlyIncome.ts
+│       │   ├── siteActions.ts
+│       │   ├── soils
+│       │   │   ├── constrainedSoilTypes.spec.ts
+│       │   │   ├── index.ts
+│       │   │   ├── soilDistribution.ts
+│       │   │   ├── soilDistributionByType.ts
+│       │   │   └── soilsDistributionObjToArray.ts
+│       │   ├── surface-area
+│       │   │   ├── index.ts
+│       │   │   ├── surfaceArea.spec.ts
+│       │   │   ├── surfaceArea.ts
+│       │   │   ├── surfaceAreaDistribution.spec.ts
+│       │   │   └── surfaceAreaDistribution.ts
+│       │   └── urban-sprawl-impacts-comparison
+│       │       ├── index.ts
+│       │       └── types.ts
+│       ├── tsconfig.json
+│       └── tsdown.config.ts
+├── pnpm-lock.yaml
+├── pnpm-workspace.yaml
+└── scripts
+    ├── create-worktree.sh
+    └── remove-worktree.sh
+723 directories, 1879 files
