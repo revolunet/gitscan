@@ -1,0 +1,34 @@
+version: "3"
+services:
+  database:
+    # this will need to be replaced, as the DB content is now really old
+    image: antoinede/transport_data_gouv_dev_database
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: transport_repo
+      POSTGRES_PASSWORD: postgres # obviously do not use this in production
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - 5000:5000
+    volumes:
+      - build:/app/_build
+      - deps:/app/deps
+      - ./apps:/app/apps/
+    env_file:
+        - .env
+    environment:
+        PG_URL: ecto://postgres:postgres@database/transport_repo
+        PG_URL_TEST: ecto://postgres:postgres@database/transport_test
+    depends_on:
+        - database
+volumes:
+  pgdata:
+  .:
+  build:
+  .:
+  deps:
+  .:
