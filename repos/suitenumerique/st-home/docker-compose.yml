@@ -1,0 +1,165 @@
+name: st-home
+
+# Services for local development
+services:
+  postgresql:
+    image: postgres:16.6
+    environment:
+      - POSTGRES_DB=st_home_local
+      - POSTGRES_USER=usr
+      - POSTGRES_PASSWORD=pwd
+    ports:
+      - "8951:5432"
+
+  redis:
+    image: redis:5
+    ports:
+      - "8952:6379"
+
+  # Don't launch this with "docker compose up"
+  data_tests:
+    profiles:
+      - tools
+    volumes:
+      - ./data:/app/data
+    build:
+      context: data/
+      target: runtime-dev
+    pull_policy: build
+    command: pytest tests/ -vv
+
+  data_poetry:
+    profiles:
+      - tools
+    volumes:
+      - ./data:/app/data
+    build:
+      context: data/
+      target: poetry
+    pull_policy: build
+
+  worker:
+    build:
+      context: data/
+      target: runtime-dev
+    pull_policy: build
+    depends_on:
+      - postgresql
+      - redis
+    volumes:
+      - ./data:/app/data
+    env_file:
+      - .env.defaults
+      - .env.local
+    command: watchmedo auto-restart --patterns="*.py" --recursive -- celery -A celery_app worker -E -Q celery,check_website,check_dns --loglevel=debug --concurrency=2
+
+  flower:
+    build:
+      context: data/
+      target: runtime-dev
+    depends_on:
+      - redis
+    env_file:
+      - .env.defaults
+      - .env.local
+    volumes:
+      - ./data:/app/data
+    ports:
+      - "8953:8953"
+    command: celery -A celery_app flower --port=8953
+
+  flower_staging:
+    profiles:
+      - tools_staging
+    volumes:
+      - ./data:/app/data
+    build:
+      context: data/
+      target: runtime-dev
+    pull_policy: build
+    env_file:
+      - .env.defaults
+      - .env.staging
+    ports:
+      - "8953:8953"
+    command: celery -A celery_app flower --port=8953
+
+  flower_production:
+    profiles:
+      - tools_production
+    volumes:
+      - ./data:/app/data
+    build:
+      context: data/
+      target: runtime-dev
+    pull_policy: build
+    env_file:
+      - .env.defaults
+      - .env.production
+    ports:
+      - "8953:8953"
+    command: celery -A celery_app flower --port=8953
+
+  frontend-dev:
+    build:
+      context: .
+      target: runtime-dev
+    ports:
+      - "8950:8950"
+    volumes:
+      - ./:/app
+      - ./webcomponents:/app/public/webcomponents
+    env_file:
+      - .env.defaults
+      - .env.local
+    depends_on:
+      - postgresql
+
+  frontend-base:
+    build:
+      context: .
+      target: runtime-dev
+    volumes:
+      - ./:/app
+    env_file:
+      - .env.defaults
+      - .env.local
+
+  frontend-built:
+    build:
+      context: .
+      target: runtime-prod
+    ports:
+      - "8950:8950"
+    env_file:
+      - .env.defaults
+      - .env.local
+      - .env.staging
+    depends_on:
+      - postgresql
+
+  frontend-base-amd64:
+    build:
+      context: .
+      target: runtime-dev
+    platform: linux/amd64
+    volumes:
+      - ./:/app
+    env_file:
+      - .env.defaults
+      - .env.local
+
+  frontend-production:
+    profiles:
+      - frontend_production
+    volumes:
+      - ./:/app
+    build:
+      context: .
+      target: runtime-dev
+    pull_policy: build
+    env_file:
+      - .env.defaults
+      - .env.production
+    ports:
+      - "8950:8950"
