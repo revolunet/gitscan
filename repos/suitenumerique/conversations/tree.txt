@@ -1,0 +1,843 @@
+.
+├── .codespellrc
+├── .dockerignore
+├── .env
+├── .gitattributes
+├── .github
+│   ├── ISSUE_TEMPLATE
+│   │   ├── Bug_report.md
+│   │   ├── Feature_request.md
+│   │   └── Support_question.md
+│   ├── ISSUE_TEMPLATE.md
+│   ├── PULL_REQUEST_TEMPLATE.md
+│   └── workflows
+│       ├── conversations-frontend.yml
+│       ├── conversations.yml
+│       ├── crowdin_download.yml
+│       ├── crowdin_upload.yml
+│       ├── dependencies.yml
+│       ├── docker-hub.yml
+│       ├── helmfile-linter.yaml
+│       └── release-helm-chart.yaml
+├── .gitignore
+├── .gitlint
+├── CHANGELOG.md
+├── CODE_OF_CONDUCT.md
+├── CONTRIBUTING.md
+├── Dockerfile
+├── LICENSE
+├── Makefile
+├── README.md
+├── SECURITY.md
+├── bin
+│   ├── Tiltfile
+│   ├── _config.sh
+│   ├── compose
+│   ├── install-hooks.sh
+│   ├── manage
+│   ├── pylint
+│   ├── pytest
+│   ├── start-kind.sh
+│   ├── state
+│   ├── terraform
+│   └── update_openapi_schema
+├── compose-e2e.yml
+├── compose.with_model.override.yml
+├── compose.yml
+├── crowdin
+│   └── config.yml
+├── docker
+│   ├── auth
+│   │   └── realm.json
+│   └── files
+│       ├── etc
+│       │   └── nginx
+│       │       └── conf.d
+│       │           └── default.conf
+│       └── usr
+│           └── local
+│               ├── bin
+│               │   └── entrypoint
+│               └── etc
+│                   └── gunicorn
+│                       └── conversations.py
+├── docs
+│   ├── architecture.md
+│   ├── assets
+│   │   ├── banner-conversations.png
+│   │   └── europe_opensource.png
+│   ├── attachments.md
+│   ├── env.md
+│   ├── examples
+│   │   ├── conversations.values.yaml
+│   │   ├── keycloak.values.yaml
+│   │   ├── minio.values.yaml
+│   │   ├── postgresql.values.yaml
+│   │   └── redis.values.yaml
+│   ├── file-upload-modes.md
+│   ├── installation.md
+│   ├── llm-configuration.md
+│   ├── release.md
+│   ├── system-requirements.md
+│   ├── theming.md
+│   ├── tools
+│   │   ├── get_current_weather.md
+│   │   ├── web_search_brave.md
+│   │   └── web_search_tavily.md
+│   ├── tools.md
+│   └── troubleshoot.md
+├── env.d
+│   └── development
+│       ├── common.dist
+│       ├── common.e2e.dist
+│       ├── crowdin.dist
+│       ├── kc_postgresql.dist
+│       └── postgresql.dist
+├── gitlint
+│   └── gitlint_emoji.py
+├── renovate.json
+└── src
+    ├── OpenMockLLM
+    │   ├── Dockerfile
+    │   └── README.md
+    ├── backend
+    │   ├── .pylintrc
+    │   ├── MANIFEST.in
+    │   ├── __init__.py
+    │   ├── activation_codes
+    │   │   ├── __init__.py
+    │   │   ├── admin.py
+    │   │   ├── exceptions.py
+    │   │   ├── factories.py
+    │   │   ├── migrations
+    │   │   │   ├── 0001_initial.py
+    │   │   │   └── __init__.py
+    │   │   ├── models.py
+    │   │   ├── permissions.py
+    │   │   ├── serializers.py
+    │   │   ├── tests
+    │   │   │   ├── __init__.py
+    │   │   │   ├── test_integration.py
+    │   │   │   ├── test_models.py
+    │   │   │   ├── test_permissions.py
+    │   │   │   ├── test_serializers.py
+    │   │   │   └── test_viewsets.py
+    │   │   └── viewsets.py
+    │   ├── chat
+    │   │   ├── __init__.py
+    │   │   ├── admin.py
+    │   │   ├── agent_rag
+    │   │   │   ├── __init__.py
+    │   │   │   ├── albert_api_constants.py
+    │   │   │   ├── constants.py
+    │   │   │   ├── document_converter
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   └── markitdown.py
+    │   │   │   ├── document_rag_backends
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   ├── albert_rag_backend.py
+    │   │   │   │   └── base_rag_backend.py
+    │   │   │   ├── document_search
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   └── albert_api.py
+    │   │   │   └── web_search
+    │   │   │       ├── __init__.py
+    │   │   │       ├── albert_api.py
+    │   │   │       ├── base.py
+    │   │   │       └── mocked.py
+    │   │   ├── agents
+    │   │   │   ├── __init__.py
+    │   │   │   ├── base.py
+    │   │   │   ├── conversation.py
+    │   │   │   ├── local_media_url_processors.py
+    │   │   │   └── summarize.py
+    │   │   ├── ai_sdk_types.py
+    │   │   ├── apps.py
+    │   │   ├── clients
+    │   │   │   ├── __init__.py
+    │   │   │   ├── async_to_sync.py
+    │   │   │   ├── exceptions.py
+    │   │   │   ├── pydantic_ai.py
+    │   │   │   └── pydantic_ui_message_converter.py
+    │   │   ├── factories.py
+    │   │   ├── keepalive.py
+    │   │   ├── llm_configuration.py
+    │   │   ├── malware_detection.py
+    │   │   ├── mcp_servers.py
+    │   │   ├── migrations
+    │   │   │   ├── 0001_initial.py
+    │   │   │   ├── 0002_fix_source_type_in_messages.py
+    │   │   │   ├── 0003_chatconversationcontext.py
+    │   │   │   ├── 0004_chatconversationattachment_and_more.py
+    │   │   │   ├── 0005_chatconversation_title_set_by_user_at.py
+    │   │   │   └── __init__.py
+    │   │   ├── models.py
+    │   │   ├── serializers.py
+    │   │   ├── tests
+    │   │   │   ├── __init__.py
+    │   │   │   ├── agent_rag
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   ├── document_converter
+    │   │   │   │   │   ├── __init__.py
+    │   │   │   │   │   └── test_markitdown.py
+    │   │   │   │   ├── document_search
+    │   │   │   │   │   ├── __init__.py
+    │   │   │   │   │   └── test_albert_api.py
+    │   │   │   │   ├── test_albert_api_constants.py
+    │   │   │   │   └── web_search
+    │   │   │   │       ├── __init__.py
+    │   │   │   │       └── test_albert_api.py
+    │   │   │   ├── agents
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   ├── test_base_agent.py
+    │   │   │   │   ├── test_build_conversation_agent.py
+    │   │   │   │   └── test_title_generation_agent.py
+    │   │   │   ├── clients
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   ├── pydantic_ai
+    │   │   │   │   │   ├── __init__.py
+    │   │   │   │   │   ├── test_add_document_rag_search_tool_from_setting.py
+    │   │   │   │   │   ├── test_langfuse_tracing.py
+    │   │   │   │   │   └── test_stream_methods.py
+    │   │   │   │   └── pydantic_ui_message_converter
+    │   │   │   │       ├── __init__.py
+    │   │   │   │       ├── test_model_message_to_ui_message.py
+    │   │   │   │       └── test_ui_message_to_user_content.py
+    │   │   │   ├── conftest.py
+    │   │   │   ├── serializers
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   ├── test_chat_conversation_input_serializer.py
+    │   │   │   │   └── test_chat_conversation_request_serializer.py
+    │   │   │   ├── test_llm_configuration.py
+    │   │   │   ├── test_local_media_url_processors.py
+    │   │   │   ├── test_malware_detection.py
+    │   │   │   ├── tools
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   ├── test_document_generic_search_rag.py
+    │   │   │   │   ├── test_document_summarize.py
+    │   │   │   │   ├── test_utils.py
+    │   │   │   │   ├── test_web_search_brave.py
+    │   │   │   │   └── test_web_search_tavily.py
+    │   │   │   ├── utils.py
+    │   │   │   └── views
+    │   │   │       ├── __init__.py
+    │   │   │       ├── attachments
+    │   │   │       │   ├── __init__.py
+    │   │   │       │   ├── test_attachments.py
+    │   │   │       │   └── test_backend_upload.py
+    │   │   │       ├── chat
+    │   │   │       │   ├── __init__.py
+    │   │   │       │   ├── conversations
+    │   │   │       │   │   ├── __init__.py
+    │   │   │       │   │   ├── conftest.py
+    │   │   │       │   │   ├── test_conversation.py
+    │   │   │       │   │   ├── test_conversation_with_document_upload.py
+    │   │   │       │   │   ├── test_conversation_with_document_url.py
+    │   │   │       │   │   ├── test_conversation_with_history.py
+    │   │   │       │   │   ├── test_conversation_with_image_url.py
+    │   │   │       │   │   ├── test_score_message.py
+    │   │   │       │   │   └── test_stop_streaming.py
+    │   │   │       │   ├── test_create.py
+    │   │   │       │   ├── test_delete.py
+    │   │   │       │   ├── test_list.py
+    │   │   │       │   ├── test_media_auth.py
+    │   │   │       │   ├── test_retrieve.py
+    │   │   │       │   └── test_update.py
+    │   │   │       ├── test_file_stream.py
+    │   │   │       └── test_llm_configuration_view.py
+    │   │   ├── tools
+    │   │   │   ├── __init__.py
+    │   │   │   ├── document_generic_search_rag.py
+    │   │   │   ├── document_search_rag.py
+    │   │   │   ├── document_summarize.py
+    │   │   │   ├── exceptions.py
+    │   │   │   ├── fake_current_weather.py
+    │   │   │   ├── utils.py
+    │   │   │   ├── web_seach_albert_rag.py
+    │   │   │   ├── web_search_brave.py
+    │   │   │   └── web_search_tavily.py
+    │   │   ├── vercel_ai_sdk
+    │   │   │   ├── __init__.py
+    │   │   │   ├── core
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   ├── events_v4.py
+    │   │   │   │   ├── events_v5.py
+    │   │   │   │   └── types.py
+    │   │   │   └── encoder
+    │   │   │       ├── __init__.py
+    │   │   │       └── encoder.py
+    │   │   └── views.py
+    │   ├── conftest.py
+    │   ├── conversations
+    │   │   ├── __init__.py
+    │   │   ├── asgi.py
+    │   │   ├── brave_settings.py
+    │   │   ├── configuration
+    │   │   │   ├── llm
+    │   │   │   │   ├── default.e2e.json
+    │   │   │   │   └── default.json
+    │   │   │   └── theme
+    │   │   │       └── default.json
+    │   │   ├── settings.py
+    │   │   ├── tests
+    │   │   │   ├── __init__.py
+    │   │   │   └── test_settings_llm_configurations.py
+    │   │   ├── urls.py
+    │   │   └── wsgi.py
+    │   ├── core
+    │   │   ├── __init__.py
+    │   │   ├── admin.py
+    │   │   ├── api
+    │   │   │   ├── __init__.py
+    │   │   │   ├── serializers.py
+    │   │   │   └── viewsets.py
+    │   │   ├── apps.py
+    │   │   ├── authentication
+    │   │   │   ├── __init__.py
+    │   │   │   └── backends.py
+    │   │   ├── brevo.py
+    │   │   ├── enums.py
+    │   │   ├── factories.py
+    │   │   ├── feature_flags
+    │   │   │   ├── __init__.py
+    │   │   │   ├── flags.py
+    │   │   │   └── helpers.py
+    │   │   ├── file_upload
+    │   │   │   ├── __init__.py
+    │   │   │   ├── enums.py
+    │   │   │   ├── exceptions.py
+    │   │   │   ├── malware_detection.py
+    │   │   │   ├── mixins.py
+    │   │   │   ├── serializers.py
+    │   │   │   └── utils.py
+    │   │   ├── filters.py
+    │   │   ├── management
+    │   │   │   ├── __init__.py
+    │   │   │   └── commands
+    │   │   │       ├── __init__.py
+    │   │   │       └── bucket_cors.py
+    │   │   ├── migrations
+    │   │   │   ├── 0001_initial.py
+    │   │   │   ├── 0002_user_allow_conversation_analytics.py
+    │   │   │   ├── 0003_alter_user_short_name.py
+    │   │   │   └── __init__.py
+    │   │   ├── models.py
+    │   │   ├── permissions.py
+    │   │   ├── static
+    │   │   │   └── images
+    │   │   │       └── logo.png
+    │   │   ├── tests
+    │   │   │   ├── __init__.py
+    │   │   │   ├── authentication
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   └── test_backends.py
+    │   │   │   ├── conftest.py
+    │   │   │   ├── feature_flags
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   ├── test_flags.py
+    │   │   │   │   └── test_helpers.py
+    │   │   │   ├── file_upload
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   ├── test_generate_temporary_url.py
+    │   │   │   │   ├── test_malware_detection.py
+    │   │   │   │   └── test_utils.py
+    │   │   │   ├── swagger
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   └── test_openapi_schema.py
+    │   │   │   ├── test_api_config.py
+    │   │   │   ├── test_api_users.py
+    │   │   │   ├── test_enums.py
+    │   │   │   ├── test_models_users.py
+    │   │   │   └── test_settings.py
+    │   │   └── urls.py
+    │   ├── demo
+    │   │   ├── __init__.py
+    │   │   ├── defaults.py
+    │   │   ├── management
+    │   │   │   ├── __init__.py
+    │   │   │   └── commands
+    │   │   │       ├── __init__.py
+    │   │   │       ├── create_demo.py
+    │   │   │       └── createsuperuser.py
+    │   │   └── tests
+    │   │       ├── __init__.py
+    │   │       └── test_commands_create_demo.py
+    │   ├── locale
+    │   │   ├── de_DE
+    │   │   │   └── LC_MESSAGES
+    │   │   │       └── django.po
+    │   │   ├── en_US
+    │   │   │   └── LC_MESSAGES
+    │   │   │       └── django.po
+    │   │   ├── fr_FR
+    │   │   │   └── LC_MESSAGES
+    │   │   │       └── django.po
+    │   │   ├── nl_NL
+    │   │   │   └── LC_MESSAGES
+    │   │   │       └── django.po
+    │   │   ├── ru_RU
+    │   │   │   └── LC_MESSAGES
+    │   │   │       └── django.po
+    │   │   └── uk_UA
+    │   │       └── LC_MESSAGES
+    │   │           └── django.po
+    │   ├── manage.py
+    │   ├── pyproject.toml
+    │   └── uv.lock
+    ├── frontend
+    │   ├── .prettierrc.js
+    │   ├── Dockerfile
+    │   ├── apps
+    │   │   ├── conversations
+    │   │   │   ├── .env
+    │   │   │   ├── .env.development
+    │   │   │   ├── .env.test
+    │   │   │   ├── .eslintrc.js
+    │   │   │   ├── .gitignore
+    │   │   │   ├── .prettierignore
+    │   │   │   ├── README.md
+    │   │   │   ├── conf
+    │   │   │   │   └── default.conf
+    │   │   │   ├── cunningham.ts
+    │   │   │   ├── jest
+    │   │   │   │   └── mocks
+    │   │   │   │       ├── ComponentMock.js
+    │   │   │   │       ├── fileMock.js
+    │   │   │   │       └── svg.js
+    │   │   │   ├── jest.config.ts
+    │   │   │   ├── jest.setup.ts
+    │   │   │   ├── next-env.d.ts
+    │   │   │   ├── next.config.js
+    │   │   │   ├── package.json
+    │   │   │   ├── public
+    │   │   │   │   └── assets
+    │   │   │   │       ├── SC1-en.webm
+    │   │   │   │       ├── SC1-fr.webm
+    │   │   │   │       ├── favicon-assistant-dark.ico
+    │   │   │   │       ├── favicon-dark-dsfr.ico
+    │   │   │   │       ├── favicon-dark.png
+    │   │   │   │       ├── favicon-dsfr.ico
+    │   │   │   │       ├── favicon-dsfr.png
+    │   │   │   │       ├── favicon-light.ico
+    │   │   │   │       ├── favicon-light.png
+    │   │   │   │       ├── favicon.ico
+    │   │   │   │       ├── icon-assistant.svg
+    │   │   │   │       ├── img-not-found.svg
+    │   │   │   │       ├── logo-gouv.png
+    │   │   │   │       ├── logo-gouv.svg
+    │   │   │   │       ├── logo-pdf.svg
+    │   │   │   │       ├── logo-suite-numerique.png
+    │   │   │   │       └── mail-header-background.png
+    │   │   │   ├── src
+    │   │   │   │   ├── api
+    │   │   │   │   │   ├── APIError.ts
+    │   │   │   │   │   ├── __tests__
+    │   │   │   │   │   │   ├── APIError.test.ts
+    │   │   │   │   │   │   ├── config.test.ts
+    │   │   │   │   │   │   ├── fetchApi.test.tsx
+    │   │   │   │   │   │   ├── helpers.test.tsx
+    │   │   │   │   │   │   └── utils.test.ts
+    │   │   │   │   │   ├── config.ts
+    │   │   │   │   │   ├── fetchApi.ts
+    │   │   │   │   │   ├── helpers.tsx
+    │   │   │   │   │   ├── index.ts
+    │   │   │   │   │   ├── types.ts
+    │   │   │   │   │   └── utils.ts
+    │   │   │   │   ├── assets
+    │   │   │   │   │   ├── icons
+    │   │   │   │   │   │   ├── conversation.svg
+    │   │   │   │   │   │   ├── icon-401.png
+    │   │   │   │   │   │   ├── icon-403.png
+    │   │   │   │   │   │   ├── icon-404.svg
+    │   │   │   │   │   │   ├── icon-docs.svg
+    │   │   │   │   │   │   ├── icon-group.svg
+    │   │   │   │   │   │   ├── icon-group2.svg
+    │   │   │   │   │   │   ├── icon-user.svg
+    │   │   │   │   │   │   ├── left-panel-bold.svg
+    │   │   │   │   │   │   ├── new-message-bold.svg
+    │   │   │   │   │   │   └── search.svg
+    │   │   │   │   │   ├── logo
+    │   │   │   │   │   │   ├── assistant.svg
+    │   │   │   │   │   │   ├── logo-alpha.svg
+    │   │   │   │   │   │   ├── logo-assistant-beta.svg
+    │   │   │   │   │   │   ├── logo-assistant.svg
+    │   │   │   │   │   │   └── logo-beta.svg
+    │   │   │   │   │   └── lotties
+    │   │   │   │   │       └── searching.json
+    │   │   │   │   ├── components
+    │   │   │   │   │   ├── Box.tsx
+    │   │   │   │   │   ├── BoxButton.tsx
+    │   │   │   │   │   ├── Card.tsx
+    │   │   │   │   │   ├── CustomToast.tsx
+    │   │   │   │   │   ├── DropButton.tsx
+    │   │   │   │   │   ├── DropdownMenu.tsx
+    │   │   │   │   │   ├── Effect.tsx
+    │   │   │   │   │   ├── Icon.tsx
+    │   │   │   │   │   ├── InfiniteScroll.tsx
+    │   │   │   │   │   ├── Link.tsx
+    │   │   │   │   │   ├── LoadMoreText.tsx
+    │   │   │   │   │   ├── Loader.tsx
+    │   │   │   │   │   ├── SideModal.tsx
+    │   │   │   │   │   ├── Text.tsx
+    │   │   │   │   │   ├── TextErrors.tsx
+    │   │   │   │   │   ├── ToastProvider.tsx
+    │   │   │   │   │   ├── __tests__
+    │   │   │   │   │   │   ├── Box.spec.tsx
+    │   │   │   │   │   │   └── Link.test.tsx
+    │   │   │   │   │   ├── index.ts
+    │   │   │   │   │   ├── quick-search
+    │   │   │   │   │   │   ├── QuickSearch.tsx
+    │   │   │   │   │   │   ├── QuickSearchGroup.tsx
+    │   │   │   │   │   │   ├── QuickSearchInput.tsx
+    │   │   │   │   │   │   ├── QuickSearchItem.tsx
+    │   │   │   │   │   │   ├── QuickSearchItemContent.tsx
+    │   │   │   │   │   │   ├── QuickSearchStyle.tsx
+    │   │   │   │   │   │   └── index.ts
+    │   │   │   │   │   └── separators
+    │   │   │   │   │       ├── HorizontalSeparator.tsx
+    │   │   │   │   │       ├── SeparatedSection.tsx
+    │   │   │   │   │       └── index.ts
+    │   │   │   │   ├── core
+    │   │   │   │   │   ├── AppProvider.tsx
+    │   │   │   │   │   ├── api
+    │   │   │   │   │   │   └── useUserUpdate.ts
+    │   │   │   │   │   ├── config
+    │   │   │   │   │   │   ├── ConfigProvider.tsx
+    │   │   │   │   │   │   ├── api
+    │   │   │   │   │   │   │   ├── index.ts
+    │   │   │   │   │   │   │   └── useConfig.tsx
+    │   │   │   │   │   │   ├── hooks
+    │   │   │   │   │   │   │   ├── index.ts
+    │   │   │   │   │   │   │   └── useMediaUrl.tsx
+    │   │   │   │   │   │   └── index.ts
+    │   │   │   │   │   ├── index.ts
+    │   │   │   │   │   └── settings.ts
+    │   │   │   │   ├── cunningham
+    │   │   │   │   │   ├── __tests__
+    │   │   │   │   │   │   └── useCunninghamTheme.spec.tsx
+    │   │   │   │   │   ├── cunningham-style.css
+    │   │   │   │   │   ├── cunningham-tokens.css
+    │   │   │   │   │   ├── cunningham-tokens.ts
+    │   │   │   │   │   ├── index.ts
+    │   │   │   │   │   └── useCunninghamTheme.tsx
+    │   │   │   │   ├── custom-next.d.ts
+    │   │   │   │   ├── features
+    │   │   │   │   │   ├── attachments
+    │   │   │   │   │   │   ├── api
+    │   │   │   │   │   │   │   ├── index.ts
+    │   │   │   │   │   │   │   └── useCreateConversationAttachment.tsx
+    │   │   │   │   │   │   ├── hooks
+    │   │   │   │   │   │   │   └── useUploadFile.tsx
+    │   │   │   │   │   │   └── types.tsx
+    │   │   │   │   │   ├── auth
+    │   │   │   │   │   │   ├── __tests__
+    │   │   │   │   │   │   │   └── utils.test.tsx
+    │   │   │   │   │   │   ├── api
+    │   │   │   │   │   │   │   ├── index.ts
+    │   │   │   │   │   │   │   ├── types.ts
+    │   │   │   │   │   │   │   ├── useActivationStatus.tsx
+    │   │   │   │   │   │   │   ├── useAuthQuery.tsx
+    │   │   │   │   │   │   │   └── useRegisterNotification.tsx
+    │   │   │   │   │   │   ├── assets
+    │   │   │   │   │   │   │   ├── assistant-code.svg
+    │   │   │   │   │   │   │   ├── button-proconnect.svg
+    │   │   │   │   │   │   │   ├── docs.svg
+    │   │   │   │   │   │   │   ├── fichiers.svg
+    │   │   │   │   │   │   │   ├── tchap.svg
+    │   │   │   │   │   │   │   └── visio.svg
+    │   │   │   │   │   │   ├── components
+    │   │   │   │   │   │   │   ├── ActivationPage.tsx
+    │   │   │   │   │   │   │   ├── Auth.tsx
+    │   │   │   │   │   │   │   ├── ButtonLogin.tsx
+    │   │   │   │   │   │   │   └── index.ts
+    │   │   │   │   │   │   ├── conf.ts
+    │   │   │   │   │   │   ├── hooks
+    │   │   │   │   │   │   │   ├── __tests__
+    │   │   │   │   │   │   │   │   └── useAuth.test.tsx
+    │   │   │   │   │   │   │   ├── index.ts
+    │   │   │   │   │   │   │   └── useAuth.tsx
+    │   │   │   │   │   │   ├── index.ts
+    │   │   │   │   │   │   └── utils.ts
+    │   │   │   │   │   ├── chat
+    │   │   │   │   │   │   ├── api
+    │   │   │   │   │   │   │   ├── useChat.tsx
+    │   │   │   │   │   │   │   ├── useConversation.tsx
+    │   │   │   │   │   │   │   ├── useConversations.tsx
+    │   │   │   │   │   │   │   ├── useCreateConversation.tsx
+    │   │   │   │   │   │   │   ├── useLLMConfiguration.tsx
+    │   │   │   │   │   │   │   ├── useRemoveConversation.tsx
+    │   │   │   │   │   │   │   ├── useRenameConversation.tsx
+    │   │   │   │   │   │   │   └── useScoreMessage.tsx
+    │   │   │   │   │   │   ├── assets
+    │   │   │   │   │   │   │   └── files.svg
+    │   │   │   │   │   │   ├── components
+    │   │   │   │   │   │   │   ├── AttachmentList.tsx
+    │   │   │   │   │   │   │   ├── Chat.tsx
+    │   │   │   │   │   │   │   ├── ChatError.tsx
+    │   │   │   │   │   │   │   ├── CodeBlock.tsx
+    │   │   │   │   │   │   │   ├── FeedbackButtons.tsx
+    │   │   │   │   │   │   │   ├── InputChat.tsx
+    │   │   │   │   │   │   │   ├── InputChatAction.tsx
+    │   │   │   │   │   │   │   ├── ModelSelector.tsx
+    │   │   │   │   │   │   │   ├── ScrollDown.tsx
+    │   │   │   │   │   │   │   ├── SendButton.tsx
+    │   │   │   │   │   │   │   ├── SourceItem.tsx
+    │   │   │   │   │   │   │   ├── SourceItemList.tsx
+    │   │   │   │   │   │   │   ├── SuggestionCarousel.tsx
+    │   │   │   │   │   │   │   ├── ToolInvocationItem.tsx
+    │   │   │   │   │   │   │   ├── WelcomeMessage.tsx
+    │   │   │   │   │   │   │   └── __tests__
+    │   │   │   │   │   │   │       ├── InputChat.test.tsx
+    │   │   │   │   │   │   │       ├── InputChatAction.test.tsx
+    │   │   │   │   │   │   │       ├── SuggestionCarousel.test.tsx
+    │   │   │   │   │   │   │       └── WelcomeMessage.test.tsx
+    │   │   │   │   │   │   ├── hooks
+    │   │   │   │   │   │   │   ├── __tests__
+    │   │   │   │   │   │   │   │   ├── useFileDragDrop.test.tsx
+    │   │   │   │   │   │   │   │   └── useFileUrls.test.tsx
+    │   │   │   │   │   │   │   ├── index.ts
+    │   │   │   │   │   │   │   ├── useChatScroll.ts
+    │   │   │   │   │   │   │   ├── useFileDragDrop.tsx
+    │   │   │   │   │   │   │   ├── useFileUrls.tsx
+    │   │   │   │   │   │   │   └── useSourceMetadata.ts
+    │   │   │   │   │   │   ├── stores
+    │   │   │   │   │   │   │   ├── useChatPreferencesStore.ts
+    │   │   │   │   │   │   │   ├── usePendingChatStore.ts
+    │   │   │   │   │   │   │   └── useScrollStore.ts
+    │   │   │   │   │   │   └── types.tsx
+    │   │   │   │   │   ├── feedback
+    │   │   │   │   │   │   └── Feedback.tsx
+    │   │   │   │   │   ├── footer
+    │   │   │   │   │   │   ├── Footer.tsx
+    │   │   │   │   │   │   ├── assets
+    │   │   │   │   │   │   │   └── external-link.svg
+    │   │   │   │   │   │   ├── index.tsx
+    │   │   │   │   │   │   └── types.ts
+    │   │   │   │   │   ├── header
+    │   │   │   │   │   │   ├── components
+    │   │   │   │   │   │   │   ├── ButtonToggleLeftPanel.tsx
+    │   │   │   │   │   │   │   ├── ButtonTogglePanel.tsx
+    │   │   │   │   │   │   │   ├── Header.tsx
+    │   │   │   │   │   │   │   ├── LaGaufre.tsx
+    │   │   │   │   │   │   │   ├── Title.tsx
+    │   │   │   │   │   │   │   └── index.ts
+    │   │   │   │   │   │   ├── conf.ts
+    │   │   │   │   │   │   └── index.ts
+    │   │   │   │   │   ├── home
+    │   │   │   │   │   │   ├── assets
+    │   │   │   │   │   │   │   ├── SC5.png
+    │   │   │   │   │   │   │   ├── banner.svg
+    │   │   │   │   │   │   │   └── github.svg
+    │   │   │   │   │   │   ├── components
+    │   │   │   │   │   │   │   ├── HomeBanner.tsx
+    │   │   │   │   │   │   │   ├── HomeBottom.tsx
+    │   │   │   │   │   │   │   ├── HomeContent.tsx
+    │   │   │   │   │   │   │   ├── HomeHeader.tsx
+    │   │   │   │   │   │   │   ├── HomeSection.tsx
+    │   │   │   │   │   │   │   └── index.ts
+    │   │   │   │   │   │   └── index.ts
+    │   │   │   │   │   ├── language
+    │   │   │   │   │   │   ├── components
+    │   │   │   │   │   │   │   ├── LanguagePicker.tsx
+    │   │   │   │   │   │   │   └── index.ts
+    │   │   │   │   │   │   ├── hooks
+    │   │   │   │   │   │   │   ├── index.ts
+    │   │   │   │   │   │   │   ├── useCustomTranslations.ts
+    │   │   │   │   │   │   │   └── useSynchronizedLanguage.ts
+    │   │   │   │   │   │   ├── index.ts
+    │   │   │   │   │   │   └── utils
+    │   │   │   │   │   │       ├── index.ts
+    │   │   │   │   │   │       └── locale.ts
+    │   │   │   │   │   ├── left-panel
+    │   │   │   │   │   │   ├── assets
+    │   │   │   │   │   │   │   ├── bubble-bold.svg
+    │   │   │   │   │   │   │   └── bubble-notif-bold.svg
+    │   │   │   │   │   │   ├── components
+    │   │   │   │   │   │   │   ├── ConversationItemActions.tsx
+    │   │   │   │   │   │   │   ├── LeftPanel.tsx
+    │   │   │   │   │   │   │   ├── LeftPanelContent.tsx
+    │   │   │   │   │   │   │   ├── LeftPanelConversationItem.tsx
+    │   │   │   │   │   │   │   ├── LeftPanelConversations.tsx
+    │   │   │   │   │   │   │   ├── LeftPanelHeader.tsx
+    │   │   │   │   │   │   │   ├── LeftPanelSearch.tsx
+    │   │   │   │   │   │   │   ├── ModalRemoveConversation.tsx
+    │   │   │   │   │   │   │   ├── ModalRenameConversation.tsx
+    │   │   │   │   │   │   │   ├── SimpleConversationItem.tsx
+    │   │   │   │   │   │   │   ├── __tests__
+    │   │   │   │   │   │   │   │   ├── ConversationItemActions.test.tsx
+    │   │   │   │   │   │   │   │   ├── LeftPanelConversationItem.test.tsx
+    │   │   │   │   │   │   │   │   ├── ModalRenameConversation.test.tsx
+    │   │   │   │   │   │   │   │   └── SimpleConversationItem.test.tsx
+    │   │   │   │   │   │   │   └── index.tsx
+    │   │   │   │   │   │   ├── hooks
+    │   │   │   │   │   │   │   ├── __tests__
+    │   │   │   │   │   │   │   │   └── useModalHook.test.tsx
+    │   │   │   │   │   │   │   └── useModalHook.tsx
+    │   │   │   │   │   │   ├── index.ts
+    │   │   │   │   │   │   └── stores
+    │   │   │   │   │   │       ├── index.ts
+    │   │   │   │   │   │       └── useLeftPanelStore.tsx
+    │   │   │   │   │   └── settings
+    │   │   │   │   │       ├── components
+    │   │   │   │   │       │   ├── SettingsButton.tsx
+    │   │   │   │   │       │   └── SettingsModal.tsx
+    │   │   │   │   │       └── index.ts
+    │   │   │   │   ├── hook
+    │   │   │   │   │   ├── index.ts
+    │   │   │   │   │   └── useClipboard.tsx
+    │   │   │   │   ├── i18n
+    │   │   │   │   │   ├── initI18n.ts
+    │   │   │   │   │   └── translations.json
+    │   │   │   │   ├── layouts
+    │   │   │   │   │   ├── MainLayout.tsx
+    │   │   │   │   │   ├── PageLayout.tsx
+    │   │   │   │   │   ├── conf.ts
+    │   │   │   │   │   └── index.ts
+    │   │   │   │   ├── libs
+    │   │   │   │   │   ├── Analytics.tsx
+    │   │   │   │   │   └── index.ts
+    │   │   │   │   ├── pages
+    │   │   │   │   │   ├── 401.tsx
+    │   │   │   │   │   ├── 403.tsx
+    │   │   │   │   │   ├── 404.tsx
+    │   │   │   │   │   ├── _app.tsx
+    │   │   │   │   │   ├── _document.tsx
+    │   │   │   │   │   ├── activation
+    │   │   │   │   │   │   └── index.tsx
+    │   │   │   │   │   ├── chat
+    │   │   │   │   │   │   ├── [id]
+    │   │   │   │   │   │   │   └── index.tsx
+    │   │   │   │   │   │   └── index.tsx
+    │   │   │   │   │   ├── globals.css
+    │   │   │   │   │   ├── home
+    │   │   │   │   │   │   └── index.tsx
+    │   │   │   │   │   ├── index.tsx
+    │   │   │   │   │   └── login
+    │   │   │   │   │       └── index.tsx
+    │   │   │   │   ├── services
+    │   │   │   │   │   ├── Crisp.tsx
+    │   │   │   │   │   ├── PosthogAnalytic.tsx
+    │   │   │   │   │   └── index.ts
+    │   │   │   │   ├── stores
+    │   │   │   │   │   ├── index.ts
+    │   │   │   │   │   ├── useResponsiveStore.tsx
+    │   │   │   │   │   └── useSentryStore.tsx
+    │   │   │   │   ├── tests
+    │   │   │   │   │   └── utils.tsx
+    │   │   │   │   ├── types
+    │   │   │   │   │   ├── @ag-media
+    │   │   │   │   │   │   └── react-pdf-table.d.ts
+    │   │   │   │   │   ├── components.ts
+    │   │   │   │   │   ├── lottie.d.ts
+    │   │   │   │   │   ├── next.ts
+    │   │   │   │   │   └── react-lottie.d.ts
+    │   │   │   │   └── utils
+    │   │   │   │       ├── __tests__
+    │   │   │   │       │   ├── string.test.ts
+    │   │   │   │       │   └── url.test.tsx
+    │   │   │   │       ├── children.ts
+    │   │   │   │       ├── index.ts
+    │   │   │   │       ├── storages.ts
+    │   │   │   │       ├── string.ts
+    │   │   │   │       ├── styleBuilder.ts
+    │   │   │   │       ├── system.ts
+    │   │   │   │       ├── url.ts
+    │   │   │   │       └── userAgent.ts
+    │   │   │   ├── stylelint.config.js
+    │   │   │   └── tsconfig.json
+    │   │   └── e2e
+    │   │       ├── .eslintrc.js
+    │   │       ├── .gitignore
+    │   │       ├── __tests__
+    │   │       │   ├── app-conversations
+    │   │       │   │   ├── 404.spec.ts
+    │   │       │   │   ├── assets
+    │   │       │   │   │   ├── logo-suite-numerique.png
+    │   │       │   │   │   ├── test.html
+    │   │       │   │   │   └── test.svg
+    │   │       │   │   ├── auth.setup.ts
+    │   │       │   │   ├── chat.spec.ts
+    │   │       │   │   ├── common.ts
+    │   │       │   │   ├── config.spec.ts
+    │   │       │   │   ├── footer.spec.ts
+    │   │       │   │   ├── header.spec.ts
+    │   │       │   │   ├── home.spec.ts
+    │   │       │   │   ├── language.spec.ts
+    │   │       │   │   └── left-panel.spec.ts
+    │   │       │   └── helpers.ts
+    │   │       ├── package.json
+    │   │       ├── playwright.config.ts
+    │   │       ├── tsconfig.json
+    │   │       └── type
+    │   │           └── convert-stream.d.ts
+    │   ├── package.json
+    │   ├── packages
+    │   │   ├── eslint-config-conversations
+    │   │   │   ├── .eslintrc.js
+    │   │   │   ├── common.js
+    │   │   │   ├── jest.js
+    │   │   │   ├── next.js
+    │   │   │   ├── package.json
+    │   │   │   └── playwright.js
+    │   │   └── i18n
+    │   │       ├── .eslintrc.js
+    │   │       ├── .gitignore
+    │   │       ├── __tests__
+    │   │       │   ├── i18n.test.ts
+    │   │       │   └── translations.test.ts
+    │   │       ├── format-deploy.mjs
+    │   │       ├── i18next-parser.config.jest.mjs
+    │   │       ├── i18next-parser.config.mjs
+    │   │       ├── jest.config.ts
+    │   │       ├── package.json
+    │   │       ├── rebuild-translations.mjs
+    │   │       └── tsconfig.json
+    │   └── yarn.lock
+    ├── helm
+    │   ├── conversations
+    │   │   ├── Chart.yaml
+    │   │   ├── README.md
+    │   │   ├── generate-readme.sh
+    │   │   ├── templates
+    │   │   │   ├── _helpers.tpl
+    │   │   │   ├── backend_deployment.yaml
+    │   │   │   ├── backend_job.yml
+    │   │   │   ├── backend_job_createsuperuser.yaml
+    │   │   │   ├── backend_job_migrate.yaml
+    │   │   │   ├── backend_svc.yaml
+    │   │   │   ├── frontend_deployment.yaml
+    │   │   │   ├── frontend_svc.yaml
+    │   │   │   ├── ingress.yaml
+    │   │   │   ├── ingress_admin.yaml
+    │   │   │   ├── ingress_media.yaml
+    │   │   │   ├── ingress_posthog.yaml
+    │   │   │   ├── ingress_posthog_assets.yaml
+    │   │   │   ├── llm_configuration_file_cm.yaml
+    │   │   │   ├── media_svc.yaml
+    │   │   │   ├── posthog_assets_svc.yaml
+    │   │   │   ├── posthog_svc.yaml
+    │   │   │   └── theme_customization_file_cm.yaml
+    │   │   └── values.yaml
+    │   ├── env.d
+    │   │   ├── dev
+    │   │   │   ├── configuration
+    │   │   │   │   ├── llm
+    │   │   │   │   │   └── demo.json
+    │   │   │   │   └── theme
+    │   │   │   │       └── demo.json
+    │   │   │   └── values.conversations.yaml.gotmpl
+    │   │   └── dev-staging
+    │   │       └── values.conversations.yaml.gotmpl
+    │   └── helmfile.yaml.gotmpl
+    └── mail
+        ├── bin
+        │   ├── html-to-plain-text
+        │   └── mjml-to-html
+        ├── html-to-text.config.json
+        ├── mjml
+        │   ├── invitation.mjml
+        │   └── partial
+        │       └── header.mjml
+        ├── package.json
+        └── yarn.lock
+200 directories, 642 files
