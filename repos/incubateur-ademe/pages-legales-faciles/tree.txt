@@ -1,0 +1,281 @@
+.
+├── .editorconfig
+├── .env.development
+├── .env.production
+├── .eslintrc.js
+├── .github
+│   ├── CODEOWNERS
+│   └── workflows
+│       ├── build.yml
+│       ├── codeql-analysis.yml
+│       ├── lint.yml
+│       └── teardown-review-db.yml
+├── .gitignore
+├── .nvmrc
+├── .slugignore
+├── .vscode
+│   ├── extensions.json
+│   └── settings.json
+├── CHANGELOG.md
+├── LICENSE
+├── Procfile
+├── README.md
+├── SECURITY.md
+├── TODO.md
+├── cron.json
+├── db
+│   └── seed
+│       ├── LICENSE
+│       ├── README.md
+│       ├── templates
+│       │   └── default
+│       │       ├── group.json
+│       │       └── mentions-legales.md
+│       └── variables
+│           └── pages-legales-faciles
+│               └── default
+│                   └── mentions-legales.json
+├── docker-compose.yml
+├── env.d.ts
+├── global.d.ts
+├── next-env.d.ts
+├── next-sitemap.config.js
+├── next.config.mjs
+├── package.json
+├── postcss.config.js
+├── public
+│   └── img
+│       ├── ademe-incubateur-logo.png
+│       ├── ademe-logo-2022-1.svg
+│       ├── custom
+│       │   └── .gitkeep
+│       ├── hero.svg
+│       ├── pages-legales-faciles.webp
+│       └── placeholder.svg
+├── scalingo.json
+├── scripts
+│   ├── call_gpg_refresh_webhook.sh
+│   ├── generateEnvDeclaration.ts
+│   ├── import_gpg.sh
+│   ├── refresh_gpg_passphrase.sh
+│   ├── seedGit.ts
+│   └── tsconfig.json
+├── src
+│   ├── StartDsfr.tsx
+│   ├── app
+│   │   ├── (api)
+│   │   │   ├── api
+│   │   │   │   ├── auth
+│   │   │   │   │   └── [...nextauth]
+│   │   │   │   │       └── route.ts
+│   │   │   │   └── webhook
+│   │   │   │       └── gpg
+│   │   │   │           └── refresh
+│   │   │   │               └── route.ts
+│   │   │   └── startup
+│   │   │       └── [startupId]
+│   │   │           └── [variableId]
+│   │   │               └── [templateType]
+│   │   │                   └── [ext]
+│   │   │                       └── route.ts
+│   │   ├── @default
+│   │   │   ├── (authenticated)
+│   │   │   │   ├── admin
+│   │   │   │   │   ├── GitManagement.tsx
+│   │   │   │   │   ├── RedisManagement.tsx
+│   │   │   │   │   ├── actions.ts
+│   │   │   │   │   └── page.tsx
+│   │   │   │   ├── forbidden.tsx
+│   │   │   │   ├── group
+│   │   │   │   │   ├── Form.tsx
+│   │   │   │   │   ├── MembershipRuleSelect.tsx
+│   │   │   │   │   ├── RecapInfo.tsx
+│   │   │   │   │   ├── [groupId]
+│   │   │   │   │   │   └── edit
+│   │   │   │   │   │       └── page.tsx
+│   │   │   │   │   ├── actions.ts
+│   │   │   │   │   └── new
+│   │   │   │   │       └── page.tsx
+│   │   │   │   ├── layout.tsx
+│   │   │   │   ├── template
+│   │   │   │   │   └── [type]
+│   │   │   │   │       └── [groupId]
+│   │   │   │   │           └── [sha]
+│   │   │   │   │               ├── actions.ts
+│   │   │   │   │               └── edit
+│   │   │   │   │                   ├── MdxEditor.module.scss
+│   │   │   │   │                   ├── MdxEditor.tsx
+│   │   │   │   │                   └── page.tsx
+│   │   │   │   ├── unauthorized.tsx
+│   │   │   │   └── variable
+│   │   │   │       └── new
+│   │   │   │           └── page.tsx
+│   │   │   ├── AuthFooter.tsx
+│   │   │   ├── AuthHeader.tsx
+│   │   │   ├── AuthHeaderItems.tsx
+│   │   │   ├── Navigation.tsx
+│   │   │   ├── error
+│   │   │   │   └── page.tsx
+│   │   │   ├── group
+│   │   │   │   └── page.tsx
+│   │   │   ├── healthz
+│   │   │   │   └── page.tsx
+│   │   │   ├── index.module.scss
+│   │   │   ├── login
+│   │   │   │   ├── LoginForm.tsx
+│   │   │   │   ├── error
+│   │   │   │   │   └── page.tsx
+│   │   │   │   ├── layout.tsx
+│   │   │   │   ├── login.module.scss
+│   │   │   │   ├── page.tsx
+│   │   │   │   └── verify-request
+│   │   │   │       └── page.tsx
+│   │   │   ├── page.tsx
+│   │   │   ├── startup
+│   │   │   │   └── page.tsx
+│   │   │   ├── stats
+│   │   │   │   ├── content.tsx
+│   │   │   │   └── page.tsx
+│   │   │   └── template
+│   │   │       ├── [type]
+│   │   │       │   └── [groupId]
+│   │   │       │       └── [sha]
+│   │   │       │           └── page.tsx
+│   │   │       └── page.tsx
+│   │   ├── @public
+│   │   │   ├── PublicFooter.tsx
+│   │   │   ├── PublicHeader.tsx
+│   │   │   └── startup
+│   │   │       └── [startupId]
+│   │   │           └── [variableId]
+│   │   │               └── [templateType]
+│   │   │                   └── page.tsx
+│   │   ├── PublicSlotFilter.tsx
+│   │   ├── SystemMessageDisplay.tsx
+│   │   ├── global-error.tsx
+│   │   ├── globals.scss
+│   │   ├── layout.tsx
+│   │   ├── loading.tsx
+│   │   ├── not-found.tsx
+│   │   ├── robots.ts
+│   │   ├── root.module.scss
+│   │   └── shared-metadata.ts
+│   ├── colors.ts
+│   ├── components
+│   │   ├── Brand.tsx
+│   │   ├── RHF
+│   │   │   └── ReactHookFormDebug.tsx
+│   │   ├── ReactSpinners.tsx
+│   │   ├── img
+│   │   │   ├── ImgHero.module.scss
+│   │   │   ├── ImgHero.tsx
+│   │   │   ├── InitialsAvatar.module.scss
+│   │   │   └── InitialsAvatar.tsx
+│   │   ├── mdx
+│   │   │   └── Link.tsx
+│   │   └── utils
+│   │       ├── ClientAnimate.tsx
+│   │       ├── ClientBodyPortal.tsx
+│   │       ├── ClientOnly.tsx
+│   │       ├── DebugButton.tsx
+│   │       ├── HoverToggler.tsx
+│   │       └── Loader.tsx
+│   ├── config.ts
+│   ├── consentManagement.tsx
+│   ├── defaultColorScheme.ts
+│   ├── dsfr
+│   │   ├── DsfrSvg.tsx
+│   │   ├── artwork
+│   │   │   └── pictograms
+│   │   │       └── digital
+│   │   │           └── in-progress.svg
+│   │   ├── base
+│   │   │   ├── Box.tsx
+│   │   │   ├── CountDisplay.module.css
+│   │   │   ├── CountDisplay.tsx
+│   │   │   ├── FormFieldset.tsx
+│   │   │   ├── Icon.module.scss
+│   │   │   ├── Icon.tsx
+│   │   │   ├── RecapCard.module.css
+│   │   │   ├── RecapCard.tsx
+│   │   │   ├── SingleCheckbox.module.scss
+│   │   │   ├── SingleCheckbox.tsx
+│   │   │   ├── TableCustom.module.css
+│   │   │   ├── TableCustom.tsx
+│   │   │   ├── Typography.tsx
+│   │   │   └── client
+│   │   │       ├── AnchorLink.tsx
+│   │   │       ├── CollapsedSectionDynamicGroup.module.scss
+│   │   │       ├── CollapsedSectionDynamicGroup.tsx
+│   │   │       └── IconStyleJsx.tsx
+│   │   ├── client.ts
+│   │   ├── hooks
+│   │   │   └── useBreakpoints.ts
+│   │   ├── layout
+│   │   │   ├── CenteredContainer.tsx
+│   │   │   ├── Container.tsx
+│   │   │   ├── Grid.tsx
+│   │   │   └── index.ts
+│   │   ├── server.ts
+│   │   └── utils
+│   │       ├── ScrollTopButton.tsx
+│   │       ├── color-styles.ts
+│   │       └── spacing.ts
+│   ├── lib
+│   │   ├── client
+│   │   │   └── monaco.ts
+│   │   ├── db
+│   │   │   └── redis
+│   │   │       └── storage.ts
+│   │   ├── matomo.ts
+│   │   ├── model
+│   │   │   ├── Group.ts
+│   │   │   ├── Template.ts
+│   │   │   └── Variable.ts
+│   │   ├── next-auth
+│   │   │   ├── LRUCacheAdapter.ts
+│   │   │   └── auth.ts
+│   │   ├── repo
+│   │   │   ├── IGitRepo.ts
+│   │   │   ├── impl
+│   │   │   │   └── SimpleGitRepo.ts
+│   │   │   └── index.ts
+│   │   ├── services
+│   │   │   ├── MdxService.ts
+│   │   │   ├── getInstance.ts
+│   │   │   ├── index.ts
+│   │   │   ├── server
+│   │   │   │   └── EspaceMembreService.ts
+│   │   │   └── types.ts
+│   │   └── utils
+│   │       ├── auth.ts
+│   │       ├── browser.ts
+│   │       ├── data.ts
+│   │       ├── dsfrHexColors.ts
+│   │       ├── dsfrHexDarkColors.ts
+│   │       ├── error.ts
+│   │       ├── function.ts
+│   │       ├── network.ts
+│   │       ├── next.ts
+│   │       ├── os.ts
+│   │       ├── react.ts
+│   │       ├── string.ts
+│   │       ├── templateMeta.ts
+│   │       ├── types.ts
+│   │       └── zod-schema.ts
+│   ├── mdx-components.tsx
+│   ├── revalidateTags.ts
+│   └── useCases
+│       ├── AbstractCacheUseCase.ts
+│       ├── GetLegalPage.tsx
+│       ├── GetLegalPageAsFile.tsx
+│       ├── GetTemplateWithDisplayableContent.ts
+│       ├── GetTemplateWithRawContent.ts
+│       ├── ListTemplates.ts
+│       ├── SaveGroup.ts
+│       ├── SaveTemplate.ts
+│       └── types.ts
+├── tailwind.config.js
+├── tsconfig.json
+└── yarn.lock
+86 directories, 194 files
