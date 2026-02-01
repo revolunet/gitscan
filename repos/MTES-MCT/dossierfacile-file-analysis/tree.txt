@@ -1,0 +1,75 @@
+.
+├── .buildpacks
+├── .env.example
+├── .gitignore
+├── .python-version
+├── Aptfile
+├── Procfile
+├── README.md
+├── bin
+│   └── start_worker.sh
+├── poetry.lock
+├── poetry.toml
+├── pyproject.toml
+├── src
+│   └── dossierfacile_file_analysis
+│       ├── __init__.py
+│       ├── custom_logging
+│       │   ├── __init__.py
+│       │   ├── json_formatter.py
+│       │   ├── logging_config.py
+│       │   └── tcp_handler.py
+│       ├── data
+│       │   ├── __init__.py
+│       │   └── file_dto.py
+│       ├── exceptions
+│       │   ├── __init__.py
+│       │   ├── data_not_found.py
+│       │   ├── duplicate_key_exception.py
+│       │   ├── encryption_key_is_missing.py
+│       │   ├── invalid_message_body_format.py
+│       │   ├── invalid_mime_type.py
+│       │   └── retryable_exception.py
+│       ├── executor
+│       │   ├── __init__.py
+│       │   ├── blurry_executor.py
+│       │   └── tasks
+│       │       ├── __init__.py
+│       │       ├── abstract_blurry_task.py
+│       │       ├── analyse_files.py
+│       │       ├── clean_data.py
+│       │       ├── download_file.py
+│       │       ├── get_data_from_db.py
+│       │       ├── prepare_data_for_analysis.py
+│       │       └── save_blurry_result_to_db.py
+│       ├── main.py
+│       ├── models
+│       │   ├── __init__.py
+│       │   ├── blurry_execution_context.py
+│       │   ├── blurry_queue_message.py
+│       │   ├── blurry_result.py
+│       │   ├── downloaded_file.py
+│       │   ├── input_analysis_data.py
+│       │   └── supported_content_type.py
+│       └── services
+│           ├── __init__.py
+│           ├── amqp_service.py
+│           ├── arg_provider_service.py
+│           ├── blurry_message_processor.py
+│           ├── dossier_facile_database_service.py
+│           └── file_downloader
+│               ├── __init__.py
+│               ├── file_downloader.py
+│               ├── local_file_downloader.py
+│               ├── ovh_file_downloader.py
+│               └── s3_file_downloader.py
+└── tests
+    ├── executor
+    │   └── tasks
+    │       ├── test_analyse_files.py
+    │       ├── test_download_file.py
+    │       ├── test_get_data_from_db.py
+    │       └── test_prepare_data_for_analysis.py
+    ├── test_amqp_service.py
+    └── test_example.py
+15 directories, 59 files
