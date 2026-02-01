@@ -1,0 +1,727 @@
+.
+├── .env.example
+├── .github
+│   ├── pull_request_template.md
+│   └── workflows
+│       └── django.yml
+├── .gitignore
+├── .pre-commit-config.yaml
+├── .python-version
+├── .stylelintignore
+├── .stylelintrc.json
+├── LICENSE
+├── Procfile
+├── README.md
+├── adr
+│   ├── 0_what_is_adr.md
+│   ├── 1_modelisation-dotation-projet.md
+│   └── img
+│       └── Schema double dotation.png
+├── bin
+│   └── start.sh
+├── conftest.py
+├── gsl
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── celery.py
+│   ├── settings.py
+│   ├── settings_test.py
+│   ├── urls.py
+│   ├── utils
+│   │   ├── context_processors.py
+│   │   └── logging_formatters.py
+│   └── wsgi.py
+├── gsl_core
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── decorators.py
+│   ├── exceptions.py
+│   ├── management
+│   │   └── commands
+│   │       ├── __init__.py
+│   │       ├── create_perimetres.py
+│   │       └── init_document_sizes.py
+│   ├── middlewares.py
+│   ├── migrations
+│   │   ├── 0001_initial.py
+│   │   ├── 0002_collegue_proconnect_chorusdt_and_more.py
+│   │   ├── 0003_commune_departement_region_adresse_and_more.py
+│   │   ├── 0004_alter_adresse_commune_alter_adresse_postal_code_and_more.py
+│   │   ├── 0005_alter_departement_options_alter_region_options_and_more.py
+│   │   ├── 0006_commune_arrondissement.py
+│   │   ├── 0007_alter_perimetre_options.py
+│   │   ├── 0008_alter_perimetre_options.py
+│   │   ├── 0009_collegue_ds_id.py
+│   │   ├── 0010_remove_collegue_ds_id_collegue_ds_profile.py
+│   │   ├── 0011_alter_collegue_email.py
+│   │   ├── 0012_departement_active.py
+│   │   └── __init__.py
+│   ├── models.py
+│   ├── resources.py
+│   ├── static
+│   │   ├── css
+│   │   │   ├── gsl.css
+│   │   │   ├── login.css
+│   │   │   └── messages.css
+│   │   ├── img
+│   │   │   ├── logo-collectivites-locales.png
+│   │   │   └── refresh-line.svg
+│   │   └── js
+│   │       ├── controllers
+│   │       │   ├── doubleDotation.js
+│   │       │   └── formUtils.js
+│   │       ├── gsl.js
+│   │       └── matomo.js
+│   ├── tasks.py
+│   ├── templates
+│   │   ├── 403.html
+│   │   ├── 404.html
+│   │   ├── admin
+│   │   │   └── gsl_core
+│   │   │       └── collegue
+│   │   │           └── import.html
+│   │   ├── base.html
+│   │   ├── blocks
+│   │   │   ├── breadcrumb.html
+│   │   │   ├── footer.html
+│   │   │   ├── header.html
+│   │   │   ├── main_menu.html
+│   │   │   └── messages.html
+│   │   └── includes
+│   │       ├── _enveloppe_summary.html
+│   │       └── _enveloppe_summary_line.html
+│   ├── templatetags
+│   │   ├── __init__.py
+│   │   ├── addstr.py
+│   │   ├── custom_pluralize.py
+│   │   ├── gsl_filters.py
+│   │   └── tests
+│   │       └── test_gsl_filters.py
+│   ├── tests
+│   │   ├── __init__.py
+│   │   ├── factories.py
+│   │   ├── test_commands.py
+│   │   ├── test_exceptions.py
+│   │   ├── test_factories.py
+│   │   ├── test_middlewares.py
+│   │   ├── test_model_adresse.py
+│   │   ├── test_models.py
+│   │   ├── test_tasks.py
+│   │   ├── test_user_import.py
+│   │   └── test_user_model.py
+│   └── view_mixins.py
+├── gsl_demarches_simplifiees
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── ds_client.py
+│   ├── exceptions.py
+│   ├── forms.py
+│   ├── graphql
+│   │   ├── ds_mutations.gql
+│   │   └── ds_queries.gql
+│   ├── importer
+│   │   ├── __init__.py
+│   │   ├── demarche.py
+│   │   ├── dossier.py
+│   │   ├── dossier_converter.py
+│   │   └── utils.py
+│   ├── management
+│   │   ├── __init__.py
+│   │   └── commands
+│   │       ├── __init__.py
+│   │       ├── ds_save_demarche.py
+│   │       ├── ds_save_dossier.py
+│   │       ├── ds_test_upload_attachment.py
+│   │       ├── gql_get_demarche.py
+│   │       ├── gql_get_demarche_dossiers.py
+│   │       └── gql_get_dossier.py
+│   ├── migrations
+│   │   ├── 0001_initial.py
+│   │   ├── 0002_alter_dossier_projet_adresse.py
+│   │   ├── 0003_alter_dossier_demande_autres_aides_and_more.py
+│   │   ├── 0004_formejuridique_naf_personnemorale_and_more.py
+│   │   ├── 0005_alter_profile_options_alter_dossier_projet_adresse_and_more.py
+│   │   ├── 0006_alter_arrondissement_options_and_more.py
+│   │   ├── 0007_dossier_ds_date_traitement.py
+│   │   ├── 0008_dossier_annotations_assiette_and_more.py
+│   │   ├── 0009_demarche_raw_ds_data.py
+│   │   ├── 0010_alter_dossier_projet_adresse.py
+│   │   ├── 0011_alter_dossier_annotations_assiette_and_more.py
+│   │   ├── 0012_alter_dossier_annotations_dotation_and_more.py
+│   │   ├── 0013_natureporteurprojet_type.py
+│   │   ├── 0014_alter_natureporteurprojet_options.py
+│   │   ├── 0015_alter_critereeligibilitedetr_options_and_more.py
+│   │   ├── 0016_critereeligibilitedetr_demarche_and_more.py
+│   │   ├── 0017_critereeligibilitedetr_detr_category_and_more.py
+│   │   ├── 0018_alter_profile_ds_email.py
+│   │   ├── 0018_dossier_ds_instructeurs.py
+│   │   ├── 0019_merge_20251023_1630.py
+│   │   ├── 0020_demarche_updated_since.py
+│   │   ├── 0020_dossier_annotations_assiette_detr_and_more.py
+│   │   ├── 0021_merge_20251117_1647.py
+│   │   ├── 0022_alter_dossier_demande_montant.py
+│   │   ├── 0022_alter_dossier_porteur_de_projet_arrondissement_and_more.py
+│   │   ├── 0023_merge_20251216_1527.py
+│   │   ├── 0024_alter_fieldmappingforcomputer_django_field.py
+│   │   ├── 0024_dossier_annotations_is_acv_and_more.py
+│   │   ├── 0025_merge_20260105_1749.py
+│   │   ├── 0026_alter_dossier_ds_number.py
+│   │   ├── 0027_remove_dossier_annotations_assiette_and_more.py
+│   │   ├── 0028_remove_demarche_perimetre.py
+│   │   ├── 0029_separation_dossier_data.py
+│   │   ├── 0030_dossier_annotations_autre_zonage_local_and_more.py
+│   │   ├── 0031_categoriedsil_dossier_demande_categorie_dsil.py
+│   │   ├── 0031_dossier_projet_zonage_autre_and_more.py
+│   │   ├── 0032_merge_20260127_0751.py
+│   │   ├── 0032_remove_dossier_annotations_champ_libre_and_more.py
+│   │   ├── 0032_remove_dossier_demande_annee_precedente_and_more.py
+│   │   ├── 0033_categoriedetr.py
+│   │   ├── 0033_merge_20260130_1455.py
+│   │   ├── 0034_dossier_demande_categorie_detr.py
+│   │   ├── 0034_merge_20260130_1504.py
+│   │   ├── 0035_categoriedetr_unique_categorie_detr_label_per_demarche_departement_and_more.py
+│   │   ├── 0036_remove_dossier_demande_eligibilite_detr_and_more.py
+│   │   ├── 0037_merge_20260130_1511.py
+│   │   ├── 0037_remove_fieldmappingforcomputer_field_mapping_for_human_and_more.py
+│   │   ├── 0038_rename_fieldmappingforcomputer_fieldmapping_and_more.py
+│   │   ├── 0039_merge_20260130_1528.py
+│   │   └── __init__.py
+│   ├── models.py
+│   ├── resources.py
+│   ├── services.py
+│   ├── signals.py
+│   ├── tasks.py
+│   ├── templates
+│   │   └── gsl_demarches_simplifiees
+│   │       ├── demarche_list.html
+│   │       ├── demarche_mapping.html
+│   │       ├── dossier_sans_piece_update.html
+│   │       ├── get_demarches_from_numbers.html
+│   │       └── get_ds_tasks_status.html
+│   ├── tests
+│   │   ├── __init__.py
+│   │   ├── ds_client
+│   │   │   ├── test_ds_client.py
+│   │   │   └── test_ds_mutator.py
+│   │   ├── ds_fixtures
+│   │   │   ├── demarche_data_with_revision.json
+│   │   │   └── dossier_data.json
+│   │   ├── factories.py
+│   │   ├── importer
+│   │   │   ├── __init__.py
+│   │   │   ├── test_dossier_converter.py
+│   │   │   ├── test_dossier_importer.py
+│   │   │   ├── test_save_ds_demarche.py
+│   │   │   └── test_utils.py
+│   │   ├── models
+│   │   │   ├── __init__.py
+│   │   │   ├── test_dossier.py
+│   │   │   └── test_personne_morale.py
+│   │   ├── test_factories.py
+│   │   ├── test_forms.py
+│   │   ├── test_services.py
+│   │   └── views
+│   │       ├── __init__.py
+│   │       ├── test_view_refresh_one_dossier.py
+│   │       └── test_views.py
+│   ├── urls.py
+│   └── views.py
+├── gsl_notification
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── forms.py
+│   ├── migrations
+│   │   ├── 0001_initial.py
+│   │   ├── 0002_rename_uploaded_at_arretesigne_created_at.py
+│   │   ├── 0003_alter_arretesigne_options.py
+│   │   ├── 0003_alter_arretesigne_options_arrete.py
+│   │   ├── 0004_merge_20250627_1012.py
+│   │   ├── 0005_alter_arrete_content.py
+│   │   ├── 0006_modelearrete.py
+│   │   ├── 0007_arrete_modele.py
+│   │   ├── 0008_alter_modelearrete_logo.py
+│   │   ├── 0009_alter_modelearrete_content_alter_modelearrete_name_and_more.py
+│   │   ├── 0010_alter_arrete_content_lettrenotification.py
+│   │   ├── 0011_annexe.py
+│   │   ├── 0012_arreteetlettresignes_delete_arretesigne.py
+│   │   ├── 0013_alter_annexe_file_alter_arreteetlettresignes_file_and_more.py
+│   │   ├── 0014_arrete_size_lettrenotification_size.py
+│   │   └── __init__.py
+│   ├── models.py
+│   ├── signals.py
+│   ├── static
+│   │   ├── css
+│   │   │   ├── notification.css
+│   │   │   └── pdf.css
+│   │   ├── fonts
+│   │   │   ├── Marianne-Bold.woff2
+│   │   │   ├── Marianne-Bold_Italic.woff2
+│   │   │   ├── Marianne-Light.woff2
+│   │   │   ├── Marianne-Light_Italic.woff2
+│   │   │   ├── Marianne-Medium.woff2
+│   │   │   ├── Marianne-Medium_Italic.woff2
+│   │   │   ├── Marianne-Regular.woff2
+│   │   │   └── Marianne-Regular_Italic.woff2
+│   │   ├── img
+│   │   │   ├── arrete_vignette.png
+│   │   │   ├── logo-exemple.png
+│   │   │   ├── mise-en-page-exemple.png
+│   │   │   └── placeholder.1x1.svg
+│   │   └── js
+│   │       ├── deleteNotificationDocumentModal.js
+│   │       ├── modeleArreteForm.js
+│   │       └── notification.js
+│   ├── templates
+│   │   ├── gsl_notification
+│   │   │   ├── generated_document
+│   │   │   │   ├── change_document.html
+│   │   │   │   ├── choose_generated_document_type.html
+│   │   │   │   ├── multiple
+│   │   │   │   │   ├── choose_generated_document_type.html
+│   │   │   │   │   └── select_modele.html
+│   │   │   │   └── select_modele.html
+│   │   │   ├── modal
+│   │   │   │   └── ds_dossier_not_up_to_date.html
+│   │   │   ├── modele
+│   │   │   │   ├── choose_type.html
+│   │   │   │   ├── generique
+│   │   │   │   │   ├── detr_modele.html
+│   │   │   │   │   └── dsil_modele.html
+│   │   │   │   ├── list.html
+│   │   │   │   ├── modele_form_base.html
+│   │   │   │   ├── modele_form_step_0.html
+│   │   │   │   ├── modele_form_step_1.html
+│   │   │   │   └── modele_form_step_2.html
+│   │   │   ├── pdf
+│   │   │   │   └── document.html
+│   │   │   ├── tab_simulation_projet
+│   │   │   │   ├── tab_notifications.html
+│   │   │   │   └── tab_notifications_message.html
+│   │   │   └── uploaded_document
+│   │   │       ├── choose_upload_document_type.html
+│   │   │       └── upload_document.html
+│   │   └── includes
+│   │       ├── _arrete_form.html
+│   │       ├── _document_card.html
+│   │       ├── _generated_document_type_form.html
+│   │       ├── _modele_card.html
+│   │       ├── _not_instructeur_modal.html
+│   │       ├── _select_model_in_list.html
+│   │       └── _uploaded_document_form.html
+│   ├── tests
+│   │   ├── __init__.py
+│   │   ├── factories.py
+│   │   ├── test_factories.py
+│   │   ├── test_forms.py
+│   │   ├── test_models.py
+│   │   ├── test_signals.py
+│   │   ├── test_urls.py
+│   │   ├── test_utils.py
+│   │   └── views
+│   │       ├── __init__.py
+│   │       ├── test_generate_document_for_multiple_projets_views.py
+│   │       ├── test_modele_views.py
+│   │       ├── test_upload_document_views.py
+│   │       └── test_views.py
+│   ├── urls.py
+│   ├── utils.py
+│   ├── validators.py
+│   └── views
+│       ├── __init__.py
+│       ├── decorators.py
+│       ├── generate_document_for_multiple_projets_views.py
+│       ├── modele_views.py
+│       ├── uploaded_document_views.py
+│       └── views.py
+├── gsl_oidc
+│   ├── __init__.py
+│   ├── apps.py
+│   ├── backends.py
+│   ├── middleware.py
+│   ├── templates
+│   │   └── registration
+│   │       └── login.html
+│   └── urls.py
+├── gsl_pages
+│   ├── __init__.py
+│   ├── apps.py
+│   ├── templates
+│   │   └── gsl_pages
+│   │       ├── accessibilite.html
+│   │       ├── no_perimetre.html
+│   │       └── user_help.html
+│   ├── tests
+│   │   ├── __init__.py
+│   │   ├── test_error_handlers.py
+│   │   └── test_urls.py
+│   ├── urls.py
+│   └── views.py
+├── gsl_programmation
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── forms.py
+│   ├── migrations
+│   │   ├── 0001_initial.py
+│   │   ├── 0002_rename_scenario_simulation_and_more.py
+│   │   ├── 0003_alter_simulationprojet_taux.py
+│   │   ├── 0003_remove_enveloppe_unicity_by_perimeter_and_type_and_more.py
+│   │   ├── 0004_merge_20250110_1226.py
+│   │   ├── 0005_alter_simulation_slug.py
+│   │   ├── 0006_auto_20250205_1130.py
+│   │   ├── 0007_programmationprojet.py
+│   │   ├── 0008_alter_programmationprojet_status.py
+│   │   ├── 0009_remove_enveloppe_unicity_by_perimeter_and_type_and_more.py
+│   │   ├── 0010_remove_enveloppe_type_alter_enveloppe_dotation.py
+│   │   ├── 0011_programmationprojet_dotation_projet.py
+│   │   ├── 0012_alter_programmationprojet_dotation_projet.py
+│   │   ├── 0013_remove_programmationprojet_unique_projet_enveloppe.py
+│   │   ├── 0014_alter_programmationprojet_projet.py
+│   │   ├── 0015_alter_programmationprojet_dotation_projet.py
+│   │   ├── 0016_remove_programmationprojet_projet.py
+│   │   ├── 0017_remove_programmationprojet_taux.py
+│   │   ├── 0018_alter_enveloppe_unicity_by_perimeter_and_dotation.py
+│   │   ├── 0018_alter_programmationprojet_status.py
+│   │   ├── 0019_auto_20251014_1528.py
+│   │   ├── 0020_auto_20251016_1210.py
+│   │   ├── 0021_alter_enveloppe_deleguee_by.py
+│   │   ├── 0021_merge_20251022_1611.py
+│   │   ├── 0022_merge_20251023_1625.py
+│   │   ├── 0023_alter_enveloppe_perimetre.py
+│   │   ├── 0024_remove_programmationprojet_notified_at.py
+│   │   └── __init__.py
+│   ├── models.py
+│   ├── resources.py
+│   ├── services
+│   │   └── enveloppe_service.py
+│   ├── static
+│   │   ├── css
+│   │   │   ├── enveloppe_summary.css
+│   │   │   ├── programmation_projet_detail.css
+│   │   │   └── programmation_projet_list.css
+│   │   └── js
+│   │       └── checkboxSelection.js
+│   ├── templates
+│   │   ├── gsl_programmation
+│   │   │   ├── enveloppe_form.html
+│   │   │   ├── programmation_projet_detail.html
+│   │   │   ├── programmation_projet_list.html
+│   │   │   └── tab_programmation_projet
+│   │   │       ├── tab_annotations.html
+│   │   │       ├── tab_historique.html
+│   │   │       ├── tab_projet.html
+│   │   │       └── tabs.html
+│   │   └── includes
+│   │       └── _filter_notified.html
+│   ├── tests
+│   │   ├── __init__.py
+│   │   ├── factories.py
+│   │   ├── models
+│   │   │   ├── test_enveloppe.py
+│   │   │   └── test_programmation_projet.py
+│   │   ├── services
+│   │   │   └── test_enveloppe_service.py
+│   │   ├── test_enveloppe_constraints.py
+│   │   ├── test_factories.py
+│   │   ├── test_programmation_projet_filters.py
+│   │   ├── test_urls.py
+│   │   ├── test_views.py
+│   │   └── views
+│   │       ├── test_double_dotation_display.py
+│   │       └── test_enveloppe_views.py
+│   ├── urls.py
+│   ├── utils
+│   │   └── programmation_projet_filters.py
+│   └── views.py
+├── gsl_projet
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── constants.py
+│   ├── forms.py
+│   ├── migrations
+│   │   ├── 0001_initial.py
+│   │   ├── 0002_remove_projet_arrondissement_remove_projet_demandeur.py
+│   │   ├── 0003_alter_projet_address_alter_projet_departement.py
+│   │   ├── 0004_alter_demandeur_address_alter_projet_address.py
+│   │   ├── 0005_projet_assiette.py
+│   │   ├── 0006_projet_avis_commission_detr_projet_free_comment.py
+│   │   ├── 0007_projet_demandeur.py
+│   │   ├── 0008_alter_demandeur_arrondissement.py
+│   │   ├── 0009_remove_duplicated_demandeurs.py
+│   │   ├── 0010_alter_demandeur_siret.py
+│   │   ├── 0011_projet_perimetre.py
+│   │   ├── 0011_projet_status.py
+│   │   ├── 0012_alter_projet_status.py
+│   │   ├── 0012_remove_demandeur_arrondissement_and_more.py
+│   │   ├── 0013_merge_0011_projet_perimetre_0012_alter_projet_status.py
+│   │   ├── 0014_merge_20250225_1159.py
+│   │   ├── 0015_alter_projet_status.py
+│   │   ├── 0016_projet_is_attached_to_a_crte_projet_is_in_qpv.py
+│   │   ├── 0017_projet_is_budget_vert.py
+│   │   ├── 0018_dotationprojet.py
+│   │   ├── 0019_alter_projet_status.py
+│   │   ├── 0020_initialize_projet_status.py
+│   │   ├── 0021_remove_projet_assiette_and_more.py
+│   │   ├── 0022_alter_dotationprojet_options_categoriedetr_and_more.py
+│   │   ├── 0022_projetnote.py
+│   │   ├── 0023_merge_20250604_1502.py
+│   │   ├── 0024_categoriedetr_is_current.py
+│   │   ├── 0025_projet_notified_at.py
+│   │   ├── 0026_remove_projet_status.py
+│   │   ├── 0027_alter_projet_is_budget_vert.py
+│   │   ├── 0028_projet_is_acv_projet_is_autre_zonage_local_and_more.py
+│   │   ├── 0029_projet_autre_zonage_local_projet_contrat_local.py
+│   │   └── __init__.py
+│   ├── models.py
+│   ├── services
+│   │   ├── dotation_projet_services.py
+│   │   └── projet_services.py
+│   ├── static
+│   │   ├── css
+│   │   │   ├── projet_detail.css
+│   │   │   ├── projet_list.css
+│   │   │   └── projet_list_filters.css
+│   │   └── js
+│   │       ├── projectFilters.js
+│   │       └── territoireFilter.js
+│   ├── tasks.py
+│   ├── templates
+│   │   ├── gsl_projet
+│   │   │   ├── projet
+│   │   │   │   ├── tab_annotations.html
+│   │   │   │   ├── tab_historique.html
+│   │   │   │   ├── tab_projet.html
+│   │   │   │   └── tabs.html
+│   │   │   ├── projet.html
+│   │   │   └── projet_list.html
+│   │   └── includes
+│   │       ├── _annotations_detail.html
+│   │       ├── _filter_categorie_detr.html
+│   │       ├── _filter_cout_total.html
+│   │       ├── _filter_dotation.html
+│   │       ├── _filter_montant_demande.html
+│   │       ├── _filter_montant_previsionnel.html
+│   │       ├── _filter_montant_retenu.html
+│   │       ├── _filter_porteur.html
+│   │       ├── _filter_status.html
+│   │       ├── _filter_territoire.html
+│   │       ├── _filter_trier_par.html
+│   │       ├── _projet_list_filters.html
+│   │       ├── _projets_table.html
+│   │       └── projet_detail
+│   │           ├── _dotation_projet_financial_informations.html
+│   │           ├── _projet_financial_informations.html
+│   │           ├── _status_and_notification_status_card.html
+│   │           └── dotation_montant_info.html
+│   ├── tests
+│   │   ├── __init__.py
+│   │   ├── factories.py
+│   │   ├── forms
+│   │   │   ├── test_dotation_projet_form.py
+│   │   │   ├── test_projet_form.py
+│   │   │   └── test_projet_note_form.py
+│   │   ├── models
+│   │   │   ├── test_categorie_detr.py
+│   │   │   ├── test_dotation_projet.py
+│   │   │   └── test_projet.py
+│   │   ├── services
+│   │   │   ├── __init__.py
+│   │   │   ├── dotation_projet
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── test_dotation_projet_services.py
+│   │   │   │   ├── test_initialize.py
+│   │   │   │   ├── test_update.py
+│   │   │   │   └── test_utils.py
+│   │   │   └── test_projet_services.py
+│   │   ├── test_factories.py
+│   │   ├── test_projet_manager.py
+│   │   ├── test_status.py
+│   │   ├── test_tasks.py
+│   │   ├── test_urls.py
+│   │   ├── test_views.py
+│   │   ├── utils
+│   │   │   ├── __init__.py
+│   │   │   ├── test_filter_utils.py
+│   │   │   └── test_utils.py
+│   │   └── views
+│   │       ├── test_projet_detail.py
+│   │       └── test_projet_list_category_detr.py
+│   ├── urls.py
+│   ├── utils
+│   │   ├── django_filters_custom_widget.py
+│   │   ├── filter_utils.py
+│   │   ├── projet_filters.py
+│   │   ├── projet_page.py
+│   │   └── utils.py
+│   └── views.py
+├── gsl_simulation
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── forms.py
+│   ├── migrations
+│   │   ├── 0001_initial.py
+│   │   ├── 0002_remove_simulationprojet_unique_valid_simulation_per_project.py
+│   │   ├── 0003_alter_simulationprojet_status.py
+│   │   ├── 0004_remove_simulationprojet_unique_projet_enveloppe_projet_and_more.py
+│   │   ├── 0005_remove_simulationprojet_unique_projet_enveloppe_simulation_and_more.py
+│   │   ├── 0006_remove_simulationprojet_enveloppe.py
+│   │   ├── 0007_alter_simulationprojet_options.py
+│   │   ├── 0008_alter_simulationprojet_status.py
+│   │   ├── 0009_alter_simulationprojet_status.py
+│   │   ├── 0010_alter_simulation_options.py
+│   │   ├── 0011_simulationprojet_dotation_projet.py
+│   │   ├── 0012_remove_simulationprojet_unique_projet_simulation_and_more.py
+│   │   ├── 0013_initialize_dotation_projet_for_simulation_projets.py
+│   │   ├── 0014_remove_simulationprojet_projet.py
+│   │   ├── 0015_alter_simulationprojet_status.py
+│   │   ├── 0016_auto_20250429_1700.py
+│   │   ├── 0017_alter_simulationprojet_status.py
+│   │   ├── 0018_remove_simulationprojet_taux.py
+│   │   ├── 0019_alter_simulation_enveloppe.py
+│   │   ├── 0020_alter_simulation_slug.py
+│   │   └── __init__.py
+│   ├── models.py
+│   ├── resources.py
+│   ├── services
+│   │   └── simulation_projet_service.py
+│   ├── static
+│   │   ├── css
+│   │   │   ├── annotations.css
+│   │   │   ├── simulation_detail.css
+│   │   │   ├── simulation_list.css
+│   │   │   └── simulation_projet_detail.css
+│   │   └── js
+│   │       ├── controllers
+│   │       │   ├── bindAmountTields.js
+│   │       │   ├── dotationDropdown.js
+│   │       │   └── processModal.js
+│   │       ├── handleInteractionInSimulationProjet.js
+│   │       ├── handleInteractionInSimulationProjetAnnotations.js
+│   │       ├── handleInteractionsInSimulation.js
+│   │       └── modules
+│   │           ├── handleDotationUpdate.js
+│   │           └── utils.js
+│   ├── templates
+│   │   ├── gsl_simulation
+│   │   │   ├── simulation_detail.html
+│   │   │   ├── simulation_form.html
+│   │   │   ├── simulation_list.html
+│   │   │   ├── simulation_projet_detail.html
+│   │   │   └── tab_simulation_projet
+│   │   │       ├── tab_annotations.html
+│   │   │       ├── tab_historique.html
+│   │   │       ├── tab_projet.html
+│   │   │       └── tabs.html
+│   │   ├── htmx
+│   │   │   ├── _base_htmx_modal.html
+│   │   │   ├── go_back_to_simulation_state_modal.html
+│   │   │   ├── not_instructeur_error.html
+│   │   │   ├── notify_later_confirmation_modal.html
+│   │   │   ├── notify_project_confirmation_modal.html
+│   │   │   ├── projet_note_update_form.html
+│   │   │   └── projet_update.html
+│   │   └── includes
+│   │       ├── _note_card.html
+│   │       ├── _simulation_detail_row.html
+│   │       ├── _status_and_notification_status_card.html
+│   │       ├── _status_dropdown_buttons.html
+│   │       ├── _status_summary.html
+│   │       ├── forms
+│   │       │   ├── _boolean_field.html
+│   │       │   ├── _boolean_fields_projet_form.html
+│   │       │   ├── _detr_avis_commission_form.html
+│   │       │   ├── _dotations_form.html
+│   │       │   ├── _is_budget_vert_form.html
+│   │       │   └── _montants_form.html
+│   │       ├── modals
+│   │       │   ├── _dotation_update_confirmation_modal.html
+│   │       │   ├── _simulation_actions_menu.html
+│   │       │   └── modal_base.html
+│   │       └── table_forms
+│   │           ├── _dotation_form.html
+│   │           ├── _montant_form.html
+│   │           └── _taux_form.html
+│   ├── templatetags
+│   │   └── simulation_filters.py
+│   ├── tests
+│   │   ├── __init__.py
+│   │   ├── factories.py
+│   │   ├── forms
+│   │   │   ├── test_double_dotation_status_forms.py
+│   │   │   ├── test_projet_status_forms.py
+│   │   │   └── test_simulation_projet_form.py
+│   │   ├── models
+│   │   │   └── test_simulation_manager.py
+│   │   ├── services
+│   │   │   └── test_simulation_projet_services.py
+│   │   ├── test_factories.py
+│   │   ├── test_form_helpers.py
+│   │   ├── test_models.py
+│   │   ├── test_resources.py
+│   │   ├── test_simuprojet_constraints.py
+│   │   ├── test_urls.py
+│   │   ├── test_utils.py
+│   │   └── views
+│   │       ├── test_double_dotation_view_form_selection.py
+│   │       ├── test_filters.py
+│   │       ├── test_get_success_message.py
+│   │       ├── test_notification_tab_display.py
+│   │       ├── test_patch_projet.py
+│   │       ├── test_patch_simulation_projet.py
+│   │       ├── test_revert_notified_projet.py
+│   │       ├── test_simulation_category_detr.py
+│   │       ├── test_simulation_create_view.py
+│   │       ├── test_simulation_delete_view.py
+│   │       ├── test_simulation_detail_view.py
+│   │       ├── test_simulation_projet_annotations_view.py
+│   │       ├── test_simulation_projet_view.py
+│   │       └── test_status_modal_view.py
+│   ├── urls.py
+│   ├── utils.py
+│   └── views
+│       ├── decorators.py
+│       ├── simulation_projet_annotations_views.py
+│       ├── simulation_projet_views.py
+│       └── simulation_views.py
+├── justfile
+├── manage.py
+├── package-lock.json
+├── package.json
+├── pyproject.toml
+├── requirements-dev.txt
+├── requirements.txt
+├── scripts
+│   ├── generate_dump.sh
+│   └── restore_db.sh
+├── static
+│   ├── to_bundle
+│   │   └── tiptap.js
+│   └── vendor
+│       ├── htmx.esm.js
+│       ├── stimulus.js
+│       └── tiptap.js
+├── ui
+│   ├── __init__.py
+│   ├── static
+│   │   └── ui
+│   │       ├── components
+│   │       │   └── tiptap.css
+│   │       └── controllers
+│   │           ├── modal.js
+│   │           └── tiptapEditor.js
+│   ├── templates
+│   │   └── ui
+│   │       └── components
+│   │           ├── confirmation_modal.html
+│   │           ├── multiselect.html
+│   │           └── tiptap_editor.html
+│   └── templatetags
+│       ├── __init__.py
+│       └── ui_tags.py
+└── vendorize.txt
+138 directories, 588 files
