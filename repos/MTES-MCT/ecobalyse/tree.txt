@@ -1,0 +1,536 @@
+.
+├── .buildpacks
+├── .editorconfig
+├── .env.sample
+├── .gitattributes
+├── .github
+│   ├── ISSUE_TEMPLATE
+│   │   ├── BUG-REPORT.yml
+│   │   └── task.md
+│   ├── actions
+│   │   ├── create-release
+│   │   │   └── action.yml
+│   │   ├── scalingo-cli
+│   │   │   └── action.yml
+│   │   └── transcrypt-cli
+│   │       └── action.yml
+│   ├── dependabot.yml
+│   ├── pull_request_template.md
+│   └── workflows
+│       ├── codeql-analysis.yml
+│       ├── create_pr_for_changelog.yml
+│       ├── create_release.yml
+│       ├── create_release_archive.yml
+│       ├── ecobalyse-data-sync.yml
+│       ├── export_json.yml
+│       ├── node.js.yml
+│       ├── score_history.yml
+│       └── semantic-pr.yml
+├── .gitignore
+├── .npmrc
+├── .pre-commit-config.yaml
+├── .prettierignore
+├── .prettierrc
+├── .proxyrc.json
+├── .sassrc.json
+├── .slugignore
+├── Aptfile
+├── CHANGELOG.md
+├── LICENSE
+├── Procfile
+├── README.md
+├── backend
+│   ├── README.md
+│   └── src
+│       └── app
+│           ├── __about__.py
+│           ├── __main__.py
+│           ├── asgi.py
+│           ├── cli
+│           │   ├── __init__.py
+│           │   └── commands.py
+│           ├── config
+│           │   ├── __init__.py
+│           │   ├── _utils.py
+│           │   ├── app.py
+│           │   ├── base.py
+│           │   └── constants.py
+│           ├── db
+│           │   ├── __init__.py
+│           │   ├── fixtures
+│           │   │   ├── role.json
+│           │   │   └── user.json
+│           │   ├── migrations
+│           │   │   ├── __init__.py
+│           │   │   ├── alembic.ini
+│           │   │   ├── env.py
+│           │   │   ├── script.py.mako
+│           │   │   └── versions
+│           │   │       ├── 2025-05-27_initial_migration_fc6ea50df872.py
+│           │   │       ├── 2025-06-18_add_scopes_f3596fc1e583.py
+│           │   │       ├── 2025-06-25_add_journal_entries_041c77a5f1fe.py
+│           │   │       ├── 2025-07-01_add_full_processes_8b6326faa9c7.py
+│           │   │       ├── 2025-09-22_add_component_comment_field_8fac496b9e57.py
+│           │   │       ├── 2025-09-29_add_elements_table_6bc73acbc57d.py
+│           │   │       ├── 2025-10-27_remove_obsolete_elements_field_ada6511cec65.py
+│           │   │       ├── 2025-11-05_rename_add_location.py
+│           │   │       ├── 2025-11-05_rename_sourceid_to_activityname_50072787e828.py
+│           │   │       ├── 2025-11-19_add_component_published_status_8cc0196fc74c.py
+│           │   │       ├── 2025-12-10_remove_pef_40e15168080c.py
+│           │   │       ├── 2025-12-16_rename_item_s_to_item_ed08f55f73ad.py
+│           │   │       ├── 2026-01-08_order_transforms_dbe7e0aa7bfe.py
+│           │   │       └── 2026-01-15_rename_density_to_massperunit_and_make__af8f29751a13.py
+│           │   └── models
+│           │       ├── __init__.py
+│           │       ├── component.py
+│           │       ├── element.py
+│           │       ├── journal_entry.py
+│           │       ├── process.py
+│           │       ├── process_category.py
+│           │       ├── process_element_transform.py
+│           │       ├── process_process_category.py
+│           │       ├── role.py
+│           │       ├── token.py
+│           │       ├── user.py
+│           │       ├── user_profile.py
+│           │       └── user_role.py
+│           ├── domain
+│           │   ├── accounts
+│           │   │   ├── __init__.py
+│           │   │   ├── controllers
+│           │   │   │   ├── __init__.py
+│           │   │   │   └── access.py
+│           │   │   ├── deps.py
+│           │   │   ├── guards.py
+│           │   │   ├── schemas.py
+│           │   │   ├── services.py
+│           │   │   ├── tasks.py
+│           │   │   └── urls.py
+│           │   ├── components
+│           │   │   ├── controllers
+│           │   │   │   ├── __init__.py
+│           │   │   │   └── component.py
+│           │   │   ├── deps.py
+│           │   │   ├── schemas.py
+│           │   │   ├── services.py
+│           │   │   └── urls.py
+│           │   ├── journal_entries
+│           │   │   ├── controllers
+│           │   │   │   ├── __init__.py
+│           │   │   │   └── journal_entry.py
+│           │   │   ├── deps.py
+│           │   │   ├── schemas.py
+│           │   │   ├── services.py
+│           │   │   └── urls.py
+│           │   ├── processes
+│           │   │   ├── controllers
+│           │   │   │   ├── __init__.py
+│           │   │   │   └── process.py
+│           │   │   ├── deps.py
+│           │   │   ├── schemas.py
+│           │   │   ├── services.py
+│           │   │   └── urls.py
+│           │   └── system
+│           │       ├── controllers.py
+│           │       ├── schemas.py
+│           │       └── urls.py
+│           ├── lib
+│           │   ├── crypt.py
+│           │   ├── deps.py
+│           │   ├── http.py
+│           │   ├── middleware
+│           │   │   ├── __init__.py
+│           │   │   └── custom_auth_middleware.py
+│           │   ├── schema.py
+│           │   └── validation.py
+│           └── server
+│               ├── core.py
+│               └── plugins.py
+├── bin
+│   ├── build-all-versions.sh
+│   ├── build-db
+│   ├── build-example-ids
+│   ├── build-specific-app-version.sh
+│   ├── build-standalone-app.sh
+│   ├── check-db.sh
+│   ├── check-ecobalyse-data-sync.sh
+│   ├── decrypt
+│   ├── download_github_releases.py
+│   ├── encrypt
+│   ├── generate-crypto-key
+│   ├── get_tag_for_commit.py
+│   ├── load-fixtures.sh
+│   ├── patch_files_for_versions_compat.py
+│   ├── playwright-webserver.sh
+│   ├── reset-docker-db.sh
+│   ├── run-transcrypt.sh
+│   ├── scalingo_api.py
+│   ├── score_history
+│   │   ├── create_table_score_history.sql
+│   │   └── score_history.py
+│   ├── start.sh
+│   └── update-version.sh
+├── buildpack-run.sh
+├── check-db.js
+├── cliff.toml
+├── docker
+│   ├── .dockerignore
+│   ├── Dockerfile
+│   ├── compose.yaml
+│   └── server-simple.js
+├── docker-compose.yml
+├── e2e
+│   ├── auth.spec.js
+│   ├── food-simulator.spec.js
+│   ├── homepage.spec.js
+│   ├── lib.js
+│   ├── object-simulator.spec.js
+│   ├── setup-version-fixture.sh
+│   ├── textile-simulator.spec.js
+│   └── versions.spec.js
+├── elm.json
+├── index.html
+├── index.js
+├── lib
+│   ├── charts
+│   │   ├── base.js
+│   │   ├── food-comparator.js
+│   │   ├── index.js
+│   │   └── stats.js
+│   ├── crypto.js
+│   ├── http.js
+│   ├── index.js
+│   ├── json.js
+│   ├── matomo.js
+│   ├── plausible.js
+│   └── sentry.js
+├── nodemon.json
+├── openapi.yaml
+├── package-lock.json
+├── package.json
+├── packages
+│   └── python
+│       └── ecobalyse
+│           ├── .gitignore
+│           ├── ecobalyse
+│           │   ├── 0001-feat-patch-homepage-link-and-inject-and-inject-versi.patch
+│           │   ├── 0002-patch-index-js-client-path-backend.patch
+│           │   ├── __init__.py
+│           │   ├── github.py
+│           │   ├── logging_config.py
+│           │   ├── patch_files.py
+│           │   ├── scalingo.py
+│           │   └── tests
+│           │       ├── test_data_branch.py
+│           │       └── test_patch_old_versions.py
+│           └── setup.py
+├── playwright.config.js
+├── public
+│   ├── data
+│   │   ├── components
+│   │   │   └── config.json
+│   │   ├── countries.json
+│   │   ├── food
+│   │   │   ├── examples.json
+│   │   │   └── ingredients.json
+│   │   ├── impacts.json
+│   │   ├── object
+│   │   │   ├── components.json
+│   │   │   └── examples.json
+│   │   ├── processes.json
+│   │   ├── processes_impacts.json
+│   │   ├── textile
+│   │   │   ├── components.json
+│   │   │   ├── examples.json
+│   │   │   ├── materials.json
+│   │   │   └── products.json
+│   │   ├── transports.json
+│   │   └── veli
+│   │       ├── components.json
+│   │       └── examples.json
+│   ├── fonts
+│   │   ├── Marianne-Bold.woff
+│   │   ├── Marianne-Bold.woff2
+│   │   ├── Marianne-Regular.woff
+│   │   └── Marianne-Regular.woff2
+│   ├── icomoon
+│   │   ├── fonts
+│   │   │   ├── icomoon.eot
+│   │   │   ├── icomoon.svg
+│   │   │   ├── icomoon.ttf
+│   │   │   └── icomoon.woff
+│   │   ├── selection.json
+│   │   └── style.css
+│   ├── img
+│   │   ├── betagouv.svg
+│   │   ├── chevron-down.png
+│   │   ├── etiquette-exemple.png
+│   │   ├── illustration-score.png
+│   │   ├── img_outil_api.png
+│   │   ├── img_outil_calculateur.png
+│   │   ├── img_outil_methode.png
+│   │   ├── ingredient-editor.png
+│   │   ├── logo.png
+│   │   ├── logo_ademe.svg
+│   │   ├── logo_betagouv.jpg
+│   │   ├── logo_mte.svg
+│   │   ├── picto_alimentaire.png
+│   │   ├── picto_bulle.png
+│   │   ├── picto_textile.png
+│   │   └── republique-francaise.svg
+│   ├── pages
+│   │   ├── accessibilité.md
+│   │   ├── api-faq.md
+│   │   ├── cgu-ecoinvent.md
+│   │   ├── changelog.md -> ../../CHANGELOG.md
+│   │   ├── mentions-légales.md
+│   │   └── politique-de-confidentialite.md
+│   ├── robots.txt
+│   └── vendor
+│       └── rapidoc-9.3.4.min.js
+├── pyproject.toml
+├── review
+│   ├── .gitignore
+│   ├── elm.json
+│   └── src
+│       └── ReviewConfig.elm
+├── scalingo.json
+├── server.js
+├── servers.conf.erb
+├── src
+│   ├── App.elm
+│   ├── CheckDb.elm
+│   ├── Data
+│   │   ├── ApiToken.elm
+│   │   ├── AutocompleteSelector.elm
+│   │   ├── Bookmark.elm
+│   │   ├── Color.elm
+│   │   ├── Common
+│   │   │   ├── Db.elm
+│   │   │   ├── DecodeUtils.elm
+│   │   │   └── EncodeUtils.elm
+│   │   ├── Component
+│   │   │   └── Config.elm
+│   │   ├── Component.elm
+│   │   ├── Country.elm
+│   │   ├── Dataset.elm
+│   │   ├── Env.elm
+│   │   ├── Example.elm
+│   │   ├── Food
+│   │   │   ├── Db.elm
+│   │   │   ├── EcosystemicServices.elm
+│   │   │   ├── Ingredient
+│   │   │   │   ├── Category.elm
+│   │   │   │   ├── CropGroup.elm
+│   │   │   │   └── Scenario.elm
+│   │   │   ├── Ingredient.elm
+│   │   │   ├── Origin.elm
+│   │   │   ├── Preparation.elm
+│   │   │   ├── Query.elm
+│   │   │   ├── Recipe.elm
+│   │   │   ├── Retail.elm
+│   │   │   ├── Validation.elm
+│   │   │   └── WellKnown.elm
+│   │   ├── Gitbook.elm
+│   │   ├── Github.elm
+│   │   ├── Impact
+│   │   │   └── Definition.elm
+│   │   ├── Impact.elm
+│   │   ├── JournalEntry.elm
+│   │   ├── Key.elm
+│   │   ├── Matomo.elm
+│   │   ├── Notification.elm
+│   │   ├── Object
+│   │   │   ├── Db.elm
+│   │   │   └── Simulator.elm
+│   │   ├── Plausible.elm
+│   │   ├── Process
+│   │   │   └── Category.elm
+│   │   ├── Process.elm
+│   │   ├── Scope.elm
+│   │   ├── Scoring.elm
+│   │   ├── Session.elm
+│   │   ├── Split.elm
+│   │   ├── Stages.elm
+│   │   ├── Text.elm
+│   │   ├── Textile
+│   │   │   ├── Db.elm
+│   │   │   ├── Dyeing.elm
+│   │   │   ├── Economics.elm
+│   │   │   ├── Fabric.elm
+│   │   │   ├── Formula.elm
+│   │   │   ├── Inputs.elm
+│   │   │   ├── LifeCycle.elm
+│   │   │   ├── MakingComplexity.elm
+│   │   │   ├── Material
+│   │   │   │   ├── Origin.elm
+│   │   │   │   └── Spinning.elm
+│   │   │   ├── Material.elm
+│   │   │   ├── Printing.elm
+│   │   │   ├── Product.elm
+│   │   │   ├── Query.elm
+│   │   │   ├── Simulator.elm
+│   │   │   ├── Stage
+│   │   │   │   └── Label.elm
+│   │   │   ├── Stage.elm
+│   │   │   ├── Validation.elm
+│   │   │   └── WellKnown.elm
+│   │   ├── Transport.elm
+│   │   ├── Unit.elm
+│   │   ├── User.elm
+│   │   ├── Uuid.elm
+│   │   ├── Validation.elm
+│   │   └── Zone.elm
+│   ├── Main.elm
+│   ├── Page
+│   │   ├── Admin
+│   │   │   ├── Account.elm
+│   │   │   ├── Component.elm
+│   │   │   ├── Process.elm
+│   │   │   └── Section.elm
+│   │   ├── Api.elm
+│   │   ├── Auth.elm
+│   │   ├── Editorial.elm
+│   │   ├── Explore
+│   │   │   ├── Common.elm
+│   │   │   ├── Components.elm
+│   │   │   ├── Countries.elm
+│   │   │   ├── FoodExamples.elm
+│   │   │   ├── FoodIngredients.elm
+│   │   │   ├── Impacts.elm
+│   │   │   ├── ObjectExamples.elm
+│   │   │   ├── Processes.elm
+│   │   │   ├── Table.elm
+│   │   │   ├── TextileExamples.elm
+│   │   │   ├── TextileMaterials.elm
+│   │   │   └── TextileProducts.elm
+│   │   ├── Explore.elm
+│   │   ├── Food.elm
+│   │   ├── Home.elm
+│   │   ├── Object.elm
+│   │   ├── Stats.elm
+│   │   └── Textile.elm
+│   ├── Ports.elm
+│   ├── Request
+│   │   ├── ApiToken.elm
+│   │   ├── Auth.elm
+│   │   ├── BackendHttp
+│   │   │   └── Error.elm
+│   │   ├── BackendHttp.elm
+│   │   ├── Common.elm
+│   │   ├── Component.elm
+│   │   ├── Github.elm
+│   │   ├── Journal.elm
+│   │   ├── Matomo.elm
+│   │   ├── Process.elm
+│   │   └── Version.elm
+│   ├── Route.elm
+│   ├── Server
+│   │   ├── Request.elm
+│   │   └── Route.elm
+│   ├── Server.elm
+│   ├── Static
+│   │   ├── Db.elm
+│   │   └── Json.elm-template
+│   └── Views
+│       ├── Admin.elm
+│       ├── Alert.elm
+│       ├── AutocompleteSelector.elm
+│       ├── BaseElement.elm
+│       ├── Bookmark.elm
+│       ├── Button.elm
+│       ├── CardTabs.elm
+│       ├── Comparator.elm
+│       ├── ComplementsDetails.elm
+│       ├── Component
+│       │   ├── DownArrow.elm
+│       │   ├── MassInput.elm
+│       │   ├── SplitInput.elm
+│       │   └── StagesBorder.elm
+│       ├── Component.elm
+│       ├── Container.elm
+│       ├── CountrySelect.elm
+│       ├── Events.elm
+│       ├── Example.elm
+│       ├── Format.elm
+│       ├── Icon.elm
+│       ├── Impact.elm
+│       ├── ImpactTabs.elm
+│       ├── Link.elm
+│       ├── Markdown.elm
+│       ├── Modal.elm
+│       ├── Page.elm
+│       ├── RangeSlider.elm
+│       ├── Scope.elm
+│       ├── Score.elm
+│       ├── Sidebar.elm
+│       ├── Spinner.elm
+│       ├── Table.elm
+│       ├── Textile
+│       │   └── Stage.elm
+│       ├── Transport.elm
+│       ├── Version.elm
+│       └── WebData.elm
+├── styles.scss
+├── tests
+│   ├── .gitignore
+│   ├── Data
+│   │   ├── BookmarkTest.elm
+│   │   ├── Common
+│   │   │   └── EncodeUtilsTest.elm
+│   │   ├── ComponentTest.elm
+│   │   ├── DefinitionTest.elm
+│   │   ├── Food
+│   │   │   ├── PreparationTest.elm
+│   │   │   ├── QueryTest.elm
+│   │   │   └── RecipeTest.elm
+│   │   ├── ImpactTest.elm
+│   │   ├── ScopeTest.elm
+│   │   ├── SplitTest.elm
+│   │   ├── TextTest.elm
+│   │   ├── Textile
+│   │   │   ├── EconomicsTest.elm
+│   │   │   ├── FabricTest.elm
+│   │   │   ├── FormulaTest.elm
+│   │   │   ├── InputsTest.elm
+│   │   │   ├── LifeCycleTest.elm
+│   │   │   ├── ProductTest.elm
+│   │   │   ├── QueryTest.elm
+│   │   │   └── SimulatorTest.elm
+│   │   ├── TransportTest.elm
+│   │   ├── UnitTest.elm
+│   │   ├── UserTest.elm
+│   │   └── ValidationTest.elm
+│   ├── Request
+│   │   └── VersionTest.elm
+│   ├── Server
+│   │   ├── RouteTest.elm
+│   │   └── ServerTest.elm
+│   ├── TestUtils.elm
+│   ├── Views
+│   │   ├── FormatTest.elm
+│   │   └── MarkdownTest.elm
+│   ├── backend
+│   │   ├── __init__.py
+│   │   ├── conftest.py
+│   │   ├── data_fixtures.py
+│   │   └── integration
+│   │       ├── conftest.py
+│   │       ├── test_access.py
+│   │       ├── test_components.py
+│   │       ├── test_health.py
+│   │       ├── test_journal_entries.py
+│   │       ├── test_load_processes_fixtures.py
+│   │       └── test_processes.py
+│   ├── conftest.py
+│   ├── e2e-food.json
+│   ├── e2e-textile.json
+│   ├── lib
+│   │   ├── http.spec.js
+│   │   ├── json.test.js
+│   │   └── plausible.spec.js
+│   ├── processes-schema.json
+│   ├── rate-limiting.spec.js
+│   └── server.spec.js
+└── uv.lock
+90 directories, 445 files
