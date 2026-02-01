@@ -1,0 +1,45 @@
+{
+  "name": "resultats-elections-fpt",
+  "version": "1.0.0",
+  "description": "Saisir et centraliser les résultats des élections professionnelles dans la fonction publique territoriale",
+  "type": "module",
+  "scripts": {
+    "dev:html": "http-server --port 5173 ./apps-html",
+    "copy:html": "cp -r apps-html/* dist/",
+    "dev:fiche": "vite --mode vue-fiche",
+    "preview:fiche": "vite preview --mode vue-fiche",
+    "build:fiche": "vite build --mode vue-fiche",
+    "dev:tableau": "vite --mode vue-tableau",
+    "preview:tableau": "vite preview --mode vue-tableau",
+    "build:tableau": "vite build --mode vue-tableau",
+    "dev:formulaire": "vite --mode vue-formulaire",
+    "preview:formulaire": "vite preview --mode vue-formulaire",
+    "build:formulaire": "vite build --mode vue-formulaire",
+    "build": "npm-run-all build:fiche build:tableau build:formulaire copy:html",
+    "build:staging": "npm-run-all build copy:staging",
+    "copy:staging": "cp -r dist/* staging/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/betagouv/Resultats-Elections-FPT.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/betagouv/Resultats-Elections-FPT/issues"
+  },
+  "homepage": "https://github.com/betagouv/Resultats-Elections-FPT#readme",
+  "dependencies": {
+    "@gouvfr/dsfr": "^1.14.3",
+    "@gouvminint/vue-dsfr": "^8.13.1",
+    "@vueuse/core": "^14.1.0",
+    "http-server": "^14.1.1",
+    "vue": "^3.4.21",
+    "write-excel-file": "^2.3.10"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.4",
+    "npm-run-all": "^4.1.5",
+    "vite": "^5.2.0"
+  }
+}
