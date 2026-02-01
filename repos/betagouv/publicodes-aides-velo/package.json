@@ -1,0 +1,64 @@
+{
+  "name": "@betagouv/aides-velo",
+  "description": "Modèle Publicodes pour le calcul des aides vélo en France",
+  "version": "3.5.0",
+  "author": "Emile Rolley <emile.rolley@beta.gouv.fr>",
+  "license": "Apache-2.0",
+  "type": "module",
+  "types": "./dist/src/index.d.ts",
+  "main": "./dist/src/index.cjs",
+  "module": "./dist/src/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "require": "./dist/src/index.cjs",
+      "import": "./dist/src/index.js"
+    },
+    "./rules": {
+      "types": "./dist/publicodes-build/index.d.ts",
+      "require": "./dist/publicodes-build/index.cjs",
+      "import": "./dist/publicodes-build/index.js"
+    },
+    "./data": {
+      "types": "./dist/src/data/index.d.ts",
+      "require": "./dist/src/data/index.cjs",
+      "import": "./dist/src/data/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "publicodes-build"
+  ],
+  "scripts": {
+    "compile:rules": "publicodes compile src/rules/*.publicodes",
+    "generate": "bun run compile:rules && bun scripts/generate.js",
+    "pretest": "bun run generate",
+    "test": "vitest run",
+    "test:links": "bun scripts/check-links-validity.js",
+    "test:outdated": "bun scripts/check-outdated-aids.ts",
+    "precompile": "bun run generate",
+    "compile": "tsdown",
+    "release": "bun run compile && changeset publish"
+  },
+  "dependencies": {
+    "@etalab/decoupage-administratif": "^5.2.0",
+    "publicodes": "^1.8.5"
+  },
+  "devDependencies": {
+    "@actions/core": "^1.11.1",
+    "@actions/github": "^6.0.1",
+    "@changesets/cli": "^2.29.4",
+    "@publicodes/tools": "^1.7.2",
+    "@svitejs/changesets-changelog-github-compact": "^1.2.0",
+    "@types/bun": "^1.2.23",
+    "@types/jest": "^29.5.14",
+    "bun": "^1.2.23",
+    "terser": "^5.39.2",
+    "tsdown": "^0.12.7",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
