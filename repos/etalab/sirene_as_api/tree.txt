@@ -1,0 +1,491 @@
+.
+├── .agignore
+├── .devcontainer
+│   ├── devcontainer.json
+│   └── docker-compose.yml
+├── .dockerignore
+├── .env
+├── .gitignore
+├── .rbenv-version
+├── .rspec
+├── .rubocop.yml
+├── .ruby-version
+├── .travis.yml
+├── Dockerfile
+├── Gemfile
+├── Gemfile.lock
+├── Guardfile
+├── LICENSE.md
+├── README.md
+├── Rakefile
+├── app
+│   ├── api
+│   │   └── ovh_api.rb
+│   ├── channels
+│   │   └── application_cable
+│   │       ├── channel.rb
+│   │       └── connection.rb
+│   ├── concepts
+│   │   ├── daily_update
+│   │   │   ├── operation
+│   │   │   │   ├── post_update.rb
+│   │   │   │   ├── update.rb
+│   │   │   │   └── update_database.rb
+│   │   │   └── task
+│   │   │       ├── create_associations.rb
+│   │   │       └── current_stock_completed.rb
+│   │   ├── files
+│   │   │   ├── helper
+│   │   │   │   ├── csv_reader.rb
+│   │   │   │   └── file_importer.rb
+│   │   │   └── operation
+│   │   │       ├── download.rb
+│   │   │       └── extract.rb
+│   │   ├── insee
+│   │   │   ├── api_client.rb
+│   │   │   ├── operation
+│   │   │   │   ├── fetch_updates.rb
+│   │   │   │   ├── import_raw_data.rb
+│   │   │   │   └── renew_token.rb
+│   │   │   ├── request
+│   │   │   │   ├── fetch_updates_with_cursor.rb
+│   │   │   │   └── renew_token.rb
+│   │   │   └── task
+│   │   │       ├── adapt_api_results.rb
+│   │   │       ├── adapt_etablissement.rb
+│   │   │       ├── adapt_unite_legale.rb
+│   │   │       └── supersede.rb
+│   │   └── stock
+│   │       ├── helper
+│   │       │   └── database_indexes.rb
+│   │       ├── operation
+│   │       │   ├── check_stock_availability.rb
+│   │       │   ├── import.rb
+│   │       │   ├── load_etablissement.rb
+│   │       │   ├── load_unite_legale.rb
+│   │       │   ├── post_import.rb
+│   │       │   └── update_database.rb
+│   │       └── task
+│   │           ├── create_associations.rb
+│   │           ├── create_tmp_indexes.rb
+│   │           ├── drop_tmp_indexes.rb
+│   │           ├── fetch_latest_remote_stock_etablissement.rb
+│   │           ├── fetch_latest_remote_stock_unite_legale.rb
+│   │           ├── import_csv.rb
+│   │           ├── load.rb
+│   │           ├── rename_indexes.rb
+│   │           ├── swap_table_names.rb
+│   │           ├── truncate_table.rb
+│   │           └── update_non_diffusable.rb
+│   ├── controllers
+│   │   ├── api
+│   │   │   ├── v1
+│   │   │   │   ├── full_text_controller.rb
+│   │   │   │   ├── near_etablissement_controller.rb
+│   │   │   │   ├── near_etablissement_geojson_controller.rb
+│   │   │   │   ├── near_point_controller.rb
+│   │   │   │   ├── numero_rna_controller.rb
+│   │   │   │   ├── siren_controller.rb
+│   │   │   │   ├── siret_controller.rb
+│   │   │   │   └── suggest_controller.rb
+│   │   │   ├── v2
+│   │   │   │   ├── siren_children_controller.rb
+│   │   │   │   ├── siren_children_geojson_controller.rb
+│   │   │   │   └── siren_controller.rb
+│   │   │   └── v3
+│   │   │       ├── etablissements_controller.rb
+│   │   │       └── unites_legales_controller.rb
+│   │   ├── application_controller.rb
+│   │   └── concerns
+│   │       ├── .keep
+│   │       └── scopable.rb
+│   ├── interactors
+│   │   ├── apply_frequent_update_csv_patch.rb
+│   │   ├── apply_patches.rb
+│   │   ├── check_current_service.rb
+│   │   ├── delete_database.rb
+│   │   ├── delete_temporary_files.rb
+│   │   ├── download_file.rb
+│   │   ├── get_last_monthly_stock_link.rb
+│   │   ├── get_relevant_patches_links.rb
+│   │   ├── import_monthly_stock_csv.rb
+│   │   ├── organizers
+│   │   │   ├── apply_patch.rb
+│   │   │   ├── automatic_update_database.rb
+│   │   │   ├── dual_server_update.rb
+│   │   │   ├── import_last_monthly_stock.rb
+│   │   │   ├── populate_database.rb
+│   │   │   ├── post_update_tasks.rb
+│   │   │   └── select_and_apply_patches.rb
+│   │   ├── set_automatic_context.rb
+│   │   ├── sirene_as_api_interactor.rb
+│   │   ├── switch_server.rb
+│   │   ├── test_self_server.rb
+│   │   ├── unzip_file.rb
+│   │   └── update_database.rb
+│   ├── jobs
+│   │   ├── application_job.rb
+│   │   ├── daily_update_job.rb
+│   │   ├── daily_update_model_job.rb
+│   │   ├── etablissement_attrs_from_line.rb
+│   │   ├── etablissement_row_jobs.rb
+│   │   ├── import_stock_job.rb
+│   │   ├── insert_etablissement_rows_job.rb
+│   │   ├── save_last_monthly_stock_name.rb
+│   │   ├── solr_build_dictionary.rb
+│   │   ├── solr_reindex.rb
+│   │   ├── update_database_job.rb
+│   │   ├── update_database_v1_job.rb
+│   │   └── update_etablissement_rows_job.rb
+│   ├── mailers
+│   │   └── application_mailer.rb
+│   ├── models
+│   │   ├── application_record.rb
+│   │   ├── concerns
+│   │   │   └── .keep
+│   │   ├── daily_update.rb
+│   │   ├── daily_update_etablissement.rb
+│   │   ├── daily_update_etablissement_non_diffusable.rb
+│   │   ├── daily_update_unite_legale.rb
+│   │   ├── daily_update_unite_legale_non_diffusable.rb
+│   │   ├── etablissement.rb
+│   │   ├── etablissement_v2.rb
+│   │   ├── stock.rb
+│   │   ├── stock_etablissement.rb
+│   │   ├── stock_unite_legale.rb
+│   │   └── unite_legale.rb
+│   ├── serializers
+│   │   ├── api
+│   │   │   └── v3
+│   │   │       ├── etablissement_serializer.rb
+│   │   │       └── unite_legale_serializer.rb
+│   │   ├── application_serializer.rb
+│   │   └── payload_serializer.rb
+│   ├── solr
+│   │   ├── solr_requests.rb
+│   │   └── suggestions.rb
+│   └── views
+│       └── layouts
+│           ├── mailer.html.erb
+│           └── mailer.text.erb
+├── bin
+│   ├── bundle
+│   ├── rails
+│   ├── rake
+│   ├── rspec
+│   ├── setup
+│   ├── spring
+│   └── update
+├── config
+│   ├── application.rb
+│   ├── boot.rb
+│   ├── cable.yml
+│   ├── database.yml
+│   ├── database_indexes.yml
+│   ├── deploy.rb
+│   ├── docker
+│   │   ├── database.yml
+│   │   ├── docker-entrypoint.sh
+│   │   └── init.sql
+│   ├── environment.rb
+│   ├── environments
+│   │   ├── development.rb
+│   │   └── test.rb
+│   ├── initializers
+│   │   ├── application_controller_renderer.rb
+│   │   ├── application_serializer.rb
+│   │   ├── backtrace_silencers.rb
+│   │   ├── cors.rb
+│   │   ├── customize_strings.rb
+│   │   ├── filter_parameter_logging.rb
+│   │   ├── header_mappings
+│   │   │   ├── etablissement.rb
+│   │   │   └── unite_legale.rb
+│   │   ├── inflections.rb
+│   │   ├── logstasher.rb
+│   │   ├── mime_types.rb
+│   │   ├── new_framework_defaults.rb
+│   │   ├── pagy.rb
+│   │   ├── redis.rb
+│   │   ├── resque.rb
+│   │   ├── sidekiq.rb
+│   │   └── wrap_parameters.rb
+│   ├── locales
+│   │   └── en.yml
+│   ├── puma.rb
+│   ├── routes.rb
+│   ├── schedule.yml
+│   ├── secrets.yml
+│   ├── sidekiq.yml
+│   ├── sitemap.rb
+│   ├── spring.rb
+│   ├── sunspot.yml
+│   └── switch_server.yml
+├── config.ru
+├── db
+│   ├── checks_db
+│   │   └── check_if_only_one_siege.rb
+│   ├── migrate
+│   │   ├── 20170118130314_create_entreprises.rb
+│   │   ├── 20170124130819_install_trigram.rb
+│   │   ├── 20170130100203_rename_entreprise_etablissement.rb
+│   │   ├── 20170922094826_rename_libelle_to_libelle_region.rb
+│   │   ├── 20170925105117_rename_statut_diffusion_to_prospection.rb
+│   │   ├── 20180420104754_add_geocoded_columns.rb
+│   │   ├── 20180827112250_add_index_on_rna_id.rb
+│   │   ├── 20181129151018_files_from_v3.rb
+│   │   ├── 20190602130719_rename_etablissement.rb
+│   │   ├── 20190603115019_create_stock.rb
+│   │   ├── 20190606142656_create_etablissements_v3.rb
+│   │   ├── 20190619121622_create_unite_legale.rb
+│   │   ├── 20190703100825_add_unite_legale_id_to_etablissements.rb
+│   │   ├── 20191126124448_create_unites_legales_tmp.rb
+│   │   ├── 20191126124456_create_etablissements_tmp.rb
+│   │   ├── 20200119132507_create_daily_updates.rb
+│   │   ├── 20200127073524_add_sti_type_to_daily_updates.rb
+│   │   ├── 20200127074730_remove_model_name_to_daily_updates.rb
+│   │   ├── 20200210140344_add_update_type_to_daily_update.rb
+│   │   └── 20200613110234_rename_existing_indexes.rb
+│   ├── schema.rb
+│   ├── seeds.rb
+│   └── structure.sql
+├── docker-compose.yml
+├── lib
+│   ├── string.rb
+│   └── tasks
+│       ├── checks_db.rake
+│       ├── server.rake
+│       ├── sirene.rake
+│       └── sirene_as_api.rake
+├── log
+│   └── .keep
+├── postgresql_setup.txt
+├── public
+│   └── robots.txt
+├── solr
+│   ├── configsets
+│   │   └── sunspot
+│   │       └── conf
+│   │           ├── _rest_managed.json
+│   │           ├── admin-extra.html
+│   │           ├── currency.xml
+│   │           ├── elevate.xml
+│   │           ├── lang
+│   │           │   └── stopwords_en.txt
+│   │           ├── mapping-ISOLatin1Accent.txt
+│   │           ├── protwords.txt
+│   │           ├── schema.xml
+│   │           ├── scripts.conf
+│   │           ├── solrconfig.xml
+│   │           ├── spellings.txt
+│   │           └── synonyms.txt
+│   ├── development
+│   │   ├── core.properties
+│   │   └── data
+│   │       └── .gitkeep
+│   ├── pids
+│   │   ├── development
+│   │   │   └── .gitkeep
+│   │   ├── production
+│   │   │   └── .gitkeep
+│   │   ├── sandbox
+│   │   │   └── .gitkeep
+│   │   └── test
+│   │       └── .gitkeep
+│   ├── solr.xml
+│   └── test
+│       ├── core.properties
+│       └── data
+│           └── .gitkeep
+├── spec
+│   ├── active_jobs_helper.rb
+│   ├── concepts
+│   │   ├── daily_update
+│   │   │   ├── operation
+│   │   │   │   ├── import_raw_data_spec.rb
+│   │   │   │   ├── post_update_spec.rb
+│   │   │   │   ├── update_database_spec.rb
+│   │   │   │   └── update_spec.rb
+│   │   │   └── task
+│   │   │       ├── create_associations_spec.rb
+│   │   │       └── current_stock_completed_spec.rb
+│   │   ├── files
+│   │   │   ├── helper
+│   │   │   │   ├── csv_reader_spec.rb
+│   │   │   │   └── file_importer_spec.rb
+│   │   │   └── operation
+│   │   │       ├── download_spec.rb
+│   │   │       └── extract_spec.rb
+│   │   ├── insee
+│   │   │   ├── api_client_spec.rb
+│   │   │   ├── operation
+│   │   │   │   ├── fetch_updates_spec.rb
+│   │   │   │   └── renew_token_spec.rb
+│   │   │   ├── request
+│   │   │   │   ├── fetch_updates_with_cursor_spec.rb
+│   │   │   │   └── renew_token_spec.rb
+│   │   │   └── task
+│   │   │       ├── adapt_api_results_spec.rb
+│   │   │       ├── adapt_etablissement_spec.rb
+│   │   │       ├── adapt_unite_legale_spec.rb
+│   │   │       └── supersede_spec.rb
+│   │   └── stock
+│   │       ├── helper
+│   │       │   └── database_indexes_spec.rb
+│   │       ├── operation
+│   │       │   ├── check_stock_availability_spec.rb
+│   │       │   ├── import_spec.rb
+│   │       │   ├── load_etablissement_spec.rb
+│   │       │   ├── load_unite_legale_spec.rb
+│   │       │   ├── post_import_spec.rb
+│   │       │   └── update_database_spec.rb
+│   │       └── task
+│   │           ├── create_associations_spec.rb
+│   │           ├── create_tmp_indexes_spec.rb
+│   │           ├── drop_tmp_indexes_spec.rb
+│   │           ├── fetch_latest_remote_stock_etablissement_spec.rb
+│   │           ├── fetch_latest_remote_stock_unite_legale_spec.rb
+│   │           ├── import_csv_spec.rb
+│   │           ├── load_spec.rb
+│   │           ├── rename_indexes_spec.rb
+│   │           ├── swap_table_names_spec.rb
+│   │           ├── truncate_table_spec.rb
+│   │           └── update_non_diffusable_spec.rb
+│   ├── controllers
+│   │   └── api
+│   │       ├── v1
+│   │       │   ├── full_text_controller_spec.rb
+│   │       │   ├── near_etablissement_controller_spec.rb
+│   │       │   ├── near_etablissement_geojson_controller_spec.rb
+│   │       │   ├── near_point_controller_spec.rb
+│   │       │   ├── numero_rna_controller_spec.rb
+│   │       │   ├── siren_controller_spec.rb
+│   │       │   ├── siret_controller_spec.rb
+│   │       │   └── suggest_controller_spec.rb
+│   │       ├── v2
+│   │       │   ├── siren_children_geojson_spec.rb
+│   │       │   ├── siren_children_spec.rb
+│   │       │   └── siren_controller_spec.rb
+│   │       └── v3
+│   │           ├── etablissements_controller_spec.rb
+│   │           └── unites_legales_controller_spec.rb
+│   ├── factories
+│   │   ├── daily_update.rb
+│   │   ├── etablissement_factory.rb
+│   │   ├── etablissement_v2_factory.rb
+│   │   ├── stock_factory.rb
+│   │   └── unite_legale_factory.rb
+│   ├── fixtures
+│   │   ├── example.csv.gz
+│   │   ├── example.csv.zip
+│   │   ├── files_for_deletion_test
+│   │   │   └── .keep
+│   │   ├── sample_etablissements.csv.gz
+│   │   ├── sample_etablissements_KO_missing_header.csv
+│   │   ├── sample_etablissements_OK.csv
+│   │   ├── sample_patches
+│   │   │   ├── geo-sirene_2017024_E_Q.csv.gz
+│   │   │   ├── import_last_monthly_stock_test.csv
+│   │   │   ├── import_monthly_csv_query.txt
+│   │   │   └── test_file.csv
+│   │   ├── sample_unites_legales.csv.zip
+│   │   ├── sample_unites_legales_KO.csv
+│   │   ├── sample_unites_legales_OK.csv
+│   │   ├── samples_insee
+│   │   │   ├── api_results.json
+│   │   │   ├── etablissement.json
+│   │   │   ├── etablissement_non_diffusable.json
+│   │   │   ├── unite_legale.json
+│   │   │   └── unite_legale_non_diffusable.json
+│   │   └── vcr_cassettes
+│   │       ├── OvhAPI_check_current_service.yml
+│   │       ├── check_stock_availability.yml
+│   │       ├── data_gouv_geo_sirene_may_KO.yml
+│   │       ├── data_gouv_geo_sirene_may_OK.yml
+│   │       ├── data_gouv_sirene_july_KO.yml
+│   │       ├── data_gouv_sirene_july_OK.yml
+│   │       ├── download_failed.yml
+│   │       ├── download_success.yml
+│   │       ├── geo-sirene_1_april_no_stock_yet.yml
+│   │       ├── geo-sirene_20181215.yml
+│   │       ├── geo-sirene_file_index_20170330_22_links_since_LM.yml
+│   │       ├── geo-sirene_file_index_20190102.yml
+│   │       ├── geo-sirene_file_index_4_links_since_LM.yml
+│   │       ├── geo-sirene_january_2018.yml
+│   │       ├── geo-sirene_march.yml
+│   │       ├── geo-sirene_march_link_not_available.yml
+│   │       ├── geo-sirene_post_july.yml
+│   │       ├── geo-sirene_server_KO.yml
+│   │       ├── geo_sirene_v3_may_KO.yml
+│   │       ├── geo_sirene_v3_may_OK.yml
+│   │       ├── insee
+│   │       │   ├── renew_token.yml
+│   │       │   ├── siren_full_update_OK.yml
+│   │       │   ├── siren_non_diffusable_small_update_OK.yml
+│   │       │   ├── siren_non_diffusable_update_all_OK.yml
+│   │       │   ├── siren_small_update_OK.yml
+│   │       │   ├── siren_update_1st_december.yml
+│   │       │   ├── siren_updates_wrong_filter.yml
+│   │       │   ├── siret_non_diffusable_small_update_OK.yml
+│   │       │   └── siret_small_update_OK.yml
+│   │       ├── update_database.yml
+│   │       └── update_empty_database.yml
+│   ├── interactors
+│   │   ├── apply_patch_spec.rb
+│   │   ├── apply_patches_spec.rb
+│   │   ├── check_current_service_spec.rb
+│   │   ├── delete_database_spec.rb
+│   │   ├── delete_temporary_files_spec.rb
+│   │   ├── download_file_spec.rb
+│   │   ├── get_last_monthly_stock_link_spec.rb
+│   │   ├── get_relevant_patches_links_spec.rb
+│   │   ├── import_monthly_stock_csv_spec.rb
+│   │   ├── sirene_as_api_interactor_spec.rb
+│   │   ├── test_server_spec.rb
+│   │   ├── unzip_file_spec.rb
+│   │   └── update_database_spec.rb
+│   ├── jobs
+│   │   ├── daily_update_job_spec.rb
+│   │   ├── daily_update_model_job_spec.rb
+│   │   ├── import_stock_job_spec.rb
+│   │   ├── save_last_monthly_stock_name_spec.rb
+│   │   ├── update_database_job_spec.rb
+│   │   └── update_database_v1_job_spec.rb
+│   ├── models
+│   │   ├── daily_update_etablissement_non_diffusable_spec.rb
+│   │   ├── daily_update_etablissement_spec.rb
+│   │   ├── daily_update_spec.rb
+│   │   ├── daily_update_unite_legale_non_diffusable_spec.rb
+│   │   ├── daily_update_unite_legale_spec.rb
+│   │   ├── etablissement_spec.rb
+│   │   ├── stock_etablissement_spec.rb
+│   │   ├── stock_spec.rb
+│   │   ├── stock_unite_legale_spec.rb
+│   │   └── unite_legale_spec.rb
+│   ├── rails_helper.rb
+│   ├── spec_helper.rb
+│   ├── support
+│   │   ├── custom_matchers
+│   │   │   ├── have_index.rb
+│   │   │   └── json_matchers.rb
+│   │   ├── factory_bot.rb
+│   │   ├── populate_database.rb
+│   │   ├── shared_contexts
+│   │   │   ├── api_v3_response.rb
+│   │   │   ├── mute_interactor.rb
+│   │   │   ├── mute_progress_bar.rb
+│   │   │   └── stubbed_download.rb
+│   │   ├── shared_examples
+│   │   │   ├── importing_csv.rb
+│   │   │   ├── model.rb
+│   │   │   ├── paginable.rb
+│   │   │   ├── rest_api.rb
+│   │   │   └── scopable.rb
+│   │   ├── sql_helper.rb
+│   │   └── trailblazer.rb
+│   └── vcr_helper.rb
+└── tmp
+    ├── .keep
+    └── files
+        └── .keep
+104 directories, 386 files
