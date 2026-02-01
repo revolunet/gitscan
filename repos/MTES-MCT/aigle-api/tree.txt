@@ -1,0 +1,380 @@
+.
+├── .buildpacks
+├── .env.compose.template
+├── .env.template
+├── .github
+│   └── workflows
+│       └── deploy-to-scaleway.yml
+├── .gitignore
+├── .pre-commit-config.yaml
+├── Aptfile
+├── CLAUDE.md
+├── Dockerfile
+├── Makefile
+├── Procfile
+├── README.md
+├── TESTING_SETUP.md
+├── aigle
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── celery.py
+│   ├── settings
+│   │   ├── __init__.py
+│   │   ├── base.py
+│   │   ├── development.py
+│   │   ├── production.py
+│   │   └── test.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── common
+│   ├── constants
+│   │   └── models.py
+│   ├── middlewares
+│   │   ├── __init__.py
+│   │   └── delay.py
+│   ├── models
+│   │   ├── base.py
+│   │   ├── deletable.py
+│   │   ├── historied.py
+│   │   ├── importable.py
+│   │   ├── timestamped.py
+│   │   └── uuid.py
+│   └── views
+│       ├── __init__.py
+│       ├── base.py
+│       ├── countable.py
+│       └── deletable.py
+├── core
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── constants
+│   │   ├── __init__.py
+│   │   ├── detection.py
+│   │   ├── geo.py
+│   │   ├── labels.py
+│   │   └── order_by.py
+│   ├── management
+│   │   ├── __init__.py
+│   │   └── commands
+│   │       ├── __init__.py
+│   │       ├── _common
+│   │       │   ├── __init__.py
+│   │       │   └── file.py
+│   │       ├── compute_prescription.py
+│   │       ├── create_api_key.py
+│   │       ├── create_super_admin.py
+│   │       ├── create_tile.py
+│   │       ├── import_detections.py
+│   │       ├── import_from_lucca.py
+│   │       ├── import_geocommune.py
+│   │       ├── import_geodepartment.py
+│   │       ├── import_geoepcis.py
+│   │       ├── import_georegion.py
+│   │       ├── import_parcels.py
+│   │       ├── import_pvs.py
+│   │       ├── import_sitadel.py
+│   │       ├── insert_shp.py
+│   │       ├── merge_double_detections.py
+│   │       ├── revoke_api_key.py
+│   │       ├── test_cmd.py
+│   │       ├── update_custom_zones.py
+│   │       ├── update_detection_parcels.py
+│   │       └── update_detectionobject_commune.py
+│   ├── managers
+│   │   ├── __init__.py
+│   │   └── user.py
+│   ├── middlewares
+│   │   └── logs.py
+│   ├── migrations
+│   │   ├── 0001_initial.py
+│   │   ├── 0002_user_created_at_user_deleted_user_updated_at_and_more.py
+│   │   ├── 0003_postgis.py
+│   │   ├── 0004_geocommune.py
+│   │   ├── 0005_geodepartment_georegion_geocommune_department_and_more.py
+│   │   ├── 0006_georegion_surface_km2.py
+│   │   ├── 0007_alter_georegion_display_name_and_more.py
+│   │   ├── 0008_rename_iso_code_georegion_insee_code.py
+│   │   ├── 0009_remove_geodepartment_numero_geodepartment_insee_code_and_more.py
+│   │   ├── 0010_geodepartment_surface_km2.py
+│   │   ├── 0011_alter_geocommune_display_name_alter_geocommune_name.py
+│   │   ├── 0012_objecttype.py
+│   │   ├── 0013_remove_objecttype_display_name.py
+│   │   ├── 0014_objecttypecategory.py
+│   │   ├── 0015_alter_geocommune_uuid_alter_geodepartment_uuid_and_more.py
+│   │   ├── 0016_userusergroup_user_user_group_unique.py
+│   │   ├── 0017_tileset.py
+│   │   ├── 0018_tileset_date.py
+│   │   ├── 0019_alter_tileset_tile_set_status.py
+│   │   ├── 0020_detectedobject_detectiondata_detection.py
+│   │   ├── 0021_rename_detectedobject_detectionobject.py
+│   │   ├── 0022_rename_detected_object_detection_detection_object_and_more.py
+│   │   ├── 0023_alter_detection_detection_data_alter_detection_score.py
+│   │   ├── 0024_detection_deleted_at_detectiondata_deleted_at_and_more.py
+│   │   ├── 0025_alter_detectionobject_address.py
+│   │   ├── 0026_rename_user_last_update_user_detectiondata_user_last_update.py
+│   │   ├── 0027_tileset_tile_set_scheme.py
+│   │   ├── 0028_tileset_tile_set_type.py
+│   │   ├── 0029_alter_tileset_tile_set_scheme.py
+│   │   ├── 0030_alter_tileset_tile_set_scheme.py
+│   │   ├── 0031_tileset_geometry.py
+│   │   ├── 0032_tile_tile_xyz_unique.py
+│   │   ├── 0033_detection_tile_detection_tile_set.py
+│   │   ├── 0034_alter_tileset_geometry.py
+│   │   ├── 0035_remove_tileset_geometry_tileset_communes_and_more.py
+│   │   ├── 0036_geocustomzone.py
+│   │   ├── 0037_geozone_remove_geocommune_created_at_and_more.py
+│   │   ├── 0038_geozone_name_normalized.py
+│   │   ├── 0039_remove_tileset_communes_remove_tileset_departments_and_more.py
+│   │   ├── 0040_alter_detectiondata_detection_control_status_and_more.py
+│   │   ├── 0041_tileset_max_zoom_tileset_min_zoom_and_more.py
+│   │   ├── 0042_detection_core_detect_created_2495bb_idx_and_more.py
+│   │   ├── 0043_parcel.py
+│   │   ├── 0044_remove_parcel_num_section_parcel_arpente_and_more.py
+│   │   ├── 0045_alter_parcel_id_parcellaire.py
+│   │   ├── 0046_detectionobject_parcel_and_more.py
+│   │   ├── 0047_detection_core_detect_score_48a965_idx.py
+│   │   ├── 0048_detection_auto_prescribed_and_more.py
+│   │   ├── 0049_objecttype_prescription_duration_years.py
+│   │   ├── 0050_alter_detectiondata_detection_control_status_and_more.py
+│   │   ├── 0051_detection_batch_id_detectionobject_batch_id.py
+│   │   ├── 0052_alter_detectiondata_user_last_update.py
+│   │   ├── 0053_tileset_last_import_ended_at_and_more.py
+│   │   ├── 0054_detection_import_id_detectionobject_import_id.py
+│   │   ├── 0055_remove_objecttypecategory_object_types_and_more.py
+│   │   ├── 0056_detection_core_detect_detecti_586850_idx_and_more.py
+│   │   ├── 0057_geocustomzone_color.py
+│   │   ├── 0058_geocustomzone_geo_custom_zone_status.py
+│   │   ├── 0059_rename_core_detect_uuid_ecc8f4_idx_detection_uuid_idx_and_more.py
+│   │   ├── 0060_user_last_position.py
+│   │   ├── 0061_alter_geozone_geometry.py
+│   │   ├── 0062_detectionobject_geo_custom_zones.py
+│   │   ├── 0063_geocustomzone_geometry_simplified.py
+│   │   ├── 0064_remove_geocustomzone_geometry_simplified.py
+│   │   ├── 0065_tileset_monochrome.py
+│   │   ├── 0066_detectionobject_comment_alter_parcel_id_parcellaire.py
+│   │   ├── 0067_usergroup_custom_geo_zones.py
+│   │   ├── 0068_rename_custom_geo_zones_usergroup_geo_custom_zones.py
+│   │   ├── 0069_alter_detectiondata_detection_validation_status.py
+│   │   ├── 0070_alter_detectiondata_detection_control_status.py
+│   │   ├── 0071_usergroup_user_group_type.py
+│   │   ├── 0072_historicaldetection_historicaldetectiondata_and_more.py
+│   │   ├── 0073_geocustomzone_geo_custom_zone_type.py
+│   │   ├── 0074_historicaldetection_changed_fields_and_more.py
+│   │   ├── 0075_analyticlog.py
+│   │   ├── 0076_analyticlog_data.py
+│   │   ├── 0077_historicaluser.py
+│   │   ├── 0078_alter_analyticlog_analytic_log_type_and_more.py
+│   │   ├── 0079_remove_userusergroup_idx_user_group_id_and_more.py
+│   │   ├── 0080_alter_geozone_options_and_more.py
+│   │   ├── 0081_alter_detectiondata_detection_control_status_and_more.py
+│   │   ├── 0082_alter_detectiondata_detection_control_status_and_more.py
+│   │   ├── 0083_remove_detectiondata_core_detect_detecti_e3c056_idx_and_more.py
+│   │   ├── 0084_geocustomzone_geo_zones_and_more.py
+│   │   ├── 0085_geocustomzonecategory_and_more.py
+│   │   ├── 0086_alter_geocustomzonecategory_name_normalized.py
+│   │   ├── 0087_alter_geocustomzonecategory_name_and_more.py
+│   │   ├── 0088_geocustomzone_geo_custom_zone_category.py
+│   │   ├── 0089_alter_geocustomzone_color.py
+│   │   ├── 0090_alter_geozone_name_alter_geozone_name_normalized.py
+│   │   ├── 0091_geocustomzone_core_geocus_geozone_236823_idx.py
+│   │   ├── 0092_detectiondata_official_report_date_and_more.py
+│   │   ├── 0093_create_views.py
+│   │   ├── 0094_alter_user_managers_detectionobject_tile_sets_and_more.py
+│   │   ├── 0095_detectionobject_commune_and_more.py
+│   │   ├── 0096_alter_geozone_geo_zone_type_geosubcustomzone.py
+│   │   ├── 0097_detectionobject_geo_sub_custom_zones.py
+│   │   ├── 0098_geoepci.py
+│   │   ├── 0099_geocommune_epci_alter_geozone_geo_zone_type.py
+│   │   ├── 0100_geocustomzone_name_short_and_more.py
+│   │   ├── 0101_alter_analyticlog_analytic_log_type.py
+│   │   ├── 0102_commandrun.py
+│   │   ├── 0103_commandrun_uuid.py
+│   │   ├── 0104_alter_commandrun_status_and_more.py
+│   │   ├── 0105_detection_core_detect_detecti_36201c_idx_and_more.py
+│   │   ├── 0106_parcel_geo_custom_zones_parcel_geo_sub_custom_zones.py
+│   │   ├── 0107_alter_historicaluser_user_role_alter_user_user_role.py
+│   │   ├── 0108_historicaluser_is_staff_user_is_staff.py
+│   │   ├── 0109_detectiondata_detection_validation_status_change_reason_and_more.py
+│   │   ├── 0110_detectiondata_legitimate_id_and_more.py
+│   │   ├── 0111_remove_detectiondata_legitimate_date_and_more.py
+│   │   ├── 0112_alter_detectionauthorization_authorization_id.py
+│   │   ├── 0113_alter_tileset_date.py
+│   │   ├── 0114_email_alter_historicaluser_date_joined_and_more.py
+│   │   ├── 0115_add_calculate_surface_function.py
+│   │   └── __init__.py
+│   ├── models
+│   │   ├── __init__.py
+│   │   ├── analytic_log.py
+│   │   ├── command_run.py
+│   │   ├── detection.py
+│   │   ├── detection_authorization.py
+│   │   ├── detection_data.py
+│   │   ├── detection_object.py
+│   │   ├── email.py
+│   │   ├── geo_commune.py
+│   │   ├── geo_custom_zone.py
+│   │   ├── geo_custom_zone_category.py
+│   │   ├── geo_department.py
+│   │   ├── geo_epci.py
+│   │   ├── geo_region.py
+│   │   ├── geo_sub_custom_zone.py
+│   │   ├── geo_zone.py
+│   │   ├── object_type.py
+│   │   ├── object_type_category.py
+│   │   ├── parcel.py
+│   │   ├── tile.py
+│   │   ├── tile_set.py
+│   │   ├── user.py
+│   │   └── user_group.py
+│   ├── permissions
+│   │   ├── __init__.py
+│   │   ├── base.py
+│   │   ├── geo_custom_zone.py
+│   │   ├── parcel.py
+│   │   ├── tile_set.py
+│   │   └── user.py
+│   ├── repository
+│   │   ├── base.py
+│   │   ├── detection.py
+│   │   ├── geo_custom_zone.py
+│   │   ├── parcel.py
+│   │   ├── tile_set.py
+│   │   └── user.py
+│   ├── serializers
+│   │   ├── __init__.py
+│   │   ├── auth.py
+│   │   ├── command_run.py
+│   │   ├── detection.py
+│   │   ├── detection_data.py
+│   │   ├── detection_object.py
+│   │   ├── external_api.py
+│   │   ├── geo_commune.py
+│   │   ├── geo_custom_zone.py
+│   │   ├── geo_custom_zone_category.py
+│   │   ├── geo_department.py
+│   │   ├── geo_region.py
+│   │   ├── geo_sub_custom_zone.py
+│   │   ├── geo_zone.py
+│   │   ├── map_settings.py
+│   │   ├── object_type.py
+│   │   ├── object_type_category.py
+│   │   ├── parcel.py
+│   │   ├── run_command.py
+│   │   ├── tile.py
+│   │   ├── tile_set.py
+│   │   ├── user.py
+│   │   ├── user_group.py
+│   │   └── utils
+│   │       ├── __init__.py
+│   │       ├── custom_zones.py
+│   │       ├── query.py
+│   │       └── with_collectivities.py
+│   ├── services
+│   │   ├── __init__.py
+│   │   ├── command_async.py
+│   │   ├── detection.py
+│   │   ├── detection_bulk_update.py
+│   │   ├── detection_geo_filter.py
+│   │   ├── detection_object.py
+│   │   ├── detection_process.py
+│   │   ├── external_api.py
+│   │   ├── geo_custom_zone.py
+│   │   ├── map_settings.py
+│   │   ├── object_type_category.py
+│   │   ├── parcel.py
+│   │   ├── parcel_filter.py
+│   │   ├── prescription.py
+│   │   ├── prior_letter.py
+│   │   ├── tile_set.py
+│   │   └── user.py
+│   ├── tests
+│   │   ├── README.md
+│   │   ├── __init__.py
+│   │   ├── base.py
+│   │   ├── fixtures
+│   │   │   ├── __init__.py
+│   │   │   ├── detection_data.py
+│   │   │   ├── geo_data.py
+│   │   │   └── users.py
+│   │   └── views
+│   │       ├── __init__.py
+│   │       ├── test_detection_object.py
+│   │       ├── test_external_api.py
+│   │       ├── test_geo_commune.py
+│   │       └── test_user.py
+│   ├── urls.py
+│   ├── urls_auth.py
+│   ├── utils
+│   │   ├── __init__.py
+│   │   ├── analytic_log.py
+│   │   ├── email.py
+│   │   ├── filters.py
+│   │   ├── geo.py
+│   │   ├── logs.py
+│   │   ├── logs_helpers.py
+│   │   ├── odt_processor.py
+│   │   ├── orm.py
+│   │   ├── pagination.py
+│   │   ├── parsing.py
+│   │   ├── permissions.py
+│   │   ├── postgis.py
+│   │   ├── run_command.py
+│   │   ├── serializers.py
+│   │   ├── string.py
+│   │   └── tasks.py
+│   └── views
+│       ├── __init__.py
+│       ├── auth.py
+│       ├── detection
+│       │   ├── __init__.py
+│       │   ├── detection_geo.py
+│       │   ├── detection_list.py
+│       │   └── utils.py
+│       ├── detection_data.py
+│       ├── detection_object.py
+│       ├── external_api.py
+│       ├── geo_commune.py
+│       ├── geo_custom_zone.py
+│       ├── geo_custom_zone_category.py
+│       ├── geo_department.py
+│       ├── geo_region.py
+│       ├── map_settings.py
+│       ├── object_type.py
+│       ├── object_type_category.py
+│       ├── parcel.py
+│       ├── run_command.py
+│       ├── statistics
+│       │   ├── __init__.py
+│       │   ├── utils.py
+│       │   ├── validation_status_evolution.py
+│       │   ├── validation_status_global.py
+│       │   └── validation_status_object_types_global.py
+│       ├── tile_set.py
+│       ├── user.py
+│       ├── user_group.py
+│       └── utils
+│           ├── __init__.py
+│           ├── contact_us.py
+│           ├── deploy_infos.py
+│           ├── generate_prior_letter.py
+│           ├── get_annotation_grid.py
+│           ├── get_custom_geometry.py
+│           ├── get_import_infos.py
+│           └── get_tile_view.py
+├── docker-compose.yml
+├── external_api_doc
+│   ├── README.md
+│   └── external-api.postman_collection.json
+├── manage.py
+├── media
+│   └── templates
+│       └── prior_letter.odt
+├── requirements.txt
+├── ruff.toml
+├── runtime.txt
+└── services
+    ├── celery.service
+    └── gunicorn_aigle.service
+36 directories, 343 files
