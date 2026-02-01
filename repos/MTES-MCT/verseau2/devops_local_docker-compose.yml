@@ -1,0 +1,64 @@
+name: verseau2-local
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: verseau2-postgres
+    restart: unless-stopped
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: verseau2
+    networks:
+      - verseau2-network
+  s3mock:
+    image: adobe/s3mock:latest
+    container_name: verseau2-s3mock
+    restart: unless-stopped
+    ports:
+      - '9090:9090'
+      - '9191:9191'
+    networks:
+      - verseau2-network
+  mailcatcher:
+    image: schickling/mailcatcher
+    ports:
+      - "1025:1025"
+      - "1080:1080"
+
+# Pour tester l'application en local
+  app:
+    build:
+      context: ../..
+      dockerfile: devops/local/Dockerfile
+    environment:
+      NODE_OPTIONS: --max-old-space-size=1024
+    mem_limit: 1024m
+    deploy:
+      resources:
+        limits:
+          memory: 1024m
+    ports:
+      - '3000:3000'
+    depends_on:
+      - postgres
+      - s3mock
+    networks:
+      - verseau2-network
+
+
+# Permet de tester la restauration de la base de données PG en local
+  sync-pg:
+    build: ../tools/sync-pg
+    container_name: verseau2-sync-pg
+    networks:
+      - verseau2-network
+    volumes:
+      - ../tools/sync-pg:/app
+    command: ["npm", "run", "dev"]
+
+networks:
+  verseau2-network:
+    driver: bridge

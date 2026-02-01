@@ -1,0 +1,28 @@
+{
+  "name": "verseau2",
+  "private": false,
+  "node": "24.11.1",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace=apps/front && npm run build --workspace=apps/back",
+    "start": "npm run start --workspace=apps/back",
+    "dev": "concurrently \"npm run dev:back\" \"npm run dev:front\"",
+    "dev:back": "npm run dev --workspace=apps/back",
+    "dev:front": "npm run dev --workspace=apps/front",
+    "prepare": "husky",
+    "clean": "npm run clean --workspace=apps/back && npm run clean --workspace=apps/front && npm run clean --workspace=packages/parser && npm run clean --workspace=packages/dossier && npm run clean --workspace=packages/shared",
+    "test": "npm run test --workspace=apps/back && npm run test --workspace=packages/parser"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "eslint": "^9.18.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.2.2",
+    "husky": "^9.1.7",
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.3"
+  }
+}
