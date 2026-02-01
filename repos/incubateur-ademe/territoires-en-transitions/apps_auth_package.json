@@ -1,0 +1,26 @@
+{
+  "name": "@tet/auth",
+  "nx": {
+    "name": "auth",
+    "targets": {
+      "dev": {
+        "executor": "@nx/next:server",
+        "dependsOn": ["^build"],
+        "options": {
+          "buildTarget": "auth:build",
+          "dev": true,
+          "port": 3003,
+          "webpack": true
+        }
+      },
+      "build": {
+        "executor": "@nx/next:build",
+        "dependsOn": ["^build"],
+        "options": {
+          "outputPath": "apps/auth/.next",
+          "webpack": true
+        }
+      }
+    }
+  }
+}

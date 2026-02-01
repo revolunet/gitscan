@@ -1,0 +1,31 @@
+{
+  "name": "@tet/domain",
+  "description": "Domain library",
+  "private": true,
+  "exports": {
+    "./package.json": "./package.json",
+    "./*": {
+      "types": "./dist/*/index.d.ts",
+      "import": "./dist/*/index.js",
+      "default": "./dist/*/index.js"
+    }
+  },
+  "nx": {
+    "name": "domain",
+    "sourceRoot": "packages/domain/src",
+    "targets": {
+      "build": {
+        "executor": "@nx/js:swc",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "options": {
+          "outputPath": "packages/domain/dist",
+          "main": "packages/domain/src/index.ts",
+          "tsConfig": "packages/domain/tsconfig.lib.json",
+          "stripLeadingPaths": true
+        }
+      }
+    }
+  }
+}
