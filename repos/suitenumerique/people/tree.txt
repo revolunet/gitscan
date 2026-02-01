@@ -1,0 +1,995 @@
+.
+├── .dockerignore
+├── .gitattributes
+├── .github
+│   ├── ISSUE_TEMPLATE
+│   │   ├── Bug_report.md
+│   │   ├── Feature_request.md
+│   │   └── Support_question.md
+│   ├── ISSUE_TEMPLATE.md
+│   ├── PULL_REQUEST_TEMPLATE.md
+│   └── workflows
+│       ├── crowdin_download.yml
+│       ├── crowdin_upload.yml
+│       ├── dependencies.yml
+│       ├── deploy.yml
+│       ├── docker-hub.yml
+│       ├── people.yml
+│       └── release-helmchart.yml
+├── .gitignore
+├── .gitlint
+├── .gitmodules
+├── CHANGELOG.md
+├── CONTRIBUTING.md
+├── Dockerfile
+├── LICENSE
+├── Makefile
+├── README.md
+├── SECURITY.md
+├── UPGRADE.md
+├── bin
+│   ├── Tiltfile
+│   ├── _config.sh
+│   ├── compose
+│   ├── install-external-secrets.sh
+│   ├── manage
+│   ├── pylint
+│   ├── pytest
+│   ├── start-kind.sh
+│   └── update_openapi_schema
+├── crowdin
+│   └── config.yml
+├── docker
+│   ├── auth
+│   │   └── realm.json
+│   └── files
+│       ├── etc
+│       │   └── nginx
+│       │       └── conf.d
+│       │           └── default.conf
+│       └── usr
+│           └── local
+│               ├── bin
+│               │   └── entrypoint
+│               └── etc
+│                   └── gunicorn
+│                       └── people.py
+├── docker-compose.yml
+├── docs
+│   ├── i18n.md
+│   ├── identityProvider.md
+│   ├── interoperability
+│   │   └── dimail.md
+│   ├── local_development_kube.md
+│   ├── models.md
+│   ├── organizations.md
+│   ├── release.md
+│   ├── resourceServer.md
+│   ├── serviceProviders.md
+│   ├── testsE2E.md
+│   └── tsclient.md
+├── env.d
+│   └── development
+│       ├── common.dist
+│       ├── common.e2e.dist
+│       ├── crowdin.dist
+│       ├── france.dist
+│       ├── kc_postgresql.dist
+│       └── postgresql.dist
+├── gitlint
+│   └── gitlint_emoji.py
+├── renovate.json
+├── scripts
+│   ├── install-pre-commit-hook.sh
+│   ├── keycloak
+│   │   └── add-keycloak-client.sh
+│   ├── release.py
+│   ├── update-git-submodule.sh
+│   └── utils.py
+└── src
+    ├── backend
+    │   ├── .pylintrc
+    │   ├── MANIFEST.in
+    │   ├── __init__.py
+    │   ├── admin
+    │   │   ├── __init__.py
+    │   │   ├── apps.py
+    │   │   ├── sites.py
+    │   │   └── templates
+    │   │       └── admin
+    │   │           └── base_site.html
+    │   ├── conftest.py
+    │   ├── core
+    │   │   ├── __init__.py
+    │   │   ├── admin.py
+    │   │   ├── api
+    │   │   │   ├── __init__.py
+    │   │   │   ├── client
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   ├── serializers.py
+    │   │   │   │   └── viewsets.py
+    │   │   │   ├── permissions.py
+    │   │   │   └── resource_server
+    │   │   │       ├── __init__.py
+    │   │   │       ├── scim
+    │   │   │       │   ├── __init__.py
+    │   │   │       │   ├── exceptions.py
+    │   │   │       │   ├── response.py
+    │   │   │       │   ├── serializers.py
+    │   │   │       │   └── viewsets.py
+    │   │   │       ├── serializers.py
+    │   │   │       └── viewsets.py
+    │   │   ├── apps.py
+    │   │   ├── authentication
+    │   │   │   ├── __init__.py
+    │   │   │   └── backends.py
+    │   │   ├── enums.py
+    │   │   ├── factories.py
+    │   │   ├── jsonschema
+    │   │   │   ├── contact_data.json
+    │   │   │   └── fr
+    │   │   │       └── organization_metadata.json
+    │   │   ├── management
+    │   │   │   ├── __init__.py
+    │   │   │   └── commands
+    │   │   │       ├── __init__.py
+    │   │   │       ├── fill_organization_metadata.py
+    │   │   │       └── list_plugins.py
+    │   │   ├── migrations
+    │   │   │   ├── 0001_initial.py
+    │   │   │   ├── 0002_add_organization_and_more.py
+    │   │   │   ├── 0003_team_slug_nullable.py
+    │   │   │   ├── 0004_remove_team_slug.py
+    │   │   │   ├── 0005_add_serviceprovider.py
+    │   │   │   ├── 0006_contact_notes_alter_contact_full_name.py
+    │   │   │   ├── 0007_rename_contact_base_to_override.py
+    │   │   │   ├── 0008_change_user_profile_to_contact.py
+    │   │   │   ├── 0009_contacts_add_index_on_data_emails.py
+    │   │   │   ├── 0010_team_depth_team_numchild_team_path_and_more.py
+    │   │   │   ├── 0011_team_is_visible_all_services.py
+    │   │   │   ├── 0012_organization_metadata.py
+    │   │   │   ├── 0013_organization_is_active.py
+    │   │   │   ├── 0014_accountservice.py
+    │   │   │   ├── 0015_alter_accountservice_api_key.py
+    │   │   │   ├── 0016_team_external_id_alter_team_users.py
+    │   │   │   ├── 0017_teamwebhook_protocol.py
+    │   │   │   └── __init__.py
+    │   │   ├── models.py
+    │   │   ├── plugins
+    │   │   │   ├── __init__.py
+    │   │   │   ├── base.py
+    │   │   │   ├── registry.py
+    │   │   │   └── urls.py
+    │   │   ├── static
+    │   │   │   └── images
+    │   │   │       ├── arrow.png
+    │   │   │       ├── logo-footer-mail.png
+    │   │   │       ├── logo-laregie.png
+    │   │   │       ├── logo-suite-numerique.png
+    │   │   │       ├── logo.png
+    │   │   │       ├── mail-header-background.png
+    │   │   │       └── messagerie.png
+    │   │   ├── templatetags
+    │   │   │   ├── __init__.py
+    │   │   │   └── extra_tags.py
+    │   │   ├── tests
+    │   │   │   ├── __init__.py
+    │   │   │   ├── authentication
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   └── test_backends.py
+    │   │   │   ├── contacts
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   ├── test_core_api_contacts_create.py
+    │   │   │   │   ├── test_core_api_contacts_delete.py
+    │   │   │   │   ├── test_core_api_contacts_list.py
+    │   │   │   │   ├── test_core_api_contacts_retrieve.py
+    │   │   │   │   └── test_core_api_contacts_update.py
+    │   │   │   ├── fixtures
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   └── matrix.py
+    │   │   │   ├── jsonschema
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   └── test_schema.py
+    │   │   │   ├── management_commands
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   └── test_fill_organization_metadata.py
+    │   │   │   ├── organizations
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   ├── test_core_api_organizations_retrieve.py
+    │   │   │   │   └── test_core_api_organizations_update.py
+    │   │   │   ├── resource_server
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   └── test_authentication.py
+    │   │   │   ├── resource_server_api
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   ├── conftest.py
+    │   │   │   │   ├── scim
+    │   │   │   │   │   ├── __init__.py
+    │   │   │   │   │   └── test_me.py
+    │   │   │   │   ├── teams
+    │   │   │   │   │   ├── __init__.py
+    │   │   │   │   │   ├── test_create.py
+    │   │   │   │   │   ├── test_delete.py
+    │   │   │   │   │   ├── test_list.py
+    │   │   │   │   │   ├── test_retrieve.py
+    │   │   │   │   │   └── test_update.py
+    │   │   │   │   └── teams_invitations
+    │   │   │   │       ├── __init__.py
+    │   │   │   │       ├── test_create.py
+    │   │   │   │       ├── test_delete.py
+    │   │   │   │       ├── test_list.py
+    │   │   │   │       └── test_retrieve.py
+    │   │   │   ├── service_providers
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   ├── test_core_api_service_providers_list.py
+    │   │   │   │   └── test_core_api_service_providers_retrieve.py
+    │   │   │   ├── swagger
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   └── test_openapi_schema.py
+    │   │   │   ├── team_accesses
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   ├── test_api_team_accesses_create.py
+    │   │   │   │   ├── test_api_team_accesses_delete.py
+    │   │   │   │   ├── test_api_team_accesses_list.py
+    │   │   │   │   ├── test_api_team_accesses_retrieve.py
+    │   │   │   │   └── test_api_team_accesses_update.py
+    │   │   │   ├── teams
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   ├── test_core_api_teams_create.py
+    │   │   │   │   ├── test_core_api_teams_delete.py
+    │   │   │   │   ├── test_core_api_teams_list.py
+    │   │   │   │   ├── test_core_api_teams_retrieve.py
+    │   │   │   │   └── test_core_api_teams_update.py
+    │   │   │   ├── test_api_config.py
+    │   │   │   ├── test_api_stats.py
+    │   │   │   ├── test_api_team_invitations.py
+    │   │   │   ├── test_management_command_tasks.py
+    │   │   │   ├── test_models_account_services.py
+    │   │   │   ├── test_models_contacts.py
+    │   │   │   ├── test_models_invitations.py
+    │   │   │   ├── test_models_organizations.py
+    │   │   │   ├── test_models_team_accesses.py
+    │   │   │   ├── test_models_teams.py
+    │   │   │   ├── test_models_users.py
+    │   │   │   ├── test_password_validators.py
+    │   │   │   ├── test_throttle.py
+    │   │   │   ├── test_validators.py
+    │   │   │   ├── users
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   ├── test_api_users_create.py
+    │   │   │   │   ├── test_api_users_delete.py
+    │   │   │   │   ├── test_api_users_list.py
+    │   │   │   │   ├── test_api_users_retrieve.py
+    │   │   │   │   └── test_api_users_update.py
+    │   │   │   └── utils
+    │   │   │       ├── __init__.py
+    │   │   │       ├── test_json_schema.py
+    │   │   │       ├── test_raw_sql.py
+    │   │   │       ├── test_webhooks_matrix_client.py
+    │   │   │       └── test_webhooks_scim_client.py
+    │   │   ├── utils
+    │   │   │   ├── __init__.py
+    │   │   │   ├── io.py
+    │   │   │   ├── json_schema.py
+    │   │   │   ├── matrix.py
+    │   │   │   ├── raw_sql.py
+    │   │   │   ├── scim.py
+    │   │   │   └── webhooks.py
+    │   │   └── validators.py
+    │   ├── debug
+    │   │   ├── urls.py
+    │   │   └── views.py
+    │   ├── demo
+    │   │   ├── __init__.py
+    │   │   ├── defaults.py
+    │   │   ├── management
+    │   │   │   ├── __init__.py
+    │   │   │   └── commands
+    │   │   │       ├── __init__.py
+    │   │   │       ├── create_demo.py
+    │   │   │       └── createsuperuser.py
+    │   │   └── tests
+    │   │       ├── __init__.py
+    │   │       └── test_commands_create_demo.py
+    │   ├── locale
+    │   │   ├── en_US
+    │   │   │   └── LC_MESSAGES
+    │   │   │       ├── django.mo
+    │   │   │       └── django.po
+    │   │   └── fr_FR
+    │   │       └── LC_MESSAGES
+    │   │           ├── django.mo
+    │   │           └── django.po
+    │   ├── mailbox_manager
+    │   │   ├── __init__.py
+    │   │   ├── admin.py
+    │   │   ├── api
+    │   │   │   ├── __init__.py
+    │   │   │   ├── client
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   ├── serializers.py
+    │   │   │   │   └── viewsets.py
+    │   │   │   └── permissions.py
+    │   │   ├── apps.py
+    │   │   ├── enums.py
+    │   │   ├── factories.py
+    │   │   ├── management
+    │   │   │   ├── __init__.py
+    │   │   │   └── commands
+    │   │   │       ├── __init__.py
+    │   │   │       ├── fetch_domain_status.py
+    │   │   │       └── setup_dimail_db.py
+    │   │   ├── migrations
+    │   │   │   ├── 0001_initial.py
+    │   │   │   ├── 0002_alter_maildomainaccess_domain.py
+    │   │   │   ├── 0003_maildomain_slug.py
+    │   │   │   ├── 0004_maildomain_fill_slug.py
+    │   │   │   ├── 0005_alter_maildomain_slug.py
+    │   │   │   ├── 0006_maildomain_status.py
+    │   │   │   ├── 0007_alter_maildomainaccess_role.py
+    │   │   │   ├── 0008_mailbox_first_name_mailbox_last_name.py
+    │   │   │   ├── 0009_fill_mailbox_first_name_mailbox_last_name.py
+    │   │   │   ├── 0010_alter_mailbox_first_name_alter_mailbox_last_name.py
+    │   │   │   ├── 0011_maildomain_secret.py
+    │   │   │   ├── 0012_alter_mailbox_local_part.py
+    │   │   │   ├── 0013_remove_maildomain_secret.py
+    │   │   │   ├── 0014_mailbox_status.py
+    │   │   │   ├── 0015_change_mailboxes_status_to_enabled.py
+    │   │   │   ├── 0016_alter_mailbox_domain.py
+    │   │   │   ├── 0017_alter_maildomain_status.py
+    │   │   │   ├── 0018_maildomain_support_email.py
+    │   │   │   ├── 0019_maildomain_last_check_details.py
+    │   │   │   ├── 0020_alter_mailbox_options_alter_maildomain_options_and_more.py
+    │   │   │   ├── 0021_maildomain_expected_config.py
+    │   │   │   ├── 0022_maildomain_organization.py
+    │   │   │   ├── 0023_mailbox_email_mailbox_last_login_mailbox_password.py
+    │   │   │   ├── 0024_domaininvitation.py
+    │   │   │   ├── 0025_alter_mailbox_secondary_email.py
+    │   │   │   ├── 0026_alter_mailbox_unique_together_and_more.py
+    │   │   │   ├── 0027_remove_mailbox_unique_ox_display_name_and_more.py
+    │   │   │   ├── 0028_alias.py
+    │   │   │   ├── 0029_alter_alias_unique_together_alias_no_duplicate.py
+    │   │   │   └── __init__.py
+    │   │   ├── models.py
+    │   │   ├── signals.py
+    │   │   ├── tasks.py
+    │   │   ├── templates
+    │   │   │   └── 403.html
+    │   │   ├── tests
+    │   │   │   ├── __init__.py
+    │   │   │   ├── api
+    │   │   │   │   ├── aliases
+    │   │   │   │   │   ├── test_api_aliases_bulk_delete.py
+    │   │   │   │   │   ├── test_api_aliases_create.py
+    │   │   │   │   │   ├── test_api_aliases_delete.py
+    │   │   │   │   │   └── test_api_aliases_list.py
+    │   │   │   │   ├── invitations
+    │   │   │   │   │   ├── test_api_domain_invitations_create.py
+    │   │   │   │   │   ├── test_api_domain_invitations_delete.py
+    │   │   │   │   │   ├── test_api_domain_invitations_list.py
+    │   │   │   │   │   └── test_api_domain_invitations_retrieve.py
+    │   │   │   │   ├── mail_domain
+    │   │   │   │   │   ├── test_api_mail_domains_create.py
+    │   │   │   │   │   ├── test_api_mail_domains_delete.py
+    │   │   │   │   │   ├── test_api_mail_domains_fetch.py
+    │   │   │   │   │   ├── test_api_mail_domains_list.py
+    │   │   │   │   │   └── test_api_mail_domains_retrieve.py
+    │   │   │   │   ├── mail_domain_accesses
+    │   │   │   │   │   ├── test_api_mail_domain_accesses_create.py
+    │   │   │   │   │   ├── test_api_mail_domain_accesses_delete.py
+    │   │   │   │   │   ├── test_api_mail_domain_accesses_list.py
+    │   │   │   │   │   ├── test_api_mail_domain_accesses_retrieve.py
+    │   │   │   │   │   ├── test_api_mail_domain_accesses_update.py
+    │   │   │   │   │   └── test_api_mail_domains_accesses_get_available_users.py
+    │   │   │   │   └── mailboxes
+    │   │   │   │       ├── test_api_mailboxes_create.py
+    │   │   │   │       ├── test_api_mailboxes_disable.py
+    │   │   │   │       ├── test_api_mailboxes_enable.py
+    │   │   │   │       ├── test_api_mailboxes_list.py
+    │   │   │   │       ├── test_api_mailboxes_patch.py
+    │   │   │   │       ├── test_api_mailboxes_put.py
+    │   │   │   │       ├── test_api_mailboxes_reset_password.py
+    │   │   │   │       └── test_api_mailboxes_retrieve.py
+    │   │   │   ├── commands
+    │   │   │   │   ├── test_dimail_setup_db.py
+    │   │   │   │   └── test_fetch_domain_status.py
+    │   │   │   ├── conftest.py
+    │   │   │   ├── fixtures
+    │   │   │   │   └── dimail.py
+    │   │   │   ├── models
+    │   │   │   │   ├── test_aliases.py
+    │   │   │   │   ├── test_invitations.py
+    │   │   │   │   ├── test_mailboxes.py
+    │   │   │   │   ├── test_maildomain.py
+    │   │   │   │   └── test_maildomainaccess.py
+    │   │   │   ├── test_admin_actions.py
+    │   │   │   ├── test_password_validators.py
+    │   │   │   ├── test_tasks.py
+    │   │   │   └── test_utils_dimail_client.py
+    │   │   ├── urls.py
+    │   │   └── utils
+    │   │       ├── __init__.py
+    │   │       └── dimail.py
+    │   ├── mailbox_oauth2
+    │   │   ├── __init__.py
+    │   │   ├── apps.py
+    │   │   ├── backends.py
+    │   │   ├── middleware.py
+    │   │   ├── migrations
+    │   │   │   ├── 0001_initial.py
+    │   │   │   └── __init__.py
+    │   │   ├── models.py
+    │   │   ├── serializers.py
+    │   │   ├── tests
+    │   │   │   ├── __init__.py
+    │   │   │   ├── test_backends.py
+    │   │   │   ├── test_middleware.py
+    │   │   │   ├── test_validators.py
+    │   │   │   └── test_views.py
+    │   │   ├── urls.py
+    │   │   ├── validators.py
+    │   │   └── views.py
+    │   ├── manage.py
+    │   ├── people
+    │   │   ├── __init__.py
+    │   │   ├── api_urls.py
+    │   │   ├── celery_app.py
+    │   │   ├── resource_server_urls.py
+    │   │   ├── settings.py
+    │   │   ├── urls.py
+    │   │   └── wsgi.py
+    │   ├── plugins
+    │   │   ├── __init__.py
+    │   │   └── la_suite
+    │   │       ├── __init__.py
+    │   │       ├── api
+    │   │       │   ├── __init__.py
+    │   │       │   └── viewsets.py
+    │   │       ├── apps.py
+    │   │       ├── hooks.py
+    │   │       ├── hooks_utils
+    │   │       │   ├── __init__.py
+    │   │       │   └── all_organizations.py
+    │   │       ├── tests
+    │   │       │   ├── __init__.py
+    │   │       │   ├── api
+    │   │       │   │   ├── __init__.py
+    │   │       │   │   └── test_active_organizations_siret.py
+    │   │       │   └── hooks
+    │   │       │       ├── __init__.py
+    │   │       │       ├── test_get_organization_name_and_metadata_from_siret.py
+    │   │       │       └── test_hooks_loaded.py
+    │   │       └── urls.py
+    │   ├── pyproject.toml
+    │   └── uv.lock
+    ├── frontend
+    │   ├── .prettierrc.js
+    │   ├── Dockerfile
+    │   ├── apps
+    │   │   ├── desk
+    │   │   │   ├── .env.development
+    │   │   │   ├── .env.test
+    │   │   │   ├── .eslintrc.js
+    │   │   │   ├── .gitignore
+    │   │   │   ├── .prettierignore
+    │   │   │   ├── README.md
+    │   │   │   ├── conf
+    │   │   │   │   └── default.conf
+    │   │   │   ├── cunningham.ts
+    │   │   │   ├── jest
+    │   │   │   │   └── mocks
+    │   │   │   │       ├── fileMock.js
+    │   │   │   │       └── svg.js
+    │   │   │   ├── jest.config.ts
+    │   │   │   ├── jest.setup.ts
+    │   │   │   ├── next-env.d.ts
+    │   │   │   ├── next.config.js
+    │   │   │   ├── package.json
+    │   │   │   ├── public
+    │   │   │   │   └── favicon.ico
+    │   │   │   ├── src
+    │   │   │   │   ├── __tests__
+    │   │   │   │   │   └── pages.test.tsx
+    │   │   │   │   ├── api
+    │   │   │   │   │   ├── APIError.ts
+    │   │   │   │   │   ├── __tests__
+    │   │   │   │   │   │   ├── fetchApi.test.tsx
+    │   │   │   │   │   │   └── parseAPIError.test.ts
+    │   │   │   │   │   ├── conf.ts
+    │   │   │   │   │   ├── fetchApi.ts
+    │   │   │   │   │   ├── hooks
+    │   │   │   │   │   │   ├── __tests__
+    │   │   │   │   │   │   │   └── useDebounce.test.tsx
+    │   │   │   │   │   │   ├── index.ts
+    │   │   │   │   │   │   └── useDebounce.tsx
+    │   │   │   │   │   ├── index.ts
+    │   │   │   │   │   ├── parseAPIError.ts
+    │   │   │   │   │   ├── types.ts
+    │   │   │   │   │   └── utils.ts
+    │   │   │   │   ├── assets
+    │   │   │   │   │   ├── fonts
+    │   │   │   │   │   │   └── Marianne
+    │   │   │   │   │   │       ├── Marianne-Bold.woff
+    │   │   │   │   │   │       ├── Marianne-Bold_Italic.woff
+    │   │   │   │   │   │       ├── Marianne-ExtraBold.woff
+    │   │   │   │   │   │       ├── Marianne-ExtraBold_Italic.woff
+    │   │   │   │   │   │       ├── Marianne-Light.woff
+    │   │   │   │   │   │       ├── Marianne-Light_Italic.woff
+    │   │   │   │   │   │       ├── Marianne-Medium.woff
+    │   │   │   │   │   │       ├── Marianne-Medium_Italic.woff
+    │   │   │   │   │   │       ├── Marianne-Regular.woff
+    │   │   │   │   │   │       ├── Marianne-Regular_Italic.woff
+    │   │   │   │   │   │       ├── Marianne-Thin.woff
+    │   │   │   │   │   │       ├── Marianne-Thin_Italic.woff
+    │   │   │   │   │   │       └── Marianne-font.css
+    │   │   │   │   │   ├── icons
+    │   │   │   │   │   │   ├── icon-404.svg
+    │   │   │   │   │   │   ├── icon-add.svg
+    │   │   │   │   │   │   ├── icon-devise.svg
+    │   │   │   │   │   │   ├── icon-group.svg
+    │   │   │   │   │   │   ├── icon-group2.svg
+    │   │   │   │   │   │   ├── icon-marianne.svg
+    │   │   │   │   │   │   ├── icon-open-close.svg
+    │   │   │   │   │   │   ├── icon-sort.svg
+    │   │   │   │   │   │   └── icon-user.svg
+    │   │   │   │   │   └── logo-regie.svg
+    │   │   │   │   ├── components
+    │   │   │   │   │   ├── Box.tsx
+    │   │   │   │   │   ├── BoxButton.tsx
+    │   │   │   │   │   ├── Card.tsx
+    │   │   │   │   │   ├── DropButton.tsx
+    │   │   │   │   │   ├── Effect.tsx
+    │   │   │   │   │   ├── Icon.tsx
+    │   │   │   │   │   ├── InfiniteScroll.tsx
+    │   │   │   │   │   ├── Input.tsx
+    │   │   │   │   │   ├── Link.tsx
+    │   │   │   │   │   ├── LogoGouv.tsx
+    │   │   │   │   │   ├── Modal.tsx
+    │   │   │   │   │   ├── Tag.tsx
+    │   │   │   │   │   ├── Text.tsx
+    │   │   │   │   │   ├── TextErrors.tsx
+    │   │   │   │   │   ├── index.ts
+    │   │   │   │   │   ├── modal
+    │   │   │   │   │   │   ├── CustomModal.tsx
+    │   │   │   │   │   │   └── custom-modal.module.scss
+    │   │   │   │   │   ├── separators
+    │   │   │   │   │   │   ├── HorizontalSeparator.tsx
+    │   │   │   │   │   │   ├── SeparatedSection.tsx
+    │   │   │   │   │   │   └── index.ts
+    │   │   │   │   │   └── tabs
+    │   │   │   │   │       ├── CustomTabs.tsx
+    │   │   │   │   │       └── custom-tabs.module.scss
+    │   │   │   │   ├── core
+    │   │   │   │   │   ├── AppProvider.tsx
+    │   │   │   │   │   ├── auth
+    │   │   │   │   │   │   ├── Auth.tsx
+    │   │   │   │   │   │   ├── ButtonLogin.tsx
+    │   │   │   │   │   │   ├── UserInfo.tsx
+    │   │   │   │   │   │   ├── api
+    │   │   │   │   │   │   │   ├── getMe.tsx
+    │   │   │   │   │   │   │   ├── index.ts
+    │   │   │   │   │   │   │   └── types.ts
+    │   │   │   │   │   │   ├── index.ts
+    │   │   │   │   │   │   └── useAuthStore.tsx
+    │   │   │   │   │   ├── config
+    │   │   │   │   │   │   ├── ConfigProvider.tsx
+    │   │   │   │   │   │   ├── api
+    │   │   │   │   │   │   │   ├── getConfig.tsx
+    │   │   │   │   │   │   │   └── index.ts
+    │   │   │   │   │   │   ├── index.ts
+    │   │   │   │   │   │   ├── types.ts
+    │   │   │   │   │   │   └── useConfigStore.tsx
+    │   │   │   │   │   └── index.ts
+    │   │   │   │   ├── cunningham
+    │   │   │   │   │   ├── cunningham-custom-tokens.css
+    │   │   │   │   │   ├── cunningham-style.css
+    │   │   │   │   │   ├── cunningham-tokens.css
+    │   │   │   │   │   ├── cunningham-tokens.ts
+    │   │   │   │   │   ├── index.ts
+    │   │   │   │   │   └── useCunninghamTheme.tsx
+    │   │   │   │   ├── custom-next.d.ts
+    │   │   │   │   ├── features
+    │   │   │   │   │   ├── footer
+    │   │   │   │   │   │   ├── Footer.tsx
+    │   │   │   │   │   │   ├── assets
+    │   │   │   │   │   │   │   └── external-link.svg
+    │   │   │   │   │   │   └── index.tsx
+    │   │   │   │   │   ├── header
+    │   │   │   │   │   │   ├── Header.tsx
+    │   │   │   │   │   │   ├── LaGaufre.tsx
+    │   │   │   │   │   │   ├── assets
+    │   │   │   │   │   │   │   ├── icon-application.svg
+    │   │   │   │   │   │   │   └── icon-cells.svg
+    │   │   │   │   │   │   └── index.ts
+    │   │   │   │   │   ├── language
+    │   │   │   │   │   │   ├── LanguagePicker.tsx
+    │   │   │   │   │   │   ├── assets
+    │   │   │   │   │   │   │   └── icon-language.svg
+    │   │   │   │   │   │   └── index.ts
+    │   │   │   │   │   ├── left-panel
+    │   │   │   │   │   │   ├── components
+    │   │   │   │   │   │   │   ├── LeftPanel.tsx
+    │   │   │   │   │   │   │   ├── LeftPanelContent.tsx
+    │   │   │   │   │   │   │   ├── LeftPanelHeader.tsx
+    │   │   │   │   │   │   │   ├── LeftPanelItems.tsx
+    │   │   │   │   │   │   │   └── index.ts
+    │   │   │   │   │   │   ├── index.ts
+    │   │   │   │   │   │   └── stores
+    │   │   │   │   │   │       ├── index.ts
+    │   │   │   │   │   │       └── useLeftPanelStore.tsx
+    │   │   │   │   │   ├── login
+    │   │   │   │   │   │   ├── __tests__
+    │   │   │   │   │   │   │   ├── InputUserEmail.test.tsx
+    │   │   │   │   │   │   │   ├── InputUserPassword.test.tsx
+    │   │   │   │   │   │   │   └── login.test.tsx
+    │   │   │   │   │   │   ├── components
+    │   │   │   │   │   │   │   ├── InputUserEmail.tsx
+    │   │   │   │   │   │   │   ├── InputUserPassword.tsx
+    │   │   │   │   │   │   │   ├── LoginForm.tsx
+    │   │   │   │   │   │   │   ├── LoginLayout.tsx
+    │   │   │   │   │   │   │   └── index.ts
+    │   │   │   │   │   │   └── index.tsx
+    │   │   │   │   │   ├── mail-domains
+    │   │   │   │   │   │   ├── access-management
+    │   │   │   │   │   │   │   ├── api
+    │   │   │   │   │   │   │   │   ├── __tests__
+    │   │   │   │   │   │   │   │   │   ├── useDeleteMailDomainAccess.test.tsx
+    │   │   │   │   │   │   │   │   │   ├── useMailDomainAccesses.test.tsx
+    │   │   │   │   │   │   │   │   │   └── useUpdateMailDomainAccess.test.tsx
+    │   │   │   │   │   │   │   │   ├── index.ts
+    │   │   │   │   │   │   │   │   ├── useCreateInvitation.tsx
+    │   │   │   │   │   │   │   │   ├── useCreateMailDomainAccess.tsx
+    │   │   │   │   │   │   │   │   ├── useDeleteMailDomainAccess.tsx
+    │   │   │   │   │   │   │   │   ├── useMailDomainAccesses.tsx
+    │   │   │   │   │   │   │   │   ├── useUpdateMailDomainAccess.ts
+    │   │   │   │   │   │   │   │   └── useUsers.tsx
+    │   │   │   │   │   │   │   ├── assets
+    │   │   │   │   │   │   │   │   └── icon-remove-member.svg
+    │   │   │   │   │   │   │   ├── components
+    │   │   │   │   │   │   │   │   ├── AccessAction.tsx
+    │   │   │   │   │   │   │   │   ├── AccessesList.tsx
+    │   │   │   │   │   │   │   │   ├── ChooseRole.tsx
+    │   │   │   │   │   │   │   │   ├── ModalCreateInvitation.tsx
+    │   │   │   │   │   │   │   │   ├── ModalDelete.tsx
+    │   │   │   │   │   │   │   │   ├── ModalDomainAccessesManagement.tsx
+    │   │   │   │   │   │   │   │   ├── ModalRole.tsx
+    │   │   │   │   │   │   │   │   ├── SearchMembers.tsx
+    │   │   │   │   │   │   │   │   ├── __tests__
+    │   │   │   │   │   │   │   │   │   ├── ChooseRole.test.tsx
+    │   │   │   │   │   │   │   │   │   ├── ModalDelete.test.tsx
+    │   │   │   │   │   │   │   │   │   └── ModalRole.test.tsx
+    │   │   │   │   │   │   │   │   └── index.ts
+    │   │   │   │   │   │   │   ├── conf.ts
+    │   │   │   │   │   │   │   ├── hooks
+    │   │   │   │   │   │   │   │   ├── __tests__
+    │   │   │   │   │   │   │   │   │   └── useWhoAmI.test.tsx
+    │   │   │   │   │   │   │   │   └── useWhoAmI.tsx
+    │   │   │   │   │   │   │   ├── index.ts
+    │   │   │   │   │   │   │   └── types.ts
+    │   │   │   │   │   │   ├── aliases
+    │   │   │   │   │   │   │   ├── api
+    │   │   │   │   │   │   │   │   ├── index.tsx
+    │   │   │   │   │   │   │   │   ├── useAliases.tsx
+    │   │   │   │   │   │   │   │   ├── useAliasesInfinite.tsx
+    │   │   │   │   │   │   │   │   ├── useCreateAlias.tsx
+    │   │   │   │   │   │   │   │   ├── useDeleteAlias.tsx
+    │   │   │   │   │   │   │   │   └── useDeleteAliasById.tsx
+    │   │   │   │   │   │   │   ├── components
+    │   │   │   │   │   │   │   │   ├── AliasesView.tsx
+    │   │   │   │   │   │   │   │   ├── ModalCreateAlias.tsx
+    │   │   │   │   │   │   │   │   ├── ModalEditAlias.tsx
+    │   │   │   │   │   │   │   │   ├── index.ts
+    │   │   │   │   │   │   │   │   └── panel
+    │   │   │   │   │   │   │   │       ├── AliasesListView.tsx
+    │   │   │   │   │   │   │   │       └── index.ts
+    │   │   │   │   │   │   │   ├── index.tsx
+    │   │   │   │   │   │   │   └── types.ts
+    │   │   │   │   │   │   ├── assets
+    │   │   │   │   │   │   │   ├── icon-mail-domains.svg
+    │   │   │   │   │   │   │   └── mail-domains-logo.svg
+    │   │   │   │   │   │   ├── conf.ts
+    │   │   │   │   │   │   ├── domains
+    │   │   │   │   │   │   │   ├── __tests__
+    │   │   │   │   │   │   │   │   ├── MailDomainView.test.tsx
+    │   │   │   │   │   │   │   │   ├── ModalAddMailDomain.test.tsx
+    │   │   │   │   │   │   │   │   └── useFetchMailDomain.test.tsx
+    │   │   │   │   │   │   │   ├── api
+    │   │   │   │   │   │   │   │   ├── index.tsx
+    │   │   │   │   │   │   │   │   ├── useAddMailDomain.tsx
+    │   │   │   │   │   │   │   │   ├── useFetchMailDomain.tsx
+    │   │   │   │   │   │   │   │   ├── useMailDomain.tsx
+    │   │   │   │   │   │   │   │   └── useMailDomains.tsx
+    │   │   │   │   │   │   │   ├── components
+    │   │   │   │   │   │   │   │   ├── MailDomainAccessesAction.tsx
+    │   │   │   │   │   │   │   │   ├── MailDomainView.tsx
+    │   │   │   │   │   │   │   │   ├── MailDomainsLayout.tsx
+    │   │   │   │   │   │   │   │   ├── ModalAddMailDomain.tsx
+    │   │   │   │   │   │   │   │   ├── ModalDomainAccessesManagement.tsx
+    │   │   │   │   │   │   │   │   ├── ModalRequiredActionDomain.tsx
+    │   │   │   │   │   │   │   │   ├── index.ts
+    │   │   │   │   │   │   │   │   └── panel
+    │   │   │   │   │   │   │   │       ├── ItemList.tsx
+    │   │   │   │   │   │   │   │       ├── MailDomainListView.tsx
+    │   │   │   │   │   │   │   │       ├── MailDomainsListView.tsx
+    │   │   │   │   │   │   │   │       ├── Panel.tsx
+    │   │   │   │   │   │   │   │       ├── PanelActions.tsx
+    │   │   │   │   │   │   │   │       ├── PanelItem.tsx
+    │   │   │   │   │   │   │   │       └── index.ts
+    │   │   │   │   │   │   │   ├── index.tsx
+    │   │   │   │   │   │   │   ├── store
+    │   │   │   │   │   │   │   │   ├── index.ts
+    │   │   │   │   │   │   │   │   └── useMailDomainsStore.tsx
+    │   │   │   │   │   │   │   └── types.ts
+    │   │   │   │   │   │   └── mailboxes
+    │   │   │   │   │   │       ├── api
+    │   │   │   │   │   │       │   ├── index.tsx
+    │   │   │   │   │   │       │   ├── useCreateMailbox.tsx
+    │   │   │   │   │   │       │   ├── useMailboxes.tsx
+    │   │   │   │   │   │       │   ├── useMailboxesInfinite.tsx
+    │   │   │   │   │   │       │   ├── useUpdateMailbox.tsx
+    │   │   │   │   │   │       │   └── useUpdateMailboxStatus.tsx
+    │   │   │   │   │   │       ├── components
+    │   │   │   │   │   │       │   ├── MailBoxesView.tsx
+    │   │   │   │   │   │       │   ├── ModalCreateMailbox.tsx
+    │   │   │   │   │   │       │   ├── ModalUpdateMailbox.tsx
+    │   │   │   │   │   │       │   ├── __tests__
+    │   │   │   │   │   │       │   │   ├── MailDomainsContent.test.tsx
+    │   │   │   │   │   │       │   │   └── ModalCreateMailbox.test.tsx
+    │   │   │   │   │   │       │   ├── index.ts
+    │   │   │   │   │   │       │   └── panel
+    │   │   │   │   │   │       │       ├── MailBoxesListView.tsx
+    │   │   │   │   │   │       │       ├── PanelActions.tsx
+    │   │   │   │   │   │       │       └── index.ts
+    │   │   │   │   │   │       ├── index.tsx
+    │   │   │   │   │   │       └── types.ts
+    │   │   │   │   │   └── teams
+    │   │   │   │   │       ├── member-add
+    │   │   │   │   │       │   ├── api
+    │   │   │   │   │       │   │   ├── index.ts
+    │   │   │   │   │       │   │   ├── useCreateInvitation.tsx
+    │   │   │   │   │       │   │   ├── useCreateTeamAccess.tsx
+    │   │   │   │   │       │   │   └── useUsers.tsx
+    │   │   │   │   │       │   ├── assets
+    │   │   │   │   │       │   │   └── add-member.svg
+    │   │   │   │   │       │   ├── components
+    │   │   │   │   │       │   │   ├── ModalAddMembers.tsx
+    │   │   │   │   │       │   │   └── SearchMembers.tsx
+    │   │   │   │   │       │   ├── index.ts
+    │   │   │   │   │       │   └── types.tsx
+    │   │   │   │   │       ├── member-management
+    │   │   │   │   │       │   ├── __tests__
+    │   │   │   │   │       │   │   ├── MemberAction.test.tsx
+    │   │   │   │   │       │   │   ├── MemberGrid.test.tsx
+    │   │   │   │   │       │   │   ├── ModalRole.test.tsx
+    │   │   │   │   │       │   │   └── useTeamAccesses.test.ts
+    │   │   │   │   │       │   ├── api
+    │   │   │   │   │       │   │   ├── index.ts
+    │   │   │   │   │       │   │   ├── useDeleteTeamAccess.ts
+    │   │   │   │   │       │   │   ├── useTeamsAccesses.tsx
+    │   │   │   │   │       │   │   └── useUpdateTeamAccess.ts
+    │   │   │   │   │       │   ├── assets
+    │   │   │   │   │       │   │   ├── icon-magnifying-glass.svg
+    │   │   │   │   │       │   │   └── icon-remove-member.svg
+    │   │   │   │   │       │   ├── components
+    │   │   │   │   │       │   │   ├── ChooseRole.tsx
+    │   │   │   │   │       │   │   ├── MemberAction.tsx
+    │   │   │   │   │       │   │   ├── MemberGrid.tsx
+    │   │   │   │   │       │   │   ├── ModalDelete.tsx
+    │   │   │   │   │       │   │   └── ModalRole.tsx
+    │   │   │   │   │       │   ├── conf.ts
+    │   │   │   │   │       │   ├── hooks
+    │   │   │   │   │       │   │   └── useWhoAmI.tsx
+    │   │   │   │   │       │   ├── index.ts
+    │   │   │   │   │       │   └── types.tsx
+    │   │   │   │   │       ├── team-management
+    │   │   │   │   │       │   ├── api
+    │   │   │   │   │       │   │   ├── index.ts
+    │   │   │   │   │       │   │   ├── useCreateTeam.tsx
+    │   │   │   │   │       │   │   ├── useRemoveTeam.tsx
+    │   │   │   │   │       │   │   ├── useTeam.tsx
+    │   │   │   │   │       │   │   ├── useTeams.tsx
+    │   │   │   │   │       │   │   └── useUpdateTeam.tsx
+    │   │   │   │   │       │   ├── assets
+    │   │   │   │   │       │   │   ├── icon-edit.svg
+    │   │   │   │   │       │   │   └── icon-trash.svg
+    │   │   │   │   │       │   ├── components
+    │   │   │   │   │       │   │   ├── CardCreateTeam.tsx
+    │   │   │   │   │       │   │   ├── InputTeamName.tsx
+    │   │   │   │   │       │   │   ├── ModalRemoveTeam.tsx
+    │   │   │   │   │       │   │   ├── ModalUpdateTeam.tsx
+    │   │   │   │   │       │   │   ├── TeamActions.tsx
+    │   │   │   │   │       │   │   ├── TeamInfo.tsx
+    │   │   │   │   │       │   │   ├── TeamLayout.tsx
+    │   │   │   │   │       │   │   ├── TeamsListView.tsx
+    │   │   │   │   │       │   │   ├── __tests__
+    │   │   │   │   │       │   │   │   ├── CardCreateTeam.test.tsx
+    │   │   │   │   │       │   │   │   └── TeamsListView.test.tsx
+    │   │   │   │   │       │   │   └── index.ts
+    │   │   │   │   │       │   ├── index.tsx
+    │   │   │   │   │       │   └── types.tsx
+    │   │   │   │   │       └── teams-panel
+    │   │   │   │   │           ├── __tests__
+    │   │   │   │   │           │   └── PanelTeams.test.tsx
+    │   │   │   │   │           ├── assets
+    │   │   │   │   │           │   └── icon-none.svg
+    │   │   │   │   │           ├── components
+    │   │   │   │   │           │   ├── Panel.tsx
+    │   │   │   │   │           │   ├── PanelActions.tsx
+    │   │   │   │   │           │   ├── TeamItem.tsx
+    │   │   │   │   │           │   ├── TeamList.tsx
+    │   │   │   │   │           │   └── index.ts
+    │   │   │   │   │           ├── index.ts
+    │   │   │   │   │           └── store
+    │   │   │   │   │               ├── index.ts
+    │   │   │   │   │               └── useTeamsStore.tsx
+    │   │   │   │   ├── i18n
+    │   │   │   │   │   ├── conf.ts
+    │   │   │   │   │   ├── initI18n.ts
+    │   │   │   │   │   └── translations.json
+    │   │   │   │   ├── layouts
+    │   │   │   │   │   ├── MainLayout.tsx
+    │   │   │   │   │   ├── PageLayout.tsx
+    │   │   │   │   │   ├── conf.ts
+    │   │   │   │   │   └── index.ts
+    │   │   │   │   ├── pages
+    │   │   │   │   │   ├── 404.tsx
+    │   │   │   │   │   ├── _app.tsx
+    │   │   │   │   │   ├── _document.tsx
+    │   │   │   │   │   ├── accessibility
+    │   │   │   │   │   │   └── index.tsx
+    │   │   │   │   │   ├── globals.css
+    │   │   │   │   │   ├── index.tsx
+    │   │   │   │   │   ├── legal-notice
+    │   │   │   │   │   │   └── index.tsx
+    │   │   │   │   │   ├── login
+    │   │   │   │   │   │   └── index.tsx
+    │   │   │   │   │   ├── mail-domains
+    │   │   │   │   │   │   ├── [slug].tsx
+    │   │   │   │   │   │   └── index.tsx
+    │   │   │   │   │   ├── personal-data-cookies
+    │   │   │   │   │   │   └── index.tsx
+    │   │   │   │   │   └── teams
+    │   │   │   │   │       ├── [id].tsx
+    │   │   │   │   │       ├── create.tsx
+    │   │   │   │   │       └── index.tsx
+    │   │   │   │   ├── stores
+    │   │   │   │   │   ├── index.ts
+    │   │   │   │   │   └── useResponsiveStore.tsx
+    │   │   │   │   ├── tests
+    │   │   │   │   │   └── utils.tsx
+    │   │   │   │   ├── types
+    │   │   │   │   │   ├── components.ts
+    │   │   │   │   │   └── next.ts
+    │   │   │   │   └── utils
+    │   │   │   │       ├── __tests__
+    │   │   │   │       │   └── string.test.ts
+    │   │   │   │       ├── index.ts
+    │   │   │   │       ├── string.ts
+    │   │   │   │       └── styleBuilder.ts
+    │   │   │   ├── stylelint.config.js
+    │   │   │   ├── tsconfig.json
+    │   │   │   └── version.json
+    │   │   └── e2e
+    │   │       ├── .eslintrc.js
+    │   │       ├── .gitignore
+    │   │       ├── __tests__
+    │   │       │   ├── app-desk
+    │   │       │   │   ├── 404.spec.ts
+    │   │       │   │   ├── common.ts
+    │   │       │   │   ├── config.spec.ts
+    │   │       │   │   ├── footer.spec.ts
+    │   │       │   │   ├── header.spec.ts
+    │   │       │   │   ├── language.spec.ts
+    │   │       │   │   ├── mail-domain-create-mailbox.spec.ts
+    │   │       │   │   ├── mail-domain.spec.ts
+    │   │       │   │   ├── mail-domains-add.spec.ts
+    │   │       │   │   ├── mail-domains.spec.ts
+    │   │       │   │   ├── member-create.spec.ts
+    │   │       │   │   ├── member-delete.spec.ts
+    │   │       │   │   ├── member-grid.spec.ts
+    │   │       │   │   ├── menu.spec.ts
+    │   │       │   │   ├── oidc-identity-provider.spec.ts
+    │   │       │   │   ├── siret.spec.ts
+    │   │       │   │   ├── team.spec.ts
+    │   │       │   │   ├── teams-create.spec.ts
+    │   │       │   │   ├── teams-delete.spec.ts
+    │   │       │   │   └── teams-panel.spec.ts
+    │   │       │   └── helpers.ts
+    │   │       ├── package.json
+    │   │       ├── playwright.config.ts
+    │   │       └── tsconfig.json
+    │   ├── package.json
+    │   ├── packages
+    │   │   ├── eslint-config-people
+    │   │   │   ├── .eslintrc.js
+    │   │   │   ├── common.js
+    │   │   │   ├── jest.js
+    │   │   │   ├── next.js
+    │   │   │   ├── package.json
+    │   │   │   └── playwright.js
+    │   │   └── i18n
+    │   │       ├── .eslintrc.js
+    │   │       ├── .gitignore
+    │   │       ├── __tests__
+    │   │       │   ├── i18n.test.ts
+    │   │       │   └── translations.test.ts
+    │   │       ├── format-deploy.mjs
+    │   │       ├── i18next-parser.config.jest.mjs
+    │   │       ├── i18next-parser.config.mjs
+    │   │       ├── jest.config.ts
+    │   │       ├── package.json
+    │   │       └── tsconfig.json
+    │   ├── test-results
+    │   │   └── .last-run.json
+    │   └── yarn.lock
+    ├── helm
+    │   ├── desk
+    │   │   ├── Chart.yaml
+    │   │   ├── README.md
+    │   │   ├── generate-readme.sh
+    │   │   ├── templates
+    │   │   │   ├── _helpers.tpl
+    │   │   │   ├── backend_deployment.yaml
+    │   │   │   ├── backend_job.yaml
+    │   │   │   ├── backend_job_createsuperuser.yaml
+    │   │   │   ├── backend_svc.yaml
+    │   │   │   ├── celery_beat_deployment.yaml
+    │   │   │   ├── celery_worker_deployment.yaml
+    │   │   │   ├── frontend_deployment.yaml
+    │   │   │   ├── frontend_svc.yaml
+    │   │   │   ├── ingress.yaml
+    │   │   │   └── ingress_admin.yaml
+    │   │   └── values.yaml
+    │   ├── dimail
+    │   │   ├── Chart.yaml
+    │   │   ├── templates
+    │   │   │   ├── deployment.yaml
+    │   │   │   ├── ingress.yaml
+    │   │   │   └── service.yaml
+    │   │   └── values.yaml
+    │   ├── env.d
+    │   │   ├── dev
+    │   │   │   └── values.desk.yaml.gotmpl
+    │   │   ├── dev-keycloak
+    │   │   │   └── values.desk.yaml.gotmpl
+    │   │   └── values.maildev.yaml.gotmpl
+    │   ├── extra
+    │   │   ├── Chart.yaml
+    │   │   └── templates
+    │   │       ├── clustersecretstore.yaml
+    │   │       ├── external_secret.yaml
+    │   │       └── external_secret_deployment.yaml
+    │   ├── helmfile.yaml
+    │   └── maildev
+    │       ├── Chart.yaml
+    │       ├── templates
+    │       │   ├── deployment.yaml
+    │       │   ├── ingress.yaml
+    │       │   ├── service-smtp.yaml
+    │       │   └── service-web.yaml
+    │       └── values.yaml
+    ├── mail
+    │   ├── bin
+    │   │   ├── html-to-plain-text
+    │   │   └── mjml-to-html
+    │   ├── html-to-text.config.json
+    │   ├── mjml
+    │   │   ├── maildomain_action_required.mjml
+    │   │   ├── maildomain_enabled.mjml
+    │   │   ├── maildomain_failed.mjml
+    │   │   ├── maildomain_invitation.mjml
+    │   │   ├── new_mailbox.mjml
+    │   │   ├── partial
+    │   │   │   ├── footer.mjml
+    │   │   │   └── header.mjml
+    │   │   ├── reset_password.mjml
+    │   │   └── team_invitation.mjml
+    │   ├── package.json
+    │   └── yarn.lock
+    └── tsclient
+        ├── package.json
+        ├── scripts
+        │   └── openapi-typescript-codegen
+        │       └── generate_api_client_local.sh
+        └── yarn.lock
+229 directories, 765 files

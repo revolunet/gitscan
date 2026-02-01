@@ -1,0 +1,34 @@
+{
+  "name": "people",
+  "version": "1.22.2",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "apps/*",
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "APP_DESK": "yarn workspace app-desk",
+    "APP_E2E": "yarn workspace app-e2e",
+    "I18N": "yarn workspace packages-i18n",
+    "app:dev": "yarn APP_DESK run dev",
+    "app:start": "yarn APP_DESK run start",
+    "app:build": "yarn APP_DESK run build",
+    "app:test": "yarn APP_DESK run test",
+    "ci:build": "yarn APP_DESK run build:ci",
+    "e2e:test": "yarn APP_E2E run test",
+    "lint": "yarn APP_DESK run lint && yarn APP_E2E run lint && yarn workspace eslint-config-people run lint && yarn I18N run lint",
+    "lint-fix": "yarn APP_DESK run lint --fix && yarn APP_E2E run lint --fix && yarn workspace eslint-config-people run lint --fix && yarn I18N run lint --fix",
+    "i18n:extract": "yarn I18N run extract-translation",
+    "i18n:deploy": "yarn I18N run format-deploy && yarn APP_DESK prettier",
+    "i18n:test": "yarn I18N run test"
+  },
+  "resolutions": {
+    "@types/node": "22.18.12",
+    "@types/react-dom": "19.2.2",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "typescript": "5.9.3"
+  }
+}
