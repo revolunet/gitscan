@@ -1,0 +1,179 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "repository.schema.json",
+  "title": "Git Repository Specification",
+  "description": "Schema describing a git repository's specifications, status, purpose, and technical characteristics. Designed for LLM analysis and documentation.",
+  "type": "object",
+  "required": ["url", "name"],
+  "properties": {
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "The canonical URL of the git repository (e.g., https://github.com/org/repo)"
+    },
+    "name": {
+      "type": "string",
+      "description": "The repository name"
+    },
+    "description": {
+      "type": "string",
+      "description": "A concise description of what the project does and its main purpose (1-3 sentences)"
+    },
+    "language": {
+      "type": "string",
+      "description": "The primary programming language used in the repository (e.g., Python, TypeScript, Go, Rust)",
+      "examples": [
+        "Python",
+        "TypeScript",
+        "JavaScript",
+        "Go",
+        "Rust",
+        "Java",
+        "C#",
+        "Ruby",
+        "PHP"
+      ]
+    },
+    "features": {
+      "type": "array",
+      "description": "List of user-facing features or capabilities provided by the project",
+      "items": {
+        "type": "string"
+      },
+      "examples": [
+        [
+          "User authentication",
+          "File upload",
+          "Real-time notifications",
+          "Search functionality",
+          "Agenda",
+          "Messaging"
+        ]
+      ]
+    },
+    "audience": {
+      "type": "string",
+      "description": "The intended target audience or users of this project (eg: general public, professionals, administration...)",
+      "examples": [
+        "Grand public",
+        "Professionnels",
+        "Agents de l'Administration",
+        "Associations"
+      ]
+    },
+    "dependencies": {
+      "type": "array",
+      "description": "Main external libraries, frameworks, or services the project depends on",
+      "items": {
+        "type": "string"
+      },
+      "examples": [["React", "Express", "PostgreSQL", "Redis", "AWS S3"]]
+    },
+    "components": {
+      "type": "array",
+      "description": "Technical components and architecture of the project",
+      "items": { "type": "string" }
+    },
+    "auth": {
+      "type": "object",
+      "description": "Authentication and authorization methods implemented in the project",
+      "properties": {
+        "methods": {
+          "type": "array",
+          "description": "List of authentication methods supported",
+          "items": {
+            "type": "string",
+            "enum": [
+              "email-password",
+              "oauth2",
+              "saml",
+              "ldap",
+              "api-key",
+              "jwt",
+              "session",
+              "magic-link",
+              "passkey",
+              "mfa",
+              "sso",
+              "none"
+            ]
+          }
+        },
+        "providers": {
+          "type": "array",
+          "description": "OAuth/SSO providers if applicable (e.g., Google, GitHub, Microsoft)",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "tests": {
+      "description": "Testing setup and dependencies",
+      "type": ["string", "array"]
+    },
+    "workflows": {
+      "type": "array",
+      "description": "CI/CD workflows and automation pipelines configured in the repository",
+      "items": {
+        "type": "string"
+      }
+    },
+    "lastActivity": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of the most recent commit or significant activity"
+    },
+    "status": {
+      "type": "string",
+      "description": "Current maintenance status of the repository",
+      "enum": [
+        "active",
+        "maintained",
+        "minimal-maintenance",
+        "archived",
+        "deprecated",
+        "experimental",
+        "unknown"
+      ]
+    },
+    "license": {
+      "type": ["string", "null"],
+      "description": "SPDX license identifier (e.g., MIT, Apache-2.0, GPL-3.0) or null if not specified"
+    },
+    "hasDocumentation": {
+      "type": "boolean",
+      "description": "Documentation availability"
+    },
+    "metrics": {
+      "type": "object",
+      "description": "Repository metrics and statistics",
+      "properties": {
+        "stars": {
+          "type": "integer",
+          "description": "Number of GitHub stars or equivalent"
+        },
+        "forks": {
+          "type": "integer",
+          "description": "Number of forks"
+        },
+        "contributors": {
+          "type": "integer",
+          "description": "Number of contributors"
+        },
+        "openIssues": {
+          "type": "integer",
+          "description": "Number of open issues"
+        }
+      }
+    },
+    "tags": {
+      "type": "array",
+      "description": "Keywords or tags describing the project for categorization",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": true
+}
