@@ -44,3 +44,31 @@ export interface AggregatedData {
     byLanguage: Record<string, number>;
   };
 }
+
+export type DependencyType =
+  | "npm"
+  | "npm-dev"
+  | "pypi"
+  | "pypi-dev"
+  | "docker";
+
+export interface DependencyUsage {
+  organization: string;
+  repo: string;
+  version: string;
+  type: DependencyType;
+}
+
+export interface Dependency {
+  name: string;
+  usages: DependencyUsage[];
+}
+
+export interface DependencyIndex {
+  dependencies: Record<string, Dependency>;
+  stats: {
+    totalDependencies: number;
+    totalUsages: number;
+    byType: Record<DependencyType, number>;
+  };
+}

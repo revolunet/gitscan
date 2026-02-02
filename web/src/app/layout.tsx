@@ -46,6 +46,27 @@ export default function RootLayout({
                 </div>
               </Link>
               <nav className="flex items-center gap-4">
+                <Link
+                  href="/dependencies"
+                  className="flex items-center gap-2 text-slate-600 hover:text-slate-900 transition-colors"
+                >
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+                    />
+                  </svg>
+                  <span className="hidden sm:inline text-sm font-medium">
+                    Dependencies
+                  </span>
+                </Link>
                 <a
                   href="https://github.com/revolunet/gitscan"
                   target="_blank"
@@ -104,6 +125,14 @@ export default function RootLayout({
               <div>
                 <h3 className="text-white font-semibold mb-4">Liens</h3>
                 <ul className="space-y-2 text-sm">
+                  <li>
+                    <Link
+                      href="/dependencies"
+                      className="hover:text-white transition-colors"
+                    >
+                      Recherche de dépendances
+                    </Link>
+                  </li>
                   <li>
                     <a
                       href="https://github.com/revolune/gitscan"
