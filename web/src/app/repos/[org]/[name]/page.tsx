@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { AggregatedData } from "@/lib/types";
+import { Changelog } from "@/components/Changelog";
 import reposData from "../../../../../data/repos.json";
 
 const data = reposData as AggregatedData;
@@ -226,6 +227,16 @@ export default async function RepoDetailPage({ params }: PageProps) {
                   </Link>
                 ))}
               </div>
+            </section>
+          )}
+
+          {/* Changelog */}
+          {repo.changelog && (
+            <section className="bg-white rounded-xl border border-slate-200 p-6">
+              <h2 className="text-lg font-semibold text-slate-900 mb-4">
+                Changelog
+              </h2>
+              <Changelog content={repo.changelog} />
             </section>
           )}
         </div>

@@ -33,8 +33,15 @@ async function buildIndex() {
       const pathParts = file.split("/");
       const organization = pathParts[0];
 
+      // Read CHANGELOG-generated.md if it exists
+      const changelogPath = path.join(path.dirname(filePath), "CHANGELOG-generated.md");
+      const changelog = fs.existsSync(changelogPath)
+        ? fs.readFileSync(changelogPath, "utf-8").trim() || null
+        : null;
+
       const repo: Repository = {
         ...data,
+        changelog,
         organization,
       };
 

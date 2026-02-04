@@ -28,6 +28,7 @@ export interface Repository {
   hasDocumentation: boolean;
   metrics: RepoMetrics | null;
   tags: string[] | null;
+  changelog: string | null;
   // Added during aggregation
   organization: string;
 }
