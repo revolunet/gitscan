@@ -1,7 +1,7 @@
 import { glob } from "glob";
 import * as fs from "fs";
 import * as path from "path";
-import type { Repository, AggregatedData } from "../src/lib/types";
+import type { Repository, AggregatedData, OrgChangelog } from "../src/lib/types";
 
 async function buildIndex() {
   const reposDir = path.resolve(__dirname, "../../repos");
@@ -33,8 +33,15 @@ async function buildIndex() {
       const pathParts = file.split("/");
       const organization = pathParts[0];
 
+      // Read CHANGELOG-generated.md if it exists
+      const changelogPath = path.join(path.dirname(filePath), "CHANGELOG-generated.md");
+      const changelog = fs.existsSync(changelogPath)
+        ? fs.readFileSync(changelogPath, "utf-8").trim() || null
+        : null;
+
       const repo: Repository = {
         ...data,
+        changelog,
         organization,
       };
 
@@ -66,12 +73,26 @@ async function buildIndex() {
       new Date(b.lastActivity).getTime() - new Date(a.lastActivity).getTime()
   );
 
+  // Read organization-level changelogs
+  const orgChangelogs: OrgChangelog[] = [];
+  for (const org of organizations) {
+    const orgChangelogPath = path.join(reposDir, org, "CHANGELOG-generated.md");
+    if (fs.existsSync(orgChangelogPath)) {
+      const content = fs.readFileSync(orgChangelogPath, "utf-8").trim();
+      if (content) {
+        orgChangelogs.push({ organization: org, changelog: content });
+      }
+    }
+  }
+  orgChangelogs.sort((a, b) => a.organization.localeCompare(b.organization));
+
   const aggregatedData: AggregatedData = {
     repos,
     organizations: Array.from(organizations).sort(),
     languages: Array.from(languages).sort(),
     licenses: Array.from(licenses).sort(),
     tags: Array.from(allTags).sort(),
+    orgChangelogs,
     stats: {
       total: repos.length,
       byOrg,

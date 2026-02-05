@@ -28,8 +28,14 @@ export interface Repository {
   hasDocumentation: boolean;
   metrics: RepoMetrics | null;
   tags: string[] | null;
+  changelog: string | null;
   // Added during aggregation
   organization: string;
+}
+
+export interface OrgChangelog {
+  organization: string;
+  changelog: string;
 }
 
 export interface AggregatedData {
@@ -38,6 +44,7 @@ export interface AggregatedData {
   languages: string[];
   licenses: string[];
   tags: string[];
+  orgChangelogs: OrgChangelog[];
   stats: {
     total: number;
     byOrg: Record<string, number>;
