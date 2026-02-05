@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { AggregatedData } from "@/lib/types";
 import { Changelog } from "@/components/Changelog";
+import { RepoCard } from "@/components/RepoCard";
 import reposData from "../../../../../data/repos.json";
 
 const data = reposData as AggregatedData;
@@ -48,6 +49,7 @@ export default async function OrgActivityPage({ params }: PageProps) {
   }
 
   const repoCount = data.stats.byOrg[org] ?? 0;
+  const orgRepos = data.repos.filter((r) => r.organization === org);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -98,6 +100,20 @@ export default async function OrgActivityPage({ params }: PageProps) {
       <div className="bg-white rounded-xl border border-slate-200 p-6 sm:p-8">
         <Changelog content={entry.changelog} />
       </div>
+
+      {/* Repos */}
+      {orgRepos.length > 0 && (
+        <div className="mb-8 mt-4">
+          <h2 className="text-xl font-semibold text-slate-900 mb-4">
+            Dépôts ({orgRepos.length})
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {orgRepos.map((repo) => (
+              <RepoCard key={repo.name} repo={repo} />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

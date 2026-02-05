@@ -48,7 +48,7 @@ export default function RootLayout({
               </Link>
               <nav className="flex items-center gap-4">
                 <Link
-                  href="/"
+                  href="/repos"
                   className="flex items-center gap-2 text-slate-600 hover:text-slate-900 transition-colors"
                 >
                   <svg
@@ -170,7 +170,7 @@ export default function RootLayout({
                 <ul className="space-y-2 text-sm">
                   <li>
                     <Link
-                      href="/"
+                      href="/repos"
                       className="hover:text-white transition-colors"
                     >
                       Dépots
