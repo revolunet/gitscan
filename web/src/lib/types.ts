@@ -33,12 +33,18 @@ export interface Repository {
   organization: string;
 }
 
+export interface OrgChangelog {
+  organization: string;
+  changelog: string;
+}
+
 export interface AggregatedData {
   repos: Repository[];
   organizations: string[];
   languages: string[];
   licenses: string[];
   tags: string[];
+  orgChangelogs: OrgChangelog[];
   stats: {
     total: number;
     byOrg: Record<string, number>;

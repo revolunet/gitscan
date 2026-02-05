@@ -29,7 +29,7 @@ export default function HomePage() {
         (repo) =>
           repo.name.toLowerCase().includes(query) ||
           repo.description?.toLowerCase().includes(query) ||
-          repo.tags?.some((tag) => tag.toLowerCase().includes(query))
+          repo.tags?.some((tag) => tag.toLowerCase().includes(query)),
       );
     }
 
@@ -39,7 +39,7 @@ export default function HomePage() {
 
     if (selectedLanguages.length > 0) {
       repos = repos.filter(
-        (repo) => repo.language && selectedLanguages.includes(repo.language)
+        (repo) => repo.language && selectedLanguages.includes(repo.language),
       );
     }
 
@@ -77,7 +77,6 @@ export default function HomePage() {
         </h1>
         <p className="text-lg text-slate-600 max-w-2xl mx-auto">
           Explore {data.stats.total.toLocaleString()} open source repositories
-          from French government organizations
         </p>
       </div>
 
@@ -156,10 +155,7 @@ export default function HomePage() {
           {/* Repo grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
             {paginatedRepos.map((repo) => (
-              <RepoCard
-                key={`${repo.organization}/${repo.name}`}
-                repo={repo}
-              />
+              <RepoCard key={`${repo.organization}/${repo.name}`} repo={repo} />
             ))}
           </div>
 

@@ -40,7 +40,7 @@ export default async function RepoDetailPage({ params }: PageProps) {
   const { org, name } = await params;
 
   const repo = data.repos.find(
-    (r) => r.organization === org && r.name === name
+    (r) => r.organization === org && r.name === name,
   );
 
   if (!repo) {
@@ -88,7 +88,14 @@ export default async function RepoDetailPage({ params }: PageProps) {
           Home
         </Link>
         <span>/</span>
-        <span className="text-slate-900 font-medium">{org}</span>
+        <span className="text-slate-900 font-medium">
+          <Link
+            href={`/activity/org/${org}`}
+            className="hover:text-slate-900 transition-colors"
+          >
+            {org}
+          </Link>
+        </span>
         <span>/</span>
         <span className="text-slate-900 font-medium">{name}</span>
       </nav>
@@ -138,7 +145,9 @@ export default async function RepoDetailPage({ params }: PageProps) {
               {repo.language}
             </div>
           )}
-          {repo.license && <span className="badge badge-green">{repo.license}</span>}
+          {repo.license && (
+            <span className="badge badge-green">{repo.license}</span>
+          )}
           {repo.hasDocumentation && (
             <span className="badge badge-blue">Documentation</span>
           )}
@@ -215,7 +224,9 @@ export default async function RepoDetailPage({ params }: PageProps) {
           {/* Tags */}
           {repo.tags && repo.tags.length > 0 && (
             <section className="bg-white rounded-xl border border-slate-200 p-6">
-              <h2 className="text-lg font-semibold text-slate-900 mb-4">Tags</h2>
+              <h2 className="text-lg font-semibold text-slate-900 mb-4">
+                Tags
+              </h2>
               <div className="flex flex-wrap gap-2">
                 {repo.tags.map((tag) => (
                   <Link
@@ -336,7 +347,9 @@ export default async function RepoDetailPage({ params }: PageProps) {
             <dl className="space-y-4 text-sm">
               <div>
                 <dt className="text-slate-500 mb-1">Target Audience</dt>
-                <dd className="text-slate-900">{audience || "Not specified"}</dd>
+                <dd className="text-slate-900">
+                  {audience || "Not specified"}
+                </dd>
               </div>
               {repo.auth?.methods && (
                 <div>
@@ -346,16 +359,20 @@ export default async function RepoDetailPage({ params }: PageProps) {
                   </dd>
                 </div>
               )}
-              {repo.tests && repo.tests.length > 0 && Array.isArray(repo.tests) && (
-                <div>
-                  <dt className="text-slate-500 mb-1">Testing</dt>
-                  <dd className="text-slate-900">{repo.tests.join(", ")}</dd>
-                </div>
-              )}
+              {repo.tests &&
+                repo.tests.length > 0 &&
+                Array.isArray(repo.tests) && (
+                  <div>
+                    <dt className="text-slate-500 mb-1">Testing</dt>
+                    <dd className="text-slate-900">{repo.tests.join(", ")}</dd>
+                  </div>
+                )}
               {repo.workflows && repo.workflows.length > 0 && (
                 <div>
                   <dt className="text-slate-500 mb-1">CI/CD</dt>
-                  <dd className="text-slate-900">{repo.workflows.join(", ")}</dd>
+                  <dd className="text-slate-900">
+                    {repo.workflows.join(", ")}
+                  </dd>
                 </div>
               )}
             </dl>

@@ -9,7 +9,7 @@ const organizations = [
 
 export const metadata = {
   title: "GitScan - Catalogue des Dépôts Publics",
-  description: "Explorez les dépôts open source des administrations françaises",
+  description: "Explorez les dépôts open source",
 };
 
 export default function RootLayout({
@@ -42,11 +42,56 @@ export default function RootLayout({
                 <div>
                   <h1 className="text-xl font-bold text-slate-900">GitScan</h1>
                   <p className="text-xs text-slate-500 hidden sm:block">
-                    Dépôts publics français
+                    Dépôts publics
                   </p>
                 </div>
               </Link>
               <nav className="flex items-center gap-4">
+                <Link
+                  href="/"
+                  className="flex items-center gap-2 text-slate-600 hover:text-slate-900 transition-colors"
+                >
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle cx="12" cy="6" r="2" strokeWidth={2} />
+                    <circle cx="12" cy="18" r="2" strokeWidth={2} />
+                    <circle cx="18" cy="12" r="2" strokeWidth={2} />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 8v8M14 18h2a2 2 0 002-2v-2"
+                    />
+                  </svg>
+                  <span className="hidden sm:inline text-sm font-medium">
+                    Dépôts
+                  </span>
+                </Link>
+                <Link
+                  href="/activity"
+                  className="flex items-center gap-2 text-slate-600 hover:text-slate-900 transition-colors"
+                >
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  <span className="hidden sm:inline text-sm font-medium">
+                    Activité
+                  </span>
+                </Link>
                 <Link
                   href="/dependencies"
                   className="flex items-center gap-2 text-slate-600 hover:text-slate-900 transition-colors"
@@ -118,14 +163,27 @@ export default function RootLayout({
                   </div>
                   <span className="text-white font-semibold">GitScan</span>
                 </div>
-                <p className="text-sm">
-                  Explorez les dépôts open source des administrations
-                  françaises.
-                </p>
+                <p className="text-sm">Explorez les dépôts open source.</p>
               </div>
               <div>
                 <h3 className="text-white font-semibold mb-4">Liens</h3>
                 <ul className="space-y-2 text-sm">
+                  <li>
+                    <Link
+                      href="/"
+                      className="hover:text-white transition-colors"
+                    >
+                      Dépots
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/activity"
+                      className="hover:text-white transition-colors"
+                    >
+                      Activité des organisations
+                    </Link>
+                  </li>
                   <li>
                     <Link
                       href="/dependencies"
