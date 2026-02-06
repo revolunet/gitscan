@@ -38,8 +38,8 @@ for github_json in ./repos/*/*/github.json; do
 
         # Skip if CHANGELOG-generated.md was committed within the last CHANGELOG_SKIP_DAYS days
         if [ -f "$changelog_file" ]; then
-            echo "--- SKIP $repo_dir (exist)"
-            continue
+            # echo "--- SKIP $repo_dir (exist)"
+            # continue
             changelog_git_date=$(git log -1 --format="%aI" -- "$changelog_file" 2>/dev/null)
             if [ -n "$changelog_git_date" ] && [[ "$changelog_git_date" > "$CHANGELOG_CUTOFF" ]]; then
                 echo "--- SKIP $repo_dir (changelog recently committed: $changelog_git_date)"

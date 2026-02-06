@@ -54,7 +54,7 @@ for org_dir in ./repos/*; do
     #     continue
     # }
 
-    [ $ORG_NAME == "betagouv" ] || continue
+    # [ $ORG_NAME == "betagouv" ] || continue
 
     # Collect eligible changelog files for this org
     ELIGIBLE_FILES=()
