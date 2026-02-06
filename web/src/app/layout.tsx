@@ -194,7 +194,7 @@ export default function RootLayout({
                   </li>
                   <li>
                     <a
-                      href="https://github.com/revolune/gitscan"
+                      href="https://github.com/revolunet/gitscan"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="hover:text-white transition-colors"
