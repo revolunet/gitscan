@@ -44,7 +44,9 @@ jobs:
         working-directory: web
         env:
           NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
-        run: npm run build
+        run: |
+          npm run build:data
+          npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
