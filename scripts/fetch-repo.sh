@@ -125,8 +125,13 @@ if command -v git log &> /dev/null; then
         cat "$NEW_COMMITS_TMP" "$RESULTS_DIR/commits.txt" | \
             awk -F' - ' '!seen[$2]++' | \
             sort -r > "$MERGED_TMP"
-        mv "$MERGED_TMP" "$RESULTS_DIR/commits.txt"
-        echo "✓ commits.txt mis à jour (nouveaux commits ajoutés)"
+        if diff -q "$MERGED_TMP" "$RESULTS_DIR/commits.txt" > /dev/null 2>&1; then
+            echo "✓ commits.txt inchangé (aucun nouveau commit)"
+            rm -f "$MERGED_TMP"
+        else
+            mv "$MERGED_TMP" "$RESULTS_DIR/commits.txt"
+            echo "✓ commits.txt mis à jour (nouveaux commits ajoutés)"
+        fi
     else
         mv "$NEW_COMMITS_TMP" "$RESULTS_DIR/commits.txt"
         echo "✓ commits.txt généré"
