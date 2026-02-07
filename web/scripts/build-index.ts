@@ -1,7 +1,11 @@
 import { glob } from "glob";
 import * as fs from "fs";
 import * as path from "path";
-import type { Repository, AggregatedData, OrgChangelog } from "../src/lib/types";
+import type {
+  Repository,
+  AggregatedData,
+  OrgChangelog,
+} from "../src/lib/types";
 
 async function buildIndex() {
   const reposDir = path.resolve(__dirname, "../../repos");
@@ -37,7 +41,9 @@ async function buildIndex() {
       const githubJsonPath = path.join(path.dirname(filePath), "github.json");
       if (fs.existsSync(githubJsonPath)) {
         try {
-          const githubData = JSON.parse(fs.readFileSync(githubJsonPath, "utf-8"));
+          const githubData = JSON.parse(
+            fs.readFileSync(githubJsonPath, "utf-8"),
+          );
           if (githubData.pushed_at) {
             data.lastActivity = githubData.pushed_at;
           }
@@ -47,7 +53,10 @@ async function buildIndex() {
       }
 
       // Read CHANGELOG-generated.md if it exists
-      const changelogPath = path.join(path.dirname(filePath), "CHANGELOG-generated.md");
+      const changelogPath = path.join(
+        path.dirname(filePath),
+        "CHANGELOG-generated.md",
+      );
       const changelog = fs.existsSync(changelogPath)
         ? fs.readFileSync(changelogPath, "utf-8").trim() || null
         : null;
@@ -83,7 +92,7 @@ async function buildIndex() {
   // Sort repos by lastActivity (most recent first)
   repos.sort(
     (a, b) =>
-      new Date(b.lastActivity).getTime() - new Date(a.lastActivity).getTime()
+      new Date(b.lastActivity).getTime() - new Date(a.lastActivity).getTime(),
   );
 
   // Read organization-level changelogs

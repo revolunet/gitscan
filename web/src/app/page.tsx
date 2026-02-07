@@ -30,12 +30,12 @@ export default function HomePage() {
           GitScan
         </h1>
         <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-          {data.stats.total.toLocaleString()} depots open source dans{" "}
+          {data.stats.total.toLocaleString()} dépôts open source dans{" "}
           {data.organizations.length} organisations
         </p>
         <div className="mt-6">
           <Link href="/repos" className="btn-primary">
-            Explorer tous les depots
+            Explorer tous les dépôts
           </Link>
         </div>
       </div>
@@ -59,7 +59,7 @@ export default function HomePage() {
                 </h3>
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-sm text-slate-500">
-                    {count} depot{count > 1 ? "s" : ""}
+                    {count} dépôt{count > 1 ? "s" : ""}
                   </span>
                   {orgContributions && (
                     <span className="text-xs text-slate-400">
@@ -81,13 +81,13 @@ export default function HomePage() {
       <section>
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold text-slate-900">
-            Derniers depots actifs
+            Derniers dépôts actifs
           </h2>
           <Link
             href="/repos"
             className="text-sm text-primary-600 hover:text-primary-700 font-medium"
           >
-            Voir tous les depots
+            Voir tous les dépôts
           </Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">

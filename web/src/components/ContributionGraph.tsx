@@ -40,7 +40,10 @@ function formatDate(dateStr: string): string {
   });
 }
 
-export function ContributionGraph({ data, compact = false }: ContributionGraphProps) {
+export function ContributionGraph({
+  data,
+  compact = false,
+}: ContributionGraphProps) {
   const [tooltip, setTooltip] = useState<TooltipState | null>(null);
 
   const cellSize = compact ? 8 : 12;
@@ -151,7 +154,7 @@ export function ContributionGraph({ data, compact = false }: ContributionGraphPr
               <div className="text-slate-300 mt-0.5 whitespace-nowrap">
                 {tooltip.cell.contribution.commits} commit
                 {tooltip.cell.contribution.commits > 1 ? "s" : ""} dans{" "}
-                {tooltip.cell.contribution.repos} depot
+                {tooltip.cell.contribution.repos} dépôt
                 {tooltip.cell.contribution.repos > 1 ? "s" : ""}
               </div>
             ) : (
@@ -171,7 +174,7 @@ export function ContributionGraph({ data, compact = false }: ContributionGraphPr
         </h3>
         <div className="text-sm text-slate-500">
           {data.stats.totalCommits.toLocaleString()} commits dans{" "}
-          {data.stats.totalRepos.toLocaleString()} depots
+          {data.stats.totalRepos.toLocaleString()} dépôts
         </div>
       </div>
 
@@ -246,7 +249,7 @@ export function ContributionGraph({ data, compact = false }: ContributionGraphPr
             <div className="text-slate-300 mt-0.5 whitespace-nowrap">
               {tooltip.cell.contribution.commits} commit
               {tooltip.cell.contribution.commits > 1 ? "s" : ""} dans{" "}
-              {tooltip.cell.contribution.repos} depot
+              {tooltip.cell.contribution.repos} dépôt
               {tooltip.cell.contribution.repos > 1 ? "s" : ""}
             </div>
           ) : (
@@ -259,11 +262,26 @@ export function ContributionGraph({ data, compact = false }: ContributionGraphPr
       <div className="flex items-center justify-end gap-2 mt-4 text-xs text-slate-500">
         <span>Moins</span>
         <div className="flex" style={{ gap: `${gap}px` }}>
-          <div className="rounded-sm bg-slate-100" style={{ width: cellSize, height: cellSize }} />
-          <div className="rounded-sm bg-green-200" style={{ width: cellSize, height: cellSize }} />
-          <div className="rounded-sm bg-green-400" style={{ width: cellSize, height: cellSize }} />
-          <div className="rounded-sm bg-green-500" style={{ width: cellSize, height: cellSize }} />
-          <div className="rounded-sm bg-green-600" style={{ width: cellSize, height: cellSize }} />
+          <div
+            className="rounded-sm bg-slate-100"
+            style={{ width: cellSize, height: cellSize }}
+          />
+          <div
+            className="rounded-sm bg-green-200"
+            style={{ width: cellSize, height: cellSize }}
+          />
+          <div
+            className="rounded-sm bg-green-400"
+            style={{ width: cellSize, height: cellSize }}
+          />
+          <div
+            className="rounded-sm bg-green-500"
+            style={{ width: cellSize, height: cellSize }}
+          />
+          <div
+            className="rounded-sm bg-green-600"
+            style={{ width: cellSize, height: cellSize }}
+          />
         </div>
         <span>Plus</span>
       </div>
