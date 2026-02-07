@@ -54,7 +54,7 @@ function getRandomRepos(count: number) {
 }
 
 export default function NotFound() {
-  const randomRepos = useMemo(() => getRandomRepos(5), []);
+  const randomRepos = useMemo(() => getRandomRepos(10), []);
   const randomHaiku = useMemo(
     () => haikus[Math.floor(Math.random() * haikus.length)],
     [],
