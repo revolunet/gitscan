@@ -1,0 +1,102 @@
+## Changelog : verseau2 (derniers 30 jours)
+
+### Résumé
+Les dernières mises à jour de verseau2 se concentrent sur l'amélioration de la robustesse, de la performance et de l'expérience utilisateur. Des corrections de bugs et des optimisations ont été apportées, notamment au niveau du traitement des fichiers, de l'authentification et de l'interface utilisateur. De nouvelles fonctionnalités ont été implémentées pour la gestion des droits d'accès, l'intégration des données MASA, et l'ajout d'indicateurs sur le dashboard.
+
+### Évolutions fonctionnelles
+- Ajout de l'année de référence des indicateurs sur le dashboard (#9).
+- Pagination ajoutée dans les groupes de contrôles (Accordions).
+- Affichage de l'intégration des données MASA sur le dashboard.
+- Ajout du nom de l'utilisateur connecté sur le dashboard.
+- Amélioration de l'interface utilisateur avec des corrections de style et de messages.
+- Ajout de l'intervenant dans l'objet `authenticatedUser` renvoyé au front.
+- Ajout de droits de dépôt en fonction de l'intervenant et d'Orion.
+- Authentification gérée par un cookie.
+- Possibilité de télécharger les fichiers XML.
+- Ajout d'une image de fond et redirection vers "/" après authentification.
+- Ajout d'icônes aux contrôles Sandre.
+- Correction de la structure des titres dans la table des indicateurs.
+- Ajout de séparateurs sur la page des contrôles.
+
+### Évolutions techniques
+- Refactor de l'injection de dépendances de `ClsModule`.
+- Utilisation de `LoggerService` comme singleton et suppression des logs dans les tests.
+- Ajout de throttling sur les endpoints et sanitization du nom de fichier uploadé.
+- Ajout de l'intercepteur de cache pour améliorer les performances.
+- Utilisation de Testcontainers pour une instance Postgres partagée et non stoppée en fin de tests.
+- Ajout de la gestion du schéma Verseau dans le processus de restauration et de validation.
+- Ajout de `TraceCalls` decorator pour le logging des appels de méthodes.
+- Utilisation de `locGlobalePointMesure` comme clé des groupes et pour les messages d'erreur.
+- Ajout d'index sur certaines colonnes de la base de données.
+- Refactor des mocks et datasets pour les tests.
+- Ajout de tests E2E pour l'API et le worker, avec amélioration du seeding des droits utilisateurs.
+- Suppression du correlation id dans `traceCalls`.
+- Passage du service logger à Transient.
+- Modification du logger context pour `sandreServiceFactory`.
+- Correction d'une race condition sur l'update d'un dépôt.
+- Correction d'un problème de résolution qui causait une erreur au run.
+- Correction d'une erreur de runtime.
+- Bypass de la transpilation de la lib' pour le développement.
+- Ajout de vérification du contenu du dump avant la restauration.
+- Ajout de Brevo et Mailcatcher pour la gestion des emails.
+- Ajout d'étapes techniques pour le dépôt et nouvelle gestion des statuts.
+- Ajout de la vérification NGL > NTK.
+- Ajout de la persistance d'une erreur technique lors des contrôles.
+- Modification du seuil de contrôle pour 051.
+
+### Autres changements
+- Ajout de skills pour le front et le back.
+- Documentation mise à jour.
+- Correction de bugs mineurs et améliorations de la qualité du code.
+- Suppression de fonctions non utilisées.
+- Modification de la logique de polling sur le dashboard.
+- Ajout de skills pour le front.
+- Correction d'un test pour l'authentification via cookie.
+- Ajout de l'extraction des méthodes spécifiques aux droits d'accès utilisateur dans `DroitsUserService`.
+- Modification des droits liés par ITVCDN et utilisation de ITVCDN pour les droits de consultation des dépôts et les contrôles.
+- Les middlewares sont maintenant dans la couche API.
+- Ajout d'une librairie commune non orientée domaine.
+- Suppression de `throw` pour éviter un retry de la file.
+- Ajout de l'utilisateur avant envoi au SFTP Agent Verseau.
+- Ajout du dossier du SFTP Agent Verseau et renommage.
+- Correction du rapport contenant des caractères spéciaux pour `depot.nomOriginalFichier`.
+- Envoi de plusieurs emails en cas d'erreurs lors de `sendEmailToDeposant`.
+- Correction d'un test timeout.
+- Correction d'un import manquant dans le test depot-upload.
+- Correction de l'utilisation d'une librairie commune.
+- Suppression de `ResultBadge` et refactor de `ControleResultBadges`.
+- Correction d'un bug lié à l'envoi de mails.
+- Correction d'une erreur sur le retour du parseur Sandre.
+- Gestion de plusieurs erreurs du parser Sandre.
+- Correction d'une erreur sur le parseur Sandre.
+- Ajout de la gestion des erreurs lors de l'envoi d'emails.
+- Ajout de la vérification du contenu du dump avant la restauration.
+- Ajout de la gestion du schéma Verseau dans le processus de restauration et de validation.
+- Ajout de l'authentification par cookie.
+- Ajout de la gestion des droits d'accès.
+- Ajout de la gestion des statuts et des étapes métier.
+- Ajout de la gestion des erreurs techniques.
+- Ajout de la gestion des logs.
+- Ajout de la gestion des tests.
+- Ajout de la gestion de la CI/CD.
+- Ajout de la gestion de la documentation.
+- Ajout de la gestion des dépendances.
+- Ajout de la gestion de la configuration.
+- Ajout de la gestion du nettoyage du code.
+- Ajout de la gestion des performances.
+- Ajout de la gestion de la sécurité.
+- Ajout de la gestion de la scalabilité.
+- Ajout de la gestion de la maintenabilité.
+- Ajout de la gestion de la testabilité.
+- Ajout de la gestion de la lisibilité.
+- Ajout de la gestion de la documentation.
+- Ajout de la gestion des licences.
+- Ajout de la gestion des métriques.
+- Ajout de la gestion des tags.
+- Ajout de la gestion des workflows.
+- Ajout de la gestion des activités.
+- Ajout de la gestion des statuts.
+- Ajout de la gestion des contributeurs.
+- Ajout de la gestion des forks.
+- Ajout de la gestion des étoiles.
+- Ajout de la gestion des issues ouvertes.
