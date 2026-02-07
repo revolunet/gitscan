@@ -1,7 +1,7 @@
 [project]
-name = "reflex-chat"
-version = "0.7.0" # x-release-please-version
-description = "Reflex Chat Application"
+name = "{{ project_name }}"
+version = "0.6.1" # x-release-please-version
+description = "{{ description }}"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
@@ -9,17 +9,29 @@ dependencies = [
     "openai>=1.78.1",
     "python-dotenv>=1.0.0",
     "pyyaml>=6.0.0",
+{%- if use_pdf %}
     "pdf-context",
+{%- endif %}
 ]
 
 [project.scripts]
 reflex-chat = "reflex.reflex:cli"
 
 [tool.setuptools.packages.find]
-include = ["reflex_chat*"]
+include = ["{{ project_name | replace(from='-', to='_') }}*"]
 
 [tool.setuptools]
 py-modules = ["context_loader"]
 
+{% if use_pdf or use_chroma %}
 [tool.uv.sources]
+{%- if use_pdf %}
 pdf-context = { workspace = true }
+{%- endif %}
+{%- if use_chroma %}
+chroma-context = { workspace = true }
+{%- endif %}
+{% endif %}
+
+[tool.uv]
+package = true

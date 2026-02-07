@@ -1,56 +1,147 @@
 .
 ├── .envrc
+├── .github
+│   ├── dependabot.yml
+│   └── workflows
+│       ├── checks.yml
+│       ├── release.yml
+│       └── test-install.yml
 ├── .gitignore
 ├── .moon
+│   ├── templates
+│   │   ├── chainlit-chat
+│   │   │   ├── .env.example
+│   │   │   ├── .env.template
+│   │   │   ├── CHANGELOG.md
+│   │   │   ├── README.md
+│   │   │   ├── app.py
+│   │   │   ├── chainlit.md
+│   │   │   ├── context_loader.py
+│   │   │   ├── justfile
+│   │   │   ├── modules.yml
+│   │   │   ├── moon.yml
+│   │   │   ├── pyproject.toml
+│   │   │   └── template.yml
+│   │   ├── chroma-context
+│   │   │   ├── README.md
+│   │   │   ├── pyproject.toml
+│   │   │   └── template.yml
+│   │   ├── pdf-context
+│   │   │   ├── CHANGELOG.md
+│   │   │   ├── README.md
+│   │   │   ├── pyproject.toml
+│   │   │   ├── src
+│   │   │   │   └── pdf_context
+│   │   │   │       ├── __init__.py
+│   │   │   │       ├── extractor.py
+│   │   │   │       └── formatter.py
+│   │   │   └── template.yml
+│   │   ├── reflex-chat
+│   │   │   ├── .env.example
+│   │   │   ├── .env.template
+│   │   │   ├── .github
+│   │   │   │   └── workflows
+│   │   │   │       └── ci.yml
+│   │   │   ├── .gitignore
+│   │   │   ├── CHANGELOG.md
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── app
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── app.py
+│   │   │   │   ├── components
+│   │   │   │   │   ├── __init__.py
+│   │   │   │   │   ├── chat.py
+│   │   │   │   │   └── navbar.py
+│   │   │   │   └── state.py
+│   │   │   ├── assets
+│   │   │   │   └── favicon.ico
+│   │   │   ├── context_loader.py
+│   │   │   ├── docs
+│   │   │   │   └── demo.gif
+│   │   │   ├── justfile
+│   │   │   ├── modules.yml
+│   │   │   ├── moon.yml
+│   │   │   ├── pyproject.toml
+│   │   │   ├── rxconfig.py
+│   │   │   ├── scripts
+│   │   │   │   └── open_browser.py
+│   │   │   └── template.yml
+│   │   └── sys-config
+│   │       ├── .moon
+│   │       │   ├── toolchain.yml
+│   │       │   └── workspace.yml
+│   │       ├── .prototools
+│   │       ├── .python-version
+│   │       ├── justfile
+│   │       ├── pyproject.toml
+│   │       └── template.yml
 │   ├── toolchain.yml
 │   └── workspace.yml
 ├── .pre-commit-config.yaml
+├── .prototools
 ├── .python-version
+├── .release-please-manifest.json
 ├── AGENTS.md
+├── CHANGELOG.md
 ├── CONTRIBUTING.md
 ├── LICENSE
 ├── README.md
 ├── apps
-│   ├── admin
-│   │   ├── pyproject.toml
-│   │   └── src
-│   │       └── admin
-│   │           └── __init__.py
 │   ├── chainlit-chat
 │   │   ├── .env.example
-│   │   ├── Justfile
+│   │   ├── CHANGELOG.md
 │   │   ├── README.md
 │   │   ├── app.py
 │   │   ├── chainlit.md
+│   │   ├── context_loader.py
+│   │   ├── justfile
+│   │   ├── modules.yml
+│   │   ├── moon.yml
 │   │   └── pyproject.toml
 │   ├── cli
+│   │   ├── .env.example
+│   │   ├── CHANGELOG.md
 │   │   ├── README.md
+│   │   ├── moon.yml
 │   │   ├── pyproject.toml
-│   │   └── src
-│   │       └── cli
-│   │           ├── __init__.py
-│   │           ├── commands
-│   │           │   ├── __init__.py
-│   │           │   └── gen_template.py
-│   │           └── main.py
-│   ├── ingestion
-│   │   ├── pyproject.toml
-│   │   └── src
-│   │       └── ingestion
-│   │           └── __init__.py
+│   │   ├── src
+│   │   │   └── cli
+│   │   │       ├── __init__.py
+│   │   │       ├── commands
+│   │   │       │   ├── __init__.py
+│   │   │       │   ├── gen_template.py
+│   │   │       │   ├── generate_dataset.py
+│   │   │       │   ├── providers
+│   │   │       │   │   ├── __init__.py
+│   │   │       │   │   ├── albert.py
+│   │   │       │   │   ├── document_preprocessor.py
+│   │   │       │   │   ├── letta.py
+│   │   │       │   │   └── schema.py
+│   │   │       │   └── setup.py
+│   │   │       └── main.py
+│   │   └── tests
+│   │       ├── __init__.py
+│   │       ├── test_document_preprocessor.py
+│   │       ├── test_generate_dataset.py
+│   │       └── test_setup.py
 │   └── reflex-chat
 │       ├── .env.example
 │       ├── .github
 │       │   └── workflows
 │       │       └── ci.yml
 │       ├── .gitignore
-│       ├── Justfile
+│       ├── CHANGELOG.md
 │       ├── LICENSE
 │       ├── README.md
 │       ├── assets
 │       │   └── favicon.ico
+│       ├── context_loader.py
 │       ├── docs
 │       │   └── demo.gif
+│       ├── justfile
+│       ├── modules.yml
+│       ├── moon.yml
 │       ├── pyproject.toml
 │       ├── reflex_chat
 │       │   ├── __init__.py
@@ -60,10 +151,29 @@
 │       │   │   └── navbar.py
 │       │   ├── reflex_chat.py
 │       │   └── state.py
-│       └── rxconfig.py
+│       ├── rxconfig.py
+│       └── scripts
+│           └── open_browser.py
+├── docs
+│   ├── README.md
+│   ├── guides
+│   │   ├── ci-cd-linux.md
+│   │   ├── ci-cd-macos.md
+│   │   ├── ci-cd-windows.md
+│   │   ├── developer-setup-windows.md
+│   │   ├── proxy-setup.md
+│   │   └── windows-setup.md
+│   ├── technical
+│   │   ├── ISSUE_46_INVESTIGATION.md
+│   │   └── ISSUE_46_SUMMARY.md
+│   └── troubleshooting
+│       └── proxy.md
+├── install.ps1
+├── install.sh
 ├── justfile
 ├── packages
 │   └── pdf-context
+│       ├── CHANGELOG.md
 │       ├── README.md
 │       ├── pyproject.toml
 │       └── src
@@ -72,6 +182,16 @@
 │               ├── extractor.py
 │               └── formatter.py
 ├── pyproject.toml
-├── ruff.toml
+├── release-please-config.json
+├── samples
+│   ├── 9782340040069_extrait.pdf
+│   ├── INTRODSP.pdf
+│   ├── fiche_14_vademecum_kit_elections_2014_v2_18.02.14.pdf
+│   └── service_dag_2023-2024.pdf
+├── tools
+│   ├── generate_templates.py
+│   ├── moon.yml
+│   ├── pyproject.toml
+│   └── uv.lock
 └── uv.lock
-25 directories, 51 files
+46 directories, 150 files

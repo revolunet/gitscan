@@ -1,23 +1,19 @@
 [project]
 name = "rag-facile"
-version = "0.1.0"
+version = "0.7.0"
 description = "RAG Starter Kit for French Government"
 readme = "README.md"
 requires-python = ">=3.13, <3.14"
 dependencies = [
     "chainlit-chat",
-    "admin",
-    "ingestion",
-    "cli",
+    "rag-facile-cli",
     "pdf-context",
     "reflex-chat",
 ]
 
 [tool.uv.sources]
 chainlit-chat = { workspace = true }
-admin = { workspace = true }
-ingestion = { workspace = true }
-cli = { workspace = true }
+rag-facile-cli = { workspace = true }
 pdf-context = { workspace = true }
 reflex-chat = { workspace = true }
 
@@ -26,7 +22,27 @@ dev = [
     "ruff>=0.14.14",
     "ty>=0.0.1",
     "pre-commit>=4.0.1",
+    "pytest>=8.0.0",
+    "pytest-mock>=3.12.0",
 ]
 
 [tool.uv.workspace]
 members = ["apps/*", "packages/*"]
+
+[tool.ty.src]
+exclude = [".moon/templates"]
+
+[tool.ty.rules]
+# Disable rules with false positives from metaprogramming (Reflex, Chainlit)
+call-non-callable = "ignore"
+possibly-missing-attribute = "ignore"
+
+[tool.ruff]
+# Exclude moon templates (contain Jinja2 syntax, not valid Python/TOML)
+extend-exclude = [".moon/templates"]
+
+[tool.ruff.lint]
+exclude = [".moon/templates"]
+
+[tool.ruff.format]
+exclude = [".moon/templates"]
