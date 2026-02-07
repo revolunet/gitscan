@@ -9,12 +9,31 @@ import reposData from "../../../data/repos.json";
 
 const data = reposData as AggregatedData;
 
+// Compute audience stats
+const audienceStats: Record<string, number> = {};
+data.repos.forEach((repo) => {
+  const audiences = Array.isArray(repo.audience)
+    ? repo.audience
+    : repo.audience
+      ? [repo.audience]
+      : [];
+  audiences.forEach((a) => {
+    audienceStats[a] = (audienceStats[a] || 0) + 1;
+  });
+});
+
+// Sort audiences by count descending
+const sortedAudiences = Object.entries(audienceStats)
+  .sort((a, b) => b[1] - a[1])
+  .map(([name]) => name);
+
 type SortOption = "lastActivity" | "stars" | "name";
 
 export default function ReposPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedOrgs, setSelectedOrgs] = useState<string[]>([]);
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
+  const [selectedAudiences, setSelectedAudiences] = useState<string[]>([]);
   const [hasDocsOnly, setHasDocsOnly] = useState(false);
   const [sortBy, setSortBy] = useState<SortOption>("lastActivity");
   const [page, setPage] = useState(1);
@@ -43,6 +62,17 @@ export default function ReposPage() {
       );
     }
 
+    if (selectedAudiences.length > 0) {
+      repos = repos.filter((repo) => {
+        const audiences = Array.isArray(repo.audience)
+          ? repo.audience
+          : repo.audience
+            ? [repo.audience]
+            : [];
+        return audiences.some((a) => selectedAudiences.includes(a));
+      });
+    }
+
     if (hasDocsOnly) {
       repos = repos.filter((repo) => repo.hasDocumentation);
     }
@@ -63,7 +93,7 @@ export default function ReposPage() {
     });
 
     return repos;
-  }, [searchQuery, selectedOrgs, selectedLanguages, hasDocsOnly, sortBy]);
+  }, [searchQuery, selectedOrgs, selectedLanguages, selectedAudiences, hasDocsOnly, sortBy]);
 
   const paginatedRepos = filteredRepos.slice(0, page * perPage);
   const hasMore = paginatedRepos.length < filteredRepos.length;
@@ -87,13 +117,16 @@ export default function ReposPage() {
             <FilterPanel
               organizations={data.organizations}
               languages={data.languages}
+              audiences={sortedAudiences}
               selectedOrgs={selectedOrgs}
               selectedLanguages={selectedLanguages}
+              selectedAudiences={selectedAudiences}
               hasDocsOnly={hasDocsOnly}
               onOrgChange={setSelectedOrgs}
               onLanguageChange={setSelectedLanguages}
+              onAudienceChange={setSelectedAudiences}
               onHasDocsChange={setHasDocsOnly}
-              stats={data.stats}
+              stats={{ ...data.stats, byAudience: audienceStats }}
             />
           </div>
         </aside>
@@ -138,11 +171,13 @@ export default function ReposPage() {
             </p>
             {(selectedOrgs.length > 0 ||
               selectedLanguages.length > 0 ||
+              selectedAudiences.length > 0 ||
               hasDocsOnly) && (
               <button
                 onClick={() => {
                   setSelectedOrgs([]);
                   setSelectedLanguages([]);
+                  setSelectedAudiences([]);
                   setHasDocsOnly(false);
                 }}
                 className="text-sm text-primary-600 hover:text-primary-700 font-medium"

@@ -3,26 +3,33 @@
 interface FilterPanelProps {
   organizations: string[];
   languages: string[];
+  audiences: string[];
   selectedOrgs: string[];
   selectedLanguages: string[];
+  selectedAudiences: string[];
   hasDocsOnly: boolean;
   onOrgChange: (orgs: string[]) => void;
   onLanguageChange: (languages: string[]) => void;
+  onAudienceChange: (audiences: string[]) => void;
   onHasDocsChange: (value: boolean) => void;
   stats: {
     byOrg: Record<string, number>;
     byLanguage: Record<string, number>;
+    byAudience: Record<string, number>;
   };
 }
 
 export function FilterPanel({
   organizations,
   languages,
+  audiences,
   selectedOrgs,
   selectedLanguages,
+  selectedAudiences,
   hasDocsOnly,
   onOrgChange,
   onLanguageChange,
+  onAudienceChange,
   onHasDocsChange,
   stats,
 }: FilterPanelProps) {
@@ -39,6 +46,14 @@ export function FilterPanel({
       onLanguageChange(selectedLanguages.filter((l) => l !== lang));
     } else {
       onLanguageChange([...selectedLanguages, lang]);
+    }
+  };
+
+  const handleAudienceToggle = (audience: string) => {
+    if (selectedAudiences.includes(audience)) {
+      onAudienceChange(selectedAudiences.filter((a) => a !== audience));
+    } else {
+      onAudienceChange([...selectedAudiences, audience]);
     }
   };
 
@@ -74,12 +89,39 @@ export function FilterPanel({
         </div>
       </div>
 
+      {/* Audience */}
+      <div className="mb-6">
+        <h3 className="text-sm font-medium text-slate-700 mb-3">Audience</h3>
+        <div className="space-y-2">
+          {audiences.map((audience) => (
+            <label
+              key={audience}
+              className="flex items-center gap-3 cursor-pointer group"
+            >
+              <input
+                type="checkbox"
+                checked={selectedAudiences.includes(audience)}
+                onChange={() => handleAudienceToggle(audience)}
+                className="checkbox"
+              />
+              <span className="text-sm text-slate-600 group-hover:text-slate-900 transition-colors flex-1">
+                {audience}
+              </span>
+              <span className="text-xs text-slate-400 tabular-nums">
+                {stats.byAudience[audience] || 0}
+              </span>
+            </label>
+          ))}
+        </div>
+      </div>
+
       {/* Languages */}
       <div className="mb-6">
         <h3 className="text-sm font-medium text-slate-700 mb-3">Languages</h3>
         <div className="space-y-2">
           {languages
-            .filter((l) => stats.byLanguage[l] > 2)
+            .filter((l) => stats.byLanguage[l] > 3)
+            .sort((a, b) => stats.byLanguage[b] - stats.byLanguage[a])
             .map((lang) => (
               <label
                 key={lang}
@@ -101,7 +143,6 @@ export function FilterPanel({
             ))}
         </div>
       </div>
-
       {/* Other Filters */}
       <div>
         <h3 className="text-sm font-medium text-slate-700 mb-3">Options</h3>
