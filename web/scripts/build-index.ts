@@ -33,6 +33,19 @@ async function buildIndex() {
       const pathParts = file.split("/");
       const organization = pathParts[0];
 
+      // Read github.json to get pushed_at for accurate sorting
+      const githubJsonPath = path.join(path.dirname(filePath), "github.json");
+      if (fs.existsSync(githubJsonPath)) {
+        try {
+          const githubData = JSON.parse(fs.readFileSync(githubJsonPath, "utf-8"));
+          if (githubData.pushed_at) {
+            data.lastActivity = githubData.pushed_at;
+          }
+        } catch {
+          // ignore invalid github.json
+        }
+      }
+
       // Read CHANGELOG-generated.md if it exists
       const changelogPath = path.join(path.dirname(filePath), "CHANGELOG-generated.md");
       const changelog = fs.existsSync(changelogPath)

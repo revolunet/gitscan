@@ -27,6 +27,29 @@ const sortedAudiences = Object.entries(audienceStats)
   .sort((a, b) => b[1] - a[1])
   .map(([name]) => name);
 
+// Compute component stats
+const componentStats: Record<string, number> = {};
+data.repos.forEach((repo) => {
+  repo.components?.forEach((c) => {
+    componentStats[c] = (componentStats[c] || 0) + 1;
+  });
+});
+const sortedComponents = Object.entries(componentStats)
+  .filter(([, count]) => count >= 3)
+  .sort((a, b) => b[1] - a[1])
+  .map(([name]) => name);
+
+// Compute auth method stats
+const authMethodStats: Record<string, number> = {};
+data.repos.forEach((repo) => {
+  repo.auth?.methods?.forEach((m) => {
+    if (m !== "none") authMethodStats[m] = (authMethodStats[m] || 0) + 1;
+  });
+});
+const sortedAuthMethods = Object.entries(authMethodStats)
+  .sort((a, b) => b[1] - a[1])
+  .map(([name]) => name);
+
 type SortOption = "lastActivity" | "stars" | "name";
 
 export default function ReposPage() {
@@ -34,6 +57,8 @@ export default function ReposPage() {
   const [selectedOrgs, setSelectedOrgs] = useState<string[]>([]);
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
   const [selectedAudiences, setSelectedAudiences] = useState<string[]>([]);
+  const [selectedComponents, setSelectedComponents] = useState<string[]>([]);
+  const [selectedAuthMethods, setSelectedAuthMethods] = useState<string[]>([]);
   const [hasDocsOnly, setHasDocsOnly] = useState(false);
   const [sortBy, setSortBy] = useState<SortOption>("lastActivity");
   const [page, setPage] = useState(1);
@@ -48,7 +73,9 @@ export default function ReposPage() {
         (repo) =>
           repo.name.toLowerCase().includes(query) ||
           repo.description?.toLowerCase().includes(query) ||
-          repo.tags?.some((tag) => tag.toLowerCase().includes(query)),
+          repo.tags?.some((tag) => tag.toLowerCase().includes(query)) ||
+          repo.features?.some((f) => f.toLowerCase().includes(query)) ||
+          repo.components?.some((c) => c.toLowerCase().includes(query)),
       );
     }
 
@@ -73,6 +100,18 @@ export default function ReposPage() {
       });
     }
 
+    if (selectedComponents.length > 0) {
+      repos = repos.filter((repo) =>
+        selectedComponents.some((c) => repo.components?.includes(c)),
+      );
+    }
+
+    if (selectedAuthMethods.length > 0) {
+      repos = repos.filter((repo) =>
+        selectedAuthMethods.some((m) => repo.auth?.methods?.includes(m)),
+      );
+    }
+
     if (hasDocsOnly) {
       repos = repos.filter((repo) => repo.hasDocumentation);
     }
@@ -93,10 +132,18 @@ export default function ReposPage() {
     });
 
     return repos;
-  }, [searchQuery, selectedOrgs, selectedLanguages, selectedAudiences, hasDocsOnly, sortBy]);
+  }, [searchQuery, selectedOrgs, selectedLanguages, selectedAudiences, selectedComponents, selectedAuthMethods, hasDocsOnly, sortBy]);
 
   const paginatedRepos = filteredRepos.slice(0, page * perPage);
   const hasMore = paginatedRepos.length < filteredRepos.length;
+
+  const hasActiveFilters =
+    selectedOrgs.length > 0 ||
+    selectedLanguages.length > 0 ||
+    selectedAudiences.length > 0 ||
+    selectedComponents.length > 0 ||
+    selectedAuthMethods.length > 0 ||
+    hasDocsOnly;
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -118,15 +165,26 @@ export default function ReposPage() {
               organizations={data.organizations}
               languages={data.languages}
               audiences={sortedAudiences}
+              components={sortedComponents}
+              authMethods={sortedAuthMethods}
               selectedOrgs={selectedOrgs}
               selectedLanguages={selectedLanguages}
               selectedAudiences={selectedAudiences}
+              selectedComponents={selectedComponents}
+              selectedAuthMethods={selectedAuthMethods}
               hasDocsOnly={hasDocsOnly}
               onOrgChange={setSelectedOrgs}
               onLanguageChange={setSelectedLanguages}
               onAudienceChange={setSelectedAudiences}
+              onComponentChange={setSelectedComponents}
+              onAuthMethodChange={setSelectedAuthMethods}
               onHasDocsChange={setHasDocsOnly}
-              stats={{ ...data.stats, byAudience: audienceStats }}
+              stats={{
+                ...data.stats,
+                byAudience: audienceStats,
+                byComponent: componentStats,
+                byAuthMethod: authMethodStats,
+              }}
             />
           </div>
         </aside>
@@ -169,15 +227,14 @@ export default function ReposPage() {
                 </span>
               )}
             </p>
-            {(selectedOrgs.length > 0 ||
-              selectedLanguages.length > 0 ||
-              selectedAudiences.length > 0 ||
-              hasDocsOnly) && (
+            {hasActiveFilters && (
               <button
                 onClick={() => {
                   setSelectedOrgs([]);
                   setSelectedLanguages([]);
                   setSelectedAudiences([]);
+                  setSelectedComponents([]);
+                  setSelectedAuthMethods([]);
                   setHasDocsOnly(false);
                 }}
                 className="text-sm text-primary-600 hover:text-primary-700 font-medium"
