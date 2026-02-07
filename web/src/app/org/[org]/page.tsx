@@ -45,9 +45,6 @@ export default async function OrgActivityPage({ params }: PageProps) {
         <p className="text-slate-600 mb-6">
           Pas de changelog disponible pour {org}.
         </p>
-        <Link href="/activity" className="btn-primary inline-block">
-          Retour à l&apos;activité
-        </Link>
       </div>
     );
   }
@@ -61,13 +58,6 @@ export default async function OrgActivityPage({ params }: PageProps) {
       <nav className="flex items-center gap-2 text-sm text-slate-500 mb-6">
         <Link href="/" className="hover:text-slate-900 transition-colors">
           Accueil
-        </Link>
-        <span>/</span>
-        <Link
-          href="/activity"
-          className="hover:text-slate-900 transition-colors"
-        >
-          Activité
         </Link>
         <span>/</span>
         <span className="text-slate-900 font-medium">{org}</span>

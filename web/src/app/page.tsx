@@ -51,7 +51,7 @@ export default function HomePage() {
             return (
               <Link
                 key={org}
-                href={`/activity/org/${org}`}
+                href={`/org/${org}`}
                 className="bg-white rounded-xl border border-slate-200 p-5 hover:border-primary-300 hover:shadow-md transition-all"
               >
                 <h3 className="font-semibold text-slate-900 mb-1 truncate">

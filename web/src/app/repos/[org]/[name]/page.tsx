@@ -90,7 +90,7 @@ export default async function RepoDetailPage({ params }: PageProps) {
         <span>/</span>
         <span className="text-slate-900 font-medium">
           <Link
-            href={`/activity/org/${org}`}
+            href={`/org/${org}`}
             className="hover:text-slate-900 transition-colors"
           >
             {org}
@@ -118,7 +118,7 @@ export default async function RepoDetailPage({ params }: PageProps) {
             </div>
             <p className="text-slate-500">
               <Link
-                href={`/activity/org/${org}`}
+                href={`/org/${org}`}
                 className="hover:text-slate-900 transition-colors"
               >
                 {repo.organization}
