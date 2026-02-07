@@ -9,14 +9,14 @@ on:
       - main
 
 jobs:
-  lint-and-build:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: "20"
           cache: "npm"
@@ -27,8 +27,8 @@ jobs:
         run: npm ci
 
       - name: Build
-        working-directory: web
         run: |
+          cd web
           npm run build:data
           ls data
           npm run build
