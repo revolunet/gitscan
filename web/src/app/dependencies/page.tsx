@@ -119,9 +119,8 @@ export default function DependenciesPage() {
         </div>
         <h1 className="text-3xl font-bold text-slate-900 mb-2">Recherche</h1>
         <p className="text-slate-600">
-          Cherchez {data.stats.totalDependencies.toLocaleString()} parmi{" "}
-          dépendances utilisées dans {data.stats.totalUsages.toLocaleString()}{" "}
-          projets
+          Cherchez parmi {data.stats.totalDependencies.toLocaleString()}{" "}
+          dépendances utilisées {data.stats.totalUsages.toLocaleString()} fois
         </p>
       </div>
 
