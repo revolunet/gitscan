@@ -1,5 +1,7 @@
 # GitScan
 
+![GitScan workflow status](https://github.com/revolunet/gitscan/actions/workflows/scan.yaml/badge.svg?branch=main)
+
 Automated GitHub public repository scanner. Collects metadata, documentation, dependencies, and commit history from public repositories. Optionally generates AI-powered structured overviews.
 
 Demo frontend on https://revolunet.github.io/gitscan
