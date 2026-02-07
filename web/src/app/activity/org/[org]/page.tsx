@@ -105,9 +105,7 @@ export default async function OrgActivityPage({ params }: PageProps) {
             GitHub
           </a>
         </div>
-        {orgContributions && (
-          <ContributionGraph data={orgContributions} />
-        )}
+        {orgContributions && <ContributionGraph data={orgContributions} />}
       </div>
 
       {/* Changelog */}
@@ -133,6 +131,7 @@ export default async function OrgActivityPage({ params }: PageProps) {
 }
 
 export function generateStaticParams() {
+  console.log("orgChangelogs", orgChangelogs.length);
   return orgChangelogs.map((entry) => ({
     org: entry.organization,
   }));
