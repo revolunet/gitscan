@@ -80,6 +80,7 @@ function fetch_org_repos() {
         topics,
         open_issues,
         updated_at,
+        pushed_at,
         clone_url
     })' "${FILES[@]}" > "$TARGET_DIR/repos.json"
 
