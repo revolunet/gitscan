@@ -71,6 +71,8 @@ Publiez des vidéos et consultez des précédents ateliers, formations...
 
 Implémentations du Système de Design de l'État Français dans différents frameworks et langages.
 
+Le site officiel : https://www.systeme-de-design.gouv.fr
+
 ### react-dsfr
 
 **Composants React pour le DSFR**
@@ -86,6 +88,13 @@ Bibliothèque de composants React conformes au DSFR. Peut également être utili
 Implémentation native du DSFR pour les applications Vue.js, offrant une intégration fluide avec l'écosystème Vue.
 
 🔗 [Dépôt GitHub](https://github.com/dnum-mi/vue-dsfr)
+
+### @edugouvfr/ngx-dsfr
+
+**Portage Angular du Système de Design de l'État (DSFR)**
+
+🔗 [Storybook](https://foad.phm.education.gouv.fr/edugouvfr/ngx-dsfr/) [Code source](https://gitlab.mim-libre.fr/men/transverse/dsmen/ngx-dsfr-components)
+
 
 ### django-dsfr
 
@@ -127,13 +136,19 @@ De nombreux templates sont disponibles pour différentes technologies et cas d'u
 
 Des outils techniques pour construire, sécuriser et déployer vos services numériques.
 
-### sites-faciles
+### sites conformes
 
 **Créez des sites conformes au DSFR sans coder**
 
 Plateforme de création de sites internet conformes au Design System de l'État, sans compétences techniques requises et sans impact budgétaire important.
 
 🔗 [Dépôt GitHub](https://github.com/numerique-gouv/sites-faciles)
+
+### carte facile
+
+Des cartes clé en main, rapidement intégrables à votre site
+
+🔗 [Site officiel](https://fab-geocommuns.github.io/carte-facile-site/)
 
 ### pdf-generator
 
@@ -234,6 +249,14 @@ Collection de schémas pour les données publiques françaises avec outillage de
 ## Ressources communautaires
 
 Des outils pour explorer et contribuer à l'écosystème beta.gouv.fr.
+
+### Guide "Simulateurs et *Rules as Code*"
+
+**Documentation méthodologique pour la modélisation et la simulation des aides publiques**
+
+Guide pour les équipes qui construisent des simulateurs d'éligibilité aux aides publiques et autres outils basés sur la réglementation.
+
+🔗 [Site de documentation](https://docs.aides.beta.gouv.fr/) | [Code source](https://github.com/betagouv/aides-simplifiees-docs)
 
 ### BetaMap
 
