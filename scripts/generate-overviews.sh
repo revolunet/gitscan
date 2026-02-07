@@ -14,7 +14,7 @@ if [ ! -x "$SCRIPT_DIR/generate-repo-overview.sh" ]; then
 fi
 
 # Find all repos.json files
-for repos_json in "$SCRIPT_DIR"/repos/*/repos.json; do
+for repos_json in "$SCRIPT_DIR"/../repos/*/repos.json; do
     if [ ! -f "$repos_json" ]; then
         continue
     fi

@@ -6,9 +6,11 @@ Automated GitHub public repository scanner. Collects metadata, documentation, de
 
 Demo frontend on https://revolunet.github.io/gitscan
 
+Use this repo as a template, edit [orgas.txt](./orgas.txt) and activate github pages to get your own for free.
+
 ## Overview
 
-GitScan monitors **9 French government GitHub organizations**:
+This GitScan monitors **9 French GitHub organizations** public repos:
 
 | Organization                                            | Description                            |
 | ------------------------------------------------------- | -------------------------------------- |
@@ -55,58 +57,11 @@ repos/
 
 ## Usage
 
-### Prerequisites
-
-```bash
-export GITHUB_TOKEN="your_github_token"
-```
-
-For AI overview generation:
-
-```bash
-export OPENAI_API_KEY="your_openai_api_key"
-# Optional: use a different OpenAI-compatible API
-export OPENAI_BASE_URL="https://api.openai.com/v1"
-export OPENAI_MODEL="gpt-4o"
-```
-
-### Fetch all organization repository lists
-
-```bash
-./fetch-repos.sh
-```
-
-### Fetch a single repository
-
-```bash
-./fetch-repo.sh https://github.com/betagouv/moncomptepro
-```
-
-### Generate AI overview for a repository
-
-```bash
-./generate-repo-overview.sh repos/betagouv/moncomptepro
-```
-
-### Generate overviews for all repositories
-
-```bash
-./generate-overviews.sh
-```
-
-### Generate changelog for a repository
-
-```bash
-./generate-repo-changelog.sh repos/betagouv/moncomptepro
-```
-
-### Generate changelog for all repositories
-
-```bash
-./generate-changelogs.sh
-```
+See the GitHub workflows
 
 ## AI Overview Schema
+
+See [./schemas/repository.schema.json](./schemas/repository.schema.json)
 
 The `overview.json` files follow a [JSON Schema](./schemas/repository.schema.json) with fields including:
 

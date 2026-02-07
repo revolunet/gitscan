@@ -4,8 +4,8 @@
 # Reads changelog content from stdin and outputs a concise summary to stdout
 #
 # Usage:
-#   cat repos/betagouv/some-repo/CHANGELOG-generated.md | ./summarize-changes.sh
-#   ./summarize-changes.sh < repos/betagouv/some-repo/CHANGELOG-generated.md
+#   cat repos/betagouv/some-repo/CHANGELOG-generated.md | ./scripts/summarize-changes.sh
+#   ./scripts/summarize-changes.sh < repos/betagouv/some-repo/CHANGELOG-generated.md
 #
 # Environment variables:
 #   OPENAI_API_KEY   - Required: Your OpenAI API key

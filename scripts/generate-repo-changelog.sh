@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Generate repository changelog using OpenAI-compatible API
-# Usage: ./generate-repo-changelog.sh repos/[org]/[repo]
+# Usage: ./scripts/generate-repo-changelog.sh repos/[org]/[repo]
 #
 # Environment variables:
 #   OPENAI_API_KEY   - Required: Your OpenAI API key

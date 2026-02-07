@@ -2,7 +2,7 @@
 
 # Generate changelogs for all recently updated repositories
 # Finds repos with updated_at < 30 days in their github.json
-# and calls ./generate-repo-changelog.sh for each one
+# and calls ./scripts/generate-repo-changelog.sh for each one
 
 set -e
 
@@ -50,7 +50,7 @@ for github_json in ./repos/*/*/github.json; do
         echo "--- $repo_dir (updated: $updated_at)"
         COUNT=$((COUNT + 1))
 
-        if ./generate-repo-changelog.sh "$repo_dir" > "$changelog_file"; then
+        if ./scripts/generate-repo-changelog.sh "$repo_dir" > "$changelog_file"; then
             echo ""
         else
             echo "Error processing $repo_dir" >&2

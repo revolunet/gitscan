@@ -26,7 +26,7 @@ jobs:
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: |
-                  ./fetch-repos.sh
+                  ./scripts/fetch-repos.sh
             - uses: EndBug/add-and-commit@v9
               with:
                   add: "./repos/*/repos.*"
@@ -69,7 +69,7 @@ jobs:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: |
                   echo "${{ matrix.sites.url }}"
-                  ./fetch-repo.sh "${{ matrix.sites.url }}"
+                  ./scripts/fetch-repo.sh "${{ matrix.sites.url }}"
 
             # - name: "fetch repo"
             #   env:
@@ -77,8 +77,8 @@ jobs:
             #   run: |
             #       pwd
             #       echo "${{ matrix.sites.url }}"
-            #       ./generate-repo-overview.sh ./repos/"${{ matrix.sites.full_name }}"
-            #       ./generate-repo-changelog.sh ./repos/"${{ matrix.sites.full_name }}"
+            #       ./scripts/generate-repo-overview.sh ./repos/"${{ matrix.sites.full_name }}"
+            #       ./scripts/generate-repo-changelog.sh ./repos/"${{ matrix.sites.full_name }}"
 
             - name: Commit changes
               run: |

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Generate repository overview using OpenAI API
-# Usage: ./generate-overview.sh repos/[org]/[repo]
+# Usage: ./scripts/generate-repo-overview.sh repos/[org]/[repo]
 #
 # Environment variables:
 #   OPENAI_API_KEY   - Required: Your OpenAI API key
@@ -14,7 +14,7 @@ set -e
 OPENAI_BASE_URL="${OPENAI_BASE_URL:-https://api.openai.com/v1}"
 OPENAI_MODEL="${OPENAI_MODEL:-gemma-3-27b-it}"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-SCHEMA_FILE="$SCRIPT_DIR/schemas/repository.schema.json"
+SCHEMA_FILE="$SCRIPT_DIR/../schemas/repository.schema.json"
 
 # Check required environment variable
 if [ -z "$OPENAI_API_KEY" ]; then
