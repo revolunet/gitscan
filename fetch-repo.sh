@@ -113,13 +113,27 @@ else
     exit 1
 fi
 
-# Récupération des 300 derniers commits
+# Récupération des commits des 90 derniers jours
 echo "Récupération des commits des 90 derniers jours..."
 if command -v git log &> /dev/null; then
-    git log --since="90 days ago" --pretty=format:"%cI - %h - %an : %s" > "$RESULTS_DIR/commits.txt"
-    echo "✓ commits.txt généré"
+    NEW_COMMITS_TMP=$(mktemp)
+    git log --since="90 days ago" --pretty=format:"%cI - %h - %an : %s" > "$NEW_COMMITS_TMP"
+
+    if [ -f "$RESULTS_DIR/commits.txt" ]; then
+        # Merge new commits with existing ones, deduplicate by commit hash, sort by date
+        MERGED_TMP=$(mktemp)
+        cat "$NEW_COMMITS_TMP" "$RESULTS_DIR/commits.txt" | \
+            awk -F' - ' '!seen[$2]++' | \
+            sort -r > "$MERGED_TMP"
+        mv "$MERGED_TMP" "$RESULTS_DIR/commits.txt"
+        echo "✓ commits.txt mis à jour (nouveaux commits ajoutés)"
+    else
+        mv "$NEW_COMMITS_TMP" "$RESULTS_DIR/commits.txt"
+        echo "✓ commits.txt généré"
+    fi
+    rm -f "$NEW_COMMITS_TMP" 2>/dev/null
 else
-    cd b
+    echo "⚠ git log non disponible"
 fi
 
 # Récupération des infos GitHub

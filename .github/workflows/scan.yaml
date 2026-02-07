@@ -64,10 +64,10 @@ jobs:
                   ref: ${{ github.ref }}
 
             - name: "fetch repo"
+              continue-on-error: true
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: |
-                  pwd
                   echo "${{ matrix.sites.url }}"
                   ./fetch-repo.sh "${{ matrix.sites.url }}"
 
@@ -77,7 +77,8 @@ jobs:
             #   run: |
             #       pwd
             #       echo "${{ matrix.sites.url }}"
-            #       ./generate-repo-overview.sh "${{ matrix.sites.full_name }}"
+            #       ./generate-repo-overview.sh ./repos/"${{ matrix.sites.full_name }}"
+            #       ./generate-repo-changelog.sh ./repos/"${{ matrix.sites.full_name }}"
 
             - name: Commit changes
               run: |

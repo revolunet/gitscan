@@ -1,9 +1,16 @@
 import Link from "next/link";
 import { RepoCard } from "@/components/RepoCard";
-import type { AggregatedData } from "@/lib/types";
+import { ContributionGraph } from "@/components/ContributionGraph";
+import type {
+  AggregatedData,
+  ContributionData,
+  ContributionsByOrg,
+} from "@/lib/types";
 import reposData from "../../data/repos.json";
+import contributionsByOrgData from "../../data/contributions-by-org.json";
 
 const data = reposData as AggregatedData;
+const contributionsByOrg = contributionsByOrgData as ContributionsByOrg;
 
 const recentRepos = [...data.repos]
   .sort(
@@ -39,20 +46,34 @@ export default function HomePage() {
           <h2 className="text-2xl font-bold text-slate-900">Organisations</h2>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {orgEntries.map(([org, count]) => (
-            <Link
-              key={org}
-              href={`/activity/org/${org}`}
-              className="bg-white rounded-xl border border-slate-200 p-5 hover:border-primary-300 hover:shadow-md transition-all"
-            >
-              <h3 className="font-semibold text-slate-900 mb-1 truncate">
-                {org}
-              </h3>
-              <span className="text-sm text-slate-500">
-                {count} depot{count > 1 ? "s" : ""}
-              </span>
-            </Link>
-          ))}
+          {orgEntries.map(([org, count]) => {
+            const orgContributions = contributionsByOrg[org];
+            return (
+              <Link
+                key={org}
+                href={`/activity/org/${org}`}
+                className="bg-white rounded-xl border border-slate-200 p-5 hover:border-primary-300 hover:shadow-md transition-all"
+              >
+                <h3 className="font-semibold text-slate-900 mb-1 truncate">
+                  {org}
+                </h3>
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-sm text-slate-500">
+                    {count} depot{count > 1 ? "s" : ""}
+                  </span>
+                  {orgContributions && (
+                    <span className="text-xs text-slate-400">
+                      {orgContributions.stats.totalCommits.toLocaleString()}{" "}
+                      commits
+                    </span>
+                  )}
+                </div>
+                {orgContributions && (
+                  <ContributionGraph data={orgContributions} compact />
+                )}
+              </Link>
+            );
+          })}
         </div>
       </section>
 

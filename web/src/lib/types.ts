@@ -79,3 +79,25 @@ export interface DependencyIndex {
     byType: Record<DependencyType, number>;
   };
 }
+
+export interface DayContribution {
+  date: string; // YYYY-MM-DD
+  commits: number;
+  repos: number;
+}
+
+export interface ContributionData {
+  contributions: DayContribution[];
+  organization: string | null; // null means all orgs
+  stats: {
+    totalCommits: number;
+    totalDays: number;
+    totalRepos: number;
+    dateRange: {
+      start: string;
+      end: string;
+    };
+  };
+}
+
+export type ContributionsByOrg = Record<string, ContributionData>;

@@ -133,7 +133,7 @@ Date actuelle: $CURRENT_DATE
 
 Utilise la structure suivante en markdown :
 
-## Changelog : $REPO_NAME (derniers $DAYS jours)
+## Changelog : $REPO_NAME ($DAYS derniers jours)
 
 ### Résumé
 Un paragraphe d'introduction non technique résumant les évolutions récentes du projet. Ce résumé doit être compréhensible par une personne non technique (product owner, décideur, utilisateur final).

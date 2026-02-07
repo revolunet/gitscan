@@ -10,17 +10,16 @@ Demo frontend on https://revolunet.github.io/gitscan
 
 GitScan monitors **9 French government GitHub organizations**:
 
-| Organization                                                        | Description                            |
-| ------------------------------------------------------------------- | -------------------------------------- |
-| [betagouv](https://github.com/betagouv)                             | Beta.gouv.fr digital startup incubator |
-| [socialgouv](https://github.com/socialgouv)                         | Ministry of Social Affairs             |
-| [etalab](https://github.com/etalab)                                 | French government open data agency     |
-| [etalab-ia](https://github.com/etalab-ia)                           | ETALAB AI initiatives                  |
-| [codegouvfr](https://github.com/codegouvfr)                         | Code.gouv.fr platform                  |
-| [suitenumerique](https://github.com/suitenumerique)                 | Digital Suite initiative               |
-| [mtes-mct](https://github.com/mtes-mct)                             | Ministry for Ecological Transition     |
-| [incubateur-ademe](https://github.com/incubateur-ademe)             | ADEME environmental incubator          |
-| [incubateur-territoires](https://github.com/incubateur-territoires) | Territories incubator                  |
+| Organization                                            | Description                            |
+| ------------------------------------------------------- | -------------------------------------- |
+| [betagouv](https://github.com/betagouv)                 | Beta.gouv.fr digital startup incubator |
+| [socialgouv](https://github.com/socialgouv)             | Ministry of Social Affairs             |
+| [etalab](https://github.com/etalab)                     | French government open data agency     |
+| [etalab-ia](https://github.com/etalab-ia)               | ETALAB AI initiatives                  |
+| [codegouvfr](https://github.com/codegouvfr)             | Code.gouv.fr platform                  |
+| [suitenumerique](https://github.com/suitenumerique)     | Digital Suite initiative               |
+| [mtes-mct](https://github.com/mtes-mct)                 | Ministry for Ecological Transition     |
+| [incubateur-ademe](https://github.com/incubateur-ademe) | ADEME environmental incubator          |
 
 You can change that in [./orgas.txt](./orgas.txt)
 
@@ -35,6 +34,7 @@ For each repository:
 - **File tree**: Compressed directory structure
 - **GitHub metadata**: Languages, topics, issues count, etc.
 - **AI Overview** (optional): Structured JSON with description, features, tech stack, and more
+- **AI Changelog** (optional): human-friendly changelog from commits
 
 ## Data Structure
 
@@ -52,16 +52,6 @@ repos/
 │       └── overview.json   # AI-generated structured overview
 └── ...
 ```
-
-## Scripts
-
-| Script                                                   | Description                                                                 |
-| -------------------------------------------------------- | --------------------------------------------------------------------------- |
-| [fetch-repos.sh](./fetch-repos.sh)                       | Fetches repository lists from all organizations in [orgas.txt](./orgas.txt) |
-| [fetch-repo.sh](./fetch-repo.sh)                         | Analyzes a single repository and extracts its data                          |
-| [minitree.py](./minitree.py)                             | Compresses `tree` output by grouping similar filenames                      |
-| [generate-repo-overview.sh](./generate-repo-overview.sh) | Generates AI-powered overview for a single repository                       |
-| [generate-overviews.sh](./generate-overviews.sh)         | Batch generates overviews for all repositories                              |
 
 ## Usage
 
@@ -86,7 +76,7 @@ export OPENAI_MODEL="gpt-4o"
 ./fetch-repos.sh
 ```
 
-### Analyze a single repository
+### Fetch a single repository
 
 ```bash
 ./fetch-repo.sh https://github.com/betagouv/moncomptepro
@@ -102,6 +92,18 @@ export OPENAI_MODEL="gpt-4o"
 
 ```bash
 ./generate-overviews.sh
+```
+
+### Generate changelog for a repository
+
+```bash
+./generate-repo-changelog.sh repos/betagouv/moncomptepro
+```
+
+### Generate changelog for all repositories
+
+```bash
+./generate-changelogs.sh
 ```
 
 ## AI Overview Schema

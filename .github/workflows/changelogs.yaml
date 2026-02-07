@@ -1,0 +1,57 @@
+name: Generate Changelogs
+
+on:
+    workflow_dispatch:
+        inputs:
+            days_ago:
+                description: "Number of days to look back for updated repos"
+                required: false
+                default: "30"
+                type: string
+            changelog_skip_days:
+                description: "Skip repos with changelog committed within N days"
+                required: false
+                default: "7"
+                type: string
+    schedule:
+        - cron: "0 3 * * 6" # every Monday at 3am UTC
+
+concurrency:
+    cancel-in-progress: true
+    group: changelogs
+
+jobs:
+    generate:
+        runs-on: ubuntu-latest
+        name: Generate Changelogs
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Generate changelogs
+              env:
+                  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+                  OPENAI_BASE_URL: ${{ secrets.OPENAI_BASE_URL }}
+                  OPENAI_MODEL: ${{ vars.OPENAI_MODEL || 'gemma-3-27b-it' }}
+                  DAYS_AGO: ${{ inputs.days_ago || '30' }}
+                  CHANGELOG_SKIP_DAYS: ${{ inputs.changelog_skip_days || '7' }}
+              run: |
+                  ./generate-changelogs.sh
+
+            - name: Commit changes
+              run: |
+                  git config user.name "BetaBot"
+                  git config user.email "infra@incubateur.net"
+                  git add ./repos/*/*/CHANGELOG-generated.md
+
+                  if git diff --staged --quiet; then
+                    echo "No changes to commit"
+                    exit 0
+                  fi
+
+                  git commit -m "update: changelogs"
+
+                  for i in {1..5}; do
+                    git pull --rebase --autostash && git push && break
+                    echo "Push failed, retrying ($i/5)..."
+                    sleep $((i * 2))
+                  done
