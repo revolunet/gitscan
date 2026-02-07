@@ -117,7 +117,7 @@ fi
 echo "Récupération des commits des 90 derniers jours..."
 if command -v git log &> /dev/null; then
     NEW_COMMITS_TMP=$(mktemp)
-    git log --since="90 days ago" --pretty=format:"%cI - %h - %an : %s" > "$NEW_COMMITS_TMP"
+    git log --since="90 days ago" --pretty=tformat:"%cI - %h - %an : %s" > "$NEW_COMMITS_TMP"
 
     if [ -f "$RESULTS_DIR/commits.txt" ]; then
         # Merge new commits with existing ones, deduplicate by commit hash, sort by date
