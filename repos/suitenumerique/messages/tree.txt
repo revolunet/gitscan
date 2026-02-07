@@ -134,10 +134,10 @@
     │   │   │       ├── __init__.py
     │   │   │       ├── bucket_cors.py
     │   │   │       ├── createsuperuser.py
+    │   │   │       ├── delete_orphan_attachments.py
     │   │   │       ├── dns_check.py
     │   │   │       ├── dns_provision.py
     │   │   │       ├── drop_all_tables.py
-    │   │   │       ├── e2e_demo.py
     │   │   │       ├── identity.py
     │   │   │       ├── print_sessions.py
     │   │   │       ├── run_task.py
@@ -181,6 +181,7 @@
     │   │   │   ├── 0013_thread_is_trashed.py
     │   │   │   ├── 0014_messagetemplate_is_default_and_more.py
     │   │   │   ├── 0015_attachment_cid.py
+    │   │   │   ├── 0016_thread_has_delivery_failed_and_more.py
     │   │   │   └── __init__.py
     │   │   ├── models.py
     │   │   ├── services
@@ -256,6 +257,7 @@
     │   │   │   │   ├── test_message_template_retrieve.py
     │   │   │   │   ├── test_messages_create.py
     │   │   │   │   ├── test_messages_delete.py
+    │   │   │   │   ├── test_messages_delivery_statuses.py
     │   │   │   │   ├── test_messages_flag.py
     │   │   │   │   ├── test_messages_import.py
     │   │   │   │   ├── test_messages_import_labels_en.py
@@ -330,9 +332,18 @@
     │   │   │   │   ├── test_task_importer.py
     │   │   │   │   └── test_task_send_message.py
     │   │   │   ├── test_settings.py
+    │   │   │   ├── test_signals.py
     │   │   │   └── test_worker.py
     │   │   ├── urls.py
     │   │   └── utils.py
+    │   ├── e2e
+    │   │   ├── __init__.py
+    │   │   ├── apps.py
+    │   │   └── management
+    │   │       ├── __init__.py
+    │   │       └── commands
+    │   │           ├── __init__.py
+    │   │           └── e2e_demo.py
     │   ├── entrypoint
     │   ├── gunicorn.conf.py
     │   ├── locale
@@ -405,6 +416,7 @@
     │   │   │   ├── login.spec.ts
     │   │   │   ├── message-import.spec.ts
     │   │   │   ├── message-send.spec.ts
+    │   │   │   ├── outbox.spec.ts
     │   │   │   └── signatures.spec.ts
     │   │   ├── constants.ts
     │   │   ├── fixtures
@@ -618,6 +630,7 @@
     │   │   │   │   │   │   ├── config_retrieve200_schemacustomattributesuse_r.ts
     │   │   │   │   │   │   ├── contact.ts
     │   │   │   │   │   │   ├── contacts_list_params.ts
+    │   │   │   │   │   │   ├── delivery_status_update_response.ts
     │   │   │   │   │   │   ├── dnscheck_response.ts
     │   │   │   │   │   │   ├── dnscheck_result.ts
     │   │   │   │   │   │   ├── dnsrecord_check.ts
@@ -650,6 +663,7 @@
     │   │   │   │   │   │   ├── maildomains_message_templates_list_type.ts
     │   │   │   │   │   │   ├── message.ts
     │   │   │   │   │   │   ├── message_*.ts  (9 files)
+    │   │   │   │   │   │   ├── messages_delivery_statuses_partial_update_body_one.ts
     │   │   │   │   │   │   ├── paginated_*.ts  (6 files)
     │   │   │   │   │   │   ├── partial_drive_item.ts
     │   │   │   │   │   │   ├── patched_*.ts  (6 files)
@@ -904,7 +918,7 @@
     │   │   │   │           │   │   ├── _index.scss
     │   │   │   │           │   │   ├── index.tsx
     │   │   │   │           │   │   ├── renderers
-    │   │   │   │           │   │   │   ├── image.ts
+    │   │   │   │           │   │   │   ├── image.tsx
     │   │   │   │           │   │   │   ├── index.ts
     │   │   │   │           │   │   │   ├── text_html.ts
     │   │   │   │           │   │   │   ├── text_plain.ts
@@ -924,6 +938,7 @@
     │   │   │   ├── message
     │   │   │   │   ├── use-archive.tsx
     │   │   │   │   ├── use-flag.tsx
+    │   │   │   │   ├── use-print.tsx
     │   │   │   │   ├── use-read.tsx
     │   │   │   │   ├── use-spam.tsx
     │   │   │   │   └── use-trash.tsx
@@ -1147,4 +1162,4 @@
             ├── requirements.txt
             ├── test_smtp.py
             └── test_socks_proxy.py
-257 directories, 969 files
+260 directories, 981 files
