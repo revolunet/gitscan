@@ -1,15 +1,33 @@
+2026-02-06T16:36:04+01:00 - adc168c3 - Maxime Dréau : Passe typescript en dépendances
+2026-02-06T14:59:14+01:00 - a13775a3 - Maxime Dréau : Merge pull request #1196 from betagouv/add-comment-to-stat-by-tag
+2026-02-05T14:28:49+01:00 - b8440ae8 - Maxime Dréau : Merge pull request #1197 from betagouv/bugfix-reaffection-gestionnaire
 2026-01-29T17:57:33+01:00 - a6959841 - Maxime Dréau : Gitignore CLAUDE.md [skip ci]
 2026-01-28T10:50:22+01:00 - c2fa9038 - Maxime Dréau : Masque l'encart non ouvert pour les réseaux de froid
 2026-01-27T17:20:09+01:00 - e104fbb6 - Maxime Dréau : Merge pull request #1194 from betagouv/integration_pdf_sources_page_donnees
 2026-01-27T14:01:52+01:00 - e94cad11 - Maxime Dréau : Merge pull request #1198 from betagouv/fix_form_pro_eligibility_test
 2026-01-27T14:01:23+01:00 - bed56ea6 - Maxime Dréau : Merge pull request #1195 from betagouv/refactor_tiles_config
 2026-01-27T11:18:49+01:00 - 2390651e - Maxime Dréau : fix: corrige l'état initial du formulaire de test en masse
+2026-01-27T11:17:53+01:00 - 994e1f7f - Morgan Merzouk : Il faut rafraichir getTagsStats après l'edition d'un commentaire pour qu'il apparaisse bien immédiatement dans l'export
+2026-01-27T10:47:00+01:00 - 2fd2d7b7 - Morgan Merzouk : Meilleur gestion du trim sur le commentaire (via zod en amont)
+2026-01-27T10:46:09+01:00 - a54d513b - Morgan Merzouk : On ne retourne que les données dont on a besoin
+2026-01-27T10:45:22+01:00 - c8f8b26a - Morgan Merzouk : Changement du wording de l'évenement de modification d'un commentaire sur un tag
+2026-01-27T10:28:49+01:00 - 1e288893 - Morgan Merzouk : A partir du moment où l'affectation a changé, on reset le Gestionnaire Affecte à (pas besoin de comparer les valeurs)
+2026-01-27T10:20:44+01:00 - 1e2d9f91 - Morgan Merzouk : Gestionnaire Affecté à peut être null
 2026-01-27T09:28:55+01:00 - 02685aea - Maxime Dréau : Harmonise la config des tuiles API + génération
-2026-01-26T18:35:33+01:00 - 3551b840 - Maxime Dréau : Supprime des tables Airtable obsolètes
-2026-01-26T18:35:33+01:00 - 6c2cdb31 - Maxime Dréau : Fix nom table tuiles pour ressources-geothermales-nappes
 2026-01-26T18:35:33+01:00 - ebd3965a - Maxime Dréau : Extrait les tables synchronisées airtable dans une structure
+2026-01-26T18:35:33+01:00 - 6c2cdb31 - Maxime Dréau : Fix nom table tuiles pour ressources-geothermales-nappes
+2026-01-26T18:35:33+01:00 - 3551b840 - Maxime Dréau : Supprime des tables Airtable obsolètes
 2026-01-26T18:35:32+01:00 - 1e8ce567 - Maxime Dréau : Importe le type uniquement pour déduire AppRouter
+2026-01-26T18:22:54+01:00 - c0da4cb1 - Morgan Merzouk : Revert "Comparaison insensible à la casse"
+2026-01-26T18:22:23+01:00 - e465ebba - Morgan Merzouk : Revert "oubli de la gestion de value = null"
+2026-01-26T18:05:11+01:00 - 5dc46b32 - Morgan Merzouk : Affichage d'un grand textarea dans une dialog pour les commentaires qui peuvent être longs
+2026-01-26T16:57:24+01:00 - bb427e67 - Morgan Merzouk : oubli de la gestion de value = null
+2026-01-26T16:52:52+01:00 - 63b92d05 - Morgan Merzouk : Comparaison insensible à la casse
+2026-01-26T15:29:30+01:00 - 2385347a - Morgan Merzouk : Ajout du libellé pour l'évenement tag_comment_updated
+2026-01-26T15:22:38+01:00 - e3cb6d0a - Morgan Merzouk : Ajout d'un champ commentaire sur le tag (pour la vue statistiques par tag)
 2026-01-23T11:39:56+01:00 - ea0063f5 - Maxime Dréau : Fix flag ouvert au raccordements sur fiche réseau
+2026-01-22T18:25:00+01:00 - 05d3937b - Morgan Merzouk : Correction du reset de gestionnaire et de la condition pour vérifier l'affectation
+2026-01-22T18:22:57+01:00 - 4e3f7077 - Morgan Merzouk : Il faut reset le gestionnaire côté front pour voir le compteur se mettre à jour immédiatement
 2026-01-22T15:05:48+01:00 - 6150a3b8 - Maxime Dréau : Merge pull request #1192 from betagouv/bugfix-reinitialisation-tag
 2026-01-22T11:42:53+01:00 - a5154cd3 - Morgan Merzouk : L'icone de suggestion n'était pas cohérente avec les tags réels
 2026-01-21T14:15:23+01:00 - cef36dc8 - Maxime Dréau : Merge pull request #1193 from betagouv/ameliorations_perf
@@ -19,8 +37,8 @@
 2026-01-20T16:56:42+01:00 - df63cae8 - Maxime Dréau : Améliore les performances des outils, évite les rerenders
 2026-01-20T16:10:22+01:00 - d9fa50a0 - Maxime Dréau : Améliore les performances de la carte
 2026-01-20T13:57:18+01:00 - a988eb0a - Maxime Dréau : Supprime des anciennes directives eslint
-2026-01-20T12:34:59+01:00 - a0c51b42 - Maxime Dréau : Supprime des fichiers obsolètes
 2026-01-20T12:34:59+01:00 - ecfd230f - Maxime Dréau : Supprime le code lié à la migration demandes airtable => postgres
+2026-01-20T12:34:59+01:00 - a0c51b42 - Maxime Dréau : Supprime des fichiers obsolètes
 2026-01-20T12:34:59+01:00 - 3804812c - Maxime Dréau : Supprime les tables eligibility_* obsolètes
 2026-01-20T09:46:04+01:00 - 708b2faf - Maxime Dréau : Ouvre les réseaux par défaut pour éviter les pb avec la migration
 2026-01-19T18:08:19+01:00 - 91395b68 - Morgan Merzouk : tagName n'est potentiellement pas unique, cela ne convient pas comme key
@@ -29,17 +47,17 @@
 2026-01-19T15:59:57+01:00 - 3414e949 - Maxime Dréau : Change l'icone ouvert aux raccordements sur la carte
 2026-01-19T15:41:56+01:00 - d2618528 - Maxime Dréau : Maj icone ouvert aux raccordements dans la fiche réseau
 2026-01-19T15:35:34+01:00 - aef929b9 - Maxime Dréau : Ajoute une checkbox ouvert aux raccordements dans l'admin
-2026-01-19T14:56:51+01:00 - d77aeb90 - Maxime Dréau : Gère le cas où les tables réseaux sont vides
-2026-01-19T14:56:51+01:00 - 6a1047cb - Maxime Dréau : Fix les erreurs de // qui crash la clock
 2026-01-19T14:56:51+01:00 - f4db364f - Maxime Dréau : Ajoute un petit délai à la fin d'un job
+2026-01-19T14:56:51+01:00 - d77aeb90 - Maxime Dréau : Gère le cas où les tables réseaux sont vides
 2026-01-19T14:56:51+01:00 - ab943245 - Maxime Dréau : Met à jour les transitions car la distance peut être null...
-2026-01-19T14:56:50+01:00 - 32c64b29 - Maxime Dréau : Branche l'éligibilité historique sur la nouvelle fonction
+2026-01-19T14:56:51+01:00 - 6a1047cb - Maxime Dréau : Fix les erreurs de // qui crash la clock
 2026-01-19T14:56:50+01:00 - 9ee51fce - Maxime Dréau : Exclut les réseaux non ouverts aux raccordements de l'éligibilité
+2026-01-19T14:56:50+01:00 - 32c64b29 - Maxime Dréau : Branche l'éligibilité historique sur la nouvelle fonction
 2026-01-19T14:41:18+01:00 - dfa650b6 - Maxime Dréau : Rajoute la table demands au bootstrap
-2026-01-19T14:41:18+01:00 - 5b871c76 - Maxime Dréau : Installe vitest ui pour simplifier le debug des tests
 2026-01-19T14:41:18+01:00 - da24f309 - Maxime Dréau : ai: pas d'emojis dans le code
-2026-01-19T14:41:17+01:00 - 6da4f29b - Maxime Dréau : ai: grouper les migrations en un seul bloc
+2026-01-19T14:41:18+01:00 - 5b871c76 - Maxime Dréau : Installe vitest ui pour simplifier le debug des tests
 2026-01-19T14:41:17+01:00 - cf400c2f - Maxime Dréau : Fix typo type de géométrie openapi
+2026-01-19T14:41:17+01:00 - 6da4f29b - Maxime Dréau : ai: grouper les migrations en un seul bloc
 2026-01-19T14:41:17+01:00 - 64a5694d - Maxime Dréau : Supprime un fichier non utilisé + conf prettier obsolète
 2026-01-19T11:42:04+01:00 - 1a9aff22 - Maxime Dréau : Merge pull request #1190 from betagouv/bugfix-save-emailtemplate-without-subject
 2026-01-15T17:50:54+01:00 - dc1aa48a - Morgan Merzouk : On autorise aussi les modèles avec corps de message vide
@@ -76,10 +94,10 @@
 2026-01-07T15:09:24+01:00 - 48dcb45d - Maxime Dréau : Supprime des dépendances inutilisées
 2026-01-07T11:54:03+01:00 - de6f20ae - Maxime Dréau : Workaround tailwind suite à maj next 16...
 2026-01-07T11:11:34+01:00 - 96d55c29 - Maxime Dréau : Maj explications calcul communes à potentiel
+2026-01-07T10:55:14+01:00 - f7030568 - Maxime Dréau : Prend en compte les retours de Laetitia pour la page données
+2026-01-07T10:55:14+01:00 - cb33e718 - Maxime Dréau : Fix doc tsx Heading
 2026-01-07T10:55:14+01:00 - 87bbe876 - Maxime Dréau : Fix typo
 2026-01-07T10:55:14+01:00 - 4b8c64b3 - Maxime Dréau : Ajoute 2 tableaux pour pdp et réseaux en construction
-2026-01-07T10:55:14+01:00 - cb33e718 - Maxime Dréau : Fix doc tsx Heading
-2026-01-07T10:55:14+01:00 - f7030568 - Maxime Dréau : Prend en compte les retours de Laetitia pour la page données
 2026-01-07T10:55:13+01:00 - 7045b451 - Maxime Dréau : Ajoute une page données
 2026-01-07T10:36:26+01:00 - 3b6d42b3 - Maxime Dréau : Maj dépendances carte
 2026-01-07T09:40:30+01:00 - 4151875a - Maxime Dréau : Ajouts de quelques tests sur l'éligibilité legacy
@@ -109,49 +127,49 @@
 2025-12-18T11:25:17+04:00 - 4cdcc418 - Martin Ratinaud : Met à jour gitguardian
 2025-12-18T11:24:21+04:00 - 5d49ec1c - Martin Ratinaud : Améliore les tests
 2025-12-18T08:54:02+04:00 - 7cda23f6 - Martin Ratinaud : refactor: use declarative pattern for tRPC tests
-2025-12-18T08:54:02+04:00 - 3353de70 - Martin Ratinaud : Fix gitguardian
 2025-12-18T08:54:02+04:00 - 632777a8 - Martin Ratinaud : Fixe erreur lint
+2025-12-18T08:54:02+04:00 - 3353de70 - Martin Ratinaud : Fix gitguardian
 2025-12-18T08:54:01+04:00 - f59d25a3 - Martin Ratinaud : Test permissions sur les routes trpc de demands
-2025-12-18T08:54:01+04:00 - 78231ac4 - Martin Ratinaud : Test permissions sur le sroutes trpc de jobs
 2025-12-18T08:54:01+04:00 - a13591bd - Martin Ratinaud : fix: use toBeInTheDocument in home test
+2025-12-18T08:54:01+04:00 - 78231ac4 - Martin Ratinaud : Test permissions sur le sroutes trpc de jobs
 2025-12-18T08:54:00+04:00 - c454696a - Martin Ratinaud : fix: improve test setup with userEvent
 2025-12-18T08:54:00+04:00 - b2ff61e2 - Martin Ratinaud : Archive les docs plus utiles
 2025-12-18T08:54:00+04:00 - 8fdaed2a - Martin Ratinaud : Fixe tests concurrents causant pb d'index
+2025-12-18T08:53:59+04:00 - b1632afc - Martin Ratinaud : Fixe probleme de search de l'adresse en local
 2025-12-18T08:53:59+04:00 - acb41523 - Martin Ratinaud : Tests de creation de demande
 2025-12-18T08:53:59+04:00 - 06ef04ba - Martin Ratinaud : Ajoute tests unitaires et coverage Vitest
-2025-12-18T08:53:59+04:00 - b1632afc - Martin Ratinaud : Fixe probleme de search de l'adresse en local
 2025-12-18T08:53:25+04:00 - 127e6278 - Martin Ratinaud. Web Solutions Creator. : Merge pull request #1184 from betagouv/button_copy
 2025-12-18T08:47:27+04:00 - 9a5a7997 - Martin Ratinaud : Retravaille le button copy
 2025-12-17T15:41:58+04:00 - 39fa509d - Martin Ratinaud : Fixe erreur d'hydration et reload auto de la page
 2025-12-17T15:32:38+04:00 - 01992c35 - Martin Ratinaud : Meilleurs messages d'erreur sur la copie
 2025-12-17T15:26:21+04:00 - b6b1dd93 - Martin Ratinaud : Ajoute doc pour ButtonCopy
-2025-12-17T12:24:10+04:00 - 09a727ab - Martin Ratinaud : Fixe le pb d'hydration sur le header
 2025-12-17T12:24:10+04:00 - 178ff82f - Martin Ratinaud : Met en commun toutes les utilisations de navigator copy
+2025-12-17T12:24:10+04:00 - 09a727ab - Martin Ratinaud : Fixe le pb d'hydration sur le header
 2025-12-16T10:57:45+04:00 - 6b19c70f - Martin Ratinaud. Web Solutions Creator. : Merge pull request #1183 from betagouv/profile_form
 2025-12-16T10:47:59+04:00 - 24b98e92 - Martin Ratinaud : Amélioration du code
 2025-12-16T10:13:51+04:00 - 95eca1e1 - Martin Ratinaud. Web Solutions Creator. : Merge pull request #1181 from betagouv/migration_regles_affectation_metropoles
-2025-12-15T16:18:54+01:00 - 346bd523 - Maxime Dréau : Déplace le service assignment-rules dans le module demands
-2025-12-15T15:15:06+01:00 - df16e723 - Maxime Dréau : Corrige les règles + tags ville non positionnés sur une demande
 2025-12-15T17:55:01+04:00 - 4d915710 - Martin Ratinaud : Ajoute le formulaire d eprofil
 2025-12-15T17:55:00+04:00 - a7676dc6 - Martin Ratinaud : Supprime le 600px hardcodé
 2025-12-15T17:54:27+04:00 - 0632bc65 - Martin Ratinaud. Web Solutions Creator. : Merge pull request #1182 from betagouv/getModeDeChauffageDisplay
 2025-12-15T17:51:53+04:00 - 5a93419c - Martin Ratinaud : Ajoute typage pour les modes de chauffage et types d'energie
 2025-12-15T17:15:48+04:00 - c35f4725 - Martin Ratinaud. Web Solutions Creator. : Merge pull request #1179 from betagouv/page_404
-2025-12-15T09:56:21+01:00 - ab066f98 - Maxime Dréau : Merge pull request #1180 from betagouv/fix_export_stats_demandes_tag
+2025-12-15T16:18:54+01:00 - 346bd523 - Maxime Dréau : Déplace le service assignment-rules dans le module demands
+2025-12-15T15:15:06+01:00 - df16e723 - Maxime Dréau : Corrige les règles + tags ville non positionnés sur une demande
 2025-12-15T12:02:18+04:00 - 0f84690f - Martin Ratinaud : Normalise les valeurs Mode et Type de chauffage
+2025-12-15T09:56:21+01:00 - ab066f98 - Maxime Dréau : Merge pull request #1180 from betagouv/fix_export_stats_demandes_tag
 2025-12-11T18:03:16+01:00 - 858dab9b - Maxime Dréau : Log le user-agent
 2025-12-11T17:31:23+01:00 - 3e07005a - Maxime Dréau : Remet le bon typage pour applyParsedRulesToEligibilityData
 2025-12-11T17:12:15+01:00 - 19e86f9b - Maxime Dréau : Migre la règle de gestion métropole vers des règles dynamiques
 2025-12-11T16:47:01+01:00 - f28dc117 - Maxime Dréau : Supprime code dupliqué obsolète
-2025-12-11T14:59:23+01:00 - 4d106d2e - Maxime Dréau : Maj statistiques
-2025-12-11T14:29:59+01:00 - 4cf42842 - Maxime Dréau : Améliore le tableau exporté pour les stats par tag
 2025-12-11T16:46:20+04:00 - b1f5e281 - Martin Ratinaud : Affiche l'historique des changements d'adresse dans les demandes admin
 2025-12-11T16:24:03+04:00 - f1f26cc7 - Martin Ratinaud : Envoie une errur sur la newsletter quand on utilise un email pas autorisé
-2025-12-11T16:24:02+04:00 - d7046a1b - Martin Ratinaud : Ajoute un warning si {{Adresse}} est manquante dans l'email
 2025-12-11T16:24:02+04:00 - f7ee5c7f - Martin Ratinaud : Ajoute la page 404 dans le app router
+2025-12-11T16:24:02+04:00 - d7046a1b - Martin Ratinaud : Ajoute un warning si {{Adresse}} est manquante dans l'email
 2025-12-11T16:24:01+04:00 - 7ba047f0 - Martin Ratinaud : docs: add rule to not commit
 2025-12-11T16:23:44+04:00 - 1de0359f - Martin Ratinaud : Revert "feat: add global-not-found for 404 page"
 2025-12-11T16:23:33+04:00 - fda5e235 - Martin Ratinaud : Revert "fix: simplify global-not-found page"
+2025-12-11T14:59:23+01:00 - 4d106d2e - Maxime Dréau : Maj statistiques
+2025-12-11T14:29:59+01:00 - 4cf42842 - Maxime Dréau : Améliore le tableau exporté pour les stats par tag
 2025-12-11T10:56:34+01:00 - d304dda1 - Maxime Dréau : Fix has_trace manquant pour les réseaux de froid
 2025-12-11T09:51:51+01:00 - 2b57bf82 - Maxime Dréau : Augmente limit body parser trpc pour updateGeomUpdate
 2025-12-10T17:36:03+01:00 - 5993334e - Maxime Dréau : Maj route /api/stats avec données dynamiques
@@ -163,33 +181,33 @@
 2025-12-10T10:30:29+04:00 - 5a7b062c - Martin Ratinaud : feat: ajoute le champ heatingEnergy par adresse
 2025-12-10T09:18:40+04:00 - 69f00b88 - Martin Ratinaud : refactor: remet l'Accordion dans AddressSection
 2025-12-10T09:09:00+04:00 - 716a7efb - Martin Ratinaud. Web Solutions Creator. : Merge pull request #1177 from betagouv/ajout_api_stats
-2025-12-09T15:16:09+01:00 - 76c0a178 - Maxime Dréau : Ajoute une API stats pour le dashboard ADEME
 2025-12-09T17:37:56+04:00 - e4e9d721 - Martin Ratinaud : fix: corrige le freeze du navigateur sur le formulaire batch
 2025-12-09T16:09:33+04:00 - 35276dff - Martin Ratinaud : Améliore le formulaire de demandes en masse an plusieurs étapes
-2025-12-09T11:50:20+01:00 - 4b207f50 - Maxime Dréau : Supprime un doublon de biome en postinstall
-2025-12-09T11:36:39+01:00 - 12853bb7 - Maxime Dréau : Ajoute .git au slugignore
-2025-12-09T10:58:04+01:00 - 0d49a44a - Maxime Dréau : Fix l'affichage initial de la carte sur mes-demandes
+2025-12-09T15:16:09+01:00 - 76c0a178 - Maxime Dréau : Ajoute une API stats pour le dashboard ADEME
 2025-12-09T12:12:09+04:00 - cc93a615 - Martin Ratinaud : Affiche correctement l'id du réseau et le nom sur les listes des demandes
+2025-12-09T11:50:20+01:00 - 4b207f50 - Maxime Dréau : Supprime un doublon de biome en postinstall
 2025-12-09T11:40:14+04:00 - 2d7fb176 - Martin Ratinaud. Web Solutions Creator. : Merge pull request #1176 from betagouv/harmonise_api_ban
+2025-12-09T11:36:39+01:00 - 12853bb7 - Maxime Dréau : Ajoute .git au slugignore
 2025-12-09T11:34:22+04:00 - bf915c8d - Martin Ratinaud. Web Solutions Creator. : Merge pull request #1175 from betagouv/some_fixes
 2025-12-09T11:28:14+04:00 - ca4b3f7d - Martin Ratinaud : Affichage plus cohérent des noms de reseau
+2025-12-09T10:58:04+01:00 - 0d49a44a - Maxime Dréau : Fix l'affichage initial de la carte sur mes-demandes
 2025-12-08T17:18:16+01:00 - 9c5532f8 - Maxime Dréau : Nettoie un peu de config liée à des anciennes URLs
 2025-12-08T17:17:05+01:00 - 25ea5886 - Maxime Dréau : Migre totalement à la geoplateforme IGN
 2025-12-08T16:35:45+01:00 - 6406bbe7 - Maxime Dréau : fix: gère les headers pour les test d'adresses
 2025-12-08T15:26:52+01:00 - 706a5e59 - Maxime Dréau : Fix jobs refresh des tuiles en prod
-2025-12-08T14:42:28+01:00 - 55374930 - Maxime Dréau : Maj @react-email/preview-server pour vuln next
-2025-12-08T14:33:16+01:00 - 3fda30e5 - Maxime Dréau : Initialise le nom du test avec le fichier seulement si vide
-2025-12-08T14:10:03+01:00 - 62c7b211 - Maxime Dréau : Lint tailwind class
-2025-12-08T14:09:58+01:00 - 559834c0 - Maxime Dréau : style: remet la barre à gauche dans la confirmation
 2025-12-08T15:21:03+04:00 - 77627fb5 - Martin Ratinaud. Web Solutions Creator. : Merge pull request #1174 from betagouv/demandes_en_masse
 2025-12-08T15:07:44+04:00 - 95d93d75 - Martin Ratinaud : Tweaks visuels et texte
+2025-12-08T14:42:28+01:00 - 55374930 - Maxime Dréau : Maj @react-email/preview-server pour vuln next
+2025-12-08T14:33:16+01:00 - 3fda30e5 - Maxime Dréau : Initialise le nom du test avec le fichier seulement si vide
 2025-12-08T14:13:25+04:00 - 79cdeeb6 - Martin Ratinaud : Montre le bouton pour montrer à l'utilisateur qu'il peut faire une action
 2025-12-08T14:13:25+04:00 - 745cda2c - Martin Ratinaud : Met en commun le formattage de l'eligibilité
 2025-12-08T14:13:24+04:00 - 90bc1bfc - Martin Ratinaud : Supprime un cas qui n'existe jamais
 2025-12-08T14:13:24+04:00 - 47838f24 - Martin Ratinaud : Améliorations mineurs de texte et code
 2025-12-08T14:13:23+04:00 - 733eb754 - Martin Ratinaud : Autorise les demandes en masse
-2025-12-08T14:13:22+04:00 - 5d869e0f - Martin Ratinaud : Donne la possibilité de modifier les adresses dans l'admin des demandes
 2025-12-08T14:13:22+04:00 - f61dba96 - Martin Ratinaud : Declutter le TableSimple et utilise useDeferredValue pour optimiser
+2025-12-08T14:13:22+04:00 - 5d869e0f - Martin Ratinaud : Donne la possibilité de modifier les adresses dans l'admin des demandes
+2025-12-08T14:10:03+01:00 - 62c7b211 - Maxime Dréau : Lint tailwind class
+2025-12-08T14:09:58+01:00 - 559834c0 - Maxime Dréau : style: remet la barre à gauche dans la confirmation
 2025-12-04T17:28:48+01:00 - 29b0bec2 - Maxime Dréau : Fix permissions accès liste emails d'une demande
 2025-12-04T16:38:41+01:00 - 967386d7 - Maxime Dréau : lint: supprime as any inutile
 2025-12-04T15:40:00+01:00 - e6605f58 - Maxime Dréau : Ajout mention prévisionnelle sur réseaux en construction
@@ -198,14 +216,14 @@
 2025-12-04T12:33:06+01:00 - f9eb5865 - Maxime Dréau : Lint classe tailwind
 2025-12-04T12:33:06+01:00 - cedfcd6f - Maxime Dréau : Ajoute une règle biome pour ne pas importer du client depuis le serveur
 2025-12-04T12:33:06+01:00 - a9c84876 - Maxime Dréau : Maj next
-2025-12-04T12:33:06+01:00 - 1593cbe1 - Maxime Dréau : Maj version react au cas où
-2025-12-04T12:33:06+01:00 - 3a5f622b - Maxime Dréau : Install prettier pour aider @react-email/render
 2025-12-04T12:33:06+01:00 - a9580807 - Maxime Dréau : Fix l'affichage par défaut des cellules du tableau selon le type
+2025-12-04T12:33:06+01:00 - 3a5f622b - Maxime Dréau : Install prettier pour aider @react-email/render
+2025-12-04T12:33:06+01:00 - 1593cbe1 - Maxime Dréau : Maj version react au cas où
 2025-12-04T12:32:56+01:00 - af8eeb1d - Maxime Dréau : Refactor le chargement des variables d'env
-2025-12-04T12:32:55+01:00 - 6d3c31fe - Maxime Dréau : Harmonise websiteUrl autour de NEXT_PUBLIC_SITE_URL
-2025-12-04T12:32:55+01:00 - 7ef3b5d8 - Maxime Dréau : Revert "Affiche les images correctement au premier load de la page"
 2025-12-04T12:32:55+01:00 - a8016b47 - Maxime Dréau : Fix bundling TS de knex
 2025-12-04T12:32:55+01:00 - a67cb848 - Maxime Dréau : Déclenche le cache des tuiles au démarrage de next
+2025-12-04T12:32:55+01:00 - 7ef3b5d8 - Maxime Dréau : Revert "Affiche les images correctement au premier load de la page"
+2025-12-04T12:32:55+01:00 - 6d3c31fe - Maxime Dréau : Harmonise websiteUrl autour de NEXT_PUBLIC_SITE_URL
 2025-12-04T12:32:55+01:00 - 6b76a7bf - Maxime Dréau : Evite que le serveur (clock) importe des dépendances client
 2025-12-03T16:32:03+01:00 - 5d53850c - Maxime Dréau : Import Sentry commonjs-style pour la clock
 2025-12-03T14:32:14+01:00 - 7f3849f0 - Maxime Dréau : Merge pull request #1172 from betagouv/fix_page_liste_reseaux
@@ -231,65 +249,65 @@
 2025-12-02T14:37:51+01:00 - 22909953 - Maxime Dréau : Fix hydratation p / div
 2025-12-02T14:12:49+04:00 - 0ca68f97 - Martin Ratinaud. Web Solutions Creator. : Merge pull request #1169 from betagouv/improve_demands
 2025-12-02T14:09:47+04:00 - 5362b827 - Martin Ratinaud : Filtres les demandes à reaffecter
-2025-12-02T10:13:38+01:00 - ae0eb423 - Maxime Dréau : Fix le chargement de l'état du tableau via l'URL
 2025-12-02T12:08:55+04:00 - 9c62167d - Martin Ratinaud : Fixe le filtrage
 2025-12-02T11:17:13+04:00 - 914ec7be - Martin Ratinaud : Simplifie le code
 2025-12-02T10:26:09+04:00 - cfbd3ab4 - Maxime Dréau : Ajoute filtre par date dans les tableaux
 2025-12-02T10:26:08+04:00 - a0f93636 - Maxime Dréau : Fix preset date
-2025-12-01T15:27:20+01:00 - 12ca3a82 - Maxime Dréau : Utilise oui/non partout pour 'Recontacté par le gestionnaire'
+2025-12-02T10:13:38+01:00 - ae0eb423 - Maxime Dréau : Fix le chargement de l'état du tableau via l'URL
 2025-12-01T17:12:14+04:00 - 4431f0e5 - Martin Ratinaud : Applique les filtres pour le mois en cours
 2025-12-01T17:11:45+04:00 - a0bbf87d - Martin Ratinaud : N'affiche plus le tag de ville differente quand le gestionnaire est validé
 2025-12-01T17:10:57+04:00 - bcaa2a61 - Martin Ratinaud : Fixe les preset filters qui n'était plus appliqués au clic
 2025-12-01T17:10:06+04:00 - 260ddc35 - Martin Ratinaud : Permet la modif de Recontacté par le gestionnaire
-2025-12-01T11:24:25+01:00 - 4ca2b141 - Maxime Dréau : Fix permissions création des demandes
+2025-12-01T15:27:20+01:00 - 12ca3a82 - Maxime Dréau : Utilise oui/non partout pour 'Recontacté par le gestionnaire'
 2025-12-01T12:55:33+04:00 - 68c669c7 - Martin Ratinaud. Web Solutions Creator. : Merge pull request #1168 from betagouv/fix_demandes
+2025-12-01T11:24:25+01:00 - 4ca2b141 - Maxime Dréau : Fix permissions création des demandes
 2025-12-01T11:16:29+04:00 - 8ab99f64 - Martin Ratinaud : Affiche les images correctement au premier load de la page
 2025-12-01T10:21:43+04:00 - 3a6b9a93 - Martin Ratinaud : Meme comportement pour les pros que sur l'admin pour la carte des demandes
-2025-11-27T17:30:36+01:00 - 69dff818 - Maxime Dréau : Fix l'affichage de la couche demandes
-2025-11-27T16:50:16+01:00 - 1ff8a1e1 - Maxime Dréau : Ajoute une migration pour quartiers_prioritaires_politique_ville
-2025-11-27T16:50:16+01:00 - def6f625 - Maxime Dréau : Ajoute l'import des QPV + maj requête d'extraction des données
-2025-11-27T16:44:22+01:00 - 822387f8 - Maxime Dréau : Merge pull request #1163 from betagouv/new_dashboards_admin
-2025-11-27T16:39:29+01:00 - ba4a0b7a - Maxime Dréau : Fix Tag en tant que span plutôt que p
-2025-11-27T16:39:29+01:00 - bc6a2065 - Maxime Dréau : Renommage DemandesStatsPage => DemandsStatsPage
-2025-11-27T16:39:28+01:00 - 6f5145f5 - Maxime Dréau : Nettoie des styles inutiles
-2025-11-27T16:39:28+01:00 - f4a96214 - Maxime Dréau : Destructure un peu les variables
-2025-11-27T16:39:28+01:00 - 7bc62af0 - Maxime Dréau : Arrange un peu les couleurs pour utiliser couleurs fcu
-2025-11-27T16:39:28+01:00 - d258c5ec - Maxime Dréau : Cale demands_filters sur la clé du tableau
-2025-11-27T16:39:28+01:00 - 08a5c56d - Maxime Dréau : Timeago => TimeAgo
-2025-11-27T16:39:28+01:00 - 08ad343d - Maxime Dréau : p => div
-2025-11-27T16:39:28+01:00 - 3b1c83a1 - Maxime Dréau : Utilise le badge interne pour Actif
-2025-11-27T16:39:28+01:00 - b73e3bd6 - Maxime Dréau : Fix le tri par allTime
-2025-11-27T16:39:27+01:00 - cf95867a - Maxime Dréau : Renomme la page tags-stats => demandes/stats
-2025-11-27T16:39:27+01:00 - d164ea65 - Maxime Dréau : Lint
-2025-11-27T16:39:27+01:00 - 81e412b7 - Maxime Dréau : Arrange le lien entre la page stats et les demandes filtrées par tag
-2025-11-27T16:39:27+01:00 - f154981f - Maxime Dréau : Fais en sorte de réinitialiser complètement
-2025-11-27T16:39:27+01:00 - 33350afa - Maxime Dréau : Ajoute un bouton filtre au niveau du tableau
-2025-11-27T16:39:27+01:00 - cb706444 - Maxime Dréau : Déplace stats all time avant 6 mois
-2025-11-27T16:39:27+01:00 - 8a8ed711 - Maxime Dréau : Améliore le filtre par date
-2025-11-27T16:39:26+01:00 - 857aab3b - Maxime Dréau : Lot d'améliorations
-2025-11-27T16:39:26+01:00 - f6797910 - Maxime Dréau : Nettoyage anciens fichiers / types
-2025-11-27T16:39:26+01:00 - 5e12c387 - Maxime Dréau : Affiche mention jamais connecté
-2025-11-27T16:39:26+01:00 - 8e7cc70a - Maxime Dréau : Fix et simplifie le filtre equalsAny
-2025-11-27T16:39:26+01:00 - 635e08d4 - Maxime Dréau : Nettoie la colonne type non visible
-2025-11-27T16:39:26+01:00 - 1b4742e0 - Maxime Dréau : Ajoute un composant Timeago pour la date de dernière connexion
-2025-11-27T16:39:26+01:00 - a0497db3 - Maxime Dréau : Fix le filtre type
-2025-11-27T16:39:25+01:00 - 3e2a4f13 - Maxime Dréau : Supprime la colonne type de tag
-2025-11-27T16:39:25+01:00 - 90e237a2 - Maxime Dréau : Améliore les performances de la requête
-2025-11-27T16:39:25+01:00 - 1f210ca8 - Maxime Dréau : Permet de logger simplement les requêtes SQL en dev
-2025-11-27T16:39:25+01:00 - e0a326b6 - Maxime Dréau : Simplifie les écrans, requêtes, types
-2025-11-27T16:23:57+01:00 - 05d963cb - Maxime Dréau : WIP dashboards tags avec indicateurs sur les demandes
-2025-11-27T15:56:00+01:00 - 97aaec5f - Maxime Dréau : Merge pull request #1165 from betagouv/improve_api_networks
-2025-11-27T14:49:14+01:00 - 37c6bd1c - Maxime Dréau : Merge branch 'dev'
 2025-11-27T17:37:10+04:00 - a884ec9d - Martin Ratinaud. Web Solutions Creator. : Merge pull request #1166 from betagouv/demandes_ameliorations
+2025-11-27T17:30:36+01:00 - 69dff818 - Maxime Dréau : Fix l'affichage de la couche demandes
 2025-11-27T17:05:16+04:00 - 6d386e94 - Martin Ratinaud : Fixe typescript
 2025-11-27T16:50:55+04:00 - 55078524 - Martin Ratinaud : Supprime index inutile
+2025-11-27T16:50:16+01:00 - def6f625 - Maxime Dréau : Ajoute l'import des QPV + maj requête d'extraction des données
+2025-11-27T16:50:16+01:00 - 1ff8a1e1 - Maxime Dréau : Ajoute une migration pour quartiers_prioritaires_politique_ville
 2025-11-27T16:50:13+04:00 - 2c8174ec - Martin Ratinaud : Ajoute "Recontacté par le gestionnaire et fixe le "Prise de contact"
+2025-11-27T16:44:22+01:00 - 822387f8 - Maxime Dréau : Merge pull request #1163 from betagouv/new_dashboards_admin
+2025-11-27T16:39:29+01:00 - bc6a2065 - Maxime Dréau : Renommage DemandesStatsPage => DemandsStatsPage
+2025-11-27T16:39:29+01:00 - ba4a0b7a - Maxime Dréau : Fix Tag en tant que span plutôt que p
+2025-11-27T16:39:28+01:00 - f4a96214 - Maxime Dréau : Destructure un peu les variables
+2025-11-27T16:39:28+01:00 - d258c5ec - Maxime Dréau : Cale demands_filters sur la clé du tableau
+2025-11-27T16:39:28+01:00 - b73e3bd6 - Maxime Dréau : Fix le tri par allTime
+2025-11-27T16:39:28+01:00 - 7bc62af0 - Maxime Dréau : Arrange un peu les couleurs pour utiliser couleurs fcu
+2025-11-27T16:39:28+01:00 - 6f5145f5 - Maxime Dréau : Nettoie des styles inutiles
+2025-11-27T16:39:28+01:00 - 3b1c83a1 - Maxime Dréau : Utilise le badge interne pour Actif
+2025-11-27T16:39:28+01:00 - 08ad343d - Maxime Dréau : p => div
+2025-11-27T16:39:28+01:00 - 08a5c56d - Maxime Dréau : Timeago => TimeAgo
+2025-11-27T16:39:27+01:00 - f154981f - Maxime Dréau : Fais en sorte de réinitialiser complètement
+2025-11-27T16:39:27+01:00 - d164ea65 - Maxime Dréau : Lint
+2025-11-27T16:39:27+01:00 - cf95867a - Maxime Dréau : Renomme la page tags-stats => demandes/stats
+2025-11-27T16:39:27+01:00 - cb706444 - Maxime Dréau : Déplace stats all time avant 6 mois
+2025-11-27T16:39:27+01:00 - 8a8ed711 - Maxime Dréau : Améliore le filtre par date
+2025-11-27T16:39:27+01:00 - 81e412b7 - Maxime Dréau : Arrange le lien entre la page stats et les demandes filtrées par tag
+2025-11-27T16:39:27+01:00 - 33350afa - Maxime Dréau : Ajoute un bouton filtre au niveau du tableau
+2025-11-27T16:39:26+01:00 - f6797910 - Maxime Dréau : Nettoyage anciens fichiers / types
+2025-11-27T16:39:26+01:00 - a0497db3 - Maxime Dréau : Fix le filtre type
+2025-11-27T16:39:26+01:00 - 8e7cc70a - Maxime Dréau : Fix et simplifie le filtre equalsAny
+2025-11-27T16:39:26+01:00 - 857aab3b - Maxime Dréau : Lot d'améliorations
+2025-11-27T16:39:26+01:00 - 635e08d4 - Maxime Dréau : Nettoie la colonne type non visible
+2025-11-27T16:39:26+01:00 - 5e12c387 - Maxime Dréau : Affiche mention jamais connecté
+2025-11-27T16:39:26+01:00 - 1b4742e0 - Maxime Dréau : Ajoute un composant Timeago pour la date de dernière connexion
+2025-11-27T16:39:25+01:00 - e0a326b6 - Maxime Dréau : Simplifie les écrans, requêtes, types
+2025-11-27T16:39:25+01:00 - 90e237a2 - Maxime Dréau : Améliore les performances de la requête
+2025-11-27T16:39:25+01:00 - 3e2a4f13 - Maxime Dréau : Supprime la colonne type de tag
+2025-11-27T16:39:25+01:00 - 1f210ca8 - Maxime Dréau : Permet de logger simplement les requêtes SQL en dev
 2025-11-27T16:26:02+04:00 - bd728f31 - Martin Ratinaud : Affiche mieux les demandes du mois en cours
+2025-11-27T16:23:57+01:00 - 05d963cb - Maxime Dréau : WIP dashboards tags avec indicateurs sur les demandes
 2025-11-27T16:22:56+04:00 - 0fe18737 - Martin Ratinaud : Fixe erreurs typescript
 2025-11-27T16:14:15+04:00 - 781b39aa - Martin Ratinaud : Simplifie le code
+2025-11-27T15:56:00+01:00 - 97aaec5f - Maxime Dréau : Merge pull request #1165 from betagouv/improve_api_networks
 2025-11-27T15:46:06+04:00 - 26cc2636 - Martin Ratinaud : Affiche correctement les tags + communes dans les demandes admin
 2025-11-27T15:25:45+04:00 - 1f79801d - Martin Ratinaud : Affiche le nombre de demandes du mois en cours
 2025-11-27T15:25:44+04:00 - 4a814cd6 - Martin Ratinaud : Remplace legacy commentaires par nouveaux dans la table
+2025-11-27T14:49:14+01:00 - 37c6bd1c - Maxime Dréau : Merge branch 'dev'
 2025-11-27T11:40:57+01:00 - e561f662 - Maxime Dréau : Diminue le rate limit sur la route /api/v1/networks
 2025-11-27T11:32:40+01:00 - 40383567 - Maxime Dréau : Simplification api networks en 1 requête et streaming de la réponse
 2025-11-26T18:39:14+04:00 - 5b5f8b4c - Martin Ratinaud : Repasse à /pro/demandes
@@ -318,60 +336,60 @@
 2025-11-20T09:34:59+04:00 - abe467d3 - Martin Ratinaud. Web Solutions Creator. : Merge pull request #1159 from betagouv/airtable_toPostgres_demands_email_automation
 2025-11-19T17:03:27+01:00 - 7df18146 - Maxime Dréau : Utilise les $if de kysely
 2025-11-19T16:53:49+01:00 - 73c10001 - Maxime Dréau : Simplifie la notation des requêtes par filtre gestionnaire
-2025-11-19T15:16:19+01:00 - 9a703e69 - Maxime Dréau : N'affiche pas la distance si pas éligible
-2025-11-19T15:13:24+01:00 - 3a77b8e4 - Maxime Dréau : Fix résultat non proche réseau quand cas les cas loin
 2025-11-19T16:12:19+04:00 - 3b24d96c - Martin Ratinaud : Affiche mieux le changement d'affectation
 2025-11-19T16:02:12+04:00 - 3957657a - Martin Ratinaud : Ajoute les evenements pour update et delete des demandes
 2025-11-19T15:46:20+04:00 - fc20826d - Martin Ratinaud : Utilise trpc pour supprimer une demande
 2025-11-19T15:35:20+04:00 - 2b9aa23d - Martin Ratinaud : Bouge les constantes d'eligibilite dans demands
 2025-11-19T15:24:03+04:00 - 66355177 - Martin Ratinaud : Renomme l'email legacy car il a été migré
+2025-11-19T15:16:19+01:00 - 9a703e69 - Maxime Dréau : N'affiche pas la distance si pas éligible
+2025-11-19T15:13:24+01:00 - 3a77b8e4 - Maxime Dréau : Fix résultat non proche réseau quand cas les cas loin
+2025-11-19T12:43:06+04:00 - f12c4b7b - Martin Ratinaud : Supprime les restes airtable pour les demandes
 2025-11-19T11:57:19+01:00 - 261c1f37 - Maxime Dréau : style: adapte la hauteur du tableau à l'écran
 2025-11-19T11:57:18+01:00 - 2e47b10c - Maxime Dréau : Complète le titre des cas PDP dans la help dialog
-2025-11-19T12:43:06+04:00 - f12c4b7b - Martin Ratinaud : Supprime les restes airtable pour les demandes
-2025-11-19T09:26:12+01:00 - ccaf2ed7 - Maxime Dréau : Merge pull request #1158 from betagouv/batch_last_connection
 2025-11-19T11:47:05+04:00 - a38fe6d9 - Martin Ratinaud : Remets dans à valider quand une demande de changement d'affectation est faite
 2025-11-19T11:06:30+04:00 - f0017631 - Martin Ratinaud : Affiche la demande de réaffectation
 2025-11-19T11:06:30+04:00 - 8b859bec - Martin Ratinaud : Supprime fichier inutile
+2025-11-19T09:26:12+01:00 - ccaf2ed7 - Maxime Dréau : Merge pull request #1158 from betagouv/batch_last_connection
 2025-11-19T08:52:23+04:00 - 5cd1ff8f - Martin Ratinaud : Fixe import TableSimple
 2025-11-19T08:46:43+04:00 - 1a1e923f - Martin Ratinaud : Fixe tests
 2025-11-19T08:20:27+04:00 - 2c611799 - Martin Ratinaud : Fixe doc
-2025-11-19T07:40:38+04:00 - 4528d5b3 - Martin Ratinaud : Fixe le filtre des types
 2025-11-19T07:40:38+04:00 - 6d6accb7 - Martin Ratinaud : Fixe l'affichage des listes triés + deplacement de certaines infos
+2025-11-19T07:40:38+04:00 - 4528d5b3 - Martin Ratinaud : Fixe le filtre des types
 2025-11-19T07:40:38+04:00 - 1b2fb426 - Martin Ratinaud : Passe les emails de demande en mode trpc
 2025-11-19T07:40:37+04:00 - 174dce70 - Martin Ratinaud : Factorise l'utilisation de legacy_values pour facilement migrer plus tard
 2025-11-19T07:40:36+04:00 - 21429122 - Martin Ratinaud : Factorise les QuickFilterPresets
 2025-11-19T07:40:02+04:00 - f592d678 - Martin Ratinaud : Recupere les données d'adresse du test d'adresse dans l'admin
 2025-11-19T07:40:02+04:00 - ece712e4 - Martin Ratinaud : Ajoute des routes trpc pour listes des demandes
 2025-11-19T07:37:18+04:00 - 08f44f89 - Martin Ratinaud : Ajoute des champs manquants dans l'admin
-2025-11-19T07:37:17+04:00 - 4a891f54 - Martin Ratinaud : Adapte le formulaire de satisfaction à trpc
 2025-11-19T07:37:17+04:00 - a1e2abfa - Martin Ratinaud : Ajoute un HiddenInput à useForm
+2025-11-19T07:37:17+04:00 - 4a891f54 - Martin Ratinaud : Adapte le formulaire de satisfaction à trpc
 2025-11-19T07:37:16+04:00 - ec057095 - Martin Ratinaud : Fixe load env variables dans cron
 2025-11-19T07:37:16+04:00 - a2ba2aec - Martin Ratinaud : Fixe la création de demande pour rester cohérent avec les valeurs legacy
 2025-11-19T07:37:16+04:00 - 92f7a8a1 - Martin Ratinaud : Supprime "Date demandes" qui n'etait qu'un formatage de "Date de la demande"
+2025-11-19T07:37:15+04:00 - c508e0e7 - Martin Ratinaud : Envoi l'email de reaffectation
 2025-11-19T07:37:15+04:00 - 6bf7e469 - Martin Ratinaud : Envoi d'email lors de réception de la satisfaction sur une demande
 2025-11-19T07:37:15+04:00 - 0f11872e - Martin Ratinaud : Supprime le ever loading sur les demandes quand il n'y en a pas
-2025-11-19T07:37:15+04:00 - c508e0e7 - Martin Ratinaud : Envoi l'email de reaffectation
 2025-11-19T07:37:14+04:00 - 13d374e8 - Martin Ratinaud : Bouge les emails dans le module email et crée l'email aux admin quand une demande est créée
+2025-11-19T07:37:13+04:00 - d1ebbee3 - Martin Ratinaud : Ajoute un commentaire sur les Chips autocomplete compliqué
 2025-11-19T07:37:13+04:00 - 8dd1f7a6 - Martin Ratinaud : Envoie un email à l'admin quand une nouvelle demande est créée
 2025-11-19T07:37:13+04:00 - 1e15c47b - Martin Ratinaud : Ajoute config emails + composant email
-2025-11-19T07:37:13+04:00 - d1ebbee3 - Martin Ratinaud : Ajoute un commentaire sur les Chips autocomplete compliqué
 2025-11-19T07:37:12+04:00 - d2999c52 - Martin Ratinaud : Crée des index spécifiques sur les legacy values
 2025-11-19T07:37:12+04:00 - bf29b49c - Martin Ratinaud : Meilleure documentation
 2025-11-19T07:37:11+04:00 - 60fa2aeb - Martin Ratinaud : Throw plus facilement
 2025-11-19T07:37:11+04:00 - 36f4673f - Martin Ratinaud : Supprime fichier inutile
 2025-11-19T07:37:11+04:00 - 1d31b048 - Martin Ratinaud : Améliore .env.example
+2025-11-19T07:37:10+04:00 - f534d460 - Martin Ratinaud : Supprime scripts inutiles
 2025-11-19T07:37:10+04:00 - ce8ac916 - Martin Ratinaud : Enlève les valeurs de tiles inutiles
 2025-11-19T07:37:10+04:00 - c32645d2 - Martin Ratinaud : Supprime comments inutiles
-2025-11-19T07:37:10+04:00 - f534d460 - Martin Ratinaud : Supprime scripts inutiles
-2025-11-19T07:37:09+04:00 - 08cd4e62 - Martin Ratinaud : Ajoute une skill pour fixer les erreurs ts
 2025-11-19T07:37:09+04:00 - e4974711 - Martin Ratinaud : Ajoute .env.example pour référence
 2025-11-19T07:37:09+04:00 - 604e0c1c - Martin Ratinaud : Build les tiles depuis pg au lieu de airtable
+2025-11-19T07:37:09+04:00 - 08cd4e62 - Martin Ratinaud : Ajoute une skill pour fixer les erreurs ts
 2025-11-19T07:37:08+04:00 - aafec7b4 - Martin Ratinaud : Fixe la sélection des gestionnaires en base
 2025-11-19T07:37:08+04:00 - 1e78f41e - Martin Ratinaud : Fixe la couleur des tags 'non affecté'
-2025-11-19T07:37:07+04:00 - 70b48a42 - Martin Ratinaud : Adapte les valeurs par défaut sur les Autocomplete apres migration de Airtable
 2025-11-19T07:37:07+04:00 - cc1c36e6 - Martin Ratinaud : Importe les emails
-2025-11-19T07:37:06+04:00 - ce1e890b - Martin Ratinaud : Importe les emails
+2025-11-19T07:37:07+04:00 - 70b48a42 - Martin Ratinaud : Adapte les valeurs par défaut sur les Autocomplete apres migration de Airtable
 2025-11-19T07:37:06+04:00 - f625db7a - Martin Ratinaud : Importe et utilise les données Airtable dans PG
+2025-11-19T07:37:06+04:00 - ce1e890b - Martin Ratinaud : Importe les emails
 2025-11-19T07:37:05+04:00 - f138e13c - Martin Ratinaud : Améliore génération de code Claude
 2025-11-18T14:19:11+01:00 - 5ec93d81 - Maxime Dréau : Merge pull request #1156 from betagouv/ameliorations_dashboards_admins
 2025-11-18T12:34:47+01:00 - c0ec011e - Maxime Dréau : Déplace les composants table dans un dossier spécifique
@@ -382,22 +400,22 @@
 2025-11-17T17:00:00+01:00 - f4173819 - Maxime Dréau : style: aligne horizontalement
 2025-11-17T16:42:23+01:00 - 507b076a - Maxime Dréau : Fix synchro airtable des données réseaux
 2025-11-17T15:26:58+01:00 - 4485432d - Maxime Dréau : style: supprime le nowrap des cellules DateTime
-2025-11-17T11:07:52+01:00 - f4e194da - Maxime Dréau : Ajoute un cache de session et batch les requêtes last_connection
 2025-11-17T11:08:23+04:00 - 28f70488 - Martin Ratinaud : Fixe addresse qui reste quand on la supprime depuis la carte
+2025-11-17T11:07:52+01:00 - f4e194da - Maxime Dréau : Ajoute un cache de session et batch les requêtes last_connection
 2025-11-14T18:21:07+01:00 - a421af01 - Maxime Dréau : Merge pull request #1157 from betagouv/ameliorations_tuiles_fcu
-2025-11-14T18:16:33+01:00 - 15bb8ade - Maxime Dréau : Utilise les champs des tuiles RDC dans la popup
 2025-11-14T18:16:33+01:00 - 866b56e4 - Maxime Dréau : Renomme les endpoints des tuiles réseaux
-2025-11-14T17:04:50+01:00 - 0eefd1c0 - Maxime Dréau : Compresse les tuiles des données FCU
+2025-11-14T18:16:33+01:00 - 15bb8ade - Maxime Dréau : Utilise les champs des tuiles RDC dans la popup
 2025-11-14T17:04:50+01:00 - a689538f - Maxime Dréau : Refactor les champs générés pour les tuiles FCU
+2025-11-14T17:04:50+01:00 - 0eefd1c0 - Maxime Dréau : Compresse les tuiles des données FCU
 2025-11-14T15:23:52+01:00 - 333b1761 - Maxime Dréau : Ajoute l'id_fcu dans les props des tuiles RDF
 2025-11-14T15:20:06+01:00 - 6051e66b - Maxime Dréau : Passe le bouton de DL geojson en small
 2025-11-14T12:29:27+01:00 - eeac9a17 - Maxime Dréau : perf(ChipAutoComplete): n'évalue la liste des options seulement quand ouvert
 2025-11-14T12:29:27+01:00 - cca7adfe - Maxime Dréau : Renommage actif => activé
-2025-11-13T18:04:48+01:00 - 2a996ae3 - Maxime Dréau : Supprime le bouton export utilisateurs obsolètes
 2025-11-13T18:04:48+01:00 - 8c61bafb - Maxime Dréau : Ajoute un bouton export pour les données des tableaux
+2025-11-13T18:04:48+01:00 - 2a996ae3 - Maxime Dréau : Supprime le bouton export utilisateurs obsolètes
 2025-11-13T18:04:48+01:00 - 01b3c0f3 - Maxime Dréau : Ajout d'un filtre tableau sur les champs date
 2025-11-13T11:04:27+01:00 - 201ca28b - Maxime Dréau : Merge pull request #1155 from betagouv/telechargement_traces_rdc_carte
 2025-11-13T10:59:54+01:00 - 6aaaa912 - Maxime Dréau : Permet de télécharger les geojson des réseaux
 2025-11-13T10:56:19+01:00 - e95966c0 - Maxime Dréau : Merge pull request #1154 from betagouv/dashboard_admin_users
 2025-11-12T15:59:23+01:00 - 2b9b620b - Maxime Dréau : Supprime des casts inutiles
-2025-11-12T15:35:08+01:00 - c172ffca - Maxime Dréau : Permet de supprimer les utilisateurs
+2025-11-12T15:35:08+01:00 - c172ffca - Maxime Dréau : Permet de supprimer les utilisateurs2026-01-29T17:57:33+01:00 - a6959841 - Maxime Dréau : Gitignore CLAUDE.md [skip ci]
