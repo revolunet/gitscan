@@ -87,11 +87,13 @@
 │   │       │   │   ├── mission
 │   │       │   │   │   ├── __models.yml
 │   │       │   │   │   ├── int_mission.sql
-│   │       │   │   │   ├── int_mission_active_daily.sql
+│   │       │   │   │   ├── int_mission_active_department_range.sql
+│   │       │   │   │   ├── int_mission_active_range.sql
 │   │       │   │   │   ├── int_mission_address.sql
+│   │       │   │   │   ├── int_mission_first_events.sql
 │   │       │   │   │   └── int_mission_moderation_status.sql
 │   │       │   │   ├── organization
-│   │       │   │   │   └── int_organization_active_daily.sql
+│   │       │   │   │   └── int_organization_active_range.sql
 │   │       │   │   ├── publisher
 │   │       │   │   │   └── int_publisher_organization.sql
 │   │       │   │   ├── stat_event
@@ -116,11 +118,14 @@
 │   │       │   │   ├── mission
 │   │       │   │   │   ├── __models.yml
 │   │       │   │   │   ├── mission.sql
-│   │       │   │   │   ├── mission_active_daily.sql
+│   │       │   │   │   ├── mission_active_department_monthly.sql
 │   │       │   │   │   ├── mission_active_monthly.sql
 │   │       │   │   │   ├── mission_address.sql
 │   │       │   │   │   ├── mission_event.sql
-│   │       │   │   │   └── mission_moderation_status.sql
+│   │       │   │   │   ├── mission_events_yearly.sql
+│   │       │   │   │   ├── mission_moderation_status.sql
+│   │       │   │   │   ├── mission_time_to_event_monthly.sql
+│   │       │   │   │   └── mission_time_to_event_weekly.sql
 │   │       │   │   ├── moderation
 │   │       │   │   │   ├── __models.yml
 │   │       │   │   │   └── moderation_event.sql
@@ -146,6 +151,7 @@
 │   │       │   │   │   ├── __models.yml
 │   │       │   │   │   ├── global_events.sql
 │   │       │   │   │   ├── global_events_daily.sql
+│   │       │   │   │   ├── global_events_monthly.sql
 │   │       │   │   │   ├── global_mission_activity.sql
 │   │       │   │   │   ├── mean_from_publisher_sources.sql
 │   │       │   │   │   └── mean_from_publisher_sources_enriched.sql
@@ -217,7 +223,8 @@
 │   │       ├── profiles.yml
 │   │       ├── requirements.txt
 │   │       ├── seeds
-│   │       │   └── .gitkeep
+│   │       │   ├── .gitkeep
+│   │       │   └── department_codes.csv
 │   │       ├── snapshots
 │   │       │   └── .gitkeep
 │   │       └── tests
@@ -511,6 +518,7 @@
 │   │   │       ├── compare.ts
 │   │   │       ├── normalize.ts
 │   │   │       └── options.ts
+│   │   ├── reconcile-apply-click-ids.ts
 │   │   ├── update-campaigns-trackers.ts
 │   │   ├── update-mission-moderation-status.ts
 │   │   └── update-sdis-publisher.ts
@@ -558,7 +566,6 @@
 │   │   │   ├── warning.ts
 │   │   │   └── widget.ts
 │   │   ├── db
-│   │   │   ├── mongo.ts
 │   │   │   └── postgres.ts
 │   │   ├── error.ts
 │   │   ├── index.ts
@@ -668,8 +675,6 @@
 │   │   │   ├── logger.ts
 │   │   │   ├── passport.ts
 │   │   │   └── rate-limite.ts
-│   │   ├── models
-│   │   │   └── mission.ts
 │   │   ├── repositories
 │   │   │   ├── activity.ts
 │   │   │   ├── campaign.ts
@@ -705,6 +710,7 @@
 │   │   │   │   ├── api.ts
 │   │   │   │   └── types.ts
 │   │   │   ├── email.ts
+│   │   │   ├── geopf.ts
 │   │   │   ├── import-rna.ts
 │   │   │   ├── import.ts
 │   │   │   ├── login-history.ts
@@ -766,7 +772,6 @@
 │   │   │   │   ├── organization.test.ts
 │   │   │   │   └── string.test.ts
 │   │   │   ├── array.ts
-│   │   │   ├── es.ts
 │   │   │   ├── geo.ts
 │   │   │   ├── index.ts
 │   │   │   ├── job.ts
@@ -803,9 +808,14 @@
 │   │   │   ├── index.ts
 │   │   │   ├── mission.ts
 │   │   │   ├── publisher.ts
-│   │   │   └── stat-event.ts
+│   │   │   ├── stat-event.ts
+│   │   │   └── widget.ts
 │   │   ├── integration
 │   │   │   ├── api
+│   │   │   │   ├── iframe
+│   │   │   │   │   ├── aggs.test.ts
+│   │   │   │   │   ├── search.test.ts
+│   │   │   │   │   └── widget.test.ts
 │   │   │   │   ├── redirect
 │   │   │   │   │   ├── account.test.ts
 │   │   │   │   │   ├── apply.test.ts
@@ -896,7 +906,6 @@
 │   │   │       └── trash-icon.svg
 │   │   ├── components
 │   │   │   ├── AnalyticsViz.jsx
-│   │   │   ├── Autocomplete.jsx
 │   │   │   ├── Chart.jsx
 │   │   │   ├── DateRangePicker.jsx
 │   │   │   ├── Dropdown.jsx
@@ -906,19 +915,21 @@
 │   │   │   ├── InfoAlert.jsx
 │   │   │   ├── Loader.jsx
 │   │   │   ├── Modal.jsx
-│   │   │   ├── MultiSearchSelect.jsx
 │   │   │   ├── Nav.jsx
 │   │   │   ├── New-Modal.jsx
-│   │   │   ├── NewSelect.jsx
 │   │   │   ├── Pie.jsx
 │   │   │   ├── RadioInput.jsx
 │   │   │   ├── SearchInput.jsx
-│   │   │   ├── SearchSelect.jsx
+│   │   │   ├── Select.jsx
 │   │   │   ├── Table.jsx
 │   │   │   ├── Tabs.jsx
 │   │   │   ├── Toggle.jsx
 │   │   │   ├── Tooltip.jsx
-│   │   │   └── WarningAlert.jsx
+│   │   │   ├── WarningAlert.jsx
+│   │   │   └── combobox
+│   │   │       ├── LocationCombobox.jsx
+│   │   │       ├── MissionCombobox.jsx
+│   │   │       └── index.jsx
 │   │   ├── constants
 │   │   │   └── index.jsx
 │   │   ├── index.css
@@ -989,9 +1000,6 @@
 │   │   │   ├── my-missions
 │   │   │   │   ├── Flux.jsx
 │   │   │   │   ├── Moderation.jsx
-│   │   │   │   ├── components
-│   │   │   │   │   ├── SelectCity.jsx
-│   │   │   │   │   └── SelectOrganization.jsx
 │   │   │   │   └── index.jsx
 │   │   │   ├── performance
 │   │   │   │   ├── AnalyticsCard.jsx
@@ -1159,4 +1167,4 @@
         ├── resizeHelper.ts
         ├── store.ts
         └── utils.ts
-308 directories, 853 files
+308 directories, 861 files
