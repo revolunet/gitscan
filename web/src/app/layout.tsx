@@ -4,6 +4,7 @@ import Link from "next/link";
 import reposData from "../../data/repos.json";
 
 const organizations = [
+  //@ts-ignore
   ...new Set(reposData.repos.map((repo) => repo && repo.organization)),
 ].sort();
 
