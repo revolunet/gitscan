@@ -3,8 +3,8 @@ import { ContributionGraph } from "@/components/ContributionGraph";
 import type { AggregatedData, ContributionsByOrg } from "@/lib/types";
 import { Changelog } from "@/components/Changelog";
 import { RepoCard } from "@/components/RepoCard";
-import reposData from "../../../../../data/repos.json";
-import contributionsByOrgData from "../../../../../data/contributions-by-org.json";
+import reposData from "../../../../data/repos.json";
+import contributionsByOrgData from "../../../../data/contributions-by-org.json";
 
 const data = reposData as AggregatedData;
 const contributionsByOrg = contributionsByOrgData as ContributionsByOrg;
