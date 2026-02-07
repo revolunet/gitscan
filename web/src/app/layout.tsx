@@ -4,7 +4,7 @@ import Link from "next/link";
 import reposData from "../../data/repos.json";
 
 const organizations = [
-  ...new Set(reposData.repos.map((repo) => repo.organization)),
+  ...new Set(reposData.repos.map((repo) => repo && repo.organization)),
 ].sort();
 
 export const metadata = {
