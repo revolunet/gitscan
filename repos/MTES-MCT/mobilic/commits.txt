@@ -1,3 +1,36 @@
+2026-02-06T15:21:39+01:00 - e32c8f17 - Gaspard "Sarp" Lonchampt : Merge pull request #789 from MTES-MCT/epic/admin_table_rework
+2026-02-06T15:05:59+01:00 - ebf66242 - Gaspard Lonchampt : refactor(employees): use backend-computed status and deduplication
+2026-02-06T15:05:59+01:00 - d82bfb6b - Gaspard Lonchampt : fix(employees): sort detached employees at end of table
+2026-02-06T15:05:59+01:00 - 62b7fe46 - Gaspard Lonchampt : refactor(web): centralize DSFR styles in filter components
+2026-02-06T15:05:59+01:00 - 4623045b - Gaspard Lonchampt : fix(web): add latestPerUser to employment mutations to prevent duplicates
+2026-02-06T15:05:59+01:00 - 25e6401b - Gaspard Lonchampt : fix(web): handle emailSent response from reattachEmployment mutation
+2026-02-06T15:05:56+01:00 - dd6be924 - Gaspard Lonchampt : fix(web): resolve ESLint warnings
+2026-02-06T15:03:32+01:00 - e06afc7d - Gaspard Lonchampt :  feat(admin,employees): add inactive employee status badge
+2026-02-06T15:03:32+01:00 - c2cd7842 - Gaspard Lonchampt : feat(admin,employees): improve terminate employment modal table styling
+2026-02-06T15:03:32+01:00 - c2be19c0 - Gaspard Lonchampt : feat(admin,employees): add batch terminate employment modal for inactive employees
+2026-02-06T15:03:32+01:00 - b1189496 - Gaspard Lonchampt : refactor(admin): use useRef for hasTrackedBannerView
+2026-02-06T15:03:32+01:00 - aa4a5d81 - Gaspard Lonchampt : refactor(web): redesign employee table with inline editing
+2026-02-06T15:03:32+01:00 - a1a45a29 - Gaspard Lonchampt : feat(admin,employees): fix tooltip display to overflow theader
+2026-02-06T15:03:32+01:00 - 90563684 - Gaspard Lonchampt : fix(admin,employees): disable date input when employee checkbox is unchecked
+2026-02-06T15:03:32+01:00 - 80ced529 - Gaspard Lonchampt : refactor(admin): remove unused terminateEmployment function
+2026-02-06T15:03:32+01:00 - 67eca3b3 - Gaspard Lonchampt : fix(admin,employees): remove redundant columns from employees table
+2026-02-06T15:03:32+01:00 - 4d16deef - Gaspard Lonchampt :  feat(admin,activities): add inactive employees dropdown
+2026-02-06T15:03:32+01:00 - 3eadcb10 - Gaspard Lonchampt : refactor(admin,employees): extract utility functions and improve code quality
+2026-02-06T15:03:32+01:00 - 3693caf0 - Gaspard Lonchampt : feat(admin): use batch mutation for terminating employments
+2026-02-06T15:03:32+01:00 - 356cf426 - Gaspard Lonchampt : feat(web): add inline dropdowns for employee management
+2026-02-06T15:03:32+01:00 - 321ef6e8 - Gaspard Lonchampt : feat(web): add ReattachEmploymentModal
+2026-02-06T15:03:32+01:00 - 2fbdc157 - Gaspard Lonchampt : fix(admin): address PR review comments for inactive employees
+2026-02-06T15:03:32+01:00 - 13689878 - Gaspard Lonchampt : feat(web): add GraphQL mutations for employment management
+2026-02-05T16:06:18+01:00 - fcf3c291 - donia benharara : Update csp to authorize geoplatform domain
+2026-02-05T11:59:50+01:00 - d01936f3 - tristan-gueguen : fix(day,drawer): do not display Saisies a valider if mission is to be validated by employee
+2026-02-04T18:26:17+01:00 - 77ca58ae - tristan-gueguen : fix(mission,drawer): passed props day
+2026-02-04T18:21:02+01:00 - 4c4ee5b1 - tristan-gueguen : fix(mission,header): do not display both mission running and mission to validate tags
+2026-02-04T18:12:45+01:00 - 4a5c49ce - tristan-gueguen : fix(employee,alerts): typography size Infractions
+2026-02-04T18:06:37+01:00 - a5f9968f - tristan-gueguen : fix(header,mission): moved date text for mission on several days
+2026-02-04T17:29:20+01:00 - 41f4f23e - tristan-gueguen : fix(alerts,header): fixed style ipad employee view
+2026-02-02T18:27:21+01:00 - 2e542445 - Doniaab : Merge pull request #784 from MTES-MCT/feat/control-location-api
+2026-02-02T17:56:23+01:00 - 6673dfd7 - donia benharara : fix potential regex vulnerability
+2026-01-29T17:13:19+01:00 - 416a456d - donia benharara : use hook for duplicate code, enhance autocomplete
 2026-01-29T13:44:23+01:00 - 4c63c75e - tristan-gueguen : fix(drawer,holiday): fixed import
 2026-01-29T13:38:37+01:00 - f2733196 - tristan-gueguen : fix(drawer,holiday): do not display alerts and tags for a holiday mission
 2026-01-29T13:34:26+01:00 - 68595fbf - tristan-gueguen : fix(drawer,holiday): do not display alerts and tags for a day with only holidays
@@ -7,6 +40,7 @@
 2026-01-27T13:56:22+01:00 - 2d755788 - tristan-gueguen : refacto(time): refacto format mercredi 26 octobre 2026
 2026-01-27T13:55:44+01:00 - 4a18f63a - tristan-gueguen : refacto(time): MONDAY const
 2026-01-27T13:55:04+01:00 - 15f55994 - tristan-gueguen : fix(code): removed useless {} block
+2026-01-18T15:53:57+01:00 - 851770f3 - donia benharara : use geoplateforme api for control location instead of greco location table
 2026-01-14T17:22:39+01:00 - 562e1cd3 - Tristan Gueguen : feat(dsfr): edit icon in EditableMissionInfo
 2026-01-14T17:08:17+01:00 - f50841a6 - Tristan Gueguen : feat(drawers,mission,day): refacto drawer header, use it in MissioNDetails
 2026-01-13T18:49:24+01:00 - d96db1b7 - Tristan Gueguen : Merge branch 'master' of github.com:MTES-MCT/mobilic
@@ -82,12 +116,12 @@
 2025-12-12T10:35:03+01:00 - 26767c71 - tristan-gueguen : Merge pull request #752 from MTES-MCT/feat/admin-validations-alerts
 2025-12-12T10:32:54+01:00 - 32da79ed - Tristan Gueguen : fix(admin,workTimeTable): declare format columns outside of component
 2025-12-11T13:42:32+01:00 - d6570e4e - Tristan Gueguen : chore(lint): removed unused import - () rule
-2025-12-11T13:42:31+01:00 - 6d14e7ca - Tristan Gueguen : feat(company): display number of alerts by workday
+2025-12-11T13:42:31+01:00 - fc3a8d8e - Tristan Gueguen : feat(admin,alerts-summary): query back end to get number of alerts on current and previous month for all company or user
 2025-12-11T13:42:31+01:00 - e94a443b - Tristan Gueguen : feat(admin,activities): 06h00 -> 6h00, 0h35 -> 35min
+2025-12-11T13:42:31+01:00 - ae942c14 - Tristan Gueguen : feat(admin,activities): align left columns, dsfr arrow
 2025-12-11T13:42:31+01:00 - 913a2678 - Tristan Gueguen : feat(admin,activities): lower case en cours
 2025-12-11T13:42:31+01:00 - 81ee91ab - Tristan Gueguen : feat(admin,activities): do not display total work and rest if current mission not finished
-2025-12-11T13:42:31+01:00 - ae942c14 - Tristan Gueguen : feat(admin,activities): align left columns, dsfr arrow
-2025-12-11T13:42:31+01:00 - fc3a8d8e - Tristan Gueguen : feat(admin,alerts-summary): query back end to get number of alerts on current and previous month for all company or user
+2025-12-11T13:42:31+01:00 - 6d14e7ca - Tristan Gueguen : feat(company): display number of alerts by workday
 2025-12-10T20:13:38+01:00 - 6eb462be - Gaspard Lonchampt : fix(nginx): add API domains to playground CSP connect-src
 2025-12-10T19:35:19+01:00 - 11f83cf0 - Gaspard "Sarp" Lonchampt : Merge pull request #768 from MTES-MCT/fix/nginx_config_for_playground
 2025-12-10T19:31:50+01:00 - 6bdd218c - Gaspard Lonchampt : fix(nginx): resolve 502 on /developers/playground by fixing header inheritance
@@ -182,25 +216,25 @@
 2025-11-24T10:02:20+01:00 - 5ca5752b - Tristan Gueguen : fix(panel,regulatory): scss sonar error
 2025-11-24T09:40:26+01:00 - 60bb8792 - Tristan Gueguen : fix(exports): close excel modal when downloading
 2025-11-19T17:25:19+01:00 - 146d00b2 - Tristan Gueguen : chore(import): fixed import HTTP_QUERIES in useExports
-2025-11-19T17:23:53+01:00 - bbcadd4a - Tristan Gueguen : feat(admin,regulatory-summary): cache workDay queries as well
 2025-11-19T17:23:53+01:00 - fbff678b - Tristan Gueguen : feat(admin,regulatory-summary): cache regulatory alerts summary graphql queries
-2025-11-19T17:23:53+01:00 - 3b41ef22 - Tristan Gueguen : feat(admin,regulatory-summary): query missing workday for user to display day drawer
 2025-11-19T17:23:53+01:00 - da7a9e8a - Tristan Gueguen : chore(refacto): split apiQueries in different files
+2025-11-19T17:23:53+01:00 - bbcadd4a - Tristan Gueguen : feat(admin,regulatory-summary): cache workDay queries as well
+2025-11-19T17:23:53+01:00 - 3b41ef22 - Tristan Gueguen : feat(admin,regulatory-summary): query missing workday for user to display day drawer
 2025-11-19T17:20:32+01:00 - f5583ada - Tristan Gueguen : feat(admin,alerts-summary): refacto last month
-2025-11-19T17:20:32+01:00 - 59e2289f - Tristan Gueguen : feat(admin,alerts-summary): display days and open day drawer
 2025-11-19T17:20:32+01:00 - dfa5471d - Tristan Gueguen : feat(admin,alerts-summary): add team_id filter
-2025-11-19T17:20:32+01:00 - 0f37965d - Tristan Gueguen : chore(lint,prettier): fixed () rules in Activities
 2025-11-19T17:20:32+01:00 - 93d98aab - Tristan Gueguen : refacto(drawers): refacto mission and day drawers
+2025-11-19T17:20:32+01:00 - 59e2289f - Tristan Gueguen : feat(admin,alerts-summary): display days and open day drawer
+2025-11-19T17:20:32+01:00 - 0f37965d - Tristan Gueguen : chore(lint,prettier): fixed () rules in Activities
 2025-11-19T17:19:31+01:00 - f5e8fad9 - Tristan Gueguen : refacto(admin): moved MissionDrawer to drawers folder
 2025-11-19T17:19:31+01:00 - 73446117 - Tristan Gueguen : feat(admin,regulatory): add link to regulatory doc
-2025-11-19T17:19:30+01:00 - 3396fb1e - Tristan Gueguen : feat(admin,alerts-summary): returns list of alerts on the period by checks
-2025-11-19T17:19:30+01:00 - 9fe7e928 - Tristan Gueguen : feat(admin,alerts-summary): query back end to get number of alerts on current and previous month for all company or user
-2025-11-19T17:19:30+01:00 - 35a487dc - Tristan Gueguen : feat(admin,regulatoryPanel): dummy structure and summary card
-2025-11-19T17:19:30+01:00 - 66f8b050 - Tristan Gueguen : feat(admin,regulatory): can select a team if any, display correct list of users
 2025-11-19T17:19:30+01:00 - e2f4966e - Tristan Gueguen : feat(admin,regulatory): employee filter
+2025-11-19T17:19:30+01:00 - 9fe7e928 - Tristan Gueguen : feat(admin,alerts-summary): query back end to get number of alerts on current and previous month for all company or user
+2025-11-19T17:19:30+01:00 - 66f8b050 - Tristan Gueguen : feat(admin,regulatory): can select a team if any, display correct list of users
+2025-11-19T17:19:30+01:00 - 35a487dc - Tristan Gueguen : feat(admin,regulatoryPanel): dummy structure and summary card
+2025-11-19T17:19:30+01:00 - 3396fb1e - Tristan Gueguen : feat(admin,alerts-summary): returns list of alerts on the period by checks
 2025-11-19T17:19:30+01:00 - 25e088cd - Tristan Gueguen : fix(filters): fixed multiple=false for EmployeeFilter and TeamFilter
-2025-11-19T17:19:30+01:00 - 0b793404 - Tristan Gueguen : feat(admin,regulatory): dummy regulatory panel with team selector
 2025-11-19T17:19:30+01:00 - 1ca62cdc - Tristan Gueguen : fix(team-filter): fix multiple={false} TeamFilter component
+2025-11-19T17:19:30+01:00 - 0b793404 - Tristan Gueguen : feat(admin,regulatory): dummy regulatory panel with team selector
 2025-11-19T16:59:15+01:00 - 8f6f7c40 - tristan-gueguen : Merge pull request #742 from MTES-MCT/feat/async-exports-no-mails
 2025-11-19T15:40:27+01:00 - 82a00ec1 - Tristan Gueguen : fix(exports): delay first updateExports by 1s
 2025-11-19T15:39:58+01:00 - 19034474 - Tristan Gueguen : fix(errors): 202 is not an error code
@@ -208,9 +242,9 @@
 2025-11-18T17:48:48+01:00 - df42d750 - Tristan Gueguen : feat(exports): silent download front
 2025-11-18T17:48:48+01:00 - c94df87f - Tristan Gueguen : feat(exports): fixed bug at logout
 2025-11-18T17:48:48+01:00 - 8acef2d1 - Tristan Gueguen : feat(exports): checkout at loading, loading text
+2025-11-18T17:48:47+01:00 - f5803ae4 - Tristan Gueguen : feat(exports): hook and context new polling version
 2025-11-18T17:48:47+01:00 - b05e8440 - Tristan Gueguen : fix(exports): call checkout when loading admin view
 2025-11-18T17:48:47+01:00 - 0f0ec5ef - Tristan Gueguen : feat(exports): exports banner + modal call
-2025-11-18T17:48:47+01:00 - f5803ae4 - Tristan Gueguen : feat(exports): hook and context new polling version
 2025-11-13T10:44:03+01:00 - 42be0015 - Tristan Gueguen : fix(validations): trying to fix an error in displaying validations
 2025-11-10T11:24:07+01:00 - 19a576f1 - tristan-gueguen : Merge pull request #748 from MTES-MCT/feat/new-notice-controller-november-2025
 2025-11-10T11:12:17+01:00 - 00cb3024 - Tristan Gueguen : fix(notice): notice controller nov 2025
