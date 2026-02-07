@@ -1,6 +1,6 @@
 2026-02-06T17:10:35+01:00 - d165081 - ThomasDos : refactor(api): simplify URL construction for FranceConnect callback by using BASE_URL
-2026-02-06T17:10:34+01:00 - 47ebdc5 - ThomasDos : refactor(api): remove production restriction for FranceConnect and enhance candidate linking logic
 2026-02-06T17:10:34+01:00 - 76b0d2e - ThomasDos : refactor(api): replace encryption with JWT for state management in cookies
+2026-02-06T17:10:34+01:00 - 47ebdc5 - ThomasDos : refactor(api): remove production restriction for FranceConnect and enhance candidate linking logic
 2026-02-06T16:48:45+01:00 - 22363ef - Cédric Soulas : refactor(candidate): migrate CandidaciesEmptyState to use StatusPage component
 2026-02-05T14:18:37+01:00 - a453afc - Cédric Soulas : fix(admin): use candidate fields instead of candidateInfo for address in summary
 2026-02-05T14:18:24+01:00 - d59d3eb - Cédric Soulas : test(admin): fix getCandidacyMenuAndCandidateInfos handler structure
@@ -24,12 +24,12 @@
 2026-01-29T17:11:24+01:00 - 262e066 - ThomasDos : fix(api): handle optional birthcountry in candidate creation and update process
 2026-01-29T17:11:23+01:00 - bddeda3 - ThomasDos : fix(api): await update for candidate's last activity date during login process
 2026-01-29T17:11:22+01:00 - cede61a - ThomasDos : feat(api): enhance candidate creation and update process by incorporating country information from FranceConnect
-2026-01-29T17:11:22+01:00 - 94db46e - ThomasDos : feat(api): add inseeCode field to Country model and create migration for existing countries
 2026-01-29T17:11:22+01:00 - c96eb69 - ThomasDos : feat(api): update derniere date activite candidacies when sign in with FranceConnect
+2026-01-29T17:11:22+01:00 - 94db46e - ThomasDos : feat(api): add inseeCode field to Country model and create migration for existing countries
 2026-01-29T15:56:52+01:00 - 0c345ae - Alexandre Garbe : feat(vae-collective): added a confirmation modal when selecting a certification not available to the cohort aap
-2026-01-29T15:56:51+01:00 - 228c2db - Alexandre Garbe : feat(api): added organismId field to CohorteVaeCollective graphql type
 2026-01-29T15:56:51+01:00 - f408d7d - Alexandre Garbe : feat(api): added a organism_isOrganismAttachedToCertifications query
 2026-01-29T15:56:51+01:00 - 431164a - Alexandre Garbe : feat(api): reset organism only if not linked to all cohort certifications when updating a vae collective cohort certifications
+2026-01-29T15:56:51+01:00 - 228c2db - Alexandre Garbe : feat(api): added organismId field to CohorteVaeCollective graphql type
 2026-01-28T18:54:15+01:00 - 0e336b2 - Cédric Soulas : feat(candidate): improve status pages for mobile with full width button and less padding
 2026-01-28T17:43:22+01:00 - 224090e - Cédric Soulas : feat(candidate): update illustration picture on status page
 2026-01-28T17:43:16+01:00 - f068acb - Cédric Soulas : feat(candidate): display status pages without shadow blocs on mobile
@@ -39,30 +39,30 @@
 2026-01-28T15:05:07+01:00 - f73d4c4 - Alexandre Garbe : fix(api): fixed an edge cas in searchCertificationsForCandidate when searching for all certifications available to a cohorte vae collective without any certification set
 2026-01-28T14:58:46+01:00 - 5294b18 - Alexandre Garbe : fix(vae-collective): Certifications card "Modifier" button priority is now tertiary instead of primary
 2026-01-28T14:44:48+01:00 - a967126 - Alexandre Garbe : fix(api): organism search with multiple certification ids was not working
-2026-01-28T11:34:41+01:00 - 7adc1f7 - Alexandre Garbe : chore(vae-collective): renamed updateCertificationsMutation operation to updateCertifications
-2026-01-28T11:34:41+01:00 - 8cee876 - Alexandre Garbe : feat(vae-collective): added tests on "selection-certifications" page
-2026-01-28T11:34:41+01:00 - 488720b - Alexandre Garbe : chore(vae-collective): removed unused fields in getCohorteByIdForSelectionCertificationsPage query
-2026-01-28T11:34:41+01:00 - be84fd4 - Alexandre Garbe : feat(vae-collective): title and description change in "selection-certifications" page
 2026-01-28T11:34:41+01:00 - e612d4b - Alexandre Garbe : feat(vae-collective): added "only show added certifications" toggle switch logic in "selection-certifications" page
 2026-01-28T11:34:41+01:00 - d888f17 - Alexandre Garbe : feat(vae-collective): updated wording on CertificationList component
+2026-01-28T11:34:41+01:00 - be84fd4 - Alexandre Garbe : feat(vae-collective): title and description change in "selection-certifications" page
+2026-01-28T11:34:41+01:00 - 8cee876 - Alexandre Garbe : feat(vae-collective): added tests on "selection-certifications" page
+2026-01-28T11:34:41+01:00 - 7adc1f7 - Alexandre Garbe : chore(vae-collective): renamed updateCertificationsMutation operation to updateCertifications
+2026-01-28T11:34:41+01:00 - 488720b - Alexandre Garbe : chore(vae-collective): removed unused fields in getCohorteByIdForSelectionCertificationsPage query
 2026-01-28T10:37:44+01:00 - af80c75 - Florian Bonniec : fix(api): trigger generateAndUploadFeasibilityFileByCandidacyId on sendDFFToCertificationAuthority feature
 2026-01-28T10:14:55+01:00 - a010319 - dependabot[bot] : chore(deps): bump lodash in /packages/reva-website
 2026-01-28T10:14:40+01:00 - 1b75b65 - dependabot[bot] : chore(deps): bump lodash in /packages/reva-candidate
 2026-01-28T10:14:24+01:00 - 6534b93 - dependabot[bot] : chore(deps-dev): bump lodash in /packages/reva-interop
-2026-01-28T09:59:47+01:00 - 2b8b9ee - Alexandre Garbe : fix(api): fixed competence blocks order in new df demat pdf
 2026-01-28T09:59:47+01:00 - 572224a - Alexandre Garbe : feat(api): added a cohorteVaeCollectiveIdFilter parameter to the referential module searchCertificationsForCandidate query
+2026-01-28T09:59:47+01:00 - 2b8b9ee - Alexandre Garbe : fix(api): fixed competence blocks order in new df demat pdf
 2026-01-27T21:08:49+01:00 - 1d4471b - Cédric Soulas : feat(candidate): improve status component to match design requirements
 2026-01-27T21:08:44+01:00 - 70013fa - Cédric Soulas : refactor(candidate): rename WelcomePage to StatusPage and remove erroneous data-testid
 2026-01-27T16:37:08+01:00 - d0d24b6 - Florian Bonniec : fix(api): trigger generateAndUploadFeasibilityFileByCandidacyId on confirmDematerializedFeasibilityFileByCandidate feature
-2026-01-27T16:34:15+01:00 - 58b7bcd - Alexandre Garbe : feat(vae-collective): added breadcrumb to "selection-certification" page
 2026-01-27T16:34:15+01:00 - a9027c5 - Alexandre Garbe : feat(vae-collective): added add/remove logic to the "selection-certifications" page
+2026-01-27T16:34:15+01:00 - 58b7bcd - Alexandre Garbe : feat(vae-collective): added breadcrumb to "selection-certification" page
 2026-01-27T16:28:31+01:00 - bc643f4 - ThomasDos : test(candidate): correct visibility assertions for organism tile buttons in dashboard tests
-2026-01-27T16:10:32+01:00 - 55f1e75 - ThomasDos : test(candidate): update dashboard tile tests to ensure correct visibility and text for type accompaniment buttons
 2026-01-27T16:10:32+01:00 - e150eca - ThomasDos : feat(candidate): enhance candidate tiles with new status checks and type accompaniment handling
-2026-01-27T15:34:33+01:00 - 0246659 - Alexandre Garbe : fix(api): fixed new df demat pdf color problems
-2026-01-27T15:34:33+01:00 - 66bbaee - Alexandre Garbe : feat(vae-collective): first pass at selection-certification page
-2026-01-27T15:34:33+01:00 - b74c66e - Alexandre Garbe : feat(api+vae-collective): updated vaeCollective_updateCohorteVAECollectiveCertification mutation to handle multiple certifications
+2026-01-27T16:10:32+01:00 - 55f1e75 - ThomasDos : test(candidate): update dashboard tile tests to ensure correct visibility and text for type accompaniment buttons
 2026-01-27T15:34:33+01:00 - ff2754a - Alexandre Garbe : feat(vae-collective): ported MultiSelectList and Pagination components from admin app
+2026-01-27T15:34:33+01:00 - b74c66e - Alexandre Garbe : feat(api+vae-collective): updated vaeCollective_updateCohorteVAECollectiveCertification mutation to handle multiple certifications
+2026-01-27T15:34:33+01:00 - 66bbaee - Alexandre Garbe : feat(vae-collective): first pass at selection-certification page
+2026-01-27T15:34:33+01:00 - 0246659 - Alexandre Garbe : fix(api): fixed new df demat pdf color problems
 2026-01-27T12:40:50+01:00 - c730ad3 - ThomasDos : fix(api): adjust rate limit for test environment and refactor environment variable validation
 2026-01-27T12:37:23+01:00 - e1abca4 - ThomasDos : fix(api): skip environment variable validation in test mode
 2026-01-27T12:25:26+01:00 - 21f3a9e - ThomasDos : feat(api, candidate): integrate Fastify cookie and rate limit plugins, enhance FranceConnect error handling, and refactor state management for improved security
@@ -73,8 +73,8 @@
 2026-01-26T15:18:12+01:00 - 4cd2015 - Alexandre Garbe : fix(vae-collective): dissable fullyParallel playwright tests as it was messing some tests mock setup
 2026-01-26T15:12:33+01:00 - 130586c - Alexandre Garbe : feat(vae-collective): added multiple certifications selection card
 2026-01-26T09:50:56+01:00 - d2eed02 - Alexandre Garbe : feat(api): added a VAE_COLLECTIVE_MULTI_CERTIFICATION feature flag
-2026-01-23T16:51:20+01:00 - 11a00c1 - Alexandre Garbe : fix(api): fixed spacing problem in some competences in the new df demat pdf
 2026-01-23T16:51:20+01:00 - d2792a9 - Alexandre Garbe : fix(api): reset fillcolor to black after writing with another color in new df demat pdf
+2026-01-23T16:51:20+01:00 - 11a00c1 - Alexandre Garbe : fix(api): fixed spacing problem in some competences in the new df demat pdf
 2026-01-23T13:44:14+01:00 - 3d0c324 - ThomasDos : test(candidate): update dashboard tiles playwright tests for readOnly states and business rules
 2026-01-23T13:44:13+01:00 - a61783f - ThomasDos : test(candidate): update dashboard tiles cypress tests for readOnly states and business rules
 2026-01-23T13:44:13+01:00 - 34db4fd - ThomasDos : feat(candidate): enhance dashboard tiles with read-only states and improved conditional rendering for candidacy status
@@ -89,8 +89,8 @@
 2026-01-22T14:08:49+01:00 - b346869 - Pierre A : fix(admin):add missing graphql field isCertificationPartial
 2026-01-22T11:56:57+01:00 - dd308b9 - ThomasDos : feat(api): enhance France Connect callback to handle active candidacies redirection
 2026-01-22T11:33:23+01:00 - 9fd1be2 - Alexandre Garbe : fix(api): certification authority is not mandatory when generating the new df demat pdf
-2026-01-22T11:27:36+01:00 - 81c513a - Alexandre Garbe : feat(api): added a "Contacts" section to new df demat pdf
 2026-01-22T11:27:36+01:00 - e8b267d - Alexandre Garbe : chore(api): reorganized new df demat pdf tests
+2026-01-22T11:27:36+01:00 - 81c513a - Alexandre Garbe : feat(api): added a "Contacts" section to new df demat pdf
 2026-01-22T11:11:44+01:00 - 111eb40 - ThomasDos : fix(candidate): update useEffect dependencies to prevent infinite loop
 2026-01-22T10:34:31+01:00 - ea94d85 - Pierre A : chore(infra):revert to LF EoL sequence
 2026-01-22T10:28:04+01:00 - 3c59598 - ThomasDos : feat(api,candidate): implement secure France Connect flow with openid-client, PKCE and token handling
@@ -100,9 +100,9 @@
 2026-01-21T17:46:00+01:00 - e403c0d - Cédric Soulas : feat(api): add enable register with password feature flag
 2026-01-21T17:19:07+01:00 - 349be35 - Cédric Soulas : feat(api): send login email if registering with password on an existing account
 2026-01-21T17:18:49+01:00 - d99a6a3 - Cédric Soulas : feat(api): add registration with password mutation
+2026-01-21T17:18:49+01:00 - 59859d0 - Cédric Soulas : fix(candidate): fix duplicated password id
 2026-01-21T17:18:49+01:00 - 596d655 - Cédric Soulas : feat(api): after password setup, automatically log user if account already exists
 2026-01-21T17:18:49+01:00 - 15432c4 - Cédric Soulas : feat(api, candidate): add finalize registration after password setup
-2026-01-21T17:18:49+01:00 - 59859d0 - Cédric Soulas : fix(candidate): fix duplicated password id
 2026-01-21T15:52:34+01:00 - c33989f - Florian Bonniec : feat(candidate): improved address fulfillment in ContactInformationForm
 2026-01-21T15:36:29+01:00 - 6033d51 - Alexandre Garbe : feat(api): added an "Avis et documents" section to new df demat pdf
 2026-01-21T15:25:57+01:00 - 5dfed86 - Alexandre Garbe : fix(api): missing describe in new df demat tests
@@ -114,26 +114,26 @@
 2026-01-20T17:21:27+01:00 - 981b218 - Florian Bonniec : fix(api): removed candidate nullability check in createCandidacy feature
 2026-01-20T17:05:25+01:00 - 5d50250 - ThomasDos : chore(ci): remove redundant change detection jobs from multiple workflows to streamline CI configuration
 2026-01-20T16:46:41+01:00 - e9f4134 - Alexandre Garbe : feat(api): in new df demat pdf start a new page when writing the "Profil du candidat" if the  text position is past the first half of the page
-2026-01-20T16:40:56+01:00 - 40985e0 - Alexandre Garbe : feat(api): added tests for new df demat pdf "profil candidat" section
-2026-01-20T16:40:56+01:00 - 1f57648 - Alexandre Garbe : feat(api): added a createCandidacyCCNHelper helper
-2026-01-20T16:40:56+01:00 - e7b5336 - Alexandre Garbe : fix(api): fixed spelling in "Niveau de formation" and "Informations de contact du candidat" subsections of new df demat pdf
-2026-01-20T16:40:56+01:00 - afcb0d3 - Alexandre Garbe : chore(api): refactored new df demat pdf tests to test for subsections instead of sections
-2026-01-20T16:40:56+01:00 - c1f132a - Alexandre Garbe : fix(api): upped top margin of new df demat pdf
-2026-01-20T16:40:56+01:00 - cf72cec - Alexandre Garbe : fix(api): use niveauDeFormationLePlusEleve level instead of label in new df demat pdf
-2026-01-20T16:40:56+01:00 - 3a11094 - Alexandre Garbe : feat(api): added an "Informations sur les expériences du candidat en lien avec le référentiel d’activités et de compétences " subsection to new df demat pdf
-2026-01-20T16:40:56+01:00 - 3f14a05 - Alexandre Garbe : feat(api): added an addCompetence function to the dfDematPdfHelper helper
-2026-01-20T16:40:56+01:00 - b22e16d - Alexandre Garbe : feat(api): df demat pdf helper addTitledBlock startInPt param is now optional
-2026-01-20T16:40:56+01:00 - a71a701 - Alexandre Garbe : feat(api): added an "Expériences " subsection to new df demat pdf
 2026-01-20T16:40:56+01:00 - fa43d81 - Alexandre Garbe : feat(api): better spacing in "Nature de la demande" section of the new df demat pdf
+2026-01-20T16:40:56+01:00 - e7b5336 - Alexandre Garbe : fix(api): fixed spelling in "Niveau de formation" and "Informations de contact du candidat" subsections of new df demat pdf
+2026-01-20T16:40:56+01:00 - cf72cec - Alexandre Garbe : fix(api): use niveauDeFormationLePlusEleve level instead of label in new df demat pdf
+2026-01-20T16:40:56+01:00 - c1f132a - Alexandre Garbe : fix(api): upped top margin of new df demat pdf
+2026-01-20T16:40:56+01:00 - b22e16d - Alexandre Garbe : feat(api): df demat pdf helper addTitledBlock startInPt param is now optional
+2026-01-20T16:40:56+01:00 - afcb0d3 - Alexandre Garbe : chore(api): refactored new df demat pdf tests to test for subsections instead of sections
+2026-01-20T16:40:56+01:00 - a71a701 - Alexandre Garbe : feat(api): added an "Expériences " subsection to new df demat pdf
+2026-01-20T16:40:56+01:00 - 40985e0 - Alexandre Garbe : feat(api): added tests for new df demat pdf "profil candidat" section
+2026-01-20T16:40:56+01:00 - 3f14a05 - Alexandre Garbe : feat(api): added an addCompetence function to the dfDematPdfHelper helper
+2026-01-20T16:40:56+01:00 - 3a11094 - Alexandre Garbe : feat(api): added an "Informations sur les expériences du candidat en lien avec le référentiel d’activités et de compétences " subsection to new df demat pdf
+2026-01-20T16:40:56+01:00 - 1f57648 - Alexandre Garbe : feat(api): added a createCandidacyCCNHelper helper
 2026-01-20T16:10:47+01:00 - 17ede0a - Florian Bonniec : fix(candidate): fixed link TypologyAndCollectiveAgreementForm
 2026-01-20T15:55:55+01:00 - 088e572 - ThomasDos : chore(ci): enhance CI configuration by adding concurrency groups and conditional job execution based on file changes across multiple workflows
 2026-01-20T14:46:42+01:00 - a1720d8 - Pierre A : fix(api):fix certification authority structure name
 2026-01-20T14:32:58+01:00 - 9041e35 - ThomasDos : chore(infra): upgrade PostgreSQL version to 14.20 in Keycloak and related services
 2026-01-20T13:39:34+01:00 - 6078670 - ThomasDos : chore(infra, admin, candidate, collective): update Notion links from fabnummas to francevae across multiple components
-2026-01-20T09:55:17+01:00 - 717c957 - Alexandre Garbe : feat(api): added an "Objectifs du candidat" subsection to new df demat pdf
 2026-01-20T09:55:17+01:00 - d90edee - Alexandre Garbe : feat(api): added a "Statut" subsection to new df demat pdf
 2026-01-20T09:55:17+01:00 - b20d5cf - Alexandre Garbe : feat(api): added "Informations de contact du candidat" subsection to new df demat pdf
 2026-01-20T09:55:17+01:00 - 913c876 - Alexandre Garbe : feat(api): added "Niveau de formation" subsection to new df demat pdf
+2026-01-20T09:55:17+01:00 - 717c957 - Alexandre Garbe : feat(api): added an "Objectifs du candidat" subsection to new df demat pdf
 2026-01-19T17:36:08+01:00 - f30bef3 - Florian Bonniec : fix(admin): fixed zod schema in certificateur Resultat form
 2026-01-19T17:00:35+01:00 - 3c1ec6e - Florian Bonniec : feat(candidate): splitting candidate profile into civil, contact and ccn / typology; ccn / typology part done
 2026-01-19T16:44:05+01:00 - 91b60b2 - Pierre A : fix(candidate):fix sworn statement url
@@ -146,8 +146,8 @@
 2026-01-19T14:18:01+01:00 - d2ff481 - Alexandre Garbe : chore(api): reorganized assets for new df demat pdf
 2026-01-19T12:47:30+01:00 - 9e72496 - Alexandre Garbe : fix(api): removed frame on new df demat pdf section since it does not handle multi page sections
 2026-01-19T12:47:24+01:00 - a4fbc0b - Alexandre Garbe : feat(api): added tests to new df demat pdf
-2026-01-19T12:46:53+01:00 - 31f3f77 - Alexandre Garbe : feat(api): better header images alignment in new df demat pdf
 2026-01-19T12:46:53+01:00 - 8b1626a - Alexandre Garbe : feat(api): better font size for new df demat pdf pre requisite blocks
+2026-01-19T12:46:53+01:00 - 31f3f77 - Alexandre Garbe : feat(api): better header images alignment in new df demat pdf
 2026-01-19T10:54:47+01:00 - 9f2ce90 - Pierre A : chore(interop):update links to documentation
 2026-01-16T18:09:10+01:00 - 83fe379 - ThomasDos : test(candidate): fix dashboard tiles tests after badge removal
 2026-01-16T17:04:47+01:00 - f8e88b4 - ThomasDos : test(candidate): rework dashboard tiles tests
@@ -157,25 +157,25 @@
 2026-01-16T09:27:01+01:00 - 117dcf9 - dependabot[bot] : chore(deps): bump jws from 3.2.2 to 3.2.3 in /packages/reva-api
 2026-01-16T09:26:12+01:00 - 5e4d61d - dependabot[bot] : chore(deps): bump @smithy/config-resolver in /packages/reva-api
 2026-01-16T09:24:48+01:00 - b4cd529 - dependabot[bot] : chore(deps): bump undici from 7.14.0 to 7.18.2 in /packages/reva-api
-2026-01-15T17:16:43+01:00 - 2a515cd - Alexandre Garbe : feat(api): added selected certifications competences blocks to new df demat certifications subsection
 2026-01-15T17:16:43+01:00 - 6ef76b5 - Alexandre Garbe : feat(api): added an addDisabledCheckbox helper to dfDematPdfHelper
+2026-01-15T17:16:43+01:00 - 2a515cd - Alexandre Garbe : feat(api): added selected certifications competences blocks to new df demat certifications subsection
 2026-01-15T17:16:43+01:00 - 27d8b1b - Alexandre Garbe : feat(api): added an addTitledBlock helper to dfDematPdfHelper
 2026-01-15T11:41:24+01:00 - 3795377 - ThomasDos : refactor(admin, candidate): rename 'appointment' prop to 'event' for consistency across components
 2026-01-15T11:37:14+01:00 - 77bd74e - ThomasDos : feat(admin, candidate): implement AddToCalendar component for appointment and jury sessions
 2026-01-15T11:37:13+01:00 - dccd7de - ThomasDos : feat(admin): add side menu visibility control based on current pathname
 2026-01-15T11:35:01+01:00 - 35b0da1 - Pierre A : fix(api):fix training menu URL when data is already present
 2026-01-15T11:34:13+01:00 - 163b19c - Florian Bonniec : feat(candidate): splitting candidate profile into civil, contact and ccn / typology; contact part done
-2026-01-14T16:34:05+01:00 - 1037672 - Alexandre Garbe : feat(api): use a table in new df demat pdf addInfoText helper
 2026-01-14T16:34:05+01:00 - c7cf63f - Alexandre Garbe : feat(api): added certification partial or complete status to certification subsection of new df demat pdf
-2026-01-14T16:34:04+01:00 - bfd837a - Alexandre Garbe : feat(api): added an addCallOut helper to dfDematPdfHelper
-2026-01-14T16:34:04+01:00 - 3730432 - Alexandre Garbe : feat(api): added option and foreign languages to Certification subsection
-2026-01-14T16:34:04+01:00 - d6e4d46 - Alexandre Garbe : feat(api): added an addInfoText helper to dfDematPdfHelper
-2026-01-14T16:34:04+01:00 - 7c2e7ee - Alexandre Garbe : feat(api): added a Certification subsection to the new df demat pdf
+2026-01-14T16:34:05+01:00 - 1037672 - Alexandre Garbe : feat(api): use a table in new df demat pdf addInfoText helper
 2026-01-14T16:34:04+01:00 - fccf847 - Alexandre Garbe : feat(api): added an addTag helper to dfDematPdfHelper
 2026-01-14T16:34:04+01:00 - e841630 - Alexandre Garbe : fix(api): fixed subtitle alignment in dfDematPdfHelper
+2026-01-14T16:34:04+01:00 - d6e4d46 - Alexandre Garbe : feat(api): added an addInfoText helper to dfDematPdfHelper
+2026-01-14T16:34:04+01:00 - bfd837a - Alexandre Garbe : feat(api): added an addCallOut helper to dfDematPdfHelper
+2026-01-14T16:34:04+01:00 - bfcd44c - Alexandre Garbe : feat(api): added "Nature de la demande" to first section of new df demat pdf
 2026-01-14T16:34:04+01:00 - bf5b530 - Alexandre Garbe : feat(api): extracted an addFrame function in dfDematPdfHelper
 2026-01-14T16:34:04+01:00 - 8165897 - Alexandre Garbe : chore(api): rework on addSection function of dfDematPdfHelper
-2026-01-14T16:34:04+01:00 - bfcd44c - Alexandre Garbe : feat(api): added "Nature de la demande" to first section of new df demat pdf
+2026-01-14T16:34:04+01:00 - 7c2e7ee - Alexandre Garbe : feat(api): added a Certification subsection to the new df demat pdf
+2026-01-14T16:34:04+01:00 - 3730432 - Alexandre Garbe : feat(api): added option and foreign languages to Certification subsection
 2026-01-14T16:34:04+01:00 - 149ec10 - Alexandre Garbe : chore(api): removed unused image
 2026-01-14T15:18:56+01:00 - 85f39f9 - ThomasDos : feat(api): implement status rollback for candidacy type change to AUTONOME
 2026-01-14T14:43:47+01:00 - b7359fd - ThomasDos : feat(candidate, website): add missing trame dv link in DocumentationTab component
@@ -184,10 +184,10 @@
 2026-01-13T17:19:28+01:00 - 15d0497 - Florian Bonniec : feat(candidate): splitting candidate profile into civil, contact and ccn / typology; civil part done
 2026-01-13T14:23:02+01:00 - 2fa83e4 - Alexandre Garbe : feat(api): added feature flipping logic for new df demat pdf generation function
 2026-01-13T14:14:13+01:00 - c310a75 - Alexandre Garbe : feat(api): started first section of new df demat pdf
-2026-01-13T14:14:13+01:00 - 12f1d64 - Alexandre Garbe : feat(api): added a dfDematPdfHelper helper
 2026-01-13T14:14:13+01:00 - 9140ab0 - Alexandre Garbe : feat(api): initialized generateFeasibilityFileByCandidacyIdV2 method for new df demat pdf
-2026-01-13T14:14:13+01:00 - 52fc7b3 - Alexandre Garbe : feat(api): bumped pdfkit lib and types version number
 2026-01-13T14:14:13+01:00 - 6ae8fdb - Alexandre Garbe : feat(api): added a DF_DEMAT_MISE_EN_CONFORMITE_PDF feature flag
+2026-01-13T14:14:13+01:00 - 52fc7b3 - Alexandre Garbe : feat(api): bumped pdfkit lib and types version number
+2026-01-13T14:14:13+01:00 - 12f1d64 - Alexandre Garbe : feat(api): added a dfDematPdfHelper helper
 2026-01-12T15:01:48+01:00 - dcef96d - Pierre A : tests(admin,candidate):fix selector for new prerequisite label
 2026-01-12T14:42:50+01:00 - 6693401 - Pierre A : fix(admin):add certification authority contact info on dff summary for AAP
 2026-01-12T14:41:51+01:00 - 140df23 - Pierre A : chore(candidate):add hyphen to pré-requis
@@ -202,13 +202,13 @@
 2026-01-09T15:27:08+01:00 - 16e79eb - Alexandre Garbe : chore(api): extracted a pdfTestHelper helper from the generateFeasibilityFileByCandidacyId test file
 2026-01-09T10:48:23+01:00 - f5e3736 - Alexandre Garbe : chore(api): removed APPOINTMENTS feature from database
 2026-01-09T10:48:23+01:00 - 88d5c8a - Alexandre Garbe : chore(candidate): removed the APPOINTMENTS feature flag
-2026-01-09T10:48:23+01:00 - 251d157 - Alexandre Garbe : chore(admin): removed the old meetings page
 2026-01-09T10:48:23+01:00 - 75541a8 - Alexandre Garbe : chore(api): removed old appointment code
+2026-01-09T10:48:23+01:00 - 251d157 - Alexandre Garbe : chore(admin): removed the old meetings page
 2026-01-08T18:20:39+01:00 - c5728be - Cédric Soulas : feat(candidate, api): auto-login after password reset
-2026-01-08T17:04:42+01:00 - c087830 - Alexandre Garbe : feat(admin): added tests for the disabling an aap local account feature and a  redirection to the previous page when using it
 2026-01-08T17:04:42+01:00 - fa82114 - Alexandre Garbe : chore(admin): renamed user-account-v2 tests to user-account
-2026-01-08T17:04:42+01:00 - a9f82bb - Alexandre Garbe : feat(api): gestionnaire of the maison mere aap of a local account can now disable the local account using organism_disableCompteCollaborateur
+2026-01-08T17:04:42+01:00 - c087830 - Alexandre Garbe : feat(admin): added tests for the disabling an aap local account feature and a  redirection to the previous page when using it
 2026-01-08T17:04:42+01:00 - bc40a71 - Alexandre Garbe : feat(admin): added a DisableCompteCollaborateurAAPTile component to the gestionnaire aap settings compte collaborateur details page
+2026-01-08T17:04:42+01:00 - a9f82bb - Alexandre Garbe : feat(api): gestionnaire of the maison mere aap of a local account can now disable the local account using organism_disableCompteCollaborateur
 2026-01-08T15:57:04+01:00 - 2ac4db7 - Pierre A : fix(candidate):replace trophy image with higher resolution
 2026-01-08T14:48:41+01:00 - 0c2b294 - Cédric Soulas : chore(candidate, admin, vae-collective): separate next.js output directory for test and dev
 2026-01-08T13:25:42+01:00 - d14e0da - Pierre A : fix(website):update eligible public wording
@@ -220,14 +220,14 @@
 2026-01-07T16:23:41+01:00 - 8e8492a - Pierre A : tests(candidate):update feasibility summary tests for revamped page
 2026-01-07T16:23:20+01:00 - 559f1a5 - Pierre A : chore(admin):lint test file
 2026-01-07T16:22:17+01:00 - b515174 - Pierre A : feat(candidate):revamp feasibility summary for legal compliance
-2026-01-07T13:06:03+01:00 - c1ee760 - Alexandre Garbe : chore(api): removed AAP_USER_ACCOUNT_V2 feature flag from database
 2026-01-07T13:06:03+01:00 - d1bc49b - Alexandre Garbe : feat(api + admin ): renamed organism_updateAccountAndOrganism mutation to organism_updateOrganismAccount and removed the organismId param
-2026-01-07T13:06:03+01:00 - 70e45c6 - Alexandre Garbe : feat(api): removed organismId param from organism_createAccount mutation
-2026-01-07T13:06:03+01:00 - 1eb4219 - Alexandre Garbe : feat(api): removed the AAP_USER_ACCOUNT_V2 feature flag
+2026-01-07T13:06:03+01:00 - c1ee760 - Alexandre Garbe : chore(api): removed AAP_USER_ACCOUNT_V2 feature flag from database
 2026-01-07T13:06:03+01:00 - ab5065e - Alexandre Garbe : feat(api+admin): added missing audit log to updateOrganismAccountAndOrganism when AAP_USER_ACCOUNT_V2 feature flag is activated
-2026-01-07T13:06:03+01:00 - 380d3f5 - Alexandre Garbe : feat(api): added missing audit log to createOrganismAccount when AAP_USER_ACCOUNT_V2 feature flag is activated
 2026-01-07T13:06:03+01:00 - 805f91b - Alexandre Garbe : feat(api): added aap audit event logs for ORGANISM_ACCOUNT_CREATED_V2 and ORGANISM_ACCOUNT_UPDATED_V2
+2026-01-07T13:06:03+01:00 - 70e45c6 - Alexandre Garbe : feat(api): removed organismId param from organism_createAccount mutation
+2026-01-07T13:06:03+01:00 - 380d3f5 - Alexandre Garbe : feat(api): added missing audit log to createOrganismAccount when AAP_USER_ACCOUNT_V2 feature flag is activated
 2026-01-07T13:06:03+01:00 - 2c6ffba - Alexandre Garbe : chore(admin): removed AAP_USER_ACCOUNT_V2 feature flag
+2026-01-07T13:06:03+01:00 - 1eb4219 - Alexandre Garbe : feat(api): removed the AAP_USER_ACCOUNT_V2 feature flag
 2026-01-06T17:50:16+01:00 - 9827d07 - Cédric Soulas : fix(api): set feasibilityFormat on candidacy creation
 2026-01-06T16:57:44+01:00 - 3d74b2c - Alexandre Garbe : feat(candidate): added certifiction structure label to certification page
 2026-01-06T16:39:10+01:00 - 69bcaa6 - Pierre A : feat(admin):add rncp code to comptence blocks in dff summary
@@ -249,8 +249,8 @@
 2025-12-23T11:02:37+01:00 - 9bea644 - Alexandre Garbe : feat(api+admin+vae-collective): removed VAE_COLLECTIVE feature flag
 2025-12-23T09:54:23+01:00 - 70ef541 - Alexandre Garbe : chore(api+admin): removed PARAMETRES_CERTIFICATEUR feature flag
 2025-12-22T17:09:09+01:00 - 05e7ccf - Alexandre Garbe : feat(website): removed "autome" and "accompagne" tags on certification autocomplete result
-2025-12-22T16:12:29+01:00 - 04ee2fa - Alexandre Garbe : fix(website): added certification authority structure to certification search page certification card
 2025-12-22T16:12:29+01:00 - 9e03c94 - Alexandre Garbe : feat(website): removed "autome" and "accompagne" tags on certification search result card
+2025-12-22T16:12:29+01:00 - 04ee2fa - Alexandre Garbe : fix(website): added certification authority structure to certification search page certification card
 2025-12-22T15:20:48+01:00 - 6e1d53e - Pierre A : fix(admin):add missing certification compentenceBloc in queries
 2025-12-22T15:08:31+01:00 - f530052 - Pierre A : fix(admin):correctly query certification id in all necessary places
 2025-12-22T15:01:00+01:00 - 967b888 - Pierre A : fix(admin):use correct list tags
@@ -265,8 +265,8 @@
 2025-12-19T13:43:31+01:00 - d359fd4 - Cédric Soulas : feat(admin): improve accessibility and tests for CandidateSection
 2025-12-19T12:56:08+01:00 - 1840daa - Cédric Soulas : feat(admin): improve accessibility and tests locators in CertificationSection
 2025-12-19T11:01:54+01:00 - 66d4f5e - Alexandre Garbe : feat(website): wording change on homepage "LaVAEUnDispositifAccessibleATousSection" section
-2025-12-19T10:59:17+01:00 - 2e08c4d - Alexandre Garbe : feat(website): new "QuiPeutFaireUneVAE" section in candidate homepage
 2025-12-19T10:59:17+01:00 - b2dbecb - Alexandre Garbe : feat(api): added a WEBSITE_PUBLIC_ELIGIBLE feature flag
+2025-12-19T10:59:17+01:00 - 2e08c4d - Alexandre Garbe : feat(website): new "QuiPeutFaireUneVAE" section in candidate homepage
 2025-12-19T10:11:01+01:00 - 7531214 - Cédric Soulas : feat(website): display RNCP code in tag and remove VAE type tag
 2025-12-19T09:40:04+01:00 - a9aa95a - Cédric Soulas : feat(website): align certification action buttons inline with tiles
 2025-12-18T17:58:38+01:00 - a3a4a14 - Pierre A : fix(admin):fix component props for certification authority
@@ -280,8 +280,8 @@
 2025-12-18T14:17:13+01:00 - 6c3b438 - Cédric Soulas : feat(candidate): display certification authority in dff summary
 2025-12-18T14:11:15+01:00 - 580691c - Cédric Soulas : feat(admin): display certification authority structure in dff summary
 2025-12-18T13:57:19+01:00 - f0dbc7e - Alexandre Garbe : feat(vae-collective): added certifications selectionnees page for cohortes with multiple certifications
-2025-12-18T13:57:19+01:00 - 9c252e4 - Alexandre Garbe : feat(vae-collecive): added a "Consulter" label to the enDetail of the Certification card
 2025-12-18T13:57:19+01:00 - be005ca - Alexandre Garbe : chore(vae-collective): moved the CertificationCard component to the components folder
+2025-12-18T13:57:19+01:00 - 9c252e4 - Alexandre Garbe : feat(vae-collecive): added a "Consulter" label to the enDetail of the Certification card
 2025-12-18T13:57:19+01:00 - 142c84f - Alexandre Garbe : feat(vae-collective): added a 'Visualiser' button to the cohorte certifications card
 2025-12-18T12:19:53+01:00 - 923437a - Cédric Soulas : fix(api): use certificationAuthorityStructure instead of certificationAuthority in feasibility PDF
 2025-12-18T12:07:43+01:00 - 8f82d33 - Cédric Soulas : refactor(admin): remove unused certificationAuthorityLabel prop and GraphQL queries
@@ -297,4 +297,4 @@
 2025-12-16T15:42:58+01:00 - f463e45 - Alexandre Garbe : chore(admin): removed cypress downloads.html file and added the cypress downloads folder to the projetc .gitignore
 2025-12-16T15:42:24+01:00 - bc4dd67 - Alexandre Garbe : feat(api): removed CertificationCohorteVaeCollective-> certificationCohorteVaeCollectiveOnOrganisms resolver
 2025-12-16T15:42:24+01:00 - b3273c4 - Alexandre Garbe : feat(vae-collective): use CohorteVaeCollective -> organism resolver instead of CertificationCohorteVaeCollectiveOnOrganisms
-2025-12-16T15:42:24+01:00 - 0b4ba34 - Alexandre Garbe : feat(api): removed certificationCohorteVaeCollectiveOnOrganisms related code from api
+2025-12-16T15:42:24+01:00 - 0b4ba34 - Alexandre Garbe : feat(api): removed certificationCohorteVaeCollectiveOnOrganisms related code from api2026-02-06T17:10:35+01:00 - d165081 - ThomasDos : refactor(api): simplify URL construction for FranceConnect callback by using BASE_URL
