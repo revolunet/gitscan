@@ -1,10 +1,13 @@
 import Link from "next/link";
-import type { AggregatedData } from "@/lib/types";
+import { ContributionGraph } from "@/components/ContributionGraph";
+import type { AggregatedData, ContributionsByOrg } from "@/lib/types";
 import { Changelog } from "@/components/Changelog";
 import { RepoCard } from "@/components/RepoCard";
 import reposData from "../../../../../data/repos.json";
+import contributionsByOrgData from "../../../../../data/contributions-by-org.json";
 
 const data = reposData as AggregatedData;
+const contributionsByOrg = contributionsByOrgData as ContributionsByOrg;
 
 const orgChangelogs = data.orgChangelogs ?? [];
 
@@ -16,6 +19,7 @@ export default async function OrgActivityPage({ params }: PageProps) {
   const { org } = await params;
 
   const entry = orgChangelogs.find((e) => e.organization === org);
+  const orgContributions = contributionsByOrg[org];
 
   if (!entry) {
     return (
@@ -71,12 +75,19 @@ export default async function OrgActivityPage({ params }: PageProps) {
 
       {/* Header */}
       <div className="bg-white rounded-xl border border-slate-200 p-6 sm:p-8 mb-8">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
           <div>
             <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-1">
               {org}
             </h1>
-            <p className="text-slate-500">{repoCount} dépôts</p>
+            <div className="flex items-center gap-3">
+              <span className="text-slate-500">{repoCount} dépôts</span>
+              {orgContributions && (
+                <span className="text-sm text-slate-400">
+                  {orgContributions.stats.totalCommits.toLocaleString()} commits
+                </span>
+              )}
+            </div>
           </div>
           <a
             href={`https://github.com/${org}`}
@@ -94,6 +105,9 @@ export default async function OrgActivityPage({ params }: PageProps) {
             GitHub
           </a>
         </div>
+        {orgContributions && (
+          <ContributionGraph data={orgContributions} />
+        )}
       </div>
 
       {/* Changelog */}

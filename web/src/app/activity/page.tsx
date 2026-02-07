@@ -1,8 +1,11 @@
 import Link from "next/link";
-import type { AggregatedData } from "@/lib/types";
+import { ContributionGraph } from "@/components/ContributionGraph";
+import type { AggregatedData, ContributionsByOrg } from "@/lib/types";
 import reposData from "../../../data/repos.json";
+import contributionsByOrgData from "../../../data/contributions-by-org.json";
 
 const data = reposData as AggregatedData;
+const contributionsByOrg = contributionsByOrgData as ContributionsByOrg;
 
 const orgChangelogs = data.orgChangelogs ?? [];
 
@@ -20,21 +23,36 @@ export default function ActivityPage() {
       </div>
 
       {/* Org list */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {orgChangelogs.map((entry) => (
-          <Link
-            key={entry.organization}
-            href={`/activity/org/${entry.organization}`}
-            className="bg-white rounded-xl border border-slate-200 p-6 hover:border-primary-300 hover:shadow-md transition-all"
-          >
-            <h2 className="text-lg font-semibold text-slate-900 mb-2">
-              {entry.organization}
-            </h2>
-            <span className="badge badge-slate text-xs">
-              {data.stats.byOrg[entry.organization] ?? 0} dépôts
-            </span>
-          </Link>
-        ))}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {orgChangelogs.map((entry) => {
+          const orgContributions = contributionsByOrg[entry.organization];
+          const repoCount = data.stats.byOrg[entry.organization] ?? 0;
+          return (
+            <Link
+              key={entry.organization}
+              href={`/activity/org/${entry.organization}`}
+              className="bg-white rounded-xl border border-slate-200 p-5 hover:border-primary-300 hover:shadow-md transition-all"
+            >
+              <h3 className="font-semibold text-slate-900 mb-1 truncate">
+                {entry.organization}
+              </h3>
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-sm text-slate-500">
+                  {repoCount} depot{repoCount > 1 ? "s" : ""}
+                </span>
+                {orgContributions && (
+                  <span className="text-xs text-slate-400">
+                    {orgContributions.stats.totalCommits.toLocaleString()}{" "}
+                    commits
+                  </span>
+                )}
+              </div>
+              {orgContributions && (
+                <ContributionGraph data={orgContributions} compact />
+              )}
+            </Link>
+          );
+        })}
       </div>
     </div>
   );

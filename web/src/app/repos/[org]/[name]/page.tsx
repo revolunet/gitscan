@@ -116,7 +116,14 @@ export default async function RepoDetailPage({ params }: PageProps) {
                 {repo.status}
               </span>
             </div>
-            <p className="text-slate-500">{repo.organization}</p>
+            <p className="text-slate-500">
+              <Link
+                href={`/activity/org/${org}`}
+                className="hover:text-slate-900 transition-colors"
+              >
+                {repo.organization}
+              </Link>
+            </p>
           </div>
           <a
             href={repo.url}
