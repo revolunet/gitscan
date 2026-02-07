@@ -47,7 +47,7 @@ export default function DependenciesPage() {
     // Filter by selected types
     if (selectedTypes.length > 0) {
       deps = deps.filter((dep) =>
-        dep.usages.some((u) => selectedTypes.includes(u.type))
+        dep.usages.some((u) => selectedTypes.includes(u.type)),
       );
     }
 
@@ -57,8 +57,8 @@ export default function DependenciesPage() {
       if (parsed) {
         deps = deps.filter((dep) =>
           dep.usages.some((u) =>
-            matchesVersionRange(u.version, parsed.operator, parsed.version)
-          )
+            matchesVersionRange(u.version, parsed.operator, parsed.version),
+          ),
         );
       }
     }
@@ -79,7 +79,7 @@ export default function DependenciesPage() {
 
   const toggleType = (type: DependencyType) => {
     setSelectedTypes((prev) =>
-      prev.includes(type) ? prev.filter((t) => t !== type) : [...prev, type]
+      prev.includes(type) ? prev.filter((t) => t !== type) : [...prev, type],
     );
     setPage(1);
   };
@@ -98,7 +98,7 @@ export default function DependenciesPage() {
       const parsed = parseVersionFilter(versionFilter);
       if (parsed) {
         usages = usages.filter((u) =>
-          matchesVersionRange(u.version, parsed.operator, parsed.version)
+          matchesVersionRange(u.version, parsed.operator, parsed.version),
         );
       }
     }
@@ -112,17 +112,16 @@ export default function DependenciesPage() {
       <div className="mb-8">
         <div className="flex items-center gap-2 text-sm text-slate-500 mb-2">
           <Link href="/" className="hover:text-primary-600">
-            Home
+            Accueil
           </Link>
           <span>/</span>
-          <span>Dependencies</span>
+          <span>Dépendances</span>
         </div>
-        <h1 className="text-3xl font-bold text-slate-900 mb-2">
-          Dependency Search
-        </h1>
+        <h1 className="text-3xl font-bold text-slate-900 mb-2">Recherche</h1>
         <p className="text-slate-600">
-          Search across {data.stats.totalDependencies.toLocaleString()}{" "}
-          dependencies used in {data.stats.totalUsages.toLocaleString()} places
+          Cherchez {data.stats.totalDependencies.toLocaleString()} parmi{" "}
+          dépendances utilisées dans {data.stats.totalUsages.toLocaleString()}{" "}
+          projets
         </p>
       </div>
 
@@ -250,7 +249,7 @@ export default function DependenciesPage() {
           <span className="font-semibold text-slate-900">
             {filteredDeps.length.toLocaleString()}
           </span>{" "}
-          dependencies found
+          dépendances trouvées
         </p>
       </div>
 

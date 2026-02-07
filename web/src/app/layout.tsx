@@ -90,7 +90,7 @@ export default function RootLayout({
                     />
                   </svg>
                   <span className="hidden sm:inline text-sm font-medium">
-                    Dependencies
+                    Dépendances
                   </span>
                 </Link>
                 <a

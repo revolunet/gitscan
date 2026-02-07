@@ -62,13 +62,13 @@ export default async function RepoDetailPage({ params }: PageProps) {
           </svg>
         </div>
         <h1 className="text-2xl font-bold text-slate-900 mb-2">
-          Repository not found
+          Repository non trouvé
         </h1>
         <p className="text-slate-600 mb-6">
-          The repository {org}/{name} doesn&apos;t exist.
+          Le repository {org}/{name} n'existe pas.
         </p>
         <Link href="/" className="btn-primary inline-block">
-          Back to home
+          Retour à l'accueil
         </Link>
       </div>
     );
@@ -201,7 +201,7 @@ export default async function RepoDetailPage({ params }: PageProps) {
                 {repo.dependencies && repo.dependencies.length > 0 && (
                   <div>
                     <h3 className="text-sm font-medium text-slate-500 mb-3">
-                      Dependencies
+                      Dépendances
                     </h3>
                     <div className="flex flex-wrap gap-2">
                       {repo.dependencies.map((dep, i) => (
@@ -215,7 +215,7 @@ export default async function RepoDetailPage({ params }: PageProps) {
                 {repo.components && repo.components.length > 0 && (
                   <div>
                     <h3 className="text-sm font-medium text-slate-500 mb-3">
-                      Components
+                      Composants
                     </h3>
                     <ul className="space-y-1.5 text-sm text-slate-700">
                       {repo.components.map((comp, i) => (
@@ -264,7 +264,7 @@ export default async function RepoDetailPage({ params }: PageProps) {
           {/* Metrics */}
           <div className="bg-white rounded-xl border border-slate-200 p-6">
             <h3 className="text-lg font-semibold text-slate-900 mb-4">
-              Metrics
+              Métriques
             </h3>
             <dl className="space-y-4">
               <div className="flex items-center justify-between">
