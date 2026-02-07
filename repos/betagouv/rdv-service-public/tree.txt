@@ -81,9 +81,11 @@
 │   │       ├── rdv_mairie
 │   │       │   ├── api.svg
 │   │       │   ├── billet-0-euros.png
+│   │       │   ├── calendrier.png
 │   │       │   ├── carotte.png
 │   │       │   ├── collaboration-bras-ampoules.png
 │   │       │   ├── ecosystem.svg
+│   │       │   ├── homepage_hero.svg
 │   │       │   ├── partenaire-62.jpg
 │   │       │   ├── partenaire-asp.png
 │   │       │   ├── partenaire-chomerac.png
@@ -581,7 +583,6 @@
 │   │   ├── concerns
 │   │   │   ├── default_job_behaviour.rb
 │   │   │   └── extended_retry_strategy_concern.rb
-│   │   ├── copy_planning_to_new_instance_job.rb
 │   │   ├── create_crm_page_job.rb
 │   │   ├── create_zammad_ticket_job.rb
 │   │   ├── cron_job
@@ -590,6 +591,7 @@
 │   │   │   ├── ign_health_check_job.rb
 │   │   │   ├── import_caldav_absences.rb
 │   │   │   ├── notify_sms_factor_low_credits.rb
+│   │   │   ├── refresh_agents_sensitive_account_job.rb
 │   │   │   ├── refresh_cached_stats.rb
 │   │   │   ├── refresh_cached_stats_queries
 │   │   │   │   ├── both_instances.lieux_map_data.sql
@@ -603,6 +605,14 @@
 │   │   ├── cron_job.rb
 │   │   ├── export_job.rb
 │   │   ├── fail_on_purpose_job.rb
+│   │   ├── instance_exports
+│   │   │   ├── copy_configuration
+│   │   │   │   ├── copy_agent_job.rb
+│   │   │   │   ├── copy_lieu_job.rb
+│   │   │   │   ├── copy_motif_job.rb
+│   │   │   │   └── copy_user_job.rb
+│   │   │   ├── copy_configuration.rb
+│   │   │   └── copy_planning_job.rb
 │   │   ├── outlook
 │   │   │   ├── mass_create_event_job.rb
 │   │   │   ├── mass_destroy_event_job.rb
@@ -950,7 +960,7 @@
 │       │   │   ├── index.html.slim
 │       │   │   └── selection_creneaux.html.slim
 │       │   ├── instance_exports
-│       │   │   ├── edit.html.slim
+│       │   │   ├── _oauth_connected.html.slim
 │       │   │   ├── index.html.slim
 │       │   │   ├── new.html.slim
 │       │   │   └── show.html.slim
@@ -1566,6 +1576,7 @@
 │   │   ├── filter_parameter_logging.rb
 │   │   ├── france_connect_v2.rb
 │   │   ├── good_job.rb
+│   │   ├── http.rb
 │   │   ├── inflections.rb
 │   │   ├── letter_opener.rb
 │   │   ├── lograge.rb
@@ -1945,9 +1956,12 @@
 │   │   ├── 20260108161837_validate_add_public_link_id_to_organisations.rb
 │   │   ├── 20260108161928_add_index_to_organisations_public_link_id.rb
 │   │   ├── 20260113172545_create_external_calendar_events.rb
+│   │   ├── 20260114162911_add_names_to_login_codes_and_auto_through_login_enum.rb
 │   │   ├── 20260121064312_add_pro_connect_idp_id_to_agents.rb
 │   │   ├── 20260121132127_add_raw_ical_to_external_calendar_events.rb
-│   │   └── 20260127114925_add_indexes_to_external_calendar_events.rb
+│   │   ├── 20260127114925_add_indexes_to_external_calendar_events.rb
+│   │   ├── 20260128172200_add_sensitive_account_to_agents.rb
+│   │   └── 20260202144719_remove_foreign_key_between_instance_exports_and_good_job_batches.rb
 │   ├── schema.rb
 │   ├── seeds
 │   │   ├── ccas.rb
@@ -2440,6 +2454,7 @@
 │   │   │   ├── file_attente_job_spec.rb
 │   │   │   ├── ign_health_check_job_spec.rb
 │   │   │   ├── notify_sms_factor_low_credits_spec.rb
+│   │   │   ├── refresh_agents_sensitive_account_job_spec.rb
 │   │   │   ├── refresh_blog_posts_from_docs_job_spec.rb
 │   │   │   ├── refresh_cached_stats
 │   │   │   │   ├── enqueue_all_keys_job_spec.rb
@@ -2824,4 +2839,4 @@
 │   └── .keep
 ├── webpack.config.js
 └── yarn.lock
-433 directories, 2393 files
+435 directories, 2406 files
