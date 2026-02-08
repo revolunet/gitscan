@@ -74,6 +74,7 @@
         │   │   ├── __init__.py
         │   │   └── usecases
         │   │       ├── __init__.py
+        │   │       ├── initialize_cv_metadata.py
         │   │       ├── match_cv_to_opportunities.py
         │   │       ├── process_uploaded_cv.py
         │   │       └── retrieve_corps.py
@@ -146,6 +147,7 @@
         │       ├── contract_type.py
         │       ├── country.py
         │       ├── cv_extraction_types.py
+        │       ├── cv_processing_status.py
         │       ├── department.py
         │       ├── diploma.py
         │       ├── label.py
@@ -185,6 +187,7 @@
         │   │   │   │       └── process_cv.py
         │   │   │   ├── migrations
         │   │   │   │   ├── 0001_initial.py
+        │   │   │   │   ├── 0002_cvmetadatamodel_status_cvmetadatamodel_updated_at_and_more.py
         │   │   │   │   └── __init__.py
         │   │   │   ├── models
         │   │   │   │   ├── __init__.py
@@ -237,6 +240,7 @@
         │   │       │   ├── 0007_remove_default_values.py
         │   │       │   ├── 0008_make_publication_date_required.py
         │   │       │   ├── 0009_remove_publication_date_default.py
+        │   │       │   ├── 0010_alter_offermodel_verse.py
         │   │       │   └── __init__.py
         │   │       └── models
         │   │           ├── __init__.py
@@ -283,6 +287,7 @@
         │   │   │   ├── document_cleaner.py
         │   │   │   ├── load_documents_strategies.py
         │   │   │   ├── load_documents_strategy_factory.py
+        │   │   │   ├── offers_cleaner.py
         │   │   │   ├── pelage_checks.py
         │   │   │   └── text_extractor.py
         │   │   └── shared
@@ -311,6 +316,9 @@
         ├── manage.py
         ├── postdeploy.sh
         ├── presentation
+        │   ├── api
+        │   │   ├── __init__.py
+        │   │   └── urls.py
         │   ├── assets
         │   │   └── styles
         │   │       ├── abstracts
@@ -380,7 +388,17 @@
         │   │       └── main.css
         │   └── templates
         │       ├── candidate
+        │       │   ├── components
+        │       │   │   ├── _filters_content.html
+        │       │   │   ├── _no_results_content.html
+        │       │   │   ├── _processing_content.html
+        │       │   │   ├── _result_card_concours.html
+        │       │   │   ├── _result_card_offer.html
+        │       │   │   ├── _results_content.html
+        │       │   │   └── _results_list.html
+        │       │   ├── cv_no_results.html
         │       │   ├── cv_processing.html
+        │       │   ├── cv_results.html
         │       │   ├── cv_upload.html
         │       │   └── search.html
         │       ├── components
@@ -397,29 +415,36 @@
         ├── start.sh
         ├── tests
         │   ├── __init__.py
+        │   ├── api
+        │   │   ├── __init__.py
+        │   │   └── test_endpoints.py
         │   ├── candidate
         │   │   ├── __init__.py
         │   │   ├── conftest.py
         │   │   ├── integration
         │   │   │   ├── __init__.py
-        │   │   │   ├── test_cv_processing_view.py
+        │   │   │   ├── test_cv_results_view.py
         │   │   │   ├── test_cv_upload_view.py
+        │   │   │   ├── test_integration_initialize_cv_metadata.py
         │   │   │   ├── test_integration_match_cv_to_opportunities.py
         │   │   │   ├── test_integration_process_uploaded_cv.py
         │   │   │   └── test_integration_retrieve_corps.py
         │   │   └── unit
         │   │       ├── __init__.py
         │   │       ├── test_limit_date.py
+        │   │       ├── test_unit_initialize_cv_metadata.py
         │   │       ├── test_unit_match_cv_to_opportunities.py
         │   │       ├── test_unit_process_uploaded_cv.py
         │   │       └── test_unit_retrieve_corps.py
         │   ├── external_gateways
         │   │   ├── __init__.py
-        │   │   └── unit
-        │   │       ├── __init__.py
-        │   │       ├── test_talentsoft_client.py
-        │   │       └── test_talentsoft_dtos.py
+        │   │   ├── unit
+        │   │   │   ├── __init__.py
+        │   │   │   ├── test_talentsoft_client.py
+        │   │   │   └── test_talentsoft_dtos.py
+        │   │   └── utils.py
         │   ├── factories
+        │   │   ├── cv_metadata_factory.py
         │   │   └── ingres_factories.py
         │   ├── fixtures
         │   │   ├── __init__.py
@@ -430,6 +455,7 @@
         │   │   ├── embedding_fixtures.json
         │   │   ├── fixture_loader.py
         │   │   ├── ingestion_fixtures.py
+        │   │   ├── offers_talentsoft_20260124.json
         │   │   └── vectorize_test_factories.py
         │   ├── ingestion
         │   │   ├── __init__.py
@@ -437,8 +463,11 @@
         │   │   ├── integration
         │   │   │   ├── test_integration_clean_documents.py
         │   │   │   ├── test_integration_load_documents.py
-        │   │   │   ├── test_integration_vectorize_documents.py
-        │   │   │   └── test_postgres_offers_repository.py
+        │   │   │   └── test_integration_vectorize_documents.py
+        │   │   ├── management
+        │   │   │   ├── test_clean_documents_command.py
+        │   │   │   ├── test_load_documents_command.py
+        │   │   │   └── test_vectorize_documents_command.py
         │   │   └── unit
         │   │       ├── test_unit_clean_documents.py
         │   │       ├── test_unit_load_documents.py
@@ -450,6 +479,7 @@
         │   │       └── test_home_view.py
         │   └── utils
         │       ├── async_in_memory_cv_metadata_repository.py
+        │       ├── cv_test_utils.py
         │       ├── form_test_utils.py
         │       ├── in_memory_concours_repository.py
         │       ├── in_memory_corps_repository.py
@@ -462,4 +492,4 @@
         │       ├── pdf_test_utils.py
         │       └── test_container_factory.py
         └── uv.lock
-102 directories, 362 files
+106 directories, 388 files
