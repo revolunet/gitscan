@@ -1,3 +1,54 @@
+# [4.1139.0](https://github.com/SocialGouv/fiches-travail-data/compare/v4.1138.0...v4.1139.0) (2026-02-08)
+
+
+### Features
+
+* **data:** 20260208_2122 update ([7c879d8](https://github.com/SocialGouv/fiches-travail-data/commit/7c879d804eb3dc1b92e27c8390d2b50ac367ba21))
+
+# [4.1138.0](https://github.com/SocialGouv/fiches-travail-data/compare/v4.1137.0...v4.1138.0) (2026-02-07)
+
+
+### Features
+
+* **data:** 20260207_2122 update ([c6a20bf](https://github.com/SocialGouv/fiches-travail-data/commit/c6a20bf5c14f660428fdbf53334cb9bf5dceeed2))
+
+# [4.1137.0](https://github.com/SocialGouv/fiches-travail-data/compare/v4.1136.0...v4.1137.0) (2026-02-06)
+
+
+### Features
+
+* **data:** 20260206_2127 update ([966141a](https://github.com/SocialGouv/fiches-travail-data/commit/966141ad95f8448f8ff968110e006d5f28d7500e))
+
+# [4.1136.0](https://github.com/SocialGouv/fiches-travail-data/compare/v4.1135.0...v4.1136.0) (2026-02-05)
+
+
+### Features
+
+* add a new entry to local.data.json ([954a606](https://github.com/SocialGouv/fiches-travail-data/commit/954a606c9bfe4f30d4a3ab9062a6c2a117c9a53f))
+* **data:** 20260205_2124 update ([9d95cda](https://github.com/SocialGouv/fiches-travail-data/commit/9d95cdac8668b669470ebbcd1274f71f0f3aaa7a))
+
+# [4.1135.0](https://github.com/SocialGouv/fiches-travail-data/compare/v4.1134.0...v4.1135.0) (2026-02-04)
+
+
+### Features
+
+* ajout de la fiche sur la période de reconversion ([ab75e7b](https://github.com/SocialGouv/fiches-travail-data/commit/ab75e7b4f2e98570403c9c585cee01fef2a48e5e))
+* **data:** 20260204_2129 update ([c500068](https://github.com/SocialGouv/fiches-travail-data/commit/c5000681698a49b25d79da183d5fdd992c47eddb))
+
+# [4.1134.0](https://github.com/SocialGouv/fiches-travail-data/compare/v4.1133.0...v4.1134.0) (2026-02-03)
+
+
+### Features
+
+* **data:** 20260203_2130 update ([d0b32f7](https://github.com/SocialGouv/fiches-travail-data/commit/d0b32f7a2b6cb55cad6822c78b8d5731f61def2a))
+
+# [4.1133.0](https://github.com/SocialGouv/fiches-travail-data/compare/v4.1132.0...v4.1133.0) (2026-02-01)
+
+
+### Features
+
+* **data:** 20260201_2119 update ([a274478](https://github.com/SocialGouv/fiches-travail-data/commit/a27447881c774d75ca5bcb452f29eab073672620))
+
 # [4.1132.0](https://github.com/SocialGouv/fiches-travail-data/compare/v4.1131.0...v4.1132.0) (2026-01-31)
 
 
