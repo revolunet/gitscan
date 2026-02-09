@@ -132,11 +132,13 @@
     │   │   │   ├── constants.py
     │   │   │   ├── document_converter
     │   │   │   │   ├── __init__.py
-    │   │   │   │   └── markitdown.py
+    │   │   │   │   ├── markitdown.py
+    │   │   │   │   └── parser.py
     │   │   │   ├── document_rag_backends
     │   │   │   │   ├── __init__.py
     │   │   │   │   ├── albert_rag_backend.py
-    │   │   │   │   └── base_rag_backend.py
+    │   │   │   │   ├── base_rag_backend.py
+    │   │   │   │   └── find_rag_backend.py
     │   │   │   ├── document_search
     │   │   │   │   ├── __init__.py
     │   │   │   │   └── albert_api.py
@@ -179,6 +181,11 @@
     │   │   │   │   ├── __init__.py
     │   │   │   │   ├── document_converter
     │   │   │   │   │   ├── __init__.py
+    │   │   │   │   │   ├── fixtures
+    │   │   │   │   │   │   ├── mixed_10_pages.pdf
+    │   │   │   │   │   │   ├── text_10_pages.pdf
+    │   │   │   │   │   │   └── text_pdf_1_page.pdf
+    │   │   │   │   │   ├── test_adaptive_pdf_parser.py
     │   │   │   │   │   └── test_markitdown.py
     │   │   │   │   ├── document_search
     │   │   │   │   │   ├── __init__.py
@@ -383,6 +390,8 @@
     │   │           └── django.po
     │   ├── manage.py
     │   ├── pyproject.toml
+    │   ├── utils
+    │   │   └── oidc.py
     │   └── uv.lock
     ├── frontend
     │   ├── .prettierrc.js
@@ -423,6 +432,7 @@
     │   │   │   │       ├── favicon.ico
     │   │   │   │       ├── icon-assistant.svg
     │   │   │   │       ├── img-not-found.svg
+    │   │   │   │       ├── logo-gouv-darkmode.svg
     │   │   │   │       ├── logo-gouv.png
     │   │   │   │       ├── logo-gouv.svg
     │   │   │   │       ├── logo-pdf.svg
@@ -481,6 +491,7 @@
     │   │   │   │   │   ├── Text.tsx
     │   │   │   │   │   ├── TextErrors.tsx
     │   │   │   │   │   ├── ToastProvider.tsx
+    │   │   │   │   │   ├── ToggleSwitch.tsx
     │   │   │   │   │   ├── __tests__
     │   │   │   │   │   │   ├── Box.spec.tsx
     │   │   │   │   │   │   └── Link.test.tsx
@@ -604,7 +615,9 @@
     │   │   │   │   │   │   │   ├── useChatPreferencesStore.ts
     │   │   │   │   │   │   │   ├── usePendingChatStore.ts
     │   │   │   │   │   │   │   └── useScrollStore.ts
-    │   │   │   │   │   │   └── types.tsx
+    │   │   │   │   │   │   ├── types.tsx
+    │   │   │   │   │   │   └── utils
+    │   │   │   │   │   │       └── shiki.ts
     │   │   │   │   │   ├── feedback
     │   │   │   │   │   │   └── Feedback.tsx
     │   │   │   │   │   ├── footer
@@ -626,6 +639,7 @@
     │   │   │   │   │   ├── home
     │   │   │   │   │   │   ├── assets
     │   │   │   │   │   │   │   ├── SC5.png
+    │   │   │   │   │   │   │   ├── banner-dark.svg
     │   │   │   │   │   │   │   ├── banner.svg
     │   │   │   │   │   │   │   └── github.svg
     │   │   │   │   │   │   ├── components
@@ -633,7 +647,6 @@
     │   │   │   │   │   │   │   ├── HomeBottom.tsx
     │   │   │   │   │   │   │   ├── HomeContent.tsx
     │   │   │   │   │   │   │   ├── HomeHeader.tsx
-    │   │   │   │   │   │   │   ├── HomeSection.tsx
     │   │   │   │   │   │   │   └── index.ts
     │   │   │   │   │   │   └── index.ts
     │   │   │   │   │   ├── language
@@ -840,4 +853,4 @@
         │       └── header.mjml
         ├── package.json
         └── yarn.lock
-200 directories, 642 files
+203 directories, 652 files

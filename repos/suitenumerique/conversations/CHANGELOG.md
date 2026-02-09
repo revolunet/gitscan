@@ -10,11 +10,23 @@ and this project adheres to
 
 ### Added
 
+- 💄(front) ui fix : update ui-kit
+- ✨(front) add persistent darkmode
+- ✨(front) add ui kit #240
 - 🧱(files) allow to use S3 storage without external access #849
+- ✨(backend) add FindRagBackend #209
+- ⬆️(back) update dependencies
+- ✨(back) Use adaptive parsing for pdf documents
 
 ### Changed
 
+- 💄(darkmode) change color feedback butto
 - 🏗️(back) migrate to uv
+- ♻️(front) optimize syntax highlighting bundle size
+
+### Fixed
+
+-  🐛(back) Cast collection Ids to API expected types
 
 ## [0.0.12] - 2026-01-27
 
@@ -41,6 +53,7 @@ and this project adheres to
 - 🐛(back) fix system prompt compatibility with self-hosted models #200
 - ⚰️(back) remove dead code and unused files
 - 🐛(back) prevent tool call timeouts
+
 
 ### Removed
 
