@@ -1,9 +1,51 @@
 .
+├── .agents
+│   └── skills
+│       ├── vercel-composition-patterns
+│       │   ├── AGENTS.md
+│       │   ├── SKILL.md
+│       │   └── rules
+│       │       ├── architecture-avoid-boolean-props.md
+│       │       ├── architecture-compound-components.md
+│       │       ├── patterns-children-over-render-props.md
+│       │       ├── patterns-explicit-variants.md
+│       │       ├── react19-no-forwardref.md
+│       │       ├── state-context-interface.md
+│       │       ├── state-decouple-implementation.md
+│       │       └── state-lift-state.md
+│       ├── vercel-react-best-practices
+│       │   ├── AGENTS.md
+│       │   ├── SKILL.md
+│       │   └── rules
+│       │       ├── advanced-event-handler-refs.md
+│       │       ├── advanced-init-once.md
+│       │       ├── advanced-use-latest.md
+│       │       ├── async-*.md  (5 files)
+│       │       ├── bundle-*.md  (5 files)
+│       │       ├── client-event-listeners.md
+│       │       ├── client-localstorage-schema.md
+│       │       ├── client-passive-event-listeners.md
+│       │       ├── client-swr-dedup.md
+│       │       ├── js-*.md  (12 files)
+│       │       ├── rendering-*.md  (9 files)
+│       │       ├── rerender-*.md  (12 files)
+│       │       └── server-*.md  (7 files)
+│       └── web-design-guidelines
+│           └── SKILL.md
+├── .claude
+│   └── skills
+│       ├── vercel-composition-patterns -> ../../.agents/skills/vercel-composition-patterns
+│       ├── vercel-react-best-practices -> ../../.agents/skills/vercel-react-best-practices
+│       └── web-design-guidelines -> ../../.agents/skills/web-design-guidelines
 ├── .editorconfig
 ├── .env.development
 ├── .env.production
 ├── .github
 │   ├── CODEOWNERS
+│   ├── skills
+│   │   ├── vercel-composition-patterns -> ../../.agents/skills/vercel-composition-patterns
+│   │   ├── vercel-react-best-practices -> ../../.agents/skills/vercel-react-best-practices
+│   │   └── web-design-guidelines -> ../../.agents/skills/web-design-guidelines
 │   └── workflows
 │       ├── build.yml
 │       ├── codeql-analysis.yml
@@ -13,8 +55,10 @@
 ├── .slugignore
 ├── .vscode
 │   ├── extensions.json
+│   ├── mcp.json
 │   └── settings.json
 ├── CHANGELOG.md
+├── CLAUDE.md
 ├── LICENSE
 ├── Procfile
 ├── README.md
@@ -30,14 +74,18 @@
 │       ├── 0004-modelisation-zod-v4.md
 │       ├── 0005-prisma-ids-uuid-et-types-unchecked.md
 │       ├── 0006-prisma-typed-client-views-full-text-search.md
-│       └── 0007-ui-dsfr-mui-tailwind.md
+│       ├── 0007-ui-dsfr-mui-tailwind.md
+│       ├── 0008-assert-session.md
+│       ├── 0009-invitation-token-securise.md
+│       └── 0010-tenant-settings-feature-flags.md
 ├── env.d.ts
 ├── eslint.config.ts
 ├── global.d.ts
-├── next-env.d.ts
 ├── next-sitemap.config.js
 ├── next.config.ts
 ├── package.json
+├── pnpm-lock.yaml
+├── pnpm-workspace.yaml
 ├── postcss.config.js
 ├── prisma
 │   ├── migrations
@@ -54,6 +102,14 @@
 │   │   ├── 20250908093324_is_beta_gouv_member
 │   │   │   └── migration.sql
 │   │   ├── 20250908124018_fts_prisma_compat
+│   │   │   └── migration.sql
+│   │   ├── 20251023162121_tenant_setting_only
+│   │   │   └── migration.sql
+│   │   ├── 20251029184604_setting_to_settings
+│   │   │   └── migration.sql
+│   │   ├── 20260204120000_pin_per_board
+│   │   │   └── migration.sql
+│   │   ├── 20260207000000_remove_collapsed_boards_vote_display
 │   │   │   └── migration.sql
 │   │   └── migration_lock.toml
 │   ├── schema.prisma
@@ -85,18 +141,25 @@
 │   ├── app
 │   │   ├── (default)
 │   │   │   ├── (authenticated)
-│   │   │   │   ├── forbidden.tsx
+│   │   │   │   ├── admin
+│   │   │   │   │   ├── layout.tsx
+│   │   │   │   │   └── prisma
+│   │   │   │   │       └── page.tsx
 │   │   │   │   ├── layout.tsx
-│   │   │   │   ├── tenant
-│   │   │   │   │   ├── [tenantId]
-│   │   │   │   │   │   ├── Form.tsx
-│   │   │   │   │   │   ├── TenantMain.module.scss
-│   │   │   │   │   │   ├── actions.ts
-│   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   ├── new
-│   │   │   │   │   │   └── page.tsx
+│   │   │   │   ├── profile
+│   │   │   │   │   ├── PasswordCheck.tsx
 │   │   │   │   │   └── page.tsx
-│   │   │   │   └── unauthorized.tsx
+│   │   │   │   └── tenant
+│   │   │   │       ├── [tenantId]
+│   │   │   │       │   ├── Form.tsx
+│   │   │   │       │   ├── TenantMain.module.scss
+│   │   │   │       │   ├── actions.ts
+│   │   │   │       │   └── page.tsx
+│   │   │   │       ├── new
+│   │   │   │       │   ├── NewTenantForm.tsx
+│   │   │   │       │   ├── actions.ts
+│   │   │   │       │   └── page.tsx
+│   │   │   │       └── page.tsx
 │   │   │   ├── DefaultFooter.tsx
 │   │   │   ├── DefaultHeader.tsx
 │   │   │   ├── Navigation.tsx
@@ -104,11 +167,14 @@
 │   │   │   │   ├── auth
 │   │   │   │   │   └── [...nextauth]
 │   │   │   │   │       └── route.ts
+│   │   │   │   ├── studio
+│   │   │   │   │   └── route.ts
 │   │   │   │   └── subdomain
 │   │   │   │       └── check
 │   │   │   │           └── route.ts
 │   │   │   ├── error
 │   │   │   │   └── page.tsx
+│   │   │   ├── forbidden.tsx
 │   │   │   ├── healthz
 │   │   │   │   └── page.tsx
 │   │   │   ├── index.module.scss
@@ -123,15 +189,58 @@
 │   │   │   │   └── verify-request
 │   │   │   │       └── page.tsx
 │   │   │   ├── page.tsx
-│   │   │   ├── profile
+│   │   │   ├── stats
+│   │   │   │   ├── content.tsx
 │   │   │   │   └── page.tsx
-│   │   │   └── stats
-│   │   │       ├── content.tsx
-│   │   │       └── page.tsx
+│   │   │   └── unauthorized.tsx
 │   │   ├── AuthHeaderItems.tsx
 │   │   ├── SystemMessageDisplay.tsx
 │   │   ├── [domain]
 │   │   │   └── (domain)
+│   │   │       ├── (authenticated)
+│   │   │       │   ├── admin
+│   │   │       │   │   ├── AdminSideMenu.tsx
+│   │   │       │   │   ├── api
+│   │   │       │   │   │   ├── ApiKeysList.tsx
+│   │   │       │   │   │   ├── actions.ts
+│   │   │       │   │   │   └── page.tsx
+│   │   │       │   │   ├── authentication
+│   │   │       │   │   │   ├── AuthenticationForm.tsx
+│   │   │       │   │   │   ├── actions.ts
+│   │   │       │   │   │   └── page.tsx
+│   │   │       │   │   ├── boards
+│   │   │       │   │   │   ├── BoardsList.tsx
+│   │   │       │   │   │   ├── actions.ts
+│   │   │       │   │   │   └── page.tsx
+│   │   │       │   │   ├── general
+│   │   │       │   │   │   ├── GeneralForm.tsx
+│   │   │       │   │   │   ├── actions.ts
+│   │   │       │   │   │   └── page.tsx
+│   │   │       │   │   ├── layout.tsx
+│   │   │       │   │   ├── loading.tsx
+│   │   │       │   │   ├── page.tsx
+│   │   │       │   │   ├── roadmap
+│   │   │       │   │   │   ├── RoadmapForm.tsx
+│   │   │       │   │   │   ├── actions.ts
+│   │   │       │   │   │   └── page.tsx
+│   │   │       │   │   ├── statuses
+│   │   │       │   │   │   ├── ColorSelect.tsx
+│   │   │       │   │   │   ├── StatusesList.tsx
+│   │   │       │   │   │   ├── actions.ts
+│   │   │       │   │   │   └── page.tsx
+│   │   │       │   │   ├── users
+│   │   │       │   │   │   ├── MembersList.tsx
+│   │   │       │   │   │   ├── actions.ts
+│   │   │       │   │   │   ├── invitations
+│   │   │       │   │   │   │   ├── InvitationsList.tsx
+│   │   │       │   │   │   │   ├── actions.ts
+│   │   │       │   │   │   │   └── page.tsx
+│   │   │       │   │   │   └── page.tsx
+│   │   │       │   │   └── webhooks
+│   │   │       │   │       ├── WebhooksList.tsx
+│   │   │       │   │       ├── actions.ts
+│   │   │       │   │       └── page.tsx
+│   │   │       │   └── layout.tsx
 │   │   │       ├── @modal
 │   │   │       │   ├── (.)post
 │   │   │       │   │   └── [postId]
@@ -154,13 +263,15 @@
 │   │   │       │       ├── actions.ts
 │   │   │       │       ├── page.tsx
 │   │   │       │       └── types.ts
-│   │   │       ├── getTenantFromDomainParam.ts
+│   │   │       ├── forbidden.tsx
 │   │   │       ├── layout.tsx
 │   │   │       ├── login
 │   │   │       │   └── page.tsx
 │   │   │       ├── page.tsx
 │   │   │       ├── post
 │   │   │       │   └── [postId]
+│   │   │       │       ├── PostEditForm.tsx
+│   │   │       │       ├── PostEditToggle.tsx
 │   │   │       │       ├── PostPageComponent.module.scss
 │   │   │       │       ├── PostPageHOP.tsx
 │   │   │       │       ├── _timeline
@@ -173,11 +284,14 @@
 │   │   │       │       │   ├── StatusChangeItem.tsx
 │   │   │       │       │   ├── actions.ts
 │   │   │       │       │   └── activityHelpers.ts
+│   │   │       │       ├── actions.ts
 │   │   │       │       └── page.tsx
 │   │   │       ├── profile
 │   │   │       │   └── page.tsx
-│   │   │       └── roadmap
-│   │   │           └── page.tsx
+│   │   │       ├── roadmap
+│   │   │       │   └── page.tsx
+│   │   │       └── unauthorized.tsx
+│   │   ├── error.tsx
 │   │   ├── global-error.tsx
 │   │   ├── globals.scss
 │   │   ├── layout.tsx
@@ -194,6 +308,8 @@
 │   │   │   ├── Post.tsx
 │   │   │   └── actions.ts
 │   │   ├── Brand.tsx
+│   │   ├── DefaultAuthenticatedLayout.tsx
+│   │   ├── ErrorLayout.tsx
 │   │   ├── InfiniteScroll.tsx
 │   │   ├── RHF
 │   │   │   └── ReactHookFormDebug.tsx
@@ -281,7 +397,7 @@
 │   │   │   ├── PostStatus.ts
 │   │   │   ├── PostStatusChange.ts
 │   │   │   ├── Tenant.ts
-│   │   │   ├── TenantSetting.ts
+│   │   │   ├── TenantSettings.ts
 │   │   │   ├── User.ts
 │   │   │   └── UserOnTenant.ts
 │   │   ├── next-auth
@@ -300,7 +416,7 @@
 │   │   │   ├── IPostStatusRepo.ts
 │   │   │   ├── ITenantDefaultOAuthRepo.ts
 │   │   │   ├── ITenantRepo.ts
-│   │   │   ├── ITenantSettingRepo.ts
+│   │   │   ├── ITenantSettingsRepo.ts
 │   │   │   ├── IUserOnTenantRepo.ts
 │   │   │   ├── IUserRepo.ts
 │   │   │   ├── IWebhookRepo.ts
@@ -317,16 +433,15 @@
 │   │   │   │   ├── PostStatusRepoPrisma.ts
 │   │   │   │   ├── TenantDefaultOAuthRepoPrisma.ts
 │   │   │   │   ├── TenantRepoPrisma.ts
-│   │   │   │   ├── TenantSettingRepoPrisma.ts
+│   │   │   │   ├── TenantSettingsRepoPrisma.ts
 │   │   │   │   ├── UserOnTenantRepoPrisma.ts
 │   │   │   │   ├── UserRepoPrisma.ts
 │   │   │   │   └── WebhookRepoPrisma.ts
 │   │   │   └── index.ts
+│   │   ├── seedContext.ts
 │   │   ├── services
 │   │   │   ├── getInstance.ts
 │   │   │   ├── index.ts
-│   │   │   ├── server
-│   │   │   │   └── CurrentService.ts
 │   │   │   └── types.ts
 │   │   └── utils
 │   │       ├── anonymousId
@@ -358,30 +473,41 @@
 │   │       ├── zod-schema.ts
 │   │       └── zustand.ts
 │   ├── mdx-components.tsx
-│   ├── middleware.ts
+│   ├── proxy.ts
 │   ├── revalidateTags.ts
 │   ├── useCases
 │   │   ├── AbstractCacheUseCase.ts
 │   │   ├── api_keys
 │   │   │   ├── CreateApiKey.ts
-│   │   │   └── DeleteApiKey.ts
+│   │   │   ├── DeleteApiKey.ts
+│   │   │   └── ListApiKeysForTenant.ts
 │   │   ├── boards
-│   │   │   └── GetBoardSlug.ts
+│   │   │   ├── CreateBoard.ts
+│   │   │   ├── DeleteBoard.ts
+│   │   │   ├── GetBoardSlug.ts
+│   │   │   ├── ListBoardsForTenant.ts
+│   │   │   ├── ReorderBoards.ts
+│   │   │   └── UpdateBoard.ts
 │   │   ├── comments
 │   │   │   ├── AddCommentToPost.ts
 │   │   │   ├── DeleteComment.ts
 │   │   │   ├── ListCommentsForPost.ts
 │   │   │   └── UpdateComment.ts
-│   │   ├── follows
-│   │   │   ├── FollowPost.ts
-│   │   │   └── UnfollowPost.ts
+│   │   ├── invitations
+│   │   │   ├── ListInvitationsForTenant.ts
+│   │   │   ├── RevokeInvitation.ts
+│   │   │   └── SendInvitation.ts
 │   │   ├── likes
 │   │   │   ├── LikePost.ts
 │   │   │   └── UnlikePost.ts
 │   │   ├── post_status_changes
 │   │   │   └── ChangePostStatus.ts
 │   │   ├── post_statuses
-│   │   │   └── ListPostStatuses.ts
+│   │   │   ├── CreatePostStatus.ts
+│   │   │   ├── DeletePostStatus.ts
+│   │   │   ├── ListPostStatuses.ts
+│   │   │   ├── ReorderPostStatuses.ts
+│   │   │   └── UpdatePostStatus.ts
 │   │   ├── posts
 │   │   │   ├── ArchivePost.ts
 │   │   │   ├── DeletePost.ts
@@ -390,28 +516,38 @@
 │   │   │   ├── SubmitPost.ts
 │   │   │   └── UpdatePostContent.ts
 │   │   ├── tenant
+│   │   │   ├── CreateNewTenant.ts
 │   │   │   ├── GetTenantForDomain.ts
 │   │   │   ├── GetTenantWithSettings.ts
 │   │   │   ├── ListTenantsForUser.ts
 │   │   │   ├── SaveTenant.ts
-│   │   │   └── SaveTenantWithSettings.ts
+│   │   │   ├── SaveTenantWithSettings.ts
+│   │   │   └── follows
+│   │   │       ├── FollowPost.ts
+│   │   │       └── UnfollowPost.ts
 │   │   ├── tenant_settings
 │   │   │   └── GetTenantSettings.ts
 │   │   ├── types.ts
 │   │   ├── user_on_tenant
 │   │   │   ├── ListTenantsForUser.ts
-│   │   │   └── ListUsersForTenant.ts
-│   │   └── users
-│   │       ├── CreateUser.ts
-│   │       ├── GetUserByEmail.ts
-│   │       ├── GetUserById.ts
-│   │       └── UpdateUser.ts
+│   │   │   ├── ListUsersForTenant.ts
+│   │   │   ├── RemoveMember.ts
+│   │   │   ├── UpdateMemberRole.ts
+│   │   │   └── UpdateMemberStatus.ts
+│   │   ├── users
+│   │   │   ├── CreateUser.ts
+│   │   │   ├── GetUserByEmail.ts
+│   │   │   ├── GetUserById.ts
+│   │   │   └── UpdateUser.ts
+│   │   └── webhooks
+│   │       ├── CreateWebhook.ts
+│   │       ├── DeleteWebhook.ts
+│   │       └── ListWebhooksForTenant.ts
 │   └── workflows
 │       ├── CreateFakePostsWorkflow.ts
 │       ├── CreateFakeUsersWorkflow.ts
 │       ├── CreateWelcomeEntitiesWorkflow.ts
 │       └── IWorkflow.ts
 ├── tailwind.config.ts
-├── tsconfig.json
-└── yarn.lock
-99 directories, 317 files
+└── tsconfig.json
+134 directories, 462 files
