@@ -69,6 +69,10 @@
 │   │   │   │   │   └── migration.sql
 │   │   │   │   ├── 20251223095117_delete_user_on_cascade_fix
 │   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20260130120000_add_epci_neighbors
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20260206103449_better_auth_migration
+│   │   │   │   │   └── migration.sql
 │   │   │   │   └── migration_lock.toml
 │   │   │   └── schema.prisma
 │   │   ├── prisma.config.ts
@@ -94,8 +98,7 @@
 │   │   │   │   ├── auth.module.ts
 │   │   │   │   ├── auth.service.spec.ts
 │   │   │   │   ├── auth.service.ts
-│   │   │   │   ├── impersonation.service.ts
-│   │   │   │   └── password-reset.service.ts
+│   │   │   │   └── better-auth.ts
 │   │   │   ├── bad-quality
 │   │   │   │   ├── bad-quality.module.ts
 │   │   │   │   ├── bad-quality.service.spec.ts
@@ -112,6 +115,8 @@
 │   │   │   │   │   ├── coefficient-calculation.service.ts
 │   │   │   │   │   └── coefficient.config.ts
 │   │   │   │   ├── needs-calculation
+│   │   │   │   │   ├── __test-utils__
+│   │   │   │   │   │   └── calculation-test-fixtures.ts
 │   │   │   │   │   ├── base-calculator.spec.ts
 │   │   │   │   │   ├── base-calculator.ts
 │   │   │   │   │   ├── besoins-flux
@@ -161,21 +166,12 @@
 │   │   │   │   ├── decorators
 │   │   │   │   │   ├── authenticated-user.ts
 │   │   │   │   │   ├── control-access.decorator.ts
-│   │   │   │   │   ├── public.decorator.ts
-│   │   │   │   │   └── usurpation-user.ts
+│   │   │   │   │   └── public.decorator.ts
 │   │   │   │   ├── exceptions
-│   │   │   │   │   ├── auth.exceptions.ts
-│   │   │   │   │   └── email-verification
-│   │   │   │   │       ├── email-verification.module.ts
-│   │   │   │   │       ├── email-verification.service.spec.ts
-│   │   │   │   │       └── email-verification.service.ts
+│   │   │   │   │   └── auth.exceptions.ts
 │   │   │   │   ├── guards
-│   │   │   │   │   ├── authentication.guard.spec.ts
-│   │   │   │   │   ├── authentication.guard.ts
 │   │   │   │   │   ├── authorization.guard.spec.ts
-│   │   │   │   │   ├── authorization.guard.ts
-│   │   │   │   │   ├── refreshtoken.guard.spec.ts
-│   │   │   │   │   └── refreshtoken.guard.ts
+│   │   │   │   │   └── authorization.guard.ts
 │   │   │   │   └── utils
 │   │   │   │       └── email-anonymizer.ts
 │   │   │   ├── config
@@ -185,6 +181,7 @@
 │   │   │   │   ├── cron.controller.spec.ts
 │   │   │   │   ├── cron.controller.ts
 │   │   │   │   ├── cron.module.ts
+│   │   │   │   ├── cron.service.spec.ts
 │   │   │   │   ├── cron.service.ts
 │   │   │   │   └── interfaces
 │   │   │   │       └── demarches-simplifiees.interface.ts
@@ -219,6 +216,13 @@
 │   │   │   │   ├── epci-groups.controller.ts
 │   │   │   │   ├── epci-groups.module.ts
 │   │   │   │   └── epci-groups.service.ts
+│   │   │   ├── epci-neighbors
+│   │   │   │   ├── epci-neighbors.controller.ts
+│   │   │   │   ├── epci-neighbors.module.ts
+│   │   │   │   ├── epci-neighbors.service.ts
+│   │   │   │   └── guards
+│   │   │   │       ├── epci-neighbors-access.guard.spec.ts
+│   │   │   │       └── epci-neighbors-access.guard.ts
 │   │   │   ├── epcis
 │   │   │   │   ├── epcis.controller.spec.ts
 │   │   │   │   ├── epcis.controller.ts
@@ -259,58 +263,6 @@
 │   │   │   │   ├── financial-inadequation.module.ts
 │   │   │   │   ├── financial-inadequation.service.spec.ts
 │   │   │   │   └── financial-inadequation.service.ts
-│   │   │   ├── generated
-│   │   │   │   └── prisma
-│   │   │   │       ├── browser.ts
-│   │   │   │       ├── client.ts
-│   │   │   │       ├── commonInputTypes.ts
-│   │   │   │       ├── enums.ts
-│   │   │   │       ├── internal
-│   │   │   │       │   ├── class.ts
-│   │   │   │       │   ├── prismaNamespace.ts
-│   │   │   │       │   └── prismaNamespaceBrowser.ts
-│   │   │   │       ├── models
-│   │   │   │       │   ├── Account.ts
-│   │   │   │       │   ├── BadQuality_Filocom.ts
-│   │   │   │       │   ├── BadQuality_Fonciers.ts
-│   │   │   │       │   ├── BadQuality_RP.ts
-│   │   │   │       │   ├── Bassin.ts
-│   │   │   │       │   ├── DemographicEvolutionOmphale.ts
-│   │   │   │       │   ├── DemographicEvolutionOmphaleCustom.ts
-│   │   │   │       │   ├── DemographicEvolutionPopulation.ts
-│   │   │   │       │   ├── EPCIContiguity.ts
-│   │   │   │       │   ├── EPCIScenario.ts
-│   │   │   │       │   ├── EmailVerification.ts
-│   │   │   │       │   ├── Epci.ts
-│   │   │   │       │   ├── EpciGroup.ts
-│   │   │   │       │   ├── EpciGroupEpcis.ts
-│   │   │   │       │   ├── Export.ts
-│   │   │   │       │   ├── FilocomFlux.ts
-│   │   │   │       │   ├── FinancialInadequation.ts
-│   │   │   │       │   ├── Homeless.ts
-│   │   │   │       │   ├── HostedFilocom.ts
-│   │   │   │       │   ├── HostedFiness.ts
-│   │   │   │       │   ├── HostedSne.ts
-│   │   │   │       │   ├── Hotel.ts
-│   │   │   │       │   ├── HouseholdSizes.ts
-│   │   │   │       │   ├── ImpersonationSession.ts
-│   │   │   │       │   ├── MakeShiftHousing_RP.ts
-│   │   │   │       │   ├── MakeShiftHousing_SNE.ts
-│   │   │   │       │   ├── PhysicalInadequation_Filo.ts
-│   │   │   │       │   ├── PhysicalInadequation_RP.ts
-│   │   │   │       │   ├── RP.ts
-│   │   │   │       │   ├── Scenario.ts
-│   │   │   │       │   ├── Session.ts
-│   │   │   │       │   ├── Simulation.ts
-│   │   │   │       │   ├── SimulationResults.ts
-│   │   │   │       │   ├── Sitadel.ts
-│   │   │   │       │   ├── SocialParc.ts
-│   │   │   │       │   ├── User.ts
-│   │   │   │       │   ├── UserAccountResetToken.ts
-│   │   │   │       │   ├── UserWhitelist.ts
-│   │   │   │       │   └── VacancyAccommodation.ts
-│   │   │   │       ├── models.ts
-│   │   │   │       └── pjtg.ts
 │   │   │   ├── health
 │   │   │   │   ├── health.controller.spec.ts
 │   │   │   │   └── health.controller.ts
@@ -339,7 +291,6 @@
 │   │   │   │   ├── results.service.spec.ts
 │   │   │   │   └── results.service.ts
 │   │   │   ├── rp-insee
-│   │   │   │   ├── rp-insee.controller.spec.ts
 │   │   │   │   ├── rp-insee.module.ts
 │   │   │   │   ├── rp-insee.service.spec.ts
 │   │   │   │   └── rp-insee.service.ts
@@ -351,12 +302,8 @@
 │   │   │   │   └── scenarios.service.ts
 │   │   │   ├── schemas
 │   │   │   │   ├── auth
-│   │   │   │   │   ├── forgot-password.ts
 │   │   │   │   │   ├── impersonation-status.ts
-│   │   │   │   │   ├── reset-password.ts
 │   │   │   │   │   ├── sign-in-callback.ts
-│   │   │   │   │   ├── sign-in.ts
-│   │   │   │   │   ├── sign-up.ts
 │   │   │   │   │   └── verify-email.ts
 │   │   │   │   ├── data
 │   │   │   │   │   └── data.ts
@@ -383,13 +330,8 @@
 │   │   │   │   │   ├── create-simulation.ts
 │   │   │   │   │   └── simulation.ts
 │   │   │   │   └── users
-│   │   │   │       ├── create-user.ts
 │   │   │   │       ├── update-user.ts
 │   │   │   │       └── user.ts
-│   │   │   ├── sessions
-│   │   │   │   ├── sessions.module.ts
-│   │   │   │   ├── sessions.service.spec.ts
-│   │   │   │   └── sessions.service.ts
 │   │   │   ├── simulations
 │   │   │   │   ├── simulations.controller.spec.ts
 │   │   │   │   ├── simulations.controller.ts
@@ -467,7 +409,6 @@
 │       │   │   │   ├── layout-wrapper.tsx
 │       │   │   │   ├── layout.module.css
 │       │   │   │   ├── layout.tsx
-│       │   │   │   ├── signout.tsx
 │       │   │   │   ├── simulation
 │       │   │   │   │   ├── (creation)
 │       │   │   │   │   │   ├── (rates-provider)
@@ -550,10 +491,12 @@
 │       │   │   │   │   ├── [groupId]
 │       │   │   │   │   │   └── page.tsx
 │       │   │   │   │   └── layout.tsx
-│       │   │   │   └── tableaux-de-bord
-│       │   │   │       ├── no-results.tsx
-│       │   │   │       ├── page.tsx
-│       │   │   │       └── tableaux-de-bord.module.css
+│       │   │   │   ├── tableaux-de-bord
+│       │   │   │   │   ├── no-results.tsx
+│       │   │   │   │   ├── page.tsx
+│       │   │   │   │   └── tableaux-de-bord.module.css
+│       │   │   │   └── territoires-voisins
+│       │   │   │       └── page.tsx
 │       │   │   ├── (unauthenticated)
 │       │   │   │   ├── (auth)
 │       │   │   │   │   ├── connexion
@@ -563,9 +506,7 @@
 │       │   │   │   │   ├── layout.tsx
 │       │   │   │   │   ├── modification-mot-de-passe
 │       │   │   │   │   │   └── page.tsx
-│       │   │   │   │   ├── mot-de-passe-oublie
-│       │   │   │   │   │   └── page.tsx
-│       │   │   │   │   └── verification
+│       │   │   │   │   └── mot-de-passe-oublie
 │       │   │   │   │       └── page.tsx
 │       │   │   │   ├── (generic-pages)
 │       │   │   │   │   ├── @summary
@@ -630,27 +571,6 @@
 │       │   │   │   │       └── [id]
 │       │   │   │   │           └── access
 │       │   │   │   │               └── route.ts
-│       │   │   │   ├── auth
-│       │   │   │   │   ├── [...nextauth]
-│       │   │   │   │   │   └── route.ts
-│       │   │   │   │   ├── confirmation-code-mail
-│       │   │   │   │   │   └── route.ts
-│       │   │   │   │   ├── confirmation-mail
-│       │   │   │   │   │   └── route.ts
-│       │   │   │   │   ├── forgot-password
-│       │   │   │   │   │   └── route.ts
-│       │   │   │   │   ├── impersonate
-│       │   │   │   │   │   └── route.ts
-│       │   │   │   │   ├── impersonation-status
-│       │   │   │   │   │   └── route.ts
-│       │   │   │   │   ├── reset-password
-│       │   │   │   │   │   └── route.ts
-│       │   │   │   │   ├── sign-out
-│       │   │   │   │   │   └── route.ts
-│       │   │   │   │   ├── validate-reset-token
-│       │   │   │   │   │   └── route.ts
-│       │   │   │   │   └── verify-email
-│       │   │   │   │       └── route.ts
 │       │   │   │   ├── bassin
 │       │   │   │   │   └── epcis
 │       │   │   │   │       └── [epci]
@@ -679,6 +599,11 @@
 │       │   │   │   │   └── route.ts
 │       │   │   │   ├── epci-groups
 │       │   │   │   │   └── route.ts
+│       │   │   │   ├── epci-neighbors
+│       │   │   │   │   ├── [code]
+│       │   │   │   │   │   └── route.ts
+│       │   │   │   │   └── access-check
+│       │   │   │   │       └── route.ts
 │       │   │   │   ├── export-excel
 │       │   │   │   │   └── [id]
 │       │   │   │   │       └── route.ts
@@ -710,6 +635,7 @@
 │       │   │   ├── layout.module.css
 │       │   │   ├── layout.tsx
 │       │   │   ├── matomo.tsx
+│       │   │   ├── not-found.tsx
 │       │   │   └── page.tsx
 │       │   ├── components
 │       │   │   ├── admin
@@ -723,8 +649,7 @@
 │       │   │   │   ├── login-form.tsx
 │       │   │   │   ├── reset-password-form.tsx
 │       │   │   │   ├── sign-up-form.tsx
-│       │   │   │   ├── user-type-selection-modal.tsx
-│       │   │   │   └── verification-client.tsx
+│       │   │   │   └── user-type-selection-modal.tsx
 │       │   │   ├── brand-top.tsx
 │       │   │   ├── breadcrumbs
 │       │   │   │   ├── authenticated-breadcrumb.tsx
@@ -775,6 +700,7 @@
 │       │   │   ├── header.tsx
 │       │   │   ├── impersonation-banner.tsx
 │       │   │   ├── navigation
+│       │   │   │   ├── header-navigation-client.tsx
 │       │   │   │   └── header-navigation.tsx
 │       │   │   ├── quick-access-items.tsx
 │       │   │   ├── simulations
@@ -941,6 +867,13 @@
 │       │   │   │   ├── multiple-epci-select.tsx
 │       │   │   │   ├── tableau-de-bord.module.css
 │       │   │   │   └── tableau-de-bord.tsx
+│       │   │   ├── territoires-voisins
+│       │   │   │   ├── territoires-voisins-map-wrapper.tsx
+│       │   │   │   ├── territoires-voisins-map.tsx
+│       │   │   │   ├── territoires-voisins-modal.tsx
+│       │   │   │   ├── territoires-voisins-page.tsx
+│       │   │   │   ├── territoires-voisins-table.tsx
+│       │   │   │   └── territoires-voisins.module.css
 │       │   │   └── ui
 │       │   │       ├── RedAsterisk.module.css
 │       │   │       ├── custom-highlight.module.scss
@@ -976,16 +909,16 @@
 │       │   │   ├── use-delete-user.ts
 │       │   │   ├── use-demographic-evolution-custom.ts
 │       │   │   ├── use-epci-groups.ts
+│       │   │   ├── use-epci-neighbors-access.ts
+│       │   │   ├── use-epci-neighbors.ts
 │       │   │   ├── use-epcis.ts
 │       │   │   ├── use-export-excel-simulation.ts
 │       │   │   ├── use-export-simulations-statistics.ts
 │       │   │   ├── use-export-users-statistics.ts
 │       │   │   ├── use-forgot-password.ts
 │       │   │   ├── use-geoapi-search.ts
-│       │   │   ├── use-impersonation-status.ts
 │       │   │   ├── use-impersonation.ts
 │       │   │   ├── use-request-powerpoint.ts
-│       │   │   ├── use-resend-verification-email.ts
 │       │   │   ├── use-reset-password.ts
 │       │   │   ├── use-scenario.ts
 │       │   │   ├── use-search-users.ts
@@ -998,12 +931,9 @@
 │       │   │   └── use-users.ts
 │       │   ├── lib
 │       │   │   └── auth
-│       │   │       ├── auth.config.ts
-│       │   │       ├── auth.ts
-│       │   │       └── providers
-│       │   │           └── pro-connect.ts
+│       │   │       ├── client.ts
+│       │   │       └── server.ts
 │       │   ├── providers
-│       │   │   ├── next-auth.tsx
 │       │   │   └── tanstack-client.tsx
 │       │   ├── schemas
 │       │   │   ├── accommodation-evolution.ts
@@ -1022,9 +952,6 @@
 │       │   │   ├── sitadel.ts
 │       │   │   └── user.ts
 │       │   ├── server-only
-│       │   │   ├── auth
-│       │   │   │   ├── validate-reset-token.ts
-│       │   │   │   └── verify-email.ts
 │       │   │   ├── demographic-evolution
 │       │   │   │   ├── get-omphale-evolution-by-epci.ts
 │       │   │   │   └── get-population-evolution-by-epci.ts
@@ -1038,7 +965,6 @@
 │       │   │       ├── get-dashboard-list.ts
 │       │   │       └── get-grouped-simulations-with-results.ts
 │       │   ├── types
-│       │   │   ├── next-auth.d.ts
 │       │   │   └── simulation-page-props.ts
 │       │   └── utils
 │       │       ├── calculation-helpers.ts
@@ -1080,6 +1006,7 @@
 │       │       │   └── evolution.base.ts
 │       │       ├── entities
 │       │       │   ├── epci-group.ts
+│       │       │   ├── epci-neighbor.ts
 │       │       │   ├── epci-scenario.ts
 │       │       │   ├── epci.ts
 │       │       │   ├── results.base.ts
@@ -1096,4 +1023,4 @@
 ├── scripts
 │   └── scalingo-postbuild.mjs
 └── tsconfig.base.json
-305 directories, 793 files
+295 directories, 730 files
