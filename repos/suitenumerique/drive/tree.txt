@@ -11,6 +11,7 @@
 │   ├── ISSUE_TEMPLATE.md
 │   ├── PULL_REQUEST_TEMPLATE.md
 │   └── workflows
+│       ├── build-mails.yml
 │       ├── crowdin_download.yml
 │       ├── crowdin_upload.yml
 │       ├── docker-hub.yml
@@ -171,6 +172,7 @@
     │   │   │   ├── 0013_active_unnaccent_postgres_extension.py
     │   │   │   ├── 0014_alter_user_language.py
     │   │   │   ├── 0015_user_claims_alter_user_language.py
+    │   │   │   ├── 0016_alter_item_link_reach.py
     │   │   │   └── __init__.py
     │   │   ├── models.py
     │   │   ├── services
@@ -230,6 +232,7 @@
     │   │   │   │   ├── test_api_items_list_ordering.py
     │   │   │   │   ├── test_api_items_media_auth.py
     │   │   │   │   ├── test_api_items_move.py
+    │   │   │   │   ├── test_api_items_recents.py
     │   │   │   │   ├── test_api_items_restore.py
     │   │   │   │   ├── test_api_items_retrieve.py
     │   │   │   │   ├── test_api_items_search.py
@@ -436,6 +439,7 @@
     │   │   │   │   │   │   ├── folder-tiny-public.svg
     │   │   │   │   │   │   ├── folder-tiny-shared.svg
     │   │   │   │   │   │   └── folder.svg
+    │   │   │   │   │   ├── grid_empty.jpg
     │   │   │   │   │   ├── grid_empty.png
     │   │   │   │   │   ├── grid_empty.svg
     │   │   │   │   │   ├── home
@@ -446,11 +450,26 @@
     │   │   │   │   │   │   ├── cancel_blue.svg
     │   │   │   │   │   │   ├── create_folder.svg
     │   │   │   │   │   │   ├── create_workspace.svg
+    │   │   │   │   │   │   ├── defaultTabs
+    │   │   │   │   │   │   │   ├── breadcrumbs
+    │   │   │   │   │   │   │   │   ├── my_files.svg
+    │   │   │   │   │   │   │   │   ├── recents.svg
+    │   │   │   │   │   │   │   │   ├── shared_with_me.svg
+    │   │   │   │   │   │   │   │   ├── starred.svg
+    │   │   │   │   │   │   │   │   └── trash.svg
+    │   │   │   │   │   │   │   └── sidebar
+    │   │   │   │   │   │   │       ├── my_files.svg
+    │   │   │   │   │   │   │       ├── recents.svg
+    │   │   │   │   │   │   │       ├── shared_with_me.svg
+    │   │   │   │   │   │   │       ├── starred.svg
+    │   │   │   │   │   │   │       └── trash.svg
     │   │   │   │   │   │   ├── delete_filled.svg
     │   │   │   │   │   │   ├── folder-tiny-plus.svg
     │   │   │   │   │   │   ├── import_icon.svg
     │   │   │   │   │   │   ├── info.svg
     │   │   │   │   │   │   ├── settings.svg
+    │   │   │   │   │   │   ├── starred-slash.svg
+    │   │   │   │   │   │   ├── starred.svg
     │   │   │   │   │   │   ├── trash.svg
     │   │   │   │   │   │   ├── undo.svg
     │   │   │   │   │   │   ├── undo_blue.svg
@@ -461,6 +480,7 @@
     │   │   │   │   │   ├── logo.svg
     │   │   │   │   │   ├── mutliple-selection.png
     │   │   │   │   │   ├── search-dev.png
+    │   │   │   │   │   ├── star_tab_empty.svg
     │   │   │   │   │   ├── tree
     │   │   │   │   │   │   ├── folder.svg
     │   │   │   │   │   │   ├── main-workspace.svg
@@ -475,9 +495,11 @@
     │   │   │   │   │   │   └── utils.ts
     │   │   │   │   │   ├── auth
     │   │   │   │   │   │   ├── Auth.tsx
+    │   │   │   │   │   │   ├── authUrl.ts
     │   │   │   │   │   │   ├── components
     │   │   │   │   │   │   │   ├── LoginButton.tsx
     │   │   │   │   │   │   │   └── LogoutButton.tsx
+    │   │   │   │   │   │   ├── silentLogin.ts
     │   │   │   │   │   │   └── types.ts
     │   │   │   │   │   ├── config
     │   │   │   │   │   │   ├── Config.ts
@@ -524,6 +546,7 @@
     │   │   │   │   │   │   │   │   ├── EmbeddedExplorerGridMobileCell.tsx
     │   │   │   │   │   │   │   │   ├── EmbeddedExplorerGridNameCell.tsx
     │   │   │   │   │   │   │   │   ├── EmbeddedExplorerGridUpdatedAtCell.tsx
+    │   │   │   │   │   │   │   │   ├── EmbeddedExplorerSearchInput.tsx
     │   │   │   │   │   │   │   │   └── hooks.tsx
     │   │   │   │   │   │   │   ├── icons
     │   │   │   │   │   │   │   │   ├── ItemIcon.scss
@@ -542,13 +565,9 @@
     │   │   │   │   │   │   │   │   ├── search
     │   │   │   │   │   │   │   │   │   ├── ExplorerSearchModal.scss
     │   │   │   │   │   │   │   │   │   └── ExplorerSearchModal.tsx
-    │   │   │   │   │   │   │   │   ├── share
-    │   │   │   │   │   │   │   │   │   ├── FileShareModal.tsx
-    │   │   │   │   │   │   │   │   │   └── WorkspaceShareModal.tsx
-    │   │   │   │   │   │   │   │   └── workspaces
-    │   │   │   │   │   │   │   │       ├── ExplorerCreateWorkspaceModal.tsx
-    │   │   │   │   │   │   │   │       ├── ExplorerEditWorkspaceModal.tsx
-    │   │   │   │   │   │   │   │       └── WorkspaceForm.tsx
+    │   │   │   │   │   │   │   │   └── share
+    │   │   │   │   │   │   │   │       ├── ItemShareModal.scss
+    │   │   │   │   │   │   │   │       └── ItemShareModal.tsx
     │   │   │   │   │   │   │   ├── right-panel
     │   │   │   │   │   │   │   │   ├── ExplorerRightPanel.scss
     │   │   │   │   │   │   │   │   └── ExplorerRightPanelContent.tsx
@@ -567,23 +586,23 @@
     │   │   │   │   │   │   │   │   ├── ExplorerTreeItem.tsx
     │   │   │   │   │   │   │   │   ├── ExplorerTreeItemActions.tsx
     │   │   │   │   │   │   │   │   ├── ExplorerTreeMoveConfirmationModal.tsx
-    │   │   │   │   │   │   │   │   ├── hooks
-    │   │   │   │   │   │   │   │   │   ├── useAddTreeNode.tsx
-    │   │   │   │   │   │   │   │   │   └── useDeleteTreeNode.tsx
     │   │   │   │   │   │   │   │   └── nav
     │   │   │   │   │   │   │   │       ├── ExplorerTreeNav.tsx
     │   │   │   │   │   │   │   │       └── ExplorerTreeNavItem.tsx
     │   │   │   │   │   │   │   └── workspaces-explorer
     │   │   │   │   │   │   │       └── WorkspacesExplorer.tsx
-    │   │   │   │   │   │   ├── constants.ts
     │   │   │   │   │   │   ├── hooks
     │   │   │   │   │   │   │   ├── useBreadcrumb.tsx
     │   │   │   │   │   │   │   ├── useDeleteItem.tsx
     │   │   │   │   │   │   │   ├── useInfiniteChildren.ts
     │   │   │   │   │   │   │   ├── useInfiniteItems.ts
     │   │   │   │   │   │   │   ├── useMutations.ts
+    │   │   │   │   │   │   │   ├── useMutationsAccesses.ts
+    │   │   │   │   │   │   │   ├── useOptimisticPagination.ts
     │   │   │   │   │   │   │   ├── useQueries.tsx
+    │   │   │   │   │   │   │   ├── useRefreshItems.ts
     │   │   │   │   │   │   │   ├── useTableKeyboardNavigation.ts
+    │   │   │   │   │   │   │   ├── useTreeUtils.ts
     │   │   │   │   │   │   │   └── useUpload.tsx
     │   │   │   │   │   │   └── utils
     │   │   │   │   │   │       ├── __tests__
@@ -610,23 +629,25 @@
     │   │   │   │   │   │   │   └── useDownloadItem.tsx
     │   │   │   │   │   │   └── utils.ts
     │   │   │   │   │   ├── layouts
-    │   │   │   │   │   │   └── components
-    │   │   │   │   │   │       ├── explorer
-    │   │   │   │   │   │       │   ├── ExplorerLayout.scss
-    │   │   │   │   │   │       │   └── ExplorerLayout.tsx
-    │   │   │   │   │   │       ├── global
-    │   │   │   │   │   │       │   ├── GlobalLayout.scss
-    │   │   │   │   │   │       │   └── GlobalLayout.tsx
-    │   │   │   │   │   │       ├── header
-    │   │   │   │   │   │       │   ├── Header.tsx
-    │   │   │   │   │   │       │   └── index.scss
-    │   │   │   │   │   │       ├── left-panel
-    │   │   │   │   │   │       │   ├── LeftPanelMobile.scss
-    │   │   │   │   │   │       │   └── LeftPanelMobile.tsx
-    │   │   │   │   │   │       ├── sdk
-    │   │   │   │   │   │       │   └── SdkLayout.tsx
-    │   │   │   │   │   │       └── simple
-    │   │   │   │   │   │           └── SimpleLayout.tsx
+    │   │   │   │   │   │   ├── components
+    │   │   │   │   │   │   │   ├── explorer
+    │   │   │   │   │   │   │   │   ├── ExplorerLayout.scss
+    │   │   │   │   │   │   │   │   └── ExplorerLayout.tsx
+    │   │   │   │   │   │   │   ├── global
+    │   │   │   │   │   │   │   │   ├── GlobalLayout.scss
+    │   │   │   │   │   │   │   │   └── GlobalLayout.tsx
+    │   │   │   │   │   │   │   ├── header
+    │   │   │   │   │   │   │   │   ├── Header.tsx
+    │   │   │   │   │   │   │   │   └── index.scss
+    │   │   │   │   │   │   │   ├── left-panel
+    │   │   │   │   │   │   │   │   ├── LeftPanelMobile.scss
+    │   │   │   │   │   │   │   │   └── LeftPanelMobile.tsx
+    │   │   │   │   │   │   │   ├── sdk
+    │   │   │   │   │   │   │   │   └── SdkLayout.tsx
+    │   │   │   │   │   │   │   └── simple
+    │   │   │   │   │   │   │       └── SimpleLayout.tsx
+    │   │   │   │   │   │   └── hooks
+    │   │   │   │   │   │       └── useSyncUserLanguage.ts
     │   │   │   │   │   ├── sdk
     │   │   │   │   │   │   ├── SdkPickerFooter.tsx
     │   │   │   │   │   │   └── SdkRelayManager.ts
@@ -678,6 +699,8 @@
     │   │   │   │   │   │       │   └── volume-bar
     │   │   │   │   │   │       │       ├── VolumeBar.scss
     │   │   │   │   │   │       │       └── VolumeBar.tsx
+    │   │   │   │   │   │       ├── custom-files-preview
+    │   │   │   │   │   │       │   └── CustomFilesPreview.tsx
     │   │   │   │   │   │       ├── error
     │   │   │   │   │   │       │   ├── ErrorPreview.scss
     │   │   │   │   │   │       │   └── ErrorPreview.tsx
@@ -718,10 +741,12 @@
     │   │   │   │   │   ├── explorer
     │   │   │   │   │   │   ├── items
     │   │   │   │   │   │   │   ├── [id].tsx
+    │   │   │   │   │   │   │   ├── favorites.tsx
     │   │   │   │   │   │   │   ├── files
     │   │   │   │   │   │   │   │   └── [id].tsx
-    │   │   │   │   │   │   │   ├── public.tsx
-    │   │   │   │   │   │   │   └── shared.tsx
+    │   │   │   │   │   │   │   ├── my-files.tsx
+    │   │   │   │   │   │   │   ├── recent.tsx
+    │   │   │   │   │   │   │   └── shared-with-me.tsx
     │   │   │   │   │   │   └── trash
     │   │   │   │   │   │       └── index.tsx
     │   │   │   │   │   ├── index.scss
@@ -737,7 +762,9 @@
     │   │   │   │   │   ├── cunningham-tokens.ts
     │   │   │   │   │   └── globals.scss
     │   │   │   │   └── utils
+    │   │   │   │       ├── defaultRoutes.ts
     │   │   │   │       ├── entitlements.ts
+    │   │   │   │       ├── itemUtils.ts
     │   │   │   │       ├── useLayout.tsx
     │   │   │   │       └── useQueries.ts
     │   │   │   ├── svg.d.ts
@@ -751,17 +778,28 @@
     │   │   │   │       │   └── test-image.heic
     │   │   │   │       ├── create-folder.spec.ts
     │   │   │   │       ├── db.setup.ts
-    │   │   │   │       ├── delete-item-in-tree.spec.ts
+    │   │   │   │       ├── delete-item.spec.ts
     │   │   │   │       ├── heic-file-preview.spec.ts
     │   │   │   │       ├── item
     │   │   │   │       │   └── right-content-info.spec.ts
+    │   │   │   │       ├── left-bar.spec.ts
     │   │   │   │       ├── login.spec.ts
+    │   │   │   │       ├── move-item.spec.ts
     │   │   │   │       ├── search.spec.ts
+    │   │   │   │       ├── share.spec.ts
+    │   │   │   │       ├── silent-login.spec.ts
+    │   │   │   │       ├── starred.spec.ts
     │   │   │   │       ├── url-file-preview.spec.ts
+    │   │   │   │       ├── utils
+    │   │   │   │       │   ├── move-utils.ts
+    │   │   │   │       │   ├── share-utils.ts
+    │   │   │   │       │   ├── starred-utils.ts
+    │   │   │   │       │   └── types-utils.ts
     │   │   │   │       ├── utils-common.ts
     │   │   │   │       ├── utils-embedded-grid.ts
     │   │   │   │       ├── utils-explorer.ts
     │   │   │   │       ├── utils-item.ts
+    │   │   │   │       ├── utils-navigate.ts
     │   │   │   │       └── utils-tree.ts
     │   │   │   ├── package.json
     │   │   │   ├── playwright.config.ts
@@ -841,7 +879,7 @@
     │   ├── env.d
     │   │   └── dev
     │   │       └── values.drive.yaml.gotmpl
-    │   └── helmfile.yaml
+    │   └── helmfile.yaml.gotmpl
     ├── mail
     │   ├── bin
     │   │   ├── html-to-plain-text
@@ -855,4 +893,4 @@
     │   └── yarn.lock
     └── nginx
         └── servers.conf.erb
-224 directories, 633 files
+228 directories, 667 files
