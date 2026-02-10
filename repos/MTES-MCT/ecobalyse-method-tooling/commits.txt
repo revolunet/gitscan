@@ -1,3 +1,15 @@
+2026-02-08T22:53:42+01:00 - 9549c6c - Christophe Combelles : fix feed.json inner key renaming + replace --remove-old-suffix with remove-old command
+2026-02-07T21:24:11+01:00 - 6f7ba5f - Christophe Combelles : update feed.json keys when suffixing/unsuffixing activity aliases
+2026-02-06T19:23:08+01:00 - 8ce6d66 - Christophe Combelles : fixed process choices for some ingredients
+2026-02-06T17:29:35+01:00 - 6b241c4 - Christophe Combelles : add variant suffix to generated output file names
+2026-02-05T17:42:20+01:00 - 16db8ef - Christophe Combelles : fix dairy products being misclassified as meat
+2026-02-05T16:42:26+01:00 - feb83b4 - Christophe Combelles : change alias marking from new- prefix to -2025 suffix on old ingredients
+2026-02-05T11:48:05+01:00 - 712709c - Christophe Combelles : new output
+2026-02-02T14:30:55+01:00 - 316dfd9 - Christophe Combelles : preserve non-food metadata (textile, etc.) during merge
+2026-02-02T11:52:58+01:00 - 1f98e12 - Christophe Combelles : improve cropGroup prediction with RPG 28 reference data
+2026-02-02T11:35:26+01:00 - 7348048 - Christophe Combelles : update README with current env vars and CLI usage
+2026-02-02T11:32:47+01:00 - 6fed51f - Christophe Combelles : add (2025) suffix to old activity displayNames during merge
+2026-02-02T10:35:22+01:00 - a56dd98 - Christophe Combelles : key flat dicts by displayName instead of UUID
 2026-01-30T23:04:07+01:00 - b88dfe2 - Christophe Combelles : deduplicate ingredients by displayName across files during merge
 2026-01-30T22:22:51+01:00 - b8f6acd - Christophe Combelles : refactor merge_activities with flat dicts and UUID-based merge keys
 2026-01-29T20:24:23+01:00 - c70285e - Christophe Combelles : replace individual env vars with ECOBALYSE_DATA/ECOBALYSE base paths and copy reference data
@@ -45,65 +57,65 @@
 2025-12-29T17:04:44+01:00 - 2f85244 - Christophe Combelles : fix json
 2025-12-29T16:55:32+01:00 - 97aea67 - Christophe Combelles : new export
 2025-12-29T15:43:07+01:00 - c9fdb43 - Christophe Combelles : import last iteration of the metadata prediction experiment
-2025-12-29T13:22:55+01:00 - 78c21fa - Christophe Combelles : DRY refactoring: add generic helpers for CSV loading, value extraction, and cross-validation
-2025-12-29T13:22:55+01:00 - e03eb95 - Christophe Combelles : formatting
-2025-12-29T13:22:55+01:00 - 1701f84 - Christophe Combelles : Translate all comments and docstrings to English
-2025-12-29T13:22:55+01:00 - df2a596 - Christophe Combelles : Merge confidence into match dicts and simplify API
-2025-12-29T13:22:55+01:00 - a490013 - Christophe Combelles : Merge export scripts and reorganize directories
-2025-12-29T13:22:55+01:00 - 2314d1c - Christophe Combelles : DRY refactoring: consolidate predict methods and add _build_matcher helper
-2025-12-29T13:22:55+01:00 - 9684328 - Christophe Combelles : Add source file tracking and fix substring matching
-2025-12-29T13:22:55+01:00 - 2f0455a - Christophe Combelles : use ingredients.json for transport_cooling, inedible part and cooked to raw training
-2025-12-29T13:22:55+01:00 - 47b5f09 - Christophe Combelles : Use CSV French translations for displayName instead of ML translation
 2025-12-29T13:22:55+01:00 - ea68784 - Christophe Combelles : translate reference data to english
-2025-12-29T13:22:55+01:00 - ac289cb - Christophe Combelles : english version
-2025-12-29T13:22:55+01:00 - 8497f35 - Christophe Combelles : new export and now keeps existing UUIDs
-2025-12-29T13:22:55+01:00 - 8551668 - Christophe Combelles : use the new input file
-2025-12-29T13:22:55+01:00 - 3a4b1c5 - Christophe Combelles : removed the end model reloading test
-2025-12-29T13:22:55+01:00 - 5898be8 - Christophe Combelles : Auto-download FoodOn ontology if not present
-2025-12-29T13:22:55+01:00 - 770a462 - Christophe Combelles : Add AGB inedible part reference data and cleanup CSV formats
-2025-12-29T13:22:55+01:00 - 5325658 - Christophe Combelles : new ingredients export
-2025-12-29T13:22:55+01:00 - 9d9715b - Christophe Combelles : Add raw ingredient reference data for density and processing state
-2025-12-29T13:22:55+01:00 - 714a8f5 - Christophe Combelles : Expand food_type.csv with 130+ entries for better foodType prediction
-2025-12-29T13:22:55+01:00 - 52ad464 - Christophe Combelles : Add agave to food_type.csv and widen demo table columns
-2025-12-29T13:22:55+01:00 - 58c0444 - Christophe Combelles : Fix NearestNeighborMatcher to prioritize text matching over FoodOn similarity
-2025-12-29T13:22:55+01:00 - 29aed43 - Christophe Combelles : new ingredients
-2025-12-29T13:22:55+01:00 - 714df1b - Christophe Combelles : Add cropgroup.csv reference data for better cropGroup predictions
-2025-12-29T13:22:55+01:00 - 318ce57 - Christophe Combelles : Fix foodType prediction by using dedicated reference data
 2025-12-29T13:22:55+01:00 - e0e8a59 - Christophe Combelles : move reference data
+2025-12-29T13:22:55+01:00 - e03eb95 - Christophe Combelles : formatting
+2025-12-29T13:22:55+01:00 - df2a596 - Christophe Combelles : Merge confidence into match dicts and simplify API
 2025-12-29T13:22:55+01:00 - d53d3a1 - Christophe Combelles : export to activities.json format
-2025-12-29T13:22:55+01:00 - 3b0ac45 - Christophe Combelles : Integrate FoodOn ontology for improved food classification, output categories instead of foodType/processingState
-2025-12-29T13:22:55+01:00 - baf022e - Christophe Combelles : Replace all classifiers with NearestNeighborMatcher
-2025-12-29T13:22:55+01:00 - 99d6609 - Christophe Combelles : Replace ValueClassifier/ValueRegressor with NearestNeighborMatcher
-2025-12-29T13:22:55+01:00 - 1c59a5e - Christophe Combelles : Added a column with the predicted category
-2025-12-29T13:22:55+01:00 - 948c208 - Christophe Combelles : added the ratio column
-2025-12-29T13:22:55+01:00 - 09b0e09 - Christophe Combelles : Add augmented training data with 49 general food types for better semantic coverage
-2025-12-29T13:22:55+01:00 - b3f4c7b - Christophe Combelles : 1. predict.py now outputs foodType, processingState, packaging, and labels instead of categories 2. transportCooling is now derived from packaging type (canned → none) 3. demo_predict.py display updated to show new fields 4. save()/load() updated for new classifiers
-2025-12-29T13:22:55+01:00 - 2d94a46 - Christophe Combelles : Replace MiniLM with food-domain embeddings (jonny9f/food_embeddings2)
-2025-12-29T13:22:55+01:00 - 6b6e682 - Christophe Combelles : Add timing to fit() and persist translation cache to disk for faster reruns
-2025-12-29T13:22:55+01:00 - 536f7a4 - Christophe Combelles : Use KNN regression for density and persist translation cache
-2025-12-29T13:22:55+01:00 - 56e9d4f - Christophe Combelles : Use rich table for predictions display with confidence scores and mean row
-2025-12-29T13:22:55+01:00 - 6641d53 - Christophe Combelles : Use batch translation and caching to fix translation performance bottleneck
-2025-12-29T13:22:55+01:00 - 00f13e3 - Christophe Combelles : Add FR→EN translation before embedding for better semantic matching
-2025-12-29T13:22:55+01:00 - 63882d8 - Christophe Combelles : Add semantic matching for cropGroup using SVM on ingredient names + cropGroup labels as training points
 2025-12-29T13:22:55+01:00 - bdd3c70 - Christophe Combelles : Replace KNN regression with SVM classification for density/inediblePart/rawToCookedRatio using reference data files
+2025-12-29T13:22:55+01:00 - baf022e - Christophe Combelles : Replace all classifiers with NearestNeighborMatcher
+2025-12-29T13:22:55+01:00 - b3f4c7b - Christophe Combelles : 1. predict.py now outputs foodType, processingState, packaging, and labels instead of categories 2. transportCooling is now derived from packaging type (canned → none) 3. demo_predict.py display updated to show new fields 4. save()/load() updated for new classifiers
+2025-12-29T13:22:55+01:00 - ac289cb - Christophe Combelles : english version
+2025-12-29T13:22:55+01:00 - a490013 - Christophe Combelles : Merge export scripts and reorganize directories
+2025-12-29T13:22:55+01:00 - 9d9715b - Christophe Combelles : Add raw ingredient reference data for density and processing state
+2025-12-29T13:22:55+01:00 - 99d6609 - Christophe Combelles : Replace ValueClassifier/ValueRegressor with NearestNeighborMatcher
+2025-12-29T13:22:55+01:00 - 9684328 - Christophe Combelles : Add source file tracking and fix substring matching
+2025-12-29T13:22:55+01:00 - 948c208 - Christophe Combelles : added the ratio column
+2025-12-29T13:22:55+01:00 - 8551668 - Christophe Combelles : use the new input file
+2025-12-29T13:22:55+01:00 - 8497f35 - Christophe Combelles : new export and now keeps existing UUIDs
+2025-12-29T13:22:55+01:00 - 78c21fa - Christophe Combelles : DRY refactoring: add generic helpers for CSV loading, value extraction, and cross-validation
+2025-12-29T13:22:55+01:00 - 770a462 - Christophe Combelles : Add AGB inedible part reference data and cleanup CSV formats
+2025-12-29T13:22:55+01:00 - 714df1b - Christophe Combelles : Add cropgroup.csv reference data for better cropGroup predictions
+2025-12-29T13:22:55+01:00 - 714a8f5 - Christophe Combelles : Expand food_type.csv with 130+ entries for better foodType prediction
+2025-12-29T13:22:55+01:00 - 6b6e682 - Christophe Combelles : Add timing to fit() and persist translation cache to disk for faster reruns
+2025-12-29T13:22:55+01:00 - 6641d53 - Christophe Combelles : Use batch translation and caching to fix translation performance bottleneck
+2025-12-29T13:22:55+01:00 - 63882d8 - Christophe Combelles : Add semantic matching for cropGroup using SVM on ingredient names + cropGroup labels as training points
+2025-12-29T13:22:55+01:00 - 58c0444 - Christophe Combelles : Fix NearestNeighborMatcher to prioritize text matching over FoodOn similarity
+2025-12-29T13:22:55+01:00 - 5898be8 - Christophe Combelles : Auto-download FoodOn ontology if not present
+2025-12-29T13:22:55+01:00 - 56e9d4f - Christophe Combelles : Use rich table for predictions display with confidence scores and mean row
+2025-12-29T13:22:55+01:00 - 536f7a4 - Christophe Combelles : Use KNN regression for density and persist translation cache
+2025-12-29T13:22:55+01:00 - 5325658 - Christophe Combelles : new ingredients export
+2025-12-29T13:22:55+01:00 - 52ad464 - Christophe Combelles : Add agave to food_type.csv and widen demo table columns
+2025-12-29T13:22:55+01:00 - 47b5f09 - Christophe Combelles : Use CSV French translations for displayName instead of ML translation
+2025-12-29T13:22:55+01:00 - 3b0ac45 - Christophe Combelles : Integrate FoodOn ontology for improved food classification, output categories instead of foodType/processingState
+2025-12-29T13:22:55+01:00 - 3a4b1c5 - Christophe Combelles : removed the end model reloading test
+2025-12-29T13:22:55+01:00 - 318ce57 - Christophe Combelles : Fix foodType prediction by using dedicated reference data
+2025-12-29T13:22:55+01:00 - 2f0455a - Christophe Combelles : use ingredients.json for transport_cooling, inedible part and cooked to raw training
+2025-12-29T13:22:55+01:00 - 2d94a46 - Christophe Combelles : Replace MiniLM with food-domain embeddings (jonny9f/food_embeddings2)
+2025-12-29T13:22:55+01:00 - 29aed43 - Christophe Combelles : new ingredients
+2025-12-29T13:22:55+01:00 - 2314d1c - Christophe Combelles : DRY refactoring: consolidate predict methods and add _build_matcher helper
+2025-12-29T13:22:55+01:00 - 1c59a5e - Christophe Combelles : Added a column with the predicted category
+2025-12-29T13:22:55+01:00 - 1701f84 - Christophe Combelles : Translate all comments and docstrings to English
+2025-12-29T13:22:55+01:00 - 09b0e09 - Christophe Combelles : Add augmented training data with 49 general food types for better semantic coverage
+2025-12-29T13:22:55+01:00 - 00f13e3 - Christophe Combelles : Add FR→EN translation before embedding for better semantic matching
 2025-12-29T12:51:32+01:00 - a622be3 - Christophe Combelles : Replace detect with predict module (initial import from predict sub-repo)
 2025-12-29T12:12:34+01:00 - beecd01 - Christophe Combelles : Add 'food/metadata/' from commit 'c7f14f6c955d664d66c95262e454fe40f9bc0ef4'
-2025-12-28T18:27:48+01:00 - 6ba9a07 - Christophe Combelles : feat: Implement Agribalyse 3.2 (#109)
-2025-12-28T18:27:48+01:00 - 3e4ee76 - Christophe Combelles : fix: Wool fixes and explicit strategies (#44)
 2025-12-28T18:27:48+01:00 - cd4a6e0 - Christophe Combelles : Fix to retrieve impacts of WFLDB from SimaPro (#39)
+2025-12-28T18:27:48+01:00 - 6ba9a07 - Christophe Combelles : feat: Implement Agribalyse 3.2 (#109)
 2025-12-28T18:27:48+01:00 - 5aca4d7 - Christophe Combelles : fix: Simapro API fixes (#28)
+2025-12-28T18:27:48+01:00 - 3e4ee76 - Christophe Combelles : fix: Wool fixes and explicit strategies (#44)
 2025-12-28T17:47:03+01:00 - fa8bb8c - Christophe Combelles : Add 'spapi/' from commit '52762f7b8fcecc0d40fce4db7aa2246ffac0b34d'
 2025-12-28T17:47:03+01:00 - 335854d - Christophe Combelles : Add 'bwapi/' from commit '885d3b273bdff99af31bbeb47dfaa7e058314d62'
-2025-12-28T16:45:17+01:00 - 4c99469 - Vincent Jousse : chore: remove pef (#192)
-2025-12-28T16:45:17+01:00 - 0abc410 - paulboosz : feat: add eol processes (#118)
-2025-12-28T16:45:17+01:00 - 597d905 - Christophe Combelles : feat: Implement Agribalyse 3.2 (#109)
-2025-12-28T16:45:17+01:00 - 96609f9 - Christophe Combelles : refactor: switch to brightway (#64)
-2025-12-28T16:45:17+01:00 - ca5fbe1 - Christophe Combelles : fix: Wool fixes and explicit strategies (#44)
-2025-12-28T16:45:17+01:00 - f0234b1 - paulboosz : chore: camelCase every json key (#54)
-2025-12-28T16:45:17+01:00 - 596bb35 - Vincent Jousse : chore: use latest Brightway versions (#34)
 2025-12-28T16:45:17+01:00 - fae6b3e - Vincent Jousse : fix: update ingredients editor to new id format (#26)
+2025-12-28T16:45:17+01:00 - f0234b1 - paulboosz : chore: camelCase every json key (#54)
+2025-12-28T16:45:17+01:00 - ca5fbe1 - Christophe Combelles : fix: Wool fixes and explicit strategies (#44)
 2025-12-28T16:45:17+01:00 - b34b014 - paulboosz : fix: path for impacts.json (#25)
+2025-12-28T16:45:17+01:00 - 96609f9 - Christophe Combelles : refactor: switch to brightway (#64)
+2025-12-28T16:45:17+01:00 - 597d905 - Christophe Combelles : feat: Implement Agribalyse 3.2 (#109)
+2025-12-28T16:45:17+01:00 - 596bb35 - Vincent Jousse : chore: use latest Brightway versions (#34)
+2025-12-28T16:45:17+01:00 - 4c99469 - Vincent Jousse : chore: remove pef (#192)
 2025-12-28T16:45:17+01:00 - 14bc7cb - Vincent Jousse : refactor: scripts should work as before (#19)
+2025-12-28T16:45:17+01:00 - 0abc410 - paulboosz : feat: add eol processes (#118)
 2025-12-28T16:20:50+01:00 - 6d5844f - Christophe Combelles : Add 'notebooks/' from commit '11ccab688bd545e82330166d1e6f816d1e3705e0'
 2025-12-28T16:20:45+01:00 - 2388e4a - Christophe Combelles : Initial commit
 2025-12-01T12:58:27+01:00 - c7f14f6 - Christophe Combelles : circular import
