@@ -44,6 +44,13 @@ pnpm test
 # Run the benchmark
 pnpm bench
 
+# Export all debug tables (as in DebugDrawer) to a CSV file
+pnpm export-csv
+
 # Run the documentation server
 pnpm dev
 ```
+
+## CI
+
+Le workflow exact `publish.yaml` a été approuvé en tant que [trusted publisher sur npmjs.com](https://www.npmjs.com/package/@betagouv/france-chaleur-urbaine-publicodes/access) afin de pouvoir publier automatiquement les tags vX.X.X et pouvoir les réutiliser dans le dépôt [france-chaleur-urbaine](https://github.com/betagouv/france-chaleur-urbaine).
