@@ -887,9 +887,13 @@
 │   │   ├── instructor_menu_component.html.erb
 │   │   ├── instructor_menu_component.rb
 │   │   ├── link_component.rb
-│   │   └── molecules
-│   │       ├── instructor_banner_notice_component.rb
-│   │       └── update_in_progress_notice_component.rb
+│   │   ├── molecules
+│   │   │   ├── instructor_banner_notice_component.rb
+│   │   │   └── update_in_progress_notice_component.rb
+│   │   └── organisms
+│   │       └── authorization_request_forms
+│   │           ├── legal_framework_component.html.erb
+│   │           └── legal_framework_component.rb
 │   ├── controllers
 │   │   ├── admin
 │   │   │   ├── impersonate_controller.rb
@@ -1079,11 +1083,15 @@
 │   │   ├── create_authorization_request_transfer_model.rb
 │   │   ├── create_denial_of_authorization_model.rb
 │   │   ├── create_instructor_modification_request_model.rb
+│   │   ├── create_linked_france_connect_authorization.rb
+│   │   ├── create_linked_france_connect_authorization_event.rb
 │   │   ├── create_message_model.rb
 │   │   ├── create_revocation_of_authorization_model.rb
 │   │   ├── deliver_authorization_request_notification.rb
 │   │   ├── deliver_gdpr_contacts_mails.rb
+│   │   ├── deliver_linked_france_connect_webhook.rb
 │   │   ├── deliver_message_mail.rb
+│   │   ├── deprecate_linked_authorizations.rb
 │   │   ├── deprecate_previous_authorizations.rb
 │   │   ├── developer
 │   │   │   ├── create_webhook_model.rb
@@ -1423,12 +1431,15 @@
 │   │   ├── authorization_definition_configurations.rb
 │   │   ├── authorization_request_changelog_presenter.rb
 │   │   ├── authorization_request_form_configurations.rb
+│   │   ├── authorization_request_tabs_builder.rb
 │   │   ├── authorization_requests_search_engine_builder.rb
+│   │   ├── authorization_tabs_builder.rb
 │   │   ├── authorizations_search_engine_builder.rb
 │   │   ├── bulk_authorization_request_update_notification_extractor.rb
 │   │   ├── dgfip_spreadsheet_generator.rb
 │   │   ├── email_preview_renderer.rb
 │   │   ├── email_verifier_api.rb
+│   │   ├── france_connect_data_builder.rb
 │   │   ├── hubee_api_client.rb
 │   │   ├── hubspot_api.rb
 │   │   ├── insee_api_authentication.rb
@@ -1557,6 +1568,7 @@
 │       │   │   │   ├── _contact.html.erb
 │       │   │   │   └── _contacts.html.erb
 │       │   │   ├── api_particulier
+│       │   │   │   ├── _legal.html.erb
 │       │   │   │   └── _modalities.html.erb
 │       │   │   ├── api_r2p
 │       │   │   │   ├── _contact.html.erb
@@ -1743,6 +1755,9 @@
 │       │   │   │   └── _contacts.html.erb
 │       │   │   ├── api_mobilic
 │       │   │   │   └── _basic_infos.html.erb
+│       │   │   ├── api_particulier
+│       │   │   │   ├── _legal.html.erb
+│       │   │   │   └── _scopes.html.erb
 │       │   │   ├── api_sfip
 │       │   │   │   └── _contacts.html.erb
 │       │   │   ├── api_sfip_sandbox
@@ -2255,7 +2270,9 @@
 │   │   ├── 20251128171225_rename_webhook_calls_to_webhook_attempts.rb
 │   │   ├── 20251205121107_fix_double_encoded_webhook_attempts_payloads.rb
 │   │   ├── 20251223095156_add_message_to_authorizations.rb
-│   │   └── 20260106171655_fix_verified_reason_default.rb
+│   │   ├── 20260106171655_fix_verified_reason_default.rb
+│   │   ├── 20260127164801_add_parent_authorization_id_to_authorizations.rb
+│   │   └── 20260130165452_add_auto_generate_constraint_to_authorization_request_events.rb
 │   ├── schema.rb
 │   ├── seeds
 │   │   └── data_providers.yml
@@ -2323,6 +2340,7 @@
 │   │   ├── api_indemnites_journalieres_cnam_sans_habilitation_france_connect.feature
 │   │   ├── api_indicateurs_sociaux.feature
 │   │   ├── api_particulier
+│   │   │   ├── auto_france_connect_authorization.feature
 │   │   │   ├── choix_formulaire.feature
 │   │   │   ├── soumission_avec_modalites.feature
 │   │   │   ├── soumission_multiples_etapes.feature
@@ -2374,6 +2392,7 @@
 │   ├── mise_a_jour_global_habilitation.feature
 │   ├── modification_depuis_resume_habilitation.feature
 │   ├── module_processing_time.feature
+│   ├── onglets_demandeur.feature
 │   ├── organisation_fermee.feature
 │   ├── page_faq.feature
 │   ├── page_publique_habilitation.feature
@@ -2394,6 +2413,7 @@
 │   │   ├── applicant_authorization_requests_steps.rb
 │   │   ├── authorization_requests_steps.rb
 │   │   ├── authorization_steps.rb
+│   │   ├── auto_france_connect_authorization_steps.rb
 │   │   ├── date_steps.rb
 │   │   ├── debug_steps.rb
 │   │   ├── email_steps.rb
@@ -2570,9 +2590,12 @@
 │   │       ├── habilitation
 │   │       │   └── user_alerts_component_preview.rb
 │   │       ├── historical_authorization_request_event_icon_component_preview.rb
-│   │       └── molecules
-│   │           ├── instructor_banner_notice_component_preview.rb
-│   │           └── update_in_progress_notice_component_preview.rb
+│   │       ├── molecules
+│   │       │   ├── instructor_banner_notice_component_preview.rb
+│   │       │   └── update_in_progress_notice_component_preview.rb
+│   │       └── organisms
+│   │           └── authorization_request_forms
+│   │               └── legal_framework_component_preview.rb
 │   ├── controllers
 │   │   ├── api
 │   │   │   └── frontal_controller_spec.rb
@@ -2683,7 +2706,11 @@
 │   │   ├── affect_default_reason_to_instruction_modification_request_spec.rb
 │   │   ├── create_authorization_request_changelog_spec.rb
 │   │   ├── create_authorization_spec.rb
+│   │   ├── create_linked_france_connect_authorization_event_spec.rb
+│   │   ├── create_linked_france_connect_authorization_spec.rb
 │   │   ├── deliver_gdpr_contacts_mails_spec.rb
+│   │   ├── deliver_linked_france_connect_webhook_spec.rb
+│   │   ├── deprecate_linked_authorizations_spec.rb
 │   │   ├── deprecate_previous_authorizations_spec.rb
 │   │   ├── developer
 │   │   │   ├── create_webhook_model_spec.rb
@@ -2857,10 +2884,13 @@
 │   │   └── webhook_serializer_spec.rb
 │   ├── services
 │   │   ├── authorization_request_changelog_presenter_spec.rb
+│   │   ├── authorization_request_tabs_builder_spec.rb
 │   │   ├── authorization_requests_search_engine_builder_spec.rb
+│   │   ├── authorization_tabs_builder_spec.rb
 │   │   ├── authorizations_search_engine_builder_spec.rb
 │   │   ├── dgfip_spreadsheet_generator_spec.rb
 │   │   ├── email_preview_renderer_spec.rb
+│   │   ├── france_connect_data_builder_spec.rb
 │   │   ├── hubee_api_client_spec.rb
 │   │   ├── insee_sirene_api_client_spec.rb
 │   │   ├── je_clique_ou_pas_api_client_spec.rb
@@ -2922,4 +2952,4 @@
     ├── .keep
     └── javascript
         └── .keep
-413 directories, 2647 files
+418 directories, 2672 files
