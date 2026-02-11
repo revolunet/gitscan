@@ -1,8 +1,7 @@
 .
 ├── .dockerignore
 ├── .editorconfig
-├── .eslintignore
-├── .eslintrc.js
+├── .git-blame-ignore-revs
 ├── .github
 │   ├── FUNDING.yml
 │   ├── ISSUE_TEMPLATE
@@ -56,6 +55,7 @@
 │   │   │   ├── AceEditor.css
 │   │   │   ├── AceEditor.js
 │   │   │   ├── AceEditorCompletions.ts
+│   │   │   ├── ActionCounter.ts
 │   │   │   ├── ActionLog.css
 │   │   │   ├── ActionLog.ts
 │   │   │   ├── Banner.ts
@@ -175,6 +175,7 @@
 │   │   │   ├── CustomSectionElement.ts
 │   │   │   ├── Delay.ts
 │   │   │   ├── DocPluginManager.ts
+│   │   │   ├── DocSchemaImport.ts
 │   │   │   ├── FocusLayer.ts
 │   │   │   ├── GristWindow.ts
 │   │   │   ├── HomePluginManager.ts
@@ -191,6 +192,9 @@
 │   │   │   ├── TokenField.ts
 │   │   │   ├── UrlState.ts
 │   │   │   ├── Validator.ts
+│   │   │   ├── airtable
+│   │   │   │   ├── AirtableBrowserGlobals.ts
+│   │   │   │   └── AirtableImporter.ts
 │   │   │   ├── autocomplete.ts
 │   │   │   ├── browserGlobals.ts
 │   │   │   ├── browserInfo.ts
@@ -306,6 +310,7 @@
 │   │   │   ├── features.ts
 │   │   │   ├── gristConfigCache.ts
 │   │   │   ├── gristUrlState.ts
+│   │   │   ├── homeUrl.ts
 │   │   │   ├── modelUtil.js
 │   │   │   ├── rowset.ts
 │   │   │   └── rowuid.js
@@ -330,9 +335,11 @@
 │   │   │   ├── AppUI.ts
 │   │   │   ├── AuditLogStreamingConfig.ts
 │   │   │   ├── AuditLogsPage.ts
+│   │   │   ├── AuthenticationSection.ts
 │   │   │   ├── BottomBar.ts
 │   │   │   ├── CardContextMenu.ts
 │   │   │   ├── CellContextMenu.ts
+│   │   │   ├── ChangeAdminModal.ts
 │   │   │   ├── CodeHighlight.ts
 │   │   │   ├── ColumnFilterCalendarView.ts
 │   │   │   ├── ColumnFilterMenu.ts
@@ -375,6 +382,7 @@
 │   │   │   ├── FormErrorPage.ts
 │   │   │   ├── FormPage.ts
 │   │   │   ├── FormSuccessPage.ts
+│   │   │   ├── GetGristComProvider.ts
 │   │   │   ├── GridOptions.ts
 │   │   │   ├── GridViewMenus.ts
 │   │   │   ├── GridViewMenusDateHelpers.ts
@@ -597,6 +605,9 @@
 │   │   ├── DocDataCache.ts
 │   │   ├── DocLimits.ts
 │   │   ├── DocListAPI.ts
+│   │   ├── DocSchemaImport.ts
+│   │   ├── DocSchemaImportTypes-ti.ts
+│   │   ├── DocSchemaImportTypes.ts
 │   │   ├── DocSnapshot.ts
 │   │   ├── DocState.ts
 │   │   ├── DocUsage.ts
@@ -661,6 +672,10 @@
 │   │   ├── ValueGuesser.ts
 │   │   ├── ValueParser.ts
 │   │   ├── WidgetOptions.ts
+│   │   ├── airtable
+│   │   │   ├── AirtableAPI-ti.ts
+│   │   │   ├── AirtableAPI.ts
+│   │   │   └── AirtableImporter.ts
 │   │   ├── arrayToString.ts
 │   │   ├── asyncIterators.ts
 │   │   ├── csvFormat.ts
@@ -672,6 +687,7 @@
 │   │   ├── gristUrls.ts
 │   │   ├── gutil.ts
 │   │   ├── isHiddenTable.ts
+│   │   ├── loginProviders.ts
 │   │   ├── marshal.ts
 │   │   ├── normalizedDateTimeString.ts
 │   │   ├── orgNameUtils.ts
@@ -857,6 +873,8 @@
 │   │   │   ├── ConfigBackendAPI.ts
 │   │   │   ├── DiscourseConnect.ts
 │   │   │   ├── DocApi.ts
+│   │   │   ├── DocApiTriggers.ts
+│   │   │   ├── DocApiUtils.ts
 │   │   │   ├── DocAuthorizer.ts
 │   │   │   ├── DocClients.ts
 │   │   │   ├── DocManager.ts
@@ -880,6 +898,7 @@
 │   │   │   ├── FileParserElement.ts
 │   │   │   ├── FlexServer.ts
 │   │   │   ├── ForwardAuthLogin.ts
+│   │   │   ├── GetGristComConfig.ts
 │   │   │   ├── GoogleAuth.ts
 │   │   │   ├── GoogleExport.ts
 │   │   │   ├── GoogleImport.ts
@@ -907,6 +926,7 @@
 │   │   │   ├── InsightLog.ts
 │   │   │   ├── InstallAdmin.ts
 │   │   │   ├── LogMethods.ts
+│   │   │   ├── LoginSystemConfig.ts
 │   │   │   ├── MemoryPool.ts
 │   │   │   ├── MinIOExternalStorage.ts
 │   │   │   ├── MinimalLogin.ts
@@ -930,6 +950,7 @@
 │   │   │   ├── SafePythonComponent.ts
 │   │   │   ├── SamlConfig.ts
 │   │   │   ├── SandboxControl.ts
+│   │   │   ├── SandboxPyodide.ts
 │   │   │   ├── ServerColumnGetters.ts
 │   │   │   ├── ServerLocale.ts
 │   │   │   ├── Sessions.ts
@@ -947,6 +968,7 @@
 │   │   │   ├── UnsafeNodeComponent.ts
 │   │   │   ├── UpdateManager.ts
 │   │   │   ├── UserPresence.ts
+│   │   │   ├── WebhookQueue.ts
 │   │   │   ├── WidgetRepository.ts
 │   │   │   ├── attachEarlyEndpoints.ts
 │   │   │   ├── backupSqliteDatabase.ts
@@ -976,6 +998,7 @@
 │   │   │   ├── idUtils.ts
 │   │   │   ├── initialDocSql.ts
 │   │   │   ├── log.ts
+│   │   │   ├── loginSystemHelpers.ts
 │   │   │   ├── manifest.ts
 │   │   │   ├── middleware.ts
 │   │   │   ├── oidc
@@ -1101,6 +1124,7 @@
 │   ├── overview.md
 │   ├── translations.md
 │   └── urls.md
+├── eslint.config.js
 ├── package.json
 ├── plugins
 │   └── core
@@ -1221,6 +1245,7 @@
 │   │   ├── Makefile
 │   │   ├── README.md
 │   │   ├── build_packages.sh
+│   │   ├── package.json
 │   │   ├── package_filenames.json
 │   │   ├── packages.js
 │   │   ├── pipe.js
@@ -1343,6 +1368,8 @@
 │   │   ├── sk.server.json
 │   │   ├── sl.client.json
 │   │   ├── sl.server.json
+│   │   ├── sv.client.json
+│   │   ├── sv.server.json
 │   │   ├── ta.client.json
 │   │   ├── ta.server.json
 │   │   ├── th.client.json
@@ -1575,12 +1602,12 @@
 │       │   ├── declarations.d.ts
 │       │   ├── lib
 │       │   │   ├── create.ts
-│       │   │   └── globalConfig.ts
+│       │   │   ├── globalConfig.ts
+│       │   │   └── loginSystems.ts
 │       │   ├── prometheus-exporter.ts
 │       │   └── server.ts
 │       └── tsconfig.json
 ├── test
-│   ├── .eslintrc.js
 │   ├── assistant
 │   │   ├── data
 │   │   │   └── formula-dataset-index.csv
@@ -1598,6 +1625,7 @@
 │   │   ├── lib
 │   │   │   ├── ACIndex.ts
 │   │   │   ├── Delay.js
+│   │   │   ├── DocSchemaImport.ts
 │   │   │   ├── ImportSourceElement.ts
 │   │   │   ├── ObservableMap.js
 │   │   │   ├── ObservableSet.js
@@ -1643,6 +1671,7 @@
 │   │   └── client.js
 │   ├── common
 │   │   ├── ACLPermissions.ts
+│   │   ├── AirtableImporter.ts
 │   │   ├── AsyncCreate.ts
 │   │   ├── BigInt.ts
 │   │   ├── BinaryIndexedTree.js
@@ -1650,6 +1679,7 @@
 │   │   ├── CircularArray.js
 │   │   ├── ColumnFilterFunc.ts
 │   │   ├── DocActions.ts
+│   │   ├── DocSchemaImport.ts
 │   │   ├── InactivityTimer.ts
 │   │   ├── Interval.ts
 │   │   ├── KeyedMutex.ts
@@ -1710,6 +1740,7 @@
 │   │   │   ├── CardView.grist
 │   │   │   ├── ChartData.grist
 │   │   │   ├── Class Enrollment.grist
+│   │   │   ├── Comments_44.grist
 │   │   │   ├── CopyOptions.grist
 │   │   │   ├── CopyPaste.grist
 │   │   │   ├── CopyPaste2.grist
@@ -2079,16 +2110,20 @@
 │   │   ├── AccessRules3.ts
 │   │   ├── AccessRules4.ts
 │   │   ├── AccessRulesAttrs.ts
+│   │   ├── AccessRulesIntro.ts
 │   │   ├── AccessRulesSchemaEdit.ts
 │   │   ├── AccessibilityModal.ts
 │   │   ├── ActionLog.ts
 │   │   ├── ActiveUserList.ts
 │   │   ├── AdminPanel.ts
+│   │   ├── AdminPanelTools.ts
 │   │   ├── ApiConsole.ts
 │   │   ├── AttachedCustomWidget.ts
 │   │   ├── AttachmentsLinking.ts
 │   │   ├── AttachmentsTransfer.ts
 │   │   ├── AttachmentsWidget.ts
+│   │   ├── AuthProvider.ts
+│   │   ├── AuthProviderGetGrist.ts
 │   │   ├── BehavioralPrompts.ts
 │   │   ├── Boot.ts
 │   │   ├── BundleActions.ts
@@ -2106,6 +2141,7 @@
 │   │   ├── ColumnOps.ntest.js
 │   │   ├── ColumnTransform.ts
 │   │   ├── Comments.ts
+│   │   ├── Comparison.ts
 │   │   ├── CopyPaste.ts
 │   │   ├── CopyPaste2.ntest.js
 │   │   ├── CopyPasteColumnOptions.ts
@@ -2249,7 +2285,8 @@
 │   │   ├── webdriverjq-nbrowser.js
 │   │   └── webdriverjq.ntest.js
 │   ├── nbrowser_with_stubs
-│   │   └── CreateTeamSite.ts
+│   │   ├── CreateTeamSite.ts
+│   │   └── CustomWidgets.ts
 │   ├── projects
 │   │   ├── AccountWidget.ts
 │   │   ├── ApiKey.ts
@@ -2311,6 +2348,8 @@
 │   │   │   ├── Authorizer.ts
 │   │   │   ├── BundleActions.ts
 │   │   │   ├── CommentAccess.ts
+│   │   │   ├── CommentAccess2.ts
+│   │   │   ├── ConfigBackendAPI.ts
 │   │   │   ├── DocApi.ts
 │   │   │   ├── DocApi2.ts
 │   │   │   ├── DocSnapshots.ts
@@ -2396,4 +2435,4 @@
 ├── tsconfig.eslint.json
 ├── tsconfig.json
 └── yarn.lock
-167 directories, 2322 files
+169 directories, 2359 files
