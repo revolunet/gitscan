@@ -25,7 +25,7 @@
 ├── next.config.ts
 ├── package.json
 ├── patches
-│   └── @codegouvfr+react-dsfr+1.31.0.patch
+│   └── @codegouvfr+react-dsfr+1.31.1.patch
 ├── playwright.config.ts
 ├── postcss.config.mjs
 ├── prisma
@@ -153,6 +153,10 @@
 │   │   │   └── migration.sql
 │   │   ├── 20260202104253_re_remove_years_in_cpoms
 │   │   │   └── migration.sql
+│   │   ├── 20260204181425_add_region_and_departements_to_cpom
+│   │   │   └── migration.sql
+│   │   ├── 20260205082822_add_actes_administratifs_to_cpom
+│   │   │   └── migration.sql
 │   │   └── migration_lock.toml
 │   ├── schema.prisma
 │   ├── seed.ts
@@ -221,6 +225,29 @@
 ├── src
 │   ├── app
 │   │   ├── (authenticated)
+│   │   │   ├── cpoms
+│   │   │   │   ├── [id]
+│   │   │   │   │   ├── _components
+│   │   │   │   │   │   └── CpomModificationHeader.tsx
+│   │   │   │   │   ├── _context
+│   │   │   │   │   │   ├── CpomClientContext.tsx
+│   │   │   │   │   │   └── CpomContext.tsx
+│   │   │   │   │   ├── layout.tsx
+│   │   │   │   │   └── modification
+│   │   │   │   │       ├── 01-identification
+│   │   │   │   │       │   └── page.tsx
+│   │   │   │   │       └── 02-finance
+│   │   │   │   │           └── page.tsx
+│   │   │   │   ├── _components
+│   │   │   │   │   ├── CpomItem.tsx
+│   │   │   │   │   └── CpomsTable.tsx
+│   │   │   │   ├── ajout
+│   │   │   │   │   ├── 01-identification
+│   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   ├── _components
+│   │   │   │   │   │   └── CpomAjoutHeader.tsx
+│   │   │   │   │   └── layout.tsx
+│   │   │   │   └── page.tsx
 │   │   │   ├── deconnexion
 │   │   │   │   ├── page.tsx
 │   │   │   │   └── proconnect
@@ -235,6 +262,7 @@
 │   │   │       ├── [id]
 │   │   │       │   ├── _components
 │   │   │       │   │   ├── AutoSaveErrorToast.tsx
+│   │   │       │   │   ├── ButtonAffectations.tsx
 │   │   │       │   │   ├── PrahdaStructure.tsx
 │   │   │       │   │   ├── Section.tsx
 │   │   │       │   │   ├── Structure.tsx
@@ -263,19 +291,22 @@
 │   │   │       │   │   ├── _description
 │   │   │       │   │   │   ├── AdressesViewer.tsx
 │   │   │       │   │   │   ├── ContactsViewer.tsx
+│   │   │       │   │   │   ├── CpomViewer.tsx
 │   │   │       │   │   │   ├── DescriptionBlock.tsx
 │   │   │       │   │   │   └── PrahdaDescriptionBlock.tsx
 │   │   │       │   │   ├── _finances
 │   │   │       │   │   │   ├── AmountBadge.tsx
 │   │   │       │   │   │   ├── BudgetExecutoire.tsx
+│   │   │       │   │   │   ├── CpomStaticTable.tsx
 │   │   │       │   │   │   ├── DetailAffectations.tsx
 │   │   │       │   │   │   ├── DocumentsAdministratifs.tsx
 │   │   │       │   │   │   ├── DotationChart.tsx
 │   │   │       │   │   │   ├── FinancesBlock.tsx
-│   │   │       │   │   │   ├── GestionBudgetaireAutoriseeSansCpomTable.tsx
-│   │   │       │   │   │   ├── GestionBudgetaireAvecCpomTable.tsx
-│   │   │       │   │   │   ├── GestionBudgetaireSubventionneeSansCpomTable.tsx
-│   │   │       │   │   │   └── HistoriqueIndicateursGeneraux.tsx
+│   │   │       │   │   │   ├── HistoriqueIndicateursGeneraux.tsx
+│   │   │       │   │   │   ├── StructureCpomSwitch.tsx
+│   │   │       │   │   │   ├── StructureStaticTable.tsx
+│   │   │       │   │   │   ├── getCpomStaticTableLines.tsx
+│   │   │       │   │   │   └── getStructureStaticTableLines.tsx
 │   │   │       │   │   ├── _header
 │   │   │       │   │   │   ├── AutoSaveStatus.tsx
 │   │   │       │   │   │   ├── FinalisationHeader.tsx
@@ -339,15 +370,13 @@
 │   │   │       │   ├── FiltersTypes.tsx
 │   │   │       │   ├── FiltersTypesCheckbox.tsx
 │   │   │       │   ├── LocationFiltersPanel.tsx
-│   │   │       │   ├── OrderButton.tsx
 │   │   │       │   ├── RepartitionBadge.tsx
 │   │   │       │   ├── SearchBar.tsx
 │   │   │       │   ├── StructureItem.tsx
 │   │   │       │   ├── StructureMarker.tsx
 │   │   │       │   ├── StructureMarkerContent.tsx
 │   │   │       │   ├── StructuresMap.tsx
-│   │   │       │   ├── StructuresTable.tsx
-│   │   │       │   └── StructuresTableHeadings.tsx
+│   │   │       │   └── StructuresTable.tsx
 │   │   │       └── page.tsx
 │   │   ├── (not-authenticated)
 │   │   │   ├── accessibilite
@@ -445,8 +474,10 @@
 │   │   │   │   ├── controle.repository.ts
 │   │   │   │   └── controle.util.ts
 │   │   │   ├── cpoms
+│   │   │   │   ├── [id]
+│   │   │   │   │   └── route.ts
 │   │   │   │   ├── cpom.repository.ts
-│   │   │   │   └── cpom.service.ts
+│   │   │   │   └── route.ts
 │   │   │   ├── evaluations
 │   │   │   │   └── evaluation.repository.ts
 │   │   │   ├── files
@@ -515,16 +546,24 @@
 │   │   │   │   ├── Autocomplete.tsx
 │   │   │   │   ├── ContractualisationHuda.tsx
 │   │   │   │   ├── DepartementAutocomplete.tsx
+│   │   │   │   ├── DepartementsSelector.tsx
 │   │   │   │   ├── DropZone.tsx
 │   │   │   │   ├── FormWrapper.tsx
 │   │   │   │   ├── InputWithValidation.tsx
 │   │   │   │   ├── MaxSizeNotice.tsx
 │   │   │   │   ├── OperateurAutocomplete.tsx
+│   │   │   │   ├── PreviousPageLink.tsx
 │   │   │   │   ├── SelectWithValidation.tsx
 │   │   │   │   ├── Upload.tsx
 │   │   │   │   ├── UploadWithValidation.tsx
 │   │   │   │   ├── address
 │   │   │   │   │   └── AdressImporter.tsx
+│   │   │   │   ├── cpom
+│   │   │   │   │   ├── DatesAndDocuments.tsx
+│   │   │   │   │   ├── GranularitySelector.tsx
+│   │   │   │   │   ├── LocationSelector.tsx
+│   │   │   │   │   ├── StructureLine.tsx
+│   │   │   │   │   └── StructuresList.tsx
 │   │   │   │   ├── documents
 │   │   │   │   │   ├── Controle.tsx
 │   │   │   │   │   ├── Controles.tsx
@@ -535,6 +574,10 @@
 │   │   │   │   │   ├── Evaluations.tsx
 │   │   │   │   │   └── Notes.tsx
 │   │   │   │   ├── fieldsets
+│   │   │   │   │   ├── cpom
+│   │   │   │   │   │   ├── FieldSetDocuments.tsx
+│   │   │   │   │   │   ├── FieldSetGeneral.tsx
+│   │   │   │   │   │   └── FieldSetStructures.tsx
 │   │   │   │   │   └── structure
 │   │   │   │   │       ├── FieldSetAdresseAdministrative.tsx
 │   │   │   │   │       ├── FieldSetCalendrier.tsx
@@ -554,15 +597,22 @@
 │   │   │   │   │   ├── BudgetTables.tsx
 │   │   │   │   │   ├── IndicateursGeneraux.tsx
 │   │   │   │   │   ├── budget-tables
+│   │   │   │   │   │   ├── AffectationTooltip.tsx
 │   │   │   │   │   │   ├── BudgetTableCommentButtonAndModal.tsx
 │   │   │   │   │   │   ├── BudgetTableCommentLine.tsx
+│   │   │   │   │   │   ├── BudgetTableCommentStaticButtonAndModal.tsx
 │   │   │   │   │   │   ├── BudgetTableLine.tsx
+│   │   │   │   │   │   ├── BudgetTableLineInput.tsx
 │   │   │   │   │   │   ├── BudgetTableLines.tsx
 │   │   │   │   │   │   ├── BudgetTableRepriseEtatTooltip.tsx
+│   │   │   │   │   │   ├── BudgetTableStaticValue.tsx
 │   │   │   │   │   │   ├── BudgetTableTitleLine.tsx
 │   │   │   │   │   │   ├── CpomTable.tsx
+│   │   │   │   │   │   ├── StructureCpomTable.tsx
 │   │   │   │   │   │   ├── StructureTable.tsx
-│   │   │   │   │   │   └── getBudgetTableHeading.tsx
+│   │   │   │   │   │   ├── getBudgetTableHeading.tsx
+│   │   │   │   │   │   ├── getCpomLines.tsx
+│   │   │   │   │   │   └── getStructureTableLines.tsx
 │   │   │   │   │   └── documents
 │   │   │   │   │       ├── Date303.tsx
 │   │   │   │   │       ├── DocumentsFinanciers.tsx
@@ -577,6 +627,9 @@
 │   │   │   │   │       └── documentsStructures.ts
 │   │   │   │   └── notes
 │   │   │   │       └── NoteDisclaimer.tsx
+│   │   │   ├── lists
+│   │   │   │   ├── ListTableHeadings.tsx
+│   │   │   │   └── OrderButton.tsx
 │   │   │   ├── map
 │   │   │   │   ├── GroupMarker.tsx
 │   │   │   │   ├── Map.tsx
@@ -606,6 +659,8 @@
 │   │   │   ├── useAddressSuggestion.ts
 │   │   │   ├── useAgentFormHandling.ts
 │   │   │   ├── useAutocomplete.ts
+│   │   │   ├── useCpom.ts
+│   │   │   ├── useCpomsSearch.ts
 │   │   │   ├── useDebounceCallback.ts
 │   │   │   ├── useFetchStructure.ts
 │   │   │   ├── useFieldValidator.ts
@@ -633,6 +688,7 @@
 │   │       ├── common.util.ts
 │   │       ├── contacts.util.ts
 │   │       ├── controle.util.ts
+│   │       ├── cpom.util.ts
 │   │       ├── date.util.ts
 │   │       ├── defaultValues.util.ts
 │   │       ├── errorMail.util.ts
@@ -695,11 +751,13 @@
 │   │       │   ├── calendrier.schema.ts
 │   │       │   ├── contact.schema.ts
 │   │       │   ├── controle.schema.ts
+│   │       │   ├── cpom.schema.ts
 │   │       │   ├── cpomStructure.schema.ts
 │   │       │   ├── documentFinancier.schema.ts
 │   │       │   ├── evaluation.schema.ts
 │   │       │   ├── identification.schema.ts
 │   │       │   ├── notes.schema.ts
+│   │       │   ├── operateur.schema.ts
 │   │       │   ├── structure.base.schema.ts
 │   │       │   └── structureTypologie.schema.ts
 │   │       ├── finalisation
@@ -712,11 +770,12 @@
 │   │       └── recovery-adresses
 │   │           └── recoveryAdresses.schema.ts
 │   └── types
-│       ├── StructureColumn.type.ts
+│       ├── ListColumn.ts
 │       ├── adresse.type.ts
 │       ├── categoryToDisplay.type.ts
 │       ├── contact.type.ts
 │       ├── controle.type.ts
+│       ├── cpom.type.ts
 │       ├── departement.type.ts
 │       ├── document-financier.ts
 │       ├── fetch-state.type.ts
@@ -734,8 +793,8 @@
 │   │       ├── StructuresTable.test.tsx
 │   │       └── _components
 │   │           ├── Filters.test.tsx
-│   │           ├── OrderButton.test.tsx
-│   │           └── StructuresTableHeadings.test.tsx
+│   │           ├── ListTableHeadings.test.tsx
+│   │           └── OrderButton.test.tsx
 │   ├── (password-protected)
 │   │   └── ajout-adresses
 │   │       └── AdressesRecovery.test.tsx
@@ -752,6 +811,9 @@
 │   │   └── forms
 │   │       └── InputWithValidation.test.tsx
 │   ├── e2e
+│   │   ├── cpom-ajout.spec.ts
+│   │   ├── fixtures
+│   │   │   └── sample.pdf
 │   │   ├── flux-complet-all.spec.ts
 │   │   ├── helpers
 │   │   │   ├── autocomplete-helper.ts
@@ -776,6 +838,10 @@
 │   │   │   │   │   ├── SelectionPage.ts
 │   │   │   │   │   ├── TypePlacesPage.ts
 │   │   │   │   │   └── VerificationPage.ts
+│   │   │   │   ├── cpom
+│   │   │   │   │   ├── CpomAjoutIdentificationPage.ts
+│   │   │   │   │   ├── CpomModificationFinancePage.ts
+│   │   │   │   │   └── CpomModificationIdentificationPage.ts
 │   │   │   │   ├── finalisation
 │   │   │   │   │   ├── FinalisationControlesPage.ts
 │   │   │   │   │   ├── FinalisationDocumentsFinanciersPage.ts
@@ -799,6 +865,10 @@
 │   │   │   │   ├── caes-2.ts
 │   │   │   │   ├── cph-1.ts
 │   │   │   │   ├── cph-2.ts
+│   │   │   │   ├── cpom-departementale.ts
+│   │   │   │   ├── cpom-interdepartementale.ts
+│   │   │   │   ├── cpom-regionale.ts
+│   │   │   │   ├── cpom-types.ts
 │   │   │   │   ├── huda-1.ts
 │   │   │   │   ├── huda-2.ts
 │   │   │   │   ├── test-data-builder.ts
@@ -837,4 +907,4 @@
 ├── tsconfig.json
 ├── vitest.config.mts
 └── yarn.lock
-224 directories, 615 files
+243 directories, 666 files
