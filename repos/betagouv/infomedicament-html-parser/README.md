@@ -134,6 +134,42 @@ Set these in your Scalingo app settings:
 - `S3_KEY_ID` and `S3_KEY_SECRET` (from Clever Cloud Cellar addon)
 - `DATABASE_URL`: Copy the MySQL connection string from the app containing the database addon
 
+## SQL to CSV Conversion
+
+Convert SQL INSERT statements (T-SQL, MySQL, PostgreSQL) to CSV files.
+
+```bash
+poetry run infomed-html-parser sql-to-csv <sql_file> [options]
+```
+
+Options:
+- `--output, -o`: Output CSV file (default: same name with .csv extension)
+- `--encoding, -e`: Source file encoding (default: iso-8859-1)
+- `--dialect, -d`: SQL dialect - tsql, mysql, postgres (default: tsql)
+
+Example with Codex Triam ATC files:
+```bash
+# Convert ClasseATC
+poetry run infomed-html-parser sql-to-csv ClasseATC_data.sql -o classe_atc.csv
+
+# Convert VUClassesATC (CIS <-> ATC links)
+poetry run infomed-html-parser sql-to-csv VUClassesATC_data.sql -o cis_atc.csv
+```
+
+### Importing ATC data into PostgreSQL
+
+After generating the CSV files, use the provided SQL script to load them:
+
+```bash
+# Run the migrations in infomedicament first
+cd ../infomedicament && npm run db:migrate:latest
+
+# Then import the data (paths are configurable via environment variables)
+export ATC_CSV_PATH=/path/to/classe_atc.csv
+export CIS_ATC_CSV_PATH=/path/to/cis_atc.csv
+psql -v atc_csv="$ATC_CSV_PATH" -v cis_atc_csv="$CIS_ATC_CSV_PATH" $APP_DB_URL -f sql/import_atc.sql
+```
+
 ## Development
 
 ```bash
