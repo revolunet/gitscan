@@ -1,5 +1,30 @@
-2026-01-30T10:33:18+01:00 - 2b4bc6a - Pierre Leroy : Remplace le `ConstructeurAdaptateurJournal` par une implémentation mémoire
+2026-02-10T17:31:01+01:00 - 9deadfb - Bertrand Bougon : Ajoute les scripts SQL de création de la table conversations et de migration des interactions
+2026-02-10T17:31:01+01:00 - 74e5861 - Bertrand Bougon : Mets à jour les interactions dans une conversation en une seule requête
+2026-02-10T17:31:01+01:00 - 61e5d7d - Bertrand Bougon : Implémente la persistance d’une conversation
+2026-02-10T16:42:23+01:00 - d38b9bb - Bertrand Bougon : Implémente notre propre outil de migration BDD
+2026-02-10T11:51:41+01:00 - f594d8b - Bertrand Bougon : [SOIN] Extrais un constructeur de ReponseQuestion pour les tests
+2026-02-10T11:45:44+01:00 - 73b5d58 - Pierre Leroy : Créé une conversation lorsque l'utilisateur pose une question
+2026-02-10T11:45:44+01:00 - 31bc331 - Pierre Leroy : La route pose_question retourne l'id de la conversation
+2026-02-09T16:21:35+01:00 - 1837a5f - Bertrand Bougon : Ajoute la date à laquelle l’interaction est créée
+2026-02-09T14:52:58+01:00 - faffcbc - Bertrand Bougon : [SOIN] Supprime les méthodes d’ajout et suppression de retour utilisateur·ice devenues obsolètes
+2026-02-09T14:52:58+01:00 - a0b3f8e - Bertrand Bougon : [SOIN] Extrais le code métier encapsulé dans l’adaptateur de base de données pour la suppression dans une fonction dédiée
+2026-02-09T14:24:49+01:00 - 7f03359 - Bertrand Bougon : [SOIN] Extrais la partie métier encapsulée dans les adaptateurs base de données dans une fonction dédiée
+2026-02-05T18:03:45+01:00 - f17e46a - Pierre Leroy : Ajoute la violation MECONNAISSANCE
+2026-02-05T14:29:41+01:00 - 0012d61 - Bertrand Bougon : [CORRECTION] Supprime les paragraphes d’une interaction lorsqu’Albert nous retourne une violation
+2026-02-05T13:59:26+01:00 - d33e517 - Pierre Leroy : Remplace le service Albert par une implémentation mémoire
+2026-02-05T13:59:26+01:00 - 5faae12 - Bertrand Bougon : Supprime du code mort
+2026-02-05T13:59:26+01:00 - 34ac072 - Pierre Leroy : Extraits la logique métier de l'adaptateur base de données
+2026-02-03T17:25:25+01:00 - 8ee3e61 - dependabot[bot] : Bump pip from 25.3 to 26.0
+2026-02-03T17:25:01+01:00 - 6961f19 - Bertrand Bougon : [SECURITE] Mets à jour eslint suite à l'alerte https://github.com/betagouv/anssi-recommandations-cyber/security/dependabot/34
+2026-02-03T16:15:54+01:00 - ba05c2f - Bertrand Bougon : Corrige la persistance des violations
+2026-02-02T13:14:49+01:00 - c60d758 - Pierre Leroy : Revert "Ajoute un validateur pydantic si aucune violation n'est détectée"
+2026-02-02T13:06:30+01:00 - ca4668b - Pierre Leroy : Ajoute un validateur pydantic si aucune violation n'est détectée
+2026-02-02T12:31:17+01:00 - 414dd2c - Pierre Leroy : Merge branch 'main' of https://github.com/betagouv/anssi-recommandations-cyber
+2026-02-02T12:31:04+01:00 - c99ff57 - Pierre Leroy : WIP: debug type_utilisateur
+2026-02-02T12:25:05+01:00 - 0f8b4a1 - Pierre Leroy : Corrige le bug d'url en remplaçant les " " par des +
+2026-02-02T11:37:35+01:00 - 7cd4419 - Pierre Leroy : Corrige l'interprétation du type_utilisateur dans pose_question
 2026-01-30T10:33:18+01:00 - 40487ed - Bertrand Bougon : [SOIN] Utilise une implémentation mémoire plutôt que des mocks pour la persistance
+2026-01-30T10:33:18+01:00 - 2b4bc6a - Pierre Leroy : Remplace le `ConstructeurAdaptateurJournal` par une implémentation mémoire
 2026-01-29T16:16:53+01:00 - 80b2448 - Bertrand Bougon : N'affiche plus le message d'erreur si on vide la zone de saisie
 2026-01-29T16:05:56+01:00 - 75a6a1c - Pierre Leroy : Initialise sentry
 2026-01-29T16:05:56+01:00 - 5f8b5e0 - Pierre Leroy : Initialise un adaptateur sentry mémoire
@@ -13,16 +38,16 @@
 2026-01-27T17:56:07+01:00 - 76fd581 - Bertrand Bougon : [SOIN] Applique les règles prettier sur tous les fichiers
 2026-01-27T17:56:07+01:00 - 67ee405 - Bertrand Bougon : [SOIN] Ajoute le githook pour s’assure que prettier et eslint sont exécutés au moment du commit
 2026-01-27T15:37:31+01:00 - 1748d1b - Bertrand Bougon : Modifie les questions disponibles lors de l’affichage de l’introduction
-2026-01-27T14:47:36+01:00 - 595d513 - Bertrand Bougon : Soumets la dernière question lorsque l’on clique sur le bouton `Réessayer` du message d’erreur
-2026-01-27T14:47:36+01:00 - 61792f3 - Bertrand Bougon : Affiche le message d’erreur dans la conversation
 2026-01-27T14:47:36+01:00 - c589f4f - Bertrand Bougon : Intercepte les erreurs lors d'appels à l'API Albert
-2026-01-26T17:04:08+01:00 - 94072d3 - Bertrand Bougon : [SOIN] Supprime des répertoires / fichiers inutiles
+2026-01-27T14:47:36+01:00 - 61792f3 - Bertrand Bougon : Affiche le message d’erreur dans la conversation
+2026-01-27T14:47:36+01:00 - 595d513 - Bertrand Bougon : Soumets la dernière question lorsque l’on clique sur le bouton `Réessayer` du message d’erreur
 2026-01-26T17:04:08+01:00 - c175639 - pie-leroy : Ajoute les pages cgu et politique de confidentialité
+2026-01-26T17:04:08+01:00 - 94072d3 - Bertrand Bougon : [SOIN] Supprime des répertoires / fichiers inutiles
 2026-01-22T15:49:58+01:00 - 78c4064 - Bertrand Bougon : Ajoute le bandeau pour nos beta testeurs
-2026-01-22T15:37:44+01:00 - 390b5de - Bertrand Bougon : Copie le contenu au format Markdown
-2026-01-22T15:37:44+01:00 - 44f13c7 - pie-leroy : Ajoute l'infobulle notifiant que le message a été copié
 2026-01-22T15:37:44+01:00 - c859ad7 - pie-leroy : Permets de copier le texte de la réponse
 2026-01-22T15:37:44+01:00 - 591c056 - pie-leroy : Affiche le bouton pour copier la réponse
+2026-01-22T15:37:44+01:00 - 44f13c7 - pie-leroy : Ajoute l'infobulle notifiant que le message a été copié
+2026-01-22T15:37:44+01:00 - 390b5de - Bertrand Bougon : Copie le contenu au format Markdown
 2026-01-22T09:54:47+01:00 - 3da515d - pie-leroy : Corrige l'affichage de l'infobulle
 2026-01-21T17:05:17+01:00 - 90e9d8d - Bertrand Bougon : Ajoute au prompt les instructions pour prendre en compte les balises ajoutées par notre indexeur
 2026-01-20T17:09:24+01:00 - a800dbb - pie-leroy : Modifie le champs utilisé dans les metadatas pour extraire le nom_document
@@ -32,82 +57,82 @@
 2026-01-07T09:08:33+01:00 - d670525 - Bertrand Bougon : Identifie l’utilisateur·ice lorsqu’un retour est fait
 2026-01-07T09:08:33+01:00 - 906a1ad - Bertrand Bougon : [SOIN] Remplace l’adaptateur de chiffrement mocké par un adaptateur de chiffrement memoire
 2026-01-07T09:08:33+01:00 - 8ef6678 - Bertrand Bougon : Recupere le type d’utilsateur passé en paramètre de requête lorsque l’on pose une question
-2026-01-06T16:04:54+01:00 - 0c43ed5 - pie-leroy : Suppression du Fournisseur de service de chiffrement car devenu obsolète
 2026-01-06T16:04:54+01:00 - ce6c436 - pie-leroy : Modifie l'adaptateur de base de données Postgres pour lui fournir un service de chiffrement
 2026-01-06T16:04:54+01:00 - ce18dae - pie-leroy : [SOIN] Renomme la fabrique_adaptateur_base_de_donnees
-2026-01-06T16:04:54+01:00 - 3812659 - pie-leroy : Injecte le service de chiffrement dans l'adaptateur de chiffrement
 2026-01-06T16:04:54+01:00 - 4733fa5 - pie-leroy : Remaniement : injecte un adaptateur de chiffrement
-2026-01-05T16:57:11+01:00 - 15c4e9e - pie-leroy : Ajoute .dockerignore pour résoudre conflit node_modules
-2026-01-05T16:57:11+01:00 - 66655c1 - Bertrand Bougon : Modifie la CI pour exécuter les tests
+2026-01-06T16:04:54+01:00 - 3812659 - pie-leroy : Injecte le service de chiffrement dans l'adaptateur de chiffrement
+2026-01-06T16:04:54+01:00 - 0c43ed5 - pie-leroy : Suppression du Fournisseur de service de chiffrement car devenu obsolète
 2026-01-05T16:57:11+01:00 - 8b31c07 - pie-leroy : Limite la taille de la question côté front
+2026-01-05T16:57:11+01:00 - 66655c1 - Bertrand Bougon : Modifie la CI pour exécuter les tests
 2026-01-05T16:57:11+01:00 - 1932550 - pie-leroy : Rejette une question dont la longuer est > 5000 chars
+2026-01-05T16:57:11+01:00 - 15c4e9e - pie-leroy : Ajoute .dockerignore pour résoudre conflit node_modules
 2025-12-18T15:59:40+01:00 - 7607efc - Bertrand Bougon : Ajoute un script de pre run pour Clever Cloud
-2025-12-18T14:52:07+01:00 - ce5f277 - Bertrand Bougon : Modifie la CI pour utiliser pnpm
-2025-12-18T14:52:07+01:00 - 999808a - Bertrand Bougon : Ajoute dans le .gitgnore le fichier de cache .pnpm-store
 2025-12-18T14:52:07+01:00 - e818ae5 - Bertrand Bougon : Force la directive preinstall de node avec only-allow pnpm
+2025-12-18T14:52:07+01:00 - ce5f277 - Bertrand Bougon : Modifie la CI pour utiliser pnpm
 2025-12-18T14:52:07+01:00 - c88c3cd - Bertrand Bougon : Passe le front de MQC à pnpm
+2025-12-18T14:52:07+01:00 - 999808a - Bertrand Bougon : Ajoute dans le .gitgnore le fichier de cache .pnpm-store
 2025-12-17T10:17:40+01:00 - e749b5b - Bertrand Bougon : Ajoute la longueur totale des paragraphes retournés par Albert dans l’événement interaction créée
 2025-12-17T10:17:40+01:00 - 223d148 - Bertrand Bougon : Ajoute la longueur d’une question et d’une réponse lors de la consignation de l’interaction créée
 2025-12-17T10:16:22+01:00 - 79f0a54 - Bertrand Bougon : [SOIN] Applique ruff
 2025-12-16T15:43:09+01:00 - 2fb1f34 - pie-leroy : Consigne l'évènement AVIS_UTILISATEUR_SUPPRIME
 2025-12-16T15:43:09+01:00 - 0c453a4 - pie-leroy : Consigne l'évènement AVIS_UTILISATEUR_SOUMIS
 2025-12-16T15:41:37+01:00 - b504d81 - Bertrand Bougon : Passe le nom du modèle de reclassement en variable d’environnement
-2025-12-15T17:17:50+01:00 - 5b61aaf - Bertrand Bougon : Prends en compte les exceptions levées pendant le déchiffrement
-2025-12-15T17:17:50+01:00 - 237474a - Bertrand Bougon : Initialise un service de chiffrement AES
-2025-12-15T17:17:50+01:00 - f5a227f - Bertrand Bougon : Chiffre l’interaction lorsque l’on supprime un retour utilisateur·rice
 2025-12-15T17:17:50+01:00 - f7bfa98 - Bertrand Bougon : Chiffre l’interaction lorsque l’utilisateur·rice ajoute un commentaire
+2025-12-15T17:17:50+01:00 - f5a227f - Bertrand Bougon : Chiffre l’interaction lorsque l’on supprime un retour utilisateur·rice
 2025-12-15T17:17:50+01:00 - de5af22 - Bertrand Bougon : Déchiffre une interaction lorsque l’on veut la récupérer
-2025-12-15T17:17:50+01:00 - 5ee5d17 - Bertrand Bougon : Chiffre les données de l’interaction lorsque l’on pose une question
-2025-12-15T17:17:50+01:00 - 7c45fd6 - Bertrand Bougon : Déchiffre un dict en passant le chemin des valeurs en clair
 2025-12-15T17:17:50+01:00 - d3f5387 - Bertrand Bougon : Chiffre un dict en passant le chemin des valeurs
 2025-12-15T17:17:50+01:00 - b6dffa4 - pie-leroy : Ajoute un service de chiffrement
-2025-12-11T14:28:57+01:00 - 4cfb1d5 - Bertrand Bougon : N’effectue pas de reclassement si le résultat de la recherche ne retourne pas de paragraphes
+2025-12-15T17:17:50+01:00 - 7c45fd6 - Bertrand Bougon : Déchiffre un dict en passant le chemin des valeurs en clair
+2025-12-15T17:17:50+01:00 - 5ee5d17 - Bertrand Bougon : Chiffre les données de l’interaction lorsque l’on pose une question
+2025-12-15T17:17:50+01:00 - 5b61aaf - Bertrand Bougon : Prends en compte les exceptions levées pendant le déchiffrement
+2025-12-15T17:17:50+01:00 - 237474a - Bertrand Bougon : Initialise un service de chiffrement AES
 2025-12-11T14:28:57+01:00 - c92d11c - Bertrand Bougon : [CORRECTION] Corrige les retours en erreur lors de l’appel au rerank d’Albert
+2025-12-11T14:28:57+01:00 - 4cfb1d5 - Bertrand Bougon : N’effectue pas de reclassement si le résultat de la recherche ne retourne pas de paragraphes
 2025-12-10T08:43:03+01:00 - b3f774c - pie-leroy : Ajoute le nom du modèle de reclassement disponible dans l'API Albert
+2025-12-10T08:43:03+01:00 - ab44c51 - pie-leroy : Change la signature du service Albert pour modifier
 2025-12-10T08:43:03+01:00 - 98f418c - pie-leroy : Lis le prompt de reclassement
 2025-12-10T08:43:03+01:00 - 7d71f58 - pie-leroy : Injecte la question dans le prompt de reclassement
-2025-12-10T08:43:03+01:00 - ab44c51 - pie-leroy : Change la signature du service Albert pour modifier
-2025-12-09T11:57:54+01:00 - 032ea55 - pie-leroy : Injecte les paragraphes reclassés dans le message envoyé à Albert
-2025-12-09T11:57:54+01:00 - 0a602a6 - pie-leroy : Active le reclassement uniquement quand la variable d'environnement est Vraie
 2025-12-09T11:57:54+01:00 - fcaff52 - pie-leroy : Active le reclassement par une variable d'environnement
 2025-12-09T11:57:54+01:00 - b8f8320 - Bertrand Bougon : [RECLASSEMENT] Trie les paragraphes recherchés suivant le tri du reclassement
 2025-12-09T11:57:54+01:00 - 8ed32e7 - Bertrand Bougon : [RECLASSEMENT] Initialise l’appel du reclassement
+2025-12-09T11:57:54+01:00 - 0a602a6 - pie-leroy : Active le reclassement uniquement quand la variable d'environnement est Vraie
+2025-12-09T11:57:54+01:00 - 032ea55 - pie-leroy : Injecte les paragraphes reclassés dans le message envoyé à Albert
 2025-12-09T10:05:26+01:00 - e3ca5b9 - Bertrand Bougon : [SOIN] Sépare les tests de service des tests de l'API
-2025-12-09T09:54:56+01:00 - aadb6de - Bertrand Bougon : [SOIN] Déplace les tests de fabrique
 2025-12-09T09:54:56+01:00 - b8763e8 - Bertrand Bougon : [SOIN] Fais émerger une interface ClientAlbert
+2025-12-09T09:54:56+01:00 - aadb6de - Bertrand Bougon : [SOIN] Déplace les tests de fabrique
 2025-12-05T12:00:25+01:00 - f68acb0 - pie-leroy : Ajoute la possibilité de rechercher des documents en mode "hybrid"
-2025-12-03T11:36:27+01:00 - 1e92840 - Xavier Maso :  Favorise l'utilisation de npm ci
 2025-12-03T11:36:27+01:00 - 5a4e3c1 - Xavier Maso :  Spécifie la version de la CLI Clever à installer
-2025-11-24T09:39:31+01:00 - 082db29 - Xavier Maso : [SOIN] Déduplique les constantes dans les tests
+2025-12-03T11:36:27+01:00 - 1e92840 - Xavier Maso :  Favorise l'utilisation de npm ci
 2025-11-24T09:39:31+01:00 - 8526195 - Xavier Maso : [SOIN] Utilise plus de constructeurs dans les tests du service Albert
+2025-11-24T09:39:31+01:00 - 082db29 - Xavier Maso : [SOIN] Déduplique les constantes dans les tests
 2025-11-24T09:31:38+01:00 - efbf6fd - Xavier Maso : Charge les mocks comme des modules utilitaires
-2025-11-21T10:03:53+01:00 - 0994af2 - Xavier Maso : [SOIN] Débarasse les `patch` dans les tests du service Albert
 2025-11-21T10:03:53+01:00 - 98e4f29 - Xavier Maso : [SOIN] Utilise des constructeurs pour les clients dans les tests du service Albert
+2025-11-21T10:03:53+01:00 - 0994af2 - Xavier Maso : [SOIN] Débarasse les `patch` dans les tests du service Albert
 2025-11-20T11:26:04+01:00 - f4541cd - dependabot[bot] : Bump js-yaml from 4.1.0 to 4.1.1 in /ui
-2025-11-20T10:31:14+01:00 - 0e977f7 - Xavier Maso : Passe un coup de Bescherelle dans les tests
 2025-11-20T10:31:14+01:00 - f5c498c - Xavier Maso : Limite le nombre d'appels à l'API, par IP, par minute
-2025-11-20T10:31:14+01:00 - 443e5c5 - Xavier Maso : [SOIN] Utilise toujours le constructeur de serveur dans les tests
 2025-11-20T10:31:14+01:00 - d9b8081 - Xavier Maso : [SOIN] Groupe les imports
+2025-11-20T10:31:14+01:00 - 443e5c5 - Xavier Maso : [SOIN] Utilise toujours le constructeur de serveur dans les tests
+2025-11-20T10:31:14+01:00 - 0e977f7 - Xavier Maso : Passe un coup de Bescherelle dans les tests
 2025-11-20T09:28:58+01:00 - 04fb267 - Xavier Maso : Initialise CodeQL dans l'environnement d'intégration continue
-2025-11-14T14:21:49+01:00 - 2473aca - Xavier Maso : [SOIN] Simplifie les vérifications d'un test de la route `recherche`
-2025-11-14T14:21:49+01:00 - 8213356 - Xavier Maso : [SOIN] Simplifie les vérifications d'un test de la route `pose_question`
 2025-11-14T14:21:49+01:00 - fcb4cba - Xavier Maso : [SOIN] Regroupe deux tests de `pose_question` vérifiant des choses similaires
-2025-11-14T14:21:49+01:00 - 2eb5cdc - Xavier Maso : [SOIN] Simplifie les vérifications d'un test de la route `pose_question`
-2025-11-14T14:21:49+01:00 - 38a0395 - Xavier Maso : [SOIN] Fini de ranger les tests des routes
 2025-11-14T14:21:49+01:00 - a3ba9fb - Xavier Maso : [SOIN] Francise les noms des variables de tests
-2025-11-13T14:57:02+01:00 - 5e1a709 - Xavier Maso : Branche la suppression d'avis de l'interface
+2025-11-14T14:21:49+01:00 - 8213356 - Xavier Maso : [SOIN] Simplifie les vérifications d'un test de la route `pose_question`
+2025-11-14T14:21:49+01:00 - 38a0395 - Xavier Maso : [SOIN] Fini de ranger les tests des routes
+2025-11-14T14:21:49+01:00 - 2eb5cdc - Xavier Maso : [SOIN] Simplifie les vérifications d'un test de la route `pose_question`
+2025-11-14T14:21:49+01:00 - 2473aca - Xavier Maso : [SOIN] Simplifie les vérifications d'un test de la route `recherche`
 2025-11-13T14:57:02+01:00 - f0c66d9 - Xavier Maso : Permet de supprimer un retour sur une interaction via l'API web
-2025-11-13T14:57:02+01:00 - 9e27d5e - Xavier Maso : [SOIN] Utilise des mots entiers et français pour le nommage
 2025-11-13T14:57:02+01:00 - b34727c - Xavier Maso : [SOIN] Supprime de la redondance dans les adaptateurs de base de données
-2025-11-13T14:57:02+01:00 - 6d07655 - Xavier Maso : Ajoute test pour cas non couvert
-2025-11-13T14:57:02+01:00 - 19bca27 - Xavier Maso : Permet de supprimer un retour sur une interaction en base de données
+2025-11-13T14:57:02+01:00 - 9e27d5e - Xavier Maso : [SOIN] Utilise des mots entiers et français pour le nommage
 2025-11-13T14:57:02+01:00 - 9d99689 - Xavier Maso : Isole les tests des retours utilisatrices
+2025-11-13T14:57:02+01:00 - 6d07655 - Xavier Maso : Ajoute test pour cas non couvert
+2025-11-13T14:57:02+01:00 - 5e1a709 - Xavier Maso : Branche la suppression d'avis de l'interface
 2025-11-13T14:57:02+01:00 - 588032e - Xavier Maso : [SOIN] Renomme méthode
-2025-11-13T10:13:01+01:00 - 5dd302c - Xavier Maso : [SOIN] Corrige une petite erreur typographique
-2025-11-13T10:13:01+01:00 - 79750b5 - Xavier Maso : Émet un évènement journal lorsqu'une question illégale est détectée
-2025-11-13T10:13:01+01:00 - 9ee0ca0 - Xavier Maso : [SOIN] Corrige un test paramétrique
-2025-11-13T10:13:01+01:00 - 2baf864 - Xavier Maso : [SOIN] Renomme un test
+2025-11-13T14:57:02+01:00 - 19bca27 - Xavier Maso : Permet de supprimer un retour sur une interaction en base de données
 2025-11-13T10:13:01+01:00 - fdb1acf - Xavier Maso : Améliore la gestion des questions problèmatiques
-2025-11-06T15:51:16+01:00 - 0523a56 - Xavier Maso : [SOIN] Répare l'environnement d'intégration continue
+2025-11-13T10:13:01+01:00 - 9ee0ca0 - Xavier Maso : [SOIN] Corrige un test paramétrique
+2025-11-13T10:13:01+01:00 - 79750b5 - Xavier Maso : Émet un évènement journal lorsqu'une question illégale est détectée
+2025-11-13T10:13:01+01:00 - 5dd302c - Xavier Maso : [SOIN] Corrige une petite erreur typographique
+2025-11-13T10:13:01+01:00 - 2baf864 - Xavier Maso : [SOIN] Renomme un test
 2025-11-06T15:51:16+01:00 - 788cde6 - Xavier Maso : [SOIN] Force l'utilisation du journal en mémoire quand on est pas en production
 2025-11-06T15:51:16+01:00 - 135c5a7 - Xavier Maso : [SOIN] Corrige une petite erreur typographique
+2025-11-06T15:51:16+01:00 - 0523a56 - Xavier Maso : [SOIN] Répare l'environnement d'intégration continue

@@ -13,9 +13,14 @@
 ├── LICENSE
 ├── README.md
 ├── docker-compose.yml
+├── migrations
+│   ├── 0001_initial_schema.sql
+│   ├── 0002_cree_table_conversation.sql
+│   └── 0003_migre_les_interactions.sql
 ├── pyproject.toml
 ├── scripts
 │   ├── clever-cloud
+│   │   ├── post-build-clever.sh
 │   │   └── pre-run-clever.sh
 │   ├── get-node-version.sh
 │   └── notebooks
@@ -30,8 +35,10 @@
 │   │   ├── adaptateur_base_de_donnees_memoire.py
 │   │   ├── adaptateur_base_de_donnees_postgres.py
 │   │   ├── chiffrement.py
+│   │   ├── connecteur.py
 │   │   ├── horloge.py
 │   │   ├── journal.py
+│   │   ├── migrateur.py
 │   │   └── sentry.py
 │   ├── configuration.py
 │   ├── infra
@@ -45,7 +52,8 @@
 │   │   ├── fast_api
 │   │   │   └── fabrique_adaptateur_base_de_donnees.py
 │   │   ├── postgres
-│   │   │   └── encodeurs_json.py
+│   │   │   ├── encodeurs_json.py
+│   │   │   └── execute_migration.py
 │   │   └── ui_kit
 │   │       └── version_ui_kit.py
 │   ├── main.py
@@ -74,6 +82,7 @@
 │   ├── conftest.py
 │   ├── infra
 │   │   ├── albert
+│   │   │   ├── conftest.py
 │   │   │   ├── test_client_albert_api.py
 │   │   │   └── test_fabrique_client_albert.py
 │   │   └── chiffrement
@@ -87,6 +96,7 @@
 │   │   └── test_question.py
 │   ├── routes
 │   │   ├── conftest.py
+│   │   ├── test_extraits_type_utilisateur.py
 │   │   ├── test_index.py
 │   │   ├── test_pose_question.py
 │   │   ├── test_pose_question_avec_prompt.py
@@ -95,10 +105,13 @@
 │   │   ├── test_recherche.py
 │   │   ├── test_retour_utilisatrice.py
 │   │   └── test_sante.py
+│   ├── schemas
+│   │   └── test_violations.py
 │   ├── services
 │   │   ├── test_fabrique_service_albert.py
 │   │   └── test_service_albert.py
 │   ├── test_adaptateur_base_de_donnees.py
+│   ├── test_migrateur.py
 │   └── test_modeles_retour_utilisatrice.py
 ├── ui
 │   ├── .dockerignore
@@ -186,4 +199,4 @@
 │   ├── tsconfig.node.json
 │   └── vite.config.ts
 └── uv.lock
-40 directories, 148 files
+42 directories, 159 files
