@@ -1,3 +1,16 @@
+2026-02-10T16:15:15+01:00 - 44967d24 - Romaric : refactor(bo): remove token regeneration route and related code (#1128)
+2026-02-10T10:21:15+01:00 - 81499927 - nicolasSagon : fix: old garbage collection nor registered as a service
+2026-02-10T09:24:54+01:00 - e575298f - Romaric : feat(api-tenant): don't count for a visit when tenant visits its own link (#1119)
+2026-02-09T15:24:04+01:00 - c25b0eb0 - nicolasSagon : fix: update spring-doc version to be compatible (#1125)
+2026-02-03T11:34:10+01:00 - ffae7cb6 - SAGON NICOLAS : Merge branch 'release/v3.4.3' into develop
+2026-02-03T11:33:54+01:00 - 9136779b - nicolasSagon : chore: bump version to 3.4.3
+2026-02-03T11:32:43+01:00 - 4f9754fb - nicolasSagon : hotfix(api-tenant): send application to bo when account warning
+2026-02-02T14:32:46+01:00 - 78fb59ea - SAGON NICOLAS : Merge branch 'release/v3.4.2' into develop
+2026-02-02T14:32:22+01:00 - e2c25d46 - nicolasSagon : chore: bumb version to 3.4.2
+2026-02-02T14:31:20+01:00 - 24b6b6fc - Alix Deschamps : hotfix(common): ensure file is added to document to prevent duplication check
+2026-02-02T09:34:21+01:00 - 0d15aade - SAGON NICOLAS : Merge branch 'release/v3.4.1' into develop
+2026-02-02T09:34:04+01:00 - 1c6be256 - nicolasSagon : chore: bump to version 3.4.1
+2026-02-02T09:33:01+01:00 - f49e08af - nicolasSagon : hotfix(process-file): update ants certificate url
 2026-01-29T09:44:31+01:00 - b21e0841 - SAGON NICOLAS : Merge branch 'release/v3.4.0' into develop
 2026-01-29T09:43:20+01:00 - 7adb8d1e - nicolasSagon : chore: Bump version to 3.4.0
 2026-01-28T16:23:07+01:00 - f4285420 - nicolasSagon : fix: projects without brevo were crashing on startup
@@ -22,46 +35,46 @@
 2026-01-27T17:12:55+01:00 - 5b1d520e - Alix Deschamps : fix(bo) : links are considered deleted in BO when their expiration date is passed (coherent with tenant)
 2026-01-27T17:12:39+01:00 - 785ab546 - Alix Deschamps : chore(tenant) : rename variable in GET /api/application/links to reflect correct logic
 2026-01-27T15:00:18+01:00 - 6c80e36d - Alix Deschamps : chore(BO+tenant) : fix tests after rebase
-2026-01-27T11:52:17+01:00 - 4a71e4e7 - Alix Deschamps : feat(tenant+bo) : new endpoint PUT /api/application/links/default to generate a default link
-2026-01-27T11:52:17+01:00 - 0e0cffbe - Alix Deschamps : fix(tenant+bo) : replace hardcoded time with future date on update expiration date test
+2026-01-27T11:52:17+01:00 - a26b3750 - Alix Deschamps : chore(bo): fix code smells in partages-dossier.js
+2026-01-27T11:52:17+01:00 - a075f910 - Alix Deschamps : chore(bo): fix code smells in apartment-sharing-view.html and DRY up the css
+2026-01-27T11:52:17+01:00 - 9c094caa - Alix Deschamps : chore(tenant+bo+common): refactor to have a separate UserApiCommonRepository
+2026-01-27T11:52:17+01:00 - 80d7ce3f - Alix Deschamps : feat(bo): add new sharing links section for LINK type
+2026-01-27T11:52:17+01:00 - 7d8c8a6d - Alix Deschamps : feat(bo): add deleted links section
 2026-01-27T11:52:17+01:00 - 75ecd8c4 - Alix Deschamps : add GET POST /application/full and BO endpoint for e2e tests
 2026-01-27T11:52:17+01:00 - 7455bd16 - Alix Deschamps : feat(bo+tenant): add extra logic when deleting OWNER and PARTNER links
-2026-01-27T11:52:17+01:00 - 41817b3b - Alix Deschamps : chore(common): moved revoke partner methods to common
-2026-01-27T11:52:17+01:00 - a075f910 - Alix Deschamps : chore(bo): fix code smells in apartment-sharing-view.html and DRY up the css
-2026-01-27T11:52:17+01:00 - a26b3750 - Alix Deschamps : chore(bo): fix code smells in partages-dossier.js
-2026-01-27T11:52:17+01:00 - 204f1623 - Alix Deschamps : chore(bo): refactor enrichedlinks to use batch loading of link logs
-2026-01-27T11:52:17+01:00 - 7d8c8a6d - Alix Deschamps : feat(bo): add deleted links section
-2026-01-27T11:52:17+01:00 - 4fe0ef43 - Alix Deschamps : chore(bo): refactor access logs collapsible list for sharing links using bootstrap
-2026-01-27T11:52:17+01:00 - 0c43c369 - Alix Deschamps : feat(bo): show links of type OWNER
 2026-01-27T11:52:17+01:00 - 57e9971d - Alix Deschamps : feat(bo): show links of type PARTNER
-2026-01-27T11:52:17+01:00 - 0765b57f - Alix Deschamps : feat(bo): show links of type MAIL + reused common logic for filtering links
-2026-01-27T11:52:17+01:00 - 80d7ce3f - Alix Deschamps : feat(bo): add new sharing links section for LINK type
-2026-01-27T11:52:17+01:00 - 9c094caa - Alix Deschamps : chore(tenant+bo+common): refactor to have a separate UserApiCommonRepository
-2026-01-27T11:52:17+01:00 - 1a4cc702 - Alix Deschamps : feat(tenant+common): hide non-full-data partner links and filter out DF_OWNER
+2026-01-27T11:52:17+01:00 - 4fe0ef43 - Alix Deschamps : chore(bo): refactor access logs collapsible list for sharing links using bootstrap
+2026-01-27T11:52:17+01:00 - 4a71e4e7 - Alix Deschamps : feat(tenant+bo) : new endpoint PUT /api/application/links/default to generate a default link
+2026-01-27T11:52:17+01:00 - 41817b3b - Alix Deschamps : chore(common): moved revoke partner methods to common
 2026-01-27T11:52:17+01:00 - 291fd49a - Alix Deschamps : feat: add BO endpoint for e2e tests
+2026-01-27T11:52:17+01:00 - 204f1623 - Alix Deschamps : chore(bo): refactor enrichedlinks to use batch loading of link logs
+2026-01-27T11:52:17+01:00 - 1a4cc702 - Alix Deschamps : feat(tenant+common): hide non-full-data partner links and filter out DF_OWNER
+2026-01-27T11:52:17+01:00 - 0e0cffbe - Alix Deschamps : fix(tenant+bo) : replace hardcoded time with future date on update expiration date test
+2026-01-27T11:52:17+01:00 - 0c43c369 - Alix Deschamps : feat(bo): show links of type OWNER
+2026-01-27T11:52:17+01:00 - 0765b57f - Alix Deschamps : feat(bo): show links of type MAIL + reused common logic for filtering links
 2026-01-27T11:52:14+01:00 - 8fbdb072 - Alix Deschamps : fix(tenant): fix failing tests after rebase
-2026-01-27T11:49:45+01:00 - 183d476f - Alix Deschamps : fix: update ApplicationControllerTest to remove unused test
 2026-01-27T11:49:45+01:00 - 405be36f - Alix Deschamps : fix: update ApplicationControllerTest to remove unused test
-2026-01-27T11:49:45+01:00 - 056ce81f - Alix Deschamps : refactor : use jakarta validation and move request class to model module
 2026-01-27T11:49:45+01:00 - 3291d7e2 - alixdeschamps : fix : add extra check on sharing link endpoint input
+2026-01-27T11:49:45+01:00 - 183d476f - Alix Deschamps : fix: update ApplicationControllerTest to remove unused test
+2026-01-27T11:49:45+01:00 - 056ce81f - Alix Deschamps : refactor : use jakarta validation and move request class to model module
 2026-01-27T11:49:43+01:00 - 4198021b - Alix Deschamps : feat: add BO endpoint for e2e tests
 2026-01-27T11:48:07+01:00 - 82615be4 - Alix Deschamps : feat: add createdBy and url field to ApartmentSharingLinkModel and update related services
 2026-01-27T11:46:05+01:00 - 8d66ff89 - Alix Deschamps : feat: add endpoint to update apartment sharing link title
 2026-01-27T11:46:04+01:00 - df46e087 - Alix Deschamps : feat: add endpoint to update apartment sharing link expiration date
 2026-01-27T11:44:37+01:00 - 3d60ab4b - Alix Deschamps : add ApplicationControllerTest
-2026-01-27T11:42:28+01:00 - 51fc91e0 - Alix Deschamps : refactor to DRY up the code
-2026-01-27T11:42:28+01:00 - 63a0c1c9 - Alix Deschamps : add GET and POST /application/fullPdf
 2026-01-27T11:42:28+01:00 - f03f6347 - Alix Deschamps : add first and last link
+2026-01-27T11:42:28+01:00 - 63a0c1c9 - Alix Deschamps : add GET and POST /application/fullPdf
+2026-01-27T11:42:28+01:00 - 51fc91e0 - Alix Deschamps : refactor to DRY up the code
 2026-01-27T11:42:26+01:00 - 5cf29d41 - Jean-Marie Poissonnier : ✨ Feat: sharing (WIP)
 2026-01-26T15:53:46+01:00 - 69ddf062 - Romaric : feat(api-tenant): enforce x-tenant-trigram header when feature is fully rolled out (#1107)
 2026-01-26T15:18:02+01:00 - 9944f0f8 - Romaric : feat(bo): enhance operator comment functionality with user context (#1108)
 2026-01-26T14:29:44+01:00 - f56ec71b - nicolasSagon : feat: pr review
 2026-01-26T14:29:44+01:00 - ae94467d - nicolasSagon : fix: error when deleting files
-2026-01-26T14:29:44+01:00 - 6c67dfbd - nicolasSagon : chore: update spring boot 3.5
-2026-01-26T14:29:44+01:00 - 42dc7105 - nicolasSagon : feature(common): Update openstack4j to version 3.12
 2026-01-26T14:29:44+01:00 - 8bc1d2f8 - nicolasSagon : feature(common): Update apache commons-lang3 to version 3.18.0
-2026-01-26T14:29:44+01:00 - 3b97cf96 - nicolasSagon : feature(commin): Update brevo to 1.1.0
+2026-01-26T14:29:44+01:00 - 6c67dfbd - nicolasSagon : chore: update spring boot 3.5
 2026-01-26T14:29:44+01:00 - 60f11e37 - nicolasSagon : feature(common): Update crypto deps to resolve CVE
+2026-01-26T14:29:44+01:00 - 42dc7105 - nicolasSagon : feature(common): Update openstack4j to version 3.12
+2026-01-26T14:29:44+01:00 - 3b97cf96 - nicolasSagon : feature(commin): Update brevo to 1.1.0
 2026-01-21T15:30:14+01:00 - 839777e7 - Alix Deschamps : Merge tag 'v3.3.7' into develop
 2026-01-21T15:29:24+01:00 - bc8011b2 - Alix Deschamps : Merge branch 'release/v3.3.7'
 2026-01-21T15:28:57+01:00 - 920e1609 - Alix Deschamps : chore: bump version to 3.3.7
@@ -86,20 +99,20 @@
 2025-12-17T14:26:42+01:00 - 782d7c79 - SAGON NICOLAS : Merge branch 'release/v3.3.5'
 2025-12-17T14:26:25+01:00 - 570b6854 - nicolasSagon : chore: bump version to 3.3.5
 2025-12-17T09:34:43+01:00 - c99e5282 - nicolasSagon : feat(bo): change the date for monthN placeholder before 15 now 16
-2025-12-16T17:40:40+01:00 - 1205e9fe - nicolasSagon : fix: error handling on public routes
-2025-12-16T17:40:40+01:00 - 1a72144e - Romaric Haldenwang : test: fix the tests
-2025-12-16T17:40:40+01:00 - 05c39b5e - Romaric Haldenwang : feat: add a new API route to test if the link exists
-2025-12-16T17:40:40+01:00 - 68a233ae - Romaric Haldenwang : feat: add logic for AB testing
-2025-12-16T17:40:40+01:00 - 2ea392f8 - Romaric Haldenwang : fix: revert change made to the error handling logic
-2025-12-16T17:40:40+01:00 - c03d9274 - Romaric Haldenwang : chore: move util from common to tenant-api folder
-2025-12-16T17:40:40+01:00 - 3c2fd9c5 - Romaric Haldenwang : feat: update the route logic to return 200, 404, 403 and 429 erros
 2025-12-16T17:40:40+01:00 - f752a458 - Romaric Haldenwang : infra: authorize X-Tenant-Trigram header
-2025-12-16T17:40:40+01:00 - 9302c52a - Romaric Haldenwang : test: add integration and service tests
+2025-12-16T17:40:40+01:00 - c03d9274 - Romaric Haldenwang : chore: move util from common to tenant-api folder
 2025-12-16T17:40:40+01:00 - bbe562c5 - Romaric Haldenwang : feat: add basic brute-forcing protection to trigram authentication
+2025-12-16T17:40:40+01:00 - 9302c52a - Romaric Haldenwang : test: add integration and service tests
+2025-12-16T17:40:40+01:00 - 68a233ae - Romaric Haldenwang : feat: add logic for AB testing
 2025-12-16T17:40:40+01:00 - 3d9e855c - Romaric Haldenwang : feat: add tenant trigram authentication to full link
+2025-12-16T17:40:40+01:00 - 3c2fd9c5 - Romaric Haldenwang : feat: update the route logic to return 200, 404, 403 and 429 erros
+2025-12-16T17:40:40+01:00 - 2ea392f8 - Romaric Haldenwang : fix: revert change made to the error handling logic
+2025-12-16T17:40:40+01:00 - 1a72144e - Romaric Haldenwang : test: fix the tests
+2025-12-16T17:40:40+01:00 - 1205e9fe - nicolasSagon : fix: error handling on public routes
+2025-12-16T17:40:40+01:00 - 05c39b5e - Romaric Haldenwang : feat: add a new API route to test if the link exists
 2025-12-16T13:48:10+01:00 - dde164b5 - nicolasSagon : fix(task-scheduler): add error handling arround all tasks
-2025-12-16T13:48:10+01:00 - 65a967bd - nicolasSagon : fix(task-scheduler): add a log when a task start and when ended
 2025-12-16T13:48:10+01:00 - 722e8b43 - nicolasSagon : fix(owner): unhandled exception missed
+2025-12-16T13:48:10+01:00 - 65a967bd - nicolasSagon : fix(task-scheduler): add a log when a task start and when ended
 2025-12-15T16:04:58+01:00 - b3359c58 - alixdeschamps : Merge pull request #1075 from MTES-MCT/feat/log-auto-validation
 2025-12-15T15:20:12+01:00 - 4577ef5b - Alix Deschamps : refactor: rename saveTenantLog and make codebase use the TenantLogCommonService instead of TenantLogService
 2025-12-15T15:15:58+01:00 - b70107ad - Alix Deschamps : feat : log when a dossier is automatically validated
@@ -113,9 +126,9 @@
 2025-12-01T14:39:08+01:00 - 690d76f5 - SAGON NICOLAS : Merge branch 'release/v3.3.4'
 2025-12-01T14:38:53+01:00 - 6869e26e - SAGON NICOLAS : Bump version to 3.3.4
 2025-12-01T11:59:41+01:00 - b62b8aae - alixdeschamps : Merge pull request #1070 from MTES-MCT/hotfix/remove-createby-tenant-check
+2025-12-01T11:58:23+01:00 - f8a643b1 - Alix Deschamps : fix: logic issue on tenant validation
 2025-12-01T11:58:23+01:00 - f869cbeb - Alix Deschamps : fix: sonar errors
 2025-12-01T11:58:23+01:00 - 5ada5bc0 - Alix Deschamps : chore: moved part of BO mailservice to common mailservice to reuse in tenant module
-2025-12-01T11:58:23+01:00 - f8a643b1 - Alix Deschamps : fix: logic issue on tenant validation
 2025-12-01T11:58:21+01:00 - cc388380 - Alix Deschamps : chore: improve code smells
 2025-12-01T11:58:19+01:00 - e393aa68 - Alix Deschamps : chore : remove redundant VALIDATED case
 2025-11-26T16:42:24+01:00 - 461514d7 - Alix Deschamps : Merge remote-tracking branch 'origin/hotfix/remove-createby-tenant-check' into hotfix/remove-createby-tenant-check
@@ -129,17 +142,17 @@
 2025-11-13T09:15:59+01:00 - 93f3d845 - SAGON NICOLAS : Merge branch 'release/V3.3.3' into develop
 2025-11-13T09:15:50+01:00 - e2ae7d17 - SAGON NICOLAS : Merge branch 'release/V3.3.3'
 2025-11-13T09:15:29+01:00 - a8cf9fca - SAGON NICOLAS : Chore: bumb version to 3.3.3
-2025-11-13T09:08:50+01:00 - ab126ce9 - copilot-swe-agent[bot] : docs: comprehensive documentation update for new S3 multi-AZ provider and changes
-2025-11-13T09:08:50+01:00 - 5c7e5f44 - nicolasSagon : fix(watermak): change s3 path for watermark app
-2025-11-13T09:08:50+01:00 - 9a227a8e - nicolasSagon : fix(task-scheduler): change sql request for optimisation
-2025-11-13T09:08:50+01:00 - 01223685 - nicolasSagon : feature(task-scheduler): implement new version of garbage collector
 2025-11-13T09:08:50+01:00 - d7be5592 - nicolasSagon : chore: add bucket encryption for new S3 provider
-2025-11-13T09:08:50+01:00 - 4b736f42 - nicolasSagon : chore: pr fixes
 2025-11-13T09:08:50+01:00 - d3df1ae9 - nicolasSagon : chore: add new S3 provider to filigrane
-2025-11-13T09:08:50+01:00 - 7f1c871b - nicolasSagon : chore: migrate aws sdk to v2 for new S3FileStorageService
 2025-11-13T09:08:50+01:00 - c21d8d4c - nicolasSagon : chore: add new S3 provider for pdf generation Watermark and full pdf
-2025-11-13T09:08:50+01:00 - 0e41ac84 - nicolasSagon : chore: add new S3 provider to file minify
-2025-11-13T09:08:50+01:00 - af8f0812 - nicolasSagon : chore add deleveV2 function to new S3 provider
 2025-11-13T09:08:50+01:00 - bd3d47f2 - nicolasSagon : chore: add new file provider for multiAZ bucket on OVH.
+2025-11-13T09:08:50+01:00 - af8f0812 - nicolasSagon : chore add deleveV2 function to new S3 provider
+2025-11-13T09:08:50+01:00 - ab126ce9 - copilot-swe-agent[bot] : docs: comprehensive documentation update for new S3 multi-AZ provider and changes
+2025-11-13T09:08:50+01:00 - 9a227a8e - nicolasSagon : fix(task-scheduler): change sql request for optimisation
+2025-11-13T09:08:50+01:00 - 7f1c871b - nicolasSagon : chore: migrate aws sdk to v2 for new S3FileStorageService
+2025-11-13T09:08:50+01:00 - 5c7e5f44 - nicolasSagon : fix(watermak): change s3 path for watermark app
+2025-11-13T09:08:50+01:00 - 4b736f42 - nicolasSagon : chore: pr fixes
+2025-11-13T09:08:50+01:00 - 0e41ac84 - nicolasSagon : chore: add new S3 provider to file minify
+2025-11-13T09:08:50+01:00 - 01223685 - nicolasSagon : feature(task-scheduler): implement new version of garbage collector
 2025-11-07T16:32:20+01:00 - f09598fb - Romaric : feat: change shity wording regarding tax document (#1063)
 2025-11-04T14:55:15+01:00 - 2fab6649 - alixdeschamps : Merge pull request #1058 from MTES-MCT/feature/update-readme-local-install
