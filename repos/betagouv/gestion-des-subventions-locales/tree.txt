@@ -56,6 +56,8 @@
 │   │   ├── 0010_remove_collegue_ds_id_collegue_ds_profile.py
 │   │   ├── 0011_alter_collegue_email.py
 │   │   ├── 0012_departement_active.py
+│   │   ├── 0013_collegue_comment.py
+│   │   ├── 0014_alter_adresse_created_at_alter_adresse_updated_at_and_more.py
 │   │   └── __init__.py
 │   ├── models.py
 │   ├── resources.py
@@ -186,12 +188,22 @@
 │   │   ├── 0037_merge_20260130_1511.py
 │   │   ├── 0037_remove_fieldmappingforcomputer_field_mapping_for_human_and_more.py
 │   │   ├── 0038_rename_fieldmappingforcomputer_fieldmapping_and_more.py
+│   │   ├── 0039_alter_dossier_porteur_de_projet_arrondissement_and_more.py
 │   │   ├── 0039_merge_20260130_1528.py
+│   │   ├── 0040_alter_dossier_demande_categorie_detr_and_more.py
+│   │   ├── 0040_merge_20260130_1556.py
+│   │   ├── 0041_dossier_demande_has_categorie_detr.py
+│   │   ├── 0041_merge_20260202_1216.py
+│   │   ├── 0042_alter_dossier_annotations_taux_detr_and_more.py
+│   │   ├── 0043_merge_20260209_1908.py
+│   │   ├── 0044_associate_perimetre_to_dossier.py
 │   │   └── __init__.py
 │   ├── models.py
 │   ├── resources.py
 │   ├── services.py
-│   ├── signals.py
+│   ├── static
+│   │   └── css
+│   │       └── dossier_sans_piece.css
 │   ├── tasks.py
 │   ├── templates
 │   │   └── gsl_demarches_simplifiees
@@ -224,6 +236,7 @@
 │   │   ├── test_services.py
 │   │   └── views
 │   │       ├── __init__.py
+│   │       ├── test_form_views.py
 │   │       ├── test_view_refresh_one_dossier.py
 │   │       └── test_views.py
 │   ├── urls.py
@@ -392,6 +405,7 @@
 │   │   ├── 0022_merge_20251023_1625.py
 │   │   ├── 0023_alter_enveloppe_perimetre.py
 │   │   ├── 0024_remove_programmationprojet_notified_at.py
+│   │   ├── 0025_enveloppe_created_at_enveloppe_updated_at.py
 │   │   └── __init__.py
 │   ├── models.py
 │   ├── resources.py
@@ -410,8 +424,8 @@
 │   │   │   ├── programmation_projet_detail.html
 │   │   │   ├── programmation_projet_list.html
 │   │   │   └── tab_programmation_projet
-│   │   │       ├── tab_annotations.html
 │   │   │       ├── tab_historique.html
+│   │   │       ├── tab_notes.html
 │   │   │       ├── tab_projet.html
 │   │   │       └── tabs.html
 │   │   └── includes
@@ -475,6 +489,9 @@
 │   │   ├── 0027_alter_projet_is_budget_vert.py
 │   │   ├── 0028_projet_is_acv_projet_is_autre_zonage_local_and_more.py
 │   │   ├── 0029_projet_autre_zonage_local_projet_contrat_local.py
+│   │   ├── 0030_dotationprojet_created_at_dotationprojet_updated_at_and_more.py
+│   │   ├── 0030_remove_projet_perimetre.py
+│   │   ├── 0031_merge_20260210_1653.py
 │   │   └── __init__.py
 │   ├── models.py
 │   ├── services
@@ -492,14 +509,13 @@
 │   ├── templates
 │   │   ├── gsl_projet
 │   │   │   ├── projet
-│   │   │   │   ├── tab_annotations.html
 │   │   │   │   ├── tab_historique.html
+│   │   │   │   ├── tab_notes.html
 │   │   │   │   ├── tab_projet.html
 │   │   │   │   └── tabs.html
 │   │   │   ├── projet.html
 │   │   │   └── projet_list.html
 │   │   └── includes
-│   │       ├── _annotations_detail.html
 │   │       ├── _filter_categorie_detr.html
 │   │       ├── _filter_cout_total.html
 │   │       ├── _filter_dotation.html
@@ -510,6 +526,7 @@
 │   │       ├── _filter_status.html
 │   │       ├── _filter_territoire.html
 │   │       ├── _filter_trier_par.html
+│   │       ├── _notes_detail.html
 │   │       ├── _projet_list_filters.html
 │   │       ├── _projets_table.html
 │   │       └── projet_detail
@@ -584,6 +601,7 @@
 │   │   ├── 0018_remove_simulationprojet_taux.py
 │   │   ├── 0019_alter_simulation_enveloppe.py
 │   │   ├── 0020_alter_simulation_slug.py
+│   │   ├── 0021_alter_simulation_created_at_and_more.py
 │   │   └── __init__.py
 │   ├── models.py
 │   ├── resources.py
@@ -591,7 +609,7 @@
 │   │   └── simulation_projet_service.py
 │   ├── static
 │   │   ├── css
-│   │   │   ├── annotations.css
+│   │   │   ├── notes.css
 │   │   │   ├── simulation_detail.css
 │   │   │   ├── simulation_list.css
 │   │   │   └── simulation_projet_detail.css
@@ -613,8 +631,8 @@
 │   │   │   ├── simulation_list.html
 │   │   │   ├── simulation_projet_detail.html
 │   │   │   └── tab_simulation_projet
-│   │   │       ├── tab_annotations.html
 │   │   │       ├── tab_historique.html
+│   │   │       ├── tab_notes.html
 │   │   │       ├── tab_projet.html
 │   │   │       └── tabs.html
 │   │   ├── htmx
@@ -678,14 +696,14 @@
 │   │       ├── test_simulation_create_view.py
 │   │       ├── test_simulation_delete_view.py
 │   │       ├── test_simulation_detail_view.py
-│   │       ├── test_simulation_projet_annotations_view.py
+│   │       ├── test_simulation_projet_notes_view.py
 │   │       ├── test_simulation_projet_view.py
 │   │       └── test_status_modal_view.py
 │   ├── urls.py
 │   ├── utils.py
 │   └── views
 │       ├── decorators.py
-│       ├── simulation_projet_annotations_views.py
+│       ├── simulation_projet_notes_views.py
 │       ├── simulation_projet_views.py
 │       └── simulation_views.py
 ├── justfile
@@ -724,4 +742,4 @@
 │       ├── __init__.py
 │       └── ui_tags.py
 └── vendorize.txt
-138 directories, 588 files
+140 directories, 604 files
