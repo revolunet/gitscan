@@ -336,6 +336,12 @@
 │   │   │   │   │   ├── annual-declaration-alert.tsx
 │   │   │   │   │   └── index.ts
 │   │   │   │   ├── annual-declaration-reset-dialog.tsx
+│   │   │   │   ├── annual-declaration-status-badge
+│   │   │   │   │   ├── annual-declaration-status-badge.stories.tsx
+│   │   │   │   │   ├── annual-declaration-status-badge.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── closed-declaration.tsx
+│   │   │   │   ├── declaration-not-found.tsx
 │   │   │   │   ├── missing-fields
 │   │   │   │   │   ├── hooks
 │   │   │   │   │   │   ├── use-missing-fields-helpers.ts
@@ -346,11 +352,14 @@
 │   │   │   │   │   ├── index.ts
 │   │   │   │   │   ├── missing-fields.config.ts
 │   │   │   │   │   ├── missing-fields.constants.ts
+│   │   │   │   │   ├── missing-fields.module.css
 │   │   │   │   │   ├── missing-fields.stories.tsx
 │   │   │   │   │   ├── missing-fields.tsx
 │   │   │   │   │   └── missing-fields.utils.ts
 │   │   │   │   └── settings-not-filled.tsx
 │   │   │   ├── config.ts
+│   │   │   ├── hooks
+│   │   │   │   └── use-annual-declaration-years.ts
 │   │   │   ├── layouts
 │   │   │   │   ├── annual-declaration-layout.tsx
 │   │   │   │   └── page-header
@@ -413,7 +422,6 @@
 │   │   │   │   │   │       └── spreading-distance.tsx
 │   │   │   │   │   ├── config.ts
 │   │   │   │   │   ├── digestate.hooks.tsx
-│   │   │   │   │   ├── digestate.stories.tsx
 │   │   │   │   │   ├── digestate.tsx
 │   │   │   │   │   ├── index.ts
 │   │   │   │   │   └── types.ts
@@ -1124,7 +1132,9 @@
 │   │   │           │   ├── accept-transfer-certificate.tsx
 │   │   │           │   ├── cancel-transfer-certificate.tsx
 │   │   │           │   ├── import-provision-certificates.tsx
+│   │   │           │   ├── readjustment-notice.tsx
 │   │   │           │   ├── reject-transfer-certificate.tsx
+│   │   │           │   ├── send-readjustment-certificates.tsx
 │   │   │           │   └── send-transfer-certificates.tsx
 │   │   │           ├── hooks
 │   │   │           │   └── provision-certificates.hooks.ts
@@ -1278,6 +1288,7 @@
 │   │   │   │       ├── components
 │   │   │   │       │   ├── qualicharge-badge.tsx
 │   │   │   │       │   ├── qualicharge-data-detail.tsx
+│   │   │   │       │   ├── validate-all-data-dialog.tsx
 │   │   │   │       │   └── validate-data-dialog.tsx
 │   │   │   │       ├── formatters.ts
 │   │   │   │       ├── hooks
@@ -1520,6 +1531,58 @@
     ├── .coveragerc
     ├── Dockerfile
     ├── Dockerfile.prod
+    ├── anonymization
+    │   ├── __init__.py
+    │   ├── apps.py
+    │   ├── management
+    │   │   ├── __init__.py
+    │   │   └── commands
+    │   │       ├── __init__.py
+    │   │       └── anonymize_data.py
+    │   └── services
+    │       ├── __init__.py
+    │       ├── anonymizers
+    │       │   ├── __init__.py
+    │       │   ├── base.py
+    │       │   ├── biomethane
+    │       │   │   ├── __init__.py
+    │       │   │   ├── contract_amendments.py
+    │       │   │   ├── contracts.py
+    │       │   │   ├── injection_sites.py
+    │       │   │   └── production_units.py
+    │       │   ├── carbure_lot_comments.py
+    │       │   ├── carbure_lots.py
+    │       │   ├── certificates.py
+    │       │   ├── depots.py
+    │       │   ├── double_counting
+    │       │   │   ├── __init__.py
+    │       │   │   ├── applications.py
+    │       │   │   ├── doc_files.py
+    │       │   │   ├── registrations.py
+    │       │   │   └── sourcing_history.py
+    │       │   ├── elec
+    │       │   │   ├── __init__.py
+    │       │   │   ├── charge_points.py
+    │       │   │   ├── meters.py
+    │       │   │   ├── provision_certificates.py
+    │       │   │   ├── provision_certificates_qualicharge.py
+    │       │   │   └── transfer_certificates.py
+    │       │   ├── entities.py
+    │       │   ├── saf
+    │       │   │   ├── __init__.py
+    │       │   │   ├── ticket_sources.py
+    │       │   │   └── tickets.py
+    │       │   ├── sites.py
+    │       │   └── users.py
+    │       ├── data_anonymization.py
+    │       ├── deleters
+    │       │   ├── __init__.py
+    │       │   ├── delete_carbure_lots.py
+    │       │   ├── delete_empty_operations.py
+    │       │   └── delete_orphan_certificates.py
+    │       ├── truncate_tables.py
+    │       ├── update_certificate_id.py
+    │       └── utils.py
     ├── auth
     │   ├── __init__.py
     │   ├── serializers
@@ -1583,6 +1646,12 @@
     │   │   ├── energy_monthly_report.py
     │   │   ├── mixins.py
     │   │   └── supply_input.py
+    │   ├── management
+    │   │   ├── __init__.py
+    │   │   └── commands
+    │   │       ├── __init__.py
+    │   │       ├── create_biomethane_annual_declarations.py
+    │   │       └── set_biomethane_declarations_open.py
     │   ├── migrations
     │   │   ├── 0001_initial.py
     │   │   ├── 0002_rename_biomethaneentityconfigagreement_biomethaneentityconfigcontract_and_more.py
@@ -1612,12 +1681,17 @@
     │   │   ├── 0024_alter_biomethaneproductionunit_department.py
     │   │   ├── 0025_merge_20251105_1415.py
     │   │   ├── 0026_alter_biomethaneannualdeclaration_options_and_more.py
+    │   │   ├── 0027_alter_biomethanecontract_cmax_annualized.py
+    │   │   ├── 0027_biomethaneannualdeclaration_is_open.py
+    │   │   ├── 0028_merge_20260113_1058.py
+    │   │   ├── 0029_biomethanedeclarationperiod.py
     │   │   └── __init__.py
     │   ├── models
     │   │   ├── __init__.py
     │   │   ├── biomethane_annual_declaration.py
     │   │   ├── biomethane_contract.py
     │   │   ├── biomethane_contract_amendment.py
+    │   │   ├── biomethane_declaration_period.py
     │   │   ├── biomethane_digestate.py
     │   │   ├── biomethane_digestate_spreading.py
     │   │   ├── biomethane_digestate_storage.py
@@ -1630,6 +1704,9 @@
     │   ├── permissions.py
     │   ├── serializers
     │   │   ├── __init__.py
+    │   │   ├── admin
+    │   │   │   ├── __init__.py
+    │   │   │   └── producer.py
     │   │   ├── annual_declaration
     │   │   │   ├── __init__.py
     │   │   │   └── annual_declaration.py
@@ -1667,6 +1744,9 @@
     │   │   └── supply_plan_excel_template.py
     │   ├── tests
     │   │   ├── __init__.py
+    │   │   ├── admin
+    │   │   │   ├── __init__.py
+    │   │   │   └── test_producers_viewset.py
     │   │   ├── annual_declaration
     │   │   │   ├── __init__.py
     │   │   │   ├── mixins
@@ -1742,6 +1822,9 @@
     │   ├── urls.py
     │   └── views
     │       ├── __init__.py
+    │       ├── admin
+    │       │   ├── __init__.py
+    │       │   └── producers.py
     │       ├── annual_declaration
     │       │   ├── __init__.py
     │       │   ├── annual_declaration.py
@@ -1916,12 +1999,16 @@
     │   │   ├── 0056_carburelot_pos_number.py
     │   │   ├── 0056_entity_closed_at.py
     │   │   ├── 0057_merge_20251217_1109.py
+    │   │   ├── 0058_carburelot_udb_transaction_id.py
+    │   │   ├── 0059_alter_carburelot_pos_number.py
     │   │   └── __init__.py
     │   ├── models.py
     │   ├── notifications.py
     │   ├── pagination.py
     │   ├── permissions.py
     │   ├── serializers.py
+    │   ├── services
+    │   │   └── __init__.py
     │   ├── tests
     │   │   ├── __init__.py
     │   │   ├── test_excel_importer.py
@@ -1998,6 +2085,7 @@
     │   │   ├── 0024_alter_doublecountingdocfile_file_type.py
     │   │   ├── 0025_resurrect_dc_doc_file_table.py
     │   │   ├── 0026_alter_doublecountingsourcinghistory_supplier_certificate_name.py
+    │   │   ├── 0027_alter_doublecountingapplication_status.py
     │   │   └── __init__.py
     │   ├── models.py
     │   ├── old_helpers.py
@@ -2069,12 +2157,15 @@
     │   │   ├── base64_utils.py
     │   │   ├── clock.py
     │   │   ├── edelivery_adapter.py
+    │   │   ├── logger.py
     │   │   ├── pub_sub_adapter.py
     │   │   ├── uuid_generator.py
     │   │   └── zip_utils.py
     │   ├── ebms
     │   │   ├── __init__.py
     │   │   ├── access_points.py
+    │   │   ├── materials.py
+    │   │   ├── ntr.py
     │   │   ├── request_responses.py
     │   │   └── requests.py
     │   ├── management
@@ -2093,6 +2184,8 @@
     │       ├── ebms
     │       │   ├── __init__.py
     │       │   ├── test_access_point.py
+    │       │   ├── test_materials.py
+    │       │   ├── test_ntr.py
     │       │   ├── test_request_responses.py
     │       │   └── test_requests.py
     │       └── soap
@@ -2192,7 +2285,8 @@
     │   ├── apps.py
     │   ├── factories
     │   │   ├── __init__.py
-    │   │   └── provision_certificate_qualicharge.py
+    │   │   ├── provision_certificate_qualicharge.py
+    │   │   └── transfer_certificate.py
     │   ├── filters
     │   │   ├── __init__.py
     │   │   ├── provision_certificate_qualicharge.py
@@ -2281,16 +2375,26 @@
     │   │   ├── 0057_alter_elecprovisioncertificatequalicharge_validated_by.py
     │   │   ├── 0058_alter_elecprovisioncertificatequalicharge_options_and_more.py
     │   │   ├── 0059_elecprovisioncertificatequalicharge_unknown_siren_and_more.py
+    │   │   ├── 0060_elecmeterreadingvirtual_and_more.py
+    │   │   ├── 0061_populate_elec_meter_reading_enr_ratio.py
+    │   │   ├── 0062_elec_meter_reading_virtual.py
+    │   │   ├── 0063_fix_modulo_elec_entity.py
+    │   │   ├── 0064_populate_operating_unit.py
+    │   │   ├── 0065_remove_elecprovisioncertificate_compensation_and_more.py
+    │   │   ├── 0066_eleccertificatereadjustment.py
+    │   │   ├── 0067_elecprovisioncertificatequalicharge_enr_ratio.py
     │   │   └── __init__.py
     │   ├── models
     │   │   ├── __init__.py
     │   │   ├── elec_audit_charge_point.py
     │   │   ├── elec_audit_sample.py
+    │   │   ├── elec_certificate_readjustment.py
     │   │   ├── elec_charge_point.py
     │   │   ├── elec_charge_point_application.py
     │   │   ├── elec_meter.py
     │   │   ├── elec_meter_reading.py
     │   │   ├── elec_meter_reading_application.py
+    │   │   ├── elec_meter_reading_virtual.py
     │   │   ├── elec_provision_certificate.py
     │   │   ├── elec_provision_certificate_qualicharge.py
     │   │   └── elec_transfer_certificate.py
@@ -2329,6 +2433,7 @@
     │   │   ├── import_meter_reading_excel.py
     │   │   ├── meter_readings_application_quarter.py
     │   │   ├── qualicharge.py
+    │   │   ├── readjustment_balance.py
     │   │   └── transport_data_gouv.py
     │   ├── tests
     │   │   ├── __init__.py
@@ -2340,7 +2445,8 @@
     │   │   │   ├── mixins
     │   │   │   │   ├── __init__.py
     │   │   │   │   ├── test_bulk_create.py
-    │   │   │   │   └── test_bulk_update.py
+    │   │   │   │   ├── test_bulk_update.py
+    │   │   │   │   └── test_filter.py
     │   │   │   ├── test_serializers.py
     │   │   │   ├── test_services.py
     │   │   │   └── test_views.py
@@ -2352,7 +2458,8 @@
     │   │   │   └── test_meter_reading_repository.py
     │   │   └── services
     │   │       ├── __init__.py
-    │   │       └── test_meter_readings_application_quarter.py
+    │   │       ├── test_meter_readings_application_quarter.py
+    │   │       └── test_readjustment_balance.py
     │   ├── urls.py
     │   └── views
     │       ├── __init__.py
@@ -2428,6 +2535,9 @@
     │   │   │   └── tests_views.py
     │   │   ├── entity
     │   │   │   ├── __init__.py
+    │   │   │   ├── mixins
+    │   │   │   │   ├── __init__.py
+    │   │   │   │   └── test_list_entities.py
     │   │   │   ├── test_models.py
     │   │   │   ├── tests_entities.py
     │   │   │   ├── tests_options.py
@@ -2602,7 +2712,8 @@
     │   ├── load_historical_data.py
     │   ├── load_matierespremieres.py
     │   ├── load_psite_gps_coordinates.py
-    │   └── load_sn_certificates.py
+    │   ├── load_sn_certificates.py
+    │   └── load_udb_data.py
     ├── locale
     │   └── en
     │       └── LC_MESSAGES
@@ -2679,6 +2790,7 @@
     │   ├── management
     │   │   └── commands
     │   │       ├── __init__.py
+    │   │       ├── delete_ticket_sources_not_eligible_for_saf.py
     │   │       ├── propagate_saf_origin.py
     │   │       └── update_ticket_from_file.py
     │   ├── migrations
@@ -2735,6 +2847,7 @@
     │   │   ├── tests_assign_ticket.py
     │   │   ├── tests_cancel_ticket.py
     │   │   ├── tests_client.py
+    │   │   ├── tests_create_ticket_sources_from_lots.py
     │   │   ├── tests_grouped_assign_ticket.py
     │   │   ├── tests_reject_ticket.py
     │   │   ├── tests_snapshot.py
@@ -2808,6 +2921,7 @@
     │   ├── apps.py
     │   ├── factories
     │   │   ├── __init__.py
+    │   │   ├── elec_operation.py
     │   │   └── operation.py
     │   ├── filters
     │   │   ├── __init__.py
@@ -2884,25 +2998,40 @@
     │   │   ├── __init__.py
     │   │   ├── filters
     │   │   │   ├── __init__.py
+    │   │   │   ├── test_elec_operation.py
     │   │   │   └── test_operation.py
     │   │   ├── models
     │   │   │   ├── __init__.py
+    │   │   │   ├── test_elec_operation.py
     │   │   │   └── test_operation.py
     │   │   ├── serializers
     │   │   │   ├── __init__.py
     │   │   │   ├── test_balance.py
+    │   │   │   ├── test_elec_operation.py
     │   │   │   ├── test_objective.py
     │   │   │   ├── test_operation.py
     │   │   │   └── test_teneur.py
     │   │   ├── services
     │   │   │   ├── __init__.py
     │   │   │   ├── test_balance.py
+    │   │   │   ├── test_elec_balance.py
+    │   │   │   ├── test_elec_operation_service.py
     │   │   │   ├── test_objective.py
     │   │   │   ├── test_operation.py
     │   │   │   └── test_teneur.py
-    │   │   ├── tests_elec_operations.py
     │   │   └── views
     │   │       ├── __init__.py
+    │   │       ├── elec_operation
+    │   │       │   ├── __init__.py
+    │   │       │   ├── mixins
+    │   │       │   │   ├── __init__.py
+    │   │       │   │   ├── test_accept.py
+    │   │       │   │   ├── test_balance.py
+    │   │       │   │   ├── test_filter.py
+    │   │       │   │   └── test_reject.py
+    │   │       │   ├── test_elec_operation_pagination.py
+    │   │       │   ├── test_elec_operation_viewset_integration.py
+    │   │       │   └── test_elec_operation_viewset_permissions.py
     │   │       ├── mixins
     │   │       │   ├── __init__.py
     │   │       │   └── test_unit.py
@@ -3190,4 +3319,4 @@
             ├── request_access.py
             ├── revoke_access.py
             └── user.py
-582 directories, 2610 files
+603 directories, 2718 files
