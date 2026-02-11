@@ -1,5 +1,7 @@
 .
 ├── .database
+│   ├── indexes
+│   │   └── domain_views.sql
 │   ├── metabase-dev.dump
 │   ├── permissions
 │   │   ├── grant.sql
@@ -19,11 +21,6 @@
 │   ├── exempleCandidatsPetitPV.csv
 │   ├── import-instruction-ds.csv
 │   └── test-projects-seed.csv
-├── .docker-scripts
-│   ├── down-test.sh
-│   ├── down.sh
-│   ├── up-test.sh
-│   └── up.sh
 ├── .editorconfig
 ├── .github
 │   ├── actions
@@ -48,7 +45,13 @@
 ├── .prettierignore
 ├── .prettierrc
 ├── .scripts
-│   └── review-app.sh
+│   ├── backup-3-2-1.sh
+│   ├── docker-down-test.sh
+│   ├── docker-down.sh
+│   ├── docker-up-test.sh
+│   ├── docker-up.sh
+│   ├── review-app.sh
+│   └── s3-backup.sh
 ├── CODE_OF_CONDUCT.md
 ├── CONTRIBUTING.md
 ├── LICENSE
@@ -364,649 +367,6 @@
 │   │   │   │       └── recours
 │   │   │   │           └── modèleRéponseSignéeRecours.ts
 │   │   │   └── tsconfig.json
-│   │   ├── legacy
-│   │   │   ├── .env.template
-│   │   │   ├── .sequelizerc
-│   │   │   ├── package.json
-│   │   │   ├── postcss.config.js
-│   │   │   ├── src
-│   │   │   │   ├── config
-│   │   │   │   │   ├── authN.config.ts
-│   │   │   │   │   ├── crypto.config.ts
-│   │   │   │   │   ├── env.config.ts
-│   │   │   │   │   ├── eventBus.config.ts
-│   │   │   │   │   ├── eventHandlers
-│   │   │   │   │   │   ├── index.ts
-│   │   │   │   │   │   └── project.eventHandlers.ts
-│   │   │   │   │   ├── eventStore.config.ts
-│   │   │   │   │   ├── index.ts
-│   │   │   │   │   ├── logger.config.ts
-│   │   │   │   │   ├── projections.config.deprecated.ts
-│   │   │   │   │   ├── queries.config.ts
-│   │   │   │   │   ├── queryProjectAO.config.ts
-│   │   │   │   │   ├── repos.config.ts
-│   │   │   │   │   └── useCases.config.ts
-│   │   │   │   ├── controllers
-│   │   │   │   │   ├── helpers
-│   │   │   │   │   │   ├── asyncHandler.ts
-│   │   │   │   │   │   ├── errorResponse.ts
-│   │   │   │   │   │   ├── index.ts
-│   │   │   │   │   │   ├── miseAJourStatistiquesUtilisation.ts
-│   │   │   │   │   │   ├── notFoundResponse.ts
-│   │   │   │   │   │   ├── safeAsyncHandler.ts
-│   │   │   │   │   │   ├── unauthorizedResponse.ts
-│   │   │   │   │   │   └── vérifierPermissionUtilisateur.ts
-│   │   │   │   │   ├── index.ts
-│   │   │   │   │   ├── project
-│   │   │   │   │   │   ├── getExportProjets.ts
-│   │   │   │   │   │   └── index.ts
-│   │   │   │   │   └── v1Router.ts
-│   │   │   │   ├── core
-│   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── AggregateRoot.ts
-│   │   │   │   │   │   ├── Constructor.ts
-│   │   │   │   │   │   ├── DomainError.ts
-│   │   │   │   │   │   ├── DomainEvent.ts
-│   │   │   │   │   │   ├── Entity.ts
-│   │   │   │   │   │   ├── EventBus.ts
-│   │   │   │   │   │   ├── EventStore.ts
-│   │   │   │   │   │   ├── EventStoreAggregate.ts
-│   │   │   │   │   │   ├── HasType.ts
-│   │   │   │   │   │   ├── Repository.ts
-│   │   │   │   │   │   ├── UniqueEntityID.ts
-│   │   │   │   │   │   ├── index.ts
-│   │   │   │   │   │   └── publish.ts
-│   │   │   │   │   └── utils
-│   │   │   │   │       ├── Queue.ts
-│   │   │   │   │       ├── Result.ts
-│   │   │   │   │       ├── index.ts
-│   │   │   │   │       ├── logger.ts
-│   │   │   │   │       ├── makeEventStore.ts
-│   │   │   │   │       ├── makeEventStoreRepo.ts
-│   │   │   │   │       ├── makeEventStoreTransactionalRepo.ts
-│   │   │   │   │       ├── stableStringify.ts
-│   │   │   │   │       ├── typeguards.ts
-│   │   │   │   │       ├── validators.ts
-│   │   │   │   │       ├── withDelay.ts
-│   │   │   │   │       └── wrapInfra.ts
-│   │   │   │   ├── dataAccess
-│   │   │   │   │   ├── appelOffre.ts
-│   │   │   │   │   ├── config.ts
-│   │   │   │   │   ├── db
-│   │   │   │   │   │   ├── helpers
-│   │   │   │   │   │   │   └── isDbReady.ts
-│   │   │   │   │   │   ├── index.ts
-│   │   │   │   │   │   └── user.ts
-│   │   │   │   │   ├── inMemory
-│   │   │   │   │   │   ├── appelOffreRepo.ts
-│   │   │   │   │   │   ├── appelOffreStatic.ts
-│   │   │   │   │   │   ├── appelsOffres
-│   │   │   │   │   │   │   ├── commonDataFields.ts
-│   │   │   │   │   │   │   ├── helpers
-│   │   │   │   │   │   │   │   └── toTypeLiteral.ts
-│   │   │   │   │   │   │   └── index.ts
-│   │   │   │   │   │   ├── index.ts
-│   │   │   │   │   │   ├── isPeriodeLegacy.ts
-│   │   │   │   │   │   └── queries
-│   │   │   │   │   │       ├── getAppelOffre.ts
-│   │   │   │   │   │       └── index.ts
-│   │   │   │   │   ├── index.ts
-│   │   │   │   │   ├── project.ts
-│   │   │   │   │   └── user.ts
-│   │   │   │   ├── entities
-│   │   │   │   │   ├── appelOffre.ts
-│   │   │   │   │   ├── cahierDesCharges.ts
-│   │   │   │   │   ├── index.ts
-│   │   │   │   │   ├── periode.ts
-│   │   │   │   │   ├── project.ts
-│   │   │   │   │   └── user.ts
-│   │   │   │   ├── helpers
-│   │   │   │   │   ├── addQueryParams.ts
-│   │   │   │   │   ├── asLiteral.ts
-│   │   │   │   │   ├── buildMakeEntity.ts
-│   │   │   │   │   ├── csv.ts
-│   │   │   │   │   ├── dataToValueTypes
-│   │   │   │   │   │   ├── formatProjectDataToIdentifiantProjetValueType.ts
-│   │   │   │   │   │   └── index.ts
-│   │   │   │   │   ├── fileReadableStream.ts
-│   │   │   │   │   ├── findEventOfType.ts
-│   │   │   │   │   ├── formValidators.ts
-│   │   │   │   │   ├── formatDate.ts
-│   │   │   │   │   ├── getDepartementRegionFromCodePostal.ts
-│   │   │   │   │   ├── getValidationError.ts
-│   │   │   │   │   ├── hashPassword.ts
-│   │   │   │   │   ├── isObject.ts
-│   │   │   │   │   ├── pathExists.ts
-│   │   │   │   │   ├── results.ts
-│   │   │   │   │   ├── shallowDelta.ts
-│   │   │   │   │   ├── toNumber.ts
-│   │   │   │   │   └── validateUniqueId.ts
-│   │   │   │   ├── index.ts
-│   │   │   │   ├── infra
-│   │   │   │   │   ├── crypto
-│   │   │   │   │   │   ├── buildProjectIdentifier.ts
-│   │   │   │   │   │   └── index.ts
-│   │   │   │   │   ├── dualEventBus
-│   │   │   │   │   │   ├── dualPublish.ts
-│   │   │   │   │   │   └── index.ts
-│   │   │   │   │   ├── helpers
-│   │   │   │   │   │   ├── index.ts
-│   │   │   │   │   │   └── transformerISOStringEnDate.ts
-│   │   │   │   │   ├── inMemoryEventBus
-│   │   │   │   │   │   ├── inMemoryEventBus.ts
-│   │   │   │   │   │   └── index.ts
-│   │   │   │   │   ├── keycloak
-│   │   │   │   │   │   ├── attachUserToRequestMiddleware.ts
-│   │   │   │   │   │   ├── index.ts
-│   │   │   │   │   │   └── makeKeycloakAuth.ts
-│   │   │   │   │   ├── redis
-│   │   │   │   │   │   ├── helpers
-│   │   │   │   │   │   │   ├── RedisMessage.ts
-│   │   │   │   │   │   │   ├── fromRedisMessage.ts
-│   │   │   │   │   │   │   └── toRedisMessage.ts
-│   │   │   │   │   │   ├── index.ts
-│   │   │   │   │   │   ├── redisPublish.ts
-│   │   │   │   │   │   └── redisSubscribe.ts
-│   │   │   │   │   └── sequelize
-│   │   │   │   │       ├── eventStore
-│   │   │   │   │       │   ├── eventStore.model.ts
-│   │   │   │   │       │   ├── index.ts
-│   │   │   │   │       │   ├── loadAggregateEventsFromStore.ts
-│   │   │   │   │       │   ├── persistEventsToStore.ts
-│   │   │   │   │       │   └── rollbackEventsFromStore.ts
-│   │   │   │   │       ├── helpers
-│   │   │   │   │       │   ├── fromPersistance.ts
-│   │   │   │   │       │   ├── index.ts
-│   │   │   │   │       │   └── toPersistance.ts
-│   │   │   │   │       ├── index.ts
-│   │   │   │   │       ├── models.ts
-│   │   │   │   │       ├── projectionsNext
-│   │   │   │   │       │   ├── eventHandler.ts
-│   │   │   │   │       │   ├── file
-│   │   │   │   │       │   │   ├── file.initializer.ts
-│   │   │   │   │       │   │   └── file.model.ts
-│   │   │   │   │       │   ├── index.ts
-│   │   │   │   │       │   ├── makeSequelizeProjector.ts
-│   │   │   │   │       │   ├── models.initializer.ts
-│   │   │   │   │       │   ├── notification
-│   │   │   │   │       │   │   ├── notification.initializer.ts
-│   │   │   │   │       │   │   └── notification.model.ts
-│   │   │   │   │       │   ├── project
-│   │   │   │   │       │   │   ├── project.initializer.ts
-│   │   │   │   │       │   │   ├── project.model.ts
-│   │   │   │   │       │   │   ├── project.projector.ts
-│   │   │   │   │       │   │   └── updates
-│   │   │   │   │       │   │       ├── index.ts
-│   │   │   │   │       │   │       ├── onAbandonProjetAnnulé.ts
-│   │   │   │   │       │   │       ├── onAppelOffreProjetModifié.ts
-│   │   │   │   │       │   │       ├── onCahierDesChargesChoisi.ts
-│   │   │   │   │       │   │       ├── onCovidDelayGranted.ts
-│   │   │   │   │       │   │       ├── onIdentifiantPotentielPPE2Batiment2Corrigé.ts
-│   │   │   │   │       │   │       ├── onLegacyAbandonSupprimé.ts
-│   │   │   │   │       │   │       ├── onLegacyProjectSourced.ts
-│   │   │   │   │       │   │       ├── onProjectAbandoned.ts
-│   │   │   │   │       │   │       ├── onProjectActionnaireUpdated.ts
-│   │   │   │   │       │   │       ├── onProjectClasseGranted.ts
-│   │   │   │   │       │   │       ├── onProjectCompletionDueDateCancelled.ts
-│   │   │   │   │       │   │       ├── onProjectCompletionDueDateSet.ts
-│   │   │   │   │       │   │       ├── onProjectDCRDueDateCancelled.ts
-│   │   │   │   │       │   │       ├── onProjectDCRDueDateSet.ts
-│   │   │   │   │       │   │       ├── onProjectDataCorrected.ts
-│   │   │   │   │       │   │       ├── onProjectFournisseursUpdated.ts
-│   │   │   │   │       │   │       ├── onProjectImported.ts
-│   │   │   │   │       │   │       ├── onProjectNotificationDateSet.ts
-│   │   │   │   │       │   │       ├── onProjectNotified.ts
-│   │   │   │   │       │   │       ├── onProjectProducteurUpdated.ts
-│   │   │   │   │       │   │       ├── onProjectPuissanceUpdated.ts
-│   │   │   │   │       │   │       └── onProjectReimported.ts
-│   │   │   │   │       │   ├── projector.ts
-│   │   │   │   │       │   ├── projectors.initializer.ts
-│   │   │   │   │       │   ├── subscribe.ts
-│   │   │   │   │       │   ├── userDreal
-│   │   │   │   │       │   │   ├── updates
-│   │   │   │   │       │   │   │   ├── index.ts
-│   │   │   │   │       │   │   │   └── onDrealUserInvited.ts
-│   │   │   │   │       │   │   ├── userDreal.initializer.ts
-│   │   │   │   │       │   │   ├── userDreal.model.ts
-│   │   │   │   │       │   │   └── userDreal.projector.ts
-│   │   │   │   │       │   ├── userProjects
-│   │   │   │   │       │   │   ├── updates
-│   │   │   │   │       │   │   │   ├── index.ts
-│   │   │   │   │       │   │   │   ├── onToutAccèsAuProjetRevoqué.ts
-│   │   │   │   │       │   │   │   ├── onUserInvitedToProject.ts
-│   │   │   │   │       │   │   │   ├── onUserProjectsLinkedByContactEmail.ts
-│   │   │   │   │       │   │   │   ├── onUserRightsToProjectGranted.ts
-│   │   │   │   │       │   │   │   └── onUserRightsToProjectRevoked.ts
-│   │   │   │   │       │   │   ├── userProjects.initializer.ts
-│   │   │   │   │       │   │   ├── userProjects.model.ts
-│   │   │   │   │       │   │   └── userProjects.projector.ts
-│   │   │   │   │       │   └── users
-│   │   │   │   │       │       ├── updates
-│   │   │   │   │       │       │   ├── index.ts
-│   │   │   │   │       │       │   ├── onFonctionUtilisateurModifiée.ts
-│   │   │   │   │       │       │   ├── onProfilUtilisateurCréé.ts
-│   │   │   │   │       │       │   ├── onRôleUtilisateurModifié.ts
-│   │   │   │   │       │       │   ├── onUserCreated.ts
-│   │   │   │   │       │       │   ├── onUtilisateurDésactivé.ts
-│   │   │   │   │       │       │   └── onUtilisateurInvité.ts
-│   │   │   │   │       │       ├── user.projector.ts
-│   │   │   │   │       │       ├── users.initializer.ts
-│   │   │   │   │       │       └── users.model.ts
-│   │   │   │   │       ├── queries
-│   │   │   │   │       │   ├── index.ts
-│   │   │   │   │       │   ├── project
-│   │   │   │   │       │   │   ├── exporter
-│   │   │   │   │       │   │   │   ├── Colonne.ts
-│   │   │   │   │       │   │   │   ├── colonnesParCatégorie
-│   │   │   │   │       │   │   │   │   ├── contenuLocal.ts
-│   │   │   │   │       │   │   │   │   ├── coordonnéesCandidat.ts
-│   │   │   │   │       │   │   │   │   ├── coordonnéesGéodésiques.ts
-│   │   │   │   │       │   │   │   │   ├── coûtInvestissement.ts
-│   │   │   │   │       │   │   │   │   ├── donnéesAutoconsommation.ts
-│   │   │   │   │       │   │   │   │   ├── donnéesDeRaccordement.ts
-│   │   │   │   │       │   │   │   │   ├── donnéesFournisseurs.ts
-│   │   │   │   │       │   │   │   │   ├── financementCitoyen.ts
-│   │   │   │   │       │   │   │   │   ├── identificationProjet.ts
-│   │   │   │   │       │   │   │   │   ├── implantation.ts
-│   │   │   │   │       │   │   │   │   ├── index.ts
-│   │   │   │   │       │   │   │   │   ├── instruction.ts
-│   │   │   │   │       │   │   │   │   ├── localisationProjet.ts
-│   │   │   │   │       │   │   │   │   ├── modificationsAvantImport.ts
-│   │   │   │   │       │   │   │   │   ├── noteInnovation.ts
-│   │   │   │   │       │   │   │   │   ├── noteInnovationSensible.ts
-│   │   │   │   │       │   │   │   │   ├── notes.ts
-│   │   │   │   │       │   │   │   │   ├── potentielSolaire.ts
-│   │   │   │   │       │   │   │   │   ├── prix.ts
-│   │   │   │   │       │   │   │   │   ├── référencesCandidature.ts
-│   │   │   │   │       │   │   │   │   ├── résultatInstructionSensible.ts
-│   │   │   │   │       │   │   │   │   └── évaluationCarbone.ts
-│   │   │   │   │       │   │   │   ├── exporterProjets.ts
-│   │   │   │   │       │   │   │   ├── index.ts
-│   │   │   │   │       │   │   │   └── requêtes
-│   │   │   │   │       │   │   │       ├── exporterProjetsPourADEME.ts
-│   │   │   │   │       │   │   │       ├── exporterProjetsPourCRE.ts
-│   │   │   │   │       │   │   │       ├── exporterProjetsPourCaisseDesDépôts.ts
-│   │   │   │   │       │   │   │       ├── exporterProjetsPourCocontractant.ts
-│   │   │   │   │       │   │   │       ├── exporterProjetsPourDGEC.ts
-│   │   │   │   │       │   │   │       ├── exporterProjetsPourDREAL.ts
-│   │   │   │   │       │   │   │       ├── exporterProjetsPourPorteurDeProjet.ts
-│   │   │   │   │       │   │   │       └── récupérerExportProjets.ts
-│   │   │   │   │       │   │   ├── findProjectByIdentifiers.ts
-│   │   │   │   │       │   │   ├── getIdentifiantProjetByLegacyId.ts
-│   │   │   │   │       │   │   ├── getLegacyProjetByIdentifiantProjet.ts
-│   │   │   │   │       │   │   ├── helpers
-│   │   │   │   │       │   │   │   ├── index.ts
-│   │   │   │   │       │   │   │   └── mapToFindOptions.ts
-│   │   │   │   │       │   │   └── index.ts
-│   │   │   │   │       │   └── users
-│   │   │   │   │       │       ├── getUserByEmail.ts
-│   │   │   │   │       │       ├── getUserById.ts
-│   │   │   │   │       │       └── index.ts
-│   │   │   │   │       ├── repos
-│   │   │   │   │       │   ├── README.md
-│   │   │   │   │       │   ├── index.ts
-│   │   │   │   │       │   └── projectRepo.ts
-│   │   │   │   │       └── tables
-│   │   │   │   │           ├── connexionsParRoleEtParJour.model.ts
-│   │   │   │   │           ├── index.ts
-│   │   │   │   │           └── statistiquesUtilisation.model.ts
-│   │   │   │   ├── modules
-│   │   │   │   │   ├── appelOffre
-│   │   │   │   │   │   ├── index.ts
-│   │   │   │   │   │   └── queries
-│   │   │   │   │   │       ├── GetFamille.ts
-│   │   │   │   │   │       ├── GetPeriodeTitle.ts
-│   │   │   │   │   │       ├── IsPeriodeLegacy.ts
-│   │   │   │   │   │       └── index.ts
-│   │   │   │   │   ├── authN
-│   │   │   │   │   │   ├── Permission.ts
-│   │   │   │   │   │   ├── index.ts
-│   │   │   │   │   │   └── queries
-│   │   │   │   │   │       ├── EnsureRole.ts
-│   │   │   │   │   │       ├── RegisterAuth.ts
-│   │   │   │   │   │       ├── SendResetPasswordEmail.ts
-│   │   │   │   │   │       └── index.ts
-│   │   │   │   │   ├── authZ
-│   │   │   │   │   │   ├── events
-│   │   │   │   │   │   │   ├── DrealUserInvited.ts
-│   │   │   │   │   │   │   ├── InvitationToProjectCancelled.ts
-│   │   │   │   │   │   │   ├── PartnerUserInvited.ts
-│   │   │   │   │   │   │   ├── ToutAccèsAuProjetRevoqué.ts
-│   │   │   │   │   │   │   ├── UserInvitedToProject.ts
-│   │   │   │   │   │   │   ├── UserProjectsLinkedByContactEmail.ts
-│   │   │   │   │   │   │   ├── UserRightsToProjectGranted.ts
-│   │   │   │   │   │   │   ├── UserRightsToProjectRevoked.ts
-│   │   │   │   │   │   │   └── index.ts
-│   │   │   │   │   │   └── index.ts
-│   │   │   │   │   ├── dreal
-│   │   │   │   │   │   └── région.ts
-│   │   │   │   │   ├── notificationCandidats
-│   │   │   │   │   │   ├── events
-│   │   │   │   │   │   │   ├── CandidateInformationOfCertificateUpdateFailed.ts
-│   │   │   │   │   │   │   ├── CandidateInformedOfCertificateUpdate.ts
-│   │   │   │   │   │   │   ├── CandidateNotifiedForPeriode.ts
-│   │   │   │   │   │   │   └── index.ts
-│   │   │   │   │   │   ├── helpers
-│   │   │   │   │   │   │   ├── index.ts
-│   │   │   │   │   │   │   └── makeCandidateNotificationId.ts
-│   │   │   │   │   │   └── index.ts
-│   │   │   │   │   ├── pagination.ts
-│   │   │   │   │   ├── project
-│   │   │   │   │   │   ├── Project.ts
-│   │   │   │   │   │   ├── dtos
-│   │   │   │   │   │   │   ├── ProjectDataForCertificate.ts
-│   │   │   │   │   │   │   └── index.ts
-│   │   │   │   │   │   ├── errors
-│   │   │   │   │   │   │   ├── AttachmentRequiredForDemandeRecoursAcceptedError.ts
-│   │   │   │   │   │   │   ├── CahierDesChargesInitialNonDisponibleError.ts
-│   │   │   │   │   │   │   ├── CahierDesChargesNonDisponibleError.ts
-│   │   │   │   │   │   │   ├── CertificateFileIsMissingError.ts
-│   │   │   │   │   │   │   ├── ChangementProducteurImpossiblePourEolienError.ts
-│   │   │   │   │   │   │   ├── CodeEICNonTrouvéError.ts
-│   │   │   │   │   │   │   ├── DateMiseEnServicePlusRécenteError.ts
-│   │   │   │   │   │   │   ├── DemandeDeMêmeTypeDéjàOuverteError.ts
-│   │   │   │   │   │   │   ├── DélaiCDC2022DéjàAppliquéError.ts
-│   │   │   │   │   │   │   ├── EliminatedProjectCannotBeAbandonnedError.ts
-│   │   │   │   │   │   │   ├── IllegalProjectDataError.ts
-│   │   │   │   │   │   │   ├── IllegalProjectStateError.ts
-│   │   │   │   │   │   │   ├── ImpossibleDAppliquerDélaiSiCDC2022NonChoisiError.ts
-│   │   │   │   │   │   │   ├── ImpossibleDeChangerLaDateDeFAError.ts
-│   │   │   │   │   │   │   ├── NouveauCahierDesChargesDéjàSouscrit.ts
-│   │   │   │   │   │   │   ├── PasDeChangementDeCDCPourLaPériodeDeCetAOError.ts
-│   │   │   │   │   │   │   ├── ProjectAlreadyNotifiedError.ts
-│   │   │   │   │   │   │   ├── ProjectCannotBeUpdatedIfUnnotifiedError.ts
-│   │   │   │   │   │   │   ├── ProjectNotEligibileForCertificateError.ts
-│   │   │   │   │   │   │   └── index.ts
-│   │   │   │   │   │   ├── eventHandlers
-│   │   │   │   │   │   │   ├── handleProjectRawDataCorrected.ts
-│   │   │   │   │   │   │   ├── handleProjectRawDataImported.ts
-│   │   │   │   │   │   │   └── index.ts
-│   │   │   │   │   │   ├── events
-│   │   │   │   │   │   │   ├── AbandonProjetAnnulé.ts
-│   │   │   │   │   │   │   ├── AppelOffreProjetModifié.ts
-│   │   │   │   │   │   │   ├── CahierDesChargesChoisi.ts
-│   │   │   │   │   │   │   ├── CovidDelayGranted.ts
-│   │   │   │   │   │   │   ├── DemandeDelaiSignaled.ts
-│   │   │   │   │   │   │   ├── DemandeRecoursSignaled.ts
-│   │   │   │   │   │   │   ├── IdentifiantPotentielPPE2Batiment2Corrigé.ts
-│   │   │   │   │   │   │   ├── ImportExecuted.ts
-│   │   │   │   │   │   │   ├── LegacyAbandonSupprimé.ts
-│   │   │   │   │   │   │   ├── LegacyProjectEventSourced.ts
-│   │   │   │   │   │   │   ├── LegacyProjectSourced.ts
-│   │   │   │   │   │   │   ├── ProjectAbandoned.ts
-│   │   │   │   │   │   │   ├── ProjectActionnaireUpdated.ts
-│   │   │   │   │   │   │   ├── ProjectClasseGranted.ts
-│   │   │   │   │   │   │   ├── ProjectCompletionDueDateCancelled.ts
-│   │   │   │   │   │   │   ├── ProjectCompletionDueDateSet.ts
-│   │   │   │   │   │   │   ├── ProjectDCRDueDateCancelled.ts
-│   │   │   │   │   │   │   ├── ProjectDCRDueDateSet.ts
-│   │   │   │   │   │   │   ├── ProjectDataCorrected.ts
-│   │   │   │   │   │   │   ├── ProjectFournisseursUpdated.ts
-│   │   │   │   │   │   │   ├── ProjectImported.ts
-│   │   │   │   │   │   │   ├── ProjectNotificationDateSet.ts
-│   │   │   │   │   │   │   ├── ProjectNotified.ts
-│   │   │   │   │   │   │   ├── ProjectProducteurUpdated.ts
-│   │   │   │   │   │   │   ├── ProjectPuissanceUpdated.ts
-│   │   │   │   │   │   │   ├── ProjectRawDataCorrected.ts
-│   │   │   │   │   │   │   ├── ProjectRawDataImported.ts
-│   │   │   │   │   │   │   ├── ProjectReimported.ts
-│   │   │   │   │   │   │   └── index.ts
-│   │   │   │   │   │   ├── index.ts
-│   │   │   │   │   │   ├── mappers
-│   │   │   │   │   │   │   ├── index.ts
-│   │   │   │   │   │   │   └── toProjectDataForCertificate.ts
-│   │   │   │   │   │   ├── queries
-│   │   │   │   │   │   │   ├── BuildProjectIdentifier.ts
-│   │   │   │   │   │   │   ├── FindProjectByIdentifiers.ts
-│   │   │   │   │   │   │   ├── exporterProjets
-│   │   │   │   │   │   │   │   ├── ExporterProjets.ts
-│   │   │   │   │   │   │   │   └── index.ts
-│   │   │   │   │   │   │   ├── index.ts
-│   │   │   │   │   │   │   └── listerProjets
-│   │   │   │   │   │   │       ├── ListerProjets.ts
-│   │   │   │   │   │   │       ├── helpers
-│   │   │   │   │   │   │       │   ├── construireQuery.ts
-│   │   │   │   │   │   │       │   └── index.ts
-│   │   │   │   │   │   │       └── index.ts
-│   │   │   │   │   │   ├── types
-│   │   │   │   │   │   │   ├── actionnariat.ts
-│   │   │   │   │   │   │   ├── désignationCatégorie.ts
-│   │   │   │   │   │   │   ├── fournisseur.ts
-│   │   │   │   │   │   │   ├── historiqueAbandon.ts
-│   │   │   │   │   │   │   └── index.ts
-│   │   │   │   │   │   └── utils
-│   │   │   │   │   │       ├── index.ts
-│   │   │   │   │   │       └── parseProjectLine.ts
-│   │   │   │   │   ├── projectAppelOffre
-│   │   │   │   │   │   ├── helpers
-│   │   │   │   │   │   │   ├── getDelaiDeRealisation.ts
-│   │   │   │   │   │   │   └── index.ts
-│   │   │   │   │   │   ├── index.ts
-│   │   │   │   │   │   └── queries
-│   │   │   │   │   │       ├── getProjectAppelOffre.ts
-│   │   │   │   │   │       └── index.ts
-│   │   │   │   │   ├── shared
-│   │   │   │   │   │   ├── errors
-│   │   │   │   │   │   │   ├── AggregateHasBeenUpdatedSinceError.ts
-│   │   │   │   │   │   │   ├── ChampFournisseurManquantError.ts
-│   │   │   │   │   │   │   ├── EmailAlreadyUsedError.ts
-│   │   │   │   │   │   │   ├── EntityAlreadyExistsError.ts
-│   │   │   │   │   │   │   ├── EntityNotFound.ts
-│   │   │   │   │   │   │   ├── HeterogeneousHistoryError.ts
-│   │   │   │   │   │   │   ├── IllegalInitialStateForAggregateError.ts
-│   │   │   │   │   │   │   ├── IncompleteDataError.ts
-│   │   │   │   │   │   │   ├── InfraNotAvailable.ts
-│   │   │   │   │   │   │   ├── OtherError.ts
-│   │   │   │   │   │   │   ├── ProjectDcrDelayIsMissingError.ts
-│   │   │   │   │   │   │   ├── ProjectNotQualifiedForCovidDelay.ts
-│   │   │   │   │   │   │   ├── ProjectionEnEchec.ts
-│   │   │   │   │   │   │   ├── UnauthorizedError.ts
-│   │   │   │   │   │   │   └── index.ts
-│   │   │   │   │   │   └── index.ts
-│   │   │   │   │   ├── users
-│   │   │   │   │   │   ├── User.ts
-│   │   │   │   │   │   ├── UserRoles.ts
-│   │   │   │   │   │   ├── errors
-│   │   │   │   │   │   │   ├── UserWithEmailExistsAlreadyError.ts
-│   │   │   │   │   │   │   └── index.ts
-│   │   │   │   │   │   ├── events
-│   │   │   │   │   │   │   ├── FonctionUtilisateurModifiée.ts
-│   │   │   │   │   │   │   ├── InvitationRelanceSent.ts
-│   │   │   │   │   │   │   ├── RôleUtilisateurModifié.ts
-│   │   │   │   │   │   │   ├── UserCreated.ts
-│   │   │   │   │   │   │   ├── UtilisateurDésactivé.ts
-│   │   │   │   │   │   │   └── index.ts
-│   │   │   │   │   │   ├── index.ts
-│   │   │   │   │   │   ├── queries
-│   │   │   │   │   │   │   ├── GetUserByEmail.ts
-│   │   │   │   │   │   │   ├── GetUsersByRole.ts
-│   │   │   │   │   │   │   └── index.ts
-│   │   │   │   │   │   └── useCases
-│   │   │   │   │   │       ├── createUser.ts
-│   │   │   │   │   │       └── index.ts
-│   │   │   │   │   └── utilisateur
-│   │   │   │   │       ├── Utilisateur.ts
-│   │   │   │   │       ├── créerProfil
-│   │   │   │   │       │   ├── ProfilDéjàExistantError.ts
-│   │   │   │   │       │   ├── RoleIncorrectError.ts
-│   │   │   │   │       │   └── index.ts
-│   │   │   │   │       ├── events
-│   │   │   │   │       │   ├── ProfilUtilisateurCréé.ts
-│   │   │   │   │       │   ├── UtilisateurInvité.ts
-│   │   │   │   │       │   └── index.ts
-│   │   │   │   │       ├── index.ts
-│   │   │   │   │       └── récupérer
-│   │   │   │   │           └── UtilisateurReadModel.ts
-│   │   │   │   ├── public
-│   │   │   │   │   ├── css
-│   │   │   │   │   │   ├── .gitkeep
-│   │   │   │   │   │   ├── dsfr.min.css
-│   │   │   │   │   │   └── potentiel.css
-│   │   │   │   │   ├── dsfr
-│   │   │   │   │   │   └── favicon
-│   │   │   │   │   │       ├── android-chrome-192x192.png
-│   │   │   │   │   │       ├── android-chrome-512x512.png
-│   │   │   │   │   │       ├── apple-touch-icon.png
-│   │   │   │   │   │       ├── favicon.ico
-│   │   │   │   │   │       ├── favicon.svg
-│   │   │   │   │   │       └── manifest.webmanifest
-│   │   │   │   │   ├── fonts
-│   │   │   │   │   │   ├── Marianne-Bold.woff
-│   │   │   │   │   │   ├── Marianne-Bold.woff2
-│   │   │   │   │   │   ├── Marianne-Bold_Italic.woff
-│   │   │   │   │   │   ├── Marianne-Bold_Italic.woff2
-│   │   │   │   │   │   ├── Marianne-Light.woff
-│   │   │   │   │   │   ├── Marianne-Light.woff2
-│   │   │   │   │   │   ├── Marianne-Light_Italic.woff
-│   │   │   │   │   │   ├── Marianne-Light_Italic.woff2
-│   │   │   │   │   │   ├── Marianne-Medium.woff
-│   │   │   │   │   │   ├── Marianne-Medium.woff2
-│   │   │   │   │   │   ├── Marianne-Medium_Italic.woff
-│   │   │   │   │   │   ├── Marianne-Medium_Italic.woff2
-│   │   │   │   │   │   ├── Marianne-Regular.woff
-│   │   │   │   │   │   ├── Marianne-Regular.woff2
-│   │   │   │   │   │   ├── Marianne-Regular_Italic.woff
-│   │   │   │   │   │   ├── Marianne-Regular_Italic.woff2
-│   │   │   │   │   │   └── arimo
-│   │   │   │   │   │       ├── Arimo-Bold.ttf
-│   │   │   │   │   │       ├── Arimo-BoldItalic.ttf
-│   │   │   │   │   │       ├── Arimo-Italic.ttf
-│   │   │   │   │   │       ├── Arimo-Regular.ttf
-│   │   │   │   │   │       └── LICENSE.txt
-│   │   │   │   │   ├── images
-│   │   │   │   │   │   ├── dreals
-│   │   │   │   │   │   │   ├── Auvergne-Rhône-Alpes.png
-│   │   │   │   │   │   │   ├── Bourgogne-Franche-Comté.png
-│   │   │   │   │   │   │   ├── Bretagne.png
-│   │   │   │   │   │   │   ├── Centre-Val de Loire.png
-│   │   │   │   │   │   │   ├── Corse.png
-│   │   │   │   │   │   │   ├── Grand Est.png
-│   │   │   │   │   │   │   ├── Guadeloupe.png
-│   │   │   │   │   │   │   ├── Guyane.png
-│   │   │   │   │   │   │   ├── Hauts-de-France.png
-│   │   │   │   │   │   │   ├── La Réunion.png
-│   │   │   │   │   │   │   ├── Martinique.png
-│   │   │   │   │   │   │   ├── Mayotte.png
-│   │   │   │   │   │   │   ├── Normandie.png
-│   │   │   │   │   │   │   ├── Nouvelle-Aquitaine.png
-│   │   │   │   │   │   │   ├── Occitanie.png
-│   │   │   │   │   │   │   ├── Pays de la Loire.png
-│   │   │   │   │   │   │   ├── Provence-Alpes-Côte d'Azur.png
-│   │   │   │   │   │   │   └── Île-de-France.png
-│   │   │   │   │   │   ├── favicons
-│   │   │   │   │   │   │   ├── apple-icon-180x180.png
-│   │   │   │   │   │   │   ├── browserconfig.xml
-│   │   │   │   │   │   │   ├── favicon-16x16.png
-│   │   │   │   │   │   │   ├── favicon-32x32.png
-│   │   │   │   │   │   │   ├── manifest.json
-│   │   │   │   │   │   │   └── safari-pinned-tab.svg
-│   │   │   │   │   │   ├── icons
-│   │   │   │   │   │   │   └── external
-│   │   │   │   │   │   │       └── more.svg
-│   │   │   │   │   │   ├── illustrations
-│   │   │   │   │   │   │   └── error.svg
-│   │   │   │   │   │   ├── logo_MCE.png
-│   │   │   │   │   │   ├── logo_MEFSIN.png
-│   │   │   │   │   │   ├── logo_gouvernement.png
-│   │   │   │   │   │   └── numeroCRE_tooltip.jpg
-│   │   │   │   │   └── js
-│   │   │   │   │       └── .gitkeep
-│   │   │   │   ├── routes.ts
-│   │   │   │   ├── sagas
-│   │   │   │   │   ├── _helpers
-│   │   │   │   │   │   └── getCompletionDate.ts
-│   │   │   │   │   ├── abandon.saga.ts
-│   │   │   │   │   ├── accès.saga.ts
-│   │   │   │   │   ├── achèvement.saga.ts
-│   │   │   │   │   ├── actionnaire.saga.ts
-│   │   │   │   │   ├── candidature.saga.ts
-│   │   │   │   │   ├── fournisseur.saga.ts
-│   │   │   │   │   ├── lauréat.saga.ts
-│   │   │   │   │   ├── producteur.saga.ts
-│   │   │   │   │   ├── puissance.saga.ts
-│   │   │   │   │   ├── registerSagas.ts
-│   │   │   │   │   ├── utilisateur.saga.ts
-│   │   │   │   │   └── éliminé.saga.ts
-│   │   │   │   ├── sentry.transport.ts
-│   │   │   │   ├── sequelize.config.ts
-│   │   │   │   ├── server.ts
-│   │   │   │   ├── setupLogger.ts
-│   │   │   │   ├── types
-│   │   │   │   │   ├── index.ts
-│   │   │   │   │   └── schemaTypes.ts
-│   │   │   │   ├── useCases
-│   │   │   │   │   ├── index.ts
-│   │   │   │   │   └── shouldUserAccessProject.ts
-│   │   │   │   └── views
-│   │   │   │       ├── App.tsx
-│   │   │   │       ├── components
-│   │   │   │       │   ├── Container.tsx
-│   │   │   │       │   ├── LegacyPageTemplate.tsx
-│   │   │   │       │   ├── UI
-│   │   │   │       │   │   ├── atoms
-│   │   │   │       │   │   │   ├── Label.tsx
-│   │   │   │       │   │   │   ├── LabelDescription.tsx
-│   │   │   │       │   │   │   ├── Link.tsx
-│   │   │   │       │   │   │   ├── LinkButton.tsx
-│   │   │   │       │   │   │   ├── headings
-│   │   │   │       │   │   │   │   ├── Heading1.tsx
-│   │   │   │       │   │   │   │   ├── Heading2.tsx
-│   │   │   │       │   │   │   │   ├── Heading3.tsx
-│   │   │   │       │   │   │   │   ├── Heading4.tsx
-│   │   │   │       │   │   │   │   ├── Heading5.tsx
-│   │   │   │       │   │   │   │   ├── Heading6.tsx
-│   │   │   │       │   │   │   │   └── index.ts
-│   │   │   │       │   │   │   ├── icons.ts
-│   │   │   │       │   │   │   └── index.ts
-│   │   │   │       │   │   ├── index.ts
-│   │   │   │       │   │   ├── molecules
-│   │   │   │       │   │   │   ├── Checkbox.tsx
-│   │   │   │       │   │   │   ├── ExternalLink.tsx
-│   │   │   │       │   │   │   ├── dropdowns
-│   │   │   │       │   │   │   │   ├── DropdownMenu.tsx
-│   │   │   │       │   │   │   │   ├── DropdownMenuSecondaryButton.tsx
-│   │   │   │       │   │   │   │   └── index.ts
-│   │   │   │       │   │   │   └── index.ts
-│   │   │   │       │   │   └── organisms
-│   │   │   │       │   │       ├── Footer.tsx
-│   │   │   │       │   │       ├── Header.tsx
-│   │   │   │       │   │       └── index.ts
-│   │   │   │       │   └── index.ts
-│   │   │   │       ├── fonts
-│   │   │   │       │   ├── Marianne-Bold.woff
-│   │   │   │       │   ├── Marianne-Bold.woff2
-│   │   │   │       │   ├── Marianne-Bold_Italic.woff
-│   │   │   │       │   ├── Marianne-Bold_Italic.woff2
-│   │   │   │       │   ├── Marianne-Light.woff
-│   │   │   │       │   ├── Marianne-Light.woff2
-│   │   │   │       │   ├── Marianne-Light_Italic.woff
-│   │   │   │       │   ├── Marianne-Light_Italic.woff2
-│   │   │   │       │   ├── Marianne-Medium.woff
-│   │   │   │       │   ├── Marianne-Medium.woff2
-│   │   │   │       │   ├── Marianne-Medium_Italic.woff
-│   │   │   │       │   ├── Marianne-Medium_Italic.woff2
-│   │   │   │       │   ├── Marianne-Regular.woff
-│   │   │   │       │   ├── Marianne-Regular.woff2
-│   │   │   │       │   ├── Marianne-Regular_Italic.woff
-│   │   │   │       │   └── Marianne-Regular_Italic.woff2
-│   │   │   │       ├── helpers
-│   │   │   │       │   ├── demanderConfirmation.ts
-│   │   │   │       │   ├── hydrateOnClient.tsx
-│   │   │   │       │   └── index.ts
-│   │   │   │       ├── index.css
-│   │   │   │       ├── index.html.tsx
-│   │   │   │       ├── index.ts
-│   │   │   │       ├── maintenance.html
-│   │   │   │       └── pages
-│   │   │   │           ├── Error.tsx
-│   │   │   │           ├── authN
-│   │   │   │           │   ├── AccèsNonAutoriséPage.tsx
-│   │   │   │           │   └── index.ts
-│   │   │   │           └── index.ts
-│   │   │   ├── tailwind.config.js
-│   │   │   ├── tsconfig.build.json
-│   │   │   ├── tsconfig.json
-│   │   │   └── webpack.config.js
 │   │   ├── notifications
 │   │   │   ├── package.json
 │   │   │   ├── scripts
@@ -1023,6 +383,7 @@
 │   │   │   │   │   ├── getCahierDesChargesLauréat.ts
 │   │   │   │   │   ├── getCandidature.ts
 │   │   │   │   │   ├── getLauréat.ts
+│   │   │   │   │   ├── getÉliminé.ts
 │   │   │   │   │   ├── index.ts
 │   │   │   │   │   ├── listerAdminEtValidateursRecipients.ts
 │   │   │   │   │   ├── listerCocontractantRecipients.ts
@@ -1030,6 +391,7 @@
 │   │   │   │   │   ├── listerDgecRecipients.ts
 │   │   │   │   │   ├── listerDrealsRecipients.ts
 │   │   │   │   │   ├── listerPorteursRecipients.ts
+│   │   │   │   │   ├── listerRecipients.ts
 │   │   │   │   │   ├── listerRecipientsAutoritéInstructrice.ts
 │   │   │   │   │   └── listerTeamRecipients.ts
 │   │   │   │   ├── index.ts
@@ -1053,18 +415,16 @@
 │   │   │   │   │   ├── lauréat
 │   │   │   │   │   │   ├── abandon
 │   │   │   │   │   │   │   ├── abandon.notifications.ts
-│   │   │   │   │   │   │   ├── constant.ts
-│   │   │   │   │   │   │   ├── handlers
-│   │   │   │   │   │   │   │   ├── abandonAccordé.handler.ts
-│   │   │   │   │   │   │   │   ├── abandonAnnulé.handler.ts
-│   │   │   │   │   │   │   │   ├── abandonConfirmé.handler.ts
-│   │   │   │   │   │   │   │   ├── abandonDemandé.handler.ts
-│   │   │   │   │   │   │   │   ├── abandonPasséEnInstruction.handler.ts
-│   │   │   │   │   │   │   │   ├── abandonRejeté.handler.ts
-│   │   │   │   │   │   │   │   ├── confirmationAbandonDemandée.handler.ts
-│   │   │   │   │   │   │   │   ├── index.ts
-│   │   │   │   │   │   │   │   └── preuveRecandidatureDemandée.handler.ts
-│   │   │   │   │   │   │   └── type.ts
+│   │   │   │   │   │   │   └── handlers
+│   │   │   │   │   │   │       ├── abandonAccordé.handler.ts
+│   │   │   │   │   │   │       ├── abandonAnnulé.handler.ts
+│   │   │   │   │   │   │       ├── abandonConfirmé.handler.ts
+│   │   │   │   │   │   │       ├── abandonDemandé.handler.ts
+│   │   │   │   │   │   │       ├── abandonPasséEnInstruction.handler.ts
+│   │   │   │   │   │   │       ├── abandonRejeté.handler.ts
+│   │   │   │   │   │   │       ├── confirmationAbandonDemandée.handler.ts
+│   │   │   │   │   │   │       ├── index.ts
+│   │   │   │   │   │   │       └── preuveRecandidatureDemandée.handler.ts
 │   │   │   │   │   │   ├── achèvement
 │   │   │   │   │   │   │   ├── achèvement.notifications.ts
 │   │   │   │   │   │   │   ├── constant.ts
@@ -1075,28 +435,24 @@
 │   │   │   │   │   │   │   └── type.ts
 │   │   │   │   │   │   ├── actionnaire
 │   │   │   │   │   │   │   ├── actionnaire.notifications.ts
-│   │   │   │   │   │   │   ├── constant.ts
-│   │   │   │   │   │   │   ├── handlers
-│   │   │   │   │   │   │   │   ├── actionnaireModifié.handler.ts
-│   │   │   │   │   │   │   │   ├── changementActionnaireAccordé.handler.ts
-│   │   │   │   │   │   │   │   ├── changementActionnaireAnnulé.handler.ts
-│   │   │   │   │   │   │   │   ├── changementActionnaireDemandé.handler.ts
-│   │   │   │   │   │   │   │   ├── changementActionnaireEnregistré.handler.ts
-│   │   │   │   │   │   │   │   ├── changementActionnaireRejeté.handler.ts
-│   │   │   │   │   │   │   │   └── index.ts
-│   │   │   │   │   │   │   └── type.ts
+│   │   │   │   │   │   │   └── handlers
+│   │   │   │   │   │   │       ├── actionnaireModifié.handler.ts
+│   │   │   │   │   │   │       ├── changementActionnaireAccordé.handler.ts
+│   │   │   │   │   │   │       ├── changementActionnaireAnnulé.handler.ts
+│   │   │   │   │   │   │       ├── changementActionnaireDemandé.handler.ts
+│   │   │   │   │   │   │       ├── changementActionnaireEnregistré.handler.ts
+│   │   │   │   │   │   │       ├── changementActionnaireRejeté.handler.ts
+│   │   │   │   │   │   │       └── index.ts
 │   │   │   │   │   │   ├── délai
-│   │   │   │   │   │   │   ├── constant.ts
 │   │   │   │   │   │   │   ├── délai.notifications.ts
-│   │   │   │   │   │   │   ├── handlers
-│   │   │   │   │   │   │   │   ├── demandeDélaiAnnulée.handler.ts
-│   │   │   │   │   │   │   │   ├── demandeDélaiCorrigée.handler.ts
-│   │   │   │   │   │   │   │   ├── demandeDélaiPasséeEnInstruction.handler.ts
-│   │   │   │   │   │   │   │   ├── demandeDélaiRejetée.handler.ts
-│   │   │   │   │   │   │   │   ├── délaiDemandé.handler.ts
-│   │   │   │   │   │   │   │   ├── démandeDélaiAccordée.handler.ts
-│   │   │   │   │   │   │   │   └── index.ts
-│   │   │   │   │   │   │   └── type.ts
+│   │   │   │   │   │   │   └── handlers
+│   │   │   │   │   │   │       ├── demandeDélaiAccordée.handler.ts
+│   │   │   │   │   │   │       ├── demandeDélaiAnnulée.handler.ts
+│   │   │   │   │   │   │       ├── demandeDélaiCorrigée.handler.ts
+│   │   │   │   │   │   │       ├── demandeDélaiPasséeEnInstruction.handler.ts
+│   │   │   │   │   │   │       ├── demandeDélaiRejetée.handler.ts
+│   │   │   │   │   │   │       ├── délaiDemandé.handler.ts
+│   │   │   │   │   │   │       └── index.ts
 │   │   │   │   │   │   ├── fournisseur
 │   │   │   │   │   │   │   ├── constant.ts
 │   │   │   │   │   │   │   ├── founisseur.notifications.ts
@@ -1222,7 +578,6 @@
 │   │   │   │   │   │   └── utilisateur.notifications.ts
 │   │   │   │   │   └── éliminé
 │   │   │   │   │       ├── recours
-│   │   │   │   │       │   ├── constant.ts
 │   │   │   │   │       │   ├── handlers
 │   │   │   │   │       │   │   ├── index.ts
 │   │   │   │   │       │   │   ├── recoursAccordé.handler.ts
@@ -1230,8 +585,7 @@
 │   │   │   │   │       │   │   ├── recoursDemandé.handler.ts
 │   │   │   │   │       │   │   ├── recoursPasséEnInstruction.handler.ts
 │   │   │   │   │       │   │   └── recoursRejeté.handler.ts
-│   │   │   │   │       │   ├── recours.notifications.ts
-│   │   │   │   │       │   └── type.ts
+│   │   │   │   │       │   └── recours.notifications.ts
 │   │   │   │   │       └── éliminé
 │   │   │   │   │           ├── constant.ts
 │   │   │   │   │           ├── handlers
@@ -1240,14 +594,44 @@
 │   │   │   │   │           └── éliminé.notifications.ts
 │   │   │   │   └── templates
 │   │   │   │       ├── emails
+│   │   │   │       │   ├── abandon
+│   │   │   │       │   │   ├── accorder.md
+│   │   │   │       │   │   ├── annuler.md
+│   │   │   │       │   │   ├── confirmer.md
+│   │   │   │       │   │   ├── demander.md
+│   │   │   │       │   │   ├── demanderConfirmation.md
+│   │   │   │       │   │   ├── demanderPreuveRecandidature.md
+│   │   │   │       │   │   ├── passerEnInstruction.md
+│   │   │   │       │   │   └── rejeter.md
+│   │   │   │       │   ├── actionnaire
+│   │   │   │       │   │   ├── demande
+│   │   │   │       │   │   │   ├── accorder.md
+│   │   │   │       │   │   │   ├── annuler.md
+│   │   │   │       │   │   │   ├── demander.md
+│   │   │   │       │   │   │   └── rejeter.md
+│   │   │   │       │   │   ├── enregistrer_changement.md
+│   │   │   │       │   │   └── modifier.md
 │   │   │   │       │   ├── auth
 │   │   │   │       │   │   ├── lien-magique.md
 │   │   │   │       │   │   └── proconnect-obligatoire.md
-│   │   │   │       │   └── lauréat
-│   │   │   │       │       └── fournisseur
-│   │   │   │       │           ├── changement_enregistrer.md
-│   │   │   │       │           ├── modifier.md
-│   │   │   │       │           └── modifierÉvaluationCarbone.md
+│   │   │   │       │   ├── délai
+│   │   │   │       │   │   ├── accorder.md
+│   │   │   │       │   │   ├── annuler.md
+│   │   │   │       │   │   ├── corriger.md
+│   │   │   │       │   │   ├── demander.md
+│   │   │   │       │   │   ├── passerEnInstruction.md
+│   │   │   │       │   │   └── rejeter.md
+│   │   │   │       │   ├── lauréat
+│   │   │   │       │   │   └── fournisseur
+│   │   │   │       │   │       ├── changement_enregistrer.md
+│   │   │   │       │   │       ├── modifier.md
+│   │   │   │       │   │       └── modifierÉvaluationCarbone.md
+│   │   │   │       │   └── recours
+│   │   │   │       │       ├── accorder.md
+│   │   │   │       │       ├── annuler.md
+│   │   │   │       │       ├── demander.md
+│   │   │   │       │       ├── passerEnInstruction.md
+│   │   │   │       │       └── rejeter.md
 │   │   │   │       ├── helpers
 │   │   │   │       │   ├── cta.hbs
 │   │   │   │       │   └── registerHelpers.ts
@@ -1596,14 +980,6 @@
 │   │   │   │       ├── recours.routes.ts
 │   │   │   │       └── éliminé.routes.ts
 │   │   │   └── tsconfig.json
-│   │   ├── scheduled-tasks
-│   │   │   ├── backup-3-2-1.sh
-│   │   │   ├── package.json
-│   │   │   ├── s3-backup.sh
-│   │   │   ├── src
-│   │   │   │   └── garanties-financières
-│   │   │   │       └── récupérer-fichier-gf-candidature-référentiel-dgec.ts
-│   │   │   └── tsconfig.json
 │   │   ├── ssr
 │   │   │   ├── .env.template
 │   │   │   ├── .gitignore
@@ -1647,6 +1023,7 @@
 │   │   │   │   │   │   ├── getRecours.ts
 │   │   │   │   │   │   ├── getStatutLauréatLabel.tsx
 │   │   │   │   │   │   ├── getTechnologieTypeLabel.ts
+│   │   │   │   │   │   ├── getTypologieInstallationLabel.ts
 │   │   │   │   │   │   ├── getÉliminé.ts
 │   │   │   │   │   │   ├── index.ts
 │   │   │   │   │   │   ├── optionalStringArray.ts
@@ -1662,9 +1039,7 @@
 │   │   │   │   │   │   │   └── route.ts
 │   │   │   │   │   │   ├── doc
 │   │   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   │   ├── openapi
-│   │   │   │   │   │   │   └── route.ts
-│   │   │   │   │   │   └── taches
+│   │   │   │   │   │   └── openapi
 │   │   │   │   │   │       └── route.ts
 │   │   │   │   │   ├── auth
 │   │   │   │   │   │   ├── error
@@ -1742,6 +1117,11 @@
 │   │   │   │   │   │   │   │   │   ├── DonnéesCandidatureDétails.tsx
 │   │   │   │   │   │   │   │   │   ├── ÉtapesProjet.section.tsx
 │   │   │   │   │   │   │   │   │   └── ÉtapesProjet.tsx
+│   │   │   │   │   │   │   │   ├── documents
+│   │   │   │   │   │   │   │   │   ├── (sections)
+│   │   │   │   │   │   │   │   │   │   └── Documents.section.tsx
+│   │   │   │   │   │   │   │   │   ├── Documents.page.tsx
+│   │   │   │   │   │   │   │   │   └── page.tsx
 │   │   │   │   │   │   │   │   ├── layout.tsx
 │   │   │   │   │   │   │   │   ├── page.tsx
 │   │   │   │   │   │   │   │   └── utilisateurs
@@ -1839,6 +1219,11 @@
 │   │   │   │   │   │   │   │   ├── TableauDeBord.page.tsx
 │   │   │   │   │   │   │   │   ├── _helpers
 │   │   │   │   │   │   │   │   │   └── getLauréatMenuItems.tsx
+│   │   │   │   │   │   │   │   ├── documents
+│   │   │   │   │   │   │   │   │   ├── (sections)
+│   │   │   │   │   │   │   │   │   │   └── Documents.section.tsx
+│   │   │   │   │   │   │   │   │   ├── Documents.page.tsx
+│   │   │   │   │   │   │   │   │   └── page.tsx
 │   │   │   │   │   │   │   │   ├── evaluation-carbone
 │   │   │   │   │   │   │   │   │   ├── (sections)
 │   │   │   │   │   │   │   │   │   │   ├── Fournisseurs.section.tsx
@@ -2033,6 +1418,8 @@
 │   │   │   │   │   │   │   │   │   │   └── rejeter
 │   │   │   │   │   │   │   │   │   │       ├── RejeterChangementActionnaire.form.tsx
 │   │   │   │   │   │   │   │   │   │       └── rejeterChangementActionnaire.action.ts
+│   │   │   │   │   │   │   │   │   ├── demande
+│   │   │   │   │   │   │   │   │   │   └── page.tsx
 │   │   │   │   │   │   │   │   │   ├── demander
 │   │   │   │   │   │   │   │   │   │   ├── DemanderChangementActionnaire.form.tsx
 │   │   │   │   │   │   │   │   │   │   ├── DemanderChangementActionnaire.page.tsx
@@ -2289,12 +1676,11 @@
 │   │   │   │   │   │   │   │   │       ├── modifierInstallateur.action.ts
 │   │   │   │   │   │   │   │   │       └── page.tsx
 │   │   │   │   │   │   │   │   └── typologie-du-projet
-│   │   │   │   │   │   │   │       ├── modifier
-│   │   │   │   │   │   │   │       │   ├── ModifierTypologieInstallation.form.tsx
-│   │   │   │   │   │   │   │       │   ├── ModifierTypologieInstallation.page.tsx
-│   │   │   │   │   │   │   │       │   ├── modifierTypologieInstallation.action.ts
-│   │   │   │   │   │   │   │       │   └── page.tsx
-│   │   │   │   │   │   │   │       └── typologieInstallationLabel.ts
+│   │   │   │   │   │   │   │       └── modifier
+│   │   │   │   │   │   │   │           ├── ModifierTypologieInstallation.form.tsx
+│   │   │   │   │   │   │   │           ├── ModifierTypologieInstallation.page.tsx
+│   │   │   │   │   │   │   │           ├── modifierTypologieInstallation.action.ts
+│   │   │   │   │   │   │   │           └── page.tsx
 │   │   │   │   │   │   │   ├── layout.tsx
 │   │   │   │   │   │   │   ├── nature-de-l-exploitation
 │   │   │   │   │   │   │   │   ├── (historique)
@@ -2483,7 +1869,9 @@
 │   │   │   │   │   │   │   │   │   │   ├── ModifierGestionnaireRéseauDuRaccordement.tsx
 │   │   │   │   │   │   │   │   │   │   ├── _helpers
 │   │   │   │   │   │   │   │   │   │   │   ├── getModificationDCRAction.ts
+│   │   │   │   │   │   │   │   │   │   │   ├── getModificationGestionnaireRéseauAction.ts
 │   │   │   │   │   │   │   │   │   │   │   ├── getModificationPTFAction.ts
+│   │   │   │   │   │   │   │   │   │   │   ├── getSupprimerDossierAction.ts
 │   │   │   │   │   │   │   │   │   │   │   └── index.ts
 │   │   │   │   │   │   │   │   │   │   └── page.tsx
 │   │   │   │   │   │   │   │   │   └── (gestionnaire-réseau)
@@ -2806,6 +2194,9 @@
 │   │   │   │   │   │   │   ├── DétailsChangement.tsx
 │   │   │   │   │   │   │   ├── DétailsDemande.tsx
 │   │   │   │   │   │   │   └── StatutDemandeBadge.tsx
+│   │   │   │   │   │   ├── document
+│   │   │   │   │   │   │   ├── DocumentListItem.tsx
+│   │   │   │   │   │   │   └── DocumentsList.tsx
 │   │   │   │   │   │   ├── header
 │   │   │   │   │   │   │   ├── Header.tsx
 │   │   │   │   │   │   │   ├── NavLinks.tsx
@@ -2866,6 +2257,7 @@
 │   │   │   │       │   ├── removeEmptyValues.ts
 │   │   │   │       │   ├── schemaBase.ts
 │   │   │   │       │   └── typologieInstallation.schema.ts
+│   │   │   │       ├── csp.ts
 │   │   │   │       ├── decodeParameter.ts
 │   │   │   │       ├── feature-flag
 │   │   │   │       │   ├── FeatureFlagContext.tsx
@@ -2906,7 +2298,8 @@
 │   │   │   │           ├── setupLocale.ts
 │   │   │   │           └── stringTransform.ts
 │   │   │   ├── tailwind.config.ts
-│   │   │   └── tsconfig.json
+│   │   │   ├── tsconfig.json
+│   │   │   └── tsconfig.server.json
 │   │   └── subscribers
 │   │       ├── .env.template
 │   │       ├── package.json
@@ -4348,11 +3741,6 @@
 │   │       │   └── upsertProjection.ts
 │   │       └── tsconfig.json
 │   ├── libraries
-│   │   ├── auth-pg-adapter
-│   │   │   ├── package.json
-│   │   │   ├── src
-│   │   │   │   └── index.ts
-│   │   │   └── tsconfig.json
 │   │   ├── csv
 │   │   │   ├── package.json
 │   │   │   ├── src
@@ -4392,11 +3780,6 @@
 │   │   │   │   ├── test-utils.integration.ts
 │   │   │   │   ├── upload.integration.ts
 │   │   │   │   └── upload.ts
-│   │   │   └── tsconfig.json
-│   │   ├── flat
-│   │   │   ├── package.json
-│   │   │   ├── src
-│   │   │   │   └── index.ts
 │   │   │   └── tsconfig.json
 │   │   ├── http-client
 │   │   │   ├── package.json
@@ -4774,9 +4157,9 @@
 │   │   │   │   │   │   │   │   └── rejeterChangementReprésentantLégal.fixture.ts
 │   │   │   │   │   │   │   ├── rejeterChangementReprésentantLégal.feature
 │   │   │   │   │   │   │   ├── stepDefinitions
-│   │   │   │   │   │   │   │   ├── changemementReprésentantLégal.when.ts
 │   │   │   │   │   │   │   │   ├── changementReprésentantLégal.given.ts
-│   │   │   │   │   │   │   │   └── changementReprésentantLégal.then.ts
+│   │   │   │   │   │   │   │   ├── changementReprésentantLégal.then.ts
+│   │   │   │   │   │   │   │   └── changementReprésentantLégal.when.ts
 │   │   │   │   │   │   │   └── supprimerDemandeChangementReprésentantLégal.feature
 │   │   │   │   │   │   ├── fixtures
 │   │   │   │   │   │   │   └── modifierReprésentantLégal.fixture.ts
@@ -4983,4 +4366,4 @@
 ├── scalingo.json
 ├── turbo.json
 └── update-ts-references.yaml
-1181 directories, 3804 files
+1067 directories, 3301 files

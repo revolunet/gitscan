@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "npm run prebuild && tsx -r dotenv/config src/server.ts",
-    "build": "npm run prebuild && next build",
+    "start": "NODE_ENV=production node -r dotenv/config dist/server.js",
+    "build": "npm run prebuild && npm run build:server && next build",
+    "build:server": "tsc -p tsconfig.server.json",
     "lint": "next lint",
     "lint:fix": "eslint . --fix",
     "prebuild": "react-dsfr update-icons --silent",
@@ -42,6 +44,7 @@
     "@sentry/nextjs": "8.55.0",
     "clsx": "2.1.1",
     "crisp-sdk-web": "1.0.25",
+    "flat": "6.0.1",
     "mediateur": "0.3.0",
     "next": "14.2.35",
     "next-auth": "4.24.13",
