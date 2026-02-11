@@ -7,6 +7,7 @@
 │   └── settings.json
 ├── README.md
 ├── biome.json
+├── bun.lockb
 ├── messages
 │   ├── en.json
 │   └── fr.json
@@ -57,7 +58,10 @@
 │   │   ├── studefi.svg
 │   │   ├── visale.svg
 │   │   └── visibility.webp
-│   └── loyers.json
+│   ├── loyers.json
+│   └── widget
+│       ├── embed.js
+│       └── test.html
 ├── src
 │   ├── app
 │   │   ├── (authenticated)
@@ -88,6 +92,8 @@
 │   │   │           │   ├── [slug]
 │   │   │           │   │   ├── page.tsx
 │   │   │           │   │   └── residence-details.module.css
+│   │   │           │   ├── nouvelle-residence
+│   │   │           │   │   └── page.tsx
 │   │   │           │   └── page.tsx
 │   │   │           └── tableau-de-bord
 │   │   │               ├── chart.tsx
@@ -141,6 +147,7 @@
 │   │   │   │   └── page.tsx
 │   │   │   ├── layout.module.css
 │   │   │   ├── layout.tsx
+│   │   │   ├── not-found.tsx
 │   │   │   ├── page.tsx
 │   │   │   ├── preparer-mon-budget-etudiant
 │   │   │   │   ├── components
@@ -184,6 +191,12 @@
 │   │   │                   ├── logement.module.css
 │   │   │                   ├── page.tsx
 │   │   │                   └── prepare-student-life-redirection.tsx
+│   │   ├── (widget)
+│   │   │   ├── layout.module.css
+│   │   │   ├── layout.tsx
+│   │   │   └── widget
+│   │   │       └── logements
+│   │   │           └── page.tsx
 │   │   ├── api
 │   │   │   ├── accommodations
 │   │   │   │   ├── [slug]
@@ -219,10 +232,7 @@
 │   │   │   │   │   └── route.ts
 │   │   │   │   └── route.ts
 │   │   │   ├── auth
-│   │   │   │   └── [...nextauth]
-│   │   │   │       └── route.ts
-│   │   │   ├── authentication
-│   │   │   │   └── verify
+│   │   │   │   └── [...all]
 │   │   │   │       └── route.ts
 │   │   │   └── territories
 │   │   │       ├── brevo
@@ -237,7 +247,7 @@
 │   │   ├── matomo.tsx
 │   │   ├── not-found.tsx
 │   │   └── sitemap.ts
-│   ├── auth.config.ts
+│   ├── auth-client.ts
 │   ├── auth.ts
 │   ├── components
 │   │   ├── accommodation
@@ -250,10 +260,18 @@
 │   │   │   └── alert-accommodation-form.tsx
 │   │   ├── bailleur
 │   │   │   ├── details
+│   │   │   │   ├── create-residence-accommodation-list.module.css
+│   │   │   │   ├── create-residence-accommodation-list.tsx
+│   │   │   │   ├── create-residence-equipments.tsx
+│   │   │   │   ├── create-residence-form.tsx
+│   │   │   │   ├── create-residence-location.module.css
+│   │   │   │   ├── create-residence-location.tsx
+│   │   │   │   ├── create-residence-pictures.tsx
+│   │   │   │   ├── create-residence-publication.tsx
 │   │   │   │   ├── residence-accommodation-list.tsx
+│   │   │   │   ├── residence-details.tsx
 │   │   │   │   ├── residence-equipments.tsx
 │   │   │   │   ├── residence-location.tsx
-│   │   │   │   ├── residence-parametrage.tsx
 │   │   │   │   ├── residence-pictures.tsx
 │   │   │   │   ├── residence-redirection.tsx
 │   │   │   │   ├── residence-summary.tsx
@@ -319,6 +337,7 @@
 │   │   ├── forgot-password
 │   │   │   └── forgot-password-form.tsx
 │   │   ├── helps-simulator
+│   │   │   ├── help-simulator-cta.module.css
 │   │   │   ├── help-simulator-form.tsx
 │   │   │   ├── help-simulator-header.tsx
 │   │   │   ├── help-simulator-schema.ts
@@ -404,39 +423,43 @@
 │   │   │       ├── student-todo-list.module.css
 │   │   │       └── student-todo-list.tsx
 │   │   ├── tooltip-hover-only.tsx
-│   │   └── ui
-│   │       ├── brand-top.tsx
-│   │       ├── breadcrumb.tsx
-│   │       ├── createToast.tsx
-│   │       ├── dropdown.tsx
-│   │       ├── footer
-│   │       │   ├── footer.module.css
-│   │       │   └── footer.tsx
-│   │       ├── header
-│   │       │   ├── banner
-│   │       │   │   ├── banner.module.css
-│   │       │   │   └── banner.tsx
-│   │       │   ├── common-header.tsx
-│   │       │   ├── langage-selection
-│   │       │   │   ├── language-link.tsx
-│   │       │   │   └── language-select.tsx
-│   │       │   ├── navigation.module.css
-│   │       │   ├── navigation.tsx
-│   │       │   ├── user-connected-dropdown.tsx
-│   │       │   ├── user-sign-in-dropdown.tsx
-│   │       │   ├── workspace-header.tsx
-│   │       │   └── workspace-navigation.tsx
-│   │       ├── logo.tsx
-│   │       ├── rent-search-modal.tsx
-│   │       ├── rich-text-editor.module.css
-│   │       ├── rich-text-editor.tsx
-│   │       ├── skeleton
-│   │       │   ├── card-skeleton.module.css
-│   │       │   ├── card-skeleton.tsx
-│   │       │   ├── skeleton.module.css
-│   │       │   └── skeleton.tsx
-│   │       ├── toaster.module.css
-│   │       └── toaster.tsx
+│   │   ├── ui
+│   │   │   ├── brand-top.tsx
+│   │   │   ├── breadcrumb.tsx
+│   │   │   ├── createToast.tsx
+│   │   │   ├── dropdown.tsx
+│   │   │   ├── footer
+│   │   │   │   ├── footer.module.css
+│   │   │   │   └── footer.tsx
+│   │   │   ├── header
+│   │   │   │   ├── banner
+│   │   │   │   │   ├── banner.module.css
+│   │   │   │   │   └── banner.tsx
+│   │   │   │   ├── common-header.tsx
+│   │   │   │   ├── langage-selection
+│   │   │   │   │   ├── language-link.tsx
+│   │   │   │   │   └── language-select.tsx
+│   │   │   │   ├── navigation.module.css
+│   │   │   │   ├── navigation.tsx
+│   │   │   │   ├── user-connected-dropdown.tsx
+│   │   │   │   ├── user-sign-in-dropdown.tsx
+│   │   │   │   ├── workspace-header.tsx
+│   │   │   │   └── workspace-navigation.tsx
+│   │   │   ├── logo.tsx
+│   │   │   ├── rent-search-modal.tsx
+│   │   │   ├── rich-text-editor.module.css
+│   │   │   ├── rich-text-editor.tsx
+│   │   │   ├── skeleton
+│   │   │   │   ├── card-skeleton.module.css
+│   │   │   │   ├── card-skeleton.tsx
+│   │   │   │   ├── skeleton.module.css
+│   │   │   │   └── skeleton.tsx
+│   │   │   ├── toaster.module.css
+│   │   │   └── toaster.tsx
+│   │   └── widget
+│   │       ├── widget-accommodation-filters.tsx
+│   │       ├── widget-accommodation-grid.tsx
+│   │       └── widget-body-style.tsx
 │   ├── dsfr
 │   │   ├── default-color-scheme.ts
 │   │   ├── dsfr-head.tsx
@@ -456,10 +479,12 @@
 │   │   └── text.css
 │   ├── hooks
 │   │   ├── use-accomodations.ts
+│   │   ├── use-address-autocomplete.ts
 │   │   ├── use-alert-accommodation.ts
 │   │   ├── use-cities.ts
 │   │   ├── use-create-alert.ts
 │   │   ├── use-create-favorite.ts
+│   │   ├── use-create-residence.ts
 │   │   ├── use-delete-alert.ts
 │   │   ├── use-delete-favorite.ts
 │   │   ├── use-favorites.ts
@@ -476,13 +501,16 @@
 │   │   └── use-upload-residence-images.ts
 │   ├── i18n
 │   │   └── request.ts
+│   ├── lib
+│   │   ├── dev-log.ts
+│   │   └── external-auth-plugin.ts
 │   ├── providers
-│   │   ├── next-auth.tsx
 │   │   └── tanstack-client.tsx
 │   ├── proxy.ts
 │   ├── schemas
 │   │   ├── accommodations
 │   │   │   ├── accommodations.ts
+│   │   │   ├── create-residence.ts
 │   │   │   ├── get-accommodations.ts
 │   │   │   ├── update-residence-list.ts
 │   │   │   └── update-residence.ts
@@ -531,13 +559,12 @@
 │   │   └── student
 │   │       ├── get-alerts.ts
 │   │       └── get-favorites.ts
-│   ├── types
-│   │   └── next-auth.d.ts
 │   └── utils
 │       ├── calculateAvailability.ts
 │       ├── formatRelativeTime.ts
 │       ├── french-contraction.ts
 │       ├── sPluriel.ts
-│       └── sanitize-html.ts
+│       ├── sanitize-html.ts
+│       └── widget-resize.ts
 └── tsconfig.json
-150 directories, 392 files
+154 directories, 415 files
