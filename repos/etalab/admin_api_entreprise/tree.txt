@@ -751,6 +751,7 @@
 │   │   │   ├── api_particulier.js
 │   │   │   ├── controllers
 │   │   │   │   ├── anchor_buttons_controller.js
+│   │   │   │   ├── array_field_controller.js
 │   │   │   │   ├── clipboard_controller.js
 │   │   │   │   ├── datetime_now_controller.js
 │   │   │   │   └── search_catalogue_controller.js
@@ -820,6 +821,7 @@
 │   │   └── insee_sirene_api_client.rb
 │   ├── controllers
 │   │   ├── admin
+│   │   │   ├── api_requests_controller.rb
 │   │   │   ├── audit_notifications_controller.rb
 │   │   │   ├── editors_controller.rb
 │   │   │   ├── provider_dashboards_controller.rb
@@ -898,6 +900,7 @@
 │   ├── errors
 │   │   └── siade_client_error.rb
 │   ├── facade
+│   │   ├── api_request_facade.rb
 │   │   ├── entreprise_with_attestations_facade.rb
 │   │   ├── provider_stats_facade.rb
 │   │   └── token_stats_facade.rb
@@ -1006,9 +1009,11 @@
 │   │   │   ├── endpoint_v2.rb
 │   │   │   ├── faq_entry.rb
 │   │   │   └── provider.rb
+│   │   ├── api_request_parameter.rb
 │   │   ├── application_record.rb
 │   │   ├── audit_notification.rb
 │   │   ├── authorization_request.rb
+│   │   ├── authorization_request_security_settings.rb
 │   │   ├── concerns
 │   │   │   ├── .keep
 │   │   │   └── abstract_api_class.rb
@@ -1045,6 +1050,7 @@
 │   ├── services
 │   │   ├── abstract_open_api_definition.rb
 │   │   ├── access_logs_counts.rb
+│   │   ├── admin_api_token.rb
 │   │   ├── api_entreprise
 │   │   │   └── open_api_definition.rb
 │   │   ├── api_particulier
@@ -1054,8 +1060,12 @@
 │   │   ├── metabase_embed_service.rb
 │   │   ├── migrate_legacy_token_service.rb
 │   │   ├── monitoring_service.rb
+│   │   ├── open_api_endpoint.rb
 │   │   ├── open_api_schema_to_example.rb
 │   │   ├── open_bureau_date.rb
+│   │   ├── siade
+│   │   │   ├── attestation_downloader.rb
+│   │   │   └── manual_request.rb
 │   │   ├── siade.rb
 │   │   └── status_page.rb
 │   ├── stores
@@ -1066,6 +1076,12 @@
 │   │       └── endpoints_store.rb
 │   └── views
 │       ├── admin
+│       │   ├── api_requests
+│       │   │   ├── _array_field.html.erb
+│       │   │   ├── _endpoint_select.html.erb
+│       │   │   ├── _params_fields.html.erb
+│       │   │   ├── _result.html.erb
+│       │   │   └── index.html.erb
 │       │   ├── audit_notifications
 │       │   │   ├── index.html.erb
 │       │   │   └── new.html.erb
@@ -1517,6 +1533,7 @@
 │   │   └── test.rb
 │   ├── i18n-tasks.yml
 │   ├── initializers
+│   │   ├── api_base_urls.rb
 │   │   ├── application_controller_renderer.rb
 │   │   ├── assets.rb
 │   │   ├── backtrace_silencers.rb
@@ -1616,7 +1633,8 @@
 │   │   ├── 20250701105448_create_audit_notifications.rb
 │   │   ├── 20250930175106_add_mcp_to_tokens.rb
 │   │   ├── 20251024094616_add_used_to_tokens.rb
-│   │   └── 20260114112301_downcase_user_emails.rb
+│   │   ├── 20260114112301_downcase_user_emails.rb
+│   │   └── 20260205164936_create_authorization_request_security_settings.rb
 │   ├── schema.rb
 │   └── seeds.rb
 ├── docker
@@ -2289,10 +2307,12 @@
 │   ├── decorators
 │   │   └── token_decorator_spec.rb
 │   ├── facade
+│   │   ├── api_request_facade_spec.rb
 │   │   └── entreprise_with_attestations_facade_spec.rb
 │   ├── factories
 │   │   ├── access_logs.rb
 │   │   ├── audit_notifications.rb
+│   │   ├── authorization_request_security_settings.rb
 │   │   ├── authorization_requests.rb
 │   │   ├── datapass_webhooks.rb
 │   │   ├── datapass_webhooks_v2.rb
@@ -2307,6 +2327,7 @@
 │   ├── features
 │   │   ├── admin
 │   │   │   ├── access_spec.rb
+│   │   │   ├── api_requests_spec.rb
 │   │   │   ├── audit_notifications_spec.rb
 │   │   │   ├── editors_spec.rb
 │   │   │   ├── provider_dashboards_spec.rb
@@ -2448,7 +2469,9 @@
 │   │   │   ├── endpoint_v2_spec.rb
 │   │   │   ├── faq_entry_spec.rb
 │   │   │   └── provider_spec.rb
+│   │   ├── api_request_parameter_spec.rb
 │   │   ├── audit_notification_spec.rb
+│   │   ├── authorization_request_security_settings_spec.rb
 │   │   ├── authorization_request_spec.rb
 │   │   ├── documentation_searchable_chunk_spec.rb
 │   │   ├── editor_spec.rb
@@ -2477,11 +2500,15 @@
 │   │       └── send_expiration_notices_spec.rb
 │   ├── rails_helper.rb
 │   ├── services
+│   │   ├── admin_api_token_spec.rb
 │   │   ├── metabase_embed_service_spec.rb
 │   │   ├── migrate_legacy_token_service_spec.rb
+│   │   ├── open_api_endpoint_spec.rb
 │   │   ├── open_api_schema_to_example_spec.rb
 │   │   ├── open_bureau_date_spec.rb
-│   │   ├── siade_spec.rb
+│   │   ├── siade
+│   │   │   ├── attestation_downloader_spec.rb
+│   │   │   └── manual_request_spec.rb
 │   │   └── status_page_spec.rb
 │   ├── spec_helper.rb
 │   ├── stores
@@ -2535,4 +2562,4 @@
 │   └── .gitkeep
 └── vendor
     └── .keep
-294 directories, 2317 files
+297 directories, 2341 files
