@@ -31,7 +31,7 @@
 ├── README.md
 ├── SECURITY.md
 ├── adr
-│   ├── 001-clean-architecture-migration.md
+│   ├── 2026-01-07-clean-architecture-migration.md
 │   ├── 2026-01-30-es-scaling.md
 │   ├── README.md
 │   └── scripts
@@ -100,7 +100,8 @@
 │   │   ├── router
 │   │   │   ├── __init__.py
 │   │   │   ├── _routerrepository.py
-│   │   │   └── entities.py
+│   │   │   ├── entities.py
+│   │   │   └── errors.py
 │   │   ├── user
 │   │   │   ├── __init__.py
 │   │   │   ├── _userrepository.py
@@ -108,7 +109,8 @@
 │   │   └── userinfo
 │   │       ├── __init__.py
 │   │       ├── _userinforepository.py
-│   │       └── entities.py
+│   │       ├── entities.py
+│   │       └── errors.py
 │   ├── endpoints
 │   │   ├── __init__.py
 │   │   ├── admin
@@ -177,10 +179,13 @@
 │   │   │   ├── context.py
 │   │   │   ├── endpoints
 │   │   │   │   ├── __init__.py
+│   │   │   │   ├── admin_router.py
+│   │   │   │   ├── exceptions.py
 │   │   │   │   └── models.py
 │   │   │   └── schemas
 │   │   │       ├── __init__.py
-│   │   │       └── models.py
+│   │   │       ├── models.py
+│   │   │       └── routers.py
 │   │   └── postgres
 │   │       ├── __init__.py
 │   │       ├── _postgreskeyrepository.py
@@ -296,6 +301,7 @@
 │   │   ├── integration
 │   │   │   ├── conftest.py
 │   │   │   ├── factories.py
+│   │   │   ├── test_admin_router.py
 │   │   │   ├── test_models.py
 │   │   │   └── test_postgresrouterrepository.py
 │   │   └── unit
@@ -305,6 +311,7 @@
 │   │       ├── test_helpers
 │   │       │   ├── test_accesscontroller.py
 │   │       │   ├── test_documentmanager.py
+│   │       │   ├── test_elasticsearchvectorstore.py
 │   │       │   ├── test_identityaccessmanager
 │   │       │   │   ├── test_login.py
 │   │       │   │   ├── test_organization.py
@@ -322,9 +329,13 @@
 │   │       │   └── test_qos.py
 │   │       └── use_case
 │   │           ├── factories.py
+│   │           ├── test_createrouterusecase.py
 │   │           └── test_getmodelsusecase.py
 │   ├── use_cases
 │   │   ├── __init__.py
+│   │   ├── admin
+│   │   │   ├── __init__.py
+│   │   │   └── _createrouterusecase.py
 │   │   └── models
 │   │       ├── __init__.py
 │   │       └── _getmodelsusecase.py
@@ -630,4 +641,4 @@
     ├── manage_docs_dns.py
     ├── startup_api.sh
     └── startup_worker.sh
-137 directories, 495 files
+138 directories, 505 files
