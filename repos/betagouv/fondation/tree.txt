@@ -1,13 +1,16 @@
 .
 ├── .github
 │   ├── copilot-instructions.md
+│   ├── playwright
+│   │   └── action.yml
 │   └── workflows
 │       ├── build-and-upload-api-artifact.yml
 │       ├── build-and-upload-client-artifact.yml
-│       ├── continuous-delivery.yml
-│       ├── deploy-production.yml
 │       ├── deploy-to-scalingo.yml
 │       ├── integration-checks.yml
+│       ├── release-production.yml
+│       ├── release-staging.yml
+│       ├── release.yml
 │       └── validates-pr.yml
 ├── .gitignore
 ├── .husky
@@ -199,6 +202,10 @@
 │   │   │   │   │   └── migration.sql
 │   │   │   │   ├── 20260126153859_adds_observations_follow_up
 │   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20260209170009_adds_file_alert_hidden
+│   │   │   │   │   └── migration.sql
+│   │   │   │   ├── 20260210081728_adds_observation_description
+│   │   │   │   │   └── migration.sql
 │   │   │   │   └── migration_lock.toml
 │   │   │   ├── schema.prisma
 │   │   │   ├── schemas
@@ -266,6 +273,7 @@
 │   │   │   │   │   │       ├── pdf.sanitizer.ts
 │   │   │   │   │   │       └── sanitizer.ts
 │   │   │   │   │   ├── framework.module.ts
+│   │   │   │   │   ├── health.ts
 │   │   │   │   │   ├── observability.ts
 │   │   │   │   │   ├── openapi.ts
 │   │   │   │   │   ├── pagination.ts
@@ -370,6 +378,7 @@
 │   │   │   │   │   │   │   └── unaffected-files.finder.ts
 │   │   │   │   │   │   ├── lodam-xlsx.pipe.ts
 │   │   │   │   │   │   ├── queries
+│   │   │   │   │   │   │   ├── count-nomination-files-by-status.query.ts
 │   │   │   │   │   │   │   ├── count-unaffected-files.query.ts
 │   │   │   │   │   │   │   ├── detail-nomination-session-affectation-version.query.ts
 │   │   │   │   │   │   │   ├── detail-nomination-session-attachment.query.ts
@@ -423,6 +432,8 @@
 │   │   │   │       │   │   └── register-user.cli.ts
 │   │   │   │       │   ├── dto
 │   │   │   │       │   │   └── auth.dto.ts
+│   │   │   │       │   ├── guards
+│   │   │   │       │   │   └── development-environment.guard.ts
 │   │   │   │       │   ├── queries
 │   │   │   │       │   │   ├── details-user-from-session-id.query.ts
 │   │   │   │       │   │   ├── details-user.query.ts
@@ -439,6 +450,7 @@
 │   │   │   │   └── express.d.ts
 │   │   │   └── utils
 │   │   │       ├── assert-never.ts
+│   │   │       ├── capitalize.spec.ts
 │   │   │       ├── capitalize.ts
 │   │   │       ├── date-only.ts
 │   │   │       ├── id.ts
@@ -446,7 +458,8 @@
 │   │   │       ├── iterables.ts
 │   │   │       ├── noop.ts
 │   │   │       ├── promises.ts
-│   │   │       └── time.ts
+│   │   │       ├── time.ts
+│   │   │       └── unaccent.ts
 │   │   ├── test
 │   │   │   ├── assets
 │   │   │   │   └── lodam
@@ -469,6 +482,7 @@
 │       ├── index.html
 │       ├── openapi-ts.config.ts
 │       ├── package.json
+│       ├── playwright.config.ts
 │       ├── postcss.config.js
 │       ├── public
 │       │   ├── favicon.staging.svg
@@ -506,11 +520,13 @@
 │       │   │   │   │   │   ├── NewReportsCount.tsx
 │       │   │   │   │   │   ├── ReportList.tsx
 │       │   │   │   │   │   ├── ReportListPage.tsx
+│       │   │   │   │   │   ├── ReportListViewToggle.tsx
 │       │   │   │   │   │   ├── ReportStateTag.tsx
 │       │   │   │   │   │   ├── ReportsDnVueGenerale.tsx
 │       │   │   │   │   │   ├── ReportsTable.css
 │       │   │   │   │   │   ├── ReportsTable.tsx
-│       │   │   │   │   │   └── TransparencyAttachmentsSection.tsx
+│       │   │   │   │   │   ├── TransparencyAttachmentsSection.tsx
+│       │   │   │   │   │   └── useReportListFocus.ts
 │       │   │   │   │   ├── ReportOverview
 │       │   │   │   │   │   ├── AttachedFileUpload.tsx
 │       │   │   │   │   │   ├── AttachedFilesList.tsx
@@ -521,6 +537,7 @@
 │       │   │   │   │   │   ├── Observers.tsx
 │       │   │   │   │   │   ├── ReportEditor.tsx
 │       │   │   │   │   │   ├── ReportOverview.tsx
+│       │   │   │   │   │   ├── ReportOverviewFileComment.tsx
 │       │   │   │   │   │   ├── ReportOverviewPage.tsx
 │       │   │   │   │   │   ├── ReportOverviewState.tsx
 │       │   │   │   │   │   ├── ReportRule.tsx
@@ -619,6 +636,7 @@
 │       │   │   │   ├── HintImportXlsxFile.tsx
 │       │   │   │   ├── LolfiMagistratLink.tsx
 │       │   │   │   ├── NominationSessionAttachmentList.tsx
+│       │   │   │   ├── ObservationDescription.tsx
 │       │   │   │   ├── ObservationDetailsContent.tsx
 │       │   │   │   ├── ObservationLinks.tsx
 │       │   │   │   ├── PageContentLayout.tsx
@@ -627,7 +645,6 @@
 │       │   │   │   ├── StagingAppLayout.tsx
 │       │   │   │   ├── SuccessModal.tsx
 │       │   │   │   ├── TableControl.tsx
-│       │   │   │   ├── TableauDossiersDeNomination.css
 │       │   │   │   ├── TextValue.tsx
 │       │   │   │   ├── UserChipsSelect.tsx
 │       │   │   │   ├── alerts
@@ -659,8 +676,10 @@
 │       │   │   │   │       ├── Pulse.tsx
 │       │   │   │   │       └── index.ts
 │       │   │   │   ├── nomination-files-table
+│       │   │   │   │   ├── NominationFilesTable.css
 │       │   │   │   │   ├── NominationFilesTable.tsx
 │       │   │   │   │   ├── components
+│       │   │   │   │   │   ├── MemberExclusionSelector.tsx
 │       │   │   │   │   │   ├── NominationFilesActionsBar.tsx
 │       │   │   │   │   │   ├── NominationFilesAffectationsStatus.tsx
 │       │   │   │   │   │   ├── NominationFilesAutoAffectationButton.tsx
@@ -668,13 +687,14 @@
 │       │   │   │   │   │   ├── NominationFilesPrioritySelector.tsx
 │       │   │   │   │   │   ├── NominationFilesReporterSelector.tsx
 │       │   │   │   │   │   ├── NominationFilesSaveAffectationsButton.tsx
+│       │   │   │   │   │   ├── NominationFilesStatusBadges.tsx
 │       │   │   │   │   │   ├── NominationFilesToggleEditionModeButton.tsx
 │       │   │   │   │   │   └── cells
+│       │   │   │   │   │       ├── NominationFilesPriorityCell.tsx
 │       │   │   │   │   │       ├── NominationFilesPrioritySelector.tsx
 │       │   │   │   │   │       ├── magistrat-details
 │       │   │   │   │   │       │   ├── MagistratDetails.tsx
 │       │   │   │   │   │       │   ├── MagistratDnModale.tsx
-│       │   │   │   │   │       │   ├── MagistratRouteDetails.tsx
 │       │   │   │   │   │       │   ├── MagistratSummaryButton.tsx
 │       │   │   │   │   │       │   ├── magistrat-comment
 │       │   │   │   │   │       │   │   ├── MagistratComment.tsx
@@ -689,6 +709,7 @@
 │       │   │   │   │   │       │   ├── NominationFileOutcomeCommentModal.tsx
 │       │   │   │   │   │       │   ├── NominationFileOutcomeCommentModalProvider.tsx
 │       │   │   │   │   │       │   ├── NominationFileOutcomeSelector.tsx
+│       │   │   │   │   │       │   ├── NominationFilesOutcomeCell.tsx
 │       │   │   │   │   │       │   └── OutcomeCommentModalContext.ts
 │       │   │   │   │   │       ├── observation-follow-up
 │       │   │   │   │   │       │   ├── ObservationFollowUpReminderContext.ts
@@ -700,10 +721,15 @@
 │       │   │   │   │   │       │   ├── ObservationForm.tsx
 │       │   │   │   │   │       │   ├── ObservationsList.tsx
 │       │   │   │   │   │       │   └── ObservationsModalContext.tsx
-│       │   │   │   │   │       └── reporters
-│       │   │   │   │   │           ├── DropdownRapporteurs.tsx
-│       │   │   │   │   │           ├── RapporteursDropdownBase.tsx
-│       │   │   │   │   │           └── ReportersCell.tsx
+│       │   │   │   │   │       ├── reporters
+│       │   │   │   │   │       │   ├── RapporteursDropdownBase.tsx
+│       │   │   │   │   │       │   ├── ReportersAlert.tsx
+│       │   │   │   │   │       │   ├── ReportersCell.tsx
+│       │   │   │   │   │       │   └── ReportersSelector.tsx
+│       │   │   │   │   │       └── targeted-position
+│       │   │   │   │   │           ├── NominationFileTargetPositionCell.tsx
+│       │   │   │   │   │           ├── NominationFileTargetPositionContext.ts
+│       │   │   │   │   │           └── NominationFileTargetPositionProvider.tsx
 │       │   │   │   │   ├── contexts
 │       │   │   │   │   │   ├── FilesAffectationsProvider.tsx
 │       │   │   │   │   │   ├── FilesSelectionProvider.tsx
@@ -713,12 +739,14 @@
 │       │   │   │   │   │   └── files-table.context.ts
 │       │   │   │   │   └── useNominationFilesTableColumns.hook.tsx
 │       │   │   │   ├── observations
-│       │   │   │   │   └── follow-up-selector
-│       │   │   │   │       ├── ObservationFollowUpCommentContext.ts
-│       │   │   │   │       ├── ObservationFollowUpCommentDialog.tsx
-│       │   │   │   │       ├── ObservationFollowUpCommentDialogProvider.tsx
-│       │   │   │   │       ├── ObservationFollowUpSelector.tsx
-│       │   │   │   │       └── useObservationFollowUpCommentDialog.ts
+│       │   │   │   │   ├── ObservationCard.tsx
+│       │   │   │   │   ├── follow-up-selector
+│       │   │   │   │   │   ├── ObservationFollowUpCommentContext.ts
+│       │   │   │   │   │   ├── ObservationFollowUpCommentDialog.tsx
+│       │   │   │   │   │   ├── ObservationFollowUpCommentDialogProvider.tsx
+│       │   │   │   │   │   ├── ObservationFollowUpSelector.tsx
+│       │   │   │   │   │   └── useObservationFollowUpCommentDialog.ts
+│       │   │   │   │   └── index.ts
 │       │   │   │   ├── ovoid.tsx
 │       │   │   │   └── user-avatar
 │       │   │   │       ├── UserAvatar.tsx
@@ -840,6 +868,21 @@
 │       │   │   └── user.utils.ts
 │       │   └── vite-env.d.ts
 │       ├── tailwind.config.js
+│       ├── tests
+│       │   ├── e2e
+│       │   │   ├── login.spec.ts
+│       │   │   └── manage-session.spec.ts
+│       │   ├── fixtures.ts
+│       │   ├── pages
+│       │   │   ├── create-session.page.ts
+│       │   │   ├── login.page.ts
+│       │   │   ├── manage-sessions.page.ts
+│       │   │   ├── manage-single-session.page.ts
+│       │   │   └── test-app.ts
+│       │   └── utils
+│       │       ├── lodam.util.ts
+│       │       ├── table.util.ts
+│       │       └── xlsx.util.ts
 │       ├── tsconfig.app.json
 │       ├── tsconfig.json
 │       ├── tsconfig.node.json
@@ -872,4 +915,4 @@
 │       └── tsconfig.json
 ├── pnpm-lock.yaml
 └── pnpm-workspace.yaml
-164 directories, 710 files
+173 directories, 744 files
