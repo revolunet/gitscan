@@ -120,6 +120,7 @@
 │   │   │   ├── 0007_auto_20251209_0626.py
 │   │   │   ├── 0007_repopulate_evaluation_visit.py
 │   │   │   ├── 0008_merge_20251215_1042.py
+│   │   │   ├── 0009_event_unique_id.py
 │   │   │   └── __init__.py
 │   │   ├── models.py
 │   │   ├── tests
@@ -536,6 +537,10 @@
 │   │   │   ├── 0097_merge_20251201_0636.py
 │   │   │   ├── 0098_merge_20251209_1055.py
 │   │   │   ├── 0099_alter_configamenagement_regulations_available_and_more.py
+│   │   │   ├── 0100_criterion_validity_date_end_and_more.py
+│   │   │   ├── 0101_criterion_validity_date_end_gte_start.py
+│   │   │   ├── 0102_remove_criterion_validity_date_end_gte_start_and_more.py
+│   │   │   ├── 0103_remove_criterion_validity_date_end_gt_start_and_more.py
 │   │   │   ├── __init__.py
 │   │   │   ├── haie_department_configs.json
 │   │   │   ├── moulinette_haie.json
@@ -556,6 +561,8 @@
 │   │   │   ├── regime_unique_haie.py
 │   │   │   ├── reserves_naturelles.py
 │   │   │   ├── sage.py
+│   │   │   ├── sites_classes_haie.py
+│   │   │   ├── sites_inscrits_haie.py
 │   │   │   ├── sites_proteges_haie.py
 │   │   │   └── urbanisme_haie.py
 │   │   ├── templatetags
@@ -570,6 +577,7 @@
 │   │   │   ├── test_conditionnalite_pac.py
 │   │   │   ├── test_ep.py
 │   │   │   ├── test_evalenv.py
+│   │   │   ├── test_fields.py
 │   │   │   ├── test_loisurleau.py
 │   │   │   ├── test_models.py
 │   │   │   ├── test_n2000_evalenv.py
@@ -581,9 +589,12 @@
 │   │   │   ├── test_regime_unique_results.py
 │   │   │   ├── test_reserves_naturelles.py
 │   │   │   ├── test_sage.py
+│   │   │   ├── test_sites_classes.py
+│   │   │   ├── test_sites_inscrits_haie.py
 │   │   │   ├── test_sites_proteges_haie.py
 │   │   │   ├── test_templatetags.py
 │   │   │   ├── test_utils.py
+│   │   │   ├── test_validity_date.py
 │   │   │   ├── test_views.py
 │   │   │   └── test_views_haie.py
 │   │   ├── urls.py
@@ -873,25 +884,17 @@
 │   │   ├── _analytics.html
 │   │   ├── _anonymous_menu.html
 │   │   ├── _chatbox.html
-│   │   ├── _checkbox_multiple_snippet.html
-│   │   ├── _checkbox_snippet.html
 │   │   ├── _color_scheme.html
 │   │   ├── _contact_means.html
 │   │   ├── _department_opt_in.html
 │   │   ├── _dropzone_snippet.html
-│   │   ├── _field.html
-│   │   ├── _field_snippet.html
-│   │   ├── _file_snippet.html
 │   │   ├── _form_header.html
 │   │   ├── _form_snippet.html
 │   │   ├── _form_with_fieldsets_snippet.html
-│   │   ├── _input_file_snippet.html
 │   │   ├── _label.html
 │   │   ├── _map_snippet.html
 │   │   ├── _messages.html
 │   │   ├── _pagination.html
-│   │   ├── _radio_snippet.html
-│   │   ├── _select_snippet.html
 │   │   ├── _sentry.html
 │   │   ├── _share_url_btn.html
 │   │   ├── _share_url_modal.html
@@ -931,7 +934,9 @@
 │   │   │   │   │   └── change_form.html
 │   │   │   │   └── moulinetteconfig
 │   │   │   │       └── change_form.html
-│   │   │   └── submit_line.html
+│   │   │   ├── submit_line.html
+│   │   │   └── widgets
+│   │   │       └── date_range.html
 │   │   ├── amenagement
 │   │   │   ├── _contact_means.html
 │   │   │   ├── _footer.html
@@ -992,6 +997,20 @@
 │   │   ├── demos
 │   │   │   ├── catchment_area.html
 │   │   │   └── hedge_density.html
+│   │   ├── django
+│   │   │   └── forms
+│   │   │       ├── fields
+│   │   │       │   ├── checkbox.html
+│   │   │       │   ├── checkbox_multiple.html
+│   │   │       │   ├── field.html
+│   │   │       │   ├── input_file.html
+│   │   │       │   ├── label.html
+│   │   │       │   ├── radio.html
+│   │   │       │   └── select.html
+│   │   │       └── widgets
+│   │   │           ├── input.html
+│   │   │           ├── select.html
+│   │   │           └── textarea.html
 │   │   ├── emails
 │   │   │   ├── _base.html
 │   │   │   ├── _email_signature.html
@@ -1048,6 +1067,9 @@
 │   │   │   ├── request_success.html
 │   │   │   ├── search.html
 │   │   │   └── self_declaration.html
+│   │   ├── forms
+│   │   │   └── widgets
+│   │   │       └── text_unit.html
 │   │   ├── geodata
 │   │   │   ├── _parcel_formset.html
 │   │   │   ├── _parcel_line_form.html
@@ -1222,6 +1244,12 @@
 │   │   │   │   │   ├── consultation.html
 │   │   │   │   │   ├── instruction_guidelines.html
 │   │   │   │   │   └── key_elements.html
+│   │   │   │   ├── sites_classes_haie
+│   │   │   │   │   ├── consultation.html
+│   │   │   │   │   └── instruction_guidelines.html
+│   │   │   │   ├── sites_inscrits_haie
+│   │   │   │   │   ├── consultation.html
+│   │   │   │   │   └── instruction_guidelines.html
 │   │   │   │   ├── sites_proteges_haie
 │   │   │   │   │   ├── instruction_guidelines.html
 │   │   │   │   │   └── key_elements.html
@@ -1250,6 +1278,7 @@
 │   │   │   └── robots.txt
 │   │   ├── hedges
 │   │   │   ├── _hedge_data_dialog.html
+│   │   │   ├── _hedge_summary_table.html
 │   │   │   ├── _hedges_properties.html
 │   │   │   ├── _plantation_conditions.html
 │   │   │   ├── _species_table.html
@@ -1497,6 +1526,16 @@
 │   │   │   │   ├── result_non_disponible_single_perimeter.html
 │   │   │   │   ├── result_non_soumis.html
 │   │   │   │   └── result_non_soumis_single_perimeter.html
+│   │   │   ├── sites_classes_haie
+│   │   │   │   ├── result_non_active.html
+│   │   │   │   ├── result_non_concerne.html
+│   │   │   │   ├── result_non_disponible.html
+│   │   │   │   └── result_soumis.html
+│   │   │   ├── sites_inscrits_haie
+│   │   │   │   ├── result_non_active.html
+│   │   │   │   ├── result_non_concerne.html
+│   │   │   │   ├── result_non_disponible.html
+│   │   │   │   └── result_soumis.html
 │   │   │   ├── sites_proteges_haie
 │   │   │   │   ├── result_non_active.html
 │   │   │   │   ├── result_non_concerne.html
@@ -1643,4 +1682,4 @@
                 │   ├── favicon.ico
                 │   └── favicon.svg
                 └── index.html
-204 directories, 1441 files
+215 directories, 1469 files
