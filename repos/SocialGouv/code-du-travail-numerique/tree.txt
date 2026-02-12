@@ -55,6 +55,30 @@
 ├── Dockerfile
 ├── LICENSE
 ├── README.md
+├── docs
+│   ├── heures-recherche-emploi-legacy.html
+│   ├── heures-recherche-emploi.html
+│   ├── indemnite-licenciement-legacy.html
+│   ├── indemnite-licenciement.html
+│   ├── indemnite-precarite-legacy.html
+│   ├── indemnite-precarite.html
+│   ├── indemnite-rupture-conventionnelle-legacy.html
+│   ├── indemnite-rupture-conventionnelle.html
+│   ├── index.html
+│   ├── modeles-legacy.html
+│   ├── modeles.html
+│   ├── preavis-demission-legacy.html
+│   ├── preavis-demission.html
+│   ├── preavis-licenciement-legacy.html
+│   ├── preavis-licenciement.html
+│   ├── preavis-retraite-legacy.html
+│   ├── preavis-retraite.html
+│   ├── procedure-licenciement-legacy.html
+│   ├── procedure-licenciement.html
+│   ├── recherche-legacy.html
+│   ├── recherche.html
+│   ├── trouver-sa-convention-collective-legacy.html
+│   └── trouver-sa-convention-collective.html
 ├── lerna.json
 ├── lighthouserc.cjs
 ├── package.json
@@ -213,15 +237,15 @@
 │   │   │   ├── integration
 │   │   │   │   ├── heavy
 │   │   │   │   │   ├── outils-externe.spec.ts
-│   │   │   │   │   ├── statistiques.spec.ts
 │   │   │   │   │   └── widgets
-│   │   │   │   │       ├── dossier-licenciement.spec.ts
 │   │   │   │   │       ├── indemnite-licenciement.spec.ts
 │   │   │   │   │       ├── indemnite-precarite.spec.ts
+│   │   │   │   │       ├── indemnite-rupture-conventionnelle.spec.ts
 │   │   │   │   │       ├── modeles-courrier.spec.ts
 │   │   │   │   │       ├── preavis-demission.spec.ts
 │   │   │   │   │       ├── preavis-licenciement.spec.ts
 │   │   │   │   │       ├── preavis-retraite.spec.ts
+│   │   │   │   │       ├── procedure-licenciement.spec.ts
 │   │   │   │   │       ├── recherche.spec.ts
 │   │   │   │   │       └── trouver-sa-cc.spec.ts
 │   │   │   │   ├── html-validation
@@ -267,11 +291,10 @@
 │   │   │   │       ├── quoi-de-neuf.spec.ts
 │   │   │   │       ├── redirects.spec.ts
 │   │   │   │       ├── sitemap.spec.ts
+│   │   │   │       ├── statistiques.spec.ts
 │   │   │   │       ├── themes.spec.ts
 │   │   │   │       ├── validate-html.spec.ts
-│   │   │   │       ├── widgets
-│   │   │   │       │   └── trouver-sa-cc.spec.ts
-│   │   │   │       └── widgets-pages.spec.ts
+│   │   │   │       └── widgets.spec.ts
 │   │   │   ├── support
 │   │   │   │   ├── before.ts
 │   │   │   │   ├── commands.ts
@@ -297,95 +320,96 @@
 │   │   ├── public
 │   │   │   ├── favicon.ico
 │   │   │   ├── google6147ec315bc44cce.html
-│   │   │   └── static
-│   │   │       ├── assets
-│   │   │       │   ├── fonts
-│   │   │       │   │   ├── Merriweather_400.eot
-│   │   │       │   │   ├── Merriweather_400.svg
-│   │   │       │   │   ├── Merriweather_400.ttf
-│   │   │       │   │   ├── Merriweather_400.woff
-│   │   │       │   │   ├── Merriweather_400.woff2
-│   │   │       │   │   ├── Merriweather_700.eot
-│   │   │       │   │   ├── Merriweather_700.svg
-│   │   │       │   │   ├── Merriweather_700.ttf
-│   │   │       │   │   ├── Merriweather_700.woff
-│   │   │       │   │   ├── Merriweather_700.woff2
-│   │   │       │   │   ├── Open_Sans_400.eot
-│   │   │       │   │   ├── Open_Sans_400.svg
-│   │   │       │   │   ├── Open_Sans_400.ttf
-│   │   │       │   │   ├── Open_Sans_400.woff
-│   │   │       │   │   ├── Open_Sans_400.woff2
-│   │   │       │   │   ├── Open_Sans_400i.eot
-│   │   │       │   │   ├── Open_Sans_400i.svg
-│   │   │       │   │   ├── Open_Sans_400i.ttf
-│   │   │       │   │   ├── Open_Sans_400i.woff
-│   │   │       │   │   ├── Open_Sans_400i.woff2
-│   │   │       │   │   ├── Open_Sans_600i.eot
-│   │   │       │   │   ├── Open_Sans_600i.svg
-│   │   │       │   │   ├── Open_Sans_600i.ttf
-│   │   │       │   │   ├── Open_Sans_600i.woff
-│   │   │       │   │   └── Open_Sans_600i.woff2
-│   │   │       │   ├── icons
-│   │   │       │   │   ├── droit-du-travail
-│   │   │       │   │   │   ├── constitution-francaise.svg
-│   │   │       │   │   │   ├── contrat-travail.svg
-│   │   │       │   │   │   ├── conventions-collectives.svg
-│   │   │       │   │   │   ├── lois.svg
-│   │   │       │   │   │   ├── reglement-interieur-entreprise.svg
-│   │   │       │   │   │   ├── texte-europeens.svg
-│   │   │       │   │   │   ├── texte-internationaux.svg
-│   │   │       │   │   │   └── usage-unilateraux.svg
-│   │   │       │   │   ├── external.svg
-│   │   │       │   │   ├── home
-│   │   │       │   │   │   ├── bubble.svg
-│   │   │       │   │   │   ├── illustration-principale.svg
-│   │   │       │   │   │   ├── illustration-questions.svg
-│   │   │       │   │   │   ├── infographie.svg
-│   │   │       │   │   │   ├── letter.svg
-│   │   │       │   │   │   ├── simulator.svg
-│   │   │       │   │   │   ├── step.svg
-│   │   │       │   │   │   └── themes.svg
-│   │   │       │   │   └── tools
-│   │   │       │   │       ├── CalendarTime.svg
-│   │   │       │   │       ├── FileCheck.svg
-│   │   │       │   │       ├── Formation.svg
-│   │   │       │   │       ├── Indemnity.svg
-│   │   │       │   │       ├── Precarity.svg
-│   │   │       │   │       ├── Rules.svg
-│   │   │       │   │       ├── Rupture.svg
-│   │   │       │   │       ├── Salary.svg
-│   │   │       │   │       ├── SearchCC.svg
-│   │   │       │   │       ├── Termination.svg
-│   │   │       │   │       └── Time.svg
-│   │   │       │   └── img
-│   │   │       │       ├── acceccibility-logo.svg
-│   │   │       │       ├── convention-collective.png
-│   │   │       │       ├── emoj-wave.png
-│   │   │       │       ├── indemnite-licenciement.png
-│   │   │       │       ├── indemnite-precarite.png
-│   │   │       │       ├── indemnite-rupture-conventionnelle.png
-│   │   │       │       ├── infographies-download.svg
-│   │   │       │       ├── legifrance.svg
-│   │   │       │       ├── logo-marianne.png
-│   │   │       │       ├── logo-rf.svg
-│   │   │       │       ├── logo.svg
-│   │   │       │       ├── logo_sp_hd_rvb.png
-│   │   │       │       ├── ministere_logo.svg
-│   │   │       │       ├── modeles-de-courriers-download.svg
-│   │   │       │       ├── modeles-de-courriers.png
-│   │   │       │       ├── moteur-recherche.png
-│   │   │       │       ├── ovoid.svg
-│   │   │       │       ├── preavis-demission.png
-│   │   │       │       ├── preavis-licenciement.png
-│   │   │       │       ├── preavis-retraite.png
-│   │   │       │       ├── procedure-licenciement.png
-│   │   │       │       ├── social-preview.png
-│   │   │       │       ├── srdt.svg
-│   │   │       │       ├── star.svg
-│   │   │       │       └── technical-error.svg
-│   │   │       ├── fiches-mt.css
-│   │   │       ├── fonts.css
-│   │   │       └── modeles.css
+│   │   │   ├── static
+│   │   │   │   ├── assets
+│   │   │   │   │   ├── fonts
+│   │   │   │   │   │   ├── Merriweather_400.eot
+│   │   │   │   │   │   ├── Merriweather_400.svg
+│   │   │   │   │   │   ├── Merriweather_400.ttf
+│   │   │   │   │   │   ├── Merriweather_400.woff
+│   │   │   │   │   │   ├── Merriweather_400.woff2
+│   │   │   │   │   │   ├── Merriweather_700.eot
+│   │   │   │   │   │   ├── Merriweather_700.svg
+│   │   │   │   │   │   ├── Merriweather_700.ttf
+│   │   │   │   │   │   ├── Merriweather_700.woff
+│   │   │   │   │   │   ├── Merriweather_700.woff2
+│   │   │   │   │   │   ├── Open_Sans_400.eot
+│   │   │   │   │   │   ├── Open_Sans_400.svg
+│   │   │   │   │   │   ├── Open_Sans_400.ttf
+│   │   │   │   │   │   ├── Open_Sans_400.woff
+│   │   │   │   │   │   ├── Open_Sans_400.woff2
+│   │   │   │   │   │   ├── Open_Sans_400i.eot
+│   │   │   │   │   │   ├── Open_Sans_400i.svg
+│   │   │   │   │   │   ├── Open_Sans_400i.ttf
+│   │   │   │   │   │   ├── Open_Sans_400i.woff
+│   │   │   │   │   │   ├── Open_Sans_400i.woff2
+│   │   │   │   │   │   ├── Open_Sans_600i.eot
+│   │   │   │   │   │   ├── Open_Sans_600i.svg
+│   │   │   │   │   │   ├── Open_Sans_600i.ttf
+│   │   │   │   │   │   ├── Open_Sans_600i.woff
+│   │   │   │   │   │   └── Open_Sans_600i.woff2
+│   │   │   │   │   ├── icons
+│   │   │   │   │   │   ├── droit-du-travail
+│   │   │   │   │   │   │   ├── constitution-francaise.svg
+│   │   │   │   │   │   │   ├── contrat-travail.svg
+│   │   │   │   │   │   │   ├── conventions-collectives.svg
+│   │   │   │   │   │   │   ├── lois.svg
+│   │   │   │   │   │   │   ├── reglement-interieur-entreprise.svg
+│   │   │   │   │   │   │   ├── texte-europeens.svg
+│   │   │   │   │   │   │   ├── texte-internationaux.svg
+│   │   │   │   │   │   │   └── usage-unilateraux.svg
+│   │   │   │   │   │   ├── external.svg
+│   │   │   │   │   │   ├── home
+│   │   │   │   │   │   │   ├── bubble.svg
+│   │   │   │   │   │   │   ├── illustration-principale.svg
+│   │   │   │   │   │   │   ├── illustration-questions.svg
+│   │   │   │   │   │   │   ├── infographie.svg
+│   │   │   │   │   │   │   ├── letter.svg
+│   │   │   │   │   │   │   ├── simulator.svg
+│   │   │   │   │   │   │   ├── step.svg
+│   │   │   │   │   │   │   └── themes.svg
+│   │   │   │   │   │   └── tools
+│   │   │   │   │   │       ├── CalendarTime.svg
+│   │   │   │   │   │       ├── FileCheck.svg
+│   │   │   │   │   │       ├── Formation.svg
+│   │   │   │   │   │       ├── Indemnity.svg
+│   │   │   │   │   │       ├── Precarity.svg
+│   │   │   │   │   │       ├── Rules.svg
+│   │   │   │   │   │       ├── Rupture.svg
+│   │   │   │   │   │       ├── Salary.svg
+│   │   │   │   │   │       ├── SearchCC.svg
+│   │   │   │   │   │       ├── Termination.svg
+│   │   │   │   │   │       └── Time.svg
+│   │   │   │   │   └── img
+│   │   │   │   │       ├── acceccibility-logo.svg
+│   │   │   │   │       ├── convention-collective.png
+│   │   │   │   │       ├── emoj-wave.png
+│   │   │   │   │       ├── indemnite-licenciement.png
+│   │   │   │   │       ├── indemnite-precarite.png
+│   │   │   │   │       ├── indemnite-rupture-conventionnelle.png
+│   │   │   │   │       ├── infographies-download.svg
+│   │   │   │   │       ├── legifrance.svg
+│   │   │   │   │       ├── logo-marianne.png
+│   │   │   │   │       ├── logo-rf.svg
+│   │   │   │   │       ├── logo.svg
+│   │   │   │   │       ├── logo_sp_hd_rvb.png
+│   │   │   │   │       ├── ministere_logo.svg
+│   │   │   │   │       ├── modeles-de-courriers-download.svg
+│   │   │   │   │       ├── modeles-de-courriers.png
+│   │   │   │   │       ├── moteur-recherche.png
+│   │   │   │   │       ├── ovoid.svg
+│   │   │   │   │       ├── preavis-demission.png
+│   │   │   │   │       ├── preavis-licenciement.png
+│   │   │   │   │       ├── preavis-retraite.png
+│   │   │   │   │       ├── procedure-licenciement.png
+│   │   │   │   │       ├── social-preview.png
+│   │   │   │   │       ├── srdt.svg
+│   │   │   │   │       ├── star.svg
+│   │   │   │   │       └── technical-error.svg
+│   │   │   │   ├── fiches-mt.css
+│   │   │   │   ├── fonts.css
+│   │   │   │   └── modeles.css
+│   │   │   └── widget-loader.js
 │   │   ├── redirects.json
 │   │   ├── scripts
 │   │   │   ├── __tests__
@@ -398,6 +422,7 @@
 │   │   │   ├── generate-data.ts
 │   │   │   ├── logs
 │   │   │   │   └── .gitkeep
+│   │   │   ├── prebuild-cli.ts
 │   │   │   ├── prebuild.ts
 │   │   │   └── widget-template.js
 │   │   ├── sentry.edge.config.ts
@@ -574,6 +599,8 @@
 │   │   │       │   ├── Autocomplete
 │   │   │       │   │   ├── Autocomplete.tsx
 │   │   │       │   │   ├── HomemadeAutocomplete.tsx
+│   │   │       │   │   ├── __tests__
+│   │   │       │   │   │   └── HomemadeAutocomplete.a11y.test.tsx
 │   │   │       │   │   └── index.ts
 │   │   │       │   ├── BlueBlock.tsx
 │   │   │       │   ├── BlueCard.tsx
@@ -868,6 +895,7 @@
 │   │   │       │   │   ├── QuestionAnswers.tsx
 │   │   │       │   │   ├── QuestionBubble.tsx
 │   │   │       │   │   ├── SectionContainer.tsx
+│   │   │       │   │   ├── TemplateHomeCard.tsx
 │   │   │       │   │   └── index.tsx
 │   │   │       │   ├── ComprendreLeDroitDuTravail.tsx
 │   │   │       │   ├── Contributions.tsx
@@ -918,16 +946,17 @@
 │   │   │       │   ├── IntegrationInstructions.tsx
 │   │   │       │   ├── IntegrationList.tsx
 │   │   │       │   ├── IntegrationPageContent.tsx
-│   │   │       │   ├── IntegrationTracking.tsx
 │   │   │       │   ├── __tests__
 │   │   │       │   │   ├── IntegrationDetailContent.test.tsx
 │   │   │       │   │   ├── IntegrationDetailPageContent.test.tsx
+│   │   │       │   │   ├── IntegrationInstructions.test.tsx
 │   │   │       │   │   └── IntegrationPageContent.test.tsx
 │   │   │       │   ├── data
 │   │   │       │   │   ├── index.ts
 │   │   │       │   │   ├── integration.json
 │   │   │       │   │   └── type.ts
-│   │   │       │   └── types.ts
+│   │   │       │   ├── types.ts
+│   │   │       │   └── widgetIntegrity.ts
 │   │   │       ├── layout
 │   │   │       │   ├── BrandTop.tsx
 │   │   │       │   ├── Container.tsx
@@ -1009,7 +1038,9 @@
 │   │   │       │       │   └── __snapshots__
 │   │   │       │       │       └── ListLayout.test.tsx.snap
 │   │   │       │       ├── component
-│   │   │       │       │   └── Section.tsx
+│   │   │       │       │   ├── Section.tsx
+│   │   │       │       │   └── __tests__
+│   │   │       │       │       └── Section.test.tsx
 │   │   │       │       └── index.ts
 │   │   │       ├── mentions-legales
 │   │   │       │   ├── __tests__
@@ -2003,6 +2034,7 @@
 │   │   │       │   │   ├── SearchResults.tsx
 │   │   │       │   │   ├── SearchResultsPreview.tsx
 │   │   │       │   │   ├── __tests__
+│   │   │       │   │   │   ├── SearchInput.a11y.test.tsx
 │   │   │       │   │   │   ├── SearchInput.tracking.test.tsx
 │   │   │       │   │   │   ├── SearchModalContext.test.tsx
 │   │   │       │   │   │   └── SearchResultCard.test.tsx
@@ -3750,13 +3782,16 @@
 │       │   │       ├── Health.tsx
 │       │   │       ├── Hiring.tsx
 │       │   │       ├── Holidays.tsx
+│       │   │       ├── HouseEmployment.tsx
 │       │   │       ├── Nego.tsx
+│       │   │       ├── Parents.tsx
 │       │   │       ├── Resignation.tsx
 │       │   │       ├── Retirement.tsx
 │       │   │       ├── Risks.tsx
 │       │   │       ├── Salary.tsx
 │       │   │       ├── Specific.tsx
 │       │   │       ├── Time.tsx
+│       │   │       ├── Youngs.tsx
 │       │   │       └── index.ts
 │       │   ├── idcc.ts
 │       │   ├── index.ts
@@ -3766,4 +3801,4 @@
 │       └── tsconfig.json
 ├── pnpm-lock.yaml
 └── pnpm-workspace.yaml
-932 directories, 2836 files
+934 directories, 2869 files
