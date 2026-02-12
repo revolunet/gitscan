@@ -87,6 +87,7 @@ For more details on chart configuration options, see the [chart documentation](c
    ```
 
    This will automatically activate the Devbox development environment with all required tools:
+
    - Node.js (latest)
    - Go (latest)
    - Yarn (latest)
@@ -113,10 +114,26 @@ The development environment provides the following tools via Devbox:
 - **go-task**: Task runner for development workflows
 
 The environment is automatically configured with:
+
 - `KUBECONFIG` set to `$PWD/.kubeconfig` for local cluster management
 - All tools available in the shell PATH
 
 ## Usage
+
+## Logging
+
+The Go function runner emits structured logs. For requests related to a Crossplane XR (Composite Resource), logs are enriched with the following fields (when available):
+
+- `xr.apiVersion`
+- `xr.group`
+- `xr.version`
+- `xr.kind`
+- `xr.name`
+- `xr.namespace`
+
+These fields are extracted from the incoming `RunFunctionRequest` (best-effort) and attached to the request-scoped logger.
+
+Additionally, when the function returns a Crossplane _fatal_ result (`response.Fatal(...)`), the Go server logs an `ERROR` line right before returning the fatal result so it is visible in logs even though the gRPC call itself returns successfully.
 
 ### Creating a Composition with Inline Code
 
@@ -206,15 +223,16 @@ This approach allows you to have function-specific dependencies or share depende
 
 To help in writing compositions, the CLI tool can generate type-safe models for
 the following:
-* Base Kubernetes resources
-* CRDs derived from the XRDs of your custom resources
-* External extra CRDs defined in a configuration file (optional)
+
+- Base Kubernetes resources
+- CRDs derived from the XRDs of your custom resources
+- External extra CRDs defined in a configuration file (optional)
 
 Run the CLI tool:
 
-  ```bash
-  npx @crossplane-js/cli gen-models
-  ```
+```bash
+npx @crossplane-js/cli gen-models
+```
 
 To generate a `models/` directory containing models that can be imported in
 your composition functions.
@@ -228,8 +246,40 @@ extraCrds:
   - https://github.com/fluxcd/source-controller/releases/download/v1.7.0/source-controller.crds.yaml
 ```
 
-
 ## Testing
+
+### E2E: FieldRef resolution
+
+Important: [`FieldRef`](packages/sdk/src/utils/FieldRef.ts:19) is resolved immediately by the JS function runtime (via the SDK's `withFieldRefsClassFactory()`), **not** later by Crossplane. In other words, this is a convenience for authoring composition functions; Crossplane does not interpret `FieldRef` objects.
+
+The E2E fixture function for `SimpleConfigMap` uses a [`FieldRef`](packages/sdk/src/utils/FieldRef.ts:19) to populate a label on the composed `ConfigMap`:
+
+- label: `crossplane-js.dev/xr-name`
+- value: resolved from the XR JSONPath `$.metadata.name`
+
+The bash E2E harness asserts the label resolves to `sample-configmap` (see [`tests/test-xfuncjs.sh`](tests/test-xfuncjs.sh:1)).
+
+### E2E: extraResources retrieval (namespace-scoped, all-namespaces, cluster-scoped)
+
+The E2E fixture function for `SimpleConfigMap` requests extra resources via
+`extraResourceRequirements` and asserts Crossplane injects them back in
+`extraResources` on subsequent function runs.
+
+The harness in [`tests/test-xfuncjs.sh`](tests/test-xfuncjs.sh:1) creates fixture
+resources:
+
+- `ConfigMap/test-xfuncjs/extra-ns-only` (labels: `crossplane-js.dev/e2e=extra`, `crossplane-js.dev/scope=ns-only`)
+- `ConfigMap/test-xfuncjs/extra-all-ns-1` (labels: `crossplane-js.dev/e2e=extra`, `crossplane-js.dev/scope=all-ns`)
+- `ConfigMap/test-xfuncjs-2/extra-all-ns-2` (same labels)
+- the namespace `test-xfuncjs` itself (cluster-scoped object)
+
+The function then publishes the observed injection results as annotations on the
+composed `ConfigMap/generated-configmap`, and the harness hard-asserts the counts
+converge to:
+
+- `e2e-extra-ns-cm-count=1`
+- `e2e-extra-allns-cm-count=2`
+- `e2e-extra-namespace-count=1`
 
 The project includes end-to-end tests that use a Kind cluster to verify functionality:
 
