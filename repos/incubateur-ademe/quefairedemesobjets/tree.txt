@@ -8,9 +8,9 @@
 │   ├── actions
 │   │   ├── install-gis
 │   │   │   └── action.yml
-│   │   ├── prepare-django-db
+│   │   ├── pg-restore
 │   │   │   └── action.yml
-│   │   ├── restore-django-db
+│   │   ├── prepare-django-db
 │   │   │   └── action.yml
 │   │   ├── setup-backend
 │   │   │   └── action.yml
@@ -384,6 +384,9 @@
 │   │           ├── read_mapping_from_postgres.py
 │   │           ├── transform_column.py
 │   │           └── transform_df.py
+│   ├── stats
+│   │   └── dags
+│   │       └── compute_stats.py
 │   ├── suggestions
 │   │   ├── dags
 │   │   │   ├── apply_suggestions.py
@@ -524,6 +527,7 @@
 │   │   ├── 0018_alter_suggestion_statut_and_more.py
 │   │   ├── 0019_alter_suggestionunitaire_parametres.py
 │   │   ├── 0020_alter_suggestiongroupe_acteur_and_more.py
+│   │   ├── 0021_suggestiongroupe_parent_revision_acteur_and_more.py
 │   │   └── __init__.py
 │   ├── models
 │   │   ├── __init__.py
@@ -609,9 +613,16 @@
 │   │   │   │   ├── base_ae_etablissement.sql
 │   │   │   │   ├── base_ae_unite_legale.sql
 │   │   │   │   └── schema.yml
-│   │   │   └── ban
-│   │   │       ├── base_ban_adresses.sql
-│   │   │       ├── base_ban_lieux_dits.sql
+│   │   │   ├── ban
+│   │   │   │   ├── base_ban_adresses.sql
+│   │   │   │   ├── base_ban_lieux_dits.sql
+│   │   │   │   └── schema.yml
+│   │   │   └── stats
+│   │   │       ├── base_action.sql
+│   │   │       ├── base_random_position.sql
+│   │   │       ├── base_vueacteur_visible.sql
+│   │   │       ├── base_vuepropositionservice.sql
+│   │   │       ├── base_vuepropositionservice_visible.sql
 │   │   │       └── schema.yml
 │   │   ├── exposure
 │   │   │   ├── acteurs
@@ -645,8 +656,24 @@
 │   │   │   │       ├── exposure_sample_displayedpropositionservice.sql
 │   │   │   │       ├── exposure_sample_displayedpropositionservice_sous_categories.sql
 │   │   │   │       └── schema.yml
-│   │   │   └── geo
-│   │   │       ├── exposure_epci.sql
+│   │   │   ├── geo
+│   │   │   │   ├── exposure_epci.sql
+│   │   │   │   └── schema.yml
+│   │   │   └── stats
+│   │   │       ├── exposure_stats_distance_nb_acteur_by_action.sql
+│   │   │       ├── exposure_stats_nb_acteur_stacked_history.sql
+│   │   │       ├── exposure_stats_nb_acteur_stacked_rounded_history.sql
+│   │   │       ├── exposure_stats_nb_acteur_visible_history.sql
+│   │   │       ├── exposure_stats_nb_acteur_visible_with_siren_actif_history.sql
+│   │   │       ├── exposure_stats_nb_acteur_visible_with_siren_history.sql
+│   │   │       ├── exposure_stats_nb_acteur_visible_with_siret_actif_history.sql
+│   │   │       ├── exposure_stats_nb_acteur_visible_with_siret_history.sql
+│   │   │       ├── exposure_stats_rate_acteur_stacked_history.sql
+│   │   │       ├── exposure_stats_rate_acteur_stacked_rounded_history.sql
+│   │   │       ├── exposure_stats_rate_acteur_visible_with_siren_actif_history.sql
+│   │   │       ├── exposure_stats_rate_acteur_visible_with_siren_history.sql
+│   │   │       ├── exposure_stats_rate_acteur_visible_with_siret_actif_history.sql
+│   │   │       ├── exposure_stats_rate_acteur_visible_with_siret_history.sql
 │   │   │       └── schema.yml
 │   │   ├── intermediate
 │   │   │   ├── acteurs
@@ -664,8 +691,19 @@
 │   │   │   ├── ban
 │   │   │   │   ├── int_ban_adresses.sql
 │   │   │   │   └── int_ban_villes.sql
-│   │   │   └── geo
-│   │   │       ├── int_epci.sql
+│   │   │   ├── geo
+│   │   │   │   ├── int_epci.sql
+│   │   │   │   └── schema.yml
+│   │   │   └── stats
+│   │   │       ├── Untitled
+│   │   │       ├── int_acteur_visible_location.sql
+│   │   │       ├── int_acteur_visible_location_rounded.sql
+│   │   │       ├── int_acteur_with_siren.sql
+│   │   │       ├── int_acteur_with_siret.sql
+│   │   │       ├── int_ae_siren_in_acteur.sql
+│   │   │       ├── int_ae_siret_in_acteur.sql
+│   │   │       ├── int_stacked_location.sql
+│   │   │       ├── int_stacked_location_rounded.sql
 │   │   │       └── schema.yml
 │   │   ├── marts
 │   │   │   ├── acteurs
@@ -714,23 +752,31 @@
 │   │   │   │       ├── marts_sample_displayedpropositionservice.sql
 │   │   │   │       ├── marts_sample_displayedpropositionservice_sous_categories.sql
 │   │   │   │       └── schema.yml
-│   │   │   └── enrich
-│   │   │       ├── marts_enrich_acteurs_closed_candidates.sql
-│   │   │       ├── marts_enrich_acteurs_closed_replaced.sql
-│   │   │       ├── marts_enrich_acteurs_closed_suggest_not_replaced_etablissement.sql
-│   │   │       ├── marts_enrich_acteurs_closed_suggest_not_replaced_unite.sql
-│   │   │       ├── marts_enrich_acteurs_closed_suggest_replaced_other_siren.sql
-│   │   │       ├── marts_enrich_acteurs_closed_suggest_replaced_same_siren.sql
-│   │   │       ├── marts_enrich_acteurs_rgpd_suggest.sql
-│   │   │       ├── marts_enrich_acteurs_villes_candidates.sql
-│   │   │       ├── marts_enrich_acteurs_villes_suggest_new.sql
-│   │   │       ├── marts_enrich_acteurs_villes_suggest_typo.sql
+│   │   │   ├── enrich
+│   │   │   │   ├── marts_enrich_acteurs_closed_candidates.sql
+│   │   │   │   ├── marts_enrich_acteurs_closed_replaced.sql
+│   │   │   │   ├── marts_enrich_acteurs_closed_suggest_not_replaced_etablissement.sql
+│   │   │   │   ├── marts_enrich_acteurs_closed_suggest_not_replaced_unite.sql
+│   │   │   │   ├── marts_enrich_acteurs_closed_suggest_replaced_other_siren.sql
+│   │   │   │   ├── marts_enrich_acteurs_closed_suggest_replaced_same_siren.sql
+│   │   │   │   ├── marts_enrich_acteurs_rgpd_suggest.sql
+│   │   │   │   ├── marts_enrich_acteurs_villes_candidates.sql
+│   │   │   │   ├── marts_enrich_acteurs_villes_suggest_new.sql
+│   │   │   │   ├── marts_enrich_acteurs_villes_suggest_typo.sql
+│   │   │   │   └── schema.yml
+│   │   │   └── stats
+│   │   │       ├── marts_acteur_siren_actif.sql
+│   │   │       ├── marts_acteur_siret_actif.sql
+│   │   │       ├── marts_acteur_stacked.sql
+│   │   │       ├── marts_acteur_stacked_rounded.sql
+│   │   │       ├── marts_distance_first_action.sql
 │   │   │       └── schema.yml
 │   │   └── source
 │   │       ├── source_acteur.yml
 │   │       ├── source_ae_annuaire_entreprises.yml
 │   │       ├── source_ban_base_adresse_nationale.yml
-│   │       └── source_enrich.yml
+│   │       ├── source_enrich.yml
+│   │       └── source_stats.yml
 │   ├── package-lock.yml
 │   ├── packages.yml
 │   ├── profiles.yml
@@ -998,9 +1044,7 @@
 │   │       ├── create_assistant_permissions.py
 │   │       ├── create_wagtail_pages.py
 │   │       ├── import_data_ademe.py
-│   │       ├── import_infos_tris.py
-│   │       ├── merge_reusable_content.py
-│   │       └── migrate_familypage_to_produitpage.py
+│   │       └── import_infos_tris.py
 │   ├── middleware.py
 │   ├── migrations
 │   │   ├── 0001_initial_squashed_0036_delete_cmspage_alter_produit_id.py
@@ -1040,6 +1084,7 @@
 │   │   ├── 0068_alter_legacyintermediateproduitpagesynonymeexclusion_page_and_more.py
 │   │   ├── 0069_delete_suggestion.py
 │   │   ├── 0070_produitpage_est_famille.py
+│   │   ├── 0071_remove_produitpage_bonus_and_more.py
 │   │   └── __init__.py
 │   ├── models.py
 │   ├── signals.py
@@ -1080,6 +1125,7 @@
 │   │   ├── __init__.py
 │   │   └── commands
 │   │       ├── __init__.py
+│   │       ├── clean_description_if_equal_consignes_dacces.py
 │   │       ├── compare_model_table.py
 │   │       ├── copy_acteur_objects_to_revisionacteur.py
 │   │       ├── copy_acteur_services_to_acteur.py
@@ -1355,10 +1401,8 @@
 │       │   ├── matomo.html
 │       │   └── posthog_data_attributes.html
 │       ├── blocks
-│       │   ├── bonus.html
 │       │   ├── carte.html
-│       │   ├── liens.html
-│       │   └── reusable.html
+│       │   └── liens.html
 │       ├── components
 │       │   ├── README.md
 │       │   ├── accessibilite
@@ -1427,7 +1471,6 @@
 │       │   │   │   ├── home.html
 │       │   │   │   └── svg
 │       │   │   │       ├── bonus-icon.svg
-│       │   │   │       ├── hand-pinpoint.html
 │       │   │   │       ├── pin-background-fill.html
 │       │   │   │       └── pin-background.html
 │       │   │   ├── results.html
@@ -1623,6 +1666,8 @@
 │           ├── t_11_cacher_filtre_objet.html
 │           ├── t_12_default_filtre_objet.html
 │           ├── t_13_itineraire_button_carte_sur_mesure.html
+│           ├── t_14_carte_mal_centree.html
+│           ├── t_15_acteur_fiche_viewport.html
 │           ├── t_1_referrer_assistant.html
 │           ├── t_1_referrer_carte.html
 │           ├── t_2_carte_mode_liste_switch.html
@@ -1697,4 +1742,4 @@
 │   └── stats
 │       └── test_stats_utils.py
 └── uv.lock
-328 directories, 1371 files
+334 directories, 1410 files
