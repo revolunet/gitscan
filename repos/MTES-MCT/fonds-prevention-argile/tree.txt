@@ -123,9 +123,12 @@
 │       └── seed-fake-parcours
 │           ├── 00-init.sql
 │           ├── 01-users.sql
+│           ├── 01b-users-prospects.sql
 │           ├── 02-parcours.sql
 │           ├── 03-validations-amo.sql
 │           ├── 04-dossiers-ds.sql
+│           ├── 05-prospects-sans-amo.sql
+│           ├── 06-test-aucun-amo.sql
 │           ├── 99-verification.sql
 │           └── README.md
 ├── src
@@ -195,42 +198,47 @@
 │   │   │   │   └── page.tsx
 │   │   │   ├── components
 │   │   │   │   └── AmoGuard.tsx
-│   │   │   ├── espace-amo
-│   │   │   │   ├── accueil
+│   │   │   ├── espace-agent
+│   │   │   │   ├── demandes
+│   │   │   │   │   ├── [id]
+│   │   │   │   │   │   ├── README.md
+│   │   │   │   │   │   ├── components
+│   │   │   │   │   │   │   ├── ConfirmationReponseModal.tsx
+│   │   │   │   │   │   │   └── ReponseAccompagnement.tsx
+│   │   │   │   │   │   └── page.tsx
 │   │   │   │   │   ├── components
-│   │   │   │   │   │   ├── AmoAccueilHeader.tsx
-│   │   │   │   │   │   ├── AmoAccueilPanel.tsx
+│   │   │   │   │   │   ├── DemandesAccompagnementHeader.tsx
+│   │   │   │   │   │   ├── DemandesAccompagnementPanel.tsx
 │   │   │   │   │   │   ├── DemandesAccompagnementTable.tsx
 │   │   │   │   │   │   └── index.ts
 │   │   │   │   │   └── page.tsx
-│   │   │   │   ├── demande
-│   │   │   │   │   └── [id]
-│   │   │   │   │       ├── README.md
-│   │   │   │   │       ├── components
-│   │   │   │   │       │   ├── AFaireDemande.tsx
-│   │   │   │   │       │   ├── ConfirmationReponseModal.tsx
-│   │   │   │   │       │   ├── GagnezDuTemps.tsx
-│   │   │   │   │       │   └── ReponseAccompagnement.tsx
-│   │   │   │   │       └── page.tsx
-│   │   │   │   ├── dossier
-│   │   │   │   │   └── [id]
-│   │   │   │   │       ├── components
-│   │   │   │   │       │   ├── AFaireDossier.tsx
-│   │   │   │   │       │   ├── GagnezDuTempsTravaux.tsx
-│   │   │   │   │       │   ├── InfoDossierCallout.tsx
-│   │   │   │   │       │   ├── PiecesJustificatives.tsx
-│   │   │   │   │       │   └── index.ts
-│   │   │   │   │       └── page.tsx
 │   │   │   │   ├── dossiers
+│   │   │   │   │   ├── [id]
+│   │   │   │   │   │   ├── components
+│   │   │   │   │   │   │   ├── GagnezDuTempsTravaux.tsx
+│   │   │   │   │   │   │   ├── InfoDossierCallout.tsx
+│   │   │   │   │   │   │   ├── PiecesJustificatives.tsx
+│   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   └── page.tsx
 │   │   │   │   │   ├── components
-│   │   │   │   │   │   ├── AmoDossiersHeader.tsx
-│   │   │   │   │   │   ├── AmoDossiersPanel.tsx
+│   │   │   │   │   │   ├── DossiersSuivisHeader.tsx
+│   │   │   │   │   │   ├── DossiersSuivisPanel.tsx
 │   │   │   │   │   │   ├── DossiersSuivisTable.tsx
 │   │   │   │   │   │   └── index.ts
 │   │   │   │   │   └── page.tsx
 │   │   │   │   ├── layout.tsx
 │   │   │   │   ├── page.tsx
+│   │   │   │   ├── prospects
+│   │   │   │   │   ├── [id]
+│   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   ├── components
+│   │   │   │   │   │   ├── ProspectsHeader.tsx
+│   │   │   │   │   │   ├── ProspectsPanel.tsx
+│   │   │   │   │   │   └── ProspectsTable.tsx
+│   │   │   │   │   └── page.tsx
 │   │   │   │   ├── shared
+│   │   │   │   │   ├── AFaire.tsx
+│   │   │   │   │   ├── GagnezDuTemps.tsx
 │   │   │   │   │   ├── InfoDemandeur.tsx
 │   │   │   │   │   ├── InfoLogement.tsx
 │   │   │   │   │   ├── LocalisationLogement.tsx
@@ -668,9 +676,11 @@
 │   │   │   │           ├── matomo.service.ts
 │   │   │   │           ├── statistiques.service.test.ts
 │   │   │   │           └── statistiques.service.ts
-│   │   │   ├── espace-amo
-│   │   │   │   ├── accueil
+│   │   │   ├── espace-agent
+│   │   │   │   ├── demandes
 │   │   │   │   │   ├── actions
+│   │   │   │   │   │   ├── demande-detail.actions.test.ts
+│   │   │   │   │   │   ├── demande-detail.actions.ts
 │   │   │   │   │   │   ├── get-amo-accueil-data.action.ts
 │   │   │   │   │   │   ├── get-nombre-demandes-en-attente.action.ts
 │   │   │   │   │   │   └── index.ts
@@ -678,33 +688,13 @@
 │   │   │   │   │   │   ├── index.ts
 │   │   │   │   │   │   └── types
 │   │   │   │   │   │       ├── amo-accueil.types.ts
+│   │   │   │   │   │       ├── demande-detail.types.ts
 │   │   │   │   │   │       └── index.ts
 │   │   │   │   │   ├── index.ts
 │   │   │   │   │   └── services
 │   │   │   │   │       ├── amo-accueil.service.test.ts
 │   │   │   │   │       ├── amo-accueil.service.ts
-│   │   │   │   │       └── index.ts
-│   │   │   │   ├── demande
-│   │   │   │   │   ├── actions
-│   │   │   │   │   │   ├── demande-detail.actions.test.ts
-│   │   │   │   │   │   ├── demande-detail.actions.ts
-│   │   │   │   │   │   └── index.ts
-│   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── types
-│   │   │   │   │   │       ├── demande-detail.types.ts
-│   │   │   │   │   │       └── index.ts
-│   │   │   │   │   └── services
-│   │   │   │   │       └── demande-detail.service.ts
-│   │   │   │   ├── dossier
-│   │   │   │   │   ├── actions
-│   │   │   │   │   │   └── index.ts
-│   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── index.ts
-│   │   │   │   │   │   └── types
-│   │   │   │   │   │       ├── dossier-detail.types.ts
-│   │   │   │   │   │       └── index.ts
-│   │   │   │   │   └── services
-│   │   │   │   │       ├── dossier-detail.service.ts
+│   │   │   │   │       ├── demande-detail.service.ts
 │   │   │   │   │       └── index.ts
 │   │   │   │   ├── dossiers
 │   │   │   │   │   ├── actions
@@ -714,12 +704,24 @@
 │   │   │   │   │   │   ├── index.ts
 │   │   │   │   │   │   └── types
 │   │   │   │   │   │       ├── amo-dossiers.types.ts
+│   │   │   │   │   │       ├── dossier-detail.types.ts
 │   │   │   │   │   │       └── index.ts
 │   │   │   │   │   └── services
 │   │   │   │   │       ├── amo-dossiers.service.test.ts
 │   │   │   │   │       ├── amo-dossiers.service.ts
+│   │   │   │   │       ├── dossier-detail.service.ts
 │   │   │   │   │       └── index.ts
 │   │   │   │   ├── index.ts
+│   │   │   │   ├── prospects
+│   │   │   │   │   ├── actions
+│   │   │   │   │   │   └── get-prospects-list.actions.ts
+│   │   │   │   │   ├── domain
+│   │   │   │   │   │   └── types
+│   │   │   │   │   │       ├── index.ts
+│   │   │   │   │   │       └── prospect.types.ts
+│   │   │   │   │   └── services
+│   │   │   │   │       ├── prospect-detail.service.ts
+│   │   │   │   │       └── prospects-list.service.ts
 │   │   │   │   ├── shared
 │   │   │   │   │   ├── context
 │   │   │   │   │   │   └── AmoContext.tsx
@@ -1106,6 +1108,9 @@
 │   │   ├── components
 │   │   │   ├── AccesNonAutorise
 │   │   │   │   └── AccesNonAutorise.tsx
+│   │   │   ├── AgentNavigation
+│   │   │   │   ├── AgentNavigation.tsx
+│   │   │   │   └── index.ts
 │   │   │   ├── Alert
 │   │   │   │   └── Alert.tsx
 │   │   │   ├── ContactCard
@@ -1123,8 +1128,7 @@
 │   │   │   ├── Footer
 │   │   │   │   └── Footer.tsx
 │   │   │   ├── Header
-│   │   │   │   ├── Header.tsx
-│   │   │   │   └── RoleNavigation.tsx
+│   │   │   │   └── Header.tsx
 │   │   │   ├── Matomo
 │   │   │   │   ├── Matomo.tsx
 │   │   │   │   └── useMatomo.ts
@@ -1168,6 +1172,7 @@
 │   │   │   │   ├── 0014_clammy_doomsday.sql
 │   │   │   │   ├── 0015_melted_enchantress.sql
 │   │   │   │   ├── 0016_spooky_quentin_quire.sql
+│   │   │   │   ├── 0017_gifted_living_mummy.sql
 │   │   │   │   └── meta
 │   │   │   │       ├── 0000_snapshot.json
 │   │   │   │       ├── 0001_snapshot.json
@@ -1186,6 +1191,7 @@
 │   │   │   │       ├── 0014_snapshot.json
 │   │   │   │       ├── 0015_snapshot.json
 │   │   │   │       ├── 0016_snapshot.json
+│   │   │   │       ├── 0017_snapshot.json
 │   │   │   │       └── _journal.json
 │   │   │   ├── repositories
 │   │   │   │   ├── agent-permissions.repository.ts
@@ -1274,6 +1280,7 @@
 │   │   │   └── index.ts
 │   │   └── utils
 │   │       ├── async.utils.ts
+│   │       ├── date-diff.ts
 │   │       ├── date.test.ts
 │   │       ├── date.utils.ts
 │   │       ├── debug.utils.ts
@@ -1292,4 +1299,4 @@
 ├── vitest-env.d.ts
 ├── vitest.config.ts
 └── vitest.setup.ts
-391 directories, 903 files
+388 directories, 913 files
