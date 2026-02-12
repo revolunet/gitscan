@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.68.0](https://github.com/SocialGouv/cdtn-admin/compare/v2.67.3...v2.68.0) (2026-02-10)
+
+### Features
+
+- **alert:** ajout du suivi des NOTA dans les kali articles ([#1642](https://github.com/SocialGouv/cdtn-admin/issues/1642)) ([7d4f802](https://github.com/SocialGouv/cdtn-admin/commit/7d4f802664ba246734807bdc153e828434ccb469))
+
+## [2.67.3](https://github.com/SocialGouv/cdtn-admin/compare/v2.67.2...v2.67.3) (2026-02-10)
+
+### Bug Fixes
+
+- **contribution:** mauvais type sur le publish d'une contribution ([1d39696](https://github.com/SocialGouv/cdtn-admin/commit/1d396960d95b957b966261f42f551015b13c5276))
+
+## [2.67.2](https://github.com/SocialGouv/cdtn-admin/compare/v2.67.1...v2.67.2) (2026-02-10)
+
+### Bug Fixes
+
+- **infographic:** impossible de mettre à jour le fichier SVG ou PDF ([#1639](https://github.com/SocialGouv/cdtn-admin/issues/1639)) ([a7ac635](https://github.com/SocialGouv/cdtn-admin/commit/a7ac635f6323170869a2b08dffdbd319f5e14efe))
+
+## [2.67.1](https://github.com/SocialGouv/cdtn-admin/compare/v2.67.0...v2.67.1) (2026-02-09)
+
+### Bug Fixes
+
+- **agreement:** erreur lors de la publication d'une convention collective ([#1638](https://github.com/SocialGouv/cdtn-admin/issues/1638)) ([8b9be00](https://github.com/SocialGouv/cdtn-admin/commit/8b9be001f54de7f19f39e659972eb816ff8281bd))
+- **docs:** mise en place du test des widgets dans le projet `code-du-travail-numerique` uniquement ([#1636](https://github.com/SocialGouv/cdtn-admin/issues/1636)) ([0a5ea3b](https://github.com/SocialGouv/cdtn-admin/commit/0a5ea3b6e8d57bc5624d7c76c3b980e40073cf7c))
+
+# [2.67.0](https://github.com/SocialGouv/cdtn-admin/compare/v2.66.6...v2.67.0) (2026-02-05)
+
+### Features
+
+- **themes:** ajout de nouvelles icones ([#1635](https://github.com/SocialGouv/cdtn-admin/issues/1635)) ([ad04a76](https://github.com/SocialGouv/cdtn-admin/commit/ad04a76a881cc9c175bcbe21875c06867ee97fe3))
+
 ## [2.66.6](https://github.com/SocialGouv/cdtn-admin/compare/v2.66.5...v2.66.6) (2026-01-28)
 
 ### Bug Fixes
