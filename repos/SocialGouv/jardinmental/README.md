@@ -45,7 +45,7 @@ See [app/README.md](./app/README.md) for detailed instructions.
 
 ### Run the API
 
-See [api/README-TypeScript.md](./api/README-TypeScript.md) for detailed instructions.
+See [api/README.md](./api/README.md) for detailed instructions.
 
 ---
 
@@ -54,7 +54,7 @@ See [api/README-TypeScript.md](./api/README-TypeScript.md) for detailed instruct
 Build, release, and publishing instructions are specific to each component:
 
 - For the mobile app, see the "Release/Publish" section in [app/README.md](./app/README.md)
-- For the API, see [api/README-TypeScript.md](./api/README-TypeScript.md)
+- For the API, see [api/README.md](./api/README.md)
 
 ---
 
@@ -76,7 +76,7 @@ This will send a test error to Sentry with proper context and tags. Only enable 
 ## Useful Links
 
 - [app/README.md](./app/README.md) — Mobile app documentation
-- [api/README-TypeScript.md](./api/README-TypeScript.md) — API documentation
+- [api/README.md](./api/README.md) — API documentation
 
 ---
 
@@ -174,9 +174,42 @@ Edit `app/src/scenes/tools/toolsData.tsx` and add a new object to the `TOOLS_DAT
   themes: ["Theme1", "Theme2"],
   audience: ["child", "parent", "student"],
   source: "Source name",
-  // Optional fields: url, innerPath, etc.
+  // Optional fields: url, innerPath, embed, video
 }
 ```
+
+##### Optional Properties for Navigation and Content
+
+- **`url`** (string): External URL to the resource (website, PDF, YouTube video, online questionnaire, etc.)
+  ```js
+  url: "https://www.example.com/resource.pdf"
+  ```
+
+- **`innerPath`** (object): Navigate to an **internal** feature within the Jardin Mental app
+  - `text`: Action button text
+  - `path`: Navigation path in the app
+  ```js
+  innerPath: {
+    text: "Créer mon plan de crise",
+    path: "crisis-plan"
+  }
+  ```
+
+- **`embed`** (string): Identifier for a special embed type integrated in the app
+  ```js
+  embed: "breath-exercice"
+  ```
+
+- **`video`** (string): Identifier for a locally hosted video or specific video integration
+  ```js
+  video: "coherence-cardiaque-video"
+  ```
+
+**Usage logic:**
+- Use **`innerPath`** to open an internal app feature (e.g., crisis plan creator)
+- Use **`url`** to open an external link (browser or webview)
+- Use **`embed`/`video`** for special multimedia content integrated in the app
+- These properties can be combined (e.g., a tool can have both `url` and `embed`)
 
 ---
 
