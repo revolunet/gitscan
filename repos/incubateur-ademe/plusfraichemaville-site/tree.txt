@@ -1,4 +1,6 @@
 .
+├── .claude
+│   └── settings.local.json
 ├── .env.dist
 ├── .github
 │   ├── dependabot.yml
@@ -8,6 +10,7 @@
 ├── .npmrc
 ├── .prettierignore
 ├── .prettierrc.json
+├── CLAUDE.md
 ├── LICENSE
 ├── Procfile
 ├── README.md
@@ -246,6 +249,10 @@
 │   │   ├── 20251222075021_created_at_and_updated_at_columns_for_estimation_tables
 │   │   │   └── migration.sql
 │   │   ├── 20260107071451_add_unicity_on_estimation_fiche_solution_and_materiau
+│   │   │   └── migration.sql
+│   │   ├── 20260203141102_add_user_siren_field
+│   │   │   └── migration.sql
+│   │   ├── 20260208165236_delete_fiches_solutions_id_column_in_estimation_table
 │   │   │   └── migration.sql
 │   │   └── migration_lock.toml
 │   └── schema.prisma
@@ -520,20 +527,23 @@
 │   ├── README.md
 │   ├── analytics
 │   │   └── get-matomo-territoire-search.tsx
+│   ├── archive
+│   │   ├── fill-adresse-all-infos-field.ts
+│   │   ├── fill-climadiag-tables.tsx
+│   │   ├── fill-lcz-infos.tsx
+│   │   ├── fill-user-etablissement-field.tsx
+│   │   ├── migrate-estimation-materiaux.ts
+│   │   └── update-climadiag-population.tsx
 │   ├── connect-sync.ts
 │   ├── csm-mail-batch.ts
-│   ├── fill-adresse-all-infos-field.ts
-│   ├── fill-climadiag-tables.tsx
-│   ├── fill-lcz-infos.tsx
-│   ├── fill-user-etablissement-field.tsx
-│   ├── hubspot-sync.ts
-│   ├── migrate-estimation-materiaux.ts
-│   └── update-climadiag-population.tsx
+│   ├── fill-user-siren-field.tsx
+│   └── hubspot-sync.ts
 ├── sentry.client.config.ts
 ├── sentry.edge.config.ts
 ├── sentry.server.config.ts
 ├── src
 │   ├── actions
+│   │   ├── CLAUDE.md
 │   │   ├── actions-types.ts
 │   │   ├── collectivites
 │   │   │   └── get-or-create-collectivite-from-form.ts
@@ -542,9 +552,11 @@
 │   │   │   └── upsert-diagnostic-simulation-action.ts
 │   │   ├── estimation
 │   │   │   ├── add-aide-in-estimation-action.ts
+│   │   │   ├── add-fiches-solutions-to-estimation-action.ts
 │   │   │   ├── create-estimation-action.ts
 │   │   │   ├── delete-aide-in-estimation-action.ts
 │   │   │   ├── delete-estimation-action.ts
+│   │   │   ├── delete-fiche-solution-in-estimation-action.ts
 │   │   │   └── update-estimation-materiaux-action.ts
 │   │   ├── projets
 │   │   │   ├── delete-projet-action.ts
@@ -621,6 +633,10 @@
 │   │   │   │   │   │       └── selection
 │   │   │   │   │   │           └── page.tsx
 │   │   │   │   │   ├── estimation
+│   │   │   │   │   │   ├── [estimationId]
+│   │   │   │   │   │   │   └── ajouter-solutions
+│   │   │   │   │   │   │       ├── add-fiches-solution-estimation-page.tsx
+│   │   │   │   │   │   │       └── page.tsx
 │   │   │   │   │   │   ├── creation
 │   │   │   │   │   │   │   ├── CreateEstimationPageClient.tsx
 │   │   │   │   │   │   │   └── page.tsx
@@ -730,7 +746,7 @@
 │   │   │   │   └── route.ts
 │   │   │   ├── get-aides-territoires-aide-by-aide-id
 │   │   │   │   └── route.ts
-│   │   │   ├── get-available-projects-for-collectivite
+│   │   │   ├── get-available-projets-for-user
 │   │   │   │   └── route.ts
 │   │   │   ├── get-climadiag-info-for-user-projects
 │   │   │   │   └── route.ts
@@ -866,7 +882,7 @@
 │   │   │   └── types.ts
 │   │   ├── common
 │   │   │   ├── CmsRichText.tsx
-│   │   │   ├── CollectiviteInputFormField.tsx
+│   │   │   ├── CommuneInputFormField.tsx
 │   │   │   ├── CustomAccordion.tsx
 │   │   │   ├── CustomDSFRQuote.tsx
 │   │   │   ├── CustomTabButton.tsx
@@ -1004,6 +1020,8 @@
 │   │   │   ├── estimation-card-price-info.tsx
 │   │   │   ├── estimation-delete-modal.tsx
 │   │   │   ├── estimation-overview-card.tsx
+│   │   │   ├── fiche-solution-delete-modal.tsx
+│   │   │   ├── fiche-solution-small-card-with-actions.tsx
 │   │   │   └── materiaux-modal
 │   │   │       ├── estimation-materiaux-fiche-solution-recap.tsx
 │   │   │       ├── estimation-materiaux-modal-container.tsx
@@ -1114,7 +1132,7 @@
 │   │   │   └── NavigationMenu.tsx
 │   │   ├── liste-projets
 │   │   │   ├── available-projets-for-collectivite-button.tsx
-│   │   │   ├── available-projets-for-collectivite-modal.tsx
+│   │   │   ├── available-projets-for-user-modal.tsx
 │   │   │   ├── empty.tsx
 │   │   │   ├── header.tsx
 │   │   │   ├── helpers.ts
@@ -1213,13 +1231,14 @@
 │   │       ├── webinaires-helpers.ts
 │   │       └── webinaires-list.tsx
 │   ├── forms
-│   │   ├── collectivite
+│   │   ├── commune
 │   │   │   └── collectivite-form-schema.ts
 │   │   ├── contact
 │   │   │   └── contact-iframe.tsx
 │   │   ├── estimation
 │   │   │   ├── EstimationFormSchema.ts
 │   │   │   ├── EstimationInfoForm.tsx
+│   │   │   ├── add-solutions-to-estimation-form.tsx
 │   │   │   ├── editable-price-field.tsx
 │   │   │   ├── estimation-materiau-field-unique.tsx
 │   │   │   ├── estimation-materiau-field.tsx
@@ -1274,6 +1293,7 @@
 │   │   ├── aideDecisionSortFilter.ts
 │   │   ├── baisseTemperatureFicheSolution.tsx
 │   │   ├── canalAcquisition.ts
+│   │   ├── categories-juridiques.ts
 │   │   ├── common.tsx
 │   │   ├── cout
 │   │   │   ├── cout-common.tsx
@@ -1458,4 +1478,4 @@
 │       └── nextAuth.d.ts
 ├── tailwind.config.js
 └── tsconfig.json
-361 directories, 1099 files
+367 directories, 1113 files
