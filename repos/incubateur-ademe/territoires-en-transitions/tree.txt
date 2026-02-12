@@ -1,5 +1,8 @@
 .
 ├── .actrc
+├── .cursor
+│   └── rules
+│       └── comply-adr.mdc
 ├── .earthlyignore
 ├── .editorconfig
 ├── .github
@@ -205,8 +208,6 @@
 │   │   │   │   │   │   │   │   │   │   └── page.tsx
 │   │   │   │   │   │   │   │   │   ├── documents
 │   │   │   │   │   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   │   │   │   │   ├── etapes
-│   │   │   │   │   │   │   │   │   │   └── page.tsx
 │   │   │   │   │   │   │   │   │   ├── indicateurs
 │   │   │   │   │   │   │   │   │   │   └── page.tsx
 │   │   │   │   │   │   │   │   │   ├── layout.tsx
@@ -216,7 +217,9 @@
 │   │   │   │   │   │   │   │   │   │   └── page.tsx
 │   │   │   │   │   │   │   │   │   ├── notes
 │   │   │   │   │   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   │   │   │   │   └── services
+│   │   │   │   │   │   │   │   │   ├── services
+│   │   │   │   │   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   │   │   │   │   └── sous-actions
 │   │   │   │   │   │   │   │   │       └── page.tsx
 │   │   │   │   │   │   │   │   ├── dans-plan
 │   │   │   │   │   │   │   │   │   └── page.tsx
@@ -419,7 +422,6 @@
 │   │   │   │   │   │   │   │   │   │   └── page.tsx
 │   │   │   │   │   │   │   │   │   ├── _components
 │   │   │   │   │   │   │   │   │   │   ├── fiches-dont-je-suis-le-pilote.modal.tsx
-│   │   │   │   │   │   │   │   │   │   ├── fiches-recemment-modifiees.modal.tsx
 │   │   │   │   │   │   │   │   │   │   ├── filtered-fiche-by-module.tsx
 │   │   │   │   │   │   │   │   │   │   ├── get-module-edit-actions.ts
 │   │   │   │   │   │   │   │   │   │   ├── indicateurs-dont-je-suis-le-pilote.modal.tsx
@@ -428,7 +430,8 @@
 │   │   │   │   │   │   │   │   │   │   ├── mesures-dont-je-suis-le-pilote.module.tsx
 │   │   │   │   │   │   │   │   │   │   ├── metrics.tsx
 │   │   │   │   │   │   │   │   │   │   ├── modules.tsx
-│   │   │   │   │   │   │   │   │   │   └── personnel.page.tsx
+│   │   │   │   │   │   │   │   │   │   ├── personnel.page.tsx
+│   │   │   │   │   │   │   │   │   │   └── sous-actions-dont-je-suis-le-pilote.module.tsx
 │   │   │   │   │   │   │   │   │   ├── _hooks
 │   │   │   │   │   │   │   │   │   │   ├── use-tdb-perso-fetch-metrics.ts
 │   │   │   │   │   │   │   │   │   │   ├── use-tdb-perso-fetch-modules.ts
@@ -551,7 +554,7 @@
 │   │   ├── instrumentation-client.ts
 │   │   ├── instrumentation.ts
 │   │   ├── next-env.d.ts
-│   │   ├── next.config.mjs
+│   │   ├── next.config.ts
 │   │   ├── package.json
 │   │   ├── postcss.config.js
 │   │   ├── proxy.ts
@@ -590,7 +593,6 @@
 │   │   ├── sentry.server.config.ts
 │   │   ├── src
 │   │   │   ├── app
-│   │   │   │   ├── E2E.tsx
 │   │   │   │   ├── labels.ts
 │   │   │   │   ├── pages
 │   │   │   │   │   ├── Auth
@@ -1259,6 +1261,8 @@
 │   │   │   │   │   │   │   ├── services-widget
 │   │   │   │   │   │   │   │   └── ServicesWidgetTab.tsx
 │   │   │   │   │   │   │   ├── side-panel.config.tsx
+│   │   │   │   │   │   │   ├── sous-actions
+│   │   │   │   │   │   │   │   └── sous-actions.view.tsx
 │   │   │   │   │   │   │   ├── type.ts
 │   │   │   │   │   │   │   └── use-fiche-side-panel.ts
 │   │   │   │   │   │   ├── context
@@ -1471,7 +1475,6 @@
 │   │   │   │   │   │   │   │   ├── axe-title.input.tsx
 │   │   │   │   │   │   │   │   ├── axe.context.tsx
 │   │   │   │   │   │   │   │   └── axe.tsx
-│   │   │   │   │   │   │   ├── draggable-fiche.card.tsx
 │   │   │   │   │   │   │   ├── fiches.list.tsx
 │   │   │   │   │   │   │   ├── get-children-axe-ids.test.ts
 │   │   │   │   │   │   │   ├── get-children-axe-ids.ts
@@ -1490,16 +1493,31 @@
 │   │   │   │   │   ├── upsert-plan
 │   │   │   │   │   │   └── upsert-plan.form.tsx
 │   │   │   │   │   └── utils.ts
-│   │   │   │   └── reports
-│   │   │   │       └── generate-plan-report-pptx
-│   │   │   │           ├── generate-report-pending.tsx
-│   │   │   │           ├── generate-report.button.tsx
-│   │   │   │           ├── generate-report.form.tsx
-│   │   │   │           ├── generate-report.modal.tsx
-│   │   │   │           ├── plan-fiche-selector.tsx
-│   │   │   │           ├── use-generate-pptx-plan-report-enabled.ts
-│   │   │   │           ├── use-generate-report.ts
-│   │   │   │           └── use-is-pending-report.ts
+│   │   │   │   ├── reports
+│   │   │   │   │   └── generate-plan-report-pptx
+│   │   │   │   │       ├── generate-report-pending.tsx
+│   │   │   │   │       ├── generate-report.button.tsx
+│   │   │   │   │       ├── generate-report.form.tsx
+│   │   │   │   │       ├── generate-report.modal.tsx
+│   │   │   │   │       ├── plan-fiche-selector.tsx
+│   │   │   │   │       ├── use-generate-pptx-plan-report-enabled.ts
+│   │   │   │   │       ├── use-generate-report.ts
+│   │   │   │   │       └── use-is-pending-report.ts
+│   │   │   │   └── sous-actions
+│   │   │   │       ├── data
+│   │   │   │       │   ├── use-create-sous-action.ts
+│   │   │   │       │   └── use-update-sous-action.ts
+│   │   │   │       ├── delete-sous-action.modal.tsx
+│   │   │   │       └── list
+│   │   │   │           └── table
+│   │   │   │               ├── sous-action.action-parente.cell.tsx
+│   │   │   │               ├── sous-action.actions.cell.tsx
+│   │   │   │               ├── sous-action.date.cell.tsx
+│   │   │   │               ├── sous-action.description.cell.tsx
+│   │   │   │               ├── sous-action.pilotes.cell.tsx
+│   │   │   │               ├── sous-action.statut.cell.tsx
+│   │   │   │               ├── sous-action.table.tsx
+│   │   │   │               └── sous-action.title.cell.tsx
 │   │   │   ├── referentiels
 │   │   │   │   ├── AidePriorisation
 │   │   │   │   │   ├── Cells.tsx
@@ -1945,8 +1963,6 @@
 │   │   │   │   │   │   └── index.ts
 │   │   │   │   │   ├── styles.ts
 │   │   │   │   │   └── utils.ts
-│   │   │   │   ├── externalLink
-│   │   │   │   │   └── ExternalLink.tsx
 │   │   │   │   ├── icons
 │   │   │   │   │   ├── IconDoubleCheck.tsx
 │   │   │   │   │   ├── IconDrag.tsx
@@ -2020,16 +2036,15 @@
 │   │   │   │       │   ├── Textarea.tsx
 │   │   │   │       │   ├── TextareaControlled.tsx
 │   │   │   │       │   └── useAutoSizeTextarea.ts
-│   │   │   │       ├── select
-│   │   │   │       │   ├── MultiSelectDropdown.stories.tsx
-│   │   │   │       │   ├── MultiSelectDropdown.tsx
-│   │   │   │       │   ├── MultiSelectFilter.stories.tsx
-│   │   │   │       │   ├── MultiSelectFilter.tsx
-│   │   │   │       │   ├── Options.tsx
-│   │   │   │       │   ├── SelectDropdown.stories.tsx
-│   │   │   │       │   ├── SelectDropdown.tsx
-│   │   │   │       │   └── commons.tsx
-│   │   │   │       └── useDebouncedInput.ts
+│   │   │   │       └── select
+│   │   │   │           ├── MultiSelectDropdown.stories.tsx
+│   │   │   │           ├── MultiSelectDropdown.tsx
+│   │   │   │           ├── MultiSelectFilter.stories.tsx
+│   │   │   │           ├── MultiSelectFilter.tsx
+│   │   │   │           ├── Options.tsx
+│   │   │   │           ├── SelectDropdown.stories.tsx
+│   │   │   │           ├── SelectDropdown.tsx
+│   │   │   │           └── commons.tsx
 │   │   │   ├── users
 │   │   │   │   ├── BadgeNiveauAcces.tsx
 │   │   │   │   ├── authorizations
@@ -2078,7 +2093,7 @@
 │   │   │       ├── useWindowSize.ts
 │   │   │       └── waitForMarkup.ts
 │   │   ├── svgr.d.ts
-│   │   ├── tailwind.config.js
+│   │   ├── tailwind.config.ts
 │   │   ├── tsconfig.app.json
 │   │   ├── tsconfig.json
 │   │   ├── tsconfig.project.json
@@ -2225,27 +2240,31 @@
 │   │   │   │   │       ├── discussion.router.ts
 │   │   │   │   │       └── discussion.schemas.ts
 │   │   │   │   ├── documents
-│   │   │   │   │   ├── create-document
-│   │   │   │   │   │   ├── create-document.errors.ts
-│   │   │   │   │   │   ├── create-document.router.ts
-│   │   │   │   │   │   └── create-document.service.ts
+│   │   │   │   │   ├── document.controller.e2e-spec.ts
 │   │   │   │   │   ├── document.controller.ts
 │   │   │   │   │   ├── document.service.ts
 │   │   │   │   │   ├── documents.router.ts
-│   │   │   │   │   └── models
-│   │   │   │   │       ├── annexe.table.ts
-│   │   │   │   │       ├── bibliotheque-fichier.table.ts
-│   │   │   │   │       ├── document-api.constants.ts
-│   │   │   │   │       ├── document-lien.dto.ts
-│   │   │   │   │       ├── document.basetable.ts
-│   │   │   │   │       ├── preuve-action.table.ts
-│   │   │   │   │       ├── preuve-audit.table.ts
-│   │   │   │   │       ├── preuve-complementaire.table.ts
-│   │   │   │   │       ├── preuve-labellisation.table.ts
-│   │   │   │   │       ├── preuve-rapport.table.ts
-│   │   │   │   │       ├── preuve-reglementaire-definition.table.ts
-│   │   │   │   │       ├── preuve-reglementaire.table.ts
-│   │   │   │   │       └── storage-object.table.ts
+│   │   │   │   │   ├── documents.test-fixture.ts
+│   │   │   │   │   ├── models
+│   │   │   │   │   │   ├── annexe.table.ts
+│   │   │   │   │   │   ├── bibliotheque-fichier.table.ts
+│   │   │   │   │   │   ├── document-api.constants.ts
+│   │   │   │   │   │   ├── document-lien.dto.ts
+│   │   │   │   │   │   ├── document.basetable.ts
+│   │   │   │   │   │   ├── preuve-action.table.ts
+│   │   │   │   │   │   ├── preuve-audit.table.ts
+│   │   │   │   │   │   ├── preuve-complementaire.table.ts
+│   │   │   │   │   │   ├── preuve-labellisation.table.ts
+│   │   │   │   │   │   ├── preuve-rapport.table.ts
+│   │   │   │   │   │   ├── preuve-reglementaire-definition.table.ts
+│   │   │   │   │   │   ├── preuve-reglementaire.table.ts
+│   │   │   │   │   │   └── storage-object.table.ts
+│   │   │   │   │   ├── samples
+│   │   │   │   │   │   └── document_test.pdf
+│   │   │   │   │   └── store-document
+│   │   │   │   │       ├── store-document.errors.ts
+│   │   │   │   │       ├── store-document.router.ts
+│   │   │   │   │       └── store-document.service.ts
 │   │   │   │   ├── handle-categories
 │   │   │   │   │   ├── list-categories.router.e2e-spec.ts
 │   │   │   │   │   ├── list-categories.router.ts
@@ -2619,20 +2638,6 @@
 │   │   │   │   │   ├── fiches.module.ts
 │   │   │   │   │   ├── fiches.router.ts
 │   │   │   │   │   ├── fiches.test-fixture.ts
-│   │   │   │   │   ├── import
-│   │   │   │   │   │   ├── import-plan-clean.service.ts
-│   │   │   │   │   │   ├── import-plan-fetch.service.ts
-│   │   │   │   │   │   ├── import-plan-save.service.ts
-│   │   │   │   │   │   ├── import-plan.dto.ts
-│   │   │   │   │   │   ├── import-plan.module.ts
-│   │   │   │   │   │   ├── import-plan.request.ts
-│   │   │   │   │   │   ├── import-plan.router.e2e-spec.ts
-│   │   │   │   │   │   ├── import-plan.router.ts
-│   │   │   │   │   │   ├── import-plan.service.ts
-│   │   │   │   │   │   └── resources
-│   │   │   │   │   │       ├── Plan_erreur_colonnes.xlsx
-│   │   │   │   │   │       ├── Plan_erreur_montant.xlsx
-│   │   │   │   │   │       └── nouveau-plan-valide.xlsx
 │   │   │   │   │   ├── list-fiches
 │   │   │   │   │   │   ├── completion.ts
 │   │   │   │   │   │   ├── list-fiches-belonging-to-plans.repository.ts
@@ -2683,7 +2688,7 @@
 │   │   │   │   │   │       └── plan-referent.table.ts
 │   │   │   │   │   └── update-fiche
 │   │   │   │   │       ├── update-fiche.errors.ts
-│   │   │   │   │       ├── update-fiche.request.ts
+│   │   │   │   │       ├── update-fiche.input.ts
 │   │   │   │   │       ├── update-fiche.result.ts
 │   │   │   │   │       ├── update-fiche.router.e2e-spec.ts
 │   │   │   │   │       ├── update-fiche.router.ts
@@ -2710,6 +2715,12 @@
 │   │   │   │   │   ├── compute-budget
 │   │   │   │   │   │   ├── compute-budget.rules.spec.ts
 │   │   │   │   │   │   └── compute-budget.rules.ts
+│   │   │   │   │   ├── create-plan-aggregate
+│   │   │   │   │   │   ├── create-plan-aggregate.errors.ts
+│   │   │   │   │   │   ├── create-plan-aggregate.rule.ts
+│   │   │   │   │   │   ├── create-plan-aggregate.service.spec.ts
+│   │   │   │   │   │   ├── create-plan-aggregate.service.ts
+│   │   │   │   │   │   └── create-plan-aggregate.types.ts
 │   │   │   │   │   ├── delete-plan
 │   │   │   │   │   │   ├── delete-plan.errors.ts
 │   │   │   │   │   │   ├── delete-plan.input.ts
@@ -2732,6 +2743,47 @@
 │   │   │   │   │   │   ├── get-plan-completion.router.e2e-spec.ts
 │   │   │   │   │   │   ├── get-plan-completion.router.ts
 │   │   │   │   │   │   └── get-plan-completion.service.ts
+│   │   │   │   │   ├── import-plan-aggregate
+│   │   │   │   │   │   ├── __fixtures__
+│   │   │   │   │   │   │   ├── complex_plan.xlsx
+│   │   │   │   │   │   │   ├── nouveau-plan-valide.xlsx
+│   │   │   │   │   │   │   ├── one_fiche_plan.xlsx
+│   │   │   │   │   │   │   ├── plan_budget_issue.xlsx
+│   │   │   │   │   │   │   ├── plan_column_order_issue.xlsx
+│   │   │   │   │   │   │   ├── plan_sans_axes.xlsx
+│   │   │   │   │   │   │   └── plan_with_fiche_with_and_without_axe.xlsx
+│   │   │   │   │   │   ├── adapters
+│   │   │   │   │   │   │   ├── import-fiche-input-to-update-fiche-input.spec.ts
+│   │   │   │   │   │   │   ├── import-fiche-input-to-update-fiche-input.ts
+│   │   │   │   │   │   │   └── import-plan-input-to-create-plan-aggregate-input.ts
+│   │   │   │   │   │   ├── factories
+│   │   │   │   │   │   │   ├── create-plan-import-input.factory.spec.ts
+│   │   │   │   │   │   │   └── create-plan-import-input.factory.ts
+│   │   │   │   │   │   ├── import-plan.application-service.ts
+│   │   │   │   │   │   ├── import-plan.input.ts
+│   │   │   │   │   │   ├── import-plan.module.ts
+│   │   │   │   │   │   ├── import-plan.router.e2e-spec.ts
+│   │   │   │   │   │   ├── import-plan.router.ts
+│   │   │   │   │   │   ├── import.errors.ts
+│   │   │   │   │   │   ├── parsers
+│   │   │   │   │   │   │   ├── excel-parser.spec.ts
+│   │   │   │   │   │   │   └── excel-parser.ts
+│   │   │   │   │   │   ├── resolvers
+│   │   │   │   │   │   │   ├── personne.resolver.ts
+│   │   │   │   │   │   │   ├── resolve-entity.service.ts
+│   │   │   │   │   │   │   ├── tag.resolver.spec.ts
+│   │   │   │   │   │   │   └── tag.resolver.ts
+│   │   │   │   │   │   ├── schemas
+│   │   │   │   │   │   │   └── import-fiche.input.ts
+│   │   │   │   │   │   ├── utils
+│   │   │   │   │   │   │   ├── deduplication.utils.ts
+│   │   │   │   │   │   │   ├── rich-text.utils.spec.ts
+│   │   │   │   │   │   │   └── rich-text.utils.ts
+│   │   │   │   │   │   └── validators
+│   │   │   │   │   │       ├── fiche.validator.spec.ts
+│   │   │   │   │   │       ├── fiche.validator.ts
+│   │   │   │   │   │       ├── plan.rule.spec.ts
+│   │   │   │   │   │       └── plan.rule.ts
 │   │   │   │   │   ├── list-plans
 │   │   │   │   │   │   ├── list-plans.errors.ts
 │   │   │   │   │   │   ├── list-plans.input.ts
@@ -2740,6 +2792,7 @@
 │   │   │   │   │   │   ├── list-plans.router.e2e-spec.ts
 │   │   │   │   │   │   ├── list-plans.router.ts
 │   │   │   │   │   │   └── list-plans.service.ts
+│   │   │   │   │   ├── plans.errors.ts
 │   │   │   │   │   ├── plans.module.ts
 │   │   │   │   │   ├── plans.router.ts
 │   │   │   │   │   ├── progress
@@ -2844,6 +2897,12 @@
 │   │   │   │   │   ├── audit.table.ts
 │   │   │   │   │   ├── auditeur.table.ts
 │   │   │   │   │   ├── cot.table.ts
+│   │   │   │   │   ├── create-preuve
+│   │   │   │   │   │   ├── create-labellisation-preuve.errors.ts
+│   │   │   │   │   │   ├── create-labellisation-preuve.input.ts
+│   │   │   │   │   │   ├── create-preuve.router.ts
+│   │   │   │   │   │   ├── create-preuve.service.ts
+│   │   │   │   │   │   └── create-preuve.test-fixture.ts
 │   │   │   │   │   ├── etoile-action-condition-definition.table.ts
 │   │   │   │   │   ├── etoile-definition.table.ts
 │   │   │   │   │   ├── get-audit-en-cours
@@ -2867,8 +2926,20 @@
 │   │   │   │   │   ├── list-labellisations.controller.spec.ts
 │   │   │   │   │   ├── list-labellisations.controller.ts
 │   │   │   │   │   ├── list-labellisations.service.ts
+│   │   │   │   │   ├── liste-preuves
+│   │   │   │   │   │   ├── liste-preuves.input.ts
+│   │   │   │   │   │   ├── liste-preuves.router.ts
+│   │   │   │   │   │   └── liste-preuves.service.ts
 │   │   │   │   │   ├── post-audit-scores.table.ts
 │   │   │   │   │   ├── pre-audit-scores.table.ts
+│   │   │   │   │   ├── request-labellisation
+│   │   │   │   │   │   ├── request-labellisation.errors.ts
+│   │   │   │   │   │   ├── request-labellisation.input.ts
+│   │   │   │   │   │   ├── request-labellisation.output.ts
+│   │   │   │   │   │   ├── request-labellisation.router.e2e-spec.ts
+│   │   │   │   │   │   ├── request-labellisation.router.ts
+│   │   │   │   │   │   ├── request-labellisation.rules.spec.ts
+│   │   │   │   │   │   └── request-labellisation.service.ts
 │   │   │   │   │   ├── start-audit
 │   │   │   │   │   │   ├── start-audit.router.e2e-spec.ts
 │   │   │   │   │   │   ├── start-audit.router.ts
@@ -2921,6 +2992,7 @@
 │   │   │   │   ├── referentiel-id.column.ts
 │   │   │   │   ├── referentiels.module.ts
 │   │   │   │   ├── referentiels.router.ts
+│   │   │   │   ├── referentiels.test-fixture.ts
 │   │   │   │   ├── score-indicatif
 │   │   │   │   │   ├── format-score-indicatif.utils.ts
 │   │   │   │   │   ├── get-score-indicatif.request.ts
@@ -2947,6 +3019,9 @@
 │   │   │   │   │   ├── snapshots.utils.ts
 │   │   │   │   │   └── upsert-snapshot.input.ts
 │   │   │   │   └── update-action-statut
+│   │   │   │       ├── can-update-action-statut.rules.spec.ts
+│   │   │   │       ├── get-action-status-create-to-complete-referentiel.spec.ts
+│   │   │   │       ├── referentiel-action-statut.test-fixture.ts
 │   │   │   │       ├── update-action-statut.router.e2e-spec.ts
 │   │   │   │       ├── update-action-statut.router.ts
 │   │   │   │       └── update-action-statut.service.ts
@@ -3114,6 +3189,7 @@
 │   │   │       ├── mattermost-notification.service.ts
 │   │   │       ├── nest
 │   │   │       │   ├── all-exceptions.filter.ts
+│   │   │       │   ├── controller-error-handler.ts
 │   │   │       │   ├── custom-zod-validation.pipe.ts
 │   │   │       │   ├── errors.utils.ts
 │   │   │       │   ├── http-error.response.ts
@@ -3147,6 +3223,9 @@
 │   │   │       │   ├── posthog-event-tracker.ts
 │   │   │       │   ├── tracking.module.ts
 │   │   │       │   └── tracking.service.ts
+│   │   │       ├── transaction
+│   │   │       │   ├── transaction-manager.service.ts
+│   │   │       │   └── transaction.module.ts
 │   │   │       ├── trpc
 │   │   │       │   ├── common-errors.ts
 │   │   │       │   ├── trpc-error-config.ts
@@ -4310,6 +4389,7 @@
 │   │   │   │   ├── tableau_de_bord@v2.53.0.sql
 │   │   │   │   ├── tags.sql
 │   │   │   │   └── type.sql
+│   │   │   ├── preuve_modify_by_with_api.sql
 │   │   │   ├── private_schema.sql
 │   │   │   ├── referentiel
 │   │   │   │   ├── action_commentaire.sql
@@ -4827,6 +4907,7 @@
 │   │   │   │   ├── tableau_de_bord@v2.53.0.sql
 │   │   │   │   ├── tags.sql
 │   │   │   │   └── type.sql
+│   │   │   ├── preuve_modify_by_with_api.sql
 │   │   │   ├── private_schema.sql
 │   │   │   ├── referentiel
 │   │   │   │   ├── action_commentaire.sql
@@ -5344,6 +5425,7 @@
 │   │       │   ├── tableau_de_bord@v2.53.0.sql
 │   │       │   ├── tags.sql
 │   │       │   └── type.sql
+│   │       ├── preuve_modify_by_with_api.sql
 │   │       ├── private_schema.sql
 │   │       ├── referentiel
 │   │       │   ├── action_commentaire.sql
@@ -5645,6 +5727,15 @@
 │   │   │       │   ├── edit-plan.pom.ts
 │   │   │       │   └── edit-plan.spec.ts
 │   │   │       └── plans.fixture.ts
+│   │   ├── referentiels
+│   │   │   ├── labellisations
+│   │   │   │   ├── labellisation.pom.ts
+│   │   │   │   ├── request-labellisation-audit-cot.spec.ts
+│   │   │   │   └── request-labellisation-non-cot.spec.ts
+│   │   │   ├── referentiels.fixture.ts
+│   │   │   └── scores
+│   │   │       ├── referentiel-scores.pom.ts
+│   │   │       └── update-action-statut.spec.ts
 │   │   ├── shared
 │   │   │   ├── database.service.ts
 │   │   │   ├── dropdown.pom.ts
@@ -5754,6 +5845,7 @@
 │   ├── cypress.config.js
 │   ├── package-lock.json
 │   └── package.json
+├── eslint-nextjs.config.mjs
 ├── eslint.config.mjs
 ├── make_dot_env.sh
 ├── nx.json
@@ -5879,6 +5971,7 @@
 │   │   │   │   │   ├── preuve-audit.schema.ts
 │   │   │   │   │   ├── preuve-base.schema.ts
 │   │   │   │   │   ├── preuve-complementaire.schema.ts
+│   │   │   │   │   ├── preuve-labellisation-with-fichier.schema.ts
 │   │   │   │   │   ├── preuve-labellisation.schema.ts
 │   │   │   │   │   ├── preuve-rapport.schema.ts
 │   │   │   │   │   ├── preuve-reglementaire-definition.schema.ts
@@ -5960,8 +6053,8 @@
 │   │   │   │   │   ├── statut.enum.schema.ts
 │   │   │   │   │   └── utils
 │   │   │   │   │       ├── fiche-status-color.utils.ts
-│   │   │   │   │       ├── fiche.validator.spec.ts
-│   │   │   │   │       └── fiche.validator.ts
+│   │   │   │   │       ├── fiche.rule.spec.ts
+│   │   │   │   │       └── fiche.rule.ts
 │   │   │   │   ├── filters.ts
 │   │   │   │   ├── index.ts
 │   │   │   │   ├── labels.ts
@@ -5993,12 +6086,18 @@
 │   │   │   │   ├── labellisations
 │   │   │   │   │   ├── action-audit-statut.enum.schema.ts
 │   │   │   │   │   ├── action-audit-statut.schema.ts
+│   │   │   │   │   ├── etoile-action-condition-definition.schema.ts
 │   │   │   │   │   ├── labellisation-audit.schema.ts
 │   │   │   │   │   ├── labellisation-critere.schema.ts
 │   │   │   │   │   ├── labellisation-demande.schema.ts
 │   │   │   │   │   ├── labellisation-etoile-definition.schema.ts
 │   │   │   │   │   ├── labellisation-etoile.enum.schema.ts
-│   │   │   │   │   └── labellisation.schema.ts
+│   │   │   │   │   ├── labellisation.schema.ts
+│   │   │   │   │   ├── parcours-labellisation-status.enum.ts
+│   │   │   │   │   ├── parcours-labellisation.schema.ts
+│   │   │   │   │   └── request-labellisation
+│   │   │   │   │       ├── request-labellisation.rules-errors.ts
+│   │   │   │   │       └── request-labellisation.rules.ts
 │   │   │   │   ├── referentiel-definition.schema.ts
 │   │   │   │   ├── referentiel-id.enum.ts
 │   │   │   │   ├── referentiel-tag.schema.ts
@@ -6007,6 +6106,8 @@
 │   │   │   │   └── scores
 │   │   │   │       ├── action-score.schema.ts
 │   │   │   │       ├── action-with-score.schema.ts
+│   │   │   │       ├── can-update-action-statut.rules-errors.ts
+│   │   │   │       ├── can-update-action-statut.rules.ts
 │   │   │   │       ├── score-compute-mode.enum.schema.ts
 │   │   │   │       ├── score-indicatif.schema.ts
 │   │   │   │       ├── score-snapshot-action-scores-payload.schema.ts
@@ -6077,6 +6178,23 @@
 │       │   ├── assets
 │       │   │   ├── DoubleCheckIcon.tsx
 │       │   │   ├── ademe.logo.tsx
+│       │   │   ├── fonts
+│       │   │   │   ├── Marianne-Bold.woff
+│       │   │   │   ├── Marianne-Bold.woff2
+│       │   │   │   ├── Marianne-Bold_Italic.woff
+│       │   │   │   ├── Marianne-Bold_Italic.woff2
+│       │   │   │   ├── Marianne-Light.woff
+│       │   │   │   ├── Marianne-Light.woff2
+│       │   │   │   ├── Marianne-Light_Italic.woff
+│       │   │   │   ├── Marianne-Light_Italic.woff2
+│       │   │   │   ├── Marianne-Medium.woff
+│       │   │   │   ├── Marianne-Medium.woff2
+│       │   │   │   ├── Marianne-Medium_Italic.woff
+│       │   │   │   ├── Marianne-Medium_Italic.woff2
+│       │   │   │   ├── Marianne-Regular.woff
+│       │   │   │   ├── Marianne-Regular.woff2
+│       │   │   │   ├── Marianne-Regular_Italic.woff
+│       │   │   │   └── Marianne-Regular_Italic.woff2
 │       │   │   ├── programme-tete.logo.tsx
 │       │   │   ├── republique-francaise.logo.tsx
 │       │   │   └── territoires-en-transitions.logo.tsx
@@ -6191,6 +6309,10 @@
 │       │   │   │   └── utils.ts
 │       │   │   ├── Icon
 │       │   │   │   ├── Icon.tsx
+│       │   │   │   └── index.ts
+│       │   │   ├── InlineLink
+│       │   │   │   ├── InlineLink.stories.tsx
+│       │   │   │   ├── InlineLink.tsx
 │       │   │   │   └── index.ts
 │       │   │   ├── Input
 │       │   │   │   ├── Input.stories.tsx
@@ -6620,4 +6742,4 @@
 ├── tsconfig.base.json
 ├── tsconfig.json
 └── vitest.config.ts
-1166 directories, 5576 files
+1191 directories, 5673 files
