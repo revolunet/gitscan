@@ -71,7 +71,8 @@
 │   │       ├── 20260119142022_add_mission_organization_client_id.sql
 │   │       ├── 20260119150149_add_mission_title_description.sql
 │   │       ├── 20260119153036_add_mission_address_schema.sql
-│   │       └── 20260126100000_add_client_event_id_to_stat_event.sql
+│   │       ├── 20260126100000_add_client_event_id_to_stat_event.sql
+│   │       └── 20260209083538_add_mission_activity_schema.sql
 │   ├── dbt
 │   │   └── analytics
 │   │       ├── .sqlfluff
@@ -187,6 +188,7 @@
 │   │       │       │   ├── stg_activity.sql
 │   │       │       │   ├── stg_domain.sql
 │   │       │       │   ├── stg_mission.sql
+│   │       │       │   ├── stg_mission_activity.sql
 │   │       │       │   ├── stg_mission_address.sql
 │   │       │       │   └── stg_mission_event.sql
 │   │       │       ├── moderation
@@ -478,6 +480,12 @@
 │   │       │   │   └── migration.sql
 │   │       │   ├── 20260126213509_add_stat_client_event_id
 │   │       │   │   └── migration.sql
+│   │       │   ├── 20260203160000_add_mission_activity_junction
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20260209113005_add_mission_address_composite_geo_index
+│   │       │   │   └── migration.sql
+│   │       │   ├── 20260209113005_alter_mission_address_geo_index
+│   │       │   │   └── migration.sql
 │   │       │   └── migration_lock.toml
 │   │       └── schema.core.prisma
 │   ├── scripts
@@ -493,6 +501,7 @@
 │   │   ├── letudiant
 │   │   │   ├── README.md
 │   │   │   └── archive-piloty-jobs.ts
+│   │   ├── migrate-mission-activities.ts
 │   │   ├── mongo-backfill
 │   │   │   ├── README.md
 │   │   │   ├── backfill-campaign.ts
@@ -551,13 +560,7 @@
 │   │   │   ├── publisher.ts
 │   │   │   ├── redirect.ts
 │   │   │   ├── report.ts
-│   │   │   ├── stats-global
-│   │   │   │   ├── controller.ts
-│   │   │   │   └── helper.ts
 │   │   │   ├── stats-mean
-│   │   │   │   ├── controller.ts
-│   │   │   │   └── helper.ts
-│   │   │   ├── stats-public
 │   │   │   │   ├── controller.ts
 │   │   │   │   └── helper.ts
 │   │   │   ├── stats.ts
@@ -661,8 +664,6 @@
 │   │   │   │   ├── types.ts
 │   │   │   │   └── utils.ts
 │   │   │   ├── types.ts
-│   │   │   ├── update-stats-views
-│   │   │   │   └── handler.ts
 │   │   │   └── warnings
 │   │   │       ├── bot.ts
 │   │   │       ├── handler.ts
@@ -670,11 +671,13 @@
 │   │   │       └── tracking.ts
 │   │   ├── middlewares
 │   │   │   ├── cors.ts
+│   │   │   ├── error-handler.ts
 │   │   │   ├── helmet.ts
 │   │   │   ├── index.ts
 │   │   │   ├── logger.ts
 │   │   │   ├── passport.ts
-│   │   │   └── rate-limite.ts
+│   │   │   ├── rate-limite.ts
+│   │   │   └── request-id.ts
 │   │   ├── repositories
 │   │   │   ├── activity.ts
 │   │   │   ├── campaign.ts
@@ -683,6 +686,7 @@
 │   │   │   ├── import-rna.ts
 │   │   │   ├── import.ts
 │   │   │   ├── login-history.ts
+│   │   │   ├── mission-activity.ts
 │   │   │   ├── mission-address.ts
 │   │   │   ├── mission-event.ts
 │   │   │   ├── mission-job-board.ts
@@ -703,6 +707,7 @@
 │   │   ├── services
 │   │   │   ├── __tests__
 │   │   │   │   └── moderation-event.test.ts
+│   │   │   ├── activity.ts
 │   │   │   ├── api-datasubvention.ts
 │   │   │   ├── brevo.ts
 │   │   │   ├── campaign.ts
@@ -767,10 +772,12 @@
 │   │   │   └── widget.ts
 │   │   ├── utils
 │   │   │   ├── __tests__
+│   │   │   │   ├── activity.test.ts
 │   │   │   │   ├── geo.test.ts
 │   │   │   │   ├── mission.test.ts
 │   │   │   │   ├── organization.test.ts
 │   │   │   │   └── string.test.ts
+│   │   │   ├── activity.ts
 │   │   │   ├── array.ts
 │   │   │   ├── geo.ts
 │   │   │   ├── index.ts
@@ -779,6 +786,7 @@
 │   │   │   ├── mission.ts
 │   │   │   ├── normalize.ts
 │   │   │   ├── organization.ts
+│   │   │   ├── request-id.ts
 │   │   │   ├── request.ts
 │   │   │   ├── string.ts
 │   │   │   ├── url.ts
@@ -797,8 +805,6 @@
 │   │   │   ├── organization.ts
 │   │   │   ├── publisher.ts
 │   │   │   └── view.ts
-│   │   ├── v1
-│   │   │   └── association.ts
 │   │   └── v2
 │   │       ├── activity.ts
 │   │       ├── jobteaser.ts
@@ -1056,6 +1062,7 @@
 │   │   │   ├── config.js
 │   │   │   ├── error.js
 │   │   │   ├── mission.js
+│   │   │   ├── requestId.js
 │   │   │   ├── store.js
 │   │   │   ├── toast.jsx
 │   │   │   └── utils.js
@@ -1115,6 +1122,8 @@
     │   ├── Marianne-Regular.woff2
     │   ├── icomoon.ttf
     │   └── icomoon.woff
+    ├── hooks
+    │   └── useSyncWidgetQuery.ts
     ├── instrumentation-client.js
     ├── instrumentation.js
     ├── next-env.d.ts
@@ -1128,6 +1137,7 @@
     │   └── index.tsx
     ├── playwright.config.ts
     ├── postcss.config.js
+    ├── proxy.ts
     ├── public
     │   ├── favicon.ico
     │   ├── images
@@ -1163,8 +1173,13 @@
     ├── types
     │   └── index.ts
     └── utils
+        ├── fetchWithTimeout.ts
         ├── fonts.ts
+        ├── queryParams.ts
+        ├── requestId.ts
         ├── resizeHelper.ts
+        ├── routerQuery.ts
+        ├── sentry.ts
         ├── store.ts
         └── utils.ts
-308 directories, 861 files
+308 directories, 876 files
