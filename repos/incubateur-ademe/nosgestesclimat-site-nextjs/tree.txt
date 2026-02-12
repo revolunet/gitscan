@@ -87,6 +87,7 @@
 │       └── getNamespace.ts
 ├── eslint.config.js
 ├── i18next-parser.config.js
+├── knip.json
 ├── mdx-components.tsx
 ├── next.config.ts
 ├── package.json
@@ -259,6 +260,9 @@
 │   │   └── yaml.ts
 │   ├── __tests__
 │   │   └── server.ts
+│   ├── actions
+│   │   └── newsletters
+│   │       └── postNewsletterFormAction.ts
 │   ├── adapters
 │   │   └── cmsClient.ts
 │   ├── app
@@ -287,7 +291,6 @@
 │   │   │   │   │   │   │   ├── _components
 │   │   │   │   │   │   │   │   ├── ColourBlocks.tsx
 │   │   │   │   │   │   │   │   └── SigninSignupTabs
-│   │   │   │   │   │   │   │       ├── TabLink.tsx
 │   │   │   │   │   │   │   │       └── index.tsx
 │   │   │   │   │   │   │   ├── connexion
 │   │   │   │   │   │   │   │   └── page.tsx
@@ -300,7 +303,6 @@
 │   │   │   │   │   │       │   ├── NoResultsView.tsx
 │   │   │   │   │   │       │   ├── ProfileTabs.tsx
 │   │   │   │   │   │       │   ├── ResultsView.tsx
-│   │   │   │   │   │       │   ├── ScrollToTop.tsx
 │   │   │   │   │   │       │   ├── WelcomeBanner.tsx
 │   │   │   │   │   │       │   ├── latestResults
 │   │   │   │   │   │       │   │   └── SeeDetailLink.tsx
@@ -335,12 +337,11 @@
 │   │   │   │   │   │       │   ├── _components
 │   │   │   │   │   │       │   │   ├── Localisation.tsx
 │   │   │   │   │   │       │   │   ├── LocalisationSection.tsx
-│   │   │   │   │   │       │   │   ├── UserInfoSection.tsx
-│   │   │   │   │   │       │   │   ├── localisation
-│   │   │   │   │   │       │   │   │   ├── RegionModelAuthors.tsx
-│   │   │   │   │   │       │   │   │   └── RegionSelector.tsx
-│   │   │   │   │   │       │   │   └── userInfoSection
-│   │   │   │   │   │       │   │       └── UserEmail.tsx
+│   │   │   │   │   │       │   │   ├── NewsletterSettings.tsx
+│   │   │   │   │   │       │   │   ├── UserEmail.tsx
+│   │   │   │   │   │       │   │   └── localisation
+│   │   │   │   │   │       │   │       ├── RegionModelAuthors.tsx
+│   │   │   │   │   │       │   │       └── RegionSelector.tsx
 │   │   │   │   │   │       │   └── page.tsx
 │   │   │   │   │   │       └── resultats
 │   │   │   │   │   │           └── [simulationId]
@@ -378,10 +379,8 @@
 │   │   │   │   │   │   │   │       │   ├── PointsListItem.tsx
 │   │   │   │   │   │   │   │       │   └── pointsListItem
 │   │   │   │   │   │   │   │       │       └── ValueDiff.tsx
-│   │   │   │   │   │   │   │       ├── ranking
-│   │   │   │   │   │   │   │       │   └── RankingMember.tsx
-│   │   │   │   │   │   │   │       └── votreEmpreinte
-│   │   │   │   │   │   │   │           └── Category.tsx
+│   │   │   │   │   │   │   │       └── ranking
+│   │   │   │   │   │   │   │           └── RankingMember.tsx
 │   │   │   │   │   │   │   ├── layout.tsx
 │   │   │   │   │   │   │   └── page.tsx
 │   │   │   │   │   │   └── supprimer
@@ -436,12 +435,9 @@
 │   │   │   │   │   │   │   │   └── page.tsx
 │   │   │   │   │   │   │   └── unauthorized.tsx
 │   │   │   │   │   │   ├── _components
-│   │   │   │   │   │   │   ├── CTAFooter.tsx
 │   │   │   │   │   │   │   ├── HeroSection.tsx
 │   │   │   │   │   │   │   ├── IllustratedPointsList.tsx
-│   │   │   │   │   │   │   ├── VisuelIframe.tsx
-│   │   │   │   │   │   │   └── partnersSection
-│   │   │   │   │   │   │       └── LinkAmbassadeurs.tsx
+│   │   │   │   │   │   │   └── VisuelIframe.tsx
 │   │   │   │   │   │   ├── connexion
 │   │   │   │   │   │   │   ├── layout.tsx
 │   │   │   │   │   │   │   └── page.tsx
@@ -481,6 +477,10 @@
 │   │   │   │   │   │   │   └── ContactIframe.tsx
 │   │   │   │   │   │   └── page.tsx
 │   │   │   │   │   ├── diffuser
+│   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   ├── gestion-infolettres
+│   │   │   │   │   │   ├── _components
+│   │   │   │   │   │   │   └── NewsletterForm.tsx
 │   │   │   │   │   │   └── page.tsx
 │   │   │   │   │   ├── guide
 │   │   │   │   │   │   ├── [category]
@@ -543,8 +543,7 @@
 │   │   │   │   │   ├── __tests__
 │   │   │   │   │   │   └── Blog.test.tsx
 │   │   │   │   │   ├── _components
-│   │   │   │   │   │   ├── BlogHero.tsx
-│   │   │   │   │   │   └── GroupBlock.tsx
+│   │   │   │   │   │   └── BlogHero.tsx
 │   │   │   │   │   ├── layout.tsx
 │   │   │   │   │   └── page.tsx
 │   │   │   │   └── layout.tsx
@@ -590,9 +589,6 @@
 │   │   │   │   │       │   ├── AvantDeCommencer.tsx
 │   │   │   │   │       │   ├── ButtonBack.tsx
 │   │   │   │   │       │   ├── ButtonStart.tsx
-│   │   │   │   │       │   ├── CategoriesProgressBar.tsx
-│   │   │   │   │       │   ├── OrganisationMessage.tsx
-│   │   │   │   │       │   ├── TutorialListItem.tsx
 │   │   │   │   │       │   ├── autresQuestions
 │   │   │   │   │       │   │   └── OrganisationPrivacy.tsx
 │   │   │   │   │       │   └── avantDeCommencer
@@ -622,22 +618,14 @@
 │   │   │   │   └── simulateur
 │   │   │   │       └── [root]
 │   │   │   │           ├── _components
-│   │   │   │           │   ├── Faq.tsx
-│   │   │   │           │   ├── SaveModal.tsx
 │   │   │   │           │   ├── Simulateur.tsx
-│   │   │   │           │   ├── saveModal
-│   │   │   │           │   │   ├── ConfirmationMessage.tsx
-│   │   │   │           │   │   └── SaveSimulationForm.tsx
 │   │   │   │           │   └── simulateur
 │   │   │   │           │       ├── Form.tsx
 │   │   │   │           │       ├── Summary.tsx
 │   │   │   │           │       ├── form
-│   │   │   │           │       │   ├── CategoriesSummary.tsx
 │   │   │   │           │       │   ├── FunFact.tsx
 │   │   │   │           │       │   ├── ResultsBlocksDesktop.tsx
 │   │   │   │           │       │   ├── ResultsBlocksMobile.tsx
-│   │   │   │           │       │   ├── categoriesSummary
-│   │   │   │           │       │   │   └── Category.tsx
 │   │   │   │           │       │   └── resultsBlocksDesktop
 │   │   │   │           │       │       ├── InteractiveResultBlock.tsx
 │   │   │   │           │       │       └── interactiveResultBlock
@@ -653,7 +641,6 @@
 │   │   │   ├── [...notFound]
 │   │   │   │   └── page.tsx
 │   │   │   ├── _components
-│   │   │   │   ├── ClientLayout.tsx
 │   │   │   │   ├── CollectivelyCommit.tsx
 │   │   │   │   ├── DecryptChallenges.tsx
 │   │   │   │   ├── DidYouKnowMainLanding.tsx
@@ -680,6 +667,8 @@
 │   │   │   │   ├── mobilise
 │   │   │   │   │   ├── CreateGroupLink.tsx
 │   │   │   │   │   └── CreateOrganisationLink.tsx
+│   │   │   │   ├── scripts
+│   │   │   │   │   └── ServerTracking.tsx
 │   │   │   │   └── twoFootprints
 │   │   │   │       ├── LearnMoreCarbonLink.tsx
 │   │   │   │       ├── LearnMoreWaterLink.tsx
@@ -795,8 +784,6 @@
 │   │   │       ├── RecommendedActions.tsx
 │   │   │       └── recommendedActions
 │   │   │           └── RecommendedAction.tsx
-│   │   ├── blog
-│   │   │   └── NosGestesTransportsBanner.tsx
 │   │   ├── charts
 │   │   │   ├── BilanChart.tsx
 │   │   │   ├── HorizontalBarChartItem.tsx
@@ -875,7 +862,6 @@
 │   │   │   └── question
 │   │   │       ├── Assistance.tsx
 │   │   │       ├── BooleanInput.tsx
-│   │   │       ├── Category.tsx
 │   │   │       ├── ChoicesInput.tsx
 │   │   │       ├── Label.tsx
 │   │   │       ├── Mosaic.tsx
@@ -905,7 +891,6 @@
 │   │   ├── icons
 │   │   │   ├── ActionsIcon.tsx
 │   │   │   ├── AmisIcon.tsx
-│   │   │   ├── AnswersIcon.tsx
 │   │   │   ├── BilanIcon.tsx
 │   │   │   ├── BookClosedIcon.tsx
 │   │   │   ├── ChevronLeft.tsx
@@ -915,9 +900,7 @@
 │   │   │   ├── DownArrow.tsx
 │   │   │   ├── DownloadIcon.tsx
 │   │   │   ├── ExternalLinkIcon.tsx
-│   │   │   ├── EyeIcon.tsx
 │   │   │   ├── FlagIcon.tsx
-│   │   │   ├── GlassesIcon.tsx
 │   │   │   ├── HourglassIcon.tsx
 │   │   │   ├── LightBulbIcon.tsx
 │   │   │   ├── ListIcon.tsx
@@ -925,17 +908,12 @@
 │   │   │   ├── LogOutIcon.tsx
 │   │   │   ├── MessageIcon.tsx
 │   │   │   ├── NewTabSvg.tsx
-│   │   │   ├── OrganisationIcon.tsx
 │   │   │   ├── PencilIcon.tsx
 │   │   │   ├── PlaySignIcon.tsx
 │   │   │   ├── PlusIcon.tsx
 │   │   │   ├── RestartIcon.tsx
-│   │   │   ├── ReturnIcon.tsx
-│   │   │   ├── SaveCheckIcon.tsx
 │   │   │   ├── SaveIcon.tsx
-│   │   │   ├── SavesIcon.tsx
 │   │   │   ├── SearchIcon.tsx
-│   │   │   ├── SendIcon.tsx
 │   │   │   ├── SettingsIcon.tsx
 │   │   │   ├── ShareIcon.tsx
 │   │   │   ├── ShieldIcon.tsx
@@ -956,7 +934,6 @@
 │   │   │   ├── IframeDataShareModal.test.tsx
 │   │   │   └── IframeDataShareModal.tsx
 │   │   ├── images
-│   │   │   ├── SafeImage.tsx
 │   │   │   ├── SquareImageContainer.tsx
 │   │   │   └── partners
 │   │   │       ├── Ademe.tsx
@@ -984,8 +961,6 @@
 │   │   │   └── titleDescLinkBlock
 │   │   │       └── TitleDescLink.tsx
 │   │   ├── layout
-│   │   │   ├── 404
-│   │   │   │   └── Fish.tsx
 │   │   │   ├── 404.tsx
 │   │   │   ├── 500.tsx
 │   │   │   ├── ClientLayout.tsx
@@ -998,6 +973,11 @@
 │   │   │   ├── MessageTemplate.tsx
 │   │   │   ├── PasserTestBanner.tsx
 │   │   │   ├── ThematicPagesSection.tsx
+│   │   │   ├── footer
+│   │   │   │   ├── CookieButton.tsx
+│   │   │   │   ├── FooterServer.tsx
+│   │   │   │   ├── HideInIframe.tsx
+│   │   │   │   └── WantToActBlock.tsx
 │   │   │   └── headerServer
 │   │   │       ├── MySpaceButton.tsx
 │   │   │       └── MySpaceDropdown.tsx
@@ -1009,17 +989,17 @@
 │   │   │   ├── CountryFlag.tsx
 │   │   │   ├── CountryListItem.tsx
 │   │   │   ├── Logo.tsx
-│   │   │   ├── LogoLink.tsx
 │   │   │   ├── LogoLinkServer.tsx
 │   │   │   ├── NumberValue.tsx
 │   │   │   ├── QuestionButton.tsx
 │   │   │   ├── RegionGrid.tsx
 │   │   │   ├── TotalFootprintNumber.tsx
 │   │   │   └── ValueChangeDisplay.tsx
+│   │   ├── newsletter
+│   │   │   └── NewsletterCheckboxes.tsx
 │   │   ├── organisations
 │   │   │   ├── Baseline.tsx
 │   │   │   ├── ExportDataButton.tsx
-│   │   │   ├── OrganisationLoader.tsx
 │   │   │   ├── PollLoader.tsx
 │   │   │   ├── PollStatistics.tsx
 │   │   │   ├── QuestionsComplementaires.tsx
@@ -1033,7 +1013,6 @@
 │   │   │   │   │   ├── FunFactsItem.tsx
 │   │   │   │   │   └── FunFactsPlusCategoryTitle.tsx
 │   │   │   │   └── statisticsBlocks
-│   │   │   │       ├── CategoryChartItem.tsx
 │   │   │   │       └── ResultsSoonBanner.tsx
 │   │   │   └── questionsComplementaires
 │   │   │       ├── CustomQuestionForm.tsx
@@ -1081,8 +1060,6 @@
 │   │   │   ├── carbone
 │   │   │   │   ├── OtherWays.tsx
 │   │   │   │   ├── Subcategories.tsx
-│   │   │   │   ├── getResultsByEmail
-│   │   │   │   │   └── Confirmation.tsx
 │   │   │   │   └── subcategories
 │   │   │   │       ├── Subcategory.tsx
 │   │   │   │       └── subcategory
@@ -1113,7 +1090,6 @@
 │   │   │   │   ├── groups
 │   │   │   │   │   ├── CreateFirstGroupSection.tsx
 │   │   │   │   │   ├── GroupContent.tsx
-│   │   │   │   │   ├── ServerErrorSection.tsx
 │   │   │   │   │   └── createOtherGroupsSection
 │   │   │   │   │       ├── GroupList.tsx
 │   │   │   │   │       └── groupList
@@ -1122,8 +1098,7 @@
 │   │   │   │       ├── CreateOrganisation.tsx
 │   │   │   │       ├── PollsList.tsx
 │   │   │   │       └── pollList
-│   │   │   │           ├── OrganisationItem.tsx
-│   │   │   │           └── PollItem.tsx
+│   │   │   │           └── OrganisationItem.tsx
 │   │   │   └── informationBlock
 │   │   │       ├── CarboneTargetContent.tsx
 │   │   │       ├── Hedgehog.tsx
@@ -1178,8 +1153,7 @@
 │   │   │       ├── TransClient.tsx
 │   │   │       └── TransServer.tsx
 │   │   └── user
-│   │       ├── UserEmailForm.tsx
-│   │       └── UserNewslettersForm.tsx
+│   │       └── UserEmailForm.tsx
 │   ├── constants
 │   │   ├── ab-test.ts
 │   │   ├── accessibility.ts
@@ -1189,11 +1163,8 @@
 │   │   │   └── sessionStorage.ts
 │   │   ├── blog
 │   │   │   └── pagination.ts
-│   │   ├── brevo.ts
 │   │   ├── documentation.ts
 │   │   ├── filtering.ts
-│   │   ├── forms
-│   │   │   └── newsletters.ts
 │   │   ├── group.ts
 │   │   ├── ids.ts
 │   │   ├── localisation
@@ -1213,13 +1184,10 @@
 │   │   │   └── simulationAdditionalQuestionAnswerType.ts
 │   │   ├── partners.ts
 │   │   ├── ravijen.ts
-│   │   ├── requests
-│   │   │   └── status.ts
 │   │   ├── state
 │   │   │   └── cookies.ts
 │   │   ├── storage.ts
 │   │   ├── tracking
-│   │   │   ├── ab-testing.ts
 │   │   │   ├── actions.ts
 │   │   │   ├── layout.ts
 │   │   │   ├── misc.ts
@@ -1233,11 +1201,9 @@
 │   │   │   │   ├── infos.ts
 │   │   │   │   ├── mainLanding.ts
 │   │   │   │   ├── mon-espace.ts
-│   │   │   │   ├── newsletter.ts
 │   │   │   │   ├── organisationsAccueil.ts
 │   │   │   │   ├── organisationsConnexion.ts
 │   │   │   │   ├── organisationsDashboard.ts
-│   │   │   │   ├── organisationsParameters.ts
 │   │   │   │   ├── pollDashboard.ts
 │   │   │   │   ├── profil.ts
 │   │   │   │   ├── signin.ts
@@ -1247,7 +1213,6 @@
 │   │   │   ├── question.ts
 │   │   │   ├── simulation.ts
 │   │   │   └── user-account.ts
-│   │   ├── tutorial.ts
 │   │   └── urls
 │   │       ├── main.ts
 │   │       ├── params.ts
@@ -1299,12 +1264,6 @@
 │   │   │   ├── ImageWithCategory.tsx
 │   │   │   ├── MainArticle.stories.tsx
 │   │   │   ├── MainArticle.tsx
-│   │   │   ├── NewslettersBlock.stories.tsx
-│   │   │   ├── NewslettersBlock.test.tsx
-│   │   │   ├── NewslettersBlock.tsx
-│   │   │   ├── NewslettersBlockServer.tsx
-│   │   │   ├── NewslettersBlockSkeleton.stories.tsx
-│   │   │   ├── NewslettersBlockSkeleton.tsx
 │   │   │   ├── PostThumbnail.stories.tsx
 │   │   │   ├── PostThumbnail.tsx
 │   │   │   ├── articleList
@@ -1417,9 +1376,6 @@
 │   │   ├── blog
 │   │   │   ├── getDynamicPageTitleWithPagination.ts
 │   │   │   └── getPageNumber.ts
-│   │   ├── brevo
-│   │   │   ├── formatListIdsFromObject.ts
-│   │   │   └── getListIds.ts
 │   │   ├── date
 │   │   │   └── getFormattedDate.ts
 │   │   ├── foldEveryQuestionsUntil.ts
@@ -1440,7 +1396,6 @@
 │   │   │   └── verifyIntegratorBypassRights.ts
 │   │   ├── language
 │   │   │   ├── getLangButtonsDisplayed.ts
-│   │   │   ├── updateLang.ts
 │   │   │   └── updateLangCookie.ts
 │   │   ├── localisation
 │   │   │   └── sortSupportedRegions.ts
@@ -1465,9 +1420,6 @@
 │   │   │   └── simulateurPages.ts
 │   │   ├── organisations
 │   │   │   ├── fetchOrganisationsClient.ts
-│   │   │   ├── filterExtremes.ts
-│   │   │   ├── filterSimulations.ts
-│   │   │   ├── getAgeFilterOptions.ts
 │   │   │   └── unformatAdministratorName.ts
 │   │   ├── partners
 │   │   │   └── storage.ts
@@ -1477,7 +1429,6 @@
 │   │   ├── polls
 │   │   │   └── getUpdatedDefaultAdditionalQuestions.ts
 │   │   ├── publicodes
-│   │   │   ├── getGroupedQuestionsFromSubcat.ts
 │   │   │   ├── getRuleTitle.ts
 │   │   │   └── getSubcatsOfCategory.ts
 │   │   ├── regions
@@ -1485,8 +1436,9 @@
 │   │   ├── server
 │   │   │   ├── error.ts
 │   │   │   └── model
-│   │   │       ├── fetchWithJWTCookie.ts
+│   │   │       ├── fetchServer.ts
 │   │   │       ├── groups.ts
+│   │   │       ├── newsletter.ts
 │   │   │       ├── organisations.ts
 │   │   │       ├── simulations.ts
 │   │   │       └── user.ts
@@ -1504,14 +1456,11 @@
 │   │   │   ├── blog.ts
 │   │   │   ├── landings.ts
 │   │   │   └── share.ts
-│   │   ├── user
-│   │   │   ├── fetchUser.ts
-│   │   │   ├── reconcileOnAuth.ts
-│   │   │   └── resetLocalState.ts
-│   │   └── uuidToNumber.ts
+│   │   └── user
+│   │       ├── fetchUser.ts
+│   │       ├── reconcileOnAuth.ts
+│   │       └── resetLocalState.ts
 │   ├── hooks
-│   │   ├── abTesting
-│   │   │   └── useIsTestVersion.ts
 │   │   ├── authentication
 │   │   │   ├── useCreateVerificationCode.ts
 │   │   │   ├── useLogin.ts
@@ -1524,7 +1473,6 @@
 │   │   │   ├── useCreateGroup.ts
 │   │   │   ├── useDeleteGroup.ts
 │   │   │   ├── useFetchGroup.ts
-│   │   │   ├── useFetchGroupsOfUser.ts
 │   │   │   ├── useGetGroupAndUserFootprints
 │   │   │   │   ├── getCategoriesObject.ts
 │   │   │   │   └── getSubcategoriesObject.ts
@@ -1564,7 +1512,6 @@
 │   │   │   ├── useExportSituation.ts
 │   │   │   └── useVerifyPartner.ts
 │   │   ├── settings
-│   │   │   ├── useGetNewsletterSubscriptions.ts
 │   │   │   └── useUpdateUserSettings.ts
 │   │   ├── simulation
 │   │   │   ├── useBackgroundSyncSimulation.ts
@@ -1581,7 +1528,6 @@
 │   │   │   ├── useTrackPageView.ts
 │   │   │   ├── useTrackRegion.ts
 │   │   │   ├── useTrackSimulator.ts
-│   │   │   ├── useTrackSplitTesting.ts
 │   │   │   └── useTrackTimeOnSimulation.ts
 │   │   ├── useClientTranslation.ts
 │   │   ├── useCurrentMetric.ts
@@ -1595,7 +1541,6 @@
 │   │   ├── useIsClient.ts
 │   │   ├── useLocale.ts
 │   │   ├── useMagicKey.ts
-│   │   ├── useMainNewsletter.ts
 │   │   ├── usePRNumber.ts
 │   │   ├── usePersonas.ts
 │   │   ├── useQueryParams.ts
@@ -1612,43 +1557,6 @@
 │   ├── instrumentation.ts
 │   ├── locales
 │   │   ├── .gitignore
-│   │   ├── actions-plus
-│   │   │   └── fr
-│   │   │       ├── alimentation . bio.mdx
-│   │   │       ├── alimentation . boisson . eau en bouteille . arrêter.mdx
-│   │   │       ├── alimentation . dechets . action.mdx
-│   │   │       ├── alimentation . devenir végétarien.mdx
-│   │   │       ├── alimentation . déchets . composter.mdx
-│   │   │       ├── alimentation . déchets . recyclage.mdx
-│   │   │       ├── alimentation . déchets . vrac.mdx
-│   │   │       ├── alimentation . gaspillage alimentaire.mdx
-│   │   │       ├── alimentation . jardiner.mdx
-│   │   │       ├── alimentation . restaurant.mdx
-│   │   │       ├── alimentation . réduire viande . par deux.mdx
-│   │   │       ├── divers . consommation responsable.mdx
-│   │   │       ├── divers . déchets . recyclage.mdx
-│   │   │       ├── divers . meubles . allongement.mdx
-│   │   │       ├── divers . meubles . seconde main.mdx
-│   │   │       ├── divers . publicité.mdx
-│   │   │       ├── divers . textile . seconde main.mdx
-│   │   │       ├── divers . électroménager . allongement.mdx
-│   │   │       ├── divers . électroménager . seconde main.mdx
-│   │   │       ├── logement . baisse température.mdx
-│   │   │       ├── logement . chaudière remplacement.mdx
-│   │   │       ├── logement . climatisation . réduction.mdx
-│   │   │       ├── logement . mutualiser.mdx
-│   │   │       ├── logement . rénovation énergétique.mdx
-│   │   │       ├── logement . électricité verte.mdx
-│   │   │       ├── logement . éteindre appareils.mdx
-│   │   │       ├── numérique . usage responsable.mdx
-│   │   │       ├── services publics . changement banque.mdx
-│   │   │       ├── services publics . pression locale.mdx
-│   │   │       ├── transport . arrêter l'avion.mdx
-│   │   │       ├── transport . boulot . commun.mdx
-│   │   │       ├── transport . boulot . covoiturage.mdx
-│   │   │       ├── transport . boulot . télétravail.mdx
-│   │   │       ├── transport . voiture 5km.mdx
-│   │   │       └── transport . éco-conduite.mdx
 │   │   ├── guide-mode-groupe
 │   │   │   └── fr
 │   │   │       ├── guide-alimentation.mdx
@@ -1656,8 +1564,7 @@
 │   │   │       ├── guide-logement.mdx
 │   │   │       ├── guide-numerique.mdx
 │   │   │       ├── guide-services-societaux.mdx
-│   │   │       ├── guide-transport.mdx
-│   │   │       └── guide.mdx
+│   │   │       └── guide-transport.mdx
 │   │   ├── initClient.ts
 │   │   ├── initServer.ts
 │   │   ├── nouveautes
@@ -1743,19 +1650,13 @@
 │   │   │   │   ├── accessibility.mdx
 │   │   │   │   ├── budgetBottom.mdx
 │   │   │   │   ├── budgetTop.mdx
-│   │   │   │   ├── contextes-sondage.mdx
-│   │   │   │   ├── diffuser.mdx
-│   │   │   │   ├── empreinte-climat.mdx
-│   │   │   │   └── landing.mdx
+│   │   │   │   └── diffuser.mdx
 │   │   │   └── fr
 │   │   │       ├── CGU.mdx
 │   │   │       ├── accessibility.mdx
 │   │   │       ├── budgetBottom.mdx
 │   │   │       ├── budgetTop.mdx
-│   │   │       ├── contextes-sondage.mdx
-│   │   │       ├── diffuser.mdx
-│   │   │       ├── empreinte-climat.mdx
-│   │   │       └── landing.mdx
+│   │   │       └── diffuser.mdx
 │   │   ├── settings.ts
 │   │   ├── translation.ts
 │   │   ├── ui
@@ -1870,11 +1771,9 @@
 │   │   │   └── updateGroupParticipant.ts
 │   │   ├── organisations
 │   │   │   └── fetchPollResults.ts
-│   │   ├── partners
-│   │   │   ├── exportSituation.ts
-│   │   │   └── verifyPartner.ts
-│   │   └── webhooks
-│   │       └── google-sheet.ts
+│   │   └── partners
+│   │       ├── exportSituation.ts
+│   │       └── verifyPartner.ts
 │   ├── types
 │   │   ├── .gitignore
 │   │   ├── app-env.d.ts
@@ -1885,10 +1784,8 @@
 │   │   ├── journey.d.ts
 │   │   ├── landing-page.d.ts
 │   │   ├── organisations.d.ts
-│   │   ├── persona.ts
 │   │   ├── posts.d.ts
 │   │   ├── quiz.d.ts
-│   │   ├── rating.ts
 │   │   ├── translation.ts
 │   │   ├── values.ts
 │   │   ├── worker-loader.d.ts
@@ -1926,4 +1823,4 @@
 ├── vitest-globals.d.ts
 ├── vitest.config.ts
 └── vitest.setup.ts
-453 directories, 1520 files
+445 directories, 1425 files
