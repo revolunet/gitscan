@@ -1,11 +1,34 @@
+2026-02-11T21:20:45+01:00 - b602b16 - Céline Martinet Sanchez : Django: try to fix the N+1 query - third attempt
+2026-02-11T20:59:34+01:00 - 66f55c9 - Céline Martinet Sanchez : Django: try to fix N+1 queries on API calls
+2026-02-11T20:53:02+01:00 - 38e46e8 - Céline Martinet Sanchez : Tranformation des logs en JSON pour Datadog
+2026-02-11T17:25:15+01:00 - b9a67a7 - Céline Martinet Sanchez : Django: fix N+1 queries problem on our exposed API
+2026-02-10T15:09:32+01:00 - 9bfe2a7 - Céline Martinet Sanchez : Ajout d'usines pour générer de faux objets
+2026-02-10T15:09:32+01:00 - 6b2f382 - Céline Martinet Sanchez : Réusinage avec utilisation des usines
+2026-02-10T14:39:22+01:00 - ed718b2 - Céline Martinet Sanchez : Django admin: display Procedure's perimetre in the change view
+2026-02-10T14:39:22+01:00 - bd90b86 - Céline Martinet Sanchez : Django admin: search procedures by ID
+2026-02-10T14:39:22+01:00 - a7638fb - Céline Martinet Sanchez : Django admin: display procedure commentaire, current_perimetre and is_principale
+2026-02-10T14:39:22+01:00 - 95a04ce - Céline Martinet Sanchez : Django admin: display events on procedure change page
+2026-02-10T14:39:22+01:00 - 5be0a6b - Céline Martinet Sanchez : Django admin: fix a bug preventing the procedure change view opening
+2026-02-10T14:39:22+01:00 - 33307e5 - Céline Martinet Sanchez : Django admin : fix bug when displaying procedure status
+2026-02-10T14:39:22+01:00 - 3169318 - Céline Martinet Sanchez : Django: add the Event.visibility column
+2026-02-10T14:39:22+01:00 - 2b69ad2 - Céline Martinet Sanchez : Django admin: display Procedure.status (Nuxt) and Procedure.statut (Django)
+2026-02-10T14:39:22+01:00 - 2aea3bc - Céline Martinet Sanchez : Django: add Procedure columns
+2026-02-10T14:39:22+01:00 - 05f1b7f - Céline Martinet Sanchez : Django: move an annotation to its own method
+2026-02-10T14:39:22+01:00 - 0285fee - Céline Martinet Sanchez : Django admin: give procedures_perimetres class representation a meaningful name
+2026-02-04T13:05:11+01:00 - 4d4f01b - dependabot[bot] : Bump django from 5.2.10 to 5.2.11 in /django
+2026-02-04T10:45:30+01:00 - 317dcb0 - Anthony Ricaud : Page Debug Collectivite - Ajoute Code état et filtre avant
+2026-02-03T18:39:49+01:00 - f7129d8 - Céline Martinet Sanchez : Supabase : load authorization url for magic link from an environment variable
+2026-02-03T09:50:52+01:00 - ef04dfd - dependabot[bot] : Bump django-browser-reload from 1.18.0 to 1.21.0 in /django
+2026-02-02T11:05:48+01:00 - 8f9b688 - Céline Martinet Sanchez : Nuxt : correction des tris de la page Mes procédures
+2026-02-02T11:05:48+01:00 - 61503d0 - Céline Martinet Sanchez : Nuxt : correction d'une erreur de linter
 2026-01-28T17:48:02+01:00 - e7b2252 - Céline Martinet Sanchez : Création et suppression de recettes jetables
-2026-01-28T11:42:18+01:00 - 9d52ab6 - Céline Martinet Sanchez : Imports should be located on the top of files
 2026-01-28T11:42:18+01:00 - a55a7e6 - Céline Martinet Sanchez : Don't use the root logger
+2026-01-28T11:42:18+01:00 - 9d52ab6 - Céline Martinet Sanchez : Imports should be located on the top of files
 2026-01-28T11:42:18+01:00 - 10a1944 - dependabot[bot] : Bump ruff from 0.9.4 to 0.14.14 in /django
 2026-01-28T10:54:11+01:00 - 0896219 - Anthony Ricaud : Ruff - Ignorons RUF012 pour toutes les migrations
 2026-01-28T10:40:52+01:00 - 82ea75a - Céline Martinet Sanchez : Tech : mise à jour de la configuration pre-commit
-2026-01-26T17:15:40+01:00 - 6c50465 - Céline Martinet Sanchez : Nuxt : changement d'un nom de variable pour refléter un changement de comportement
 2026-01-26T17:15:40+01:00 - e6d3c8f - Céline Martinet Sanchez : Nuxt : afficher (PPA) après le poste
+2026-01-26T17:15:40+01:00 - 6c50465 - Céline Martinet Sanchez : Nuxt : changement d'un nom de variable pour refléter un changement de comportement
 2026-01-26T10:13:44+01:00 - a60361a - dependabot[bot] : Bump pytest-django from 4.10.0 to 4.11.1 in /django
 2026-01-26T10:11:37+01:00 - 3934366 - dependabot[bot] : Bump pre-commit from 4.3.0 to 4.5.1 in /django
 2026-01-26T10:08:19+01:00 - a9d64ad - dependabot[bot] : Bump ptpython from 3.0.29 to 3.0.32 in /django
@@ -34,26 +57,26 @@
 2026-01-15T17:01:59+01:00 - 54bd104 - Anthony Ricaud : Navigation département - Tous affichés si compte sans département
 2026-01-15T13:36:47+01:00 - 29d4295 - Anthony Ricaud : Users Models - Désactivons le linter localement
 2026-01-12T16:36:39+01:00 - dd276cb - Céline Martinet Sanchez : Nuxt : ajout d'options à VDeptAutocomplete
-2026-01-12T16:36:39+01:00 - 5f25652 - Céline Martinet Sanchez : Nuxt : mise en forme du filtre Département pour les PPA
-2026-01-12T16:36:39+01:00 - 9184aa8 - Céline Martinet Sanchez : Nuxt : correction d'une faute d'orthographe
 2026-01-12T16:36:39+01:00 - bc258f2 - Céline Martinet Sanchez : Nuxt : ajout du filtre par département aux pages Collectivite et Procedures
+2026-01-12T16:36:39+01:00 - 9184aa8 - Céline Martinet Sanchez : Nuxt : correction d'une faute d'orthographe
 2026-01-12T16:36:39+01:00 - 839c008 - Céline Martinet Sanchez : Nuxt : filtrer les départements affichés par VDepartementAutocomplete
+2026-01-12T16:36:39+01:00 - 5f25652 - Céline Martinet Sanchez : Nuxt : mise en forme du filtre Département pour les PPA
 2026-01-12T09:42:04+01:00 - f5194de - Céline Martinet Sanchez : Nuxt : affichage du lien vers le tableau de bord des DDT pour les PPA
-2026-01-12T09:42:04+01:00 - a757b54 - Céline Martinet Sanchez : Django : re-génération de la migration initiale de users
-2026-01-12T09:42:04+01:00 - beb24a6 - Céline Martinet Sanchez : Nuxt : éviter une erreur locale dans la console
+2026-01-12T09:42:04+01:00 - f44882b - Céline Martinet Sanchez : Django : ajout du side PPA à ProfileSideType
 2026-01-12T09:42:04+01:00 - ec00a56 - Céline Martinet Sanchez : Nuxt : utilisation du code 302 pour indiquer une redirection
-2026-01-12T09:42:04+01:00 - 590ecce - Céline Martinet Sanchez : Nuxt : séparer la validation du profil de son side
-2026-01-12T09:42:04+01:00 - 1e0bff4 - Céline Martinet Sanchez : Django : Users − ne pas utiliser une clé étrangère vers Collectivite
+2026-01-12T09:42:04+01:00 - e13e23b - Céline Martinet Sanchez : Django : ajout de la colonne "users.departements"
+2026-01-12T09:42:04+01:00 - beb24a6 - Céline Martinet Sanchez : Nuxt : éviter une erreur locale dans la console
 2026-01-12T09:42:04+01:00 - bd32a34 - Céline Martinet Sanchez : Nuxt : les PPA ne peuvent pas supprimer de procédure
 2026-01-12T09:42:04+01:00 - bc2fe39 - Céline Martinet Sanchez : Nuxt : affichage du poste Région + nom de la région
-2026-01-12T09:42:04+01:00 - b7a7cb6 - Céline Martinet Sanchez : Django : Users — ajout du poste Région
-2026-01-12T09:42:04+01:00 - 7162f03 - Céline Martinet Sanchez : Nuxt : les sides PPA ne peuvent pas créer de procédure secondaire
 2026-01-12T09:42:04+01:00 - bbc9383 - Céline Martinet Sanchez : Nuxt : les PPA ne peuvent pas créer de procédure
-2026-01-12T09:42:04+01:00 - 65a8c2e - Céline Martinet Sanchez : Nuxt : les side PPA peuvent accéder au tableau de bord
-2026-01-12T09:42:04+01:00 - e13e23b - Céline Martinet Sanchez : Django : ajout de la colonne "users.departements"
-2026-01-12T09:42:04+01:00 - f44882b - Céline Martinet Sanchez : Django : ajout du side PPA à ProfileSideType
+2026-01-12T09:42:04+01:00 - b7a7cb6 - Céline Martinet Sanchez : Django : Users — ajout du poste Région
+2026-01-12T09:42:04+01:00 - a757b54 - Céline Martinet Sanchez : Django : re-génération de la migration initiale de users
 2026-01-12T09:42:04+01:00 - 822b77b - Céline Martinet Sanchez : Django : ajout des modèles User et Profile
+2026-01-12T09:42:04+01:00 - 7162f03 - Céline Martinet Sanchez : Nuxt : les sides PPA ne peuvent pas créer de procédure secondaire
 2026-01-12T09:42:04+01:00 - 6c5ed2e - Céline Martinet Sanchez : Nuxt : suppression de code commenté
+2026-01-12T09:42:04+01:00 - 65a8c2e - Céline Martinet Sanchez : Nuxt : les side PPA peuvent accéder au tableau de bord
+2026-01-12T09:42:04+01:00 - 590ecce - Céline Martinet Sanchez : Nuxt : séparer la validation du profil de son side
+2026-01-12T09:42:04+01:00 - 1e0bff4 - Céline Martinet Sanchez : Django : Users − ne pas utiliser une clé étrangère vers Collectivite
 2026-01-06T11:45:38+01:00 - eecb280 - Anthony Ricaud : Form Event - Pas de Visibilité choisie par défaut
 2026-01-06T11:45:38+01:00 - 25b53c7 - Anthony Ricaud : Form Event - Affiche erreur quand champ vide
 2025-12-22T13:36:38+01:00 - 9874592 - Anthony Ricaud : Appelle des URLs plus courtes pour les infos des collectivités
@@ -62,21 +85,21 @@
 2025-12-16T12:37:35+01:00 - 89ca2f5 - Céline Martinet Sanchez : Déplacement du module Test au même niveau que Core
 2025-12-16T09:21:24+01:00 - e439775 - Anthony Ricaud : Mise à jour du Kit de communication
 2025-12-15T09:25:49+01:00 - 1eed984 - Anthony Ricaud : Enquête 2025/2026 - Mise à jour de la date butoir
-2025-12-10T20:48:46+01:00 - 197982d - Céline Martinet Sanchez : Suppression d'un fichier devenu inutile
-2025-12-10T20:48:46+01:00 - a326c6e - Céline Martinet Sanchez : Mise : lancement du serveur Supabase et restauration de la dernière sauvegarde
 2025-12-10T20:48:46+01:00 - dae8812 - Céline Martinet Sanchez : Faciliter la restauration de la base en local
-2025-12-10T20:48:46+01:00 - 877f025 - Céline Martinet Sanchez : Suppression du trigger qui ne peut pas encore fonctionner sur Scalingo
-2025-12-10T20:48:46+01:00 - 379a98d - Céline Martinet Sanchez : Modification des déclencheurs Supabase pour les recettes jetables
-2025-12-10T20:48:46+01:00 - 762ae2e - Céline Martinet Sanchez : Supabase : configuration spécifique à notre projet
 2025-12-10T20:48:46+01:00 - bffa3bf - Céline Martinet Sanchez : Supabase : utilisation du client local
+2025-12-10T20:48:46+01:00 - a326c6e - Céline Martinet Sanchez : Mise : lancement du serveur Supabase et restauration de la dernière sauvegarde
+2025-12-10T20:48:46+01:00 - 877f025 - Céline Martinet Sanchez : Suppression du trigger qui ne peut pas encore fonctionner sur Scalingo
+2025-12-10T20:48:46+01:00 - 762ae2e - Céline Martinet Sanchez : Supabase : configuration spécifique à notre projet
+2025-12-10T20:48:46+01:00 - 379a98d - Céline Martinet Sanchez : Modification des déclencheurs Supabase pour les recettes jetables
+2025-12-10T20:48:46+01:00 - 197982d - Céline Martinet Sanchez : Suppression d'un fichier devenu inutile
 2025-12-10T17:33:46+01:00 - e87e03d - Anthony Ricaud : Import Sudocuh - Suppression d'exemples de variables d'env
 2025-12-10T10:51:31+01:00 - 5a3558b - Anthony Ricaud : Import Sudocuh - Suppression du code
 2025-12-10T10:29:04+01:00 - c02e283 - Anthony Ricaud : Import Sudocuh - Corrige le statut des procédures
 2025-11-27T17:30:23+01:00 - c35bbb4 - Céline Martinet Sanchez : Correction du script de sauvegarde
-2025-11-20T10:07:39+01:00 - 0d84182 - Céline Martinet Sanchez : Utilisation d'un clock pour lancer la sauvegarde tous les jours
-2025-11-20T10:07:39+01:00 - 56bf8e6 - Céline Martinet Sanchez : Système de sauvegarde et de restauration de la base de données
-2025-11-20T10:07:39+01:00 - 5c238f9 - Céline Martinet Sanchez : Ne pas versionner le dossier par lequel transite la sauvegarde
 2025-11-20T10:07:39+01:00 - 9bb2e64 - Céline Martinet Sanchez : Demander à Git de ne pas ignorer les scripts
+2025-11-20T10:07:39+01:00 - 5c238f9 - Céline Martinet Sanchez : Ne pas versionner le dossier par lequel transite la sauvegarde
+2025-11-20T10:07:39+01:00 - 56bf8e6 - Céline Martinet Sanchez : Système de sauvegarde et de restauration de la base de données
+2025-11-20T10:07:39+01:00 - 0d84182 - Céline Martinet Sanchez : Utilisation d'un clock pour lancer la sauvegarde tous les jours
 2025-11-19T15:57:14+01:00 - 2083cdc - Céline Martinet Sanchez : Correction d'une faute d'orthographe : à
 2025-11-13T13:59:51+01:00 - b3eba5a - Céline Martinet Sanchez : Correction d'une coquille : ECPI
 2025-11-12T14:00:43+01:00 - 4b6f7f2 - Céline Martinet Sanchez : Création d'événements : précisions concernant le téléversement
