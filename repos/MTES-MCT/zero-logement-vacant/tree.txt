@@ -50,6 +50,7 @@
 │   ├── .python-version
 │   ├── Dockerfile.metabase
 │   ├── README.md
+│   ├── TODO.md
 │   ├── Untitled.ipynb
 │   ├── apps
 │   │   └── vacancy_explainer
@@ -127,6 +128,8 @@
 │   │   │   │   │   │   │   ├── __init__.py
 │   │   │   │   │   │   │   ├── config
 │   │   │   │   │   │   │   │   ├── __init__.py
+│   │   │   │   │   │   │   │   ├── anah.py
+│   │   │   │   │   │   │   │   ├── anct.py
 │   │   │   │   │   │   │   │   ├── base.py
 │   │   │   │   │   │   │   │   ├── cerema.py
 │   │   │   │   │   │   │   │   ├── dgaln.py
@@ -173,6 +176,9 @@
 │   │   │           ├── definitions.py
 │   │   │           └── schedules.py
 │   │   ├── test_pipeline.sh
+│   │   ├── tests
+│   │   │   ├── __init__.py
+│   │   │   └── test_compilation.py
 │   │   ├── uv.lock
 │   │   └── workspace.yaml
 │   ├── dbt
@@ -180,7 +186,9 @@
 │   │   ├── .python-version
 │   │   ├── .sqlfluff
 │   │   ├── .user.yml
+│   │   ├── CLAUDE.md
 │   │   ├── README.md
+│   │   ├── SKILL.md
 │   │   ├── TODO.tx
 │   │   ├── analyses
 │   │   │   ├── .gitkeep
@@ -209,6 +217,8 @@
 │   │   │       ├── 05_owner_campaign_response_analysis.sql
 │   │   │       └── README.md
 │   │   ├── dbt_project.yml
+│   │   ├── docs
+│   │   │   └── GLOSSAIRE_METIER.md
 │   │   ├── macros
 │   │   │   ├── ff
 │   │   │   │   └── process_owner_property_rights.sql
@@ -238,7 +248,9 @@
 │   │   │   │   ├── analysis
 │   │   │   │   │   ├── int_analysis_city_features.sql
 │   │   │   │   │   ├── int_analysis_dvg_wide.sql
+│   │   │   │   │   ├── int_analysis_housing_owners.sql
 │   │   │   │   │   ├── int_analysis_housing_with_out_flag.sql
+│   │   │   │   │   ├── int_analysis_housing_zlv_usage.sql
 │   │   │   │   │   ├── int_analysis_insee_features.sql
 │   │   │   │   │   ├── int_analysis_prix_volumes_wide.sql
 │   │   │   │   │   └── schema.yml
@@ -348,8 +360,14 @@
 │   │   │   │   │   ├── marts_admin_epci.sql
 │   │   │   │   │   └── marts_admin_regions.sql
 │   │   │   │   ├── analysis
+│   │   │   │   │   ├── CLAUDE.md
 │   │   │   │   │   ├── marts_analysis_city_aggregated.sql
 │   │   │   │   │   ├── marts_analysis_housing_out_features.sql
+│   │   │   │   │   ├── marts_bi_housing_characteristics.sql
+│   │   │   │   │   ├── marts_bi_housing_complete.sql
+│   │   │   │   │   ├── marts_bi_housing_geography.sql
+│   │   │   │   │   ├── marts_bi_housing_owners.sql
+│   │   │   │   │   ├── marts_bi_housing_zlv_usage.sql
 │   │   │   │   │   └── schema.yml
 │   │   │   │   ├── common
 │   │   │   │   │   ├── marts_common_cities.sql
@@ -417,11 +435,14 @@
 │   │   │       │   │   ├── schema.yml
 │   │   │       │   │   ├── sources.yml
 │   │   │       │   │   ├── stg_external_dgaln_carte_loyers.sql
+│   │   │       │   │   ├── stg_external_dgaln_loyers_2025.sql
 │   │   │       │   │   └── stg_external_dgaln_zonage_abc.sql
 │   │   │       │   ├── dgfip
 │   │   │       │   │   ├── schema.yml
 │   │   │       │   │   ├── sources.yml
-│   │   │       │   │   └── stg_external_dgfip_fiscalite_locale.sql
+│   │   │       │   │   ├── stg_external_dgfip_deliberation_fiscalite_locale_communes.sql
+│   │   │       │   │   ├── stg_external_dgfip_fiscalite_locale.sql
+│   │   │       │   │   └── stg_external_dgfip_liste_communes_tlv.sql
 │   │   │       │   ├── insee
 │   │   │       │   │   ├── schema.yml
 │   │   │       │   │   ├── sources.yml
@@ -516,17 +537,41 @@
 │   │   │   └── .gitkeep
 │   │   ├── tests
 │   │   │   ├── .gitkeep
+│   │   │   ├── data_quality
+│   │   │   │   ├── test_housing_building_year_reasonable.sql
+│   │   │   │   ├── test_housing_geo_code_valid.sql
+│   │   │   │   ├── test_housing_living_area_reasonable.sql
+│   │   │   │   └── test_housing_vacancy_year_reasonable.sql
 │   │   │   ├── production
 │   │   │   │   ├── campaign
+│   │   │   │   │   ├── test_campaign_dates_ordering.sql
+│   │   │   │   │   ├── test_campaign_return_rate_bounds.sql
+│   │   │   │   │   ├── test_campaign_sent_has_housing.sql
+│   │   │   │   │   ├── test_campaign_status_valid.sql
 │   │   │   │   │   └── test_no_null_housing_number_sent.sql
-│   │   │   │   └── events
-│   │   │   │       ├── test_events_include_all_versions.sql
-│   │   │   │       ├── test_marts_housing_has_expected_followup_count.sql
-│   │   │   │       ├── test_marts_housing_has_expected_updated_count.sql
-│   │   │   │       ├── test_no_orphan_housing_status.sql
-│   │   │   │       ├── test_old_events_included_in_last_status.sql
-│   │   │   │       ├── test_status_labels_not_null_when_status_exists.sql
-│   │   │   │       └── test_unique_last_status_per_housing.sql
+│   │   │   │   ├── establishment
+│   │   │   │   │   ├── test_establishment_activation_typology_valid.sql
+│   │   │   │   │   ├── test_establishment_active_has_users.sql
+│   │   │   │   │   └── test_establishment_type_valid.sql
+│   │   │   │   ├── events
+│   │   │   │   │   ├── test_events_include_all_versions.sql
+│   │   │   │   │   ├── test_events_type_valid.sql
+│   │   │   │   │   ├── test_events_user_source_valid.sql
+│   │   │   │   │   ├── test_events_version_valid.sql
+│   │   │   │   │   ├── test_marts_housing_has_expected_followup_count.sql
+│   │   │   │   │   ├── test_marts_housing_has_expected_updated_count.sql
+│   │   │   │   │   ├── test_no_orphan_housing_status.sql
+│   │   │   │   │   ├── test_old_events_included_in_last_status.sql
+│   │   │   │   │   ├── test_status_labels_not_null_when_status_exists.sql
+│   │   │   │   │   └── test_unique_last_status_per_housing.sql
+│   │   │   │   ├── housing_status
+│   │   │   │   │   ├── test_housing_status_date_ordering.sql
+│   │   │   │   │   ├── test_housing_status_values_valid.sql
+│   │   │   │   │   └── test_housing_status_zlv_user_consistency.sql
+│   │   │   │   └── stats
+│   │   │   │       ├── test_kpi_events_both_versions_present.sql
+│   │   │   │       ├── test_kpi_followup_ended_minimum.sql
+│   │   │   │       └── test_kpi_housing_with_followup_minimum.sql
 │   │   │   └── utils
 │   │   │       └── same_row_number.sql
 │   │   └── uv.lock
@@ -553,6 +598,26 @@
 │   │   │   ├── 01_analyse_communes_territoriale.ipynb
 │   │   │   ├── QUERIES_EXPLORATION_TERRITORIALE.sql
 │   │   │   ├── cohort_overview.png
+│   │   │   ├── paper
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── analyze_characteristics.py
+│   │   │   │   ├── analyze_geography.py
+│   │   │   │   ├── analyze_owners.py
+│   │   │   │   ├── analyze_zlv_usage.py
+│   │   │   │   ├── logs
+│   │   │   │   │   ├── dbt.log
+│   │   │   │   │   └── query_log.sql
+│   │   │   │   ├── outputs
+│   │   │   │   │   ├── caracteristiques_insights.md
+│   │   │   │   │   ├── complete_insights.md
+│   │   │   │   │   ├── deep_analysis_top_features.md
+│   │   │   │   │   ├── geographie_insights.md
+│   │   │   │   │   ├── proprietaires_insights.md
+│   │   │   │   │   └── zlv_usage_insights.md
+│   │   │   │   ├── pyproject.toml
+│   │   │   │   ├── run_analysis.py
+│   │   │   │   ├── utils.py
+│   │   │   │   └── uv.lock
 │   │   │   ├── queries
 │   │   │   │   ├── __init__.py
 │   │   │   │   ├── base_metrics.py
@@ -621,10 +686,14 @@
 │   │   └── TEMPLATE.md
 │   ├── guides
 │   │   ├── clever-cloud-log-drains.md
+│   │   ├── document-upload-architecture.md
 │   │   ├── supprimer-les-warnings-not-wrapped-in-act.md
 │   │   └── tester-les-inputs-api.md
 │   └── plans
-│       └── 2026-01-26-agents-md-configuration-design.md
+│       ├── 2026-01-26-agents-md-configuration-design.md
+│       ├── 2026-01-28-document-upload-refactoring.md
+│       ├── 2026-02-02-document-events-design.md
+│       └── 2026-02-02-frontend-document-api-update.md
 ├── e2e
 │   ├── .env.example
 │   ├── README.md
@@ -748,8 +817,7 @@
 │   │   │   │   ├── Collapse.tsx
 │   │   │   │   └── collapse.module.scss
 │   │   │   ├── DPE
-│   │   │   │   ├── DPE.tsx
-│   │   │   │   └── dpe.module.scss
+│   │   │   │   └── DPE.tsx
 │   │   │   ├── Draft
 │   │   │   │   ├── DraftBody.tsx
 │   │   │   │   ├── DraftDownloader.tsx
@@ -853,6 +921,7 @@
 │   │   │   ├── HousingDisplaySwitch
 │   │   │   │   └── HousingDisplaySwitch.tsx
 │   │   │   ├── HousingEdition
+│   │   │   │   ├── HousingEditionInformationTab.tsx
 │   │   │   │   ├── HousingEditionMobilizationTab.tsx
 │   │   │   │   ├── HousingEditionNoteTab.tsx
 │   │   │   │   ├── HousingEditionSideMenu.tsx
@@ -1224,6 +1293,7 @@
 │   │   ├── mocks
 │   │   │   ├── handlers
 │   │   │   │   ├── auth-handlers.ts
+│   │   │   │   ├── auth-helpers.ts
 │   │   │   │   ├── ban-handlers.ts
 │   │   │   │   ├── campaign-handlers.ts
 │   │   │   │   ├── data.ts
@@ -1587,6 +1657,7 @@
 │   │   │   ├── geo-code.ts
 │   │   │   ├── group-creation-payload.ts
 │   │   │   ├── housing-batch-update-payload.ts
+│   │   │   ├── housing-document-payload.ts
 │   │   │   ├── housing-filters.ts
 │   │   │   ├── housing-update-payload.ts
 │   │   │   ├── id.ts
@@ -1602,6 +1673,7 @@
 │   │   │   │   ├── geo-code.test.ts
 │   │   │   │   ├── group-creation-payload.test.ts
 │   │   │   │   ├── housing-batch-update-payload.test.ts
+│   │   │   │   ├── housing-document-payload.test.ts
 │   │   │   │   ├── housing-filters.test.ts
 │   │   │   │   ├── housing-update-payload.test.ts
 │   │   │   │   ├── id.test.ts
@@ -1982,7 +2054,12 @@
 │   │   │   │   │   ├── 20251120151611_df-housing-nat-2024-add-index-idlocal.ts
 │   │   │   │   │   ├── 20251201123044_documents.ts
 │   │   │   │   │   ├── 20251201123045_documents_housings.ts
-│   │   │   │   │   └── 20260127110646_drop-deprecated-precision-fields.ts
+│   │   │   │   │   ├── 20260122165040_fast-housing-add-actual-dpe.ts
+│   │   │   │   │   ├── 20260127110646_drop-deprecated-precision-fields.ts
+│   │   │   │   │   ├── 20260129092128_documents-add-establishment_id.ts
+│   │   │   │   │   ├── 20260129114232_documents-housings-add-housing-fk.ts
+│   │   │   │   │   ├── 20260202163613_document-events.ts
+│   │   │   │   │   └── 20260202163641_housing-document-events.ts
 │   │   │   │   ├── procedures
 │   │   │   │   │   ├── 001-load-housing.sql
 │   │   │   │   │   ├── 002-load-non-vacant-housing.sql
@@ -2061,6 +2138,7 @@
 │   │   │   ├── ContactPointApi.ts
 │   │   │   ├── DashboardApi.ts
 │   │   │   ├── DatafoncierResultDTO.ts
+│   │   │   ├── DocumentApi.ts
 │   │   │   ├── DraftApi.ts
 │   │   │   ├── EstablishmentApi.ts
 │   │   │   ├── EstablishmentFilterApi.ts
@@ -2087,6 +2165,7 @@
 │   │   │   ├── SortApi.ts
 │   │   │   ├── UserApi.ts
 │   │   │   └── test
+│   │   │       ├── DocumentApi.test.ts
 │   │   │       ├── EventApi.test.ts
 │   │   │       ├── GroupApi.test.ts
 │   │   │       ├── HousingApi.test.ts
@@ -2104,6 +2183,7 @@
 │   │   │   ├── datafoncierOwnerApiRepository.ts
 │   │   │   ├── datafoncierOwnersRepository.ts
 │   │   │   ├── departmentalOwnersRepository.ts
+│   │   │   ├── documentRepository.ts
 │   │   │   ├── draftRepository.ts
 │   │   │   ├── establishmentLocalityRepository.ts
 │   │   │   ├── establishmentRepository.ts
@@ -2130,6 +2210,7 @@
 │   │   │   │   ├── campaignHousingRepository.test.ts
 │   │   │   │   ├── campaignRepository.test.ts
 │   │   │   │   ├── datafoncierHousingRepository.test.ts
+│   │   │   │   ├── documentRepository.test.ts
 │   │   │   │   ├── draftRepository.test.ts
 │   │   │   │   ├── establishmentRepository.test.ts
 │   │   │   │   ├── eventRepository.test.ts
@@ -2296,6 +2377,7 @@
 │   │   │   │   ├── INSTALLATION.md
 │   │   │   │   ├── README.md
 │   │   │   │   ├── cerema-sync.sh
+│   │   │   │   ├── export-lovac-users.py
 │   │   │   │   ├── requirements.txt
 │   │   │   │   └── utils
 │   │   │   │       ├── backup_localities.py
@@ -2337,6 +2419,7 @@
 │   │   │   │   ├── index.ts
 │   │   │   │   ├── mockCeremaService.ts
 │   │   │   │   └── userKindService.ts
+│   │   │   ├── document-upload.ts
 │   │   │   ├── file-validation.ts
 │   │   │   ├── mailService
 │   │   │   │   ├── brevoService.ts
@@ -2351,6 +2434,7 @@
 │   │   │   └── twoFactorService.ts
 │   │   ├── test
 │   │   │   ├── global-setup.ts
+│   │   │   ├── sample.pdf
 │   │   │   ├── setup-env.ts
 │   │   │   ├── testFixtures.ts
 │   │   │   └── testUtils.ts
@@ -2439,4 +2523,4 @@
 ├── tsconfig.json
 ├── vitest.config.ts
 └── yarn.lock
-376 directories, 2065 files
+385 directories, 2140 files
