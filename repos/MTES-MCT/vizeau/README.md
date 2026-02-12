@@ -52,22 +52,27 @@ Elles ne sont pas destinées à un déploiement en production réel pour des rai
    ```bash
    node ace build
    ```
+
 4. Exécutez les migrations de base de données pour configurer le schéma (si ce n'est pas déjà fait) :
 
    ```bash
    node ace migration:run
    ```
+
 5. Pour alimenter la base de données avec ses données initiales de production uniquement, exécutez la commande suivante :
 
    ```bash
    NODE_ENV=production node ace db:seed
    ```
+
 6. Assurez-vous d'être dans le même dossier que ce README et utilisez le script suivant pour démarrer l'application en mode production :
 
    ```bash
    ./start_local_prod.sh
    ```
+
    Ce script installera les dépendances de production au premier lancement uniquement puis démarrera l'application en utilisant soit le fichier `.env.prod`, soit le fichier `.env` si le premier n'existe pas.
+
 7. Ouvrez votre navigateur et accédez à `http://localhost:3333` pour utiliser l’application.
 
 ## Exécution en production
