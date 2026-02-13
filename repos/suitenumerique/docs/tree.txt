@@ -15,6 +15,7 @@
 │       ├── crowdin_upload.yml
 │       ├── dependencies.yml
 │       ├── docker-hub.yml
+│       ├── ghcr.yml
 │       ├── helmfile-linter.yaml
 │       ├── impress-frontend.yml
 │       ├── impress.yml
@@ -112,7 +113,8 @@
 │   ├── release.md
 │   ├── search.md
 │   ├── system-requirements.md
-│   └── troubleshoot.md
+│   ├── troubleshoot.md
+│   └── user_account_reconciliation.md
 ├── env.d
 │   ├── development
 │   │   ├── common
@@ -193,6 +195,7 @@
     │   │   │   ├── 0026_comments.py
     │   │   │   ├── 0027_auto_20251120_0956.py
     │   │   │   ├── 0028_remove_templateaccess_template_and_more.py
+    │   │   │   ├── 0029_userreconciliationcsvimport_userreconciliation.py
     │   │   │   └── __init__.py
     │   │   ├── models.py
     │   │   ├── services
@@ -209,7 +212,8 @@
     │   │   ├── tasks
     │   │   │   ├── __init__.py
     │   │   │   ├── mail.py
-    │   │   │   └── search.py
+    │   │   │   ├── search.py
+    │   │   │   └── user_reconciliation.py
     │   │   ├── templatetags
     │   │   │   ├── __init__.py
     │   │   │   └── extra_tags.py
@@ -222,6 +226,12 @@
     │   │   │   │   ├── test_index.py
     │   │   │   │   └── test_update_files_content_type_metadata.py
     │   │   │   ├── conftest.py
+    │   │   │   ├── data
+    │   │   │   │   ├── example_reconciliation_basic.csv
+    │   │   │   │   ├── example_reconciliation_error.csv
+    │   │   │   │   ├── example_reconciliation_grist_form.csv
+    │   │   │   │   ├── example_reconciliation_grist_form_error.csv
+    │   │   │   │   └── example_reconciliation_missing_column.csv
     │   │   │   ├── documents
     │   │   │   │   ├── test_api_document_accesses.py
     │   │   │   │   ├── test_api_document_accesses_create.py
@@ -273,6 +283,7 @@
     │   │   │   │   └── test_openapi_schema.py
     │   │   │   ├── test_api_config.py
     │   │   │   ├── test_api_throttling_document_throttle.py
+    │   │   │   ├── test_api_user_reconciliation.py
     │   │   │   ├── test_api_users.py
     │   │   │   ├── test_api_utils_ai_document_rate_throttles.py
     │   │   │   ├── test_api_utils_ai_user_rate_throttles.py
@@ -284,6 +295,7 @@
     │   │   │   ├── test_models_documents.py
     │   │   │   ├── test_models_documents_indexer.py
     │   │   │   ├── test_models_invitations.py
+    │   │   │   ├── test_models_user_reconciliation.py
     │   │   │   ├── test_models_users.py
     │   │   │   ├── test_services_ai_services.py
     │   │   │   ├── test_services_collaboration_services.py
@@ -293,7 +305,8 @@
     │   │   │   ├── test_services_search_indexers.py
     │   │   │   ├── test_settings.py
     │   │   │   ├── test_utils.py
-    │   │   │   └── test_utils_filter_descendants.py
+    │   │   │   ├── test_utils_filter_descendants.py
+    │   │   │   └── test_utils_users_sharing_documents_with.py
     │   │   ├── urls.py
     │   │   ├── utils.py
     │   │   └── validators.py
@@ -378,6 +391,7 @@
     │   │   │   │   │   ├── 404.spec.ts
     │   │   │   │   │   ├── assets
     │   │   │   │   │   │   ├── base-content-test-pdf.txt
+    │   │   │   │   │   │   ├── doc-export-PDF-browser-regressions.pdf
     │   │   │   │   │   │   ├── doc-export-regressions.pdf
     │   │   │   │   │   │   ├── logo-suite-numerique.png
     │   │   │   │   │   │   ├── test-pdf.pdf
@@ -413,6 +427,7 @@
     │   │   │   │   │   ├── login.spec.ts
     │   │   │   │   │   ├── utils-common.ts
     │   │   │   │   │   ├── utils-editor.ts
+    │   │   │   │   │   ├── utils-export.ts
     │   │   │   │   │   ├── utils-share.ts
     │   │   │   │   │   └── utils-sub-pages.ts
     │   │   │   │   └── helpers.ts
@@ -450,11 +465,12 @@
     │   │       │       │   └── emoji
     │   │       │       │       └── fallback.png
     │   │       │       ├── icon-docs-dsfr.svg
+    │   │       │       ├── icon-docs-v2.png
+    │   │       │       ├── icon-docs-v2.svg
     │   │       │       ├── icon-docs.svg
     │   │       │       ├── img-not-found.svg
     │   │       │       ├── logo-gouv.png
     │   │       │       ├── logo-gouv.svg
-    │   │       │       ├── logo-pdf.svg
     │   │       │       ├── logo-suite-numerique.png
     │   │       │       └── mail-header-background.png
     │   │       ├── src
@@ -475,6 +491,7 @@
     │   │       │   ├── assets
     │   │       │   │   └── icons
     │   │       │   │       ├── doc-all.svg
+    │   │       │   │       ├── error-coffee.png
     │   │       │   │       ├── error-planetes.png
     │   │       │   │       ├── icon-401.png
     │   │       │   │       ├── icon-403.png
@@ -553,18 +570,22 @@
     │   │       │   ├── features
     │   │       │   │   ├── auth
     │   │       │   │   │   ├── __tests__
+    │   │       │   │   │   │   ├── UserReconciliation.test.tsx
     │   │       │   │   │   │   └── utils.test.tsx
     │   │       │   │   │   ├── api
     │   │       │   │   │   │   ├── index.ts
     │   │       │   │   │   │   ├── types.ts
-    │   │       │   │   │   │   └── useAuthQuery.tsx
+    │   │       │   │   │   │   ├── useAuthQuery.tsx
+    │   │       │   │   │   │   └── useUserReconciliations.tsx
     │   │       │   │   │   ├── assets
-    │   │       │   │   │   │   └── button-proconnect.svg
+    │   │       │   │   │   │   ├── button-proconnect.svg
+    │   │       │   │   │   │   └── mail-check-filled.svg
     │   │       │   │   │   ├── components
     │   │       │   │   │   │   ├── Auth.tsx
     │   │       │   │   │   │   ├── AvatarSvg.tsx
     │   │       │   │   │   │   ├── ButtonLogin.tsx
     │   │       │   │   │   │   ├── UserAvatar.tsx
+    │   │       │   │   │   │   ├── UserReconciliation.tsx
     │   │       │   │   │   │   └── index.ts
     │   │       │   │   │   ├── conf.ts
     │   │       │   │   │   ├── hooks
@@ -684,7 +705,8 @@
     │   │       │   │   │   │   ├── mappingPDF.tsx
     │   │       │   │   │   │   ├── types.ts
     │   │       │   │   │   │   ├── utils.ts
-    │   │       │   │   │   │   └── utils_html.ts
+    │   │       │   │   │   │   ├── utils_html.ts
+    │   │       │   │   │   │   └── utils_print.ts
     │   │       │   │   │   ├── doc-header
     │   │       │   │   │   │   ├── __tests__
     │   │       │   │   │   │   │   ├── DocHeaderInfo.spec.tsx
@@ -965,7 +987,8 @@
     │   │       │   │   ├── useClipboard.tsx
     │   │       │   │   ├── useCmdK.tsx
     │   │       │   │   ├── useDate.tsx
-    │   │       │   │   └── useKeyboardAction.ts
+    │   │       │   │   ├── useKeyboardAction.ts
+    │   │       │   │   └── useRouteChangeCompleteFocus.tsx
     │   │       │   ├── i18n
     │   │       │   │   ├── config.ts
     │   │       │   │   ├── initI18n.ts
@@ -996,8 +1019,15 @@
     │   │       │   │   ├── index.tsx
     │   │       │   │   ├── login
     │   │       │   │   │   └── index.tsx
-    │   │       │   │   └── offline
-    │   │       │   │       └── index.tsx
+    │   │       │   │   ├── offline
+    │   │       │   │   │   └── index.tsx
+    │   │       │   │   └── user-reconciliations
+    │   │       │   │       ├── active
+    │   │       │   │       │   └── [id]
+    │   │       │   │       │       └── index.tsx
+    │   │       │   │       └── inactive
+    │   │       │   │           └── [id]
+    │   │       │   │               └── index.tsx
     │   │       │   ├── services
     │   │       │   │   ├── Crisp.tsx
     │   │       │   │   ├── PosthogAnalytic.tsx
@@ -1147,4 +1177,4 @@
         │   └── template.mjml
         ├── package.json
         └── yarn.lock
-256 directories, 893 files
+262 directories, 917 files

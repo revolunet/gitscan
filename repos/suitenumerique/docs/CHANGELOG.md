@@ -6,13 +6,27 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Added
+
+- ✨(frontend) Can print a doc #1832
+- ✨(backend) manage reconciliation requests for user accounts #1878
+- 👷(CI) add GHCR workflow for forked repo testing #1851
+
+### Changed
+
+- ♿️(frontend) prevent dates from being focusable #1855
+- ♿️(frontend) Focus main container after navigation #1854
+- 💄(frontend) align colors and logo with ui-kit v2 #1869
+- 🚸(backend) sort user search results by proximity with the active user #1802
+- 🚸(oidc) ignore case when fallback on email #1880
+
 ### Fixed
 
-🐛(frontend) fix broadcast store sync #1846
+- 🐛(frontend) fix broadcast store sync #1846
 
 ## [v4.5.0] - 2026-01-28
 
-### Added 
+### Added
 
 - ✨(frontend) integrate configurable Waffle #1795
 - ✨ Import of documents #1609
