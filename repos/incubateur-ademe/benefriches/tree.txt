@@ -1,19 +1,27 @@
 .
 ├── .claude
 │   ├── context
-│   │   └── api
-│   │       ├── 00-overview.md
-│   │       ├── 01-usecase-pattern.md
-│   │       ├── 02-controller-pattern.md
-│   │       ├── 03-repository-pattern.md
-│   │       ├── 04-query-pattern.md
-│   │       ├── 05-unit-testing-pattern.md
-│   │       ├── 06-integration-testing-pattern.md
-│   │       ├── 07-database-patterns.md
-│   │       ├── 08-dependency-injection.md
-│   │       ├── 09-naming-conventions.md
-│   │       ├── 10-domain-events-pattern.md
-│   │       └── 11-shared-services.md
+│   │   ├── api
+│   │   │   ├── 00-overview.md
+│   │   │   ├── 01-usecase-pattern.md
+│   │   │   ├── 02-controller-pattern.md
+│   │   │   ├── 03-repository-pattern.md
+│   │   │   ├── 04-query-pattern.md
+│   │   │   ├── 05-unit-testing-pattern.md
+│   │   │   ├── 06-integration-testing-pattern.md
+│   │   │   ├── 07-database-patterns.md
+│   │   │   ├── 08-dependency-injection.md
+│   │   │   ├── 09-naming-conventions.md
+│   │   │   ├── 10-domain-events-pattern.md
+│   │   │   └── 11-shared-services.md
+│   │   └── security
+│   │       └── security-rules.md
+│   ├── hooks
+│   │   └── format-check.sh
+│   ├── settings
+│   │   └── agents
+│   │       └── security-reviewer.md
+│   ├── settings.json
 │   └── skills
 │       ├── code-reviewer
 │       │   └── SKILL.md
@@ -28,6 +36,8 @@
 │       ├── react-best-practices
 │       │   ├── SKILL.md
 │       │   └── examples.md
+│       ├── security-review
+│       │   └── SKILL.md
 │       └── worktree
 │           └── SKILL.md
 ├── .dockerignore
@@ -336,6 +346,8 @@
 │   │   │   │       │   │   └── roadsAndUtilitiesContruction.ts
 │   │   │   │       │   └── urbanProjects.ts
 │   │   │   │       └── usecases
+│   │   │   │           ├── archiveReconversionProject.usecase.spec.ts
+│   │   │   │           ├── archiveReconversionProject.usecase.ts
 │   │   │   │           ├── computeProjectUrbanSprawlImpactsComparison.usecase.spec.ts
 │   │   │   │           ├── computeProjectUrbanSprawlImpactsComparison.usecase.ts
 │   │   │   │           ├── computeReconversionProjectImpacts.usecase.spec.ts
@@ -444,7 +456,8 @@
 │   │   │   │   │       │   ├── 20251125115145_create-table-site-actions.ts
 │   │   │   │   │       │   ├── 20251126094945_replace-space-distribution-by-soils-distribution-space-category-for-urban-reconversion-project.ts
 │   │   │   │   │       │   ├── 20251126101548_rename-space-distribution-to-legacy-in-reconversion_project_development_plans.ts
-│   │   │   │   │       │   └── 20260130160303_rename-other-and-cultural-place-in-buildings-use.ts
+│   │   │   │   │       │   ├── 20260130160303_rename-other-and-cultural-place-in-buildings-use.ts
+│   │   │   │   │       │   └── 20260210154259_add-column-status-to-reconversion_projects-table.ts
 │   │   │   │   │       ├── scripts
 │   │   │   │   │       │   ├── README.md
 │   │   │   │   │       │   ├── initialize-or-update-city-stats.ts
@@ -702,12 +715,25 @@
 │       │   │   │   ├── all-project-phases.svg
 │       │   │   │   ├── all-projects.svg
 │       │   │   │   ├── buildings-uses
-│       │   │   │   │   ├── cultural-place.svg
 │       │   │   │   │   ├── economic-activity
 │       │   │   │   │   │   ├── industrial-and-artisanal-and-shipping-premises.svg
 │       │   │   │   │   │   ├── local-services.svg
 │       │   │   │   │   │   ├── local-store.svg
 │       │   │   │   │   │   └── offices.svg
+│       │   │   │   │   ├── education
+│       │   │   │   │   │   ├── kindergarten-or-primary-school.svg
+│       │   │   │   │   │   ├── other-educational-facility.svg
+│       │   │   │   │   │   └── secondary-school.svg
+│       │   │   │   │   ├── health
+│       │   │   │   │   │   ├── hospital.svg
+│       │   │   │   │   │   ├── local-health-service.svg
+│       │   │   │   │   │   └── medical-social-facility.svg
+│       │   │   │   │   ├── leisure-and-culture
+│       │   │   │   │   │   ├── cinema.svg
+│       │   │   │   │   │   ├── museum.svg
+│       │   │   │   │   │   ├── other-cultural-place.svg
+│       │   │   │   │   │   ├── recreational-facility.svg
+│       │   │   │   │   │   └── theater.svg
 │       │   │   │   │   ├── multi-story-parking.svg
 │       │   │   │   │   ├── other.svg
 │       │   │   │   │   ├── public-buildings.svg
@@ -830,6 +856,12 @@
 │       │   │   │   └── infrastructure
 │       │   │   │       ├── InMemoryAppSettings.ts
 │       │   │   │       └── LocalStorageAppSettings.ts
+│       │   │   ├── archive-project
+│       │   │   │   ├── infrastructure
+│       │   │   │   │   └── HttpArchiveProjectService.ts
+│       │   │   │   └── views
+│       │   │   │       ├── ArchiveProjectDialog.tsx
+│       │   │   │       └── ArchiveProjectDialogButton.tsx
 │       │   │   ├── create-project
 │       │   │   │   ├── core
 │       │   │   │   │   ├── __tests__
@@ -911,7 +943,7 @@
 │       │   │   │   │       │   │   │   └── spacesSurfaceArea.step.spec.ts
 │       │   │   │   │       │   │   └── uses
 │       │   │   │   │       │   │       ├── usesFloorSurfaceArea.step.spec.ts
-│       │   │   │   │       │   │       ├── usesFootprintSurfaceArea.step.spec.ts
+│       │   │   │   │       │   │       ├── usesPublicGreenSpacesSurfaceArea.step.spec.ts
 │       │   │   │   │       │   │       └── usesSelection.step.spec.ts
 │       │   │   │   │       │   └── urbanProject.selectors.spec.ts
 │       │   │   │   │       ├── fetchEstimatedSiteResalePrice.action.ts
@@ -937,6 +969,7 @@
 │       │   │   │   │       ├── HttpSiteService.ts
 │       │   │   │   │       └── InMemorySitesService.ts
 │       │   │   │   └── views
+│       │   │   │       ├── NavigationBlockerDialog.tsx
 │       │   │   │       ├── ProjectCreationWizard.tsx
 │       │   │   │       ├── Stepper.tsx
 │       │   │   │       ├── common-views
@@ -1152,6 +1185,7 @@
 │       │   │   │   │       ├── HttpCreateSiteApi.ts
 │       │   │   │   │       └── inMemoryCreateSiteApi.ts
 │       │   │   │   └── views
+│       │   │   │       ├── NavigationBlockerDialog.tsx
 │       │   │   │       ├── SiteCreationWizard.tsx
 │       │   │   │       ├── common-views
 │       │   │   │       │   ├── SiteSurfaceAreaForm.tsx
@@ -1401,8 +1435,6 @@
 │       │   │   │   │   ├── projectKeyImpactIndicators.ts
 │       │   │   │   │   └── projects.types.ts
 │       │   │   │   ├── infrastructure
-│       │   │   │   │   ├── duplicate-project-service
-│       │   │   │   │   │   └── HttpDuplicateProjectService.ts
 │       │   │   │   │   ├── project-features-service
 │       │   │   │   │   │   ├── HttpProjectFeaturesService.ts
 │       │   │   │   │   │   └── MockProjectFeaturesService.ts
@@ -1670,56 +1702,55 @@
 │       │   │   │       │   ├── impacts-accuracy-disclaimer
 │       │   │   │       │   │   └── ImpactsAccuracyDisclaimer.tsx
 │       │   │   │       │   ├── index.tsx
-│       │   │   │       │   ├── pdf-export
-│       │   │   │       │   │   ├── about-benefriches
-│       │   │   │       │   │   │   └── AboutBenefrichesPdfPage.tsx
-│       │   │   │       │   │   ├── buildTableOfContents.spec.ts
-│       │   │   │       │   │   ├── buildTableOfContents.ts
-│       │   │   │       │   │   ├── components
-│       │   │   │       │   │   │   ├── CoverPage.tsx
-│       │   │   │       │   │   │   ├── DataLine.tsx
-│       │   │   │       │   │   │   ├── FeaturesSection.tsx
-│       │   │   │       │   │   │   ├── ImpactItemDetails.tsx
-│       │   │   │       │   │   │   ├── ImpactItemGroup.tsx
-│       │   │   │       │   │   │   ├── ImpactRowValue.tsx
-│       │   │   │       │   │   │   ├── ImpactsGroupByActor.tsx
-│       │   │   │       │   │   │   ├── ImpactsSection.tsx
-│       │   │   │       │   │   │   ├── ListItem.tsx
-│       │   │   │       │   │   │   ├── PdfPage.tsx
-│       │   │   │       │   │   │   ├── PdfPageHeader.tsx
-│       │   │   │       │   │   │   ├── PdfPageSubtitle.tsx
-│       │   │   │       │   │   │   └── PdfPageTitle.tsx
-│       │   │   │       │   │   ├── context.ts
-│       │   │   │       │   │   ├── format.ts
-│       │   │   │       │   │   ├── impacts
-│       │   │   │       │   │   │   ├── EconomicBalancePages.tsx
-│       │   │   │       │   │   │   ├── ProjectImpactsPdfPage.tsx
-│       │   │   │       │   │   │   ├── environmental-impacts
-│       │   │   │       │   │   │   │   └── index.tsx
-│       │   │   │       │   │   │   ├── social-impacts
-│       │   │   │       │   │   │   │   └── index.tsx
-│       │   │   │       │   │   │   └── socio-economic-impacts
-│       │   │   │       │   │   │       ├── Introduction.tsx
-│       │   │   │       │   │   │       ├── SocioEconomicImpactsSection.tsx
-│       │   │   │       │   │   │       └── index.tsx
-│       │   │   │       │   │   ├── index.tsx
-│       │   │   │       │   │   ├── pageIds.ts
-│       │   │   │       │   │   ├── project-features
-│       │   │   │       │   │   │   ├── ProjectFeaturesPdfPage.tsx
-│       │   │   │       │   │   │   ├── development-plan
-│       │   │   │       │   │   │   │   ├── DevelopmentPlanFeaturesPdf.tsx
-│       │   │   │       │   │   │   │   └── SoilsDistributionPdf.tsx
-│       │   │   │       │   │   │   ├── expenses-and-incomes
-│       │   │   │       │   │   │   │   ├── DevelopmentExpenses.tsx
-│       │   │   │       │   │   │   │   └── ProjectExpensesAndIncomesPdf.tsx
-│       │   │   │       │   │   │   ├── schedule
-│       │   │   │       │   │   │   │   └── ProjectSchedulePdf.tsx
-│       │   │   │       │   │   │   └── stakeholders
-│       │   │   │       │   │   │       └── ProjectStakeholdersPdf.tsx
-│       │   │   │       │   │   ├── site-features
-│       │   │   │       │   │   │   └── SiteFeaturesPdfPage.tsx
-│       │   │   │       │   │   └── styles.ts
-│       │   │   │       │   └── useDuplicateProject.ts
+│       │   │   │       │   └── pdf-export
+│       │   │   │       │       ├── about-benefriches
+│       │   │   │       │       │   └── AboutBenefrichesPdfPage.tsx
+│       │   │   │       │       ├── buildTableOfContents.spec.ts
+│       │   │   │       │       ├── buildTableOfContents.ts
+│       │   │   │       │       ├── components
+│       │   │   │       │       │   ├── CoverPage.tsx
+│       │   │   │       │       │   ├── DataLine.tsx
+│       │   │   │       │       │   ├── FeaturesSection.tsx
+│       │   │   │       │       │   ├── ImpactItemDetails.tsx
+│       │   │   │       │       │   ├── ImpactItemGroup.tsx
+│       │   │   │       │       │   ├── ImpactRowValue.tsx
+│       │   │   │       │       │   ├── ImpactsGroupByActor.tsx
+│       │   │   │       │       │   ├── ImpactsSection.tsx
+│       │   │   │       │       │   ├── ListItem.tsx
+│       │   │   │       │       │   ├── PdfPage.tsx
+│       │   │   │       │       │   ├── PdfPageHeader.tsx
+│       │   │   │       │       │   ├── PdfPageSubtitle.tsx
+│       │   │   │       │       │   └── PdfPageTitle.tsx
+│       │   │   │       │       ├── context.ts
+│       │   │   │       │       ├── format.ts
+│       │   │   │       │       ├── impacts
+│       │   │   │       │       │   ├── EconomicBalancePages.tsx
+│       │   │   │       │       │   ├── ProjectImpactsPdfPage.tsx
+│       │   │   │       │       │   ├── environmental-impacts
+│       │   │   │       │       │   │   └── index.tsx
+│       │   │   │       │       │   ├── social-impacts
+│       │   │   │       │       │   │   └── index.tsx
+│       │   │   │       │       │   └── socio-economic-impacts
+│       │   │   │       │       │       ├── Introduction.tsx
+│       │   │   │       │       │       ├── SocioEconomicImpactsSection.tsx
+│       │   │   │       │       │       └── index.tsx
+│       │   │   │       │       ├── index.tsx
+│       │   │   │       │       ├── pageIds.ts
+│       │   │   │       │       ├── project-features
+│       │   │   │       │       │   ├── ProjectFeaturesPdfPage.tsx
+│       │   │   │       │       │   ├── development-plan
+│       │   │   │       │       │   │   ├── DevelopmentPlanFeaturesPdf.tsx
+│       │   │   │       │       │   │   └── SoilsDistributionPdf.tsx
+│       │   │   │       │       │   ├── expenses-and-incomes
+│       │   │   │       │       │   │   ├── DevelopmentExpenses.tsx
+│       │   │   │       │       │   │   └── ProjectExpensesAndIncomesPdf.tsx
+│       │   │   │       │       │   ├── schedule
+│       │   │   │       │       │   │   └── ProjectSchedulePdf.tsx
+│       │   │   │       │       │   └── stakeholders
+│       │   │   │       │       │       └── ProjectStakeholdersPdf.tsx
+│       │   │   │       │       ├── site-features
+│       │   │   │       │       │   └── SiteFeaturesPdfPage.tsx
+│       │   │   │       │       └── styles.ts
 │       │   │   │       ├── quick-impacts-embed-view
 │       │   │   │       │   ├── Callout.tsx
 │       │   │   │       │   ├── EmbedImpactsView.tsx
@@ -1856,6 +1887,7 @@
 │       │   │   │   │   ├── fetchSiteView.action.ts
 │       │   │   │   │   ├── gateways
 │       │   │   │   │   │   └── SiteGateway.ts
+│       │   │   │   │   ├── removeProjectFromList.action.ts
 │       │   │   │   │   ├── site.types.ts
 │       │   │   │   │   ├── siteFeatures.reducer.ts
 │       │   │   │   │   ├── siteFeatures.selectors.ts
@@ -2035,14 +2067,16 @@
 │       │   │   │   │           │   │   └── finalSummary.handler.ts
 │       │   │   │   │           │   └── uses
 │       │   │   │   │           │       ├── usesFloorSurfaceArea.handler.ts
-│       │   │   │   │           │       ├── usesFootprintSurfaceArea.handler.ts
 │       │   │   │   │           │       ├── usesIntroduction.handler.ts
+│       │   │   │   │           │       ├── usesPublicGreenSpacesSurfaceArea.handler.ts
 │       │   │   │   │           │       └── usesSelection.handler.ts
 │       │   │   │   │           ├── urbanProject.actions.ts
 │       │   │   │   │           ├── urbanProject.reducer.ts
 │       │   │   │   │           ├── urbanProject.selectors.ts
 │       │   │   │   │           └── urbanProjectSteps.ts
 │       │   │   │   ├── soils.ts
+│       │   │   │   ├── sort
+│       │   │   │   │   └── sortByKey.ts
 │       │   │   │   ├── split-number
 │       │   │   │   │   └── splitNumber.ts
 │       │   │   │   ├── stakeholder.ts
@@ -2057,6 +2091,8 @@
 │       │   │   │   ├── administrative-division-service
 │       │   │   │   │   ├── administrativeDivisionGeoApi.ts
 │       │   │   │   │   └── administrativeDivisionMock.ts
+│       │   │   │   ├── duplicate-project-service
+│       │   │   │   │   └── HttpDuplicateProjectService.ts
 │       │   │   │   ├── real-estate-valuation-service
 │       │   │   │   │   ├── HttpRealEstateValuationService.ts
 │       │   │   │   │   ├── InMemoryRealEstateValuationService.ts
@@ -2207,6 +2243,8 @@
 │       │   │       │       ├── FormStepperWrapper.tsx
 │       │   │       │       ├── FormWarning.tsx
 │       │   │       │       └── WizardFormLayout.tsx
+│       │   │       ├── project
+│       │   │       │   └── useDuplicateProject.ts
 │       │   │       ├── project-form
 │       │   │       │   ├── AnswerCascadingUpdateDialog.tsx
 │       │   │       │   ├── ProjectFormContext.tsx
@@ -2396,11 +2434,11 @@
 │       │   │       │   │       ├── floor-surface-area
 │       │   │       │   │       │   ├── UsesFloorSurfaceArea.tsx
 │       │   │       │   │       │   └── index.tsx
-│       │   │       │   │       ├── footprint-surface-area
-│       │   │       │   │       │   ├── UsesFootprintSurfaceArea.tsx
-│       │   │       │   │       │   └── index.tsx
 │       │   │       │   │       ├── introduction
 │       │   │       │   │       │   ├── UsesIntroduction.tsx
+│       │   │       │   │       │   └── index.tsx
+│       │   │       │   │       ├── public-green-spaces-surface-area
+│       │   │       │   │       │   ├── PublicGreenSpacesSurfaceArea.tsx
 │       │   │       │   │       │   └── index.tsx
 │       │   │       │   │       └── selection
 │       │   │       │   │           ├── UsesSelection.tsx
@@ -2613,4 +2651,4 @@
 └── scripts
     ├── create-worktree.sh
     └── remove-worktree.sh
-727 directories, 1888 files
+740 directories, 1913 files
