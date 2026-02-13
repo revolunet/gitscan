@@ -12,7 +12,6 @@
 │       ├── cicd-app.yml
 │       ├── cicd-database.yml
 │       ├── cicd-datapipeline-prefect3.yml
-│       ├── cicd-datapipeline.yml
 │       ├── codeql.yml
 │       ├── publish-package.yml
 │       └── trivy.yml
@@ -122,6 +121,8 @@
 │   │   │   │                   │   │   │   └── DepartmentAreaEntity.kt
 │   │   │   │                   │   │   ├── health
 │   │   │   │                   │   │   │   └── Health.kt
+│   │   │   │                   │   │   ├── lastPositions
+│   │   │   │                   │   │   │   └── LastPositionEntity.kt
 │   │   │   │                   │   │   ├── localizedArea
 │   │   │   │                   │   │   │   └── LocalizedAreaEntity.kt
 │   │   │   │                   │   │   ├── mission
@@ -184,7 +185,7 @@
 │   │   │   │                   │   │   ├── themes
 │   │   │   │                   │   │   │   └── ThemeEntity.kt
 │   │   │   │                   │   │   ├── vessels
-│   │   │   │                   │   │   │   └── Vessel.kt
+│   │   │   │                   │   │   │   └── VesselEntity.kt
 │   │   │   │                   │   │   └── vigilanceArea
 │   │   │   │                   │   │       ├── EndingConditionEnum.kt
 │   │   │   │                   │   │       ├── FrequencyEnum.kt
@@ -217,6 +218,7 @@
 │   │   │   │                   │   │   ├── IDepartmentAreaRepository.kt
 │   │   │   │                   │   │   ├── IEnvActionRepository.kt
 │   │   │   │                   │   │   ├── IFacadeAreasRepository.kt
+│   │   │   │                   │   │   ├── ILastPositionRepository.kt
 │   │   │   │                   │   │   ├── ILocalizedAreasRepository.kt
 │   │   │   │                   │   │   ├── IMissionRepository.kt
 │   │   │   │                   │   │   ├── IMonitorFishMissionActionsRepository.kt
@@ -294,6 +296,8 @@
 │   │   │   │                   │   │   │   └── GetDepartmentAreas.kt
 │   │   │   │                   │   │   ├── healthcheck
 │   │   │   │                   │   │   │   └── GetHealthcheck.kt
+│   │   │   │                   │   │   ├── lastPositions
+│   │   │   │                   │   │   │   └── GetLastPositions.kt
 │   │   │   │                   │   │   ├── localizedArea
 │   │   │   │                   │   │   │   └── GetAllLocalizedAreas.kt
 │   │   │   │                   │   │   ├── missions
@@ -448,6 +452,8 @@
 │   │   │   │                   │   │   │   │       │   ├── DashboardImageDataOutput.kt
 │   │   │   │                   │   │   │   │       │   ├── DashboardsDataOutput.kt
 │   │   │   │                   │   │   │   │       │   └── ExtractedAreaDataOutput.kt
+│   │   │   │                   │   │   │   │       ├── lastPositions
+│   │   │   │                   │   │   │   │       │   └── LastPositionOutput.kt
 │   │   │   │                   │   │   │   │       ├── missions
 │   │   │   │                   │   │   │   │       │   ├── MissionAttachedReportingDataOutput.kt
 │   │   │   │                   │   │   │   │       │   ├── MissionDataOutput.kt
@@ -534,6 +540,7 @@
 │   │   │   │                   │   │   │   │       ├── Dashboards.kt
 │   │   │   │                   │   │   │   │       ├── DepartmentAreas.kt
 │   │   │   │                   │   │   │   │       ├── Infractions.kt
+│   │   │   │                   │   │   │   │       ├── LastPositions.kt
 │   │   │   │                   │   │   │   │       ├── LocalizedAreas.kt
 │   │   │   │                   │   │   │   │       ├── Missions.kt
 │   │   │   │                   │   │   │   │       ├── Natinfs.kt
@@ -603,6 +610,7 @@
 │   │   │   │                   │   │   │   ├── DepartmentAreaModel.kt
 │   │   │   │                   │   │   │   ├── EnvActionModel.kt
 │   │   │   │                   │   │   │   ├── FacadeAreasModel.kt
+│   │   │   │                   │   │   │   ├── LastPositionModel.kt
 │   │   │   │                   │   │   │   ├── LegalStatusModel.kt
 │   │   │   │                   │   │   │   ├── LocalizedAreaModel.kt
 │   │   │   │                   │   │   │   ├── MissionControlResourceModel.kt
@@ -646,6 +654,7 @@
 │   │   │   │                   │   │       ├── JpaDepartmentAreaRepository.kt
 │   │   │   │                   │   │       ├── JpaEnvActionRepository.kt
 │   │   │   │                   │   │       ├── JpaFacadeAreasRepository.kt
+│   │   │   │                   │   │       ├── JpaLastPositionRepository.kt
 │   │   │   │                   │   │       ├── JpaLocalizedAreaRepository.kt
 │   │   │   │                   │   │       ├── JpaMissionRepository.kt
 │   │   │   │                   │   │       ├── JpaNatinfRepository.kt
@@ -676,6 +685,7 @@
 │   │   │   │                   │   │       │   ├── IDBDepartmentAreaRepository.kt
 │   │   │   │                   │   │       │   ├── IDBEnvActionRepository.kt
 │   │   │   │                   │   │       │   ├── IDBFacadeAreasRepository.kt
+│   │   │   │                   │   │       │   ├── IDBLastPositionRepository.kt
 │   │   │   │                   │   │       │   ├── IDBLegalStatusRepository.kt
 │   │   │   │                   │   │       │   ├── IDBLocalizedAreaRepository.kt
 │   │   │   │                   │   │       │   ├── IDBMissionControlResourceRepository.kt
@@ -723,7 +733,9 @@
 │   │   │   │                   │   │   ├── AISListener.kt
 │   │   │   │                   │   │   ├── AISProducer.kt
 │   │   │   │                   │   │   └── adapters
-│   │   │   │                   │   │       └── AISPayload.kt
+│   │   │   │                   │   │       ├── AISMessage.kt
+│   │   │   │                   │   │       ├── AISPayload.kt
+│   │   │   │                   │   │       └── Feature.kt
 │   │   │   │                   │   ├── monitorfish
 │   │   │   │                   │   │   ├── APIFishMissionActionsRepository.kt
 │   │   │   │                   │   │   └── adapters
@@ -906,7 +918,8 @@
 │   │   │       │   │   │   ├── V0.204__create_ref_natinfs_table.sql
 │   │   │       │   │   │   ├── V0.205__add_unaccent_extension.sql
 │   │   │       │   │   │   ├── V0.206__create_beach_search_view.sql
-│   │   │       │   │   │   └── V0.207__update_regulations_row_hash.sql
+│   │   │       │   │   │   ├── V0.207__update_regulations_row_hash.sql
+│   │   │       │   │   │   └── V0.208__add_columns_ais_position.sql
 │   │   │       │   │   └── layers
 │   │   │       │   │       ├── V0.001__create_fao_areas.sql
 │   │   │       │   │       ├── V0.002__create_eez_areas.sql
@@ -978,7 +991,8 @@
 │   │   │       │       ├── V666.22__insert_localized_areas.sql
 │   │   │       │       ├── V666.23__insert_beaches.sql
 │   │   │       │       ├── V666.24__update_awareness.sql
-│   │   │       │       └── V666.25__insert_vessels.sql
+│   │   │       │       ├── V666.25__insert_vessels.sql
+│   │   │       │       └── V666.26__insert_last_positions.sql
 │   │   │       ├── log4j2-spring.xml
 │   │   │       └── template_export_brief.docx
 │   │   └── test
@@ -1125,6 +1139,7 @@
 │   │       │                   │   │   │   ├── GetVesselByIdUTest.kt
 │   │       │                   │   │   │   ├── SearchVesselsUTest.kt
 │   │       │                   │   │   │   └── fixtures
+│   │       │                   │   │   │       ├── LastPositionFixture.kt
 │   │       │                   │   │   │       └── VesselFixture.kt
 │   │       │                   │   │   └── vigilanceArea
 │   │       │                   │   │       ├── CreateOrUpdateVigilanceAreaUTests.kt
@@ -1209,6 +1224,7 @@
 │   │       │                       │       ├── JpaDepartmentAreasRepositoryTests.kt
 │   │       │                       │       ├── JpaEnvActionRepositoryITests.kt
 │   │       │                       │       ├── JpaFacadeAreasRepositoryTests.kt
+│   │       │                       │       ├── JpaLastPositionRepositoryTest.kt
 │   │       │                       │       ├── JpaMissionRepositoryITests.kt
 │   │       │                       │       ├── JpaNatinfRepositoryITests.kt
 │   │       │                       │       ├── JpaPostgisFunctionRepositoryITests.kt
@@ -1233,215 +1249,6 @@
 │   │           └── log4j2-test.xml
 │   └── tools
 │       └── check-clean-architecture.sh
-├── datascience
-│   ├── .env.template
-│   ├── .env.test
-│   ├── .pre-commit-config.yaml
-│   ├── .python-version
-│   ├── __init__.py
-│   ├── config.py
-│   ├── main.py
-│   ├── poetry.lock
-│   ├── pyproject.toml
-│   ├── requirements-dev.txt
-│   ├── requirements.txt
-│   ├── scripts
-│   │   └── run_flows.py
-│   ├── setup.py
-│   ├── src
-│   │   ├── __init__.py
-│   │   ├── db_config.py
-│   │   ├── pipeline
-│   │   │   ├── __init__.py
-│   │   │   ├── data
-│   │   │   │   ├── .gitkeep
-│   │   │   │   └── dummy_control_objectives.csv
-│   │   │   ├── emails
-│   │   │   │   ├── stylesheets
-│   │   │   │   │   ├── email_to_control_units.css
-│   │   │   │   │   └── splendid.css
-│   │   │   │   └── templates
-│   │   │   │       └── email_actions_to_units.jinja
-│   │   │   ├── entities
-│   │   │   │   ├── __init__.py
-│   │   │   │   └── actions_emailing.py
-│   │   │   ├── flows
-│   │   │   │   ├── __init__.py
-│   │   │   │   ├── admin_areas.py
-│   │   │   │   ├── amp_cacem.py
-│   │   │   │   ├── amp_ofb.py
-│   │   │   │   ├── beaches.py
-│   │   │   │   ├── competence_cross_areas.py
-│   │   │   │   ├── control_objectives.py
-│   │   │   │   ├── email_actions_to_units.py
-│   │   │   │   ├── facade_areas.py
-│   │   │   │   ├── facade_areas_unextended.py
-│   │   │   │   ├── fao_areas.py
-│   │   │   │   ├── historic_control_units.py
-│   │   │   │   ├── historic_controls.py
-│   │   │   │   ├── infractions.py
-│   │   │   │   ├── localized_areas.py
-│   │   │   │   ├── marpol.py
-│   │   │   │   ├── refresh_materialized_view.py
-│   │   │   │   ├── regulations.py
-│   │   │   │   ├── regulatory_areas_open_data.py
-│   │   │   │   ├── remove_broken_missions_resources_links.py
-│   │   │   │   ├── semaphores.py
-│   │   │   │   ├── themes_and_tags.py
-│   │   │   │   ├── three_hundred_meters_areas.py
-│   │   │   │   ├── update_departments_and_facades.py
-│   │   │   │   └── vessel_repository.py
-│   │   │   ├── flows_config.py
-│   │   │   ├── generic_tasks.py
-│   │   │   ├── helpers
-│   │   │   │   ├── __init__.py
-│   │   │   │   ├── dates.py
-│   │   │   │   ├── emails.py
-│   │   │   │   ├── fao_areas.py
-│   │   │   │   ├── spatial.py
-│   │   │   │   └── strings.py
-│   │   │   ├── processing.py
-│   │   │   ├── queries
-│   │   │   │   ├── cross
-│   │   │   │   │   ├── cacem
-│   │   │   │   │   │   ├── amp.sql
-│   │   │   │   │   │   ├── amp_hashes.sql
-│   │   │   │   │   │   ├── beaches.sql
-│   │   │   │   │   │   ├── competence_cross_areas.sql
-│   │   │   │   │   │   ├── localized_areas.sql
-│   │   │   │   │   │   ├── low_water_line.sql
-│   │   │   │   │   │   ├── marpol.sql
-│   │   │   │   │   │   ├── regulations.sql
-│   │   │   │   │   │   ├── regulations_hashes.sql
-│   │   │   │   │   │   ├── regulations_open_data.sql
-│   │   │   │   │   │   ├── semaphore.sql
-│   │   │   │   │   │   ├── straight_baseline.sql
-│   │   │   │   │   │   ├── tags.sql
-│   │   │   │   │   │   ├── tags_hashes.sql
-│   │   │   │   │   │   ├── tags_regulatory_areas.sql
-│   │   │   │   │   │   ├── territorial_seas.sql
-│   │   │   │   │   │   ├── themes.sql
-│   │   │   │   │   │   ├── themes_hashes.sql
-│   │   │   │   │   │   ├── themes_regulatory_areas.sql
-│   │   │   │   │   │   └── three_hundred_meters_areas.sql
-│   │   │   │   │   └── cnsp
-│   │   │   │   │       ├── 12_miles_areas.sql
-│   │   │   │   │       ├── 3_miles_areas.sql
-│   │   │   │   │       ├── 6_miles_areas.sql
-│   │   │   │   │       ├── aem_areas.sql
-│   │   │   │   │       ├── departments_areas.sql
-│   │   │   │   │       ├── eez_areas.sql
-│   │   │   │   │       ├── facade_areas.sql
-│   │   │   │   │       ├── facade_areas_unextended.sql
-│   │   │   │   │       ├── saltwater_limit_areas.sql
-│   │   │   │   │       └── transversal_sea_limit_areas.sql
-│   │   │   │   ├── fmc
-│   │   │   │   │   ├── control_units.sql
-│   │   │   │   │   ├── historic_controls.sql
-│   │   │   │   │   ├── historic_missions.sql
-│   │   │   │   │   ├── historic_missions_units.sql
-│   │   │   │   │   └── natinf.sql
-│   │   │   │   ├── monitorenv
-│   │   │   │   │   ├── all_control_units.sql
-│   │   │   │   │   ├── amp_hashes.sql
-│   │   │   │   │   ├── control_units.sql
-│   │   │   │   │   ├── env_actions_to_email.sql
-│   │   │   │   │   ├── regulations_hashes.sql
-│   │   │   │   │   ├── remove_broken_missions_resources_links.sql
-│   │   │   │   │   ├── tags_hashes.sql
-│   │   │   │   │   ├── themes_hashes.sql
-│   │   │   │   │   ├── update_actions_departments.sql
-│   │   │   │   │   ├── update_actions_facades.sql
-│   │   │   │   │   └── update_missions_facades.sql
-│   │   │   │   └── monitorfish
-│   │   │   │       └── fao_areas.sql
-│   │   │   ├── shared_tasks
-│   │   │   │   ├── __init__.py
-│   │   │   │   ├── control_flow.py
-│   │   │   │   ├── datagouv.py
-│   │   │   │   ├── dates.py
-│   │   │   │   ├── etl.py
-│   │   │   │   ├── infrastructure.py
-│   │   │   │   └── update_queries.py
-│   │   │   └── utils.py
-│   │   ├── read_query.py
-│   │   └── utils
-│   │       ├── __init__.py
-│   │       ├── database.py
-│   │       └── graphs.py
-│   └── tests
-│       ├── __init__.py
-│       ├── conftest.py
-│       ├── mocks.py
-│       ├── test_analytics_views
-│       │   └── test_analytics_controls_locations_view.py
-│       ├── test_data
-│       │   ├── cacem_database
-│       │   │   ├── V666.500__amp.sql
-│       │   │   ├── V666.501__marpol.sql
-│       │   │   ├── V666.502__competence_cross_areas.sql
-│       │   │   ├── V666.503__threee_hundred_meters_areas.sql
-│       │   │   ├── V666.504__regulatory_areas_themes_and_tags.sql
-│       │   │   ├── V666.505__localized_areas.sql
-│       │   │   └── V666.506__beaches.sql
-│       │   ├── emails
-│       │   │   ├── expected_rendered_email.html
-│       │   │   └── expected_rendered_email_without_actions.html
-│       │   ├── remote_database
-│       │   │   ├── V666.0__Reset_themes_and_tags.sql
-│       │   │   ├── V666.17__Reset_test_eez_areas.sql
-│       │   │   ├── V666.1__Reset_test_controllers.sql
-│       │   │   ├── V666.26__Reset_test_infractions.sql
-│       │   │   ├── V666.27__Reset_test_amps.sql
-│       │   │   ├── V666.28__Reset_test_regulatory_areas.sql
-│       │   │   ├── V666.2__Reset_test_missions.sql
-│       │   │   ├── V666.30__Reset_test_localized_areas.sql
-│       │   │   ├── V666.3__insert_dummy_env_actions.sql
-│       │   │   ├── V666.4__Reset_dummy_departments_areas.sql
-│       │   │   ├── V666.5__Reset_dummy_facade_areas_subdivided.sql
-│       │   │   ├── V666.6__Reset_dummy_emails_sent_to_control_units.sql
-│       │   │   └── V666.999__Refresh_materialized_views.sql
-│       │   ├── vessel_xml
-│       │   │   ├── vessel_repository.xml
-│       │   │   └── vessel_repository.xsd
-│       │   └── zip_files
-│       │       └── amp_areas.zip
-│       ├── test_db_config.py
-│       └── test_pipeline
-│           ├── __init__.py
-│           ├── test_flows
-│           │   ├── __init__.py
-│           │   ├── test_amp_cacem.py
-│           │   ├── test_amp_ofb.py
-│           │   ├── test_beaches.py
-│           │   ├── test_competence_cross_areas.py
-│           │   ├── test_control_objectives.py
-│           │   ├── test_email_actions_to_units.py
-│           │   ├── test_historic_control_units.py
-│           │   ├── test_historic_controls.py
-│           │   ├── test_infractions.py
-│           │   ├── test_insert_historical_controls_data.py
-│           │   ├── test_localized_areas.py
-│           │   ├── test_marpol.py
-│           │   ├── test_refresh_materialized_views.py
-│           │   ├── test_regulations.py
-│           │   ├── test_regulations_open_data.py
-│           │   ├── test_themes_and_tags.py
-│           │   ├── test_three_hundred_meters_areas.py
-│           │   ├── test_update_departments_and_facades.py
-│           │   └── test_vessel_repository.py
-│           ├── test_flows_config.py
-│           ├── test_helpers
-│           │   ├── __init__.py
-│           │   └── test_dates.py
-│           ├── test_processing.py
-│           ├── test_shared_tasks
-│           │   ├── __init__.py
-│           │   ├── test_datagouv.py
-│           │   ├── test_dates.py
-│           │   ├── test_geometries.py
-│           │   └── test_update_queries.py
-│           └── test_utils.py
 ├── docker-compose-test.yml
 ├── docker-compose.yml
 ├── frontend
@@ -2088,8 +1895,11 @@
 │   │   │   └── zw.svg
 │   │   ├── icons
 │   │   │   ├── CircleFilled.svg
+│   │   │   ├── boat.png
 │   │   │   ├── bullseye_border.svg
 │   │   │   ├── dot.svg
+│   │   │   ├── owner.svg
+│   │   │   ├── resume.svg
 │   │   │   ├── semaphore_border.svg
 │   │   │   ├── semaphore_border_highlighted.svg
 │   │   │   ├── station_border.svg
@@ -2146,6 +1956,7 @@
 │   │   │   │   ├── googlePlacesAPI.ts
 │   │   │   │   └── utils.ts
 │   │   │   ├── infractionsAPI.ts
+│   │   │   ├── lastPositionsApi.ts
 │   │   │   ├── legacyControlUnitsAPI.ts
 │   │   │   ├── localizedAreasAPI.ts
 │   │   │   ├── missionsAPI.ts
@@ -2161,7 +1972,7 @@
 │   │   │   ├── tagsAPI.ts
 │   │   │   ├── themesAPI.ts
 │   │   │   ├── types.ts
-│   │   │   ├── vesselApi.ts
+│   │   │   ├── vesselsApi.ts
 │   │   │   └── vigilanceAreasAPI.ts
 │   │   ├── components
 │   │   │   ├── AlertUnsupportedBrowser.tsx
@@ -2968,14 +2779,25 @@
 │   │   │   │   │       └── utils.tsx
 │   │   │   │   └── slice.ts
 │   │   │   ├── Vessel
-│   │   │   │   ├── SearchVessels.tsx
-│   │   │   │   ├── VesselForm.tsx
-│   │   │   │   ├── VesselResume.tsx
-│   │   │   │   ├── VesselSearchDescription.tsx
-│   │   │   │   ├── VesselSearchForm.tsx
-│   │   │   │   ├── VesselSearchItem.tsx
+│   │   │   │   ├── components
+│   │   │   │   │   ├── MissionVesselForm
+│   │   │   │   │   │   ├── VesselSearchForm.tsx
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── VesselResume
+│   │   │   │   │   │   ├── LastPositionResume.tsx
+│   │   │   │   │   │   ├── Owner.tsx
+│   │   │   │   │   │   ├── Summary.tsx
+│   │   │   │   │   │   ├── Tabs.tsx
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   └── styles.ts
+│   │   │   │   │   └── VesselSearch
+│   │   │   │   │       ├── VesselSearchDescription.tsx
+│   │   │   │   │       ├── VesselSearchItem.tsx
+│   │   │   │   │       └── index.tsx
 │   │   │   │   ├── hooks
 │   │   │   │   │   └── useVessels.ts
+│   │   │   │   ├── layer
+│   │   │   │   │   └── index.tsx
 │   │   │   │   ├── slice.ts
 │   │   │   │   ├── types.ts
 │   │   │   │   └── utils.ts
@@ -3337,14 +3159,9 @@
 │   │   │   └── realm-monitor-dev.json
 │   │   └── prefect-agent
 │   │       └── backend.toml
-│   ├── data-pipeline
-│   │   ├── .prefect-agent.template
-│   │   ├── prefectdockeragent.service
-│   │   ├── prefectdockeragent.sh
-│   │   ├── register-flows.sh
-│   │   └── run-container-bash.sh
 │   ├── data-pipeline-prefect3
 │   │   ├── .prefect-worker.template
+│   │   ├── Install.md
 │   │   ├── deploy-flows.sh
 │   │   ├── prefectworker.service
 │   │   └── prefectworker.sh
@@ -3367,7 +3184,6 @@
 │   │   │   ├── ts_postgis.Dockerfile
 │   │   │   └── upgrade_pg.Dockerfile
 │   │   └── datapipeline
-│   │       ├── Dockerfile
 │   │       └── prefect3.Dockerfile
 │   ├── init
 │   │   ├── geoserver_init_layers.sh
@@ -3483,22 +3299,20 @@
 │   │   │   │   ├── historic_missions.sql
 │   │   │   │   ├── historic_missions_units.sql
 │   │   │   │   └── natinf.sql
-│   │   │   ├── monitorenv
-│   │   │   │   ├── all_control_units.sql
-│   │   │   │   ├── amp_hashes.sql
-│   │   │   │   ├── compute_last_positions.sql
-│   │   │   │   ├── control_units.sql
-│   │   │   │   ├── env_actions_to_email.sql
-│   │   │   │   ├── previous_last_positions.sql
-│   │   │   │   ├── regulations_hashes.sql
-│   │   │   │   ├── remove_broken_missions_resources_links.sql
-│   │   │   │   ├── tags_hashes.sql
-│   │   │   │   ├── themes_hashes.sql
-│   │   │   │   ├── update_actions_departments.sql
-│   │   │   │   ├── update_actions_facades.sql
-│   │   │   │   └── update_missions_facades.sql
-│   │   │   └── monitorfish
-│   │   │       └── fao_areas.sql
+│   │   │   └── monitorenv
+│   │   │       ├── all_control_units.sql
+│   │   │       ├── amp_hashes.sql
+│   │   │       ├── compute_last_positions.sql
+│   │   │       ├── control_units.sql
+│   │   │       ├── env_actions_to_email.sql
+│   │   │       ├── previous_last_positions.sql
+│   │   │       ├── regulations_hashes.sql
+│   │   │       ├── remove_broken_missions_resources_links.sql
+│   │   │       ├── tags_hashes.sql
+│   │   │       ├── themes_hashes.sql
+│   │   │       ├── update_actions_departments.sql
+│   │   │       ├── update_actions_facades.sql
+│   │   │       └── update_missions_facades.sql
 │   │   ├── read_query.py
 │   │   ├── shared_tasks
 │   │   │   ├── __init__.py
@@ -3513,6 +3327,8 @@
 │       ├── __init__.py
 │       ├── conftest.py
 │       ├── mocks.py
+│       ├── test_analytics_views
+│       │   └── test_analytics_controls_locations_view.py
 │       ├── test_data
 │       │   ├── cacem_database
 │       │   │   ├── V666.500__amp.sql
@@ -3583,4 +3399,4 @@
 │       │   └── test_update_queries.py
 │       └── test_utils.py
 └── sonar-project.properties
-602 directories, 2983 files
+577 directories, 2824 files
