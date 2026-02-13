@@ -8,6 +8,13 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Fixed
+
+- 💚(docker) vendor mime.types file instead of fetching from Apache SVN
+- 🐛(front) fix math formulas and carousel translations
+
+## [0.0.13] - 2026-02-09
+
 ### Added
 
 - 💄(front) ui fix : update ui-kit
@@ -213,7 +220,8 @@ and this project adheres to
 - 💄(chat) add code highlighting for LLM responses #67
 
 
-[unreleased]: https://github.com/suitenumerique/conversations/compare/v0.0.12...main
+[unreleased]: https://github.com/suitenumerique/conversations/compare/v0.0.13...main
+[0.0.13]: https://github.com/suitenumerique/conversations/releases/v0.0.13
 [0.0.12]: https://github.com/suitenumerique/conversations/releases/v0.0.12
 [0.0.11]: https://github.com/suitenumerique/conversations/releases/v0.0.11
 [0.0.10]: https://github.com/suitenumerique/conversations/releases/v0.0.10
