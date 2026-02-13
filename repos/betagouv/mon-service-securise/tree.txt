@@ -555,6 +555,9 @@
 │   │   ├── transformeCSVGristDonneesComplementairesMesuresEnJSON.sh
 │   │   ├── transformeCSVGristEnJSON.sh
 │   │   └── transformeLienV1V2EnJSON.sh
+│   ├── moteurRisques
+│   │   ├── transformeCSVPourSelectionObjectifsVises.sh
+│   │   └── transformeCSVPourSelectionVecteurs.sh
 │   ├── start.sh
 │   ├── taches
 │   │   ├── tacheEnvoieMailsNotificationExpiration.js
@@ -866,6 +869,7 @@
 │   │   ├── v1
 │   │   │   └── moteurRegles.js
 │   │   └── v2
+│   │       ├── mesures_V2_prod_05-02-2026.csv
 │   │       ├── mesures_V2_prod_07-11-2025.csv
 │   │       ├── modifications.ts
 │   │       ├── moteurReglesV2.ts
@@ -873,6 +877,16 @@
 │   │       ├── parsing
 │   │       │   └── lecteurDeCSVDeReglesV2.ts
 │   │       └── regleV2.ts
+│   ├── moteurRisques
+│   │   └── v2
+│   │       ├── graviteObjectifsVises.ts
+│   │       ├── moteurRisques.ts
+│   │       ├── selectionObjectifsVises.configuration.ts
+│   │       ├── selectionObjectifsVises.ts
+│   │       ├── selectionObjectifsVises.types.ts
+│   │       ├── selectionVecteurs.configuration.ts
+│   │       ├── selectionVecteurs.ts
+│   │       └── selectionVecteurs.types.ts
 │   ├── mss.js
 │   ├── notifications
 │   │   └── centreNotifications.js
@@ -1413,7 +1427,8 @@
 │   │   │   │   ├── MenuFiltres.svelte
 │   │   │   │   └── NombreResultatsFiltres.svelte
 │   │   │   ├── ligne
-│   │   │   │   └── LigneMesure.svelte
+│   │   │   │   ├── LigneMesure.svelte
+│   │   │   │   └── mapPartieResponsable.ts
 │   │   │   ├── mesuresSpecifiques
 │   │   │   │   └── TiroirAssociationModelesMesureSpecifiqueAuService.svelte
 │   │   │   ├── modeVisiteGuidee
@@ -1425,6 +1440,7 @@
 │   │   │   │   ├── rechercheMesMesures.store.ts
 │   │   │   │   ├── rechercheParAvancement.store.ts
 │   │   │   │   ├── rechercheParCategorie.store.ts
+│   │   │   │   ├── rechercheParPartieResponsable.store.ts
 │   │   │   │   ├── rechercheParPriorite.store.ts
 │   │   │   │   ├── rechercheParReferentiel.store.ts
 │   │   │   │   ├── rechercheParThematique.store.ts
@@ -1452,6 +1468,7 @@
 │   │   │   ├── CartoucheIdentifiantMesure.svelte
 │   │   │   ├── CartoucheIndispensable.svelte
 │   │   │   ├── CartoucheReferentiel.svelte
+│   │   │   ├── CartoucheThematique.svelte
 │   │   │   ├── CaseACocher.svelte
 │   │   │   ├── ChampDeSaisie.svelte
 │   │   │   ├── ChampOrganisation.svelte
@@ -1814,7 +1831,6 @@
 │   │       ├── moteurReglesV2.spec.ts
 │   │       ├── niveauSecurite.spec.ts
 │   │       ├── parsing
-│   │       │   ├── MESURES_V2_GRISEE_DEGRISEE.csv
 │   │       │   ├── MESURES_V2_MAUVAIS_ID.csv
 │   │       │   ├── MESURES_V2_MAUVAIS_MODIFICATEUR.csv
 │   │       │   ├── MESURES_V2_MAUVAIS_STATUT_INITIAL.csv
@@ -1822,8 +1838,15 @@
 │   │       │   ├── MESURES_V2_OK_MODIFICATEURS_MULTIPLES.csv
 │   │       │   ├── MESURES_V2_OK_TOUS_MODIFICATEURS.csv
 │   │       │   ├── MESURES_V2_OK_TROIS_NIVEAUX_SECURITE.csv
+│   │       │   ├── MESURES_V2_PROJET_PRESTA.csv
 │   │       │   └── lecteurDeCSVDeReglesV2.spec.ts
 │   │       └── testsAcceptance.spec.ts
+│   ├── moteurRisques
+│   │   └── v2
+│   │       ├── graviteObjectifsVises.spec.ts
+│   │       ├── moteurRisques.spec.ts
+│   │       ├── selectionObjectifsVises.spec.ts
+│   │       └── selectionVecteurs.spec.ts
 │   ├── mss.spec.js
 │   ├── notifications
 │   │   └── centreNotifications.spec.js
@@ -1899,4 +1922,4 @@
 │       └── validationMotDePasse.spec.mjs
 ├── tsconfig.json
 └── vitest.config.ts
-256 directories, 1763 files
+261 directories, 1781 files
