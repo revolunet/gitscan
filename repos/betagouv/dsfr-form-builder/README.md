@@ -26,6 +26,25 @@ Vous pouvez également spécifier le builder par défaut dans votre fichier `app
 config.action_view.default_form_builder = Dsfr::FormBuilder
 ```
 
+## Documentation
+
+Pour lancer le serveur de documentation en local :
+
+```bash
+make docs-live
+```
+
+Puis ouvrir http://localhost:9292
+
+## Déploiement
+
+1. Créer une nouvelle branche
+1. Mettre à jour la version dans `lib/dsfr-form_builder.rb` et dans `lib/dsfr/components/version.rb`
+3. lancer `bundle`
+4. Commit, push, puis merge PR
+5. Lancer la commande : `bundle exec rake release`
+6. Créez une release GH manuellement depuis https://github.com/betagouv/dsfr-view-components/releases
+
 ## Licence
 
 Le code source et la gem sont distribués sous licence [MIT](https://github.com/betagouv/dsfr-form-builder/blob/main/LICENSE).
