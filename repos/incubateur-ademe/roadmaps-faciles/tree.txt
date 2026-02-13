@@ -34,8 +34,12 @@
 │           └── SKILL.md
 ├── .claude
 │   └── skills
+│       ├── check-review-pr
+│       │   └── SKILL.md
 │       ├── vercel-composition-patterns -> ../../.agents/skills/vercel-composition-patterns
 │       ├── vercel-react-best-practices -> ../../.agents/skills/vercel-react-best-practices
+│       ├── verif
+│       │   └── SKILL.md
 │       └── web-design-guidelines -> ../../.agents/skills/web-design-guidelines
 ├── .editorconfig
 ├── .env.development
@@ -48,7 +52,6 @@
 │   │   └── web-design-guidelines -> ../../.agents/skills/web-design-guidelines
 │   └── workflows
 │       ├── build.yml
-│       ├── codeql-analysis.yml
 │       └── lint.yml
 ├── .gitignore
 ├── .nvmrc
@@ -66,21 +69,37 @@
 ├── TODO.md
 ├── docker-compose.yml
 ├── docs
-│   └── adr
-│       ├── 0000-template.md
-│       ├── 0001-architecture-et-stack.md
-│       ├── 0002-auth-nextauth-prisma.md
-│       ├── 0003-multi-tenant-sous-domaines.md
-│       ├── 0004-modelisation-zod-v4.md
-│       ├── 0005-prisma-ids-uuid-et-types-unchecked.md
-│       ├── 0006-prisma-typed-client-views-full-text-search.md
-│       ├── 0007-ui-dsfr-mui-tailwind.md
-│       ├── 0008-assert-session.md
-│       ├── 0009-invitation-token-securise.md
-│       └── 0010-tenant-settings-feature-flags.md
+│   ├── adr
+│   │   ├── 0000-template.md
+│   │   ├── 0001-architecture-et-stack.md
+│   │   ├── 0002-auth-nextauth-prisma.md
+│   │   ├── 0003-multi-tenant-sous-domaines.md
+│   │   ├── 0004-modelisation-zod-v4.md
+│   │   ├── 0005-prisma-ids-uuid-et-types-unchecked.md
+│   │   ├── 0006-prisma-typed-client-views-full-text-search.md
+│   │   ├── 0007-ui-dsfr-mui-tailwind.md
+│   │   ├── 0008-assert-session.md
+│   │   ├── 0009-invitation-token-securise.md
+│   │   ├── 0010-tenant-settings-feature-flags.md
+│   │   ├── 0011-sso-bridge-cross-domain.md
+│   │   ├── 0012-domain-provider-abstraction.md
+│   │   └── 0013-dns-provider-abstraction.md
+│   └── deploy
+│       └── caddy
+│           ├── Caddyfile
+│           ├── README.md
+│           ├── docker-compose.caddy.yml
+│           └── k8s
+│               ├── configmap.yaml
+│               ├── deployment.yaml
+│               └── service.yaml
 ├── env.d.ts
 ├── eslint.config.ts
 ├── global.d.ts
+├── global.ts
+├── messages
+│   ├── en.json
+│   └── fr.json
 ├── next-sitemap.config.js
 ├── next.config.ts
 ├── package.json
@@ -110,6 +129,10 @@
 │   │   ├── 20260204120000_pin_per_board
 │   │   │   └── migration.sql
 │   │   ├── 20260207000000_remove_collapsed_boards_vote_display
+│   │   │   └── migration.sql
+│   │   ├── 20260209175758_add_invitation_role
+│   │   │   └── migration.sql
+│   │   ├── 20260211000000_remove_use_browser_locale
 │   │   │   └── migration.sql
 │   │   └── migration_lock.toml
 │   ├── schema.prisma
@@ -142,12 +165,36 @@
 │   │   ├── (default)
 │   │   │   ├── (authenticated)
 │   │   │   │   ├── admin
+│   │   │   │   │   ├── AdminSideMenu.tsx
+│   │   │   │   │   ├── actions.ts
 │   │   │   │   │   ├── layout.tsx
-│   │   │   │   │   └── prisma
+│   │   │   │   │   ├── page.tsx
+│   │   │   │   │   ├── prisma
+│   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   ├── tenants
+│   │   │   │   │   │   ├── [tenantId]
+│   │   │   │   │   │   │   ├── RootMembersList.tsx
+│   │   │   │   │   │   │   ├── actions.ts
+│   │   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   │   ├── new
+│   │   │   │   │   │   │   ├── CreateTenantForm.tsx
+│   │   │   │   │   │   │   ├── actions.ts
+│   │   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   └── users
+│   │   │   │   │       ├── GlobalUsersList.tsx
+│   │   │   │   │       ├── [userId]
+│   │   │   │   │       │   ├── UserEditForm.tsx
+│   │   │   │   │       │   ├── actions.ts
+│   │   │   │   │       │   └── page.tsx
+│   │   │   │   │       ├── actions.ts
 │   │   │   │   │       └── page.tsx
 │   │   │   │   ├── layout.tsx
 │   │   │   │   ├── profile
-│   │   │   │   │   ├── PasswordCheck.tsx
+│   │   │   │   │   ├── DeleteAccountSection.tsx
+│   │   │   │   │   ├── EspaceMembreSection.tsx
+│   │   │   │   │   ├── ProfileForm.tsx
+│   │   │   │   │   ├── actions.ts
 │   │   │   │   │   └── page.tsx
 │   │   │   │   └── tenant
 │   │   │   │       ├── [tenantId]
@@ -166,6 +213,13 @@
 │   │   │   ├── api
 │   │   │   │   ├── auth
 │   │   │   │   │   └── [...nextauth]
+│   │   │   │   │       └── route.ts
+│   │   │   │   ├── auth-bridge
+│   │   │   │   │   └── route.ts
+│   │   │   │   ├── confirm-em-link
+│   │   │   │   │   └── route.ts
+│   │   │   │   ├── domains
+│   │   │   │   │   └── check
 │   │   │   │   │       └── route.ts
 │   │   │   │   ├── studio
 │   │   │   │   │   └── route.ts
@@ -194,6 +248,7 @@
 │   │   │   │   └── page.tsx
 │   │   │   └── unauthorized.tsx
 │   │   ├── AuthHeaderItems.tsx
+│   │   ├── LanguageSelectClient.tsx
 │   │   ├── SystemMessageDisplay.tsx
 │   │   ├── [domain]
 │   │   │   └── (domain)
@@ -240,7 +295,9 @@
 │   │   │       │   │       ├── WebhooksList.tsx
 │   │   │       │   │       ├── actions.ts
 │   │   │       │   │       └── page.tsx
-│   │   │       │   └── layout.tsx
+│   │   │       │   ├── layout.tsx
+│   │   │       │   └── profile
+│   │   │       │       └── page.tsx
 │   │   │       ├── @modal
 │   │   │       │   ├── (.)post
 │   │   │       │   │   └── [postId]
@@ -251,6 +308,7 @@
 │   │   │       ├── DomainPage.tsx
 │   │   │       ├── PublicFooter.tsx
 │   │   │       ├── PublicHeader.tsx
+│   │   │       ├── SeedBanner.tsx
 │   │   │       ├── api
 │   │   │       │   └── auth
 │   │   │       │       └── [...nextauth]
@@ -266,6 +324,8 @@
 │   │   │       ├── forbidden.tsx
 │   │   │       ├── layout.tsx
 │   │   │       ├── login
+│   │   │       │   ├── BridgeAutoLogin.tsx
+│   │   │       │   ├── bridgeSignIn.ts
 │   │   │       │   └── page.tsx
 │   │   │       ├── page.tsx
 │   │   │       ├── post
@@ -286,8 +346,6 @@
 │   │   │       │       │   └── activityHelpers.ts
 │   │   │       │       ├── actions.ts
 │   │   │       │       └── page.tsx
-│   │   │       ├── profile
-│   │   │       │   └── page.tsx
 │   │   │       ├── roadmap
 │   │   │       │   └── page.tsx
 │   │   │       └── unauthorized.tsx
@@ -308,6 +366,7 @@
 │   │   │   ├── Post.tsx
 │   │   │   └── actions.ts
 │   │   ├── Brand.tsx
+│   │   ├── CopyButton.tsx
 │   │   ├── DefaultAuthenticatedLayout.tsx
 │   │   ├── ErrorLayout.tsx
 │   │   ├── InfiniteScroll.tsx
@@ -316,6 +375,8 @@
 │   │   ├── ReactSpinners.tsx
 │   │   ├── Tour
 │   │   │   └── Tour.tsx
+│   │   ├── admin
+│   │   │   └── MembersList.tsx
 │   │   ├── img
 │   │   │   ├── ImgHero.module.scss
 │   │   │   ├── ImgHero.tsx
@@ -341,6 +402,7 @@
 │   │   │   ├── Box.tsx
 │   │   │   ├── CountDisplay.module.css
 │   │   │   ├── CountDisplay.tsx
+│   │   │   ├── EmailAutocomplete.tsx
 │   │   │   ├── FormFieldset.tsx
 │   │   │   ├── Hr.tsx
 │   │   │   ├── Icon.module.scss
@@ -382,11 +444,34 @@
 │   │   └── server-only-index.tsx
 │   ├── generated
 │   │   └── .gitattributes
+│   ├── i18n
+│   │   ├── navigation.tsx
+│   │   └── request.ts
 │   ├── lib
+│   │   ├── authBridge.ts
 │   │   ├── db
 │   │   │   ├── prisma.ts
 │   │   │   └── redis
 │   │   │       └── storage.ts
+│   │   ├── dns-provider
+│   │   │   ├── IDnsProvider.ts
+│   │   │   ├── impl
+│   │   │   │   ├── CloudflareDnsProvider.ts
+│   │   │   │   ├── ManualDnsProvider.ts
+│   │   │   │   ├── NoopDnsProvider.ts
+│   │   │   │   └── OvhDnsProvider.ts
+│   │   │   └── index.ts
+│   │   ├── domain-provider
+│   │   │   ├── IDomainProvider.ts
+│   │   │   ├── dns.ts
+│   │   │   ├── impl
+│   │   │   │   ├── CaddyDomainProvider.ts
+│   │   │   │   ├── CleverCloudDomainProvider.ts
+│   │   │   │   ├── NoopDomainProvider.ts
+│   │   │   │   ├── ScalingoDomainProvider.ts
+│   │   │   │   └── ScalingoWildcardDomainProvider.ts
+│   │   │   └── index.ts
+│   │   ├── espaceMembre.ts
 │   │   ├── matomo.ts
 │   │   ├── model
 │   │   │   ├── ApiKey.ts
@@ -517,11 +602,14 @@
 │   │   │   └── UpdatePostContent.ts
 │   │   ├── tenant
 │   │   │   ├── CreateNewTenant.ts
+│   │   │   ├── DeleteTenant.ts
 │   │   │   ├── GetTenantForDomain.ts
 │   │   │   ├── GetTenantWithSettings.ts
+│   │   │   ├── ListAllTenants.ts
 │   │   │   ├── ListTenantsForUser.ts
 │   │   │   ├── SaveTenant.ts
 │   │   │   ├── SaveTenantWithSettings.ts
+│   │   │   ├── UpdateTenantDomain.ts
 │   │   │   └── follows
 │   │   │       ├── FollowPost.ts
 │   │   │       └── UnfollowPost.ts
@@ -538,6 +626,7 @@
 │   │   │   ├── CreateUser.ts
 │   │   │   ├── GetUserByEmail.ts
 │   │   │   ├── GetUserById.ts
+│   │   │   ├── ListAllUsers.ts
 │   │   │   └── UpdateUser.ts
 │   │   └── webhooks
 │   │       ├── CreateWebhook.ts
@@ -547,7 +636,8 @@
 │       ├── CreateFakePostsWorkflow.ts
 │       ├── CreateFakeUsersWorkflow.ts
 │       ├── CreateWelcomeEntitiesWorkflow.ts
-│       └── IWorkflow.ts
+│       ├── IWorkflow.ts
+│       └── welcomeDataPreview.ts
 ├── tailwind.config.ts
 └── tsconfig.json
-134 directories, 462 files
+157 directories, 529 files
