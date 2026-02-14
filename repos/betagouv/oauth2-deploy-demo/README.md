@@ -41,8 +41,9 @@ OAUTH2_PROXY_SET_XAUTHREQUEST=true
 OAUTH2_PROXY_SKIP_PROVIDER_BUTTON=false
 OAUTH2_PROXY_UPSTREAMS=http://127.0.0.1:8080
 # exclude n8n webhooks
-OAUTH2_PROXY_SKIP_AUTH_ROUTES=/webhook-.*
+OAUTH2_PROXY_SKIP_AUTH_ROUTES=^/webhook(?;-test)?/[0-9a-z]{8}-\d{4}-\d{4}-\d{4}-[0-9a-z]{12}$
 # exclude metabase public shares
+# avoid .* in regex https://advisories.gitlab.com/pkg/golang/github.com/oauth2-proxy/oauth2-proxy/v7/CVE-2025-54576/
 OAUTH2_PROXY_SKIP_AUTH_ROUTES=/app/.*,/public/.*,/api/public/.*
 # secrets
 OAUTH2_PROXY_CLIENT_ID=[oauth provider client ID]
