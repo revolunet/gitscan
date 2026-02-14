@@ -5,6 +5,89 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.10.1](https://github.com/etalab-ia/rag-facile/compare/v0.10.0...v0.10.1) (2026-02-13)
+
+
+### Bug Fixes
+
+* align albert-client version with Albert API (v0.4.0) and enable component tags ([4725817](https://github.com/etalab-ia/rag-facile/commit/472581754ce7eab053e31152ec5506947bf11a70))
+* align albert-client version with Albert API (v0.4.0) and enable component tags ([63daa9f](https://github.com/etalab-ia/rag-facile/commit/63daa9f31e390d22ce37b8706bcc920acf11cedb))
+* update extra-files to match renamed packages and sync versions ([9d721fd](https://github.com/etalab-ia/rag-facile/commit/9d721fd4dd2e7ee927b20715212356e86b339a66))
+* update extra-files to match renamed packages and sync versions ([3437926](https://github.com/etalab-ia/rag-facile/commit/3437926a45a8fac2abc9e3bc624285c945540288))
+
+## [0.10.0](https://github.com/etalab-ia/rag-facile/compare/v0.9.0...v0.10.0) (2026-02-13)
+
+
+### Features
+
+* add .envrc support to standalone workspaces ([57e6ed3](https://github.com/etalab-ia/rag-facile/commit/57e6ed369dba02fb09139c41cf8b806b33c50f21))
+* add direnv support for automatic .env loading ([6e1ca21](https://github.com/etalab-ia/rag-facile/commit/6e1ca2117807a631963f171dbc23491a127d1588))
+* add workflow to sync templates on release PRs ([8a3e381](https://github.com/etalab-ia/rag-facile/commit/8a3e381ca836a94a4936d50ed608b72062a5697e))
+* **albert-client:** update to v0.4.0 API spec ([246fc11](https://github.com/etalab-ia/rag-facile/commit/246fc11ce3b171a9bcba741dce3fe94a52f15e56))
+* **albert-client:** update to v0.4.0 API spec ([46b348b](https://github.com/etalab-ia/rag-facile/commit/46b348b1098fe4fe2097c0742edf9c60921fccf0))
+* automate template synchronization on release ([2960013](https://github.com/etalab-ia/rag-facile/commit/2960013a0ac4eab9f2beceecb7ac38085b69eb17))
+* component-first architecture refactoring ([e289d15](https://github.com/etalab-ia/rag-facile/commit/e289d157ac2d45c2b82d47be1fdef775874c6281))
+* component-first architecture refactoring with auth fixes ([23425ff](https://github.com/etalab-ia/rag-facile/commit/23425ffd7745c3cd06c03d5e508cb5bed04da618))
+
+
+### Bug Fixes
+
+* add explicit exclusions to type-check moon task ([4dc84a1](https://github.com/etalab-ia/rag-facile/commit/4dc84a13669d0295189228fe0ce6da9e8d2add51))
+* add missing authentication headers to Albert API requests ([1cd1fc6](https://github.com/etalab-ia/rag-facile/commit/1cd1fc62f55e4545d516e2f33b03b6dd7811f906))
+* add OpenAI SDK exclusions to generated workspace pyproject.toml ([3b022da](https://github.com/etalab-ia/rag-facile/commit/3b022da984005ebc64eb261a9291413606f39da1))
+* correct generate-dataset command in test plan ([9dcbbd5](https://github.com/etalab-ia/rag-facile/commit/9dcbbd50bb9f4fdcba335d4d5489518f46bcc3ef))
+* use correct AlbertClient API method names ([f52b3d1](https://github.com/etalab-ia/rag-facile/commit/f52b3d18641b2cb0cbfca6bb0e979afb88422f8e))
+* use ragfacile.toml config as fallback for OPENAI_MODEL ([7f80f2f](https://github.com/etalab-ia/rag-facile/commit/7f80f2f2dae55abd462447a458b36fd7bdf07f37))
+
+
+### Documentation
+
+* add comprehensive test plan for component-first architecture ([07146d9](https://github.com/etalab-ia/rag-facile/commit/07146d905c3eeb2034853918c7e29205b53b53c2))
+* add Windows upgrade commands ([b46a1c2](https://github.com/etalab-ia/rag-facile/commit/b46a1c25ea69c6158cde06a914a62250d12e0829))
+* **albert-client:** document model aliases and api version ([c606fe4](https://github.com/etalab-ia/rag-facile/commit/c606fe4f56bba506508ba27433270ee1a3c1da9b))
+* **albert-client:** improve docstrings and address PR review ([cbf5dce](https://github.com/etalab-ia/rag-facile/commit/cbf5dce13e6d861d64b859e824f39c46becd8b5d))
+* fix redundant code fences in README files ([b96f4f0](https://github.com/etalab-ia/rag-facile/commit/b96f4f0c9b86c428d83c0ea3d7519fb494f599e1))
+* refactor README into focused documentation files ([c53e312](https://github.com/etalab-ia/rag-facile/commit/c53e312b011ba60d2e40cc7ad389a48f73cd70ba))
+* refactor README into focused documentation files ([68c06a7](https://github.com/etalab-ia/rag-facile/commit/68c06a762179dbcf6df4f1a30643f8683bdc8cb2))
+* remove historical Issue 46 investigation files ([f35589b](https://github.com/etalab-ia/rag-facile/commit/f35589b3de5fc7d703e1c301526c0959d43a1ba8))
+* update test plan to document config precedence for OPENAI_MODEL ([cbcbc1a](https://github.com/etalab-ia/rag-facile/commit/cbcbc1a8d08d1e59490e82410c4c3fc6e64feb33))
+* update test plan to reflect automatic template regeneration ([a2bee94](https://github.com/etalab-ia/rag-facile/commit/a2bee941d9733ce6ef11f1c206f1af44769edfe7))
+* update test plan to use just commands consistently ([3a0b838](https://github.com/etalab-ia/rag-facile/commit/3a0b838466eb66b25bf91176140bc048c53179be))
+* use just run instead of raw uv commands in documentation ([6bfa9b3](https://github.com/etalab-ia/rag-facile/commit/6bfa9b376568b67993c5db00ada781d38f951e09))
+* use just run instead of raw uv commands in documentation ([49f3c2d](https://github.com/etalab-ia/rag-facile/commit/49f3c2ddcaa529c2af169691ffd181c69959b276))
+
+## [0.9.0](https://github.com/etalab-ia/rag-facile/compare/v0.8.0...v0.9.0) (2026-02-11)
+
+
+### Features
+
+* add config management CLI commands ([4b87b59](https://github.com/etalab-ia/rag-facile/commit/4b87b59c9468a8dfbbf28affee546a51f08b440b))
+* add rag-config package with complete RAG pipeline configuration ([2a48da4](https://github.com/etalab-ia/rag-facile/commit/2a48da40c281d0aa57ddc9e2edd091cae490b63c))
+* integrate config presets into workspace setup command ([657dc02](https://github.com/etalab-ia/rag-facile/commit/657dc028e3401612a0fa6d3baee2e05c605b1b08))
+* integrate config system into apps (Phase 4) ([4b6c2dc](https://github.com/etalab-ia/rag-facile/commit/4b6c2dcc9f817d9eb59bd06efba4ebb1895c5b0b))
+* integrate rag-config package into workspace generation ([dc58587](https://github.com/etalab-ia/rag-facile/commit/dc58587195cf90c784f07f66b815b364fa865a8e))
+* integrate rag-config system into workspace generation + module renaming ([7e44788](https://github.com/etalab-ia/rag-facile/commit/7e44788c42bbbc66ae50d6464c36ef37a9c0b572))
+* RAG configuration management system ([2a5974d](https://github.com/etalab-ia/rag-facile/commit/2a5974db8f4b69f7596652e3109818d968070fbe))
+* RAG Configuration System - Phases 4 & 5 (App Integration + Setup Integration) ([f5fce7a](https://github.com/etalab-ia/rag-facile/commit/f5fce7a997f1cdeb923c1fd62155c767a53255c3))
+
+
+### Bug Fixes
+
+* address Gemini Code Assist review feedback ([d0d0d5d](https://github.com/etalab-ia/rag-facile/commit/d0d0d5d263f3fa07d974576985649b9754e884c6))
+* create .env file at workspace root in monorepo mode ([8ae7867](https://github.com/etalab-ia/rag-facile/commit/8ae786717f4ae2b69c7f641db1a859e40d1e6628))
+* move base URL to presets and remove setup prompt ([cfc65cc](https://github.com/etalab-ia/rag-facile/commit/cfc65cc29a91ec5ea17c5c90b6914b753798d463))
+* resolve ty type checking issues in setup and reflex app ([92f8c25](https://github.com/etalab-ia/rag-facile/commit/92f8c254e4bed900eb3d2f40bc3865264b622e0b))
+* set balanced preset as default selection in prompt ([8f054a5](https://github.com/etalab-ia/rag-facile/commit/8f054a5da0ae1176fe9dd1cdfe7ae9681452f3ad))
+* update test to expect new template name after module renaming ([1d5e916](https://github.com/etalab-ia/rag-facile/commit/1d5e9161eb5cf235df83608aed3e73e07ced814d))
+* update workspace generation for phase-based package structure ([8beb8d3](https://github.com/etalab-ia/rag-facile/commit/8beb8d3f392e18a0216042f7e85fa50fa67e3a99))
+
+
+### Documentation
+
+* comprehensive documentation for RAG configuration system ([13c3043](https://github.com/etalab-ia/rag-facile/commit/13c30437f584e454718a51eb6fb546e02b43ad8b))
+* comprehensive documentation for RAG configuration system ([b7b0eec](https://github.com/etalab-ia/rag-facile/commit/b7b0eecb4e23300bbec1c322b3b3aaf054ac1d21))
+* translate French content to English and add config system documentation ([87f67cd](https://github.com/etalab-ia/rag-facile/commit/87f67cd8fed4dd85ff591af6fbdda6939c8f17ed))
+
 ## [0.8.0](https://github.com/etalab-ia/rag-facile/compare/v0.7.0...v0.8.0) (2026-02-09)
 
 
