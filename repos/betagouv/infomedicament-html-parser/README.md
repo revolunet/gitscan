@@ -170,6 +170,37 @@ export CIS_ATC_CSV_PATH=/path/to/cis_atc.csv
 psql -v atc_csv="$ATC_CSV_PATH" -v cis_atc_csv="$CIS_ATC_CSV_PATH" $APP_DB_URL -f sql/import_atc.sql
 ```
 
+## Pediatric Classification
+
+Classify medications for pediatric use based on their parsed RCP content (sections 4.1, 4.2, 4.3). Produces three independent boolean labels:
+
+- **A**: Indication pédiatrique (pediatric indication exists)
+- **B**: Contre-indication pédiatrique (pediatric contraindication exists)
+- **C**: Sur avis d'un professionnel de santé (requires professional advice)
+
+```bash
+poetry run infomed-html-parser classify-pediatric --rcp <jsonl_file> [options]
+```
+
+Options:
+- `--rcp`: Parsed RCP JSONL file (required, produced by the `s3` or `local` commands with `--pattern R`)
+- `--truth`: Ground truth CSV for evaluation (columns: `cis,code_atc,A:...,B:...,C:...` with `oui/non` values)
+- `--output, -o`: Output predictions CSV (default: `data/predictions.csv`)
+
+Example:
+```bash
+# Produce parsed RCPs first
+poetry run infomed-html-parser s3 --cis-file data/test_set_cis.csv --pattern R -o data/rcp_pediatrie.jsonl
+
+# Classify and evaluate against ground truth
+poetry run infomed-html-parser classify-pediatric \
+  --rcp data/rcp_pediatrie.jsonl \
+  --truth data/ground_truth.csv \
+  -o data/predictions.csv
+```
+
+The predictions CSV includes explainability columns (matched keywords, evidence text, C-reasons) for manual review.
+
 ## Development
 
 ```bash
