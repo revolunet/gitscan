@@ -8,6 +8,13 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [1.6.0] - 2026-02-10
+
+### Added
+
+- ✨(backend) monitor throttling rate failure through sentry #964
+- 🚀(paas) add PaaS deployment scripts, tested on Scalingo #957
+
 ### Changed
 
 - ♿️(frontend) improve spinner reduced‑motion fallback #931
@@ -16,6 +23,11 @@ and this project adheres to
 - 📝(frontend) update legal terms #956
 - ⚡️(backend) enhance django admin's loading performance #954
 - 🌐(frontend) add missing DE translation for accessibility settings
+
+### Fixed
+
+- 🔐(backend) enforce object-level permission checks on room endpoint #959
+- 🔒️(backend) add application validation when consuming external JWT #963
 
 ## [1.5.0] - 2026-01-28
 
