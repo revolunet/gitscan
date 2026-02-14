@@ -103,11 +103,13 @@
 │   ├── metrics.md
 │   ├── release.md
 │   ├── resource_server.md
+│   ├── s3_mirroring.md
 │   ├── setup-find.md
 │   └── theming.md
 ├── env.d
 │   └── development
 │       ├── common
+│       ├── common.e2e
 │       ├── crowdin
 │       ├── kc_postgresql
 │       ├── postgresql
@@ -154,6 +156,8 @@
     │   │   │       ├── bucket_cors.py
     │   │   │       ├── createsuperuser.py
     │   │   │       ├── index.py
+    │   │   │       ├── prepare_mirroring_items_history.py
+    │   │   │       ├── process_pending_mirror_tasks.py
     │   │   │       ├── sync_item_numchild.py
     │   │   │       └── update_suspicious_item_file_hash.py
     │   │   ├── migrations
@@ -173,20 +177,26 @@
     │   │   │   ├── 0014_alter_user_language.py
     │   │   │   ├── 0015_user_claims_alter_user_language.py
     │   │   │   ├── 0016_alter_item_link_reach.py
+    │   │   │   ├── 0017_alter_user_short_name.py
+    │   │   │   ├── 0018_mirroritemtask.py
+    │   │   │   ├── 0019_user_last_release_note_seen.py
     │   │   │   └── __init__.py
     │   │   ├── models.py
     │   │   ├── services
     │   │   │   ├── __init__.py
+    │   │   │   ├── mirror.py
     │   │   │   ├── sdk_relay.py
     │   │   │   └── search_indexers.py
     │   │   ├── signals.py
     │   │   ├── storage
     │   │   │   ├── __init__.py
     │   │   │   ├── creator_storage_compute_backend.py
+    │   │   │   ├── s3_mirroring_storage.py
     │   │   │   └── storage_compute_backend.py
     │   │   ├── tasks
     │   │   │   ├── item.py
-    │   │   │   └── search.py
+    │   │   │   ├── search.py
+    │   │   │   └── storage.py
     │   │   ├── templates
     │   │   │   └── core
     │   │   │       └── generate_document.html
@@ -201,6 +211,8 @@
     │   │   │   │   └── test_views.py
     │   │   │   ├── commands
     │   │   │   │   ├── test_index.py
+    │   │   │   │   ├── test_prepare_mirroring_items_history.py
+    │   │   │   │   ├── test_process_pending_mirror_tasks.py
     │   │   │   │   ├── test_sync_item_numchild.py
     │   │   │   │   └── test_update_suspicious_item_file_hash.py
     │   │   │   ├── conftest.py
@@ -241,14 +253,20 @@
     │   │   │   │   ├── test_api_items_tree.py
     │   │   │   │   ├── test_api_items_update.py
     │   │   │   │   └── test_api_items_wopi.py
+    │   │   │   ├── services
+    │   │   │   │   └── test_mirror.py
+    │   │   │   ├── storage
+    │   │   │   │   └── test_s3_mirroring_storage.py
     │   │   │   ├── swagger
     │   │   │   │   ├── __init__.py
     │   │   │   │   └── test_openapi_schema.py
     │   │   │   ├── tasks
-    │   │   │   │   └── items
-    │   │   │   │       ├── test_process_deletion.py
-    │   │   │   │       ├── test_rename_file.py
-    │   │   │   │       └── test_update_suspicious_item_file_hash.py
+    │   │   │   │   ├── items
+    │   │   │   │   │   ├── test_process_deletion.py
+    │   │   │   │   │   ├── test_rename_file.py
+    │   │   │   │   │   └── test_update_suspicious_item_file_hash.py
+    │   │   │   │   └── storage
+    │   │   │   │       └── test_mirror_file.py
     │   │   │   ├── test_api_config.py
     │   │   │   ├── test_api_entitlements.py
     │   │   │   ├── test_api_entitlements_anct.py
@@ -672,6 +690,17 @@
     │   │   │   │   │   │   │   ├── info
     │   │   │   │   │   │   │   │   ├── InfoRow.scss
     │   │   │   │   │   │   │   │   └── InfoRow.tsx
+    │   │   │   │   │   │   │   ├── release-note
+    │   │   │   │   │   │   │   │   ├── ReleaseNoteAuto.tsx
+    │   │   │   │   │   │   │   │   ├── index.ts
+    │   │   │   │   │   │   │   │   ├── releaseNotes.config.ts
+    │   │   │   │   │   │   │   │   ├── useReleaseNote.ts
+    │   │   │   │   │   │   │   │   └── versions
+    │   │   │   │   │   │   │   │       ├── index.ts
+    │   │   │   │   │   │   │   │       └── v0.11.1
+    │   │   │   │   │   │   │   │           ├── icons
+    │   │   │   │   │   │   │   │           │   └── index.tsx
+    │   │   │   │   │   │   │   │           └── index.tsx
     │   │   │   │   │   │   │   ├── responsive
     │   │   │   │   │   │   │   │   ├── ResponsiveDivs.tsx
     │   │   │   │   │   │   │   │   └── index.scss
@@ -785,6 +814,7 @@
     │   │   │   │       ├── left-bar.spec.ts
     │   │   │   │       ├── login.spec.ts
     │   │   │   │       ├── move-item.spec.ts
+    │   │   │   │       ├── release-note.spec.ts
     │   │   │   │       ├── search.spec.ts
     │   │   │   │       ├── share.spec.ts
     │   │   │   │       ├── silent-login.spec.ts
@@ -893,4 +923,4 @@
     │   └── yarn.lock
     └── nginx
         └── servers.conf.erb
-228 directories, 667 files
+235 directories, 690 files

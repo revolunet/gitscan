@@ -10,7 +10,13 @@ and this project adheres to
 
 ### Added
 
+- ✨(backend) allow configuring celery task routes via `CELERY_TASK_ROUTES`
 - ✨(global) implement advanced shared management system
+- ✨(global) add release notes
+
+### Changed
+
+- 🚸(oidc) ignore case when fallback on email #535
 
 ### Removed
 
@@ -19,6 +25,7 @@ and this project adheres to
 ### Fixed
 
 - 🐛(backend) manage ole2 compound document format
+- ♻️(backend) increase user short_name field length
 
 ## [v0.12.0] - 2026-02-06
 
