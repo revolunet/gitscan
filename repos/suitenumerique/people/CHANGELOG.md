@@ -8,8 +8,15 @@ and this project adheres to
 
 ## [Unreleased]
 
+- ✨(invitations) refresh expired invitations
+
+## [1.23.0] - 2026-02-12
+
 ### Added
 
+- ✨(demo) add aliases to demo #1050
+- ✨(front) add icon to button to configure a domain
+- ✨(invitations) allow delete invitations mails domains access by an admin
 - ✨(front) delete invitations mails domains access
 - ✨(front) add show invitations mails domains access #1040
 - ✨(invitations) can delete domain invitations
@@ -20,6 +27,7 @@ and this project adheres to
 
 ### Changed
 
+- 🚸(email) we should ignore case when looking for existing emails #1056
 - 🏗️(core) migrate from pip to uv
 - ✨(front) add show invitations mails domains access #1040
 
@@ -501,7 +509,8 @@ and this project adheres to
 - ✨(domains) create and manage domains on admin + API
 - ✨(domains) mailbox creation + link to email provisioning API
 
-[unreleased]: https://github.com/suitenumerique/people/compare/v1.22.2...main
+[unreleased]: https://github.com/suitenumerique/people/compare/v1.23.0...main
+[1.23.0]: https://github.com/suitenumerique/people/releases/v1.23.0
 [1.22.2]: https://github.com/suitenumerique/people/releases/v1.22.2
 [1.22.1]: https://github.com/suitenumerique/people/releases/v1.22.1
 [1.22.0]: https://github.com/suitenumerique/people/releases/v1.22.0
