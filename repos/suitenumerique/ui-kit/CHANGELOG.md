@@ -2,6 +2,48 @@
 
 ## [Unreleased]
 
+## 0.19.6
+
+### Minor Changes
+
+- upgrade cunningham-react to 4.2.0
+
+## 0.19.5
+
+### Patch Changes
+
+- Fix the delete option visibility in access role dropdown 
+
+## 0.19.4
+
+### Patch Changes
+
+- Fix the delete option visibility in access role dropdown 
+
+## 0.19.3
+
+### Patch Changes
+
+- Fix the ReleaseNoteModal component
+
+## 0.19.2
+
+### Minor Changes 
+
+-  add can_delete property and improve ShareModal Storybook docs 
+
+## 0.19.1
+
+### Minor Changes 
+
+- Add ReleaseNoteModal component
+- Move delete access into AccessRoleDropdown.
+
+### Patch Changes
+
+- Fix update type apiUrl in LaGaufreV2 component
+- Fix animation on OnboardingModal
+
 ## 0.19.0
 
 ### Minor Changes 
