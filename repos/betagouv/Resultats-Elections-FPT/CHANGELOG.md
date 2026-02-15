@@ -1,5 +1,12 @@
 # Changelog
 
+- feat(Vue formulaire): change l'option 'vide' du select et ajoute l'option pour cacher le formulaire [#34](https://github.com/betagouv/Resultats-Elections-FPT/pull/34)
+- fix(Recherche scrutin): rend la colonne badge optionnelle [#33](https://github.com/betagouv/Resultats-Elections-FPT/pull/33)
+- fix(Vue tableau): réduit la taille de la modale [#32](https://github.com/betagouv/Resultats-Elections-FPT/pull/32)
+- feat(Vue tableau): ajoute les filtres [#30](https://github.com/betagouv/Resultats-Elections-FPT/pull/30)
+- fix(Recherche): rend insensible aux accents et quand elle est vide raffiche automatiquement la liste [#29](https://github.com/betagouv/Resultats-Elections-FPT/pull/29)
+- fix: supprime l'icone [#28](https://github.com/betagouv/Resultats-Elections-FPT/pull/28)
+- fix: diverses améliorations UX et UI [#26](https://github.com/betagouv/Resultats-Elections-FPT/pull/26)
 - chore: Ajoute un build de "staging" pour le recettage [#25](https://github.com/betagouv/Resultats-Elections-FPT/pull/25)
 - feat(Vue formulaire): ajout de la nouvelle vue pour la cartographie collectivité [#24](https://github.com/betagouv/Resultats-Elections-FPT/pull/24)
 - feat: Build app [#23](https://github.com/betagouv/Resultats-Elections-FPT/pull/23)
