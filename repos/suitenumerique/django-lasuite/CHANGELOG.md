@@ -8,13 +8,23 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Added
+
+- 🍱(core) vendor mime.types file i/o fetching from Apache
+
+## [0.0.24] - 2026-02-04
+
+### Changed
+
+- 🚸(oidc) ignore case when fallback on email #61
+
 ### Fixed
 
 - 🐛(oidc) use correct session key for token expiration check #56
 
 ## [0.0.23] - 2026-01-14
 
-### Changed
+
 
 - ⬆️(oidc) allow use mozilla-django-oidc >5.0.0 with PyJWT
 - ♻️(malware) reuse existing file_hash when rescheduling a task
@@ -188,7 +198,8 @@ and this project adheres to
 - ✨(oidc) add the authentication backends #2
 - ✨(oidc) add refresh token tools #3
 
-[unreleased]: https://github.com/suitenumerique/django-lasuite/compare/v0.0.23...main
+[unreleased]: https://github.com/suitenumerique/django-lasuite/compare/v0.0.24...main
+[0.0.24]: https://github.com/suitenumerique/django-lasuite/releases/v0.0.24
 [0.0.23]: https://github.com/suitenumerique/django-lasuite/releases/v0.0.23
 [0.0.22]: https://github.com/suitenumerique/django-lasuite/releases/v0.0.22
 [0.0.21]: https://github.com/suitenumerique/django-lasuite/releases/v0.0.21
