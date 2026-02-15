@@ -19,7 +19,6 @@ Documentation disponible en :
 - [🛠️ Commandes Docker](#️-commandes-docker)
   - [Backend](#backend)
   - [Frontend](#frontend)
-  - [Frontend](#frontend)
   - [Les deux conteneurs](#les-deux-conteneurs)
 - [✨ Fonctionnalités](#-fonctionnalités-clés)
 
@@ -167,12 +166,14 @@ Le frontend Vue.js sera désormais accessible à l’adresse : [http://localhost
 
 ```
 depots-sauvages/
-├── backend/        # Django backend
-│   ├── settings/   # Django configuration
-│   └── urls.py     # URL principale de configuration
-├── frontend/       # Vue.js front-end
-├── scripts/        # Scripts utilitaires
-├── documents/      # Documents générés
+├── backend/             # Django backend
+│   ├── settings/        # Django configuration
+│   ├── dn_signalements/ # Signalements fais via Démarches Numériques
+│   ├── signalements/    # Core : Modèles abstraits et mixins partagés
+│   └── urls.py          # URL principale de configuration
+├── frontend/            # Vue.js front-end
+├── scripts/             # Scripts utilitaires
+├── documents/           # Documents générés
 ```
 
 ---
