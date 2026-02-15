@@ -709,6 +709,7 @@
 │   │   │   │   ├── 30000101-01-remove-resorption-permissions-from-national-admins.js
 │   │   │   │   ├── 30000101-02-add-shantytown-resorption-access-feature.js
 │   │   │   │   ├── 30000103-01-clean-user-deactivation-fields.js
+│   │   │   │   ├── 30000104-01-create-table-signin_logs.js
 │   │   │   │   └── common
 │   │   │   │       ├── create_covid_comment_permissions.js
 │   │   │   │       ├── create_plan_finances_permissions.js
@@ -1200,6 +1201,10 @@
 │   │   │   │   │   └── create
 │   │   │   │   │       ├── signin.create.route.ts
 │   │   │   │   │       └── signin.create.ts
+│   │   │   │   ├── signinLog
+│   │   │   │   │   └── list
+│   │   │   │   │       ├── signinLog.list.route.ts
+│   │   │   │   │       └── signinLog.list.ts
 │   │   │   │   ├── statistics
 │   │   │   │   │   ├── getDashboard
 │   │   │   │   │   │   ├── statistics.getDashboard.route.ts
@@ -1876,6 +1881,11 @@
 │   │   │   │   │   │   └── toiletTypes.ts
 │   │   │   │   │   ├── create.ts
 │   │   │   │   │   └── index.ts
+│   │   │   │   ├── signinLogModel
+│   │   │   │   │   ├── _common
+│   │   │   │   │   │   └── serializeSigninLog.ts
+│   │   │   │   │   ├── findAll.ts
+│   │   │   │   │   └── index.ts
 │   │   │   │   ├── socialOriginModel
 │   │   │   │   │   ├── create.ts
 │   │   │   │   │   ├── find.ts
@@ -2249,6 +2259,13 @@
 │   │   │   │   │   ├── index.ts
 │   │   │   │   │   ├── start.ts
 │   │   │   │   │   └── update.ts
+│   │   │   │   ├── signinLog
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── logSigninAttempt.ts
+│   │   │   │   │   └── purgeOldLogs.ts
+│   │   │   │   ├── signinRateLimit
+│   │   │   │   │   ├── checkRateLimit.ts
+│   │   │   │   │   └── index.ts
 │   │   │   │   ├── user
 │   │   │   │   │   ├── anonymizationRequest.ts
 │   │   │   │   │   ├── anonymizeUser.ts
@@ -2402,6 +2419,8 @@
 │   │       │   ├── ShantytownExportTypes.d.ts
 │   │       │   ├── ShantytownLivingConditionsRawData.d.ts
 │   │       │   ├── ShantytownPreparatoryPhasesTowardResorption.d.ts
+│   │       │   ├── SigninLog.d.ts
+│   │       │   ├── SigninLogFilters.d.ts
 │   │       │   ├── SocialOrigin.d.ts
 │   │       │   ├── Topic.d.ts
 │   │       │   ├── User.d.ts
@@ -2734,6 +2753,7 @@
 │       │   │   │   ├── role_permissions.api.js
 │       │   │   │   ├── shantytown_comments.api.js
 │       │   │   │   ├── signin.api.js
+│       │   │   │   ├── signinLogs.api.js
 │       │   │   │   ├── statistics.api.js
 │       │   │   │   ├── towns.api.js
 │       │   │   │   └── users.api.js
@@ -2835,6 +2855,8 @@
 │       │   │   ├── components
 │       │   │   │   ├── ActionFinances
 │       │   │   │   │   └── ActionFinances.vue
+│       │   │   │   ├── AdministrationHeader
+│       │   │   │   │   └── AdministrationHeader.vue
 │       │   │   │   ├── Annuaire
 │       │   │   │   │   ├── Annuaire.vue
 │       │   │   │   │   ├── AnnuaireBanniere.vue
@@ -3348,7 +3370,6 @@
 │       │   │   │   │   ├── FormConnexion.labels.js
 │       │   │   │   │   ├── FormConnexion.schema.js
 │       │   │   │   │   ├── FormConnexion.vue
-│       │   │   │   │   ├── FormConnexionMessageAlerte.vue
 │       │   │   │   │   └── inputs
 │       │   │   │   │       ├── FormConnexionInputEmail.vue
 │       │   │   │   │       └── FormConnexionInputPassword.vue
@@ -3706,6 +3727,12 @@
 │       │   │   │   │   ├── ListeDesSitesListe.vue
 │       │   │   │   │   ├── ListeDesSitesStatistiques.vue
 │       │   │   │   │   └── ListeDesSitesVide.vue
+│       │   │   │   ├── ListeLogsConnexion
+│       │   │   │   │   ├── ListeLogsConnexion.vue
+│       │   │   │   │   ├── ListeLogsConnexionFiltres.vue
+│       │   │   │   │   ├── ListeLogsConnexionHeader.vue
+│       │   │   │   │   ├── ListeLogsConnexionTableau.vue
+│       │   │   │   │   └── ListeLogsConnexionVide.vue
 │       │   │   │   ├── Loading
 │       │   │   │   │   └── Loading.vue
 │       │   │   │   ├── MiniCarte
@@ -3874,6 +3901,7 @@
 │       │   │   │   ├── notification.store.js
 │       │   │   │   ├── poi.store.js
 │       │   │   │   ├── questions.store.js
+│       │   │   │   ├── signinLogs.store.js
 │       │   │   │   ├── towns.store.js
 │       │   │   │   └── user.store.js
 │       │   │   ├── utils
@@ -3992,6 +4020,7 @@
 │       │   │       ├── ListeAccesView.vue
 │       │   │       ├── ListeDesActionsView.vue
 │       │   │       ├── ListeDesSitesView.vue
+│       │   │       ├── LogsConnexionView.vue
 │       │   │       ├── MentionsLegales.vue
 │       │   │       ├── MiseAJourActionView.vue
 │       │   │       ├── MiseAJourDeQuestionView.vue
@@ -4143,4 +4172,4 @@
 ├── scripts
 │   └── checkout.sh
 └── yarn.lock
-723 directories, 3772 files
+731 directories, 3793 files
