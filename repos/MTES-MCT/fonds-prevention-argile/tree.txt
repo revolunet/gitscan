@@ -129,6 +129,7 @@
 │           ├── 04-dossiers-ds.sql
 │           ├── 05-prospects-sans-amo.sql
 │           ├── 06-test-aucun-amo.sql
+│           ├── 07-commentaires.sql
 │           ├── 99-verification.sql
 │           └── README.md
 ├── src
@@ -237,14 +238,22 @@
 │   │   │   │   │   │   └── ProspectsTable.tsx
 │   │   │   │   │   └── page.tsx
 │   │   │   │   ├── shared
-│   │   │   │   │   ├── AFaire.tsx
-│   │   │   │   │   ├── GagnezDuTemps.tsx
-│   │   │   │   │   ├── InfoDemandeur.tsx
-│   │   │   │   │   ├── InfoLogement.tsx
-│   │   │   │   │   ├── LocalisationLogement.tsx
-│   │   │   │   │   ├── ParcoursDemandeur.tsx
-│   │   │   │   │   ├── RepartitionCardTile.tsx
-│   │   │   │   │   ├── StatTile.tsx
+│   │   │   │   │   ├── components
+│   │   │   │   │   │   ├── AFaire.tsx
+│   │   │   │   │   │   ├── GagnezDuTemps.tsx
+│   │   │   │   │   │   ├── InfoDemandeur.tsx
+│   │   │   │   │   │   ├── InfoLogement.tsx
+│   │   │   │   │   │   ├── LocalisationLogement.tsx
+│   │   │   │   │   │   ├── NotesPartagees
+│   │   │   │   │   │   │   ├── NoteForm.tsx
+│   │   │   │   │   │   │   ├── NoteItem.tsx
+│   │   │   │   │   │   │   ├── NotesPartagees.css
+│   │   │   │   │   │   │   ├── NotesPartagees.tsx
+│   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   ├── ParcoursDemandeur.tsx
+│   │   │   │   │   │   ├── RepartitionCardTile.tsx
+│   │   │   │   │   │   ├── StatTile.tsx
+│   │   │   │   │   │   └── index.ts
 │   │   │   │   │   └── index.ts
 │   │   │   │   ├── statistiques
 │   │   │   │   │   ├── components
@@ -723,16 +732,23 @@
 │   │   │   │   │       ├── prospect-detail.service.ts
 │   │   │   │   │       └── prospects-list.service.ts
 │   │   │   │   ├── shared
+│   │   │   │   │   ├── actions
+│   │   │   │   │   │   ├── commentaires.actions.test.ts
+│   │   │   │   │   │   └── commentaires.actions.ts
 │   │   │   │   │   ├── context
 │   │   │   │   │   │   └── AmoContext.tsx
 │   │   │   │   │   ├── domain
 │   │   │   │   │   │   ├── index.ts
 │   │   │   │   │   │   ├── types
 │   │   │   │   │   │   │   ├── amo-tab.types.ts
+│   │   │   │   │   │   │   ├── commentaire.types.ts
 │   │   │   │   │   │   │   └── index.ts
 │   │   │   │   │   │   └── value-objects
 │   │   │   │   │   │       └── amo-tabs.config.ts
-│   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   └── services
+│   │   │   │   │       ├── commentaires.service.test.ts
+│   │   │   │   │       └── commentaires.service.ts
 │   │   │   │   └── statistiques
 │   │   │   │       ├── actions
 │   │   │   │       │   ├── get-amo-statistiques.action.test.ts
@@ -1173,6 +1189,8 @@
 │   │   │   │   ├── 0015_melted_enchantress.sql
 │   │   │   │   ├── 0016_spooky_quentin_quire.sql
 │   │   │   │   ├── 0017_gifted_living_mummy.sql
+│   │   │   │   ├── 0018_wide_unus.sql
+│   │   │   │   ├── 0019_aberrant_iron_monger.sql
 │   │   │   │   └── meta
 │   │   │   │       ├── 0000_snapshot.json
 │   │   │   │       ├── 0001_snapshot.json
@@ -1192,6 +1210,8 @@
 │   │   │   │       ├── 0015_snapshot.json
 │   │   │   │       ├── 0016_snapshot.json
 │   │   │   │       ├── 0017_snapshot.json
+│   │   │   │       ├── 0018_snapshot.json
+│   │   │   │       ├── 0019_snapshot.json
 │   │   │   │       └── _journal.json
 │   │   │   ├── repositories
 │   │   │   │   ├── agent-permissions.repository.ts
@@ -1202,6 +1222,8 @@
 │   │   │   │   ├── dossiers-demarches-simplifiees.repository.ts
 │   │   │   │   ├── entreprises-amo.repository.ts
 │   │   │   │   ├── index.ts
+│   │   │   │   ├── parcours-commentaires.repository.test.ts
+│   │   │   │   ├── parcours-commentaires.repository.ts
 │   │   │   │   ├── parcours-prevention.repository.ts
 │   │   │   │   └── user.repository.ts
 │   │   │   └── schema
@@ -1218,6 +1240,7 @@
 │   │   │       ├── entreprises-amo.ts
 │   │   │       ├── index.ts
 │   │   │       ├── parcours-amo-validations.ts
+│   │   │       ├── parcours-commentaires.ts
 │   │   │       ├── parcours-prevention.ts
 │   │   │       └── users.ts
 │   │   ├── domain
@@ -1299,4 +1322,4 @@
 ├── vitest-env.d.ts
 ├── vitest.config.ts
 └── vitest.setup.ts
-388 directories, 913 files
+392 directories, 932 files
