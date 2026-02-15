@@ -41,9 +41,11 @@
 │   │   ├── data_gouv
 │   │   │   ├── Config.py
 │   │   │   ├── __init__.py
+│   │   │   ├── archive_all_from_data_gouv.py
 │   │   │   ├── configs.py
-│   │   │   ├── csv_exports.py
-│   │   │   ├── geopackage_exports.py
+│   │   │   ├── export_all_to_data_gouv.py
+│   │   │   ├── propositions_ocsge.md
+│   │   │   ├── propositions_ocsge_composition.md
 │   │   │   └── utils.py
 │   │   ├── dbt_cmd.py
 │   │   ├── deploy_static_files.py
@@ -53,17 +55,18 @@
 │   │   ├── ingest_admin_express.py
 │   │   ├── ingest_app_tables.py
 │   │   ├── ingest_brevo_user_organism.py
+│   │   ├── ingest_carroyage_lea.py
 │   │   ├── ingest_cartofriches.py
 │   │   ├── ingest_cog_changes.py
 │   │   ├── ingest_gpu.py
 │   │   ├── ingest_majic.py
 │   │   ├── ingest_matomo_tables.py
 │   │   ├── ingest_pene.py
-│   │   ├── ingest_plan_communal.py
 │   │   ├── ingest_population.py
 │   │   ├── ingest_rpls.py
 │   │   ├── ingest_scots.py
 │   │   ├── ingest_sitadel.py
+│   │   ├── ingest_sudocuh.py
 │   │   ├── ingest_zlv.py
 │   │   ├── ocsge.py
 │   │   ├── update_app.py
@@ -116,15 +119,18 @@
 │   │   │   ├── HTTPFileHandler.py
 │   │   │   ├── PaginatedJsonToS3Handler.py
 │   │   │   ├── RemoteToS3FileHandler.py
+│   │   │   ├── RemoteZipToS3FileHandler.py
 │   │   │   ├── S3CSVFileToDBTableHandler.py
 │   │   │   ├── S3GeoJsonFileToDBTableHandler.py
 │   │   │   ├── S3Handler.py
 │   │   │   ├── S3ToDataGouvHandler.py
+│   │   │   ├── S3XLSXFileToDBTableHandler.py
 │   │   │   ├── SQLToCSVOnS3Handler.py
 │   │   │   ├── SQLToGeoJsonOnS3Handler.py
 │   │   │   ├── SQLToGeojsonSeqOnS3Handler.py
 │   │   │   ├── SQLToGeopackageOnS3Handler.py
 │   │   │   ├── TmpPathGenerator.py
+│   │   │   ├── XLSXFileIngestor.py
 │   │   │   └── __init__.py
 │   │   ├── notification
 │   │   │   ├── BaseNotificationService.py
@@ -189,6 +195,8 @@
 │   │   │       │   │   │   ├── merge_artif_commune_flux_by_sol.sql
 │   │   │       │   │   │   ├── merge_artif_commune_flux_by_sol_and_admin_level.sql
 │   │   │       │   │   │   └── merge_artif_net_flux_by_admin_level.sql
+│   │   │       │   │   ├── exclude_guyane_incomplete_lands.sql
+│   │   │       │   │   ├── for_export_pivot_columns.sql
 │   │   │       │   │   ├── imper
 │   │   │       │   │   │   ├── merge_imper_commune_flux_by_admin_level.sql
 │   │   │       │   │   │   ├── merge_imper_commune_flux_by_sol.sql
@@ -207,16 +215,14 @@
 │   │   │       │   │   ├── coalesce_rpls.sql
 │   │   │       │   │   └── sum_rpls.sql
 │   │   │       │   ├── simplify.sql
-│   │   │       │   ├── utils
-│   │   │       │   │   ├── boolean_as_oui_non.sql
-│   │   │       │   │   ├── create_idx_if_not_exists.sql
-│   │   │       │   │   ├── m2_to_ha.sql
-│   │   │       │   │   ├── make_valid_multipolygon.sql
-│   │   │       │   │   ├── raw_date_starts_with_yyyy.sql
-│   │   │       │   │   ├── sum_percent.sql
-│   │   │       │   │   └── sum_percent_median_avg.sql
-│   │   │       │   └── zlv
-│   │   │       │       └── secretisation_zlv.sql
+│   │   │       │   └── utils
+│   │   │       │       ├── boolean_as_oui_non.sql
+│   │   │       │       ├── create_idx_if_not_exists.sql
+│   │   │       │       ├── m2_to_ha.sql
+│   │   │       │       ├── make_valid_multipolygon.sql
+│   │   │       │       ├── raw_date_starts_with_yyyy.sql
+│   │   │       │       ├── sum_percent.sql
+│   │   │       │       └── sum_percent_median_avg.sql
 │   │   │       ├── models
 │   │   │       │   ├── admin_express
 │   │   │       │   │   ├── commune.sql
@@ -251,6 +257,7 @@
 │   │   │       │   │   ├── region_reunion.sql
 │   │   │       │   │   └── schema.yml
 │   │   │       │   ├── analytics
+│   │   │       │   │   ├── land_single_view.sql
 │   │   │       │   │   ├── tech_stats.sql
 │   │   │       │   │   ├── trajectoire_nation.sql
 │   │   │       │   │   ├── trajectoires_stats.sql
@@ -415,6 +422,73 @@
 │   │   │       │   │   ├── commune_artif_by_year.yml
 │   │   │       │   │   ├── commune_imper_by_year.sql
 │   │   │       │   │   ├── commune_imper_by_year.yml
+│   │   │       │   │   ├── ocsge
+│   │   │       │   │   │   ├── artif
+│   │   │       │   │   │   │   ├── for_export_artif_commune.sql
+│   │   │       │   │   │   │   ├── for_export_artif_commune.yml
+│   │   │       │   │   │   │   ├── for_export_artif_departement.sql
+│   │   │       │   │   │   │   ├── for_export_artif_departement.yml
+│   │   │       │   │   │   │   ├── for_export_artif_epci.sql
+│   │   │       │   │   │   │   ├── for_export_artif_epci.yml
+│   │   │       │   │   │   │   ├── for_export_artif_region.sql
+│   │   │       │   │   │   │   ├── for_export_artif_region.yml
+│   │   │       │   │   │   │   ├── for_export_artif_scot.sql
+│   │   │       │   │   │   │   └── for_export_artif_scot.yml
+│   │   │       │   │   │   ├── artif_by_couverture
+│   │   │       │   │   │   │   ├── for_export_artif_commune_by_couverture.sql
+│   │   │       │   │   │   │   ├── for_export_artif_commune_by_couverture.yml
+│   │   │       │   │   │   │   ├── for_export_artif_departement_by_couverture.sql
+│   │   │       │   │   │   │   ├── for_export_artif_departement_by_couverture.yml
+│   │   │       │   │   │   │   ├── for_export_artif_epci_by_couverture.sql
+│   │   │       │   │   │   │   ├── for_export_artif_epci_by_couverture.yml
+│   │   │       │   │   │   │   ├── for_export_artif_region_by_couverture.sql
+│   │   │       │   │   │   │   ├── for_export_artif_region_by_couverture.yml
+│   │   │       │   │   │   │   ├── for_export_artif_scot_by_couverture.sql
+│   │   │       │   │   │   │   └── for_export_artif_scot_by_couverture.yml
+│   │   │       │   │   │   ├── artif_by_usage
+│   │   │       │   │   │   │   ├── for_export_artif_commune_by_usage.sql
+│   │   │       │   │   │   │   ├── for_export_artif_commune_by_usage.yml
+│   │   │       │   │   │   │   ├── for_export_artif_departement_by_usage.sql
+│   │   │       │   │   │   │   ├── for_export_artif_departement_by_usage.yml
+│   │   │       │   │   │   │   ├── for_export_artif_epci_by_usage.sql
+│   │   │       │   │   │   │   ├── for_export_artif_epci_by_usage.yml
+│   │   │       │   │   │   │   ├── for_export_artif_region_by_usage.sql
+│   │   │       │   │   │   │   ├── for_export_artif_region_by_usage.yml
+│   │   │       │   │   │   │   ├── for_export_artif_scot_by_usage.sql
+│   │   │       │   │   │   │   └── for_export_artif_scot_by_usage.yml
+│   │   │       │   │   │   ├── imper
+│   │   │       │   │   │   │   ├── for_export_imper_commune.sql
+│   │   │       │   │   │   │   ├── for_export_imper_commune.yml
+│   │   │       │   │   │   │   ├── for_export_imper_departement.sql
+│   │   │       │   │   │   │   ├── for_export_imper_departement.yml
+│   │   │       │   │   │   │   ├── for_export_imper_epci.sql
+│   │   │       │   │   │   │   ├── for_export_imper_epci.yml
+│   │   │       │   │   │   │   ├── for_export_imper_region.sql
+│   │   │       │   │   │   │   ├── for_export_imper_region.yml
+│   │   │       │   │   │   │   ├── for_export_imper_scot.sql
+│   │   │       │   │   │   │   └── for_export_imper_scot.yml
+│   │   │       │   │   │   ├── imper_by_couverture
+│   │   │       │   │   │   │   ├── for_export_imper_commune_by_couverture.sql
+│   │   │       │   │   │   │   ├── for_export_imper_commune_by_couverture.yml
+│   │   │       │   │   │   │   ├── for_export_imper_departement_by_couverture.sql
+│   │   │       │   │   │   │   ├── for_export_imper_departement_by_couverture.yml
+│   │   │       │   │   │   │   ├── for_export_imper_epci_by_couverture.sql
+│   │   │       │   │   │   │   ├── for_export_imper_epci_by_couverture.yml
+│   │   │       │   │   │   │   ├── for_export_imper_region_by_couverture.sql
+│   │   │       │   │   │   │   ├── for_export_imper_region_by_couverture.yml
+│   │   │       │   │   │   │   ├── for_export_imper_scot_by_couverture.sql
+│   │   │       │   │   │   │   └── for_export_imper_scot_by_couverture.yml
+│   │   │       │   │   │   └── imper_by_usage
+│   │   │       │   │   │       ├── for_export_imper_commune_by_usage.sql
+│   │   │       │   │   │       ├── for_export_imper_commune_by_usage.yml
+│   │   │       │   │   │       ├── for_export_imper_departement_by_usage.sql
+│   │   │       │   │   │       ├── for_export_imper_departement_by_usage.yml
+│   │   │       │   │   │       ├── for_export_imper_epci_by_usage.sql
+│   │   │       │   │   │       ├── for_export_imper_epci_by_usage.yml
+│   │   │       │   │   │       ├── for_export_imper_region_by_usage.sql
+│   │   │       │   │   │       ├── for_export_imper_region_by_usage.yml
+│   │   │       │   │   │       ├── for_export_imper_scot_by_usage.sql
+│   │   │       │   │   │       └── for_export_imper_scot_by_usage.yml
 │   │   │       │   │   ├── ocsge_surface_cover_percent.sql
 │   │   │       │   │   ├── ocsge_surface_cover_percent.yml
 │   │   │       │   │   ├── trajectoires_communes.sql
@@ -424,6 +498,7 @@
 │   │   │       │   │   ├── for_vector_tiles_artif_difference_ocsge.yml
 │   │   │       │   │   ├── for_vector_tiles_artif_difference_ocsge_centroid.sql
 │   │   │       │   │   ├── for_vector_tiles_artif_difference_ocsge_centroid.yml
+│   │   │       │   │   ├── for_vector_tiles_carroyage_lea.sql
 │   │   │       │   │   ├── for_vector_tiles_difference_ocsge.sql
 │   │   │       │   │   ├── for_vector_tiles_difference_ocsge.yml
 │   │   │       │   │   ├── for_vector_tiles_difference_ocsge_centroid.sql
@@ -485,8 +560,8 @@
 │   │   │       │   │   │   ├── pop_national_stats_region.sql
 │   │   │       │   │   │   ├── pop_national_stats_scot.sql
 │   │   │       │   │   │   └── pop_regional_stats_departement.sql
-│   │   │       │   │   ├── cog_changes_2024.sql
-│   │   │       │   │   ├── cog_changes_2024.yml
+│   │   │       │   │   ├── cog_changes_2025.sql
+│   │   │       │   │   ├── cog_changes_2025.yml
 │   │   │       │   │   ├── population.sql
 │   │   │       │   │   ├── population.yml
 │   │   │       │   │   ├── population_cog_2024.sql
@@ -501,6 +576,8 @@
 │   │   │       │   │   ├── land_departement.sql
 │   │   │       │   │   ├── land_details.sql
 │   │   │       │   │   ├── land_details.yml
+│   │   │       │   │   ├── land_geom_4326.sql
+│   │   │       │   │   ├── land_geom_4326.yml
 │   │   │       │   │   ├── nearest_territories_commune.sql
 │   │   │       │   │   ├── nearest_territories_departement.sql
 │   │   │       │   │   ├── nearest_territories_epci.sql
@@ -536,6 +613,7 @@
 │   │   │       │   │   │   ├── conso_national_stats_region.sql
 │   │   │       │   │   │   ├── conso_national_stats_scot.sql
 │   │   │       │   │   │   └── conso_regional_stats_departement.sql
+│   │   │       │   │   ├── carroyage_lea.sql
 │   │   │       │   │   ├── consommation.sql
 │   │   │       │   │   ├── consommation_cog_2024.sql
 │   │   │       │   │   ├── land_conso_correction_status.sql
@@ -1192,6 +1270,7 @@
 │   ├── storages.py
 │   ├── urls.py
 │   ├── views
+│   │   ├── CarroyageDestinationConfigView.py
 │   │   ├── EnvironmentView.py
 │   │   ├── WebpackProxyView.py
 │   │   └── __init__.py
@@ -1382,6 +1461,8 @@
 │   │   │   │   │   ├── baseLayer.ts
 │   │   │   │   │   ├── baseOcsgeDiffLayer.ts
 │   │   │   │   │   ├── baseOcsgeLayer.ts
+│   │   │   │   │   ├── carroyageLeaLayer.ts
+│   │   │   │   │   ├── carroyageLeaOutlineLayer.ts
 │   │   │   │   │   ├── empriseLayer.ts
 │   │   │   │   │   ├── frichesCentroidClusterLayer.ts
 │   │   │   │   │   ├── frichesLayer.ts
@@ -1392,11 +1473,13 @@
 │   │   │   │   │   ├── ocsgeFrichesArtificialLayer.ts
 │   │   │   │   │   ├── ocsgeFrichesImpermeableLayer.ts
 │   │   │   │   │   ├── ocsgeFrichesLayer.ts
-│   │   │   │   │   └── orthophotoLayer.ts
+│   │   │   │   │   ├── orthophotoLayer.ts
+│   │   │   │   │   └── osmLayer.ts
 │   │   │   │   ├── sources
 │   │   │   │   │   ├── baseOcsgeDiffSource.ts
 │   │   │   │   │   ├── baseOcsgeSource.ts
 │   │   │   │   │   ├── baseSource.ts
+│   │   │   │   │   ├── carroyageLeaSource.ts
 │   │   │   │   │   ├── empriseSource.ts
 │   │   │   │   │   ├── frichesCentroidSource.ts
 │   │   │   │   │   ├── frichesSource.ts
@@ -1406,7 +1489,8 @@
 │   │   │   │   │   ├── ocsgeDiffSource.ts
 │   │   │   │   │   ├── ocsgeFrichesSource.ts
 │   │   │   │   │   ├── ocsgeSource.ts
-│   │   │   │   │   └── orthophotoSource.ts
+│   │   │   │   │   ├── orthophotoSource.ts
+│   │   │   │   │   └── osmSource.ts
 │   │   │   │   ├── stats
 │   │   │   │   │   ├── StatsManager.ts
 │   │   │   │   │   ├── StatsStateManager.ts
@@ -1428,6 +1512,7 @@
 │   │   │   │   │   ├── ArtificialisationDiffMap.tsx
 │   │   │   │   │   ├── ArtificialisationMap.tsx
 │   │   │   │   │   ├── BaseMap.tsx
+│   │   │   │   │   ├── CarroyageLeaMap.tsx
 │   │   │   │   │   ├── FrichesArtificialMap.tsx
 │   │   │   │   │   ├── FrichesImpermeableMap.tsx
 │   │   │   │   │   ├── FrichesMap.tsx
@@ -1447,6 +1532,7 @@
 │   │   │   │   │   ├── infoPanel
 │   │   │   │   │   │   ├── ArtificialisationDiffInfo.tsx
 │   │   │   │   │   │   ├── ArtificialisationInfo.tsx
+│   │   │   │   │   │   ├── CarroyageLeaInfo.tsx
 │   │   │   │   │   │   ├── FrichesInfo.tsx
 │   │   │   │   │   │   ├── ImpermeabilisationDiffInfo.tsx
 │   │   │   │   │   │   ├── ImpermeabilisationInfo.tsx
@@ -1498,8 +1584,7 @@
 │   │   │   │   │   ├── components
 │   │   │   │   │   │   ├── LogementVacantAutorisation.tsx
 │   │   │   │   │   │   ├── LogementVacantConso.tsx
-│   │   │   │   │   │   ├── LogementVacantProgression.tsx
-│   │   │   │   │   │   └── LogementVacantRatio.tsx
+│   │   │   │   │   │   └── LogementVacantTaux.tsx
 │   │   │   │   │   ├── index.tsx
 │   │   │   │   │   └── types
 │   │   │   │   │       └── index.ts
@@ -1797,12 +1882,10 @@
 │   │       ├── FricheZonageEnvironnementalChart.py
 │   │       ├── FricheZonageTypeChart.py
 │   │       ├── FricheZoneActiviteChart.py
-│   │       ├── LogementVacantAutorisationLogementComparisonChart.py
-│   │       ├── LogementVacantAutorisationLogementRatioGaugeChart.py
 │   │       ├── LogementVacantAutorisationLogementRatioProgressionChart.py
 │   │       ├── LogementVacantConsoProgressionChart.py
-│   │       ├── LogementVacantProgressionChart.py
-│   │       ├── LogementVacantRatioProgressionChart.py
+│   │       ├── LogementVacantMap.py
+│   │       ├── LogementVacantTauxProgressionChart.py
 │   │       └── __init__.py
 │   ├── forms.py
 │   ├── formulas.py
@@ -2879,4 +2962,4 @@
 │           ├── RedirectURLMixin.py
 │           └── __init__.py
 └── webpack.config.js
-334 directories, 2547 files
+340 directories, 2624 files
