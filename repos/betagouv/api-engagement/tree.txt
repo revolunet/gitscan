@@ -486,6 +486,8 @@
 │   │       │   │   └── migration.sql
 │   │       │   ├── 20260209113005_alter_mission_address_geo_index
 │   │       │   │   └── migration.sql
+│   │       │   ├── 20260212104747_delete_mission_activity_id
+│   │       │   │   └── migration.sql
 │   │       │   └── migration_lock.toml
 │   │       └── schema.core.prisma
 │   ├── scripts
@@ -493,6 +495,7 @@
 │   │   ├── backfill-mission-jobboard-sync-status.ts
 │   │   ├── backfill-publisher-organizations.ts
 │   │   ├── cleanup-duplicate-organizations.ts
+│   │   ├── cleanup-orphan-activities.ts
 │   │   ├── fill-missions-type.ts
 │   │   ├── fill-stat-event-updated-at.ts
 │   │   ├── fixtures
@@ -1113,6 +1116,7 @@
     │   ├── FiltersVolontariat.tsx
     │   ├── Grid.tsx
     │   ├── LocationFilter.tsx
+    │   ├── MissionContainer.tsx
     │   └── SelectFilter.tsx
     ├── config.ts
     ├── eslint.config.cjs
@@ -1123,9 +1127,11 @@
     │   ├── icomoon.ttf
     │   └── icomoon.woff
     ├── hooks
+    │   ├── useMissions.ts
     │   └── useSyncWidgetQuery.ts
     ├── instrumentation-client.js
-    ├── instrumentation.js
+    ├── instrumentation-node.js
+    ├── instrumentation.ts
     ├── next-env.d.ts
     ├── next.config.js
     ├── package-lock.json
@@ -1133,6 +1139,8 @@
     ├── pages
     │   ├── _app.tsx
     │   ├── _document.tsx
+    │   ├── api
+    │   │   └── healthz.ts
     │   ├── global.css
     │   └── index.tsx
     ├── playwright.config.ts
@@ -1173,13 +1181,15 @@
     ├── types
     │   └── index.ts
     └── utils
+        ├── api.ts
+        ├── buildSearchParams.ts
+        ├── fetchLocation.ts
         ├── fetchWithTimeout.ts
         ├── fonts.ts
-        ├── queryParams.ts
         ├── requestId.ts
         ├── resizeHelper.ts
         ├── routerQuery.ts
         ├── sentry.ts
         ├── store.ts
         └── utils.ts
-308 directories, 876 files
+310 directories, 884 files
