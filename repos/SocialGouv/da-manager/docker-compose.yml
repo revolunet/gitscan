@@ -1,0 +1,27 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: da_user
+      POSTGRES_PASSWORD: da_password
+      POSTGRES_DB: da_manager
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  app:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgresql://da_user:da_password@db:5432/da_manager
+    env_file:
+      - .env.local
+
+volumes:
+  pgdata:

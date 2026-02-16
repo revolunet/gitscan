@@ -6,6 +6,11 @@
 ├── .gitignore
 ├── .kontinuous
 │   ├── config.yaml
+│   ├── env
+│   │   └── dev
+│   │       └── templates
+│   │           ├── da-manager.configmap.yaml
+│   │           └── proconnect.sealed-secret.yaml
 │   └── values.yaml
 ├── .prettierignore
 ├── CLAUDE.md
@@ -13,26 +18,59 @@
 ├── README.md
 ├── app
 │   ├── _components
+│   │   ├── Autocomplete.tsx
+│   │   ├── CreateDAModal.tsx
+│   │   ├── DATable.tsx
+│   │   ├── DeleteDAButton.tsx
 │   │   ├── HeaderWithAuth.tsx
 │   │   └── ProConnectLoginButton.tsx
 │   ├── api
 │   │   ├── auth
 │   │   │   └── [...nextauth]
 │   │   │       └── route.ts
+│   │   ├── da
+│   │   │   ├── [id]
+│   │   │   │   ├── access
+│   │   │   │   │   ├── [userId]
+│   │   │   │   │   │   └── route.ts
+│   │   │   │   │   └── route.ts
+│   │   │   │   ├── logs
+│   │   │   │   │   └── route.ts
+│   │   │   │   ├── route.ts
+│   │   │   │   └── versions
+│   │   │   │       ├── [versionId]
+│   │   │   │       │   ├── restore
+│   │   │   │       │   │   └── route.ts
+│   │   │   │       │   └── route.ts
+│   │   │   │       └── route.ts
+│   │   │   ├── check-name
+│   │   │   │   └── route.ts
+│   │   │   └── route.ts
 │   │   ├── export-pdf
 │   │   │   └── [id]
 │   │   │       ├── pdf-template.tsx
-│   │   │       └── route.ts
-│   │   └── healthz
+│   │   │       ├── route.ts
+│   │   │       └── versions
+│   │   │           └── [versionId]
+│   │   │               └── route.ts
+│   │   ├── healthz
+│   │   │   └── route.ts
+│   │   └── users
+│   │       ├── [id]
+│   │       │   └── route.ts
 │   │       └── route.ts
 │   ├── auth
-│   │   ├── error
-│   │   │   └── page.tsx
-│   │   └── signin
+│   │   └── error
 │   │       └── page.tsx
 │   ├── da
 │   │   ├── [id]
-│   │   │   └── page.tsx
+│   │   │   ├── access
+│   │   │   │   └── page.tsx
+│   │   │   ├── logs
+│   │   │   │   └── page.tsx
+│   │   │   ├── page.tsx
+│   │   │   └── versions
+│   │   │       └── page.tsx
 │   │   ├── _components
 │   │   │   ├── Cadre10MatricesFlux.tsx
 │   │   │   ├── Cadre11Dimensionnement.tsx
@@ -54,10 +92,54 @@
 │   ├── globals.css
 │   ├── layout.tsx
 │   ├── page.tsx
-│   └── users
-│       └── page.tsx
+│   ├── users
+│   │   └── page.tsx
+│   └── view
+│       ├── [id]
+│       │   ├── page.tsx
+│       │   └── versions
+│       │       └── [versionId]
+│       │           └── page.tsx
+│       └── _components
+│           ├── ReadonlyCadre1.tsx
+│           ├── ReadonlyCadre10.tsx
+│           ├── ReadonlyCadre11.tsx
+│           ├── ReadonlyCadre12.tsx
+│           ├── ReadonlyCadre2.tsx
+│           ├── ReadonlyCadre3.tsx
+│           ├── ReadonlyCadre4.tsx
+│           ├── ReadonlyCadre5.tsx
+│           ├── ReadonlyCadre6.tsx
+│           ├── ReadonlyCadre7.tsx
+│           ├── ReadonlyCadre8.tsx
+│           ├── ReadonlyCadre9.tsx
+│           ├── ReadonlyDA.tsx
+│           ├── ReadonlySidemenu.tsx
+│           └── ReadonlyTable.tsx
 ├── auth.ts
+├── docker-compose.yml
+├── drizzle
+│   ├── 0000_nasty_metal_master.sql
+│   ├── 0001_crazy_dexter_bennett.sql
+│   ├── 0002_unique_form_name.sql
+│   └── meta
+│       ├── 0000_snapshot.json
+│       ├── 0001_snapshot.json
+│       ├── 0002_snapshot.json
+│       └── _journal.json
+├── drizzle.config.ts
 ├── eslint.config.mjs
+├── lib
+│   ├── auth-helpers.ts
+│   └── db
+│       ├── index.ts
+│       ├── queries
+│       │   ├── editLogs.ts
+│       │   ├── form-access.ts
+│       │   ├── forms.ts
+│       │   ├── users.ts
+│       │   └── versions.ts
+│       └── schema.ts
 ├── middleware.ts
 ├── next.config.ts
 ├── package.json
@@ -955,7 +1037,8 @@
 │   └── window.svg
 ├── tsconfig.json
 ├── types
-│   └── da.types.ts
+│   ├── da.types.ts
+│   └── next-auth.d.ts
 └── utils
     └── excalidrawTemplates.ts
-45 directories, 1127 files
+73 directories, 1182 files
