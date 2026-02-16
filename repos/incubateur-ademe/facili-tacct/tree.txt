@@ -55,7 +55,6 @@
 ├── docker-compose.yml
 ├── eslint.config.mjs
 ├── git-filter-repo
-├── instrumentation-client.ts
 ├── jest.config.ts
 ├── jest.setup.ts
 ├── next.config.mjs
@@ -159,8 +158,6 @@
 │   ├── ressources_eau_bluetile.svg
 │   └── texte-facili-tacct.png
 ├── robots.ts
-├── sentry.edge.config.ts
-├── sentry.server.config.ts
 ├── src
 │   ├── CTA.tsx
 │   ├── app
@@ -177,6 +174,7 @@
 │   │   │   │   └── homeCard.tsx
 │   │   │   ├── (parcours)
 │   │   │   │   ├── donnees
+│   │   │   │   │   ├── DisclaimerPNR.tsx
 │   │   │   │   │   ├── explorerDonnees.module.scss
 │   │   │   │   │   ├── indicateurs
 │   │   │   │   │   │   ├── SourceExport.tsx
@@ -245,8 +243,15 @@
 │   │   │   │   │       ├── ImpactsAgriculture.tsx
 │   │   │   │   │       └── ImpactsConfortThermique.tsx
 │   │   │   │   ├── patch4c
+│   │   │   │   │   ├── Patch4Analyse.tsx
 │   │   │   │   │   ├── circleVisualization.tsx
 │   │   │   │   │   ├── components
+│   │   │   │   │   │   ├── Patch4Maps.tsx
+│   │   │   │   │   │   ├── aleaExplications.tsx
+│   │   │   │   │   │   ├── analyseSensibilite.tsx
+│   │   │   │   │   │   ├── blocAleas.tsx
+│   │   │   │   │   │   ├── blocConseils.tsx
+│   │   │   │   │   │   ├── blocTitre.tsx
 │   │   │   │   │   │   ├── constantes.ts
 │   │   │   │   │   │   └── fonctions.ts
 │   │   │   │   │   ├── cursorVisualization.tsx
@@ -309,10 +314,12 @@
 │   │   │   │   │   └── page.tsx
 │   │   │   │   ├── blocs
 │   │   │   │   │   ├── FiltresRessources.tsx
+│   │   │   │   │   ├── ModaleToutesCollections.tsx
 │   │   │   │   │   ├── blocAutresOutils.tsx
 │   │   │   │   │   ├── blocCollections.tsx
 │   │   │   │   │   ├── blocTitre.tsx
-│   │   │   │   │   └── blocToutesRessources.tsx
+│   │   │   │   │   ├── blocToutesRessources.tsx
+│   │   │   │   │   └── modaleToutesCollections.module.scss
 │   │   │   │   ├── components
 │   │   │   │   │   └── FiltresNonTrouves.tsx
 │   │   │   │   ├── page.tsx
@@ -390,8 +397,15 @@
 │   │   │   ├── main.module.scss
 │   │   │   ├── page.tsx
 │   │   │   ├── patch4c
+│   │   │   │   ├── Patch4Analyse.tsx
 │   │   │   │   ├── circleVisualization.tsx
 │   │   │   │   ├── components
+│   │   │   │   │   ├── Patch4Maps.tsx
+│   │   │   │   │   ├── aleaExplications.tsx
+│   │   │   │   │   ├── analyseSensibilite.tsx
+│   │   │   │   │   ├── blocAleas.tsx
+│   │   │   │   │   ├── blocConseils.tsx
+│   │   │   │   │   ├── blocTitre.tsx
 │   │   │   │   │   ├── constantes.ts
 │   │   │   │   │   └── fonctions.ts
 │   │   │   │   ├── cursorVisualization.tsx
@@ -459,6 +473,7 @@
 │   │   │   ├── activite_icon_black.svg
 │   │   │   ├── activite_icon_green.svg
 │   │   │   ├── activite_icon_white.svg
+│   │   │   ├── agir_icon_green.svg
 │   │   │   ├── agriculture_bio_surface_certifiee_icon.svg
 │   │   │   ├── agriculture_bio_surface_classique_icon.svg
 │   │   │   ├── agriculture_bio_surface_conversion_icon.svg
@@ -499,6 +514,8 @@
 │   │   │   ├── feu_foret_icon_black.svg
 │   │   │   ├── filtre_icon_white.svg
 │   │   │   ├── flag_icon_orange.png
+│   │   │   ├── formation_icon_green.svg
+│   │   │   ├── formation_icon_orange.svg
 │   │   │   ├── fr-*.png  (5 files)
 │   │   │   ├── grid_icon_grey.svg
 │   │   │   ├── group_people_icon_black.svg
@@ -515,8 +532,10 @@
 │   │   │   ├── info_icon_black.svg
 │   │   │   ├── info_icon_lightblue.svg
 │   │   │   ├── info_round_icon_black.svg
+│   │   │   ├── inspirer_icon_green.svg
 │   │   │   ├── keyboard_arrow_next_icon_black.svg
 │   │   │   ├── library_books_icon_orange.png
+│   │   │   ├── lightbulb_green_icon.svg
 │   │   │   ├── lightbulb_icon_black.svg
 │   │   │   ├── link_icon_blue.svg
 │   │   │   ├── list_unordered_icon_black.svg
@@ -539,10 +558,12 @@
 │   │   │   ├── precipitation_icon_black.svg
 │   │   │   ├── prendreRDV.png
 │   │   │   ├── qualite_*.svg  (6 files)
+│   │   │   ├── quiz_icon_yellow.svg
 │   │   │   ├── refresh_icon_green.png
 │   │   │   ├── ressources_icon_blue.svg
 │   │   │   ├── ressources_icon_white.svg
 │   │   │   ├── retour_exp_icon_green.svg
+│   │   │   ├── retour_exp_icon_red.svg
 │   │   │   ├── retour_icon_black.svg
 │   │   │   ├── route_icon_black.svg
 │   │   │   ├── route_icon_green.svg
@@ -583,6 +604,7 @@
 │   │   │   ├── train_icon_black.svg
 │   │   │   ├── train_icon_green.svg
 │   │   │   ├── train_icon_white.svg
+│   │   │   ├── video_icon_purple.svg
 │   │   │   ├── warning_icon_black.svg
 │   │   │   └── water_drop_blue.svg
 │   │   └── images
@@ -768,6 +790,7 @@
 │   │   │   ├── mapEspacesNAF.tsx
 │   │   │   ├── mapEtatCoursDeau.tsx
 │   │   │   ├── mapLCZ.tsx
+│   │   │   ├── mapPatch4.tsx
 │   │   │   ├── mapRGAExport.tsx
 │   │   │   ├── mapSurfacesIrriguees.tsx
 │   │   │   ├── mapTiles.tsx
@@ -815,6 +838,7 @@
 │   ├── config.ts
 │   ├── design-system
 │   │   ├── base
+│   │   │   ├── BaseIcons.tsx
 │   │   │   ├── Boutons.tsx
 │   │   │   ├── Box.tsx
 │   │   │   ├── Follow.tsx
@@ -884,13 +908,13 @@
 │   │       └── models.ts
 │   ├── hooks
 │   │   ├── EndPageTrigger.tsx
+│   │   ├── ExportDataTrigger.tsx
 │   │   ├── MiddlePageTrigger.tsx
 │   │   ├── Redirections.ts
 │   │   ├── RetardScroll.tsx
 │   │   ├── TextWidth.ts
 │   │   ├── useHasMapData.ts
 │   │   └── windowDimensions.ts
-│   ├── instrumentation.ts
 │   ├── lib
 │   │   ├── Brand.tsx
 │   │   ├── auth
@@ -1014,4 +1038,4 @@
 ├── tailwind.config.js
 ├── test2.json
 └── tsconfig.json
-154 directories, 890 files
+154 directories, 914 files
