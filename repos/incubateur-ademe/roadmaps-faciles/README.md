@@ -11,7 +11,7 @@ Le projet accueille des contributions de développeur·euse·s bénévoles — m
 
 ## 🧱 Stack & décisions clés
 
-- **Framework** : Next.js 15.5.x (App Router, Server Actions)  
+- **Framework** : Next.js 16 (App Router, Server Actions)
 - **Langage** : TypeScript strict  
 - **Auth** : NextAuth relié à Prisma (table `User` existante)  
 - **ORM** : Prisma (IDs en `uuid`, modèles multi-tenant)  
@@ -27,7 +27,7 @@ Ces choix sont détaillés dans les ADR (Architecture Decision Records) / `docs/
 
 > [!NOTE] 
 > **Prérequis**
-> - Node.js ≥ 22 (recommandé : activer Corepack) (cf. `.nvmrc`)  
+> - Node.js ≥ 24 (recommandé : activer Corepack) (cf. `.nvmrc`)
 > - PostgreSQL ≥ 15 (local ou conteneur via docker-compose)  
 
 ### Installation
@@ -197,6 +197,19 @@ Gestion automatique des enregistrements DNS pour les sous-domaines.
 
 </details>
 
+#### Observabilité
+
+Logging structuré (Pino) et error tracking (Sentry) optionnel. Voir `docs/adr/0015-observability.md`.
+
+| Variable | Description | Défaut |
+|---|---|---|
+| `NEXT_PUBLIC_SENTRY_DSN` | DSN Sentry client (vide = Sentry désactivé) | — |
+| `SENTRY_DSN` | DSN Sentry server (fallback sur `NEXT_PUBLIC_SENTRY_DSN`) | — |
+| `SENTRY_AUTH_TOKEN` | Token pour upload des source maps en CI | — |
+| `SENTRY_ORG` | Organisation Sentry | — |
+| `SENTRY_PROJECT` | Projet Sentry | — |
+| `LOG_LEVEL` | Niveau de log Pino (`trace`, `debug`, `info`, `warn`, `error`, `fatal`, `silent`) | `debug` |
+
 #### Seed (dev uniquement)
 
 Variables utilisées uniquement par le script de seed (`pnpm prisma db seed`).
@@ -278,7 +291,8 @@ pnpm run-script xx.ts           # Permet d'exécuter un script TS présent dans 
 /src/app/(default)          # Site principal
 /src/app/[domain]           # Multi-tenant
 /src/lib/model              # Schémas Zod (v4) - objets métier & DTO
-/src/lib/useCases           # Logique métier (use cases DDD)
+/src/useCases               # Logique métier (use cases DDD)
+/src/emails                 # Templates email react-email (DSFR Mail)
 /src/lib/repo               # Accès DB (Prisma) - fonctions CRUD
 ```
 

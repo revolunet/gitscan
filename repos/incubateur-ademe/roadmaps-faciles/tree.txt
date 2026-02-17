@@ -33,19 +33,30 @@
 │       └── web-design-guidelines
 │           └── SKILL.md
 ├── .claude
+│   ├── settings.json
 │   └── skills
 │       ├── check-review-pr
+│       │   └── SKILL.md
+│       ├── sync-docs
 │       │   └── SKILL.md
 │       ├── vercel-composition-patterns -> ../../.agents/skills/vercel-composition-patterns
 │       ├── vercel-react-best-practices -> ../../.agents/skills/vercel-react-best-practices
 │       ├── verif
 │       │   └── SKILL.md
-│       └── web-design-guidelines -> ../../.agents/skills/web-design-guidelines
+│       ├── web-design-guidelines -> ../../.agents/skills/web-design-guidelines
+│       └── worktree-guard
+│           └── SKILL.md
 ├── .editorconfig
 ├── .env.development
 ├── .env.production
 ├── .github
 │   ├── CODEOWNERS
+│   ├── ISSUE_TEMPLATE
+│   │   ├── bug_report.yml
+│   │   ├── config.yml
+│   │   ├── feature_request.yml
+│   │   └── task.yml
+│   ├── PULL_REQUEST_TEMPLATE.md
 │   ├── skills
 │   │   ├── vercel-composition-patterns -> ../../.agents/skills/vercel-composition-patterns
 │   │   ├── vercel-react-best-practices -> ../../.agents/skills/vercel-react-best-practices
@@ -54,6 +65,7 @@
 │       ├── build.yml
 │       └── lint.yml
 ├── .gitignore
+├── .mcp.json
 ├── .nvmrc
 ├── .slugignore
 ├── .vscode
@@ -67,6 +79,56 @@
 ├── README.md
 ├── SECURITY.md
 ├── TODO.md
+├── content
+│   └── docs
+│       ├── admin
+│       │   ├── api-keys.mdx
+│       │   ├── audit-log.mdx
+│       │   ├── authentication.mdx
+│       │   ├── boards-management.mdx
+│       │   ├── custom-domains.mdx
+│       │   ├── general-settings.mdx
+│       │   ├── index.mdx
+│       │   ├── members.mdx
+│       │   ├── meta.json
+│       │   ├── statuses-management.mdx
+│       │   └── webhooks.mdx
+│       ├── concepts
+│       │   ├── boards.mdx
+│       │   ├── glossary.mdx
+│       │   ├── index.mdx
+│       │   ├── meta.json
+│       │   ├── posts.mdx
+│       │   ├── roles.mdx
+│       │   ├── statuses.mdx
+│       │   └── workspaces.mdx
+│       ├── faq.mdx
+│       ├── getting-started.mdx
+│       ├── guides
+│       │   ├── board-views.mdx
+│       │   ├── create-account.mdx
+│       │   ├── index.mdx
+│       │   ├── language.mdx
+│       │   ├── meta.json
+│       │   ├── profile.mdx
+│       │   ├── roadmap.mdx
+│       │   ├── search-and-filter.mdx
+│       │   ├── submit-post.mdx
+│       │   └── vote-and-comment.mdx
+│       ├── index.mdx
+│       ├── meta.json
+│       ├── moderation
+│       │   ├── content-moderation.mdx
+│       │   ├── index.mdx
+│       │   ├── meta.json
+│       │   └── post-approval.mdx
+│       └── technical
+│           ├── deployment.mdx
+│           ├── dns.mdx
+│           ├── index.mdx
+│           ├── meta.json
+│           ├── security.mdx
+│           └── self-hosting.mdx
 ├── docker-compose.yml
 ├── docs
 │   ├── adr
@@ -83,7 +145,11 @@
 │   │   ├── 0010-tenant-settings-feature-flags.md
 │   │   ├── 0011-sso-bridge-cross-domain.md
 │   │   ├── 0012-domain-provider-abstraction.md
-│   │   └── 0013-dns-provider-abstraction.md
+│   │   ├── 0013-dns-provider-abstraction.md
+│   │   ├── 0014-audit-log.md
+│   │   ├── 0015-observability.md
+│   │   ├── 0016-anonymous-posts-and-moderation.md
+│   │   └── 0017-dsfr-email-templates.md
 │   └── deploy
 │       └── caddy
 │           ├── Caddyfile
@@ -134,6 +200,14 @@
 │   │   │   └── migration.sql
 │   │   ├── 20260211000000_remove_use_browser_locale
 │   │   │   └── migration.sql
+│   │   ├── 20260213004018_add_audit_log
+│   │   │   └── migration.sql
+│   │   ├── 20260213114845_add_anonymous_posts_and_moderation
+│   │   │   └── migration.sql
+│   │   ├── 20260213132115_add_post_edit_tracking_and_delete
+│   │   │   └── migration.sql
+│   │   ├── 20260213140014_add_allow_post_deletion
+│   │   │   └── migration.sql
 │   │   └── migration_lock.toml
 │   ├── schema.prisma
 │   ├── seed.cts
@@ -144,11 +218,31 @@
 │           └── PostWithHotness.sql
 ├── prisma.config.ts
 ├── public
+│   ├── doc
+│   │   └── screenshots
+│   │       ├── admin-api-keys.png
+│   │       ├── admin-audit-log.png
+│   │       ├── admin-authentication.png
+│   │       ├── admin-boards.png
+│   │       ├── admin-general.png
+│   │       ├── admin-members.png
+│   │       ├── admin-statuses.png
+│   │       ├── admin-webhooks.png
+│   │       ├── board-cards.png
+│   │       ├── board-list.png
+│   │       ├── login.png
+│   │       ├── moderation.png
+│   │       ├── post-detail.png
+│   │       ├── profile.png
+│   │       └── roadmap.png
 │   └── img
 │       ├── ademe-incubateur-logo.png
 │       ├── ademe-logo-2022-1.svg
 │       ├── custom
 │       │   └── .gitkeep
+│       ├── email
+│       │   ├── marianne-dark.png
+│       │   └── marianne-light.png
 │       ├── hero.svg
 │       ├── placeholder.svg
 │       └── roadmaps-faciles.png
@@ -159,7 +253,15 @@
 │   ├── import_gpg.sh
 │   ├── refresh_gpg_passphrase.sh
 │   ├── seedGit.ts
-│   └── tsconfig.json
+│   ├── tsconfig.json
+│   ├── worktree-clean.sh
+│   ├── worktree-completion.zsh
+│   ├── worktree-guard.sh
+│   └── worktree-new.sh
+├── sentry.client.config.ts
+├── sentry.edge.config.ts
+├── sentry.server.config.ts
+├── source.config.ts
 ├── src
 │   ├── app
 │   │   ├── (default)
@@ -167,6 +269,10 @@
 │   │   │   │   ├── admin
 │   │   │   │   │   ├── AdminSideMenu.tsx
 │   │   │   │   │   ├── actions.ts
+│   │   │   │   │   ├── audit-log
+│   │   │   │   │   │   ├── AuditLogView.tsx
+│   │   │   │   │   │   ├── actions.ts
+│   │   │   │   │   │   └── page.tsx
 │   │   │   │   │   ├── layout.tsx
 │   │   │   │   │   ├── page.tsx
 │   │   │   │   │   ├── prisma
@@ -221,6 +327,8 @@
 │   │   │   │   ├── domains
 │   │   │   │   │   └── check
 │   │   │   │   │       └── route.ts
+│   │   │   │   ├── healthz
+│   │   │   │   │   └── route.ts
 │   │   │   │   ├── studio
 │   │   │   │   │   └── route.ts
 │   │   │   │   └── subdomain
@@ -229,8 +337,6 @@
 │   │   │   ├── error
 │   │   │   │   └── page.tsx
 │   │   │   ├── forbidden.tsx
-│   │   │   ├── healthz
-│   │   │   │   └── page.tsx
 │   │   │   ├── index.module.scss
 │   │   │   ├── layout.tsx
 │   │   │   ├── login
@@ -257,6 +363,10 @@
 │   │   │       │   │   ├── AdminSideMenu.tsx
 │   │   │       │   │   ├── api
 │   │   │       │   │   │   ├── ApiKeysList.tsx
+│   │   │       │   │   │   ├── actions.ts
+│   │   │       │   │   │   └── page.tsx
+│   │   │       │   │   ├── audit-log
+│   │   │       │   │   │   ├── AuditLogView.tsx
 │   │   │       │   │   │   ├── actions.ts
 │   │   │       │   │   │   └── page.tsx
 │   │   │       │   │   ├── authentication
@@ -296,6 +406,14 @@
 │   │   │       │   │       ├── actions.ts
 │   │   │       │   │       └── page.tsx
 │   │   │       │   ├── layout.tsx
+│   │   │       │   ├── moderation
+│   │   │       │   │   ├── ModerationPostList.tsx
+│   │   │       │   │   ├── ModerationSideMenu.tsx
+│   │   │       │   │   ├── actions.ts
+│   │   │       │   │   ├── layout.tsx
+│   │   │       │   │   ├── page.tsx
+│   │   │       │   │   └── rejected
+│   │   │       │   │       └── page.tsx
 │   │   │       │   └── profile
 │   │   │       │       └── page.tsx
 │   │   │       ├── @modal
@@ -318,6 +436,8 @@
 │   │   │       │       ├── Board.module.scss
 │   │   │       │       ├── FilterAndSearch.tsx
 │   │   │       │       ├── PostList.tsx
+│   │   │       │       ├── PostListCompact.tsx
+│   │   │       │       ├── SubmitPostForm.tsx
 │   │   │       │       ├── actions.ts
 │   │   │       │       ├── page.tsx
 │   │   │       │       └── types.ts
@@ -349,6 +469,20 @@
 │   │   │       ├── roadmap
 │   │   │       │   └── page.tsx
 │   │   │       └── unauthorized.tsx
+│   │   ├── api
+│   │   │   └── search
+│   │   │       └── route.ts
+│   │   ├── doc
+│   │   │   ├── DocHeader.tsx
+│   │   │   ├── [[...slug]]
+│   │   │   │   └── page.tsx
+│   │   │   ├── docs.css
+│   │   │   ├── dsfr-theme.css
+│   │   │   ├── layout.client.tsx
+│   │   │   ├── layout.tsx
+│   │   │   ├── mdx-components.ts
+│   │   │   ├── mdx-dsfr.tsx
+│   │   │   └── reset.css
 │   │   ├── error.tsx
 │   │   ├── global-error.tsx
 │   │   ├── globals.scss
@@ -442,11 +576,20 @@
 │   │   ├── defaultColorScheme.ts
 │   │   ├── index.tsx
 │   │   └── server-only-index.tsx
+│   ├── emails
+│   │   ├── DsfrEmailLayout.tsx
+│   │   ├── EmLinkConfirmEmail.tsx
+│   │   ├── InvitationEmail.tsx
+│   │   ├── MagicLinkEmail.tsx
+│   │   ├── components.tsx
+│   │   ├── getEmailTranslations.ts
+│   │   └── renderEmails.tsx
 │   ├── generated
 │   │   └── .gitattributes
 │   ├── i18n
 │   │   ├── navigation.tsx
 │   │   └── request.ts
+│   ├── instrumentation.ts
 │   ├── lib
 │   │   ├── authBridge.ts
 │   │   ├── db
@@ -472,6 +615,8 @@
 │   │   │   │   └── ScalingoWildcardDomainProvider.ts
 │   │   │   └── index.ts
 │   │   ├── espaceMembre.ts
+│   │   ├── logger.ts
+│   │   ├── mailer.ts
 │   │   ├── matomo.ts
 │   │   ├── model
 │   │   │   ├── ApiKey.ts
@@ -490,6 +635,7 @@
 │   │   │   └── auth.ts
 │   │   ├── repo
 │   │   │   ├── IApiKeyRepo.ts
+│   │   │   ├── IAuditLogRepo.ts
 │   │   │   ├── IBoardRepo.ts
 │   │   │   ├── ICommentRepo.ts
 │   │   │   ├── IFollowRepo.ts
@@ -507,6 +653,7 @@
 │   │   │   ├── IWebhookRepo.ts
 │   │   │   ├── impl
 │   │   │   │   ├── ApiKeyRepoPrisma.ts
+│   │   │   │   ├── AuditLogRepoPrisma.ts
 │   │   │   │   ├── BoardRepoPrisma.ts
 │   │   │   │   ├── CommentRepoPrisma.ts
 │   │   │   │   ├── FollowRepoPrisma.ts
@@ -528,11 +675,13 @@
 │   │   │   ├── getInstance.ts
 │   │   │   ├── index.ts
 │   │   │   └── types.ts
+│   │   ├── source.ts
 │   │   └── utils
 │   │       ├── anonymousId
 │   │       │   ├── config.ts
 │   │       │   ├── getAnonymousId.ts
 │   │       │   └── responseWithAnonymousId.ts
+│   │       ├── audit.ts
 │   │       ├── auth.ts
 │   │       ├── browser.ts
 │   │       ├── date.ts
@@ -552,6 +701,7 @@
 │   │       ├── os.ts
 │   │       ├── react-markdown.tsx
 │   │       ├── react.ts
+│   │       ├── requestLogger.ts
 │   │       ├── string.ts
 │   │       ├── tenant.ts
 │   │       ├── types.ts
@@ -594,10 +744,12 @@
 │   │   │   ├── ReorderPostStatuses.ts
 │   │   │   └── UpdatePostStatus.ts
 │   │   ├── posts
+│   │   │   ├── ApprovePost.ts
 │   │   │   ├── ArchivePost.ts
 │   │   │   ├── DeletePost.ts
 │   │   │   ├── ListApprovedPostsForBoard.ts
 │   │   │   ├── PinPost.ts
+│   │   │   ├── RejectPost.ts
 │   │   │   ├── SubmitPost.ts
 │   │   │   └── UpdatePostContent.ts
 │   │   ├── tenant
@@ -617,6 +769,7 @@
 │   │   │   └── GetTenantSettings.ts
 │   │   ├── types.ts
 │   │   ├── user_on_tenant
+│   │   │   ├── ListMembershipsForUser.ts
 │   │   │   ├── ListTenantsForUser.ts
 │   │   │   ├── ListUsersForTenant.ts
 │   │   │   ├── RemoveMember.ts
@@ -640,4 +793,4 @@
 │       └── welcomeDataPreview.ts
 ├── tailwind.config.ts
 └── tsconfig.json
-157 directories, 529 files
+183 directories, 656 files
