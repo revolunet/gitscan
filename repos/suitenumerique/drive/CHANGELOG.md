@@ -18,14 +18,16 @@ and this project adheres to
 
 - 🚸(oidc) ignore case when fallback on email #535
 
-### Removed
-
-- 🔥(global) remove notion of workspace
-
 ### Fixed
 
 - 🐛(backend) manage ole2 compound document format
 - ♻️(backend) increase user short_name field length
+- 🐛(helm) reverse liveness and readiness for backend deployment
+
+### Removed
+
+- 🔥(global) remove notion of workspace
+- ⚰️(scalingo) remove scalingo pgdump
 
 ## [v0.12.0] - 2026-02-06
 
