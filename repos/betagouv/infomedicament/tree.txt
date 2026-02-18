@@ -22,6 +22,9 @@
 ├── package-lock.json
 ├── package.json
 ├── public
+│   ├── icons
+│   │   ├── aip.png
+│   │   └── surveillance_renforcee.png
 │   └── img
 │       ├── apropos_illu.webp
 │       ├── article_covers
@@ -38,7 +41,6 @@
 │       └── logo_white.svg
 ├── scalingo.json
 ├── scripts
-│   ├── importFichesInfos.ts
 │   ├── importNoticeRCP.integration.test.ts
 │   ├── importNoticeRCP.ts
 │   ├── syncWithGrist.ts
@@ -152,6 +154,7 @@
 │   │   └── sanity.test.ts
 │   ├── components
 │   │   ├── AlphabeticNav.tsx
+│   │   ├── AutocompleteSearch.test.tsx
 │   │   ├── AutocompleteSearch.tsx
 │   │   ├── ClientHeader.tsx
 │   │   ├── DefinitionBanner.tsx
@@ -208,13 +211,13 @@
 │   │   │   ├── MedicamentContainer.tsx
 │   │   │   ├── MedicamentContainer.ui.test.tsx
 │   │   │   ├── MedicamentContent.tsx
+│   │   │   ├── MedicamentContentHeader.tsx
 │   │   │   ├── NoticeBlock.tsx
 │   │   │   ├── NoticeBlock.ui.test.tsx
 │   │   │   ├── QuestionKeyword.tsx
 │   │   │   ├── QuestionKeywordsBox.tsx
 │   │   │   ├── QuestionsBox.tsx
 │   │   │   ├── __snapshots__
-│   │   │   │   ├── MedicamentContainer.ui.test.tsx.snap
 │   │   │   │   └── NoticeBlock.ui.test.tsx.snap
 │   │   │   ├── blocks
 │   │   │   │   ├── CentraliseBlock.tsx
@@ -237,13 +240,13 @@
 │   │   │   └── RatingToaster.tsx
 │   │   ├── search
 │   │   │   ├── PregnancyPediatricFilters.tsx
-│   │   │   ├── ResultsListBlock.tsx
 │   │   │   └── SearchResultsList.tsx
 │   │   ├── statistics
 │   │   │   └── Statistics.tsx
 │   │   └── tags
 │   │       ├── ClassTag.tsx
 │   │       ├── GenericTag.tsx
+│   │       ├── MatchReasonTags.tsx
 │   │       ├── PediatricsTags.tsx
 │   │       ├── PregnancyMentionTag.tsx
 │   │       ├── PregnancyPlanTag.tsx
@@ -262,8 +265,6 @@
 │   │   ├── pill.svg
 │   │   └── pregnancy.svg
 │   ├── data
-│   │   ├── ATC 2024 02 15.json
-│   │   ├── CIS-ATC_2024-04-07.csv
 │   │   ├── grist
 │   │   │   ├── index.ts
 │   │   │   └── specialites.ts
@@ -275,7 +276,9 @@
 │   │   │   ├── 20240731091527_leaftlet_images.ts
 │   │   │   ├── 20240904085535_searchIndex.ts
 │   │   │   ├── 20260113161325_create_grist_reference_tables.ts
-│   │   │   └── 20260204151232_enrich_atc_tables.ts
+│   │   │   ├── 20260204151232_enrich_atc_tables.ts
+│   │   │   ├── 20260216113145_clean_fiches_infos.ts
+│   │   │   └── 20260217120000_search_refacto.ts
 │   │   ├── pdbmMySQL
 │   │   │   ├── index.ts
 │   │   │   └── types.ts
@@ -284,16 +287,19 @@
 │   │   │   └── 1725439927263_searchIndex.ts
 │   │   ├── types.d.ts
 │   │   └── utils
+│   │       ├── articles.test.ts
 │   │       ├── articles.ts
 │   │       ├── atc.ts
 │   │       ├── composants.ts
 │   │       ├── ficheInfos.ts
+│   │       ├── generics.integration.test.ts
 │   │       ├── generics.ts
 │   │       ├── glossary.ts
 │   │       ├── index.ts
 │   │       ├── letters.ts
 │   │       ├── marr.ts
 │   │       ├── notice.ts
+│   │       ├── pathologies.integration.test.ts
 │   │       ├── pathologies.ts
 │   │       ├── pediatrics.ts
 │   │       ├── pregnancy.ts
@@ -303,8 +309,11 @@
 │   │       ├── search.integration.test.ts
 │   │       ├── search.test.ts
 │   │       ├── search.ts
+│   │       ├── specialities.integration.test.ts
 │   │       ├── specialities.ts
+│   │       ├── substances.integration.test.ts
 │   │       └── substances.ts
+│   ├── displayUtils.test.ts
 │   ├── displayUtils.ts
 │   ├── instrumentation.ts
 │   ├── middleware.ts
@@ -319,6 +328,7 @@
 │   │   ├── ATCTypes.tsx
 │   │   ├── ArticlesTypes.tsx
 │   │   ├── DataTypes.tsx
+│   │   ├── FicheInfoTypes.tsx
 │   │   ├── GlossaireTypes.tsx
 │   │   ├── MarrTypes.tsx
 │   │   ├── Matomo.tsx
@@ -340,9 +350,10 @@
 │       ├── pediatrics.ts
 │       ├── rate-limit.test.ts
 │       ├── rate-limit.ts
+│       ├── specialites.test.ts
 │       └── specialites.ts
 ├── tsconfig.json
 ├── utils
 │   └── network.tsx
 └── vitest.config.mts
-97 directories, 250 files
+98 directories, 260 files
