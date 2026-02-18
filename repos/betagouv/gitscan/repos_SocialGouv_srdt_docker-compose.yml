@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  web:
+    build: ./web
+    ports:
+      - "3000:3000"
+    environment:
+      - API_BASE_URL=http://api:8000
+      - AUTH_API_KEY=${AUTH_API_KEY}
+      - APP_ACCESS_KEY=${APP_ACCESS_KEY}
+      - ALBERT_LLM_API_KEY=${ALBERT_LLM_API_KEY}
+      - CHATGPT_LLM_API_KEY=${CHATGPT_LLM_API_KEY}
+      - MISTRAL_LLM_API_KEY=${MISTRAL_LLM_API_KEY}
+    env_file:
+      - ./web/.env
+  api:
+    build: ./api
+    ports:
+      - "8000:8000"
+    environment:
+      - API_PORT=8000
+      - API_HOST=0.0.0.0
+      - AUTH_API_KEY=${AUTH_API_KEY}
+      - TIKTOKEN_TOKENIZER_MODEL=${TIKTOKEN_TOKENIZER_MODEL}
+      - ALBERT_API_KEY=${ALBERT_API_KEY}
+      - ALBERT_ENDPOINT=${ALBERT_ENDPOINT}
+      - ALBERT_VECTORISATION_MODEL=${ALBERT_VECTORISATION_MODEL}
+    env_file:
+      - ./api/.env

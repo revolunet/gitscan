@@ -1,0 +1,39 @@
+services:
+  backend:
+    build:
+      context: backend
+    environment:
+      DATABASE_URL: postgresql://postgres:dummy@db:5433
+    depends_on:
+      - db
+    ports:
+      - "3001:3000"
+    volumes:
+      - "./backend:/app"
+      - "/app/node_modules" # don't shadow the in-container node_modules
+
+  frontend:
+    build:
+      context: frontend
+    environment:
+      # FIXME: the flexibility of defining each and every endpoint
+      # isn't clear to me; just a root URL would do
+      NEXT_PUBLIC_API_PROFILES: http://backend:3000/api/v1/profiles
+      NEXT_PUBLIC_API_QUOTE_CHECKS: http://backend:3000/api/v1/quote_checks/
+      NEXT_PUBLIC_API_QUOTE_CHECKS_ID: http://backend:3000/api/v1/quote_checks/:quote_check_id
+      NEXT_PUBLIC_API_QUOTE_CHECKS_ID_FEEDBACKS: http://backend:3000/api/v1/quote_checks/:quote_check_id/feedbacks
+      NEXT_PUBLIC_API_QUOTE_CHECKS_ID_ERROR_DETAILS_ID_FEEDBACKS: http://backend:3000/api/v1/quote_checks/:quote_check_id/error_details/:validation_error_detail_id/feedbacks
+      NEXT_PUBLIC_API_QUOTE_CHECKS_METADATA: http://backend:3000/api/v1/quote_checks/metadata
+    ports:
+      - "3000:3000"
+    volumes:
+      - "./frontend:/app"
+      - "/app/node_modules" # don't shadow the in-container node_modules
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_PASSWORD: 'dummy'
+      PGPORT: 5433
+    ports:
+      - "5433:5433"

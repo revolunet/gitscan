@@ -1,0 +1,38 @@
+services:
+  mpa-db:
+    image: docker.io/postgres:14
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    networks:
+      - mpa-network
+    ports:
+      - "5433:5432"
+    volumes:
+      - dbvol:/var/lib/postgresql/data
+
+  api:
+    build:
+      context: .
+      args:
+        NODE_VERSION: ${NODE_VERSION:-latest}
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=development
+    networks:
+      - mpa-network
+      - lab-network
+    ports:
+      - "${PORT_MPA}:3001"
+    depends_on:
+      - mpa-db
+
+networks:
+  mpa-network:
+    external: true
+  lab-network:
+    external: true
+
+volumes:
+  dbvol:
+    driver: local

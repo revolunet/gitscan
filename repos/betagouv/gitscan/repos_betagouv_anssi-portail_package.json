@@ -1,0 +1,41 @@
+{
+  "name": "anssi-portail",
+  "version": "1.0.0",
+  "description": "",
+  "main": "serveur.ts",
+  "packageManager": "pnpm@10.24.0",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "admin": "node -e \"const admin = new (require('./back/dist/src/admin/consoleAdministration.js').ConsoleAdministration)()\" -i",
+    "admin:dev": "pnpm -F @anssi-portail/back build && node --env-file .env -e \"const admin = new (require('./back/dist/src/admin/consoleAdministration.js').ConsoleAdministration)()\" -i",
+    "build": "pnpm -r build",
+    "dev": "concurrently -n \"SERVEUR,SVELTE,JEKYLL,BDD,MIGRE\" --prefix-colors \"cyan,green,magenta,blue,yellow\" \"node --watch --import tsx --env-file .env ./back/src/serveur.ts\" \"pnpm --filter @anssi-portail/svelte watch\" \"sleep 5 && jekyll build -s ./front -d ./front/_site -w\" \"docker compose up db\" \"sleep 3 && pnpm migre-bdd\"",
+    "lint": "pnpm -r lint",
+    "test": "pnpm --reporter=append-only -r test",
+    "migre-bdd": "pnpm --filter @anssi-portail/back migre-bdd",
+    "preinstall": "npx only-allow@1.2.2 pnpm",
+    "start": "node back/dist/src/serveur.js",
+    "prestart": "pnpm --filter @anssi-portail/back prestart"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/betagouv/anssi-portail.git"
+  },
+  "private": true,
+  "devDependencies": {
+    "concurrently": "~9.2.1",
+    "tsx": "~4.19.3",
+    "vitest": "~3.0.5"
+  },
+  "runtimeDependencies": {
+    "@lab-anssi/ui-kit": "1.41.3"
+  },
+  "pnpm": {
+    "overrides": {
+      "lodash@>=4.0.0 <=4.17.22": ">=4.17.23",
+      "qs": "~6.14.1"
+    }
+  }
+}

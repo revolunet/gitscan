@@ -1,0 +1,86 @@
+services:
+  db:
+    image: ghcr.io/mtes-mct/monitorfish/monitorfish-database:pg16-ts2.14.2-postgis3.4.2
+    container_name: monitorfish_database
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=monitorfishdb
+    volumes:
+      - db-data:/var/lib/postgresql/data
+      - ./infra/dev/database/enable_pg_query_stats_and_history.sh:/docker-entrypoint-initdb.d/init-user-db.sh
+      - ./backend/src/main/resources/db/testdata/csv/:/testdata/csv
+    ports:
+      - 5432:5432
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 1s
+      timeout: 1s
+      retries: 30
+
+  flyway:
+    image: flyway/flyway
+    command: migrate -password=postgres -schemas=public -user=postgres -url=jdbc:postgresql://db:5432/monitorfishdb
+    volumes:
+      - ../../backend/src/main/resources/db/:/flyway/sql
+    depends_on:
+      db:
+        condition: service_healthy
+
+  geoserver:
+    image: kartoza/geoserver:2.18.0
+    restart: unless-stopped
+    ports:
+      - 8081:8080
+    links:
+      - "db:db"
+    volumes:
+      - geoserver-data:/opt/geoserver/data_dir
+    depends_on:
+      db:
+        condition: service_healthy
+
+  geoserver-monitorenv-stubs:
+    image: rodolpheche/wiremock
+    ports:
+      - 8081:8080
+    volumes:
+      - ./frontend/cypress/mappings/geoserver_monitorenv:/home/wiremock/mappings
+
+  rapportnav-stubs:
+    image: rodolpheche/wiremock
+    ports:
+      - 8082:8080
+    volumes:
+      - ./frontend/cypress/mappings/rapportnav:/home/wiremock/mappings
+
+  keycloak:
+    container_name: monitorfish_keycloak
+    image: quay.io/keycloak/keycloak:23.0.0
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+      - KC_HOSTNAME_STRICT=false
+      - KC_HTTP_ENABLED=true
+      - KC_HOSTNAME=keycloak
+      - KC_HOSTNAME_PORT=8080
+      - KC_HEALTH_ENABLED=true
+    ports:
+      - "8085:8080"
+    volumes:
+      - ./infra/dev/keycloak:/opt/keycloak/data/import
+    command:
+      - start-dev
+      - --import-realm
+    healthcheck:
+      test: [ "CMD-SHELL",
+              "exec 3<>/dev/tcp/localhost/8080 && echo -e 'GET /health/ready HTTP/1.1\\r\\nHost: localhost\\r\\nConnection: close\\r\\n\\r\\n' >&3 && cat <&3 | grep -q '200 OK'" ]
+      interval: 30s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  geoserver-data:
+    driver: local
+  db-data:
+    name: db-data-16

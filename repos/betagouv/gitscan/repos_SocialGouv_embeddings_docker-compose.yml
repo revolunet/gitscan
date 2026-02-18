@@ -1,0 +1,16 @@
+version: '3.0'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # environment:
+    #   DATA_DIRECTORY: ${DATA_DIRECTORY}
+    #   CHROMA_PERSIST_DIRECTORY: ${CHROMA_PERSIST_DIRECTORY}
+    volumes:
+      - ./data:/opt/data
+    ports:
+      - 8080:8080
+    env_file:
+      - .env.docker

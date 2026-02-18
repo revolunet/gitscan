@@ -1,0 +1,71 @@
+version: "3.7"
+
+services:
+  db:
+    image: kartoza/postgis:14-3.3--v2022.08.30
+    shm_size: 1gb
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    env_file: .env
+    ports:
+      - "5555:5432"
+    networks:
+      - app-network
+
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    image: sparte/frontend:latest
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - "3002:3000"
+    networks:
+      - app-network
+
+  export-server:
+    build: ./export
+    image: sparte/export-server:latest
+    environment:
+      - PORT=3000
+      - ALLOWED_HOSTS=localhost,django,frontend
+    depends_on:
+      - frontend
+    networks:
+      - app-network
+
+  django:
+    build: .
+    image: sparte/backend:latest
+    command: ["sh", "-c", "python manage.py runserver 0.0.0.0:8080 --nothreading"]
+    volumes:
+      - .:/app
+    env_file: .env
+    environment:
+      - SCALINGO_REDIS_URL=redis://redis:6379/0
+      - EXPORT_SERVER_URL=http://export-server:3000
+      - EXPORT_BASE_URL=http://django:8080
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+      - redis
+      - export-server
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  db_data:

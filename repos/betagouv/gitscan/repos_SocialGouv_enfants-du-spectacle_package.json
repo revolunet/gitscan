@@ -1,0 +1,123 @@
+{
+  "name": "enfants-du-spectacle",
+  "version": "1.131.0",
+  "private": true,
+  "release": {
+    "branches": [
+      "main",
+      "next",
+      {
+        "name": "beta",
+        "prerelease": true
+      },
+      {
+        "name": "alpha",
+        "prerelease": true
+      }
+    ]
+  },
+  "scripts": {
+    "dev": "next dev",
+    "dev-procfile": "OVERMIND_NO_PORT=1 overmind start -f Procfile.dev",
+    "build": "next build",
+    "start": "next start",
+    "start-prod": "export NEXTAUTH_URL=$APP_BASE_URL && pnpm exec prisma migrate deploy && next start",
+    "start-review": "export NEXTAUTH_URL=$APP_BASE_URL && pnpm exec prisma migrate deploy && source src/scripts/restore_seeds.sh && next start",
+    "check-types": "tsc --noemit",
+    "lint": "next lint",
+    "prepare": "husky install",
+    "send-test-mail": "node scripts/sendTestMail.js"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.837.0",
+    "@aws-sdk/s3-request-presigner": "^3.837.0",
+    "@dataesr/react-dsfr": "^0.9.2",
+    "@next-auth/prisma-adapter": "^1.0.5",
+    "@prisma/client": "^6.6.0",
+    "@sentry/nextjs": "^6.15.0",
+    "@socialgouv/matomo-next": "^1.6.1",
+    "@tanstack/react-query": "^4.36.1",
+    "@trpc/client": "^10.45.2",
+    "@trpc/next": "^10.45.2",
+    "@trpc/react-query": "^10.45.2",
+    "@trpc/server": "^10.45.2",
+    "b64-to-blob": "^1.2.19",
+    "chart.js": "^3.9.1",
+    "date-fns": "^2.28.0",
+    "docx": "^7.3.0",
+    "email-addresses": "^5.0.0",
+    "emailjs": "^4.0.0",
+    "file-saver": "^2.0.5",
+    "form-data": "^4.0.0",
+    "formidable": "^2.1.1",
+    "hoist-non-react-statics": "^3.3.2",
+    "javascript-state-machine": "^3.1.0",
+    "js-base64": "^3.7.2",
+    "jsonwebtoken": "^9.0.0",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.5.23",
+    "jszip": "^3.9.1",
+    "lodash": "^4.17.21",
+    "multer": "^1.4.4-lts.1",
+    "next": "12",
+    "next-auth": "4.0.2",
+    "nodemailer": "^6.7.2",
+    "react": "17.0.2",
+    "react-chartjs-2": "^4.3.1",
+    "react-cookie-consent": "^8.0.1",
+    "react-datepicker": "^4.7.0",
+    "react-dom": "17.0.2",
+    "react-hotjar": "^5.4.1",
+    "react-icons": "^4.3.1",
+    "react-multi-select-component": "^4.2.5",
+    "react-quill": "^2.0.0",
+    "readline-sync": "^1.4.10",
+    "remixicon": "^2.5.0",
+    "sass": "^1.44.0",
+    "smtp-server": "^3.13.6",
+    "superjson": "^1.8.0",
+    "swr": "^1.1.0",
+    "use-debounce": "^7.0.1",
+    "zod": "^3.20.2",
+    "prisma": "^6.6.0"
+  },
+  "devDependencies": {
+    "@socialgouv/eslint-config-react": "^1.100.0",
+    "@socialgouv/eslint-config-recommended": "^1.100.0",
+    "@socialgouv/eslint-config-typescript": "^1.100.0",
+    "@types/faker": "^5.5.9",
+    "@types/formidable": "^2.0.5",
+    "@types/lodash": "^4.17.16",
+    "@types/node": "^18.0.0",
+    "@types/react": "latest",
+    "@types/react-datepicker": "^4.10.0",
+    "@types/uuid": "^10.0.0",
+    "csv-parse": "^5.0.3",
+    "csv-stringify": "^6.0.3",
+    "eslint": "^7.32.0",
+    "eslint-config-next": "12.3.7",
+    "faker": "^5.5.3",
+    "husky": "^7.0.4",
+    "jest": "^27.4.3",
+    "lint-staged": "^12.1.2",
+    "maildev": "^2.2.1",
+    "mjml": "^4.11.0",
+    "prettier": "^2.5.1",
+    "slugify": "^1.6.3",
+    "ts-node": "^10.4.0",
+    "typescript": "4.9.5"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@prisma/client",
+      "prisma"
+    ]
+  },
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": "npx eslint --cache"
+  },
+  "packageManager": "pnpm@10.26.2"
+}

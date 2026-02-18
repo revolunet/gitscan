@@ -1,0 +1,306 @@
+services:
+  postgresql:
+    image: timescale/timescaledb-ha:pg15-ts2.19-oss
+    env_file:
+      - env.d/postgresql
+      - env.d/api
+      - env.d/metabase
+      - env.d/prefect
+      - env.d/prefect-qc
+      - env.d/dashboard
+    healthcheck:
+      test:
+        - "CMD-SHELL"
+        - "pg_isready"
+        - "-d"
+        - "$${QUALICHARGE_DB_NAME}"
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: ./src/api
+      args:
+        DOCKER_UID: ${DOCKER_UID:-1000}
+        DOCKER_GID: ${DOCKER_GID:-1000}
+    develop:
+      # Create a `watch` configuration to update the app
+      #
+      watch:
+        # Rebuild the image on changes to dependencies or build
+        - action: rebuild
+          path: ./src/api/pyproject.toml
+        - action: rebuild
+          path: ./src/api/Dockerfile
+    user: ${DOCKER_USER:-1000}
+    image: "qualicharge:api"
+    ports:
+      - "8010:8000"
+    env_file:
+      - env.d/api
+    healthcheck:
+      test:
+        - "CMD"
+        - "uv"
+        - "run"
+        - "httpx"
+        - "http://localhost:8000/api/v1/docs"
+      interval: 3s
+      timeout: 2s
+      retries: 5
+    restart: always
+    volumes:
+      - ./src/api:/app
+      - ./data:/data
+      - ./src/bench:/mnt/bench
+    depends_on:
+      postgresql:
+        condition: service_healthy
+
+  client:
+    build:
+      context: ./src/client
+      args:
+        DOCKER_BUILDKIT: 1
+        DOCKER_UID: ${DOCKER_UID:-1000}
+        DOCKER_GID: ${DOCKER_GID:-1000}
+    user: ${DOCKER_USER:-1000}
+    image: "qualicharge:client"
+    env_file:
+      - env.d/client
+    volumes:
+      - ./src/client:/app
+
+  dashboard:
+    container_name: dashboard
+    build:
+      context: ./src/dashboard
+      args:
+        DOCKER_UID: ${DOCKER_UID:-1000}
+        DOCKER_GID: ${DOCKER_GID:-1000}
+    user: ${DOCKER_USER:-1000}
+    ports:
+      - "8030:8000"
+    env_file:
+      - env.d/dashboard
+    volumes:
+      - ./src/dashboard:/app
+    depends_on:
+      postgresql:
+        condition: service_healthy
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.5
+    env_file:
+      - env.d/keycloak
+    command: start-dev
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./bin/kc-init:/usr/local/bin/kc-init
+
+  metabase:
+    image: metabase/metabase:v0.58.5
+    ports:
+      - 3000:3000
+    env_file:
+      - env.d/metabase
+    healthcheck:
+      test:
+        - "CMD"
+        - "curl"
+        - "--fail"
+        - "-I"
+        - "http://localhost:3000/api/health"
+      interval: 15s
+      timeout: 5s
+      retries: 5
+    depends_on:
+      postgresql:
+        condition: service_healthy
+
+  notebook:
+    build:
+      context: .
+      dockerfile: src/notebook/Dockerfile
+    user: ${DOCKER_USER:-1000}
+    environment:
+      NB_UID: ${DOCKER_UID:-1000}
+      NB_GID: ${DOCKER_GID:-1000}
+      CHOWN_HOME: "yes"
+      CHOWN_HOME_OPTS: -R
+    env_file:
+      - env.d/notebook
+      - env.d/notebook-extras
+    ports:
+      - 8888:8888
+    volumes:
+      - .:/home/jovyan/work
+    depends_on:
+      postgresql:
+        condition: service_healthy
+
+  opendata:
+    build:
+      context: ./src/opendata
+      args:
+        DOCKER_UID: ${DOCKER_UID:-1000}
+        DOCKER_GID: ${DOCKER_GID:-1000}
+    user: ${DOCKER_USER:-1000}
+    image: "qualicharge:opendata"
+    ports:
+      - "8020:8000"
+    env_file:
+      - env.d/opendata
+    volumes:
+      - ./src/opendata:/app
+    depends_on:
+      postgresql:
+        condition: service_healthy
+
+  prefect:
+    build:
+      context: ./src/prefect
+      args:
+        DOCKER_UID: ${DOCKER_UID:-1000}
+        DOCKER_GID: ${DOCKER_GID:-1000}
+    user: ${DOCKER_USER:-1000}
+    image: "qualicharge:prefect"
+    ports:
+      - 4200:4200
+    env_file:
+      - env.d/prefect
+      - env.d/prefect-qc
+    command: ["uv", "run", "honcho", "start", "-f", "Procfile.dev", "web"]
+    healthcheck:
+      test:
+        - "CMD"
+        - "curl"
+        - "--fail"
+        - "http://localhost:4200/api/health"
+      interval: 2s
+      timeout: 5s
+      retries: 20
+    volumes:
+      - ./src/prefect:/app
+    depends_on:
+      postgresql:
+        condition: service_healthy
+
+  prefect-worker:
+    image: "qualicharge:prefect"
+    command: ["uv", "run", "honcho", "start", "-f", "Procfile.dev", "worker"]
+    user: ${DOCKER_USER:-1000}
+    env_file:
+      - env.d/prefect-worker
+      - env.d/prefect-qc
+    volumes:
+      - ./src/prefect:/app
+    depends_on:
+      prefect:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+
+  prefect-test:
+    image: "qualicharge:prefect"
+    user: ${DOCKER_USER:-1000}
+    env_file:
+      - env.d/prefect-qc
+      - env.d/prefect-test
+    volumes:
+      - ./src/prefect:/app
+    depends_on:
+      prefect:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+
+  minio:
+    image: "minio/minio"
+    user: ${DOCKER_USER:-1000}
+    env_file:
+      - env.d/minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    healthcheck:
+      test: ["CMD", "mc", "ready", "local"]
+      interval: 1s
+      timeout: 20s
+      retries: 300
+    command: server --console-address :9001 /data
+    volumes:
+      - ./data/archives:/data
+      - ./bin/minio-init:/opt/bin/minio-init
+
+  locust:
+    build:
+      context: ./src/bench
+      args:
+        DOCKER_UID: ${DOCKER_UID:-1000}
+        DOCKER_GID: ${DOCKER_GID:-1000}
+    user: ${DOCKER_USER:-1000}
+    image: "qualicharge:locust"
+    ports:
+      - "8040:8089"
+    env_file:
+      - env.d/locust
+    volumes:
+      - ./src/bench:/app
+      - ./data:/data
+    command: -f /app/locustfile.py --master -H 'http://api:8000/api/v1'
+    depends_on:
+      api:
+        condition: service_healthy
+
+  locust-worker:
+    build:
+      context: ./src/bench
+      args:
+        DOCKER_UID: ${DOCKER_UID:-1000}
+        DOCKER_GID: ${DOCKER_GID:-1000}
+    user: ${DOCKER_USER:-1000}
+    image: "qualicharge:locust"
+    deploy:
+      replicas: 5
+    env_file:
+      - env.d/locust
+    volumes:
+      - ./src/bench:/app
+      - ./data:/data
+    command: -f /app/locustfile.py --worker --master-host locust
+    depends_on:
+      - locust
+
+  # -- tools
+  curl:
+    image: curlimages/curl:8.18.0
+    user: ${DOCKER_USER:-1000}
+    env_file:
+      - env.d/metabase
+    volumes:
+      - .:/work
+
+  dockerize:
+    image: jwilder/dockerize
+
+  httpd:
+    image: httpd:alpine
+
+  jq:
+    # There is no other tags than latest
+    image: ddev/ddev-utilities:latest
+    entrypoint: jq
+    env_file:
+      - env.d/metabase
+
+  terraform:
+    image: hashicorp/terraform:1.14.5
+    env_file:
+      - env.d/terraform
+    user: ${DOCKER_USER:-1000}
+    working_dir: /home/terraform
+    volumes:
+      - ./provisioning:/home/terraform

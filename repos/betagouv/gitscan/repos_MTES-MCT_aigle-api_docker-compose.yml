@@ -1,0 +1,45 @@
+version: "3.8"
+
+services:
+  db:
+    shm_size: 1g
+    container_name: aigle_api_db_container
+    platform: linux/amd64
+    image: postgis/postgis:16-3.5
+    environment:
+      POSTGRES_USER: ${SQL_USER}
+      POSTGRES_PASSWORD: ${SQL_PASSWORD}
+    ports:
+      - "${SQL_PORT}:5432"
+    networks:
+      - db
+    volumes:
+      - aigle_data:/var/lib/postgresql/data:delegated
+  
+  redis:
+    container_name: aigle_api_redis_container
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - db
+    volumes:
+      - redis_data:/data
+  app:
+    container_name: aigle_api_app_container
+    image: aigle_api_app_container
+    env_file: .env.compose
+    ports:
+      - "8000:8000"
+    networks:
+      - db
+
+networks:
+  db:
+    driver: bridge
+
+volumes:
+  aigle_data:
+    external: false
+  redis_data:
+    external: false

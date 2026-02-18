@@ -1,0 +1,60 @@
+x-app: &configuration-base
+  build:
+    context: .
+    args:
+      NODE_VERSION: ${NODE_VERSION:-latest}
+  env_file:
+    - .env
+  volumes:
+    - .:/usr/src/app
+    - node_modules:/usr/src/app/node_modules/
+
+services:
+  mss-db:
+    image: docker.io/postgres:14
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    networks:
+      - mss-network
+    ports:
+      - '5432:5432'
+    volumes:
+      - dbvol:/var/lib/postgresql/data
+
+  test:
+    <<: *configuration-base
+    command: 'pnpm run test:watch'
+    environment:
+      - NODE_ENV=test
+
+  web:
+    <<: *configuration-base
+    tty: true
+    command: bash -c "
+      pnpm run migration-bdd &&
+      ./node_modules/.bin/concurrently -n 'SERVEUR,FRONT SVELTE' -c 'blue.bold,magenta.underline'
+      'SVELTE_DEV_LOCAL_AVEC_HOT_RELOAD=\"true\" pnpm run dev:back'
+      'pnpm run dev:front'
+      "
+    environment:
+      - NODE_ENV=development
+    networks:
+      - mss-network
+      - lab-network
+    ports:
+      - '${PORT_MSS}:3000'
+      - '9229:9229'
+      - '3001:3001'
+    depends_on:
+      - mss-db
+
+networks:
+  mss-network:
+    external: true
+  lab-network:
+    external: true
+
+volumes:
+  node_modules:
+  dbvol:
+    driver: local

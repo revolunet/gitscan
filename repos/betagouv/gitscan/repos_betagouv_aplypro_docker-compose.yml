@@ -1,0 +1,75 @@
+version: '3'
+
+services:
+  web:
+    image: aplypro
+    build: .
+    volumes:
+      - "./:/app"
+      - "/app/node_modules"
+    ports:
+      - "3000:3000"
+      - "12345:12345"
+    env_file:
+       - '.env.local'
+    depends_on:
+      - db
+      - redis
+  worker:
+    image: aplypro
+    env_file:
+      - '.env.local'
+    command: ["bundle", "exec", "sidekiq", "--queue", "default"]
+    volumes:
+      - "./:/app"
+      - "/app/node_modules"
+    entrypoint: ''
+  worker-docs:
+    image: aplypro
+    env_file:
+      - '.env.local'
+    command: ["bundle", "exec", "sidekiq", "--queue", "documents"]
+    volumes:
+      - "./:/app"
+      - "/app/node_modules"
+    entrypoint: ''
+  worker-payments:
+    image: aplypro
+    env_file:
+      - '.env.local'
+    command: ["bundle", "exec", "sidekiq", "--queue", "payments"]
+    volumes:
+      - "./:/app"
+      - "/app/node_modules"
+    entrypoint: ''
+  db:
+    # Scalingo only goes up to 14
+    image: postgres:14
+    environment:
+      POSTGRES_PASSWORD: 'dummy'
+      PGPORT: 5433
+    volumes:
+      - "./tmp/db:/var/lib/postgresql/data"
+    ports:
+      - "5433:5433"
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+    command: redis-server --save "" --appendonly no
+  asp-mock:
+    image: atmoz/sftp
+    volumes:
+        - ./mock/asp/:/home/asp/
+    ports:
+        - "2222:22"
+    command: asp:pass:1001
+  mock:
+    environment:
+      PORT: 3002
+    build:
+      context: './mock'
+    volumes:
+      - "./mock:/app"
+    ports:
+      - "3002:3002"

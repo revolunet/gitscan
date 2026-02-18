@@ -1,0 +1,85 @@
+{
+  "name": "~dev",
+  "version": "1.185.3",
+  "repository": "git@github.com:socialgouv/kontinuous.git",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "commit-and-tag-version": "^11.0.0",
+    "docsify-cli": "^4.4.4",
+    "eslint": "^8.26.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jest": "^27.0.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "fs-extra": "^11.1.1",
+    "husky": "^8.0.0",
+    "js-yaml": "^4.1.0",
+    "lint-staged": "^13.0.0",
+    "prettier": "^2.6.2",
+    "renovate": "^35.0.0",
+    "~dev-tools": "workspace:^"
+  },
+  "resolutions": {
+    "tar": "^6.1.9",
+    "multer": "^1.4.4-lts.1",
+    "fast-copy": "^3.0.0",
+    "qs": "^6.9.7",
+    "json5": "^2.2.2",
+    "cookiejar": "^2.1.4",
+    "got": "^11.8.5",
+    "yaml": "^2.3.1"
+  },
+  "scripts": {
+    "renovate": "yarn run renovate:github",
+    "renovate:github": "RENOVATE_PLATFORM=github RENOVATE_TOKEN=$GITHUB_TOKEN renovate socialgouv/kontinuous",
+    "renovate:dry-run": "yarn renovate --dry-run",
+    "renovate:debug": "LOG_LEVEL=debug yarn run renovate:dry-run",
+    "precommit": "lint-staged",
+    "postinstall": "[ -d '.husky' ] && husky install || true && yarn install:plugins",
+    "install:plugins": "yarn install:plugin:contrib && yarn install:plugin:fabrique",
+    "install:plugin:contrib": "cd plugins/contrib && yarn",
+    "install:plugin:fabrique": "cd plugins/fabrique && yarn",
+    "lint": "eslint .",
+    "release": "commit-and-tag-version",
+    "push": "git push -f --follow-tags origin master",
+    "delivery": "git push && yarn release && yarn push",
+    "version-major-branch:up": "packages/dev-tools/bin/version-major-branch.sh",
+    "version-major-branch:push": "packages/dev-tools/bin/version-major-branch-push.sh",
+    "version-e2e:commit": "packages/dev-tools/bin/version-e2e-commit.sh",
+    "version-e2e:set": "node packages/dev-tools/bin/version-e2e-set",
+    "version-e2e": "yarn version-e2e:set",
+    "test": "yarn workspaces foreach --no-private --parallel run test",
+    "test:kontinuous": "yarn workspace kontinuous test",
+    "test:plugins:contrib": "cd plugins/contrib && yarn test",
+    "test:webhook": "yarn workspace ~webhook test",
+    "dev:webhook": "docker-compose up --build webhook",
+    "dev:docs": "docsify serve docs",
+    "docker:webhook": "DOCKER_BUILDKIT=1 docker-compose -f docker-compose.built.yaml up --build webhook",
+    "docker:kontinuous:build": "DOCKER_BUILDKIT=1 docker build --progress=plain -f packages/kontinuous/Dockerfile -t kontinuous .",
+    "docker:kontinuous:run": "docker run -it -v $PWD:/workspace -v $(dirname $KUBECONFIG):/home/node/.kube -e KUBECONFIG=/home/node/.kube/$(basename $KUBECONFIG) kontinuous",
+    "docker:kontinuous": "yarn docker:kontinuous:build && yarn docker:kontinuous:run",
+    "logs:remote-webhook": "kubectl --context prod -n kontinuous-webhook logs -f --all-containers -l component=kontinuous-webhook"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix"
+    ]
+  },
+  "commit-and-tag-version": {
+    "scripts": {
+      "postcommit": "yarn version-e2e:commit",
+      "posttag": "yarn version-major-branch:up && yarn version-major-branch:push"
+    }
+  },
+  "engines": {
+    "node": "^16.17 || ^18 || ^20"
+  },
+  "packageManager": "yarn@4.0.0-rc.39"
+}

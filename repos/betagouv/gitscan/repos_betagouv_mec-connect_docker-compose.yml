@@ -1,0 +1,28 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: mecconnect-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: mecconnect
+    ports:
+      - 5433:5432
+    volumes:
+      - ./.docker/postgres/data:/var/lib/postgresql/data
+
+  broker:
+    image: redis:7-alpine
+    container_name: mecconnect-broker
+    restart: unless-stopped
+    ports:
+      - 6380:6379
+
+  grist:
+    image: gristlabs/grist
+    container_name: mecconnect-grist
+    ports:
+      - 8484:8484
+    volumes:
+      - ./.docker/grist:/persist

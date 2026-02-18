@@ -1,0 +1,70 @@
+version: '3.8'
+
+services: 
+    postgres: 
+        image: postgres
+        env_file: .env
+        restart: 'always'
+        volumes:
+            - db_volume:/var/lib/postgresql/data
+            - ./postgresql/init-user-db.sh:/docker-entrypoint-initdb.d/init-user-db.sh:ro
+    keycloak:
+        image: keycloak/keycloak
+        env_file: .env
+        ports: 
+            - 8080:8080
+        depends_on:
+            - postgres
+    krakend:
+        image: devopsfaith/krakend:watch
+        volumes:
+            - ./krakend:/etc/krakend
+        env_file: .env
+        ports: 
+            - 9080:9080
+        depends_on:
+            - fake_api
+    anubis:
+        image: ghcr.io/techarohq/anubis:latest
+        env_file: .env
+        ports: 
+            - 7080:7080
+        volumes:
+            - "./anubis/botPolicy.yaml:/data/cfg/botPolicy.yaml:ro"
+        healthcheck:
+            test: ["CMD", "anubis", "--healthcheck"]
+            interval: 5s
+            timeout: 30s
+            retries: 5
+            start_period: 500ms
+        depends_on:
+            - krakend
+
+    fake_app:
+        build:
+            context: app
+            dockerfile: Dockerfile
+    fake_api:
+        image: busybox:latest
+        volumes:
+        - ./api:/var/www/
+        ports:
+        - "8000:80"
+        command: httpd -f -h /var/www/
+    nginx:
+        image: owasp/modsecurity-crs
+        volumes:
+            - "./nginx/:/etc/nginx/conf.d/"
+            - "./www:/usr/share/nginx/html"
+        env_file: .env
+        ports: 
+            - 80:80
+        depends_on:
+            - anubis
+            - krakend
+volumes: 
+    db_volume:
+    cache:
+    build:
+    env:
+    app:

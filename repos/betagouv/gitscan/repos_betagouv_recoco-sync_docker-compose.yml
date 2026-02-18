@@ -1,0 +1,40 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: recoco-sync-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: recoco-sync
+    ports:
+      - 5435:5432
+    volumes:
+      - recoco-sync-data:/var/lib/postgresql/data
+    networks:
+      - recoco-sync-network
+
+  broker:
+    image: redis:7-alpine
+    container_name: recoco-sync-broker
+    restart: unless-stopped
+    ports:
+      - 6385:6379
+    networks:
+      - recoco-sync-network
+
+  grist:
+    image: gristlabs/grist
+    container_name: recoco-sync-grist
+    ports:
+      - 8485:8484
+    volumes:
+      - recoco-sync-grist-data:/persist
+    networks:
+      - recoco-sync-network
+
+networks:
+  recoco-sync-network:
+volumes:
+  recoco-sync-data:
+  recoco-sync-grist-data:

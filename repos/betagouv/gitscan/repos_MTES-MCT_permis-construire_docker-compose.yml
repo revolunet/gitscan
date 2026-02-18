@@ -1,0 +1,35 @@
+version: "2"
+services:
+    db:
+        # https://hub.docker.com/_/postgres/
+        image: postgres:9.6
+        ports:
+          - "5432:5432"
+        volumes:
+           - pg-volume:/var/lib/postgresql/data
+        environment:
+            POSTGRES_DB: pc
+            POSTGRES_USER: symfony
+            POSTGRES_PASSWORD: symfony
+    php:
+        build: ./containers/php-fpm
+        ports:
+            - "9000:9000"
+        volumes:
+            - ./app:/var/www/symfony:cached
+            - ./logs/symfony:/var/www/symfony/var/logs:cached
+        links:
+            - db
+    nginx:
+        build: ./containers/nginx
+        ports:
+            - "80:80"
+        links:
+            - php
+        volumes_from:
+            - php
+        volumes:
+            - ./logs/nginx/:/var/log/nginx:cached
+
+volumes:
+    pg-volume:

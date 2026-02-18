@@ -1,0 +1,30 @@
+{
+  "name": "github-export",
+  "version": "1.0.0",
+  "description": "Export GitHub organization repos to Codeberg",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "discover": "node dist/orchestration/discover-and-batch.js",
+    "migrate": "node dist/migration/repo-migrator.js",
+    "merge-states": "node dist/orchestration/merge-states.js",
+    "list-migrating": "node dist/orchestration/list-migrating.js",
+    "cleanup-migrating": "node dist/orchestration/cleanup-migrating-repos.js"
+  },
+  "dependencies": {
+    "@octokit/rest": "^21.0.0",
+    "p-retry": "^6.2.0",
+    "puppeteer": "^24.37.2",
+    "simple-git": "^3.22.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

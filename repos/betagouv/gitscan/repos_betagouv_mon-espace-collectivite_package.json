@@ -1,0 +1,50 @@
+{
+  "name": "my-app",
+  "description": "My App - Monorepo",
+  "version": "0.1.0",
+  "license": "AGPL-3.0",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/betagouv/mon-espace-collectivite.git"
+  },
+  "engines": {
+    "node": "18.16.0"
+  },
+  "packageManager": "pnpm@8.6.1",
+  "scripts": {
+    "build": "turbo build",
+    "cli": "dotenv -- ./apps/cli/node_modules/.bin/ts-node -r tsconfig-paths/register apps/cli/src/index.ts",
+    "clean": "rm -rf node_modules",
+    "clean:workspaces": "turbo clean",
+    "dev": "turbo dev --parallel",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md,mdx,css}\"",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,md,mdx,css}\"",
+    "lint:prepare": "turbo lint:prepare",
+    "lint": "turbo lint",
+    "tsc": "turbo tsc",
+    "test:prepare": "turbo test:prepare",
+    "test:unit": "turbo test:unit",
+    "test:e2e:headless": "turbo test:e2e:headless",
+    "heroku-postbuild": "turbo run heroku-postbuild --filter=web...",
+    "start": "cd apps/web && pnpm run heroku-start",
+    "with-env": "dotenv --",
+    "manypkg": "manypkg",
+    "start:web": "npm -w @app/web start"
+  },
+  "pnpm": {
+    "overrides": {
+      "@codegouvfr/react-dsfr": "0.72.1"
+    }
+  },
+  "optionalDependencies": {
+    "turbo-linux-arm64": "^1.9.9"
+  },
+  "devDependencies": {
+    "@manypkg/cli": "^0.20.0",
+    "@trivago/prettier-plugin-sort-imports": "^4.1.1",
+    "dotenv": "^16.0.3",
+    "dotenv-cli": "^7.2.1",
+    "turbo": "^1.9.9"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "name": "cr-vif",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "frontend": "pnpm --filter @cr-vif/frontend",
+    "backend": "pnpm --filter @cr-vif/backend",
+    "pdf": "pnpm --filter @cr-vif/pdf",
+    "migration:up": "vite-node ./db/migrate.ts",
+    "client:json": "pnpm backend dev --create-only",
+    "client:ts": "typed-openapi ./packages/backend/openapi.json --output ./packages/frontend/src/api.gen.ts",
+    "client:generate": "pnpm client:json && pnpm client:ts",
+    "e2e": "playwright test"
+  },
+  "keywords": [],
+  "author": "",
+  "devDependencies": {
+    "@biomejs/biome": "1.6.4",
+    "@databases/pg-migrations": "^5.0.3",
+    "@pandabox/prettier-plugin": "^0.1.0",
+    "@playwright/test": "^1.43.0",
+    "@types/node": "^20.11.28",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.4.5",
+    "dotenv-expand": "^11.0.6",
+    "prettier": "^3.2.5",
+    "prisma": "^4.8.1",
+    "typed-openapi": "^0.4.1",
+    "vite-node": "^1.4.0"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "react-pdf-html@2.0.4": "patches/react-pdf-html@2.0.4.patch"
+    },
+    "overrides": {
+      "restructure": "3.0.0"
+    }
+  }
+}

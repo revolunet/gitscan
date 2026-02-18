@@ -1,0 +1,105 @@
+[tool.poetry]
+name = "tca"
+version = "0.1.0"
+description = ""
+authors = ["Victor DEGLIAME <victor.degliame@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+tabulate = "^0.9.0"
+pre-commit = "^4.0.1"
+detect-secrets = "^1.5.0"
+pandas = "^2.2.3"
+openpyxl = "^3.1.5"
+alembic = "^1.14.0"
+psycopg2 = "^2.9.10"
+pgvector = "^0.3.6"
+pypdf2 = "^3.0.1"
+python-docx = "^1.1.2"
+colorlog = "^6.9.0"
+ollama = "^0.4.5"
+xlsxwriter = "^3.2.0"
+langchain = "^0.3.14"
+langchain-text-splitters = "^0.3.5"
+docx2txt = "^0.8"
+langchain-community = "^0.3.14"
+doc2docx = "^0.2.4"
+openai = "^1.59.7"
+pypdf = "^5.1.0"
+rapidfuzz = "^3.11.0"
+transformers = {extras = ["torch"], version = "^4.48.0"}
+datasets = "^3.2.0"
+sentence-transformers = "^3.3.1"
+torch = "^2.5.1"
+bitsandbytes = "^0.41.1"
+wandb = "^0.16.3"
+llama-index = "^0.12.11"
+llama-index-finetuning = "^0.3.0"
+llama-index-llms-openai = "^0.3.13"
+llama-index-embeddings-openai = "^0.3.1"
+llama-index-readers-file = "^0.4.3"
+llama-index-embeddings-huggingface = "^0.5.0"
+optimum = "^1.23.3"
+einops = "^0.8.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.29.5"
+
+[tool.coverage.run]
+source = ["livecov"]
+
+[tool.coverage.report]
+include_namespace_packages = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+norecursedirs = ["dist", "build", "dev", "typings"]
+addopts = [
+    "-n 4",
+    "--cov=tca",
+    "--cov-report=lcov:lcov.info",
+    "--cov-report=json:coverage.json",
+    "--cov-report=",
+    "--capture=no",
+    "--log-cli-level=INFO",
+    "--color=yes",
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "C", "N", "B", "Q", "S"]
+ignore = [
+    "D100",  # missing-module-docstring
+    "D101",  # missing-class-docstring
+    "D103",  # missing-function-docstring
+    "E501",  # line-too-long
+    "F811",  # redefined-outer-name
+    "G001",  # logging-fstring-interpolation
+    "N802",  # invalid-name
+    "N806",  # non-lowercase-variable-in-function
+    "S301",  # pickle is considered harmful
+    "S311",  # standard pseudo-random generators are not suitable for security/cryptographic purposes
+    "Q000",  # bad-quotes-inline-string
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = [
+    "B018",  # B018 - Found useless expression - necessary for testing exceptions are raised.
+    "D100",  # D100 - Module dostrings not required in test files.
+    "D104",  # D104 - Package dostrings not required in test files.
+    "S101",  # S101 - Use of assert in tests is fine.
+]
+
+[tool.pyright]
+pythonVersion = "3.11"
+venvPath = "."
+venv = ".venv"
+typeCheckingMode = "basic"
+
+[tool.mypy]
+ignore_missing_imports = true
+disable_error_code = ["call-overload", "import-untyped"]

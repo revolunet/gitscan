@@ -1,0 +1,42 @@
+{
+  "name": "@socialgouv/reference-article",
+  "version": "1.0.2",
+  "repository": "git@github.com:SocialGouv/reference-article.git",
+  "author": "Incubateur des Ministères Sociaux <dsi-incubateur@sg.social.gouv.fr> (https://incubateur.social.gouv.fr)",
+  "bugs": "https://github.com/SocialGouv/reference-article/issues",
+  "license": "Apache-2.0",
+  "main": "dist/reference-extractor.js",
+  "types": "dist/reference-extractor.d.ts",
+  "files": [
+    "/dist"
+  ],
+  "devDependencies": {
+    "@socialgouv/eslint-config-typescript": "^1.75.0",
+    "@types/jest": "^26.0.23",
+    "eslint": "^7.28.0",
+    "husky": "^6.0.0",
+    "jest": "^27.0.4",
+    "prettier": "^2.3.1",
+    "ts-jest": "^27.0.3",
+    "typescript": "^4.3.2",
+    "talisman": "^1.1.4"
+  },
+  "scripts": {
+    "test": "yarn jest --detectOpenHandles",
+    "build": "./scripts/build.sh",
+    "prepublish": "npm run build"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@socialgouv/eslint-config-typescript"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "yarn lint && yarn test"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

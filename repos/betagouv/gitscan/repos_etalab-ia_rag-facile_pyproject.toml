@@ -1,0 +1,76 @@
+[project]
+name = "rag-facile"
+version = "0.15.0"
+description = "RAG Starter Kit for French Government"
+readme = "README.md"
+requires-python = ">=3.13, <3.14"
+dependencies = [
+    "albert-client",
+    "chainlit-chat",
+    "context",
+    "ingestion",
+    "pipelines",
+    "rag-core",
+    "reranking",
+    "retrieval",
+    "rag-facile-cli",
+    "reflex-chat",
+    "storage",
+]
+
+[tool.uv.sources]
+albert-client = { workspace = true }
+chainlit-chat = { workspace = true }
+context = { workspace = true }
+ingestion = { workspace = true }
+pipelines = { workspace = true }
+rag-core = { workspace = true }
+reranking = { workspace = true }
+retrieval = { workspace = true }
+rag-facile-cli = { workspace = true }
+reflex-chat = { workspace = true }
+storage = { workspace = true }
+
+[dependency-groups]
+dev = [
+    "ruff>=0.14.14",
+    "ty>=0.0.1",
+    "pre-commit>=4.0.1",
+    "pytest>=8.0.0",
+    "pytest-mock>=3.12.0",
+    "pytest-asyncio>=0.21.0",
+    "respx>=0.20.0",
+    "httpx>=0.24.0",
+]
+
+[tool.uv.workspace]
+members = ["apps/*", "packages/*"]
+
+[tool.ty.src]
+exclude = [
+    ".moon/templates",
+    "apps/chainlit-chat/app.py",
+    "apps/reflex-chat/reflex_chat/state.py",
+]
+
+[tool.ty.rules]
+# Disable rules with false positives from metaprogramming (Reflex, Chainlit)
+call-non-callable = "ignore"
+possibly-missing-attribute = "ignore"
+
+[tool.ruff]
+# Exclude moon templates (contain Jinja2 syntax, not valid Python/TOML)
+extend-exclude = [".moon/templates"]
+
+[tool.ruff.lint]
+exclude = [".moon/templates"]
+
+[tool.ruff.lint.isort]
+# Define our first-party packages (local imports)
+known-first-party = ["albert", "chainlit_chat", "cli", "context", "ingestion", "pipelines", "rag_core", "reranking", "retrieval", "reflex_chat", "storage"]
+# Ensure proper PEP 8 section ordering with blank lines between groups
+section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
+lines-after-imports = 2  # PEP 8: 2 blank lines before top-level definitions
+
+[tool.ruff.format]
+exclude = [".moon/templates"]

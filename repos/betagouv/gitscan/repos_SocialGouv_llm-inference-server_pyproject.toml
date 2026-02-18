@@ -1,0 +1,52 @@
+[tool.poetry]
+name = "llm-inference"
+version = "0.1.0"
+description = ""
+authors = ["Victor DEGLIAME <victor.degliame@sg.social.gouv.fr>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+transformers = "^4.30.0"
+torch = "^2.0.0"
+accelerate = "^0.33.0"
+boto3 = "^1.35.5"
+fastapi = "^0.112.2"
+uvicorn = "^0.30.6"
+requests = "^2.32.3"
+tqdm = "^4.66.5"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.2.0"
+
+[tool.coverage.run]
+source = ["livecov"]
+
+[tool.coverage.report]
+include_namespace_packages = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+norecursedirs = ["dist", "build", "dev", "typings"]
+addopts = [
+  "-n 4",
+  "--cov=amendements_intelligents",
+  "--cov-report=lcov:lcov.info",
+  "--cov-report=json:coverage.json",
+  "--cov-report=",
+]
+
+[tool.pylint]
+disable = [
+    "line-too-long",
+    "missing-function-docstring",
+    "missing-module-docstring",
+    "missing-class-docstring",
+]
+
+[tool.mypy]
+ignore_missing_imports = true

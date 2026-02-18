@@ -1,0 +1,58 @@
+{
+  "name": "service-national-universel",
+  "scripts": {
+    "postinstall": "patch-package",
+    "dev": "[[ -e .git/hooks/pre-commit ]] && dotenv -- turbo run dev --filter=!analytics || echo 'Follow Procedure here : https://www.notion.so/jeveuxaider/Gitguardian-1b6d580a315f4f7c8440fde951aa42c9?pvs=4'",
+    "dev:app": "[[ -e .git/hooks/pre-commit ]] && dotenv -- turbo run dev --filter",
+    "build": "turbo run build --filter=$APP_NAME",
+    "start": "turbo run start --filter=$APP_NAME",
+    "test": "turbo run test --filter=$APP_NAME",
+    "lint": "turbo run lint --continue --filter=$APP_NAME",
+    "check-types": "turbo run check-types --continue --filter=$APP_NAME",
+    "clean": "turbo run clean && rm -rf node_modules .turbo",
+    "endpoints": "export env_name=$(devops/scripts/cc-environment-name.sh $(git rev-parse --abbrev-ref HEAD)) && echo \"https://api.$env_name.ci.beta-snu.dev\nhttps://admin.$env_name.ci.beta-snu.dev\nhttps://moncompte.$env_name.ci.beta-snu.dev\""
+  },
+  "dependencies": {
+    "classnames": "^2.5.1",
+    "dotenv-cli": "latest",
+    "heic2any": "^0.0.4",
+    "json-2-csv": "^5.5.8",
+    "libphonenumber-js": "^1.10.41",
+    "patch-package": "^8.0.0",
+    "react-dropzone": "^14.3.5",
+    "request-ip": "^3.3.0",
+    "sanitize-html": "^2.12.1",
+    "turbo": "^2.0.14",
+    "@bull-board/express": "^6.10.1"
+  },
+  "overrides": {
+    "@bull-board/express": {
+      "express": "^5.1.0"
+    }
+  },
+  "workspaces": [
+    "packages/*",
+    "app",
+    "admin",
+    "api",
+    "apiv2",
+    "devops/analytics",
+    "snupport-api",
+    "snupport-app"
+  ],
+  "engines": {
+    "node": "^20.17",
+    "npm": "^10.8",
+    "yarn": "🍎 This project uses NPM, please do not use YARN. 🍎"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^18.16.0",
+    "@types/supertest": "^6.0.2",
+    "eslint-plugin-import": "^2.29.1",
+    "tsx": "^4.7.1",
+    "typescript": "^5.4.3",
+    "typescript-eslint": "^7.4.0"
+  },
+  "packageManager": "npm@10.5.2"
+}

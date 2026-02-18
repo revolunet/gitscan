@@ -1,0 +1,144 @@
+services:
+  postgres:
+    image: postgres:14
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+    environment:
+      POSTGRES_PASSWORD: postgrespassword
+
+  hasura:
+    build:
+      context: targets/hasura
+    extra_hosts:
+      host.docker.internal: host-gateway
+    volumes:
+      - ./targets/hasura/migrations:/hasura-migrations
+      - ./targets/hasura/metadata:/hasura-metadata
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    env_file:
+      - .env
+    environment:
+      HASURA_GRAPHQL_METADATA_DATABASE_URL: postgres://postgres:postgrespassword@postgres:5432/postgres
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "true"
+      HASURA_GRAPHQL_DEV_MODE: "true"
+      HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
+      HASURA_GRAPHQL_MIGRATIONS_DIR: /hasura-migrations
+      HASURA_GRAPHQL_METADATA_DIR: /hasura-metadata
+
+  ingester:
+    build:
+      context: .
+      dockerfile: targets/ingester/Dockerfile
+      shm_size: 512m
+    depends_on:
+      - hasura
+    env_file:
+      - .env
+    environment:
+      HASURA_GRAPHQL_ENDPOINT: "http://hasura:8080/v1/graphql"
+
+  minio:
+    image: minio/minio
+    ports:
+      - "9000:9000"
+      - "8900:8900"
+    environment:
+      MINIO_ROOT_USER: MINIO_ACCESS_KEY
+      MINIO_ROOT_PASSWORD: MINIO_SECRET_KEY
+    volumes:
+      - minio_data:/data
+    command: 'minio server /data/minio --console-address ":8900"'
+
+  createbuckets:
+    image: minio/mc
+    depends_on:
+      - minio
+    entrypoint: >
+      /bin/sh -c "
+      sleep 5;
+      /usr/bin/mc alias set myminio http://minio:9000 MINIO_ACCESS_KEY MINIO_SECRET_KEY;
+      /usr/bin/mc mb myminio/cdtn;
+      /usr/bin/mc anonymous set public myminio/cdtn;
+      exit 0;
+      "
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.13.4
+    volumes:
+      - elastic_data:/usr/share/elasticsearch/data
+    environment:
+      - ES_JAVA_OPTS=-Xmx4g
+      - cluster.name=code-du-travail-data-elasticsearch
+      - node.name=code-du-travail-data-elasticsearch-single-node
+      - network.host=0.0.0.0
+      - discovery.type=single-node
+      - http.cors.enabled=true
+      - http.cors.allow-origin='*'
+      - xpack.security.enabled=false
+      - xpack.ml.enabled=false
+      - xpack.graph.enabled=false
+      - xpack.watcher.enabled=false
+    ports:
+      - 9200:9200
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.13.4
+    ports:
+      - 5601:5601
+    depends_on:
+      - elasticsearch
+
+  www:
+    build:
+      context: .
+      dockerfile: targets/frontend/Dockerfile
+      secrets:
+        - NPM_TIPTAP_TOKEN
+    depends_on:
+      - hasura
+    ports:
+      - "3001:3000"
+    environment:
+      HASURA_GRAPHQL_ENDPOINT: "http://hasura:8080/v1/graphql"
+      NEXTAUTH_SECRET: "6ZYMHbt0mxOj9y6mTyG2nJVt2zWDEdckLJz248uflwI="
+      NEXTAUTH_URL: "http://localhost:3001"
+
+  export:
+    platform: linux/amd64
+    build:
+      context: .
+      dockerfile: targets/export-elasticsearch/Dockerfile
+      shm_size: 512m
+    ports:
+      - 8787:8787
+    environment:
+      HASURA_GRAPHQL_ENDPOINT: "http://hasura:8080/v1/graphql"
+      DISABLE_COPY: "true"
+      DISABLE_SITEMAP: "true"
+      DISABLE_LIMIT_EXPORT: "true"
+      DISABLE_AGREEMENTS: "true"
+      ELASTICSEARCH_INDEX_PREPROD: "cdtn-preprod-v1"
+      ELASTICSEARCH_INDEX_PROD: "cdtn-v1"
+      ELASTICSEARCH_URL_PREPROD: "http://elasticsearch:9200"
+      ELASTICSEARCH_URL_PROD: "http://elasticsearch:9200"
+
+  alert-cli:
+    build:
+      context: .
+      dockerfile: targets/alert-cli/Dockerfile
+
+volumes:
+  db_data:
+  elastic_data:
+  minio_data:
+
+secrets:
+  NPM_TIPTAP_TOKEN:
+    file: .npmTiptapToken.secret

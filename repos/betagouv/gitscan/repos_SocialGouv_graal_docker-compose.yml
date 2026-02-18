@@ -1,0 +1,59 @@
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:16-alpine
+    container_name: graal-postgres
+    environment:
+      POSTGRES_DB: graal_dev
+      POSTGRES_USER: graal_user
+      POSTGRES_PASSWORD: graal_local_pass # pragma: allowlist secret
+      # Optimize for development
+      POSTGRES_INITDB_ARGS: "--encoding=UTF8 --lc-collate=C --lc-ctype=C"
+    ports:
+      - "5432:5432"
+    volumes:
+      # Persist data between container restarts
+      - postgres_data:/var/lib/postgresql/data
+      # Custom initialization script
+      - ./scripts/init_db.sql:/docker-entrypoint-initdb.d/01_init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U graal_user -d graal_dev"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - graal-network
+    restart: unless-stopped
+
+  # pgAdmin Web UI
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: graal-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@graal.com
+      PGADMIN_DEFAULT_PASSWORD: admin # pragma: allowlist secret
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: 'False' # pragma: allowlist secret
+    ports:
+      - "5050:80"
+    volumes:
+      # Persist pgAdmin configuration
+      - pgadmin_data:/var/lib/pgadmin
+      # Pre-configure server connection
+      - ./docker/pgadmin-servers.json:/pgadmin4/servers.json:ro
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - graal-network
+    restart: unless-stopped
+
+networks:
+  graal-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+    driver: local
+  pgadmin_data:
+    driver: local

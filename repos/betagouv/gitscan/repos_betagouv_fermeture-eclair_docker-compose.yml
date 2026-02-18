@@ -1,0 +1,34 @@
+version: '3.9'
+
+services:
+    app:
+        restart: unless-stopped
+        build: .
+        ports:
+            - '${PORT}:${PORT}'
+        volumes:
+            - .:/app
+            - /app/node_modules/
+        environment:
+            - PORT=${PORT}
+            - DATABASE_USER=${DATABASE_USER}
+            - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+            - DATABASE_NAME=${DATABASE_NAME}
+            - DATABASE_HOST=db
+            - MATTERMOST_HOOK_ID=${MATTERMOST_HOOK_ID}
+        depends_on:
+            - db
+    db:
+        image: postgres:14
+        ports:
+            - '${DATABASE_PORT}:5432'
+        volumes:
+            - data:/data/db
+        environment:
+            - POSTGRES_USER=${DATABASE_USER}
+            - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+            - POSTGRES_DB=${DATABASE_NAME}
+            - POSTGRES_PORT=5432
+
+volumes:
+    data: {}

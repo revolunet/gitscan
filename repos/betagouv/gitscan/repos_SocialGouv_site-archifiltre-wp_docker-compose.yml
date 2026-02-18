@@ -1,0 +1,85 @@
+services:
+  wordpress:
+    image: local/${COMPOSE_PROJECT_NAME}-php-${PHP_VERSION}-fpm
+    restart: always
+    build:
+      context: ./docker/php
+      args:
+        - PHP_VERSION=${PHP_VERSION:-8.2}
+        - UID=1000
+        - GID=1000
+    volumes:
+      - wordpress:/var/www/bedrock/
+      - ./data/wordpress/plugins:/var/www/bedrock/web/app/plugins
+      - ./data/wordpress/themes:/var/www/bedrock/web/app/themes
+      - ./data/wordpress/uploads:/var/www/bedrock/web/app/uploads
+      - ./docker/php/zz-docker.conf:/usr/local/etc/php-fpm.d/zz-docker.conf
+      - ./.env:/var/www/bedrock/.env.base:ro
+    networks:
+      - wordpress
+    depends_on:
+      - database
+    env_file:
+      - .env
+
+  nginx:
+    image: nginx:latest
+    restart: always
+    volumes:
+      - wordpress:/var/www/bedrock
+      - ./data/wordpress/plugins:/var/www/bedrock/web/app/plugins
+      - ./data/wordpress/themes:/var/www/bedrock/web/app/themes
+      - ./data/wordpress/uploads:/var/www/bedrock/web/app/uploads
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - traefik
+      - wordpress
+    depends_on:
+      - wordpress
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik"
+      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}.entrypoints=websecure,web"
+      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}.rule=Host(`${WORDPRESS_FQDN:-wordpress.dev.traefik.me}`)"
+      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}.tls=true"
+
+
+
+  database:
+    image: mariadb:latest
+    restart: always
+    volumes:
+      - ./data/database:/var/lib/mysql
+      - ./data/backups:/backups
+    environment:
+      - MARIADB_USER=${MARIADB_USER:-wordpress}
+      - MARIADB_PASSWORD=${MARIADB_PASSWORD:?The variable MARIADB_PASSWORD is mandatory}
+      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD?The variable MARIADB_ROOT_PASSWORD is mandatory}
+      - MARIADB_DATABASE=${MARIADB_DATABASE:-wordpress}
+    labels:
+      ofelia.enabled: true
+      ofelia.job-exec.database_backup_runner.schedule: "@every 4h"
+      ofelia.job-exec.database_backup_runner.command: "/bin/bash -c \"mariadb-dump ${MARIADB_DATABASE:-wordpress} -u ${MARIADB_USER:-wordpress} -p${MARIADB_PASSWORD} > /backups/$(date '+%F').sql ; rm -f /backups/$(date '+%F' --date ' 2 day ago').sql\""
+    networks:
+      - wordpress
+
+  ofelia:
+    image: mcuadros/ofelia:latest
+    restart: always
+    command: daemon --docker
+    depends_on:
+      - database
+    labels:
+      ofelia.enabled: "true"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+
+networks:
+  wordpress:
+  traefik:
+    external: true
+
+volumes:
+  wordpress:
+    

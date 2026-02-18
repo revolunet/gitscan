@@ -1,0 +1,49 @@
+#
+# Copyright (c) 2025. Numeric Wave
+#
+# Affero General Public License (AGPL) v3
+#
+# For more information, please refer to the LICENSE file at the root of the project.
+#
+
+services:
+  php:
+    container_name: lucca_php
+    build:
+      context: ./
+      target: php-fpm
+    working_dir: /srv/app
+    volumes:
+      - .:/srv/app
+      - ../lucca-v2.doc:/srv/docs
+    depends_on:
+      - db
+
+  db:
+    image: mariadb:${MYSQL_VERSION}-noble-rc
+    container_name: lucca_db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - db_data:/var/lib/mysql:rw
+
+  caddy:
+    container_name: caddy_lucca
+    image: caddy:2-alpine
+    volumes:
+      - ./docker/Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+      - .:/srv/app
+    environment:
+        SERVER_NAME: ${SERVER_NAME:-localhost, caddy:80}
+    depends_on:
+      - php
+
+volumes:
+  db_data:
+  caddy_data:
+  caddy_config:

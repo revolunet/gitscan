@@ -1,0 +1,11 @@
+services:
+  postgres:
+    image: 'postgres:15.8@sha256:0836104ba0de8d09e8d54e2d6a28389fbce9c0f4fe08f4aa065940452ec61c30'
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_PASSWORD: 'postgres'
+      POSTGRES_USER: 'postgres'
+      APP_DB_NAME: 'ngc-cms'
+    volumes:
+      - ./database:/docker-entrypoint-initdb.d/

@@ -1,0 +1,47 @@
+[project]
+name = "RecommandationsCyber"
+version = "0.1.0"
+description = "Une interface permettant d'interroger [Albert](https://albert.etalab.gouv.fr), le modèle IA, chargé avec des guides de l'ANSSI."
+requires-python = "==3.13.*"
+dependencies = [
+    "cryptography>=46.0.5",
+    "dpath",
+    "fastapi",
+    "httpx",
+    "openai",
+    "psycopg2-binary",
+    "pytest",
+    "requests",
+    "sentry-sdk",
+    "slowapi",
+    "starlette>=0.49.1",
+    "typing",
+    "urllib3>=2.6.3",
+    "uvicorn",
+]
+
+[dependency-groups]
+dev = [
+    "mypy",
+    "ruff",
+    "types-psycopg2",
+    "types-requests",
+    "pytest-dotenv",
+    "pipdeptree"
+]
+
+[tool.mypy]
+files = ["src/**/*.py", "tests/**/*.py"]
+explicit_package_bases = true
+mypy_path = ["src", "tests/mocks"]
+
+[tool.pytest.ini_options]
+pythonpath = [
+    "src", "tests/mocks"
+]
+addopts = [
+    "--import-mode=importlib",
+]
+
+[tool.ruff]
+target-version = "py313"

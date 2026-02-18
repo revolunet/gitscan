@@ -1,0 +1,54 @@
+[project]
+name = "whisper-openai-api"
+version = "1.2.0"
+description = "Whisper OpenAI API"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+    "openai==1.43.0",
+    "uvicorn==0.32.0",
+    "fastapi==0.115.3",
+    "pydantic==2.9.2",
+    "python-multipart==0.0.22",
+    "pydantic-settings==2.6.1",
+]
+
+[project.optional-dependencies]
+# Heavy libraries used for inference (not required for local API dev)
+inference = [
+    "torch==2.6.0",
+    "torchaudio==2.6.0",
+    "transformers<5.0",
+    "whisperx==3.3.1",
+    "matplotlib==3.10.7",
+]
+
+# Helper libraries for dev
+dev = [
+    "ruff==0.6.5",
+    "pre-commit==3.6.2",
+    "pytest==8.3.3",
+    "pip-audit"
+]
+
+[tool.setuptools]
+py-modules = []
+
+[tool.ruff]
+line-length = 88
+
+[tool.ruff.lint]
+ignore = ["F403", "F841"] # import * and never used variables
+
+[tool.ruff.lint.isort]
+force-sort-within-sections = true
+known-first-party = ["utils", "schemas", "endpoints"]
+forced-separate = ["tests"]
+
+[tool.ruff.lint.isort.sections]
+sections = ["FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
+
+[tool.pytest.ini_options]
+addopts = "--exitfirst --log-cli-level=INFO"
+testpaths = ["app/tests"]
+minversion = "8.2.2"

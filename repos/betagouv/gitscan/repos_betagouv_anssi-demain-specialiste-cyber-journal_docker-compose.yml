@@ -1,0 +1,28 @@
+services:
+  dsc-journal-db:
+    image: postgres
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    ports:
+      - "5445:5432"
+    volumes:
+      - ./bdd:/var/lib/postgresql/data
+      - ./docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d
+    networks:
+      - reseau-demain-specialiste-cyber
+
+
+  node:
+    image: node:24
+    volumes:
+      - ./:/home/node/app
+    working_dir: /home/node/app
+    command: "./scripts/migrations.sh"
+    depends_on:
+      - dsc-journal-db
+    networks:
+      - reseau-demain-specialiste-cyber
+
+networks:
+  reseau-demain-specialiste-cyber:
+    external: true

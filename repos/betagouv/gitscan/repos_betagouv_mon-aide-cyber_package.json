@@ -1,0 +1,58 @@
+{
+  "name": "mon-aide-cyber",
+  "version": "0.0.0",
+  "description": "MonAideCyber",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:betagouv/mon-aide-cyber.git"
+  },
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/betagouv/mon-aide-cyber/issues"
+  },
+  "homepage": "https://github.com/betagouv/mon-aide-cyber#readme",
+  "packageManager": "pnpm@10.26.0",
+  "workspaces": [
+    "mon-aide-cyber-api",
+    "mon-aide-cyber-ui"
+  ],
+  "scripts": {
+    "preinstall": "npx only-allow@1.2.2 pnpm",
+    "test": "pnpm run test:back && pnpm run test:front",
+    "test:back": "pnpm -F mon-aide-cyber-api run test",
+    "test:front": "pnpm -F mon-aide-cyber-ui run test",
+    "test:watch": "pnpm run @test:watch:back && pnpm run @test:watch:front",
+    "test:watch:back": "pnpm -F mon-aide-cyber-api run test:watch",
+    "test:watch:front": "pnpm -F mon-aide-cyber-ui run test:watch",
+    "build": "pnpm run build:back && pnpm run build:front",
+    "build:back": "pnpm -F mon-aide-cyber-api run build",
+    "build:front": "pnpm -F mon-aide-cyber-ui run build",
+    "start": "pnpm -F mon-aide-cyber-api run start",
+    "format:verifie": "prettier --config=./.prettierrc.json -c mon-aide-cyber-api mon-aide-cyber-ui",
+    "format:corrige": "prettier --config=./.prettierrc.json -w mon-aide-cyber-api mon-aide-cyber-ui"
+  },
+  "dependencies": {
+    "typescript": "~5.1.3",
+    "vite": "~7.1.11"
+  },
+  "pnpm": {
+    "overrides": {
+      "semver": "~7.7.3",
+      "cross-spawn": "~7.0.6"
+    }
+  },
+  "devDependencies": {
+    "@faker-js/faker": "~10.0.0",
+    "@types/cookies": "~0.7.10",
+    "@vitest/ui": "~3.2.4",
+    "@eslint/js": "~9.39.2",
+    "@eslint/eslintrc": "~3.3.3",
+    "jiti": "~2.6.1",
+    "prettier": "~3.3.2",
+    "typescript-eslint": "~8.51.0",
+    "@typescript-eslint/eslint-plugin": "~8.51.0",
+    "@typescript-eslint/parser": "~8.51.0",
+    "globals": "~17.0.0",
+    "vitest": "~3.2.4"
+  }
+}

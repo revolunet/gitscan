@@ -1,0 +1,112 @@
+{
+  "name": "ClassifIA",
+  "version": "1.0.0",
+  "description": "Service automatisé de classification de conversations pour les messages de support Crisp. Utilise l'analyse basée sur LLM (Albert IA du gouvernement français) pour catégoriser les conversations en sujets/thèmes avec correspondance de similarité vectorielle (pgvector) pour identifier les problèmes récurrents et générer des analyses. Développé avec NestJS, PostgreSQL, Redis/BullMQ et respecte la confidentialité (aucun stockage en texte clair).",
+  "author": "Thomas Dos Anjos",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22",
+    "pnpm": ">=10.18"
+  },
+  "packageManager": "pnpm@10.19.0",
+  "scripts": {
+    "build": "nest build",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "start": "pnpm db:migrate && node dist/main",
+    "start:dev": "nest start --watch",
+    "start:debug": "nest start --debug --watch",
+    "start:prod": "node dist/main",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "check:lint": "eslint \"src/**/*.ts\" \"test/**/*.ts\" --cache --cache-location .eslintcache",
+    "check:types": "tsc --noEmit",
+    "check:format": "prettier --check \"src/**/*.ts\" \"test/**/*.ts\"",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio",
+    "docker:build": "docker build -t classifia .",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f",
+    "docker:dev": "docker-compose up --build",
+    "docker:clean": "docker-compose down -v --remove-orphans"
+  },
+  "dependencies": {
+    "@nestjs/bullmq": "^11.0.4",
+    "@nestjs/cli": "^11.0.10",
+    "@nestjs/common": "^11.1.7",
+    "@nestjs/config": "^4.0.2",
+    "@nestjs/core": "^11.1.7",
+    "@nestjs/platform-fastify": "^11.1.7",
+    "@openai/agents": "^0.1.10",
+    "axios": "^1.12.2",
+    "bullmq": "^5.61.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.2",
+    "dotenv": "^17.2.3",
+    "drizzle-kit": "^0.31.5",
+    "drizzle-orm": "^0.44.6",
+    "nestjs-pino": "^4.4.1",
+    "pg": "^8.16.3",
+    "pino": "^10.1.0",
+    "pino-pretty": "^13.1.2",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.38.0",
+    "@nestjs/mapped-types": "^2.1.0",
+    "@nestjs/schematics": "^11.0.9",
+    "@nestjs/testing": "^11.1.7",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.9.1",
+    "@types/pg": "^8.15.5",
+    "@types/supertest": "^6.0.3",
+    "eslint": "^9.38.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-prettier": "^5.5.4",
+    "globals": "^16.4.0",
+    "jest": "^30.2.0",
+    "prettier": "^3.6.2",
+    "source-map-support": "^0.5.21",
+    "supertest": "^7.1.4",
+    "ts-jest": "^29.4.5",
+    "ts-loader": "^9.5.4",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.46.2"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "src",
+    "testRegex": ".*\\.spec\\.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "collectCoverageFrom": [
+      "**/*.(t|j)s"
+    ],
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node",
+    "moduleNameMapping": {
+      "^@/(.*)$": "<rootDir>/$1",
+      "^@core/(.*)$": "<rootDir>/core/$1",
+      "^@modules/(.*)$": "<rootDir>/modules/$1",
+      "^@common/(.*)$": "<rootDir>/common/$1"
+    }
+  }
+}

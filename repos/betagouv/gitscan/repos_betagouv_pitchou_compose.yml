@@ -1,0 +1,62 @@
+services:
+  web:
+    image: node:22
+    container_name: node_server
+    depends_on:
+      - db
+    restart: on-failure:3
+    ports:
+      - "2648:2648"
+    volumes:
+      - ./:/app
+    working_dir: /app
+    command: npx pnpm run start:server
+    environment:
+      PORT: 2648
+      DATABASE_URL: "postgresql://dev:dev_password@postgres_db:5432/especes_pro_3731"
+    user: "${DOCKER_UID}:${DOCKER_GID}"
+    stop_grace_period: 2s
+
+  tooling:
+    image: node:22
+    container_name: tooling
+    depends_on:
+      - db
+    volumes:
+      - ./:/app
+    working_dir: /app
+    command: sleep 365d
+    environment:
+      DATABASE_URL: "postgresql://dev:dev_password@postgres_db:5432/especes_pro_3731"
+    user: "${DOCKER_UID}:${DOCKER_GID}"
+    stop_grace_period: 1s
+
+  db:
+    image: postgres:15.7
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: dev_password
+      POSTGRES_DB: especes_pro_3731
+    hostname: localhost
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+      - ./backups:/var/lib/pitchou/backups
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    depends_on:
+      - db
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+      PGADMIN_DISABLE_POSTFIX: "1"
+      PGADMIN_CONFIG_SERVER_HEARTBEAT_TIMEOUT: 3600 # secondes = une heure
+    restart: unless-stopped
+    stop_grace_period: 2s

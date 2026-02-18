@@ -1,0 +1,44 @@
+[tool.poetry]
+name = "infomed-html-parser"
+version = "0.1.0"
+description = "Parser for ANSM medication HTML documents (Notices and RCPs)"
+readme = "README.md"
+packages = [{include = "infomed_html_parser", from = "src"}]
+
+[tool.poetry.dependencies]
+python = ">=3.13"
+beautifulsoup4 = ">=4.12"
+lxml = ">=5.0"
+chardet = ">=5.0"
+pymysql = ">=1.0"
+cryptography = ">=42.0"
+tqdm = ">=4.0"
+boto3 = ">=1.35"
+sqlglot = "^28.9.0"
+psycopg2-binary = "^2.9.11"
+
+[tool.poetry.group.dev.dependencies]
+pytest = ">=8.0"
+pytest-cov = ">=4.0"
+ruff = ">=0.8"
+
+[tool.poetry.scripts]
+infomed-html-parser = "infomed_html_parser.cli:main"
+
+[build-system]
+requires = ["poetry-core>=2.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+
+[tool.ruff.format]
+quote-style = "double"

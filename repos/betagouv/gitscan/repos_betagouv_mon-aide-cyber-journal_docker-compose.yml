@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  mac-journal-db:
+    image: postgres
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    ports:
+      - "5432:5432"
+    volumes:
+      - /var/lib/postgresql/data
+    networks:
+      - reseau-mon-aide-cyber
+
+  metabase:
+    image: metabase/metabase
+    environment:
+      - MB_DB_TYPE=postgres
+      - MB_DB_DBNAME=mac-journal
+      - MB_DB_PORT=5432
+      - MB_DB_USER=postgres
+      - MB_DB_PASS=postgres
+      - MB_DB_HOST=mac-journal-db
+    ports:
+      - "3005:3000"
+    depends_on:
+      - mac-journal-db
+    networks:
+      - reseau-mon-aide-cyber
+
+  node:
+    image: node:18.12.1 # Version LTS
+    volumes:
+      - ./:/home/node/app
+    working_dir: /home/node/app
+    command: "./scripts/migrations.sh"
+    depends_on:
+      - mac-journal-db
+    networks:
+      - reseau-mon-aide-cyber
+
+networks:
+  reseau-mon-aide-cyber:
+    external: true

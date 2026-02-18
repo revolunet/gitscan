@@ -1,0 +1,42 @@
+x-app-base: &app_base
+  build: .
+  volumes:
+    - "./:/app"
+    - "/app/node_modules"
+  env_file:
+    - ".env.docker"
+  environment:
+    - DATABASE_URL=postgresql://postgres:dummy@db:5433
+    - REDIS_URL=redis://redis:6379/1
+    - SMTP_ADDRESS=mailcatcher
+  depends_on:
+    - db
+    - mailcatcher
+
+services:
+  web:
+    <<: *app_base
+    ports:
+      - "3000:3000"
+      - "12345:12345"
+  worker:
+    <<: *app_base
+    command: bundle exec good_job start --queues=critical,default;low
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_PASSWORD: 'dummy'
+      PGPORT: 5433
+    ports:
+      - "5433:5433"
+    # volumes:
+    #   - "/tmp/postgres-data:/var/lib/postgresql/data"
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+  mailcatcher:
+    image: sj26/mailcatcher
+    ports:
+      - "1080:1080"  # Web UI
+      - "1025:1025"  # SMTP Server

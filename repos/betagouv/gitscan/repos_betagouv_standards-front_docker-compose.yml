@@ -1,0 +1,28 @@
+services:
+  web:
+    build: .
+    image: standards-front
+    ports:
+      - "3000:3000"
+    env_file:
+       - '.env.local'
+    volumes:
+      - "./:/app"
+      - "/app/node_modules"
+    depends_on:
+      - espace-membre-db
+      - primary-db
+  primary-db:
+    image: postgres:16
+    volumes:
+      - "./tmp/primarydb:/var/lib/postgresql/data"
+    environment:
+      POSTGRES_PASSWORD: 'dummy'
+      PGPORT: 5434
+  espace-membre-db:
+    image: postgres:16
+    volumes:
+      - "./tmp/edb:/var/lib/postgresql/data"
+    environment:
+      POSTGRES_PASSWORD: 'dummy'
+      PGPORT: 5433

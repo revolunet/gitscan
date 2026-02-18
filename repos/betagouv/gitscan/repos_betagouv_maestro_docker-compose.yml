@@ -1,0 +1,39 @@
+#s3cmd --host http://localhost:9090 ls s3://maestro --no-ssl
+services:
+  s3mock:
+    image: adobe/s3mock:latest
+    container_name: maestro_s3
+    environment:
+      - debug=true
+      - retainFilesOnExit=true
+      - root=containers3root
+      - initialBuckets=maestro
+    ports:
+      - 9090:9090
+    volumes:
+      - ./locals3root:/containers3root
+  browserless:
+    image: ghcr.io/browserless/chromium
+    container_name: maestro_browserless
+    network_mode: 'host'
+    environment:
+      - TOKEN=1234512345
+      - CONCURRENT=1
+      - PORT=3002
+  maildev:
+    image: soulteary/maildev
+    container_name: maestro_maildev
+    ports:
+      - 1025:1025
+      - 1080:1080
+  db:
+    image: postgis/postgis:16-3.5
+    container_name: maestro_db
+    command: postgres -c shared_preload_libraries=pg_stat_statements -c pg_stat_statements.track=all -c max_connections=200
+    environment:
+      - PGUSER=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=maestro
+    ports:
+      - 5432:5432

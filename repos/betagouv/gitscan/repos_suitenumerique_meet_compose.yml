@@ -1,0 +1,310 @@
+
+services:
+  postgresql:
+    image: postgres:16
+    env_file:
+      - env.d/development/postgresql
+    ports:
+      - "15432:5432"
+
+  redis:
+    image: redis:5
+
+  mailcatcher:
+    image: sj26/mailcatcher:latest
+    ports:
+      - "1081:1080"
+
+  minio:
+    user: ${DOCKER_USER:-1000}
+    image: minio/minio
+    environment:
+      - MINIO_ROOT_USER=meet
+      - MINIO_ROOT_PASSWORD=password
+    ports:
+      - '9000:9000'
+      - '9001:9001'
+    healthcheck:
+      test: [ "CMD", "mc", "ready", "local" ]
+      interval: 1s
+      timeout: 20s
+      retries: 300
+    entrypoint: ""
+    command: minio server --console-address :9001 /data
+    volumes:
+      - ./data/media:/data
+
+  createbuckets:
+    image: minio/mc
+    depends_on:
+      minio:
+        condition: service_healthy
+        restart: true
+    entrypoint: >
+      sh -c "
+      /usr/bin/mc alias set meet http://minio:9000 meet password && \
+      /usr/bin/mc mb meet/meet-media-storage && \
+      exit 0;"
+
+  createwebhook:
+    image: minio/mc
+    depends_on:
+      minio:
+        condition: service_healthy
+        restart: true
+    entrypoint: >
+      sh -c "
+      /usr/bin/mc alias set meet http://minio:9000 meet password &&
+      /usr/bin/mc admin config set meet notify_webhook:meet-webhook endpoint='http://app-dev:8000/api/v1.0/recordings/storage-hook/' auth_token='Bearer password' &&
+      /usr/bin/mc admin service restart meet --wait --json &&
+      sleep 15 &&
+      /usr/bin/mc event add meet/meet-media-storage arn:minio:sqs::meet-webhook:webhook --event put &&
+      exit 0;"
+
+  app-dev:
+    build:
+      context: .
+      target: backend-development
+      args:
+        DOCKER_USER: ${DOCKER_USER:-1000}
+    user: ${DOCKER_USER:-1000}
+    image: meet:backend-development
+    environment:
+      - PYLINTHOME=/app/.pylint.d
+      - DJANGO_CONFIGURATION=Development
+    env_file:
+      - env.d/development/common
+      - env.d/development/postgresql
+    ports:
+      - "8071:8000"
+    volumes:
+      - ./src/backend:/app
+      - ./data/static:/data/static
+    depends_on:
+        - postgresql
+        - mailcatcher
+        - redis
+        - nginx
+        - livekit
+        - createbuckets
+        - createwebhook
+    extra_hosts:
+      - "127.0.0.1.nip.io:host-gateway"
+    networks:
+      - resource-server
+      - default
+  
+  celery-dev:
+    user: ${DOCKER_USER:-1000}
+    image: meet:backend-development
+    command: ["celery", "-A", "meet.celery_app", "worker", "-l", "DEBUG"]
+    environment:
+      - DJANGO_CONFIGURATION=Development
+    env_file:
+      - env.d/development/common
+      - env.d/development/postgresql
+    volumes:
+      - ./src/backend:/app
+      - ./data/static:/data/static
+    depends_on:
+      - app-dev
+
+  app:
+    build:
+      context: .
+      target: backend-production
+      args:
+        DOCKER_USER: ${DOCKER_USER:-1000}
+    user: ${DOCKER_USER:-1000}
+    image: meet:backend-production
+    environment:
+      - DJANGO_CONFIGURATION=Demo
+    env_file:
+      - env.d/development/common
+      - env.d/development/postgresql
+    depends_on:
+      - postgresql
+      - redis
+      - livekit
+      - minio
+
+  celery:
+    user: ${DOCKER_USER:-1000}
+    image: meet:backend-production
+    command: ["celery", "-A", "meet.celery_app", "worker", "-l", "INFO"]
+    environment:
+      - DJANGO_CONFIGURATION=Demo
+    env_file:
+      - env.d/development/common
+      - env.d/development/postgresql
+    depends_on:
+      - app
+
+  nginx:
+    image: nginx:1.25
+    ports:
+      - "8083:8083"
+    volumes:
+      - ./docker/files/etc/nginx/conf.d:/etc/nginx/conf.d:ro
+    depends_on:
+      - keycloak
+    networks:
+      - resource-server
+      - default
+
+  frontend:
+    user: "${DOCKER_USER:-1000}"
+    build:
+      context: .
+      dockerfile: ./src/frontend/Dockerfile
+      target: frontend-production
+      args:
+        VITE_API_BASE_URL: "http://localhost:8071"
+        VITE_APP_TITLE: "LaSuite Meet"
+    image: meet:frontend-development
+    ports:
+      - "3000:8080"
+
+  dockerize:
+    image: jwilder/dockerize
+    platform: linux/x86_64
+
+  crowdin:
+    image: crowdin/cli:4.0.0
+    volumes:
+      - ".:/app"
+    env_file:
+      - env.d/development/crowdin
+    user: "${DOCKER_USER:-1000}"
+    working_dir: /app
+
+  node:
+    image: node:18
+    user: "${DOCKER_USER:-1000}"
+    environment:
+      HOME: /tmp
+    volumes:
+      - ".:/app"
+
+  kc_postgresql:
+    image: postgres:14.3
+    ports:
+      - "5433:5432"
+    env_file:
+      - env.d/development/kc_postgresql
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:20.0.1
+    volumes:
+      - ./docker/auth/realm.json:/opt/keycloak/data/import/realm.json
+    command:
+      - start-dev
+      - --features=preview
+      - --import-realm
+      - --proxy=edge
+      - --hostname-url=http://localhost:8083
+      - --hostname-admin-url=http://localhost:8083/
+      - --hostname-strict=false
+      - --hostname-strict-https=false
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_DB: postgres
+      KC_DB_URL_HOST: kc_postgresql
+      KC_DB_URL_DATABASE: keycloak
+      KC_DB_PASSWORD: pass
+      KC_DB_USERNAME: meet
+      KC_DB_SCHEMA: public
+      PROXY_ADDRESS_FORWARDING: 'true'
+    ports:
+      - "8080:8080"
+    depends_on:
+      - kc_postgresql
+
+  livekit:
+    image: livekit/livekit-server
+    entrypoint: /livekit-server --dev --bind 0.0.0.0 --config ./config.yaml
+    ports:
+      - "7880:7880"
+      - "7881:7881"
+      - "7882:7882/udp"
+    volumes:
+      - ./docker/livekit/config/livekit-server.yaml:/config.yaml
+    depends_on:
+      - redis
+      - livekit-egress
+
+  livekit-egress:
+      image: livekit/egress:v1.11.0
+      environment:
+        EGRESS_CONFIG_FILE: ./livekit-egress.yaml
+      volumes:
+        - ./docker/livekit/config/livekit-egress.yaml:/livekit-egress.yaml
+        - ./docker/livekit/out:/out
+      depends_on:
+        - redis
+
+  redis-summary:
+    image: redis
+    ports:
+      - "6379:6379"
+
+  app-summary-dev:
+    build:
+      context: src/summary
+      target: development
+      args:
+        DOCKER_USER: ${DOCKER_USER:-1000}
+    user: ${DOCKER_USER:-1000}
+    env_file:
+      - env.d/development/summary
+    ports:
+      - "8001:8000"
+    volumes:
+      - ./src/summary:/app
+    depends_on:
+        - redis-summary
+
+  celery-summary-transcribe:
+    container_name: celery-summary-transcribe
+    build:
+      context: ./src/summary
+      dockerfile: Dockerfile
+      target: production
+    command: celery -A summary.core.celery_worker worker --pool=solo --loglevel=debug -Q transcribe-queue
+    env_file:
+      - env.d/development/summary
+    volumes:
+      - ./src/summary:/app
+    depends_on:
+      - redis-summary
+      - app-summary-dev
+      - minio
+    develop:
+      watch:
+        - action: rebuild
+          path: ./src/summary
+
+  celery-summary-summarize:
+    container_name: celery-summary-summarize
+    build:
+      context: ./src/summary
+      dockerfile: Dockerfile
+      target: production
+    command: celery -A summary.core.celery_worker worker --pool=solo --loglevel=debug -Q summarize-queue
+    env_file:
+      - env.d/development/summary
+    volumes:
+      - ./src/summary:/app
+    depends_on:
+      - redis-summary
+      - app-summary-dev
+      - minio
+    develop:
+      watch:
+        - action: rebuild
+          path: ./src/summary
+
+networks:
+  default:
+  resource-server:

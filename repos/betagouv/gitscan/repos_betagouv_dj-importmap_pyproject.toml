@@ -1,0 +1,71 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+requires-python = ">=3.10"
+name = "dj-importmap"
+dynamic = ["version"]
+description = "Integrate HTML importmaps with Django for modern web development"
+readme = "README.md"
+license-files = ["LICENSE"]
+
+authors = [
+    { name = "Christophe Henry", email = "contact@c-henry.fr" }
+]
+
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Plugins",
+    "Environment :: Web Environment",
+    "Framework :: Django",
+    "Framework :: Django :: 4.2",
+    "Framework :: Django :: 5.0",
+    "Framework :: Django :: 5.1",
+    "Framework :: Django :: 5.2",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+]
+
+dependencies = ["django>=4.2"]
+
+[project.optional-dependencies]
+dev = [
+    "pre-commit",
+    "uv",
+    "ruff",
+]
+
+[project.urls]
+Homepage = "https://github.com/betagouv/dj-importmap"
+Documentation = "https://github.com/betagouv/dj-importmap/blob/main/README.md"
+Repository = "https://github.com/betagouv/dj-importmap"
+Issues = "https://github.com/betagouv/dj-importmap/issues"
+Changelog = "https://github.com/betagouv/dj-importmap/blob/main/CHANGELOG.md"
+
+[tool.setuptools.dynamic]
+version = { attr = "importmap.__version__" }
+
+[tool.setuptools.packages.find]
+include = ["importmap*"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.ruff.lint.isort]
+force-sort-within-sections = true
+section-order = [
+    "future",
+    "standard-library",
+    "django",
+    "third-party",
+    "first-party",
+    "local-folder",
+    "testing"
+]

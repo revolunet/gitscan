@@ -1,0 +1,88 @@
+{
+  "name": "e2esdk",
+  "version": "0.0.0",
+  "license": "Apache-2.0",
+  "private": true,
+  "description": "End-to-end encryption SDK",
+  "author": {
+    "name": "François Best",
+    "email": "e2esdk@francoisbest.com",
+    "url": "https://francoisbest.com"
+  },
+  "repository": "https://github.com/SocialGouv/e2esdk",
+  "scripts": {
+    "dev": "FORCE_COLOR=3 turbo run dev --filter=./packages/* --filter=./docs",
+    "dev:examples": "FORCE_COLOR=3 turbo run dev --filter=./examples/*",
+    "dev:all": "FORCE_COLOR=3 turbo run dev",
+    "build:npm": "turbo run build:npm",
+    "build:server": "turbo run build:server",
+    "build:docker": "docker build . -f packages/server/Dockerfile -t e2esdk:local",
+    "build:docs": "turbo run build:docs",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "generate": "pnpm --filter @socialgouv/e2esdk-generator run generate",
+    "db": "pnpm --filter @socialgouv/e2esdk-server run db",
+    "mkcert": "mkcert -cert-file ./config/certs/tls.crt -key-file ./config/certs/tls.key localhost 127.0.0.1 ::1"
+  },
+  "devDependencies": {
+    "@semantic-release/exec": "^6.0.3",
+    "@socialgouv/e2esdk-semantic-release": "workspace:*",
+    "@types/jest": "^29.5.0",
+    "multi-semantic-release": "^3.0.2",
+    "prettier": "^2.8.6",
+    "turbo": "^1.8.6"
+  },
+  "prettier": {
+    "arrowParens": "avoid",
+    "semi": false,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "useTabs": false
+  },
+  "release": {
+    "plugins": [
+      [
+        "@semantic-release/commit-analyzer",
+        {
+          "releaseRules": [
+            {
+              "type": "refactor",
+              "release": "patch"
+            },
+            {
+              "type": "perf",
+              "release": "patch"
+            },
+            {
+              "type": "chore",
+              "scope": "deps",
+              "release": "patch"
+            },
+            {
+              "type": "docs",
+              "scope": "README",
+              "release": "patch"
+            }
+          ]
+        }
+      ],
+      "@semantic-release/release-notes-generator",
+      [
+        "@semantic-release/exec",
+        {
+          "publishCmd": "cat package.json 1>&2"
+        }
+      ],
+      "@semantic-release/npm",
+      "@socialgouv/e2esdk-semantic-release"
+    ],
+    "branches": [
+      "main",
+      {
+        "name": "beta",
+        "prerelease": true
+      }
+    ]
+  }
+}

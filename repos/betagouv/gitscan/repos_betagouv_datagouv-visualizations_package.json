@@ -1,0 +1,111 @@
+{
+  "name": "datagouv-visualizations",
+  "private": false,
+  "version": "0.0.1",
+  "type": "module",
+  "description": "A library for creating visualizations in Vue and React in DSFR.",
+  "author": {
+    "name": "DataGouv",
+    "email": "datagouv@data.gouv.fr",
+    "url": "https://github.com/datagouv"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/datagouv/datagouv-visualizations"
+  },
+  "homepage": "https://github.com/datagouv/datagouv-visualizations#readme",
+  "bugs": {
+    "url": "https://github.com/datagouv/datagouv-visualizations/issues"
+  },
+  "keywords": [
+    "vue",
+    "react",
+    "visualization",
+    "chart",
+    "map",
+    "svg",
+    "maplibre",
+    "echarts",
+    "dsfr",
+    "datagouv",
+    "france"
+  ],
+  "exports": {
+    "./vue": {
+      "types": "./dist/vue/vue-entry.d.ts",
+      "import": "./dist/vue/index.js",
+      "require": "./dist/vue/index.cjs.js",
+      "default": "./dist/vue/index.umd.js"
+    },
+    "./react": {
+      "types": "./dist/react/react-entry.d.ts",
+      "import": "./dist/react/index.js",
+      "require": "./dist/react/index.cjs.js",
+      "default": "./dist/react/index.umd.js"
+    },
+    "./vue/style.css": "./dist/vue/datagouv-visualizations.css"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "typesVersions": {
+    "*": {
+      "vue": [
+        "./dist/vue/vue-entry.d.ts"
+      ],
+      "react": [
+        "./dist/react/react-entry.d.ts"
+      ]
+    }
+  },
+  "scripts": {
+    "build:vue": "vite build --mode vue",
+    "build:react": "vite build --mode react",
+    "build": "npm run build:vue && npm run build:react",
+    "postbuild": "npm run copy-assets",
+    "copy-assets": "cp -r src/assets dist/",
+    "prepublishOnly": "npm run build",
+    "dev": "cd examples && npm run dev",
+    "dev:install": "cd examples && npm install",
+    "pack:test": "npm pack",
+    "release:minor": "generate-changelog -m && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version minor && git push origin && git push origin --tags && sh -c 'gh release create $(git describe --tags) --generate-notes'",
+    "release:patch": "generate-changelog -p && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version patch && git push origin && git push origin --tags && sh -c 'gh release create $(git describe --tags) --generate-notes'",
+    "release:major": "generate-changelog -M && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version major && git push origin && git push origin --tags && sh -c 'gh release create $(git describe --tags) --generate-notes'"
+  },
+  "devDependencies": {
+    "@rollup/plugin-json": "^6.1.0",
+    "@types/node": "^24.2.0",
+    "@types/react": "^19.1.9",
+    "@types/react-dom": "^19.1.7",
+    "@vitejs/plugin-react": "^4.7.0",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "generate-changelog": "^1.8.0",
+    "typescript": "~5.9.2",
+    "vite": "^7.0.6",
+    "vite-plugin-dts": "^4.5.4"
+  },
+  "dependencies": {
+    "@types/maplibre-gl": "^1.14.0",
+    "echarts": "^6.0.0",
+    "maplibre-gl": "^5.6.2",
+    "vue": "^3.5.18"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": false
+    },
+    "react-dom": {
+      "optional": false
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

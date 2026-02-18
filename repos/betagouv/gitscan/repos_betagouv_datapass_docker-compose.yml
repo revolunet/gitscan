@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:12.12
+    restart: unless-stopped
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: datapass
+      POSTGRES_USER: datapass
+      POSTGRES_PASSWORD: datapass
+    ports:
+      - 5432:5432
+  cache:
+    image: redis
+  backend:
+    build:
+      context: backend
+    volumes:
+      - ./backend:/opt/apps/datapass-backend/current
+    environment:
+      PG_HOST: db
+    ports:
+      - 3001:3001
+    depends_on:
+      - db
+      - cache
+  worker:
+    build:
+      context: backend
+    command: bash -c "bundle exec sidekiq"
+    volumes:
+      - ./backend:/opt/apps/datapass-backend/current
+    depends_on:
+      - backend
+      - db
+
+volumes:
+  postgres-data:

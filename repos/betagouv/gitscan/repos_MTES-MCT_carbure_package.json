@@ -1,0 +1,27 @@
+{
+  "name": "frontend-scalingo",
+  "description": "Empty package.json to allow scalingo nodejs buildpack to setup properly",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "(cd front; npm install; npm run build)",
+    "test": "python web/manage.py test web --noinput",
+    "test-f": "python web/manage.py test $f --keepdb",
+    "generate-schema": "python web/manage.py spectacular --file api-schema.yaml",
+    "generate-schema-ts": "npm run generate-schema && cd front && npm run generate-api",
+    "generate-and-check-types": "npm run generate-schema && cd front && npm run generate-and-check-types",
+    "migrate": "python web/manage.py makemigrations && python web/manage.py migrate",
+    "restart": "docker-compose down && docker-compose up -d",
+    "deploy-preview": "git push origin $branch:preview --force",
+    "check-types": "cd front; npm run check-types",
+    "translate": "cd front; npm run translate",
+    "translate-missing": "cd front; npm run translate-missing"
+  },
+  "engines": {
+    "node": "22",
+    "npm": "10"
+  },
+  "cacheDirectories": [
+    "front/node_modules"
+  ]
+}

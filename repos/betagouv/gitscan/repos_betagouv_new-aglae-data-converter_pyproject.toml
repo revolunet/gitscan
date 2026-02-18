@@ -1,0 +1,73 @@
+[tool.poetry]
+name = "new-aglae-data-converter"
+version = "0.1.0"
+description = "Toolbox to convert data from files from New AGLAE particle accelerator to HDF5 format."
+authors = ["Witold Wroblewski <dev@witold.fr>", "Maxime Cattet <maximecattet@gmx.com>"]
+readme = "README.md"
+packages = [{ include = "new_aglae_data_converter" }]
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.11"
+h5py = "3.7.0"
+numpy = "1.24.1"
+PySide6 = "^6.5.0"
+pyyaml = "^6.0"
+fisx = "^1.3.1"
+
+[tool.poetry.group.dev.dependencies]
+black = "^22.12.0"
+py-spy = "^0.3.14"
+nuitka = "^1.3.8"
+maturin = "^0.14.15"
+ruff = "^0.0.272"
+
+[build-system]
+requires = ["poetry-core", "maturin>=0.14,<0.15"]
+build-backend = "maturin"
+
+[tool.maturin]
+features = ["pyo3/extension-module"]
+
+[tool.black]
+line-length = 120
+exclude = '''
+/(
+    \.git
+  | \.mypy_cache
+  | \.pytest_cache
+  | \.tox
+  | \.venv
+  | __pycache__
+  | build
+  | dist
+)/
+'''
+
+[tool.ruff]
+line-length = 120
+ignore = ["F401"]
+exclude = [
+  ".bzr",
+  ".direnv",
+  ".eggs",
+  ".git",
+  ".hg",
+  ".mypy_cache",
+  ".nox",
+  ".pants.d",
+  ".ruff_cache",
+  ".svn",
+  ".tox",
+  ".venv",
+  "__pypackages__",
+  "_build",
+  "buck-out",
+  "build",
+  "dist",
+  "node_modules",
+  "venv",
+  ".venv",
+]
+
+[tool.ruff.flake8-quotes]
+docstring-quotes = "double"
