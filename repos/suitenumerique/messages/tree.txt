@@ -46,6 +46,7 @@
 │   │   ├── architecture-high-level.png
 │   │   ├── readme-app.webp
 │   │   └── readme-banner.png
+│   ├── email-exporter.md
 │   ├── env.md
 │   ├── internationalization.md
 │   ├── model-custom-attributes.md
@@ -159,7 +160,8 @@
     │   │   │   │   ├── README.md
     │   │   │   │   ├── __init__.py
     │   │   │   │   ├── composer.py
-    │   │   │   │   └── parser.py
+    │   │   │   │   ├── parser.py
+    │   │   │   │   └── utils.py
     │   │   │   ├── selfcheck.py
     │   │   │   ├── signing.py
     │   │   │   └── smtp.py
@@ -254,7 +256,6 @@
     │   │   │   │   ├── test_maildomain_access.py
     │   │   │   │   ├── test_maildomain_users_metrics.py
     │   │   │   │   ├── test_message_template_list.py
-    │   │   │   │   ├── test_message_template_render.py
     │   │   │   │   ├── test_message_template_retrieve.py
     │   │   │   │   ├── test_messages_create.py
     │   │   │   │   ├── test_messages_delete.py
@@ -267,6 +268,7 @@
     │   │   │   │   ├── test_messages_retrieve.py
     │   │   │   │   ├── test_messages_with_signature.py
     │   │   │   │   ├── test_placeholder.py
+    │   │   │   │   ├── test_placeholder_resolve.py
     │   │   │   │   ├── test_prometheus_metrics.py
     │   │   │   │   ├── test_send_message_signature.py
     │   │   │   │   ├── test_thread_access.py
@@ -303,6 +305,7 @@
     │   │   │   │   ├── test_rfc5322_message_fuzz.py
     │   │   │   │   ├── test_rfc5322_parser.py
     │   │   │   │   ├── test_rfc5322_parser_structure.py
+    │   │   │   │   ├── test_rfc5322_utils.py
     │   │   │   │   ├── test_signing.py
     │   │   │   │   ├── test_smtp.py
     │   │   │   │   └── test_spam_processing.py
@@ -312,7 +315,7 @@
     │   │   │   │   ├── test_mailbox.py
     │   │   │   │   ├── test_maildomain.py
     │   │   │   │   ├── test_maildomainaccess.py
-    │   │   │   │   ├── test_messages.py
+    │   │   │   │   ├── test_message_template.py
     │   │   │   │   ├── test_user_abilities.py
     │   │   │   │   └── test_users.py
     │   │   │   ├── resources
@@ -636,7 +639,7 @@
     │   │   │   │   │   │   ├── dnscheck_response.ts
     │   │   │   │   │   │   ├── dnscheck_result.ts
     │   │   │   │   │   │   ├── dnsrecord_check.ts
-    │   │   │   │   │   │   ├── draft_*.ts  (14 files)
+    │   │   │   │   │   │   ├── draft_*.ts  (15 files)
     │   │   │   │   │   │   ├── drive_upload_attachment_request.ts
     │   │   │   │   │   │   ├── flag_create200.ts
     │   │   │   │   │   │   ├── flag_create400.ts
@@ -655,7 +658,7 @@
     │   │   │   │   │   │   ├── mail_*.ts  (5 files)
     │   │   │   │   │   │   ├── mailbox.ts
     │   │   │   │   │   │   ├── mailbox_*.ts  (12 files)
-    │   │   │   │   │   │   ├── mailboxes_*.ts  (9 files)
+    │   │   │   │   │   │   ├── mailboxes_*.ts  (7 files)
     │   │   │   │   │   │   ├── maildomain_access_read.ts
     │   │   │   │   │   │   ├── maildomain_access_write.ts
     │   │   │   │   │   │   ├── maildomain_access_write_request.ts
@@ -707,8 +710,16 @@
     │   │   │   │   ├── blocknote-view-field
     │   │   │   │   │   ├── _index.scss
     │   │   │   │   │   └── index.tsx
+    │   │   │   │   ├── email-exporter
+    │   │   │   │   │   ├── index.test.tsx
+    │   │   │   │   │   └── index.tsx
+    │   │   │   │   ├── hooks
+    │   │   │   │   │   └── use-base64-composer.tsx
     │   │   │   │   ├── image-block
-    │   │   │   │   │   └── index.ts
+    │   │   │   │   │   ├── index.ts
+    │   │   │   │   │   ├── use-html-with-object-urls.ts
+    │   │   │   │   │   ├── use-image-object-urls.ts
+    │   │   │   │   │   └── use-upload-image-as-base64.tsx
     │   │   │   │   ├── image-upload-button
     │   │   │   │   │   └── index.tsx
     │   │   │   │   ├── inline-template-variable
@@ -723,7 +734,8 @@
     │   │   │   │   │   ├── _index.scss
     │   │   │   │   │   └── index.tsx
     │   │   │   │   ├── smart-trailing-block.ts
-    │   │   │   │   └── toolbar.tsx
+    │   │   │   │   ├── toolbar.tsx
+    │   │   │   │   └── utils.ts
     │   │   │   ├── config
     │   │   │   │   ├── constants.ts
     │   │   │   │   └── index.ts
@@ -1171,4 +1183,4 @@
             ├── requirements.txt
             ├── test_smtp.py
             └── test_socks_proxy.py
-263 directories, 987 files
+265 directories, 996 files
