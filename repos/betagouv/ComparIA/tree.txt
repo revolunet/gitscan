@@ -19,41 +19,74 @@
 ├── LICENSE
 ├── Makefile
 ├── README.md
+├── backend
+│   ├── __init__.py
+│   ├── arena
+│   │   ├── __init__.py
+│   │   ├── conversation.py
+│   │   ├── litellm.py
+│   │   ├── models.py
+│   │   ├── persistence.py
+│   │   ├── reveal.py
+│   │   ├── router.py
+│   │   ├── session.py
+│   │   └── streaming.py
+│   ├── config.py
+│   ├── errors.py
+│   ├── llms
+│   │   ├── __init__.py
+│   │   ├── data.py
+│   │   ├── models.py
+│   │   ├── router.py
+│   │   └── utils.py
+│   ├── logger.py
+│   ├── main.py
+│   ├── sentry.py
+│   ├── session.py
+│   └── utils
+│       ├── __init__.py
+│       ├── countries.py
+│       └── user.py
 ├── controller.py
-├── database-line.svg
 ├── docker
+│   ├── .env.dev
 │   ├── .env.dist
 │   ├── Dockerfile
 │   ├── Dockerfile.front
+│   ├── app.compose.override.yml
 │   ├── build-and-push-to-harbor.sh
+│   ├── db-prd-local.compose.yml
+│   ├── docker-bake.yml
 │   ├── docker-compose.yml
 │   ├── generate-init-db.sh
-│   └── list-harbor-tags.sh
+│   ├── list-harbor-tags.sh
+│   └── restore-backup.sh
 ├── frontend
+│   ├── .dockerignore
 │   ├── .env.example
 │   ├── .gitignore
 │   ├── .npmrc
 │   ├── .prettierignore
 │   ├── .prettierrc
 │   ├── README.md
+│   ├── comparia.inlang
+│   │   ├── project_id
+│   │   └── settings.json
 │   ├── e2e
 │   │   └── demo.test.ts
 │   ├── eslint.config.js
 │   ├── locales
 │   │   ├── maintenance.py
-│   │   ├── messages
-│   │   │   ├── bar.json
-│   │   │   ├── da.json
-│   │   │   ├── en.json
-│   │   │   ├── es.json
-│   │   │   ├── et.json
-│   │   │   ├── fr.json
-│   │   │   ├── lt.json
-│   │   │   ├── oc.json
-│   │   │   └── sv.json
-│   │   ├── project_id
-│   │   └── settings.json
-│   ├── package-lock.json
+│   │   └── messages
+│   │       ├── bar.json
+│   │       ├── da.json
+│   │       ├── en.json
+│   │       ├── es.json
+│   │       ├── et.json
+│   │       ├── fr.json
+│   │       ├── lt.json
+│   │       ├── oc.json
+│   │       └── sv.json
 │   ├── package.json
 │   ├── playwright.config.ts
 │   ├── src
@@ -64,9 +97,9 @@
 │   │   │   └── icons.css
 │   │   ├── demo.spec.ts
 │   │   ├── error.html
+│   │   ├── hooks.client.ts
 │   │   ├── hooks.server.ts
 │   │   ├── lib
-│   │   │   ├── api.ts
 │   │   │   ├── chatService.svelte.ts
 │   │   │   ├── components
 │   │   │   │   ├── AILogo.svelte
@@ -117,6 +150,7 @@
 │   │   │   │       ├── html-tags.ts
 │   │   │   │       ├── prism.css
 │   │   │   │       └── utils.ts
+│   │   │   ├── fastapi-client.ts
 │   │   │   ├── generated
 │   │   │   │   ├── models.ts
 │   │   │   │   ├── news.json
@@ -127,7 +161,6 @@
 │   │   │   │   ├── useLocalStorage.svelte.ts
 │   │   │   │   └── useToast.svelte.ts
 │   │   │   ├── index.ts
-│   │   │   ├── logger.ts
 │   │   │   ├── models.ts
 │   │   │   ├── stores
 │   │   │   │   └── cohortStore.svelte.ts
@@ -207,9 +240,6 @@
 │   │               ├── VoteRadioGroup.svelte
 │   │               └── index.ts
 │   ├── static
-│   │   ├── arena
-│   │   │   ├── ranking-graph.png
-│   │   │   └── ranking-table.png
 │   │   ├── artworks
 │   │   │   ├── conclusion.svg
 │   │   │   ├── ecosystem.svg
@@ -359,6 +389,9 @@
 │   │   │   ├── shuffle.svg
 │   │   │   ├── sort-asc.svg
 │   │   │   └── sort-desc.svg
+│   │   ├── images
+│   │   │   ├── ranking-graph.png
+│   │   │   └── ranking-table.png
 │   │   ├── news
 │   │   │   ├── analyse-bunka.png
 │   │   │   ├── article-ZDNet.png
@@ -482,26 +515,8 @@
 │   ├── vite.config.ts
 │   ├── vitest-setup-client.ts
 │   └── yarn.lock
-├── languia
-│   ├── block_arena.py
-│   ├── config.py
-│   ├── conversation.py
-│   ├── custom_components
-│   │   ├── __init__.py
-│   │   ├── customchatbot.py
-│   │   ├── customdropdown.py
-│   │   └── customradiocard.py
-│   ├── listeners.py
-│   ├── litellm.py
-│   ├── logs.py
-│   ├── models.py
-│   ├── reveal.py
-│   ├── session.py
-│   └── utils.py
-├── main.py
-├── package.json
+├── google_creds.json.example
 ├── pyproject.toml
-├── share.svg
 ├── sonar-project.properties
 ├── templates
 │   └── models_errors.html
@@ -511,19 +526,30 @@
 │   ├── export_dataset.py
 │   ├── ip_map.sql
 │   ├── leaderboard_cookbook.ipynb
+│   ├── logger.py
 │   ├── merge_models.sql
 │   ├── models
+│   │   ├── README.md
 │   │   ├── __init__.py
 │   │   ├── archs.json
+│   │   ├── archs.py
 │   │   ├── build_models.py
 │   │   ├── build_simplified_llm_list_ranking.py
+│   │   ├── dataset_data.py
 │   │   ├── generated-models-extra-data.json
 │   │   ├── generated-models.json
-│   │   ├── generated-preferences.json
 │   │   ├── licenses.json
+│   │   ├── licenses.py
+│   │   ├── llms.py
 │   │   ├── maintenance.py
 │   │   ├── models.json
-│   │   └── utils.py
+│   │   ├── organisations.py
+│   │   └── schemas
+│   │       ├── README.md
+│   │       ├── build_doc.py
+│   │       ├── schema-archs.json
+│   │       ├── schema-licenses.json
+│   │       └── schema-organisations.json
 │   ├── news
 │   │   ├── build_news.py
 │   │   └── fr.json
@@ -541,7 +567,7 @@
 │   │   ├── da.json
 │   │   ├── fr.json
 │   │   └── sv.json
-│   └── topics_pii.py
-├── uv.lock
-└── yarn.lock
-82 directories, 464 files
+│   ├── topics_pii.py
+│   └── utils.py
+└── uv.lock
+86 directories, 486 files
