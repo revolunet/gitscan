@@ -30,6 +30,7 @@
 ├── .husky
 │   └── pre-commit
 ├── .lintstagedrc.json
+├── .mcp.json
 ├── .npmrc
 ├── .prettierignore
 ├── .prettierrc.json
@@ -689,6 +690,7 @@
 │   │   ├── document-upload-architecture.md
 │   │   ├── supprimer-les-warnings-not-wrapped-in-act.md
 │   │   └── tester-les-inputs-api.md
+│   ├── performance-improvements.md
 │   └── plans
 │       ├── 2026-01-26-agents-md-configuration-design.md
 │       ├── 2026-01-28-document-upload-refactoring.md
@@ -725,6 +727,7 @@
 │   ├── README.md
 │   ├── index.html
 │   ├── package.json
+│   ├── project.json
 │   ├── public
 │   │   ├── .htaccess
 │   │   ├── favicon
@@ -935,6 +938,7 @@
 │   │   │   │   ├── HousingList.tsx
 │   │   │   │   └── housing-list.module.scss
 │   │   │   ├── HousingListFilters
+│   │   │   │   ├── ActiveOwnerCountSelect.tsx
 │   │   │   │   ├── BuildingPeriodSelect.tsx
 │   │   │   │   ├── CadastralClassificationSelect.tsx
 │   │   │   │   ├── CampaignSelect.tsx
@@ -956,7 +960,6 @@
 │   │   │   │   ├── OwnershipKindSelect.tsx
 │   │   │   │   ├── PerimeterSearchableSelect.tsx
 │   │   │   │   ├── RoomCountSelect.tsx
-│   │   │   │   ├── SecondaryOwnerSelect.tsx
 │   │   │   │   ├── SurfaceSelect.tsx
 │   │   │   │   ├── TaxSelect.tsx
 │   │   │   │   ├── VacancyRateSelect.tsx
@@ -1498,7 +1501,7 @@
 │   ├── tsconfig.app.json
 │   ├── tsconfig.json
 │   ├── tsconfig.spec.json
-│   ├── vite.config.ts
+│   ├── vite.config.mts
 │   ├── vitest.polyfills.js
 │   └── vitest.setup.ts
 ├── nx.json
@@ -1667,6 +1670,7 @@
 │   │   │   ├── note-payload.ts
 │   │   │   ├── owner-filters.ts
 │   │   │   ├── password.ts
+│   │   │   ├── phone.ts
 │   │   │   ├── siren.ts
 │   │   │   ├── test
 │   │   │   │   ├── building-filters.test.ts
@@ -1681,6 +1685,7 @@
 │   │   │   │   ├── id.test.ts
 │   │   │   │   ├── note-payload.test.ts
 │   │   │   │   ├── owner-filters.test.ts
+│   │   │   │   ├── phone.test.ts
 │   │   │   │   ├── user-filters.test.ts
 │   │   │   │   └── user-update-payload.test.ts
 │   │   │   ├── transforms.ts
@@ -2056,6 +2061,7 @@
 │   │   │   │   │   ├── 20251120151611_df-housing-nat-2024-add-index-idlocal.ts
 │   │   │   │   │   ├── 20251201123044_documents.ts
 │   │   │   │   │   ├── 20251201123045_documents_housings.ts
+│   │   │   │   │   ├── 20251215164103_dpe-import-optimization-indexes.ts
 │   │   │   │   │   ├── 20260122165040_fast-housing-add-actual-dpe.ts
 │   │   │   │   │   ├── 20260127110646_drop-deprecated-precision-fields.ts
 │   │   │   │   │   ├── 20260129092128_documents-add-establishment_id.ts
@@ -2195,7 +2201,6 @@
 │   │   │   ├── housingDocumentRepository.ts
 │   │   │   ├── housingOwnerRepository.ts
 │   │   │   ├── housingRepository.ts
-│   │   │   ├── housingStreamRepository.ts
 │   │   │   ├── localityRepository.ts
 │   │   │   ├── noteRepository.ts
 │   │   │   ├── ownerMatchRepository.ts
@@ -2396,18 +2401,9 @@
 │   │   │   │   ├── elapsed.ts
 │   │   │   │   ├── index.ts
 │   │   │   │   ├── models
-│   │   │   │   │   ├── Comparison.ts
 │   │   │   │   │   ├── DatafoncierHousing.ts
 │   │   │   │   │   ├── DatafoncierOwner.ts
 │   │   │   │   │   └── index.ts
-│   │   │   │   ├── owner-processor
-│   │   │   │   │   ├── cache.ts
-│   │   │   │   │   ├── duplicates.ts
-│   │   │   │   │   ├── evaluator.ts
-│   │   │   │   │   └── test
-│   │   │   │   │       ├── cache.test.ts
-│   │   │   │   │       └── duplicates.test.ts
-│   │   │   │   ├── stream.ts
 │   │   │   │   └── validator.ts
 │   │   │   └── sync-user-kind
 │   │   │       ├── README.md
@@ -2456,7 +2452,6 @@
 │   │       ├── diff.ts
 │   │       ├── excelUtils.ts
 │   │       ├── object.ts
-│   │       ├── stream.ts
 │   │       ├── stringUtils.ts
 │   │       ├── test
 │   │       │   └── object.test.ts
@@ -2526,6 +2521,5 @@
 │   └── test-shapefile-fix.ts
 ├── tsconfig.base.json
 ├── tsconfig.json
-├── vitest.config.ts
 └── yarn.lock
-386 directories, 2144 files
+384 directories, 2140 files
