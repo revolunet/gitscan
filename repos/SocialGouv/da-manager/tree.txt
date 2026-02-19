@@ -2,20 +2,58 @@
 ├── .dockerignore
 ├── .github
 │   └── workflows
+│       ├── ci.yaml
+│       ├── deactivate.yaml
+│       ├── preproduction.yaml
+│       ├── production.yaml
+│       ├── release.yaml
 │       └── review.yaml
 ├── .gitignore
 ├── .kontinuous
 │   ├── config.yaml
 │   ├── env
-│   │   └── dev
-│   │       └── templates
-│   │           ├── da-manager.configmap.yaml
-│   │           └── proconnect.sealed-secret.yaml
+│   │   ├── dev
+│   │   │   ├── templates
+│   │   │   │   ├── da-manager.configmap.yaml
+│   │   │   │   └── proconnect.sealed-secret.yaml
+│   │   │   └── values.yaml
+│   │   ├── preprod
+│   │   │   ├── templates
+│   │   │   │   ├── da-manager.configmap.yaml
+│   │   │   │   └── proconnect.sealed-secret.yaml
+│   │   │   └── values.yaml
+│   │   └── prod
+│   │       ├── templates
+│   │       │   ├── da-manager.configmap.yaml
+│   │       │   └── proconnect.sealed-secret.yaml
+│   │       └── values.yaml
 │   └── values.yaml
 ├── .prettierignore
+├── CHANGELOG.md
 ├── CLAUDE.md
 ├── Dockerfile
 ├── README.md
+├── __tests__
+│   ├── api
+│   │   ├── da-access.test.ts
+│   │   ├── da-check-name.test.ts
+│   │   ├── da-id.test.ts
+│   │   ├── da-logs.test.ts
+│   │   ├── da-versions.test.ts
+│   │   ├── da.test.ts
+│   │   └── users.test.ts
+│   ├── db
+│   │   ├── access-control.test.ts
+│   │   ├── edit-logs.test.ts
+│   │   ├── forms.test.ts
+│   │   ├── users.test.ts
+│   │   └── versions.test.ts
+│   ├── global-setup.ts
+│   ├── helpers
+│   │   ├── auth.ts
+│   │   ├── fixtures.ts
+│   │   └── request.ts
+│   └── setup.ts
 ├── app
 │   ├── _components
 │   │   ├── Autocomplete.tsx
@@ -24,6 +62,11 @@
 │   │   ├── DeleteDAButton.tsx
 │   │   ├── HeaderWithAuth.tsx
 │   │   └── ProConnectLoginButton.tsx
+│   ├── admin
+│   │   └── users
+│   │       └── [id]
+│   │           └── activity
+│   │               └── page.tsx
 │   ├── api
 │   │   ├── auth
 │   │   │   └── [...nextauth]
@@ -57,6 +100,8 @@
 │   │   │   └── route.ts
 │   │   └── users
 │   │       ├── [id]
+│   │       │   ├── activity
+│   │       │   │   └── route.ts
 │   │       │   └── route.ts
 │   │       └── route.ts
 │   ├── auth
@@ -122,17 +167,21 @@
 │   ├── 0000_nasty_metal_master.sql
 │   ├── 0001_crazy_dexter_bennett.sql
 │   ├── 0002_unique_form_name.sql
+│   ├── 0003_unique_email.sql
 │   └── meta
 │       ├── 0000_snapshot.json
 │       ├── 0001_snapshot.json
 │       ├── 0002_snapshot.json
+│       ├── 0003_snapshot.json
 │       └── _journal.json
 ├── drizzle.config.ts
 ├── eslint.config.mjs
+├── instrumentation.ts
 ├── lib
 │   ├── auth-helpers.ts
 │   └── db
 │       ├── index.ts
+│       ├── migrate.ts
 │       ├── queries
 │       │   ├── editLogs.ts
 │       │   ├── form-access.ts
@@ -1035,10 +1084,12 @@
 │   │   └── index.json
 │   ├── vercel.svg
 │   └── window.svg
+├── sonar-project.properties
 ├── tsconfig.json
 ├── types
 │   ├── da.types.ts
 │   └── next-auth.d.ts
-└── utils
-    └── excalidrawTemplates.ts
-73 directories, 1182 files
+├── utils
+│   └── excalidrawTemplates.ts
+└── vitest.config.ts
+86 directories, 1220 files
