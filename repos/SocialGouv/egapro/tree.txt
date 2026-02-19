@@ -1,103 +1,19 @@
 .
 ├── .dockerignore
-├── .editorconfig
-├── .env.dist
-├── .gitattributes
 ├── .github
 │   ├── CODEOWNERS
-│   ├── bin
-│   │   └── git
 │   ├── dependabot.yml
-│   ├── renovate.json
 │   └── workflows
-│       ├── api-tests.yaml
+│       ├── ci.yaml
 │       ├── deactivate.yaml
-│       ├── e2e.yaml
 │       ├── preproduction.yaml
 │       ├── production.yaml
 │       ├── release.yml
 │       ├── review-auto.yaml
-│       ├── review.yaml
-│       └── test-unitaires.yaml
+│       └── review.yaml
 ├── .gitignore
 ├── .kontinuous
 │   ├── Chart.yaml
-│   ├── charts
-│   │   └── redis
-│   │       ├── .helmignore
-│   │       ├── Chart.lock
-│   │       ├── Chart.yaml
-│   │       ├── README.md
-│   │       ├── charts
-│   │       │   └── common
-│   │       │       ├── .helmignore
-│   │       │       ├── Chart.yaml
-│   │       │       ├── README.md
-│   │       │       ├── templates
-│   │       │       │   ├── _affinities.tpl
-│   │       │       │   ├── _capabilities.tpl
-│   │       │       │   ├── _compatibility.tpl
-│   │       │       │   ├── _errors.tpl
-│   │       │       │   ├── _images.tpl
-│   │       │       │   ├── _ingress.tpl
-│   │       │       │   ├── _labels.tpl
-│   │       │       │   ├── _names.tpl
-│   │       │       │   ├── _resources.tpl
-│   │       │       │   ├── _secrets.tpl
-│   │       │       │   ├── _storage.tpl
-│   │       │       │   ├── _tplvalues.tpl
-│   │       │       │   ├── _utils.tpl
-│   │       │       │   ├── _warnings.tpl
-│   │       │       │   └── validations
-│   │       │       │       ├── _cassandra.tpl
-│   │       │       │       ├── _mariadb.tpl
-│   │       │       │       ├── _mongodb.tpl
-│   │       │       │       ├── _mysql.tpl
-│   │       │       │       ├── _postgresql.tpl
-│   │       │       │       ├── _redis.tpl
-│   │       │       │       └── _validations.tpl
-│   │       │       └── values.yaml
-│   │       ├── templates
-│   │       │   ├── NOTES.txt
-│   │       │   ├── _helpers.tpl
-│   │       │   ├── configmap.yaml
-│   │       │   ├── extra-list.yaml
-│   │       │   ├── headless-svc.yaml
-│   │       │   ├── health-configmap.yaml
-│   │       │   ├── master
-│   │       │   │   ├── application.yaml
-│   │       │   │   ├── pdb.yaml
-│   │       │   │   ├── psp.yaml
-│   │       │   │   ├── pvc.yaml
-│   │       │   │   ├── service.yaml
-│   │       │   │   └── serviceaccount.yaml
-│   │       │   ├── metrics-svc.yaml
-│   │       │   ├── networkpolicy.yaml
-│   │       │   ├── podmonitor.yaml
-│   │       │   ├── prometheusrule.yaml
-│   │       │   ├── replicas
-│   │       │   │   ├── application.yaml
-│   │       │   │   ├── hpa.yaml
-│   │       │   │   ├── pdb.yaml
-│   │       │   │   ├── service.yaml
-│   │       │   │   └── serviceaccount.yaml
-│   │       │   ├── role.yaml
-│   │       │   ├── rolebinding.yaml
-│   │       │   ├── scripts-configmap.yaml
-│   │       │   ├── secret-svcbind.yaml
-│   │       │   ├── secret.yaml
-│   │       │   ├── sentinel
-│   │       │   │   ├── hpa.yaml
-│   │       │   │   ├── node-services.yaml
-│   │       │   │   ├── pdb.yaml
-│   │       │   │   ├── ports-configmap.yaml
-│   │       │   │   ├── service.yaml
-│   │       │   │   └── statefulset.yaml
-│   │       │   ├── serviceaccount.yaml
-│   │       │   ├── servicemonitor.yaml
-│   │       │   └── tls-secret.yaml
-│   │       ├── values.schema.json
-│   │       └── values.yaml
 │   ├── config.yaml
 │   ├── env
 │   │   ├── dev
@@ -107,7 +23,8 @@
 │   │   │   │   ├── egapro.configmap.yaml -> ../../preprod/templates/egapro.configmap.yaml
 │   │   │   │   ├── github-oauth.sealed-secret.yaml -> ../../preprod/templates/github-oauth.sealed-secret.yaml
 │   │   │   │   ├── moncomptepro.sealed-secret.yaml -> ../../preprod/templates/moncomptepro.sealed-secret.yaml
-│   │   │   │   ├── redis-auth.sealedsecret.yaml -> ../../preprod/templates/redis-auth.sealedsecret.yaml
+│   │   │   │   ├── proconnect-secret.sealed-secret.yaml
+│   │   │   │   ├── proconnect.configmap.yaml
 │   │   │   │   ├── sentry.sealed-secret.yaml -> ../../preprod/templates/sentry.sealed-secret.yaml
 │   │   │   │   └── staff.sealed-secret.yaml -> ../../preprod/templates/staff.sealed-secret.yaml
 │   │   │   └── values.yaml
@@ -118,7 +35,6 @@
 │   │   │   │   ├── egapro.configmap.yaml
 │   │   │   │   ├── github-oauth.sealed-secret.yaml
 │   │   │   │   ├── moncomptepro.sealed-secret.yaml
-│   │   │   │   ├── redis-auth.sealedsecret.yaml
 │   │   │   │   ├── sentry.sealed-secret.yaml
 │   │   │   │   └── staff.sealed-secret.yaml
 │   │   │   └── values.yaml
@@ -129,7 +45,6 @@
 │   │       │   ├── github-oauth.sealed-secret.yaml
 │   │       │   ├── moncomptepro.sealed-secret.yaml
 │   │       │   ├── redirect-index-egapro.ingress.yaml
-│   │       │   ├── redis-auth.sealedsecret.yaml
 │   │       │   ├── sentry.sealed-secret.yaml
 │   │       │   ├── smtp-app.sealed-secret.yaml
 │   │       │   ├── smtp.sealed-secret.yaml
@@ -142,164 +57,13 @@
 │   │   └── files.pvc.yaml
 │   └── values.yaml
 ├── .nvmrc
-├── .releaserc.js
-├── .tool-versions
-├── .vscode
-│   ├── extensions.json
-│   ├── launch.json
-│   ├── settings.json
-│   └── tasks.json
-├── .yarn
-│   ├── patches
-│   │   └── @codegouvfr-react-dsfr-npm-0.78.2-9b92c7917d.patch
-│   ├── plugins
-│   │   └── @yarnpkg
-│   │       └── plugin-fetch.cjs
-│   └── releases
-│       └── yarn-4.0.2.cjs
-├── .yarnrc.yml
+├── .releaserc.json
 ├── CHANGELOG.md
 ├── LICENSE
 ├── README.md
-├── assets
-│   └── image.png
-├── docker-compose.build.yml
 ├── docker-compose.yml
-├── mnt
-│   └── dgt.xlsx
 ├── package.json
 ├── packages
-│   ├── api
-│   │   ├── .gitignore
-│   │   ├── Dockerfile
-│   │   ├── Dockerfile.dev
-│   │   ├── MANIFEST.in
-│   │   ├── Makefile
-│   │   ├── README.md
-│   │   ├── dev.sh
-│   │   ├── docs
-│   │   │   └── index.md
-│   │   ├── egapro
-│   │   │   ├── __init__.py
-│   │   │   ├── bin.py
-│   │   │   ├── config.py
-│   │   │   ├── constants.py
-│   │   │   ├── csv_representation.py
-│   │   │   ├── db.py
-│   │   │   ├── dgt.py
-│   │   │   ├── dgt_representation.py
-│   │   │   ├── emails
-│   │   │   │   ├── __init__.py
-│   │   │   │   ├── objectives
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── body.html
-│   │   │   │   │   ├── body.txt
-│   │   │   │   │   └── subject.txt
-│   │   │   │   ├── permalink
-│   │   │   │   │   ├── body.txt
-│   │   │   │   │   └── subject.txt
-│   │   │   │   ├── reply_to.yml
-│   │   │   │   ├── representation
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── body.html
-│   │   │   │   │   ├── body.txt
-│   │   │   │   │   └── subject.txt
-│   │   │   │   └── success
-│   │   │   │       ├── __init__.py
-│   │   │   │       ├── body.html
-│   │   │   │       ├── body.txt
-│   │   │   │       └── subject.txt
-│   │   │   ├── exporter.py
-│   │   │   ├── helpers.py
-│   │   │   ├── loggers.py
-│   │   │   ├── migrations
-│   │   │   │   ├── 001_ecart_remunerations.py
-│   │   │   │   ├── 002_ecart_augmentations.py
-│   │   │   │   ├── 003_ecart_promotions.py
-│   │   │   │   ├── 004_ecart_percentage.py
-│   │   │   │   ├── 005_remove_entreprise_from_ues.py
-│   │   │   │   ├── 006_fix_mesures_correctives_where_index_is_zero.sql
-│   │   │   │   ├── 007_search_code_naf_to_section_naf.sql
-│   │   │   │   ├── 008_fix_adresse.py
-│   │   │   │   ├── 009_fix_telephone.sql
-│   │   │   │   ├── 010_fix_telephone_length.sql
-│   │   │   │   ├── 011_import_adresse_from_api_entreprises.py
-│   │   │   │   ├── 012_round_effectif.sql
-│   │   │   │   ├── 013_fix_note_rounding.py
-│   │   │   │   ├── 014_replace_siren.py
-│   │   │   │   ├── 015_remove_ues_nom.sql
-│   │   │   │   ├── 016_delete_declaration.sql
-│   │   │   │   ├── 017_fix_note_rounding.py
-│   │   │   │   ├── 018_fix_entreprise_effectif_type.sql
-│   │   │   │   ├── 019_remove_ues_data.sql
-│   │   │   │   ├── 020_migrate_ownership.sql
-│   │   │   │   ├── 021_fix_note_rounding.py
-│   │   │   │   ├── 022_fix_uppercase_emails.sql
-│   │   │   │   ├── 023_delete_declaration.sql
-│   │   │   │   └── 024_delete_declaration.sql
-│   │   │   ├── models.py
-│   │   │   ├── pdf
-│   │   │   │   ├── __init__.py
-│   │   │   │   ├── base.py
-│   │   │   │   ├── declaration.py
-│   │   │   │   ├── font
-│   │   │   │   │   ├── Marianne-Bold.ttf
-│   │   │   │   │   ├── Marianne-BoldItalic.ttf
-│   │   │   │   │   ├── Marianne-Regular.ttf
-│   │   │   │   │   └── Marianne-RegularItalic.ttf
-│   │   │   │   ├── logo.jpeg
-│   │   │   │   └── representation.py
-│   │   │   ├── schema
-│   │   │   │   ├── __init__.py
-│   │   │   │   ├── raw.yml
-│   │   │   │   └── utils.py
-│   │   │   ├── sql
-│   │   │   │   ├── __init__.py
-│   │   │   │   ├── create_indexes.sql
-│   │   │   │   ├── index_declaration.sql
-│   │   │   │   ├── index_representation_equilibree.sql
-│   │   │   │   ├── init.sql
-│   │   │   │   ├── init_test.sql
-│   │   │   │   ├── insert_archive.sql
-│   │   │   │   ├── insert_declaration.sql
-│   │   │   │   ├── insert_draft_declaration.sql
-│   │   │   │   ├── insert_representation.sql
-│   │   │   │   ├── public_declarations.sql
-│   │   │   │   ├── search.sql
-│   │   │   │   ├── search_representation_equilibree.sql
-│   │   │   │   └── search_stats.sql
-│   │   │   ├── tokens.py
-│   │   │   ├── utils.py
-│   │   │   └── views.py
-│   │   ├── entrypoint.sh
-│   │   ├── init.py
-│   │   ├── migrate-legacy.py
-│   │   ├── mkdocs.yml
-│   │   ├── setup.cfg
-│   │   ├── setup.py
-│   │   ├── start.sh
-│   │   └── test
-│   │       ├── api
-│   │       │   ├── test_api.py
-│   │       │   ├── test_declaration.py
-│   │       │   ├── test_ownership.py
-│   │       │   ├── test_representation.py
-│   │       │   └── test_simulation.py
-│   │       ├── conftest.py
-│   │       ├── data
-│   │       │   ├── big_company.pdf
-│   │       │   ├── small_company.pdf
-│   │       │   ├── small_company_nc.pdf
-│   │       │   ├── solen.xlsx
-│   │       │   └── solen_ues.xlsx
-│   │       ├── test_db.py
-│   │       ├── test_email.py
-│   │       ├── test_exporter.py
-│   │       ├── test_ft.py
-│   │       ├── test_helpers.py
-│   │       ├── test_models.py
-│   │       ├── test_schema.py
-│   │       └── test_utils.py
 │   ├── app
 │   │   ├── .env.development
 │   │   ├── .env.example
@@ -307,25 +71,13 @@
 │   │   ├── .env.test
 │   │   ├── .eslintrc.js
 │   │   ├── .gitignore
-│   │   ├── .prettierrc.js
 │   │   ├── Dockerfile
 │   │   ├── cypress
 │   │   │   ├── e2e
-│   │   │   │   ├── declaration_1000_employees_firm.cy.ts
-│   │   │   │   ├── declaration_1000_employees_firm_2.cy.ts
-│   │   │   │   ├── declaration_251-999_employees_firm_1.cy.ts
-│   │   │   │   ├── declaration_251-999_employees_firm_2.cy.ts
-│   │   │   │   ├── declaration_50-250_employees_firm_1.cy.ts
-│   │   │   │   ├── declaration_50-250_employees_firm_2.cy.ts
-│   │   │   │   ├── declaration_50-250_employees_firm_3.cy.ts
-│   │   │   │   ├── declaration_50-250_employees_firm_4.cy.ts
-│   │   │   │   ├── declaration_50-250_employees_firm_5.cy.ts
 │   │   │   │   ├── declaration_representative_1.cy.ts
 │   │   │   │   ├── declaration_representative_2.cy.ts
 │   │   │   │   ├── declaration_representative_3.cy.ts
-│   │   │   │   ├── declaration_representative_4.cy.ts
-│   │   │   │   ├── homepage.cy.ts
-│   │   │   │   └── simulateur-parcours.cy.ts
+│   │   │   │   └── declaration_representative_4.cy.ts
 │   │   │   ├── fixtures
 │   │   │   │   └── example.json
 │   │   │   ├── support
@@ -341,8 +93,6 @@
 │   │   │       └── ownership_request.sql
 │   │   ├── env.d.ts
 │   │   ├── global.d.ts
-│   │   ├── jest.config.ts
-│   │   ├── jest.setup.js
 │   │   ├── next-env.d.ts
 │   │   ├── next.config.js
 │   │   ├── package.json
@@ -366,6 +116,7 @@
 │   │   ├── scripts
 │   │   │   ├── generateEnvDeclaration.ts
 │   │   │   ├── generateModelsFromSchema.ts
+│   │   │   ├── prebuild-dsfr.js
 │   │   │   ├── sql-scripts
 │   │   │   │   ├── migrate-simulations-helpers.ts
 │   │   │   │   └── migrate-simulations.ts
@@ -465,6 +216,7 @@
 │   │   │   │   ├── shared-domain
 │   │   │   │   │   └── infra
 │   │   │   │   │       ├── db
+│   │   │   │   │       │   ├── initDb.ts
 │   │   │   │   │       │   ├── postgres.ts
 │   │   │   │   │       │   └── seeds
 │   │   │   │   │       │       ├── 01_repEq.ts
@@ -494,13 +246,6 @@
 │   │   │   │   │   ├── __tests__
 │   │   │   │   │   │   └── SearchSirenForm.test.tsx
 │   │   │   │   │   ├── consultation.module.css
-│   │   │   │   │   ├── index-egapro
-│   │   │   │   │   │   └── recherche
-│   │   │   │   │   │       ├── AverageIndicatorForm.tsx
-│   │   │   │   │   │       ├── DisplayIndexResults.tsx
-│   │   │   │   │   │       ├── PageDisplay.tsx
-│   │   │   │   │   │       ├── opengraph-image.tsx
-│   │   │   │   │   │       └── page.tsx
 │   │   │   │   │   ├── layout.tsx
 │   │   │   │   │   └── representation-equilibree
 │   │   │   │   │       └── recherche
@@ -510,438 +255,117 @@
 │   │   │   │   │           └── page.tsx
 │   │   │   │   ├── (default)
 │   │   │   │   │   ├── Navigation.tsx
-│   │   │   │   │   ├── __tests__
-│   │   │   │   │   │   ├── Navigation.test.tsx
-│   │   │   │   │   │   ├── layout.test.tsx
-│   │   │   │   │   │   ├── messages.test.ts
-│   │   │   │   │   │   └── page.test.tsx
-│   │   │   │   │   ├── aide-index
-│   │   │   │   │   │   ├── __tests__
-│   │   │   │   │   │   │   └── page.test.tsx
-│   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   ├── aide-proconnect
-│   │   │   │   │   │   ├── __tests__
-│   │   │   │   │   │   │   └── page.test.tsx
-│   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   ├── cgu
-│   │   │   │   │   │   ├── 08022021
-│   │   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   │   ├── 12102022
-│   │   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   │   ├── 15032024
-│   │   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   ├── declaration-accessibilite
-│   │   │   │   │   │   ├── __tests__
-│   │   │   │   │   │   │   ├── __snapshots__
-│   │   │   │   │   │   │   │   └── page.test.tsx.snap
-│   │   │   │   │   │   │   └── page.test.tsx
-│   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   ├── SwitchOrganizationButton.tsx
 │   │   │   │   │   ├── default.module.css
 │   │   │   │   │   ├── index-egapro
-│   │   │   │   │   │   ├── __tests__
-│   │   │   │   │   │   │   └── page.test.tsx
-│   │   │   │   │   │   ├── declaration
-│   │   │   │   │   │   │   ├── (remunerations)
-│   │   │   │   │   │   │   │   ├── RemunerationGenericForm.module.scss
-│   │   │   │   │   │   │   │   ├── RemunerationGenericForm.tsx
-│   │   │   │   │   │   │   │   ├── remunerations-coefficient-autre
-│   │   │   │   │   │   │   │   │   ├── __tests__
-│   │   │   │   │   │   │   │   │   │   └── page.test.tsx
-│   │   │   │   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   │   │   │   ├── remunerations-coefficient-branche
-│   │   │   │   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   │   │   │   └── remunerations-csp
-│   │   │   │   │   │   │   │       ├── __tests__
-│   │   │   │   │   │   │   │       │   └── page.test.tsx
-│   │   │   │   │   │   │   │       └── page.tsx
-│   │   │   │   │   │   │   ├── AlertExistingDeclaration.tsx
-│   │   │   │   │   │   │   ├── BackNextButtons.tsx
-│   │   │   │   │   │   │   ├── DeclarationStepper.tsx
-│   │   │   │   │   │   │   ├── [siren]
-│   │   │   │   │   │   │   │   └── [year]
-│   │   │   │   │   │   │   │       ├── EditButton.tsx
-│   │   │   │   │   │   │   │       ├── RecapCardIndicator.tsx
-│   │   │   │   │   │   │   │       ├── RecapCardPublication.tsx
-│   │   │   │   │   │   │   │       ├── RecapDeclaration.tsx
-│   │   │   │   │   │   │   │       ├── actions.ts
-│   │   │   │   │   │   │   │       ├── page.tsx
-│   │   │   │   │   │   │   │       └── pdf
-│   │   │   │   │   │   │   │           └── route.ts
-│   │   │   │   │   │   │   ├── actions.ts
-│   │   │   │   │   │   │   ├── assujetti
-│   │   │   │   │   │   │   │   ├── Form.tsx
-│   │   │   │   │   │   │   │   ├── __tests__
-│   │   │   │   │   │   │   │   │   └── page.test.tsx
-│   │   │   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   │   │   ├── augmentations
-│   │   │   │   │   │   │   │   ├── AugmentationsForm.tsx
-│   │   │   │   │   │   │   │   ├── __tests__
-│   │   │   │   │   │   │   │   │   └── page.test.tsx
-│   │   │   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   │   │   ├── augmentations-et-promotions
-│   │   │   │   │   │   │   │   ├── AugmentationsEtPromotionsForm.tsx
-│   │   │   │   │   │   │   │   ├── __tests__
-│   │   │   │   │   │   │   │   │   └── page.test.tsx
-│   │   │   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   │   │   ├── commencer
-│   │   │   │   │   │   │   │   ├── CommencerForm.tsx
-│   │   │   │   │   │   │   │   ├── __tests__
-│   │   │   │   │   │   │   │   │   └── page.test.tsx
-│   │   │   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   │   │   ├── confirmation
-│   │   │   │   │   │   │   │   ├── __tests__
-│   │   │   │   │   │   │   │   │   └── page.test.tsx
-│   │   │   │   │   │   │   │   ├── page.tsx
-│   │   │   │   │   │   │   │   └── style.module.css
-│   │   │   │   │   │   │   ├── conges-maternite
-│   │   │   │   │   │   │   │   ├── CongesMaterniteForm.tsx
-│   │   │   │   │   │   │   │   ├── __tests__
-│   │   │   │   │   │   │   │   │   └── page.test.tsx
-│   │   │   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   │   │   ├── declarant
-│   │   │   │   │   │   │   │   ├── DeclarantForm.tsx
-│   │   │   │   │   │   │   │   ├── __tests__
-│   │   │   │   │   │   │   │   │   └── page.test.tsx
-│   │   │   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   │   │   ├── declarationFunnelConfiguration.ts
-│   │   │   │   │   │   │   ├── entreprise
-│   │   │   │   │   │   │   │   ├── EntrepriseUESForm.tsx
-│   │   │   │   │   │   │   │   ├── InformationEntreprise.tsx
-│   │   │   │   │   │   │   │   ├── __tests__
-│   │   │   │   │   │   │   │   │   └── page.test.tsx
-│   │   │   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   │   │   ├── hautes-remunerations
-│   │   │   │   │   │   │   │   ├── HautesRémunérationsForm.tsx
-│   │   │   │   │   │   │   │   ├── __tests__
-│   │   │   │   │   │   │   │   │   └── page.test.tsx
-│   │   │   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   │   │   ├── layout.tsx
-│   │   │   │   │   │   │   ├── periode-reference
-│   │   │   │   │   │   │   │   ├── PeriodeReferenceForm.tsx
-│   │   │   │   │   │   │   │   ├── __tests__
-│   │   │   │   │   │   │   │   │   └── page.test.tsx
-│   │   │   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   │   │   ├── promotions
-│   │   │   │   │   │   │   │   ├── PromotionsForm.tsx
-│   │   │   │   │   │   │   │   ├── __tests__
-│   │   │   │   │   │   │   │   │   └── page.test.tsx
-│   │   │   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   │   │   ├── publication
-│   │   │   │   │   │   │   │   ├── PublicationForm.tsx
-│   │   │   │   │   │   │   │   ├── __tests__
-│   │   │   │   │   │   │   │   │   └── page.test.tsx
-│   │   │   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   │   │   ├── remunerations
-│   │   │   │   │   │   │   │   ├── RemunerationForm.tsx
-│   │   │   │   │   │   │   │   ├── __tests__
-│   │   │   │   │   │   │   │   │   └── page.test.tsx
-│   │   │   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   │   │   ├── remunerations-resultat
-│   │   │   │   │   │   │   │   ├── RemunerationResultatForm.tsx
-│   │   │   │   │   │   │   │   ├── __tests__
-│   │   │   │   │   │   │   │   │   └── page.test.tsx
-│   │   │   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   │   │   ├── resultat-global
-│   │   │   │   │   │   │   │   ├── ResultatGlobalForm.tsx
-│   │   │   │   │   │   │   │   ├── __tests__
-│   │   │   │   │   │   │   │   │   └── page.test.tsx
-│   │   │   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   │   │   ├── ues
-│   │   │   │   │   │   │   │   ├── UESForm.module.scss
-│   │   │   │   │   │   │   │   ├── UESForm.tsx
-│   │   │   │   │   │   │   │   ├── __tests__
-│   │   │   │   │   │   │   │   │   └── page.test.tsx
-│   │   │   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   │   │   └── validation-transmission
-│   │   │   │   │   │   │       ├── Recap.tsx
-│   │   │   │   │   │   │       ├── __tests__
-│   │   │   │   │   │   │       │   └── page.test.tsx
-│   │   │   │   │   │   │       └── page.tsx
-│   │   │   │   │   │   ├── index.module.css
-│   │   │   │   │   │   ├── objectifs-mesures
-│   │   │   │   │   │   │   ├── [siren]
-│   │   │   │   │   │   │   │   └── [year]
-│   │   │   │   │   │   │   │       ├── ObjectifsMesuresForm.tsx
-│   │   │   │   │   │   │   │       └── page.tsx
-│   │   │   │   │   │   │   ├── actions.ts
-│   │   │   │   │   │   │   └── layout.tsx
-│   │   │   │   │   │   ├── page.tsx
-│   │   │   │   │   │   └── simulateur
-│   │   │   │   │   │       ├── (funnel)
-│   │   │   │   │   │       │   ├── (indicateurs2ou3)
-│   │   │   │   │   │       │   │   ├── Form.tsx
-│   │   │   │   │   │       │   │   ├── Indicateur2ou3Note.tsx
-│   │   │   │   │   │       │   │   ├── __tests__
-│   │   │   │   │   │       │   │   │   └── form.test.tsx
-│   │   │   │   │   │       │   │   ├── indicateur2
-│   │   │   │   │   │       │   │   │   └── page.tsx
-│   │   │   │   │   │       │   │   └── indicateur3
-│   │   │   │   │   │       │   │       └── page.tsx
-│   │   │   │   │   │       │   ├── Stepper.tsx
-│   │   │   │   │   │       │   ├── effectifs
-│   │   │   │   │   │       │   │   ├── Form.tsx
-│   │   │   │   │   │       │   │   ├── __tests__
-│   │   │   │   │   │       │   │   │   └── page.test.tsx
-│   │   │   │   │   │       │   │   └── page.tsx
-│   │   │   │   │   │       │   ├── indicateur1
-│   │   │   │   │   │       │   │   ├── CSPModeTable.tsx
-│   │   │   │   │   │       │   │   ├── Form.tsx
-│   │   │   │   │   │       │   │   ├── Indicateur1Note.tsx
-│   │   │   │   │   │       │   │   ├── IndicatorNote1.module.css
-│   │   │   │   │   │       │   │   ├── OtherModesTable.tsx
-│   │   │   │   │   │       │   │   ├── __tests__
-│   │   │   │   │   │       │   │   │   ├── mock.ts
-│   │   │   │   │   │       │   │   │   ├── page.category-sociaux-pro.test.tsx
-│   │   │   │   │   │       │   │   │   └── page.coeff-hierarchique.test.tsx
-│   │   │   │   │   │       │   │   ├── page.tsx
-│   │   │   │   │   │       │   │   └── tableUtil.tsx
-│   │   │   │   │   │       │   ├── indicateur2et3
-│   │   │   │   │   │       │   │   ├── Form.module.scss
-│   │   │   │   │   │       │   │   ├── Form.tsx
-│   │   │   │   │   │       │   │   ├── Indicateur2et3Note.tsx
-│   │   │   │   │   │       │   │   ├── __tests__
-│   │   │   │   │   │       │   │   │   ├── mock.ts
-│   │   │   │   │   │       │   │   │   └── page.test.tsx
-│   │   │   │   │   │       │   │   └── page.tsx
-│   │   │   │   │   │       │   ├── indicateur4
-│   │   │   │   │   │       │   │   ├── Form.module.scss
-│   │   │   │   │   │       │   │   ├── Form.tsx
-│   │   │   │   │   │       │   │   ├── Indicateur4Note.tsx
-│   │   │   │   │   │       │   │   ├── __tests__
-│   │   │   │   │   │       │   │   │   └── page.test.tsx
-│   │   │   │   │   │       │   │   └── page.tsx
-│   │   │   │   │   │       │   ├── indicateur5
-│   │   │   │   │   │       │   │   ├── Form.tsx
-│   │   │   │   │   │       │   │   ├── __tests__
-│   │   │   │   │   │       │   │   │   └── page.test.tsx
-│   │   │   │   │   │       │   │   └── page.tsx
-│   │   │   │   │   │       │   ├── layout.tsx
-│   │   │   │   │   │       │   ├── loading.tsx
-│   │   │   │   │   │       │   ├── navigation.ts
-│   │   │   │   │   │       │   ├── recapitulatif
-│   │   │   │   │   │       │   │   ├── Recap.module.scss
-│   │   │   │   │   │       │   │   ├── RecapSimu.tsx
-│   │   │   │   │   │       │   │   ├── __tests__
-│   │   │   │   │   │       │   │   │   ├── computerHelper.less_than_250_employees.test.ts
-│   │   │   │   │   │       │   │   │   ├── computerHelper.more_than_250_employees.test.ts
-│   │   │   │   │   │       │   │   │   ├── less_than_250_employees.json
-│   │   │   │   │   │       │   │   │   └── more_than_250_employess.json
-│   │   │   │   │   │       │   │   ├── computerHelper.ts
-│   │   │   │   │   │       │   │   ├── page.tsx
-│   │   │   │   │   │       │   │   └── simuToDecla.ts
-│   │   │   │   │   │       │   ├── useSimuFunnelStore.ts
-│   │   │   │   │   │       │   └── utils.ts
-│   │   │   │   │   │       ├── commencer
-│   │   │   │   │   │       │   └── page.tsx
-│   │   │   │   │   │       └── layout.tsx
+│   │   │   │   │   │   └── declaration
+│   │   │   │   │   │       └── declarationFunnelConfiguration.ts
 │   │   │   │   │   ├── index.module.css
 │   │   │   │   │   ├── layout.tsx
-│   │   │   │   │   ├── load-test
-│   │   │   │   │   │   ├── actions.ts
-│   │   │   │   │   │   ├── read
-│   │   │   │   │   │   │   ├── IndexList.tsx
-│   │   │   │   │   │   │   ├── RepeqList.tsx
-│   │   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   │   └── write
-│   │   │   │   │   │       └── page.tsx
 │   │   │   │   │   ├── login
 │   │   │   │   │   │   ├── CheckLogged.tsx
 │   │   │   │   │   │   ├── EmailLogin.tsx
 │   │   │   │   │   │   ├── GithubLogin.tsx
 │   │   │   │   │   │   ├── ProConnectLogin.tsx
 │   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   ├── mentions-legales
-│   │   │   │   │   │   ├── __tests__
-│   │   │   │   │   │   │   └── page.test.tsx
-│   │   │   │   │   │   └── page.tsx
 │   │   │   │   │   ├── messages.tsx
-│   │   │   │   │   ├── mon-espace
-│   │   │   │   │   │   ├── AddOwnershipForm.tsx
-│   │   │   │   │   │   ├── EmailOwnerList.tsx
-│   │   │   │   │   │   ├── actions.ts
-│   │   │   │   │   │   ├── layout.tsx
-│   │   │   │   │   │   ├── les-entreprises
-│   │   │   │   │   │   │   ├── SirenInput.tsx
-│   │   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   │   ├── mes-declarations
-│   │   │   │   │   │   │   ├── IndexList.tsx
-│   │   │   │   │   │   │   ├── RepeqList.tsx
-│   │   │   │   │   │   │   ├── SelectSiren.tsx
-│   │   │   │   │   │   │   ├── SelectSirenStaff.tsx
-│   │   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   │   ├── mes-entreprises
-│   │   │   │   │   │   │   ├── SelectSiren.tsx
-│   │   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   │   └── mon-profil
-│   │   │   │   │   │       └── page.tsx
 │   │   │   │   │   ├── page.tsx
-│   │   │   │   │   ├── politique-de-confidentialite
-│   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   ├── politique-de-confidentialite-v2
-│   │   │   │   │   │   ├── __tests__
-│   │   │   │   │   │   │   └── page.test.tsx
-│   │   │   │   │   │   └── page.tsx
 │   │   │   │   │   ├── rattachement
-│   │   │   │   │   │   ├── AddDeclarer.tsx
-│   │   │   │   │   │   ├── actions.ts
-│   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   ├── representation-equilibree
-│   │   │   │   │   │   ├── (funnel)
-│   │   │   │   │   │   │   ├── AlertEdition.tsx
-│   │   │   │   │   │   │   ├── Stepper.tsx
-│   │   │   │   │   │   │   ├── __test-utils__
-│   │   │   │   │   │   │   │   ├── repeq-mocks.ts
-│   │   │   │   │   │   │   │   └── setup-repeq-mocks.ts
-│   │   │   │   │   │   │   ├── commencer
-│   │   │   │   │   │   │   │   ├── Form.tsx
-│   │   │   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   │   │   ├── declarant
-│   │   │   │   │   │   │   │   ├── Form.tsx
-│   │   │   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   │   │   ├── ecarts-cadres
-│   │   │   │   │   │   │   │   ├── Form.tsx
-│   │   │   │   │   │   │   │   ├── __tests__
-│   │   │   │   │   │   │   │   │   └── page.test.tsx
-│   │   │   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   │   │   ├── ecarts-membres
-│   │   │   │   │   │   │   │   ├── Form.tsx
-│   │   │   │   │   │   │   │   ├── __tests__
-│   │   │   │   │   │   │   │   │   └── page.test.tsx
-│   │   │   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   │   │   ├── entreprise
-│   │   │   │   │   │   │   │   ├── Form.tsx
-│   │   │   │   │   │   │   │   ├── __tests__
-│   │   │   │   │   │   │   │   │   └── page.test.tsx
-│   │   │   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   │   │   ├── layout.tsx
-│   │   │   │   │   │   │   ├── loading.tsx
-│   │   │   │   │   │   │   ├── periode-reference
-│   │   │   │   │   │   │   │   ├── Form.tsx
-│   │   │   │   │   │   │   │   ├── __tests__
-│   │   │   │   │   │   │   │   │   └── page.test.tsx
-│   │   │   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   │   │   ├── publication
-│   │   │   │   │   │   │   │   ├── Form.tsx
-│   │   │   │   │   │   │   │   ├── __tests__
-│   │   │   │   │   │   │   │   │   └── page.test.tsx
-│   │   │   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   │   │   ├── titles.ts
-│   │   │   │   │   │   │   ├── useRepeqFunnelStore.ts
-│   │   │   │   │   │   │   └── validation
-│   │   │   │   │   │   │       ├── RecapRepEq.tsx
-│   │   │   │   │   │   │       ├── __tests__
-│   │   │   │   │   │   │       │   └── page.test.tsx
-│   │   │   │   │   │   │       └── page.tsx
-│   │   │   │   │   │   ├── Breadcrumb.tsx
-│   │   │   │   │   │   ├── Recap.tsx
-│   │   │   │   │   │   ├── [siren]
-│   │   │   │   │   │   │   └── [year]
-│   │   │   │   │   │   │       ├── EditButton.tsx
-│   │   │   │   │   │   │       ├── __tests__
-│   │   │   │   │   │   │       │   └── page.test.tsx
-│   │   │   │   │   │   │       ├── page.tsx
-│   │   │   │   │   │   │       └── pdf
-│   │   │   │   │   │   │           └── route.ts
-│   │   │   │   │   │   ├── __tests__
-│   │   │   │   │   │   │   └── page.test.tsx
-│   │   │   │   │   │   ├── actions.ts
-│   │   │   │   │   │   ├── assujetti
-│   │   │   │   │   │   │   ├── Form.tsx
-│   │   │   │   │   │   │   ├── __tests__
-│   │   │   │   │   │   │   │   └── page.test.tsx
-│   │   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   │   ├── layout.tsx
-│   │   │   │   │   │   ├── opengraph-image.tsx
-│   │   │   │   │   │   ├── page.tsx
-│   │   │   │   │   │   └── transmission
-│   │   │   │   │   │       ├── DownloadRepeqPdf.tsx
-│   │   │   │   │   │       ├── SendReceipt.tsx
-│   │   │   │   │   │       ├── __tests__
-│   │   │   │   │   │       │   └── page.test.tsx
-│   │   │   │   │   │       ├── page.tsx
-│   │   │   │   │   │       └── style.module.css
-│   │   │   │   │   ├── script
-│   │   │   │   │   │   ├── actions.ts
-│   │   │   │   │   │   └── clean-invalids-siren
-│   │   │   │   │   │       └── page.tsx
-│   │   │   │   │   └── stats
+│   │   │   │   │   │   └── actions.ts
+│   │   │   │   │   └── representation-equilibree
+│   │   │   │   │       ├── (funnel)
+│   │   │   │   │       │   ├── AlertEdition.tsx
+│   │   │   │   │       │   ├── Stepper.tsx
+│   │   │   │   │       │   ├── __test-utils__
+│   │   │   │   │       │   │   ├── repeq-mocks.ts
+│   │   │   │   │       │   │   └── setup-repeq-mocks.ts
+│   │   │   │   │       │   ├── commencer
+│   │   │   │   │       │   │   ├── Form.tsx
+│   │   │   │   │       │   │   ├── __tests__
+│   │   │   │   │       │   │   │   └── page.test.tsx
+│   │   │   │   │       │   │   └── page.tsx
+│   │   │   │   │       │   ├── declarant
+│   │   │   │   │       │   │   ├── Form.tsx
+│   │   │   │   │       │   │   ├── __tests__
+│   │   │   │   │       │   │   │   └── page.test.tsx
+│   │   │   │   │       │   │   └── page.tsx
+│   │   │   │   │       │   ├── ecarts-cadres
+│   │   │   │   │       │   │   ├── Form.tsx
+│   │   │   │   │       │   │   ├── __tests__
+│   │   │   │   │       │   │   │   └── page.test.tsx
+│   │   │   │   │       │   │   └── page.tsx
+│   │   │   │   │       │   ├── ecarts-membres
+│   │   │   │   │       │   │   ├── Form.tsx
+│   │   │   │   │       │   │   ├── __tests__
+│   │   │   │   │       │   │   │   └── page.test.tsx
+│   │   │   │   │       │   │   └── page.tsx
+│   │   │   │   │       │   ├── entreprise
+│   │   │   │   │       │   │   ├── Form.tsx
+│   │   │   │   │       │   │   ├── __tests__
+│   │   │   │   │       │   │   │   └── page.test.tsx
+│   │   │   │   │       │   │   └── page.tsx
+│   │   │   │   │       │   ├── layout.tsx
+│   │   │   │   │       │   ├── loading.tsx
+│   │   │   │   │       │   ├── periode-reference
+│   │   │   │   │       │   │   ├── Form.tsx
+│   │   │   │   │       │   │   ├── __tests__
+│   │   │   │   │       │   │   │   └── page.test.tsx
+│   │   │   │   │       │   │   └── page.tsx
+│   │   │   │   │       │   ├── publication
+│   │   │   │   │       │   │   ├── Form.tsx
+│   │   │   │   │       │   │   ├── __tests__
+│   │   │   │   │       │   │   │   └── page.test.tsx
+│   │   │   │   │       │   │   └── page.tsx
+│   │   │   │   │       │   ├── titles.ts
+│   │   │   │   │       │   ├── useRepeqFunnelStore.ts
+│   │   │   │   │       │   └── validation
+│   │   │   │   │       │       ├── RecapRepEq.tsx
+│   │   │   │   │       │       ├── __tests__
+│   │   │   │   │       │       │   └── page.test.tsx
+│   │   │   │   │       │       └── page.tsx
+│   │   │   │   │       ├── Breadcrumb.tsx
+│   │   │   │   │       ├── Recap.tsx
+│   │   │   │   │       ├── [siren]
+│   │   │   │   │       │   └── [year]
+│   │   │   │   │       │       ├── EditButton.tsx
+│   │   │   │   │       │       ├── __tests__
+│   │   │   │   │       │       │   └── page.test.tsx
+│   │   │   │   │       │       ├── page.tsx
+│   │   │   │   │       │       └── pdf
+│   │   │   │   │       │           └── route.ts
 │   │   │   │   │       ├── __tests__
+│   │   │   │   │       │   ├── Breadcrumb.test.tsx
+│   │   │   │   │       │   ├── layout.test.tsx
 │   │   │   │   │       │   └── page.test.tsx
 │   │   │   │   │       ├── actions.ts
-│   │   │   │   │       ├── components
-│   │   │   │   │       │   ├── ChartDescription.tsx
-│   │   │   │   │       │   ├── DataCard.module.scss
-│   │   │   │   │       │   ├── DataCard.tsx
-│   │   │   │   │       │   ├── StatCard.module.scss
-│   │   │   │   │       │   ├── StatCard.tsx
-│   │   │   │   │       │   └── client
-│   │   │   │   │       │       ├── BarChart.tsx
-│   │   │   │   │       │       ├── ChartTheme.ts
-│   │   │   │   │       │       ├── DoughnutChart.tsx
-│   │   │   │   │       │       └── __tests__
-│   │   │   │   │       │           └── BarChart.test.tsx
-│   │   │   │   │       ├── content.tsx
-│   │   │   │   │       └── page.tsx
+│   │   │   │   │       ├── assujetti
+│   │   │   │   │       │   ├── Form.tsx
+│   │   │   │   │       │   ├── __tests__
+│   │   │   │   │       │   │   └── page.test.tsx
+│   │   │   │   │       │   └── page.tsx
+│   │   │   │   │       ├── layout.tsx
+│   │   │   │   │       ├── opengraph-image.tsx
+│   │   │   │   │       ├── page.tsx
+│   │   │   │   │       └── transmission
+│   │   │   │   │           ├── DownloadRepeqPdf.tsx
+│   │   │   │   │           ├── SendReceipt.tsx
+│   │   │   │   │           ├── page.tsx
+│   │   │   │   │           └── style.module.css
 │   │   │   │   ├── AuthHeaderItems.tsx
+│   │   │   │   ├── DsfrClientInit.tsx
 │   │   │   │   ├── Footer.tsx
 │   │   │   │   ├── Header.tsx
 │   │   │   │   ├── HeaderAccountMenu.tsx
 │   │   │   │   ├── ImpersonateNotice.tsx
 │   │   │   │   ├── SessionProvider.tsx
-│   │   │   │   ├── StartDsfr.tsx
 │   │   │   │   ├── __tests__
 │   │   │   │   │   └── Footer.test.tsx
 │   │   │   │   ├── _globalActions
 │   │   │   │   │   ├── company.ts
 │   │   │   │   │   └── companyErrorCodes.ts
-│   │   │   │   ├── admin
-│   │   │   │   │   ├── Navigation.tsx
-│   │   │   │   │   ├── admin.module.css
-│   │   │   │   │   ├── debug
-│   │   │   │   │   │   ├── __tests__
-│   │   │   │   │   │   │   └── page.test.tsx
-│   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   ├── declarations
-│   │   │   │   │   │   ├── DeclarationsList.tsx
-│   │   │   │   │   │   ├── SearchForm.tsx
-│   │   │   │   │   │   ├── __tests__
-│   │   │   │   │   │   │   └── page.test.tsx
-│   │   │   │   │   │   ├── actions.ts
-│   │   │   │   │   │   ├── errorCodes.ts
-│   │   │   │   │   │   ├── page.tsx
-│   │   │   │   │   │   └── style.module.scss
-│   │   │   │   │   ├── impersonate
-│   │   │   │   │   │   ├── Form.tsx
-│   │   │   │   │   │   ├── __tests__
-│   │   │   │   │   │   │   └── page.test.tsx
-│   │   │   │   │   │   └── page.tsx
-│   │   │   │   │   ├── layout.tsx
-│   │   │   │   │   ├── liste-referents
-│   │   │   │   │   │   ├── EditReferentModal.tsx
-│   │   │   │   │   │   ├── ReferentList.tsx
-│   │   │   │   │   │   ├── ReferentModal.tsx
-│   │   │   │   │   │   ├── __tests__
-│   │   │   │   │   │   │   └── page.test.tsx
-│   │   │   │   │   │   ├── _actionButtons
-│   │   │   │   │   │   │   ├── ActionButtons.tsx
-│   │   │   │   │   │   │   ├── CreateReferentModal.tsx
-│   │   │   │   │   │   │   ├── ExportReferentsModal.tsx
-│   │   │   │   │   │   │   ├── ImportReferentsModal.tsx
-│   │   │   │   │   │   │   └── actions.ts
-│   │   │   │   │   │   ├── actions.ts
-│   │   │   │   │   │   ├── page.tsx
-│   │   │   │   │   │   └── useReferentListStore.tsx
-│   │   │   │   │   └── rattachements
-│   │   │   │   │       ├── OwnershipRequestList.tsx
-│   │   │   │   │       ├── Pagination.tsx
-│   │   │   │   │       ├── __tests__
-│   │   │   │   │       │   └── page.test.tsx
-│   │   │   │   │       ├── page.tsx
-│   │   │   │   │       └── useOwnershipRequestListStore.tsx
 │   │   │   │   ├── api
-│   │   │   │   │   ├── clean-test-user
-│   │   │   │   │   │   └── declaration
+│   │   │   │   │   ├── auth
+│   │   │   │   │   │   └── proconnect-logout
 │   │   │   │   │   │       └── route.ts
 │   │   │   │   │   ├── health
 │   │   │   │   │   │   └── route.ts
@@ -952,6 +376,9 @@
 │   │   │   │   │   │   └── referents_egalite_professionnelle
 │   │   │   │   │   │       └── [ext]
 │   │   │   │   │   │           └── route.ts
+│   │   │   │   │   ├── test
+│   │   │   │   │   │   └── cleanup
+│   │   │   │   │   │       └── route.ts
 │   │   │   │   │   └── test-sentry-error
 │   │   │   │   │       └── route.ts
 │   │   │   │   ├── consentManagement.tsx
@@ -965,6 +392,7 @@
 │   │   │   │   ├── layout.tsx
 │   │   │   │   ├── not-found.tsx
 │   │   │   │   ├── opengraph-image.tsx
+│   │   │   │   ├── providers.tsx
 │   │   │   │   └── root.module.scss
 │   │   │   ├── common
 │   │   │   │   ├── config.ts
@@ -1285,7 +713,6 @@
 │   │   │   │       ├── color-styles.ts
 │   │   │   │       └── spacing.ts
 │   │   │   ├── instrumentation.ts
-│   │   │   ├── middleware.ts
 │   │   │   ├── model.data
 │   │   │   │   ├── année_indicateurs.json
 │   │   │   │   ├── code_naf.json
@@ -1308,6 +735,7 @@
 │   │   │   │   └── api
 │   │   │   │       └── auth
 │   │   │   │           └── [...nextauth].ts
+│   │   │   ├── proxy.ts
 │   │   │   └── services
 │   │   │       ├── apiClient
 │   │   │       │   ├── useDeclarationFormManager.ts
@@ -1318,32 +746,19 @@
 │   │   │           ├── searchDeclaration.ts
 │   │   │           └── searchRepresentationEquilibree.ts
 │   │   ├── tsconfig.json
-│   │   └── types
-│   │       └── augment.d.ts
+│   │   ├── types
+│   │   │   └── augment.d.ts
+│   │   ├── vitest.config.mts
+│   │   └── vitest.setup.ts
 │   ├── files
 │   │   ├── .htpasswd
-│   │   ├── .yarn
-│   │   │   ├── install-state.gz
-│   │   │   └── releases
-│   │   │       └── yarn-4.0.2.cjs
-│   │   ├── .yarnrc.yml
 │   │   ├── Dockerfile
 │   │   ├── index.js
-│   │   ├── package.json
-│   │   └── yarn.lock
+│   │   └── package.json
 │   └── nginx
 │       ├── Dockerfile
 │       └── nginx.conf
-├── scripts
-│   ├── check-all
-│   ├── dev
-│   ├── fresh-install
-│   ├── package-lock.json
-│   ├── package.json
-│   ├── populate-redis.js
-│   └── postinstall
-├── sonar-project.properties
-├── tech.yaml
-├── trivy.yaml
-└── yarn.lock
-306 directories, 1042 files
+├── pnpm-lock.yaml
+├── pnpm-workspace.yaml
+└── sonar-project.properties
+159 directories, 604 files
