@@ -1,3 +1,17 @@
+# [1.130.0](https://github.com/SocialGouv/jardinmental/compare/v1.129.1...v1.130.0) (2026-02-18)
+
+
+### Features
+
+* bump android and ios version ([5bb2ee4](https://github.com/SocialGouv/jardinmental/commit/5bb2ee403a3e1cecd7eab43819a574c0361be96a))
+
+## [1.129.1](https://github.com/SocialGouv/jardinmental/compare/v1.129.0...v1.129.1) (2026-02-17)
+
+
+### Bug Fixes
+
+* replace TypographyInput by TextInput ([6bce30c](https://github.com/SocialGouv/jardinmental/commit/6bce30c90052a21c5514628e39c88c13bcbddfc1))
+
 # [1.129.0](https://github.com/SocialGouv/jardinmental/compare/v1.128.0...v1.129.0) (2026-02-09)
 
 
