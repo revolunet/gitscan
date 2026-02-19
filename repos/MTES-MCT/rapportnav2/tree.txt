@@ -104,10 +104,6 @@
 │   │   │   │                   │   │   │   │   ├── MissionEnvEntity.kt
 │   │   │   │                   │   │   │   │   ├── MissionSourceEnum.kt
 │   │   │   │                   │   │   │   │   ├── MissionTypeEnum.kt
-│   │   │   │                   │   │   │   │   ├── controlPlan
-│   │   │   │                   │   │   │   │   │   ├── ControlPlanSubthemeEntity.kt
-│   │   │   │                   │   │   │   │   │   ├── ControlPlanTagEntity.kt
-│   │   │   │                   │   │   │   │   │   └── ControlPlanThemeEntity.kt
 │   │   │   │                   │   │   │   │   ├── controlResources
 │   │   │   │                   │   │   │   │   │   ├── ControlResourceEntity.kt
 │   │   │   │                   │   │   │   │   │   ├── ControlUnitEntity.kt
@@ -119,9 +115,7 @@
 │   │   │   │                   │   │   │   │   │   ├── ActionTargetTypeEnum.kt
 │   │   │   │                   │   │   │   │   │   ├── ActionTypeEnum.kt
 │   │   │   │                   │   │   │   │   │   ├── AdministrativeResponseEnum.kt
-│   │   │   │                   │   │   │   │   │   ├── ControlPlansEntity.kt
 │   │   │   │                   │   │   │   │   │   ├── EnvActionControlEntity.kt
-│   │   │   │                   │   │   │   │   │   ├── EnvActionControlPlanEntity.kt
 │   │   │   │                   │   │   │   │   │   ├── EnvActionEntity.kt
 │   │   │   │                   │   │   │   │   │   ├── EnvActionNoteEntity.kt
 │   │   │   │                   │   │   │   │   │   ├── EnvActionSurveillanceEntity.kt
@@ -310,10 +304,8 @@
 │   │   │   │                   │   │   │   ├── GetEnvMissions.kt
 │   │   │   │                   │   │   │   ├── PatchEnvMission.kt
 │   │   │   │                   │   │   │   ├── action
-│   │   │   │                   │   │   │   │   ├── GetAllControlPlans.kt
 │   │   │   │                   │   │   │   │   ├── GetStatusForAction.kt
 │   │   │   │                   │   │   │   │   ├── GroupActionByDate.kt
-│   │   │   │                   │   │   │   │   ├── MapEnvActionControlPlans.kt
 │   │   │   │                   │   │   │   │   ├── PatchEnvAction.kt
 │   │   │   │                   │   │   │   │   ├── PatchFishAction.kt
 │   │   │   │                   │   │   │   │   └── v2
@@ -414,7 +406,8 @@
 │   │   │   │                   │   │   │   └── MigrateAgent.kt
 │   │   │   │                   │   │   ├── user
 │   │   │   │                   │   │   │   ├── CreateUser.kt
-│   │   │   │                   │   │   │   ├── DeleteUser.kt
+│   │   │   │                   │   │   │   ├── DisableUser.kt
+│   │   │   │                   │   │   │   ├── EnableUser.kt
 │   │   │   │                   │   │   │   ├── FindByEmail.kt
 │   │   │   │                   │   │   │   ├── FindById.kt
 │   │   │   │                   │   │   │   ├── GetControlUnitsForUser.kt
@@ -471,7 +464,6 @@
 │   │   │   │                       │   │   │       └── ActionFishInput.kt
 │   │   │   │                       │   │   ├── model
 │   │   │   │                       │   │   │   ├── action
-│   │   │   │                       │   │   │   │   ├── FormattedEnvActionControlPlan.kt
 │   │   │   │                       │   │   │   │   ├── PatchedEnvAction.kt
 │   │   │   │                       │   │   │   │   └── PatchedFishAction.kt
 │   │   │   │                       │   │   │   ├── crew
@@ -535,7 +527,6 @@
 │   │   │   │                       │   │   │   └── VesselRestController.kt
 │   │   │   │                       │   │   └── wiremock
 │   │   │   │                       │   │       ├── AdministrationStubs.kt
-│   │   │   │                       │   │       ├── ControlPlansStubs.kt
 │   │   │   │                       │   │       ├── ControlUnitResourcesStubs.kt
 │   │   │   │                       │   │       ├── FishActionsStubs.kt
 │   │   │   │                       │   │       ├── FishVesselsStubs.kt
@@ -652,13 +643,8 @@
 │   │   │   │                       │   │   └── PatchMissionInput.kt
 │   │   │   │                       │   ├── output
 │   │   │   │                       │   │   ├── MissionDataOutput.kt
-│   │   │   │                       │   │   ├── action
-│   │   │   │                       │   │   │   └── MissionEnvActionDataOutput.kt
-│   │   │   │                       │   │   └── controlPlans
-│   │   │   │                       │   │       ├── ControlPlanDataOutput.kt
-│   │   │   │                       │   │       ├── ControlPlanSubThemeDataOutput.kt
-│   │   │   │                       │   │       ├── ControlPlanTagDataOutput.kt
-│   │   │   │                       │   │       └── ControlPlanThemeDataOutput.kt
+│   │   │   │                       │   │   └── action
+│   │   │   │                       │   │       └── MissionEnvActionDataOutput.kt
 │   │   │   │                       │   └── v2
 │   │   │   │                       │       ├── APIEnvAdministrationRepository.kt
 │   │   │   │                       │       ├── APIEnvControlUnitRepository.kt
@@ -850,7 +836,8 @@
 │   │   │       │       ├── V1.2026.01.20.09.47__alter_table_establishment_more_space_column.sql
 │   │   │       │       ├── V1.2026.01.26.14.16__alter_table_general_info_to_add_no_resources.sql
 │   │   │       │       ├── V1.2026.02.11.14.16__mission_source_enum.sql
-│   │   │       │       └── V1.2026.02.11.16.16__target_mission_source_enum.sql
+│   │   │       │       ├── V1.2026.02.11.16.16__target_mission_source_enum.sql
+│   │   │       │       └── V1.2026.02.17.16.16__user_status.sql
 │   │   │       ├── global
 │   │   │       │   └── migration
 │   │   │       │       ├── migration_mission_action.sql
@@ -972,7 +959,6 @@
 │   │       │                   │   │   │   ├── action
 │   │       │                   │   │   │   │   ├── CreateNavActionTest.kt
 │   │       │                   │   │   │   │   ├── DeleteNavActionTest.kt
-│   │       │                   │   │   │   │   ├── GetAllControlPlansTest.kt
 │   │       │                   │   │   │   │   ├── GetComputeEnvActionListByMissionIdTest.kt
 │   │       │                   │   │   │   │   ├── GetComputeFishActionListByMissionIdTest.kt
 │   │       │                   │   │   │   │   ├── GetComputeNavActionListByMissionIdTest.kt
@@ -981,7 +967,6 @@
 │   │       │                   │   │   │   │   ├── GetEnvActionByIdTest.kt
 │   │       │                   │   │   │   │   ├── GetFishActionByIdTest.kt
 │   │       │                   │   │   │   │   ├── GetNavActionByIdTest.kt
-│   │       │                   │   │   │   │   ├── MapEnvActionControlPlansTests.kt
 │   │       │                   │   │   │   │   ├── ProcessMissionActionTargetTest.kt
 │   │       │                   │   │   │   │   ├── UpdateEnvActionTest.kt
 │   │       │                   │   │   │   │   ├── UpdateFishActionTest.kt
@@ -1069,6 +1054,8 @@
 │   │       │                   │   │   │   └── MigrateAgentTest.kt
 │   │       │                   │   │   ├── user
 │   │       │                   │   │   │   ├── CreateUserTest.kt
+│   │       │                   │   │   │   ├── DisableUserTest.kt
+│   │       │                   │   │   │   ├── EnableUserTest.kt
 │   │       │                   │   │   │   ├── FindByEmailTest.kt
 │   │       │                   │   │   │   ├── FindByIdTest.kt
 │   │       │                   │   │   │   ├── GetControlUnitsForUserTest.kt
@@ -1091,7 +1078,8 @@
 │   │       │                   │   │   ├── adapters
 │   │       │                   │   │   │   └── ProblemDetailFactoryTest.kt
 │   │       │                   │   │   ├── admin
-│   │       │                   │   │   │   └── ApiAdminControllerITest.kt
+│   │       │                   │   │   │   ├── ApiAdminControllerITest.kt
+│   │       │                   │   │   │   └── UserAdminControllerTest.kt
 │   │       │                   │   │   ├── analytics
 │   │       │                   │   │   │   └── ApiAnalyticsControllerTests.kt
 │   │       │                   │   │   ├── auth
@@ -1163,11 +1151,17 @@
 │   │       │                   │   ├── monitorenv
 │   │       │                   │   │   ├── APIEnvMissionRepositoryTest.kt
 │   │       │                   │   │   ├── output
+│   │       │                   │   │   │   ├── MissionDataOutputTest.kt
 │   │       │                   │   │   │   └── action
 │   │       │                   │   │   │       └── MissionEnvActionDataOutputTest.kt
 │   │       │                   │   │   └── v2
+│   │       │                   │   │       ├── APIEnvAdministrationRepositoryTest.kt
 │   │       │                   │   │       ├── APIEnvControlUnitRepositoryTest.kt
-│   │       │                   │   │       └── APIEnvMissionRepositoryTest.kt
+│   │       │                   │   │       ├── APIEnvControlUnitResourceRepositoryTest.kt
+│   │       │                   │   │       ├── APIEnvMissionRepositoryTest.kt
+│   │       │                   │   │       ├── APIEnvNatinfRepositoryTest.kt
+│   │       │                   │   │       └── outputs
+│   │       │                   │   │           └── LegacyControlUnitDataOutputTest.kt
 │   │       │                   │   ├── monitorfish
 │   │       │                   │   │   ├── APIFishActionRepositoryTest.kt
 │   │       │                   │   │   └── output
@@ -1196,9 +1190,7 @@
 │   │       │                       │   ├── action
 │   │       │                       │   │   ├── ActionMockFactory.kt
 │   │       │                       │   │   ├── ControlEntityMock.kt
-│   │       │                       │   │   ├── ControlPlanMock.kt
 │   │       │                       │   │   ├── EnvActionControlMock.kt
-│   │       │                       │   │   ├── EnvActionControlPlanMock.kt
 │   │       │                       │   │   ├── EnvActionNoteMock.kt
 │   │       │                       │   │   ├── EnvActionSurveillanceMock.kt
 │   │       │                       │   │   ├── FishActionControlMock.kt
@@ -1475,6 +1467,7 @@
 │   │   │   │   │   │   ├── use-admin-delete-services-service.tsx
 │   │   │   │   │   │   ├── use-admin-disable-agent-service.tsx
 │   │   │   │   │   │   ├── use-admin-disable-apikey-service.tsx
+│   │   │   │   │   │   ├── use-admin-disable-user.tsx
 │   │   │   │   │   │   ├── use-admin-general-infos.tsx
 │   │   │   │   │   │   ├── use-admin-migrate-agents-service.tsx
 │   │   │   │   │   │   ├── use-admin-rorate-apikey-service.tsx
@@ -1867,7 +1860,6 @@
 │   │   │   │   │   │       ├── mission-action-control-nautical-leisure-form.tsx
 │   │   │   │   │   │       ├── mission-action-control-sector-form.tsx
 │   │   │   │   │   │       ├── mission-action-diving-operation.tsx
-│   │   │   │   │   │       ├── mission-action-env-control-plan.tsx
 │   │   │   │   │   │       ├── mission-action-env-control-summary.tsx
 │   │   │   │   │   │       ├── mission-action-env-themes.tsx
 │   │   │   │   │   │       ├── mission-action-formik-coordonate-input-dmd.tsx
@@ -2238,4 +2230,4 @@
 │   └── docker-compose.yml
 ├── release-please-config.json
 └── sonar-project.properties
-442 directories, 1798 files
+441 directories, 1791 files

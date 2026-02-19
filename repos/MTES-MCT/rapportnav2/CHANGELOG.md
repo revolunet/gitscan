@@ -1,5 +1,41 @@
 # Changelog
 
+## [2.66.1](https://github.com/MTES-MCT/rapportnav2/compare/docker-container@v2.66.0...docker-container@v2.66.1) (2026-02-18)
+
+
+### Bug Fixes
+
+* **Sentry:** reset proxy manually ([2cd9fd7](https://github.com/MTES-MCT/rapportnav2/commit/2cd9fd7a8512fc1bf9edd20265039b172d391bbb))
+
+## [2.66.0](https://github.com/MTES-MCT/rapportnav2/compare/docker-container@v2.65.0...docker-container@v2.66.0) (2026-02-17)
+
+
+### Features
+
+* **security:** revalidate token auth with actual user data ([f34ac29](https://github.com/MTES-MCT/rapportnav2/commit/f34ac294223a0699f935b38f652300bf8b0797c1))
+
+
+### Bug Fixes
+
+* tests ([3f85ea6](https://github.com/MTES-MCT/rapportnav2/commit/3f85ea6faff877f93e90adcb7935fb897e455f63))
+
+## [2.65.0](https://github.com/MTES-MCT/rapportnav2/compare/docker-container@v2.64.0...docker-container@v2.65.0) (2026-02-16)
+
+
+### Features
+
+* **backend:** merge ([26c68d1](https://github.com/MTES-MCT/rapportnav2/commit/26c68d1830723635a1248110b96f5ffbe03ed297))
+* **frontend:** show nb target on title ([242e230](https://github.com/MTES-MCT/rapportnav2/commit/242e23001d7287374a05b10f3c402ae8e2f26820))
+
+
+### Bug Fixes
+
+* **backend:** add mission source to delete method ([8a269d3](https://github.com/MTES-MCT/rapportnav2/commit/8a269d3d8d4b0dd00221c059e7e05151a59b9280))
+* **backend:** add mission source to delete method ([ef8d53b](https://github.com/MTES-MCT/rapportnav2/commit/ef8d53b0adf6192f151779108e4e6f9e9e10e6a8))
+* **frontend:** default resource value ([b4e52a5](https://github.com/MTES-MCT/rapportnav2/commit/b4e52a51d99a2f3e6ee96997b3991efbe4e7e9f9))
+* **frontend:** default resource value ([84bbad8](https://github.com/MTES-MCT/rapportnav2/commit/84bbad864d666689a396c3b2cbe08f43526a3ca1))
+* **frontend:** remove rounding on coord mission action ([9a86a0d](https://github.com/MTES-MCT/rapportnav2/commit/9a86a0d3b0a9c6caf8e561dfc766a79956dd02bb))
+
 ## [2.64.0](https://github.com/MTES-MCT/rapportnav2/compare/docker-container@v2.63.4...docker-container@v2.64.0) (2026-02-11)
 
 
